@@ -272,8 +272,8 @@
     NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
     [self.coin setText:coinString];
     
-    //charge button
-    self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
+//    //charge button
+//    self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self.bulletinButton setTitle:NSLS(@"kBulletin") forState:UIControlStateNormal];

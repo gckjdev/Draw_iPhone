@@ -289,11 +289,6 @@
 		A4F5BF7F16A40525000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
 		A4F5BF8016A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
 		A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4F5BF8216A4055B000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
-		A4F5BF8316A4055B000A503F /* forum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7416A40224000A503F /* forum@2x.png */; };
-		A4F5BF8516A4055B000A503F /* more_apps_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7616A40224000A503F /* more_apps_icon@2x.png */; };
-		A4F5BF8616A4055B000A503F /* video_ad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7716A40224000A503F /* video_ad_icon@2x.png */; };
-		A4F5BF8716A4055B000A503F /* new_wood_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7816A40224000A503F /* new_wood_bg@2x.png */; };
 		A4F5BF8816A4055C000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
 		A4F5BF8916A4055C000A503F /* forum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7416A40224000A503F /* forum@2x.png */; };
 		A4F5BF8B16A4055C000A503F /* more_apps_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7616A40224000A503F /* more_apps_icon@2x.png */; };
@@ -307,6 +302,22 @@
 		A4F5BFC416A55607000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
 		A4F5BFC516A55607000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
 		A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
+		A4F5BFE016A64808000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
+		A4F5BFE116A64808000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
+		A4F5BFE216A64808000A503F /* forum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7416A40224000A503F /* forum@2x.png */; };
+		A4F5BFE316A64808000A503F /* more_apps_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7616A40224000A503F /* more_apps_icon@2x.png */; };
+		A4F5BFE416A64808000A503F /* video_ad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7716A40224000A503F /* video_ad_icon@2x.png */; };
+		A4F5BFE516A64808000A503F /* new_wood_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7816A40224000A503F /* new_wood_bg@2x.png */; };
+		A4F5BFE616A64808000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
+		A4F5BFE716A64808000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
+		A4F5BFE816A64809000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
+		A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
+		A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
+		A4F5BFEB16A648B2000A503F /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
+		A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
@@ -17512,6 +17523,10 @@
 				CA5329D316A542CC00E9E96B /* pen-feather@2x.png in Resources */,
 				CA5329D716A542CC00E9E96B /* pen-star@2x.png in Resources */,
 				CA5329DB16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
+				A4F5BFE616A64808000A503F /* wood_paper_big@2x.png in Resources */,
+				A4F5BFE716A64808000A503F /* wood_paper_small@2x.png in Resources */,
+				A4F5BFEB16A648B2000A503F /* select_word_back_btn@2x.png in Resources */,
+				A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18301,6 +18316,10 @@
 				CA5329D416A542CC00E9E96B /* pen-feather@2x.png in Resources */,
 				CA5329D816A542CC00E9E96B /* pen-star@2x.png in Resources */,
 				CA5329DC16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
+				A4F5BFE816A64809000A503F /* wood_paper_big@2x.png in Resources */,
+				A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */,
+				A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */,
+				A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19816,17 +19835,20 @@
 				C235C61E16A3F45900D80BA4 /* femaleImage.png in Resources */,
 				C235C62116A3F46100D80BA4 /* maleImage.png in Resources */,
 				A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */,
-				A4F5BF8216A4055B000A503F /* coin_tree@2x.png in Resources */,
-				A4F5BF8316A4055B000A503F /* forum@2x.png in Resources */,
-				A4F5BF8516A4055B000A503F /* more_apps_icon@2x.png in Resources */,
-				A4F5BF8616A4055B000A503F /* video_ad_icon@2x.png in Resources */,
-				A4F5BF8716A4055B000A503F /* new_wood_bg@2x.png in Resources */,
 				CA29EA8416A526BB003B1434 /* draw_home_free_coins@2x.png in Resources */,
 				CA29EA8516A526CE003B1434 /* draw_home_apps@2x.png in Resources */,
 				CA5329CE16A542CC00E9E96B /* pen-brush@2x.png in Resources */,
 				CA5329D216A542CC00E9E96B /* pen-feather@2x.png in Resources */,
 				CA5329D616A542CC00E9E96B /* pen-star@2x.png in Resources */,
 				CA5329DA16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
+				A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */,
+				A4F5BFE016A64808000A503F /* wood_paper_small@2x.png in Resources */,
+				A4F5BFE116A64808000A503F /* coin_tree@2x.png in Resources */,
+				A4F5BFE216A64808000A503F /* forum@2x.png in Resources */,
+				A4F5BFE316A64808000A503F /* more_apps_icon@2x.png in Resources */,
+				A4F5BFE416A64808000A503F /* video_ad_icon@2x.png in Resources */,
+				A4F5BFE516A64808000A503F /* new_wood_bg@2x.png in Resources */,
+				A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

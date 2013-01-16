@@ -667,6 +667,8 @@
 - (void)gameStart
 {
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
+    [self clearAll];
+    
     [_gameService getAccount];
 
     [self updateAllUsersAvatar];
@@ -713,15 +715,11 @@
 {
     [self updateZJHButtons];
     [self clearAllAvatarReciprocals];
-    
     [self updateAllUsersAvatar];
-
     [self someoneWon:[_gameService winner]];
-
     [self faceupUserCards];
     [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
-
     [_levelService addExp:[ConfigManager getZhajinhuaExp] delegate:self];
 }
 
@@ -730,15 +728,20 @@
     PPDebug(@"Level Up to %d level", newLevel);
 }
 
-- (void)resetGame
+- (void)clearAll
 {
-    self.autoBetButton.selected = NO;
-    [_gameService reset];
     [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
     [self updateWaitGameNoteLabel];
     [self clearTotalBetAndSingleBet];
+}
+
+- (void)resetGame
+{
+    self.autoBetButton.selected = NO;
+    [_gameService reset];
+    [self clearAll];
     if (![_ruleConfig isCoinsEnough]) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
