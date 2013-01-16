@@ -62,7 +62,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 @synthesize messageStat = _messageStat;
 @synthesize showTime = _showTime;
 @synthesize isReceive = _isReceive;
-@synthesize superController = _superController;
+//@synthesize superController = _superController;
 @synthesize loadingView;
 @synthesize failureView;
 #pragma mark adjust frame
@@ -252,7 +252,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     PPRelease(avatarButton);
     PPRelease(contentButton);
     PPRelease(showDrawView);
-    PPRelease(_superController);
+//    PPRelease(_superController);
     PPRelease(loadingView);
     PPRelease(failureView);
     PPRelease(_avatarView);
@@ -417,7 +417,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
                                             avatar:_messageStat.friendAvatar
                                             gender:_messageStat.friendGenderString 
                                              level:1];
-        [CommonUserInfoView showFriend:friend inController:self.superController needUpdate:YES canChat:YES];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(showFriendProfile:)]) {
+            [self.delegate showFriendProfile:friend];
+        }
     }
 }
 

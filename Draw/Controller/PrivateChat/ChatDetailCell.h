@@ -14,6 +14,7 @@
 @class PPMessage;
 @class ShowDrawView;
 @class MessageStat;
+@class MyFriend;
 
 @protocol ChatDetailCellDelegate <NSObject>
 
@@ -26,6 +27,8 @@
          withImageURL:(NSString *)imageURL;
 
 - (void)didLongClickMessage:(PPMessage *)message;
+
+- (void)showFriendProfile:(MyFriend *)aFriend;
 
 @end
 
@@ -40,7 +43,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIButton *contentButton;
 @property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
-@property (retain, nonatomic) PPViewController *superController;
+//@property (retain, nonatomic) PPViewController *superController;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
 @property (retain, nonatomic) IBOutlet UIImageView *failureView;
 
