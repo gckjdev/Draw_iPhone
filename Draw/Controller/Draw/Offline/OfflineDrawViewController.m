@@ -218,7 +218,12 @@
     self = [super init];
     if (self) {
         self.draft = draft;
-        self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
+        if (draft.drawWordData != nil){
+            self.word = [Word wordFromData:draft.drawWordData];
+        }
+        else{
+            self.word = [Word wordWithText:draft.drawWord level:draft.level.intValue];
+        }
         shareImageManager = [ShareImageManager defaultManager];
         languageType = draft.language.intValue;
         if ([draft.targetUserId length] != 0) {
@@ -229,7 +234,7 @@
             [self.contest setContestId:draft.contestId];
         }
         
-        PPDebug(@"draft word lelve = %@, language = %@", draft.level,draft.language);
+        PPDebug(@"draft word = %@", [self.word description]);
     }
     return self;
 }

@@ -50,6 +50,8 @@ typedef enum
 
 - (NSString *)levelDesc;
 - (NSInteger)length;
+- (NSData*)data;
++ (Word*)wordFromData:(NSData*)data;
 
 @end
 
