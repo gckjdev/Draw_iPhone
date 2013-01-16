@@ -14,6 +14,8 @@
 
 - (void)didGainMoney:(int)money
             fromTree:(MoneyTreeView*)treeView;
+@optional
+- (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
 
 @end
 
