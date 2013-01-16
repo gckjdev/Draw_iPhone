@@ -26,8 +26,8 @@
 //#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
 //#define TAPJOY_APP_SECRET_KEY_TEST @"JWxgS26URM0XotaghqGn"
 
-#define KEY_ENTER_FREE_COINS_CONTROLLER_TIMES "KEY_ENTER_FREE_COINS_CONTROLLER_TIMES"
-#define KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE "KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE"
+#define KEY_ENTER_FREE_COINS_CONTROLLER_TIMES @"KEY_ENTER_FREE_COINS_CONTROLLER_TIMES"
+#define KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE @"KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE"
 
 @interface FreeCoinsControllerViewController ()
 
@@ -44,10 +44,20 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (int)getFreeCoinsAwardTimesForToday
 {
-    [super viewDidLoad];
+    int times = [[NSUserDefaults standardUserDefaults] integerForKey:KEY_ENTER_FREE_COINS_CONTROLLER_TIMES];
+    NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE];
     
+    if (isToday(lastDate)) {
+        return times;
+    }else{
+        return 0;
+    }
+}
+
+- (void)addFreeCoinsAwardTimesForToday
+{
     int times = [[NSUserDefaults standardUserDefaults] integerForKey:KEY_ENTER_FREE_COINS_CONTROLLER_TIMES];
     NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE];
     
@@ -61,26 +71,32 @@
     [[NSUserDefaults standardUserDefaults] setInteger:times forKey:KEY_ENTER_FREE_COINS_CONTROLLER_TIMES];
     [[NSUserDefaults standardUserDefaults] setObject:lastDate forKey:KEY_LAST_ENTER_FREE_COINS_CONTROLLER_DATE];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:YES];
     
     if (![ConfigManager wallEnabled]) {
         self.lmWallBtnHolderView.hidden = YES;
-        self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame;
+        self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame; 
     }
     
-    if (times > [ConfigManager getMaxCountForFetchFreeCoinsOneDay]) {
-        self.noteLabel.hidden = YES;
-    
+    int remainTimes = [self remainTimes];
+    if (remainTimes > 0) {
+        [self enableFreeCoinsAward:NO];
     }else{
-        self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
+        [self enableFreeCoinsAward:YES];
         
+        self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
+        [self updateRemainTimes:remainTimes];
         self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
         self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
         self.moneyTreeView.growthTime = 30;
         self.moneyTreeView.gainTime = 30;
         self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
-        
         self.moneyTreeView.delegate = self;
         [self.moneyTreeHolderView addSubview:_moneyTreeView];
         self.moneyTreeView.isAlwaysShowMessage = YES;
@@ -94,6 +110,14 @@
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
     [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
+}
+
+-(void)enableFreeCoinsAward:(BOOL)enabled
+{
+    self.moneyTreeHolderView.hidden = !enabled;
+    self.noteLabel.hidden = !enabled;
+    self.remainTimesLabel.hidden = !enabled;
+    self.cannotGetFreeCoinsImageView.hidden = enabled;
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,6 +135,7 @@
     [_helpBtnHolderView release];
     [_noteLabel release];
     [_remainTimesLabel release];
+    [_cannotGetFreeCoinsImageView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -121,6 +146,7 @@
     [self setHelpBtnHolderView:nil];
     [self setNoteLabel:nil];
     [self setRemainTimesLabel:nil];
+    [self setCannotGetFreeCoinsImageView:nil];
     [super viewDidUnload];
 }
 
@@ -155,9 +181,21 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (int)remainTimes
+{
+    return [self getFreeCoinsAwardTimesForToday] - [ConfigManager getMaxCountForFetchFreeCoinsOneDay];
+}
+
+- (void)updateRemainTimes:(int)times
+{
+    self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime:%d"), times];
+}
+
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
 {
     [[AnalyticsManager sharedAnalyticsManager] reportFreeCoins:FREE_COIN_TYPE_MONEYTREE];
+    
+    [self addFreeCoinsAwardTimesForToday];
 
     int tipsAward = [ConfigManager getFreeTipsAward];
     int flowersAward = [ConfigManager getFreeFlowersAward];
@@ -168,13 +206,20 @@
    
     
     NSString *moneyStr = (money <= 0) ? @"" : [NSString stringWithFormat:NSLS(@"kGainFreeCoinsNote"), money];
-    NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d")] stringByAppendingString:NSLS(@"kFlower")];
-    NSString *TipsStr = (tipsAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d")] stringByAppendingString:NSLS(@"kTips")];
+    NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), flowersAward] stringByAppendingString:NSLS(@"kFlower")];
+    NSString *TipsStr = (tipsAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), tipsAward] stringByAppendingString:NSLS(@"kTips")];
     
     NSString *note = [[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr];
 
     if (note != nil && ![note isEqualToString:@""]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:1.5 isHappy:YES];
+    }
+    
+    int remainTimes = [self remainTimes];
+    if ([self remainTimes] > 0) {
+        [self enableFreeCoinsAward:NO];
+    }else{
+        [self updateRemainTimes:remainTimes];
     }
 }
 
