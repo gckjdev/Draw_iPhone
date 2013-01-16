@@ -31,15 +31,22 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         }
         CGPoint p1, p2;
         p1 = p2 = [self pointAtIndex:0];
-        CGPathMoveToPoint(_path, NULL, p1.x, p1.y);
-        CGPathAddQuadCurveToPoint(_path, NULL, p1.x, p1.y, p1.x, p1.y);
-        NSInteger count = self.pointCount;
-        for (int i = 1; i < count; ++ i) {
-            p2 = p1;
-            p1 = [self pointAtIndex:i];
-            CGPoint mid = midPoint(p1, p2);
-            CGPathAddQuadCurveToPoint(_path, NULL, p2.x, p2.y, mid.x, mid.y);
+        
+        NSInteger count = self.pointCount;        
+        if (count == 1){
+            CGPathMoveToPoint(_path, NULL, p1.x, p1.y);
+            CGPathAddQuadCurveToPoint(_path, NULL, p1.x, p1.y, p1.x, p1.y);
+            return;
         }
+        
+        CGPathMoveToPoint(_path, NULL, p1.x, p1.y);
+        for (int i = 0; i < count-1; ++ i) {
+            p1 = [self pointAtIndex:i];
+            p2 = [self pointAtIndex:i+1];
+            CGPoint mid = midPoint(p1, p2);
+            CGPathAddQuadCurveToPoint(_path, NULL, mid.x, mid.y, p2.x, p2.y);
+        }
+        
     }
 }
 
@@ -175,7 +182,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         }else{
             CGPoint lastPoint = [[_pointList lastObject] CGPointValue];
             CGPoint mid = midPoint(lastPoint, point);
-            CGPathAddQuadCurveToPoint(_path, NULL, lastPoint.x, lastPoint.y, mid.x, mid.y);
+            CGPathAddQuadCurveToPoint(_path, NULL, mid.x, mid.y, point.x, point.y);
         }
     }
     NSValue *pointValue = [NSValue valueWithCGPoint:point];

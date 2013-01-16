@@ -98,13 +98,13 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)dealloc
 {
-    [_diceHomeController release];
-    [_reviewRequest release];
-    [_homeController release];
-    [_roomController release];
-    [_window release];
-    [_viewController release];
-    [_chatDetailController release];
+    PPRelease(_diceHomeController);
+    PPRelease(_reviewRequest);
+    PPRelease(_homeController);
+    PPRelease(_roomController);
+    PPRelease(_window);
+    PPRelease(_viewController);
+    PPRelease(_chatDetailController);
     [super dealloc];
 }
 
