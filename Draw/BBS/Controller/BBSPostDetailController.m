@@ -31,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *supportButton;
 @property (retain, nonatomic) IBOutlet UIButton *commentButton;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
+@property (retain, nonatomic) NSURL *tempURL;
 
 @end
 
@@ -76,7 +77,8 @@ typedef enum{
     PPRelease(_supportButton);
     PPRelease(_commentButton);
     PPRelease(_header);
-    [_refreshButton release];
+    PPRelease(_tempURL);
+    PPRelease(_refreshButton);
     [super dealloc];
 }
 
@@ -558,7 +560,14 @@ typedef enum{
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
+    self.tempURL = url;
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//    browser.displayActionButton = YES;
+    // Modal
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [nc release];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
@@ -574,6 +583,16 @@ typedef enum{
     [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
                                                  actionId:nil
                                                  delegate:self];    
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:self.tempURL];
 }
 
 - (void)viewDidUnload {

@@ -9,7 +9,9 @@
 #import "CommonTabController.h"
 #import "BBSService.h"
 #import "BBSActionSheet.h"
-@interface BBSActionListController : CommonTabController<BBSServiceDelegate, BBSOptionViewDelegate>
+#import "MWPhotoBrowser.h"
+
+@interface BBSActionListController : CommonTabController<BBSServiceDelegate, BBSOptionViewDelegate,MWPhotoBrowserDelegate>
 {
     
 }
