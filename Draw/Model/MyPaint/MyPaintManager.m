@@ -146,6 +146,13 @@ static MyPaintManager* _defaultManager;
     }
 }
 
+- (NSArray*)findAllDraftForRecovery
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    NSArray *array = [dataManager execute:@"findAllRecoveryPaints" sortBy:@"createDate" ascending:NO];
+    return array;
+}
+
 - (void)findAllPaintsFrom:(NSInteger)offset 
                         limit:(NSInteger)limit 
                      delegate:(id<MyPaintManagerDelegate>)delegate

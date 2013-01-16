@@ -50,6 +50,7 @@
                     limit:(NSInteger)limit 
                  delegate:(id<MyPaintManagerDelegate>)delegate;
 
+- (NSArray*)findAllDraftForRecovery;
 
 //set delete flag.
 - (BOOL)deleteMyPaint:(MyPaint*)paint;
