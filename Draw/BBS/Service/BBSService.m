@@ -368,7 +368,17 @@ BBSService *_staticBBSService;
         if (resultCode == ERROR_SUCCESS){
             resultCode = [self checkWithText:text contentType:type isPost:YES];
         }
-        if (resultCode == ERROR_SUCCESS) {
+        
+        __block PBBBSPost *post = nil;
+        dispatch_block_t callBack = ^{
+            if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
+                [delegate didCreatePost:post resultCode:resultCode];
+            }
+
+        };
+        if (resultCode != ERROR_SUCCESS) {
+            callBack();
+        }else{
             if ([text length] == 0) {
                 nText = [self defaultTextForContentType:type];
             }
@@ -400,7 +410,6 @@ BBSService *_staticBBSService;
 
             resultCode = output.resultCode;
             dispatch_async(dispatch_get_main_queue(), ^{
-                PBBBSPost *post = nil;
                 if (resultCode == ERROR_SUCCESS) {
                     NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
                     NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
@@ -424,11 +433,7 @@ BBSService *_staticBBSService;
                                                     bonus:bonus];
                     [[BBSManager defaultManager] updateLastCreationDate];
                 }
-        
-
-                if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
-                    [delegate didCreatePost:post resultCode:resultCode];
-                }
+                callBack();
             });
         }
     });
@@ -559,8 +564,18 @@ BBSService *_staticBBSService;
                                  contentType:contentType
                                       isPost:NO];
         }
-        if (resultCode == ERROR_SUCCESS) {
-            
+        __block PBBBSAction *action = nil;
+        
+        dispatch_block_t callBackBlock = ^{
+            if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
+                [delegate didCreateAction:action atPost:postId
+                              replyAction:sourceAction
+                               resultCode:resultCode];
+            }
+        };
+        if (resultCode != ERROR_SUCCESS) {
+            callBackBlock();
+        }else{
             if ([text length] == 0) {
                 nText = [self defaultTextForContentType:contentType];
             }
@@ -582,7 +597,7 @@ BBSService *_staticBBSService;
                 briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
             }
             
-            dispatch_async(workingQueue, ^{            
+            dispatch_async(workingQueue, ^{
                 CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
                                                                  appId:appId
                                                             deviceType:deviceType
@@ -607,8 +622,6 @@ BBSService *_staticBBSService;
                                                              drawImage:[drawImage data]];
                 resultCode = [output resultCode];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                
-                    __block PBBBSAction *action = nil;
                     if (resultCode == ERROR_SUCCESS) {
                         [[BBSManager defaultManager] increasePostSupportTimes:postId];
                         NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
@@ -642,12 +655,7 @@ BBSService *_staticBBSService;
                                                sourceBriefText:briefText];
                         [[BBSManager defaultManager] updateLastCreationDate];
                     }
-        
-                    if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
-                        [delegate didCreateAction:action atPost:postId
-                                      replyAction:sourceAction
-                                       resultCode:resultCode];
-                    }
+                    callBackBlock();
                 });
             });
         }
