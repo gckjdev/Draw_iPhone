@@ -101,11 +101,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         PPDebug(@"<stop> file=%@", dataPath);
         
         // delete paint from draft
-        [[MyPaintManager defaultManager] deleteMyPaint:_currentPaint];
+        [[MyPaintManager defaultManager] completeDeletePaint:_currentPaint];
         
         // clear current paint
         self.currentPaint = nil;
-        
+                        
         // delete file
         dispatch_async(workingQueue, ^{
             [FileUtil removeFile:dataPath];

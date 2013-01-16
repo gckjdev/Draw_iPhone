@@ -53,6 +53,7 @@
 - (NSArray*)findAllDraftForRecovery;
 
 //set delete flag.
+- (BOOL)completeDeletePaint:(MyPaint*)paint;
 - (BOOL)deleteMyPaint:(MyPaint*)paint;
 - (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe;
 - (BOOL)deleteAllDrafts;

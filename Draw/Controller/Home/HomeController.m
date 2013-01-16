@@ -255,6 +255,11 @@
     }
 }
 
+- (void)updateRecoveryDrawCount
+{
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:[[DrawRecoveryService defaultService] recoveryDrawCount]];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {        
     [[UserService defaultService] getStatistic:self];
@@ -262,8 +267,7 @@
         [self updateAllBadge];
     }];
 
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:[[DrawRecoveryService defaultService] recoveryDrawCount]];
-
+    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];

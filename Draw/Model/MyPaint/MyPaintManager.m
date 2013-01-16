@@ -252,6 +252,15 @@ static MyPaintManager* _defaultManager;
     return result;
 }
 
+- (BOOL)completeDeletePaint:(MyPaint*)paint
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    [dataManager del:paint];
+    BOOL result = [dataManager save];
+    
+    return result;
+}
+
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
     PPDebug(@"Save Photo, Result=%@", [error description]);
