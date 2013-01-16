@@ -14,8 +14,10 @@
 
 @interface DrawRecoveryService : CommonService
 {
-    MyPaint* _currentPaint;
+    
 }
+
+@property (nonatomic, assign) MyPaint* currentPaint;
 
 - (int)recoveryDrawCount;
 
