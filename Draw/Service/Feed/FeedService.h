@@ -41,7 +41,8 @@
 - (void)didGetFeedCommentList:(NSArray *)feedList 
                        opusId:(NSString *)opusId
                          type:(int)type
-                   resultCode:(NSInteger)resultCode;
+                   resultCode:(NSInteger)resultCode
+                       offset:(int)offset;
 
 - (void)didCommentOpus:(NSString *)opusId
          commentFeedId:(NSString *)commentFeedId
