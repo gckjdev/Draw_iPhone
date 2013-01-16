@@ -56,9 +56,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 
 // this method is NOT used, just reserver for future analysis
 + (void)addSmoothPath:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint
-{
-    return [DrawUtils addSmoothPath1:pathRef startPoint:startPoint endPoint:endPoint];
-    
+{    
     if (pathRef == NULL)
         return;
     
@@ -69,8 +67,8 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     CGFloat stepChangeY = (endPoint.y - startPoint.y) / TOTAL_POINTS;
     
     for(int i = 0; i < TOTAL_POINTS; i++) {
-        CGFloat startX = (startPoint.x + i * stepChangeX);
-        CGFloat startY = (startPoint.y + i * stepChangeY);
+//        CGFloat startX = (startPoint.x + i * stepChangeX);
+//        CGFloat startY = (startPoint.y + i * stepChangeY);
         
         CGFloat endX = (startPoint.x + (i+1) * stepChangeX);
         CGFloat endY = (startPoint.y + (i+1) * stepChangeY);

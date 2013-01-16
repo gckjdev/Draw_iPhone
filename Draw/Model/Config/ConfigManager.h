@@ -37,7 +37,7 @@ typedef enum{
 + (NSInteger)historyRankNumber;
 + (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
 + (NSInteger)opusDescMaxLength;
-
++ (NSInteger)maxPenWidth;
 
 + (NSString*)getChannelId;
 

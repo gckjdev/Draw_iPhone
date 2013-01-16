@@ -7,11 +7,13 @@
 //
 
 #import "WidthView.h"
+#import "ConfigManager.h"
+
 @implementation WidthView
 
 @synthesize width = _width;
 
-
+/*
 
 #define WIDTH_COUNT ([DeviceDetection isIPAD]?5:5)
 #define DEFAULT_WIDTH 10
@@ -64,9 +66,9 @@
     }
     return array;
 }
+*/
 
-
-#define SIZE  (([DeviceDetection isIPAD]) ? 27*2 : 27)
+#define SIZE  ([ConfigManager maxPenWidth] + 2)
 //#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 4 : 2)
 
 + (id)viewWithWidth:(CGFloat)width
@@ -116,13 +118,9 @@
     }
 
     CGFloat showWidth = self.width;
-//    showWidth = [WidthView showWidthForValue:showWidth];
-    CGFloat x = (SIZE - showWidth) / 2;
+    CGFloat x = (SIZE - showWidth) / 2.0;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);
-    
-//    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);    
-//    CGContextStrokeRectWithWidth(context, self.bounds, 1);
 }
 
 + (CGFloat)height

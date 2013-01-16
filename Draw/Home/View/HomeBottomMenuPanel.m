@@ -73,8 +73,10 @@
 //    list = getZJHBottomMenuTypeList();
     _menuCount = 0;
     NSMutableArray *array = [NSMutableArray array];
+//    PPDebug(@"TypeList = (");
     while (list != NULL && (*list) != HomeMenuTypeEnd) {
         HomeMenuType type = (*list);
+//        PPDebug(@"%d,", type);
         HomeMenuView *view = [self viewWithType:type index:_menuCount++];
         
         //TODO update view width
@@ -85,7 +87,7 @@
         }
         list++;
     }
-    
+//    PPDebug(@");");
     if (_menuCount > 0) {
         CGFloat width = WIDTH / _menuCount;
         CGFloat x = 0;

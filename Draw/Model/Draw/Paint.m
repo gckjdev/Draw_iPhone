@@ -13,6 +13,18 @@
 
 CGPoint midPoint(CGPoint p1, CGPoint p2)
 {
+//    if (CGPointEqualToPoint(p1, p2)) {
+//        return p1;
+//    }
+//    
+//    double a = atan((p1.y-p2.y)/(p1.x-p2.x));
+//    double L = sqrt(pow((p1.y-p2.y), 2) + pow((p1.x-p2.x), 2));
+//    double x = p2.x + L * cos(a+M_1_PI/6.);
+//    double y = p2.y + L * sin(a+M_1_PI/6.);
+//    CGPoint point = CGPointMake(x, y);
+//    PPDebug(@"P1:%@, P2:%@, => P%@", NSStringFromCGPoint(p1), NSStringFromCGPoint(p2), NSStringFromCGPoint(point));
+//    return point;
+    
     return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
 }
 
