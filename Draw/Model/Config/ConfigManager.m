@@ -392,6 +392,7 @@
 
 + (NSString*)getZJHServerListStringWithNormal
 {
+    return @"192.168.1.5:8028";
     return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
 }
 + (NSString *)getZJHServerListStringWithRich
