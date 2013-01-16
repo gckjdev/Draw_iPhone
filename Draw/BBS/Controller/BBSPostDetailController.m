@@ -10,7 +10,6 @@
 #import "BBSPostActionCell.h"
 #import "BBSPostDetailCell.h"
 #import "ReplayGraffitiController.h"
-#import "ShowImageController.h"
 #import "GameNetworkConstants.h"
 #import "CommonUserInfoView.h"
 
@@ -434,6 +433,7 @@ typedef enum{
             replyAction:(PBBBSAction *)replyAction
              resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         [self didController:nil CreateNewAction:action];
     }else{
@@ -494,6 +494,7 @@ typedef enum{
     }
 }
 - (IBAction)clickSupportButton:(id)sender {
+    [self showActivityWithText:NSLS(@"kSending")];
     [[BBSService defaultService] createActionWithPostId:self.post.postId
                                                 PostUid:self.post.postUid
                                                postText:self.post.postText

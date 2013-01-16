@@ -1350,7 +1350,6 @@
 		CA16BBA11682FAD900F81B47 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		CA16BBA21682FAD900F81B47 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		CA16BBA31682FAD900F81B47 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		CA16BBA41682FAD900F81B47 /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7912616635F9F009B4053 /* ShowImageController.m */; };
 		CA16BBA51682FAD900F81B47 /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		CA16BBA61682FAD900F81B47 /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		CA16BBA71682FAD900F81B47 /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
@@ -1796,7 +1795,6 @@
 		CA16BDE71682FAD900F81B47 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF9F316606E4800441D77 /* d5d65eff49774712aa2aeef656b4c600.config */; };
 		CA16BDE81682FAD900F81B47 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFA9816606E4800441D77 /* SinaWeibo.bundle */; };
 		CA16BDE91682FAD900F81B47 /* Language.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFAA116606E4800441D77 /* Language.strings */; };
-		CA16BDEA1682FAD900F81B47 /* ShowImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7912816635FB3009B4053 /* ShowImageController.xib */; };
 		CA16BDEB1682FAD900F81B47 /* bbs_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791401664AD0B009B4053 /* bbs_badge@2x.png */; };
 		CA16BDEC1682FAD900F81B47 /* bbs_board_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791411664AD0B009B4053 /* bbs_board_bg@2x.png */; };
 		CA16BDED1682FAD900F81B47 /* bbs_board_last_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791421664AD0B009B4053 /* bbs_board_last_bg@2x.png */; };
@@ -1853,7 +1851,6 @@
 		CA16BE2A1682FAD900F81B47 /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA16BE2E1682FAD900F81B47 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		CA16BE2F1682FAD900F81B47 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		CA16BE301682FAD900F81B47 /* ShowImageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */; };
 		CA16BE311682FAD900F81B47 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		CA16BE321682FAD900F81B47 /* bm_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA910167322BE0078B5A9 /* bm_chat@2x.png */; };
 		CA16BE331682FAD900F81B47 /* bm_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA911167322BE0078B5A9 /* bm_feedback@2x.png */; };
@@ -2516,7 +2513,6 @@
 		CA16C1271682FAE300F81B47 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		CA16C1281682FAE300F81B47 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		CA16C1291682FAE300F81B47 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		CA16C12A1682FAE300F81B47 /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7912616635F9F009B4053 /* ShowImageController.m */; };
 		CA16C12B1682FAE300F81B47 /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		CA16C12C1682FAE300F81B47 /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		CA16C12D1682FAE300F81B47 /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
@@ -2948,7 +2944,6 @@
 		CA16C36D1682FAE300F81B47 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF9F316606E4800441D77 /* d5d65eff49774712aa2aeef656b4c600.config */; };
 		CA16C36E1682FAE300F81B47 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFA9816606E4800441D77 /* SinaWeibo.bundle */; };
 		CA16C36F1682FAE300F81B47 /* Language.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFAA116606E4800441D77 /* Language.strings */; };
-		CA16C3701682FAE300F81B47 /* ShowImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7912816635FB3009B4053 /* ShowImageController.xib */; };
 		CA16C3711682FAE300F81B47 /* bbs_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791401664AD0B009B4053 /* bbs_badge@2x.png */; };
 		CA16C3721682FAE300F81B47 /* bbs_board_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791411664AD0B009B4053 /* bbs_board_bg@2x.png */; };
 		CA16C3731682FAE300F81B47 /* bbs_board_last_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791421664AD0B009B4053 /* bbs_board_last_bg@2x.png */; };
@@ -3005,7 +3000,6 @@
 		CA16C3B01682FAE300F81B47 /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CA16C3B41682FAE300F81B47 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		CA16C3B51682FAE300F81B47 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		CA16C3B61682FAE300F81B47 /* ShowImageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */; };
 		CA16C3B71682FAE300F81B47 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		CA16C3B81682FAE300F81B47 /* bm_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA910167322BE0078B5A9 /* bm_chat@2x.png */; };
 		CA16C3B91682FAE300F81B47 /* bm_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA911167322BE0078B5A9 /* bm_feedback@2x.png */; };
@@ -4594,7 +4588,6 @@
 		CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */; };
 		CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */; };
 		CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA361DA15529F530081D3EB /* HomeController~ipad.xib */; };
 		CAA362421558C3090081D3EB /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
 		CAA362451558C3400081D3EB /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362441558C3400081D3EB /* FriendManager.m */; };
@@ -5183,7 +5176,6 @@
 		CAB5C93516994F0200A4CE3B /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		CAB5C93616994F0200A4CE3B /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		CAB5C93716994F0200A4CE3B /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		CAB5C93816994F0200A4CE3B /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7912616635F9F009B4053 /* ShowImageController.m */; };
 		CAB5C93916994F0200A4CE3B /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		CAB5C93A16994F0200A4CE3B /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		CAB5C93B16994F0200A4CE3B /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
@@ -5647,7 +5639,6 @@
 		CAB5CB0E16994F0200A4CE3B /* d5d65eff49774712aa2aeef656b4c600.config in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF9F316606E4800441D77 /* d5d65eff49774712aa2aeef656b4c600.config */; };
 		CAB5CB0F16994F0200A4CE3B /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFA9816606E4800441D77 /* SinaWeibo.bundle */; };
 		CAB5CB1016994F0200A4CE3B /* Language.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFAA116606E4800441D77 /* Language.strings */; };
-		CAB5CB1116994F0200A4CE3B /* ShowImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7912816635FB3009B4053 /* ShowImageController.xib */; };
 		CAB5CB1216994F0200A4CE3B /* bbs_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791401664AD0B009B4053 /* bbs_badge@2x.png */; };
 		CAB5CB1316994F0200A4CE3B /* bbs_board_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791411664AD0B009B4053 /* bbs_board_bg@2x.png */; };
 		CAB5CB1416994F0200A4CE3B /* bbs_board_last_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791421664AD0B009B4053 /* bbs_board_last_bg@2x.png */; };
@@ -5704,7 +5695,6 @@
 		CAB5CB5016994F0200A4CE3B /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		CAB5CB5116994F0200A4CE3B /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		CAB5CB5216994F0200A4CE3B /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		CAB5CB5316994F0200A4CE3B /* ShowImageController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */; };
 		CAB5CB5416994F0200A4CE3B /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		CAB5CB5516994F0200A4CE3B /* bm_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA910167322BE0078B5A9 /* bm_chat@2x.png */; };
 		CAB5CB5616994F0200A4CE3B /* bm_feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA911167322BE0078B5A9 /* bm_feedback@2x.png */; };
@@ -6066,8 +6056,6 @@
 		CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
 		CAC4DCEB154542A200A42CF2 /* TransactionReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */; };
 		CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		CAC7912716635F9F009B4053 /* ShowImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7912616635F9F009B4053 /* ShowImageController.m */; };
-		CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC7912816635FB3009B4053 /* ShowImageController.xib */; };
 		CAC7914E1664AD0B009B4053 /* bbs_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791401664AD0B009B4053 /* bbs_badge@2x.png */; };
 		CAC7914F1664AD0B009B4053 /* bbs_board_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791411664AD0B009B4053 /* bbs_board_bg@2x.png */; };
 		CAC791501664AD0B009B4053 /* bbs_board_last_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC791421664AD0B009B4053 /* bbs_board_last_bg@2x.png */; };
@@ -8968,7 +8956,6 @@
 		CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_comment@2x.png"; sourceTree = "<group>"; };
 		CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_mine@2x.png"; sourceTree = "<group>"; };
-		CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShowImageController~ipad.xib"; sourceTree = "<group>"; };
 		CAA361DA15529F530081D3EB /* HomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeController~ipad.xib"; sourceTree = "<group>"; };
 		CAA361FF1553AAE00081D3EB /* MainDataModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 4.xcdatamodel"; sourceTree = "<group>"; };
 		CAA362401558C3090081D3EB /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -9067,9 +9054,6 @@
 		CAC4DCEA154542A200A42CF2 /* TransactionReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionReceipt.m; sourceTree = "<group>"; };
 		CAC790F91663194F009B4053 /* BBSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSTableViewCell.h; sourceTree = "<group>"; };
 		CAC790FA1663194F009B4053 /* BBSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSTableViewCell.m; sourceTree = "<group>"; };
-		CAC7912516635F9F009B4053 /* ShowImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImageController.h; sourceTree = "<group>"; };
-		CAC7912616635F9F009B4053 /* ShowImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImageController.m; sourceTree = "<group>"; };
-		CAC7912816635FB3009B4053 /* ShowImageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowImageController.xib; sourceTree = "<group>"; };
 		CAC791401664AD0B009B4053 /* bbs_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_badge@2x.png"; sourceTree = "<group>"; };
 		CAC791411664AD0B009B4053 /* bbs_board_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_bg@2x.png"; sourceTree = "<group>"; };
 		CAC791421664AD0B009B4053 /* bbs_board_last_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_board_last_bg@2x.png"; sourceTree = "<group>"; };
@@ -12702,7 +12686,6 @@
 		CA41512B165395A30062A638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CAC7912416635F91009B4053 /* Common */,
 				CA42FE28165F1AF10097453A /* Action */,
 				CAA7992F1659D2AC00429611 /* Post */,
 				CAA7992E1659D29500429611 /* Board */,
@@ -15121,17 +15104,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		CAC7912416635F91009B4053 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				CAC7912516635F9F009B4053 /* ShowImageController.h */,
-				CAC7912616635F9F009B4053 /* ShowImageController.m */,
-				CAC7912816635FB3009B4053 /* ShowImageController.xib */,
-				CAA27FB7166E661500513F58 /* ShowImageController~ipad.xib */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
 		CAC7913C1664AD0B009B4053 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -16867,7 +16839,6 @@
 				CA16BDE71682FAD900F81B47 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
 				CA16BDE81682FAD900F81B47 /* SinaWeibo.bundle in Resources */,
 				CA16BDE91682FAD900F81B47 /* Language.strings in Resources */,
-				CA16BDEA1682FAD900F81B47 /* ShowImageController.xib in Resources */,
 				CA16BDEB1682FAD900F81B47 /* bbs_badge@2x.png in Resources */,
 				CA16BDEC1682FAD900F81B47 /* bbs_board_bg@2x.png in Resources */,
 				CA16BDED1682FAD900F81B47 /* bbs_board_last_bg@2x.png in Resources */,
@@ -16924,7 +16895,6 @@
 				CA16BE2A1682FAD900F81B47 /* bbs_refresh@2x.png in Resources */,
 				CA16BE2E1682FAD900F81B47 /* bbs_board_comment@2x.png in Resources */,
 				CA16BE2F1682FAD900F81B47 /* bbs_board_mine@2x.png in Resources */,
-				CA16BE301682FAD900F81B47 /* ShowImageController~ipad.xib in Resources */,
 				CA16BE311682FAD900F81B47 /* ZJHGameController_dual.xib in Resources */,
 				CA16BE321682FAD900F81B47 /* bm_chat@2x.png in Resources */,
 				CA16BE331682FAD900F81B47 /* bm_feedback@2x.png in Resources */,
@@ -18013,7 +17983,6 @@
 				CA16C36D1682FAE300F81B47 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
 				CA16C36E1682FAE300F81B47 /* SinaWeibo.bundle in Resources */,
 				CA16C36F1682FAE300F81B47 /* Language.strings in Resources */,
-				CA16C3701682FAE300F81B47 /* ShowImageController.xib in Resources */,
 				CA16C3711682FAE300F81B47 /* bbs_badge@2x.png in Resources */,
 				CA16C3721682FAE300F81B47 /* bbs_board_bg@2x.png in Resources */,
 				CA16C3731682FAE300F81B47 /* bbs_board_last_bg@2x.png in Resources */,
@@ -18070,7 +18039,6 @@
 				CA16C3B01682FAE300F81B47 /* bbs_refresh@2x.png in Resources */,
 				CA16C3B41682FAE300F81B47 /* bbs_board_comment@2x.png in Resources */,
 				CA16C3B51682FAE300F81B47 /* bbs_board_mine@2x.png in Resources */,
-				CA16C3B61682FAE300F81B47 /* ShowImageController~ipad.xib in Resources */,
 				CA16C3B71682FAE300F81B47 /* ZJHGameController_dual.xib in Resources */,
 				CA16C3B81682FAE300F81B47 /* bm_chat@2x.png in Resources */,
 				CA16C3B91682FAE300F81B47 /* bm_feedback@2x.png in Resources */,
@@ -18822,7 +18790,6 @@
 				CAFEFB7316606E4900441D77 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
 				CAFEFBC316606E4900441D77 /* SinaWeibo.bundle in Resources */,
 				CAFEFBC716606E4900441D77 /* Language.strings in Resources */,
-				CAC7912916635FB3009B4053 /* ShowImageController.xib in Resources */,
 				CAC7914E1664AD0B009B4053 /* bbs_badge@2x.png in Resources */,
 				CAC7914F1664AD0B009B4053 /* bbs_board_bg@2x.png in Resources */,
 				CAC791501664AD0B009B4053 /* bbs_board_last_bg@2x.png in Resources */,
@@ -18879,7 +18846,6 @@
 				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
-				CAA27FB8166E661500513F58 /* ShowImageController~ipad.xib in Resources */,
 				A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */,
 				CA1DA914167322BE0078B5A9 /* bm_chat@2x.png in Resources */,
 				CA1DA915167322BE0078B5A9 /* bm_feedback@2x.png in Resources */,
@@ -19598,7 +19564,6 @@
 				CAB5CB0E16994F0200A4CE3B /* d5d65eff49774712aa2aeef656b4c600.config in Resources */,
 				CAB5CB0F16994F0200A4CE3B /* SinaWeibo.bundle in Resources */,
 				CAB5CB1016994F0200A4CE3B /* Language.strings in Resources */,
-				CAB5CB1116994F0200A4CE3B /* ShowImageController.xib in Resources */,
 				CAB5CB1216994F0200A4CE3B /* bbs_badge@2x.png in Resources */,
 				CAB5CB1316994F0200A4CE3B /* bbs_board_bg@2x.png in Resources */,
 				CAB5CB1416994F0200A4CE3B /* bbs_board_last_bg@2x.png in Resources */,
@@ -19655,7 +19620,6 @@
 				CAB5CB5016994F0200A4CE3B /* bbs_refresh@2x.png in Resources */,
 				CAB5CB5116994F0200A4CE3B /* bbs_board_comment@2x.png in Resources */,
 				CAB5CB5216994F0200A4CE3B /* bbs_board_mine@2x.png in Resources */,
-				CAB5CB5316994F0200A4CE3B /* ShowImageController~ipad.xib in Resources */,
 				CAB5CB5416994F0200A4CE3B /* ZJHGameController_dual.xib in Resources */,
 				CAB5CB5516994F0200A4CE3B /* bm_chat@2x.png in Resources */,
 				CAB5CB5616994F0200A4CE3B /* bm_feedback@2x.png in Resources */,
@@ -20602,7 +20566,6 @@
 				CA16BBA11682FAD900F81B47 /* DrawUtils.m in Sources */,
 				CA16BBA21682FAD900F81B47 /* DrawGameAnimationManager.m in Sources */,
 				CA16BBA31682FAD900F81B47 /* BBSTableViewCell.m in Sources */,
-				CA16BBA41682FAD900F81B47 /* ShowImageController.m in Sources */,
 				CA16BBA51682FAD900F81B47 /* PPViewController+StarryLoadingView.m in Sources */,
 				CA16BBA61682FAD900F81B47 /* BBSImageManager.m in Sources */,
 				CA16BBA71682FAD900F81B47 /* BBSFontManager.m in Sources */,
@@ -21285,7 +21248,6 @@
 				CA16C1271682FAE300F81B47 /* DrawUtils.m in Sources */,
 				CA16C1281682FAE300F81B47 /* DrawGameAnimationManager.m in Sources */,
 				CA16C1291682FAE300F81B47 /* BBSTableViewCell.m in Sources */,
-				CA16C12A1682FAE300F81B47 /* ShowImageController.m in Sources */,
 				CA16C12B1682FAE300F81B47 /* PPViewController+StarryLoadingView.m in Sources */,
 				CA16C12C1682FAE300F81B47 /* BBSImageManager.m in Sources */,
 				CA16C12D1682FAE300F81B47 /* BBSFontManager.m in Sources */,
@@ -21967,7 +21929,6 @@
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
-				CAC7912716635F9F009B4053 /* ShowImageController.m in Sources */,
 				C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */,
 				CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */,
 				CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */,
@@ -22661,7 +22622,6 @@
 				CAB5C93516994F0200A4CE3B /* DrawUtils.m in Sources */,
 				CAB5C93616994F0200A4CE3B /* DrawGameAnimationManager.m in Sources */,
 				CAB5C93716994F0200A4CE3B /* BBSTableViewCell.m in Sources */,
-				CAB5C93816994F0200A4CE3B /* ShowImageController.m in Sources */,
 				CAB5C93916994F0200A4CE3B /* PPViewController+StarryLoadingView.m in Sources */,
 				CAB5C93A16994F0200A4CE3B /* BBSImageManager.m in Sources */,
 				CAB5C93B16994F0200A4CE3B /* BBSFontManager.m in Sources */,

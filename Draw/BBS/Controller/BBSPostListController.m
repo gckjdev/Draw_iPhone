@@ -12,7 +12,6 @@
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
-#import "ShowImageController.h"
 #import "CommonUserInfoView.h"
 
 @interface BBSPostListController ()
@@ -390,10 +389,8 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-//    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
     self.tempURL = url;
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    browser.displayActionButton = YES;
     // Modal
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

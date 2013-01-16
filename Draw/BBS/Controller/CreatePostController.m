@@ -305,6 +305,7 @@
 
     //if has source post, then send an action, or create a new post
     self.text = self.textView.text;
+    [self showActivityWithText:NSLS(@"kSending")];
     if ([self.postId length] != 0) {
         
         [[BBSService defaultService] createActionWithPostId:self.postId
@@ -327,7 +328,7 @@
                                                      bonus:self.bonus
                                                   delegate:self];
     }
-    [self showActivityWithText:NSLS(@"kSending")];
+
 }
 
 #define ALERT_CLEAR_IMAGE_TAG 201212041

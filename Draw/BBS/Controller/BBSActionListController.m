@@ -10,7 +10,6 @@
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
 #import "ReplayGraffitiController.h"
-#import "ShowImageController.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
