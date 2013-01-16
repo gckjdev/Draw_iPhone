@@ -319,6 +319,7 @@
 		A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
 		A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
+		A4FA546616A6823B001883CC /* plus_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA546516A6823A001883CC /* plus_image@2x.png */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -6722,6 +6723,7 @@
 		A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeCoinsControllerViewController~ipad.xib"; sourceTree = "<group>"; };
 		A4F6712D166C878100FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
 		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
+		A4FA546516A6823A001883CC /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -10291,6 +10293,7 @@
 		A4DE14101697DBA900841940 /* wordSelected */ = {
 			isa = PBXGroup;
 			children = (
+				A4FA546516A6823A001883CC /* plus_image@2x.png */,
 				A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */,
 				A4DE147F169A776700841940 /* all_my_words_bg@2x.png */,
 				A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */,
@@ -19084,6 +19087,7 @@
 				A4F5BFC416A55607000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFC516A55607000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
+				A4FA546616A6823B001883CC /* plus_image@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
