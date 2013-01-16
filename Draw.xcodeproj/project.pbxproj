@@ -7592,7 +7592,7 @@
 		CA25C42316899E080064C05D /* DrawTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTestViewController.m; sourceTree = "<group>"; };
 		CA25C42416899E080064C05D /* DrawTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTestViewController.h; sourceTree = "<group>"; };
 		CA25C42516899E080064C05D /* DrawTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawTestViewController.xib; sourceTree = "<group>"; };
-		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
+		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
 		CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRecoveryService.h; sourceTree = "<group>"; };
 		CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRecoveryService.m; sourceTree = "<group>"; };
 		CA322100151B6A670039A384 /* GameNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkRequest.h; sourceTree = "<group>"; };
