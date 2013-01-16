@@ -99,6 +99,12 @@
     return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:500];
 }
 
++ (NSInteger)maxPenWidth
+{
+    NSInteger value = [MobClickUtils getIntValueByKey:@"MAX_PEN_WIDTH" defaultValue:36];
+    return ISIPAD ? (value * 2) : value;
+}
+
 + (int)getGuessRewardNormal
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];

@@ -99,8 +99,10 @@
     _pageCount = 0;
     _menuCount = 0;
     NSInteger index = 0;
+//    PPDebug(@"TypeList = (");
     while(list != NULL && (*list) != HomeMenuTypeEnd) {
         HomeMenuType type = *list;
+//        PPDebug(@"%d,",type);
         HomeMenuView *view = [self viewWithType:type page:_pageCount index:index];
         [self.scrollView addSubview:view];
         
@@ -113,6 +115,7 @@
             index ++;
         }
     }
+//    PPDebug(@");");
     _pageCount = _menuCount / PER_PAGE_NUMBER;
     if (_menuCount % PER_PAGE_NUMBER != 0) {
         _pageCount++;

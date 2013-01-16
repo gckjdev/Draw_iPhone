@@ -16,7 +16,7 @@
 + (id)viewWithWidth:(CGFloat)width;
 + (CGFloat)height;
 + (CGFloat)width;
-+ (NSMutableArray *)widthArray;
-+ (NSInteger)defaultWidth;
+//+ (NSMutableArray *)widthArray;
+//+ (NSInteger)defaultWidth;
 @property(nonatomic, assign) CGFloat width;
 @end

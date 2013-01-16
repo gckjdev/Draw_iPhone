@@ -74,11 +74,11 @@
 
     CGContextSetLineJoin(showContext, kCGLineJoinRound);
     CGContextSetLineCap(showContext, kCGLineCapRound);
-    CGContextSetFlatness(showContext, 0.6f);
+    CGContextSetFlatness(showContext, 0.1f);
 
     CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
     CGContextSetLineCap(cacheContext, kCGLineCapRound);
-    CGContextSetFlatness(cacheContext, 0.6f);
+    CGContextSetFlatness(cacheContext, 0.1f);
 }
 
 - (id)initWithFrame:(CGRect)frame
