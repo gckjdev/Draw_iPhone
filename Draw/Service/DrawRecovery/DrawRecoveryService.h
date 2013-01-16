@@ -11,11 +11,14 @@
 
 @class MyPaint;
 @class Word;
+@class PBNoCompressDrawData;
 
 @interface DrawRecoveryService : CommonService
 {
-    MyPaint* _currentPaint;
+    
 }
+
+@property (nonatomic, assign) MyPaint* currentPaint;
 
 - (int)recoveryDrawCount;
 
@@ -26,7 +29,7 @@
           word:(Word *)word
       language:(NSInteger)language;
 
-- (void)backup:(NSData*)drawData;
+- (void)backup:(PBNoCompressDrawData*)drawData;
 - (void)stop;
 
 @end

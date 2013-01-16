@@ -62,6 +62,7 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="MyPaint" representedClassName="MyPaint" syncable="YES">
+        <attribute name="attributes" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="contestId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -69,6 +70,7 @@
         <attribute name="deleteFlag" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="draft" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
         <attribute name="drawByMe" optional="YES" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="drawTextDesc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawThumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="drawUserId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="drawUserNickName" optional="YES" attributeType="String" syncable="YES"/>
@@ -121,6 +123,7 @@
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint" predicateString=" (draft == NULL OR draft == 0) AND (deleteFlag == 0 OR  deleteFlag == NULL) "/>
+    <fetchRequest name="findAllRecoveryPaints" entity="MyPaint" predicateString="isRecovery == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
     <fetchRequest name="findAllWords" entity="CustomWord"/>
@@ -138,7 +141,7 @@
         <element name="CustomWord" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Friend" positionX="160" positionY="192" width="128" height="300"/>
         <element name="MessageTotal" positionX="160" positionY="192" width="128" height="225"/>
-        <element name="MyPaint" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="MyPaint" positionX="160" positionY="192" width="128" height="330"/>
         <element name="PriceModel" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RouterTrafficServer" positionX="160" positionY="192" width="128" height="165"/>
         <element name="TransactionReceipt" positionX="160" positionY="192" width="128" height="195"/>

@@ -183,14 +183,18 @@
     [self setNeedsDisplayInRect:rect];
 }
 
+#define CTMContext(context,rect) \
+CGContextScaleCTM(context, 1.0, -1.0);\
+CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+
 - (UIImage*)createImage
 {
     
     PPDebug(@"<createImage> image bounds = %@", NSStringFromCGRect(self.bounds));
     CGContextRef context = [self createBitmapContext];
-    CGContextScaleCTM(context, 1, -1);
-    CGContextTranslateCTM(context, 0, -CGRectGetHeight(self.bounds));
-    
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+    CTMContext(context, self.bounds);
     CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
 
     CGImageRef image = CGBitmapContextCreateImage(context);
@@ -200,8 +204,6 @@
     }else{
         UIImage *img = [UIImage imageWithCGImage:image];
         CGImageRelease(image);
-//        PPDebug(@"<createImage> image size = %@",NSStringFromCGSize(img.size));
-//        UIImageWriteToSavedPhotosAlbum(img, nil, NULL, nil);
         return img;
     }
 
@@ -210,12 +212,14 @@
 - (void)showImage:(UIImage *)image
 {
     if (image) {
+        [self setBackgroundColor:[UIColor clearColor]];
         PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
-//        CGContextSaveGState(showContext);
-//        CGContextScaleCTM(showContext, 1.0, -1.0);
-//        CGContextTranslateCTM(showContext, 0.0, CGRectGetWidth(self.bounds));
+        if (showContext == NULL) {
+            [self setupCGLayer];
+        }
+//        CGContextClearRect(showContext, self.bounds);
+        CTMContext(showContext, self.bounds);
         CGContextDrawImage(showContext, self.bounds, image.CGImage);
-//        CGContextRestoreGState(showContext);
         [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     }
 }
