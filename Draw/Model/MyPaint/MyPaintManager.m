@@ -321,9 +321,13 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     NSString *imageFileName = [self imageFileName];
     NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
     
-    [_imageManager saveImage:image forKey:imageFileName];
-    [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+    if (image != nil){
+        [_imageManager saveImage:image forKey:imageFileName];
+    }
     
+    if (pbNoCompressDrawData != nil){
+        [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+    }    
     
     [newMyPaint setDataFilePath:pbDataFileName];
     [newMyPaint setImage:imageFileName];
@@ -374,11 +378,37 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setTargetUserId:targetUid];
     [newMyPaint setContestId:contestId];
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
+    [newMyPaint setDrawWordData:[word data]];
     PPDebug(@"<createDraft> %@", [newMyPaint description]);
     [dataManager save];
     return newMyPaint;
 }
 
+- (MyPaint *)createDraftForRecovery:(NSString *)targetUid
+                          contestId:(NSString *)contestId
+                             userId:(NSString *)userId
+                           nickName:(NSString *)nickName
+                               word:(Word *)word
+                           language:(NSInteger)language
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    [self initMyPaint:newMyPaint
+                image:nil
+ pbNoCompressDrawData:nil
+               userId:userId
+             nickName:nickName
+                 word:word
+             language:language];
+    [newMyPaint setTargetUserId:targetUid];
+    [newMyPaint setContestId:contestId];
+    [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
+    [newMyPaint setDrawWordData:[word data]];
+    [newMyPaint setIsRecovery:[NSNumber numberWithBool:YES]];
+    PPDebug(@"<createDraftForRecovery> %@", [newMyPaint description]);
+    [dataManager save];
+    return newMyPaint;
+}
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image

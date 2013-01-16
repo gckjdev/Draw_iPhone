@@ -115,6 +115,9 @@
 {
     self.coinsOnTree ++;
     [self addCoinAtPosition:CGPointMake(self.frame.size.width*0.35, self.frame.size.height/4)];
+    if (_delegate && [_delegate respondsToSelector:@selector(treeFullCoins:)]) {
+        [_delegate treeFullCoins:self];
+    }
 }
 
 - (void)setIsMature:(BOOL)isMature
@@ -122,6 +125,9 @@
     _isMature = isMature;
     if (isMature) {
         [self setBackgroundImage:[ZJHImageManager defaultManager].bigMoneyTreeImage forState:UIControlStateNormal];
+        if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
+            [_delegate treeDidMature:self];
+        }
     } else {
         
         [self setBackgroundImage:[[ZJHImageManager defaultManager] moneyTreeImage] forState:UIControlStateNormal];
@@ -165,10 +171,6 @@
         [lightLayer addAnimation:shining forKey:nil];
     }];
     [coinLayer addAnimation:coinGrowAnim forKey:nil];
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(treeDidMature:)]) {
-        [_delegate treeDidMature:self];
-    }
 }
 
 

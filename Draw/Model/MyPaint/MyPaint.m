@@ -26,6 +26,8 @@
 @dynamic dataFilePath;
 @dynamic contestId;
 @dynamic targetUserId;
+@dynamic drawWordData;
+@dynamic isRecovery;
 
 @synthesize thumbImage = _thumbImage;
 @synthesize drawActionList = _drawActionList;

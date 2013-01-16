@@ -16,7 +16,7 @@
             fromTree:(MoneyTreeView*)treeView;
 @optional
 - (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
-
+- (void)moneyTreeFullCoins:(MoneyTreeView*)treeView;
 @end
 
 @interface MoneyTreeView : UIView <MoneyTreeDelegate>{

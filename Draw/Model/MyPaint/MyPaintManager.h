@@ -77,6 +77,13 @@
                     word:(Word *)word
                 language:(NSInteger)language;
 
+- (MyPaint *)createDraftForRecovery:(NSString *)targetUid
+                   contestId:(NSString *)contestId
+                      userId:(NSString *)userId
+                    nickName:(NSString *)nickName
+                        word:(Word *)word
+                    language:(NSInteger)language;
+
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
 pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
