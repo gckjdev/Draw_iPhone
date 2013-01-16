@@ -68,4 +68,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AnalyticsManager)
     [MobClick event:FREE_COIN_CLICK label:freeCoinTypeName acc:1];    
 }
 
+- (void)reportSelectWord:(NSString*)wordType
+{
+    [MobClick event:SELECT_WORD_CLICK label:wordType acc:1];
+}
+
+
 @end
