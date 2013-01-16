@@ -12,8 +12,9 @@
 #import "BBSPostActionCell.h"
 #import "CreatePostController.h"
 #import "BBSPostActionHeaderView.h"
+#import "MWPhotoBrowser.h"
 
-@interface BBSPostDetailController : CommonTabController<BBSServiceDelegate, BBSPostActionCellDelegate, CreatePostControllerDelegate, BBSPostActionHeaderViewDelegate>
+@interface BBSPostDetailController : CommonTabController<BBSServiceDelegate, BBSPostActionCellDelegate, CreatePostControllerDelegate, BBSPostActionHeaderViewDelegate, MWPhotoBrowserDelegate>
 {
     
 }

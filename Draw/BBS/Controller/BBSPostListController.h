@@ -10,12 +10,13 @@
 #import "BBSService.h"
 #import "BBSPostCell.h"
 #import "CreatePostController.h"
+#import "MWPhotoBrowser.h"
 
 @class PBBBSPost;
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate, CreatePostControllerDelegate>
+@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate, CreatePostControllerDelegate, MWPhotoBrowserDelegate>
 {
     
 }

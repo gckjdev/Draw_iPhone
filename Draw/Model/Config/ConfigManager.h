@@ -167,4 +167,9 @@ typedef enum{
 + (int)supportRecovery;
 + (int)recoveryBackupInterval;
 
++ (int)getMaxCountForFetchFreeCoinsOneDay;
++ (int)getFreeCoinsAward;
++ (int)getFreeFlowersAward;
++ (int)getFreeTipsAward;
+
 @end

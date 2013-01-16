@@ -10,7 +10,6 @@
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
 #import "ReplayGraffitiController.h"
-#import "ShowImageController.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
@@ -24,6 +23,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
+@property (retain, nonatomic) NSURL *tempURL;
 //- (IBAction)clickRefreshButton:(id)sender;
 @end
 
@@ -224,7 +224,14 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
+    self.tempURL = url;
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//    browser.displayActionButton = YES;
+    // Modal
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [nc release];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
@@ -232,6 +239,17 @@
     [[BBSService defaultService] getBBSDrawDataWithPostId:nil
                                                  actionId:action.actionId
                                                  delegate:self];
+}
+
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:self.tempURL];
 }
 
 #pragma mark - action sheet delegate
@@ -268,9 +286,10 @@ enum{
 
 
 - (void)dealloc {
-    [_backButton release];
-    [_bgImageView release];
-    [_refreshButton release];
+    PPRelease(_tempURL);
+    PPRelease(_backButton);
+    PPRelease(_bgImageView);
+    PPRelease(_refreshButton);
     [super dealloc];
 }
 - (void)viewDidUnload {

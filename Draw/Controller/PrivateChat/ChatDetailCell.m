@@ -85,7 +85,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(155,150):CGSizeMake(64,67))
 
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(30):(20)) //尖尖的部分距离文字的距离
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(30):(17)) //尖尖的部分距离文字的距离
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(21):(10))//不尖部分和文字的距离
 
 

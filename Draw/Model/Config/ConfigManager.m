@@ -528,6 +528,25 @@
     return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:NSLS(@"kDefaultWaterMark")];
 }
 
++ (int)getMaxCountForFetchFreeCoinsOneDay
+{
+    return  [MobClickUtils getIntValueByKey:@"MAX_COINT_FOR_FETCH_FREE_COINS_ONE_DAY" defaultValue:20];
+}
+
++ (int)getFreeCoinsAward
+{
+    return  [MobClickUtils getIntValueByKey:@"FREE_COINS_AWARD" defaultValue:50];
+}
+
++ (int)getFreeFlowersAward
+{
+    return  [MobClickUtils getIntValueByKey:@"FREE_FLOWERS_AWARD" defaultValue:2];
+}
+
++ (int)getFreeTipsAward
+{
+    return  [MobClickUtils getIntValueByKey:@"FREE_TIPS_AWARD" defaultValue:1];
+}
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
@@ -535,6 +554,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults boolForKey:KEY_AUTO_SAVE];
 }
+
 + (void)setAutoSave:(BOOL)isAutoSave
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
