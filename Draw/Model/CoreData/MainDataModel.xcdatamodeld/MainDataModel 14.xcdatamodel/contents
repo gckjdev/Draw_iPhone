@@ -121,6 +121,7 @@
     <fetchRequest name="findAllFollowFriends" entity="Friend" predicateString="type == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllMessageTotals" entity="MessageTotal"/>
     <fetchRequest name="findAllMyPaints" entity="MyPaint" predicateString=" (draft == NULL OR draft == 0) AND (deleteFlag == 0 OR  deleteFlag == NULL) "/>
+    <fetchRequest name="findAllRecoveryPaints" entity="MyPaint" predicateString="isRecovery == 1 AND deleteFlag == 0"/>
     <fetchRequest name="findAllTrafficServers" entity="RouterTrafficServer"/>
     <fetchRequest name="findAllUnverfiedReceipts" entity="TransactionReceipt" predicateString="isVerified == 0"/>
     <fetchRequest name="findAllWords" entity="CustomWord"/>
