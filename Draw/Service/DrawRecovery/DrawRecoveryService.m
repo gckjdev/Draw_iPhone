@@ -9,6 +9,7 @@
 #import "DrawRecoveryService.h"
 #import "SynthesizeSingleton.h"
 #import "MyPaintManager.h"
+#import "FileUtil.h"
 
 @implementation DrawRecoveryService
 
@@ -48,11 +49,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 {
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
 
+    // delete paint from draft
+    [[MyPaintManager defaultManager] deleteMyPaint:_currentPaint];
+    
     // clear current paint
-    _currentPaint = nil;
+    _currentPaint = nil;    
     
-    // delete files
-    
+    // delete file
+    dispatch_async(workingQueue, ^{
+        [FileUtil removeFile:dataFileName];
+    });
     
     [dataFileName release];
 }
