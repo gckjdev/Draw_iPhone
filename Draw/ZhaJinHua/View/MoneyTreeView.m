@@ -168,4 +168,11 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     }
     
 }
+
+- (void)treeFullCoins:(MoneyTree *)tree
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeFullCoins:)]) {
+        [_delegate moneyTreeFullCoins:self];
+    }
+}
 @end
