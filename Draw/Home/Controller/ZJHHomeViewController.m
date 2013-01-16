@@ -242,7 +242,6 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             break;
         }
         case HomeMenuTypeZJHShop:{
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_COINS];
             
             if ([self isRegistered] == NO) {
                 [self toRegister];
@@ -254,9 +253,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         }
             break;
         case HomeMenuTypeDrawFreeCoins:
-        {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
-            
+        {            
             FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }

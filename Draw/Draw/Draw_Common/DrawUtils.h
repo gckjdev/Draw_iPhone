@@ -57,10 +57,13 @@
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth;
 
 
-+ (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2;
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width;
+
+/*
++ (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2;
 + (void)addSmoothPath:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 + (void)addSmoothPath2:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 + (void)addSmoothPath1:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
-
+*/
+ 
 @end
