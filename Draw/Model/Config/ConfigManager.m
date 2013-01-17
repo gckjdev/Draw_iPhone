@@ -17,6 +17,16 @@
 
 @implementation ConfigManager
 
++ (int)supportRecovery
+{
+    return [MobClickUtils getIntValueByKey:@"SUPPORT_RECOVERY" defaultValue:1];
+}
+
++ (int)recoveryBackupInterval
+{
+    return [MobClickUtils getIntValueByKey:@"RECOVERY_BACKUP_INTERVAL" defaultValue:5];
+}
+
 + (int)maxCacheBulletinCount
 {
     return [MobClickUtils getIntValueByKey:@"MAX_CACHE_BULLETIN_COUNT" defaultValue:20];

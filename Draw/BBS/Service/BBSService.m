@@ -348,11 +348,7 @@ BBSService *_staticBBSService;
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
 {
-    dispatch_async(workingQueue, ^{
-        
-        NSString *nText = text;
-        
-        
+
         BBSPostContentType type = ContentTypeText;
         
         NSData *drawData = nil;
@@ -364,7 +360,7 @@ BBSService *_staticBBSService;
             drawData = [bbsDraw data];
         }
         
-        NSInteger resultCode = [self checkFrequent];
+        __block NSInteger resultCode = [self checkFrequent];
         if (resultCode == ERROR_SUCCESS){
             resultCode = [self checkWithText:text contentType:type isPost:YES];
         }
@@ -379,64 +375,68 @@ BBSService *_staticBBSService;
         if (resultCode != ERROR_SUCCESS) {
             callBack();
         }else{
-            if ([text length] == 0) {
-                nText = [self defaultTextForContentType:type];
-            }
-            NSInteger deviceType = [DeviceDetection deviceType];
-            NSString *appId = [ConfigManager appId];
-            
-            NSString *userId = [[UserManager defaultManager] userId];
-            NSString *nickName = [[UserManager defaultManager] nickName];
-            NSString *gender = [[UserManager defaultManager] gender];
-            NSString *avatar = [[UserManager defaultManager] avatarURL];
-            
-            //        DrawDataService de
-            //        BBSNetwork
-            CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
-                                                           appId:appId
-                                                      deviceType:deviceType
-                                                          userId:userId
-                                                        nickName:nickName
-                                                          gender:gender
-                                                          avatar:avatar
-                                                         boradId:boardId
-                                                     contentType:type
-                                                            text:nText
-                                                           image:[image data]
-                                                        drawData:drawData
-                                                       drawImage:[drawImage data]
-                                                           bonus:bonus];
-            
-
-            resultCode = output.resultCode;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (resultCode == ERROR_SUCCESS) {
-                    NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
-                    NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
-                    NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-                    NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
-                    NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
-                    post = [self buildPBBBSPostWithPostId:postId
-                                                    appId:appId
-                                               deviceType:deviceType
-                                                   userId:userId
-                                                 nickName:nickName
-                                                   gender:gender
-                                                   avatar:avatar
-                                                  boradId:boardId
-                                              contentType:type
-                                                     text:nText
-                                                 imageUrl:imageURL
-                                            thumbImageUrl:thumbURL
-                                             drawImageUrl:drawImageURL
-                                        drawImageThumbUrl:drawThumbURL
-                                                    bonus:bonus];
-                    [[BBSManager defaultManager] updateLastCreationDate];
+            dispatch_async(workingQueue, ^{
+                NSString *nText = text;
+                if ([text length] == 0) {
+                    nText = [self defaultTextForContentType:type];
                 }
-                callBack();
+                NSInteger deviceType = [DeviceDetection deviceType];
+                NSString *appId = [ConfigManager appId];
+                
+                NSString *userId = [[UserManager defaultManager] userId];
+                NSString *nickName = [[UserManager defaultManager] nickName];
+                NSString *gender = [[UserManager defaultManager] gender];
+                NSString *avatar = [[UserManager defaultManager] avatarURL];
+                
+                //        DrawDataService de
+                //        BBSNetwork
+                CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
+                                                               appId:appId
+                                                          deviceType:deviceType
+                                                              userId:userId
+                                                            nickName:nickName
+                                                              gender:gender
+                                                              avatar:avatar
+                                                             boradId:boardId
+                                                         contentType:type
+                                                                text:nText
+                                                               image:[image data]
+                                                            drawData:drawData
+                                                           drawImage:[drawImage data]
+                                                               bonus:bonus];
+                
+
+                resultCode = output.resultCode;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (resultCode == ERROR_SUCCESS) {
+                        NSString *postId = [output.jsonDataDict objectForKey:PARA_POSTID];
+                        NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                        NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                        NSString *drawImageURL = [output.jsonDataDict objectForKey:PARA_DRAW_IMAGE];
+                        NSString *drawThumbURL = [output.jsonDataDict objectForKey:PARA_DRAW_THUMB];
+                        post = [self buildPBBBSPostWithPostId:postId
+                                                        appId:appId
+                                                   deviceType:deviceType
+                                                       userId:userId
+                                                     nickName:nickName
+                                                       gender:gender
+                                                       avatar:avatar
+                                                      boradId:boardId
+                                                  contentType:type
+                                                         text:nText
+                                                     imageUrl:imageURL
+                                                thumbImageUrl:thumbURL
+                                                 drawImageUrl:drawImageURL
+                                            drawImageThumbUrl:drawThumbURL
+                                                        bonus:bonus];
+                        [[BBSManager defaultManager] updateLastCreationDate];
+                    }
+                    callBack();
+                });
             });
+        
         }
-    });
+  
 }
 
 

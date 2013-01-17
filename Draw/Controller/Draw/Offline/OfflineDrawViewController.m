@@ -47,7 +47,7 @@
 #import "DrawColorManager.h"
 #import "VendingController.h"
 #import "FontButton.h"
-
+#import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 
 @interface OfflineDrawViewController()
@@ -79,6 +79,7 @@
 //    BOOL _userSaved;
     BOOL _isNewDraft;
 
+
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -92,6 +93,10 @@
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) NSString *desc;
 @property (retain, nonatomic) InputAlertView *inputAlert;
+
+@property (assign, nonatomic) NSTimer* backupTimer;
+@property (assign, nonatomic) BOOL noSupportOnRecovery;
+
 
 - (void)initDrawView;
 
@@ -158,7 +163,8 @@
 
 - (void)dealloc
 {
-
+    [self stopRecovery];
+    
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_word);
@@ -363,8 +369,73 @@ enum{
     [self.drawToolPanel setPanelForOnline:NO];
 }
 
+#pragma mark - Auto Recovery Service Methods
+
+- (BOOL)supportRecovery
+{
+    return (_noSupportOnRecovery == NO);
+}
+
+- (void)initRecovery
+{
+    if (![self supportRecovery])
+        return;
+    
+    [[DrawRecoveryService defaultService] start:_targetUid
+                                      contestId:_contest.contestId
+                                         userId:[[UserManager defaultManager] userId]
+                                       nickName:[[UserManager defaultManager] nickName]
+                                           word:_word
+                                       language:languageType];    
+}
+
+- (void)stopRecovery
+{
+    if (![self supportRecovery])
+        return;
+
+    [self stopBackupTimer];
+    [[DrawRecoveryService defaultService] stop];
+}
+
+- (void)backup:(id)timer
+{
+    if (![self supportRecovery])
+        return;
+    
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+    [[DrawRecoveryService defaultService] backup:data];
+}
+
+- (void)startBackupTimer
+{
+    if (![self supportRecovery])
+        return;
+    
+    if (_backupTimer != nil){
+        [self stopBackupTimer];
+    }
+    
+    _backupTimer = [NSTimer scheduledTimerWithTimeInterval:[[DrawRecoveryService defaultService] backupInterval]
+                                                    target:self
+                                                  selector:@selector(backup:)
+                                                  userInfo:nil
+                                                   repeats:YES];
+}
+
+- (void)stopBackupTimer
+{
+    if (![self supportRecovery])
+        return;
+    
+    if (_backupTimer != nil){
+        [_backupTimer invalidate];
+        _backupTimer = nil;
+    }
+}
 
 #pragma mark - View lifecycle
+
 
 - (void)viewDidLoad
 {
@@ -376,6 +447,7 @@ enum{
     _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
     [self initDrawToolPanel];
 
+    [self initRecovery];    
 }
 
 
@@ -393,6 +465,7 @@ enum{
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self stopBackupTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -400,6 +473,7 @@ enum{
 {
     [super viewDidAppear:animated];
     [self.drawToolPanel updateView];
+    [self startBackupTimer];
 }
 
 #define ESCAPE_DEDUT_COIN 1
@@ -705,12 +779,12 @@ enum{
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
             result = YES;
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             PPDebug(@"<saveDraft> save draft");
+            [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
+            
             result = [pManager updateDraft:self.draft
                                      image:image
                       pbNoCompressDrawData:[self drawDataSnapshot]];
-//            });
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];

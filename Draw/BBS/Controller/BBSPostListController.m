@@ -12,7 +12,6 @@
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
-#import "ShowImageController.h"
 #import "CommonUserInfoView.h"
 
 @interface BBSPostListController ()
@@ -24,7 +23,7 @@
     BBSManager *_bbsManager;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
-
+@property (retain, nonatomic) NSURL *tempURL;
 - (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
 
@@ -135,6 +134,7 @@
     PPRelease(_createPostButton);
     PPRelease(_rankButton);
     [_bgImageView release];
+    PPRelease(_tempURL);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -389,7 +389,13 @@
 
 - (void)didClickImageWithURL:(NSURL *)url
 {
-    [ShowImageController enterControllerWithImageURL:url fromController:self animated:YES];
+    self.tempURL = url;
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Modal
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [nc release];
 }
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
@@ -398,6 +404,16 @@
     [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId actionId:nil delegate:self];
 }
 
+#pragma mark - MWPhotoBrowserDelegate
 
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    MWPhoto *photo = [MWPhoto photoWithURL:self.tempURL];
+//    photo.caption = @"test string....";
+    return photo;
+}
 
 @end
