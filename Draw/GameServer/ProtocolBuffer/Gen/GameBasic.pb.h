@@ -864,6 +864,7 @@
   BOOL hasStatus_:1;
   BOOL hasType_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasDrawDataVersion_:1;
   BOOL hasReplyResult_:1;
   BOOL hasMessageId_:1;
   BOOL hasFrom_:1;
@@ -875,6 +876,7 @@
   int32_t status;
   int32_t type;
   int32_t createDate;
+  int32_t drawDataVersion;
   int32_t replyResult;
   NSString* messageId;
   NSString* from;
@@ -890,6 +892,7 @@
 - (BOOL) hasType;
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
+- (BOOL) hasDrawDataVersion;
 - (BOOL) hasLongitude;
 - (BOOL) hasLatitude;
 - (BOOL) hasReqMessageId;
@@ -901,6 +904,7 @@
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
+@property (readonly) int32_t drawDataVersion;
 @property (readonly) Float64 longitude;
 @property (readonly) Float64 latitude;
 @property (readonly, retain) NSString* reqMessageId;
@@ -983,6 +987,11 @@
 - (int32_t) createDate;
 - (PBMessage_Builder*) setCreateDate:(int32_t) value;
 - (PBMessage_Builder*) clearCreateDate;
+
+- (BOOL) hasDrawDataVersion;
+- (int32_t) drawDataVersion;
+- (PBMessage_Builder*) setDrawDataVersion:(int32_t) value;
+- (PBMessage_Builder*) clearDrawDataVersion;
 
 - (BOOL) hasLongitude;
 - (Float64) longitude;

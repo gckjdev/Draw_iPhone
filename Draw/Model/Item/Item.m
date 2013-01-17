@@ -136,19 +136,19 @@
         case ItemTypeTips:
             return manager.tipBag;
         case Pen:
-            return [UIImage adjustImage:manager.penImage toRatio:1];
+            return manager.penImage;
         case IcePen:
-            return [UIImage shrinkImage:[UIImage adjustImage:manager.iceImage toRatio:1] withRate:1.3] ;
+            return manager.iceImage;
         case Quill:
-            return [UIImage adjustImage:manager.quillImage toRatio:1];
+            return manager.quillImage;
         case WaterPen:
-            return [UIImage adjustImage:manager.waterPenImage toRatio:1];
+            return manager.waterPenImage;
         case Pencil:
-            return [UIImage adjustImage:manager.pencilImage toRatio:1];
+            return manager.pencilImage;
         case PaletteItem:
-            return [UIImage adjustImage:manager.shopItemPaletteImage toRatio:1];
+            return manager.shopItemPaletteImage;
         case ColorAlphaItem:
-            return [UIImage adjustImage:manager.shopItemAlphaImage toRatio:1];
+            return manager.shopItemAlphaImage;
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 

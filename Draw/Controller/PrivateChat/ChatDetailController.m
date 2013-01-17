@@ -580,6 +580,7 @@
 - (void)enterReplayController:(DrawMessage *)message
 {
     ReplayGraffitiController *rg = [[ReplayGraffitiController alloc] initWithDrawActionList:[message drawActionList]];
+    rg.drawDataVersion = message.drawDataVersion;
     [self.navigationController pushViewController:rg animated:YES];
     [rg release];
 
