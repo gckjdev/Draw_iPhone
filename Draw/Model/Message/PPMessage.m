@@ -220,6 +220,7 @@
             [_drawActionList addObject:da];
             [da release];
         }
+        self.drawDataVersion = pbMessage.drawDataVersion;
     }
     return self;
 }

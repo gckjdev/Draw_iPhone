@@ -88,4 +88,6 @@
 
 - (id<GameJumpHandlerProtocol>)getGameJumpHandler;
 
+- (NSString *)shengmengAppId;
+
 @end

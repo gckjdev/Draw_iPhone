@@ -177,5 +177,6 @@ typedef enum{
 + (int)getFreeTipsAward;
 + (int)getFreeCoinsMoneyTreeGrowthTime;
 + (int)getFreeCoinsMoneyTreeGainTime;
++ (BOOL)freeCoinsEnabled;
 
 @end

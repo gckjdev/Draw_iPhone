@@ -284,4 +284,10 @@
     return [ZJHGameJumpHandler defaultHandler];
 }
 
+- (NSString *)shengmengAppId
+{
+    return @"0cfe32a7b2183b22ff8e26b5796e00fb";
+}
+
+
 @end

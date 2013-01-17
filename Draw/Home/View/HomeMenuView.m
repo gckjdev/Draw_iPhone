@@ -8,6 +8,7 @@
 
 #import "HomeMenuView.h"
 #import "DrawImageManager.h"
+#import "ConfigManager.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -235,7 +236,9 @@
 }
 @end
 
-int *getDrawMainMenuTypeList()
+
+
+int *getDrawMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
@@ -252,6 +255,30 @@ int *getDrawMainMenuTypeList()
     };
     return list;
 }
+
+int *getDrawMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGuess,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawApps,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getDrawMainMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDrawMainMenuTypeListWithFreeCoins() : getDrawMainMenuTypeListWithoutFreeCoins());
+}
+
+
 int *getDrawBottomMenuTypeList()
 {
     int static list[] = {
@@ -264,7 +291,7 @@ int *getDrawBottomMenuTypeList()
     };
     return list;    
 }
-int *getZJHMainMenuTypeList()
+int *getZJHMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeZJHStart,
@@ -279,6 +306,27 @@ int *getZJHMainMenuTypeList()
     };
     return list;
 }
+
+int *getZJHMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeZJHStart,
+        HomeMenuTypeZJHNormalSite,
+        HomeMenuTypeZJHRichSite,
+        HomeMenuTypeZJHVSSite,
+        HomeMenuTypeZJHShop,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeZJHHelp,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getZJHMainMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getZJHMainMenuTypeListWithFreeCoins() : getZJHMainMenuTypeListWithoutFreeCoins());
+}
+
 int *getZJHBottomMenuTypeList()
 {
     int static list[] = {
