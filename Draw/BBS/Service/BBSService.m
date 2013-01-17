@@ -838,7 +838,7 @@ BBSService *_staticBBSService;
                         if (resultCode == ERROR_SUCCESS) {
                             remoteDraw = [response bbsDrawData];
                             [_bbsManager cacheBBSDrawData:remoteDraw forKey:key];
-                            NSArray *list = [draw drawActionListList];
+                            NSArray *list = [remoteDraw drawActionListList];
                             drawActionList = [DrawManager parseFromPBDrawActionList:list];                            
                         }
                     }
