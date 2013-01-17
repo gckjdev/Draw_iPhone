@@ -565,6 +565,24 @@
     return  [MobClickUtils getIntValueByKey:@"FREE_COINS_MONEY_TREE_GAIN_TIME" defaultValue:60];
 }
 
++ (BOOL)freeCoinsEnabled
+{
+    if ([ConfigManager isInReviewVersion] == NO &&
+        ([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+            
+            if ([MobClickUtils getIntValueByKey:@"FREE_COINS_ENABLED" defaultValue:1] == 1){
+                return YES;
+            }
+            else{
+                return NO;
+            }
+        }
+    else{
+        return NO;
+    }
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
@@ -579,6 +597,8 @@
     [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
     [defaults synchronize];
 }
+
+
 
 
 @end

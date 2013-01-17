@@ -70,12 +70,15 @@
 #define FREE_COIN_TYPE_VIDEO                @"VIDEO"
 #define FREE_COIN_TYPE_MONEYTREE            @"MONEY_TREE"
 
-#define SELECT_WORD_CLICK                   @"SELECT_WORD_CLICK"
-#define SELECT_WORD_TYPE_HOT                @"HOT_WORD"
-#define SELECT_WORD_TYPE_CUSTOM             @"CUSTOM_WORD"
-#define SELECT_WORD_TYPE_SYSTEM             @"SYSTEM_WORD"
-#define SELECT_WORD_TYPE_DRAFT              @"DRAFT"
-#define ADD_CUSTOM_WORD                     @"ADD_CUSTOM_WORD"
+#define SELECT_WORD_CLICK                           @"SELECT_WORD_CLICK"
+#define SELECT_WORD_CLICK_TYPE_HOT                  @"HOT_WORD"
+#define SELECT_WORD_CLICK_TYPE_CUSTOM               @"CUSTOM_WORD"
+#define SELECT_WORD_CLICK_TYPE_SYSTEM               @"SYSTEM_WORD"
+#define SELECT_WORD_CLICK_TYPE_DRAFT                @"DRAFT"
+#define SELECT_WORD_CLICK_TYPE_LOAD_DRAFT           @"LOAD_DRAFT"
+#define SELECT_WORD_CLICK_TYPE_ADD_CUSTOM_WORD      @"ADD_CUSTOM_WORD"
+#define SELECT_WORD_CLICK_TYPE_MORE_CUSTOM_WORDS    @"MORE_CUSTOM_WORDS"
+
 
 #define DRAW_CLICK                          @"DRAW_CLICK"
 #define DRAW_CLICK_PEN                      @"DRAW_CLICK_PEN"
