@@ -76,7 +76,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
         [self killTreeTimer];
         return;
     }
-    [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTimes"),_remainTime/60, _remainTime%60]];
+    [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTime"),_remainTime/60, _remainTime%60]];
 }
 
 - (void)killTreeTimer
@@ -104,7 +104,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     self.moneyTree.growthTime = self.growthTime;
     self.moneyTree.gainTime = self.gainTime;
     self.moneyTree.coinValue = self.coinValue;
-    _remainTime = self.growthTime + self.gainTime;
+    _remainTime = self.growthTime + self.gainTime*MAX_COINS_ON_TREE;
     
     [self.moneyTree startGrow];
     [self startTreeTimerWithRemainTime:_remainTime];
@@ -113,7 +113,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)startGrowingCoin
 {
     if (self.isAlwaysShowMessage) self.popMessageBody.layer.opacity = 1;
-    [self startTreeTimerWithRemainTime:self.gainTime];
+    [self startTreeTimerWithRemainTime:self.gainTime*MAX_COINS_ON_TREE];
 }
 
 - (void)killMoneyTree
@@ -132,6 +132,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 */
 
 - (void)dealloc {
+    
     [_moneyTree release];
     [_popMessageLabel release];
     [_popMessageBackgroundImageView release];
@@ -158,19 +159,19 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 }
 - (void)treeDidMature:(MoneyTree*)tree
 {
-    if (self.isAlwaysShowMessage) {
-        self.popMessageBody.layer.opacity = 0;
-    } else {
-        [self popupMatureMessage];
-    }
+//    if (self.isAlwaysShowMessage) {
+//        self.popMessageBody.layer.opacity = 0;
+//    } else {
+//        [self popupMatureMessage];
+//    }
     if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeDidMature:)]) {
         [_delegate moneyTreeDidMature:self];
     }
-    
 }
 
 - (void)treeFullCoins:(MoneyTree *)tree
 {
+    [self popupMatureMessage];
     if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeFullCoins:)]) {
         [_delegate moneyTreeFullCoins:self];
     }

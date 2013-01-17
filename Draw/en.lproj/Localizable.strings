@@ -1212,7 +1212,12 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "%02d:%02d";
+"kRemainTime" = "%02d:%02d";
+"kRemainTimes" = "Remain Times: %d";
+"kWaitForMoneyTreeGrowUp" = "Wait for tree growing up";
+"kWaitForMoneyTreeAward" = "Wait for mature";
+"kClickMoneyTreeToGetAward" = "Click tree to get award";
+"kMoneyTreeAwardEnd" = "No more award can get, you can get award tomorrow";
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";
 

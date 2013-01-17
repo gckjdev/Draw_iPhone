@@ -404,14 +404,28 @@
 }
 #define SELECTION_VIEW_TAG 100
 #define SELECTION_VIEW_OFFSET ([DeviceDetection isIPAD] ? 30 : 7)
+#define BONUS_LIST_END -1
+
+int *getRewardBonusList()
+{
+    static int bonus[] = {0,100,300,500,1000,-1};
+    return bonus;
+}
+
 - (IBAction)clickRewardButton:(id)sender {
     BBSPopupSelectionView *selectionView = (BBSPopupSelectionView *)[self.view
                                                                      viewWithTag:SELECTION_VIEW_TAG];
     if (selectionView) {
         [selectionView removeFromSuperview];
     }else{
-        NSArray *titiles = [NSArray arrayWithObjects:NSLS(@"kNone"),@"100",@"200",@"300",nil];
-        selectionView = [[BBSPopupSelectionView alloc] initWithTitles:titiles delegate:self];
+        NSMutableArray *titles = [NSMutableArray arrayWithObjects:NSLS(@"kNone"),nil];
+        int *value = getRewardBonusList();
+        
+        for (++value; *value != BONUS_LIST_END; ++value) {
+            NSString *str = [NSString stringWithFormat:@"%d",*value];
+            [titles addObject:str];
+        }
+        selectionView = [[BBSPopupSelectionView alloc] initWithTitles:titles delegate:self];
         selectionView.tag = SELECTION_VIEW_TAG;
         CGPoint point = self.rewardButton.center;
         point.y -=  SELECTION_VIEW_OFFSET;
@@ -422,9 +436,9 @@
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
-    NSInteger bonus = index * 100;
+    NSInteger bonus = getRewardBonusList()[index];
     if ([[AccountService defaultService] hasEnoughCoins:bonus]) {
-        self.bonus = index * 100;
+        self.bonus = bonus;
         [self updateToolButtons];
     }else{
         NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"),bonus];

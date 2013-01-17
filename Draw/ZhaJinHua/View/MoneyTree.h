@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define MAX_COINS_ON_TREE  2
 
 @class MoneyTree;
 @protocol MoneyTreeDelegate <NSObject>
@@ -37,5 +37,6 @@
 
 - (void)startGrow;
 - (void)kill;
+
 
 @end

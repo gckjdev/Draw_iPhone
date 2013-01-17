@@ -12,6 +12,7 @@
 #import "UIImageUtil.h"
 #import "PenView.h"
 #import "Paint.h"
+#import "ConfigManager.h"
 
 #define DEFAULT_PLAY_SPEED (1/50.0)
 
@@ -186,6 +187,11 @@
     [showView resetFrameSize:frame.size];
     showView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
     return showView;
+}
+
++ (BOOL)canPlayDrawVersion:(NSInteger)version
+{
+    return [ConfigManager currentDrawDataVersion] >= version;
 }
 
 - (void)resetFrameSize:(CGSize)size

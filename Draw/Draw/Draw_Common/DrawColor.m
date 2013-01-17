@@ -64,8 +64,10 @@
 
 - (void)setAlpha:(CGFloat)alpha
 {
-    _alpha = alpha;
-    [self updateColor];
+    if(_alpha != alpha){
+        _alpha = alpha;
+        [self updateColor];
+    }
 }
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha

@@ -79,23 +79,29 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     
+    self.cannotGetFreeCoinsLabel.text = NSLS(@"kMoneyTreeAwardEnd");
+    
     if (![ConfigManager wallEnabled]) {
         self.lmWallBtnHolderView.hidden = YES;
         self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame; 
     }
     
     int remainTimes = [self remainTimes];
-    if (remainTimes > 0) {
+    if (remainTimes <= 0) {
         [self enableFreeCoinsAward:NO];
-    }else{
+    }
+    else
+    {
         [self enableFreeCoinsAward:YES];
         
         self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
         [self updateRemainTimes:remainTimes];
         self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
         self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-        self.moneyTreeView.growthTime = 30;
-        self.moneyTreeView.gainTime = 30;
+        self.moneyTreeView.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
+        self.moneyTreeView.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
+//        self.moneyTreeView.growthTime = 5;
+//        self.moneyTreeView.gainTime = 5;
         self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTreeView.delegate = self;
         [self.moneyTreeHolderView addSubview:_moneyTreeView];
@@ -109,15 +115,18 @@
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
-    [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
+    CGSize adSize = CGSizeMake(320, 50);
+    
+    [[AdService defaultService] createAdInView:self.view frame:CGRectMake((self.view.frame.size.width - adSize.width) / 2, self.view.frame.size.height-adSize.height, adSize.width, adSize.height) iPadFrame:CGRectMake((self.view.frame.size.width - adSize.width) / 2, self.view.frame.size.height-adSize.height - 20, adSize.width, adSize.height)];
 }
 
 -(void)enableFreeCoinsAward:(BOOL)enabled
 {
-    self.moneyTreeHolderView.hidden = !enabled;
+    self.moneyTreeView.hidden = !enabled;
     self.noteLabel.hidden = !enabled;
     self.remainTimesLabel.hidden = !enabled;
     self.cannotGetFreeCoinsImageView.hidden = enabled;
+    self.cannotGetFreeCoinsLabel.hidden = enabled;
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +136,7 @@
 }
 
 - (void)dealloc {
+    _moneyTreeView.delegate = nil;
     [_titleTlabel release];
     [_moneyTreePlaceHolder release];
     [_moneyTreeView release];
@@ -136,6 +146,7 @@
     [_noteLabel release];
     [_remainTimesLabel release];
     [_cannotGetFreeCoinsImageView release];
+    [_cannotGetFreeCoinsLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -147,6 +158,7 @@
     [self setNoteLabel:nil];
     [self setRemainTimesLabel:nil];
     [self setCannotGetFreeCoinsImageView:nil];
+    [self setCannotGetFreeCoinsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -183,12 +195,12 @@
 
 - (int)remainTimes
 {
-    return [self getFreeCoinsAwardTimesForToday] - [ConfigManager getMaxCountForFetchFreeCoinsOneDay];
+    return [ConfigManager getMaxCountForFetchFreeCoinsOneDay] - [self getFreeCoinsAwardTimesForToday];
 }
 
 - (void)updateRemainTimes:(int)times
 {
-    self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime:%d"), times];
+    self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTimes"), times];
 }
 
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
@@ -212,21 +224,27 @@
     NSString *note = [[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr];
 
     if (note != nil && ![note isEqualToString:@""]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:1.5 isHappy:YES];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     }
     
     int remainTimes = [self remainTimes];
-    if ([self remainTimes] > 0) {
+    if ([self remainTimes] <= 0) {
         [self enableFreeCoinsAward:NO];
-    }else{
+    }else
+    {
         [self updateRemainTimes:remainTimes];
+        self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
     }
 }
 
-- (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
+- (void)moneyTreeDidMature:(MoneyTreeView*)treeView
 {
-    self.noteLabel.text = NSLS(@"kMoneyTreeGrowUp");
-    [self.noteLabel performSelector:@selector(setText:) withObject:NSLS(@"kWaitForMoneyAndFlowsAndTips") afterDelay:1];
+    self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
+}
+
+- (void)moneyTreeFullCoins:(MoneyTreeView *)treeView
+{
+    self.noteLabel.text = NSLS(@"kClickMoneyTreeToGetAward");
 }
 
 

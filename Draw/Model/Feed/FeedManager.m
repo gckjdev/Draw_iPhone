@@ -106,9 +106,18 @@ FeedManager *_staticFeedManager = nil;
 
 - (void)cachePBFeed:(PBFeed *)feed
 {
-    PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
-    [_storeManager saveData:[feed data] forKey:feed.feedId];
-
+    @try {
+        [feed retain];
+        PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
+        [_storeManager saveData:[feed data] forKey:feed.feedId];
+        PPRelease(feed);
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<cachePBFeed> exception : %@",exception);
+    }
+    @finally {
+        
+    }
 }
 - (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId
 {

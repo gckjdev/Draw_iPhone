@@ -275,15 +275,16 @@ static FeedService *_staticFeedService = nil;
 {
     NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
     [queue cancelAllOperations];
+    __block BOOL loadRemoteData = NO;
+    
+    FeedManager *manager = [FeedManager defaultManager];
+    __block DrawFeed *feed = nil;
+
+
     [queue addOperationWithBlock:^{
         
-        BOOL loadRemoteData = NO;
-
-        FeedManager *manager = [FeedManager defaultManager];
-        
         PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
-        NSInteger resultCode = 0;
-        DrawFeed *feed = nil;
+         NSInteger resultCode = 0;
         
         //if local data is nil, load data from remote service
         if (pbFeed == nil) {
@@ -302,17 +303,17 @@ static FeedService *_staticFeedService = nil;
                 NSArray *list = [response feedList];
                 pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 resultCode = [response resultCode];
-            }        
-
+            }
         }
-        
-        //parse the draw feed.
-        if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
-            feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-        }
-        
+                
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            //parse the draw feed.
+            if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
+                feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+            }
+
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
                 [delegate didGetFeed:(DrawFeed *)feed
                           resultCode:resultCode
@@ -324,10 +325,10 @@ static FeedService *_staticFeedService = nil;
             PPDebug(@"<getFeedByFeedId> save pb feed");
             [manager cachePBFeed:pbFeed];
         }
-        pbFeed = nil;
+
     }];
 }
-- (void)commentOpus:(NSString *)opusId 
+- (void)commentOpus:(NSString *)opusId
              author:(NSString *)author 
             comment:(NSString *)comment          
         commentType:(int)commentType 

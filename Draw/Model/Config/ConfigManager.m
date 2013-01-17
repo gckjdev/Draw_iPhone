@@ -492,6 +492,13 @@
     return 5;
 }
 
+#pragma mark - draw data version
++ (int)currentDrawDataVersion
+{
+    return 1;
+}
+
+
 #pragma mark - BBS online attributes
 + (int)getBBSCreationFrequency
 {
@@ -547,6 +554,17 @@
 {
     return  [MobClickUtils getIntValueByKey:@"FREE_TIPS_AWARD" defaultValue:1];
 }
+
++ (int)getFreeCoinsMoneyTreeGrowthTime
+{
+    return  [MobClickUtils getIntValueByKey:@"FREE_COINS_MONEY_TREE_GROWTH_TIME" defaultValue:30];
+}
+
++ (int)getFreeCoinsMoneyTreeGainTime
+{
+    return  [MobClickUtils getIntValueByKey:@"FREE_COINS_MONEY_TREE_GAIN_TIME" defaultValue:60];
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
