@@ -143,7 +143,7 @@
 							<object class="IBUILabel" id="1020512331">
 								<reference key="NSNextResponder" ref="612216255"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{109, 26}, {100, 21}}</string>
+								<string key="NSFrame">{{67, 25}, {185, 21}}</string>
 								<reference key="NSSuperview" ref="612216255"/>
 								<reference key="NSNextKeyView" ref="200660604"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -388,8 +388,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="all_my_words_bg@2x.png">{16, 16}</string>
-			<string key="close_all_my_words_btn_bg@2x.png">{16, 16}</string>
+			<string key="all_my_words_bg@2x.png">{640, 960}</string>
+			<string key="close_all_my_words_btn_bg@2x.png">{36, 41}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
