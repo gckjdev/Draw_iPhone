@@ -23,5 +23,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *noteLabel;
 @property (retain, nonatomic) IBOutlet UILabel *remainTimesLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *cannotGetFreeCoinsImageView;
+@property (retain, nonatomic) IBOutlet UILabel *cannotGetFreeCoinsLabel;
 
 @end

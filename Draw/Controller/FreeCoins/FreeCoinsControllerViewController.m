@@ -79,6 +79,8 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     
+    self.cannotGetFreeCoinsLabel.text = NSLS(@"kMoneyTreeAwardEnd");
+    
     if (![ConfigManager wallEnabled]) {
         self.lmWallBtnHolderView.hidden = YES;
         self.helpBtnHolderView.frame = self.lmWallBtnHolderView.frame; 
@@ -87,15 +89,19 @@
     int remainTimes = [self remainTimes];
     if (remainTimes <= 0) {
         [self enableFreeCoinsAward:NO];
-    }else{
+    }
+    else
+    {
         [self enableFreeCoinsAward:YES];
         
         self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
         [self updateRemainTimes:remainTimes];
         self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
         self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-        self.moneyTreeView.growthTime = 3;
-        self.moneyTreeView.gainTime = 3;
+        self.moneyTreeView.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
+        self.moneyTreeView.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
+//        self.moneyTreeView.growthTime = 5;
+//        self.moneyTreeView.gainTime = 5;
         self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTreeView.delegate = self;
         [self.moneyTreeHolderView addSubview:_moneyTreeView];
@@ -118,6 +124,7 @@
     self.noteLabel.hidden = !enabled;
     self.remainTimesLabel.hidden = !enabled;
     self.cannotGetFreeCoinsImageView.hidden = enabled;
+    self.cannotGetFreeCoinsLabel.hidden = enabled;
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,6 +134,7 @@
 }
 
 - (void)dealloc {
+    _moneyTreeView.delegate = nil;
     [_titleTlabel release];
     [_moneyTreePlaceHolder release];
     [_moneyTreeView release];
@@ -136,6 +144,7 @@
     [_noteLabel release];
     [_remainTimesLabel release];
     [_cannotGetFreeCoinsImageView release];
+    [_cannotGetFreeCoinsLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -147,6 +156,7 @@
     [self setNoteLabel:nil];
     [self setRemainTimesLabel:nil];
     [self setCannotGetFreeCoinsImageView:nil];
+    [self setCannotGetFreeCoinsLabel:nil];
     [super viewDidUnload];
 }
 
@@ -188,7 +198,7 @@
 
 - (void)updateRemainTimes:(int)times
 {
-    self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime:%d"), times];
+    self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTimes"), times];
 }
 
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
@@ -212,21 +222,27 @@
     NSString *note = [[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr];
 
     if (note != nil && ![note isEqualToString:@""]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:1.5 isHappy:YES];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     }
     
     int remainTimes = [self remainTimes];
     if ([self remainTimes] <= 0) {
         [self enableFreeCoinsAward:NO];
-    }else{
+    }else
+    {
         [self updateRemainTimes:remainTimes];
+        self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
     }
 }
 
-- (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
+- (void)moneyTreeDidMature:(MoneyTreeView*)treeView
 {
-    self.noteLabel.text = NSLS(@"kMoneyTreeGrowUp");
-    [self.noteLabel performSelector:@selector(setText:) withObject:NSLS(@"kWaitForMoneyAndFlowsAndTips") afterDelay:1];
+    self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
+}
+
+- (void)moneyTreeFullCoins:(MoneyTreeView *)treeView
+{
+    self.noteLabel.text = NSLS(@"kClickMoneyTreeToGetAward");
 }
 
 

@@ -1220,7 +1220,12 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "%02d:%02d";
+"kRemainTime" = "%02d:%02d";
+"kRemainTimes" = "剩余次数:%d";
+"kWaitForMoneyTreeGrowUp" = "等待金钱树长大...";
+"kWaitForMoneyTreeAward" = "等待金钱树结果...";
+"kClickMoneyTreeToGetAward" = "点击金钱树获取奖励";
+"kMoneyTreeAwardEnd" = "今天的奖励已经领取完了,欢迎明天再来!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "诈金花";
 

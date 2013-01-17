@@ -278,13 +278,13 @@ static FeedService *_staticFeedService = nil;
     __block BOOL loadRemoteData = NO;
     
     FeedManager *manager = [FeedManager defaultManager];
-    
-    __block PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
-    __block NSInteger resultCode = 0;
     __block DrawFeed *feed = nil;
+
 
     [queue addOperationWithBlock:^{
         
+        PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
+         NSInteger resultCode = 0;
         
         //if local data is nil, load data from remote service
         if (pbFeed == nil) {
@@ -303,8 +303,7 @@ static FeedService *_staticFeedService = nil;
                 NSArray *list = [response feedList];
                 pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 resultCode = [response resultCode];
-            }        
-
+            }
         }
                 
         //send back to delegate
@@ -320,18 +319,16 @@ static FeedService *_staticFeedService = nil;
                           resultCode:resultCode
                            fromCache:!loadRemoteData];
             }
-
-            //save feed
-            if (loadRemoteData) {
-                PPDebug(@"<getFeedByFeedId> save pb feed");
-                [manager cachePBFeed:pbFeed];
-            }
-            pbFeed = nil;
         });
-        
+        //save feed
+        if (loadRemoteData) {
+            PPDebug(@"<getFeedByFeedId> save pb feed");
+            [manager cachePBFeed:pbFeed];
+        }
+
     }];
 }
-- (void)commentOpus:(NSString *)opusId 
+- (void)commentOpus:(NSString *)opusId
              author:(NSString *)author 
             comment:(NSString *)comment          
         commentType:(int)commentType 

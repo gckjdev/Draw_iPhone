@@ -320,6 +320,9 @@
 		A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
 		A4FA546616A6823B001883CC /* plus_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA546516A6823A001883CC /* plus_image@2x.png */; };
+		A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -20672,6 +20675,7 @@
 				CA988AC616A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988ACA16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACE16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21356,6 +21360,7 @@
 				CA988AC716A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988ACB16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACF16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22733,6 +22738,7 @@
 				CA988AC516A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988AC916A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACD16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
