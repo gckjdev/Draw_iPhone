@@ -17,6 +17,7 @@
 @optional
 - (void)moneyTreeDidMature:(MoneyTreeView*)treeView;
 - (void)moneyTreeFullCoins:(MoneyTreeView*)treeView;
+- (void)moneyTreeUpdateRemainSeconds:(CFTimeInterval)remainSec;
 @end
 
 @interface MoneyTreeView : UIView <MoneyTreeDelegate>{

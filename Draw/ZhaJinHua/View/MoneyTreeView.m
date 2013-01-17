@@ -77,6 +77,9 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
         return;
     }
     [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTime"),_remainTime/60, _remainTime%60]];
+    if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeUpdateRemainSeconds:)]) {
+        [_delegate moneyTreeUpdateRemainSeconds:_remainTime];
+    }
 }
 
 - (void)killTreeTimer
