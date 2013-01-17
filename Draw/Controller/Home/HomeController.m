@@ -717,6 +717,14 @@
         }
             break;
             
+            case HomeMenuTypeDrawPlayWithFriend:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_PLAY_WITH_FRIEDN];
+            
+            FriendRoomController *vc = [[[FriendRoomController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            
         default:
             break;
     }

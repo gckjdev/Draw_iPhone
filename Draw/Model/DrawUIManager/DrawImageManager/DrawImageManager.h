@@ -21,6 +21,7 @@
 - (UIImage *)drawHomeTop;
 - (UIImage *)drawAppsRecommand;
 - (UIImage *)drawFreeCoins;
+- (UIImage *)drawPlayWithFriend;
 
 - (UIImage *)drawHomeHome;
 - (UIImage *)drawHomeMessage;

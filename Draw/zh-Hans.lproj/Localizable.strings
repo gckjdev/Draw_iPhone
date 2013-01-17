@@ -937,8 +937,8 @@
 "kHomeMenuTypeDrawRank" = "画榜";
 "kHomeMenuTypeDrawContest" = "画画大赛";
 "kHomeMenuTypeDrawBBS" = "玩家论坛";
-"HomeMenuTypeDrawApps" = "应用推荐";
-"HomeMenuTypeDrawFreeCoins" = "免费金币";
+"kHomeMenuTypeDrawApps" = "应用推荐";
+"kHomeMenuTypeDrawFreeCoins" = "免费金币";
 "kHomeMenuTypeDrawHome" = "主页";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
@@ -1227,7 +1227,7 @@
 "kCardTypeUnknow" = "未知";
 
 "kRemainTime" = "%02d:%02d";
-"kRemainTimes" = "剩余次数:%d";
+"kRemainTimes" = "今日剩余次数:%d";
 "kWaitForMoneyTreeGrowUp" = "等待金钱树长大...";
 "kWaitForMoneyTreeAward" = "等待金钱树结果...";
 "kClickMoneyTreeToGetAward" = "点击金钱树获取奖励";
