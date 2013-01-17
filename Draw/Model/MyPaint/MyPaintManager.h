@@ -53,6 +53,7 @@
 - (NSArray*)findAllDraftForRecovery;
 
 //set delete flag.
+- (BOOL)completeDeletePaint:(MyPaint*)paint;
 - (BOOL)deleteMyPaint:(MyPaint*)paint;
 - (BOOL)deleteAllPaints:(BOOL)onlyDrawnByMe;
 - (BOOL)deleteAllDrafts;
@@ -92,6 +93,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
 
-
+- (NSString*)fullDataPath:(NSString*)dataFileName;
 
 @end

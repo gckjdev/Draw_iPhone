@@ -979,6 +979,7 @@
 
 "kRevoking" = "Revoking...";
 "kCannotShowYourself" = "Oh, you are trying to view yourself!";
+"kRecoveryDraft" = "Recovery";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

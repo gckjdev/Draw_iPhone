@@ -11,6 +11,7 @@
 #import "MyPaintManager.h"
 #import "FileUtil.h"
 #import "Draw.pb.h"
+#import "ConfigManager.h"
 
 @implementation DrawRecoveryService
 
@@ -19,6 +20,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 - (void)test
 {
     [DrawRecoveryService defaultService];
+}
+
+- (BOOL)supportRecovery
+{
+    return [ConfigManager supportRecovery];
 }
 
 - (int)recoveryDrawCount
@@ -43,9 +49,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     if (_currentPaint != nil){
         [self stop];
     }
+ 
+    if (![self supportRecovery]){
+        PPDebug(@"<start> but recovery is not enable!");
+        return;
+    }    
     
     @try {
-        _currentPaint = [[MyPaintManager defaultManager] createDraftForRecovery:targetUid
+        self.currentPaint = [[MyPaintManager defaultManager] createDraftForRecovery:targetUid
                                                                       contestId:contestId
                                                                          userId:userId
                                                                        nickName:nickName
@@ -63,15 +74,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 }
 
 - (void)backup:(PBNoCompressDrawData*)drawData
-{
+{    
     NSData* data = [drawData data];
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
+    NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
     
     dispatch_async(workingQueue, ^{
-        PPDebug(@"<backup> file name=%@", dataFileName);
+        PPDebug(@"<backup> file path=%@", dataPath);
         
         // backup data to file
-        [data writeToFile:dataFileName atomically:YES];
+        [data writeToFile:dataPath atomically:YES];
     });
     
     [dataFileName release];
@@ -80,18 +92,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 - (void)stop
 {
     @try {
+        
+        if (_currentPaint == nil)
+            return;
+        
         NSString* dataFileName = [_currentPaint.dataFilePath copy];
-        PPDebug(@"<stop> file name=%@", dataFileName);
+        NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
+        PPDebug(@"<stop> file=%@", dataPath);
         
         // delete paint from draft
-        [[MyPaintManager defaultManager] deleteMyPaint:_currentPaint];
+        [[MyPaintManager defaultManager] completeDeletePaint:_currentPaint];
         
         // clear current paint
-        _currentPaint = nil;
-        
+        self.currentPaint = nil;
+                        
         // delete file
         dispatch_async(workingQueue, ^{
-            [FileUtil removeFile:dataFileName];
+            [FileUtil removeFile:dataPath];
         });
         
         [dataFileName release];
@@ -103,6 +120,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         
     }
 
+}
+
+- (int)backupInterval
+{
+    return [ConfigManager recoveryBackupInterval];
 }
 
 @end

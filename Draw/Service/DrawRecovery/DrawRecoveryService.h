@@ -18,7 +18,9 @@
     
 }
 
-@property (nonatomic, assign) MyPaint* currentPaint;
+@property (nonatomic, retain) MyPaint* currentPaint;
+
++ (DrawRecoveryService*)defaultService;
 
 - (int)recoveryDrawCount;
 
@@ -31,5 +33,7 @@
 
 - (void)backup:(PBNoCompressDrawData*)drawData;
 - (void)stop;
+
+- (int)backupInterval;
 
 @end

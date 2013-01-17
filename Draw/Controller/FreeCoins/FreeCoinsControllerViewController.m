@@ -85,7 +85,7 @@
     }
     
     int remainTimes = [self remainTimes];
-    if (remainTimes > 0) {
+    if (remainTimes <= 0) {
         [self enableFreeCoinsAward:NO];
     }else{
         [self enableFreeCoinsAward:YES];
@@ -94,8 +94,8 @@
         [self updateRemainTimes:remainTimes];
         self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
         self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-        self.moneyTreeView.growthTime = 30;
-        self.moneyTreeView.gainTime = 30;
+        self.moneyTreeView.growthTime = 3;
+        self.moneyTreeView.gainTime = 3;
         self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTreeView.delegate = self;
         [self.moneyTreeHolderView addSubview:_moneyTreeView];
@@ -114,7 +114,7 @@
 
 -(void)enableFreeCoinsAward:(BOOL)enabled
 {
-    self.moneyTreeHolderView.hidden = !enabled;
+    self.moneyTreeView.hidden = !enabled;
     self.noteLabel.hidden = !enabled;
     self.remainTimesLabel.hidden = !enabled;
     self.cannotGetFreeCoinsImageView.hidden = enabled;
@@ -183,7 +183,7 @@
 
 - (int)remainTimes
 {
-    return [self getFreeCoinsAwardTimesForToday] - [ConfigManager getMaxCountForFetchFreeCoinsOneDay];
+    return [ConfigManager getMaxCountForFetchFreeCoinsOneDay] - [self getFreeCoinsAwardTimesForToday];
 }
 
 - (void)updateRemainTimes:(int)times
@@ -216,7 +216,7 @@
     }
     
     int remainTimes = [self remainTimes];
-    if ([self remainTimes] > 0) {
+    if ([self remainTimes] <= 0) {
         [self enableFreeCoinsAward:NO];
     }else{
         [self updateRemainTimes:remainTimes];

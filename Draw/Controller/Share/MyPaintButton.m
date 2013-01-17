@@ -62,7 +62,15 @@
 {
     self.paint = paint;
     [self.drawImage setImage:paint.thumbImage];
-    [self.drawWord setText:paint.drawWord];
+    
+    if ([paint.isRecovery boolValue]){
+        NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), paint.drawWord];
+        [self.drawWord setText:name];
+    }
+    else{
+        [self.drawWord setText:paint.drawWord];
+    }
+
     [self.myPrintTag setHidden:!paint.drawByMe.boolValue];
     
     self.hidden = NO;

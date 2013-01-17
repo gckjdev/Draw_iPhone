@@ -252,6 +252,15 @@ static MyPaintManager* _defaultManager;
     return result;
 }
 
+- (BOOL)completeDeletePaint:(MyPaint*)paint
+{
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    [dataManager del:paint];
+    BOOL result = [dataManager save];
+    
+    return result;
+}
+
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
     PPDebug(@"Save Photo, Result=%@", [error description]);
@@ -456,6 +465,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             needSave = YES;
         }
         if (needSave) {
+            [draft setIsRecovery:[NSNumber numberWithBool:NO]];
             [self save];            
         }
 
@@ -485,6 +495,14 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
         drawData = paint.data;
     }
     return [NSKeyedUnarchiver unarchiveObjectWithData:drawData];
+}
+
+- (NSString*)fullDataPath:(NSString*)dataFileName
+{
+    if (dataFileName == nil)
+        return nil;
+    
+    return [_drawDataManager pathWithKey:dataFileName];
 }
 
 - (NSString *)imagePathForPaint:(MyPaint *)paint

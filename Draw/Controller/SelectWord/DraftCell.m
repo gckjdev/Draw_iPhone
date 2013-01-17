@@ -46,7 +46,14 @@
         draft = [drafts objectAtIndex:index];
         [self setDraftWithIndex:index image:draft.thumbImage];
         [[self draftViewWithIndex:index] addTarget:self action:@selector(clickDraftButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self setDraftNameWithIndex:index name:draft.drawWord];
+        
+        if ([draft.isRecovery boolValue]){
+            NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), draft.drawWord];
+            [self setDraftNameWithIndex:index name:name];
+        }
+        else{
+            [self setDraftNameWithIndex:index name:draft.drawWord];
+        }
     }
     
     for (; index < MAX_DRAFT_COUNT_PER_CELL; index++) {
