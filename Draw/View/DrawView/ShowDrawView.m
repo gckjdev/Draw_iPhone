@@ -273,14 +273,19 @@
     }
 }
 
+- (void)callDidDrawPaintDelegate
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
+        [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
+    }    
+    if(_playingActionIndex >= [self.drawActionList count]-1 && self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
+        [self.delegate didPlayDrawView:self];
+    }
+}
+
 - (void)playCurrentFrame
 {
     [self updateTempPaint];
-    
-    PPDebug(@"====<playCurrentFrame>(actionIndex: %d, total Point: %d, pointIndex: %d, tempPaint count: %d)====",_playingActionIndex,_currentAction.pointCount, _playingPointIndex, self.tempPaint.pointCount);
-    if (_playingActionIndex == 139 && _playingPointIndex == 0) {
-        PPDebug(@"debug point!");
-    }
     if (self.status == Playing) {
         if (self.tempPaint) {
             CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width];
@@ -288,6 +293,8 @@
                 self.tempPaint = nil;
                 [self drawAction:_currentAction inContext:showContext];
                 [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
+                [self callDidDrawPaintDelegate];
+                
             }else
             {
                 [self setStrokeColor:self.tempPaint.color lineWidth:self.tempPaint.width inContext:cacheContext];
