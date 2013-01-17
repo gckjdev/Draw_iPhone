@@ -59,7 +59,8 @@
     ShareImageManager *shareImageManager;
     MyPaint *_draft;
     
-    NSInteger _unDraftPaintCount;
+//    NSInteger _unDraftPaintCount;
+//    time_t    _lastSaveTime;
 
     Word *_word;
     LanguageType languageType;
@@ -415,8 +416,7 @@ enum{
     if (![self supportRecovery])
         return;
     
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
-    [[DrawRecoveryService defaultService] backup:data];
+    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
 - (void)startBackupTimer
@@ -455,7 +455,8 @@ enum{
     [self initDrawView];
     [self initWordLabel];
     [self initSubmitButton];
-    _unDraftPaintCount = 0;
+//    _unDraftPaintCount = 0;
+//    _lastSaveTime = time(0);
     _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
     [self initDrawToolPanel];
 
@@ -679,13 +680,35 @@ enum{
     _isNewDraft = NO;
 }
 
-#define DRAFT_PAINT_COUNT [ConfigManager drawAutoSavePaintInterval]
+#define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
+#define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
 
 - (void)didDrawedPaint:(Paint *)paint
 {
+    // add back auto save for future recovery
+    if (![self supportRecovery]){
+        return;
+    }
     
-    return; //Cancel auto save function now. by Gamy.
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:drawView.drawActionList];
+
+    /*
+    time_t nowTime = time(0);
+    if (_unDraftPaintCount >= DRAFT_PAINT_COUNT ||
+        (_unDraftPaintCount > 0 && ((nowTime - _lastSaveTime) >= DRAFT_PAINT_TIME_INTERVAL) )) {
+        [[DrawRecoveryService defaultService] backup:drawView.drawActionList];
+        _unDraftPaintCount = 0;
+        _lastSaveTime = nowTime;
+    }
+    else{
+        _unDraftPaintCount ++;
+    }
+    */
+    return;
     
+    // old implementation, reserved, to be deleted
+    
+    /*
     if (targetType == TypeGraffiti || !_isAutoSave) {
         return;
     }
@@ -695,6 +718,7 @@ enum{
         PPDebug(@"<didDrawedPaint> start to auto save...");
         [self saveDraft:NO];
     }
+    */
 }
 
 - (void)didCreateDraw:(int)resultCode
@@ -781,7 +805,8 @@ enum{
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
-    _unDraftPaintCount = 0;
+//    _unDraftPaintCount = 0;
+//    _lastSaveTime = 0;
     _isNewDraft = YES;
     UIImage *image = [drawView createImage];    
     

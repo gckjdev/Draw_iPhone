@@ -20,7 +20,6 @@
 #import "ConfigManager.h"
 #import "TimeUtils.h"
 
-#define SHENGMENG_APP_ID @"90386ecaab5c85559c569ab7c79a61e2"
 //#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
 //#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
 //#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
@@ -111,7 +110,7 @@
     
     // shengmeng sdk
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-    [shengmengsdk playad:SHENGMENG_APP_ID];
+    [shengmengsdk playad:[GameApp shengmengAppId]];
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
@@ -185,7 +184,7 @@
 }
 
 - (void)timeout:(id)sender {
-    [shengmengsdk playad:SHENGMENG_APP_ID];
+    [shengmengsdk playad:[GameApp shengmengAppId]];
 }
 
 - (IBAction)clickBackButton:(id)sender {

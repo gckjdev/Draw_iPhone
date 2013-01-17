@@ -99,9 +99,14 @@
     return [MobClickUtils getIntValueByKey:@"HISTORY_RANK_NUMBER" defaultValue:300];
 }
 
++ (NSInteger)drawAutoSavePaintTimeInterval
+{
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_TIME_INTERVAL" defaultValue:30];   // 30 seconds to save unsaved paint
+}
+
 + (NSInteger)drawAutoSavePaintInterval
 {
-    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT_1" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT_1" defaultValue:50];         // 50 paint for save
 }
 
 + (NSInteger)opusDescMaxLength
@@ -565,6 +570,24 @@
     return  [MobClickUtils getIntValueByKey:@"FREE_COINS_MONEY_TREE_GAIN_TIME" defaultValue:60];
 }
 
++ (BOOL)freeCoinsEnabled
+{
+    if ([ConfigManager isInReviewVersion] == NO &&
+        ([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+            
+            if ([MobClickUtils getIntValueByKey:@"FREE_COINS_ENABLED" defaultValue:1] == 1){
+                return YES;
+            }
+            else{
+                return NO;
+            }
+        }
+    else{
+        return NO;
+    }
+}
+
 
 #define KEY_AUTO_SAVE @"AutoSave"
 + (BOOL)isAutoSave
@@ -579,6 +602,8 @@
     [defaults setBool:isAutoSave forKey:KEY_AUTO_SAVE];
     [defaults synchronize];
 }
+
+
 
 
 @end

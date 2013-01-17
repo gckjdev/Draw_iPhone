@@ -169,6 +169,7 @@ typedef enum{
 
 + (int)supportRecovery;
 + (int)recoveryBackupInterval;
++ (NSInteger)drawAutoSavePaintTimeInterval;
 
 + (int)getMaxCountForFetchFreeCoinsOneDay;
 + (int)getFreeCoinsAward;
@@ -176,5 +177,6 @@ typedef enum{
 + (int)getFreeTipsAward;
 + (int)getFreeCoinsMoneyTreeGrowthTime;
 + (int)getFreeCoinsMoneyTreeGainTime;
++ (BOOL)freeCoinsEnabled;
 
 @end

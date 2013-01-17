@@ -282,4 +282,10 @@
 {
     return [DrawGameJumpHandler defaultHandler];
 }
+
+- (NSString *)shengmengAppId
+{
+    return @"90386ecaab5c85559c569ab7c79a61e2";
+}
+
 @end

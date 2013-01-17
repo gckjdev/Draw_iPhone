@@ -7,6 +7,7 @@
 //
 
 #import "DraftCell.h"
+#import "ShareImageManager.h"
 
 #define DRAFT_VIEW_TAG 200
 #define DRAFT_NAME_LABEL_TAG 300
@@ -50,6 +51,7 @@
         if ([draft.isRecovery boolValue]){
             NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), draft.drawWord];
             [self setDraftNameWithIndex:index name:name];
+            [self setDraftWithIndex:index image:[ShareImageManager defaultManager].autoRecoveryDraftImage];
         }
         else{
             [self setDraftNameWithIndex:index name:draft.drawWord];
