@@ -316,13 +316,23 @@ enum{
     drawView.delegate = self;
     _isNewDraft = YES;
 //    _userSaved = NO;
+    self.eraserColor = [DrawColor whiteColor];
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
-//        _userSaved = YES;
+        NSInteger count = [self.draft.drawActionList count];
+        //find the last clean action or change back action
+        for (NSInteger i = count - 1; i >= 0; -- i) {
+            DrawAction *action = [self.draft.drawActionList objectAtIndex:i];
+            if ([action isCleanAction]) {
+                break;
+            }else if([action isChangeBackAction]){
+                self.eraserColor = [DrawColor colorWithColor:[action.paint color]];
+                [self.eraserColor setAlpha:1.0];
+            }
+        }
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
-    self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
 }
@@ -1010,12 +1020,17 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
     _isNewDraft = NO;
-    self.penColor.alpha = 1.0;
-    [drawView changeBackWithColor:self.penColor];
-    self.eraserColor = self.penColor;
-    self.penColor = drawView.lineColor = [DrawColor blackColor];
+
+    self.eraserColor = [DrawColor colorWithColor:self.penColor];
+    [self.eraserColor setAlpha:1.0];
+    [drawView changeBackWithColor:self.eraserColor];
+    
+    self.penColor = [DrawColor blackColor];
     [toolPanel setColor:self.penColor];
+    
+    drawView.lineColor = [DrawColor blackColor];
     [drawView.lineColor setAlpha:_alpha];
+    
     [self updateRecentColors];
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
