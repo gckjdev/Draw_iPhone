@@ -42,7 +42,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{18, 10}, {88, 104}}</string>
 						<reference key="NSSuperview" ref="668203424"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -80,14 +79,13 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrameSize">{94, 44}</string>
 								<reference key="NSSuperview" ref="982430397"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="312083830"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">zjh_money_tree_popMessage_background@2x.png</string>
+									<string key="NSResourceName">zjh_money_tree_pop_message_bg@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="312083830">
@@ -95,7 +93,6 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrameSize">{94, 44}</string>
 								<reference key="NSSuperview" ref="982430397"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="951146079"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -128,7 +125,6 @@
 						</array>
 						<string key="NSFrame">{{15, -4}, {94, 44}}</string>
 						<reference key="NSSuperview" ref="668203424"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="721423851"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="586323681">
@@ -140,7 +136,6 @@
 				</array>
 				<string key="NSFrameSize">{124, 114}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="982430397"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="586323681"/>
@@ -307,8 +302,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">zjh_money_tree_popMessage_background@2x.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<string key="NS.key.0">zjh_money_tree_pop_message_bg@2x.png</string>
+			<string key="NS.object.0">{93, 41}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
