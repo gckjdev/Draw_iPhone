@@ -3426,22 +3426,6 @@
 		CA53297316A3E64B00E9E96B /* input_alert_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */; };
 		CA53297416A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */; };
 		CA53297516A3E64B00E9E96B /* input_alert_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */; };
-		CA5329CD16A542CC00E9E96B /* pen-brush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329C916A542CC00E9E96B /* pen-brush@2x.png */; };
-		CA5329CE16A542CC00E9E96B /* pen-brush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329C916A542CC00E9E96B /* pen-brush@2x.png */; };
-		CA5329CF16A542CC00E9E96B /* pen-brush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329C916A542CC00E9E96B /* pen-brush@2x.png */; };
-		CA5329D016A542CC00E9E96B /* pen-brush@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329C916A542CC00E9E96B /* pen-brush@2x.png */; };
-		CA5329D116A542CC00E9E96B /* pen-feather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */; };
-		CA5329D216A542CC00E9E96B /* pen-feather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */; };
-		CA5329D316A542CC00E9E96B /* pen-feather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */; };
-		CA5329D416A542CC00E9E96B /* pen-feather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */; };
-		CA5329D516A542CC00E9E96B /* pen-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CB16A542CC00E9E96B /* pen-star@2x.png */; };
-		CA5329D616A542CC00E9E96B /* pen-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CB16A542CC00E9E96B /* pen-star@2x.png */; };
-		CA5329D716A542CC00E9E96B /* pen-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CB16A542CC00E9E96B /* pen-star@2x.png */; };
-		CA5329D816A542CC00E9E96B /* pen-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CB16A542CC00E9E96B /* pen-star@2x.png */; };
-		CA5329D916A542CC00E9E96B /* pen-sugar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */; };
-		CA5329DA16A542CC00E9E96B /* pen-sugar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */; };
-		CA5329DB16A542CC00E9E96B /* pen-sugar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */; };
-		CA5329DC16A542CC00E9E96B /* pen-sugar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
@@ -7811,10 +7795,6 @@
 		CA53296B16A3E64B00E9E96B /* input_alert_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_button@2x.png"; sourceTree = "<group>"; };
 		CA53296C16A3E64B00E9E96B /* input_alert_content_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_content_bg@2x.png"; sourceTree = "<group>"; };
 		CA53296D16A3E64B00E9E96B /* input_alert_frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_frame@2x.png"; sourceTree = "<group>"; };
-		CA5329C916A542CC00E9E96B /* pen-brush@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen-brush@2x.png"; sourceTree = "<group>"; };
-		CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen-feather@2x.png"; sourceTree = "<group>"; };
-		CA5329CB16A542CC00E9E96B /* pen-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen-star@2x.png"; sourceTree = "<group>"; };
-		CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pen-sugar@2x.png"; sourceTree = "<group>"; };
 		CA639115152FEA3D007564C6 /* RouterTrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTrafficServer.h; sourceTree = "<group>"; };
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
@@ -12603,10 +12583,6 @@
 		CA25C3AA168968070064C05D /* Pen */ = {
 			isa = PBXGroup;
 			children = (
-				CA5329C916A542CC00E9E96B /* pen-brush@2x.png */,
-				CA5329CA16A542CC00E9E96B /* pen-feather@2x.png */,
-				CA5329CB16A542CC00E9E96B /* pen-star@2x.png */,
-				CA5329CC16A542CC00E9E96B /* pen-sugar@2x.png */,
 				CA25C3AB168968070064C05D /* draw_pen1@2x.png */,
 				CA25C3AC168968070064C05D /* draw_pen2@2x.png */,
 				CA25C3AD168968070064C05D /* draw_pen3@2x.png */,
@@ -17682,10 +17658,6 @@
 				A4F5BF8D16A4055C000A503F /* new_wood_bg@2x.png in Resources */,
 				CA29EA8616A526CE003B1434 /* draw_home_apps@2x.png in Resources */,
 				CA29EA8816A526D4003B1434 /* draw_home_free_coins@2x.png in Resources */,
-				CA5329CF16A542CC00E9E96B /* pen-brush@2x.png in Resources */,
-				CA5329D316A542CC00E9E96B /* pen-feather@2x.png in Resources */,
-				CA5329D716A542CC00E9E96B /* pen-star@2x.png in Resources */,
-				CA5329DB16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
 				A4F5BFE616A64808000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE716A64808000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFEB16A648B2000A503F /* select_word_back_btn@2x.png in Resources */,
@@ -18481,10 +18453,6 @@
 				CA29EA9016A52721003B1434 /* dialog_yes@2x.png in Resources */,
 				CA29EA9116A52721003B1434 /* loading_planet@2x.png in Resources */,
 				CA29EA9216A52721003B1434 /* starryBg.png in Resources */,
-				CA5329D016A542CC00E9E96B /* pen-brush@2x.png in Resources */,
-				CA5329D416A542CC00E9E96B /* pen-feather@2x.png in Resources */,
-				CA5329D816A542CC00E9E96B /* pen-star@2x.png in Resources */,
-				CA5329DC16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
 				A4F5BFE816A64809000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */,
@@ -19252,10 +19220,6 @@
 				A4F5BF7C16A40224000A503F /* more_apps_icon@2x.png in Resources */,
 				A4F5BF7D16A40224000A503F /* video_ad_icon@2x.png in Resources */,
 				A4F5BF7E16A40224000A503F /* new_wood_bg@2x.png in Resources */,
-				CA5329CD16A542CC00E9E96B /* pen-brush@2x.png in Resources */,
-				CA5329D116A542CC00E9E96B /* pen-feather@2x.png in Resources */,
-				CA5329D516A542CC00E9E96B /* pen-star@2x.png in Resources */,
-				CA5329D916A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
 				A4F5BFC416A55607000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFC516A55607000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
@@ -20019,10 +19983,6 @@
 				A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */,
 				CA29EA8416A526BB003B1434 /* draw_home_free_coins@2x.png in Resources */,
 				CA29EA8516A526CE003B1434 /* draw_home_apps@2x.png in Resources */,
-				CA5329CE16A542CC00E9E96B /* pen-brush@2x.png in Resources */,
-				CA5329D216A542CC00E9E96B /* pen-feather@2x.png in Resources */,
-				CA5329D616A542CC00E9E96B /* pen-star@2x.png in Resources */,
-				CA5329DA16A542CC00E9E96B /* pen-sugar@2x.png in Resources */,
 				A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE016A64808000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFE116A64808000A503F /* coin_tree@2x.png in Resources */,
