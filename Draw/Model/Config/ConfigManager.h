@@ -153,6 +153,9 @@ typedef enum{
 + (int)getZJHMaxAutoBetCount;
 
 
+#pragma mark - draw data version
++ (int)currentDrawDataVersion;
+
 #pragma mark - BBS online attributes
 + (int)getBBSCreationFrequency;
 //support limit

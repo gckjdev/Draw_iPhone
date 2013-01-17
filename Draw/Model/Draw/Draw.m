@@ -12,6 +12,7 @@
 #import "Draw.pb.h"
 #import "Word.h"
 #import "TimeUtils.h"
+#import "ConfigManager.h"
 
 @implementation Draw
 @synthesize userId = _userId;
@@ -37,13 +38,11 @@
 {
     if (array) {
         NSMutableArray *list = [NSMutableArray array];
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];        
         for (PBDrawAction *action in array) {
             DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:action];
             [list addObject:drawAction];
             [drawAction release];
         }
-        [pool release];
         return list;
     }
     return nil;
@@ -60,6 +59,7 @@
         self.languageType = pbDraw.language;
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];
         self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
+        self.version = pbDraw.version;
     }
     return self;
 }
@@ -79,6 +79,7 @@
         self.word = word;
         self.date = date;
         self.avatar = avatar;
+        self.version = [ConfigManager currentDrawDataVersion];
     }
     return self;
 }

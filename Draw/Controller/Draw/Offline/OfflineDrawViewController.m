@@ -94,9 +94,7 @@
 @property (retain, nonatomic) NSString *desc;
 @property (retain, nonatomic) InputAlertView *inputAlert;
 
-@property (assign, nonatomic) NSTimer* backupTimer;
-@property (assign, nonatomic) BOOL noSupportOnRecovery;
-
+@property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
 - (void)initDrawView;
 
@@ -316,13 +314,23 @@ enum{
     drawView.delegate = self;
     _isNewDraft = YES;
 //    _userSaved = NO;
+    self.eraserColor = [DrawColor whiteColor];
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
-//        _userSaved = YES;
+        NSInteger count = [self.draft.drawActionList count];
+        //find the last clean action or change back action
+        for (NSInteger i = count - 1; i >= 0; -- i) {
+            DrawAction *action = [self.draft.drawActionList objectAtIndex:i];
+            if ([action isCleanAction]) {
+                break;
+            }else if([action isChangeBackAction]){
+                self.eraserColor = [DrawColor colorWithColor:[action.paint color]];
+                [self.eraserColor setAlpha:1.0];
+            }
+        }
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
-    self.eraserColor = [DrawColor whiteColor];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
 }
@@ -373,7 +381,11 @@ enum{
 
 - (BOOL)supportRecovery
 {
-    return (_noSupportOnRecovery == NO);
+    if (targetType == TypeGraffiti){
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)initRecovery
@@ -1004,18 +1016,24 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
+    [self.eraserColor setAlpha:1.0];
     [drawView setLineColor:self.eraserColor];
     [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
     _isNewDraft = NO;
-    self.penColor.alpha = 1.0;
-    [drawView changeBackWithColor:self.penColor];
-    self.eraserColor = self.penColor;
-    self.penColor = drawView.lineColor = [DrawColor blackColor];
+
+    self.eraserColor = [DrawColor colorWithColor:self.penColor];
+    [self.eraserColor setAlpha:1.0];
+    [drawView changeBackWithColor:self.eraserColor];
+    
+    self.penColor = [DrawColor blackColor];
     [toolPanel setColor:self.penColor];
+    
+    drawView.lineColor = [DrawColor blackColor];
     [drawView.lineColor setAlpha:_alpha];
+    
     [self updateRecentColors];
     [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
@@ -1025,6 +1043,9 @@ enum{
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
+        //set draw color
+        drawView.lineColor = [DrawColor colorWithColor:self.penColor];
+        [drawView.lineColor setAlpha:_alpha];
     }else{
         [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
     }
@@ -1044,9 +1065,11 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
     _alpha = alpha;
-    DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
-    color.alpha = alpha;
-    drawView.lineColor = color;
+    if (drawView.lineColor != self.eraserColor) {
+        DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
+        color.alpha = alpha;
+        drawView.lineColor = color;
+    }
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type

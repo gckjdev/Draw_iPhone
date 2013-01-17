@@ -77,6 +77,11 @@
 #define SELECT_WORD_TYPE_DRAFT              @"DRAFT"
 #define ADD_CUSTOM_WORD                     @"ADD_CUSTOM_WORD"
 
+#define DRAW_CLICK                          @"DRAW_CLICK"
+#define DRAW_CLICK_PEN                      @"DRAW_CLICK_PEN"
+#define DRAW_CLICK_MORE_COLOR               @"DRAW_CLICK_MORE_COLOR"
+
+
 @interface AnalyticsManager : NSObject
 
 + (AnalyticsManager*)sharedAnalyticsManager;
@@ -97,5 +102,7 @@
 
 - (void)reportFreeCoins:(NSString*)freeCoinName;
 - (void)reportSelectWord:(NSString*)wordType;
+
+- (void)reportDrawClick:(NSString*)name;
 
 @end
