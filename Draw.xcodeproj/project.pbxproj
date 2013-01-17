@@ -1180,11 +1180,9 @@
 		CA16BAF71682FAD900F81B47 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CA16BAF81682FAD900F81B47 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
 		CA16BAF91682FAD900F81B47 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
-		CA16BAFA1682FAD900F81B47 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B4016142D5800CD9088 /* ReplyCell.m */; };
 		CA16BAFB1682FAD900F81B47 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CA16BAFC1682FAD900F81B47 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA16BAFD1682FAD900F81B47 /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
-		CA16BAFE1682FAD900F81B47 /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
 		CA16BAFF1682FAD900F81B47 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
 		CA16BB001682FAD900F81B47 /* LocateFriendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427057161FFEA900C6CCAE /* LocateFriendApp.m */; };
 		CA16BB011682FAD900F81B47 /* PrivateSMSApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */; };
@@ -1720,12 +1718,8 @@
 		CA16BD181682FAD900F81B47 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		CA16BD191682FAD900F81B47 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
 		CA16BD1A1682FAD900F81B47 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
-		CA16BD1B1682FAD900F81B47 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
-		CA16BD1C1682FAD900F81B47 /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
 		CA16BD1D1682FAD900F81B47 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA16BD1E1682FAD900F81B47 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
-		CA16BD1F1682FAD900F81B47 /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
-		CA16BD201682FAD900F81B47 /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		CA16BD211682FAD900F81B47 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA16BD221682FAD900F81B47 /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		CA16BD231682FAD900F81B47 /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -2343,11 +2337,9 @@
 		CA16C07D1682FAE300F81B47 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CA16C07E1682FAE300F81B47 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
 		CA16C07F1682FAE300F81B47 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
-		CA16C0801682FAE300F81B47 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B4016142D5800CD9088 /* ReplyCell.m */; };
 		CA16C0811682FAE300F81B47 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CA16C0821682FAE300F81B47 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA16C0831682FAE300F81B47 /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
-		CA16C0841682FAE300F81B47 /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
 		CA16C0851682FAE300F81B47 /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
 		CA16C0861682FAE300F81B47 /* LocateFriendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427057161FFEA900C6CCAE /* LocateFriendApp.m */; };
 		CA16C0871682FAE300F81B47 /* PrivateSMSApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */; };
@@ -2869,12 +2861,8 @@
 		CA16C29E1682FAE300F81B47 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		CA16C29F1682FAE300F81B47 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
 		CA16C2A01682FAE300F81B47 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
-		CA16C2A11682FAE300F81B47 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
-		CA16C2A21682FAE300F81B47 /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
 		CA16C2A31682FAE300F81B47 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA16C2A41682FAE300F81B47 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
-		CA16C2A51682FAE300F81B47 /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
-		CA16C2A61682FAE300F81B47 /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		CA16C2A71682FAE300F81B47 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CA16C2A81682FAE300F81B47 /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		CA16C2A91682FAE300F81B47 /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -4990,11 +4978,9 @@
 		CAB5C88B16994F0200A4CE3B /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CAB5C88C16994F0200A4CE3B /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
 		CAB5C88D16994F0200A4CE3B /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
-		CAB5C88E16994F0200A4CE3B /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B4016142D5800CD9088 /* ReplyCell.m */; };
 		CAB5C88F16994F0200A4CE3B /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CAB5C89016994F0200A4CE3B /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CAB5C89116994F0200A4CE3B /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
-		CAB5C89216994F0200A4CE3B /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
 		CAB5C89316994F0200A4CE3B /* ContestFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9D5F4C161700A50082E258 /* ContestFeed.m */; };
 		CAB5C89416994F0200A4CE3B /* LocateFriendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA427057161FFEA900C6CCAE /* LocateFriendApp.m */; };
 		CAB5C89516994F0200A4CE3B /* PrivateSMSApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42705A161FFEB800C6CCAE /* PrivateSMSApp.m */; };
@@ -5548,12 +5534,8 @@
 		CAB5CAC316994F0200A4CE3B /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		CAB5CAC416994F0200A4CE3B /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
 		CAB5CAC516994F0200A4CE3B /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
-		CAB5CAC616994F0200A4CE3B /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
-		CAB5CAC716994F0200A4CE3B /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
 		CAB5CAC816994F0200A4CE3B /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CAB5CAC916994F0200A4CE3B /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
-		CAB5CACA16994F0200A4CE3B /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
-		CAB5CACB16994F0200A4CE3B /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		CAB5CACC16994F0200A4CE3B /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
 		CAB5CACD16994F0200A4CE3B /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		CAB5CACE16994F0200A4CE3B /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -6135,9 +6117,6 @@
 		CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
 		CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
-		CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B4016142D5800CD9088 /* ReplyCell.m */; };
-		CAEE2B4316142D5C00CD9088 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */; };
-		CAEE2B4516142E3900CD9088 /* ReplyCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -6255,9 +6234,6 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18147215E2427C00CAF901 /* DiceRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */; };
-		EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */; };
-		EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */; };
-		EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
@@ -9157,10 +9133,6 @@
 		CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
 		CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
 		CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
-		CAEE2B3F16142D5600CD9088 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
-		CAEE2B4016142D5800CD9088 /* ReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
-		CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
-		CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplyCell~ipad.xib"; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -9401,10 +9373,6 @@
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18147015E2427C00CAF901 /* DiceRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListController~ipad.xib"; sourceTree = "<group>"; };
-		EA2B2AE21616B2F5004C17AF /* ReplayContestDrawController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayContestDrawController.h; sourceTree = "<group>"; };
-		EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayContestDrawController.m; sourceTree = "<group>"; };
-		EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayContestDrawController.xib; sourceTree = "<group>"; };
-		EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayContestDrawController~ipad.xib"; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
@@ -14556,10 +14524,6 @@
 				CA8974081607230E003A95F7 /* UserInfoCell.m */,
 				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
 				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
-				CAEE2B3F16142D5600CD9088 /* ReplyCell.h */,
-				CAEE2B4016142D5800CD9088 /* ReplyCell.m */,
-				CAEE2B4116142D5A00CD9088 /* ReplyCell.xib */,
-				CAEE2B4416142E3800CD9088 /* ReplyCell~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -14575,10 +14539,6 @@
 				CA8974191607230E003A95F7 /* ShowFeedController.m */,
 				CA89741A1607230E003A95F7 /* ShowFeedController.xib */,
 				CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */,
-				EA2B2AE21616B2F5004C17AF /* ReplayContestDrawController.h */,
-				EA2B2AE31616B2F5004C17AF /* ReplayContestDrawController.m */,
-				EA2B2AE41616B2F5004C17AF /* ReplayContestDrawController.xib */,
-				EA2B2AE51616B2F5004C17AF /* ReplayContestDrawController~ipad.xib */,
 				CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */,
 				CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */,
 				CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */,
@@ -16784,12 +16744,8 @@
 				CA16BD181682FAD900F81B47 /* StatementView~ipad.xib in Resources */,
 				CA16BD191682FAD900F81B47 /* ReplayView.xib in Resources */,
 				CA16BD1A1682FAD900F81B47 /* ReplayView~ipad.xib in Resources */,
-				CA16BD1B1682FAD900F81B47 /* ReplyCell.xib in Resources */,
-				CA16BD1C1682FAD900F81B47 /* ReplyCell~ipad.xib in Resources */,
 				CA16BD1D1682FAD900F81B47 /* MyCommentCell.xib in Resources */,
 				CA16BD1E1682FAD900F81B47 /* MyCommentCell~ipad.xib in Resources */,
-				CA16BD1F1682FAD900F81B47 /* ReplayContestDrawController.xib in Resources */,
-				CA16BD201682FAD900F81B47 /* ReplayContestDrawController~ipad.xib in Resources */,
 				CA16BD211682FAD900F81B47 /* HotController~ipad.xib in Resources */,
 				CA16BD221682FAD900F81B47 /* UserLocationController.xib in Resources */,
 				CA16BD231682FAD900F81B47 /* UserLocationController~ipad.xib in Resources */,
@@ -17930,12 +17886,8 @@
 				CA16C29E1682FAE300F81B47 /* StatementView~ipad.xib in Resources */,
 				CA16C29F1682FAE300F81B47 /* ReplayView.xib in Resources */,
 				CA16C2A01682FAE300F81B47 /* ReplayView~ipad.xib in Resources */,
-				CA16C2A11682FAE300F81B47 /* ReplyCell.xib in Resources */,
-				CA16C2A21682FAE300F81B47 /* ReplyCell~ipad.xib in Resources */,
 				CA16C2A31682FAE300F81B47 /* MyCommentCell.xib in Resources */,
 				CA16C2A41682FAE300F81B47 /* MyCommentCell~ipad.xib in Resources */,
-				CA16C2A51682FAE300F81B47 /* ReplayContestDrawController.xib in Resources */,
-				CA16C2A61682FAE300F81B47 /* ReplayContestDrawController~ipad.xib in Resources */,
 				CA16C2A71682FAE300F81B47 /* HotController~ipad.xib in Resources */,
 				CA16C2A81682FAE300F81B47 /* UserLocationController.xib in Resources */,
 				CA16C2A91682FAE300F81B47 /* UserLocationController~ipad.xib in Resources */,
@@ -18739,12 +18691,8 @@
 				CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */,
 				CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */,
 				CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */,
-				CAEE2B4316142D5C00CD9088 /* ReplyCell.xib in Resources */,
-				CAEE2B4516142E3900CD9088 /* ReplyCell~ipad.xib in Resources */,
 				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
 				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
-				EA2B2AE71616B2F5004C17AF /* ReplayContestDrawController.xib in Resources */,
-				EA2B2AE81616B2F5004C17AF /* ReplayContestDrawController~ipad.xib in Resources */,
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
 				EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */,
 				EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */,
@@ -19515,12 +19463,8 @@
 				CAB5CAC316994F0200A4CE3B /* StatementView~ipad.xib in Resources */,
 				CAB5CAC416994F0200A4CE3B /* ReplayView.xib in Resources */,
 				CAB5CAC516994F0200A4CE3B /* ReplayView~ipad.xib in Resources */,
-				CAB5CAC616994F0200A4CE3B /* ReplyCell.xib in Resources */,
-				CAB5CAC716994F0200A4CE3B /* ReplyCell~ipad.xib in Resources */,
 				CAB5CAC816994F0200A4CE3B /* MyCommentCell.xib in Resources */,
 				CAB5CAC916994F0200A4CE3B /* MyCommentCell~ipad.xib in Resources */,
-				CAB5CACA16994F0200A4CE3B /* ReplayContestDrawController.xib in Resources */,
-				CAB5CACB16994F0200A4CE3B /* ReplayContestDrawController~ipad.xib in Resources */,
 				CAB5CACC16994F0200A4CE3B /* HotController~ipad.xib in Resources */,
 				CAB5CACD16994F0200A4CE3B /* UserLocationController.xib in Resources */,
 				CAB5CACE16994F0200A4CE3B /* UserLocationController~ipad.xib in Resources */,
@@ -20424,11 +20368,9 @@
 				CA16BAF71682FAD900F81B47 /* DiceRobotDecisionView.m in Sources */,
 				CA16BAF81682FAD900F81B47 /* TopPlayerView.m in Sources */,
 				CA16BAF91682FAD900F81B47 /* ReplayView.m in Sources */,
-				CA16BAFA1682FAD900F81B47 /* ReplyCell.m in Sources */,
 				CA16BAFB1682FAD900F81B47 /* AnimationPlayer.m in Sources */,
 				CA16BAFC1682FAD900F81B47 /* MyCommentCell.m in Sources */,
 				CA16BAFD1682FAD900F81B47 /* StatisticManager.m in Sources */,
-				CA16BAFE1682FAD900F81B47 /* ReplayContestDrawController.m in Sources */,
 				CA16BAFF1682FAD900F81B47 /* ContestFeed.m in Sources */,
 				CA16BB001682FAD900F81B47 /* LocateFriendApp.m in Sources */,
 				CA16BB011682FAD900F81B47 /* PrivateSMSApp.m in Sources */,
@@ -21106,11 +21048,9 @@
 				CA16C07D1682FAE300F81B47 /* DiceRobotDecisionView.m in Sources */,
 				CA16C07E1682FAE300F81B47 /* TopPlayerView.m in Sources */,
 				CA16C07F1682FAE300F81B47 /* ReplayView.m in Sources */,
-				CA16C0801682FAE300F81B47 /* ReplyCell.m in Sources */,
 				CA16C0811682FAE300F81B47 /* AnimationPlayer.m in Sources */,
 				CA16C0821682FAE300F81B47 /* MyCommentCell.m in Sources */,
 				CA16C0831682FAE300F81B47 /* StatisticManager.m in Sources */,
-				CA16C0841682FAE300F81B47 /* ReplayContestDrawController.m in Sources */,
 				CA16C0851682FAE300F81B47 /* ContestFeed.m in Sources */,
 				CA16C0861682FAE300F81B47 /* LocateFriendApp.m in Sources */,
 				CA16C0871682FAE300F81B47 /* PrivateSMSApp.m in Sources */,
@@ -21787,11 +21727,9 @@
 				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
 				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
-				CAEE2B4216142D5C00CD9088 /* ReplyCell.m in Sources */,
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
-				EA2B2AE61616B2F5004C17AF /* ReplayContestDrawController.m in Sources */,
 				CA9D5F4D161700A70082E258 /* ContestFeed.m in Sources */,
 				CA427058161FFEA900C6CCAE /* LocateFriendApp.m in Sources */,
 				CA42705B161FFEB800C6CCAE /* PrivateSMSApp.m in Sources */,
@@ -22480,11 +22418,9 @@
 				CAB5C88B16994F0200A4CE3B /* DiceRobotDecisionView.m in Sources */,
 				CAB5C88C16994F0200A4CE3B /* TopPlayerView.m in Sources */,
 				CAB5C88D16994F0200A4CE3B /* ReplayView.m in Sources */,
-				CAB5C88E16994F0200A4CE3B /* ReplyCell.m in Sources */,
 				CAB5C88F16994F0200A4CE3B /* AnimationPlayer.m in Sources */,
 				CAB5C89016994F0200A4CE3B /* MyCommentCell.m in Sources */,
 				CAB5C89116994F0200A4CE3B /* StatisticManager.m in Sources */,
-				CAB5C89216994F0200A4CE3B /* ReplayContestDrawController.m in Sources */,
 				CAB5C89316994F0200A4CE3B /* ContestFeed.m in Sources */,
 				CAB5C89416994F0200A4CE3B /* LocateFriendApp.m in Sources */,
 				CAB5C89516994F0200A4CE3B /* PrivateSMSApp.m in Sources */,

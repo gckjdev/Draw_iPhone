@@ -24,7 +24,6 @@
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
 
-#import "ReplayContestDrawController.h"
 #import "UseItemScene.h"
 
 #import "MyFriend.h"
@@ -598,21 +597,9 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-//        
-//        if ([self.feed isContestFeed]) {
-//            //TODO enter the show contest feed controller.
-//            PPDebug(@"enter show contest feed controller");
-//            
-//            ReplayContestDrawController *controller = [[ReplayContestDrawController alloc] initWithFeed:self.feed];
-//            [self.navigationController pushViewController:controller animated:YES];
-//            [controller release];
-//            
-//        }else {
         ReplayView *replay = [ReplayView createReplayView:self];
         [replay setViewInfo:self.feed];
         [replay showInView:self.view];
-//        }
-        
     }else{
         //NO action
     }

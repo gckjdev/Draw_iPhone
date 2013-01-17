@@ -408,7 +408,7 @@
 
 int *getRewardBonusList()
 {
-    static int bonus[] = {0,100,300,500,-1};
+    static int bonus[] = {0,100,300,500,1000,-1};
     return bonus;
 }
 

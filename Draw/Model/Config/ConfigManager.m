@@ -492,6 +492,13 @@
     return 5;
 }
 
+#pragma mark - draw data version
++ (int)currentDrawDataVersion
+{
+    return 1;
+}
+
+
 #pragma mark - BBS online attributes
 + (int)getBBSCreationFrequency
 {

@@ -34,6 +34,7 @@
 @property (retain, nonatomic) NSDate *date;
 @property (retain, nonatomic) NSString *avatar;
 @property (assign, nonatomic) LanguageType languageType;
+@property (assign, nonatomic) NSInteger version;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
