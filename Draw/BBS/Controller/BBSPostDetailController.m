@@ -570,6 +570,7 @@ typedef enum{
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:nc animated:YES];
+    [browser release];
     [nc release];
 }
 
