@@ -76,6 +76,9 @@
         case HomeMenuTypeDrawFreeCoins:{
             return NSLS(@"kFreeGetCoins");
         }
+        case HomeMenuTypeDrawPlayWithFriend:{
+            return NSLS(@"kPlayWithFriend");
+        }
 
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -135,6 +138,9 @@
         }
         case HomeMenuTypeDrawFreeCoins:{
             return [imageManager drawFreeCoins];
+        }
+        case HomeMenuTypeDrawPlayWithFriend:{
+            return [imageManager drawPlayWithFriend];
         }
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
@@ -251,6 +257,7 @@ int *getDrawMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawApps,
         HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawPlayWithFriend,
         HomeMenuTypeEnd
     };
     return list;

@@ -143,6 +143,12 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)drawPlayWithFriend
+{
+    NSString *imageName = [self fixImageName:@"draw_home_play_with_friend"];
+    return [UIImage imageNamed:imageName];
+}
+
 //stretcable
 - (UIImage *)drawHomeSplitline{
     return [self stretchableImageWithImageName:@"common_home_splitline"
