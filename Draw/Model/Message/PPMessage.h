@@ -81,7 +81,7 @@ typedef enum {
 @property (nonatomic, retain) NSMutableArray * drawActionList;
 @property (nonatomic, retain) UIImage *thumbImage;
 @property (nonatomic, retain) NSString *thumbFilePath;
-
+@property (nonatomic, assign) NSInteger drawDataVersion;
 @end
 
 
