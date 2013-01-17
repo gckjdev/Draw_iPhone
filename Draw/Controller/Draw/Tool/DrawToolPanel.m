@@ -40,6 +40,8 @@
 - (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
+- (void)selectPen;
+- (void)selectEraser;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
@@ -51,6 +53,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *redo;
 @property (retain, nonatomic) IBOutlet UIButton *undo;
 @property (retain, nonatomic) IBOutlet UIButton *palette;
+@property (retain, nonatomic) IBOutlet UIButton *eraser;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
@@ -90,6 +93,18 @@
 
 
 #pragma mark - setter methods
+
+
+- (void)selectPen
+{
+    [self.pen setSelected:YES];
+    [self.eraser setSelected:NO];
+}
+- (void)selectEraser
+{
+    [self.pen setSelected:NO];
+    [self.eraser setSelected:YES];
+}
 
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
@@ -271,6 +286,8 @@
     self.pen.tag = penType;
     [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
     [self.pen setImage:[Item seletedPenImageForType:penType] forState:UIControlStateSelected];
+    
+    [self selectPen];
 }
 
 #pragma mark - click actions
@@ -302,8 +319,9 @@
 
 
 - (IBAction)clickEraser:(id)sender {
-    [self dismissAllPopTipViews];    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
+    [self selectEraser];
+    [self dismissAllPopTipViews];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
         [self.delegate drawToolPanel:self didClickEraserButton:sender];
     }
     AnalyticsReport(DRAW_CLICK_ERASER);
@@ -311,6 +329,7 @@
 
 
 - (IBAction)clickPaintBucket:(id)sender {
+    [self selectPen];
     [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
         [self.delegate drawToolPanel:self didClickPaintBucket:sender];
@@ -384,6 +403,7 @@
 - (void)handleSelectColorDelegateWithColor:(DrawColor *)color
                          updateRecentColor:(BOOL)updateRecentColor
 {
+    [self selectPen];
     self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
@@ -553,6 +573,7 @@
 - (void)didPickedColorView:(ColorView *)colorView{
     [self handleSelectColorDelegateWithColor:colorView.drawColor updateRecentColor:YES];
     [self dismissColorBoxPopTipView];
+    [self selectPen];
 }
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
@@ -581,6 +602,7 @@
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
     
+    [_eraser release];
     [super dealloc];
 }
 
