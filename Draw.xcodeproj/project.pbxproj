@@ -323,6 +323,7 @@
 		A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -6730,6 +6731,7 @@
 		A4F6712D166C878100FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
 		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		A4FA546516A6823A001883CC /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
+		A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_play_with_friend@2x.png"; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -12278,6 +12280,7 @@
 		CA12610516785F0D00DD96F4 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */,
 				A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */,
 				A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */,
 				C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */,
@@ -19166,6 +19169,7 @@
 				C2BB4EC816A7E09A008D3004 /* pen_pencil@2x.png in Resources */,
 				C2BB4EC916A7E09A008D3004 /* pen_brush@2x.png in Resources */,
 				C2BB4ECA16A7E09A008D3004 /* pen_feather@2x.png in Resources */,
+				A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

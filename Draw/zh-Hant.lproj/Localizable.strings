@@ -937,8 +937,8 @@
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
 "kHomeMenuTypeDrawBBS" = "玩家論壇";
-"HomeMenuTypeDrawApps" = "應用推薦";
-"HomeMenuTypeDrawFreeCoins" = "免費金幣";
+"kHomeMenuTypeDrawApps" = "應用推薦";
+"kHomeMenuTypeDrawFreeCoins" = "免費金幣";
 "kHomeMenuTypeDrawHome" = "主頁";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
@@ -1221,7 +1221,7 @@
 "kCardTypeUnknow" = "未知";
 
 "kRemainTime" = "%02d:%02d";
-"kRemainTimes" = "剩余次數:%d";
+"kRemainTimes" = "今日剩余次數:%d";
 "kWaitForMoneyTreeGrowUp" = "等待金錢樹長大...";
 "kWaitForMoneyTreeAward" = "等待金錢樹結果...";
 "kClickMoneyTreeToGetAward" = "點擊金錢樹領取獎勵";
