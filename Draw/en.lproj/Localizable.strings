@@ -980,7 +980,10 @@
 "kRevoking" = "Revoking...";
 "kCannotShowYourself" = "Oh, you are trying to view yourself!";
 "kRecoveryDraft" = "Recovery";
-
+"kBuyABagAndUse" = "You just bought a tips bag and use it, costing you %d coins.";
+"kChoseWeixinOption" = "Share to WeChat";
+"kShareOpus" = "Share a paint";
+"kDrawAPicture" = "Draw a paint";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

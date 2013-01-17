@@ -1003,7 +1003,10 @@
 "kRecoveryDraft" = "自动恢复";
 
 "kGainFreeCoinsNote" = "恭喜你获得%d金币";
-
+"kBuyABagAndUse" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。";
+"kChoseWeixinOption" = "分享到微信";
+"kShareOpus" = "分享一幅作品";
+"kDrawAPicture" = "画一幅画";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
