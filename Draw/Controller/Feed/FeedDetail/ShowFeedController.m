@@ -733,7 +733,12 @@ enum{
     [self setFlowerButton:nil];
     [self setTomatoButton:nil];
     [self setReplayButton:nil];
+
+    [self.feed setDrawData:nil];
     [self setFeed:nil];
+    [self setDrawCell:nil];
+    [self setUserCell:nil];
+    [self setCommentHeader:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
