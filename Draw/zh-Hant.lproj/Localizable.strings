@@ -999,6 +999,12 @@
 "kRevoking" = "撤銷上一筆中...";
 "kCannotShowYourself" = "你點擊了自己頭像，所以什麼也看不到";
 "kRecoveryDraft" = "自動恢復";
+
+"kBuyABagAndUse" = "你剛剛花費了%d個金幣買了個錦囊然後用掉了。";
+"kChoseWeixinOption" = "分享到微信";
+"kShareOpus" = "分享一幅作品";
+"kDrawAPicture" = "畫一幅畫";
+
 "kNewDrawVersionTip" = "當前應用版本比較舊，可能不支持部分畫畫效果，建議升級。";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
@@ -1214,7 +1220,12 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "%02d:%02d";
+"kRemainTime" = "%02d:%02d";
+"kRemainTimes" = "剩余次數:%d";
+"kWaitForMoneyTreeGrowUp" = "等待金錢樹長大...";
+"kWaitForMoneyTreeAward" = "等待金錢樹結果...";
+"kClickMoneyTreeToGetAward" = "點擊金錢樹領取獎勵";
+"kMoneyTreeAwardEnd" = "今天的獎勵已經領取完了,歡迎明天再來!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "詐金花";
 

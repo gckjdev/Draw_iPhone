@@ -136,7 +136,7 @@
 		A48B0987169E675600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0988169E675700B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
-		A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
 		A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
@@ -286,9 +286,9 @@
 		A4F5BF7C16A40224000A503F /* more_apps_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7616A40224000A503F /* more_apps_icon@2x.png */; };
 		A4F5BF7D16A40224000A503F /* video_ad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7716A40224000A503F /* video_ad_icon@2x.png */; };
 		A4F5BF7E16A40224000A503F /* new_wood_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7816A40224000A503F /* new_wood_bg@2x.png */; };
-		A4F5BF7F16A40525000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4F5BF8016A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
-		A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */; };
+		A4F5BF7F16A40525000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BF8016A40526000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
 		A4F5BF8816A4055C000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
 		A4F5BF8916A4055C000A503F /* forum@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7416A40224000A503F /* forum@2x.png */; };
 		A4F5BF8B16A4055C000A503F /* more_apps_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7616A40224000A503F /* more_apps_icon@2x.png */; };
@@ -301,7 +301,7 @@
 		A4F5BF9316A4055D000A503F /* new_wood_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7816A40224000A503F /* new_wood_bg@2x.png */; };
 		A4F5BFC416A55607000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
 		A4F5BFC516A55607000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
-		A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */; };
 		A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */; };
 		A4F5BFE016A64808000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
 		A4F5BFE116A64808000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
@@ -315,11 +315,14 @@
 		A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */; };
 		A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
 		A4F5BFEB16A648B2000A503F /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
-		A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
-		A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
-		A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */; };
+		A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */; };
+		A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */; };
+		A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */; };
 		A4F6712F166C878100FF85CA /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F6712E166C878100FF85CA /* ArrowView.m */; };
 		A4FA546616A6823B001883CC /* plus_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA546516A6823A001883CC /* plus_image@2x.png */; };
+		A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
+		A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -6565,7 +6568,7 @@
 		A48B0980169E664600B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
 		A48B098A169E97DB00B56975 /* FreeCoinsControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeCoinsControllerViewController.h; sourceTree = "<group>"; };
 		A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeCoinsControllerViewController.m; sourceTree = "<group>"; };
-		A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeCoinsControllerViewController.xib; sourceTree = "<group>"; };
+		A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeCoinsControllerViewController~ipad.xib"; sourceTree = "<group>"; };
 		A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_apps@2x.png"; sourceTree = "<group>"; };
 		A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_free_coins@2x.png"; sourceTree = "<group>"; };
 		A48B0998169EA35C00B56975 /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
@@ -6736,7 +6739,7 @@
 		A4F5BF7816A40224000A503F /* new_wood_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_wood_bg@2x.png"; sourceTree = "<group>"; };
 		A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_paper_big@2x.png"; sourceTree = "<group>"; };
 		A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_paper_small@2x.png"; sourceTree = "<group>"; };
-		A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeCoinsControllerViewController~ipad.xib"; sourceTree = "<group>"; };
+		A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeCoinsControllerViewController.xib; sourceTree = "<group>"; };
 		A4F6712D166C878100FF85CA /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowView.h; sourceTree = "<group>"; };
 		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		A4FA546516A6823A001883CC /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
@@ -10019,10 +10022,10 @@
 		A48B0989169E976600B56975 /* FreeCoins */ = {
 			isa = PBXGroup;
 			children = (
-				A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib */,
 				A48B098A169E97DB00B56975 /* FreeCoinsControllerViewController.h */,
 				A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */,
-				A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController.xib */,
+				A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */,
+				A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */,
 			);
 			path = FreeCoins;
 			sourceTree = "<group>";
@@ -17606,7 +17609,7 @@
 				C235C61C16A3F45500D80BA4 /* coins@2x.png in Resources */,
 				C235C61F16A3F45A00D80BA4 /* femaleImage.png in Resources */,
 				C235C62216A3F46200D80BA4 /* maleImage.png in Resources */,
-				A4F5BF8016A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */,
+				A4F5BF8016A40526000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 				A4F5BF8816A4055C000A503F /* coin_tree@2x.png in Resources */,
 				A4F5BF8916A4055C000A503F /* forum@2x.png in Resources */,
 				A4F5BF8B16A4055C000A503F /* more_apps_icon@2x.png in Resources */,
@@ -17617,7 +17620,7 @@
 				A4F5BFE616A64808000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE716A64808000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFEB16A648B2000A503F /* select_word_back_btn@2x.png in Resources */,
-				A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
+				A4F5BFED16A6496E000A503F /* FreeCoinsControllerViewController.xib in Resources */,
 				CA988AD216A6B7E70050AC78 /* README.mdown in Resources */,
 				CA988AFE16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */,
 				CAD1A32116A79CDC001E0329 /* eraser_show@2x.png in Resources */,
@@ -18388,7 +18391,7 @@
 				C235C61D16A3F45600D80BA4 /* coins@2x.png in Resources */,
 				C235C62016A3F45C00D80BA4 /* femaleImage.png in Resources */,
 				C235C62316A3F46300D80BA4 /* maleImage.png in Resources */,
-				A4F5BF7F16A40525000A503F /* FreeCoinsControllerViewController.xib in Resources */,
+				A4F5BF7F16A40525000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 				A4F5BF8E16A4055D000A503F /* coin_tree@2x.png in Resources */,
 				A4F5BF8F16A4055D000A503F /* forum@2x.png in Resources */,
 				A4F5BF9116A4055D000A503F /* more_apps_icon@2x.png in Resources */,
@@ -18408,7 +18411,7 @@
 				A4F5BFE816A64809000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */,
-				A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
+				A4F5BFEC16A6496D000A503F /* FreeCoinsControllerViewController.xib in Resources */,
 				CA988AD316A6B7E70050AC78 /* README.mdown in Resources */,
 				CA988AFF16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */,
 				CAD1A32216A79CDC001E0329 /* eraser_show@2x.png in Resources */,
@@ -19138,7 +19141,7 @@
 				A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */,
 				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
 				A48B0982169E664600B56975 /* UMUFP.bundle in Resources */,
-				A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController.xib in Resources */,
+				A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 				A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */,
 				A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */,
 				A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */,
@@ -19170,7 +19173,7 @@
 				A4F5BF7E16A40224000A503F /* new_wood_bg@2x.png in Resources */,
 				A4F5BFC416A55607000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFC516A55607000A503F /* wood_paper_small@2x.png in Resources */,
-				A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
+				A4F5BFC716A55CA1000A503F /* FreeCoinsControllerViewController.xib in Resources */,
 				A4FA546616A6823B001883CC /* plus_image@2x.png in Resources */,
 				CA988AD016A6B7E70050AC78 /* README.mdown in Resources */,
 				CA988AFC16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */,
@@ -19924,7 +19927,7 @@
 				C235C61B16A3F45400D80BA4 /* coins@2x.png in Resources */,
 				C235C61E16A3F45900D80BA4 /* femaleImage.png in Resources */,
 				C235C62116A3F46100D80BA4 /* maleImage.png in Resources */,
-				A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController.xib in Resources */,
+				A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 				CA29EA8416A526BB003B1434 /* draw_home_free_coins@2x.png in Resources */,
 				CA29EA8516A526CE003B1434 /* draw_home_apps@2x.png in Resources */,
 				A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */,
@@ -19934,7 +19937,7 @@
 				A4F5BFE316A64808000A503F /* more_apps_icon@2x.png in Resources */,
 				A4F5BFE416A64808000A503F /* video_ad_icon@2x.png in Resources */,
 				A4F5BFE516A64808000A503F /* new_wood_bg@2x.png in Resources */,
-				A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
+				A4F5BFEE16A6496E000A503F /* FreeCoinsControllerViewController.xib in Resources */,
 				CA988AD116A6B7E70050AC78 /* README.mdown in Resources */,
 				CA988AFD16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */,
 				CAD1A32016A79CDC001E0329 /* eraser_show@2x.png in Resources */,
@@ -20642,6 +20645,7 @@
 				CA988AC616A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988ACA16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACE16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21324,6 +21328,7 @@
 				CA988AC716A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988ACB16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACF16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22697,6 +22702,7 @@
 				CA988AC516A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988AC916A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACD16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

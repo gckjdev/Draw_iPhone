@@ -1003,8 +1003,13 @@
 "kRecoveryDraft" = "自动恢复";
 
 "kGainFreeCoinsNote" = "恭喜你获得%d金币";
-"kNewDrawVersionTip" = "当前应用版本比较旧，可能不支持部分画画效果，建议升级。";
 
+"kBuyABagAndUse" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。";
+"kChoseWeixinOption" = "分享到微信";
+"kShareOpus" = "分享一幅作品";
+"kDrawAPicture" = "画一幅画";
+
+"kNewDrawVersionTip" = "当前应用版本比较旧，可能不支持部分画画效果，建议升级。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1221,7 +1226,12 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "%02d:%02d";
+"kRemainTime" = "%02d:%02d";
+"kRemainTimes" = "剩余次数:%d";
+"kWaitForMoneyTreeGrowUp" = "等待金钱树长大...";
+"kWaitForMoneyTreeAward" = "等待金钱树结果...";
+"kClickMoneyTreeToGetAward" = "点击金钱树获取奖励";
+"kMoneyTreeAwardEnd" = "今天的奖励已经领取完了,欢迎明天再来!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "诈金花";
 

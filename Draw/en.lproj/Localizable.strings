@@ -981,6 +981,11 @@
 "kCannotShowYourself" = "Oh, you are trying to view yourself!";
 "kRecoveryDraft" = "Recovery";
 
+"kBuyABagAndUse" = "You just bought a tips bag and use it, costing you %d coins.";
+"kChoseWeixinOption" = "Share to WeChat";
+"kShareOpus" = "Share a paint";
+"kDrawAPicture" = "Draw a paint";
+
 "kNewDrawVersionTip" = "The app version is too old, some drawing effect may not be supported. Please update to the latest version.";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
@@ -1211,7 +1216,12 @@
 "kCardTypeSpecial" = "特殊";
 "kCardTypeUnknow" = "未知";
 
-"kRemainTimes" = "%02d:%02d";
+"kRemainTime" = "%02d:%02d";
+"kRemainTimes" = "Remain Times: %d";
+"kWaitForMoneyTreeGrowUp" = "Wait for tree growing up";
+"kWaitForMoneyTreeAward" = "Wait for mature";
+"kClickMoneyTreeToGetAward" = "Click tree to get award";
+"kMoneyTreeAwardEnd" = "No more award can get, you can get award tomorrow";
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";
 

@@ -15,9 +15,15 @@
 #import "ShareAction.h"
 #import "MyPaintManager.h"
 #import "PPTableViewController.h"
+#import "OfflineDrawViewController.h"
+
+typedef enum {
+    FromWeixinOptionShareOpus = 0,
+    FromWeixinOptionDrawAPicture = 1
+}FromWeixinOption;
 
 @class MyPaint;
-@interface ShareController : CommonTabController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate> {
+@interface ShareController : CommonTabController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate, OfflineDrawDelegate> {
     
     int EDIT;
     int SHARE_AS_PHOTO;
@@ -30,6 +36,8 @@
     int CANCEL;    
     BOOL isLoading;
 }
+
+
 
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;

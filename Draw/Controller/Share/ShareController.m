@@ -26,13 +26,14 @@
 #import "TableTab.h"
 #import "TableTabManager.h"
 #import "UIImageExt.h"
+#import "OfflineDrawViewController.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
 
 #define IMAGE_OPTION            20120407
-#define SHARE_IMAGE_OPTION      120120407
-#define SHARE_AS_PHOTO_OPTION   220120407
+#define FROM_WEIXIN_OPTION      20130116
+
 
 #define LOAD_PAINT_LIMIT 20
 
@@ -248,10 +249,57 @@ typedef enum{
     [replayController release];        
 }
 
+#pragma mark - offline draw delegate
+- (void)didControllerClickBack:(OfflineDrawViewController *)controller
+{
+    ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
+    [WXApi sendResp:resp];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    return;
+}
+- (void)didController:(OfflineDrawViewController *)controller
+     submitActionList:(NSMutableArray*)drawActionList
+            drawImage:(UIImage *)drawImage
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:drawImage];
+    WXImageObject *ext = [WXImageObject object];
+    message.title = NSLS(@"kWXShareImageName");
+    ext.imageData = [drawImage data] ;
+    message.mediaObject = ext;
+    
+    GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
+    resp.message = message;
+    resp.bText = NO;
+    BOOL flag = [WXApi sendResp:resp];
+    if (flag) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    return;
+}
+
+- (void)weixinActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case FromWeixinOptionShareOpus: {
+        } break;
+        case FromWeixinOptionDrawAPicture: {
+            OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
+            [self.navigationController pushViewController:odc animated:YES];
+            [odc release];
+        } break;
+        default:
+            break;
+    }
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    if (actionSheet.tag == FROM_WEIXIN_OPTION) {
+        [self weixinActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
         return;
     }
     MyPaint* currentPaint = _selectedPaint;
@@ -264,7 +312,7 @@ typedef enum{
                              drawUserId:currentPaint.drawUserId] autorelease];
             
         [_shareAction displayWithViewController:self];                       
-    }                            
+    }
     else if (buttonIndex == SHARE_AS_GIF)
     {
         [self shareAsGif];
@@ -550,6 +598,16 @@ typedef enum{
     [self clickTabButton:self.currentTabButton];
 }
 
+- (void)showChooseWeixinOptionActionSheet
+{
+    UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle:NSLS(@"kChoseWeixinOption")
+                                                        delegate:self
+                                               cancelButtonTitle:NSLS(@"kCancel")
+                                          destructiveButtonTitle:NSLS(@"kShareOpus") otherButtonTitles:NSLS(@"kDrawAPicture"), nil] autorelease];
+    sheet.tag = FROM_WEIXIN_OPTION;
+    [sheet showInView:self.view];
+}
+
 
 - (void)viewDidLoad
 {
@@ -577,7 +635,7 @@ typedef enum{
         
         [self.dataTableView setFrame:CGRectMake(x, ny, width, nHeight)];
         
-        
+        [self showChooseWeixinOptionActionSheet];
     }else{
         [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
