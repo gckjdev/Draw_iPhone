@@ -1016,6 +1016,7 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
+    [self.eraserColor setAlpha:1.0];
     [drawView setLineColor:self.eraserColor];
     [drawView setPenType:Eraser];
 }
@@ -1042,6 +1043,9 @@ enum{
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
+        //set draw color
+        drawView.lineColor = [DrawColor colorWithColor:self.penColor];
+        [drawView.lineColor setAlpha:_alpha];
     }else{
         [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
     }
@@ -1061,9 +1065,11 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
     _alpha = alpha;
-    DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
-    color.alpha = alpha;
-    drawView.lineColor = color;
+    if (drawView.lineColor != self.eraserColor) {
+        DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
+        color.alpha = alpha;
+        drawView.lineColor = color;
+    }
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
