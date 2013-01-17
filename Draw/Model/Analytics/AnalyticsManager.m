@@ -73,5 +73,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AnalyticsManager)
     [MobClick event:SELECT_WORD_CLICK label:wordType acc:1];
 }
 
+- (void)reportDrawClick:(NSString*)name
+{
+    [MobClick event:DRAW_CLICK label:name acc:1];
+    
+}
+
 
 @end
