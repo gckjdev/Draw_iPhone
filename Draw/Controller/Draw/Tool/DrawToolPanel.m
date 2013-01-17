@@ -270,7 +270,7 @@
     _penType = penType;
     self.pen.tag = penType;
     [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
-    
+    [self.pen setImage:[Item seletedPenImageForType:penType] forState:UIControlStateSelected];
 }
 
 #pragma mark - click actions
