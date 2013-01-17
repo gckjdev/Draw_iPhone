@@ -115,7 +115,9 @@
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
-    [[AdService defaultService] createAdInView:self.view frame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50) iPadFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
+    CGSize adSize = CGSizeMake(320, 50);
+    
+    [[AdService defaultService] createAdInView:self.view frame:CGRectMake((self.view.frame.size.width - adSize.width) / 2, self.view.frame.size.height-adSize.height, adSize.width, adSize.height) iPadFrame:CGRectMake((self.view.frame.size.width - adSize.width) / 2, self.view.frame.size.height-adSize.height - 20, adSize.width, adSize.height)];
 }
 
 -(void)enableFreeCoinsAward:(BOOL)enabled
