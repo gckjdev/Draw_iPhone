@@ -66,15 +66,16 @@
         NSUInteger pCount = [paint pointCount];
         if (pCount != 0) {
             NSMutableArray *pList = [NSMutableArray arrayWithCapacity:pCount];
+            PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
             for (NSValue *value in paint.pointList) {
                 CGPoint point = [value CGPointValue];
-                PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
+                [pBuilder clear];
                 [pBuilder setX:point.x];
                 [pBuilder setY:point.y];
                 PBPoint *pp = [pBuilder build];
-                PPRelease(pBuilder);
                 [pList addObject:pp];
             }
+            PPRelease(pBuilder);
             [builder addAllPoint:pList];
         }
     }

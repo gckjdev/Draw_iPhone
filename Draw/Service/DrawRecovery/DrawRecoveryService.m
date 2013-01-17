@@ -12,6 +12,7 @@
 #import "FileUtil.h"
 #import "Draw.pb.h"
 #import "ConfigManager.h"
+#import "DrawAction.h"
 
 @implementation DrawRecoveryService
 
@@ -49,6 +50,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     if (_currentPaint != nil){
         [self stop];
     }
+    
+    _newPaintCount = 0;
+    _lastBackupTime = time(0);
  
     if (![self supportRecovery]){
         PPDebug(@"<start> but recovery is not enable!");
@@ -73,20 +77,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     
 }
 
-- (void)backup:(PBNoCompressDrawData*)drawData
+- (void)backup:(NSArray*)drawActionList
 {    
-    NSData* data = [drawData data];
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
     
+    NSMutableArray* arrayList=[[NSMutableArray alloc] initWithArray:drawActionList copyItems:NO];
+    
+    // remove last paint to make it safe
+    if ([arrayList count] > 0){
+        [arrayList removeLastObject];
+    }
+    
     dispatch_async(workingQueue, ^{
+        
+        PBNoCompressDrawData* drawData = [DrawAction drawActionListToPBNoCompressDrawData:arrayList];
+        NSData* data = [drawData data];
+
         PPDebug(@"<backup> file path=%@", dataPath);
         
         // backup data to file
         [data writeToFile:dataPath atomically:YES];
     });
     
+    [arrayList release];
     [dataFileName release];
+    
+    _lastBackupTime = time(0);
+    _newPaintCount = 0;
 }
 
 - (void)stop
@@ -125,6 +143,38 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 - (int)backupInterval
 {
     return [ConfigManager recoveryBackupInterval];
+}
+
+- (BOOL)needBackup
+{
+    time_t nowTime = time(0);
+    if (_newPaintCount >= [ConfigManager drawAutoSavePaintInterval] ||
+        (_newPaintCount > 0 && ((nowTime - _lastBackupTime) >= [ConfigManager drawAutoSavePaintTimeInterval]) )) {
+
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList
+{
+    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
+    if ([self needBackup]){
+        [self backup:drawActionList];
+    }
+    else{
+        _newPaintCount ++;
+    }
+}
+
+- (void)handleTimer:(NSArray*)drawActionList
+{
+    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
+    if ([self needBackup]){
+        [self backup:drawActionList];
+    }
 }
 
 @end
