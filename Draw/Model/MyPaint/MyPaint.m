@@ -32,7 +32,7 @@
 @synthesize thumbImage = _thumbImage;
 @synthesize drawActionList = _drawActionList;
 @synthesize imageFilePath = _imageFilePath;
-
+@synthesize drawDataVersion = _drawDataVersion;
 
 - (NSString *)imageFilePath
 {
@@ -57,13 +57,17 @@
 
 - (NSMutableArray *)drawActionList
 {
+    //set draw action list and set the draw data version
     if (_drawActionList == nil) {
         _drawActionList = [[MyPaintManager defaultManager] drawActionListForPaint:self];
         [_drawActionList retain];
     }
     return _drawActionList;
 }
-
+- (void)updateDrawData
+{
+    [self drawActionList];
+}
 - (void)dealloc
 {
     PPRelease(_thumbImage);

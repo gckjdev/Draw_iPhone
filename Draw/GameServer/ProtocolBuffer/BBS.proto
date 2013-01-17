@@ -15,6 +15,7 @@ message PBBBSUser {
 
 message PBBBSDraw{
     repeated PBDrawAction drawActionList = 1; 
+    optional int32 version = 2 [default=0];      // draw data version
 }
 
 

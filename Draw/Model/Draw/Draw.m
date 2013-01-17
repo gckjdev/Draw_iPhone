@@ -24,12 +24,12 @@
 @synthesize languageType = _languageType;
 
 - (void)dealloc{
-    [_userId release];
-    [_nickName release];
-    [_drawActionList release];
-    [_word release];
-    [_date release];
-    [_avatar release];
+    PPRelease(_userId);
+    PPRelease(_nickName);
+    PPRelease(_drawActionList);
+    PPRelease(_word);
+    PPRelease(_date);
+    PPRelease(_avatar);
     [super dealloc];
 }
 
@@ -119,6 +119,9 @@
     return self;
 }
 
-
+- (BOOL)isNewVersion
+{
+    return [ConfigManager currentDrawDataVersion] < self.version;
+}
 
 @end

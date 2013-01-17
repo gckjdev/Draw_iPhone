@@ -126,8 +126,12 @@
 
 @interface PBBBSDraw : PBGeneratedMessage {
 @private
+  BOOL hasVersion_:1;
+  int32_t version;
   NSMutableArray* mutableDrawActionListList;
 }
+- (BOOL) hasVersion;
+@property (readonly) int32_t version;
 - (NSArray*) drawActionListList;
 - (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
 
@@ -171,6 +175,11 @@
 - (PBBBSDraw_Builder*) addDrawActionList:(PBDrawAction*) value;
 - (PBBBSDraw_Builder*) addAllDrawActionList:(NSArray*) values;
 - (PBBBSDraw_Builder*) clearDrawActionListList;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (PBBBSDraw_Builder*) setVersion:(int32_t) value;
+- (PBBBSDraw_Builder*) clearVersion;
 @end
 
 @interface PBBBSContent : PBGeneratedMessage {

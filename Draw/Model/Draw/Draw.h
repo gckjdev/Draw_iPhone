@@ -44,6 +44,6 @@
               avatar:(NSString *)avatar;
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
-
+- (BOOL)isNewVersion;
 //- (id)initWithPBDraw:(PBDraw *)pbDraw;
 @end

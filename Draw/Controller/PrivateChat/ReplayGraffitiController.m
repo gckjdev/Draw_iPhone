@@ -10,6 +10,7 @@
 #import "ShowDrawView.h"
 #import "DrawAction.h"
 #import "ShareImageManager.h"
+#import "ConfigManager.h"
 
 @interface ReplayGraffitiController ()
 @property(nonatomic, retain) NSArray *drawActionList;
@@ -70,6 +71,9 @@
     [self.playEndButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
     [self.playEndButton setTitle:NSLS(@"kPlayEnd") forState:UIControlStateNormal];
 
+    if (self.drawDataVersion > [ConfigManager currentDrawDataVersion]) {
+        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+    }
 }
 
 - (void)viewDidUnload

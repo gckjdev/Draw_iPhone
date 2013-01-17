@@ -495,7 +495,7 @@
 #pragma mark - draw data version
 + (int)currentDrawDataVersion
 {
-    return 1;
+    return -1;
 }
 
 
