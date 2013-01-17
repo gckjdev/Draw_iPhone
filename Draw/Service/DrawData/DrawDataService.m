@@ -147,7 +147,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];
     }
-    
+    [builder setVersion:[ConfigManager currentDrawDataVersion]];
     PBDraw* draw = [builder build];        
     [builder release];
     

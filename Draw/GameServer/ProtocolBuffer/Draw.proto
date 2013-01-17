@@ -121,6 +121,7 @@ message PBNoCompressDrawAction{
 message PBNoCompressDrawData
 {
   repeated PBNoCompressDrawAction drawActionList = 1;
+  optional int32 version = 2 [default=0];      // draw data version
 }
 
 

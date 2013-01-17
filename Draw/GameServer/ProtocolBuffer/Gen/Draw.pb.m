@@ -3743,17 +3743,26 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 
 @interface PBNoCompressDrawData ()
 @property (retain) NSMutableArray* mutableDrawActionListList;
+@property int32_t version;
 @end
 
 @implementation PBNoCompressDrawData
 
 @synthesize mutableDrawActionListList;
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.version = 0;
   }
   return self;
 }
@@ -3788,6 +3797,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   for (PBNoCompressDrawAction* element in self.drawActionListList) {
     [output writeMessage:1 value:element];
   }
+  if (self.hasVersion) {
+    [output writeInt32:2 value:self.version];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3799,6 +3811,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   size = 0;
   for (PBNoCompressDrawAction* element in self.drawActionListList) {
     size += computeMessageSize(1, element);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(2, self.version);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3881,6 +3896,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
     }
     [result.mutableDrawActionListList addObjectsFromArray:other.mutableDrawActionListList];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3906,6 +3924,10 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
         PBNoCompressDrawAction_Builder* subBuilder = [PBNoCompressDrawAction builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addDrawActionList:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setVersion:[input readInt32]];
         break;
       }
     }
@@ -3938,6 +3960,22 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
     result.mutableDrawActionListList = [NSMutableArray array];
   }
   [result.mutableDrawActionListList addObject:value];
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (PBNoCompressDrawData_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 @end

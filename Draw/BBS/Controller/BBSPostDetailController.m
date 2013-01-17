@@ -477,22 +477,24 @@ typedef enum{
     }
 }
 - (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
                          postId:(NSString *)postId
                        actionId:(NSString *)actionId
                      fromRemote:(BOOL)fromRemote
                      resultCode:(NSInteger)resultCode
 {
-    PPDebug(@"<didGetBBSDrawActionList> resultCode = %d, list count = %d",resultCode, [drawActionList count]);
     [self hideActivity];
     if (resultCode == 0) {
         ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
                                         initWithDrawActionList:drawActionList];
+        pg.drawDataVersion = version;
         [self.navigationController pushViewController:pg animated:YES];
         [pg release];
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }
 }
+
 - (IBAction)clickSupportButton:(id)sender {
     [self showActivityWithText:NSLS(@"kSending")];
     [[BBSService defaultService] createActionWithPostId:self.post.postId

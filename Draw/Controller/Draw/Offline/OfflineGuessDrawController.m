@@ -74,7 +74,7 @@
 + (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
            fromController:(UIViewController *)fromController
 {
-    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc] 
+    OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc]
                                             initWithFeed:feed];
     offGuess.superController = fromController;
     [fromController.navigationController pushViewController:offGuess animated:YES];
@@ -557,6 +557,13 @@
     [showView resume];
 }
 
+
+- (void)checkDrawDataVersion
+{
+    if ([self.feed.drawData isNewVersion]) {
+        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -574,6 +581,9 @@
     
     [self updateDrawInfo];
     [self initPickToolView];
+    
+    [self checkDrawDataVersion];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -718,7 +728,7 @@
     [toolView setEnabled:NO];
     
     if (!itemEnough) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), 11] delayTime:1];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), [Item tips].price/[Item tips].buyAmountForOnce] delayTime:2];
     }
     
     return YES;

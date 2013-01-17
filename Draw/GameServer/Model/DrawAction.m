@@ -11,6 +11,7 @@
 #import "GameBasic.pb.h"
 #import "DrawUtils.h"
 #import "Draw.pb.h"
+#import "ConfigManager.h"
 
 @implementation DrawAction
 
@@ -326,6 +327,7 @@
         }
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         [builder addAllDrawActionList:array];
+        [builder setVersion:[ConfigManager currentDrawDataVersion]];
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
         return nData;

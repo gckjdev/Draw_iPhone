@@ -206,6 +206,7 @@ BBSService *_staticBBSService;
     if ([pbDrawActionList count] != 0) {
         PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
         [builder addAllDrawActionList:pbDrawActionList];
+        [builder setVersion:[ConfigManager currentDrawDataVersion]];
         bbsDraw = [builder build];
         [builder release];
     }
@@ -808,14 +809,16 @@ BBSService *_staticBBSService;
         }
         __block PBBBSDraw *draw = [_bbsManager loadBBSDrawDataFromCacheWithKey:key];
     
-    
+
         dispatch_block_t callBackBlock = ^{
             //parse draw data
             NSArray *list = [draw drawActionListList];
             drawActionList = [DrawManager parseFromPBDrawActionList:list];
+            NSInteger version = draw.version;
             
-            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:postId:actionId:fromRemote:resultCode:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:postId:actionId:fromRemote:resultCode:)]) {
                 [delegate didGetBBSDrawActionList:drawActionList
+                                  drawDataVersion:version
                                            postId:postId
                                          actionId:actionId
                                        fromRemote:fromRemote

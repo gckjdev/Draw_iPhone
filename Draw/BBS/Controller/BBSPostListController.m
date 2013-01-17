@@ -242,6 +242,7 @@
 }
 
 - (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
                          postId:(NSString *)postId
                        actionId:(NSString *)actionId
                      fromRemote:(BOOL)fromRemote
@@ -251,6 +252,7 @@
     if (resultCode == 0) {
         ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
                                         initWithDrawActionList:drawActionList];
+        pg.drawDataVersion = version;
         [self.navigationController pushViewController:pg animated:YES];
         [pg release];
     }else{
