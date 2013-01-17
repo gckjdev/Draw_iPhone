@@ -148,12 +148,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 - (BOOL)needBackup
 {
     time_t nowTime = time(0);
-    if (_newPaintCount >= [ConfigManager drawAutoSavePaintInterval] ||
-        (_newPaintCount > 0 && ((nowTime - _lastBackupTime) >= [ConfigManager drawAutoSavePaintTimeInterval]) )) {
-
+    if (_newPaintCount >= [ConfigManager drawAutoSavePaintInterval]){
+        PPDebug(@"<needBackup> reach max paint count for save");
+        return YES;
+    }
+    else if (_newPaintCount > 0 && ((nowTime - _lastBackupTime) >= [ConfigManager drawAutoSavePaintTimeInterval]) ){
+        PPDebug(@"<needBackup> reach max time interval for save");
         return YES;
     }
     else{
+        PPDebug(@"<needBackup> no need to backup");
         return NO;
     }
 }
