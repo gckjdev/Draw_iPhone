@@ -128,7 +128,7 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_LOAD_DRAFT];
+    [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_LOAD_DRAFTS];
     [DraftsView showInView:self.view delegate:self];
 }
 

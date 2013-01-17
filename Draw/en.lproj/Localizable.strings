@@ -917,8 +917,8 @@
 "kHomeMenuTypeDrawGame" = "Game";
 "kHomeMenuTypeDrawTimeline" = "Timeline";
 "kHomeMenuTypeDrawRank" = "Top";
-"HomeMenuTypeDrawApps" = "Apps";
-"HomeMenuTypeDrawFreeCoins" = "Free Coins";
+"kHomeMenuTypeDrawApps" = "Apps";
+"kHomeMenuTypeDrawFreeCoins" = "Free Coins";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";
@@ -1217,7 +1217,7 @@
 "kCardTypeUnknow" = "未知";
 
 "kRemainTime" = "%02d:%02d";
-"kRemainTimes" = "Remain Times: %d";
+"kRemainTimes" = "Remain Times For Today: %d";
 "kWaitForMoneyTreeGrowUp" = "Wait for tree growing up";
 "kWaitForMoneyTreeAward" = "Wait for mature";
 "kClickMoneyTreeToGetAward" = "Click tree to get award";

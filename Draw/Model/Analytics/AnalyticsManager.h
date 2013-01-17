@@ -20,6 +20,7 @@
 #define HOME_ACTION_SHOP                    @"HOME_ACTION_SHOP"
 #define HOME_ACTION_APPS                    @"HOME_ACTION_APPS"
 #define HOME_ACTION_FREE_COINS              @"HOME_ACTION_FREE_COINS"
+#define HOME_ACTION_PLAY_WITH_FRIEDN        @"HOME_ACTION_PLAY_WITH_FRIEDN"
 
 #define HOME_BOTTOM_USER                    @"HOME_BOTTOM_USER"
 #define HOME_BOTTOM_OPUS                    @"HOME_BOTTOM_OPUS"
@@ -70,12 +71,12 @@
 #define FREE_COIN_TYPE_VIDEO                @"VIDEO"
 #define FREE_COIN_TYPE_MONEYTREE            @"MONEY_TREE"
 
-#define SELECT_WORD_CLICK                           @"SELECT_WORD_CLICK"
+#define SELECT_WORD_CLICK                           @"SELECT_WORD_CLICK_"
 #define SELECT_WORD_CLICK_TYPE_HOT                  @"HOT_WORD"
 #define SELECT_WORD_CLICK_TYPE_CUSTOM               @"CUSTOM_WORD"
 #define SELECT_WORD_CLICK_TYPE_SYSTEM               @"SYSTEM_WORD"
 #define SELECT_WORD_CLICK_TYPE_DRAFT                @"DRAFT"
-#define SELECT_WORD_CLICK_TYPE_LOAD_DRAFT           @"LOAD_DRAFT"
+#define SELECT_WORD_CLICK_TYPE_LOAD_DRAFTS          @"LOAD_DRAFTS"
 #define SELECT_WORD_CLICK_TYPE_ADD_CUSTOM_WORD      @"ADD_CUSTOM_WORD"
 #define SELECT_WORD_CLICK_TYPE_MORE_CUSTOM_WORDS    @"MORE_CUSTOM_WORDS"
 
