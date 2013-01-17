@@ -190,7 +190,7 @@ static ShareService* _defaultService;
     float labelHeight = srcImage.size.height*0.05;
     int labelFontSize = (int)labelHeight;
     UIColor* imageShadowColor = [UIColor colorWithRed:112/255.0 green:109/255.0 blue:109/255.0 alpha:1.0];
-    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
+//    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
     
     RoundLineLabel* label = [[[RoundLineLabel alloc] initWithFrame:CGRectMake(0, 0, srcImage.size.width + shadow*2, labelHeight)] autorelease];
     [label setText:text];
