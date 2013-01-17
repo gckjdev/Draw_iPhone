@@ -14,6 +14,7 @@
 #include <ImageIO/ImageIO.h>
 #import "DrawUtils.h"
 #import "ShareCell.h"
+#import "ShareImageManager.h"
 
 @implementation MyPaintButton
 
@@ -66,6 +67,7 @@
     if ([paint.isRecovery boolValue]){
         NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), paint.drawWord];
         [self.drawWord setText:name];
+        [self.drawImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
     }
     else{
         [self.drawWord setText:paint.drawWord];

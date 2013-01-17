@@ -341,27 +341,27 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)pencilImage
 {
-    return [UIImage imageNamed:@"draw_pen1@2x"];    
+    return [UIImage imageNamed:@"pen_pencil@2x"];    
 }
 - (UIImage *)waterPenImage
 {
-    return [UIImage imageNamed:@"draw_pen2@2x"];
+    return [UIImage imageNamed:@"pen_mark@2x"];
 }
 - (UIImage *)penImage
 {
-    return [UIImage imageNamed:@"draw_pen3@2x"];
+    return [UIImage imageNamed:@"pen_brush@2x"];
 }
 - (UIImage *)iceImage
 {
-    return [UIImage imageNamed:@"draw_pen4@2x"];
+    return [UIImage imageNamed:@"pen_ice-cream@2x"];
 }
 - (UIImage *)quillImage
 {
-    return [UIImage imageNamed:@"draw_pen5@2x"];    
+    return [UIImage imageNamed:@"pen_feather@2x"];    
 }
 - (UIImage *)eraserImage
 {
-    return [UIImage imageNamed:@"draw_eraser.png"];
+    return [UIImage imageNamed:@"draw_rubber.png"];
 }
 - (UIImage *)friendDetailBgImage
 {
@@ -855,6 +855,11 @@ static UIImage* _whitePaperImage;
 - (UIImage *)shopItemPaletteImage
 {
     return [self fixedAndStrectchableImageNamed:@"shop_item_palette"];
+}
+
+- (UIImage *)autoRecoveryDraftImage
+{
+    return [_resService imageByName:@"auto_recovery" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 @end
 

@@ -38,5 +38,8 @@
 @property (nonatomic, retain) NSNumber *isRecovery;
 @property (nonatomic, retain) NSData * drawWordData;
 
+@property (nonatomic, assign) NSInteger drawDataVersion;
+
+- (void)updateDrawData;
 
 @end

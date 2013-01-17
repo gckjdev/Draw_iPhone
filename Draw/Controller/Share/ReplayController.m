@@ -20,6 +20,7 @@
 #import "DrawAction.h"
 #import "UIImageExt.h"
 #import "MyPaintManager.h"
+#import "ConfigManager.h"
 
 #define REPLAY_TAG 1234
 #define COMPRESS_SCALE 0.6
@@ -171,6 +172,9 @@
         [self.playEndButton setBackgroundImage:[[ShareImageManager defaultManager] greenImage] forState:UIControlStateNormal];
         [self.playEndButton setTitle:NSLS(@"kPlayEnd") forState:UIControlStateNormal];
     }
+    if (self.paint.drawDataVersion > [ConfigManager currentDrawDataVersion]) {
+        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+    }    
 }
 
 - (void)viewDidAppear:(BOOL)animated

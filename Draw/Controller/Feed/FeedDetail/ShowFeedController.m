@@ -605,6 +605,14 @@ enum{
     }
     
 }
+
+- (void)didStartToReplayWithFeed:(DrawFeed *)feed
+{
+    if ([self.feed.drawData isNewVersion]) {
+        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+    }
+}
+
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {

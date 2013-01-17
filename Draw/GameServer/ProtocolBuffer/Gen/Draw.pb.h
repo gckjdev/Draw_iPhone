@@ -923,8 +923,12 @@
 
 @interface PBNoCompressDrawData : PBGeneratedMessage {
 @private
+  BOOL hasVersion_:1;
+  int32_t version;
   NSMutableArray* mutableDrawActionListList;
 }
+- (BOOL) hasVersion;
+@property (readonly) int32_t version;
 - (NSArray*) drawActionListList;
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 
@@ -968,6 +972,11 @@
 - (PBNoCompressDrawData_Builder*) addDrawActionList:(PBNoCompressDrawAction*) value;
 - (PBNoCompressDrawData_Builder*) addAllDrawActionList:(NSArray*) values;
 - (PBNoCompressDrawData_Builder*) clearDrawActionListList;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (PBNoCompressDrawData_Builder*) setVersion:(int32_t) value;
+- (PBNoCompressDrawData_Builder*) clearVersion;
 @end
 
 @interface PBHotWord : PBGeneratedMessage {

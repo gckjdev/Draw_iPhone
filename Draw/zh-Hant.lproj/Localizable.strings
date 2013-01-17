@@ -1000,6 +1000,13 @@
 "kCannotShowYourself" = "你點擊了自己頭像，所以什麼也看不到";
 "kRecoveryDraft" = "自動恢復";
 
+"kBuyABagAndUse" = "你剛剛花費了%d個金幣買了個錦囊然後用掉了。";
+"kChoseWeixinOption" = "分享到微信";
+"kShareOpus" = "分享一幅作品";
+"kDrawAPicture" = "畫一幅畫";
+
+"kNewDrawVersionTip" = "當前應用版本比較舊，可能不支持部分畫畫效果，建議升級。";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -11,6 +11,7 @@
 #import "GameBasic.pb.h"
 #import "DrawUtils.h"
 #import "Draw.pb.h"
+#import "ConfigManager.h"
 
 @implementation DrawAction
 
@@ -66,15 +67,16 @@
         NSUInteger pCount = [paint pointCount];
         if (pCount != 0) {
             NSMutableArray *pList = [NSMutableArray arrayWithCapacity:pCount];
+            PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
             for (NSValue *value in paint.pointList) {
                 CGPoint point = [value CGPointValue];
-                PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
+                [pBuilder clear];
                 [pBuilder setX:point.x];
                 [pBuilder setY:point.y];
                 PBPoint *pp = [pBuilder build];
-                PPRelease(pBuilder);
                 [pList addObject:pp];
             }
+            PPRelease(pBuilder);
             [builder addAllPoint:pList];
         }
     }
@@ -325,6 +327,7 @@
         }
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         [builder addAllDrawActionList:array];
+        [builder setVersion:[ConfigManager currentDrawDataVersion]];
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
         return nData;

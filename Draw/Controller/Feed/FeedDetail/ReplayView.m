@@ -76,6 +76,9 @@
 //            self.showView.speed = PlaySpeedTypeNormal;
             [self addSubview:self.showView];
             [self.showView play];
+            if ([self.delegate respondsToSelector:@selector(didStartToReplayWithFeed:)]) {
+                [self.delegate didStartToReplayWithFeed:self.feed];
+            }
         }
     }
 //    anim.delegate = nil;

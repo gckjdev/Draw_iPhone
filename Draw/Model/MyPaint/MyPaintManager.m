@@ -481,10 +481,12 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
         if ([self saveDataAsPBNOCompressDrawData:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
+            paint.drawDataVersion = nDraw.version;
             return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw];
         }else if ([self saveDataAsPBDraw:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];
+            paint.drawDataVersion = pbDraw.version;
             Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];
             return draw.drawActionList;
         }else{

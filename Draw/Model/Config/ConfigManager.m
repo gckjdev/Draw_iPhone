@@ -99,9 +99,14 @@
     return [MobClickUtils getIntValueByKey:@"HISTORY_RANK_NUMBER" defaultValue:300];
 }
 
++ (NSInteger)drawAutoSavePaintTimeInterval
+{
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_TIME_INTERVAL" defaultValue:30];   // 30 seconds to save unsaved paint
+}
+
 + (NSInteger)drawAutoSavePaintInterval
 {
-    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT_1" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"DRAFT_PAINT_COUNT_1" defaultValue:50];         // 50 paint for save
 }
 
 + (NSInteger)opusDescMaxLength

@@ -55,6 +55,7 @@ typedef enum{
 
 //get draw action list methods
 - (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
                          postId:(NSString *)postId
                        actionId:(NSString *)actionId
                      fromRemote:(BOOL)fromRemote
