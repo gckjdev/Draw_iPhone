@@ -338,7 +338,7 @@
 
 /*the new words below without Japanese*/
 
-"kSaveSucc" = "保存成功！在作品页面可以查看以往保存的草稿。";
+"kSaveSucc" = "保存成功！在作品页面可以查看保存的草稿";
 
 "kNetworkErrorTitle" = "网络连接失效";
 "kNetworkErrorMessage" = "无法访问互联网，请检查手机是否正确连接到网络或者WIFI。";
