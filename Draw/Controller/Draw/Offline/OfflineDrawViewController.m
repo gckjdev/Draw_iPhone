@@ -49,6 +49,7 @@
 #import "FontButton.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
+#import "AnalyticsManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -874,6 +875,7 @@ enum{
 - (IBAction)clickDraftButton:(id)sender {
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
+    [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:DRAW_CLICK_DRAFT];
 }
 
 

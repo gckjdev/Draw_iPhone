@@ -92,6 +92,7 @@
 #define DRAW_CLICK_REDO                             @"DRAW_CLICK_REDO"
 #define DRAW_CLICK_UNDO                             @"DRAW_CLICK_UNDO"
 #define DRAW_CLICK_CHAT                             @"DRAW_CLICK_CHAT"
+#define DRAW_CLICK_DRAFT                            @"DRAW_CLICK_DRAFT"
 
 @interface AnalyticsManager : NSObject
 
