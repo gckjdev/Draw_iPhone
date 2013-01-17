@@ -447,6 +447,21 @@
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
 		C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
+		C2ACA16516A7FCEB00125936 /* zjh_money_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EA168DBDB1009F43F7 /* zjh_money_tree@2x.png */; };
+		C2ACA16616A7FCEB00125936 /* zjh_money_tree_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EB168DBDB1009F43F7 /* zjh_money_tree_big@2x.png */; };
+		C2ACA16716A7FCEB00125936 /* zjh_money_tree_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EC168DBDB1009F43F7 /* zjh_money_tree_coin@2x.png */; };
+		C2ACA16816A7FCEB00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43ED168DBDB1009F43F7 /* zjh_money_tree_coin_shining_light@2x.png */; };
+		C2ACA16916A7FCEB00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EE168DBDB1009F43F7 /* zjh_money_tree_pop_message_bg@2x.png */; };
+		C2ACA16A16A7FCEC00125936 /* zjh_money_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EA168DBDB1009F43F7 /* zjh_money_tree@2x.png */; };
+		C2ACA16B16A7FCEC00125936 /* zjh_money_tree_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EB168DBDB1009F43F7 /* zjh_money_tree_big@2x.png */; };
+		C2ACA16C16A7FCEC00125936 /* zjh_money_tree_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EC168DBDB1009F43F7 /* zjh_money_tree_coin@2x.png */; };
+		C2ACA16D16A7FCEC00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43ED168DBDB1009F43F7 /* zjh_money_tree_coin_shining_light@2x.png */; };
+		C2ACA16E16A7FCEC00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EE168DBDB1009F43F7 /* zjh_money_tree_pop_message_bg@2x.png */; };
+		C2ACA16F16A7FCEE00125936 /* zjh_money_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EA168DBDB1009F43F7 /* zjh_money_tree@2x.png */; };
+		C2ACA17016A7FCEE00125936 /* zjh_money_tree_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EB168DBDB1009F43F7 /* zjh_money_tree_big@2x.png */; };
+		C2ACA17116A7FCEE00125936 /* zjh_money_tree_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EC168DBDB1009F43F7 /* zjh_money_tree_coin@2x.png */; };
+		C2ACA17216A7FCEE00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43ED168DBDB1009F43F7 /* zjh_money_tree_coin_shining_light@2x.png */; };
+		C2ACA17316A7FCEE00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EE168DBDB1009F43F7 /* zjh_money_tree_pop_message_bg@2x.png */; };
 		C2B002A1160B0EF300AC5F3B /* CustomDiceSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B0029F160B0EF300AC5F3B /* CustomDiceSettingViewController.m */; };
 		C2B002A2160B0EF300AC5F3B /* CustomDiceSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B002A0160B0EF300AC5F3B /* CustomDiceSettingViewController.xib */; };
 		C2B002A5160B134F00AC5F3B /* CustomDiceSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B002A4160B134F00AC5F3B /* CustomDiceSettingCell.m */; };
@@ -17618,6 +17633,11 @@
 				CAD1A32D16A79CDC001E0329 /* pen_show_ice@2x.png in Resources */,
 				CAD1A33116A79CDC001E0329 /* pen_show_mark@2x.png in Resources */,
 				CAD1A33516A79CDC001E0329 /* pen_show_pencil@2x.png in Resources */,
+				C2ACA16516A7FCEB00125936 /* zjh_money_tree@2x.png in Resources */,
+				C2ACA16616A7FCEB00125936 /* zjh_money_tree_big@2x.png in Resources */,
+				C2ACA16716A7FCEB00125936 /* zjh_money_tree_coin@2x.png in Resources */,
+				C2ACA16816A7FCEB00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */,
+				C2ACA16916A7FCEB00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19170,6 +19190,11 @@
 				C2BB4EC916A7E09A008D3004 /* pen_brush@2x.png in Resources */,
 				C2BB4ECA16A7E09A008D3004 /* pen_feather@2x.png in Resources */,
 				A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */,
+				C2ACA16F16A7FCEE00125936 /* zjh_money_tree@2x.png in Resources */,
+				C2ACA17016A7FCEE00125936 /* zjh_money_tree_big@2x.png in Resources */,
+				C2ACA17116A7FCEE00125936 /* zjh_money_tree_coin@2x.png in Resources */,
+				C2ACA17216A7FCEE00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */,
+				C2ACA17316A7FCEE00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19928,6 +19953,11 @@
 				CAD1A32C16A79CDC001E0329 /* pen_show_ice@2x.png in Resources */,
 				CAD1A33016A79CDC001E0329 /* pen_show_mark@2x.png in Resources */,
 				CAD1A33416A79CDC001E0329 /* pen_show_pencil@2x.png in Resources */,
+				C2ACA16A16A7FCEC00125936 /* zjh_money_tree@2x.png in Resources */,
+				C2ACA16B16A7FCEC00125936 /* zjh_money_tree_big@2x.png in Resources */,
+				C2ACA16C16A7FCEC00125936 /* zjh_money_tree_coin@2x.png in Resources */,
+				C2ACA16D16A7FCEC00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */,
+				C2ACA16E16A7FCEC00125936 /* zjh_money_tree_pop_message_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
