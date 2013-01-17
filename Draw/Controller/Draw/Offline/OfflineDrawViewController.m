@@ -502,34 +502,7 @@ enum{
 
 #define NO_COIN_TAG 201204271
 #define BUY_CONFIRM_TAG 201204272
-//
-//- (void)didPickedPickView:(PickView *)pickView penView:(PenView *)penView
-//{
-//    if (penView) {
-//        _willBuyPen = nil;
-//        if ([penView isDefaultPen] || [[AccountService defaultService]hasEnoughItemAmount:penView.penType amount:1]) {
-//            [self.penButton setPenType:penView.penType];
-//            [drawView setPenType:penView.penType];       
-//            [PenView savePenType:penView.penType];
-//        }else{
-//            AccountService *service = [AccountService defaultService];
-//            if (![service hasEnoughCoins:penView.price]) {
-//                NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), penView.price];
-//                CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
-//                noMoneyDialog.tag = NO_COIN_TAG;
-//                [noMoneyDialog showInView:self.view];
-//            }else{
-//                NSString *message = [NSString stringWithFormat:NSLS(@"kBuyPenDialogMessage"),penView.price];
-//                CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyPenDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
-//                buyConfirmDialog.tag = BUY_CONFIRM_TAG;
-//                [buyConfirmDialog showInView:self.view];
-//                _willBuyPen = penView;
-//            }
-//
-//        }
-//    }
-//    [self disMissAllPickViews:YES];
-//}
+
 
 #pragma mark - Common Dialog Delegate
 

@@ -120,6 +120,50 @@
 //}
 
 
++ (UIImage *)seletedPenImageForType:(ItemType)type
+{
+    ShareImageManager* manager = [ShareImageManager defaultManager];
+    switch (type) {
+        case Pen:
+            return manager.selectedBrushPenImage;
+        case IcePen:
+            return manager.selectedIcePenImage;
+        case Quill:
+            return manager.selectedFeatherPenImage;
+        case WaterPen:
+            return manager.selectedMarkPenImage;
+        case Pencil:
+            return manager.selectedPencilImage;
+        case Eraser:
+            return manager.selectedEraserImage;
+        default:
+            return nil;
+    }
+}
+
++ (UIImage *)showPenImageForType:(ItemType)type
+{
+    ShareImageManager* manager = [ShareImageManager defaultManager];
+    switch (type) {
+        case Pen:
+            return manager.showBrushPenImage;
+        case IcePen:
+            return manager.showIcePenImage;
+        case Quill:
+            return manager.showFeatherPenImage;
+        case WaterPen:
+            return manager.showMarkPenImage;
+        case Pencil:
+            return manager.showPencilPenImage;
+        case Eraser:
+            return manager.showEraserImage;
+        default:
+            return nil;
+    }
+    
+}
+
+
 +(UIImage *)imageForItemType:(ItemType)type
 {
     ShareImageManager* manager = [ShareImageManager defaultManager];

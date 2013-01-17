@@ -100,6 +100,21 @@
 - (UIImage *)quillImage;
 - (UIImage *)eraserImage;
 
+- (UIImage *)selectedBrushPenImage;
+- (UIImage *)selectedFeatherPenImage;
+- (UIImage *)selectedIcePenImage;
+- (UIImage *)selectedMarkPenImage;
+- (UIImage *)selectedPencilImage;
+
+- (UIImage *)selectedEraserImage;
+- (UIImage *)showEraserImage;
+
+- (UIImage *)showBrushPenImage;
+- (UIImage *)showFeatherPenImage;
+- (UIImage *)showIcePenImage;
+- (UIImage *)showMarkPenImage;
+- (UIImage *)showPencilPenImage;
+
 - (UIImage *)goldenAvatarImage;
 - (UIImage *)greenAvatarImage;
 - (UIImage *)purpleAvatarImage;

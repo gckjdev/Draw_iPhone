@@ -49,6 +49,8 @@
 }
 
 #define VALUE(x) (ISIPAD ? 2*x : x)
+#define SHOWPEN_WIDTH VALUE(31)
+#define SHOWPEN_HEIGHT VALUE(36.5)
 
 - (void)movePen
 {
@@ -66,8 +68,12 @@
             }
             CGPoint point = [_currentAction.paint pointAtIndex:_playingPointIndex];
             
-//            cg
-            CGRect rect = CGRectMake(point.x, point.y-VALUE(55.5), VALUE(35.5), VALUE(56));
+            CGRect rect = CGRectZero;
+            if (pen.penType != Eraser) {
+                rect = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            }else{
+                rect = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            }
             pen.frame = [pen.superview convertRect:rect fromView:self];
         }
     
@@ -357,7 +363,6 @@
 
 - (void)setPressEnable:(BOOL)enable
 {
-
     self.userInteractionEnabled = enable;
     PPDebug(@"gesture recognizer count = %d",[self.gestureRecognizers count]);
     if (enable == YES ) {

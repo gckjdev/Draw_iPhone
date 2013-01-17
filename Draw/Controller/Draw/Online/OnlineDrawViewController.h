@@ -21,7 +21,6 @@
 
 @interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,CommonDialogDelegate,LevelServiceDelegate, DrawToolPanelDelegate, CommonItemInfoViewDelegate> {
     DrawView *drawView;
-    PenView *_willBuyPen;
 }
 
 - (IBAction)clickChangeRoomButton:(id)sender;
