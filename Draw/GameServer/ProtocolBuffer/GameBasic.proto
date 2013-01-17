@@ -122,6 +122,7 @@ message PBMessage {
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
   optional int32  createDate = 22;
+  optional int32 drawDataVersion = 23 [default=0];      // draw data version
   
   // add for ask/reply location
   optional double longitude = 31;

@@ -3572,6 +3572,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
+@property int32_t drawDataVersion;
 @property Float64 longitude;
 @property Float64 latitude;
 @property (retain) NSString* reqMessageId;
@@ -3630,6 +3631,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasDrawDataVersion {
+  return !!hasDrawDataVersion_;
+}
+- (void) setHasDrawDataVersion:(BOOL) value {
+  hasDrawDataVersion_ = !!value;
+}
+@synthesize drawDataVersion;
 - (BOOL) hasLongitude {
   return !!hasLongitude_;
 }
@@ -3676,6 +3684,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.type = 0;
     self.text = @"";
     self.createDate = 0;
+    self.drawDataVersion = 0;
     self.longitude = 0;
     self.latitude = 0;
     self.reqMessageId = @"";
@@ -3744,6 +3753,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasCreateDate) {
     [output writeInt32:22 value:self.createDate];
   }
+  if (self.hasDrawDataVersion) {
+    [output writeInt32:23 value:self.drawDataVersion];
+  }
   if (self.hasLongitude) {
     [output writeDouble:31 value:self.longitude];
   }
@@ -3788,6 +3800,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(22, self.createDate);
+  }
+  if (self.hasDrawDataVersion) {
+    size += computeInt32Size(23, self.drawDataVersion);
   }
   if (self.hasLongitude) {
     size += computeDoubleSize(31, self.longitude);
@@ -3903,6 +3918,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasDrawDataVersion) {
+    [self setDrawDataVersion:other.drawDataVersion];
+  }
   if (other.hasLongitude) {
     [self setLongitude:other.longitude];
   }
@@ -3968,6 +3986,10 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 176: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 184: {
+        [self setDrawDataVersion:[input readInt32]];
         break;
       }
       case 249: {
@@ -4128,6 +4150,22 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasDrawDataVersion {
+  return result.hasDrawDataVersion;
+}
+- (int32_t) drawDataVersion {
+  return result.drawDataVersion;
+}
+- (PBMessage_Builder*) setDrawDataVersion:(int32_t) value {
+  result.hasDrawDataVersion = YES;
+  result.drawDataVersion = value;
+  return self;
+}
+- (PBMessage_Builder*) clearDrawDataVersion {
+  result.hasDrawDataVersion = NO;
+  result.drawDataVersion = 0;
   return self;
 }
 - (BOOL) hasLongitude {
