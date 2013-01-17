@@ -15,7 +15,8 @@
 
 @interface DrawRecoveryService : CommonService
 {
-    
+    int     _newPaintCount;
+    int     _lastBackupTime;
 }
 
 @property (nonatomic, retain) MyPaint* currentPaint;
@@ -31,9 +32,13 @@
           word:(Word *)word
       language:(NSInteger)language;
 
-- (void)backup:(PBNoCompressDrawData*)drawData;
+//- (void)backup:(PBNoCompressDrawData*)drawData;
+- (void)backup:(NSArray*)drawActionList;
 - (void)stop;
 
 - (int)backupInterval;
+
+- (void)handleTimer:(NSArray*)drawActionList;
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList;
 
 @end
