@@ -94,9 +94,7 @@
 @property (retain, nonatomic) NSString *desc;
 @property (retain, nonatomic) InputAlertView *inputAlert;
 
-@property (assign, nonatomic) NSTimer* backupTimer;
-@property (assign, nonatomic) BOOL noSupportOnRecovery;
-
+@property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
 - (void)initDrawView;
 
@@ -383,7 +381,11 @@ enum{
 
 - (BOOL)supportRecovery
 {
-    return (_noSupportOnRecovery == NO);
+    if (targetType == TypeGraffiti){
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)initRecovery
