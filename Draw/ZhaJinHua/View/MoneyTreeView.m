@@ -179,4 +179,6 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
         [_delegate moneyTreeFullCoins:self];
     }
 }
+
+
 @end
