@@ -130,7 +130,7 @@ message PBHotWord
 {
   required string wordId = 1;
   required string word = 2;
-  required int32 coins = 3;
+  optional int32 coins = 3;
   
   optional string source = 10;
 }
