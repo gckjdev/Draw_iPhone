@@ -269,7 +269,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
                               pts[2].x, pts[2].y,
                               pts[3].x, pts[3].y);
         
-        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+//        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
         [self printPts];
 
         // replace pts[0] and pts[1]
@@ -279,11 +279,11 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         
         ptsComplete = YES;
 
-        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+//        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
         [self printPts];
     }
     else{
-        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+//        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
         [self printPts];
     }
     
