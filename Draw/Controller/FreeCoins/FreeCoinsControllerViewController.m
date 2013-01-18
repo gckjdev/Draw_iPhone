@@ -95,18 +95,19 @@
         
         self.noteLabel.text = NSLS(@"kWaitForMoneyTreeGrowUp");
         [self updateRemainTimes:remainTimes];
-        self.moneyTreeView = [MoneyTreeView createMoneyTreeView];
-        self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
-        self.moneyTreeView.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
-        self.moneyTreeView.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
         
-        int sec = [self.moneyTreeView totalTime];
+        
+        self.moneyTree.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
+        self.moneyTree.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
+        self.moneyTree.coinsOnTree = MAX_COINS_ON_TREE;
+        self.moneyTree.coinValue = [ConfigManager getFreeCoinsAward];
+        self.moneyTree.delegate = self;
+
+        [self.moneyTree startGrow];
+        
+        int sec = [self.moneyTree totalTime];
+        
         self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),sec/60, sec%60];
-        self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
-        self.moneyTreeView.delegate = self;
-        [self.moneyTreeHolderView addSubview:_moneyTreeView];
-        self.moneyTreeView.isAlwaysShowMessage = YES;
-        [self.moneyTreeView startGrowing];
     }
     
     // shengmeng sdk
@@ -148,6 +149,7 @@
     [_cannotGetFreeCoinsImageView release];
     [_cannotGetFreeCoinsLabel release];
     [_timeLabel release];
+    [_moneyTree release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -161,6 +163,7 @@
     [self setCannotGetFreeCoinsImageView:nil];
     [self setCannotGetFreeCoinsLabel:nil];
     [self setTimeLabel:nil];
+    [self setMoneyTree:nil];
     [super viewDidUnload];
 }
 

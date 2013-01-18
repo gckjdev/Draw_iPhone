@@ -53,5 +53,6 @@
 - (void)startGrow;
 - (void)kill;
 - (CFTimeInterval)remainTimeToFullCoin;
+- (CFTimeInterval)totalTime;
 
 @end
