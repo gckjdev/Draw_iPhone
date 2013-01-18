@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Controller/FreeCoins/FreeCoinsControllerViewController.m"
-         timestampString = "380180526.18566"
+         timestampString = "380183385.129694"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "212"
-         endingLineNumber = "212"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
          landmarkName = "-moneyTreeNoCoin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Controller/FreeCoins/FreeCoinsControllerViewController.m"
-         timestampString = "380180526.18566"
+         timestampString = "380183385.129694"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "218"
-         endingLineNumber = "218"
+         startingLineNumber = "217"
+         endingLineNumber = "217"
          landmarkName = "-getMoney:fromTree:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -40,19 +40,6 @@
          startingLineNumber = "323"
          endingLineNumber = "323"
          landmarkName = "-clickTree:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Draw/ZhaJinHua/View/MoneyTree.m"
-         timestampString = "380178506.65711"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
-         landmarkName = "-setIsMature:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
