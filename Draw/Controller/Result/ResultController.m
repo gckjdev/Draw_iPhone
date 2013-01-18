@@ -331,13 +331,12 @@
 
 - (void)initScore
 {
-    //init score
+    //init score, award user
     [self.scoreLabel setText:[NSString stringWithFormat:@"+ %d",self.score]];
-    //add score
     if (self.score > 0) {
+        PPDebug(@"<award guess> coins=%d", self.score);
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
-        [[AccountService defaultService] chargeAccount:self.score source:type];    
-        
+        [[AccountService defaultService] chargeAccount:self.score source:type];
         [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].congratulationsSound];
     }
 

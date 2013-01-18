@@ -331,7 +331,7 @@
         [self startTreeUpdateTimer:self.gainTime*MAX_COINS_ON_TREE];
 
     } else {
-        if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNoCoin:)]) {
             [_delegate moneyTreeNoCoin:self];
         }
     }

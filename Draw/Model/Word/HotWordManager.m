@@ -11,6 +11,7 @@
 #import "PPSmartUpdateData.h"
 #import "PPSmartUpdateDataUtils.h"
 #import "Word.h"
+#import "ConfigManager.h"
 
 #define HOT_WORD_FILE @"hot_word.pb"
 #define BUNDLE_PATH @"hot_word.pb"
@@ -102,6 +103,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     
     NSMutableArray *words = [NSMutableArray array];
     for (PBHotWord *hotWord in _words) {
+        int coin = hotWord.coins;
+        if (coin == 0){
+            coin = [ConfigManager offlineDrawHotWordScore];
+        }
         Word *word = [Word hotWordWithId:hotWord.wordId text:hotWord.word score:hotWord.coins];
         [words addObject:word];
     }

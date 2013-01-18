@@ -13,6 +13,7 @@
 #import "FileUtil.h"
 #import "PPSmartUpdateData.h"
 #import "PPSmartUpdateDataUtils.h"
+#import "ConfigManager.h"
 
 @interface WordManager() {
     
@@ -345,6 +346,23 @@ WordManager *GlobalGetWordManager()
 {
     
 }
+
+- (NSArray *)randOfflineDrawWordList
+{
+    NSMutableArray *wordArray = [[[NSMutableArray alloc] initWithCapacity:3]autorelease];
+    for (int i = WordLevelLow; i <= WordLevelHigh; ++i) {
+        NSArray *array = [self wordArrayOfLevel:i];
+        if ([array count] == 0) {
+            return nil;
+        }
+        NSInteger index = rand() % array.count;
+        Word *word = [array objectAtIndex:index];
+        word.score = [ConfigManager offlineDrawSystemWordScore];
+        [wordArray addObject:word];
+    }
+    return wordArray;
+}
+
 - (NSArray *)randDrawWordList
 {
     NSMutableArray *wordArray = [[[NSMutableArray alloc] initWithCapacity:3]autorelease];

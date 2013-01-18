@@ -161,6 +161,14 @@ static BBSImageManager* _staticBBSImageManager;
                              inResourcePackage:RESOURCE_PACKAGE_BBS];
 
 }
+
+- (UIImage *)bbsRewardActionBGImage{
+    return [_resService stretchableImageWithImageName:@"bbs_post_content_bg"
+                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
+}
+
+
 - (UIImage *)bbsPostEditImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_edit"];
     return [_resService imageByName:imageName

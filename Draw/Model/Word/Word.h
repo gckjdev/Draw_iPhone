@@ -22,10 +22,10 @@ typedef enum
     NSString *_wordId;
     PBWordType _wordType;
     WordLevel _level;
-    int _score;
 }
 
 @property (copy, nonatomic) NSString *text;
+@property (assign, nonatomic) int score;
 
 // For Default
 + (Word *)wordWithText:(NSString *)text

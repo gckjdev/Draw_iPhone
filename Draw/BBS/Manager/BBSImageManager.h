@@ -44,6 +44,7 @@
 #pragma mark - Post List image
 - (UIImage *)bbsPostCommentImage;
 - (UIImage *)bbsPostContentBGImage;
+- (UIImage *)bbsRewardActionBGImage;
 - (UIImage *)bbsPostEditImage;
 - (UIImage *)bbsPostHotImage;
 - (UIImage *)bbsPostNewImage;
