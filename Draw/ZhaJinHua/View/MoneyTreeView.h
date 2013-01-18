@@ -35,10 +35,13 @@
 @property (assign, nonatomic) BOOL isAlwaysShowMessage;
 @property (readonly, assign, nonatomic) int remainTime;
 
+
+
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;
 
 - (void)startGrowing;
 - (void)killMoneyTree;
+- (CFTimeInterval)totalTime;
 
 @end

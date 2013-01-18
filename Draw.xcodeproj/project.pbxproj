@@ -324,6 +324,9 @@
 		A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */; };
+		A4FA550216A8FA3B001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
+		A4FA550316A8FA3B001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
+		A4FA550416A8FA3B001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -6785,6 +6788,9 @@
 		A4F6712E166C878100FF85CA /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrowView.m; sourceTree = "<group>"; };
 		A4FA546516A6823A001883CC /* plus_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus_image@2x.png"; sourceTree = "<group>"; };
 		A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_play_with_friend@2x.png"; sourceTree = "<group>"; };
+		A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_coins_remain_time_bg@2x.png"; sourceTree = "<group>"; };
+		A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_coins_title_bg@2x.png"; sourceTree = "<group>"; };
+		A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money_tree_note_bg@2x.png"; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -10546,6 +10552,9 @@
 		A4F5BF7216A40224000A503F /* freeCoins */ = {
 			isa = PBXGroup;
 			children = (
+				A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */,
+				A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */,
+				A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */,
 				A4F5BFC216A55607000A503F /* wood_paper_big@2x.png */,
 				A4F5BFC316A55607000A503F /* wood_paper_small@2x.png */,
 				A4F5BF7316A40224000A503F /* coin_tree@2x.png */,
@@ -19286,6 +19295,9 @@
 				CAA3E15D16A8200200E779C9 /* pen_ice-cream@2x.png in Resources */,
 				CAA3E16116A8200200E779C9 /* pen_mark@2x.png in Resources */,
 				CAA3E16516A8200200E779C9 /* pen_pencil@2x.png in Resources */,
+				A4FA550216A8FA3B001883CC /* free_coins_remain_time_bg@2x.png in Resources */,
+				A4FA550316A8FA3B001883CC /* free_coins_title_bg@2x.png in Resources */,
+				A4FA550416A8FA3B001883CC /* money_tree_note_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

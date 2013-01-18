@@ -125,6 +125,11 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     [self.moneyTree kill];
 }
 
+- (CFTimeInterval)totalTime
+{
+    return _growthTime + _gainTime * MAX_COINS_ON_TREE;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
