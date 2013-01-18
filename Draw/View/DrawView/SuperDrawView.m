@@ -164,7 +164,6 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, self.bounds);
     CGContextDrawLayerAtPoint(context, CGPointZero, showLayerRef);
     if (showCacheLayer) {
         CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayerRef);
