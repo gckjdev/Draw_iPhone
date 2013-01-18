@@ -325,7 +325,6 @@
 						<string key="NSFrame">{{221, 71}, {92, 12}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="1057924229"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -494,6 +493,14 @@
 						<reference key="destination" ref="476021577"/>
 					</object>
 					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">eraser</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="1037917703"/>
+					</object>
+					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -710,7 +717,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -774,6 +781,7 @@
 						<string key="chat">UIButton</string>
 						<string key="colorAlpha">UILabel</string>
 						<string key="colorBGImageView">UIImageView</string>
+						<string key="eraser">UIButton</string>
 						<string key="palette">UIButton</string>
 						<string key="pen">UIButton</string>
 						<string key="penWidth">UILabel</string>
@@ -798,6 +806,10 @@
 						<object class="IBToOneOutletInfo" key="colorBGImageView">
 							<string key="name">colorBGImageView</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="eraser">
+							<string key="name">eraser</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="palette">
 							<string key="name">palette</string>

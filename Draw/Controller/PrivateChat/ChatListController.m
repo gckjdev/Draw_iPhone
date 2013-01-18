@@ -321,7 +321,7 @@
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 20;
+    return 100;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
