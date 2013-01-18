@@ -39,7 +39,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)showInView:(UIView *)view
 {
     self.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
-    if(self.isAlwaysShowMessage) [self popupRemainTimeMessage];
+    self.popMessageBody.layer.opacity = 0;
     [view addSubview:self];
 }
 
@@ -61,46 +61,13 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
         self.popMessageBody.layer.opacity = 0.99;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:1 animations:^{
-            self.popMessageBody.layer.opacity = self.isAlwaysShowMessage?1:0;
+            self.popMessageBody.layer.opacity = 0;
         } completion:^(BOOL finished) {
             
         }];
     }];
 }
 
-- (void)update:(id)sender
-{
-    _remainTime --;
-    if (_remainTime <= 0) {
-//        [self popupMatureMessage];
-        [self killTreeTimer];
-        return;
-    }
-    [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTime"),_remainTime/60, _remainTime%60]];
-    if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeUpdateRemainSeconds:)]) {
-        [_delegate moneyTreeUpdateRemainSeconds:_remainTime];
-    }
-}
-
-- (void)killTreeTimer
-{
-    if (_timer) {
-        if ([_timer isValid]) {
-            [_timer invalidate];
-            [_timer release];
-        }
-        _timer = nil;
-    }
-}
-
-- (void)startTreeTimerWithRemainTime:(CFTimeInterval)remainTime
-{
-    [self killTreeTimer];
-    _remainTime = remainTime;
-    self.popMessageBody.layer.opacity = (self.isAlwaysShowMessage)?1:0;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
-    [_timer retain];
-}
 
 - (void)startGrowing
 {
@@ -110,18 +77,13 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     _remainTime = self.growthTime + self.gainTime*MAX_COINS_ON_TREE;
     
     [self.moneyTree startGrow];
-    [self startTreeTimerWithRemainTime:_remainTime];
 }
 
-- (void)startGrowingCoin
-{
-    if (self.isAlwaysShowMessage) self.popMessageBody.layer.opacity = 1;
-    [self startTreeTimerWithRemainTime:self.gainTime*MAX_COINS_ON_TREE];
-}
+
 
 - (void)killMoneyTree
 {
-    [self killTreeTimer];
+
     [self.moneyTree kill];
 }
 
@@ -141,11 +103,18 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 
 - (void)dealloc {
     
+    _delegate = nil;
     [_moneyTree release];
     [_popMessageLabel release];
     [_popMessageBackgroundImageView release];
     [_popMessageBody release];
     [super dealloc];
+}
+
+- (void)removeFromSuperview
+{
+    _delegate = nil;
+    [super removeFromSuperview];
 }
 
 #pragma mark - money tree delegate
@@ -157,7 +126,6 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
-    [self startGrowingCoin];
     if (_delegate && [_delegate respondsToSelector:@selector(didGainMoney:fromTree:)]){
         [_delegate didGainMoney:money fromTree:self];
     }
@@ -168,11 +136,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 }
 - (void)treeDidMature:(MoneyTree*)tree
 {
-//    if (self.isAlwaysShowMessage) {
-//        self.popMessageBody.layer.opacity = 0;
-//    } else {
-//        [self popupMatureMessage];
-//    }
+
     if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeDidMature:)]) {
         [_delegate moneyTreeDidMature:self];
     }
@@ -180,10 +144,16 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 
 - (void)treeFullCoins:(MoneyTree *)tree
 {
-    [self popupRemainTimeMessage];
+    [self popupMatureMessage];
     if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeFullCoins:)]) {
         [_delegate moneyTreeFullCoins:self];
     }
+}
+
+- (void)treeUpdateRemainSeconds:(int)seconds toFullCoin:(MoneyTree *)tree
+{
+    int remainSeconds = seconds-self.gainTime;
+    [self.popMessageLabel setText:[NSString stringWithFormat:NSLS(@"kRemainTime"),remainSeconds/60, remainSeconds%60]];
 }
 
 
