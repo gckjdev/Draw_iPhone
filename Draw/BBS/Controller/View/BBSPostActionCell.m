@@ -150,11 +150,11 @@
         self.content.hidden = NO;
         [self updateContentWithAction:action];        
     }
-    if([post.reward.winner.userId isEqualToString:action.createUser.userId]){
-        //if winer
-        [self.content setTextColor:[UIColor orangeColor]];
+    if([post.reward.actionId isEqualToString:action.actionId]){
+        //if winner change the action bg.
+        [self.bgImageView setImage:[_bbsImageManager bbsRewardActionBGImage]];
     }else{
-        [self.content setTextColor:[UIColor blackColor]];
+        [self.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
     }
 }
 

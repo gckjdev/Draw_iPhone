@@ -23,6 +23,9 @@
 @end
 
 @class PPTableViewController;
+@class BBSColorManager;
+@class BBSImageManager;
+@class BBSFontManager;
 
 @interface BBSTableViewCell : PPTableViewCell
 {
@@ -33,6 +36,11 @@
     UIImageView *_image;
     UIButton *_imageMask;
     UIButton *_avatarMask;
+    
+    BBSImageManager *_bbsImageManager;
+    BBSColorManager *_bbsColorManager;
+    BBSFontManager *_bbsFontManager;
+
 }
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;

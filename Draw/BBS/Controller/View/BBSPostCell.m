@@ -34,32 +34,25 @@
 
 
 
-+ (void)updateViews:(BBSPostCell *)cell
+- (void)updateViews
 {
-    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
-    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
-    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
-
-    
-    
     //action
-    [BBSViewManager updateButton:cell.reward
-                         bgColor:[UIColor clearColor]
-                         bgImage:nil
-                           image:[_bbsImageManager bbsPostRewardImage]
-                            font:[_bbsFontManager postRewardFont]
-                      titleColor:[_bbsColorManager postRewardColor]
-                           title:nil forState:UIControlStateNormal];
-    
-    [BBSViewManager updateButton:cell.reward
+    [BBSViewManager updateButton:self.reward
                          bgColor:[UIColor clearColor]
                          bgImage:nil
                            image:[_bbsImageManager bbsPostRewardedImage]
                             font:[_bbsFontManager postRewardFont]
                       titleColor:[_bbsColorManager postRewardedColor]
                            title:nil forState:UIControlStateSelected];
+    [BBSViewManager updateButton:self.reward
+                         bgColor:[UIColor clearColor]
+                         bgImage:nil
+                           image:[_bbsImageManager bbsPostRewardImage]
+                            font:[_bbsFontManager postRewardFont]
+                      titleColor:[_bbsColorManager postRewardColor]
+                           title:nil forState:UIControlStateNormal];
 
-    [BBSViewManager updateButton:cell.comment
+    [BBSViewManager updateButton:self.comment
                          bgColor:[UIColor clearColor]
                          bgImage:nil
                            image:[_bbsImageManager bbsPostCommentImage]
@@ -67,7 +60,7 @@
                       titleColor:[_bbsColorManager postActionColor]
                            title:nil forState:UIControlStateNormal];
     
-    [BBSViewManager updateButton:cell.support
+    [BBSViewManager updateButton:self.support
                          bgColor:[UIColor clearColor]
                          bgImage:nil
                            image:[_bbsImageManager bbsPostSupportImage]
@@ -83,7 +76,7 @@
     
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     cell.content.font = CONTENT_FONT;
-    [BBSPostCell updateViews:cell];
+    [cell updateViews];
     return cell;
 }
 
