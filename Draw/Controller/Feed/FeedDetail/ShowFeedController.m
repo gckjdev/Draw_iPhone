@@ -705,7 +705,9 @@ enum{
                                   NSLS(@"kNoGuesses"),
                                   NSLS(@"kNoFlowers"),
                                   NSLS(@"kNoTomatos"), nil];
-    
+    if (_tabManager != nil) {
+        PPRelease(_tabManager);
+    }
     _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs
                                                    titleList:nil
                                               noDataDescList:tabNoDataDescList 
@@ -742,10 +744,11 @@ enum{
     [self setReplayButton:nil];
 
     [self.feed setDrawData:nil];
-    [self setFeed:nil];
     [self setDrawCell:nil];
     [self setUserCell:nil];
     [self setCommentHeader:nil];
+    PPRelease(_tabManager);
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
