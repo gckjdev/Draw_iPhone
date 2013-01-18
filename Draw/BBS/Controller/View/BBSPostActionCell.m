@@ -149,7 +149,13 @@
         [self.supportImage setHidden:YES];
         self.content.hidden = NO;
         [self updateContentWithAction:action];        
-    }    
+    }
+    if([post.reward.actionId isEqualToString:action.actionId]){
+        //if winner change the action bg.
+        [self.bgImageView setImage:[_bbsImageManager bbsRewardActionBGImage]];
+    }else{
+        [self.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
+    }
 }
 
 

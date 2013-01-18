@@ -23,64 +23,64 @@
 #define BORDER_WIDTH ISIPAD ? 5 : 2.5
 #define IMAGE_CORNER_RADIUS ISIPAD ? 10 : 5
 
-
-+ (void)initMaskViewsWithCell:(BBSTableViewCell *)cell
+- (void)initMaskViews
 {
-    cell.avatarMask = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cell.avatarMask setClipsToBounds:YES];
-    cell.avatarMask.autoresizingMask = 63;
-    [cell.avatarMask setFrame:cell.avatar.bounds];
-    [cell.avatarMask addTarget:cell action:@selector(clickAvatarButton:)
+    self.avatarMask = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.avatarMask setClipsToBounds:YES];
+    self.avatarMask.autoresizingMask = 63;
+    [self.avatarMask setFrame:self.avatar.bounds];
+    [self.avatarMask addTarget:self action:@selector(clickAvatarButton:)
               forControlEvents:UIControlEventTouchUpInside];
-    [cell.avatar addSubview:cell.avatarMask];
+    [self.avatar addSubview:self.avatarMask];
     
-    cell.imageMask = [UIButton buttonWithType:UIButtonTypeCustom];
-    cell.imageMask.autoresizingMask = 63;
-    [cell.imageMask setFrame:cell.image.bounds];
-    [cell.imageMask addTarget:cell action:@selector(clickImageButton:)
+    self.imageMask = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.imageMask.autoresizingMask = 63;
+    [self.imageMask setFrame:self.image.bounds];
+    [self.imageMask addTarget:self action:@selector(clickImageButton:)
              forControlEvents:UIControlEventTouchUpInside];
-    [cell.imageMask setClipsToBounds:YES];
-    [cell.image addSubview:cell.imageMask];
-
-    [cell.image setUserInteractionEnabled:YES];
-    [cell.avatar setUserInteractionEnabled:YES];
+    [self.imageMask setClipsToBounds:YES];
+    [self.image addSubview:self.imageMask];
     
-    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
+    [self.image setUserInteractionEnabled:YES];
+    [self.avatar setUserInteractionEnabled:YES];
     
-    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
-    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
-    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
-
+    [self.content setLineBreakMode:NSLineBreakByTruncatingTail];
+    
+    
+    _bbsImageManager = [BBSImageManager defaultManager];
+    _bbsColorManager = [BBSColorManager defaultManager];
+    _bbsFontManager = [BBSFontManager defaultManager];
+    
     //avatar
-    [cell.avatar.layer setBorderColor:([_bbsColorManager postAvatarColor].CGColor)];
-    [cell.avatar.layer setCornerRadius:cell.avatar.frame.size.width/2];
-    cell.avatar.layer.masksToBounds = YES;
-    [cell.avatar.layer setBorderWidth:BORDER_WIDTH];
+    [self.avatar.layer setBorderColor:([_bbsColorManager postAvatarColor].CGColor)];
+    [self.avatar.layer setCornerRadius:self.avatar.frame.size.width/2];
+    self.avatar.layer.masksToBounds = YES;
+    [self.avatar.layer setBorderWidth:BORDER_WIDTH];
     //image
-    [cell.image.layer setCornerRadius:IMAGE_CORNER_RADIUS];
-    cell.image.layer.masksToBounds = YES;
-
+    [self.image.layer setCornerRadius:IMAGE_CORNER_RADIUS];
+    self.image.layer.masksToBounds = YES;
+    
     //nick
-    [BBSViewManager updateLable:cell.nickName
+    [BBSViewManager updateLable:self.nickName
                         bgColor:[UIColor clearColor]
                            font:[_bbsFontManager postNickFont]
                       textColor:[_bbsColorManager postNickColor]
                            text:nil];
     
     //content
-    [cell.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
-    [BBSViewManager updateLable:cell.content
+    [self.bgImageView setImage:[_bbsImageManager bbsPostContentBGImage]];
+    [BBSViewManager updateLable:self.content
                         bgColor:[UIColor clearColor]
                            font:[_bbsFontManager postContentFont]
                       textColor:[UIColor blackColor]
                            text:nil];
     
-    [BBSViewManager updateLable:cell.timestamp
+    [BBSViewManager updateLable:self.timestamp
                         bgColor:[UIColor clearColor]
                            font:[_bbsFontManager postDateFont]
                       textColor:[_bbsColorManager postDateColor]
                            text:nil];
-
+    
 }
 
 + (id)createCellWithIdentifier:(NSString *)identifier
@@ -95,7 +95,7 @@
     
     BBSTableViewCell  *cell = (BBSTableViewCell *)[topLevelObjects objectAtIndex:0];
     cell.delegate = delegate;
-    [BBSTableViewCell initMaskViewsWithCell:cell];
+    [cell initMaskViews];
     return cell;
 
 }
