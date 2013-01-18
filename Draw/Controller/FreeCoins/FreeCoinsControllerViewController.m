@@ -97,9 +97,9 @@
         [self updateRemainTimes:remainTimes];
         
         
-        self.moneyTree.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
-        self.moneyTree.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
-        self.moneyTree.coinsOnTree = MAX_COINS_ON_TREE;
+        self.moneyTree.growthTime = 5;//[ConfigManager getFreeCoinsMoneyTreeGrowthTime];
+        self.moneyTree.gainTime = 5;//[ConfigManager getFreeCoinsMoneyTreeGainTime];
+//        self.moneyTree.coinsOnTree = MAX_COINS_ON_TREE;
         self.moneyTree.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTree.delegate = self;
 
@@ -123,7 +123,7 @@
 
 -(void)enableFreeCoinsAward:(BOOL)enabled
 {
-    self.moneyTreeView.hidden = !enabled;
+    self.moneyTree.hidden = !enabled;
     self.noteLabel.hidden = !enabled;
     self.remainTimesLabel.hidden = !enabled;
     self.cannotGetFreeCoinsImageView.hidden = enabled;
@@ -137,10 +137,8 @@
 }
 
 - (void)dealloc {
-    _moneyTreeView.delegate = nil;
+    _moneyTree.delegate = nil;
     [_titleTlabel release];
-    [_moneyTreePlaceHolder release];
-    [_moneyTreeView release];
     [_moneyTreeHolderView release];
     [_lmWallBtnHolderView release];
     [_helpBtnHolderView release];
@@ -154,7 +152,6 @@
 }
 - (void)viewDidUnload {
     [self setTitleTlabel:nil];
-    [self setMoneyTreePlaceHolder:nil];
     [self setMoneyTreeHolderView:nil];
     [self setLmWallBtnHolderView:nil];
     [self setHelpBtnHolderView:nil];
@@ -177,9 +174,6 @@
 
     [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
     [[LmWallService defaultService] show:self];
-//    UMGridViewController *controller = [[UMGridViewController alloc] init];
-//    [self.navigationController pushViewController:controller animated:YES];
-//    [controller release];
 }
 
 - (IBAction)clickHelpButton:(id)sender {
@@ -208,19 +202,26 @@
     self.remainTimesLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTimes"), times];
 }
 
-- (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
+// 点击树时，如果树还没有金币的时候回调
+- (void)moneyTreeNoCoin:(MoneyTree*)tree
+{
+    PPDebug(@"");
+}
+
+// 点击树时，如果树上有金币的时候回调
+- (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AnalyticsManager sharedAnalyticsManager] reportFreeCoins:FREE_COIN_TYPE_MONEYTREE];
     
     [self addFreeCoinsAwardTimesForToday];
-
+    
     int tipsAward = [ConfigManager getFreeTipsAward];
     int flowersAward = [ConfigManager getFreeFlowersAward];
-
+    
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
     [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
     [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
-   
+    
     
     NSString *moneyStr = (money <= 0) ? @"" : [NSString stringWithFormat:NSLS(@"kGainFreeCoinsNote"), money];
     NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), flowersAward] stringByAppendingString:NSLS(@"kFlower")];
@@ -230,7 +231,7 @@
     NSString *remainTimesStr = [NSString stringWithFormat:NSLS(@"kRemainTimes"), remainTimes];
     
     NSString *note = [[[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr] stringByAppendingString:remainTimesStr];
-
+    
     if (note != nil && ![note isEqualToString:@""]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     }
@@ -244,20 +245,24 @@
     }
 }
 
-- (void)moneyTreeDidMature:(MoneyTreeView*)treeView
+// 树长大的回调
+- (void)treeDidMature:(MoneyTree*)tree
 {
     self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
 }
 
-- (void)moneyTreeFullCoins:(MoneyTreeView *)treeView
+// 长满金币时回调
+- (void)treeFullCoins:(MoneyTree*)tree
 {
     self.noteLabel.text = NSLS(@"kClickMoneyTreeToGetAward");
     self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),0, 0];
 }
 
-- (void)moneyTreeUpdateRemainSeconds:(CFTimeInterval)remainSec{
-    int sec = remainSec;
-    self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),sec/60, sec%60];
+// 倒计时回调
+- (void)treeUpdateRemainSeconds:(int)seconds
+                     toFullCoin:(MoneyTree*)tree
+{
+    self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),seconds/60, seconds%60];
 }
 
 

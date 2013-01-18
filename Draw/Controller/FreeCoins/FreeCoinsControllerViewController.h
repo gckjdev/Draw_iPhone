@@ -10,7 +10,7 @@
 #import "TapjoyConnect.h"
 #import "MoneyTree.h"
 
-@interface FreeCoinsControllerViewController : PPViewController
+@interface FreeCoinsControllerViewController : PPViewController<MoneyTreeDelegate>
 @property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleTlabel;

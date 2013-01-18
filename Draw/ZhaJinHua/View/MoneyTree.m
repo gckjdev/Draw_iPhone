@@ -17,6 +17,11 @@
 #define EARN_COIN_EACH_LEVEL (50)
 #define COIN_RADIUS ([DeviceDetection isIPAD]?28:14)
 
+@interface MoneyTree()
+@property (assign, nonatomic, readwrite) NSInteger coinsOnTree;
+
+@end
+
 @implementation MoneyTree
 @synthesize isMature = _isMature;
 
@@ -215,7 +220,8 @@
 - (void)startTreeUpdateTimer:(CFTimeInterval)remainTime
 {
     [self killTimer:_treeUpdateTimer];
-    _treeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:remainTime target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _remainTime = remainTime;
+    _treeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_treeUpdateTimer retain];
 }
 
