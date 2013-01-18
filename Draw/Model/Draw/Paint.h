@@ -14,6 +14,8 @@
 
 CGPoint midPoint(CGPoint p1, CGPoint p2);
 
+#define POINT_COUNT        5
+
 @interface Paint : NSObject <NSCoding>
 {
     CGFloat _width;
@@ -21,6 +23,10 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
     NSMutableArray *_pointList;
     ItemType _penType;
     CGMutablePathRef _path;
+    CGMutablePathRef _pathToShow;
+    CGPoint pts[POINT_COUNT];
+    int     ptsCount;
+    BOOL    ptsComplete;
 }
 @property(nonatomic,assign)CGFloat width;
 @property(nonatomic,assign)ItemType penType;
@@ -50,5 +56,11 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
 
 + (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color;
 + (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type;
+
+- (CGMutablePathRef)getPath;
+- (CGMutablePathRef)getPathForShow;
+- (CGRect)rectForPath;
+
+- (void)releasePathToShow;
 
 @end

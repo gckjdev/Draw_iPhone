@@ -58,7 +58,7 @@
 
 
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width;
-
++ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width;
 /*
 + (CGPoint)midPoint1:(CGPoint)p1 point2:(CGPoint) p2;
 + (void)addSmoothPath:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;

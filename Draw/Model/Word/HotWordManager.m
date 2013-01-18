@@ -107,7 +107,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
         if (coin == 0){
             coin = [ConfigManager offlineDrawHotWordScore];
         }
-        Word *word = [Word hotWordWithId:hotWord.wordId text:hotWord.word score:hotWord.coins];
+        Word *word = [Word hotWordWithId:hotWord.wordId text:hotWord.word score:coin];
         [words addObject:word];
     }
     

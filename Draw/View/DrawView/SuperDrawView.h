@@ -62,7 +62,7 @@ typedef enum{
 - (void)drawAction:(DrawAction *)action inContext:(CGContextRef)context;
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width inContext:(CGContextRef)context;
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear;
-
+- (void)clearContext:(CGContextRef)context;
 
 #pragma mark - refresh view
 - (void)setNeedsDisplayInRect:(CGRect)rect showCacheLayer:(BOOL)show;

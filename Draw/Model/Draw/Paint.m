@@ -34,9 +34,26 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 @synthesize pointList = _pointList;
 @synthesize penType = _penType;
 
+- (CGMutablePathRef)getPath
+{
+    return _path;
+}
+
+- (CGMutablePathRef)getPathForShow
+{
+    return _pathToShow;
+}
+
+- (CGRect)rectForPath
+{    
+    return [DrawUtils rectForPath1:_path path2:_pathToShow withWidth:self.width];
+}
 
 - (void)constructPath
 {
+    [self constructPath1];
+    return;
+    
     if (self.pointCount > 0) {
         if (_path == NULL) {
             _path = CGPathCreateMutable();
@@ -59,6 +76,21 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
             CGPathAddQuadCurveToPoint(_path, NULL, mid.x, mid.y, p2.x, p2.y);
         }
         
+    }
+}
+
+- (void)constructPath1
+{
+    if (self.pointCount > 0) {
+        if (_path == NULL) {
+            _path = CGPathCreateMutable();
+            ptsCount = 0;
+        }
+
+        NSInteger count = self.pointCount;
+        for (int i=0; i<count; i++){
+            [self addPointIntoPath:[self pointAtIndex:i] path:_path];
+        }
     }
 }
 
@@ -185,6 +217,8 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)addPoint:(CGPoint)point
 {
+    [self addPoint1:point];
+    return;
     
     if (_path != NULL) {
     
@@ -201,11 +235,118 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     [self.pointList addObject:pointValue];
 }
 
+- (void)printPts
+{
+    for (int i=0; i<ptsCount; i++){
+//        PPDebug(@"Point[%d]=%@", i, NSStringFromCGPoint(pts[i]));
+    }
+}
+
+- (void)addPointIntoPath:(CGPoint)point path:(CGMutablePathRef)targetPath
+{
+    if (targetPath == NULL)
+        return;
+    
+    pts[ptsCount] = point;
+    ptsCount ++;
+    ptsComplete = NO;
+    if (ptsCount == POINT_COUNT){
+        // adjust pts[3]
+        pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0f, (pts[2].y + pts[4].y)/2.0f);
+        
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y,
+                              pts[2].x, pts[2].y,
+                              pts[3].x, pts[3].y);
+        
+        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+
+        // replace pts[0] and pts[1]
+        pts[0] = pts[3];
+        pts[1] = pts[4];
+        ptsCount = 2;
+        
+        ptsComplete = YES;
+
+        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    else{
+        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    
+    
+}
+
+// if you don't understand the code below
+// please read here http://mobile.tutsplus.com/tutorials/iphone/ios-sdk_freehand-drawing/
+- (void)addPoint1:(CGPoint)point
+{
+    [self addPointIntoPath:point path:_path];
+    NSValue *pointValue = [NSValue valueWithCGPoint:point];
+    [self.pointList addObject:pointValue];
+}
+
+- (void)releasePathToShow
+{
+    if (_pathToShow != NULL){
+        CGPathRelease(_pathToShow);
+        _pathToShow = NULL;
+    }
+}
+
+// this is used to add points (less than 4) into path
+- (void)addPoorPointsIntoPath:(CGMutablePathRef)targetPath
+{
+    if (ptsCount == 1){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y, pts[0].x, pts[0].y);
+    }
+    else if (ptsCount == 2){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPoint mid = midPoint(pts[0], pts[1]);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, mid.x, mid.y, pts[1].x, pts[1].y);
+    }
+    else if (ptsCount == 3){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y, pts[2].x, pts[2].y);
+    }
+    else if (ptsCount == 4){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y,
+                              pts[2].x, pts[2].y,
+                              pts[3].x, pts[3].y);
+    }
+}
+
 - (CGPathRef)path
 {
     if (_path == NULL && self.pointCount > 0) {
+        // here only happen when the draw is finished, if you are drawing on screen, this cannot happen
+        [self constructPath];
+        [self addPoorPointsIntoPath:_path];
+        return _path;
+    }
+    
+    if (ptsComplete)
+        return _path;
+    
+    if (_pathToShow != NULL){
+        CGPathRelease(_pathToShow);
+        _pathToShow = NULL;
+    }
+    
+    _pathToShow = CGPathCreateMutableCopy(_path);
+    [self addPoorPointsIntoPath:_pathToShow];
+    return _pathToShow;
+    
+    // old implementation here, keep
+    if (_path == NULL && self.pointCount > 0) {
         [self constructPath];
     }
+
     return _path;
 }
 
@@ -245,6 +386,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)dealloc
 {
+    [self releasePathToShow];
     PPRelease(_color);
     PPRelease(_pointList);
     if (_path != NULL) {

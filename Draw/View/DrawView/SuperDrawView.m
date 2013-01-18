@@ -140,11 +140,15 @@
     }
 }
 
+- (void)clearContext:(CGContextRef)context
+{
+    CGContextClearRect(context, self.bounds);
+}
+
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
         CGRect drawBox = self.bounds;
-        //[DrawUtils rectForPath:paint.path withWidth:paint.width];
         CGContextClearRect(context, drawBox);
     }
     CGContextAddPath(context, paint.path);
@@ -160,7 +164,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+    CGContextClearRect(context, self.bounds);
     CGContextDrawLayerAtPoint(context, CGPointZero, showLayerRef);
     if (showCacheLayer) {
         CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayerRef);
