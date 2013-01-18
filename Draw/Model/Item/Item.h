@@ -74,6 +74,9 @@
 + (NSString*)getItemTips:(ItemType)type;
 + (BOOL)isCustomDice:(ItemType)type;
 
++ (UIImage *)seletedPenImageForType:(ItemType)type;
++ (UIImage *)showPenImageForType:(ItemType)type;
+
 - (int)unitPrice;
 
 @end

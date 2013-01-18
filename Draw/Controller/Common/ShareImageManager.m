@@ -363,6 +363,58 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"draw_rubber.png"];
 }
+
+- (UIImage *)selectedBrushPenImage
+{
+    return [UIImage imageNamed:@"selected_pen_brush@2x"];
+}
+- (UIImage *)selectedFeatherPenImage
+{
+    return [UIImage imageNamed:@"selected_pen_feather@2x"];
+}
+- (UIImage *)selectedIcePenImage
+{
+    return [UIImage imageNamed:@"selected_pen_ice-cream@2x"];
+}
+- (UIImage *)selectedMarkPenImage
+{
+    return [UIImage imageNamed:@"selected_pen_mark@2x"];
+}
+- (UIImage *)selectedPencilImage
+{
+    return [UIImage imageNamed:@"selected_pen_pencil@2x"];
+}
+- (UIImage *)selectedEraserImage
+{
+    return [UIImage imageNamed:@"selected_pen_rubber@2x"];
+}
+- (UIImage *)showEraserImage
+{
+    return [UIImage imageNamed:@"eraser_show@2x"];
+}
+- (UIImage *)showBrushPenImage
+{
+    return [UIImage imageNamed:@"pen_show_brush@2x"];
+}
+
+- (UIImage *)showFeatherPenImage
+{
+    return [UIImage imageNamed:@"pen_show_feather@2x"];
+}
+- (UIImage *)showIcePenImage
+{
+    return [UIImage imageNamed:@"pen_show_ice@2x"];
+}
+- (UIImage *)showMarkPenImage
+{
+    return [UIImage imageNamed:@"pen_show_mark@2x"];
+}
+- (UIImage *)showPencilPenImage
+{
+    return [UIImage imageNamed:@"pen_show_pencil@2x"];
+}
+
+
 - (UIImage *)friendDetailBgImage
 {
     return [UIImage strectchableImageName:@"friend_detail_bg.png"];

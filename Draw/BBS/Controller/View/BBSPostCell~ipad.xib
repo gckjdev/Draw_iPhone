@@ -168,6 +168,7 @@
 						<reference key="NSNextKeyView" ref="1041555073"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -253,7 +254,6 @@
 						<string key="NSFrame">{{583, 364}, {93, 35}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -511,16 +511,11 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="bgImageView">UIImageView</string>
 						<string key="comment">UIButton</string>
 						<string key="reward">UIButton</string>
 						<string key="support">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="bgImageView">
-							<string key="name">bgImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="comment">
 							<string key="name">comment</string>
 							<string key="candidateClassName">UIButton</string>
@@ -544,6 +539,7 @@
 					<string key="superclassName">PPTableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatar">UIImageView</string>
+						<string key="bgImageView">UIImageView</string>
 						<string key="content">UILabel</string>
 						<string key="image">UIImageView</string>
 						<string key="nickName">UILabel</string>
@@ -552,6 +548,10 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="avatar">
 							<string key="name">avatar</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bgImageView">
+							<string key="name">bgImageView</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="content">

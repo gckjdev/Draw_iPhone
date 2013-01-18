@@ -19,6 +19,9 @@
 #import "CommonItemInfoView.h"
 #import "Item.h"
 #import "ConfigManager.h"
+#import "AnalyticsManager.h"
+
+#define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
 @interface DrawToolPanel ()
 {
@@ -37,6 +40,8 @@
 - (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
+- (void)selectPen;
+- (void)selectEraser;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
@@ -48,6 +53,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *redo;
 @property (retain, nonatomic) IBOutlet UIButton *undo;
 @property (retain, nonatomic) IBOutlet UIButton *palette;
+@property (retain, nonatomic) IBOutlet UIButton *eraser;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
@@ -87,6 +93,18 @@
 
 
 #pragma mark - setter methods
+
+
+- (void)selectPen
+{
+    [self.pen setSelected:YES];
+    [self.eraser setSelected:NO];
+}
+- (void)selectEraser
+{
+    [self.pen setSelected:NO];
+    [self.eraser setSelected:YES];
+}
 
 
 - (void)updatePopTipView:(CMPopTipView *)popTipView
@@ -267,7 +285,9 @@
     _penType = penType;
     self.pen.tag = penType;
     [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
+    [self.pen setImage:[Item seletedPenImageForType:penType] forState:UIControlStateSelected];
     
+    [self selectPen];
 }
 
 #pragma mark - click actions
@@ -276,6 +296,8 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickUndoButton:)]) {
         [self.delegate drawToolPanel:self didClickUndoButton:sender];
     }
+    AnalyticsReport(DRAW_CLICK_UNDO);
+
 }
 
 - (IBAction)clickRedo:(id)sender {
@@ -283,30 +305,36 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickRedoButton:)]) {
         [self.delegate drawToolPanel:self didClickRedoButton:sender];
     }
+    AnalyticsReport(DRAW_CLICK_REDO);
 }
 
 - (IBAction)clickChat:(id)sender {
     [self dismissAllPopTipViews];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickChatButton:)]) {
         [self.delegate drawToolPanel:self didClickChatButton:sender];
-    }    
+    }
+    AnalyticsReport(DRAW_CLICK_CHAT);
 }
 
 
 
 - (IBAction)clickEraser:(id)sender {
-    [self dismissAllPopTipViews];    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
+    [self selectEraser];
+    [self dismissAllPopTipViews];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
         [self.delegate drawToolPanel:self didClickEraserButton:sender];
     }
+    AnalyticsReport(DRAW_CLICK_ERASER);
 }
 
 
 - (IBAction)clickPaintBucket:(id)sender {
+    [self selectPen];
     [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
         [self.delegate drawToolPanel:self didClickPaintBucket:sender];
     }
+    AnalyticsReport(DRAW_CLICK_PAINT_BUCKET);
 }
 
 
@@ -337,7 +365,7 @@
     [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
         return [ColorBox createViewWithdelegate:self];
     } atView:sender setter:@selector(setColorBoxPopTipView:)];
-
+        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
 }
 
 - (IBAction)clickPalette:(id)sender {
@@ -348,7 +376,9 @@
         }
         return;
     }
-
+    
+    AnalyticsReport(DRAW_CLICK_PALETTE);
+    
     [self handlePopTipView:_palettePopTipView contentView:^UIView *{
         PPDebug(@"<block> [Palette createViewWithdelegate:self]");
         Palette *pallete = [Palette createViewWithdelegate:self];
@@ -360,6 +390,7 @@
 }
 
 - (IBAction)clickPen:(id)sender {
+    AnalyticsReport(DRAW_CLICK_PEN);
     //pop up pen box.
     [self handlePopTipView:_penPopTipView contentView:^UIView *{
         PenBox *penBox = [PenBox createViewWithdelegate:self];
@@ -372,6 +403,7 @@
 - (void)handleSelectColorDelegateWithColor:(DrawColor *)color
                          updateRecentColor:(BOOL)updateRecentColor
 {
+    [self selectPen];
     self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
@@ -455,6 +487,7 @@
             }
             return;
         }
+        AnalyticsReport(DRAW_CLICK_ALPHA);
         UILabel *label = [[[UILabel alloc] initWithFrame:ALPHA_LABEL_FRAME] autorelease];
         [label setTextAlignment:NSTextAlignmentCenter];
         [drawSlider popupWithContenView:label];
@@ -465,6 +498,7 @@
         [self updateLabel:label value:value];
         
     }else if(drawSlider == self.widthSlider){
+        AnalyticsReport(DRAW_CLICK_WIDTH);
         WidthView *width = [WidthView viewWithWidth:value];
         [drawSlider popupWithContenView:width];
         [width setSelected:YES];
@@ -539,6 +573,7 @@
 - (void)didPickedColorView:(ColorView *)colorView{
     [self handleSelectColorDelegateWithColor:colorView.drawColor updateRecentColor:YES];
     [self dismissColorBoxPopTipView];
+    [self selectPen];
 }
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
@@ -567,6 +602,7 @@
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
     
+    [_eraser release];
     [super dealloc];
 }
 

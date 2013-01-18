@@ -24,7 +24,7 @@
 @synthesize itemImage;
 @synthesize splitLine;
 @synthesize feed = _feed;
-@synthesize superViewController = _superViewController;
+//@synthesize superViewController = _superViewController;
 
 + (id)createCell:(id)delegate
 {
@@ -150,7 +150,7 @@
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
     PPRelease(splitLine);
-    PPRelease(_superViewController);
+//    PPRelease(_superViewController);
     [super dealloc];
 }
 
@@ -162,6 +162,8 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [DrawUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickAvatar:)]) {
+        [self.delegate didClickAvatar:friend];
+    }
 }
 @end

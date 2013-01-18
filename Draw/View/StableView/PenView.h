@@ -24,8 +24,6 @@
 + (PenView *)penViewWithType:(ItemType)type;
 + (CGFloat)height;
 + (CGFloat)width;
-- (BOOL)isRightDownRotate;
-- (BOOL)isDefaultPen;
 + (ItemType)lastPenType;
 + (void)savePenType:(ItemType)type;
 

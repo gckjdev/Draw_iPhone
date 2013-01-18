@@ -273,58 +273,65 @@ static FeedService *_staticFeedService = nil;
 - (void)getFeedByFeedId:(NSString *)feedId
                delegate:(id<FeedServiceDelegate>)delegate
 {
-    NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
-    [queue cancelAllOperations];
-    __block BOOL loadRemoteData = NO;
     
     FeedManager *manager = [FeedManager defaultManager];
-    __block DrawFeed *feed = nil;
+    PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
+    if (pbFeed != nil) {
+        PPDebug(@"<getFeedByFeedId> load local data, feedId = %@",feedId);
+        DrawFeed *feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+        if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
+            [delegate didGetFeed:feed
+                      resultCode:0
+                       fromCache:YES];
+        }
+        return;
+    }
 
+    NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
+    [queue cancelAllOperations];
 
     [queue addOperationWithBlock:^{
         
-        PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
-         NSInteger resultCode = 0;
-        
+        NSInteger resultCode = 0;
+        DrawFeed *feed = nil;
+        PBFeed *pbFeed = nil;
         //if local data is nil, load data from remote service
         if (pbFeed == nil) {
             PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
-            loadRemoteData = YES;
             NSString* userId = [[UserManager defaultManager] userId];
             
             CommonNetworkOutput* output = [GameNetworkRequest
                                            getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
                                            userId:userId feedId:feedId];
             
-            
             resultCode = [output resultCode];
+
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *list = [response feedList];
-                pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 resultCode = [response resultCode];
+                
+                if (resultCode == ERROR_SUCCESS) {
+                    
+                    NSArray *list = [response feedList];
+                    pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                    
+                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                    }else{
+                        feed = nil;
+                    }
+                }
             }
         }
-                
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            //parse the draw feed.
-            if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser || pbFeed.actionType == FeedTypeDrawToContest)) {
-                feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-            }
-
+            [manager cachePBFeed:pbFeed];
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
-                [delegate didGetFeed:(DrawFeed *)feed
+                [delegate didGetFeed:feed
                           resultCode:resultCode
-                           fromCache:!loadRemoteData];
+                           fromCache:NO];
             }
         });
-        //save feed
-        if (loadRemoteData) {
-            PPDebug(@"<getFeedByFeedId> save pb feed");
-            [manager cachePBFeed:pbFeed];
-        }
 
     }];
 }

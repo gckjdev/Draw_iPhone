@@ -81,10 +81,18 @@
 #define SELECT_WORD_CLICK_TYPE_MORE_CUSTOM_WORDS    @"MORE_CUSTOM_WORDS"
 
 
-#define DRAW_CLICK                          @"DRAW_CLICK"
-#define DRAW_CLICK_PEN                      @"DRAW_CLICK_PEN"
-#define DRAW_CLICK_MORE_COLOR               @"DRAW_CLICK_MORE_COLOR"
-
+#define DRAW_CLICK                                  @"DRAW_CLICK"
+#define DRAW_CLICK_PEN                              @"DRAW_CLICK_PEN"
+#define DRAW_CLICK_COLOR_BOX                        @"DRAW_CLICK_COLOR_BOX"
+#define DRAW_CLICK_PALETTE                          @"DRAW_CLICK_PALETTE"
+#define DRAW_CLICK_ERASER                           @"DRAW_CLICK_ERASER"
+#define DRAW_CLICK_PAINT_BUCKET                     @"DRAW_CLICK_PAINT_BUCKET"
+#define DRAW_CLICK_WIDTH                            @"DRAW_CLICK_WIDTH"
+#define DRAW_CLICK_ALPHA                            @"DRAW_CLICK_ALPHA"
+#define DRAW_CLICK_REDO                             @"DRAW_CLICK_REDO"
+#define DRAW_CLICK_UNDO                             @"DRAW_CLICK_UNDO"
+#define DRAW_CLICK_CHAT                             @"DRAW_CLICK_CHAT"
+#define DRAW_CLICK_DRAFT                            @"DRAW_CLICK_DRAFT"
 
 @interface AnalyticsManager : NSObject
 

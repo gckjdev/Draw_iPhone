@@ -222,7 +222,6 @@ enum{
     CommentCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [CommentCell createCell:self];
-        cell.superViewController = self;
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     CommentFeed *feed = [self.dataList objectAtIndex:row];
@@ -438,12 +437,16 @@ enum{
     [self updateActionButtons];
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    PPDebug(@"<ShowFeedController> retain count = %d",[self retainCount]);
+}
 
 #pragma mark - feed service delegate
 
 - (void)didGetFeedCommentList:(NSArray *)feedList 
-                       opusId:(NSString *)opusId 
+                       opusId:(NSString *)opusId
                          type:(int)type
                    resultCode:(NSInteger)resultCode
                        offset:(int)offset
@@ -620,6 +623,10 @@ enum{
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
     [self presentModalViewController:replyController animated:YES];
     [replyController release];
+}
+- (void)didClickAvatar:(MyFriend *)myFriend
+{
+    [DrawUserInfoView showFriend:myFriend infoInView:self needUpdate:YES];
 }
 
 #pragma mark draw data service delegate

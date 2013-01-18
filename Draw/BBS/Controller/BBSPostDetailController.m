@@ -335,6 +335,7 @@ typedef enum{
                     [_header clickComment:_header.comment];
                 }
             }
+            [_header updateViewWithPost:self.post];
             return _header;
         }
         default:
