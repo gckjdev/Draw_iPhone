@@ -155,6 +155,22 @@
     CGContextStrokePath(context);
 }
 
+
+- (CGRect)strokePaint1:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
+{
+    if (clear) {
+        CGRect drawBox = self.bounds;
+        CGContextClearRect(context, drawBox);
+    }
+    CGPathRef path = paint.path;
+    CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width];
+    CGContextAddPath(context, path);
+    CGContextStrokePath(context);
+    
+    return rect;
+}
+
+
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width inContext:(CGContextRef)context
 {
     CGContextSetLineWidth(context, width);

@@ -45,8 +45,18 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 - (CGRect)rectForPath
-{    
+{
     return [DrawUtils rectForPath1:_path path2:_pathToShow withWidth:self.width];
+}
+
+- (void)clearPath
+{
+    if (_path != NULL){
+        CGPathRelease(_path);
+        _path = NULL;
+    }
+    
+    [self releasePathToShow];
 }
 
 - (void)constructPath
