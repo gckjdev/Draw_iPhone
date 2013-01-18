@@ -1221,10 +1221,10 @@
 "kCardTypeUnknow" = "未知";
 
 "kRemainTime" = "%02d:%02d";
-"kRemainTimes" = "今日剩余次數:%d";
-"kWaitForMoneyTreeGrowUp" = "等待金錢樹長大...";
-"kWaitForMoneyTreeAward" = "等待金錢樹結果...";
-"kClickMoneyTreeToGetAward" = "點擊金錢樹領取獎勵";
+"kRemainTimes" = "(今日剩余次數:%d)";
+"kWaitForMoneyTreeGrowUp" = "我快長大啦...";
+"kWaitForMoneyTreeAward" = "我快結果啦...";
+"kClickMoneyTreeToGetAward" = "快來收獲吧";
 "kMoneyTreeAwardEnd" = "今天的獎勵已經領取完了,歡迎明天再來!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "詐金花";

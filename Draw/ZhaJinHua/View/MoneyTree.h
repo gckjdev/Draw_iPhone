@@ -17,18 +17,18 @@
 // 点击树时，如果树还没有金币的时候回调
 - (void)moneyTreeNoCoin:(MoneyTree*)tree;
 
-// 
+// 点击树时，如果树上有金币的时候回调
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
 
-//
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
 
-// 时回调
+// 树长大的回调
 - (void)treeDidMature:(MoneyTree*)tree;
 
 // 长满金币时回调
 - (void)treeFullCoins:(MoneyTree*)tree;
 
+// 倒计时回调
 - (void)treeUpdateRemainSeconds:(int)seconds
                      toFullCoin:(MoneyTree*)tree;
 
@@ -47,11 +47,12 @@
 @property (assign, nonatomic) CFTimeInterval gainTime;
 @property (assign, nonatomic) BOOL isMature;
 @property (assign, nonatomic) id<MoneyTreeDelegate> delegate;
-@property (assign, nonatomic) NSInteger coinsOnTree;
+@property (assign, nonatomic, readonly) NSInteger coinsOnTree;
 @property (assign, nonatomic) NSInteger coinValue;
 
 - (void)startGrow;
 - (void)kill;
 - (CFTimeInterval)remainTimeToFullCoin;
+- (CFTimeInterval)totalTime;
 
 @end

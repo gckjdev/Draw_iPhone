@@ -1227,10 +1227,10 @@
 "kCardTypeUnknow" = "未知";
 
 "kRemainTime" = "%02d:%02d";
-"kRemainTimes" = "今日剩余次数:%d";
-"kWaitForMoneyTreeGrowUp" = "等待金钱树长大...";
-"kWaitForMoneyTreeAward" = "等待金钱树结果...";
-"kClickMoneyTreeToGetAward" = "点击金钱树获取奖励";
+"kRemainTimes" = "(今日剩余次数:%d)";
+"kWaitForMoneyTreeGrowUp" = "我快长大啦...";
+"kWaitForMoneyTreeAward" = "我快结果啦...";
+"kClickMoneyTreeToGetAward" = "快来收获吧";
 "kMoneyTreeAwardEnd" = "今天的奖励已经领取完了,欢迎明天再来!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "诈金花";

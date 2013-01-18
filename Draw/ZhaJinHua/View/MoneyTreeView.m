@@ -153,6 +153,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 {
     [self popupRemainTimeMessage];
 }
+
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
     [[AudioManager defaultManager] playSoundByURL:[ZJHSoundManager defaultManager].betSoundEffect];
