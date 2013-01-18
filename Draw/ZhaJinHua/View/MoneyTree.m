@@ -23,7 +23,7 @@
 - (void)dealloc
 {
     _delegate = nil;
-    [self killTimer];
+    [self killAllTimer];
     [_rewardCoinLabel release];
     [_rewardView release];
     [_rewardCoinView release];
@@ -33,7 +33,7 @@
 
 - (void)removeFromSuperview
 {
-    [self killTimer];
+    [self killAllTimer];
     self.delegate = nil;
 }
 
@@ -107,7 +107,7 @@
     self.coinsOnTree ++;
     CGPoint coinPos = CGPointMake(self.frame.size.width*0.75, self.frame.size.height/2);
     [self addCoinAtPosition:coinPos];
-    [self killTimer];
+    [self killTimer:_treeTimer];
     [self startGrowCoinTimer:self.gainTime selector:@selector(showTwoCoin)];
 }
 
@@ -135,15 +135,21 @@
     }
 }
 
-- (void)killTimer
+- (void)killTimer:(NSTimer*)timer
 {
-    if (_treeTimer) {
-        if ([_treeTimer isValid]) {
-            [_treeTimer invalidate];
-            [_treeTimer release];
+    if (timer) {
+        if ([timer isValid]) {
+            [timer invalidate];
         }
-        _treeTimer = nil;
+        [timer release];
+        timer = nil;
     }
+}
+
+- (void)killAllTimer
+{
+    [self killTimer:_treeTimer];
+    [self killTimer:_treeUpdateTimer];
 }
 
 - (void)mature
@@ -206,26 +212,50 @@
     [_treeTimer retain];
 }
 
+- (void)startTreeUpdateTimer:(CFTimeInterval)remainTime
+{
+    [self killTimer:_treeUpdateTimer];
+    _treeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:remainTime target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    [_treeUpdateTimer retain];
+}
+
+- (void)update:(id)sender
+{
+    _remainTime --;
+    if (_remainTime < 0) {
+        //        [self popupMatureMessage];
+        [self killTimer:_treeUpdateTimer];
+        return;
+    }
+    if (_delegate && [_delegate respondsToSelector:@selector(treeUpdateRemainSeconds:toFullCoin:)]) {
+        [_delegate treeUpdateRemainSeconds:_remainTime toFullCoin:self];
+    }
+}
+
+
 - (void)startGrow
 {
     PPDebug(@"<MoneyTree> tree start grow up");
-    [self killTimer];
+    [self killAllTimer];
     [self setIsMature:NO];
     [self startGrowthTimer:self.growthTime];
+    
+    _remainTime = self.growthTime + self.gainTime * MAX_COINS_ON_TREE;
+    [self startTreeUpdateTimer:_remainTime];
     
 }
 
 - (void)startGrowCoin
 {
     PPDebug(@"<MoneyTree> tree start grow coin");
-    [self killTimer];
+    [self killTimer:_treeTimer];
     [self startGrowCoinTimer:self.gainTime selector:@selector(showOneCoin)];
 }
 
 
 - (void)kill
 {
-    [self killTimer];
+    [self killAllTimer];
     
 }
 
@@ -292,10 +322,11 @@
 //        [self showCoinsDrops];
         [self gain];
         [self startGrowCoin];
+        [self startTreeUpdateTimer:self.gainTime*MAX_COINS_ON_TREE];
 
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {
-            [_delegate moneyTreeNotMature:self];
+            [_delegate moneyTreeNoCoin:self];
         }
     }
 }
@@ -313,6 +344,11 @@
     }
 }
 
+- (CFTimeInterval)remainTimeToFullCoin
+{
+    return _remainTime;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -322,25 +358,25 @@
 }
 */
 
-- (void)moneyTreeNotMature:(MoneyTree*)tree;
-{
-    
-}
-
-- (void)getMoney:(int)money fromTree:(MoneyTree*)tree
-{
-    
-}
-
-- (void)coinDidRaiseUp:(MoneyTree*)tree
-{
-    
-}
-
-- (void)treeDidMature:(MoneyTree*)tree
-{
-    
-}
+//- (void)moneyTreeNotMature:(MoneyTree*)tree;
+//{
+//    
+//}
+//
+//- (void)getMoney:(int)money fromTree:(MoneyTree*)tree
+//{
+//    
+//}
+//
+//- (void)coinDidRaiseUp:(MoneyTree*)tree
+//{
+//    
+//}
+//
+//- (void)treeDidMature:(MoneyTree*)tree
+//{
+//    
+//}
 
 
 @end

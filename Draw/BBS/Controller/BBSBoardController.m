@@ -290,6 +290,8 @@
     [self setBadge:nil];
     [self setTitleLabel:nil];
     [self setBgImageView:nil];
+//    [[BBSManager defaultManager] setBoardList:nil];
+//    [[[BBSManager defaultManager] boardDict] removeAllObjects];
     [super viewDidUnload];
 }
 

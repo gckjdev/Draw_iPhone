@@ -39,7 +39,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 - (void)showInView:(UIView *)view
 {
     self.frame = CGRectMake(0, 0, view.bounds.size.width, view.bounds.size.height);
-    [self popupNotMatureMessage];
+    if(self.isAlwaysShowMessage) [self popupRemainTimeMessage];
     [view addSubview:self];
 }
 
@@ -49,7 +49,7 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
     [self popupMessage];
 }
 
-- (void)popupNotMatureMessage
+- (void)popupRemainTimeMessage
 {
     [self popupMessage];
 }
@@ -149,9 +149,9 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 }
 
 #pragma mark - money tree delegate
-- (void)moneyTreeNotMature:(MoneyTree*)tree
+- (void)moneyTreeNoCoin:(MoneyTree*)tree
 {
-    [self popupNotMatureMessage];
+    [self popupRemainTimeMessage];
 }
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree
 {
@@ -179,9 +179,11 @@ AUTO_CREATE_VIEW_BY_XIB(MoneyTreeView)
 
 - (void)treeFullCoins:(MoneyTree *)tree
 {
-    [self popupMatureMessage];
+    [self popupRemainTimeMessage];
     if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeFullCoins:)]) {
         [_delegate moneyTreeFullCoins:self];
     }
 }
+
+
 @end

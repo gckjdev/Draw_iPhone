@@ -100,10 +100,11 @@
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
     [self setTitleLabel:nil];
     [self setNoDataTipLabl:nil];
     [_tabManager cleanData];
+    [super viewDidUnload];
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
