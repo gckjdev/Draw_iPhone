@@ -163,7 +163,7 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 - (UIImage *)bbsRewardActionBGImage{
-    return [_resService stretchableImageWithImageName:@"bbs_post_content_bg"
+    return [_resService stretchableImageWithImageName:@"bbs_reward_action_content_bg"
                                     inResourcePackage:RESOURCE_PACKAGE_BBS];
     
 }
