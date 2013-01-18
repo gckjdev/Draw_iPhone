@@ -29,10 +29,10 @@
 {
     _delegate = nil;
     [self killAllTimer];
-    [_rewardCoinLabel release];
-    [_rewardView release];
-    [_rewardCoinView release];
-    [_layerQueue release];
+    PPRelease(_rewardCoinLabel);
+    PPRelease(_rewardView);
+    PPRelease(_rewardCoinView);
+    PPRelease(_layerQueue);
     [super dealloc];
 }
 
@@ -146,9 +146,9 @@
         if ([timer isValid]) {
             [timer invalidate];
         }
-        [timer release];
-        timer = nil;
+        PPRelease(timer);
     }
+    timer = nil;
 }
 
 - (void)killAllTimer
@@ -228,9 +228,9 @@
 - (void)update:(id)sender
 {
     _remainTime --;
-    if (_remainTime < 0) {
+    if (_remainTime <= 0) {
         //        [self popupMatureMessage];
-        [self killTimer:_treeUpdateTimer];
+        [_treeUpdateTimer invalidate];
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(treeUpdateRemainSeconds:toFullCoin:)]) {
@@ -297,7 +297,7 @@
                      }
                      completion: ^(BOOL finished){
                          //PPDebug(@"dismiss finish");
-                         _rewardView.hidden = YES;
+//                         if (_rewardView) _rewardView.hidden = YES;
                          //code that runs when this animation finishes
                      }
      ];
