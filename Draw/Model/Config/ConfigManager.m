@@ -120,10 +120,12 @@
     return ISIPAD ? (value * 2) : value;
 }
 
+/*
 + (int)getGuessRewardNormal
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_GUESS_1" defaultValue:3];
 }
+*/
 
 + (NSString*)getChannelId
 {
@@ -603,6 +605,26 @@
     [defaults synchronize];
 }
 
+
++ (int)offlineGuessAwardScore
+{
+    return [MobClickUtils getIntValueByKey:@"GUESS_WORD_SCORE" defaultValue:3];
+}
+
++ (int)offlineDrawMyWordScore
+{
+    return [MobClickUtils getIntValueByKey:@"DRAW_MY_WORD_SCORE" defaultValue:2];
+}
+
++ (int)offlineDrawSystemWordScore
+{
+    return [MobClickUtils getIntValueByKey:@"DRAW_SYSTEM_WORD_SCORE" defaultValue:2];
+}
+
++ (int)offlineDrawHotWordScore
+{
+    return [MobClickUtils getIntValueByKey:@"DRAW_HOT_WORD_SCORE" defaultValue:5];
+}
 
 
 

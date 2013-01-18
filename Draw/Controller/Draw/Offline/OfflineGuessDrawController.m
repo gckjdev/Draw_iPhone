@@ -673,8 +673,9 @@
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
         [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
         [self setWordButtonsEnabled:NO];
-    
-        NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
+
+        // rem by Benson
+        // NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
         
         UIImage *image = self.feed.largeImage;
         if (image == nil) {
@@ -688,11 +689,12 @@
             */
         }
         
+        int guessScore = [ConfigManager offlineGuessAwardScore];
         ResultController *result = [[ResultController alloc] initWithImage:image
                                                                 drawUserId:_draw.userId
                                                           drawUserNickName:_draw.nickName
                                                                   wordText:_draw.word.text
-                                                                     score:score
+                                                                     score:guessScore
                                                                    correct:YES
                                                                  isMyPaint:NO
                                                             drawActionList:_draw.drawActionList
@@ -700,7 +702,12 @@
                                                                      scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
         
         //send http request.
-        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_draw.userId isCorrect:YES score:score delegate:nil];
+        [[DrawDataService defaultService] guessDraw:_guessWords
+                                             opusId:_opusId
+                                     opusCreatorUid:_draw.userId
+                                          isCorrect:YES
+                                              score:_draw.word.score
+                                           delegate:nil];
         [self updateFeed:YES];
         
         //store locally.

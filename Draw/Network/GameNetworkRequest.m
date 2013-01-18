@@ -1520,7 +1520,10 @@
             
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
+
+        // add by XiaoTao, used to differentiate with old interface
         str = [str stringByAddQueryParameter:PARA_WORD_SCORE intValue:score];
+        
         if (isCorrect) {
             str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];            
         }
