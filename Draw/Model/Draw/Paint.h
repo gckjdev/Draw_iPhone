@@ -61,6 +61,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
 - (CGMutablePathRef)getPathForShow;
 - (CGRect)rectForPath;
 
+- (void)clearPath;
 - (void)releasePathToShow;
 
 @end

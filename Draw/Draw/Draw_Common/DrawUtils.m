@@ -272,10 +272,10 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width
 {
     CGRect rect = CGPathGetBoundingBox(path);
-    rect.origin.x = (NSInteger)(rect.origin.x - width) - 1;
-    rect.origin.y = (NSInteger)(rect.origin.y - width) - 1;;
-    rect.size.width = (NSInteger)(rect.size.width + width * 2) + 2;
-    rect.size.height = (NSInteger)(rect.size.height + width * 2) + 2;
+    rect.origin.x = (NSInteger)(rect.origin.x - width * 4) - 1;
+    rect.origin.y = (NSInteger)(rect.origin.y - width * 4) - 1;;
+    rect.size.width = (NSInteger)(rect.size.width + width * 8) + 2;
+    rect.size.height = (NSInteger)(rect.size.height + width * 8) + 2;
     
     PPDebug(@"rect=%@", NSStringFromCGRect(rect));
     
