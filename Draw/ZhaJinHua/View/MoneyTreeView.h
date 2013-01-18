@@ -35,10 +35,13 @@
 @property (assign, nonatomic) id<MoneyTreeViewDelegate> delegate;
 @property (assign, nonatomic) BOOL isAlwaysShowMessage;
 
+
+
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;
 
 - (void)startGrowing;
 - (void)killMoneyTree;
+- (CFTimeInterval)totalTime;
 
 @end
