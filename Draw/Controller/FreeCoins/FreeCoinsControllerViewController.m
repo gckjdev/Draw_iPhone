@@ -126,6 +126,8 @@
     self.moneyTree.hidden = !enabled;
     self.noteLabel.hidden = !enabled;
     self.remainTimesLabel.hidden = !enabled;
+    self.timeLabel.hidden = !enabled;
+    self.noteBgImageView.hidden = !enabled;
     self.cannotGetFreeCoinsImageView.hidden = enabled;
     self.cannotGetFreeCoinsLabel.hidden = enabled;
 }
@@ -148,6 +150,7 @@
     [_cannotGetFreeCoinsLabel release];
     [_timeLabel release];
     [_moneyTree release];
+    [_noteBgImageView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -161,6 +164,7 @@
     [self setCannotGetFreeCoinsLabel:nil];
     [self setTimeLabel:nil];
     [self setMoneyTree:nil];
+    [self setNoteBgImageView:nil];
     [super viewDidUnload];
 }
 

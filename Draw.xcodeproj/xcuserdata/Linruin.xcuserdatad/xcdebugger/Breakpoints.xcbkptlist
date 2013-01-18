@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Controller/FreeCoins/FreeCoinsControllerViewController.m"
-         timestampString = "380177912.58178"
+         timestampString = "380180526.18566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "208"
-         endingLineNumber = "208"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
          landmarkName = "-moneyTreeNoCoin:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Controller/FreeCoins/FreeCoinsControllerViewController.m"
-         timestampString = "380177914.075629"
+         timestampString = "380180526.18566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
+         startingLineNumber = "218"
+         endingLineNumber = "218"
          landmarkName = "-getMoney:fromTree:"
          landmarkType = "5">
       </FileBreakpoint>

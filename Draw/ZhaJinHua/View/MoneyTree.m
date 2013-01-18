@@ -230,7 +230,7 @@
     _remainTime --;
     if (_remainTime < 0) {
         //        [self popupMatureMessage];
-        [self killTimer:_treeUpdateTimer];
+        [_treeTimer invalidate];
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(treeUpdateRemainSeconds:toFullCoin:)]) {

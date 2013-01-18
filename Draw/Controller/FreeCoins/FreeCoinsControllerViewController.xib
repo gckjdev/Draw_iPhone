@@ -52,7 +52,7 @@
 							<string key="NSResourceName">new_wood_bg@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="46792442">
+					<object class="IBUIImageView" id="630897732">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{-5, -1}, {331, 46}}</string>
@@ -270,13 +270,13 @@
 									<string key="NSResourceName">wood_paper_big@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="231327976">
+							<object class="IBUIImageView" id="77620586">
 								<reference key="NSNextResponder" ref="204847353"/>
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{113, 169}, {53, 23}}</string>
 								<reference key="NSSuperview" ref="204847353"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="208282277"/>
+								<reference key="NSNextKeyView" ref="130564481"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -285,7 +285,7 @@
 									<string key="NSResourceName">free_coins_remain_time_bg@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="555617782">
+							<object class="IBUIImageView" id="1037183359">
 								<reference key="NSNextResponder" ref="204847353"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{129, 76.5}, {90, 45}}</string>
@@ -300,7 +300,7 @@
 									<string key="NSResourceName">money_tree_note_bg@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUILabel" id="208282277">
+							<object class="IBUILabel" id="130564481">
 								<reference key="NSNextResponder" ref="204847353"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{114, 168.5}, {53, 20}}</string>
@@ -374,7 +374,7 @@
 								<string key="NSFrame">{{117.5, 111.5}, {44, 52}}</string>
 								<reference key="NSSuperview" ref="204847353"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="231327976"/>
+								<reference key="NSNextKeyView" ref="77620586"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -392,10 +392,10 @@
 							<object class="IBUILabel" id="689213455">
 								<reference key="NSNextResponder" ref="204847353"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{71, 89}, {155, 81}}</string>
+								<string key="NSFrame">{{72, 89}, {155, 81}}</string>
 								<reference key="NSSuperview" ref="204847353"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="555617782"/>
+								<reference key="NSNextKeyView" ref="1037183359"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -440,7 +440,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="46792442"/>
+				<reference key="NSNextKeyView" ref="630897732"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -531,7 +531,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">timeLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="208282277"/>
+						<reference key="destination" ref="130564481"/>
 					</object>
 					<int key="connectionID">48</int>
 				</object>
@@ -542,6 +542,14 @@
 						<reference key="destination" ref="934846738"/>
 					</object>
 					<int key="connectionID">52</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">noteBgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1037183359"/>
+					</object>
+					<int key="connectionID">53</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -589,7 +597,7 @@
 							<reference ref="605042601"/>
 							<reference ref="740719788"/>
 							<reference ref="983879359"/>
-							<reference ref="46792442"/>
+							<reference ref="630897732"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -625,10 +633,10 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="52431629"/>
 							<reference ref="934846738"/>
-							<reference ref="208282277"/>
-							<reference ref="231327976"/>
+							<reference ref="130564481"/>
+							<reference ref="77620586"/>
 							<reference ref="242976489"/>
-							<reference ref="555617782"/>
+							<reference ref="1037183359"/>
 							<reference ref="689213455"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
@@ -693,22 +701,22 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="208282277"/>
+						<reference key="object" ref="130564481"/>
 						<reference key="parent" ref="204847353"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">49</int>
-						<reference key="object" ref="46792442"/>
+						<reference key="object" ref="630897732"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">50</int>
-						<reference key="object" ref="231327976"/>
+						<reference key="object" ref="77620586"/>
 						<reference key="parent" ref="204847353"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="555617782"/>
+						<reference key="object" ref="1037183359"/>
 						<reference key="parent" ref="204847353"/>
 					</object>
 				</array>
@@ -744,37 +752,13 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">52</int>
+			<int key="maxID">53</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">FreeCoinsControllerViewController</string>
 					<string key="superclassName">PPViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickBackButton:">id</string>
-						<string key="clickDownloadAppsButton:">id</string>
-						<string key="clickHelpButton:">id</string>
-						<string key="clickWatchVideoButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickBackButton:">
-							<string key="name">clickBackButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickDownloadAppsButton:">
-							<string key="name">clickDownloadAppsButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickHelpButton:">
-							<string key="name">clickHelpButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickWatchVideoButton:">
-							<string key="name">clickWatchVideoButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="cannotGetFreeCoinsImageView">UIImageView</string>
 						<string key="cannotGetFreeCoinsLabel">UILabel</string>
@@ -782,6 +766,7 @@
 						<string key="lmWallBtnHolderView">UIView</string>
 						<string key="moneyTree">MoneyTree</string>
 						<string key="moneyTreeHolderView">UIView</string>
+						<string key="noteBgImageView">UIImageView</string>
 						<string key="noteLabel">UILabel</string>
 						<string key="remainTimesLabel">UILabel</string>
 						<string key="timeLabel">UILabel</string>
@@ -811,6 +796,10 @@
 						<object class="IBToOneOutletInfo" key="moneyTreeHolderView">
 							<string key="name">moneyTreeHolderView</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="noteBgImageView">
+							<string key="name">noteBgImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="noteLabel">
 							<string key="name">noteLabel</string>

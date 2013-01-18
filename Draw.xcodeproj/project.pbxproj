@@ -327,6 +327,15 @@
 		A4FA550216A8FA3B001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
 		A4FA550316A8FA3B001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
 		A4FA550416A8FA3B001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
+		A4FA551F16A919A5001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
+		A4FA552016A919A5001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
+		A4FA552116A919A5001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
+		A4FA552216A919A6001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
+		A4FA552316A919A6001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
+		A4FA552416A919A6001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
+		A4FA552516A919A7001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
+		A4FA552616A919A7001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
+		A4FA552716A919A7001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -17729,6 +17738,9 @@
 				CAA3E16316A8200200E779C9 /* pen_mark@2x.png in Resources */,
 				CAA3E16716A8200200E779C9 /* pen_pencil@2x.png in Resources */,
 				CA335D5416A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
+				A4FA552216A919A6001883CC /* free_coins_remain_time_bg@2x.png in Resources */,
+				A4FA552316A919A6001883CC /* free_coins_title_bg@2x.png in Resources */,
+				A4FA552416A919A6001883CC /* money_tree_note_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18527,6 +18539,9 @@
 				CAA3E16416A8200200E779C9 /* pen_mark@2x.png in Resources */,
 				CAA3E16816A8200200E779C9 /* pen_pencil@2x.png in Resources */,
 				CA335D5516A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
+				A4FA552516A919A7001883CC /* free_coins_remain_time_bg@2x.png in Resources */,
+				A4FA552616A919A7001883CC /* free_coins_title_bg@2x.png in Resources */,
+				A4FA552716A919A7001883CC /* money_tree_note_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20082,6 +20097,9 @@
 				CAA3E16216A8200200E779C9 /* pen_mark@2x.png in Resources */,
 				CAA3E16616A8200200E779C9 /* pen_pencil@2x.png in Resources */,
 				CA335D5316A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
+				A4FA551F16A919A5001883CC /* free_coins_remain_time_bg@2x.png in Resources */,
+				A4FA552016A919A5001883CC /* free_coins_title_bg@2x.png in Resources */,
+				A4FA552116A919A5001883CC /* money_tree_note_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
