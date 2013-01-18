@@ -15,7 +15,7 @@
 @optional
 
 // 点击树时，如果树还没有金币的时候回调
-- (void)moneyTreeNotMature:(MoneyTree*)tree;
+- (void)moneyTreeNoCoin:(MoneyTree*)tree;
 
 // 
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;

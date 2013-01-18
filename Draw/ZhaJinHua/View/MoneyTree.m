@@ -326,7 +326,7 @@
 
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(moneyTreeNotMature:)]) {
-            [_delegate moneyTreeNotMature:self];
+            [_delegate moneyTreeNoCoin:self];
         }
     }
 }
