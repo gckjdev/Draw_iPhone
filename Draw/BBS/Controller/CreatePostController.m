@@ -373,6 +373,7 @@
     [self.imagePicker setAutoRoundRect:NO];
     [self.imagePicker setImageSize:CGSizeMake(0, 0)];
     [self.imagePicker showSelectionView:self];
+    [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {
     if (self.image) {
@@ -461,6 +462,7 @@ int *getRewardBonusList()
     }
     self.image = image;
     [self updateToolButtons];
+    [self.textView becomeFirstResponder];
 }
 
 - (void)alertError:(NSInteger)errorCode

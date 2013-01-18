@@ -18,7 +18,7 @@
 #define MESSAGESTAT_DIR @"message_stat"
 #define MESSAGESTAT_KEY @"message_stat.dat"
 
-#define MESSAGE_STAT_MAX_COUNT 40
+
 #define MESSAGE_MAX_COUNT 20
 
 + (StorageManager *)messageStorageManager

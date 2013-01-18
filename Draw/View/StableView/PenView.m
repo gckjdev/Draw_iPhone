@@ -49,34 +49,24 @@
     return VIEW_WDITH;
 }
 
-- (BOOL)isRightDownRotate
-{
-    if (self.penType == Pencil || self.penType == WaterPen || self.penType == Eraser) {
-        return NO;
-    }
-    return YES;
-}
-- (BOOL)isDefaultPen
-{
-    return self.penType == Pencil;
-}
+
 - (UIImage *)penImageForType:(ItemType)type
 {
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (type) {
         case Pen:
-            return [UIImage imageNamed:@"pen-brush"];//[imageManager penImage];
+            return imageManager.showBrushPenImage;
         case Quill:
-            return [UIImage imageNamed:@"pen-feather"];//[imageManager quillImage];
+            return imageManager.showFeatherPenImage;
         case WaterPen:
-            return [UIImage imageNamed:@"pen-star"];//[imageManager waterPenImage];
+            return imageManager.showMarkPenImage;
         case IcePen:
-            return [UIImage imageNamed:@"pen-sugar"];//[imageManager iceImage];
+            return imageManager.showIcePenImage;
         case Eraser:
-            return [imageManager eraserImage];            
+            return imageManager.showEraserImage;
         case Pencil:
             default:
-            return [UIImage imageNamed:@"pen-feather"];//[imageManager pencilImage];
+            return imageManager.showPencilPenImage;
     }
     
 }
@@ -93,10 +83,10 @@
     UIImage *image = [self penImageForType:penType];
     [self setBackgroundImage:image forState:UIControlStateNormal];
     
-    BOOL hasBought = _penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:_penType amount:1];
-    if (!hasBought) {
-        [self setAlpha:1.0];
-    }
+//    BOOL hasBought = _penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:_penType amount:1];
+//    if (!hasBought) {
+//        [self setAlpha:1.0];
+//    }
     
 }
 

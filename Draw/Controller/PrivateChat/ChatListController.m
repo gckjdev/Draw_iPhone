@@ -321,7 +321,7 @@
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 20;
+    return MESSAGE_STAT_MAX_COUNT;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

@@ -278,7 +278,8 @@ typedef enum{
     return;
 }
 
-- (void)weixinActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)weixinActionSheet:(UIActionSheet *)actionSheet
+     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case FromWeixinOptionShareOpus: {
@@ -293,6 +294,53 @@ typedef enum{
     }
 }
 
+- (void)imageActionSheet:(UIActionSheet *)actionSheet
+    clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    MyPaint* currentPaint = _selectedPaint;
+    
+    if (buttonIndex == SHARE_AS_PHOTO) {
+        self.shareAction = [[[ShareAction alloc]
+                             initWithDrawImageFile:currentPaint.imageFilePath
+                             isGIF:NO
+                             drawWord:currentPaint.drawWord
+                             drawUserId:currentPaint.drawUserId] autorelease];
+        
+        [_shareAction displayWithViewController:self];
+    }
+    else if (buttonIndex == SHARE_AS_GIF)
+    {
+        [self shareAsGif];
+    }
+    else if (buttonIndex == REPLAY){
+        ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
+        [self.navigationController pushViewController:replayController animated:YES];
+        [replayController release];
+    }
+    else if (buttonIndex ==  DELETE) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        
+        dialog.tag = DELETE;
+        
+        [dialog showInView:self.view];
+    }
+    else if (buttonIndex == DELETE_ALL){
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        dialog.tag = DELETE_ALL;
+        [dialog showInView:self.view];
+    }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
+        OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+        [self.navigationController pushViewController:od animated:YES];
+        [od release];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -302,48 +350,11 @@ typedef enum{
         [self weixinActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
         return;
     }
-    MyPaint* currentPaint = _selectedPaint;
-    
-    if (buttonIndex == SHARE_AS_PHOTO) {                        
-        self.shareAction = [[[ShareAction alloc]
-                             initWithDrawImageFile:currentPaint.imageFilePath
-                             isGIF:NO
-                             drawWord:currentPaint.drawWord
-                             drawUserId:currentPaint.drawUserId] autorelease];
-            
-        [_shareAction displayWithViewController:self];                       
+    if (actionSheet.tag == IMAGE_OPTION) {
+        [self imageActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+        return;
     }
-    else if (buttonIndex == SHARE_AS_GIF)
-    {
-        [self shareAsGif];
-    }
-    else if (buttonIndex == REPLAY){                                        
-        ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
-        [self.navigationController pushViewController:replayController animated:YES];
-        [replayController release];            
-    }
-    else if (buttonIndex ==  DELETE) {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
-                                                           message:NSLS(@"kAre_you_sure") 
-                                                             style:CommonDialogStyleDoubleButton 
-                                                         delegate:self];  
-        
-        dialog.tag = DELETE;
-        
-        [dialog showInView:self.view];
-    }
-    else if (buttonIndex == DELETE_ALL){
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
-                                                           message:NSLS(@"kAre_you_sure") 
-                                                             style:CommonDialogStyleDoubleButton 
-                                                         delegate:self];            
-        dialog.tag = DELETE_ALL;
-        [dialog showInView:self.view];        
-    }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
-        OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-        [self.navigationController pushViewController:od animated:YES];
-        [od release];
-    }
+   
     
 }
 

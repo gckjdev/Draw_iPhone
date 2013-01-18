@@ -49,6 +49,8 @@
 }
 
 #define VALUE(x) (ISIPAD ? 2*x : x)
+#define SHOWPEN_WIDTH VALUE(31)
+#define SHOWPEN_HEIGHT VALUE(36.5)
 
 - (void)movePen
 {
@@ -66,8 +68,12 @@
             }
             CGPoint point = [_currentAction.paint pointAtIndex:_playingPointIndex];
             
-//            cg
-            CGRect rect = CGRectMake(point.x, point.y-VALUE(55.5), VALUE(35.5), VALUE(56));
+            CGRect rect = CGRectZero;
+            if (pen.penType != Eraser) {
+                rect = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            }else{
+                rect = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            }
             pen.frame = [pen.superview convertRect:rect fromView:self];
         }
     
@@ -267,14 +273,19 @@
     }
 }
 
+- (void)callDidDrawPaintDelegate
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
+        [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
+    }    
+    if(_playingActionIndex >= [self.drawActionList count]-1 && self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
+        [self.delegate didPlayDrawView:self];
+    }
+}
+
 - (void)playCurrentFrame
 {
     [self updateTempPaint];
-    
-    PPDebug(@"====<playCurrentFrame>(actionIndex: %d, total Point: %d, pointIndex: %d, tempPaint count: %d)====",_playingActionIndex,_currentAction.pointCount, _playingPointIndex, self.tempPaint.pointCount);
-    if (_playingActionIndex == 139 && _playingPointIndex == 0) {
-        PPDebug(@"debug point!");
-    }
     if (self.status == Playing) {
         if (self.tempPaint) {
             CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width];
@@ -282,6 +293,8 @@
                 self.tempPaint = nil;
                 [self drawAction:_currentAction inContext:showContext];
                 [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
+                [self callDidDrawPaintDelegate];
+                
             }else
             {
                 [self setStrokeColor:self.tempPaint.color lineWidth:self.tempPaint.width inContext:cacheContext];
@@ -357,7 +370,6 @@
 
 - (void)setPressEnable:(BOOL)enable
 {
-
     self.userInteractionEnabled = enable;
     PPDebug(@"gesture recognizer count = %d",[self.gestureRecognizers count]);
     if (enable == YES ) {
