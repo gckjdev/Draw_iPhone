@@ -127,6 +127,7 @@
     PPRelease(_centerUpTotalBet);
     PPRelease(_centerUpAvatar);
     PPRelease(_chatView);
+    PPRelease(_moneyTreeHolder);
     [super dealloc];
 }
 

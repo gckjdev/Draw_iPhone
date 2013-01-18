@@ -17,6 +17,11 @@
 #define EARN_COIN_EACH_LEVEL (50)
 #define COIN_RADIUS ([DeviceDetection isIPAD]?28:14)
 
+@interface MoneyTree()
+@property (assign, nonatomic, readwrite) NSInteger coinsOnTree;
+
+@end
+
 @implementation MoneyTree
 @synthesize isMature = _isMature;
 
@@ -24,10 +29,10 @@
 {
     _delegate = nil;
     [self killAllTimer];
-    [_rewardCoinLabel release];
-    [_rewardView release];
-    [_rewardCoinView release];
-    [_layerQueue release];
+    PPRelease(_rewardCoinLabel);
+    PPRelease(_rewardView);
+    PPRelease(_rewardCoinView);
+    PPRelease(_layerQueue);
     [super dealloc];
 }
 
@@ -141,9 +146,9 @@
         if ([timer isValid]) {
             [timer invalidate];
         }
-        [timer release];
-        timer = nil;
+        PPRelease(timer);
     }
+    timer = nil;
 }
 
 - (void)killAllTimer
@@ -215,16 +220,17 @@
 - (void)startTreeUpdateTimer:(CFTimeInterval)remainTime
 {
     [self killTimer:_treeUpdateTimer];
-    _treeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:remainTime target:self selector:@selector(update:) userInfo:nil repeats:YES];
+    _remainTime = remainTime;
+    _treeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(update:) userInfo:nil repeats:YES];
     [_treeUpdateTimer retain];
 }
 
 - (void)update:(id)sender
 {
     _remainTime --;
-    if (_remainTime < 0) {
+    if (_remainTime <= 0) {
         //        [self popupMatureMessage];
-        [self killTimer:_treeUpdateTimer];
+        [_treeUpdateTimer invalidate];
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(treeUpdateRemainSeconds:toFullCoin:)]) {
@@ -291,7 +297,7 @@
                      }
                      completion: ^(BOOL finished){
                          //PPDebug(@"dismiss finish");
-                         _rewardView.hidden = YES;
+//                         if (_rewardView) _rewardView.hidden = YES;
                          //code that runs when this animation finishes
                      }
      ];
@@ -349,6 +355,10 @@
     return _remainTime;
 }
 
+- (CFTimeInterval)totalTime
+{
+    return MAX_COINS_ON_TREE * _gainTime + _growthTime;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

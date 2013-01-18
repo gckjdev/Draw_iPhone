@@ -68,6 +68,8 @@ typedef enum{
 
 - (void)dealloc
 {
+    _drawCell.delegate = nil;
+    _userCell.delegate = nil;
     _feed.drawData = nil;
     _feed.pbDraw = nil;
     PPRelease(_feed);
