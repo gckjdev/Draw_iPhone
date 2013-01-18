@@ -357,7 +357,7 @@
 
 - (CFTimeInterval)totalTime
 {
-    return _coinsOnTree * _gainTime + _growthTime;
+    return MAX_COINS_ON_TREE * _gainTime + _growthTime;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -22,5 +22,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *cannotGetFreeCoinsImageView;
 @property (retain, nonatomic) IBOutlet UILabel *cannotGetFreeCoinsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *noteBgImageView;
 
 @end
