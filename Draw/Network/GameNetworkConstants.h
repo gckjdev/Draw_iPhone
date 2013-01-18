@@ -344,10 +344,9 @@
 #define PARA_KEYWORD @"kw"
 #define PARA_EXPIRE_DATE @"e_date"
 
-#define PARA_WORD_ID @"wordId"
-#define PARA_WORD @"word"
-#define PARA_WORD_TYPE @"wordType"
-#define PARA_WORD_LEVEL @"wordLevel"
+#define PARA_WORD_ID    @"wordId"
+#define PARA_WORD       @"word"
+#define PARA_WORD_TYPE  @"wordType"
 #define PARA_WORD_SCORE @"wordScore"
 
 #define PARA_FEED_TIMESTAMP @"fts"

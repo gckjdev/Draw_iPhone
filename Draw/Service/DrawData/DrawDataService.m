@@ -227,8 +227,9 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
     
-    NSString *words = [guessWords componentsJoinedByString:@":"];
+    NSString *words = [guessWords componentsJoinedByString:@":"];    
     
+    PPDebug(@"<guessDraw> opusId=%@ creatorUserId=%@ score=%d", opusId, opusCreatorUid, score);    
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest guessOpus:TRAFFIC_SERVER_URL 
                                                               appId:appId 

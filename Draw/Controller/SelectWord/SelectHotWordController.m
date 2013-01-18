@@ -55,7 +55,7 @@
     [self.myWordsView addSubview:_myWordsCell];
     
     [_hotWordsCell setWords:[[HotWordManager sharedHotWordManager] wordsFromPBHotWords]];
-    [_systemWordsCell setWords:[[WordManager defaultManager] randDrawWordList]];
+    [_systemWordsCell setWords:[[WordManager defaultManager] randOfflineDrawWordList]];
     [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
     
     _hotWordsCell.delegate = self;

@@ -32,7 +32,7 @@ typedef enum{
 
 + (int)getBalanceDeviation;
 
-+ (int)getGuessRewardNormal;
+//+ (int)getGuessRewardNormal;
 
 + (NSInteger)historyRankNumber;
 + (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
@@ -178,5 +178,10 @@ typedef enum{
 + (int)getFreeCoinsMoneyTreeGrowthTime;
 + (int)getFreeCoinsMoneyTreeGainTime;
 + (BOOL)freeCoinsEnabled;
+
++ (int)offlineGuessAwardScore;
++ (int)offlineDrawMyWordScore;
++ (int)offlineDrawSystemWordScore;
++ (int)offlineDrawHotWordScore;
 
 @end

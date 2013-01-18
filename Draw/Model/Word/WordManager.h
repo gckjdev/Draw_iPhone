@@ -35,6 +35,7 @@
 + (WordManager *)defaultManager;
 - (void)addWord:(Word *)word; //when need to update the words, call the method
 - (NSArray *)randDrawWordList; //will return a word list, and the list size is 3
+- (NSArray *)randOfflineDrawWordList; // add by Benson, for offline draw word list
 - (NSArray *)randGuessWordList:(NSString*)drawWord;//rand guess word for share to weibo
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count;
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count;
