@@ -210,7 +210,6 @@
 
 - (void)dealloc
 {
-    PPDebug(@"%@ dealloc", [self description]);
     [self stop];
     PPRelease(_drawActionList);
     PPRelease(pen);
