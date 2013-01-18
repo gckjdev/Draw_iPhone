@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define MESSAGE_STAT_MAX_COUNT 100
 
 @interface PPMessageManager : NSObject
 
