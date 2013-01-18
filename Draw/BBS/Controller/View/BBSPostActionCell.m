@@ -149,7 +149,13 @@
         [self.supportImage setHidden:YES];
         self.content.hidden = NO;
         [self updateContentWithAction:action];        
-    }    
+    }
+    if([post.reward.winner.userId isEqualToString:action.createUser.userId]){
+        //if winer
+        [self.content setTextColor:[UIColor orangeColor]];
+    }else{
+        [self.content setTextColor:[UIColor blackColor]];
+    }
 }
 
 
