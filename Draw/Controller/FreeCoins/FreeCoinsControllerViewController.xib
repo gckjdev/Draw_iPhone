@@ -162,6 +162,7 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{54, 58}, {173, 30}}</string>
 								<reference key="NSSuperview" ref="983879359"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -332,7 +333,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">快来收获吧</string>
+								<string key="IBUIText">金钱树成长</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yMzUyOTQxMTc2IDAuMTcyNTQ5MDE5NiAwLjEyMTU2ODYyNzUAA</bytes>
@@ -735,93 +736,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">53</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">FreeCoinsControllerViewController</string>
-					<string key="superclassName">PPViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="cannotGetFreeCoinsImageView">UIImageView</string>
-						<string key="cannotGetFreeCoinsLabel">UILabel</string>
-						<string key="helpBtnHolderView">UIView</string>
-						<string key="lmWallBtnHolderView">UIView</string>
-						<string key="moneyTree">MoneyTree</string>
-						<string key="moneyTreeHolderView">UIView</string>
-						<string key="noteBgImageView">UIImageView</string>
-						<string key="noteLabel">UILabel</string>
-						<string key="remainTimesLabel">UILabel</string>
-						<string key="timeLabel">UILabel</string>
-						<string key="titleTlabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="cannotGetFreeCoinsImageView">
-							<string key="name">cannotGetFreeCoinsImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="cannotGetFreeCoinsLabel">
-							<string key="name">cannotGetFreeCoinsLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="helpBtnHolderView">
-							<string key="name">helpBtnHolderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lmWallBtnHolderView">
-							<string key="name">lmWallBtnHolderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="moneyTree">
-							<string key="name">moneyTree</string>
-							<string key="candidateClassName">MoneyTree</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="moneyTreeHolderView">
-							<string key="name">moneyTreeHolderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="noteBgImageView">
-							<string key="name">noteBgImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="noteLabel">
-							<string key="name">noteLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="remainTimesLabel">
-							<string key="name">remainTimesLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timeLabel">
-							<string key="name">timeLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleTlabel">
-							<string key="name">titleTlabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FreeCoinsControllerViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MoneyTree</string>
-					<string key="superclassName">UIButton</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/MoneyTree.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PPViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PPViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

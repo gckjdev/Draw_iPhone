@@ -1228,9 +1228,11 @@
 
 "kRemainTime" = "%02d:%02d";
 "kRemainTimes" = "(今日剩余次数:%d)";
-"kWaitForMoneyTreeGrowUp" = "我快长大啦...";
-"kWaitForMoneyTreeAward" = "我快结果啦...";
+"kWaitForMoneyTreeGrowUp" = "成长中...";
+"kWaitForMoneyTreeAward" = "正在结果...";
 "kClickMoneyTreeToGetAward" = "快来收获吧";
+"kMoneyTreeNotCoinYet" = "请耐心等待金钱树长出金币吧！";
+
 "kMoneyTreeAwardEnd" = "今天的奖励已经领取完了,欢迎明天再来!";
 "kMatureMessage" = "成熟";
 "kZJHGameTitle" = "诈金花";
