@@ -209,7 +209,7 @@
 - (void)moneyTreeNoCoin:(MoneyTree*)tree
 {
     PPDebug(@"moneyTreeNoCoin");
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMoneyTreeNotCoinYet") delayTime:1.5];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMoneyTreeNotCoinYet") delayTime:1.5 isHappy:NO];
 }
 
 // 点击树时，如果树上有金币的时候回调
