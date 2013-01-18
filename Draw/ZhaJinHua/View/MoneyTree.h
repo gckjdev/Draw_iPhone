@@ -11,12 +11,22 @@
 
 @class MoneyTree;
 @protocol MoneyTreeDelegate <NSObject>
- @optional
+
+@optional
+
+// 点击树时，如果树还没有金币的时候回调
 - (void)moneyTreeNotMature:(MoneyTree*)tree;
+
+// 
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
+
+//
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
+
+// 时回调
 - (void)treeDidMature:(MoneyTree*)tree;
 
+// 长满金币时回调
 - (void)treeFullCoins:(MoneyTree*)tree;
 
 @end
