@@ -212,7 +212,6 @@ typedef enum {
 
 - (void)dealloc
 {
-    PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     PPRelease(_lineColor);
     PPRelease(_redoStack);

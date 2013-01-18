@@ -99,8 +99,9 @@
         self.moneyTreeView.center = self.moneyTreePlaceHolder.center;
         self.moneyTreeView.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
         self.moneyTreeView.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
-//        self.moneyTreeView.growthTime = 5;
-//        self.moneyTreeView.gainTime = 5;
+        
+        int sec = [self.moneyTreeView totalTime];
+        self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),sec/60, sec%60];
         self.moneyTreeView.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTreeView.delegate = self;
         [self.moneyTreeHolderView addSubview:_moneyTreeView];
@@ -146,6 +147,7 @@
     [_remainTimesLabel release];
     [_cannotGetFreeCoinsImageView release];
     [_cannotGetFreeCoinsLabel release];
+    [_timeLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -158,6 +160,7 @@
     [self setRemainTimesLabel:nil];
     [self setCannotGetFreeCoinsImageView:nil];
     [self setCannotGetFreeCoinsLabel:nil];
+    [self setTimeLabel:nil];
     [super viewDidUnload];
 }
 
@@ -220,13 +223,15 @@
     NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), flowersAward] stringByAppendingString:NSLS(@"kFlower")];
     NSString *TipsStr = (tipsAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), tipsAward] stringByAppendingString:NSLS(@"kTips")];
     
-    NSString *note = [[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr];
+    int remainTimes = [self remainTimes];
+    NSString *remainTimesStr = [NSString stringWithFormat:NSLS(@"kRemainTimes"), remainTimes];
+    
+    NSString *note = [[[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr] stringByAppendingString:remainTimesStr];
 
     if (note != nil && ![note isEqualToString:@""]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     }
     
-    int remainTimes = [self remainTimes];
     if ([self remainTimes] <= 0) {
         [self enableFreeCoinsAward:NO];
     }else
@@ -244,6 +249,12 @@
 - (void)moneyTreeFullCoins:(MoneyTreeView *)treeView
 {
     self.noteLabel.text = NSLS(@"kClickMoneyTreeToGetAward");
+    self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),0, 0];
+}
+
+- (void)moneyTreeUpdateRemainSeconds:(CFTimeInterval)remainSec{
+    int sec = remainSec;
+    self.timeLabel.text = [NSString stringWithFormat:NSLS(@"kRemainTime"),sec/60, sec%60];
 }
 
 

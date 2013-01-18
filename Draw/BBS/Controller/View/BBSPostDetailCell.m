@@ -35,16 +35,11 @@
 
 
 
-+ (void)updateViews:(BBSPostDetailCell *)cell
+- (void)updateViews
 {
-    BBSImageManager *_bbsImageManager = [BBSImageManager defaultManager];
-    BBSColorManager *_bbsColorManager = [BBSColorManager defaultManager];
-    BBSFontManager *_bbsFontManager = [BBSFontManager defaultManager];
-
-    
     
     //action
-    [BBSViewManager updateButton:cell.reward
+    [BBSViewManager updateButton:self.reward
                          bgColor:[UIColor clearColor]
                          bgImage:nil
                            image:[_bbsImageManager bbsPostRewardImage]
@@ -52,7 +47,7 @@
                       titleColor:[_bbsColorManager postRewardColor]
                            title:nil forState:UIControlStateNormal];
     
-    [BBSViewManager updateButton:cell.reward
+    [BBSViewManager updateButton:self.reward
                          bgColor:[UIColor clearColor]
                          bgImage:nil
                            image:[_bbsImageManager bbsPostRewardedImage]
@@ -69,7 +64,7 @@
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
     cell.content.font = CONTENT_FONT;
-    [BBSPostDetailCell updateViews:cell];
+    [cell updateViews];
     cell.delegate = delegate;
     return cell;
 }

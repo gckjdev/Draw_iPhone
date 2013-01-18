@@ -11,22 +11,37 @@
 
 @class MoneyTree;
 @protocol MoneyTreeDelegate <NSObject>
- @optional
-- (void)moneyTreeNotMature:(MoneyTree*)tree;
+
+@optional
+
+// 点击树时，如果树还没有金币的时候回调
+- (void)moneyTreeNoCoin:(MoneyTree*)tree;
+
+// 
 - (void)getMoney:(int)money fromTree:(MoneyTree*)tree;
+
+//
 - (void)coinDidRaiseUp:(MoneyTree*)tree;
+
+// 时回调
 - (void)treeDidMature:(MoneyTree*)tree;
 
+// 长满金币时回调
 - (void)treeFullCoins:(MoneyTree*)tree;
+
+- (void)treeUpdateRemainSeconds:(int)seconds
+                     toFullCoin:(MoneyTree*)tree;
 
 @end
 
 @interface MoneyTree : UIButton {
     NSTimer* _treeTimer;
+    NSTimer* _treeUpdateTimer;
     UILabel* _rewardCoinLabel;
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
     NSMutableArray*  _layerQueue;
+    CFTimeInterval _remainTime;
 }
 @property (assign, nonatomic) CFTimeInterval growthTime;
 @property (assign, nonatomic) CFTimeInterval gainTime;
@@ -37,6 +52,6 @@
 
 - (void)startGrow;
 - (void)kill;
-
+- (CFTimeInterval)remainTimeToFullCoin;
 
 @end

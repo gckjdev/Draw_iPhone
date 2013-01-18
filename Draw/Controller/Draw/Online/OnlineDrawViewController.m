@@ -428,7 +428,9 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
     _alpha = _alpha;
-    [drawView.lineColor setAlpha:alpha];
+    if (drawView.lineColor != self.eraserColor) {
+        [drawView.lineColor setAlpha:alpha];
+    }
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickChatButton:(UIButton *)button

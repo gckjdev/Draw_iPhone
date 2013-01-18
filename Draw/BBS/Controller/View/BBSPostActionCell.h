@@ -22,6 +22,7 @@
 @interface BBSPostActionCell : BBSTableViewCell<BBSOptionViewDelegate>
 {
     
+
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *reply;

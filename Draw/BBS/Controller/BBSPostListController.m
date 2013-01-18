@@ -133,7 +133,7 @@
     PPRelease(_backButton);
     PPRelease(_createPostButton);
     PPRelease(_rankButton);
-    [_bgImageView release];
+    PPRelease(_bgImageView);
     PPRelease(_tempURL);
     [super dealloc];
 }
@@ -142,6 +142,7 @@
     [self setCreatePostButton:nil];
     [self setRankButton:nil];
     [self setBgImageView:nil];
+    [_bbsManager setTempPostList:nil];
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {

@@ -19,7 +19,6 @@
     BBSImageManager *_bbsImageManager;
     BBSColorManager *_bbsColorManager;
     BBSFontManager *_bbsFontManager;
-    
     BBSPostActionHeaderView *_header;
     PBBBSAction *_selectedAction;
 }
@@ -608,6 +607,7 @@ typedef enum{
     [self setSupportButton:nil];
     [self setCommentButton:nil];
     [self setRefreshButton:nil];
+    PPRelease(_header);
     [super viewDidUnload];
 }
 @end

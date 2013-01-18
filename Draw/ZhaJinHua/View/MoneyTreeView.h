@@ -22,7 +22,6 @@
 
 @interface MoneyTreeView : UIView <MoneyTreeDelegate>{
     NSTimer* _timer;
-    int _remainTime;
 }
 @property (retain, nonatomic) IBOutlet MoneyTree *moneyTree;
 @property (retain, nonatomic) IBOutlet UILabel *popMessageLabel;
@@ -34,11 +33,15 @@
 @property (assign, nonatomic) NSInteger      coinValue;
 @property (assign, nonatomic) id<MoneyTreeViewDelegate> delegate;
 @property (assign, nonatomic) BOOL isAlwaysShowMessage;
+@property (readonly, assign, nonatomic) int remainTime;
+
+
 
 + (MoneyTreeView*)createMoneyTreeView;
 - (void)showInView:(UIView *)view;
 
 - (void)startGrowing;
 - (void)killMoneyTree;
+- (CFTimeInterval)totalTime;
 
 @end

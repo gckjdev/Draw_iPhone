@@ -4051,9 +4051,6 @@ static PBHotWord* defaultPBHotWordInstance = nil;
   if (!self.hasWord) {
     return NO;
   }
-  if (!self.hasCoins) {
-    return NO;
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
