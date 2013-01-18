@@ -97,9 +97,8 @@
         [self updateRemainTimes:remainTimes];
         
         
-        self.moneyTree.growthTime = 5;//[ConfigManager getFreeCoinsMoneyTreeGrowthTime];
-        self.moneyTree.gainTime = 5;//[ConfigManager getFreeCoinsMoneyTreeGainTime];
-//        self.moneyTree.coinsOnTree = MAX_COINS_ON_TREE;
+        self.moneyTree.growthTime = [ConfigManager getFreeCoinsMoneyTreeGrowthTime];
+        self.moneyTree.gainTime = [ConfigManager getFreeCoinsMoneyTreeGainTime];
         self.moneyTree.coinValue = [ConfigManager getFreeCoinsAward];
         self.moneyTree.delegate = self;
 
