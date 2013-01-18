@@ -1221,6 +1221,7 @@
 "kWaitForMoneyTreeGrowUp" = "I'm growing";
 "kWaitForMoneyTreeAward" = "I'm fruiting";
 "kClickMoneyTreeToGetAward" = "Click Me";
+"kMoneyTreeNotCoinYet" = "Hey, be patient";
 "kMoneyTreeAwardEnd" = "No more award can get, you can get award tomorrow";
 "kMatureMessage" = "Mature";
 "kZJHGameTitle" = "3Card";

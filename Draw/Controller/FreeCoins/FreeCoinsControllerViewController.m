@@ -208,7 +208,8 @@
 // 点击树时，如果树还没有金币的时候回调
 - (void)moneyTreeNoCoin:(MoneyTree*)tree
 {
-    PPDebug(@"");
+    PPDebug(@"moneyTreeNoCoin");
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMoneyTreeNotCoinYet") delayTime:1.5 isHappy:NO];
 }
 
 // 点击树时，如果树上有金币的时候回调
