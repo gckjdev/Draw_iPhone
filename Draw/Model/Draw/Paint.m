@@ -61,8 +61,10 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)constructPath
 {
-    [self constructPath1];
-    return;
+    if (self.penType != Pencil){
+        [self constructPath1];
+        return;
+    }
     
     if (self.pointCount > 0) {
         if (_path == NULL) {
@@ -252,7 +254,30 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     }
 }
 
-- (void)addPointIntoPath:(CGPoint)point path:(CGMutablePathRef)targetPath
+- (int)maxPtsCount
+{
+    switch (_penType) {
+        case WaterPen:
+            return 5;
+            break;
+        
+        case Pen:
+            return 4;
+            break;
+        
+        case IcePen:
+        case Quill:
+            return 3;
+            break;
+        default:
+            break;
+    }
+    
+    return 0;
+
+}
+
+- (void)addPointIntoPath2:(CGPoint)point path:(CGMutablePathRef)targetPath
 {
     if (targetPath == NULL)
         return;
@@ -260,7 +285,130 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     pts[ptsCount] = point;
     ptsCount ++;
     ptsComplete = NO;
-    if (ptsCount == POINT_COUNT){
+    if (ptsCount == [self maxPtsCount]){
+        //        // adjust pts[3]
+        //        pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0f, (pts[2].y + pts[4].y)/2.0f);
+        
+        CGPoint mid1 = midPoint(pts[0], pts[1]);
+        CGPoint mid2 = midPoint(pts[1], pts[2]);
+        
+        
+        CGPathMoveToPoint(targetPath, NULL, mid1.x, mid1.y);
+        CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, mid2.x, mid2.y);
+
+        //        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+        
+        // replace pts[0] and pts[1]
+        //        pts[0] = pts[3];
+        //        pts[1] = pts[4];
+        //        ptsCount = 2;
+        
+        ptsComplete = YES;
+        pts[0] = pts[2];
+        ptsCount = 1;
+        
+        //        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    else{
+        //        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    
+    
+}
+
+- (void)addPointIntoPath3:(CGPoint)point path:(CGMutablePathRef)targetPath
+{
+    if (targetPath == NULL)
+        return;
+    
+    pts[ptsCount] = point;
+    ptsCount ++;
+    ptsComplete = NO;
+    if (ptsCount == [self maxPtsCount]){
+        //        // adjust pts[3]
+        //        pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0f, (pts[2].y + pts[4].y)/2.0f);
+        
+        
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, pts[2].x, pts[2].y);
+        
+        //        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+        
+        // replace pts[0] and pts[1]
+        //        pts[0] = pts[3];
+        //        pts[1] = pts[4];
+        //        ptsCount = 2;
+        
+        ptsComplete = YES;
+        pts[0] = pts[1];
+        pts[1] = pts[2];
+        ptsCount = 2;
+        
+        //        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    else{
+        //        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    
+    
+}
+
+
+- (void)addPointIntoPath1:(CGPoint)point path:(CGMutablePathRef)targetPath
+{
+    if (targetPath == NULL)
+        return;
+    
+    pts[ptsCount] = point;
+    ptsCount ++;
+    ptsComplete = NO;
+    if (ptsCount == [self maxPtsCount]){
+//        // adjust pts[3]
+//        pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0f, (pts[2].y + pts[4].y)/2.0f);
+        
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y,
+                              pts[2].x, pts[2].y,
+                              pts[3].x, pts[3].y);
+        
+        //        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+        
+        // replace pts[0] and pts[1]
+//        pts[0] = pts[3];
+//        pts[1] = pts[4];
+//        ptsCount = 2;
+        
+        ptsComplete = YES;
+        pts[0] = pts[3];
+        ptsCount = 1;
+        
+        //        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    else{
+        //        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+        [self printPts];
+    }
+    
+    
+}
+
+- (void)addPointIntoPath0:(CGPoint)point path:(CGMutablePathRef)targetPath
+{
+    if (targetPath == NULL)
+        return;
+    
+    pts[ptsCount] = point;
+    ptsCount ++;
+    ptsComplete = NO;
+    if (ptsCount == [self maxPtsCount]){
         // adjust pts[3]
         pts[3] = CGPointMake((pts[2].x + pts[4].x)/2.0f, (pts[2].y + pts[4].y)/2.0f);
         
@@ -269,25 +417,50 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
                               pts[2].x, pts[2].y,
                               pts[3].x, pts[3].y);
         
-//        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
+        //        PPDebug(@"[BEFORE_DRAW] ptsCount=%d", ptsCount);
         [self printPts];
-
+        
         // replace pts[0] and pts[1]
         pts[0] = pts[3];
         pts[1] = pts[4];
         ptsCount = 2;
         
         ptsComplete = YES;
-
-//        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
+        
+        //        PPDebug(@"[AFTER_DRAW] ptsCount=%d", ptsCount);
         [self printPts];
     }
     else{
-//        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
+        //        PPDebug(@"[ADD2] ptsCount=%d", ptsCount);
         [self printPts];
     }
     
     
+}
+
+- (void)addPointIntoPath:(CGPoint)point path:(CGMutablePathRef)targetPath
+{
+    switch (self.penType) {
+        case WaterPen:
+            [self addPointIntoPath0:point path:targetPath];
+            break;
+
+        case Pen:
+            [self addPointIntoPath1:point path:targetPath];
+            break;
+
+        case IcePen:
+            [self addPointIntoPath2:point path:targetPath];
+            break;
+
+        case Quill:
+            [self addPointIntoPath3:point path:targetPath];
+            break;
+
+        default:
+            break;
+    }
+    return;
 }
 
 // if you don't understand the code below
@@ -307,8 +480,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     }
 }
 
-// this is used to add points (less than 4) into path
-- (void)addPoorPointsIntoPath:(CGMutablePathRef)targetPath
+- (void)addPoorPointsIntoPath2:(CGMutablePathRef)targetPath
 {
     if (ptsCount == 1){
         CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
@@ -319,9 +491,74 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         CGPoint mid = midPoint(pts[0], pts[1]);
         CGPathAddQuadCurveToPoint(targetPath, NULL, mid.x, mid.y, pts[1].x, pts[1].y);
     }
+}
+
+- (void)addPoorPointsIntoPath3:(CGMutablePathRef)targetPath
+{
+    if (ptsCount == 1){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y, pts[0].x, pts[0].y);
+    }
+    else if (ptsCount == 2){
+        return;
+//        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+//        CGPoint mid = midPoint(pts[0], pts[1]);
+//        CGPathAddQuadCurveToPoint(targetPath, NULL, mid.x, mid.y, pts[1].x, pts[1].y);
+    }
+}
+
+
+- (void)addPoorPointsIntoPath1:(CGMutablePathRef)targetPath
+{
+    if (ptsCount == 1){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y, pts[0].x, pts[0].y);
+//        CGPathAddCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y,
+//                              pts[0].x, pts[0].y,
+//                              pts[0].x, pts[0].y);
+    }
+    else if (ptsCount == 2){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPoint mid = midPoint(pts[0], pts[1]);
+        CGPathAddCurveToPoint(targetPath, NULL, mid.x, mid.y,
+                              mid.x, mid.y,
+                              pts[1].x, pts[1].y);
+    }
     else if (ptsCount == 3){
         CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
-        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y, pts[2].x, pts[2].y);
+        CGPathAddCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y,
+                              pts[1].x, pts[1].y,
+                              pts[2].x, pts[2].y);
+    }
+}
+
+- (void)addPoorPointsIntoPath0:(CGMutablePathRef)targetPath
+{
+    if (ptsCount == 1){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+//        CGPathAddCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y,
+//                              pts[0].x, pts[0].y,
+//                              pts[0].x, pts[0].y);
+        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[0].x, pts[0].y, pts[0].x, pts[0].y);
+    }
+    
+    return;
+    
+    /*
+    else if (ptsCount == 2){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        CGPoint mid = midPoint(pts[0], pts[1]);
+        CGPathAddCurveToPoint(targetPath, NULL, mid.x, mid.y,
+                              mid.x, mid.y,
+                              pts[1].x, pts[1].y);
+        //        CGPathAddQuadCurveToPoint(targetPath, NULL, mid.x, mid.y, pts[1].x, pts[1].y);
+    }
+    else if (ptsCount == 3){
+        CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
+        //        CGPathAddQuadCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y, pts[2].x, pts[2].y);
+        CGPathAddCurveToPoint(targetPath, NULL, pts[1].x, pts[1].y,
+                              pts[1].x, pts[1].y,
+                              pts[2].x, pts[2].y);
     }
     else if (ptsCount == 4){
         CGPathMoveToPoint(targetPath, NULL, pts[0].x, pts[0].y);
@@ -329,10 +566,49 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
                               pts[2].x, pts[2].y,
                               pts[3].x, pts[3].y);
     }
+     */
+}
+
+
+// this is used to add points (less than 4) into path
+- (void)addPoorPointsIntoPath:(CGMutablePathRef)targetPath
+{
+    switch (self.penType) {
+        case WaterPen:
+            [self addPoorPointsIntoPath0:targetPath];
+            break;
+            
+        case Pen:
+            [self addPoorPointsIntoPath1:targetPath];
+            break;
+            
+        case IcePen:
+            [self addPoorPointsIntoPath2:targetPath];
+            break;
+            
+        case Quill:
+            [self addPoorPointsIntoPath3:targetPath];
+            break;
+
+        default:
+            break;
+    }
+    return;
+
+    return;
 }
 
 - (CGPathRef)path
 {
+    if (self.penType == Pencil){
+        // old implementation here, keep
+        if (_path == NULL && self.pointCount > 0) {
+            [self constructPath];
+        }
+        
+        return _path;        
+    }
+    
     if (_path == NULL && self.pointCount > 0) {
         // here only happen when the draw is finished, if you are drawing on screen, this cannot happen
         [self constructPath];
@@ -340,8 +616,18 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         return _path;
     }
     
-    if (ptsComplete)
+    if (ptsComplete){
         return _path;
+        
+        if (_pathToShow != NULL){
+            CGPathRelease(_pathToShow);
+            _pathToShow = NULL;
+        }
+
+        _pathToShow = CGPathCreateMutableCopy(_path);
+        [self addPoorPointsIntoPath:_pathToShow];        
+        return _pathToShow;
+    }
     
     if (_pathToShow != NULL){
         CGPathRelease(_pathToShow);
@@ -352,12 +638,6 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     [self addPoorPointsIntoPath:_pathToShow];
     return _pathToShow;
     
-    // old implementation here, keep
-    if (_path == NULL && self.pointCount > 0) {
-        [self constructPath];
-    }
-
-    return _path;
 }
 
 - (NSInteger)pointCount
