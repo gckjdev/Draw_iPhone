@@ -211,9 +211,10 @@
 //    [self.navigationController pushViewController:sc animated:YES];
 //    sc.superController = self;
 //    [sc release];
-
-    return;
+//    return;
+    
     //not running
+    
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
         return;
