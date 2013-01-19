@@ -114,6 +114,8 @@
 "kExit" = "退出遊戲";
 "kSave" = "保存";
 "kSaving" = "保存中...";
+"kSaved" = "保存成功";
+"kFailed" = "失敗";
 "kTurnResult" = "本輪結果";
 "kBuyColor" = "購買顏色";
 "kConnectionRecover" = "連接恢復";

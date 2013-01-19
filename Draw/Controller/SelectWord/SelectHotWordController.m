@@ -27,22 +27,23 @@
 @implementation SelectHotWordController
 
 - (void)dealloc {
-    [_hotWordsCell release];
-    [_systemWordsCell release];
-    [_myWordsCell release];
-    [_hotWordsCellPlaceHolder release];
-    [_systemWordsCellPlaceHolder release];
-    [_myWordsCellPlaceHolder release];
-    [_hotWordsView release];
-    [_systemWordsView release];
-    [_myWordsView release];
-    [_titleLabel release];
-    [_draftsBoxButton release];
-    [_hotWordsLabel release];
-    [_hotWordsNoteLabel release];
-    [_systemWordsLabel release];
-    [_myWordsLabel release];
-    [_targetUid release];
+    PPDebug(@"%@ dealloc", self);
+    PPRelease(_hotWordsCell);
+    PPRelease(_systemWordsCell);
+    PPRelease(_myWordsCell);
+    PPRelease(_hotWordsCellPlaceHolder);
+    PPRelease(_systemWordsCellPlaceHolder);
+    PPRelease(_myWordsCellPlaceHolder);
+    PPRelease(_hotWordsView);
+    PPRelease(_systemWordsView);
+    PPRelease(_myWordsView);
+    PPRelease(_titleLabel);
+    PPRelease(_draftsBoxButton);
+    PPRelease(_hotWordsLabel);
+    PPRelease(_hotWordsNoteLabel);
+    PPRelease(_systemWordsLabel);
+    PPRelease(_myWordsLabel); 
+    PPRelease(_targetUid);
     [super dealloc];
 }
 
