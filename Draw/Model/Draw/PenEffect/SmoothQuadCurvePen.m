@@ -58,6 +58,7 @@
 
 - (void)constructPath:(NSArray*)pointList
 {
+    PPDebug(@"<constructPath> point count=%d", [pointList count]);
     [self startAddPoint];
     
     int pointCount = [pointList count];
