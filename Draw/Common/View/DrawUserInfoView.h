@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FriendService.h"
 #import "UserService.h"
+#import "MWPhotoBrowser.h"
+#import "StableView.h"
+
 @class PPViewController;
 @class MyFriend;
 @class PBBBSUser;
 
-@interface DrawUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate>
+@interface DrawUserInfoView : UIView<FriendServiceDelegate, UserServiceDelegate,MWPhotoBrowserDelegate, AvatarViewDelegate>
 {
     MyFriend* targetFriend;
 }

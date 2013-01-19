@@ -12,7 +12,7 @@
 #import "UIImageExt.h"
 #import "DeviceDetection.h"
 
-#define DEFAULT_AVATAR_SIZE 256
+#define DEFAULT_AVATAR_SIZE 320
 
 @implementation ChangeAvatar
 
