@@ -754,7 +754,8 @@
     [_gameService reset];
     [self clearAll];
     if (![_ruleConfig isCoinsEnough]) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self quiteGame];
     }
     
     [_gameService syncAccount:self];
@@ -1566,7 +1567,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         view.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1.5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
+        [UIView animateWithDuration:5 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{
             view.alpha = 1;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:1.0 delay:2.0 options:UIViewAnimationCurveEaseInOut animations:^{
