@@ -14,7 +14,8 @@
 #import "Paint.h"
 #import "ConfigManager.h"
 
-#define DEFAULT_PLAY_SPEED (1/50.0)
+#define DEFAULT_PLAY_SPEED  (1/50.0)
+#define MIN_PLAY_SPEED      (0.00001)
 
 @interface ShowDrawView ()
 {
@@ -252,7 +253,7 @@
         _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + self.speed);
     }
     
-    PPDebug(@"<updateNextPlayIndex> action=%d, index=%d ", _playingActionIndex, _playingPointIndex);
+//    PPDebug(@"<updateNextPlayIndex> action=%d, index=%d ", _playingActionIndex, _playingPointIndex);
 }
 
 - (void)updateTempPaint
@@ -315,6 +316,7 @@
 - (void)playNextFrame
 {
     [self updateNextPlayIndex];
+    _playFrameTime = CACurrentMediaTime();
     [self playCurrentFrame];
 }
 
@@ -322,7 +324,17 @@
 {
     [super drawRect:rect];
     if (Playing == self.status) {
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
+        [[NSDate date] timeIntervalSince1970];
+        double now = CACurrentMediaTime();
+//        double delay = DEFAULT_PLAY_SPEED;
+        if (now - _playFrameTime > DEFAULT_PLAY_SPEED){
+//            PPDebug(@"Exceed max delay");
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:MIN_PLAY_SPEED];
+        }
+        else{
+//            PPDebug(@"Normal delay");
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
+        }
     }
 }
 

@@ -397,7 +397,10 @@ static VendingController* staticVendingController = nil;
     if (self) {
         if ([ConfigManager isProVersion]){
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], nil]; 
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item PaletteItem],nil];
+                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
+                    [_itemList addObject:[Item ColorAlphaItem]];
+                }
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {
@@ -406,7 +409,10 @@ static VendingController* staticVendingController = nil;
         }
         else{
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item PaletteItem], [Item ColorAlphaItem], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], [Item PaletteItem], nil];
+                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
+                    [_itemList addObject:[Item ColorAlphaItem]];
+                }
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {

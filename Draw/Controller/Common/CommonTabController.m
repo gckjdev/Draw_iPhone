@@ -21,6 +21,7 @@
         PPDebug(@"initWithNibName = %@", nibNameOrNil);
         self.pullRefreshType = PullRefreshTypeBoth;
         _tabManager = [[TableTabManager alloc] init];
+        self.unReloadDataWhenViewDidAppear = YES;
     }
     return self;
 }
