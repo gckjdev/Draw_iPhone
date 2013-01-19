@@ -88,7 +88,7 @@
 - (void)startAddPoint
 {
     _startAddPoint = YES;
-    [self finishAddPoint];
+    [self clearPoints];
 }
 
 - (void)addPointIntoPath:(CGPoint)point
@@ -100,9 +100,9 @@
     ptsComplete = NO;
     if (ptsCount == SQC_POINT_COUNT){
         
-        CGPoint mid1 = MID_POINT(pts[0], pts[1]);
-        CGPoint mid2 = MID_POINT(pts[1], pts[2]);                
-        CGPathMoveToPoint(_path, NULL, mid1.x, mid1.y);
+//        CGPoint mid1 = MID_POINT(pts[0], pts[1]);
+        CGPoint mid2 = MID_POINT(pts[1], pts[2]);
+//        CGPathMoveToPoint(_path, NULL, mid1.x, mid1.y);
         CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, mid2.x, mid2.y);
 
         ptsComplete = YES;
@@ -126,6 +126,24 @@
 
 - (void)finishAddPoint
 {
+    /*
+    if (ptsComplete == YES){
+        // add last point
+        CGPoint mid1 = MID_POINT(pts[0], pts[1]);
+        CGPoint mid2 =MID_POINT(pts[1], mid1);
+        CGPathAddQuadCurveToPoint(_path, NULL, mid2.x, mid2.y, pts[1].x, pts[1].y);
+    }
+    else if (ptsCount == 1){
+        // do nothing
+    }
+    else if (ptsCount == 2){
+        if (!_startAddPoint){
+            // add last point
+            CGPoint mid1 = MID_POINT(pts[0], pts[1]);
+            CGPathAddQuadCurveToPoint(_path, NULL, mid1.x, mid1.y, pts[1].x, pts[1].y);
+        }
+    }
+    */
 }
 
 @end

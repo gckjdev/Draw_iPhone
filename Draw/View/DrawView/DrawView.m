@@ -147,7 +147,6 @@ typedef enum {
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else{
         
-//        [paint finishPoint];
         
 //        if (paint.penType == WaterPen){
 //            [paint clearPath];
@@ -155,6 +154,10 @@ typedef enum {
 //            [self clearContext:cacheContext];
 //            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
 //        }
+        
+        [paint finishAddPoint];
+        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
+        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
         
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:showContext];
         drawBox = [self strokePaint1:paint inContext:showContext clear:NO];

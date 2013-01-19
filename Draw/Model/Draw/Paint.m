@@ -189,7 +189,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     return [pen penPath];
 }
 
-- (void)finishPoint
+- (void)finishAddPoint
 {
     [[self getPen] finishAddPoint];
 }

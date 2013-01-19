@@ -57,6 +57,8 @@
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
 - (void)addPoint:(CGPoint)point;
+- (void)finishAddPoint;
+
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
 - (NSString *)toString;

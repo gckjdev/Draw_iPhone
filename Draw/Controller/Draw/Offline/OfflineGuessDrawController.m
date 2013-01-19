@@ -597,8 +597,8 @@
     [self setShowView:nil];
     [self setDrawBackground:nil];
     [self setTitleLabel:nil];
-    [super viewDidUnload];
     [self setWord:nil];
+    [super viewDidUnload];
 }
 
 

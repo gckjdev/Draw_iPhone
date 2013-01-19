@@ -569,12 +569,27 @@ enum{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)performGuess
+{
+    //enter guess controller
+    [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
+    [_commentHeader setSeletType:CommentTypeGuess];
+    [self hideActivity];
+}
+
+- (void)performReplay
+{
+    ReplayView *replay = [ReplayView createReplayView:self];
+    [replay setViewInfo:self.feed];
+    [replay showInView:self.view];
+    [self hideActivity];
+}
+
 - (IBAction)clickActionButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     if (button == self.guessButton) {
-        //enter guess controller
-        [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];        
-            [_commentHeader setSeletType:CommentTypeGuess];
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
     }else if(button == self.commentButton){
         //enter comment controller
         CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
@@ -602,9 +617,8 @@ enum{
         Item *item = [Item tomato];
         [self throwItem:item];
     }else if(button == self.replayButton){
-        ReplayView *replay = [ReplayView createReplayView:self];
-        [replay setViewInfo:self.feed];
-        [replay showInView:self.view];
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
     }else{
         //NO action
     }

@@ -297,6 +297,28 @@ typedef enum{
     }
 }
 
+- (void)performReplay
+{
+    MyPaint* currentPaint = _selectedPaint;
+
+    ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
+    [self.navigationController pushViewController:replayController animated:YES];
+    [replayController release];
+    [self hideActivity];
+}
+
+- (void)performEdit
+{
+    MyPaint* currentPaint = _selectedPaint;
+
+    OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+    od.startController = self;
+    [self.navigationController pushViewController:od animated:YES];
+    [od release];
+    
+    [self hideActivity];
+}
+
 - (void)imageActionSheet:(UIActionSheet *)actionSheet
     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -316,9 +338,8 @@ typedef enum{
         [self shareAsGif];
     }
     else if (buttonIndex == REPLAY){
-        ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
-        [self.navigationController pushViewController:replayController animated:YES];
-        [replayController release];
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
     }
     else if (buttonIndex ==  DELETE) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
@@ -338,10 +359,8 @@ typedef enum{
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];
     }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
-        OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-        od.startController = self;
-        [self.navigationController pushViewController:od animated:YES];
-        [od release];
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
     }
 }
 

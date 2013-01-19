@@ -14,8 +14,8 @@
 #import "Paint.h"
 #import "ConfigManager.h"
 
-#define DEFAULT_PLAY_SPEED  (1/50.0)
-#define MIN_PLAY_SPEED      (0.00001)
+#define DEFAULT_PLAY_SPEED  (1.0f/50.0f)
+#define MIN_PLAY_SPEED      (0.001f)
 
 @interface ShowDrawView ()
 {
@@ -188,7 +188,7 @@
     if ([actionList isKindOfClass:[NSMutableArray class]]) {
         showView.drawActionList = (NSMutableArray *)actionList;
     }else{
-        showView = [NSMutableArray arrayWithArray:actionList];
+        showView.drawActionList = [NSMutableArray arrayWithArray:actionList];
     }
     showView.delegate = delegate;
     [showView resetFrameSize:frame.size];
@@ -250,7 +250,7 @@
             _status = Stop;
         }
     }else{
-        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + self.speed);
+        _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
     }
     
 //    PPDebug(@"<updateNextPlayIndex> action=%d, index=%d ", _playingActionIndex, _playingPointIndex);
@@ -259,7 +259,8 @@
 - (void)updateTempPaint
 {
     Paint *cPaint = _currentAction.paint;
-    if (cPaint != nil &&  _playingPointIndex < [cPaint pointCount]) {
+    int currentPaintPointCount = [cPaint pointCount];
+    if (cPaint != nil &&  _playingPointIndex < currentPaintPointCount) {
         if (cPaint.pointCount > 0) {
             if (self.tempPaint == nil) {
                 self.tempPaint = [Paint paintWithWidth:cPaint.width color:cPaint.color];
@@ -268,7 +269,11 @@
             for (; i <= _playingPointIndex; ++ i) {
                 CGPoint p = [cPaint pointAtIndex:i];
                 [self.tempPaint addPoint:p];
-            }            
+            }
+            
+            if (i >= currentPaintPointCount){
+                [self.tempPaint finishAddPoint];
+            }
         }
     }else{
         self.tempPaint = nil;
@@ -324,7 +329,9 @@
 {
     [super drawRect:rect];
     if (Playing == self.status) {
-        [[NSDate date] timeIntervalSince1970];
+        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:MIN_PLAY_SPEED];
+
+        /*
         double now = CACurrentMediaTime();
 //        double delay = DEFAULT_PLAY_SPEED;
         if (now - _playFrameTime > DEFAULT_PLAY_SPEED){
@@ -335,6 +342,7 @@
 //            PPDebug(@"Normal delay");
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
         }
+        */
     }
 }
 
