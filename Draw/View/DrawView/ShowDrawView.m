@@ -251,6 +251,8 @@
     }else{
         _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + self.speed);
     }
+    
+    PPDebug(@"<updateNextPlayIndex> action=%d, index=%d ", _playingActionIndex, _playingPointIndex);
 }
 
 - (void)updateTempPaint

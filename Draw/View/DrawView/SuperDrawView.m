@@ -74,11 +74,12 @@
 
     CGContextSetLineJoin(showContext, kCGLineJoinRound);
     CGContextSetLineCap(showContext, kCGLineCapRound);
-    CGContextSetFlatness(showContext, 0.1f);
+    // rem by Benson, use default flatness
+//    CGContextSetFlatness(showContext, 0.6f);
 
     CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
     CGContextSetLineCap(cacheContext, kCGLineCapRound);
-    CGContextSetFlatness(cacheContext, 0.1f);
+//    CGContextSetFlatness(cacheContext, 0.6f);
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -105,7 +106,7 @@
 {
     CGContextClearRect(showContext, self.bounds);
     for (DrawAction *action in self.drawActionList) {
-        [self drawAction:action inContext:showContext];
+        [self drawAction1:action inContext:showContext];
     }
     [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }

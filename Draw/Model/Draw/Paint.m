@@ -225,11 +225,13 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (NSString*)description
 {
-    return [self toString];
+    return [super description];
+//    return [self toString];
 }
 
 - (void)dealloc
 {
+    PPDebug(@"<dealloc> %@", [self description]);
     PPRelease(_color);
     PPRelease(_pointList);
     PPRelease(_pen);
