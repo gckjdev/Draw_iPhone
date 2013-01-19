@@ -655,6 +655,16 @@
 - (NSArray*)dealPointsArray
 {
     NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:[_ruleConfig maxPlayerNum]] autorelease];
+    [_gameService.session.userList sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PBGameUser* user1 = (PBGameUser*)obj1;
+        PBGameUser* user2 = (PBGameUser*)obj2;
+        if (user1.seatId > user2.seatId) {
+            return NSOrderedAscending;
+        } else if (user1.seatId < user2.seatId) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedSame;
+    }];
     for (PBGameUser* user in _gameService.session.userList) {
         ZJHPokerView* view = [self getPokersViewByUserId:user.userId];
         if (view) {

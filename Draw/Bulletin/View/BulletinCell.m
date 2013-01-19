@@ -85,7 +85,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
     [self.dateLabel setText:dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd")];
     [self.timeButton setTitle:dateToLocaleStringWithFormat(bulletin.date, @"HH:mm") forState:UIControlStateNormal];
-    [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type] && [[GameApp getGameJumpHandler] isFunctionAvailable:bulletin.function])];
+    [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type])];
     [self initView];
 }
 

@@ -14,6 +14,7 @@
 #import "MyFeedController.h"
 #import "StringUtil.h"
 #import "GameApp.h"
+#import "CommonMessageCenter.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -98,6 +99,8 @@
     UIViewController *gameController = [[GameApp getGameJumpHandler] controllerForGameId:gameId func:func fromController:nil];
     if (gameController) {
         [controller.navigationController pushViewController:gameController animated:YES];
+    } else {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kVersionNotSupport") delayTime:2];
     }
     //push the game controller
 }
