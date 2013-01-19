@@ -105,7 +105,7 @@
 {
     CGContextClearRect(showContext, self.bounds);
     for (DrawAction *action in self.drawActionList) {
-        [self drawAction:action inContext:showContext];
+        [self drawAction1:action inContext:showContext];
     }
     [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
 }

@@ -237,7 +237,7 @@
     NSString *note = [[[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr] stringByAppendingString:remainTimesStr];
     
     if (note != nil && ![note isEqualToString:@""]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:5 isHappy:YES];
     }
     
     if ([self remainTimes] <= 0) {
