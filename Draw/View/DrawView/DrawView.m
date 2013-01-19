@@ -96,7 +96,7 @@
     [self clearRedoStack];
     DrawAction *cleanAction = [DrawAction clearScreenAction];
     [self.drawActionList addObject:cleanAction];
-    [self drawAction:cleanAction inContext:showContext];
+    [self drawAction1:cleanAction inContext:showContext];
     [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
     
 }
@@ -105,7 +105,7 @@
     [self clearRedoStack];
     DrawAction *cleanAction = [DrawAction changeBackgroundActionWithColor:color];
     [self.drawActionList addObject:cleanAction];
-    [self drawAction:cleanAction inContext:showContext];
+    [self drawAction1:cleanAction inContext:showContext];
     [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];    
 }
 
@@ -234,7 +234,7 @@ typedef enum {
     // draw on show context, this takes a lot of performance if the draw
     CGContextClearRect(showContext, self.bounds);
     for (DrawAction *action in self.drawActionList) {
-        [self drawAction:action inContext:showContext];
+        [self drawAction1:action inContext:showContext];
     }
     
     // refresh screen
@@ -276,8 +276,8 @@ typedef enum {
         DrawAction *action = [_redoStack pop];
         if (action) {
             [self.drawActionList addObject:action];
-            [self drawAction:action inContext:showContext];
-            [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+            CGRect rect = [self drawAction1:action inContext:showContext];
+            [self setNeedsDisplayInRect:rect showCacheLayer:NO];
         }        
     }
 }
