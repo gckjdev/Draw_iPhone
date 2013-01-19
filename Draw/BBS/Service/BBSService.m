@@ -617,7 +617,7 @@ BBSService *_staticBBSService;
                 
                 if (resultCode == ERROR_SUCCESS) {
                     if (actionType == ActionTypeSupport) {
-                        [[BBSManager defaultManager] increasePostSupportTimes:postId];                        
+                        [[BBSManager defaultManager] increasePostSupportTimes:postId];
                     }
                     NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
                     NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
