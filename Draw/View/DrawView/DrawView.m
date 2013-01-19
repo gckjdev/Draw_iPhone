@@ -147,14 +147,14 @@ typedef enum {
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else{
         
-        [paint finishPoint];
+//        [paint finishPoint];
         
-        if (paint.penType == WaterPen){
-            [paint clearPath];
-            drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-            [self clearContext:cacheContext];
-            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-        }
+//        if (paint.penType == WaterPen){
+//            [paint clearPath];
+//            drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
+//            [self clearContext:cacheContext];
+//            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
+//        }
         
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:showContext];
         drawBox = [self strokePaint1:paint inContext:showContext clear:NO];
@@ -240,7 +240,7 @@ typedef enum {
     // refresh screen
     CGRect rect = self.bounds;
     if (lastAction.paint != nil){
-        rect = [DrawUtils rectForPath:lastAction.paint.path withWidth:lastAction.paint.width];
+        rect = [DrawUtils rectForPath:lastAction.paint.path withWidth:lastAction.paint.width bounds:self.bounds];
     }
     [self setNeedsDisplayInRect:rect showCacheLayer:NO];
     

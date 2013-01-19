@@ -3286,6 +3286,7 @@
 		CA335D5416A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA335D5516A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
+		CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -7696,6 +7697,8 @@
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA355F01152C296900A14823 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
+		CA3676D716AA4E1C00630A40 /* PenFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PenFactory.h; sourceTree = "<group>"; };
+		CA3676D816AA4E1C00630A40 /* PenFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PenFactory.m; sourceTree = "<group>"; };
 		CA3B56DB1514C92800A93137 /* GameSessionUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSessionUser.h; sourceTree = "<group>"; };
 		CA3B56DC1514C92800A93137 /* GameSessionUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSessionUser.m; sourceTree = "<group>"; };
 		CA3B56DE1514C9DF00A93137 /* GameTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurn.h; sourceTree = "<group>"; };
@@ -15586,6 +15589,8 @@
 				CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */,
 				CAF9B71516AA3E9B00865CCE /* CurvePen.h */,
 				CAF9B71616AA3E9B00865CCE /* CurvePen.m */,
+				CA3676D716AA4E1C00630A40 /* PenFactory.h */,
+				CA3676D816AA4E1C00630A40 /* PenFactory.m */,
 			);
 			path = PenEffect;
 			sourceTree = "<group>";
@@ -22194,6 +22199,7 @@
 				CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */,
 				CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */,
 				CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */,
+				CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

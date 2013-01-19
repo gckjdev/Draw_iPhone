@@ -245,35 +245,35 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
 }
 
-+ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width
-{
-    if (path1 == NULL && path2 == NULL){
-        PPDebug(@"<rectForPath1> both path NULL");
-        return CGRectZero;
-    }
-    
-    if (path1 == NULL){
-        PPDebug(@"[PATH2] rect=%@", NSStringFromCGRect([DrawUtils rectForPath:path2 withWidth:width]));
-        return [DrawUtils rectForPath:path2 withWidth:width];
-    }
-    
-    if (path2 == NULL){
-        PPDebug(@"[PATH1] rect=%@", NSStringFromCGRect([DrawUtils rectForPath:path1 withWidth:width]));
-        return [DrawUtils rectForPath:path1 withWidth:width];;
-    }
-    
-    CGRect rect1 = [DrawUtils rectForPath:path1 withWidth:width];
-    CGRect rect2 = [DrawUtils rectForPath:path2 withWidth:width];
-    CGRect rect = CGRectUnion(rect1, rect2);
-    PPDebug(@"[PATH1+PATH2] rect=%@", NSStringFromCGRect(rect));
-    return rect;
-}
+//+ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width
+//{
+//    if (path1 == NULL && path2 == NULL){
+//        PPDebug(@"<rectForPath1> both path NULL");
+//        return CGRectZero;
+//    }
+//    
+//    if (path1 == NULL){
+//        PPDebug(@"[PATH2] rect=%@", NSStringFromCGRect([DrawUtils rectForPath:path2 withWidth:width]));
+//        return [DrawUtils rectForPath:path2 withWidth:width];
+//    }
+//    
+//    if (path2 == NULL){
+//        PPDebug(@"[PATH1] rect=%@", NSStringFromCGRect([DrawUtils rectForPath:path1 withWidth:width]));
+//        return [DrawUtils rectForPath:path1 withWidth:width];;
+//    }
+//    
+//    CGRect rect1 = [DrawUtils rectForPath:path1 withWidth:width];
+//    CGRect rect2 = [DrawUtils rectForPath:path2 withWidth:width];
+//    CGRect rect = CGRectUnion(rect1, rect2);
+//    PPDebug(@"[PATH1+PATH2] rect=%@", NSStringFromCGRect(rect));
+//    return rect;
+//}
 
-+ (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width
++ (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width bounds:(CGRect)bounds
 {
     CGRect rect = CGPathGetBoundingBox(path);
-    rect.origin.x = (NSInteger)(rect.origin.x - width * 1) - 1;
-    rect.origin.y = (NSInteger)(rect.origin.y - width * 1) - 1;;
+    rect.origin.x = (NSInteger)(rect.origin.x - width * 2);
+    rect.origin.y = (NSInteger)(rect.origin.y - width * 2);
     
     if (rect.origin.x < 0){
         rect.origin.x = 0;
@@ -283,10 +283,18 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
         rect.origin.y = 0;
     }
     
-    rect.size.width = (NSInteger)(rect.size.width + width * 2) + 2;
-    rect.size.height = (NSInteger)(rect.size.height + width * 2) + 2;
+    rect.size.width = (NSInteger)(rect.size.width + width * 4);
+    rect.size.height = (NSInteger)(rect.size.height + width * 4);
+
+    if (rect.size.width > bounds.size.width){
+        rect.size.width = bounds.size.width;
+    }
     
-    PPDebug(@"rect=%@", NSStringFromCGRect(rect));
+    if (rect.size.height > bounds.size.height){
+        rect.size.height = bounds.size.height;
+    }
+    
+//    PPDebug(@"rect=%@", NSStringFromCGRect(rect));
     
     return rect; //make sure all the values are integer
 }

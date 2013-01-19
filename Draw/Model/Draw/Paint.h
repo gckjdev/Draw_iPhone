@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "PenView.h"
 #import "ItemType.h"
+#import "PenEffectProtocol.h"
+
 @class DrawColor;
 @class GameMessage;
 
-CGPoint midPoint(CGPoint p1, CGPoint p2);
+//CGPoint midPoint(CGPoint p1, CGPoint p2);
 
 //#define POINT_COUNT        3
 //#define POINT_COUNT        5
@@ -23,16 +25,21 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
     DrawColor *_color;
     NSMutableArray *_pointList;
     ItemType _penType;
-    CGMutablePathRef _path;
-    CGMutablePathRef _pathToShow;
-    CGPoint pts[10];
-    int     ptsCount;
-    BOOL    ptsComplete;
+    
+    id<PenEffectProtocol> _pen;
+    
+    // to be removed
+//    CGMutablePathRef _path;
+//    CGMutablePathRef _pathToShow;
+//    CGPoint pts[10];
+//    int     ptsCount;
+//    BOOL    ptsComplete;
 }
 @property(nonatomic,assign)CGFloat width;
 @property(nonatomic,assign)ItemType penType;
 @property(nonatomic,retain)DrawColor* color;
 @property(nonatomic,retain)NSMutableArray *pointList;
+@property(nonatomic,retain)id<PenEffectProtocol> pen;
 
 
 - (id)initWithWidth:(CGFloat)width
@@ -58,11 +65,11 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
 + (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color;
 + (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type;
 
-- (CGMutablePathRef)getPath;
-- (CGMutablePathRef)getPathForShow;
-- (CGRect)rectForPath;
+//- (CGMutablePathRef)getPath;
+//- (CGMutablePathRef)getPathForShow;
+//- (CGRect)rectForPath;
 
-- (void)clearPath;
-- (void)releasePathToShow;
+//- (void)clearPath;
+//- (void)releasePathToShow;
 
 @end

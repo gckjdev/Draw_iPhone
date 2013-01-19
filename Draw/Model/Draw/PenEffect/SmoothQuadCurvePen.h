@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PenEffectProtocol.h"
 
-@interface SmoothQuadCurvePen : NSObject
+@interface SmoothQuadCurvePen : NSObject<PenEffectProtocol>
 
 @end
