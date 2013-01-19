@@ -275,6 +275,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawApps,
+        HomeMenuTypeDrawPlayWithFriend,
         HomeMenuTypeEnd
     };
     return list;
