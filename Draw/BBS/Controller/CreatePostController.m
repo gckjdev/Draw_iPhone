@@ -489,7 +489,7 @@ int *getRewardBonusList()
             msg = NSLS(@"kNetworkError");
             break;
     }
-    [UIUtils alert:msg];
+    [self popupUnhappyMessage:msg title:nil];
 
 }
 

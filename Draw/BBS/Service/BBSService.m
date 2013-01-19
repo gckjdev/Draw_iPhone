@@ -543,7 +543,7 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeDraw;
                 PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList];
                 drawData = [bbsDraw data];
-            }else if([text length] != 0){
+            }else{
                 contentType = ContentTypeText;
             }
         }
