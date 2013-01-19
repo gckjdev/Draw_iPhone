@@ -489,7 +489,11 @@ int *getRewardBonusList()
             msg = NSLS(@"kNetworkError");
             break;
     }
-    [self popupUnhappyMessage:msg title:nil];
+    if(ISIPAD){
+        [self popupUnhappyMessage:msg title:nil];
+    }else{
+        [UIUtils alert:msg];
+    }
 
 }
 
