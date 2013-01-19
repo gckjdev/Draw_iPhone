@@ -27,12 +27,12 @@
 
 - (void)dealloc
 {
-    [_background release];
-    [_drawWord release];
-    [_myPrintTag release];
-    [_wordsBackground release];
-    [_paint release];
-    [_drawImage release];
+    PPRelease(_background);
+    PPRelease(_drawWord);
+    PPRelease(_myPrintTag);
+    PPRelease(_wordsBackground);
+    PPRelease(_paint);
+    PPRelease(_drawImage);
     [super dealloc];
 }
 

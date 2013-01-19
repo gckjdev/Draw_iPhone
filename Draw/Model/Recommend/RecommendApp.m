@@ -17,10 +17,10 @@
 
 - (void)dealloc
 {
-    [_appName release];
-    [_appDescription release];
-    [_appIconUrl release];
-    [_appUrl release];
+    PPRelease(_appName);
+    PPRelease(_appDescription);
+    PPRelease(_appIconUrl);
+    PPRelease(_appUrl);
     [super dealloc];
 }
 

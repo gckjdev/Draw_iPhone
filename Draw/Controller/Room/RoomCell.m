@@ -234,12 +234,12 @@
 }
 - (void)dealloc {
 
-    [roomNameLabel release];
-    [creatorLabel release];
-    [userListLabel release];
-    [inviteInfoButton release];
-    [inviteButton release];
-    [avatarView release];
+    PPRelease(roomNameLabel);
+    PPRelease(creatorLabel);
+    PPRelease(userListLabel);
+    PPRelease(inviteInfoButton);
+    PPRelease(inviteButton);
+    PPRelease(avatarView);
     [super dealloc];
 }
 @end

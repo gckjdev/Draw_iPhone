@@ -46,7 +46,7 @@
     PPRelease(titleLabel);
     PPRelease(followButton);
     PPRelease(fanButton);
-    [tipsLabel release];
+    PPRelease(tipsLabel);
     [super dealloc];
 }
 

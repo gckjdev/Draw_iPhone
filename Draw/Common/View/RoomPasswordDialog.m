@@ -313,10 +313,10 @@
 }
 
 - (void)dealloc {
-    [passwordField release];
-    [roomNameLabel release];
-    [passwordLabel release];
-    [contentBackground release];
+    PPRelease(passwordField);
+    PPRelease(roomNameLabel);
+    PPRelease(passwordLabel);
+    PPRelease(contentBackground);
     [super dealloc];
 }
 @end
