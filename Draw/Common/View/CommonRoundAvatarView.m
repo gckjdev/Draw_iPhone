@@ -28,16 +28,15 @@
 
 - (void)dealloc
 {
-    [imageView release];
-//    [markButton release];
-    [_userId release];
-    [progressView release];
-    [bgView release];
-    [_timer release];
-    [_rewardCoinLabel release];
-    [_rewardCoinView release];
-    [_rewardView release];
-    [_clockView release];
+    PPRelease(imageView);
+    PPRelease(_userId);
+    PPRelease(progressView);
+    PPRelease(bgView);
+    PPRelease(_timer);
+    PPRelease(_rewardCoinLabel);
+    PPRelease(_rewardCoinView);
+    PPRelease(_rewardView);
+    PPRelease(_clockView);
     [super dealloc];
 }
 
