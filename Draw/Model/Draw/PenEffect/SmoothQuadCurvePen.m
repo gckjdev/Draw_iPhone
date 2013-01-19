@@ -27,7 +27,7 @@
 
 - (id)init
 {
-    PPDebug(@"<init> %@", [self description]);
+//    PPDebug(@"<init> %@", [self description]);
 
     self = [super init];
     _path = CGPathCreateMutable();
@@ -38,7 +38,7 @@
 
 - (void)dealloc
 {
-    PPDebug(@"<dealloc> %@", [self description]);
+//    PPDebug(@"<dealloc> %@", [self description]);
     
     RELEASE_PATH(_path);
     [super dealloc];

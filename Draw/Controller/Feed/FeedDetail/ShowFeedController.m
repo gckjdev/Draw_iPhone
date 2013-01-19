@@ -682,7 +682,7 @@ enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        self.unReloadDataWhenViewDidAppear = YES;
     }
     return self;
 }

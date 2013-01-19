@@ -231,7 +231,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)dealloc
 {
-    PPDebug(@"<dealloc> %@", [self description]);
+//    PPDebug(@"<dealloc> %@", [self description]);
     PPRelease(_color);
     PPRelease(_pointList);
     PPRelease(_pen);

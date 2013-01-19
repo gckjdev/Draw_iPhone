@@ -40,7 +40,7 @@ typedef enum {
 @interface ShowDrawView : SuperDrawView<UIGestureRecognizerDelegate>
 {
     
-
+    double _playFrameTime;
 
 }
 

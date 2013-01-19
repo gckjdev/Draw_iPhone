@@ -51,6 +51,7 @@
         _bbsColorManager = [BBSColorManager defaultManager];
         
         _openBoardSet = [[NSMutableSet alloc] init];
+        self.unReloadDataWhenViewDidAppear = YES;
     }
     return self;
 }
