@@ -1291,5 +1291,5 @@
 
 "kShareByEmailSuccess" = "Share email successfully.";
 
-
+"kNotBindMailMessage" = "You have not bind E-Mail yet, bind you mail account in system settings.";
 /*********************** BBS国际化字符串结束 *************************/

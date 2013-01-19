@@ -1306,5 +1306,6 @@
 "kSaveImageSuccess" = "保存成功";
 
 "kShareByEmailSuccess" = "邮件分享成功";
+"kNotBindMailMessage" = "您还没设置您的邮箱帐户，请在系统设置里面设置您的邮箱。";
 
 /*********************** BBS国际化字符串结束 *************************/

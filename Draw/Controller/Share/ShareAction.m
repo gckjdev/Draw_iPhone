@@ -234,6 +234,7 @@
 - (void)shareViaEmail
 {
     if ([MFMailComposeViewController canSendMail] == NO){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotBindMailMessage") delayTime:2.5];
         return;
     }
     
@@ -528,7 +529,7 @@
 {
     [self.superViewController hideActivity];
 	[self.superViewController dismissModalViewControllerAnimated:YES];
-    if (error == nil) {
+    if (error == nil && result == MFMailComposeResultSent) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
         [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];
     }

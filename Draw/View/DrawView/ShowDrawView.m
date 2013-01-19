@@ -14,8 +14,8 @@
 #import "Paint.h"
 #import "ConfigManager.h"
 
-#define DEFAULT_PLAY_SPEED (1/50.0)
-#define MIN_PLAY_SPEED      (0.0001)
+#define DEFAULT_PLAY_SPEED  (1/50.0)
+#define MIN_PLAY_SPEED      (0.00001)
 
 @interface ShowDrawView ()
 {
@@ -326,11 +326,15 @@
     if (Playing == self.status) {
         [[NSDate date] timeIntervalSince1970];
         double now = CACurrentMediaTime();
-        double delay = DEFAULT_PLAY_SPEED;
+//        double delay = DEFAULT_PLAY_SPEED;
         if (now - _playFrameTime > DEFAULT_PLAY_SPEED){
-            delay = MIN_PLAY_SPEED;
+//            PPDebug(@"Exceed max delay");
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:MIN_PLAY_SPEED];
         }
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
+        else{
+//            PPDebug(@"Normal delay");
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
+        }
     }
 }
 
