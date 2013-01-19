@@ -188,13 +188,15 @@ typedef enum{
     self.selectedPaint = paint;
     UIActionSheet* tips = nil;
     
+    NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
+    
     if ([LocaleUtils isChina]){
         
         if (self.isDraftTab) {
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
-                                 destructiveButtonTitle:NSLS(@"kEdit") 
+                                 destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kShareAsPhoto"),
                     NSLS(@"kShareAsGif"),NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
         }else{        
@@ -211,7 +213,7 @@ typedef enum{
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
-                                 destructiveButtonTitle:NSLS(@"kEdit") 
+                                 destructiveButtonTitle:editString 
                                       otherButtonTitles:NSLS(@"kShareAsPhoto"),
                     NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
         }else{           
