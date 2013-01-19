@@ -65,8 +65,8 @@
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
-    PPDebug(nickLabel);
-    PPDebug(avatarView);
+    PPRelease(nickLabel);
+    PPRelease(avatarView);
     [super dealloc];
 }
 @end
