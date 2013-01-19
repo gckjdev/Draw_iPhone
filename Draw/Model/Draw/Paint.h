@@ -14,7 +14,8 @@
 
 CGPoint midPoint(CGPoint p1, CGPoint p2);
 
-#define POINT_COUNT        5
+//#define POINT_COUNT        3
+//#define POINT_COUNT        5
 
 @interface Paint : NSObject <NSCoding>
 {
@@ -24,7 +25,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
     ItemType _penType;
     CGMutablePathRef _path;
     CGMutablePathRef _pathToShow;
-    CGPoint pts[POINT_COUNT];
+    CGPoint pts[10];
     int     ptsCount;
     BOOL    ptsComplete;
 }
@@ -61,6 +62,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2);
 - (CGMutablePathRef)getPathForShow;
 - (CGRect)rectForPath;
 
+- (void)clearPath;
 - (void)releasePathToShow;
 
 @end

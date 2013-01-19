@@ -137,24 +137,26 @@ typedef enum {
     
     Paint *paint = [_currentAction paint];
     
-    CGRect drawBox = [paint rectForPath];
+    CGRect drawBox; //= [paint rectForPath];
     if (type == TouchTypeBegin) {
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:cacheContext];
-        [self strokePaint:paint inContext:cacheContext clear:YES];
+        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else if(type == TouchTypeMove){
-        [self strokePaint:paint inContext:cacheContext clear:YES];
+        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
     }else{
-//        [self strokePaint:paint inContext:cacheContext clear:YES];
-        [self clearContext:cacheContext];
-//        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
+        
+        if (paint.penType == WaterPen){
+            [paint clearPath];
+            drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
+            [self clearContext:cacheContext];
+            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
+        }
         
         [self setStrokeColor:paint.color lineWidth:paint.width inContext:showContext];
-        [self strokePaint:paint inContext:showContext clear:NO];
+        drawBox = [self strokePaint1:paint inContext:showContext clear:NO];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
-        
-        [paint releasePathToShow];
     }
 }
 

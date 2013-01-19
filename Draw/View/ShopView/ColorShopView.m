@@ -222,6 +222,7 @@
 
 
 - (void)dealloc {
+    PPDebug(@"%@ dealloc",self);
     PPRelease(titleLabel);
     PPRelease(coinCountLabel);
     PPRelease(dataTableView);
