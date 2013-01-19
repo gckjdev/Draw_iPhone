@@ -169,10 +169,12 @@
 - (void)viewDidLoad
 {
     CGFloat originY = [DeviceDetection screenSize].height - 50 - 20;
+    /*
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, originY, 320, 50) 
                                                    iPadFrame:CGRectMake(112, 883, 320, 50)
                                                      useLmAd:NO];        
+    */
     
     [super viewDidLoad];
     toolView = [[ToolView alloc] initWithNumber:0];
@@ -212,6 +214,7 @@
     [drawGameService registerObserver:self];
     [super viewDidAppear:animated];
 
+    /*
     if (self.adView == nil){
         CGFloat originY = [DeviceDetection screenSize].height - 50 - 20;
         self.adView = [[AdService defaultService] createAdInView:self
@@ -219,6 +222,7 @@
                                                        iPadFrame:CGRectMake(112, 883, 320, 50)
                                                          useLmAd:NO];
     }
+    */
 }
 
 - (void)viewDidDisappear:(BOOL)animated
