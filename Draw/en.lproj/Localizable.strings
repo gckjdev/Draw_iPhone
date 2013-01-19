@@ -111,6 +111,8 @@
 "kExit" = "Exit";
 "kSave" = "Save";
 "kSaving" = "Saving...";
+"kSaved" = "Saved";
+"kFailed" = "Failed";
 "kTurnResult" = "Result of turn";
 "kBuyColor" = "Color Shop";
 "kConnectionRecover" = "Connection Recover";
