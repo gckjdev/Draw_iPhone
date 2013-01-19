@@ -3287,6 +3287,18 @@
 		CA335D5516A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
+		CA3676DA16AA6A6400630A40 /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
+		CA3676DB16AA6A6400630A40 /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
+		CA3676DC16AA6A6400630A40 /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
+		CA3676DD16AA6A6400630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
+		CA3676DE16AA6A6500630A40 /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
+		CA3676DF16AA6A6500630A40 /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
+		CA3676E016AA6A6500630A40 /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
+		CA3676E116AA6A6500630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
+		CA3676E216AA6A6600630A40 /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
+		CA3676E316AA6A6600630A40 /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
+		CA3676E416AA6A6600630A40 /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
+		CA3676E516AA6A6600630A40 /* PenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3676D816AA4E1C00630A40 /* PenFactory.m */; };
 		CA3B56DD1514C92800A93137 /* GameSessionUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DC1514C92800A93137 /* GameSessionUser.m */; };
 		CA3B56E01514C9DF00A93137 /* GameTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56DF1514C9DF00A93137 /* GameTurn.m */; };
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
@@ -20830,6 +20842,10 @@
 				CA988ACA16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACE16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
 				A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
+				CA3676E216AA6A6600630A40 /* SmoothCurvePen.m in Sources */,
+				CA3676E316AA6A6600630A40 /* SmoothQuadCurvePen.m in Sources */,
+				CA3676E416AA6A6600630A40 /* CurvePen.m in Sources */,
+				CA3676E516AA6A6600630A40 /* PenFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21513,6 +21529,10 @@
 				CA988ACB16A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACF16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
 				A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */,
+				CA3676DE16AA6A6500630A40 /* SmoothCurvePen.m in Sources */,
+				CA3676DF16AA6A6500630A40 /* SmoothQuadCurvePen.m in Sources */,
+				CA3676E016AA6A6500630A40 /* CurvePen.m in Sources */,
+				CA3676E116AA6A6500630A40 /* PenFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22891,6 +22911,10 @@
 				CA988AC916A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACD16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
 				A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */,
+				CA3676DA16AA6A6400630A40 /* SmoothCurvePen.m in Sources */,
+				CA3676DB16AA6A6400630A40 /* SmoothQuadCurvePen.m in Sources */,
+				CA3676DC16AA6A6400630A40 /* CurvePen.m in Sources */,
+				CA3676DD16AA6A6400630A40 /* PenFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
