@@ -616,7 +616,9 @@ BBSService *_staticBBSService;
                 NSInteger resultCode = [output resultCode];
                 
                 if (resultCode == ERROR_SUCCESS) {
-                    [[BBSManager defaultManager] increasePostSupportTimes:postId];
+                    if (actionType == ActionTypeSupport) {
+                        [[BBSManager defaultManager] increasePostSupportTimes:postId];
+                    }
                     NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
                     NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
                     NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];

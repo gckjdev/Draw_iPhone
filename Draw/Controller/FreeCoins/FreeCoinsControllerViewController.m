@@ -226,19 +226,16 @@
     [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
     [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
     
-    
-    NSString *moneyStr = (money <= 0) ? @"" : [NSString stringWithFormat:NSLS(@"kGainFreeCoinsNote"), money];
-    NSString *flowersStr = (flowersAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), flowersAward] stringByAppendingString:NSLS(@"kFlower")];
-    NSString *TipsStr = (tipsAward == 0) ? @"" : [[NSString stringWithFormat:NSLS(@"+%d"), tipsAward] stringByAppendingString:NSLS(@"kTips")];
-    
     int remainTimes = [self remainTimes];
-    NSString *remainTimesStr = [NSString stringWithFormat:NSLS(@"kRemainTimes"), remainTimes];
     
-    NSString *note = [[[moneyStr stringByAppendingString:flowersStr] stringByAppendingString:TipsStr] stringByAppendingString:remainTimesStr];
-    
-    if (note != nil && ![note isEqualToString:@""]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:5 isHappy:YES];
+    NSString *note = NSLS(@"kUnknowGame");
+    if (isDrawApp()) {
+        note = [self drawAwardNote:money flowers:flowersAward tips:tipsAward remainTimes:remainTimes];
+    }else if (isZhajinhuaApp()){
+        note = [self zjhAwardNote:money remainTimes:remainTimes];
     }
+    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     
     if ([self remainTimes] <= 0) {
         [self enableFreeCoinsAward:NO];
@@ -247,6 +244,16 @@
         [self updateRemainTimes:remainTimes];
         self.noteLabel.text = NSLS(@"kWaitForMoneyTreeAward");
     }
+}
+
+- (NSString *)drawAwardNote:(int)money flowers:(int)flowers tips:(int)tips remainTimes:(int)remainTimes
+{
+    return [NSString stringWithFormat:NSLS(@"kDrawFreeCoinsAwardNote"), money, flowers, tips, remainTimes];
+}
+
+- (NSString *)zjhAwardNote:(int)money remainTimes:(int)remainTimes
+{
+    return [NSString stringWithFormat:NSLS(@"kZJHFreeCoinsAwardNote"), money, remainTimes];
 }
 
 // 树长大的回调
