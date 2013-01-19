@@ -871,7 +871,9 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    
+
+    [self stopRecovery];
+
     BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
     
     if (isBlank) {
