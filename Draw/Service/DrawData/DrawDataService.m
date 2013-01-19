@@ -34,10 +34,18 @@ static DrawDataService* _defaultDrawDataService = nil;
     return _defaultDrawDataService;
 }
 
+#define COMMIT_QUQUE_KEY @"COMMIT_QUQUE_KEY" 
+- (NSOperationQueue *)commitQuque
+{
+    return [self getOperationQueue:COMMIT_QUQUE_KEY];
+}
 
 - (void)findRecentDraw:(PPViewController<DrawDataServiceDelegate>*)viewController
 {
-    dispatch_async(workingQueue, ^{
+    NSOperationQueue *queue = [self commitQuque];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock: ^{
         CommonNetworkOutput* output = [GameNetworkRequest findDrawWithProtocolBuffer:SERVER_URL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -56,14 +64,18 @@ static DrawDataService* _defaultDrawDataService = nil;
                 [viewController didFindRecentDraw:list result:output.resultCode];
             }
         });
-    });
+    }];
 }
 
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController
 {
     
-    dispatch_async(workingQueue, ^{
+    
+    NSOperationQueue *queue = [self commitQuque];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock: ^{
             
         NSString *uid = [[UserManager defaultManager] userId];
         NSString *gender = [[UserManager defaultManager] gender];
@@ -94,7 +106,7 @@ static DrawDataService* _defaultDrawDataService = nil;
             }  
         });
         //TODO store feed draw data.
-    });    
+    }];
 }
 
 
