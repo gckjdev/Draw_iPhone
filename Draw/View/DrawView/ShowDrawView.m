@@ -287,7 +287,7 @@
     [self updateTempPaint];
     if (self.status == Playing) {
         if (self.tempPaint) {
-            CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width];
+            CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width bounds:self.bounds];
             if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
                 self.tempPaint = nil;
                 [self drawAction:_currentAction inContext:showContext];

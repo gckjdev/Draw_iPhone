@@ -531,11 +531,11 @@
     PPRelease(resultLabel);
     PPRelease(_drawActionList);
     PPRelease(_useItemScene);
-    [experienceLabel release];
-    [titleLabel release];
-    [upLabel release];
-    [downLabel release];
-    [backButton release];
+    PPRelease(experienceLabel);
+    PPRelease(titleLabel);
+    PPRelease(upLabel);
+    PPRelease(downLabel);
+    PPRelease(backButton);
     [super dealloc];
 }
 

@@ -328,17 +328,17 @@
 
 
 - (void)dealloc {
-    [contentText release];
-    [submitButton release];
-    [backButton release];
-    [contactText release];
-    [contentBackground release];
-    [doneButton release];
-    [reporterTitle release];
-    [contactBackground release];
-    [_lastReport release];
-    [tips release];
-    [backgroundImageView release];
+    PPRelease(contentText);
+    PPRelease(submitButton);
+    PPRelease(backButton);
+    PPRelease(contactText);
+    PPRelease(contentBackground);
+    PPRelease(doneButton);
+    PPRelease(reporterTitle);
+    PPRelease(contactBackground);
+    PPRelease(_lastReport);
+    PPRelease(tips);
+    PPRelease(backgroundImageView);
     [super dealloc];
 }
 @end

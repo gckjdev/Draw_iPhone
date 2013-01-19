@@ -24,11 +24,11 @@
 
 - (void)dealloc
 {
-    [_showDrawView stop];
+    PPRelease(_showDrawView);
     PPRelease(_showDrawView);
     PPRelease(_titleLabel);
     PPRelease(_drawActionList);
-    [_playEndButton release];
+    PPRelease(_playEndButton);
     [super dealloc];
 }
 

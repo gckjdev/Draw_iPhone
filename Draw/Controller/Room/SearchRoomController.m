@@ -105,11 +105,11 @@
 
 - (void)dealloc {
         
-    [searchField release]; 
-    [searchButton release];
-    [searchFieldBg release];
-    [titleLabel release];
-    [tipsLabel release];
+    PPRelease(searchField);
+    PPRelease(searchButton);
+    PPRelease(searchFieldBg);
+    PPRelease(titleLabel);
+    PPRelease(tipsLabel);
     [super dealloc];
 }
 - (IBAction)clickSearhButton:(id)sender {

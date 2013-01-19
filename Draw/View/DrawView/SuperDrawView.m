@@ -163,7 +163,7 @@
         CGContextClearRect(context, drawBox);
     }
     CGPathRef path = paint.path;
-    CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width];
+    CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width bounds:self.bounds];
     CGContextAddPath(context, path);
     CGContextStrokePath(context);
     

@@ -24,6 +24,7 @@
 #import "MessageStat.h"
 #import "GameApp.h"
 #import "Bbs.pb.h"
+#import "SelectHotWordController.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -280,7 +281,9 @@
 
 - (IBAction)drawToHim:(id)sender
 {
-    [SelectWordController startSelectWordFrom:self.superViewController targetUid:targetFriend.friendUserId];
+//    [SelectWordController startSelectWordFrom:self.superViewController targetUid:targetFriend.friendUserId];
+    SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:targetFriend.friendUserId] autorelease];
+    [self.superViewController.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)talkToHim:(id)sender

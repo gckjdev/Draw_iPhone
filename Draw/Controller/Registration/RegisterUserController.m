@@ -294,16 +294,16 @@
 }
 
 - (void)dealloc {
-    [userIdTextField release];
-    [submitButton release];
-    [promptLabel release];
-    [titleLabel release];
-    [facebookButton release];
-    [sinaButton release];
-    [qqButton release];
-    [remoteDrawArray release];
-    [inviteLabel release];
-    [backgroundImageView release];
+    PPRelease(userIdTextField);
+    PPRelease(submitButton);
+    PPRelease(promptLabel);
+    PPRelease(titleLabel);
+    PPRelease(facebookButton);
+    PPRelease(sinaButton);
+    PPRelease(qqButton);
+    PPRelease(remoteDrawArray);
+    PPRelease(inviteLabel);
+    PPRelease(backgroundImageView);
     [super dealloc];
 }
 
