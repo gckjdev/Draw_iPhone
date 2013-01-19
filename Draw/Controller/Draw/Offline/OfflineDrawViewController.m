@@ -93,7 +93,6 @@
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
-@property (retain, nonatomic) NSString *desc;
 @property (retain, nonatomic) InputAlertView *inputAlert;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
@@ -176,8 +175,6 @@
     PPRelease(draftButton);
     PPRelease(_submitButton);
     PPRelease(_tempColor);
-    PPRelease(_desc);
-    PPRelease(_inputAlert);
     [super dealloc];
 }
 
@@ -862,13 +859,14 @@ enum{
     [self showActivityWithText:NSLS(@"kSending")];
     self.submitButton.userInteractionEnabled = NO;
     UIImage *image = [drawView createImage];
+    NSString *text = self.inputAlert.contentText;
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
                                                drawWord:self.word
                                                language:languageType
                                               targetUid:self.targetUid
                                               contestId:_contest.contestId
-                                                   desc:_desc//@"元芳，你怎么看？"
+                                                   desc:text//@"元芳，你怎么看？"
                                                delegate:self];
 }
 
@@ -889,14 +887,7 @@ enum{
         }
     }else {
         if (self.inputAlert == nil) {
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil clickBlock:^BOOL(NSString *contentText, BOOL confirm) {
-                _desc = contentText;
-                PPDebug(@"opus desc = %@,confirm = %d",contentText,confirm);
-                if (confirm) {
-                    [self commitOpus];
-                }
-                return !confirm;
-            }];            
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus) cancelSeletor:NULL];
         }
         [self.inputAlert showInView:self.view animated:YES];
     
