@@ -33,4 +33,6 @@
 @property (retain, nonatomic) IBOutlet WordSelectCell *systemWordsCellPlaceHolder;
 @property (retain, nonatomic) IBOutlet WordSelectCell *myWordsCellPlaceHolder;
 
+- (id)initWithTargetUid:(NSString *)targetUid;
+
 @end

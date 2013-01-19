@@ -20,6 +20,7 @@
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
 @interface SelectHotWordController ()
+@property (copy, nonatomic) NSString *targetUid;
 
 @end
 
@@ -41,7 +42,17 @@
     [_hotWordsNoteLabel release];
     [_systemWordsLabel release];
     [_myWordsLabel release];
+    [_targetUid release];
     [super dealloc];
+}
+
+- (id)initWithTargetUid:(NSString *)targetUid
+{
+    self = [super init];
+    if (self) {
+        self.targetUid = targetUid;
+    }
+    return self;
 }
 
 - (void)initWordCells
@@ -119,7 +130,7 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
     Word *myWord = [Word cusWordWithText:word];
-    [OfflineDrawViewController startDraw:myWord fromController:self];
+    [OfflineDrawViewController startDraw:myWord fromController:self targetUid:_targetUid];
 }
 
 - (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
@@ -164,7 +175,7 @@
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
         }
         
-        [OfflineDrawViewController startDraw:word fromController:self];
+        [OfflineDrawViewController startDraw:word fromController:self targetUid:_targetUid];
     }
 }
 
@@ -173,6 +184,7 @@
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_DRAFT];
 
     OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
+    vc.targetUid = _targetUid;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

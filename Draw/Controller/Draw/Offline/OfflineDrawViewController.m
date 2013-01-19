@@ -30,7 +30,6 @@
 #import "ShoppingManager.h"
 #import "DrawDataService.h"
 #import "CommonMessageCenter.h"
-#import "SelectWordController.h"
 #import "ShowFeedController.h"
 #import "MyPaintManager.h"
 #import "UserManager.h"
@@ -42,7 +41,6 @@
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
-#import "SelectHotWordController.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "VendingController.h"
@@ -50,6 +48,7 @@
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
+#import "SelectHotWordController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -598,11 +597,11 @@ enum{
         //if come from feed detail controller
         if (superController) {
             [self.navigationController popToViewController:superController animated:NO];
-            SelectWordController *sc = nil;
+            SelectHotWordController *sc = nil;
             if ([_targetUid length] == 0) {
-                sc = [[SelectWordController alloc] initWithType:OfflineDraw];                
+                sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                sc = [[SelectWordController alloc] initWithTargetUid:self.targetUid];
+                sc = [[SelectHotWordController alloc] initWithTargetUid:self.targetUid];
             }
             [superController.navigationController pushViewController:sc animated:NO];
             [sc release];
@@ -613,7 +612,6 @@ enum{
             }else{
                 [HomeController startOfflineDrawFrom:self uid:self.targetUid];
             }
-            
         }
         if (self.draft) {
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
@@ -626,7 +624,7 @@ enum{
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
 
-        // Save Image Locally        
+        // Save Image Locally
         [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
         [self quit];
     }
