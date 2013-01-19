@@ -13,6 +13,7 @@
 
 + (id<PenEffectProtocol>)getPen:(ItemType)penType
 {
+    PPDebug(@"Create New Pen");
     return [[[SmoothQuadCurvePen alloc] init] autorelease];
 }
 

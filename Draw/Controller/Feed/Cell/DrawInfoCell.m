@@ -274,6 +274,7 @@
 }
 
 - (void)dealloc {
+    PPDebug(@"%@ dealloc",self);
     [_showView stop];
     self.feed.drawData = nil;
     PPRelease(_showView);

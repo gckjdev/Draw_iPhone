@@ -14,6 +14,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc",self);
     PPRelease(_feed);
     [super dealloc];
 }
