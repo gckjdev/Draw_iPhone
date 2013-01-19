@@ -1257,7 +1257,8 @@
 "kILeaveForAMoment" = "我先離開一會";
 "kIWantToGoNow" = "我要走啦，下次再玩";
 "kShutUp" = "別吵啦，專心遊戲";
-"kGainFreeCoinsNote" = "恭喜你獲得%d金幣";
+"kZJHFreeCoinsAwardNote" = "恭喜你獲得%d金幣";
+"kDrawFreeCoinsAwardNote" = "恭喜你獲得%d金幣 + %d鮮花 + %d錦囊(剩余次數:%d)";
 
 /*********************** 炸金花国际化字符串结束 *************************/
 

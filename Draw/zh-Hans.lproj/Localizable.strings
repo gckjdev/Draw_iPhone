@@ -1004,7 +1004,8 @@
 "kCannotShowYourself" = "你点击的是自己的头像，所以什么也看不到";
 "kRecoveryDraft" = "自动恢复";
 
-"kGainFreeCoinsNote" = "恭喜你获得%d金币";
+"kZJHFreeCoinsAwardNote" = "恭喜你获得%d金币";
+"kDrawFreeCoinsAwardNote" = "恭喜你获得%d金币 + %d鲜花 + %d锦囊(剩余次数:%d)";
 
 "kBuyABagAndUse" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。";
 "kChoseWeixinOption" = "分享到微信";
