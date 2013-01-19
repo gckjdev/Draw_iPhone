@@ -206,10 +206,11 @@
 - (void)didClickContestView:(ContestView *)contestView
                onJoinButton:(Contest *)contest
 {
-    StatementController *sc = [[StatementController alloc] initWithContest:contest];
-    [self.navigationController pushViewController:sc animated:YES];
-    sc.superController = self;
-    [sc release];
+//    Test Code below
+//    StatementController *sc = [[StatementController alloc] initWithContest:contest];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    sc.superController = self;
+//    [sc release];
 
     return;
     //not running
