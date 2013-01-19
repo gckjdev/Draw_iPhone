@@ -139,17 +139,17 @@
 
 - (void)dealloc {
     _moneyTree.delegate = nil;
-    [_titleTlabel release];
-    [_moneyTreeHolderView release];
-    [_lmWallBtnHolderView release];
-    [_helpBtnHolderView release];
-    [_noteLabel release];
-    [_remainTimesLabel release];
-    [_cannotGetFreeCoinsImageView release];
-    [_cannotGetFreeCoinsLabel release];
-    [_timeLabel release];
-    [_moneyTree release];
-    [_noteBgImageView release];
+    PPRelease(_titleTlabel);
+    PPRelease(_moneyTreeHolderView);
+    PPRelease(_lmWallBtnHolderView);
+    PPRelease(_helpBtnHolderView);
+    PPRelease(_noteLabel);
+    PPRelease(_remainTimesLabel);
+    PPRelease(_cannotGetFreeCoinsImageView);
+    PPRelease(_cannotGetFreeCoinsLabel);
+    PPRelease(_timeLabel);
+    PPRelease(_moneyTree);
+    PPRelease(_noteBgImageView);
     [super dealloc];
 }
 - (void)viewDidUnload {

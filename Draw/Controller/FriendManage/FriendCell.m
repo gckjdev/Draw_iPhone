@@ -31,12 +31,12 @@
 //@synthesize inviteDelegate;
 
 - (void)dealloc {
-    [avatarView release];
-    [nickNameLabel release];
-    [genderLabel release];
-    [areaLabel release];
-    [statusLabel release];
-    [_levelLabel release];
+    PPRelease(avatarView);
+    PPRelease(nickNameLabel);
+    PPRelease(genderLabel);
+    PPRelease(areaLabel);
+    PPRelease(statusLabel);
+    PPRelease(_levelLabel);
     PPRelease(_myFriend);
     [super dealloc];
 }

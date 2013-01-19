@@ -24,14 +24,14 @@
 @synthesize myStatus = _myStatus;
 - (void)dealloc
 {
-    [_roomId release];
-    [_roomName release];
-    [_gameServerAddress release];
-    [_password release];
-    [_createDate release];
-    [_expireDate release];
-    [_userList release];
-    [_creator release];
+    PPRelease(_roomId);
+    PPRelease(_roomName);
+    PPRelease(_gameServerAddress);
+    PPRelease(_password);
+    PPRelease(_createDate);
+    PPRelease(_expireDate);
+    PPRelease(_userList);
+    PPRelease(_creator);
     [super dealloc];
 }
 
@@ -129,11 +129,11 @@
 
 - (void)dealloc
 {
-    [_userId release];
-    [_nickName release];
-    [_gender release];
-    [_avatar release];
-    [_lastPlayDate release];
+    PPRelease(_userId);
+    PPRelease(_nickName);
+    PPRelease(_gender);
+    PPRelease(_avatar);
+    PPRelease(_lastPlayDate);
     [super dealloc];
 }
 

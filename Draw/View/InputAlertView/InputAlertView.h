@@ -12,15 +12,17 @@
 //return yes to dismiss the view, and no to stay the view.
 
 
-typedef BOOL (^InputAlertViewClickBlock)(NSString *contentText, BOOL confirm);
-
-
 @interface InputAlertView : UIControl<UITextViewDelegate>
+{
+    
+}
 
 
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content
-              clickBlock:(InputAlertViewClickBlock)clickBlock;
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor;
 
 - (NSString *)contentText;
 - (void)showInView:(UIView *)view animated:(BOOL)animated;

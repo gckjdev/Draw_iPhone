@@ -987,7 +987,7 @@
 "kDrawAPicture" = "Draw a paint";
 
 "kNewDrawVersionTip" = "The app version is too old, some drawing effect may not be supported. Please update to the latest version.";
-
+"kVersionNotSupport" = "Your version doesn't support this function yet, maybe you should update it.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

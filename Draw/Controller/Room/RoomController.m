@@ -73,15 +73,15 @@
 #define MAX_CLICK_COUNT 5   
 
 - (void)dealloc {
-    [changeRoomButton release];
-    [_startTimer release];
-    [startGameButton release];
-    [roomNameLabel release];
-    [_prolongButton release];
-    [popupButton release];
-    [_onlinePlayerCountLabel release];
-    [_privateChatController release];
-    [_groupChatController release];
+    PPRelease(changeRoomButton);
+    PPRelease(_startTimer);
+    PPRelease(startGameButton);
+    PPRelease(roomNameLabel);
+    PPRelease(_prolongButton);
+    PPRelease(popupButton);
+    PPRelease(_onlinePlayerCountLabel);
+    PPRelease(_privateChatController);
+    PPRelease(_groupChatController);
     [super dealloc];
 }
 

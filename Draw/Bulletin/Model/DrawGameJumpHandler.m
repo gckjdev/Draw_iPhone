@@ -48,15 +48,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
     return jumpController;
 }
 
-- (BOOL)isFunctionAvailable:(NSString*)func
-{
-    if ([func isEqualToString:FUNC_FEED ignoreCapital:YES]
-        || [func isEqualToString:FUNC_CONTEST ignoreCapital:YES]
-        || [func isEqualToString:FUNC_TOP ignoreCapital:YES]
-        || [func isEqualToString:FUNC_FREE_COINS ignoreCapital:YES]) {
-        return YES;
-    }
-    return NO;
-}
+//- (BOOL)isFunctionAvailable:(NSString*)func
+//{
+//    if ([func isEqualToString:FUNC_FEED ignoreCapital:YES]
+//        || [func isEqualToString:FUNC_CONTEST ignoreCapital:YES]
+//        || [func isEqualToString:FUNC_TOP ignoreCapital:YES]
+//        || [func isEqualToString:FUNC_FREE_COINS ignoreCapital:YES]) {
+//        return YES;
+//    }
+//    return NO;
+//}
+
 
 @end
