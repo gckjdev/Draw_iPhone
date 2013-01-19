@@ -139,6 +139,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 //    [self uniqueMessageStats];
+    [self.dataTableView reloadData];
     [super viewDidAppear:animated];
 }
 
