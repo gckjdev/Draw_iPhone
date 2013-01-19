@@ -640,6 +640,11 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     
 }
 
+- (void)finishPoint
+{
+    
+}
+
 - (NSInteger)pointCount
 {
     return [self.pointList count];

@@ -6190,6 +6190,9 @@
 		CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
+		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
+		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
 		CAFEFAED16606E4900441D77 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87516606E4700441D77 /* Facebook.m */; };
 		CAFEFAEE16606E4900441D77 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF87716606E4700441D77 /* FBDialog.bundle */; };
 		CAFEFAEF16606E4900441D77 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87916606E4700441D77 /* FBDialog.m */; };
@@ -9232,6 +9235,13 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
+		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
+		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
+		CAF9B71216AA3CBD00865CCE /* SmoothQuadCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothQuadCurvePen.h; sourceTree = "<group>"; };
+		CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothQuadCurvePen.m; sourceTree = "<group>"; };
+		CAF9B71516AA3E9B00865CCE /* CurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurvePen.h; sourceTree = "<group>"; };
+		CAF9B71616AA3E9B00865CCE /* CurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvePen.m; sourceTree = "<group>"; };
 		CAFEF87416606E4700441D77 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		CAFEF87516606E4700441D77 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
 		CAFEF87616606E4700441D77 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
@@ -12222,6 +12232,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAF9B70D16AA3C4200865CCE /* PenEffect */,
 				CAD6EACD15805D780004A483 /* DrawManager.h */,
 				CAD6EACE15805D780004A483 /* DrawManager.m */,
 				A3C129E31563A70E00C021A7 /* Draw.h */,
@@ -15563,6 +15574,20 @@
 				CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
+			isa = PBXGroup;
+			children = (
+				CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */,
+				CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */,
+				CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */,
+				CAF9B71216AA3CBD00865CCE /* SmoothQuadCurvePen.h */,
+				CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */,
+				CAF9B71516AA3E9B00865CCE /* CurvePen.h */,
+				CAF9B71616AA3E9B00865CCE /* CurvePen.m */,
+			);
+			path = PenEffect;
 			sourceTree = "<group>";
 		};
 		CAFE006116609CEC00441D77 /* SocialFeatures */ = {
@@ -22166,6 +22191,9 @@
 				CA988AC416A6B7E70050AC78 /* MWTapDetectingView.m in Sources */,
 				CA988AC816A6B7E70050AC78 /* MWZoomingScrollView.m in Sources */,
 				CA988ACC16A6B7E70050AC78 /* MBProgressHUD.m in Sources */,
+				CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */,
+				CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */,
+				CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
