@@ -428,7 +428,7 @@ BBSService *_staticBBSService;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
-                    [delegate didCreatePost:nil resultCode:resultCode];
+                    [delegate didCreatePost:post resultCode:resultCode];
                 }
 
             });
