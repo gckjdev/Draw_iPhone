@@ -65,9 +65,9 @@
     PPRelease(_title);
     PPRelease(_author);
     PPRelease(_drawImage);
-    [_drawFlag release];
-    [_maskButton release];
-    [_cupFlag release];
+    PPRelease(_drawFlag);
+    PPRelease(_maskButton);
+    PPRelease(_cupFlag);
     [super dealloc];
 }
 

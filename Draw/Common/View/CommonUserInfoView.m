@@ -47,10 +47,10 @@
     PPRelease(_followUserButton);
     PPRelease(_statusLabel);
     PPRelease(_levelLabel);
-    [_genderImageView release];
-    [_coinsLabel release];
-    [_avatarView release];
-    [_coinImageView release];
+    PPRelease(_genderImageView);
+    PPRelease(_coinsLabel);
+    PPRelease(_avatarView);
+    PPRelease(_coinImageView);
     [super dealloc];
 }
 
@@ -234,6 +234,9 @@
         [controller release];
     }
 }
+
+
+
 
 
 #pragma mark - main process methods.

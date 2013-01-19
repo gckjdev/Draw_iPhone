@@ -104,6 +104,7 @@
                                                        level:targetFriend.level] autorelease];
     view.tag = SUBVIEW_AVATAR_TAG;
     [self.contentView addSubview:view];
+    view.delegate = self;
 }
 
 - (void)initButton
@@ -300,6 +301,7 @@
     }
 }
 
+
 - (IBAction)seeHisFeed:(id)sender
 {
     UserFeedController *userFeed = [[UserFeedController alloc] 
@@ -310,6 +312,30 @@
     [userFeed release];
 }
 
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    PPDebug(@"<clickAvatar> url = %@",self.targetFriend.avatar);
+    if ([self.targetFriend.avatar length] != 0) {
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        // Modal
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [_superViewController presentModalViewController:nc animated:YES];
+        [browser release];
+        [nc release];
+        
+    }
+}
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+    return 1;
+}
+- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
+    NSURL *URL = [NSURL URLWithString:self.targetFriend.avatar];
+    return [MWPhoto photoWithURL:URL];
+}
 
 #pragma mark - main process methods.
 - (void)initViewWithFriend:(MyFriend *)afriend 

@@ -13,5 +13,5 @@
 - (UIViewController *)controllerForGameId:(NSString *)gameId
                                      func:(NSString *)func
                            fromController:(UIViewController*)controller;
-- (BOOL)isFunctionAvailable:(NSString*)func;
+//- (BOOL)isFunctionAvailable:(NSString*)func;
 @end

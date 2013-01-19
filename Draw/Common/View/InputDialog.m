@@ -229,11 +229,11 @@
 }
 
 - (void)dealloc {
-    [cancelButton release];
-    [okButton release];
-    [bgView release];
-    [titleLabel release];
-    [targetTextField release];
+    PPRelease(cancelButton);
+    PPRelease(okButton);
+    PPRelease(bgView);
+    PPRelease(titleLabel);
+    PPRelease(targetTextField);
     [super dealloc];
 }
 @end

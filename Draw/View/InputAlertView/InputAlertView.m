@@ -14,7 +14,7 @@
 
 @interface InputAlertView ()
 {
-    InputAlertViewClickBlock _clickBlock;
+
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *title;
@@ -22,6 +22,9 @@
 
 @property (retain, nonatomic) IBOutlet UIButton *cancel;
 @property (retain, nonatomic) IBOutlet UIButton *confirm;
+@property (assign, nonatomic) id target;
+@property (assign, nonatomic) SEL cancelSeletor;
+@property (assign, nonatomic) SEL commitSeletor;
 
 - (IBAction)clickCancel:(id)sender;
 - (IBAction)clickConfirm:(id)sender;
@@ -30,13 +33,6 @@
 
 
 @implementation InputAlertView
-
-
-- (void)setClickBlock:(InputAlertViewClickBlock)block
-{
-    RELEASE_BLOCK(_clickBlock);
-    COPY_BLOCK(_clickBlock, block);
-}
 
 
 - (void)updateView
@@ -66,14 +62,18 @@
 
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content
-              clickBlock:(InputAlertViewClickBlock)clickBlock
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
 {
     InputAlertView *view = [self createView];
-    [view setClickBlock:clickBlock];
     [view.title setText:title];
     [view.content setText:content];
-    
+    view.target = target;
+    view.commitSeletor = commitSeletor;
+    view.cancelSeletor = cancelSeletor;
     return view;
+
 }
 
 
@@ -85,11 +85,11 @@
 
 
 - (void)dealloc {
-    [_title release];
-    [_content release];
-    [_cancel release];
-    [_confirm release];
-    RELEASE_BLOCK(_clickBlock);
+    PPDebug(@"%@ dealloc", self);
+    PPRelease(_title);
+    PPRelease(_content);
+    PPRelease(_cancel);
+    PPRelease(_confirm);
     [super dealloc];
 }
 
@@ -134,16 +134,16 @@
 }
 
 - (IBAction)clickCancel:(id)sender {
-    BOOL flag = _clickBlock(self.contentText, NO);
-    if (flag) {
-        [self dismiss:YES];
+    if (self.cancelSeletor != NULL && [self.target respondsToSelector:self.cancelSeletor]){
+         [self.target performSelector:self.cancelSeletor];
     }
+    [self dismiss:YES];
 }
 - (IBAction)clickConfirm:(id)sender {
-    BOOL flag = _clickBlock(self.contentText, YES);
-    if (flag) {
-        [self dismiss:YES];
+    if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
+        [self.target performSelector:self.commitSeletor];
     }
+    [self dismiss:YES];
 }
 - (IBAction)clickMask:(id)sender {
     //dismiss
