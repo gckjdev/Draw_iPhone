@@ -126,18 +126,23 @@
     [self.drawActionList addObject:drawAction];
 }
 
-- (void)drawAction:(DrawAction *)action inContext:(CGContextRef)context
+- (CGRect)drawAction1:(DrawAction *)action inContext:(CGContextRef)context
 {
     if ([action isCleanAction]) {
         CGContextClearRect(context, self.bounds);
+        return self.bounds;
     }else if([action isChangeBackAction]){
         CGColorRef color = action.paint.color.CGColor;
         CGContextSetFillColorWithColor(context, color);
         CGContextFillRect(context, self.bounds);
+        return self.bounds;
     }else if([action isDrawAction]){
         [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
-        [self strokePaint:action.paint inContext:context clear:NO];
+        CGRect rect = [self strokePaint1:action.paint inContext:context clear:NO];
+        return rect;
     }
+    
+    return self.bounds;
 }
 
 - (void)clearContext:(CGContextRef)context
@@ -145,6 +150,7 @@
     CGContextClearRect(context, self.bounds);
 }
 
+/*
 - (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
@@ -154,6 +160,7 @@
     CGContextAddPath(context, paint.path);
     CGContextStrokePath(context);
 }
+*/
 
 
 - (CGRect)strokePaint1:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear

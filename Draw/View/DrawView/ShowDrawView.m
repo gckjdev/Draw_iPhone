@@ -145,8 +145,8 @@
         }
     }else{
         self.status = Stop;
-        [self drawAction:action inContext:showContext];
-        [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+        CGRect rect = [self drawAction1:action inContext:showContext];
+        [self setNeedsDisplayInRect:rect showCacheLayer:NO];
     }
 }
 
@@ -287,22 +287,22 @@
     [self updateTempPaint];
     if (self.status == Playing) {
         if (self.tempPaint) {
-            CGRect drawBox = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width bounds:self.bounds];
+            CGRect drawBox; // = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width bounds:self.bounds];
             if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
                 self.tempPaint = nil;
-                [self drawAction:_currentAction inContext:showContext];
+                drawBox = [self drawAction1:_currentAction inContext:showContext];
                 [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
                 [self callDidDrawPaintDelegate];
                 
             }else
             {
                 [self setStrokeColor:self.tempPaint.color lineWidth:self.tempPaint.width inContext:cacheContext];
-                [self strokePaint:self.tempPaint inContext:cacheContext clear:YES];
+                drawBox = [self strokePaint1:self.tempPaint inContext:cacheContext clear:YES];
                 [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
             }
         }else{
-            [self drawAction:_currentAction inContext:showContext];
-            [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+            CGRect drawBox = [self drawAction1:_currentAction inContext:showContext];
+            [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
         }
     }
     if(!_showPenHidden){
