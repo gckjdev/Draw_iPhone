@@ -12,10 +12,12 @@
 #import "HotController.h"
 #import "ContestController.h"
 #import "StringUtil.h"
+#import "FreeCoinsControllerViewController.h"
 
 #define FUNC_FEED    @"feed"
 #define FUNC_CONTEST    @"contest"
 #define FUNC_TOP    @"top"
+#define FUNC_FREE_COINS  @"free_coins"
 
 @implementation DrawGameJumpHandler
 
@@ -37,6 +39,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
         jumpController = [[[ContestController alloc] init] autorelease];
     }else if([func isEqualToString:FUNC_TOP ignoreCapital:YES]){
         jumpController = [[[HotController alloc] init] autorelease];
+    }else if ([func isEqualToString:FUNC_FREE_COINS ignoreCapital:YES]){
+        jumpController = [[[FreeCoinsControllerViewController alloc] init] autorelease];
     }else{
         PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);
     }
