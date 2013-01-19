@@ -27,6 +27,8 @@
 
 - (id)init
 {
+    PPDebug(@"<init> %@", [self description]);
+
     self = [super init];
     _path = CGPathCreateMutable();
     [self clearPoints];
@@ -36,6 +38,8 @@
 
 - (void)dealloc
 {
+    PPDebug(@"<dealloc> %@", [self description]);
+    
     RELEASE_PATH(_path);
     [super dealloc];
 }
