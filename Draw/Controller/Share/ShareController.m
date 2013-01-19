@@ -288,6 +288,7 @@ typedef enum{
         } break;
         case FromWeixinOptionDrawAPicture: {
             OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
+            odc.startController = self;
             [self.navigationController pushViewController:odc animated:YES];
             [odc release];
         } break;
@@ -338,6 +339,7 @@ typedef enum{
         [dialog showInView:self.view];
     }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
         OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+        od.startController = self;
         [self.navigationController pushViewController:od animated:YES];
         [od release];
     }

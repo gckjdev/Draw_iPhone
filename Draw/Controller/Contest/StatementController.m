@@ -17,7 +17,7 @@
 @synthesize acceptLabel = _acceptLabel;
 @synthesize titleLabel = _titleLabel;
 @synthesize contest = _contest;
-
+@synthesize superController = _superController;
 
 - (void)dealloc
 {
@@ -94,7 +94,6 @@
 
 - (IBAction)acceptButton:(id)sender {
     [OfflineDrawViewController startDrawWithContest:self.contest
-                                     fromController:self 
-                                           animated:YES];
+                                     fromController:self startController:self.superController animated:YES];
 }
 @end

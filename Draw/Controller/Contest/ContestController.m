@@ -206,6 +206,12 @@
 - (void)didClickContestView:(ContestView *)contestView
                onJoinButton:(Contest *)contest
 {
+    StatementController *sc = [[StatementController alloc] initWithContest:contest];
+    [self.navigationController pushViewController:sc animated:YES];
+    sc.superController = self;
+    [sc release];
+
+    return;
     //not running
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
@@ -220,10 +226,12 @@
 
     if ([contest joined]) {
         [OfflineDrawViewController startDrawWithContest:contest
-                                         fromController:self 
+                                         fromController:self
+                                        startController:self
                                                animated:YES];
     }else{
         StatementController *sc = [[StatementController alloc] initWithContest:contest];
+        sc.superController = self;
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];        
     }
@@ -253,7 +261,8 @@
                               animated:(BOOL)animated
 {
     [OfflineDrawViewController startDrawWithContest:contest
-                                     fromController:self 
+                                     fromController:self
+                                    startController:self
                                            animated:animated];
 
 }

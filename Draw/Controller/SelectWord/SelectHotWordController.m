@@ -131,7 +131,7 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
     Word *myWord = [Word cusWordWithText:word];
-    [OfflineDrawViewController startDraw:myWord fromController:self targetUid:_targetUid];
+    [OfflineDrawViewController startDraw:myWord fromController:self startController:self.superController targetUid:_targetUid];
 }
 
 - (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
@@ -175,8 +175,7 @@
         }else if (word.wordType == PBWordTypeCustom){
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
         }
-        
-        [OfflineDrawViewController startDraw:word fromController:self targetUid:_targetUid];
+        [OfflineDrawViewController startDraw:word fromController:self startController:self.superController targetUid:_targetUid];
     }
 }
 
@@ -186,6 +185,7 @@
 
     OfflineDrawViewController *vc = [[[OfflineDrawViewController alloc] initWithDraft:draft] autorelease];
     vc.targetUid = _targetUid;
+    vc.startController = self.superController;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

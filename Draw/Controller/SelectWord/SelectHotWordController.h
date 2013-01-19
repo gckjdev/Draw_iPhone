@@ -32,6 +32,8 @@
 @property (retain, nonatomic) IBOutlet WordSelectCell *hotWordsCellPlaceHolder;
 @property (retain, nonatomic) IBOutlet WordSelectCell *systemWordsCellPlaceHolder;
 @property (retain, nonatomic) IBOutlet WordSelectCell *myWordsCellPlaceHolder;
+@property (assign, nonatomic) UIViewController *superController;
+
 
 - (id)initWithTargetUid:(NSString *)targetUid;
 

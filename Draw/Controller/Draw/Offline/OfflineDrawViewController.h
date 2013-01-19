@@ -50,8 +50,7 @@
 @property (assign, nonatomic) id<OfflineDrawDelegate> delegate;
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) Contest *contest;
-
-+ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;
+@property (assign, nonatomic) UIViewController *startController;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;
@@ -61,18 +60,29 @@
 
 - (id)initWithDraft:(MyPaint *)draft;
 
-+ (void)startDraw:(Word *)word 
-   fromController:(UIViewController*)fromController 
-        targetUid:(NSString *)targetUid;
-
 - (id)initWithWord:(Word *)word
               lang:(LanguageType)lang 
          targetUid:(NSString *)targetUid;
 
 - (id)initWithContest:(Contest *)contest;
-+ (void)startDrawWithContest:(Contest *)contest    
+
+//static method
++ (OfflineDrawViewController *)startDrawWithContest:(Contest *)contest
               fromController:(UIViewController*)fromController
+            startController:(UIViewController*)startController
                     animated:(BOOL)animated;
 
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid;
+
+/*
++ (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController;
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+   fromController:(UIViewController*)fromController
+        targetUid:(NSString *)targetUid;
+*/
 @end
 

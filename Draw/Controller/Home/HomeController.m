@@ -518,6 +518,7 @@
         SelectHotWordController *sc = [[SelectHotWordController alloc] init];
         [home.navigationController pushViewController:sc animated:NO];
         [sc release];
+        sc.superController = home;
     }    
 }
 
@@ -530,6 +531,7 @@
 //        SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:uid];
         SelectHotWordController *sc = [[SelectHotWordController alloc] initWithTargetUid:uid];
         [home.navigationController pushViewController:sc animated:NO];
+        sc.superController = home;
         [sc release];
     }    
 
@@ -640,6 +642,7 @@
             SelectHotWordController *sc = [[SelectHotWordController alloc] init];
 
             [self.navigationController pushViewController:sc animated:YES];
+            sc.superController = self;
             [sc release];
         }
             break;

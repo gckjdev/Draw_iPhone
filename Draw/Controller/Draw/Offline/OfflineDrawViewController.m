@@ -119,44 +119,59 @@
 //@synthesize bgColor = _bgColor;
 @synthesize contest = _contest;
 @synthesize penColor = _penColor;
+@synthesize startController = _startController;
 
 #define PAPER_VIEW_TAG 20120403 
 
 
 #pragma mark - Static Method
 
-+ (void)startDraw:(Word *)word fromController:(UIViewController*)fromController
+/*
+
++ (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
-    [fromController.navigationController pushViewController:vc animated:YES];   
-    [vc release];
+    [fromController.navigationController pushViewController:vc animated:YES];
+    return [vc autorelease];
 }
 
-+ (void)startDraw:(Word *)word 
++ (OfflineDrawViewController *)startDraw:(Word *)word 
    fromController:(UIViewController*)fromController 
         targetUid:(NSString *)targetUid
 {
     LanguageType language = [[UserManager defaultManager] getLanguageType];
     OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
-    [fromController.navigationController pushViewController:vc animated:YES];   
-    [vc release];
-    
+    [fromController.navigationController pushViewController:vc animated:YES];
     PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
-    
+    return [vc autorelease];
+}
+
+*/
++ (OfflineDrawViewController *)startDrawWithContest:(Contest *)contest
+                                     fromController:(UIViewController*)fromController
+                                    startController:(UIViewController*)startController
+                                           animated:(BOOL)animated
+{
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithContest:contest];
+    [fromController.navigationController pushViewController:vc animated:animated];
+    vc.startController = startController;
+    PPDebug(@"<startDrawWithContest>: contest id = %@",contest.contestId);
+    return [vc autorelease];
 }
 
 
-+ (void)startDrawWithContest:(Contest *)contest   
-              fromController:(UIViewController*)fromController
-                    animated:(BOOL)animated
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
 {
-    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithContest:contest];
-    [fromController.navigationController pushViewController:odc animated:animated];   
-    [odc release];
-    
-    PPDebug(@"<startDrawWithContest>: contest id = %@",contest.contestId);
-
+    LanguageType language = [[UserManager defaultManager] getLanguageType];
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
+    [fromController.navigationController pushViewController:vc animated:YES];
+    vc.startController = startController;
+    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
+    return [vc autorelease];
 }
 
 - (void)dealloc
@@ -537,16 +552,16 @@ enum{
 
 - (void)quit
 {
-    UIViewController *superController = [self superContestController];
+//    UIViewController *superController = _startController;
     
-    if (superController == nil) {
-        superController = [self superShowFeedController];
-    }
-    if (superController == nil) {
-        superController = [self superShareController];
-    }
-    if (superController) {
-        [self.navigationController popToViewController:superController animated:YES];
+//    if (superController == nil) {
+//        superController = [self superShowFeedController];
+//    }
+//    if (superController == nil) {
+//        superController = [self superShareController];
+//    }
+    if (_startController) {
+        [self.navigationController popToViewController:_startController animated:YES];
     }else {
         [HomeController returnRoom:self];
     }
@@ -589,19 +604,21 @@ enum{
             return;
         }
 
-        UIViewController *superController = [self superShowFeedController];
+//        UIViewController *superController = [self superShowFeedController];
         
         //if come from feed detail controller
-        if (superController) {
-            [self.navigationController popToViewController:superController animated:NO];
+        if (_startController != nil) {
+            [self.navigationController popToViewController:_startController animated:NO];
             SelectHotWordController *sc = nil;
             if ([_targetUid length] == 0) {
                 sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
                 sc = [[SelectHotWordController alloc] initWithTargetUid:self.targetUid];
             }
-            [superController.navigationController pushViewController:sc animated:NO];
-            [sc release];
+            sc.superController = self.startController;
+            [_startController.navigationController pushViewController:sc animated:NO];
+//            [superController.navigationController pushViewController:sc animated:NO];
+//            [sc release];
         }else{
             //if come from home controller
             if ([_targetUid length] == 0) {
@@ -886,6 +903,14 @@ enum{
             [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
+        if(self.contest && [self.contest commintCountEnough]){
+            NSString *title = [NSString stringWithFormat:NSLS(@"kContesSummitCountEnough"),_contest.canSubmitCount];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:title
+                                                           delayTime:1.5
+                                                             isHappy:NO];
+            return;
+
+        }
         if (self.inputAlert == nil) {
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus) cancelSeletor:NULL];
         }

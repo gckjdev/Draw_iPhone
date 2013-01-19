@@ -20,6 +20,7 @@
 @property (retain, nonatomic) IBOutlet UIWebView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *declineLabel;
 @property (retain, nonatomic) IBOutlet UILabel *acceptLabel;
+@property (assign, nonatomic) UIViewController *superController;
 
 - (IBAction)clickDeclineButton:(id)sender;
 - (IBAction)acceptButton:(id)sender;

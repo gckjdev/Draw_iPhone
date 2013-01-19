@@ -283,6 +283,7 @@
 {
 //    [SelectWordController startSelectWordFrom:self.superViewController targetUid:targetFriend.friendUserId];
     SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:targetFriend.friendUserId] autorelease];
+    vc.superController = self.superViewController;
     [self.superViewController.navigationController pushViewController:vc animated:YES];
 }
 
