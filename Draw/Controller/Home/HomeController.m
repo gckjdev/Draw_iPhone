@@ -527,7 +527,8 @@
     if (viewController) {        
         HomeController *home = [HomeController defaultInstance];
         [viewController.navigationController popToViewController:home animated:NO];
-        SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:uid];
+//        SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:uid];
+        SelectHotWordController *sc = [[SelectHotWordController alloc] initWithTargetUid:uid];
         [home.navigationController pushViewController:sc animated:NO];
         [sc release];
     }    
