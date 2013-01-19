@@ -64,8 +64,9 @@
 }
 
 - (void)dealloc {
-    [nickLabel release];
-    [avatarView release];
+    PPDebug(@"%@ dealloc",self);
+    PPDebug(nickLabel);
+    PPDebug(avatarView);
     [super dealloc];
 }
 @end
