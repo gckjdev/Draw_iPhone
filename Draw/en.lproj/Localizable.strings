@@ -1206,7 +1206,8 @@
 "kOpusNew" = "Latest";
 "kOnlineUser" = "%d online";
 
-"kGainFreeCoinsNote" = "Got %d Coins";
+"kZJHFreeCoinsAwardNote" = "Got %d Coins";
+"kDrawFreeCoinsAwardNote" = "Got %d Coins + %d Flowers + %d Tips(Remain Times:%d)";
 
 /*********************** 大话骰子国际化字符串结束 *************************/
 
