@@ -32,6 +32,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t version;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSString* opusId;
+@property int32_t score;
 @end
 
 @implementation PBDraw
@@ -112,6 +113,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasOpusId_ = !!value;
 }
 @synthesize opusId;
+- (BOOL) hasScore {
+  return !!hasScore_;
+}
+- (void) setHasScore:(BOOL) value {
+  hasScore_ = !!value;
+}
+@synthesize score;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -133,6 +141,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.gender = NO;
     self.version = 0;
     self.opusId = @"";
+    self.score = 0;
   }
   return self;
 }
@@ -209,6 +218,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasOpusId) {
     [output writeString:11 value:self.opusId];
   }
+  if (self.hasScore) {
+    [output writeInt32:12 value:self.score];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -250,6 +262,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasOpusId) {
     size += computeStringSize(11, self.opusId);
+  }
+  if (self.hasScore) {
+    size += computeInt32Size(12, self.score);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -362,6 +377,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
+  if (other.hasScore) {
+    [self setScore:other.score];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -427,6 +445,10 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 90: {
         [self setOpusId:[input readString]];
+        break;
+      }
+      case 96: {
+        [self setScore:[input readInt32]];
         break;
       }
     }
@@ -619,6 +641,22 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearOpusId {
   result.hasOpusId = NO;
   result.opusId = @"";
+  return self;
+}
+- (BOOL) hasScore {
+  return result.hasScore;
+}
+- (int32_t) score {
+  return result.score;
+}
+- (PBDraw_Builder*) setScore:(int32_t) value {
+  result.hasScore = YES;
+  result.score = value;
+  return self;
+}
+- (PBDraw_Builder*) clearScore {
+  result.hasScore = NO;
+  result.score = 0;
   return self;
 }
 @end

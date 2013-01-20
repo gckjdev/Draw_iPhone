@@ -640,7 +640,7 @@
                       nick:_drawUserNickName
                       avatar:nil
                       drawActionList:self.drawActionList
-                      drawWord:[Word wordWithText:self.wordText level:WordLevelLow]
+                      drawWord:[Word wordWithText:self.wordText level:WordLevelLow score:[ConfigManager offlineDrawMyWordScore]]
                       language:1];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw

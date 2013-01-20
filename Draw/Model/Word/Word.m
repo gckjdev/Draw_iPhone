@@ -42,6 +42,14 @@
     return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeSystem level:level score:[self scoreWithLevel:level]] autorelease];
 }
 
++ (Word *)wordWithText:(NSString *)text
+                 level:(WordLevel)level
+                 score:(int)score
+{
+    return [[[Word alloc] initWithWordId:nil text:text type:PBWordTypeSystem level:level score:score] autorelease];
+}
+
+
 // For system word
 + (Word *)sysWordWithText:(NSString *)text
                     level:(WordLevel)level

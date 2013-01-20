@@ -220,7 +220,7 @@
     self = [super init];
     if (self) {
         self.contest = contest;
-        self.word = [Word wordWithText:NSLS(@"kContestOpus") level:WordLeveLMedium];
+        self.word = [Word wordWithText:NSLS(@"kContestOpus") level:WordLeveLMedium score:0];
         shareImageManager = [ShareImageManager defaultManager];
         languageType = [[UserManager defaultManager] getLanguageType];
         shareImageManager = [ShareImageManager defaultManager];

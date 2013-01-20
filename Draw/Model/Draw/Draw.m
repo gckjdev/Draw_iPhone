@@ -54,7 +54,7 @@
     if (self && pbDraw) {
         self.userId = pbDraw.userId;
         self.nickName = pbDraw.nickName;
-        self.word = [Word wordWithText:pbDraw.word level:pbDraw.level];
+        self.word = [Word wordWithText:pbDraw.word level:pbDraw.level score:pbDraw.score];
         self.avatar = pbDraw.avatar;
         self.languageType = pbDraw.language;
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];

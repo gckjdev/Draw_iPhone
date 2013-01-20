@@ -60,6 +60,7 @@
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
   BOOL hasVersion_:1;
+  BOOL hasScore_:1;
   BOOL hasUserId_:1;
   BOOL hasWord_:1;
   BOOL hasNickName_:1;
@@ -70,6 +71,7 @@
   int32_t language;
   int32_t createDate;
   int32_t version;
+  int32_t score;
   NSString* userId;
   NSString* word;
   NSString* nickName;
@@ -87,6 +89,7 @@
 - (BOOL) hasGender;
 - (BOOL) hasVersion;
 - (BOOL) hasOpusId;
+- (BOOL) hasScore;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -97,6 +100,7 @@
 - (BOOL) gender;
 @property (readonly) int32_t version;
 @property (readonly, retain) NSString* opusId;
+@property (readonly) int32_t score;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -190,6 +194,11 @@
 - (NSString*) opusId;
 - (PBDraw_Builder*) setOpusId:(NSString*) value;
 - (PBDraw_Builder*) clearOpusId;
+
+- (BOOL) hasScore;
+- (int32_t) score;
+- (PBDraw_Builder*) setScore:(int32_t) value;
+- (PBDraw_Builder*) clearScore;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {

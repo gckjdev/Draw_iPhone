@@ -31,6 +31,10 @@ typedef enum
 + (Word *)wordWithText:(NSString *)text
                  level:(WordLevel)level;
 
++ (Word *)wordWithText:(NSString *)text
+                 level:(WordLevel)level
+                 score:(int)score;
+
 // For system word
 + (Word *)sysWordWithText:(NSString *)text
                     level:(WordLevel)level;

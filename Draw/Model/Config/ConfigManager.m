@@ -623,7 +623,7 @@
 
 + (int)offlineDrawHotWordScore
 {
-    return [MobClickUtils getIntValueByKey:@"DRAW_HOT_WORD_SCORE" defaultValue:5];
+    return [MobClickUtils getIntValueByKey:@"DRAW_HOT_WORD_SCORE" defaultValue:6];
 }
 
 

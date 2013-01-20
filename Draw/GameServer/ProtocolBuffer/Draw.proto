@@ -21,6 +21,7 @@ message PBDraw {
 
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
+  optional int32 score = 12;                  // draw word score
 }
 
 message PBFeedTimes{
@@ -130,7 +131,7 @@ message PBHotWord
 {
   required string wordId = 1;
   required string word = 2;
-  optional int32 coins = 3;
+  optional int32 coins = 3[default=0];
   
   optional string source = 10;
 }
