@@ -155,6 +155,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setWord:[drawWord text]];
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
+    [builder setScore:[drawWord score]];
     for (DrawAction* drawAction in drawActionList){
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];
