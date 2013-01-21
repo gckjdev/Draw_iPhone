@@ -17,6 +17,7 @@
 #import "UIUtils.h"
 #import "BulletinView.h"
 #import "AnalyticsManager.h"
+#import "BulletinService.h"
 
 @interface SuperHomeController ()
 {
@@ -108,7 +109,11 @@
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
     [self.homeHeaderPanel updateView];
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
     [[UserService defaultService] getStatistic:self];
+    
 }
 
 - (void)viewDidUnload
