@@ -16,6 +16,7 @@
 #import "GameNetworkConstants.h"
 #import "AccountService.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ConfigManager.h"
 
 @interface CreatePostController ()
 {
@@ -405,13 +406,13 @@
 }
 #define SELECTION_VIEW_TAG 100
 #define SELECTION_VIEW_OFFSET ([DeviceDetection isIPAD] ? 30 : 7)
-#define BONUS_LIST_END -1
+#define BONUS_LIST_END (-1)
 
-int *getRewardBonusList()
-{
-    static int bonus[] = {0,100,300,500,1000,-1};
-    return bonus;
-}
+//int *getRewardBonusList()
+//{
+//    static int bonus[] = {0,100,300,500,1000,-1};
+//    return bonus;
+//}
 
 - (IBAction)clickRewardButton:(id)sender {
     BBSPopupSelectionView *selectionView = (BBSPopupSelectionView *)[self.view
@@ -420,7 +421,7 @@ int *getRewardBonusList()
         [selectionView removeFromSuperview];
     }else{
         NSMutableArray *titles = [NSMutableArray arrayWithObjects:NSLS(@"kNone"),nil];
-        int *value = getRewardBonusList();
+        int *value = [ConfigManager getBBSRewardBounsList];//getRewardBonusList();
         
         for (++value; *value != BONUS_LIST_END; ++value) {
             NSString *str = [NSString stringWithFormat:@"%d",*value];
@@ -437,7 +438,7 @@ int *getRewardBonusList()
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
-    NSInteger bonus = getRewardBonusList()[index];
+    NSInteger bonus = [ConfigManager getBBSRewardBounsList][index];
     if ([[AccountService defaultService] hasEnoughCoins:bonus]) {
         self.bonus = bonus;
         [self updateToolButtons];

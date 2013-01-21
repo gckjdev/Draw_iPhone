@@ -525,6 +525,22 @@
                               defaultValue:500];
 }
 
+#define BONUS_LIST_END (-1)
+
++ (int *)getBBSRewardBounsList
+{
+//    BBS_REWARD_BONUS
+    static int bList[10] = {0};
+    NSString *bonusList = [MobClickUtils getStringValueByKey:@"BBS_REWARD_BONUS" defaultValue:@"100,300,500,1000"];
+    NSArray *list = [bonusList componentsSeparatedByString:@","];
+    int i = 1;
+    for (NSString *value in list) {
+        bList[i++] = [value integerValue];
+    }
+    //set the list start and end.
+    bList[i] = BONUS_LIST_END;
+    return bList;
+}
 //content
 + (int)getBBSPostMaxLength
 {
