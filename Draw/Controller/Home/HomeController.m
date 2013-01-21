@@ -263,9 +263,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {        
     [[UserService defaultService] getStatistic:self];
-    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
-    }];
 
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
 
