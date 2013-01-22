@@ -10,6 +10,15 @@
 
 #define SQC_POINT_COUNT     3
 
+#define DOUBLE_MIN          (0.000001f)
+
+BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
+{
+    double area = (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2.0f;
+    return (fabs(area) < 0.0000001f);
+}
+
+
 @interface SmoothQuadCurvePen()
 {
     CGMutablePathRef _path;
@@ -91,6 +100,7 @@
     [self clearPoints];
 }
 
+
 - (void)addPointIntoPath:(CGPoint)point
 {
     _hasPoint = YES;
@@ -100,16 +110,25 @@
     ptsComplete = NO;
     if (ptsCount == SQC_POINT_COUNT){
         
-//        CGPoint mid1 = MID_POINT(pts[0], pts[1]);
-        CGPoint mid2 = MID_POINT(pts[1], pts[2]);
-//        CGPathMoveToPoint(_path, NULL, mid1.x, mid1.y);
-        CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, mid2.x, mid2.y);
+        if (threeInOneLine(pts[0], pts[1], pts[2])){
+//            PPDebug(@"threeInOneLine=YES");
+            CGPathAddLineToPoint(_path, NULL, pts[2].x, pts[2].y);
+//            ptsComplete = NO;
+//            pts[0] = pts[2];
+//            ptsCount = 1;
+        }
+        else{
+//            PPDebug(@"threeInOneLine=NO");
+            CGPoint mid2 = MID_POINT(pts[1], pts[2]);
+            CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, mid2.x, mid2.y);
 
+        }
+        
         ptsComplete = YES;
         pts[0] = pts[1];
         pts[1] = pts[2];
         ptsCount = 2;
-        
+
         _startAddPoint = NO;    // at least one line is added
         
     }
@@ -129,9 +148,13 @@
     /*
     if (ptsComplete == YES){
         // add last point
-        CGPoint mid1 = MID_POINT(pts[0], pts[1]);
-        CGPoint mid2 =MID_POINT(pts[1], mid1);
-        CGPathAddQuadCurveToPoint(_path, NULL, mid2.x, mid2.y, pts[1].x, pts[1].y);
+        PPDebug(@"<Add Last Point>");
+        if (threeInOneLine(pts[0], pts[1], pts[2])){
+            CGPathAddLineToPoint(_path, NULL, pts[2].x, pts[2].y);
+        }
+        else{
+            CGPathAddQuadCurveToPoint(_path, NULL, pts[1].x, pts[1].y, pts[2].x, pts[2].y);
+        }
     }
     else if (ptsCount == 1){
         // do nothing
