@@ -666,7 +666,7 @@
 
 + (int)getLevelUpAward
 {
-    return [MobClickUtils getIntValueByKey:@"LEVEL_UP_AWARD" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"LEVEL_UP_AWARD" defaultValue:400];
 }
 
 @end

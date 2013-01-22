@@ -278,6 +278,11 @@
     return nil;
 }
 
+- (NSString *)roomTitle
+{
+    return NSLS(@"kDrawRoomTitle");
+}
+
 - (id<GameJumpHandlerProtocol>)getGameJumpHandler
 {
     return [DrawGameJumpHandler defaultHandler];

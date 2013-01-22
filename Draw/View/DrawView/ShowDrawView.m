@@ -86,7 +86,7 @@
     _playingActionIndex = index;
     _playingPointIndex = 0;
     if (index < [self.drawActionList count]) {
-        _currentAction = [self.drawActionList objectAtIndex:index];
+        _currentAction = [self.drawActionList objectAtIndex:index];        
         self.status = Playing;
         [self playCurrentFrame];
     }else{
