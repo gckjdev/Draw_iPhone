@@ -578,6 +578,12 @@
 		C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
+		C2F310AD16AE2C6F0076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
+		C2F310AE16AE2C6F0076064D /* DrawRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310AC16AE2C6F0076064D /* DrawRoomListController.xib */; };
+		C2F310B016AE2C930076064D /* DrawRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310AF16AE2C930076064D /* DrawRoomListController~ipad.xib */; };
+		C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
+		C2F310B516AE2D090076064D /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
+		C2F310B716AE2D240076064D /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -7130,6 +7136,14 @@
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
 		C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHAvatarView.m; sourceTree = "<group>"; };
+		C2F310AA16AE2C6F0076064D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
+		C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListController.m; sourceTree = "<group>"; };
+		C2F310AC16AE2C6F0076064D /* DrawRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawRoomListController.xib; sourceTree = "<group>"; };
+		C2F310AF16AE2C930076064D /* DrawRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawRoomListController~ipad.xib"; sourceTree = "<group>"; };
+		C2F310B116AE2CBF0076064D /* DrawRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListCell.h; sourceTree = "<group>"; };
+		C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListCell.m; sourceTree = "<group>"; };
+		C2F310B416AE2D090076064D /* DrawRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawRoomListCell.xib; sourceTree = "<group>"; };
+		C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
 		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
 		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
@@ -12191,6 +12205,14 @@
 				CA0CB757155CB064009C8EE6 /* RoomCell.m */,
 				CA0CB758155CB064009C8EE6 /* RoomCell.xib */,
 				CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */,
+				C2F310AA16AE2C6F0076064D /* DrawRoomListController.h */,
+				C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */,
+				C2F310AC16AE2C6F0076064D /* DrawRoomListController.xib */,
+				C2F310AF16AE2C930076064D /* DrawRoomListController~ipad.xib */,
+				C2F310B116AE2CBF0076064D /* DrawRoomListCell.h */,
+				C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */,
+				C2F310B416AE2D090076064D /* DrawRoomListCell.xib */,
+				C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -19386,6 +19408,10 @@
 				A4FA550416A8FA3B001883CC /* money_tree_note_bg@2x.png in Resources */,
 				CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */,
 				CA335DA516AA870600D3BFF2 /* draw_main_bg@2x.jpg in Resources */,
+				C2F310AE16AE2C6F0076064D /* DrawRoomListController.xib in Resources */,
+				C2F310B016AE2C930076064D /* DrawRoomListController~ipad.xib in Resources */,
+				C2F310B516AE2D090076064D /* DrawRoomListCell.xib in Resources */,
+				C2F310B716AE2D240076064D /* DrawRoomListCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22244,6 +22270,8 @@
 				CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */,
 				CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */,
 				CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */,
+				C2F310AD16AE2C6F0076064D /* DrawRoomListController.m in Sources */,
+				C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
