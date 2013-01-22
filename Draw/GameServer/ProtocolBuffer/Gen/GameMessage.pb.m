@@ -17038,6 +17038,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsPostList;
 @property (retain) NSMutableArray* mutableBbsActionList;
 @property (retain) PBBBSDraw* bbsDrawData;
+@property (retain) PBBBSUserPrivilege* userPrivilege;
 @end
 
 @implementation DataQueryResponse
@@ -17070,6 +17071,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasBbsDrawData_ = !!value;
 }
 @synthesize bbsDrawData;
+- (BOOL) hasUserPrivilege {
+  return !!hasUserPrivilege_;
+}
+- (void) setHasUserPrivilege:(BOOL) value {
+  hasUserPrivilege_ = !!value;
+}
+@synthesize userPrivilege;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17079,6 +17087,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsPostList = nil;
   self.mutableBbsActionList = nil;
   self.bbsDrawData = nil;
+  self.userPrivilege = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17086,6 +17095,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.resultCode = 0;
     self.totalCount = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
+    self.userPrivilege = [PBBBSUserPrivilege defaultInstance];
   }
   return self;
 }
@@ -17194,6 +17204,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasUserPrivilege) {
+    if (!self.userPrivilege.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -17226,6 +17241,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasBbsDrawData) {
     [output writeMessage:54 value:self.bbsDrawData];
+  }
+  if (self.hasUserPrivilege) {
+    [output writeMessage:55 value:self.userPrivilege];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -17265,6 +17283,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasBbsDrawData) {
     size += computeMessageSize(54, self.bbsDrawData);
+  }
+  if (self.hasUserPrivilege) {
+    size += computeMessageSize(55, self.userPrivilege);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -17392,6 +17413,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasBbsDrawData) {
     [self mergeBbsDrawData:other.bbsDrawData];
   }
+  if (other.hasUserPrivilege) {
+    [self mergeUserPrivilege:other.userPrivilege];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -17470,6 +17494,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setBbsDrawData:[subBuilder buildPartial]];
+        break;
+      }
+      case 442: {
+        PBBBSUserPrivilege_Builder* subBuilder = [PBBBSUserPrivilege builder];
+        if (self.hasUserPrivilege) {
+          [subBuilder mergeFrom:self.userPrivilege];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUserPrivilege:[subBuilder buildPartial]];
         break;
       }
     }
@@ -17738,6 +17771,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearBbsDrawData {
   result.hasBbsDrawData = NO;
   result.bbsDrawData = [PBBBSDraw defaultInstance];
+  return self;
+}
+- (BOOL) hasUserPrivilege {
+  return result.hasUserPrivilege;
+}
+- (PBBBSUserPrivilege*) userPrivilege {
+  return result.userPrivilege;
+}
+- (DataQueryResponse_Builder*) setUserPrivilege:(PBBBSUserPrivilege*) value {
+  result.hasUserPrivilege = YES;
+  result.userPrivilege = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setUserPrivilegeBuilder:(PBBBSUserPrivilege_Builder*) builderForValue {
+  return [self setUserPrivilege:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeUserPrivilege:(PBBBSUserPrivilege*) value {
+  if (result.hasUserPrivilege &&
+      result.userPrivilege != [PBBBSUserPrivilege defaultInstance]) {
+    result.userPrivilege =
+      [[[PBBBSUserPrivilege builderWithPrototype:result.userPrivilege] mergeFrom:value] buildPartial];
+  } else {
+    result.userPrivilege = value;
+  }
+  result.hasUserPrivilege = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserPrivilege {
+  result.hasUserPrivilege = NO;
+  result.userPrivilege = [PBBBSUserPrivilege defaultInstance];
   return self;
 }
 @end
