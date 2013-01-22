@@ -1253,6 +1253,7 @@
 "kILeaveForAMoment" = "I'll leave for a moment";
 "kIWantToGoNow" = "I wanna go, see u next time";
 "kShutUp" = "All shut up";
+"kLevelUpAwardMessage" = "Congratulations for upgrade to level %d! You are awarded %d coins!";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

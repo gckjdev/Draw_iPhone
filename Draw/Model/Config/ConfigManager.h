@@ -164,6 +164,7 @@ typedef enum{
 + (int)getBBSPostMaxLength;
 + (int)getBBSCommentMaxLength;
 + (int)getBBSTextMinLength;
++ (int *)getBBSRewardBounsList;
 
 + (NSString*)getShareImageWaterMark;
 
@@ -183,5 +184,7 @@ typedef enum{
 + (int)offlineDrawMyWordScore;
 + (int)offlineDrawSystemWordScore;
 + (int)offlineDrawHotWordScore;
+
++ (int)getLevelUpAward;
 
 @end

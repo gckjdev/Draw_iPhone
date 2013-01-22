@@ -17,8 +17,8 @@ git checkout *xcuserstate
 git checkout *DS_Store
 echo ''
 
-echo $line' oh, commit files. comment: '"$1"" "$line
-git commit -m "$1"
+echo $line' oh, commit files. comment: '"$@"" "$line
+git commit -m "$@"
 echo ''
 
 echo $line' hey, pull code from server '$line

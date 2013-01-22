@@ -906,7 +906,7 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage *)bulletinBackgroundImage
 {
-    return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService stretchableImageWithImageName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage *)bulletinButtomImage
 {

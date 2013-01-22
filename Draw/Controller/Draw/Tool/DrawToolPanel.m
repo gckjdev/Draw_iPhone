@@ -404,6 +404,10 @@
                          updateRecentColor:(BOOL)updateRecentColor
 {
     [self selectPen];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectPen:bought:)]) {
+        [self.delegate drawToolPanel:self didSelectPen:self.pen.tag bought:YES];
+    }
+
     self.color = color;
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
