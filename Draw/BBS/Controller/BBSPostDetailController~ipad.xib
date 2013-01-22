@@ -193,7 +193,6 @@
 						<string key="NSFrame">{{439, 936}, {163, 61}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -508,6 +507,7 @@
 						<string key="backButton">UIButton</string>
 						<string key="bgImageView">UIImageView</string>
 						<string key="commentButton">UIButton</string>
+						<string key="refreshButton">UIButton</string>
 						<string key="supportButton">UIButton</string>
 						<string key="toolBarBG">UIImageView</string>
 					</dictionary>
@@ -522,6 +522,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="commentButton">
 							<string key="name">commentButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="refreshButton">
+							<string key="name">refreshButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="supportButton">
