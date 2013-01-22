@@ -14,6 +14,7 @@
 
 BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 {
+    // TODO to be optimized later
     double area = (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y)) / 2.0f;
     return (fabs(area) < 0.0000001f);
 }
@@ -113,9 +114,6 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
         if (threeInOneLine(pts[0], pts[1], pts[2])){
 //            PPDebug(@"threeInOneLine=YES");
             CGPathAddLineToPoint(_path, NULL, pts[2].x, pts[2].y);
-//            ptsComplete = NO;
-//            pts[0] = pts[2];
-//            ptsCount = 1;
         }
         else{
 //            PPDebug(@"threeInOneLine=NO");
