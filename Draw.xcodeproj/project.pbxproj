@@ -581,6 +581,7 @@
 		C2DA092A16AE82B7003BBE2D /* tab_center_selected@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */; };
 		C2DA092B16AE82B9003BBE2D /* tab_center_unselect@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */; };
 		C2DA092C16AE82BA003BBE2D /* tab_center_unselect@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */; };
+		C2DA092F16AE8EBA003BBE2D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */; };
 		C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		C2E5241915218E21008913CC /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
 		C2E662611521B91900487601 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
@@ -601,16 +602,12 @@
 		C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
-		C2F310AD16AE2C6F0076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
 		C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
 		C2F310B516AE2D090076064D /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
 		C2F310B716AE2D240076064D /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
-		C2F310B816AE42840076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
-		C2F310B916AE42840076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
 		C2F310BB16AE42910076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
 		C2F310BC16AE42910076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
 		C2F310BD16AE42920076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
-		C2F310BE16AE42960076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
 		C2F310BF16AE6FF40076064D /* zjh_tableft_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F8168DBDB1009F43F7 /* zjh_tableft_selected@2x.png */; };
 		C2F310C116AE6FF90076064D /* zjh_tableft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F9168DBDB1009F43F7 /* zjh_tableft_unselect@2x.png */; };
 		C2F310C216AE6FFA0076064D /* zjh_tableft_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F9168DBDB1009F43F7 /* zjh_tableft_unselect@2x.png */; };
@@ -7137,6 +7134,8 @@
 		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
 		C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_unselect@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_selected@2x.jpg"; sourceTree = "<group>"; };
+		C2DA092D16AE8EBA003BBE2D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
+		C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListController.m; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
 		C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotDecisionView.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
@@ -7181,8 +7180,6 @@
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
 		C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHAvatarView.m; sourceTree = "<group>"; };
-		C2F310AA16AE2C6F0076064D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
-		C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListController.m; sourceTree = "<group>"; };
 		C2F310B116AE2CBF0076064D /* DrawRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListCell.h; sourceTree = "<group>"; };
 		C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListCell.m; sourceTree = "<group>"; };
 		C2F310B416AE2D090076064D /* DrawRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawRoomListCell.xib; sourceTree = "<group>"; };
@@ -12264,12 +12261,12 @@
 				CA0CB757155CB064009C8EE6 /* RoomCell.m */,
 				CA0CB758155CB064009C8EE6 /* RoomCell.xib */,
 				CA0CB75F155CB0D4009C8EE6 /* RoomCell~ipad.xib */,
-				C2F310AA16AE2C6F0076064D /* DrawRoomListController.h */,
-				C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */,
 				C2F310B116AE2CBF0076064D /* DrawRoomListCell.h */,
 				C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */,
 				C2F310B416AE2D090076064D /* DrawRoomListCell.xib */,
 				C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */,
+				C2DA092D16AE8EBA003BBE2D /* DrawRoomListController.h */,
+				C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -20984,7 +20981,6 @@
 				CA3676E516AA6A6600630A40 /* PenFactory.m in Sources */,
 				C2CA66E316AD23FD00215924 /* CustomActionSheet.m in Sources */,
 				C2CA66E416AD241300215924 /* RoundLineLabel.m in Sources */,
-				C2F310B916AE42840076064D /* DrawRoomListController.m in Sources */,
 				C2F310BC16AE42910076064D /* DrawRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -21673,7 +21669,6 @@
 				CA3676DF16AA6A6500630A40 /* SmoothQuadCurvePen.m in Sources */,
 				CA3676E016AA6A6500630A40 /* CurvePen.m in Sources */,
 				CA3676E116AA6A6500630A40 /* PenFactory.m in Sources */,
-				C2F310B816AE42840076064D /* DrawRoomListController.m in Sources */,
 				C2F310BB16AE42910076064D /* DrawRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -22362,8 +22357,8 @@
 				CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */,
 				CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */,
 				CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */,
-				C2F310AD16AE2C6F0076064D /* DrawRoomListController.m in Sources */,
 				C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */,
+				C2DA092F16AE8EBA003BBE2D /* DrawRoomListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23060,7 +23055,6 @@
 				CA3676DC16AA6A6400630A40 /* CurvePen.m in Sources */,
 				CA3676DD16AA6A6400630A40 /* PenFactory.m in Sources */,
 				C2F310BD16AE42920076064D /* DrawRoomListCell.m in Sources */,
-				C2F310BE16AE42960076064D /* DrawRoomListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

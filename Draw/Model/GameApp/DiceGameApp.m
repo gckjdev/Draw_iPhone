@@ -289,6 +289,11 @@
     return @"";
 }
 
+- (NSString *)roomTitle
+{
+    return NSLS(@"kDiceRoomTitle");
+}
+
 - (UIColor*)popupMessageDialogFontColor
 {
     return [UIColor blackColor];
