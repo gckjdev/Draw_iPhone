@@ -142,3 +142,27 @@ message PBHotWordList
 }
 
 
+message PBDrawWall{
+  required int32 wallId =1;
+  optional string wallName = 2;
+  
+  optional int32 style = 3;             // 画墙风格
+  repeated string drawIds = 4;          // 画墙上装裱的画
+  repeated string frameIds = 5;         // 画墙上装裱的框
+  optional string bgImage = 6;          // 画墙背景
+}
+
+
+message PBDrawWallList{
+  repeated PBDrawWall walls = 1;
+}
+
+
+
+
+
+
+
+
+
+
