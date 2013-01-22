@@ -627,6 +627,15 @@ static DiceImageManager *_defaultManager = nil;
     return nil;
 }
 
+- (UIImage *)roomListCenterBtnSelectedImage
+{
+    return nil;
+}
+- (UIImage *)roomListCenterBtnUnselectedImage
+{
+    return nil;
+}
+
 - (UIImage *)bulletinAccessoryImage
 {
     return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
@@ -659,6 +668,8 @@ static DiceImageManager *_defaultManager = nil;
 {
     return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_DICE];
 }
+
+
 
 
 @end

@@ -786,40 +786,50 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)roomListBgImage
 {
-    return nil;
+    return [_resService imageByName:[GameApp background] inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 - (UIImage *)roomListLeftBtnSelectedImage
 {
-    return nil;
+    return [_resService imageByName:@"tab_left_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListLeftBtnUnselectedImage
 {
-    return nil;
+    return [_resService imageByName:@"tab_left_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnSelectedImage
 {
-    return nil;
+    return [_resService imageByName:@"tab_right_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnUnselectedImage
 {
-    return nil;
+    return [_resService imageByName:@"tab_right_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+
+- (UIImage *)roomListCenterBtnSelectedImage
+{
+    return [_resService imageByName:@"tab_center_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)roomListCenterBtnUnselectedImage
+{
+    return [_resService imageByName:@"tab_center_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+
+- (UIImage *)roomListCellBgImage
+{
+    return [_resService imageByName:@"room_item" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListBackBtnImage
 {
-    return nil;
-}
-- (UIImage *)roomListCellBgImage
-{
-    return nil;
+    return [_resService imageByName:@"back" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 
 - (UIImage *)roomListCreateRoomBtnBgImage
 {
-    return nil;
+    return [self inputDialogLeftBtnImage];
 }
 - (UIImage *)roomListFastEntryBtnBgImage
 {
-    return nil;
+    return [self inputDialogRightBtnImage];
 }
 
 - (UIImage *)userInfoFollowBtnImage
