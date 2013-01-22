@@ -16,9 +16,13 @@
 @class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
+@class PBBBSPrivilege;
+@class PBBBSPrivilege_Builder;
 @class PBBBSReward;
 @class PBBBSReward_Builder;
 @class PBBBSUser;
+@class PBBBSUserPrivilege;
+@class PBBBSUserPrivilege_Builder;
 @class PBBBSUser_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
@@ -379,6 +383,7 @@
   BOOL hasSupportCount_:1;
   BOOL hasCreateDate_:1;
   BOOL hasModifyDate_:1;
+  BOOL hasPriority_:1;
   BOOL hasPostId_:1;
   BOOL hasBoardId_:1;
   BOOL hasAppId_:1;
@@ -390,6 +395,7 @@
   int32_t supportCount;
   int32_t createDate;
   int32_t modifyDate;
+  int32_t priority;
   NSString* postId;
   NSString* boardId;
   NSString* appId;
@@ -408,6 +414,7 @@
 - (BOOL) hasCreateUser;
 - (BOOL) hasContent;
 - (BOOL) hasReward;
+- (BOOL) hasPriority;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* boardId;
 @property (readonly, retain) NSString* appId;
@@ -419,6 +426,7 @@
 @property (readonly, retain) PBBBSUser* createUser;
 @property (readonly, retain) PBBBSContent* content;
 @property (readonly, retain) PBBBSReward* reward;
+@property (readonly) int32_t priority;
 
 + (PBBBSPost*) defaultInstance;
 - (PBBBSPost*) defaultInstance;
@@ -514,6 +522,126 @@
 - (PBBBSPost_Builder*) setRewardBuilder:(PBBBSReward_Builder*) builderForValue;
 - (PBBBSPost_Builder*) mergeReward:(PBBBSReward*) value;
 - (PBBBSPost_Builder*) clearReward;
+
+- (BOOL) hasPriority;
+- (int32_t) priority;
+- (PBBBSPost_Builder*) setPriority:(int32_t) value;
+- (PBBBSPost_Builder*) clearPriority;
+@end
+
+@interface PBBBSPrivilege : PBGeneratedMessage {
+@private
+  BOOL hasPermission_:1;
+  BOOL hasBoardId_:1;
+  int32_t permission;
+  NSString* boardId;
+}
+- (BOOL) hasBoardId;
+- (BOOL) hasPermission;
+@property (readonly, retain) NSString* boardId;
+@property (readonly) int32_t permission;
+
++ (PBBBSPrivilege*) defaultInstance;
+- (PBBBSPrivilege*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSPrivilege_Builder*) builder;
++ (PBBBSPrivilege_Builder*) builder;
++ (PBBBSPrivilege_Builder*) builderWithPrototype:(PBBBSPrivilege*) prototype;
+
++ (PBBBSPrivilege*) parseFromData:(NSData*) data;
++ (PBBBSPrivilege*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSPrivilege*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSPrivilege*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSPrivilege_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSPrivilege* result;
+}
+
+- (PBBBSPrivilege*) defaultInstance;
+
+- (PBBBSPrivilege_Builder*) clear;
+- (PBBBSPrivilege_Builder*) clone;
+
+- (PBBBSPrivilege*) build;
+- (PBBBSPrivilege*) buildPartial;
+
+- (PBBBSPrivilege_Builder*) mergeFrom:(PBBBSPrivilege*) other;
+- (PBBBSPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasBoardId;
+- (NSString*) boardId;
+- (PBBBSPrivilege_Builder*) setBoardId:(NSString*) value;
+- (PBBBSPrivilege_Builder*) clearBoardId;
+
+- (BOOL) hasPermission;
+- (int32_t) permission;
+- (PBBBSPrivilege_Builder*) setPermission:(int32_t) value;
+- (PBBBSPrivilege_Builder*) clearPermission;
+@end
+
+@interface PBBBSUserPrivilege : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  NSString* userId;
+  NSMutableArray* mutablePrivilegeListList;
+}
+- (BOOL) hasUserId;
+@property (readonly, retain) NSString* userId;
+- (NSArray*) privilegeListList;
+- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index;
+
++ (PBBBSUserPrivilege*) defaultInstance;
+- (PBBBSUserPrivilege*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBBBSUserPrivilege_Builder*) builder;
++ (PBBBSUserPrivilege_Builder*) builder;
++ (PBBBSUserPrivilege_Builder*) builderWithPrototype:(PBBBSUserPrivilege*) prototype;
+
++ (PBBBSUserPrivilege*) parseFromData:(NSData*) data;
++ (PBBBSUserPrivilege*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input;
++ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBBBSUserPrivilege_Builder : PBGeneratedMessage_Builder {
+@private
+  PBBBSUserPrivilege* result;
+}
+
+- (PBBBSUserPrivilege*) defaultInstance;
+
+- (PBBBSUserPrivilege_Builder*) clear;
+- (PBBBSUserPrivilege_Builder*) clone;
+
+- (PBBBSUserPrivilege*) build;
+- (PBBBSUserPrivilege*) buildPartial;
+
+- (PBBBSUserPrivilege_Builder*) mergeFrom:(PBBBSUserPrivilege*) other;
+- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBBBSUserPrivilege_Builder*) setUserId:(NSString*) value;
+- (PBBBSUserPrivilege_Builder*) clearUserId;
+
+- (NSArray*) privilegeListList;
+- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index;
+- (PBBBSUserPrivilege_Builder*) replacePrivilegeListAtIndex:(int32_t) index with:(PBBBSPrivilege*) value;
+- (PBBBSUserPrivilege_Builder*) addPrivilegeList:(PBBBSPrivilege*) value;
+- (PBBBSUserPrivilege_Builder*) addAllPrivilegeList:(NSArray*) values;
+- (PBBBSUserPrivilege_Builder*) clearPrivilegeListList;
 @end
 
 @interface PBBBSActionSource : PBGeneratedMessage {
