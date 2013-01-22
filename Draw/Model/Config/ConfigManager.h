@@ -185,4 +185,6 @@ typedef enum{
 + (int)offlineDrawSystemWordScore;
 + (int)offlineDrawHotWordScore;
 
++ (int)getLevelUpAward;
+
 @end

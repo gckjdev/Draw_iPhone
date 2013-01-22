@@ -22,6 +22,7 @@ typedef enum  {
     EscapeType = 10,
     ChangeRoomType = 11,
     FollowReward = 12,
+    LevelUpAward = 13,
     
     AwardCoinType = 10001,
     DirectAwardCoinType = 10002,

@@ -361,7 +361,7 @@
 
 + (int)getZhajinhuaExp
 {
-    return [MobClickUtils getIntValueByKey:@"ZJH_EXP" defaultValue:5];
+    return [MobClickUtils getIntValueByKey:@"ZJH_EXP" defaultValue:500];
 }
 
 + (int)getDiceFleeCoin
@@ -642,6 +642,9 @@
     return [MobClickUtils getIntValueByKey:@"DRAW_HOT_WORD_SCORE" defaultValue:6];
 }
 
-
++ (int)getLevelUpAward
+{
+    return [MobClickUtils getIntValueByKey:@"LEVEL_UP_AWARD" defaultValue:100];
+}
 
 @end
