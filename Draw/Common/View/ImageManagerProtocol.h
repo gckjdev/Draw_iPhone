@@ -36,6 +36,8 @@
 - (UIImage *)roomListLeftBtnUnselectedImage;
 - (UIImage *)roomListRightBtnSelectedImage;
 - (UIImage *)roomListRightBtnUnselectedImage;
+- (UIImage *)roomListCenterBtnSelectedImage;
+- (UIImage *)roomListCenterBtnUnselectedImage;
 - (UIImage *)roomListBackBtnImage;
 - (UIImage *)roomListCellBgImage;
 - (UIImage *)roomListCreateRoomBtnBgImage;

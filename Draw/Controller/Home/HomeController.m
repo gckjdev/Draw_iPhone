@@ -81,6 +81,7 @@
 #import "UFPController.h"
 #import "FreeCoinsControllerViewController.h"
 #import "UMGridViewController.h"
+#import "DrawRoomListController.h"
 
 @interface HomeController()
 {
@@ -207,6 +208,8 @@
     [self registerNetworkDisconnectedNotification];
     
     PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
+    
+    [self.view bringSubviewToFront:self.testBulletin];
 }
 
 - (void)registerNetworkDisconnectedNotification
@@ -837,7 +840,8 @@
 
 - (IBAction)clickTestBulletin:(id)sender
 {
-    [BulletinView showBulletinInController:self];
+    UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
+    [self.navigationController pushViewController:rc animated:YES];
 }
 
 

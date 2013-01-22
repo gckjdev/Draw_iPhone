@@ -949,4 +949,34 @@ BBSService *_staticBBSService;
     
 }
 
+#pragma mark - update post methods
+
+- (void)editPost:(PBBBSPost *)post
+         boardId:(NSString *)boardId
+          status:(NSInteger)status
+            info:(NSDictionary *)info //for the futrue
+        delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        CommonNetworkOutput *output = [BBSNetwork editBBSPost:TRAFFIC_SERVER_URL
+                                                        appId:appId
+                                                   deviceType:deviceType
+                                                       userId:userId
+                                                       postId:post.postId
+                                                      boardId:post.boardId
+                                                       status:status
+                                                         info:nil];
+        NSInteger resultCode = [output resultCode];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didEditPostPost:resultCode:)]) {
+                [delegate didEditPostPost:post resultCode:resultCode];
+            }
+        });
+    });
+}
+
 @end

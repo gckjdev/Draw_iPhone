@@ -274,6 +274,11 @@
     return @"zjh_room_list_cell_bg_dual";
 }
 
+- (NSString *)roomTitle
+{
+    return NSLS(@"kZJHRoomTitle");
+}
+
 - (UIColor*)popupMessageDialogFontColor
 {
     return [UIColor whiteColor];

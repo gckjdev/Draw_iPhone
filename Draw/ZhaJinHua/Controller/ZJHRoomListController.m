@@ -45,8 +45,8 @@
 
 - (void)initButtons
 {
-    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -116,7 +116,7 @@
 
 - (CGPoint)getSearchViewPosition
 {
-    return CGPointMake(self.view.center.x, self.friendRoomButton.center.y);
+    return CGPointMake(self.view.center.x, self.rightTabButton.center.y);
 }
 - (void)handleUpdateOnlineUserCount
 {
@@ -206,27 +206,27 @@
 
 - (IBAction)clickAll:(id)sender
 {
-    [self.allRoomButton setSelected:YES];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:NO];
+    [self.leftTabButton setSelected:YES];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
     [self continueRefreshingRooms];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 - (IBAction)clickFriendRoom:(id)sender
 {
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:YES];
-    [self.nearByRoomButton setSelected:NO];
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:YES];
+    [self.centerTabButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
     [self pauseRefreshingRooms];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
 }
 - (IBAction)clickNearBy:(id)sender
 {
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:YES];
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:YES];
     [self refreshRoomsByFilter:CommonRoomFilterNearByRoom];
 }
 @end
