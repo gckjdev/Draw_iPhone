@@ -18,6 +18,8 @@
 @interface CommonRoomListCell : PPTableViewCell
 
 @property (assign, nonatomic) id<CommonRoomListCellDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 - (void)setCellInfo:(PBGameSession *)session;
 

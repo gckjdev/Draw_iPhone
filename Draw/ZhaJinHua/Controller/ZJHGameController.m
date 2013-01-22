@@ -737,6 +737,11 @@
 - (void)levelUp:(int)newLevel
 {
     PPDebug(@"Level Up to %d level", newLevel);
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kLevelUpAwardMessage"), newLevel, [ConfigManager getLevelUpAward] * newLevel]
+                                                   delayTime:2.5
+                                                     isHappy:YES];
+    [[AccountService defaultService] chargeAccount:[ConfigManager getLevelUpAward] * newLevel
+                                            source:LevelUpAward];
 }
 
 - (void)clearAll

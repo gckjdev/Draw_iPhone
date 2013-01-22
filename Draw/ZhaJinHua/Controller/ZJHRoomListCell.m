@@ -70,12 +70,6 @@
     }
 }
 
-- (void)dealloc {
-    [_roomNameLabel release];
-    [_backgroundImageView release];
-    [super dealloc];
-}
-
 - (void)didClickOnAvatar:(DiceAvatarView *)view
 {
     if (delegate && [delegate respondsToSelector:@selector(didQueryUser:)]) {

@@ -584,6 +584,12 @@
 		C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
 		C2F310B516AE2D090076064D /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
 		C2F310B716AE2D240076064D /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
+		C2F310B816AE42840076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
+		C2F310B916AE42840076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
+		C2F310BB16AE42910076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
+		C2F310BC16AE42910076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
+		C2F310BD16AE42920076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
+		C2F310BE16AE42960076064D /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310AB16AE2C6F0076064D /* DrawRoomListController.m */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -20896,6 +20902,8 @@
 				CA3676E516AA6A6600630A40 /* PenFactory.m in Sources */,
 				C2CA66E316AD23FD00215924 /* CustomActionSheet.m in Sources */,
 				C2CA66E416AD241300215924 /* RoundLineLabel.m in Sources */,
+				C2F310B916AE42840076064D /* DrawRoomListController.m in Sources */,
+				C2F310BC16AE42910076064D /* DrawRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21583,6 +21591,8 @@
 				CA3676DF16AA6A6500630A40 /* SmoothQuadCurvePen.m in Sources */,
 				CA3676E016AA6A6500630A40 /* CurvePen.m in Sources */,
 				CA3676E116AA6A6500630A40 /* PenFactory.m in Sources */,
+				C2F310B816AE42840076064D /* DrawRoomListController.m in Sources */,
+				C2F310BB16AE42910076064D /* DrawRoomListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22967,6 +22977,8 @@
 				CA3676DB16AA6A6400630A40 /* SmoothQuadCurvePen.m in Sources */,
 				CA3676DC16AA6A6400630A40 /* CurvePen.m in Sources */,
 				CA3676DD16AA6A6400630A40 /* PenFactory.m in Sources */,
+				C2F310BD16AE42920076064D /* DrawRoomListCell.m in Sources */,
+				C2F310BE16AE42960076064D /* DrawRoomListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

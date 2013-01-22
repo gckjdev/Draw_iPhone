@@ -7,7 +7,8 @@
 //
 
 #import "CommonRoomListController.h"
+#import "DrawRoomListCell.h"
 
-@interface DrawRoomListController : CommonRoomListController
+@interface DrawRoomListController : CommonRoomListController<CommonRoomListCellDelegate>
 
 @end
