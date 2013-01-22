@@ -410,15 +410,37 @@
 + (NSString*)getZJHServerListStringWithNormal
 {
 //    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8027"];
-    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
+    
+    if (([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+    
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_NORMAL" defaultValue:@"106.187.89.232:8028"];
+    }
 }
 + (NSString *)getZJHServerListStringWithRich
 {
-    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
+    if (([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+        
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_RICH" defaultValue:@"106.187.89.232:8028"];
+    }
 }
 + (NSString *)getZJHServerListStringWithDual
 {
-    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
+    if (([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+        
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_DUAL" defaultValue:@"106.187.89.232:8028"];
+    }
 }
 
 + (int)getBetAnteWithNormalRule

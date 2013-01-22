@@ -1372,6 +1372,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 @property (retain) PBBBSUser* createUser;
 @property (retain) PBBBSContent* content;
 @property (retain) PBBBSReward* reward;
+@property int32_t status;
 @end
 
 @implementation PBBBSPost
@@ -1453,6 +1454,13 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
   hasReward_ = !!value;
 }
 @synthesize reward;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
 - (void) dealloc {
   self.postId = nil;
   self.boardId = nil;
@@ -1475,6 +1483,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
     self.createUser = [PBBBSUser defaultInstance];
     self.content = [PBBBSContent defaultInstance];
     self.reward = [PBBBSReward defaultInstance];
+    self.status = 0;
   }
   return self;
 }
@@ -1568,6 +1577,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (self.hasReward) {
     [output writeMessage:11 value:self.reward];
   }
+  if (self.hasStatus) {
+    [output writeInt32:12 value:self.status];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1609,6 +1621,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   }
   if (self.hasReward) {
     size += computeMessageSize(11, self.reward);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(12, self.status);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1718,6 +1733,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (other.hasReward) {
     [self mergeReward:other.reward];
   }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1796,6 +1814,10 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setReward:[subBuilder buildPartial]];
+        break;
+      }
+      case 96: {
+        [self setStatus:[input readInt32]];
         break;
       }
     }
@@ -2017,6 +2039,487 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
 - (PBBBSPost_Builder*) clearReward {
   result.hasReward = NO;
   result.reward = [PBBBSReward defaultInstance];
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBBBSPost_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBBBSPost_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+@end
+
+@interface PBBBSPrivilege ()
+@property (retain) NSString* boardId;
+@property int32_t permission;
+@end
+
+@implementation PBBBSPrivilege
+
+- (BOOL) hasBoardId {
+  return !!hasBoardId_;
+}
+- (void) setHasBoardId:(BOOL) value {
+  hasBoardId_ = !!value;
+}
+@synthesize boardId;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (void) dealloc {
+  self.boardId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.boardId = @"";
+    self.permission = 0;
+  }
+  return self;
+}
+static PBBBSPrivilege* defaultPBBBSPrivilegeInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSPrivilege class]) {
+    defaultPBBBSPrivilegeInstance = [[PBBBSPrivilege alloc] init];
+  }
+}
++ (PBBBSPrivilege*) defaultInstance {
+  return defaultPBBBSPrivilegeInstance;
+}
+- (PBBBSPrivilege*) defaultInstance {
+  return defaultPBBBSPrivilegeInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasBoardId) {
+    return NO;
+  }
+  if (!self.hasPermission) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasBoardId) {
+    [output writeString:1 value:self.boardId];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:2 value:self.permission];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasBoardId) {
+    size += computeStringSize(1, self.boardId);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(2, self.permission);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSPrivilege*) parseFromData:(NSData*) data {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromData:data] build];
+}
++ (PBBBSPrivilege*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSPrivilege*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromInputStream:input] build];
+}
++ (PBBBSPrivilege*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSPrivilege*)[[[PBBBSPrivilege builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSPrivilege_Builder*) builder {
+  return [[[PBBBSPrivilege_Builder alloc] init] autorelease];
+}
++ (PBBBSPrivilege_Builder*) builderWithPrototype:(PBBBSPrivilege*) prototype {
+  return [[PBBBSPrivilege builder] mergeFrom:prototype];
+}
+- (PBBBSPrivilege_Builder*) builder {
+  return [PBBBSPrivilege builder];
+}
+@end
+
+@interface PBBBSPrivilege_Builder()
+@property (retain) PBBBSPrivilege* result;
+@end
+
+@implementation PBBBSPrivilege_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSPrivilege alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSPrivilege_Builder*) clear {
+  self.result = [[[PBBBSPrivilege alloc] init] autorelease];
+  return self;
+}
+- (PBBBSPrivilege_Builder*) clone {
+  return [PBBBSPrivilege builderWithPrototype:result];
+}
+- (PBBBSPrivilege*) defaultInstance {
+  return [PBBBSPrivilege defaultInstance];
+}
+- (PBBBSPrivilege*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSPrivilege*) buildPartial {
+  PBBBSPrivilege* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSPrivilege_Builder*) mergeFrom:(PBBBSPrivilege*) other {
+  if (other == [PBBBSPrivilege defaultInstance]) {
+    return self;
+  }
+  if (other.hasBoardId) {
+    [self setBoardId:other.boardId];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setBoardId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasBoardId {
+  return result.hasBoardId;
+}
+- (NSString*) boardId {
+  return result.boardId;
+}
+- (PBBBSPrivilege_Builder*) setBoardId:(NSString*) value {
+  result.hasBoardId = YES;
+  result.boardId = value;
+  return self;
+}
+- (PBBBSPrivilege_Builder*) clearBoardId {
+  result.hasBoardId = NO;
+  result.boardId = @"";
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBBBSPrivilege_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBBBSPrivilege_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+@end
+
+@interface PBBBSUserPrivilege ()
+@property (retain) NSString* userId;
+@property (retain) NSMutableArray* mutablePrivilegeListList;
+@end
+
+@implementation PBBBSUserPrivilege
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+@synthesize mutablePrivilegeListList;
+- (void) dealloc {
+  self.userId = nil;
+  self.mutablePrivilegeListList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = @"";
+  }
+  return self;
+}
+static PBBBSUserPrivilege* defaultPBBBSUserPrivilegeInstance = nil;
++ (void) initialize {
+  if (self == [PBBBSUserPrivilege class]) {
+    defaultPBBBSUserPrivilegeInstance = [[PBBBSUserPrivilege alloc] init];
+  }
+}
++ (PBBBSUserPrivilege*) defaultInstance {
+  return defaultPBBBSUserPrivilegeInstance;
+}
+- (PBBBSUserPrivilege*) defaultInstance {
+  return defaultPBBBSUserPrivilegeInstance;
+}
+- (NSArray*) privilegeListList {
+  return mutablePrivilegeListList;
+}
+- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index {
+  id value = [mutablePrivilegeListList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  for (PBBBSPrivilege* element in self.privilegeListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeString:1 value:self.userId];
+  }
+  for (PBBBSPrivilege* element in self.privilegeListList) {
+    [output writeMessage:2 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeStringSize(1, self.userId);
+  }
+  for (PBBBSPrivilege* element in self.privilegeListList) {
+    size += computeMessageSize(2, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBBBSUserPrivilege*) parseFromData:(NSData*) data {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromData:data] build];
+}
++ (PBBBSUserPrivilege*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromInputStream:input] build];
+}
++ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromCodedInputStream:input] build];
+}
++ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBBBSUserPrivilege*)[[[PBBBSUserPrivilege builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBBBSUserPrivilege_Builder*) builder {
+  return [[[PBBBSUserPrivilege_Builder alloc] init] autorelease];
+}
++ (PBBBSUserPrivilege_Builder*) builderWithPrototype:(PBBBSUserPrivilege*) prototype {
+  return [[PBBBSUserPrivilege builder] mergeFrom:prototype];
+}
+- (PBBBSUserPrivilege_Builder*) builder {
+  return [PBBBSUserPrivilege builder];
+}
+@end
+
+@interface PBBBSUserPrivilege_Builder()
+@property (retain) PBBBSUserPrivilege* result;
+@end
+
+@implementation PBBBSUserPrivilege_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBBBSUserPrivilege alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBBBSUserPrivilege_Builder*) clear {
+  self.result = [[[PBBBSUserPrivilege alloc] init] autorelease];
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) clone {
+  return [PBBBSUserPrivilege builderWithPrototype:result];
+}
+- (PBBBSUserPrivilege*) defaultInstance {
+  return [PBBBSUserPrivilege defaultInstance];
+}
+- (PBBBSUserPrivilege*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBBBSUserPrivilege*) buildPartial {
+  PBBBSUserPrivilege* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBBBSUserPrivilege_Builder*) mergeFrom:(PBBBSUserPrivilege*) other {
+  if (other == [PBBBSUserPrivilege defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.mutablePrivilegeListList.count > 0) {
+    if (result.mutablePrivilegeListList == nil) {
+      result.mutablePrivilegeListList = [NSMutableArray array];
+    }
+    [result.mutablePrivilegeListList addObjectsFromArray:other.mutablePrivilegeListList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 18: {
+        PBBBSPrivilege_Builder* subBuilder = [PBBBSPrivilege builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addPrivilegeList:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBBBSUserPrivilege_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (NSArray*) privilegeListList {
+  if (result.mutablePrivilegeListList == nil) { return [NSArray array]; }
+  return result.mutablePrivilegeListList;
+}
+- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index {
+  return [result privilegeListAtIndex:index];
+}
+- (PBBBSUserPrivilege_Builder*) replacePrivilegeListAtIndex:(int32_t) index with:(PBBBSPrivilege*) value {
+  [result.mutablePrivilegeListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) addAllPrivilegeList:(NSArray*) values {
+  if (result.mutablePrivilegeListList == nil) {
+    result.mutablePrivilegeListList = [NSMutableArray array];
+  }
+  [result.mutablePrivilegeListList addObjectsFromArray:values];
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) clearPrivilegeListList {
+  result.mutablePrivilegeListList = nil;
+  return self;
+}
+- (PBBBSUserPrivilege_Builder*) addPrivilegeList:(PBBBSPrivilege*) value {
+  if (result.mutablePrivilegeListList == nil) {
+    result.mutablePrivilegeListList = [NSMutableArray array];
+  }
+  [result.mutablePrivilegeListList addObject:value];
   return self;
 }
 @end

@@ -55,9 +55,18 @@ message PBBBSPost{
     required PBBBSUser createUser = 9;
     required PBBBSContent content = 10;
     optional PBBBSReward reward = 11;
+    optional int32 status = 12;
 }
 
+message PBBBSPrivilege{
+    required string boardId = 1;
+    required int32 permission = 2;
+}
 
+message PBBBSUserPrivilege{
+    required string userId = 1;
+    repeated PBBBSPrivilege privilegeList = 2;
+}
 
 message PBBBSActionSource{
     required string postId = 1;

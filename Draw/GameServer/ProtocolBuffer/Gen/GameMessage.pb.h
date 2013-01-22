@@ -91,9 +91,13 @@
 @class PBBBSDraw_Builder;
 @class PBBBSPost;
 @class PBBBSPost_Builder;
+@class PBBBSPrivilege;
+@class PBBBSPrivilege_Builder;
 @class PBBBSReward;
 @class PBBBSReward_Builder;
 @class PBBBSUser;
+@class PBBBSUserPrivilege;
+@class PBBBSUserPrivilege_Builder;
 @class PBBBSUser_Builder;
 @class PBColor;
 @class PBColor_Builder;
@@ -4227,9 +4231,11 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasResultCode_:1;
   BOOL hasTotalCount_:1;
   BOOL hasBbsDrawData_:1;
+  BOOL hasUserPrivilege_:1;
   int32_t resultCode;
   int32_t totalCount;
   PBBBSDraw* bbsDrawData;
+  PBBBSUserPrivilege* userPrivilege;
   NSMutableArray* mutableDrawDataList;
   NSMutableArray* mutableMessageList;
   NSMutableArray* mutableMessageStatList;
@@ -4237,13 +4243,16 @@ BOOL BetTypeIsValidValue(BetType value);
   NSMutableArray* mutableBbsBoardList;
   NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
+  NSMutableArray* mutableBbsUserListList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
 - (BOOL) hasBbsDrawData;
+- (BOOL) hasUserPrivilege;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
+@property (readonly, retain) PBBBSUserPrivilege* userPrivilege;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4258,6 +4267,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
 - (NSArray*) bbsActionList;
 - (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
+- (NSArray*) bbsUserListList;
+- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4358,5 +4369,19 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setBbsDrawDataBuilder:(PBBBSDraw_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeBbsDrawData:(PBBBSDraw*) value;
 - (DataQueryResponse_Builder*) clearBbsDrawData;
+
+- (BOOL) hasUserPrivilege;
+- (PBBBSUserPrivilege*) userPrivilege;
+- (DataQueryResponse_Builder*) setUserPrivilege:(PBBBSUserPrivilege*) value;
+- (DataQueryResponse_Builder*) setUserPrivilegeBuilder:(PBBBSUserPrivilege_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeUserPrivilege:(PBBBSUserPrivilege*) value;
+- (DataQueryResponse_Builder*) clearUserPrivilege;
+
+- (NSArray*) bbsUserListList;
+- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceBbsUserListAtIndex:(int32_t) index with:(PBBBSUser*) value;
+- (DataQueryResponse_Builder*) addBbsUserList:(PBBBSUser*) value;
+- (DataQueryResponse_Builder*) addAllBbsUserList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearBbsUserListList;
 @end
 
