@@ -498,6 +498,7 @@
 #define METHOD_GET_BBSPOST @"gbp"
 #define METHOD_GET_BBS_DRAWDATA @"gbd"
 #define METHOD_PAY_BBS_REWARD @"pbr"
+#define METHOD_EDIT_BBS_POST @"edp"
 
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"

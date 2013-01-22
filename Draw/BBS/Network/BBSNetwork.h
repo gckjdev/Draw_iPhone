@@ -122,4 +122,13 @@
                                 postId:(NSString *)postId
                               actionId:(NSString *)actionId;
 
++ (CommonNetworkOutput*)editBBSPost:(NSString*)baseURL
+                              appId:(NSString *)appId
+                         deviceType:(NSInteger)deviceType
+                             userId:(NSString *)userId
+                             postId:(NSString *)postId
+                            boardId:(NSString *)boardId
+                             status:(int)status
+                               info:(NSDictionary *)info; //for the future
+
 @end

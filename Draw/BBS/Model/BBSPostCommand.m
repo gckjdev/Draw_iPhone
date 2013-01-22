@@ -89,12 +89,12 @@
 @implementation BBSPostTransferCommand
 
 -(void)excute{
-    
+    //TODO pop up
 }
 - (NSString *)name{
     return NSLS(@"kBBSTransfer");
 }
-
+//    [self.controller showActivityWithText:NSLS(@"kTransfering")];
 - (void)dealloc
 {
     [super dealloc];
@@ -108,7 +108,13 @@
 @implementation BBSPostTopCommand
 
 -(void)excute{
-    
+    [self.controller showActivityWithText:NSLS(@"kToToping")];
+    BBSPostStatus status = BBSPostStatusTop;
+    [[BBSService defaultService] editPost:self.post
+                                  boardId:nil
+                                   status:status
+                                     info:nil
+                                 delegate:self.controller];
 }
 
 - (NSString *)name{
@@ -126,7 +132,8 @@
 @implementation BBSPostDeleteCommand
 
 -(void)excute{
-    
+    [self.controller showActivityWithText:NSLS(@"kDeleting")];
+    [[BBSService defaultService] deletePostWithPostId:self.post.postId delegate:self.controller];
 }
 - (NSString *)name{
     return NSLS(@"kBBSDelete");
