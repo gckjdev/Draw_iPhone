@@ -383,7 +383,7 @@
   BOOL hasSupportCount_:1;
   BOOL hasCreateDate_:1;
   BOOL hasModifyDate_:1;
-  BOOL hasPriority_:1;
+  BOOL hasStatus_:1;
   BOOL hasPostId_:1;
   BOOL hasBoardId_:1;
   BOOL hasAppId_:1;
@@ -395,7 +395,7 @@
   int32_t supportCount;
   int32_t createDate;
   int32_t modifyDate;
-  int32_t priority;
+  int32_t status;
   NSString* postId;
   NSString* boardId;
   NSString* appId;
@@ -414,7 +414,7 @@
 - (BOOL) hasCreateUser;
 - (BOOL) hasContent;
 - (BOOL) hasReward;
-- (BOOL) hasPriority;
+- (BOOL) hasStatus;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* boardId;
 @property (readonly, retain) NSString* appId;
@@ -426,7 +426,7 @@
 @property (readonly, retain) PBBBSUser* createUser;
 @property (readonly, retain) PBBBSContent* content;
 @property (readonly, retain) PBBBSReward* reward;
-@property (readonly) int32_t priority;
+@property (readonly) int32_t status;
 
 + (PBBBSPost*) defaultInstance;
 - (PBBBSPost*) defaultInstance;
@@ -523,10 +523,10 @@
 - (PBBBSPost_Builder*) mergeReward:(PBBBSReward*) value;
 - (PBBBSPost_Builder*) clearReward;
 
-- (BOOL) hasPriority;
-- (int32_t) priority;
-- (PBBBSPost_Builder*) setPriority:(int32_t) value;
-- (PBBBSPost_Builder*) clearPriority;
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBBBSPost_Builder*) setStatus:(int32_t) value;
+- (PBBBSPost_Builder*) clearStatus;
 @end
 
 @interface PBBBSPrivilege : PBGeneratedMessage {

@@ -1372,7 +1372,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 @property (retain) PBBBSUser* createUser;
 @property (retain) PBBBSContent* content;
 @property (retain) PBBBSReward* reward;
-@property int32_t priority;
+@property int32_t status;
 @end
 
 @implementation PBBBSPost
@@ -1454,13 +1454,13 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
   hasReward_ = !!value;
 }
 @synthesize reward;
-- (BOOL) hasPriority {
-  return !!hasPriority_;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
 }
-- (void) setHasPriority:(BOOL) value {
-  hasPriority_ = !!value;
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
 }
-@synthesize priority;
+@synthesize status;
 - (void) dealloc {
   self.postId = nil;
   self.boardId = nil;
@@ -1483,7 +1483,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
     self.createUser = [PBBBSUser defaultInstance];
     self.content = [PBBBSContent defaultInstance];
     self.reward = [PBBBSReward defaultInstance];
-    self.priority = 0;
+    self.status = 0;
   }
   return self;
 }
@@ -1577,8 +1577,8 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (self.hasReward) {
     [output writeMessage:11 value:self.reward];
   }
-  if (self.hasPriority) {
-    [output writeInt32:12 value:self.priority];
+  if (self.hasStatus) {
+    [output writeInt32:12 value:self.status];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1622,8 +1622,8 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (self.hasReward) {
     size += computeMessageSize(11, self.reward);
   }
-  if (self.hasPriority) {
-    size += computeInt32Size(12, self.priority);
+  if (self.hasStatus) {
+    size += computeInt32Size(12, self.status);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1733,8 +1733,8 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   if (other.hasReward) {
     [self mergeReward:other.reward];
   }
-  if (other.hasPriority) {
-    [self setPriority:other.priority];
+  if (other.hasStatus) {
+    [self setStatus:other.status];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1817,7 +1817,7 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
         break;
       }
       case 96: {
-        [self setPriority:[input readInt32]];
+        [self setStatus:[input readInt32]];
         break;
       }
     }
@@ -2041,20 +2041,20 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   result.reward = [PBBBSReward defaultInstance];
   return self;
 }
-- (BOOL) hasPriority {
-  return result.hasPriority;
+- (BOOL) hasStatus {
+  return result.hasStatus;
 }
-- (int32_t) priority {
-  return result.priority;
+- (int32_t) status {
+  return result.status;
 }
-- (PBBBSPost_Builder*) setPriority:(int32_t) value {
-  result.hasPriority = YES;
-  result.priority = value;
+- (PBBBSPost_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
   return self;
 }
-- (PBBBSPost_Builder*) clearPriority {
-  result.hasPriority = NO;
-  result.priority = 0;
+- (PBBBSPost_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
   return self;
 }
 @end

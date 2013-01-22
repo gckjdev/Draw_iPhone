@@ -467,4 +467,5 @@ message DataQueryResponse {
   repeated PBBBSAction bbsAction = 53;
   optional PBBBSDraw bbsDrawData = 54;
   optional PBBBSUserPrivilege userPrivilege = 55;
+  repeated PBBBSUser bbsUserList = 56;
 }

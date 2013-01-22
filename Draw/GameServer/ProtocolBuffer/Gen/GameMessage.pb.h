@@ -4243,6 +4243,7 @@ BOOL BetTypeIsValidValue(BetType value);
   NSMutableArray* mutableBbsBoardList;
   NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
+  NSMutableArray* mutableBbsUserListList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -4266,6 +4267,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSPost*) bbsPostAtIndex:(int32_t) index;
 - (NSArray*) bbsActionList;
 - (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
+- (NSArray*) bbsUserListList;
+- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4373,5 +4376,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setUserPrivilegeBuilder:(PBBBSUserPrivilege_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeUserPrivilege:(PBBBSUserPrivilege*) value;
 - (DataQueryResponse_Builder*) clearUserPrivilege;
+
+- (NSArray*) bbsUserListList;
+- (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceBbsUserListAtIndex:(int32_t) index with:(PBBBSUser*) value;
+- (DataQueryResponse_Builder*) addBbsUserList:(PBBBSUser*) value;
+- (DataQueryResponse_Builder*) addAllBbsUserList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearBbsUserListList;
 @end
 
