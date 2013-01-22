@@ -3412,6 +3412,18 @@
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
+		CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
+		CA507F4716AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
+		CA507F4816AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
+		CA507F4E16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */; };
+		CA507F4F16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */; };
+		CA507F5016AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */; };
+		CA507F5116AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */; };
+		CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
+		CA507F5316AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
+		CA507F5416AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
+		CA507F5516AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
@@ -7878,6 +7890,12 @@
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
 		CA4FF008152AF21900F0AC88 /* ColorShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorShopCell.m; sourceTree = "<group>"; };
 		CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorShopCell.xib; sourceTree = "<group>"; };
+		CA507F4316AE9D2D00CCB00F /* BBSPostCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommand.h; sourceTree = "<group>"; };
+		CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommand.m; sourceTree = "<group>"; };
+		CA507F4A16AE9D5400CCB00F /* BBSPostCommandPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommandPanel.h; sourceTree = "<group>"; };
+		CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommandPanel.m; sourceTree = "<group>"; };
+		CA507F4C16AE9D5400CCB00F /* BBSPostCommandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommandView.h; sourceTree = "<group>"; };
+		CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommandView.m; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
@@ -12894,6 +12912,7 @@
 		CA4151AA165502630062A638 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA507F4916AE9D3B00CCB00F /* Command */,
 				CAC791CB16660943009B4053 /* Common */,
 				CAC791CA16660930009B4053 /* UserAction */,
 				CAC791C91666091E009B4053 /* PostAction */,
@@ -12951,6 +12970,8 @@
 		CA42FE24165E24850097453A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA507F4316AE9D2D00CCB00F /* BBSPostCommand.h */,
+				CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */,
 				CA42FE25165E24850097453A /* BBSModelExt.h */,
 				CA42FE26165E24850097453A /* BBSModelExt.m */,
 			);
@@ -12984,6 +13005,17 @@
 				CA479467168E986400D4AF55 /* AnalyticsManager.m */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		CA507F4916AE9D3B00CCB00F /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				CA507F4A16AE9D5400CCB00F /* BBSPostCommandPanel.h */,
+				CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */,
+				CA507F4C16AE9D5400CCB00F /* BBSPostCommandView.h */,
+				CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */,
+			);
+			name = Command;
 			sourceTree = "<group>";
 		};
 		CA51816A15A2D79700AD5A78 /* CustomStatueBar */ = {
@@ -20982,6 +21014,9 @@
 				C2CA66E316AD23FD00215924 /* CustomActionSheet.m in Sources */,
 				C2CA66E416AD241300215924 /* RoundLineLabel.m in Sources */,
 				C2F310BC16AE42910076064D /* DrawRoomListCell.m in Sources */,
+				CA507F4716AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
+				CA507F5016AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
+				CA507F5416AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21670,6 +21705,9 @@
 				CA3676E016AA6A6500630A40 /* CurvePen.m in Sources */,
 				CA3676E116AA6A6500630A40 /* PenFactory.m in Sources */,
 				C2F310BB16AE42910076064D /* DrawRoomListCell.m in Sources */,
+				CA507F4816AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
+				CA507F5116AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
+				CA507F5516AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22359,6 +22397,9 @@
 				CA3676D916AA4E1C00630A40 /* PenFactory.m in Sources */,
 				C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */,
 				C2DA092F16AE8EBA003BBE2D /* DrawRoomListController.m in Sources */,
+				CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
+				CA507F4E16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
+				CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23055,6 +23096,9 @@
 				CA3676DC16AA6A6400630A40 /* CurvePen.m in Sources */,
 				CA3676DD16AA6A6400630A40 /* PenFactory.m in Sources */,
 				C2F310BD16AE42920076064D /* DrawRoomListCell.m in Sources */,
+				CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
+				CA507F4F16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
+				CA507F5316AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
