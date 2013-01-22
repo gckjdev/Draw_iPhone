@@ -361,7 +361,7 @@
 
 + (int)getZhajinhuaExp
 {
-    return [MobClickUtils getIntValueByKey:@"ZJH_EXP" defaultValue:500];
+    return [MobClickUtils getIntValueByKey:@"ZJH_EXP" defaultValue:5];
 }
 
 + (int)getDiceFleeCoin
