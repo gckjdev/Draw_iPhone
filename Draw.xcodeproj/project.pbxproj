@@ -3428,10 +3428,6 @@
 		CA507F5916AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		CA507F5A16AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		CA507F5B16AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
-		CA507F7816AFEBF400CCB00F /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */; };
-		CA507F7916AFEBFA00CCB00F /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */; };
-		CA507F7A16AFEBFB00CCB00F /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */; };
-		CA507F7B16AFEBFC00CCB00F /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
@@ -6255,6 +6251,10 @@
 		CADD7FDD1511BAAB0075C739 /* DrawGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FDC1511BAAB0075C739 /* DrawGameService.m */; };
 		CADD804D15138C690075C739 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804C15138C690075C739 /* UserManager.m */; };
 		CADD8050151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */; };
+		CADECC5F16B02BB6001D414C /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
+		CADECC6016B02BB6001D414C /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
+		CADECC6116B02BB6001D414C /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
+		CADECC6216B02BB6001D414C /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
 		CAE0C8971591A2ED008CDA62 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE0C8961591A2ED008CDA62 /* NotificationManager.m */; };
 		CAE1BA95162EB9DE00AA0C05 /* highlight_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
@@ -6280,6 +6280,15 @@
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
+		CAFBBD9D16B01B6300CBE629 /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */; };
+		CAFBBD9E16B01B6500CBE629 /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */; };
+		CAFBBD9F16B01B6700CBE629 /* DrawRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */; };
+		CAFBBDA016B01D9000CBE629 /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
+		CAFBBDA116B01D9000CBE629 /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
+		CAFBBDA216B01D9100CBE629 /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
+		CAFBBDA316B01D9100CBE629 /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
+		CAFBBDA416B01D9200CBE629 /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
+		CAFBBDA516B01D9200CBE629 /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
 		CAFEFAED16606E4900441D77 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87516606E4700441D77 /* Facebook.m */; };
 		CAFEFAEE16606E4900441D77 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF87716606E4700441D77 /* FBDialog.bundle */; };
 		CAFEFAEF16606E4900441D77 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF87916606E4700441D77 /* FBDialog.m */; };
@@ -7907,8 +7916,6 @@
 		CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommandView.m; sourceTree = "<group>"; };
 		CA507F5616AF923700CCB00F /* PointNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointNode.h; sourceTree = "<group>"; };
 		CA507F5716AF923700CCB00F /* PointNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointNode.m; sourceTree = "<group>"; };
-		CA507F7616AFEBF400CCB00F /* BBSPermissionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPermissionManager.h; sourceTree = "<group>"; };
-		CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPermissionManager.m; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
@@ -9302,6 +9309,8 @@
 		CADD804C15138C690075C739 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		CADD804E151397870075C739 /* UINavigationController+UINavigationControllerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+UINavigationControllerAdditions.h"; sourceTree = "<group>"; };
 		CADD804F151397870075C739 /* UINavigationController+UINavigationControllerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+UINavigationControllerAdditions.m"; sourceTree = "<group>"; };
+		CADECC5D16B02BB6001D414C /* BBSPermissionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPermissionManager.h; sourceTree = "<group>"; };
+		CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPermissionManager.m; sourceTree = "<group>"; };
 		CAE0C8951591A2ED008CDA62 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		CAE0C8961591A2ED008CDA62 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
 		CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highlight_mask@2x.png"; sourceTree = "<group>"; };
@@ -12985,12 +12994,12 @@
 		CA42FE24165E24850097453A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CADECC5D16B02BB6001D414C /* BBSPermissionManager.h */,
+				CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */,
 				CA507F4316AE9D2D00CCB00F /* BBSPostCommand.h */,
 				CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */,
 				CA42FE25165E24850097453A /* BBSModelExt.h */,
 				CA42FE26165E24850097453A /* BBSModelExt.m */,
-				CA507F7616AFEBF400CCB00F /* BBSPermissionManager.h */,
-				CA507F7716AFEBF400CCB00F /* BBSPermissionManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -17924,6 +17933,8 @@
 				C2CA66DD16ACD1FF00215924 /* bulletin_top@2x.png in Resources */,
 				C2CA66DF16ACD20300215924 /* close_bulletin@2x.png in Resources */,
 				C2CA66E116ACD20700215924 /* new_bulletin@2x.png in Resources */,
+				CAFBBDA216B01D9100CBE629 /* DrawRoomListCell.xib in Resources */,
+				CAFBBDA316B01D9100CBE629 /* DrawRoomListCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18740,6 +18751,8 @@
 				C2160C9C16AE7BB9008C2A3E /* tab_right_unselect@2x.png in Resources */,
 				C2DA092A16AE82B7003BBE2D /* tab_center_selected@2x.jpg in Resources */,
 				C2DA092C16AE82BA003BBE2D /* tab_center_unselect@2x.jpg in Resources */,
+				CAFBBDA416B01D9200CBE629 /* DrawRoomListCell.xib in Resources */,
+				CAFBBDA516B01D9200CBE629 /* DrawRoomListCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20325,6 +20338,8 @@
 				C2160C9B16AE7BB9008C2A3E /* tab_right_unselect@2x.png in Resources */,
 				C2DA092916AE82B6003BBE2D /* tab_center_selected@2x.jpg in Resources */,
 				C2DA092B16AE82B9003BBE2D /* tab_center_unselect@2x.jpg in Resources */,
+				CAFBBDA016B01D9000CBE629 /* DrawRoomListCell.xib in Resources */,
+				CAFBBDA116B01D9000CBE629 /* DrawRoomListCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21036,7 +21051,8 @@
 				CA507F5016AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5416AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5A16AF923700CCB00F /* PointNode.m in Sources */,
-				CA507F7A16AFEBFB00CCB00F /* BBSPermissionManager.m in Sources */,
+				CAFBBD9E16B01B6500CBE629 /* DrawRoomListController.m in Sources */,
+				CADECC6116B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21729,7 +21745,8 @@
 				CA507F5116AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5516AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5B16AF923700CCB00F /* PointNode.m in Sources */,
-				CA507F7B16AFEBFC00CCB00F /* BBSPermissionManager.m in Sources */,
+				CAFBBD9F16B01B6700CBE629 /* DrawRoomListController.m in Sources */,
+				CADECC6216B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22423,7 +22440,7 @@
 				CA507F4E16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5816AF923700CCB00F /* PointNode.m in Sources */,
-				CA507F7816AFEBF400CCB00F /* BBSPermissionManager.m in Sources */,
+				CADECC5F16B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23124,7 +23141,8 @@
 				CA507F4F16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5316AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5916AF923700CCB00F /* PointNode.m in Sources */,
-				CA507F7916AFEBFA00CCB00F /* BBSPermissionManager.m in Sources */,
+				CAFBBD9D16B01B6300CBE629 /* DrawRoomListController.m in Sources */,
+				CADECC6016B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
