@@ -3424,6 +3424,10 @@
 		CA507F5316AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
 		CA507F5416AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
 		CA507F5516AE9D5400CCB00F /* BBSPostCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */; };
+		CA507F5816AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
+		CA507F5916AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
+		CA507F5A16AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
+		CA507F5B16AF923700CCB00F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA50D28D1697C6ED00A7BE14 /* DrawColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */; };
@@ -7897,6 +7901,8 @@
 		CA507F4B16AE9D5400CCB00F /* BBSPostCommandPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommandPanel.m; sourceTree = "<group>"; };
 		CA507F4C16AE9D5400CCB00F /* BBSPostCommandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostCommandView.h; sourceTree = "<group>"; };
 		CA507F4D16AE9D5400CCB00F /* BBSPostCommandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostCommandView.m; sourceTree = "<group>"; };
+		CA507F5616AF923700CCB00F /* PointNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointNode.h; sourceTree = "<group>"; };
+		CA507F5716AF923700CCB00F /* PointNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointNode.m; sourceTree = "<group>"; };
 		CA50A01315B9388A00CAB603 /* UserStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusService.h; sourceTree = "<group>"; };
 		CA50A01415B9389600CAB603 /* UserStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusService.m; sourceTree = "<group>"; };
 		CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ResultController~ipad.xib"; sourceTree = "<group>"; };
@@ -12361,6 +12367,8 @@
 				A3C129E41563A70E00C021A7 /* Draw.m */,
 				CA1041E91509B99A00F60C03 /* Paint.h */,
 				CA1041EA1509B99A00F60C03 /* Paint.m */,
+				CA507F5616AF923700CCB00F /* PointNode.h */,
+				CA507F5716AF923700CCB00F /* PointNode.m */,
 			);
 			path = Draw;
 			sourceTree = "<group>";
@@ -21019,6 +21027,7 @@
 				CA507F4716AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
 				CA507F5016AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5416AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
+				CA507F5A16AF923700CCB00F /* PointNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21710,6 +21719,7 @@
 				CA507F4816AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
 				CA507F5116AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5516AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
+				CA507F5B16AF923700CCB00F /* PointNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22402,6 +22412,7 @@
 				CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
 				CA507F4E16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
+				CA507F5816AF923700CCB00F /* PointNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23101,6 +23112,7 @@
 				CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */,
 				CA507F4F16AE9D5400CCB00F /* BBSPostCommandPanel.m in Sources */,
 				CA507F5316AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
+				CA507F5916AF923700CCB00F /* PointNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
