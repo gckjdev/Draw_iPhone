@@ -116,12 +116,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     [dataBuilder setType:[drawAction type]];
 
-    NSArray *pointList = nil;
-    if ([DeviceDetection isIPAD]) {
-        pointList = [drawAction intPointListWithXScale:IPAD_WIDTH_SCALE yScale:IPAD_HEIGHT_SCALE];
-    }else{
-        pointList = [drawAction intPointListWithXScale:1 yScale:1];
-    }
+    NSArray *pointList = drawAction.paint.numberPointList;
 
     [dataBuilder addAllPoints:pointList];
     

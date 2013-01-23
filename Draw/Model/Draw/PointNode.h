@@ -8,14 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
+@class PBPoint;
+
 @interface PointNode : NSObject
+{
+//    CGPoint _point;
+}
+//@property(nonatomic, assign) CGFloat x;
+//@property(nonatomic, assign) CGFloat y;
 
-@property(nonatomic, assign) CGFloat x;
-@property(nonatomic, assign) CGFloat y;
+@property(nonatomic, assign)CGPoint point;
 
-- (void)setPoint:(CGPoint)point;
-- (CGPoint)point;
+- (CGFloat)x;
+- (CGFloat)y;
+- (void)setX:(CGFloat)x;
+- (void)setY:(CGFloat)y;
+
+- (NSInteger)toCompressPoint;
+- (NSInteger)toCompressPointWithXScale:(CGFloat)xScale yScale:(CGFloat)yScale;
+- (PBPoint *)toPBPoint;
+- (PointNode *)scaleX:(CGFloat)scale;
+- (PointNode *)scaleY:(CGFloat)scale;
+- (id)copy;
+
+- (BOOL)equalsToPoint:(PointNode *)point;
+- (CGFloat)distancWithPoint:(PointNode *)point;
+
 + (id)pointWithCGPoint:(CGPoint)point;
++ (id)pointWithPBPoint:(PBPoint *)point;
++ (PointNode *)illegalPoint;
++ (PointNode *)zeroPoint;
 
 @end
 

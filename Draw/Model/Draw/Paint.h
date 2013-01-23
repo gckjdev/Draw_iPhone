@@ -11,8 +11,10 @@
 #import "ItemType.h"
 #import "PenEffectProtocol.h"
 
+
 @class DrawColor;
 @class GameMessage;
+@class PointNode;
 
 //CGPoint midPoint(CGPoint p1, CGPoint p2);
 
@@ -23,7 +25,7 @@
 {
     CGFloat _width;
     DrawColor *_color;
-    NSMutableArray *_pointList;
+//    NSMutableArray *_pointList;
     ItemType _penType;
     
     id<PenEffectProtocol> _pen;
@@ -35,17 +37,19 @@
 //    int     ptsCount;
 //    BOOL    ptsComplete;
 }
-@property(nonatomic,assign)CGFloat width;
-@property(nonatomic,assign)ItemType penType;
-@property(nonatomic,retain)DrawColor* color;
-@property(nonatomic,retain)NSMutableArray *pointList;
+@property(nonatomic, assign)CGFloat width;
+@property(nonatomic, assign)ItemType penType;
+@property(nonatomic, retain)DrawColor* color;
+//@property(nonatomic,retain)NSMutableArray *pointList;
+@property(nonatomic, retain)NSMutableArray *pointNodeList;
+
 @property(nonatomic,retain)id<PenEffectProtocol> pen;
 
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             penType:(ItemType)penType
-          pointList:(NSMutableArray *)pointList;
+          pointList:(NSMutableArray *)pointNodeList;
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color;
 - (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList;
@@ -61,7 +65,7 @@
 
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
-- (NSString *)toString;
+
 - (CGPathRef)path;
 
 + (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color;
@@ -73,5 +77,8 @@
 
 //- (void)clearPath;
 //- (void)releasePathToShow;
+- (NSMutableArray *)numberPointList;
+
+
 
 @end

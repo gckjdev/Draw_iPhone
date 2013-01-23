@@ -12,6 +12,7 @@
 #import "DrawUtils.h"
 #import "Draw.pb.h"
 #import "ConfigManager.h"
+#import "PointNode.h"
 
 @implementation DrawAction
 
@@ -39,9 +40,7 @@
             if (count > 0) {
                 pointList = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
                 for (PBPoint *point in action.pointList) {
-                    CGPoint p = CGPointMake(point.x, point.y);
-                    NSValue *value = [NSValue valueWithCGPoint:p];
-                    [pointList addObject:value];
+                    [pointList addObject:[PointNode pointWithPBPoint:point]];
                 }
             }
             Paint *paint = [[Paint alloc] initWithWidth:lineWidth color:color penType:penType pointList:pointList];
@@ -68,13 +67,8 @@
         if (pCount != 0) {
             NSMutableArray *pList = [NSMutableArray arrayWithCapacity:pCount];
             PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
-            for (NSValue *value in paint.pointList) {
-                CGPoint point = [value CGPointValue];
-                [pBuilder clear];
-                [pBuilder setX:point.x];
-                [pBuilder setY:point.y];
-                PBPoint *pp = [pBuilder build];
-                [pList addObject:pp];
+            for (PointNode *value in paint.pointNodeList) {
+                [pList addObject:value.toPBPoint];
             }
             PPRelease(pBuilder);
             [builder addAllPoint:pList];
@@ -224,17 +218,16 @@
                                 initWithCapacity:paint.pointCount];
 
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        for (NSValue *value in paint.pointList) {
-            CGPoint point = [value CGPointValue];
+        for (PointNode *point in paint.pointNodeList) {
             point.x = point.x * xScale;
             point.y = point.y * yScale;
-            NSValue *pValue = [NSValue valueWithCGPoint:point];
-            [list addObject:pValue];
+            [list addObject:point];
         }
         [pool release];
 
         Paint *newPaint = [Paint paintWithWidth:paint.width * xScale color:paint.color penType:paint.penType];
-        [newPaint setPointList:list];
+//        [newPaint setPointList:list];
+        [newPaint setPointNodeList:list];
         [list release];
         DrawAction *dAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:newPaint];
         return dAction;
@@ -257,31 +250,6 @@
     }
     return nil;
 }
-- (BOOL)point1:(CGPoint)p1 isEqualPoint2:(CGPoint)p2
-{
-    return p1.x == p2.x && p1.y == p2.y; 
-}
-
-- (NSArray *)intPointListWithXScale:(CGFloat)xScale 
-                             yScale:(CGFloat)yScale
-{
-    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
-    CGPoint lastPoint = ILLEGAL_POINT;
-    int i = 0;
-    for (NSValue *pointValue in _paint.pointList) {
-        CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || ![self point1:lastPoint isEqualPoint2:point]) 
-        {
-            CGPoint tempPoint = point;
-            tempPoint = CGPointMake(point.x / xScale, point.y / yScale);
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
-            [pointList addObject:pointNumber];
-        }
-        lastPoint = point;
-    }
-    return pointList;
-}
-
 
 + (NSInteger)pointCountForActions:(NSArray *)actionList
 {
