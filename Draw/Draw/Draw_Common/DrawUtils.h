@@ -56,6 +56,7 @@
 + (CGFloat )decompressPenTypeWidth:(NSInteger)intLineWidth;
 + (CGFloat )decompressIntLineWidth:(NSInteger)intLineWidth;
 
++ (NSInteger)roundFloatValue:(CGFloat)value;
 
 + (CGRect)rectForPath:(CGPathRef)path withWidth:(CGFloat)width bounds:(CGRect)bounds;
 //+ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width;

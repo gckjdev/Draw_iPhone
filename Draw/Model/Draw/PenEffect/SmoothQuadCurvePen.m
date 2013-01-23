@@ -80,9 +80,10 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     if (pointCount > 0) {
                 
         for (int i=0; i<pointCount; i++){
-            NSValue *value = [pointList objectAtIndex:i];
-            CGPoint point  = [value CGPointValue];
-            [self addPointIntoPath:point];
+//            NSValue *value = [pointList objectAtIndex:i];
+//            CGPoint point  = [value CGPointValue];
+            PointNode *node = [pointList objectAtIndex:i];
+            [self addPointIntoPath:node.point];
         }
         
     }

@@ -37,6 +37,7 @@
 #import "GameConstants.h"
 #import "ItemService.h"
 #import "DrawColorManager.h"
+#import "PointNode.h"
 
 @interface OnlineDrawViewController ()
 {
@@ -278,22 +279,7 @@
 {
     
     NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
-    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
-    CGPoint lastPoint = ILLEGAL_POINT;
-    int i = 0;
-    for (NSValue *pointValue in paint.pointList) {
-        CGPoint point = [pointValue CGPointValue];
-        if (i ++ == 0 || [DrawUtils distanceBetweenPoint:lastPoint point2:point] > 2) 
-        {
-            CGPoint tempPoint = point;
-            if ([DeviceDetection isIPAD]) {
-                tempPoint = CGPointMake(point.x / IPAD_WIDTH_SCALE, point.y / IPAD_HEIGHT_SCALE);
-            }
-            NSNumber *pointNumber = [NSNumber numberWithInt:[DrawUtils compressPoint:tempPoint]];
-            [pointList addObject:pointNumber];
-        }
-        lastPoint = point;
-    }
+    NSMutableArray *pointList = paint.numberPointList;
     CGFloat width = paint.width;
     if ([DeviceDetection isIPAD]) {
         width /= 2;
