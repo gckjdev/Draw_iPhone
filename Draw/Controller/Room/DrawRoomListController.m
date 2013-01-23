@@ -155,5 +155,18 @@
     return;
 }
 
+- (void)handleLeftTabAction
+{
+    [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
+    [self continueRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+}
+- (void)handleCenterTabAction
+{
+    [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
+    [self pauseRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kSearchingRoom")];
+}
+
 
 @end
