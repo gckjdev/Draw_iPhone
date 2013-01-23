@@ -10,7 +10,7 @@
 
 @class PBPoint;
 
-@interface PointNode : NSObject
+@interface PointNode : NSObject<NSCoding>
 {
 //    CGPoint _point;
 }

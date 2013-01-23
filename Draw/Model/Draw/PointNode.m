@@ -17,6 +17,19 @@
     [super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeCGPoint:self.point forKey:@"CGPointKey"];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.point = [aDecoder decodeCGPointForKey:@"CGPointKey"];
+    }
+    return self;
+}
+
 - (id)init
 {
     self = [super init];

@@ -58,9 +58,19 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     if (self) {
         self.width = [aDecoder decodeFloatForKey:@"width"];
         self.color = [aDecoder decodeObjectForKey:@"color"];
-        //TODO decode point node
-//        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
+        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
         self.penType = [aDecoder decodeFloatForKey:@"penType"];
+
+        //old version save value list in "pointList"
+        NSMutableArray *array = [aDecoder decodeObjectForKey:@"pointList"];
+        if ([self.pointNodeList count] == 0 && [array count] != 0) {
+            self.pointNodeList = [NSMutableArray array];
+            for (NSValue *value in array) {
+                CGPoint point = [value CGPointValue];
+                PointNode *node = [PointNode pointWithCGPoint:point];
+                [self.pointNodeList addObject:node];
+            }
+        }
     }
     return self;
 }
@@ -68,10 +78,10 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.color forKey:@"color"];
-    //TODO encode point node
-//    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
+    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
     [aCoder encodeFloat:self.width forKey:@"width"];
     [aCoder encodeFloat:self.penType forKey:@"penType"];
+    [aCoder encodeObject:nil forKey:@"pointList"];
 }
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
