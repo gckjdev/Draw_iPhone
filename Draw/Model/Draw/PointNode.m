@@ -94,10 +94,7 @@
 
 - (id)copy
 {
-    PointNode *node = [[[PointNode alloc] init]autorelease];
-    node.x = self.x;
-    node.y = self.y;
-    return node;
+    return [PointNode pointWithCGPoint:self.point];
 }
 
 - (BOOL)equalsToPoint:(PointNode *)point

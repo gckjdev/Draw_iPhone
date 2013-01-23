@@ -24,19 +24,20 @@
 - (void)setX:(CGFloat)x;
 - (void)setY:(CGFloat)y;
 
-//- (void)setPoint:(CGPoint)point;
-//- (CGPoint)point;
-+ (id)pointWithCGPoint:(CGPoint)point;
-+ (id)pointWithPBPoint:(PBPoint *)point;
 - (NSInteger)toCompressPoint;
 - (NSInteger)toCompressPointWithXScale:(CGFloat)xScale yScale:(CGFloat)yScale;
 - (PBPoint *)toPBPoint;
 - (PointNode *)scaleX:(CGFloat)scale;
 - (PointNode *)scaleY:(CGFloat)scale;
 - (id)copy;
-+ (PointNode *)illegalPoint;
-+ (PointNode *)zeroPoint;
+
 - (BOOL)equalsToPoint:(PointNode *)point;
 - (CGFloat)distancWithPoint:(PointNode *)point;
+
++ (id)pointWithCGPoint:(CGPoint)point;
++ (id)pointWithPBPoint:(PBPoint *)point;
++ (PointNode *)illegalPoint;
++ (PointNode *)zeroPoint;
+
 @end
 
