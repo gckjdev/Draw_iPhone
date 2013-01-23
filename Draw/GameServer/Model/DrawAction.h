@@ -49,9 +49,6 @@ typedef enum {
                        xScale:(CGFloat)xScale 
                       yScale:(CGFloat)yScale;
 
-- (NSArray *)intPointListWithXScale:(CGFloat)xScale 
-                             yScale:(CGFloat)yScale;
-
 
 + (NSInteger)pointCountForActions:(NSArray *)actionList;
 + (double)calculateSpeed:(NSArray *)actionList;
