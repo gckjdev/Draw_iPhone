@@ -679,7 +679,8 @@
 - (void)quitRoom
 {
     [[DrawGameService defaultService] quitGame];
-    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];             
+//    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
+    [self.navigationController popViewControllerAnimated:YES];
 }
          
          
