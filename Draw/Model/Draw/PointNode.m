@@ -17,14 +17,31 @@
     [super dealloc];
 }
 
-- (void)setPoint:(CGPoint)point
+- (id)init
 {
-    self.x = point.x;
-    self.y = point.y;
+    self = [super init];
+    if (self) {
+        self.point = CGPointZero;
+    }
+    return self;
 }
-- (CGPoint)point
+
+- (CGFloat)x
 {
-    return CGPointMake(self.x, self.y);
+    return _point.x;
+}
+
+- (CGFloat)y
+{
+    return _point.y;
+}
+- (void)setX:(CGFloat)x
+{
+    _point.x = x;
+}
+- (void)setY:(CGFloat)y
+{
+    _point.y = y;
 }
 
 + (id)pointWithCGPoint:(CGPoint)point
@@ -43,13 +60,13 @@
 }
 - (NSInteger)toCompressPoint
 {
-    NSInteger ret = ([DrawUtils roundFloatValue:_x] * (1 << 15)) + [DrawUtils roundFloatValue:_y];
+    NSInteger ret = ([DrawUtils roundFloatValue:self.x] * (1 << 15)) + [DrawUtils roundFloatValue:self.y];
     return ret;
 }
 
 - (NSInteger)toCompressPointWithXScale:(CGFloat)xScale yScale:(CGFloat)yScale
 {
-    NSInteger ret = ([DrawUtils roundFloatValue:_x * xScale] * (1 << 15)) + [DrawUtils roundFloatValue:_y * yScale];
+    NSInteger ret = ([DrawUtils roundFloatValue:self.x * xScale] * (1 << 15)) + [DrawUtils roundFloatValue:self.y * yScale];
     return ret;
 }
 
@@ -57,8 +74,8 @@
 {
     PBPoint_Builder *builder = [[PBPoint_Builder alloc] init];
     [builder clear];
-    [builder setX:_x];
-    [builder setY:_y];
+    [builder setX:self.x];
+    [builder setY:self.y];
     PBPoint *p = [builder build];
     PPRelease(builder);
     return p;
@@ -90,7 +107,7 @@
 
 - (CGFloat)distancWithPoint:(PointNode *)point
 {
-    return sqrtf(powf(_x - point.x, 2) + powf(_y - point.y, 2));
+    return sqrtf(powf(self.x - point.x, 2) + powf(self.y - point.y, 2));
 }
 
 + (PointNode *)illegalPoint
