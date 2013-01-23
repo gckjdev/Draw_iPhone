@@ -428,7 +428,7 @@
         return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_RICH" defaultValue:@"106.187.89.232:8028"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_RICH" defaultValue:@"106.187.89.232:8029"];
     }
 }
 + (NSString *)getZJHServerListStringWithDual
@@ -439,7 +439,7 @@
         return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_DUAL" defaultValue:@"106.187.89.232:8028"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_DUAL" defaultValue:@"106.187.89.232:8030"];
     }
 }
 
