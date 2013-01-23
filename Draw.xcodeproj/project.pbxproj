@@ -7148,6 +7148,7 @@
 		C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_selected@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092D16AE8EBA003BBE2D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
 		C2DA092E16AE8EBA003BBE2D /* DrawRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListController.m; sourceTree = "<group>"; };
+		C2DA094E16AF894C003BBE2D /* ShareGameServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareGameServiceProtocol.h; sourceTree = "<group>"; };
 		C2DD4F0B1610412500556CC7 /* DiceRobotDecisionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotDecisionView.h; sourceTree = "<group>"; };
 		C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotDecisionView.m; sourceTree = "<group>"; };
 		C2E5241715218E21008913CC /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
@@ -14883,6 +14884,7 @@
 				CA91FC8015C27BF700E9C1CD /* CommonGameNetworkService.h */,
 				CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */,
 				A44DDF2A15C62B18005609F6 /* NotificationName.h */,
+				C2DA094E16AF894C003BBE2D /* ShareGameServiceProtocol.h */,
 			);
 			path = Service;
 			sourceTree = "<group>";

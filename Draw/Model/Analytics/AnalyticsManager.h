@@ -59,6 +59,8 @@
 #define SHARE_ACTION_ALBUM                  @"SHARE_ACTION_ALBUM"
 #define SHARE_ACTION_EMAIL                  @"SHARE_ACTION_EMAIL"
 #define SHARE_ACTION_SAVE                   @"SHARE_ACTION_SAVE"
+#define SHARE_ACTION_MY_AVATAR              @"SHARE_ACTION_MY_AVATAR"
+#define SHARE_ACTION_CONTACT_AVATAR         @"SHARE_ACTION_CONTACT_AVATAR"
 
 #define CONTEST_HOME_CLICK                  @"CONTEST_HOME_CLICK"
 

@@ -24,5 +24,7 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
+- (void)showEditImageView:(UIImage*)image
+             inController:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 
 @end

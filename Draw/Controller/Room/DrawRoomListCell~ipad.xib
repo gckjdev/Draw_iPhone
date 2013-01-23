@@ -56,6 +56,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{177, 29}, {549, 60}}</string>
 								<reference key="NSSuperview" ref="26011465"/>
+								<reference key="NSNextKeyView" ref="1025708417"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -150,6 +151,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{619, 104}, {100, 100}}</string>
 								<reference key="NSSuperview" ref="26011465"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -200,7 +202,7 @@
 						<reference key="source" ref="175422829"/>
 						<reference key="destination" ref="757369063"/>
 					</object>
-					<int key="connectionID">12</int>
+					<int key="connectionID">41</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -280,7 +282,7 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="3.CustomClassName">ZJHRoomListCell</string>
+				<string key="3.CustomClassName">DrawRoomListCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">DiceAvatarView</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -298,7 +300,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -15,6 +15,8 @@
 #define NORMAL_CHAT         @"NC$$_$$"
 #define EXPRESSION_CHAT     @"EC$$_$$"
 
+@class PBGameUser;
+
 @interface GameNetworkClient : CommonNetworkClient<CommonNetworkClientDelegate>
 {
     int _messageIdIndex;
@@ -93,5 +95,19 @@
 - (int)stringToRank:(NSString*)rankString;
 - (NSString*)rankToString:(int)rank;
 
-
+- (void)sendGetRoomsRequest:(NSString*)userId;
+- (void)sendGetRoomsRequest:(NSString*)userId
+                 startIndex:(int)index
+                      count:(int)count
+                   roomType:(int)type
+                    keyword:(NSString*)keyword
+                     gameId:(NSString*)gameId;
+- (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId;
+- (void)sendJoinGameRequest:(PBGameUser*)user
+                     gameId:(NSString*)gameId
+                  sessionId:(long)sessionId;
+- (void)sendCreateRoomRequest:(PBGameUser*)user
+                         name:(NSString*)roomName
+                       gameId:(NSString*)gameId
+                     password:(NSString *)password;
 @end

@@ -8,6 +8,8 @@
 
 #import "CommonRoomListCell.h"
 #import "GameBasic.pb.h"
+#import "ImageManagerProtocol.h"
+
 
 @implementation CommonRoomListCell
 
@@ -22,7 +24,7 @@
 
 - (void)setCellInfo:(PBGameSession *)session
 {
-    
+    [self.backgroundImageView setImage:[[GameApp getImageManager] roomListCellBgImage]];
 }
 
 - (void)dealloc {

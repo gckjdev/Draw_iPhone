@@ -16,7 +16,7 @@
 
 @interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
-@property (nonatomic, retain) PPViewController* superViewController;
+@property (nonatomic, retain) PPViewController<UserServiceDelegate>* superViewController;
 @property (nonatomic, copy) NSString* drawWord;
 @property (nonatomic, copy) NSString* imageFilePath;
 @property (nonatomic, assign) BOOL isDrawByMe;
@@ -32,6 +32,6 @@
                  drawUserId:(NSString*)drawUserId;
 - (id)initWithFeed:(DrawFeed*)feed
              image:(UIImage*)image;
-- (void)displayWithViewController:(PPViewController*)superViewController;
-- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view;
+- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
+- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
 @end

@@ -10,6 +10,8 @@
 #import "GameMessage.pb.h"
 #import "LogUtil.h"
 #import "GameConstants.h"
+#import "ShareGameServiceProtocol.h"
+#import "StringUtil.h"
 
 @implementation GameNetworkClient
 
@@ -339,6 +341,118 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendSimpleMessage:GameCommandTypeKeepAliveRequest userId:userId sessionId:sessionId];        
 }
 
+#pragma mark - Build Message With MAC
 
+- (GameMessage*)build:(GameMessage_Builder*)builder
+{
+    [builder setTimeStamp:time(0)];
+    NSString* strForEncode = [NSString stringWithFormat:@"%d%d",
+                              [builder messageId], [builder timeStamp]];
+    
+    [builder setMac:[strForEncode encodeMD5Base64:PROTOCOL_BUFFER_SHARE_KEY]];
+    
+    //    PPDebug(@"[TEST] PB MAC=%@", [builder mac]);
+    return [builder build];
+}
+
+#pragma mark - for room list request
+- (void)sendGetRoomsRequest:(NSString*)userId
+{
+    [self sendSimpleMessage:GameCommandTypeGetRoomsRequest userId:userId sessionId:0];
+}
+
+- (void)sendGetRoomsRequest:(NSString*)userId
+                 startIndex:(int)index
+                      count:(int)count
+                   roomType:(int)type
+                    keyword:(NSString*)keyword
+                     gameId:(NSString*)gameId
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeGetRoomsRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:0];
+    [messageBuilder setStartOffset:index];
+    [messageBuilder setMaxCount:count];
+    
+    GetRoomsRequest_Builder *getRoomsRequestBuilder = [[[GetRoomsRequest_Builder alloc] init] autorelease];
+    [getRoomsRequestBuilder setGameId:gameId];
+    [getRoomsRequestBuilder setRoomType:type];
+    [getRoomsRequestBuilder setKeyword:keyword];
+    
+    [messageBuilder setGetRoomsRequest:[getRoomsRequestBuilder build]];
+    GameMessage* gameMessage = [self build:messageBuilder];
+    [self sendData:[gameMessage data]];
+}
+
+- (void)sendJoinGameRequest:(PBGameUser*)user gameId:(NSString*)gameId
+{
+    if (user == nil || gameId == nil)
+        return;
+    
+    NSString* userId = [user userId];
+    
+    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    [requestBuilder setUserId:userId];
+    [requestBuilder setGameId:gameId];
+    [requestBuilder setNickName:[user nickName]];
+    [requestBuilder setUser:user];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setJoinGameRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [self build:messageBuilder];
+    [self sendData:[gameMessage data]];
+}
+
+- (void)sendJoinGameRequest:(PBGameUser*)user
+                     gameId:(NSString*)gameId
+                  sessionId:(long)sessionId
+{
+    if (user == nil || gameId == nil)
+        return;
+    
+    NSString* userId = [user userId];
+    
+    JoinGameRequest_Builder *requestBuilder = [[[JoinGameRequest_Builder alloc] init] autorelease];
+    [requestBuilder setUserId:userId];
+    [requestBuilder setGameId:gameId];
+    [requestBuilder setNickName:[user nickName]];
+    [requestBuilder setUser:user];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setJoinGameRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [self build:messageBuilder];
+    [self sendData:[gameMessage data]];
+}
+
+- (void)sendCreateRoomRequest:(PBGameUser*)user
+                         name:(NSString*)roomName
+                       gameId:(NSString*)gameId
+                     password:(NSString *)password
+{
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeCreateRoomRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:user.userId];
+    
+    CreateRoomRequest_Builder* requestBuilder =[[[CreateRoomRequest_Builder alloc] init] autorelease];
+    [requestBuilder setUser:user];
+    [requestBuilder setRoomName:roomName];
+    [requestBuilder setGameId:gameId];
+    [requestBuilder setPassword:password];
+    CreateRoomRequest* request = [requestBuilder build];
+    [messageBuilder setCreateRoomRequest:request];
+    
+    GameMessage* gameMessage = [self build:messageBuilder];
+    [self sendData:[gameMessage data]];
+}
 
 @end

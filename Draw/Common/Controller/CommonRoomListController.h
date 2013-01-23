@@ -13,6 +13,7 @@
 #import "CommonSearchView.h"
 #import "CommonGameNetworkService.h"
 #import "FriendService.h"
+#import "ShareGameServiceProtocol.h"
 
 typedef enum {
     CommonRoomFilterAllRoom = 0,
@@ -36,7 +37,7 @@ typedef enum {
     int _currentRoomType;
     CommonSearchView* _searchView;
     BOOL _isRefreshing;
-    CommonGameNetworkService *_gameService;
+    id<ShareGameServiceProtocol> _gameService;
 }
 
 

@@ -993,6 +993,7 @@
 "kRecovery" = "Recovery";
 "kTypeRoom" = "Typing";
 "kDrawRoomTitle" = "Draw";
+"kDrawRoomCellTitle" = "Draw Room %d";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
