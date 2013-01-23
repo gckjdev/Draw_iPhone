@@ -11,6 +11,7 @@
 #import "LogUtil.h"
 #import "GameConstants.h"
 #import "StringUtil.h"
+#import "ShareGameServiceProtocol.h"
 
 @implementation CommonGameNetworkClient
 

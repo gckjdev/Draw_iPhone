@@ -10,7 +10,7 @@
 #import "CommonNetworkClient.h"
 #import "GameConstants.pb.h"
 
-#define PROTOCOL_BUFFER_SHARE_KEY       @"pb_share_key"
+
 
 @class PBGameUser;
 @class GameMessage;

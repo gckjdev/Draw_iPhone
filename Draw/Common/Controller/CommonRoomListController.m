@@ -24,7 +24,6 @@
 #import "CommonDialog.h"
 #import "GameApp.h"
 
-
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
@@ -235,6 +234,8 @@
 
 - (void)connectServer
 {
+    //TODO: fix later
+
     if (![_gameService isConnected]) {
         [_gameService connectServer];
         [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
@@ -338,13 +339,11 @@
     //                                               object:nil];
 }
 
-- (void)viewDidUnload
-{
-
+- (void)viewDidUnload {
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {

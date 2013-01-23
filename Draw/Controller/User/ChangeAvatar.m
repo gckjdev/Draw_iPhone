@@ -81,6 +81,12 @@
 
 }
 
+- (void)showEditImageView:(UIImage*)image
+             inController:(PPViewController<ChangeAvatarDelegate>*)superViewController
+{
+    
+}
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     if (_popoverController != nil) {

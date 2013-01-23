@@ -9,6 +9,7 @@
 #import "CommonService.h"
 #import "GameNetworkClient.h"
 #import "GameSession.h"
+#import "ShareGameServiceProtocol.h"
 @class GameMessage;
 @protocol DrawGameServiceDelegate <NSObject>
 
@@ -49,7 +50,7 @@
 @class Word;
 @class PBGameUser;
 
-@interface DrawGameService : CommonService<CommonNetworkClientDelegate>
+@interface DrawGameService : CommonService<CommonNetworkClientDelegate, ShareGameServiceProtocol>
 {
     GameNetworkClient *_networkClient;
     
@@ -74,6 +75,9 @@
     
     id<DrawGameServiceDelegate> _connectionDelegate;
     NSMutableArray *_gameObserverList;
+    
+    NSString                        *_gameId;
+    NSMutableArray                  *_roomList;
 }
 
 @property (nonatomic, retain) NSString* userId;
@@ -98,6 +102,12 @@
 @property (nonatomic, assign) int serverPort;
 
 @property (nonatomic, assign) int onlineUserCount;
+
+@property (nonatomic, retain) NSString              *serverStringList;
+@property (nonatomic, retain) NSMutableArray        *roomList;
+//@property (nonatomic, retain) CommonGameSession     *session;
+@property (nonatomic, assign) int                   rule;           // 游戏规则类型，用来区分不同的游戏场，如普通场和高级场。
+//@property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 
 + (DrawGameService*)defaultService;
 
@@ -167,27 +177,5 @@
 - (NSInteger)language;
 
 
-// new interface, add by Benson 2013-01-23
-- (void)getRoomList:(int)startIndex
-              count:(int)count;
-
-- (void)getRoomList:(int)startIndex
-              count:(int)count
-           roomType:(int)type
-            keyword:(NSString*)keyword
-             gameId:(NSString*)gameId;
-
-- (void)joinGameRequest:(long)sessionId;
-- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
-
-- (void)createRoomWithName:(NSString*)name
-                  password:(NSString*)password;
-
-- (void)postNotification:(NSString*)name message:(GameMessage*)message;
-- (int)onlineUserCount;
-- (NSArray*)roomList;
-- (void)quitGame;
-- (BOOL)isConnected;
-- (void)connectServer;
 
 @end

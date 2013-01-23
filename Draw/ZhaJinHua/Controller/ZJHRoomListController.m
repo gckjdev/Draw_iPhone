@@ -81,7 +81,7 @@
     if (cell == nil) {
         cell = [ZJHRoomListCell createCell:[ZJHRoomListCell getCellIdentifier]];
     }
-    PBGameSession* session = [_gameService.roomList objectAtIndex:indexPath.row];
+    PBGameSession* session = [[_gameService roomList] objectAtIndex:indexPath.row];
     [cell setCellInfo:session roomListTitile:[_ruleConfig getRoomListTitle]];
     cell.delegate = self;
     return cell;
@@ -89,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _gameService.roomList.count;
+    return [[_gameService roomList] count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,17 +130,17 @@
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
