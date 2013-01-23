@@ -47,6 +47,7 @@
 
 @class GameSession;
 @class Word;
+@class PBGameUser;
 
 @interface DrawGameService : CommonService<CommonNetworkClientDelegate>
 {
@@ -165,5 +166,28 @@
 - (Word *)word;
 - (NSInteger)language;
 
+
+// new interface, add by Benson 2013-01-23
+- (void)getRoomList:(int)startIndex
+              count:(int)count;
+
+- (void)getRoomList:(int)startIndex
+              count:(int)count
+           roomType:(int)type
+            keyword:(NSString*)keyword
+             gameId:(NSString*)gameId;
+
+- (void)joinGameRequest:(long)sessionId;
+- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
+
+- (void)createRoomWithName:(NSString*)name
+                  password:(NSString*)password;
+
+- (void)postNotification:(NSString*)name message:(GameMessage*)message;
+- (int)onlineUserCount;
+- (NSArray*)roomList;
+- (void)quitGame;
+- (BOOL)isConnected;
+- (void)connectServer;
 
 @end
