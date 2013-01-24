@@ -183,6 +183,10 @@
 		A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
+		A495D63F16B10286003BCAD2 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A495D63A16B10286003BCAD2 /* OpusCell.m */; };
+		A495D64016B10286003BCAD2 /* OpusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A495D63B16B10286003BCAD2 /* OpusCell.xib */; };
+		A495D64116B10286003BCAD2 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A495D63D16B10286003BCAD2 /* OpusSelectController.m */; };
+		A495D64216B10286003BCAD2 /* OpusSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A495D63E16B10286003BCAD2 /* OpusSelectController.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
@@ -6750,6 +6754,12 @@
 		A48B09CD169FAAC500B56975 /* UMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMWebViewController.h; sourceTree = "<group>"; };
 		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		A495D63916B10286003BCAD2 /* OpusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusCell.h; sourceTree = "<group>"; };
+		A495D63A16B10286003BCAD2 /* OpusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusCell.m; sourceTree = "<group>"; };
+		A495D63B16B10286003BCAD2 /* OpusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusCell.xib; sourceTree = "<group>"; };
+		A495D63C16B10286003BCAD2 /* OpusSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusSelectController.h; sourceTree = "<group>"; };
+		A495D63D16B10286003BCAD2 /* OpusSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusSelectController.m; sourceTree = "<group>"; };
+		A495D63E16B10286003BCAD2 /* OpusSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusSelectController.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
@@ -10314,6 +10324,19 @@
 			);
 			name = CommonHelpManager;
 			path = DiceHelpManager;
+			sourceTree = "<group>";
+		};
+		A495D63816B10286003BCAD2 /* OpusWall */ = {
+			isa = PBXGroup;
+			children = (
+				A495D63916B10286003BCAD2 /* OpusCell.h */,
+				A495D63A16B10286003BCAD2 /* OpusCell.m */,
+				A495D63B16B10286003BCAD2 /* OpusCell.xib */,
+				A495D63C16B10286003BCAD2 /* OpusSelectController.h */,
+				A495D63D16B10286003BCAD2 /* OpusSelectController.m */,
+				A495D63E16B10286003BCAD2 /* OpusSelectController.xib */,
+			);
+			path = OpusWall;
 			sourceTree = "<group>";
 		};
 		A4B763EF15C28F8E003B4E72 /* Controller */ = {
@@ -15590,6 +15613,7 @@
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A495D63816B10286003BCAD2 /* OpusWall */,
 				A48B0989169E976600B56975 /* FreeCoins */,
 				CA89747F16087BBD003A95F7 /* Contest */,
 				CA8973F51607230E003A95F7 /* Feed */,
@@ -19549,6 +19573,8 @@
 				C2160C8E16AE7B9C008C2A3E /* tab_right_unselect@2x.png in Resources */,
 				C2DA092716AE82B2003BBE2D /* tab_center_unselect@2x.jpg in Resources */,
 				C2DA092816AE82B2003BBE2D /* tab_center_selected@2x.jpg in Resources */,
+				A495D64016B10286003BCAD2 /* OpusCell.xib in Resources */,
+				A495D64216B10286003BCAD2 /* OpusSelectController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22441,6 +22467,8 @@
 				CA507F5216AE9D5400CCB00F /* BBSPostCommandView.m in Sources */,
 				CA507F5816AF923700CCB00F /* PointNode.m in Sources */,
 				CADECC5F16B02BB6001D414C /* BBSPermissionManager.m in Sources */,
+				A495D63F16B10286003BCAD2 /* OpusCell.m in Sources */,
+				A495D64116B10286003BCAD2 /* OpusSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

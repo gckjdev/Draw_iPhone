@@ -187,7 +187,7 @@ static FeedService *_staticFeedService = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
-            [delegate showActivityWithText:NSLS(@"kParsingData")];
+//            [delegate showActivityWithText:NSLS(@"kParsingData")];
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
             NSArray *pbFeedList = [response feedList];

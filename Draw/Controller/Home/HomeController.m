@@ -82,6 +82,7 @@
 #import "FreeCoinsControllerViewController.h"
 #import "UMGridViewController.h"
 #import "DrawRoomListController.h"
+#import "OpusSelectController.h"
 
 @interface HomeController()
 {
@@ -210,6 +211,8 @@
     PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
     
     [self.view bringSubviewToFront:self.testBulletin];
+    [self.view bringSubviewToFront:self.testCreateWallBtn];
+
 }
 
 - (void)registerNetworkDisconnectedNotification
@@ -297,6 +300,7 @@
     [self setFacetimeButton:nil];
     [self setMenuPanel:nil];
     [self setTestBulletin:nil];
+    [self setTestCreateWallBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -544,6 +548,7 @@
     [self.timer invalidate];
 //    PPRelease(_adView);
     [_testBulletin release];
+    [_testCreateWallBtn release];
     [super dealloc];
 }
 
@@ -868,6 +873,10 @@
 }
 
 */
+- (IBAction)clickWallButton:(id)sender {
+    OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end
