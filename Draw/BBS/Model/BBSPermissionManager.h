@@ -14,8 +14,10 @@ typedef enum{
     PermissionWrite = 0x1 << 1, // 写
     PermissionDelete = 0x1 << 2, // 删帖
     PermissionTransfer = 0x1 << 3, // 转移
-    PermissionForbidUser = 0x1 << 4, // 封禁用户
-    PermissionDefault = PermissionRead | PermissionWrite,
+    PermissionToTop = 0x1 << 4, // 置顶
+    PermissionForbidUser = 0x1 << 5, // 封禁用户
+    PermissionAll = (0x1<<7)-1,
+    PermissionDefault = PermissionAll//PermissionRead | PermissionWrite,
 }BBSUserPermission;
 
 @interface BBSPermissionManager : NSObject
@@ -25,6 +27,7 @@ typedef enum{
 - (BOOL)canWriteOnBBBoard:(NSString *)boardId;
 - (BOOL)canDeletePost:(PBBBSPost *)post onBBBoard:(NSString *)boardId;
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId;
+- (BOOL)canTopPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId;
 - (BOOL)canForbidUser:(PBBBSUser *)user onBBBoard:(NSString *)boardId;
 - (BOOL)canForbidUser:(PBBBSUser *)user;
 

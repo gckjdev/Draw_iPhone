@@ -7,8 +7,8 @@
 //
 
 #import "BBSPostCommand.h"
-
-
+#import "BBSPermissionManager.h"
+#import "BBSImageManager.h"
 
 @implementation BBSPostCommand
 - (id)initWithPost:(PBBBSPost *)post controller:(BBSPostDetailController *)controller
@@ -61,6 +61,10 @@
 - (NSString *)name{
     return NSLS(@"kBBSSupport");
 }
+- (UIImage *)icon
+{
+    return [[BBSImageManager defaultManager] bbsPostDetailSupport];
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -78,7 +82,10 @@
 - (NSString *)name{
     return NSLS(@"kBBSReply");
 }
-
+- (UIImage *)icon
+{
+    return [[BBSImageManager defaultManager] bbsPostDetailComment];
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -94,7 +101,10 @@
 - (NSString *)name{
     return NSLS(@"kBBSTransfer");
 }
-//    [self.controller showActivityWithText:NSLS(@"kTransfering")];
+- (UIImage *)icon
+{
+    return [[BBSImageManager defaultManager] bbsPostDetailTransfer];
+}
 - (void)dealloc
 {
     [super dealloc];
@@ -121,6 +131,11 @@
     return NSLS(@"kBBSToTop");
 }
 
+- (UIImage *)icon
+{
+    return [[BBSImageManager defaultManager] bbsPostDetailToTop];
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -139,9 +154,16 @@
     return NSLS(@"kBBSDelete");
 }
 
+- (UIImage *)icon
+{
+    return [[BBSImageManager defaultManager] bbsPostDetailDelete];
+}
+
 - (void)dealloc
 {
     [super dealloc];
 }
 
 @end
+
+
