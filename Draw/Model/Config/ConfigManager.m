@@ -152,6 +152,20 @@
     return [MobClickUtils getIntValueByKey:@"CHINESE_SERVER_PORT" defaultValue:9000];
 }
 
++ (NSString*)getDrawServerString
+{
+    //    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8027"];
+    
+    if (([LocaleUtils isChina] == YES ||
+         [LocaleUtils isOtherChina] == YES)){
+        
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN" defaultValue:@"58.215.172.169:9111"];
+    }
+    else{
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN" defaultValue:@"58.215.172.169:9111"];
+    }
+}
+
 + (GuessLevel)guessDifficultLevel
 {
 //    NSInteger level = [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];
