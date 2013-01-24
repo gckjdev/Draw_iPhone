@@ -67,15 +67,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 }
 - (BOOL)canDeletePost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionDelete)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionDelete)||([post isMyPost]);
 }
 - (BOOL)canTopPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop)||([post isMyPost]);
 }
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer)||([post isMyPost]);
 }
 - (BOOL)canForbidUser:(PBBBSUser *)user onBBBoard:(NSString *)boardId
 {

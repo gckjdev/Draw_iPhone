@@ -11,7 +11,7 @@
 #import "ShareImageManager.h"
 #import "BBSManager.h"
 #import "TimeUtils.h"
-
+#import "BBSPermissionManager.h"
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -92,7 +92,8 @@
 
 - (BOOL)canDelete
 {
-    return [self isMyPost];
+//    return [self isMyPost];
+    return [[BBSPermissionManager defaultManager] canDeletePost:self onBBBoard:self.boardId];
 }
 - (BOOL)isMyPost
 {
