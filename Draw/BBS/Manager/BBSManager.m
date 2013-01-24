@@ -78,6 +78,12 @@ BBSManager *_staticBBSManager;
     return [_boardDict objectForKey:boardId];
 }
 
+-(NSArray *)allSubBoardList
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type==%d",BBSBoardTypeSub];
+    return [_boardList filteredArrayUsingPredicate:predicate];
+}
+
 - (PBBBSBoard *)boardForBoardId:(NSString *)boardId
 {
     for (PBBBSBoard *board in self.boardList) {

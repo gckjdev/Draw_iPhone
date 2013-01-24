@@ -960,6 +960,7 @@ BBSService *_staticBBSService;
         delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
+        PPDebug(@"transfer post from board(%@) to board(%@)",post.boardId, boardId);
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
@@ -968,7 +969,7 @@ BBSService *_staticBBSService;
                                                    deviceType:deviceType
                                                        userId:userId
                                                        postId:post.postId
-                                                      boardId:post.boardId
+                                                      boardId:boardId
                                                        status:status
                                                          info:nil];
         NSInteger resultCode = [output resultCode];

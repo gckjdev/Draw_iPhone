@@ -11,7 +11,7 @@
 #import "BBSService.h"
 #import "PPTableViewController.h"
 #import "BBSPostDetailController.h"
-
+#import "BBSActionSheet.h"
 
 @protocol BBSPostCommandProtocol <NSObject>
 @required
@@ -33,7 +33,7 @@
 
 @end
 
-@interface BBSPostTransferCommand : BBSPostCommand
+@interface BBSPostTransferCommand : BBSPostCommand<BBSOptionViewDelegate>
 
 @end
 

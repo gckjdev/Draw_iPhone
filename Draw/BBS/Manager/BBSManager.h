@@ -30,6 +30,8 @@
 +(BBSManager *)defaultManager;
 -(NSArray *)parentBoardList;
 -(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
+-(NSArray *)allSubBoardList;
+
 
 - (PBBBSBoard *)boardForBoardId:(NSString *)boardId;
 - (PBBBSBoard *)parentBoardOfsubBoard:(PBBBSBoard *)subBoard;

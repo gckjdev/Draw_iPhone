@@ -10,6 +10,7 @@
 #import "BBSPermissionManager.h"
 #import "BBSImageManager.h"
 
+
 @implementation BBSPostCommand
 - (id)initWithPost:(PBBBSPost *)post controller:(BBSPostDetailController *)controller
 {
@@ -93,10 +94,52 @@
 
 @end
 
+@interface BBSPostTransferCommand()
+{
+
+}
+@property(nonatomic, retain)NSArray *optionBoardList;
+@end
+
 @implementation BBSPostTransferCommand
 
+- (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
+{
+    PBBBSBoard *board = [self.optionBoardList objectAtIndex:index];
+    PPDebug(@"click At index = %d, board id = %@, board name = %@",index, board.boardId, board.name);
+    [[BBSService defaultService] editPost:self.post
+                                  boardId:board.boardId
+                                   status:self.post.status
+                                     info:nil
+                                 delegate:self.controller];
+}
+
+- (void)initOptionBoardList
+{
+    if (self.optionBoardList == nil) {
+        self.optionBoardList = [[BBSManager defaultManager] allSubBoardList];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.boardId<>%@",self.post.boardId];
+        self.optionBoardList = [self.optionBoardList filteredArrayUsingPredicate:predicate];
+    }
+}
+
+- (NSArray *)optionBoardNameList
+{
+    [self initOptionBoardList];
+    NSMutableArray *list = [NSMutableArray arrayWithCapacity:[self.optionBoardList count]];
+    for(PBBBSBoard *board in self.optionBoardList){
+        [list addObject:[board name]];
+    }
+    return list;
+}
+
 -(void)excute{
-    //TODO pop up
+    NSArray *nameList = [self optionBoardNameList];
+    BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:nameList delegate:self];
+    [sheet showInView:self.controller.view
+          showAtPoint:self.controller.view.center
+             animated:YES];
+    [sheet release];
 }
 - (NSString *)name{
     return NSLS(@"kBBSTransfer");
@@ -107,6 +150,7 @@
 }
 - (void)dealloc
 {
+    PPRelease(_optionBoardList);
     [super dealloc];
 }
 
