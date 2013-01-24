@@ -199,7 +199,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     if (!message.thumbImage) {
         [self.showDrawView show];
         message.thumbImage = [self.showDrawView createImage];
-        UIImageWriteToSavedPhotosAlbum(message.thumbImage, nil, NULL, NULL);
     }
     [self.showDrawView showImage:message.thumbImage];
 }
