@@ -972,7 +972,7 @@
 "kSaveToAlbumSuccess" = "成功保存到相册!";
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品页面查看该作品。";
 
-"kCanotSendItemToContestOpusToOverContest" = "比赛已经结束，不能再丢东西了哦！";
+"kCanotSendItemToOverContestOpus" = "比赛已经结束，不能再丢东西了哦！";
 
 
 "kPenWidth" = "粗细";

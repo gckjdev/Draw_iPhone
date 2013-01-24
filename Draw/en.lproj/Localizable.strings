@@ -954,7 +954,7 @@
 "kSaveToAlbumSuccess" = "Save to album successfully!";
 "kSaveToLocalSuccess" = "Save to local successfully!";
 
-"kCanotSendItemToContestOpusToOverContest" = "Contest is over, can not send item again";
+"kCanotSendItemToOverContestOpus" = "Contest is over, can not send item again";
 
 "kPenWidth" = "Width";
 "kColorAlpha" = "Alpha";
