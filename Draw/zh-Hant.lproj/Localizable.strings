@@ -1210,7 +1210,7 @@
 "kSearchEmpty" = "找不到匹配的房間";
 "kNoFriendRoom" = "暫時沒有好友房間";
 "kOnlineUser" = "在線%d人";
-"kCanotSendItemToContestOpus" = "比賽已經結束， 不能再丟東西了哦！";
+"kCanotSendItemToContestOpusToOverContest" = "比賽已經結束， 不能再丟東西了哦！";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/
