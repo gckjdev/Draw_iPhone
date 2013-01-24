@@ -494,4 +494,47 @@
 
 }
 
+
++ (CommonNetworkOutput*)editBBSPost:(NSString*)baseURL
+                              appId:(NSString *)appId
+                         deviceType:(NSInteger)deviceType
+                             userId:(NSString *)userId
+                             postId:(NSString *)postId
+                            boardId:(NSString *)boardId
+                             status:(int)status
+                               info:(NSDictionary *)info //for the future
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_EDIT_BBS_POST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        str = [str stringByAddQueryParameter:PARA_STATUS intValue:status];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];
+    
+}
+
 @end
+
+

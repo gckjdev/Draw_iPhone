@@ -39,6 +39,8 @@
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
     NSInteger buttonIndexFavorite;
+    NSInteger buttonIndexUseAsAvatar;
+    NSInteger buttonIndexUseAsContactAvatar;
 
     CustomActionSheet* _customActionSheet;
 }
@@ -121,7 +123,7 @@
     return self;
 }
 
-- (void)displayWithViewController:(PPViewController*)superViewController;
+- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
 {
     buttonIndexAlbum = -1;
     buttonIndexEmail = -1;
@@ -179,7 +181,7 @@
 }
 
 
-- (void)displayWithViewController:(PPViewController*)superViewController onView:(UIView*)view
+- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view
 {
     
     
@@ -195,6 +197,8 @@
         buttonIndexEmail = 5;
         buttonIndexAlbum = 6;
         buttonIndexFavorite = 7;
+        buttonIndexUseAsAvatar = 8;
+        buttonIndexUseAsContactAvatar = 9;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
                                                              delegate:self
@@ -211,6 +215,8 @@
 //        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
         [_customActionSheet addButtonWithTitle:NSLS(@"kAlbum") image:imageManager.albumImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kFavorite") image:imageManager.favoriteImage];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsAvatar") image:nil];
+        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsContact") image:nil];
 
     }
     
@@ -464,6 +470,13 @@
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
         [self favorite];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+    } else if (buttonIndex == buttonIndexUseAsAvatar) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_MY_AVATAR];
+        [[UserService defaultService] updateUserAvatar:self.image nickName:[UserManager defaultManager].nickName gender:[UserManager defaultManager].gender viewController:self.superViewController];
+        
+    } else if (buttonIndex == buttonIndexUseAsContactAvatar) {
+        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_CONTACT_AVATAR];
+        
     }
 }
 

@@ -13,6 +13,7 @@
 #import "CommonSearchView.h"
 #import "CommonGameNetworkService.h"
 #import "FriendService.h"
+#import "ShareGameServiceProtocol.h"
 
 typedef enum {
     CommonRoomFilterAllRoom = 0,
@@ -36,7 +37,7 @@ typedef enum {
     int _currentRoomType;
     CommonSearchView* _searchView;
     BOOL _isRefreshing;
-    CommonGameNetworkService *_gameService;
+    id<ShareGameServiceProtocol> _gameService;
 }
 
 
@@ -46,9 +47,9 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;
 @property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;
-@property (retain, nonatomic) IBOutlet UIButton *allRoomButton;
-@property (retain, nonatomic) IBOutlet UIButton *friendRoomButton;
-@property (retain, nonatomic) IBOutlet UIButton *nearByRoomButton;
+@property (retain, nonatomic) IBOutlet UIButton *leftTabButton;
+@property (retain, nonatomic) IBOutlet UIButton *centerTabButton;
+@property (retain, nonatomic) IBOutlet UIButton *rightTabButton;
 @property (retain, nonatomic) IBOutlet UILabel *emptyListTips;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
@@ -72,4 +73,7 @@ typedef enum {
 - (void)handleUpdateRoomList;
 - (void)handleDidConnectServer;
 - (void)initView;
+- (void)handleLeftTabAction;
+- (void)handleCenterTabAction;
+- (void)handleRightTabAction;
 @end

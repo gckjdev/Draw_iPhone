@@ -199,6 +199,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     if (!message.thumbImage) {
         [self.showDrawView show];
         message.thumbImage = [self.showDrawView createImage];
+        UIImageWriteToSavedPhotosAlbum(message.thumbImage, nil, NULL, NULL);
     }
     [self.showDrawView showImage:message.thumbImage];
 }
@@ -287,7 +288,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     [cell.contentButton setImageEdgeInsets:sets];
     [cell.contentButton setTitleEdgeInsets:sets];
-
+    
+    [cell.timeButton setTitleColor:[UIColor colorWithRed:237/255. green:93/255. blue:78/255. alpha:1] forState:UIControlStateNormal];
     cell.avatarView.userInteractionEnabled = NO;
     
     return cell;

@@ -1,0 +1,78 @@
+//
+//  PostCommandPanel.m
+//  Draw
+//
+//  Created by gamy on 13-1-22.
+//
+//
+
+#import "BBSPostCommandPanel.h"
+#import "BBSPostCommand.h"
+#import "BBSPostCommandView.h"
+
+#define VIEW_SIZE (ISIPAD ? CGSizeMake(768,87): CGSizeMake(320,40))
+#define COMMAND_MAX_COUNT 5
+
+@interface BBSPostCommandPanel()
+{
+
+}
+@property (nonatomic, retain) NSArray *commandList;
+@end
+
+@implementation BBSPostCommandPanel
+
+- (void)dealloc
+{
+    PPRelease(_commandList);
+    [super dealloc];
+}
+
+- (CGFloat)spaceOfCommandViews
+{
+    CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    CGFloat viewWith = [BBSPostCommandView viewWidth] * COMMAND_MAX_COUNT;
+    return (width-viewWith)/COMMAND_MAX_COUNT;
+}
+
+- (void)updateView
+{
+    self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+
+    NSInteger count = [self.commandList count];
+    if (count == 0) {
+        return;
+    }
+    CGFloat space = ([self spaceOfCommandViews]);
+    CGFloat viewWidth = [BBSPostCommandView viewWidth];
+    CGFloat x = CGRectGetWidth(self.bounds) - count * viewWidth - (count - 1)*space;
+    
+    for (BBSPostCommand *command in self.commandList) {
+        BBSPostCommandView *view = [BBSPostCommandView commandViewWithCommand:command];
+        [self addSubview:view];
+        view.center = self.center;
+        CGRect rect = view.frame;
+        rect.origin.x = x;
+        view.frame = rect;
+        x += (viewWidth+space);
+    }
+}
+
+- (id)initWithCommandList:(NSArray *)commandList
+{
+    CGRect rect = CGRectZero;
+    rect.size = VIEW_SIZE;
+    self = [super initWithFrame:rect];
+    if (self) {
+        self.commandList = commandList;
+        [self updateView];
+    }
+    return self;
+}
+
++ (id)panelWithCommandList:(NSArray *)commandList
+{
+    return [[BBSPostCommandPanel alloc] initWithCommandList:commandList];
+}
+
+@end

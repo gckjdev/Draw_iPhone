@@ -76,6 +76,48 @@
             _currentTurn, _status, _userList];
 }
 
+- (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId
+{
+    self.userId = userId;
+    self.sessionId = [pbSession sessionId];
+    self.hostUserId = [pbSession host];
+    self.status = [pbSession status];
+    self.roomName = [pbSession name];
+    
+    // add all users
+    [self.userList removeAllObjects];
+    for (PBGameUser* user in [pbSession usersList]){
+        GameSessionUser* sessionUser = [GameSessionUser fromPBUser:user];
+        [self.userList addObject:sessionUser];
+    }
+    
+    // set turn information
+    [self.currentTurn setRound:1];
+    [self.currentTurn setNextPlayUserId:[pbSession nextPlayUserId]];
+    [self.currentTurn setCurrentPlayUserId:[pbSession currentPlayUserId]];
+    
+//    return session;
+    
+//    self.userId = userId;
+//    self.sessionId = [pbSession sessionId];
+//    self.hostUserId = [pbSession host];
+//    self.status = [pbSession status];
+//    self.roomName = [pbSession name];
+//    
+//    // add all users
+//    [self.userList removeAllObjects];
+//    
+//    for (PBGameUser* user in [pbSession usersList]){
+//        [self.userList addObject:user];
+//    }
+//    
+//    self.ruleType = pbSession.ruleType;
+//    self.roundNumber = 0;
+//    self.myTurnTimes = 0;
+//    self.isMeStandBy = YES;
+//    return;
+}
+
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId
 {
     GameSession* session = [[[GameSession alloc] init] autorelease];

@@ -12,7 +12,7 @@
 #import "ReplayGraffitiController.h"
 #import "GameNetworkConstants.h"
 #import "CommonUserInfoView.h"
-
+#import "BBSPostCommand.h"
 
 @interface BBSPostDetailController ()
 {
@@ -497,6 +497,7 @@ typedef enum{
 
 - (IBAction)clickSupportButton:(id)sender {
     [self showActivityWithText:NSLS(@"kSending")];
+    /*
     [[BBSService defaultService] createActionWithPostId:self.post.postId
                                                 PostUid:self.post.postUid
                                                postText:self.post.postText
@@ -507,12 +508,19 @@ typedef enum{
                                          drawActionList:nil
                                               drawImage:nil
                                                delegate:self];
+     */
+    [[[[BBSPostSupportCommand alloc] initWithPost:self.post controller:self] autorelease] excute];
+
 }
 
 - (IBAction)clickReplyButton:(id)sender {
+    /*
     [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:nil
                                           fromController:self].delegate = self;
+     */
+    [[[[BBSPostReplyCommand alloc] initWithPost:self.post controller:self] autorelease] excute];
+
 }
 
 - (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode

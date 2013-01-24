@@ -9,6 +9,7 @@
 #import "CommonService.h"
 #import "GameNetworkClient.h"
 #import "GameSession.h"
+#import "ShareGameServiceProtocol.h"
 @class GameMessage;
 @protocol DrawGameServiceDelegate <NSObject>
 
@@ -47,8 +48,9 @@
 
 @class GameSession;
 @class Word;
+@class PBGameUser;
 
-@interface DrawGameService : CommonService<CommonNetworkClientDelegate>
+@interface DrawGameService : CommonService<CommonNetworkClientDelegate, ShareGameServiceProtocol>
 {
     GameNetworkClient *_networkClient;
     
@@ -73,6 +75,9 @@
     
     id<DrawGameServiceDelegate> _connectionDelegate;
     NSMutableArray *_gameObserverList;
+    
+    NSString                        *_gameId;
+    NSMutableArray                  *_roomList;
 }
 
 @property (nonatomic, retain) NSString* userId;
@@ -97,6 +102,12 @@
 @property (nonatomic, assign) int serverPort;
 
 @property (nonatomic, assign) int onlineUserCount;
+
+@property (nonatomic, retain) NSString              *serverStringList;
+@property (nonatomic, retain) NSMutableArray        *roomList;
+//@property (nonatomic, retain) CommonGameSession     *session;
+@property (nonatomic, assign) int                   rule;           // 游戏规则类型，用来区分不同的游戏场，如普通场和高级场。
+//@property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 
 + (DrawGameService*)defaultService;
 
@@ -164,6 +175,7 @@
 - (NSArray *)drawActionList;
 - (Word *)word;
 - (NSInteger)language;
+
 
 
 @end

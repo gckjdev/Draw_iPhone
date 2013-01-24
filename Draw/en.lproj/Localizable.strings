@@ -954,7 +954,7 @@
 "kSaveToAlbumSuccess" = "Save to album successfully!";
 "kSaveToLocalSuccess" = "Save to local successfully!";
 
-"kCanotSendItemToContestOpus" = "Contest is over, can not send item again";
+"kCanotSendItemToContestOpusToOverContest" = "Contest is over, can not send item again";
 
 "kPenWidth" = "Width";
 "kColorAlpha" = "Alpha";
@@ -991,6 +991,9 @@
 "kNewDrawVersionTip" = "The app version is too old, some drawing effect may not be supported. Please update to the latest version.";
 "kVersionNotSupport" = "Your version doesn't support this function yet, maybe you should update it.";
 "kRecovery" = "Recovery";
+"kTypeRoom" = "Typing";
+"kDrawRoomTitle" = "Draw Lively";
+"kDrawRoomCellTitle" = "Draw Lively Room %d";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

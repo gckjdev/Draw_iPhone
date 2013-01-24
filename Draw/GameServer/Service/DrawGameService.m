@@ -60,6 +60,11 @@ static DrawGameService* _defaultService;
     [_networkClient release];
     [_gameObserverList release];
 //    [_drawActionList release];
+
+    PPRelease(_roomList);
+//    PPRelease(_userSimpleInfo);
+    PPRelease(_gameId);
+
     [super dealloc];
 }
 
@@ -82,6 +87,8 @@ static DrawGameService* _defaultService;
     _networkClient = [[GameNetworkClient alloc] init];
     [_networkClient setDelegate:self]; 
 //    _drawActionList = [[NSMutableArray alloc] init];
+    _roomList = [[NSMutableArray alloc] init];
+    _gameId = [GameApp gameId];
     return self;
 }
 
@@ -257,7 +264,7 @@ static DrawGameService* _defaultService;
             // add into hisotry
             [_historySessionSet addObject:[NSNumber numberWithInt:[self.session sessionId]]];
         }
-        
+        [self postNotification:NOTIFICATION_JOIN_GAME_RESPONSE message:message];
         [self notifyGameObserver:@selector(didJoinGame:) message:message];
     });
 }
@@ -483,6 +490,84 @@ static DrawGameService* _defaultService;
     });    
 }
 
+- (void)postNotification:(NSString*)name message:(GameMessage*)message
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:[CommonGameNetworkService messageToUserInfo:message]];
+    
+    PPDebug(@"<%@> post notification %@", [self description], name);
+}
+
+- (void)handleMoreOnRoomNotificationRequest:(GameMessage*)message
+{
+}
+
+- (GameSession*)createSession
+{
+    return [[[GameSession alloc] init] autorelease];
+}
+
+- (void)handleGetRoomsResponse:(GameMessage*)message
+{
+    // save room into _roomList and fire the notification
+    
+    [self updateOnlineUserCount:message];
+    if (message.resultCode == 0){
+        [self.roomList removeAllObjects];
+        [self.roomList addObjectsFromArray:message.getRoomsResponse.sessionsList];
+    }
+    [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
+}
+
+//- (void)handleRoomNotificationRequest:(GameMessage*)message
+//{
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+//        PPDebug(@"<handleRoomNotificationRequest> handle room nitification");
+//        RoomNotificationRequest* notification = [message roomNotificationRequest];
+//        
+//        if ([notification sessionsChangedList]){
+//            for (PBGameSessionChanged* sessionChanged in [notification sessionsChangedList]){
+//                int sessionId = [sessionChanged sessionId];
+//                if (sessionId == _session.sessionId){
+//                    // current play session
+//                    [_session updateSession:sessionChanged];
+//                    
+//                    if (sessionChanged.usersAddedList) {
+////                        [self getAccount];            TODO:check later
+//                    }
+//                }
+//            }
+//        }
+//        [self handleMoreOnRoomNotificationRequest:message];
+//        [self postNotification:NOTIFICATION_ROOM message:message];
+//    });
+//}
+
+- (void)handleCreateRoomResponse:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // create game session
+        if ([message resultCode] == 0){
+            PBGameSession* pbSession = [[message createRoomResponse] gameSession];
+            self.session = [self createSession];
+            [_session fromPBGameSession:pbSession userId:[self userId]];
+            PPDebug(@"<handleCreateRoomResponse> Create Session = %@", [self.session description]);
+            
+            // TODO update online user
+            // [self updateOnlineUserCount:message];
+        }
+        [self postNotification:NOTIFICAIION_CREATE_ROOM_RESPONSE message:message];
+        
+    });
+    
+}
+
+
+
 - (void)handleData:(GameMessage*)message
 {
     switch ([message command]) {
@@ -529,6 +614,24 @@ static DrawGameService* _defaultService;
             [self handleUserQuitGameResponse:message];
             break;
 
+        // for new interface 2013-01-23
+        case GameCommandTypeGetRoomsResponse:
+            [self handleGetRoomsResponse:message];
+            break;
+            
+//        case GameCommandTypeRoomNotificationRequest:
+//            [self handleRoomNotificationRequest:message];
+//            break;
+            
+        case GameCommandTypeCreateRoomResponse:
+            [self handleCreateRoomResponse:message];
+            break;
+            
+//        case GameCommandTypeJoinGameResponse:
+//            [self handleJoinGameResponse:message];
+//            break;
+            
+            
         default:
             break;
     }
@@ -540,6 +643,9 @@ static DrawGameService* _defaultService;
 
 - (void)didConnected
 {
+    [self postNotification:NOTIFICATION_NETWORK_CONNECTED message:nil];
+        
+    // TODO check whether keep delegate
     if (_connectionDelegate == nil)
         return;
     
@@ -562,6 +668,9 @@ static DrawGameService* _defaultService;
 
 - (void)didBroken:(NSError *)error
 {
+    [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
+    
+    // TODO check whether keep delegate
     dispatch_sync(dispatch_get_main_queue(), ^{
         
         [self clearKeepAliveTimer];
@@ -931,4 +1040,104 @@ static DrawGameService* _defaultService;
     [self scheduleKeepAliveTimer];
     
 }
+#pragma mark - ShareGameServiceProtocol
+
+- (void)getRoomList:(int)startIndex
+              count:(int)count
+{
+    // send get room request here
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    
+    [_networkClient sendGetRoomsRequest:userId];
+}
+
+- (void)getRoomList:(int)startIndex
+              count:(int)count
+           roomType:(int)type
+            keyword:(NSString*)keyword
+             gameId:(NSString*)gameId
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if (userId == nil){
+        return;
+    }
+    
+    [_networkClient sendGetRoomsRequest:userId
+                             startIndex:startIndex
+                                  count:count
+                               roomType:type
+                                keyword:keyword
+                                 gameId:gameId];
+}
+
+- (void)joinGameRequest
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user gameId:_gameId];
+}
+- (void)joinGameRequest:(long)sessionId
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    PBGameUser* user = [[UserManager defaultManager] toPBGameUser];
+    [_networkClient sendJoinGameRequest:user
+                                 gameId:_gameId
+                              sessionId:sessionId];
+}
+- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    [_networkClient sendJoinGameRequest:customSelfUser
+                                 gameId:_gameId
+                              sessionId:sessionId];
+}
+- (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser
+{
+    PPDebug(@"[SEND] JoinGameRequest");
+    [_networkClient sendJoinGameRequest:customSelfUser gameId:_gameId];
+}
+
+- (void)createRoomWithName:(NSString*)name
+                  password:(NSString*)password
+{
+    [_networkClient sendCreateRoomRequest:[[UserManager defaultManager] toPBGameUser]
+                                     name:name
+                                   gameId:_gameId
+                                 password:password];
+}
+//- (int)onlineUserCount
+//{
+//    
+//}
+//- (NSArray*)roomList
+//{
+//    
+//}
+//- (void)quitGame
+//{
+//    
+//}
+//- (BOOL)isConnected
+//{
+//    
+//}
+- (void)connectServer
+{
+    [self connectServer:nil];
+}
+//- (int)rule
+//{
+//    
+//}
+
+- (PBGameSession*)sessionInRoom:(int)index
+{
+    if (index >= 0 && index < self.roomList.count) {
+        return [self.roomList objectAtIndex:index];
+    }
+    return nil;}
+
 @end

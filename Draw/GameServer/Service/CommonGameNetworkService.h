@@ -10,6 +10,7 @@
 #import "CommonGameNetworkClient.h"
 
 #import "CommonGameSession.h"
+#import "ShareGameServiceProtocol.h"
 
 
 #define SERVER_LIST_SEPERATOR   @"$"
@@ -28,7 +29,7 @@
 //@class CommonGameSession;
 @class GameMessage;
 
-@interface CommonGameNetworkService : NSObject<CommonNetworkClientDelegate>
+@interface CommonGameNetworkService : NSObject<CommonNetworkClientDelegate, ShareGameServiceProtocol>
 {
     CommonGameNetworkClient         *_networkClient;    
     NSTimer                         *_disconnectTimer;
@@ -47,9 +48,9 @@
 @property (nonatomic, assign) int                   rule;           // 游戏规则类型，用来区分不同的游戏场，如普通场和高级场。
 @property (retain, nonatomic) NSMutableDictionary *userSimpleInfo;
 
-- (BOOL)isConnected;
+//- (BOOL)isConnected;
 //- (void)connectServer:(id<CommonGameServiceDelegate>)delegate;
-- (void)connectServer;
+//- (void)connectServer;
 - (void)disconnectServer;
 
 // Left to Sub Class to implementation.
@@ -64,27 +65,27 @@
 - (void)clearDisconnectTimer;
 
 - (void)getRoomList;
-- (void)getRoomList:(int)startIndex
-              count:(int)count;
+//- (void)getRoomList:(int)startIndex
+//              count:(int)count;
+//
+//- (void)getRoomList:(int)startIndex 
+//              count:(int)count 
+//           roomType:(int)type
+//            keyword:(NSString*)keyword 
+//             gameId:(NSString*)gameId;
 
-- (void)getRoomList:(int)startIndex 
-              count:(int)count 
-           roomType:(int)type
-            keyword:(NSString*)keyword 
-             gameId:(NSString*)gameId;
+//- (void)joinGameRequest;
+//- (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser;
 
-- (void)joinGameRequest;
-- (void)joinGameRequestWithCustomUser:(PBGameUser*)customSelfUser;
+//- (void)joinGameRequest:(long)sessionId;
+//- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
 
-- (void)joinGameRequest:(long)sessionId;
-- (void)joinGameRequest:(long)sessionId customSelfUser:(PBGameUser*)customSelfUser;
-
-- (void)quitGame;
+//- (void)quitGame;
 
 - (CommonGameSession*)createSession;
 
-- (void)createRoomWithName:(NSString*)name 
-                  password:(NSString*)password;
+//- (void)createRoomWithName:(NSString*)name 
+//                  password:(NSString*)password;
 
 + (GameMessage*)userInfoToMessage:(NSDictionary*)userInfo;
 + (NSDictionary*)messageToUserInfo:(GameMessage*)message;
@@ -96,13 +97,13 @@
 - (void)registerRoomsNotification:(NSArray*)sessionIdList;
 - (void)unRegisterRoomsNotification:(NSArray*)sessionIdList;
 
-- (PBGameSession*)sessionInRoom:(int)index;
+//- (PBGameSession*)sessionInRoom:(int)index;
 
 - (void)chatWithContent:(NSString *)chatMsg contentVoiceId:(NSString *)contentVoiceId;
 - (void)chatWithExpression:(NSString *)expression;
 
 - (NSString*)userId;
-- (int)onlineUserCount;
+//- (int)onlineUserCount;
 
 - (BOOL)isMyTurn;
 - (BOOL)isGamePlaying;

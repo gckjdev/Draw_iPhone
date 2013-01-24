@@ -8,8 +8,6 @@
 
 #import "DrawRoomListCell.h"
 #import "GameBasic.pb.h"
-#import "DiceImageManager.h"
-#import "ZJHGameService.h"
 #import "PPResourceService.h"
 
 
@@ -28,7 +26,7 @@
 
 + (NSString *)getCellIdentifier
 {
-    return @"DrawRoomCell";
+    return @"DrawRoomListCell";
 }
 
 #define HEIGHT_DRAW_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
@@ -44,12 +42,10 @@
     [super setCellInfo:session];
     
     if (session.name == nil || session.name.length <= 0) {
-        [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomTitle"), session.sessionId]]];
+        [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), session.sessionId]]];
     } else {
         [self.roomNameLabel setText:session.name];
     }
-    
-    [self.backgroundImageView setImage:[DiceImageManager defaultManager].roomCellBackgroundImage];
 
     
     for (int i = 0; i < 6; i ++) {

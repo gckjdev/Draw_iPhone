@@ -34,6 +34,13 @@ typedef enum {
     ActionTypeSupport,
 }BBSActionType;
 
+typedef enum{
+    BBSPostStatusNormal = 0,
+    BBSPostStatusDelete = 1,
+    BBSPostStatusMark = 0x1 << 1,
+    BBSPostStatusTop = 0x1 << 2
+}BBSPostStatus;
+
 
 @interface PBBBSContent (ContentExt)
 

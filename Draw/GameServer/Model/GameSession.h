@@ -37,6 +37,7 @@ typedef enum {
 @property (nonatomic, assign) NSInteger roundNumber;
 
 + (GameSession*)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
+- (void)fromPBGameSession:(PBGameSession*)pbSession userId:(NSString*)userId;
 - (void)updateByStartGameResponse:(StartGameResponse*)response;
 - (void)updateByGameNotification:(GeneralNotification*)notification;
 - (void)updateCurrentTurnByMessage:(GeneralNotification*)notification;

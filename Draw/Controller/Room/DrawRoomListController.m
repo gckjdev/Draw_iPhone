@@ -7,14 +7,17 @@
 //
 
 #import "DrawRoomListController.h"
-#import "RoomService.h"
+#import "DrawGameService.h"
+#import "DrawRoomListCell.h"
+#import "DrawUserInfoView.h"
+#import "MyFriend.h"
 #import "GameBasic.pb.h"
 #import "UserManager.h"
-#import "CommonUserInfoView.h"
+#import "RoomController.h"
 
-@interface DrawRoomListController () {
-    RoomService* _roomService;
-}
+@interface DrawRoomListController ()
+
+@property  (retain, nonatomic) PBGameSession*currentSession;
 
 @end
 
@@ -22,8 +25,15 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:@"CommonRoomListController" bundle:nibBundleOrNil];
     if (self) {
+        _gameService = [DrawGameService defaultService];
+        [[DrawGameService defaultService] setServerAddress:@"58.215.172.169"];
+        [[DrawGameService defaultService] setServerPort:9111];
+
+//        [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
+//        [[DrawGameService defaultService] setServerPort:8080];
+        
         // Custom initialization
     }
     return self;
@@ -35,36 +45,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _roomService = [RoomService defaultService];
-    }
-    return self;
-}
-
-- (void)initButtons
-{
-    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self initButtons];
-    
-    [self handleUpdateOnlineUserCount];
-    
-    
     // Do any additional setup after loading the view from its nib.
-}
-
-- (NSString*)title
-{
-    return @"kDrawRoomTitle";
 }
 
 #pragma mark - TableView delegate methods
@@ -81,15 +66,15 @@
     if (cell == nil) {
         cell = [DrawRoomListCell createCell:[DrawRoomListCell getCellIdentifier]];
     }
-    PBGameSession* session = [_gameService.roomList objectAtIndex:indexPath.row];
-    [cell setCellInfo:session roomListTitile:NSLS(@"kDrawRoomTitle")];
+    PBGameSession* session = [[_gameService roomList] objectAtIndex:indexPath.row];
+    [cell setCellInfo:session roomListTitile:@""];
     cell.delegate = self;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _gameService.roomList.count;
+    return [[_gameService roomList] count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,16 +95,24 @@
 
 - (CGPoint)getSearchViewPosition
 {
-    return CGPointMake(self.view.center.x, self.friendRoomButton.center.y);
+    return CGPointMake(self.view.center.x, self.rightTabButton.center.y);
 }
-- (void)handleUpdateOnlineUserCount
-{
-    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
-    [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[self title], userCount] forState:UIControlStateNormal];
-}
+
 - (void)handleDidJoinGame
 {
-    
+    [self hideActivity];
+//    if ([message resultCode] == 0){
+//        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+//    }
+//    else{
+//        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
+//        [self popupUnhappyMessage:text title:@""];
+//        [[DrawGameService defaultService] disconnectServer];
+//        //        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
+//        //                                                          port:[[DrawGameService defaultService] serverPort]];
+//        return;
+//    }
+    [RoomController enterRoom:self isFriendRoom:YES];
 }
 - (PrejoinGameErrorCode)handlePrejoinGameCheck
 {
@@ -154,13 +147,6 @@
     }
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setBackgroundImageView:nil];
-    [super viewDidUnload];
-}
 
 - (void)didQueryUser:(NSString *)userId
 {
@@ -169,34 +155,21 @@
                                         avatar:nil
                                         gender:nil
                                          level:1];
-    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
     return;
 }
 
-- (IBAction)clickAll:(id)sender
+- (void)handleLeftTabAction
 {
-    [self.allRoomButton setSelected:YES];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
     [self continueRefreshingRooms];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
-- (IBAction)clickFriendRoom:(id)sender
+- (void)handleCenterTabAction
 {
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:YES];
-    [self.nearByRoomButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
     [self pauseRefreshingRooms];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
-}
-- (IBAction)clickNearBy:(id)sender
-{
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:YES];
-    [self refreshRoomsByFilter:CommonRoomFilterNearByRoom];
 }
 
 

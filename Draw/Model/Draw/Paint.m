@@ -11,6 +11,7 @@
 #import "GameMessage.pb.h"
 #import "DeviceDetection.h"
 #import "PenFactory.h"
+#import "PointNode.h"
 
 CGPoint midPoint(CGPoint p1, CGPoint p2)
 {
@@ -32,8 +33,9 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 @implementation Paint
 @synthesize width = _width;
 @synthesize color = _color;
-@synthesize pointList = _pointList;
+//@synthesize pointList = _pointList;
 @synthesize penType = _penType;
+@synthesize pointNodeList = _pointNodeList;
 
 - (id<PenEffectProtocol>)getPen
 {
@@ -46,7 +48,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)constructPath
 {
-    [[self getPen] constructPath:self.pointList];
+    [[self getPen] constructPath:self.pointNodeList];
     return;
 }
 
@@ -56,8 +58,19 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     if (self) {
         self.width = [aDecoder decodeFloatForKey:@"width"];
         self.color = [aDecoder decodeObjectForKey:@"color"];
-        self.pointList = [aDecoder decodeObjectForKey:@"pointList"];
+        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
         self.penType = [aDecoder decodeFloatForKey:@"penType"];
+
+        //old version save value list in "pointList"
+        NSMutableArray *array = [aDecoder decodeObjectForKey:@"pointList"];
+        if ([self.pointNodeList count] == 0 && [array count] != 0) {
+            self.pointNodeList = [NSMutableArray array];
+            for (NSValue *value in array) {
+                CGPoint point = [value CGPointValue];
+                PointNode *node = [PointNode pointWithCGPoint:point];
+                [self.pointNodeList addObject:node];
+            }
+        }
     }
     return self;
 }
@@ -65,9 +78,10 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.color forKey:@"color"];
-    [aCoder encodeObject:self.pointList forKey:@"pointList"];
+    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
     [aCoder encodeFloat:self.width forKey:@"width"];
     [aCoder encodeFloat:self.penType forKey:@"penType"];
+    [aCoder encodeObject:nil forKey:@"pointList"];
 }
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
@@ -76,7 +90,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     if (self) {
         self.width = width;
         self.color = color;
-        _pointList = [[NSMutableArray alloc] init];
+        _pointNodeList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -84,14 +98,14 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             penType:(ItemType)penType
-          pointList:(NSMutableArray *)pointList
+          pointList:(NSMutableArray *)pointNodeList
 {
     self = [super init];
     if (self) {
         self.width = width;
         self.color = color;
         self.penType = penType;
-        self.pointList = pointList;
+        self.pointNodeList = pointNodeList;
     }
     return self;
 }
@@ -107,10 +121,10 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
             self.width = width;
         }
         self.color = [DrawUtils decompressIntDrawColor:color];
-        _pointList = [[NSMutableArray alloc] init];
+        _pointNodeList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in numberPointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
-            if ([DeviceDetection isIPAD]) {
+            if (ISIPAD) {
                 point.x = point.x * IPAD_WIDTH_SCALE;
                 point.y = point.y * IPAD_HEIGHT_SCALE;
             }
@@ -149,7 +163,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         }
         self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
-        _pointList = [[NSMutableArray alloc] init];
+        _pointNodeList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in pointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
             if ([DeviceDetection isIPAD]) {
@@ -174,16 +188,14 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 - (void)addPoint:(CGPoint)point
 {
     [[self getPen] addPointIntoPath:point];
-    NSValue *pointValue = [NSValue valueWithCGPoint:point];
-    [self.pointList addObject:pointValue];    
-    return;
+    [self.pointNodeList addObject:[PointNode pointWithCGPoint:point]];
 }
 
 - (CGPathRef)path
 {
     id<PenEffectProtocol> pen = [self getPen];
     if (![pen hasPoint]){
-        [pen constructPath:self.pointList];
+        [pen constructPath:self.pointNodeList];
     }
     
     return [pen penPath];
@@ -196,45 +208,46 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (NSInteger)pointCount
 {
-    return [self.pointList count];
+    return [self.pointNodeList count];
 }
 
 - (CGPoint)pointAtIndex:(NSInteger)index
 {
-    if (index < 0 || index >= [self.pointList count]) {
+    if (index < 0 || index >= [self pointCount]) {
         return ILLEGAL_POINT;
     }
-    NSValue *value = [self.pointList objectAtIndex:index];
-    return [value CGPointValue];
+    PointNode *node = [self.pointNodeList objectAtIndex:index];
+    return node.point;
 }
 
-- (NSString *)getPointListString:(NSArray *)list
+
+- (NSMutableArray *)numberPointList
 {
-    NSString *string = @"{";
-    for (NSValue *value in list) {
-        CGPoint point = [value CGPointValue];
-        string = [NSString stringWithFormat:@"%@(%f, %f), ",string,point.x,point.y];
+    if (self.pointCount == 0) {
+        return nil;
     }
-    string = [NSString stringWithFormat:@"%@}",string];
-    return string;
-}
-- (NSString *)toString
-{
-    return [NSString stringWithFormat:@"<Paint>:[width = %f,point = %@]",self.width, [self getPointListString:self.pointList]];
-}
-
-- (NSString*)description
-{
-    return [super description];
-//    return [self toString];
+    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
+    for (PointNode *point in self.pointNodeList) {
+        NSInteger value = 0;
+        if (ISIPAD) {
+            value = [point toCompressPointWithXScale:1/IPAD_WIDTH_SCALE yScale:1/IPAD_HEIGHT_SCALE];
+        }else{
+            value = [point toCompressPoint];
+        }
+        NSNumber *number = [NSNumber numberWithInt:value];
+        [pointList addObject:number];
+    }
+    return pointList;
 }
 
 - (void)dealloc
 {
 //    PPDebug(@"<dealloc> %@", [self description]);
+
+//    PPRelease(_pointList);
     PPRelease(_color);
-    PPRelease(_pointList);
     PPRelease(_pen);
+    PPRelease(_pointNodeList);
     [super dealloc];
 }
 @end

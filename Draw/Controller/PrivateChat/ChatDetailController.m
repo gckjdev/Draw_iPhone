@@ -705,8 +705,8 @@
 }
 - (void)loadNewMessage
 {
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[ChatService defaultService] getMessageList:self 
+//    [self showActivityWithText:NSLS(@"kLoading")];
+    [[ChatService defaultService] getMessageList:self
                                     friendUserId:self.fid
                                  offsetMessageId:self.lastMessageId 
                                          forward:YES 

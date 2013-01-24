@@ -857,27 +857,37 @@ static ZJHImageManager* shareInstance;
 }
 - (UIImage *)roomListLeftBtnSelectedImage
 {
-    return [_resService imageByName:@"zjh_tableft_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"tab_left_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListLeftBtnUnselectedImage
 {
-    return [_resService imageByName:@"zjh_tableft_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"tab_left_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnSelectedImage
 {
-    return [_resService imageByName:@"zjh_tabright_selected" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"tab_right_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnUnselectedImage
 {
-    return [_resService imageByName:@"zjh_tabright_unselect" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"tab_right_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
+
+- (UIImage *)roomListCenterBtnSelectedImage
+{
+    return [_resService imageByName:@"tab_center_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+- (UIImage *)roomListCenterBtnUnselectedImage
+{
+    return [_resService imageByName:@"tab_center_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+}
+
 - (UIImage *)roomListBackBtnImage
 {
     return [_resService imageByName:@"zjh_back" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 - (UIImage *)roomListCellBgImage
 {
-    return [_resService imageByName:@"zjh_room_item" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"room_item" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
 - (UIImage *)roomListCreateRoomBtnBgImage

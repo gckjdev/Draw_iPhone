@@ -45,8 +45,8 @@
 
 - (void)initButtons
 {
-    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad
@@ -81,7 +81,7 @@
     if (cell == nil) {
         cell = [ZJHRoomListCell createCell:[ZJHRoomListCell getCellIdentifier]];
     }
-    PBGameSession* session = [_gameService.roomList objectAtIndex:indexPath.row];
+    PBGameSession* session = [[_gameService roomList] objectAtIndex:indexPath.row];
     [cell setCellInfo:session roomListTitile:[_ruleConfig getRoomListTitle]];
     cell.delegate = self;
     return cell;
@@ -89,7 +89,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _gameService.roomList.count;
+    return [[_gameService roomList] count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,7 +116,7 @@
 
 - (CGPoint)getSearchViewPosition
 {
-    return CGPointMake(self.view.center.x, self.friendRoomButton.center.y);
+    return CGPointMake(self.view.center.x, self.rightTabButton.center.y);
 }
 - (void)handleUpdateOnlineUserCount
 {
@@ -130,17 +130,17 @@
     switch ([DeviceDetection deviceScreenType]) {
         case DEVICE_SCREEN_IPAD:
         case DEVICE_SCREEN_NEW_IPAD:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ipad" : @"ZJHGameController~ipad";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE5:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual~ip5" : @"ZJHGameController~ip5";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
         case DEVICE_SCREEN_IPHONE:
-            xibName = (_gameService.rule == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
+            xibName = ([_gameService rule] == PBZJHRuleTypeDual) ? @"ZJHGameController_dual" : @"ZJHGameController";
             vc = [[[ZJHGameController alloc] initWithNibName:xibName bundle:[NSBundle mainBundle]] autorelease];
             break;
             
@@ -206,27 +206,27 @@
 
 - (IBAction)clickAll:(id)sender
 {
-    [self.allRoomButton setSelected:YES];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:NO];
+    [self.leftTabButton setSelected:YES];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
     [self continueRefreshingRooms];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 - (IBAction)clickFriendRoom:(id)sender
 {
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:YES];
-    [self.nearByRoomButton setSelected:NO];
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:YES];
+    [self.centerTabButton setSelected:NO];
     [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
     [self pauseRefreshingRooms];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
 }
 - (IBAction)clickNearBy:(id)sender
 {
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:YES];
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:YES];
     [self refreshRoomsByFilter:CommonRoomFilterNearByRoom];
 }
 @end

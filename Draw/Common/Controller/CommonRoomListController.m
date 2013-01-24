@@ -24,7 +24,6 @@
 #import "CommonDialog.h"
 #import "GameApp.h"
 
-
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
 
@@ -105,7 +104,8 @@
 
 - (void)handleUpdateOnlineUserCount
 {
-    PPDebug(@"<CommonRoomListController> handleUpdateOnlineUserCount method not implement");
+    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
+    [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[GameApp roomTitle], userCount] forState:UIControlStateNormal];
 }
 
 - (void)handleDidConnectServer
@@ -117,6 +117,19 @@
 {
     PPDebug(@"<CommonRoomListController> handleNoRoomMessage method not implement");
 
+}
+
+- (void)handleLeftTabAction
+{
+    
+}
+- (void)handleCenterTabAction
+{
+    
+}
+- (void)handleRightTabAction
+{
+    
 }
 
 - (void)checkAndJoinGame:(int)sessionId
@@ -221,6 +234,8 @@
 
 - (void)connectServer
 {
+    //TODO: fix later
+
     if (![_gameService isConnected]) {
         [_gameService connectServer];
         [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
@@ -292,16 +307,18 @@
 {
     [self.backgroundImageView setImage:[[GameApp getImageManager] roomListBgImage]];
     [self.backButton setBackgroundImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
-    [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnSelectedImage] forState:UIControlStateSelected];
-    [self.allRoomButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnUnselectedImage] forState:UIControlStateNormal];
-    [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnSelectedImage] forState:UIControlStateSelected];
-    [self.friendRoomButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnUnselectedImage] forState:UIControlStateNormal];
+    [self.leftTabButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnSelectedImage] forState:UIControlStateSelected];
+    [self.leftTabButton setBackgroundImage:[[GameApp getImageManager] roomListLeftBtnUnselectedImage] forState:UIControlStateNormal];
+    [self.rightTabButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnSelectedImage] forState:UIControlStateSelected];
+    [self.rightTabButton setBackgroundImage:[[GameApp getImageManager] roomListRightBtnUnselectedImage] forState:UIControlStateNormal];
+    [self.centerTabButton setBackgroundImage:[[GameApp getImageManager] roomListCenterBtnSelectedImage] forState:UIControlStateSelected];
+    [self.centerTabButton setBackgroundImage:[[GameApp getImageManager] roomListCenterBtnUnselectedImage] forState:UIControlStateNormal];
     [self.createRoomButton setBackgroundImage:[[GameApp getImageManager] roomListCreateRoomBtnBgImage] forState:UIControlStateNormal];
     [self.fastEntryButton setBackgroundImage:[[GameApp getImageManager] roomListFastEntryBtnBgImage] forState:UIControlStateNormal];
     
-    [self.allRoomButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.friendRoomButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
-    [self.nearByRoomButton setTitle:NSLS(@"kNearBy") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.centerTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.rightTabButton setTitle:NSLS(@"kTypeRoom") forState:UIControlStateNormal];
     [self.createRoomButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
     [self.fastEntryButton setTitle:NSLS(@"kFastEntry") forState:UIControlStateNormal];
 
@@ -322,13 +339,11 @@
     //                                               object:nil];
 }
 
-- (void)viewDidUnload
-{
-
+- (void)viewDidUnload {
+    [self setBackgroundImageView:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -530,6 +545,31 @@
                                         gender:nil
                                          level:1];
     [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+}
+
+
+- (IBAction)clickLeftTabButton:(id)sender
+{
+    [self.leftTabButton setSelected:YES];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:NO];
+    [self handleLeftTabAction];
+}
+- (IBAction)clickCenterTabButton:(id)sender
+{
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:NO];
+    [self.centerTabButton setSelected:YES];
+    [self handleCenterTabAction];
+
+}
+- (IBAction)clickRightTabButton:(id)sender
+{
+    [self.leftTabButton setSelected:NO];
+    [self.rightTabButton setSelected:YES];
+    [self.centerTabButton setSelected:NO];
+    [self handleRightTabAction];
+
 }
 
 
