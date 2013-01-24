@@ -17040,6 +17040,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBBBSDraw* bbsDrawData;
 @property (retain) PBBBSUserPrivilege* userPrivilege;
 @property (retain) NSMutableArray* mutableBbsUserListList;
+@property (retain) NSMutableArray* mutableWallListList;
 @end
 
 @implementation DataQueryResponse
@@ -17080,6 +17081,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize userPrivilege;
 @synthesize mutableBbsUserListList;
+@synthesize mutableWallListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17091,6 +17093,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.bbsDrawData = nil;
   self.userPrivilege = nil;
   self.mutableBbsUserListList = nil;
+  self.mutableWallListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17170,6 +17173,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableBbsUserListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) wallListList {
+  return mutableWallListList;
+}
+- (PBWall*) wallListAtIndex:(int32_t) index {
+  id value = [mutableWallListList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -17224,6 +17234,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBWall* element in self.wallListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -17262,6 +17277,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBBBSUser* element in self.bbsUserListList) {
     [output writeMessage:56 value:element];
+  }
+  for (PBWall* element in self.wallListList) {
+    [output writeMessage:80 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -17307,6 +17325,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBBBSUser* element in self.bbsUserListList) {
     size += computeMessageSize(56, element);
+  }
+  for (PBWall* element in self.wallListList) {
+    size += computeMessageSize(80, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -17443,6 +17464,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableBbsUserListList addObjectsFromArray:other.mutableBbsUserListList];
   }
+  if (other.mutableWallListList.count > 0) {
+    if (result.mutableWallListList == nil) {
+      result.mutableWallListList = [NSMutableArray array];
+    }
+    [result.mutableWallListList addObjectsFromArray:other.mutableWallListList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -17536,6 +17563,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addBbsUserList:[subBuilder buildPartial]];
+        break;
+      }
+      case 642: {
+        PBWall_Builder* subBuilder = [PBWall builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addWallList:[subBuilder buildPartial]];
         break;
       }
     }
@@ -17863,6 +17896,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableBbsUserListList = [NSMutableArray array];
   }
   [result.mutableBbsUserListList addObject:value];
+  return self;
+}
+- (NSArray*) wallListList {
+  if (result.mutableWallListList == nil) { return [NSArray array]; }
+  return result.mutableWallListList;
+}
+- (PBWall*) wallListAtIndex:(int32_t) index {
+  return [result wallListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceWallListAtIndex:(int32_t) index with:(PBWall*) value {
+  [result.mutableWallListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllWallList:(NSArray*) values {
+  if (result.mutableWallListList == nil) {
+    result.mutableWallListList = [NSMutableArray array];
+  }
+  [result.mutableWallListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearWallListList {
+  result.mutableWallListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addWallList:(PBWall*) value {
+  if (result.mutableWallListList == nil) {
+    result.mutableWallListList = [NSMutableArray array];
+  }
+  [result.mutableWallListList addObject:value];
   return self;
 }
 @end

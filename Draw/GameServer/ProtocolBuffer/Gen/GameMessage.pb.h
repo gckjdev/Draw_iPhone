@@ -119,6 +119,8 @@
 @class PBFeedTimes;
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
+@class PBFrame;
+@class PBFrame_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -131,6 +133,8 @@
 @class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayout;
+@class PBLayout_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
@@ -143,6 +147,8 @@
 @class PBPoint_Builder;
 @class PBPoker;
 @class PBPoker_Builder;
+@class PBRect;
+@class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserDice;
@@ -153,6 +159,10 @@
 @class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+@class PBWall;
+@class PBWallOpus;
+@class PBWallOpus_Builder;
+@class PBWall_Builder;
 @class PBZJHGameResult;
 @class PBZJHGameResult_Builder;
 @class PBZJHGameState;
@@ -4244,6 +4254,7 @@ BOOL BetTypeIsValidValue(BetType value);
   NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
   NSMutableArray* mutableBbsUserListList;
+  NSMutableArray* mutableWallListList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -4269,6 +4280,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSAction*) bbsActionAtIndex:(int32_t) index;
 - (NSArray*) bbsUserListList;
 - (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
+- (NSArray*) wallListList;
+- (PBWall*) wallListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4383,5 +4396,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addBbsUserList:(PBBBSUser*) value;
 - (DataQueryResponse_Builder*) addAllBbsUserList:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearBbsUserListList;
+
+- (NSArray*) wallListList;
+- (PBWall*) wallListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceWallListAtIndex:(int32_t) index with:(PBWall*) value;
+- (DataQueryResponse_Builder*) addWallList:(PBWall*) value;
+- (DataQueryResponse_Builder*) addAllWallList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearWallListList;
 @end
 

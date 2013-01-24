@@ -3,6 +3,7 @@
 #import "ProtocolBuffers.h"
 
 #import "GameBasic.pb.h"
+#import "GameConstants.pb.h"
 
 @class PBColor;
 @class PBColor_Builder;
@@ -16,6 +17,8 @@
 @class PBFeedTimes;
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
+@class PBFrame;
+@class PBFrame_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -28,6 +31,8 @@
 @class PBHotWord_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayout;
+@class PBLayout_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
@@ -38,6 +43,8 @@
 @class PBNoCompressDrawData_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
+@class PBRect;
+@class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserItem;
@@ -46,6 +53,10 @@
 @class PBUserItem_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+@class PBWall;
+@class PBWallOpus;
+@class PBWallOpus_Builder;
+@class PBWall_Builder;
 
 @interface DrawRoot : NSObject {
 }
@@ -1110,5 +1121,479 @@
 - (PBHotWordList_Builder*) addWords:(PBHotWord*) value;
 - (PBHotWordList_Builder*) addAllWords:(NSArray*) values;
 - (PBHotWordList_Builder*) clearWordsList;
+@end
+
+@interface PBWallOpus : PBGeneratedMessage {
+@private
+  BOOL hasFrameId_:1;
+  BOOL hasOpus_:1;
+  int32_t frameId;
+  PBFeed* opus;
+}
+- (BOOL) hasOpus;
+- (BOOL) hasFrameId;
+@property (readonly, retain) PBFeed* opus;
+@property (readonly) int32_t frameId;
+
++ (PBWallOpus*) defaultInstance;
+- (PBWallOpus*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBWallOpus_Builder*) builder;
++ (PBWallOpus_Builder*) builder;
++ (PBWallOpus_Builder*) builderWithPrototype:(PBWallOpus*) prototype;
+
++ (PBWallOpus*) parseFromData:(NSData*) data;
++ (PBWallOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBWallOpus*) parseFromInputStream:(NSInputStream*) input;
++ (PBWallOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBWallOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBWallOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBWallOpus_Builder : PBGeneratedMessage_Builder {
+@private
+  PBWallOpus* result;
+}
+
+- (PBWallOpus*) defaultInstance;
+
+- (PBWallOpus_Builder*) clear;
+- (PBWallOpus_Builder*) clone;
+
+- (PBWallOpus*) build;
+- (PBWallOpus*) buildPartial;
+
+- (PBWallOpus_Builder*) mergeFrom:(PBWallOpus*) other;
+- (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOpus;
+- (PBFeed*) opus;
+- (PBWallOpus_Builder*) setOpus:(PBFeed*) value;
+- (PBWallOpus_Builder*) setOpusBuilder:(PBFeed_Builder*) builderForValue;
+- (PBWallOpus_Builder*) mergeOpus:(PBFeed*) value;
+- (PBWallOpus_Builder*) clearOpus;
+
+- (BOOL) hasFrameId;
+- (int32_t) frameId;
+- (PBWallOpus_Builder*) setFrameId:(int32_t) value;
+- (PBWallOpus_Builder*) clearFrameId;
+@end
+
+@interface PBWall : PBGeneratedMessage {
+@private
+  BOOL hasWallId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasWallName_:1;
+  BOOL hasMusicUrl_:1;
+  BOOL hasLayout_:1;
+  BOOL hasType_:1;
+  NSString* wallId;
+  NSString* userId;
+  NSString* wallName;
+  NSString* musicUrl;
+  PBLayout* layout;
+  PBWallType type;
+  NSMutableArray* mutableOpusesList;
+}
+- (BOOL) hasWallId;
+- (BOOL) hasType;
+- (BOOL) hasUserId;
+- (BOOL) hasWallName;
+- (BOOL) hasLayout;
+- (BOOL) hasMusicUrl;
+@property (readonly, retain) NSString* wallId;
+@property (readonly) PBWallType type;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) NSString* wallName;
+@property (readonly, retain) PBLayout* layout;
+@property (readonly, retain) NSString* musicUrl;
+- (NSArray*) opusesList;
+- (PBWallOpus*) opusesAtIndex:(int32_t) index;
+
++ (PBWall*) defaultInstance;
+- (PBWall*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBWall_Builder*) builder;
++ (PBWall_Builder*) builder;
++ (PBWall_Builder*) builderWithPrototype:(PBWall*) prototype;
+
++ (PBWall*) parseFromData:(NSData*) data;
++ (PBWall*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBWall*) parseFromInputStream:(NSInputStream*) input;
++ (PBWall*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBWall*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBWall*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBWall_Builder : PBGeneratedMessage_Builder {
+@private
+  PBWall* result;
+}
+
+- (PBWall*) defaultInstance;
+
+- (PBWall_Builder*) clear;
+- (PBWall_Builder*) clone;
+
+- (PBWall*) build;
+- (PBWall*) buildPartial;
+
+- (PBWall_Builder*) mergeFrom:(PBWall*) other;
+- (PBWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWallId;
+- (NSString*) wallId;
+- (PBWall_Builder*) setWallId:(NSString*) value;
+- (PBWall_Builder*) clearWallId;
+
+- (BOOL) hasType;
+- (PBWallType) type;
+- (PBWall_Builder*) setType:(PBWallType) value;
+- (PBWall_Builder*) clearType;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBWall_Builder*) setUserId:(NSString*) value;
+- (PBWall_Builder*) clearUserId;
+
+- (BOOL) hasWallName;
+- (NSString*) wallName;
+- (PBWall_Builder*) setWallName:(NSString*) value;
+- (PBWall_Builder*) clearWallName;
+
+- (BOOL) hasLayout;
+- (PBLayout*) layout;
+- (PBWall_Builder*) setLayout:(PBLayout*) value;
+- (PBWall_Builder*) setLayoutBuilder:(PBLayout_Builder*) builderForValue;
+- (PBWall_Builder*) mergeLayout:(PBLayout*) value;
+- (PBWall_Builder*) clearLayout;
+
+- (NSArray*) opusesList;
+- (PBWallOpus*) opusesAtIndex:(int32_t) index;
+- (PBWall_Builder*) replaceOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
+- (PBWall_Builder*) addOpuses:(PBWallOpus*) value;
+- (PBWall_Builder*) addAllOpuses:(NSArray*) values;
+- (PBWall_Builder*) clearOpusesList;
+
+- (BOOL) hasMusicUrl;
+- (NSString*) musicUrl;
+- (PBWall_Builder*) setMusicUrl:(NSString*) value;
+- (PBWall_Builder*) clearMusicUrl;
+@end
+
+@interface PBRect : PBGeneratedMessage {
+@private
+  BOOL hasX_:1;
+  BOOL hasY_:1;
+  BOOL hasWidth_:1;
+  BOOL hasHeight_:1;
+  int32_t x;
+  int32_t y;
+  int32_t width;
+  int32_t height;
+}
+- (BOOL) hasX;
+- (BOOL) hasY;
+- (BOOL) hasWidth;
+- (BOOL) hasHeight;
+@property (readonly) int32_t x;
+@property (readonly) int32_t y;
+@property (readonly) int32_t width;
+@property (readonly) int32_t height;
+
++ (PBRect*) defaultInstance;
+- (PBRect*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBRect_Builder*) builder;
++ (PBRect_Builder*) builder;
++ (PBRect_Builder*) builderWithPrototype:(PBRect*) prototype;
+
++ (PBRect*) parseFromData:(NSData*) data;
++ (PBRect*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRect*) parseFromInputStream:(NSInputStream*) input;
++ (PBRect*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRect*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBRect*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBRect_Builder : PBGeneratedMessage_Builder {
+@private
+  PBRect* result;
+}
+
+- (PBRect*) defaultInstance;
+
+- (PBRect_Builder*) clear;
+- (PBRect_Builder*) clone;
+
+- (PBRect*) build;
+- (PBRect*) buildPartial;
+
+- (PBRect_Builder*) mergeFrom:(PBRect*) other;
+- (PBRect_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRect_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasX;
+- (int32_t) x;
+- (PBRect_Builder*) setX:(int32_t) value;
+- (PBRect_Builder*) clearX;
+
+- (BOOL) hasY;
+- (int32_t) y;
+- (PBRect_Builder*) setY:(int32_t) value;
+- (PBRect_Builder*) clearY;
+
+- (BOOL) hasWidth;
+- (int32_t) width;
+- (PBRect_Builder*) setWidth:(int32_t) value;
+- (PBRect_Builder*) clearWidth;
+
+- (BOOL) hasHeight;
+- (int32_t) height;
+- (PBRect_Builder*) setHeight:(int32_t) value;
+- (PBRect_Builder*) clearHeight;
+@end
+
+@interface PBFrame : PBGeneratedMessage {
+@private
+  BOOL hasFrameId_:1;
+  BOOL hasType_:1;
+  BOOL hasName_:1;
+  BOOL hasImage_:1;
+  BOOL hasIPhoneRect_:1;
+  BOOL hasIPadRect_:1;
+  BOOL hasOpusIphoneRect_:1;
+  BOOL hasOpusIpadRect_:1;
+  int32_t frameId;
+  int32_t type;
+  NSString* name;
+  NSString* image;
+  PBRect* iPhoneRect;
+  PBRect* iPadRect;
+  PBRect* opusIphoneRect;
+  PBRect* opusIpadRect;
+}
+- (BOOL) hasFrameId;
+- (BOOL) hasType;
+- (BOOL) hasName;
+- (BOOL) hasImage;
+- (BOOL) hasIPhoneRect;
+- (BOOL) hasIPadRect;
+- (BOOL) hasOpusIphoneRect;
+- (BOOL) hasOpusIpadRect;
+@property (readonly) int32_t frameId;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* image;
+@property (readonly, retain) PBRect* iPhoneRect;
+@property (readonly, retain) PBRect* iPadRect;
+@property (readonly, retain) PBRect* opusIphoneRect;
+@property (readonly, retain) PBRect* opusIpadRect;
+
++ (PBFrame*) defaultInstance;
+- (PBFrame*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBFrame_Builder*) builder;
++ (PBFrame_Builder*) builder;
++ (PBFrame_Builder*) builderWithPrototype:(PBFrame*) prototype;
+
++ (PBFrame*) parseFromData:(NSData*) data;
++ (PBFrame*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFrame*) parseFromInputStream:(NSInputStream*) input;
++ (PBFrame*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFrame*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBFrame*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBFrame_Builder : PBGeneratedMessage_Builder {
+@private
+  PBFrame* result;
+}
+
+- (PBFrame*) defaultInstance;
+
+- (PBFrame_Builder*) clear;
+- (PBFrame_Builder*) clone;
+
+- (PBFrame*) build;
+- (PBFrame*) buildPartial;
+
+- (PBFrame_Builder*) mergeFrom:(PBFrame*) other;
+- (PBFrame_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFrame_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasFrameId;
+- (int32_t) frameId;
+- (PBFrame_Builder*) setFrameId:(int32_t) value;
+- (PBFrame_Builder*) clearFrameId;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBFrame_Builder*) setType:(int32_t) value;
+- (PBFrame_Builder*) clearType;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBFrame_Builder*) setName:(NSString*) value;
+- (PBFrame_Builder*) clearName;
+
+- (BOOL) hasImage;
+- (NSString*) image;
+- (PBFrame_Builder*) setImage:(NSString*) value;
+- (PBFrame_Builder*) clearImage;
+
+- (BOOL) hasIPhoneRect;
+- (PBRect*) iPhoneRect;
+- (PBFrame_Builder*) setIPhoneRect:(PBRect*) value;
+- (PBFrame_Builder*) setIPhoneRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBFrame_Builder*) mergeIPhoneRect:(PBRect*) value;
+- (PBFrame_Builder*) clearIPhoneRect;
+
+- (BOOL) hasIPadRect;
+- (PBRect*) iPadRect;
+- (PBFrame_Builder*) setIPadRect:(PBRect*) value;
+- (PBFrame_Builder*) setIPadRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBFrame_Builder*) mergeIPadRect:(PBRect*) value;
+- (PBFrame_Builder*) clearIPadRect;
+
+- (BOOL) hasOpusIphoneRect;
+- (PBRect*) opusIphoneRect;
+- (PBFrame_Builder*) setOpusIphoneRect:(PBRect*) value;
+- (PBFrame_Builder*) setOpusIphoneRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBFrame_Builder*) mergeOpusIphoneRect:(PBRect*) value;
+- (PBFrame_Builder*) clearOpusIphoneRect;
+
+- (BOOL) hasOpusIpadRect;
+- (PBRect*) opusIpadRect;
+- (PBFrame_Builder*) setOpusIpadRect:(PBRect*) value;
+- (PBFrame_Builder*) setOpusIpadRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBFrame_Builder*) mergeOpusIpadRect:(PBRect*) value;
+- (PBFrame_Builder*) clearOpusIpadRect;
+@end
+
+@interface PBLayout : PBGeneratedMessage {
+@private
+  BOOL hasLayoutId_:1;
+  BOOL hasDisplayMode_:1;
+  BOOL hasCoverFlowType_:1;
+  BOOL hasName_:1;
+  BOOL hasBgImage_:1;
+  BOOL hasIPhoneRect_:1;
+  BOOL hasIPadRect_:1;
+  int32_t layoutId;
+  int32_t displayMode;
+  int32_t coverFlowType;
+  NSString* name;
+  NSString* bgImage;
+  PBRect* iPhoneRect;
+  PBRect* iPadRect;
+  NSMutableArray* mutableFramesList;
+}
+- (BOOL) hasLayoutId;
+- (BOOL) hasName;
+- (BOOL) hasDisplayMode;
+- (BOOL) hasCoverFlowType;
+- (BOOL) hasBgImage;
+- (BOOL) hasIPhoneRect;
+- (BOOL) hasIPadRect;
+@property (readonly) int32_t layoutId;
+@property (readonly, retain) NSString* name;
+@property (readonly) int32_t displayMode;
+@property (readonly) int32_t coverFlowType;
+@property (readonly, retain) NSString* bgImage;
+@property (readonly, retain) PBRect* iPhoneRect;
+@property (readonly, retain) PBRect* iPadRect;
+- (NSArray*) framesList;
+- (PBFrame*) framesAtIndex:(int32_t) index;
+
++ (PBLayout*) defaultInstance;
+- (PBLayout*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLayout_Builder*) builder;
++ (PBLayout_Builder*) builder;
++ (PBLayout_Builder*) builderWithPrototype:(PBLayout*) prototype;
+
++ (PBLayout*) parseFromData:(NSData*) data;
++ (PBLayout*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayout*) parseFromInputStream:(NSInputStream*) input;
++ (PBLayout*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayout*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLayout*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLayout_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLayout* result;
+}
+
+- (PBLayout*) defaultInstance;
+
+- (PBLayout_Builder*) clear;
+- (PBLayout_Builder*) clone;
+
+- (PBLayout*) build;
+- (PBLayout*) buildPartial;
+
+- (PBLayout_Builder*) mergeFrom:(PBLayout*) other;
+- (PBLayout_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayout_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasLayoutId;
+- (int32_t) layoutId;
+- (PBLayout_Builder*) setLayoutId:(int32_t) value;
+- (PBLayout_Builder*) clearLayoutId;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBLayout_Builder*) setName:(NSString*) value;
+- (PBLayout_Builder*) clearName;
+
+- (BOOL) hasDisplayMode;
+- (int32_t) displayMode;
+- (PBLayout_Builder*) setDisplayMode:(int32_t) value;
+- (PBLayout_Builder*) clearDisplayMode;
+
+- (BOOL) hasCoverFlowType;
+- (int32_t) coverFlowType;
+- (PBLayout_Builder*) setCoverFlowType:(int32_t) value;
+- (PBLayout_Builder*) clearCoverFlowType;
+
+- (NSArray*) framesList;
+- (PBFrame*) framesAtIndex:(int32_t) index;
+- (PBLayout_Builder*) replaceFramesAtIndex:(int32_t) index with:(PBFrame*) value;
+- (PBLayout_Builder*) addFrames:(PBFrame*) value;
+- (PBLayout_Builder*) addAllFrames:(NSArray*) values;
+- (PBLayout_Builder*) clearFramesList;
+
+- (BOOL) hasBgImage;
+- (NSString*) bgImage;
+- (PBLayout_Builder*) setBgImage:(NSString*) value;
+- (PBLayout_Builder*) clearBgImage;
+
+- (BOOL) hasIPhoneRect;
+- (PBRect*) iPhoneRect;
+- (PBLayout_Builder*) setIPhoneRect:(PBRect*) value;
+- (PBLayout_Builder*) setIPhoneRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBLayout_Builder*) mergeIPhoneRect:(PBRect*) value;
+- (PBLayout_Builder*) clearIPhoneRect;
+
+- (BOOL) hasIPadRect;
+- (PBRect*) iPadRect;
+- (PBLayout_Builder*) setIPadRect:(PBRect*) value;
+- (PBLayout_Builder*) setIPadRectBuilder:(PBRect_Builder*) builderForValue;
+- (PBLayout_Builder*) mergeIPadRect:(PBRect*) value;
+- (PBLayout_Builder*) clearIPadRect;
 @end
 

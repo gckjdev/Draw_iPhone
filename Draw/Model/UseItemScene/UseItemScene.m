@@ -182,7 +182,7 @@
 - (NSString *)unavailableItemMessage
 {
     if (_sceneType == UseSceneTypeMatchRank) {
-        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpusToOverContest")];
+        return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToOverContestOpus")];
     }
     if ([self.feed isContestFeed]) {
         return  [NSString stringWithFormat:NSLS(@"kCanotSendItemToContestOpus"),self.feed.itemLimit];

@@ -325,6 +325,7 @@
   BOOL hasLevel_:1;
   BOOL hasUserLevel_:1;
   BOOL hasSeatId_:1;
+  BOOL hasSignature_:1;
   BOOL hasPassword_:1;
   BOOL hasEmail_:1;
   BOOL hasFacetimeId_:1;
@@ -341,6 +342,7 @@
   int32_t level;
   int32_t userLevel;
   int32_t seatId;
+  NSString* signature;
   NSString* password;
   NSString* email;
   NSString* facetimeId;
@@ -368,6 +370,7 @@
 - (BOOL) hasExperience;
 - (BOOL) hasCoinBalance;
 - (BOOL) hasDiamondBalance;
+- (BOOL) hasSignature;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
@@ -384,6 +387,7 @@
 @property (readonly) int64_t experience;
 @property (readonly) int32_t coinBalance;
 @property (readonly) int32_t diamondBalance;
+@property (readonly, retain) NSString* signature;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
 - (NSArray*) itemsList;
@@ -525,6 +529,11 @@
 - (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value;
 - (PBGameUser_Builder*) addAllAttributes:(NSArray*) values;
 - (PBGameUser_Builder*) clearAttributesList;
+
+- (BOOL) hasSignature;
+- (NSString*) signature;
+- (PBGameUser_Builder*) setSignature:(NSString*) value;
+- (PBGameUser_Builder*) clearSignature;
 @end
 
 @interface PBGameSession : PBGeneratedMessage {

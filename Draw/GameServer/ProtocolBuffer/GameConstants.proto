@@ -269,3 +269,10 @@ enum PBWordType {
     HOT = 3;
 }
 
+enum PBWallType{
+  Opuses = 1;
+}
+
+
+
+

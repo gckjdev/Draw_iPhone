@@ -216,3 +216,11 @@ BOOL PBWordTypeIsValidValue(PBWordType value) {
       return NO;
   }
 }
+BOOL PBWallTypeIsValidValue(PBWallType value) {
+  switch (value) {
+    case PBWallTypeOpuses:
+      return YES;
+    default:
+      return NO;
+  }
+}
