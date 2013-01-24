@@ -196,7 +196,7 @@
 "kChangeRoomConfirm" = "換房間會影響當前一起玩的玩家哦，同時需要花費你一個金幣，確定換個房間嗎？";
 "kChangeRoomConfirm" = "換房間會影響當前一起玩的用戶哦，一天只能更換5次房間，確定換個房間嗎？";
 "kQuitGameTitle" = "退出房間";
-"kQuitGameConfirm" = "請問是否要退出當前房間，回到主菜單？";
+"kQuitGameConfirm" = "退出當前房間系統會扣除您%d個金幣哦，請問是否要退出？";
 
 "kOldPasswordHolder" = "請輸入舊密碼";
 "kNewPasswordHolder" = "請輸入新密碼（長度不少於6）";

@@ -47,6 +47,8 @@
     CGFloat viewWidth = [BBSPostCommandView viewWidth];
     CGFloat x = CGRectGetWidth(self.bounds) - count * viewWidth - (count - 1)*space;
     
+    x /= 2;
+    
     for (BBSPostCommand *command in self.commandList) {
         BBSPostCommandView *view = [BBSPostCommandView commandViewWithCommand:command];
         [self addSubview:view];

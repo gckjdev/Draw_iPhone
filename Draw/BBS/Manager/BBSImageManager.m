@@ -258,6 +258,36 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 
+- (UIImage *)bbsPostDetailComment{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_comment"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostDetailDelete{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_delete"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostDetailSupport{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_support"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostDetailToTop{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_totop"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostDetailTransfer{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_transfer"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostTopBg{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_top_bg"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 #pragma mark - Creation Page image
 - (UIImage *)bbsCreateDrawDisable{
     return [_resService stretchableImageWithImageName:@"bbs_create_draw_disable" inResourcePackage:RESOURCE_PACKAGE_BBS];

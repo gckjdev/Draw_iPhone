@@ -828,14 +828,14 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="forum.png">{16, 16}</string>
-			<string key="free_coins_remain_time_bg@2x.png">{86, 32}</string>
-			<string key="free_coins_title_bg@2x.png">{648, 93}</string>
-			<string key="money_tree_note_bg@2x.png">{180, 91}</string>
+			<string key="free_coins_remain_time_bg@2x.png">{16, 16}</string>
+			<string key="free_coins_title_bg@2x.png">{16, 16}</string>
+			<string key="money_tree_note_bg@2x.png">{16, 16}</string>
 			<string key="more_apps_icon.png">{16, 16}</string>
-			<string key="new_wood_bg@2x.png">{640, 960}</string>
-			<string key="select_word_back_btn@2x.png">{86, 56}</string>
-			<string key="wood_paper_big@2x.png">{452, 428}</string>
-			<string key="wood_paper_small@2x.png">{457, 208}</string>
+			<string key="new_wood_bg@2x.png">{16, 16}</string>
+			<string key="select_word_back_btn@2x.png">{16, 16}</string>
+			<string key="wood_paper_big@2x.png">{16, 16}</string>
+			<string key="wood_paper_small@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

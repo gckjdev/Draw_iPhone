@@ -363,6 +363,9 @@
     else{
         name = [[[DrawGameService defaultService] session] roomName];
     }
+    if (name == nil || name.length <= 0) {
+        name = [NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), [[DrawGameService defaultService] session].sessionId];
+    }
     self.roomNameLabel.text = name;
     
     // update room left/right button
@@ -703,8 +706,7 @@
         case ROOM_DIALOG_QUIT_ROOM:
         {
             [self quitRoom];
-//            [[DrawGameService defaultService] quitGame];
-//            [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];            
+            [[AccountService defaultService] deductAccount:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         }
             break;
         
@@ -798,7 +800,7 @@
 - (IBAction)clickMenu:(id)sender
 {
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
-                                message:NSLS(@"kQuitGameConfirm") 
+                                message:[NSString stringWithFormat:NSLS(@"kQuitGameConfirm") , [ConfigManager getOnlineDrawFleeCoin]]
                                   style:CommonDialogStyleDoubleButton
                               delegate:self];
     dialog.tag = ROOM_DIALOG_QUIT_ROOM;

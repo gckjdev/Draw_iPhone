@@ -261,7 +261,7 @@
     if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
+        [[AccountService defaultService] deductAccount:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
     }
@@ -304,7 +304,7 @@
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
         style = CommonDialogStyleDoubleButton;
-        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), 1];//deduct one coin when runaway ,the coin should configured by config manager, do it later ---kira
+        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getOnlineDrawFleeCoin]];
     }else{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");

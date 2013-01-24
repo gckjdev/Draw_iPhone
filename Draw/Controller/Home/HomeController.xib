@@ -132,7 +132,7 @@
 						<reference key="IBUIFontDescription" ref="373337375"/>
 						<reference key="IBUIFont" ref="732199210"/>
 					</object>
-					<object class="IBUIButton" id="252671405">
+					<object class="IBUIButton" id="412677603">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{1, 167}, {85, 44}}</string>
@@ -202,7 +202,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">testCreateWallBtn</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="252671405"/>
+						<reference key="destination" ref="412677603"/>
 					</object>
 					<int key="connectionID">121</int>
 				</object>
@@ -236,7 +236,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickWallButton:</string>
-						<reference key="source" ref="252671405"/>
+						<reference key="source" ref="412677603"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -259,7 +259,7 @@
 							<reference ref="418830712"/>
 							<reference ref="897846913"/>
 							<reference ref="494102081"/>
-							<reference ref="252671405"/>
+							<reference ref="412677603"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -296,7 +296,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">120</int>
-						<reference key="object" ref="252671405"/>
+						<reference key="object" ref="412677603"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -330,7 +330,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">green_button@2x.png</string>
-			<string key="NS.object.0">{71, 84}</string>
+			<string key="NS.object.0">{16, 16}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
