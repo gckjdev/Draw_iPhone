@@ -74,7 +74,7 @@
 
 + (id)panelWithCommandList:(NSArray *)commandList
 {
-    return [[BBSPostCommandPanel alloc] initWithCommandList:commandList];
+    return [[[BBSPostCommandPanel alloc] initWithCommandList:commandList] autorelease];
 }
 
 @end

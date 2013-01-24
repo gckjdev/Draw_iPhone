@@ -123,9 +123,13 @@ typedef enum{
     return list;
 }
 
-- (void)initFooterView
+#define PANEL_TAG 20130124
+- (void)updateFooterView
 {
+    UIView *view = [self.toolBarBG viewWithTag:PANEL_TAG];
+    [view removeFromSuperview];
     BBSPostCommandPanel *panel = [BBSPostCommandPanel panelWithCommandList:[self commandList]];
+    panel.tag = PANEL_TAG;
     panel.frame = self.toolBarBG.bounds;
     [self.toolBarBG setUserInteractionEnabled:YES];
     [self.toolBarBG addSubview:panel];
@@ -161,7 +165,7 @@ typedef enum{
                            title:NSLS(@"kBBSReply")
                         forState:UIControlStateNormal];
 
-    [self initFooterView];
+    [self updateFooterView];
 }
 
 - (NSInteger)defaultTabID
@@ -541,6 +545,7 @@ typedef enum{
         if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
             self.post = post;
             [self.dataTableView reloadData];
+            [self updateFooterView];
         }
     }
 }

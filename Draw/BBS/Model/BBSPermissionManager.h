@@ -17,7 +17,7 @@ typedef enum{
     PermissionToTop = 0x1 << 4, // 置顶
     PermissionForbidUser = 0x1 << 5, // 封禁用户
     PermissionAll = (0x1<<7)-1,
-    PermissionDefault = PermissionRead | PermissionWrite,//PermissionAll//
+    PermissionDefault = PermissionAll,//PermissionRead | PermissionWrite,
 }BBSUserPermission;
 
 @interface BBSPermissionManager : NSObject

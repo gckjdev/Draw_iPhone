@@ -38,6 +38,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc",self);
     PPRelease(_post);
     [super dealloc];
 }
@@ -117,9 +118,9 @@
 - (void)initOptionBoardList
 {
     if (self.optionBoardList == nil) {
-        self.optionBoardList = [[BBSManager defaultManager] allSubBoardList];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.boardId<>%@",self.post.boardId];
-        self.optionBoardList = [self.optionBoardList filteredArrayUsingPredicate:predicate];
+    self.optionBoardList = [[BBSManager defaultManager] allSubBoardList];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.boardId<>%@",self.post.boardId];
+    self.optionBoardList = [self.optionBoardList filteredArrayUsingPredicate:predicate];
     }
 }
 
