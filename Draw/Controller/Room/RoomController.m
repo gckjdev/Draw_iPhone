@@ -363,6 +363,9 @@
     else{
         name = [[[DrawGameService defaultService] session] roomName];
     }
+    if (name == nil || name.length <= 0) {
+        name = [NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), [[DrawGameService defaultService] session].sessionId];
+    }
     self.roomNameLabel.text = name;
     
     // update room left/right button

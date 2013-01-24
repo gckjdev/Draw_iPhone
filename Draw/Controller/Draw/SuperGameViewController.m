@@ -188,8 +188,16 @@
             type = Drawer;
         }
         BOOL gender = user.gender;
+        
+        //need to improve later, me u
+        NSString* avatarUrl;
+        if ([[UserManager defaultManager] isMe:user.userId]) {
+            avatarUrl = [[UserManager defaultManager] avatarURL];
+        } else {
+            avatarUrl = [user userAvatar];
+        }
 
-        AvatarView *aView = [[AvatarView alloc] initWithUrlString:[user userAvatar] type:type gender:gender level:user.level];
+        AvatarView *aView = [[AvatarView alloc] initWithUrlString:avatarUrl type:type gender:gender level:user.level];
         [aView setUserId:user.userId];
         aView.delegate = self;
         

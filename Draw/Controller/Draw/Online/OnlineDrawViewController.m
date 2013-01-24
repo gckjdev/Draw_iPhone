@@ -304,7 +304,7 @@
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
         style = CommonDialogStyleDoubleButton;
-        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), 1];//deduct one coin when runaway ,the coin should configured by config manager, do it later ---kira
+        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getOnlineDrawFleeCoin]];
     }else{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");
