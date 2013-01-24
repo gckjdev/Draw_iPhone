@@ -56,6 +56,8 @@
               commentCount:(NSInteger)inc;
 - (PBBBSPost *)inceasePost:(PBBBSPost *)post
               supportCount:(NSInteger)inc;
+- (BOOL)replacePost:(PBBBSPost *)post1 withPost:(PBBBSPost *)post2;
+
 //Cache
 - (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key;
 - (PBBBSDraw *)loadBBSDrawDataFromCacheWithKey:(NSString *)key;

@@ -117,6 +117,7 @@
 
 @implementation BBSPostTopCommand
 
+
 -(void)excute{
     [self.controller showActivityWithText:NSLS(@"kToToping")];
     BBSPostStatus status = BBSPostStatusTop;
@@ -148,7 +149,7 @@
 
 -(void)excute{
     [self.controller showActivityWithText:NSLS(@"kDeleting")];
-    [[BBSService defaultService] deletePostWithPostId:self.post.postId delegate:self.controller];
+    [[BBSService defaultService] deletePost:self.post delegate:self.controller];
 }
 - (NSString *)name{
     return NSLS(@"kBBSDelete");

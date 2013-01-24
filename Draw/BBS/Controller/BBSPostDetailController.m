@@ -126,9 +126,8 @@ typedef enum{
 - (void)initFooterView
 {
     BBSPostCommandPanel *panel = [BBSPostCommandPanel panelWithCommandList:[self commandList]];
-//    [self.view addSubview:panel];
-//    panel.center = self.toolBarBG.center;
     panel.frame = self.toolBarBG.bounds;
+    [self.toolBarBG setUserInteractionEnabled:YES];
     [self.toolBarBG addSubview:panel];
 }
 
@@ -529,6 +528,27 @@ typedef enum{
         [pg release];
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
+}
+
+- (void)didEditPostPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupUnhappyMessage:NSLS(@"kFailedEditPost") title:nil];
+    }else{
+        if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
+            self.post = post;
+        }
+    }
+}
+
+- (void)didDeleteBBSPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [self popupUnhappyMessage:NSLS(@"kFailedEditPost") title:nil];
+        [[[BBSManager defaultManager] tempPostList] removeObject:post];
     }
 }
 

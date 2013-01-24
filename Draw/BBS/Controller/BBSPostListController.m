@@ -122,6 +122,13 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.dataTableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -260,27 +267,20 @@
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }
 }
-
-- (void)didDeleteBBSPost:(NSString *)postId resultCode:(NSInteger)resultCode
+- (void)didDeleteBBSPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
-        PBBBSPost *p = nil;
-        NSInteger row = 0;
-        for (PBBBSPost *post in self.tabDataList) {
-            if ([post.postId isEqualToString:postId]) {
-                p = post;
-                break;
-            }
-            row ++;
-        }
+        PBBBSPost *p = post;
         if (p) {
+            NSInteger row = [self.tabDataList indexOfObject:p];
             [self.tabDataList removeObject:p];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
             NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
             [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         }
     }else{
-        PPDebug(@"<didDeleteBBSPost>fail to delete post, postId = %@, resultCode = %d",postId, resultCode);
+        PPDebug(@"<didDeleteBBSPost>fail to delete post, postId = %@, resultCode = %d",post.postId, resultCode);
     }
 }
 
@@ -346,7 +346,7 @@
 {
     PBBBSPost *post = [self postForIndexPath:indexPath];
     if (post && post.canDelete) {
-        [[BBSService defaultService] deletePostWithPostId:post.postId delegate:self];
+        [[BBSService defaultService] deletePost:post delegate:self];
     }
 }
 
