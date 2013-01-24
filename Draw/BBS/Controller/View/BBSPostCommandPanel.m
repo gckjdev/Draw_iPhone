@@ -28,11 +28,11 @@
     [super dealloc];
 }
 
-- (CGFloat)spaceOfCommandViews
+- (CGFloat)spaceOfCommandViews:(NSInteger)commandCount
 {
     CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
-    CGFloat viewWith = [BBSPostCommandView viewWidth] * COMMAND_MAX_COUNT;
-    return (width-viewWith)/COMMAND_MAX_COUNT;
+    CGFloat viewWith = [BBSPostCommandView viewWidth] * commandCount;
+    return (width-viewWith)/commandCount;
 }
 
 - (void)updateView
@@ -43,7 +43,7 @@
     if (count == 0) {
         return;
     }
-    CGFloat space = ([self spaceOfCommandViews]);
+    CGFloat space = ([self spaceOfCommandViews:count]);
     CGFloat viewWidth = [BBSPostCommandView viewWidth];
     CGFloat x = CGRectGetWidth(self.bounds) - count * viewWidth - (count - 1)*space;
     

@@ -71,11 +71,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 }
 - (BOOL)canTopPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop)||([post isMyPost]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop);
 }
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer)||([post isMyPost]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer);
 }
 - (BOOL)canForbidUser:(PBBBSUser *)user onBBBoard:(NSString *)boardId
 {
