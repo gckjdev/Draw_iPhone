@@ -66,6 +66,7 @@ typedef enum{
 - (BOOL)canDelete;
 - (BOOL)isMyPost;
 - (BOOL)canPay;
+- (BOOL)isTopPost;
 - (NSString *)postUid;
 - (NSString *)postText;
 - (NSDate *)cDate;
@@ -74,6 +75,7 @@ typedef enum{
 - (void)setPay:(BOOL)pay;
 - (BOOL)hasPay;
 - (NSString *)createDateString;
+
 @end
 
 @interface PBBBSAction (ActionExt)

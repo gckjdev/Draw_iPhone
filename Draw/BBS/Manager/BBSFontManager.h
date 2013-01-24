@@ -33,6 +33,7 @@
 - (UIFont *)postDateFont;
 - (UIFont *)postRewardFont;
 - (UIFont *)postActionFont;
+- (UIFont *)postTopFont;
 
 #pragma mark post detail font
 - (UIFont *)detailHeaderFont;

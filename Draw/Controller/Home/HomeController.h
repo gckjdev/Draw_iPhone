@@ -40,6 +40,7 @@
 @property (nonatomic, assign) NotificationType notificationType; 
 @property (retain, nonatomic) IBOutlet UIButton *testBulletin;
 
+@property (retain, nonatomic) IBOutlet UIButton *testCreateWallBtn;
 
 
 // Ad View

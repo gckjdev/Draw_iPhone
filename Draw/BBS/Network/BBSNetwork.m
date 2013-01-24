@@ -309,6 +309,7 @@
                            deviceType:(NSInteger)deviceType
                                userId:(NSString *)userId
                                postId:(NSString *)postId
+                              boardId:(NSString *)boardId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -322,7 +323,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
         str = [str stringByAddQueryParameter:PARA_POSTID value:postId];
-        
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
         return str;
     };
     

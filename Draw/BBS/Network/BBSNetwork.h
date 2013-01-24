@@ -101,7 +101,8 @@
                                 appId:(NSString *)appId
                            deviceType:(NSInteger)deviceType
                                userId:(NSString *)userId
-                               postId:(NSString *)postId;
+                               postId:(NSString *)postId
+                              boardId:(NSString *)boardId;
 
 + (CommonNetworkOutput*)deleteBBSAction:(NSString*)baseURL
                                   appId:(NSString *)appId

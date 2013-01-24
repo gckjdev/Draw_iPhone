@@ -904,8 +904,9 @@ BBSService *_staticBBSService;
     });
 }
 
-- (void)deletePostWithPostId:(NSString *)postId
-                    delegate:(id<BBSServiceDelegate>)delegate
+
+- (void)deletePost:(PBBBSPost *)post
+          delegate:(id<BBSServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
@@ -915,12 +916,13 @@ BBSService *_staticBBSService;
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
-                                                         postId:postId];
+                                                         postId:post.postId
+                                                        boardId:post.boardId];
         NSInteger resultCode = [output resultCode];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didDeleteBBSPost:resultCode:)]) {
-                [delegate didDeleteBBSPost:postId resultCode:resultCode];
+                [delegate didDeleteBBSPost:post resultCode:resultCode];
             }
         });
     });
@@ -970,10 +972,19 @@ BBSService *_staticBBSService;
                                                        status:status
                                                          info:nil];
         NSInteger resultCode = [output resultCode];
-        
+        PBBBSPost *tempPost = nil;
+        if (resultCode == ERROR_SUCCESS) {
+            PBBBSPost_Builder  *builder = [PBBBSPost builderWithPrototype:post];
+            if ([boardId length] != 0) {
+                [builder setBoardId:boardId];
+            }
+            [builder setStatus:status];
+            tempPost = [builder build];
+        }
+    
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didEditPostPost:resultCode:)]) {
-                [delegate didEditPostPost:post resultCode:resultCode];
+                [delegate didEditPostPost:tempPost resultCode:resultCode];
             }
         });
     });

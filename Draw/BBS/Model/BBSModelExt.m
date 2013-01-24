@@ -104,6 +104,11 @@
    return [self isMyPost] && [self hasReward] && ![self hasPay];
 }
 
+- (BOOL)isTopPost
+{
+    return self.status == BBSPostStatusTop;
+}
+
 - (NSString *)postUid
 {
     return self.createUser.userId;
