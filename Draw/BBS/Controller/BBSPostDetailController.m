@@ -13,6 +13,8 @@
 #import "GameNetworkConstants.h"
 #import "CommonUserInfoView.h"
 #import "BBSPostCommand.h"
+#import "BBSPostCommandPanel.h"
+#import "BBSPermissionManager.h"
 
 @interface BBSPostDetailController ()
 {
@@ -95,6 +97,41 @@ typedef enum{
     return self;
 }
 
+- (NSArray *)commandList
+{
+    NSMutableArray *list = [NSMutableArray array];
+    BBSPermissionManager *pm = [BBSPermissionManager defaultManager];
+    PBBBSPost *post = self.post;
+    if ([pm canWriteOnBBBoard:post.boardId]) {
+        BBSPostReplyCommand *rc = [[[BBSPostReplyCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:rc];
+        BBSPostSupportCommand *sc = [[[BBSPostSupportCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:sc];
+    }
+    if ([pm canDeletePost:post onBBBoard:post.boardId]) {
+        BBSPostDeleteCommand *dc = [[[BBSPostDeleteCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:dc];
+    }
+    if ([pm canTransferPost:post fromBBBoard:post.boardId]) {
+        BBSPostTransferCommand *tc = [[[BBSPostTransferCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:tc];
+    }
+    if ([pm canTopPost:post onBBBoard:post.boardId]) {
+        BBSPostTopCommand *tc = [[[BBSPostTopCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:tc];
+    }
+    return list;
+}
+
+- (void)initFooterView
+{
+    BBSPostCommandPanel *panel = [BBSPostCommandPanel panelWithCommandList:[self commandList]];
+//    [self.view addSubview:panel];
+//    panel.center = self.toolBarBG.center;
+    panel.frame = self.toolBarBG.bounds;
+    [self.toolBarBG addSubview:panel];
+}
+
 - (void)initViews
 {
     
@@ -125,7 +162,7 @@ typedef enum{
                            title:NSLS(@"kBBSReply")
                         forState:UIControlStateNormal];
 
-
+    [self initFooterView];
 }
 
 - (NSInteger)defaultTabID

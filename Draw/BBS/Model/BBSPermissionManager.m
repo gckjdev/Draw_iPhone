@@ -69,6 +69,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 {
     return JUDGE_BOARD_PERMISSION(boardId, PermissionDelete)||([post.createUser isMe]);
 }
+- (BOOL)canTopPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
+{
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop)||([post.createUser isMe]);
+}
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId
 {
     return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer)||([post.createUser isMe]);

@@ -65,6 +65,13 @@
 - (UIImage*)bbsDetailSplitLine;
 - (UIImage*)bbsDetailToolbar;
 
+- (UIImage *)bbsPostDetailComment;
+- (UIImage *)bbsPostDetailDelete;
+- (UIImage *)bbsPostDetailSupport;
+- (UIImage *)bbsPostDetailToTop;
+- (UIImage *)bbsPostDetailTransfer;
+- (UIImage *)bbsPostTopBg;
+
 #pragma mark -Creation page image
 
 - (UIImage *)bbsCreateDrawDisable;
