@@ -261,7 +261,7 @@
     if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductAccount:ESCAPE_DEDUT_COIN source:EscapeType];
+        [[AccountService defaultService] deductAccount:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
     }

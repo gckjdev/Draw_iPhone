@@ -196,7 +196,7 @@
 "kChangeRoomTitle" = "Switch Room";
 "kChangeRoomConfirm" = "Do you want to switch to another room? You can try 5 times per day.";
 "kQuitGameTitle" = "Quit Game";
-"kQuitGameConfirm" = "Do you want to leave the room now?";
+"kQuitGameConfirm" = "Do you want to leave the room now, it will cost you %d coins?";
 
 "kOldPasswordHolder" = "Input old password";
 "kNewPasswordHolder" = "Input new password";

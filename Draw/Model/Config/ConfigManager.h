@@ -109,6 +109,7 @@ typedef enum{
 
 + (int)getDiceFleeCoin;
 + (int)getZJHFleeCoin;
++ (int)getOnlineDrawFleeCoin;
 
 + (int)getDiceThresholdCoinWithNormalRule;
 + (int)getDiceThresholdCoinWithHightRule;

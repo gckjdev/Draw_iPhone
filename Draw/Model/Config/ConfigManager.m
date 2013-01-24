@@ -669,4 +669,9 @@
     return [MobClickUtils getIntValueByKey:@"LEVEL_UP_AWARD" defaultValue:400];
 }
 
++ (int)getOnlineDrawFleeCoin
+{
+    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_FLEE_COIN" defaultValue:1];
+}
+
 @end
