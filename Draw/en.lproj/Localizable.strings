@@ -994,6 +994,8 @@
 "kTypeRoom" = "Typing";
 "kDrawRoomTitle" = "Draw Lively";
 "kDrawRoomCellTitle" = "Draw Lively Room %d";
+
+"kTopPost" = "Top";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

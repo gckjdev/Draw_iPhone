@@ -972,10 +972,19 @@ BBSService *_staticBBSService;
                                                        status:status
                                                          info:nil];
         NSInteger resultCode = [output resultCode];
-        
+        PBBBSPost *tempPost = nil;
+        if (resultCode == ERROR_SUCCESS) {
+            PBBBSPost_Builder  *builder = [PBBBSPost builderWithPrototype:post];
+            if ([boardId length] != 0) {
+                [builder setBoardId:boardId];
+            }
+            [builder setStatus:status];
+            tempPost = [builder build];
+        }
+    
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didEditPostPost:resultCode:)]) {
-                [delegate didEditPostPost:post resultCode:resultCode];
+                [delegate didEditPostPost:tempPost resultCode:resultCode];
             }
         });
     });

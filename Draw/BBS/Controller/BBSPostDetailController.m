@@ -535,10 +535,12 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupUnhappyMessage:NSLS(@"kFailedEditPost") title:nil];
+        [self popupUnhappyMessage:NSLS(@"kEditPostFailed") title:nil];
     }else{
+        [self popupHappyMessage:NSLS(@"kEditPostSucced") title:nil];
         if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
             self.post = post;
+            [self.dataTableView reloadData];
         }
     }
 }

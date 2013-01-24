@@ -55,6 +55,16 @@
                       titleColor:[_bbsColorManager postRewardedColor]
                            title:nil forState:UIControlStateSelected];
 
+    [BBSViewManager updateButton:self.topFlag
+                         bgColor:[UIColor clearColor]
+                         bgImage:[_bbsImageManager bbsPostTopBg]
+                           image:nil
+                            font:[_bbsFontManager postTopFont]
+                      titleColor:[UIColor whiteColor]
+                           title:NSLS(@"kTopPost")
+                        forState:UIControlStateNormal];
+
+
 }
 
 + (id)createCell:(id)delegate
@@ -177,6 +187,7 @@
     [self updateContent:post.content];
     [self updateTimeStamp:post];
     [self updateReward:post];
+    [self.topFlag setHidden:![post isTopPost]];
 }
 
 
@@ -184,6 +195,7 @@
 - (void)dealloc {
     PPRelease(_post);
     PPRelease(_reward);
+    [_topFlag release];
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {
