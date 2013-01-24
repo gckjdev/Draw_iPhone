@@ -18,6 +18,8 @@
 #import "BulletinView.h"
 #import "AnalyticsManager.h"
 #import "BulletinService.h"
+#import "NotificationName.h"
+#import "CommonGameNetworkService.h"
 
 @interface SuperHomeController ()
 {
@@ -102,6 +104,7 @@
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     
     [self updateAllBadge];//for bulletins
+    [self registerNetworkDisconnectedNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -114,6 +117,16 @@
     }];
     [[UserService defaultService] getStatistic:self];
     
+    [self registerJoinGameResponseNotification];
+    [self registerNetworkConnectedNotification];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterJoinGameResponseNotification];
+    [self unregisterNetworkConnectedNotification];
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload
@@ -219,6 +232,64 @@
     RegisterUserController *ruc = [[RegisterUserController alloc] init];
     [self.navigationController pushViewController:ruc animated:YES];
     [ruc release];
+}
+
+#pragma mark - network listen
+
+- (void)registerJoinGameResponseNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
+                            usingBlock:^(NSNotification *note) {
+                                [self handleJoinGameResponse];
+                            }];
+}
+
+- (void)unregisterJoinGameResponseNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE];
+}
+
+
+- (void)registerNetworkConnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self handleConnectedResponse];
+                            }];
+}
+
+- (void)unregisterNetworkConnectedNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_CONNECTED];
+}
+
+
+- (void)registerNetworkDisconnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                            }];
+}
+
+- (void)unregisterNetworkDisconnectedNotification
+{
+    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
+}
+
+#pragma mark - should be impletement by subClass
+
+- (void)handleJoinGameResponse
+{
+    PPDebug(@"<SuperHomeController> handleJoinGameResponse not impletement yet");
+}
+- (void)handleConnectedResponse
+{
+    PPDebug(@"<SuperHomeController> handleConnectedResponse not impletement yet");
+}
+- (void)handleDisconnectWithError:(NSError*)error
+{
+    PPDebug(@"<SuperHomeController> handleDisconnectWithError not impletement yet");
 }
 
 @end

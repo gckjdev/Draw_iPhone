@@ -45,6 +45,7 @@ typedef enum{
 + (NSString*)defaultChineseServer;
 + (int)defaultEnglishPort;
 + (int)defaultChinesePort;
++ (NSString*)getDrawServerString;
 
 + (GuessLevel)guessDifficultLevel;
 + (void)setGuessDifficultLevel:(GuessLevel)level;
