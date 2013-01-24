@@ -1181,6 +1181,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 @property int32_t diamondBalance;
 @property (retain) NSMutableArray* mutableItemsList;
 @property (retain) NSMutableArray* mutableAttributesList;
+@property (retain) NSString* signature;
 @end
 
 @implementation PBGameUser
@@ -1315,6 +1316,13 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 @synthesize diamondBalance;
 @synthesize mutableItemsList;
 @synthesize mutableAttributesList;
+- (BOOL) hasSignature {
+  return !!hasSignature_;
+}
+- (void) setHasSignature:(BOOL) value {
+  hasSignature_ = !!value;
+}
+@synthesize signature;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -1326,6 +1334,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   self.password = nil;
   self.mutableItemsList = nil;
   self.mutableAttributesList = nil;
+  self.signature = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1346,6 +1355,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
     self.experience = 0L;
     self.coinBalance = 0;
     self.diamondBalance = 0;
+    self.signature = @"";
   }
   return self;
 }
@@ -1464,6 +1474,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   for (PBUserItem* element in self.itemsList) {
     [output writeMessage:61 value:element];
   }
+  if (self.hasSignature) {
+    [output writeString:100 value:self.signature];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1529,6 +1542,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     size += computeMessageSize(61, element);
+  }
+  if (self.hasSignature) {
+    size += computeStringSize(100, self.signature);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1671,6 +1687,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     }
     [result.mutableAttributesList addObjectsFromArray:other.mutableAttributesList];
   }
+  if (other.hasSignature) {
+    [self setSignature:other.signature];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1772,6 +1791,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         PBUserItem_Builder* subBuilder = [PBUserItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addItems:[subBuilder buildPartial]];
+        break;
+      }
+      case 802: {
+        [self setSignature:[input readString]];
         break;
       }
     }
@@ -2118,6 +2141,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     result.mutableAttributesList = [NSMutableArray array];
   }
   [result.mutableAttributesList addObject:value];
+  return self;
+}
+- (BOOL) hasSignature {
+  return result.hasSignature;
+}
+- (NSString*) signature {
+  return result.signature;
+}
+- (PBGameUser_Builder*) setSignature:(NSString*) value {
+  result.hasSignature = YES;
+  result.signature = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearSignature {
+  result.hasSignature = NO;
+  result.signature = @"";
   return self;
 }
 @end

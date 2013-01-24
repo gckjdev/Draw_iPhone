@@ -187,6 +187,12 @@ typedef enum {
 
 BOOL PBWordTypeIsValidValue(PBWordType value);
 
+typedef enum {
+  PBWallTypeOpuses = 1,
+} PBWallType;
+
+BOOL PBWallTypeIsValidValue(PBWallType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }

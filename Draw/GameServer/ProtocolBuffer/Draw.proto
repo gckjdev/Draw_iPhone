@@ -1,5 +1,6 @@
 
 import "GameBasic.proto";
+import "GameConstants.proto";
 
 package game;
 
@@ -142,27 +143,58 @@ message PBHotWordList
 }
 
 
-message PBDrawWall{
-  required int32 wallId =1;
-  optional string wallName = 2;
+message PBWallOpus
+{
+    required PBFeed opus = 1;
+    optional int32  frameId = 2[default=0];
+}
+
+
+message PBWall{
+  required string wallId = 1;                           // 画墙id
+
+  required PBWallType type = 2;                         // wall type,
+
+  required string userId = 3;                           // 用户id
+  optional string wallName = 6;                         // 画墙名称
   
-  optional int32 style = 3;             // 画墙风格
-  repeated string drawIds = 4;          // 画墙上装裱的画
-  repeated string frameIds = 5;         // 画墙上装裱的框
-  optional string bgImage = 6;          // 画墙背景
+  optional PBLayout layout = 7;                         // 画墙布局
+  repeated PBWallOpus opuses = 8;                       // 画墙上装裱的画
+  
+  optional string musicUrl = 10;                        // 背景音乐
 }
 
-
-message PBDrawWallList{
-  repeated PBDrawWall walls = 1;
+message PBRect
+{
+  optional int32 x = 11;
+  optional int32 y = 12;
+  optional int32 width = 13;
+  optional int32 height = 14;
 }
 
+message PBFrame{
+  required int32 frameId = 1;
+  optional int32 type = 2;
+  optional string name = 5;
+  optional string image = 10;
 
+  optional PBRect iPhoneRect = 11;              // 相对于布局的frame
+  optional PBRect iPadRect = 12;
+  
+  optional PBRect opusIphoneRect = 13;          // 相对于框的frame
+  optional PBRect opusIpadRect = 14;
+}
 
+message PBLayout{
+  required int32  layoutId = 1;
+  optional string name = 2;
+  optional int32  displayMode = 3;                  // 平面的，还是立体的
+  optional int32  coverFlowType = 4[default=0];
+//  optional int32  frameCount = 5[default=1];
+  repeated PBFrame frames = 6;
+  optional string bgImage = 7;
 
-
-
-
-
-
+  optional PBRect iPhoneRect = 11;
+  optional PBRect iPadRect = 12;
+}
 

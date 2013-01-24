@@ -454,4 +454,35 @@
                                   offset:(NSInteger)offset
                                    limit:(NSInteger)limit;
 
+
+// for wall
++ (CommonNetworkOutput*)createWall:(NSString *)baseURL
+                             appId:(NSString *)appId
+                            userId:(NSString *)userId;
+
++ (CommonNetworkOutput*)updateWall:(NSString *)baseURL
+                             appId:(NSString *)appId
+                            userId:(NSString *)userId
+                            wallId:(int)wallId;
+
++ (CommonNetworkOutput*)deleteWall:(NSString *)baseURL
+                             appId:(NSString *)appId
+                            userId:(NSString *)userId
+                            wallId:(int)wallId;
+
+
++ (CommonNetworkOutput*)getWall:(NSString *)baseURL
+                          appId:(NSString *)appId
+                         userId:(NSString *)userId
+                         wallId:(int)wallId;
+
+
++ (CommonNetworkOutput*)getWalls:(NSString *)baseURL
+                           appId:(NSString *)appId
+                          userId:(NSString *)userId
+                          wallId:(int)wallId
+                        wallType:(PBWallType)wallType;
+
+
+
 @end
