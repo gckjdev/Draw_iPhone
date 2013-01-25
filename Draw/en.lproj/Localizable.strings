@@ -996,6 +996,10 @@
 "kDrawRoomCellTitle" = "Draw Lively Room %d";
 
 "kTopPost" = "Top";
+"kEditPostFailed" = "Failed to edit post.";
+"kEditPostSucced" = "Succeed!";
+"kToToping" = "Being top...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

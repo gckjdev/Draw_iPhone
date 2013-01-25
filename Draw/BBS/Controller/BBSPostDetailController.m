@@ -28,8 +28,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
-@property (retain, nonatomic) IBOutlet UIButton *supportButton;
-@property (retain, nonatomic) IBOutlet UIButton *commentButton;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 @property (retain, nonatomic) NSURL *tempURL;
 
@@ -74,8 +72,6 @@ typedef enum{
     PPRelease(_backButton);
     PPRelease(_bgImageView);
     PPRelease(_toolBarBG);
-    PPRelease(_supportButton);
-    PPRelease(_commentButton);
     PPRelease(_header);
     PPRelease(_tempURL);
     PPRelease(_refreshButton);
@@ -147,23 +143,6 @@ typedef enum{
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
-    [BBSViewManager updateButton:self.supportButton
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsDetailSupport]
-                           image:nil
-                            font:[_bbsFontManager detailActionFont]
-                      titleColor:[_bbsColorManager detailDefaultColor]
-                           title:NSLS(@"kBBSSupport")
-                        forState:UIControlStateNormal];
-    
-    [BBSViewManager updateButton:self.commentButton
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsDetailComment]
-                           image:nil
-                            font:[_bbsFontManager detailActionFont]
-                      titleColor:[_bbsColorManager detailDefaultColor]
-                           title:NSLS(@"kBBSReply")
-                        forState:UIControlStateNormal];
 
     [self updateFooterView];
 }
@@ -387,7 +366,7 @@ typedef enum{
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSAction *action = [self actionForIndexPath:indexPath];
-    if (action && action.canDelete) {
+    if (action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId])) {
         return YES;
     }
     return NO;
@@ -563,33 +542,6 @@ typedef enum{
     }
 }
 
-- (IBAction)clickSupportButton:(id)sender {
-    [self showActivityWithText:NSLS(@"kSending")];
-    /*
-    [[BBSService defaultService] createActionWithPostId:self.post.postId
-                                                PostUid:self.post.postUid
-                                               postText:self.post.postText
-                                           sourceAction:nil
-                                             actionType:ActionTypeSupport
-                                                   text:nil
-                                                  image:nil
-                                         drawActionList:nil
-                                              drawImage:nil
-                                               delegate:self];
-     */
-    [[[[BBSPostSupportCommand alloc] initWithPost:self.post controller:self] autorelease] excute];
-
-}
-
-- (IBAction)clickReplyButton:(id)sender {
-    /*
-    [CreatePostController enterControllerWithSourecePost:self.post
-                                            sourceAction:nil
-                                          fromController:self].delegate = self;
-     */
-    [[[[BBSPostReplyCommand alloc] initWithPost:self.post controller:self] autorelease] excute];
-
-}
 
 - (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode
 {
@@ -680,8 +632,6 @@ typedef enum{
     [self setTitleLabel:nil];
     [self setBgImageView:nil];
     [self setToolBarBG:nil];
-    [self setSupportButton:nil];
-    [self setCommentButton:nil];
     [self setRefreshButton:nil];
     PPRelease(_header);
     [super viewDidUnload];

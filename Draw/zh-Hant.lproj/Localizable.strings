@@ -1016,6 +1016,11 @@
 "kDrawRoomCellTitle" = "你畫我猜%d號房";
 
 "kTopPost" = "置頂";
+
+"kEditPostFailed" = "對不起，修改帖子失敗。";
+"kEditPostSucced" = "修改帖子成功！";
+"kToToping" = "置頂中...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
