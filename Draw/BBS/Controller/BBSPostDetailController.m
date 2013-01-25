@@ -535,7 +535,7 @@ typedef enum{
     if (resultCode != 0) {
         [self popupUnhappyMessage:NSLS(@"kDeletePostFailed") title:nil];
     }else{
-        [self popupUnhappyMessage:NSLS(@"kDeletePostSucced") title:nil];
+        [self popupUnhappyMessage:NSLS(@"kDeletePostSucceed") title:nil];
         [[[BBSManager defaultManager] tempPostList] removeObject:post];
         [self.navigationController popViewControllerAnimated:YES];
 

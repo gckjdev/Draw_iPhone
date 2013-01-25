@@ -1023,6 +1023,8 @@
 "kEditPostFailed" = "对不起，修改帖子失败。";
 "kEditPostSucced" = "修改帖子成功！";
 "kToToping" = "置顶中...";
+"kDeletePostFailed" = "对不起，删除帖子失败。";
+"kDeletePostSucceed" = "删除帖子成功！";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
