@@ -22,7 +22,7 @@
 
 #import "DrawAction.h"
 #import "DrawManager.h"
-
+#import "BBSPermissionManager.h"
 
 BBSService *_staticBBSService;
 
@@ -434,6 +434,66 @@ BBSService *_staticBBSService;
             });
         });  
 }
+
+#pragma mark - bbs privilege methods
+- (void)changeBBSUser:(NSString *)targetUid
+                 role:(BBSUserRole)role
+              boardId:(NSString *)boardId
+           expireDate:(NSDate *)expireDate
+                 info:(NSDictionary *)info //for the futrue
+             delegate:(id<BBSServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+
+        NSString *userId = [[UserManager defaultManager] userId];
+        NSString *appId = [ConfigManager appId];
+        NSInteger deviceType = [DeviceDetection deviceType];
+        
+        CommonNetworkOutput *output = [BBSNetwork changeBBSUserRole:TRAFFIC_SERVER_URL
+                                                              appId:appId
+                                                         deviceType:deviceType
+                                                             userId:userId
+                                                          targetUid:targetUid
+                                                            boardId:boardId
+                                                           roleType:role
+                                                         expireDate:expireDate
+                                                               info:info];
+        NSInteger resultCode = [output resultCode];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didChangeUser:role:boardId:resultCode:)]) {
+                [delegate didChangeUser:targetUid role:role boardId:boardId resultCode:resultCode];
+            }
+        });
+    });
+
+}
+
+- (void)getBBSPrivilegeList
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    NSString *appId = [ConfigManager appId];
+    NSInteger deviceType = [DeviceDetection deviceType];
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput *output = [BBSNetwork getBBSPrivilegeList:TRAFFIC_SERVER_URL
+                                                                appId:appId
+                                                           deviceType:deviceType
+                                                               userId:userId];
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS && [output.responseData length] > 0)
+        {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            if (resultCode == ERROR_SUCCESS) {
+                NSArray *list = [response bbsPrivilegeListList];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[BBSPermissionManager defaultManager] updatePrivilegeList:list];
+                });
+            }
+
+        }
+    });
+}
+
 
 
 - (PBBBSUser *)myself

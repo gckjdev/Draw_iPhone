@@ -458,6 +458,85 @@
 
 }
 
++ (CommonNetworkOutput*)getBBSPrivilegeList:(NSString*)baseURL
+                                      appId:(NSString *)appId
+                                 deviceType:(NSInteger)deviceType
+                                     userId:(NSString *)userId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_BBS_PRIVILEGELIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+    
+}
+
++ (CommonNetworkOutput*)changeBBSUserRole:(NSString*)baseURL
+                                    appId:(NSString *)appId
+                               deviceType:(NSInteger)deviceType
+                                   userId:(NSString *)userId
+                                targetUid:(NSString *)targetUid
+                                  boardId:(NSString *)boardId
+                                 roleType:(int)roleType
+                               expireDate:(NSDate *)expireDate
+                                     info:(NSDictionary *)info //for the future
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CHANGE_BBS_ROLE];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:roleType];
+        if (expireDate) {
+            str = [str stringByAddQueryParameter:PARA_EXPIRE_DATE intValue:[expireDate timeIntervalSince1970]];
+        }
+
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];
+    
+}
+
+
 + (CommonNetworkOutput*)getBBSDrawData:(NSString*)baseURL
                                  appId:(NSString *)appId
                             deviceType:(NSInteger)deviceType

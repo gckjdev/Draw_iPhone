@@ -116,6 +116,21 @@
                             userId:(NSString *)userId
                             postId:(NSString *)postId;
 
++ (CommonNetworkOutput*)getBBSPrivilegeList:(NSString*)baseURL
+                                      appId:(NSString *)appId
+                                 deviceType:(NSInteger)deviceType
+                                     userId:(NSString *)userId;
+
++ (CommonNetworkOutput*)changeBBSUserRole:(NSString*)baseURL
+                                    appId:(NSString *)appId
+                               deviceType:(NSInteger)deviceType
+                                   userId:(NSString *)userId
+                                targetUid:(NSString *)targetUid
+                                  boardId:(NSString *)boardId
+                                 roleType:(int)roleType
+                               expireDate:(NSDate *)expireDate
+                                     info:(NSDictionary *)info; //for the future
+
 + (CommonNetworkOutput*)getBBSDrawData:(NSString*)baseURL
                                  appId:(NSString *)appId
                             deviceType:(NSInteger)deviceType

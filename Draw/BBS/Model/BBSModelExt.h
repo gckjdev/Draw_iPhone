@@ -41,6 +41,13 @@ typedef enum{
     BBSPostStatusTop = 0x1 << 2
 }BBSPostStatus;
 
+typedef enum{
+    BBSUserRoleNormal = 0,
+    BBSUserRoleForbided = 0x1,
+    BBSUserRoleBoardAdmin = 0x1 << 1,
+    BBSUserRoleBBSAdmin = 0x1 << 2,
+}BBSUserRole;
+
 
 @interface PBBBSContent (ContentExt)
 

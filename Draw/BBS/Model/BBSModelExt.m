@@ -85,6 +85,13 @@
 {
     return [self gender] ? @"m" : @"f";
 }
+
+- (NSString *)description
+{
+    NSString *desc = [NSString stringWithFormat:@"[uid = %@, nick = %@, avatar = %@, gender = %d]", self.userId, self.nickName, self.avatar, self.gender];
+    return desc;
+}
+
 @end
 
 

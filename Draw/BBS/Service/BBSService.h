@@ -77,6 +77,11 @@ typedef enum{
              resultCode:(NSInteger)resultCode;
 
 
+- (void)didChangeUser:(NSString *)userId
+                 role:(BBSUserRole)role
+              boardId:(NSString *)boardId
+             resultCode:(NSInteger)resultCode;
+
 @end
 
 
@@ -173,7 +178,19 @@ typedef enum{
         delegate:(id<BBSServiceDelegate>)delegate;
 
 
+
+#pragma mark - bbs privilege methods
+- (void)changeBBSUser:(NSString *)targetUid
+              role:(BBSUserRole)role
+           boardId:(NSString *)boardId
+        expireDate:(NSDate *)expireDate
+              info:(NSDictionary *)info //for the futrue
+          delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSPrivilegeList;
+
 #pragma mark - bbs user methods
+
 
 - (PBBBSUser *)myself;
 @end
