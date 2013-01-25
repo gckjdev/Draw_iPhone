@@ -164,8 +164,18 @@
 
 
 -(void)excute{
-    [self.controller showActivityWithText:NSLS(@"kToToping")];
+    
+    
     BBSPostStatus status = BBSPostStatusTop;
+    
+    if (self.post.status == BBSPostStatusTop) {
+        status = BBSPostStatusNormal;
+        [self.controller showActivityWithText:NSLS(@"kToUNToping")];        
+    }else{
+        [self.controller showActivityWithText:NSLS(@"kToToping")];
+    }
+
+    
     [[BBSService defaultService] editPost:self.post
                                   boardId:nil
                                    status:status

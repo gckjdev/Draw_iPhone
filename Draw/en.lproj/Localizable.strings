@@ -999,6 +999,7 @@
 "kEditPostFailed" = "Failed to edit post.";
 "kEditPostSucced" = "Succeed!";
 "kToToping" = "Being top...";
+"kToUNToping" = "Canceling top...";
 "kDeletePostFailed" = "Failed to delete post.";
 "kDeletePostSucceed" = "Succeed!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
