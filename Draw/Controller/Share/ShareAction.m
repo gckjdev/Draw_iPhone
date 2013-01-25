@@ -215,8 +215,10 @@
 //        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
         [_customActionSheet addButtonWithTitle:NSLS(@"kAlbum") image:imageManager.albumImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kFavorite") image:imageManager.favoriteImage];
-        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsAvatar") image:nil];
-        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsContact") image:nil];
+        
+        //TODO: finish it later, still need icon , use as contact not start.
+//        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsAvatar") image:nil];
+//        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsContact") image:nil];
 
     }
     
