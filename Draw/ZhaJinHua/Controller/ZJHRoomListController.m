@@ -121,7 +121,7 @@
 - (void)handleUpdateOnlineUserCount
 {
     NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
-    [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[self title], userCount] forState:UIControlStateNormal];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@(%@)",[self title], userCount]];
 }
 - (void)handleDidJoinGame
 {
