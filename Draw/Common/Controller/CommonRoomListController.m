@@ -68,6 +68,7 @@
     [self clearRefreshRoomsTimer];
     PPRelease(_currentSession);
     [_searchButton release];
+    [_headerBackgroundImageView release];
     [super dealloc];
 }
 
@@ -316,6 +317,8 @@
     [self.centerTabButton setBackgroundImage:[[GameApp getImageManager] roomListCenterBtnUnselectedImage] forState:UIControlStateNormal];
     [self.createRoomButton setBackgroundImage:[[GameApp getImageManager] roomListCreateRoomBtnBgImage] forState:UIControlStateNormal];
     [self.fastEntryButton setBackgroundImage:[[GameApp getImageManager] roomListFastEntryBtnBgImage] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
+    [self.headerBackgroundImageView setImage:[[GameApp getImageManager] headerBgImage]];
     
     [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
     [self.centerTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
@@ -343,6 +346,7 @@
 - (void)viewDidUnload {
     [self setBackgroundImageView:nil];
     [self setSearchButton:nil];
+    [self setHeaderBackgroundImageView:nil];
     [super viewDidUnload];
 }
 
