@@ -18,7 +18,7 @@
 
 @end
 
-#define BBS_PERMISSION_KEY @"BBS_PERMISSION"
+#define PERMISSION_SITE @"PERMISSION_SITE"
 
 @implementation BBSPermissionManager
 
@@ -54,7 +54,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 - (BBSUserPermission)permissionOnBBS
 {
-    return [self permissionOnnBoard:BBS_PERMISSION_KEY];
+    return [self permissionOnnBoard:PERMISSION_SITE];
 }
 
 #define BBS_PERMISSION ([self permissionOnBBS])
