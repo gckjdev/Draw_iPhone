@@ -23,6 +23,7 @@
 #import "PPViewController+StarryLoadingView.h"
 #import "CommonDialog.h"
 #import "GameApp.h"
+#import "FXLabel.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -69,6 +70,7 @@
     PPRelease(_currentSession);
     [_searchButton release];
     [_headerBackgroundImageView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -106,8 +108,8 @@
 
 - (void)handleUpdateOnlineUserCount
 {
-    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
-    [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[GameApp roomTitle], userCount] forState:UIControlStateNormal];
+//    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
 }
 
 - (void)handleDidConnectServer
@@ -347,6 +349,7 @@
     [self setBackgroundImageView:nil];
     [self setSearchButton:nil];
     [self setHeaderBackgroundImageView:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 

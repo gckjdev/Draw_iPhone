@@ -9,6 +9,7 @@
 #import "DrawRoomListCell.h"
 #import "GameBasic.pb.h"
 #import "PPResourceService.h"
+#import "FXLabel.h"
 
 
 #define TAG_USER_VIEW 101
@@ -37,9 +38,22 @@
     return HEIGHT_DRAW_ROOM_LIST_CELL;
 }
 
+- (void)initCell
+{
+    [self.roomNameLabel setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+//    [self.roomNameLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
+//    [self.roomNameLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    self.roomNameLabel.shadowColor = [UIColor whiteColor];
+    self.roomNameLabel.shadowOffset = CGSizeZero;
+    self.roomNameLabel.shadowBlur = 40.0f;
+
+}
+
 - (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile
 {
     [super setCellInfo:session];
+    [self initCell];
     
     if (session.name == nil || session.name.length <= 0) {
         [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), session.sessionId]]];

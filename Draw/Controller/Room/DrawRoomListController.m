@@ -14,6 +14,7 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "RoomController.h"
+#import "FXLabel.h"
 
 @interface DrawRoomListController ()
 
@@ -56,13 +57,40 @@
     [self.rightTabButton setFrame:rightRect];
 }
 
+- (void)initLabels
+{
+    [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
+    [self.titleLabel setGradientEndColor:[UIColor colorWithRed:88/255.0 green:56/255.0 blue:22/255.0 alpha:1.0]];
+    [self.titleLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
+    [self.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    [self.leftTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.leftTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.rightTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.rightTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    [self.fastEntryButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.fastEntryButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+    [self.fastEntryButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.createRoomButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+    [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
     [self hideCenterTabButton];
-    
+    [self initLabels];
     
     // Do any additional setup after loading the view from its nib.
 }
