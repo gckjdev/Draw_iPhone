@@ -36,7 +36,7 @@
     return @"DrawRoomListCell";
 }
 
-#define HEIGHT_DRAW_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+#define HEIGHT_DRAW_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 245: 102)
 
 
 + (CGFloat)getCellHeight
