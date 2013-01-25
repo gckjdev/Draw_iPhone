@@ -42,6 +42,7 @@ typedef enum {
 
 
 @property (retain, nonatomic) PBGameSession* currentSession;
+@property (retain, nonatomic) IBOutlet UIButton *searchButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *titleFontButton;
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;

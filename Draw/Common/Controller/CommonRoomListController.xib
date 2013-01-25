@@ -296,7 +296,7 @@
 					</object>
 					<object class="IBUIButton" id="227867150">
 						<reference key="NSNextResponder" ref="325852752"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{285, 52}, {30, 29}}</string>
 						<reference key="NSSuperview" ref="325852752"/>
 						<reference key="NSNextKeyView" ref="493066945"/>
@@ -455,6 +455,14 @@
 					<int key="connectionID">89</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">searchButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="227867150"/>
+					</object>
+					<int key="connectionID">97</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickFastEntryButton:</string>
 						<reference key="source" ref="381555427"/>
@@ -507,6 +515,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickSearch:</string>
+						<reference key="source" ref="227867150"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">96</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -662,7 +679,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">95</int>
+			<int key="maxID">97</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

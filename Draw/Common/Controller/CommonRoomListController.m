@@ -67,6 +67,7 @@
     [_backgroundImageView release];
     [self clearRefreshRoomsTimer];
     PPRelease(_currentSession);
+    [_searchButton release];
     [super dealloc];
 }
 
@@ -341,6 +342,7 @@
 
 - (void)viewDidUnload {
     [self setBackgroundImageView:nil];
+    [self setSearchButton:nil];
     [super viewDidUnload];
 }
 

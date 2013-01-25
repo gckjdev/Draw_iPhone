@@ -43,10 +43,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)hideCenterTabButton
+{
+    self.centerTabButton.hidden = YES;
+    CGRect leftRect = self.leftTabButton.frame;
+    CGRect rightRect = self.rightTabButton.frame;
+    
+    leftRect.size.width += self.centerTabButton.frame.size.width/2;
+    rightRect.size.width += self.centerTabButton.frame.size.width/2;
+    rightRect.origin.x -= self.centerTabButton.frame.size.width/2;
+    [self.leftTabButton setFrame:leftRect];
+    [self.rightTabButton setFrame:rightRect];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self hideCenterTabButton];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -163,7 +180,7 @@
     [self continueRefreshingRooms];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
-- (void)handleCenterTabAction
+- (void)handleRightTabAction
 {
     [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
     [self pauseRefreshingRooms];

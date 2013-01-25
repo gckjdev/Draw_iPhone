@@ -493,6 +493,14 @@
 					<int key="connectionID">40</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">searchButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="114032252"/>
+					</object>
+					<int key="connectionID">43</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSearch:</string>
 						<reference key="source" ref="114032252"/>
@@ -705,7 +713,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">42</int>
+			<int key="maxID">43</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -722,6 +730,7 @@
 						<string key="helpButton">UIButton</string>
 						<string key="leftTabButton">UIButton</string>
 						<string key="rightTabButton">UIButton</string>
+						<string key="searchButton">UIButton</string>
 						<string key="titleFontButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -759,6 +768,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="rightTabButton">
 							<string key="name">rightTabButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="searchButton">
+							<string key="name">searchButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleFontButton">
