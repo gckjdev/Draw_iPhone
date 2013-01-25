@@ -17038,7 +17038,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsPostList;
 @property (retain) NSMutableArray* mutableBbsActionList;
 @property (retain) PBBBSDraw* bbsDrawData;
-@property (retain) PBBBSUserPrivilege* userPrivilege;
+@property (retain) NSMutableArray* mutableBbsPrivilegeListList;
 @property (retain) NSMutableArray* mutableBbsUserListList;
 @property (retain) NSMutableArray* mutableWallListList;
 @end
@@ -17073,13 +17073,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasBbsDrawData_ = !!value;
 }
 @synthesize bbsDrawData;
-- (BOOL) hasUserPrivilege {
-  return !!hasUserPrivilege_;
-}
-- (void) setHasUserPrivilege:(BOOL) value {
-  hasUserPrivilege_ = !!value;
-}
-@synthesize userPrivilege;
+@synthesize mutableBbsPrivilegeListList;
 @synthesize mutableBbsUserListList;
 @synthesize mutableWallListList;
 - (void) dealloc {
@@ -17091,7 +17085,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsPostList = nil;
   self.mutableBbsActionList = nil;
   self.bbsDrawData = nil;
-  self.userPrivilege = nil;
+  self.mutableBbsPrivilegeListList = nil;
   self.mutableBbsUserListList = nil;
   self.mutableWallListList = nil;
   [super dealloc];
@@ -17101,7 +17095,6 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.resultCode = 0;
     self.totalCount = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
-    self.userPrivilege = [PBBBSUserPrivilege defaultInstance];
   }
   return self;
 }
@@ -17166,6 +17159,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableBbsActionList objectAtIndex:index];
   return value;
 }
+- (NSArray*) bbsPrivilegeListList {
+  return mutableBbsPrivilegeListList;
+}
+- (PBBBSPrivilege*) bbsPrivilegeListAtIndex:(int32_t) index {
+  id value = [mutableBbsPrivilegeListList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) bbsUserListList {
   return mutableBbsUserListList;
 }
@@ -17224,8 +17224,8 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
-  if (self.hasUserPrivilege) {
-    if (!self.userPrivilege.isInitialized) {
+  for (PBBBSPrivilege* element in self.bbsPrivilegeListList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -17272,8 +17272,8 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasBbsDrawData) {
     [output writeMessage:54 value:self.bbsDrawData];
   }
-  if (self.hasUserPrivilege) {
-    [output writeMessage:55 value:self.userPrivilege];
+  for (PBBBSPrivilege* element in self.bbsPrivilegeListList) {
+    [output writeMessage:55 value:element];
   }
   for (PBBBSUser* element in self.bbsUserListList) {
     [output writeMessage:56 value:element];
@@ -17320,8 +17320,8 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasBbsDrawData) {
     size += computeMessageSize(54, self.bbsDrawData);
   }
-  if (self.hasUserPrivilege) {
-    size += computeMessageSize(55, self.userPrivilege);
+  for (PBBBSPrivilege* element in self.bbsPrivilegeListList) {
+    size += computeMessageSize(55, element);
   }
   for (PBBBSUser* element in self.bbsUserListList) {
     size += computeMessageSize(56, element);
@@ -17455,8 +17455,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasBbsDrawData) {
     [self mergeBbsDrawData:other.bbsDrawData];
   }
-  if (other.hasUserPrivilege) {
-    [self mergeUserPrivilege:other.userPrivilege];
+  if (other.mutableBbsPrivilegeListList.count > 0) {
+    if (result.mutableBbsPrivilegeListList == nil) {
+      result.mutableBbsPrivilegeListList = [NSMutableArray array];
+    }
+    [result.mutableBbsPrivilegeListList addObjectsFromArray:other.mutableBbsPrivilegeListList];
   }
   if (other.mutableBbsUserListList.count > 0) {
     if (result.mutableBbsUserListList == nil) {
@@ -17551,12 +17554,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         break;
       }
       case 442: {
-        PBBBSUserPrivilege_Builder* subBuilder = [PBBBSUserPrivilege builder];
-        if (self.hasUserPrivilege) {
-          [subBuilder mergeFrom:self.userPrivilege];
-        }
+        PBBBSPrivilege_Builder* subBuilder = [PBBBSPrivilege builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUserPrivilege:[subBuilder buildPartial]];
+        [self addBbsPrivilegeList:[subBuilder buildPartial]];
         break;
       }
       case 450: {
@@ -17839,34 +17839,33 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   result.bbsDrawData = [PBBBSDraw defaultInstance];
   return self;
 }
-- (BOOL) hasUserPrivilege {
-  return result.hasUserPrivilege;
+- (NSArray*) bbsPrivilegeListList {
+  if (result.mutableBbsPrivilegeListList == nil) { return [NSArray array]; }
+  return result.mutableBbsPrivilegeListList;
 }
-- (PBBBSUserPrivilege*) userPrivilege {
-  return result.userPrivilege;
+- (PBBBSPrivilege*) bbsPrivilegeListAtIndex:(int32_t) index {
+  return [result bbsPrivilegeListAtIndex:index];
 }
-- (DataQueryResponse_Builder*) setUserPrivilege:(PBBBSUserPrivilege*) value {
-  result.hasUserPrivilege = YES;
-  result.userPrivilege = value;
+- (DataQueryResponse_Builder*) replaceBbsPrivilegeListAtIndex:(int32_t) index with:(PBBBSPrivilege*) value {
+  [result.mutableBbsPrivilegeListList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (DataQueryResponse_Builder*) setUserPrivilegeBuilder:(PBBBSUserPrivilege_Builder*) builderForValue {
-  return [self setUserPrivilege:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeUserPrivilege:(PBBBSUserPrivilege*) value {
-  if (result.hasUserPrivilege &&
-      result.userPrivilege != [PBBBSUserPrivilege defaultInstance]) {
-    result.userPrivilege =
-      [[[PBBBSUserPrivilege builderWithPrototype:result.userPrivilege] mergeFrom:value] buildPartial];
-  } else {
-    result.userPrivilege = value;
+- (DataQueryResponse_Builder*) addAllBbsPrivilegeList:(NSArray*) values {
+  if (result.mutableBbsPrivilegeListList == nil) {
+    result.mutableBbsPrivilegeListList = [NSMutableArray array];
   }
-  result.hasUserPrivilege = YES;
+  [result.mutableBbsPrivilegeListList addObjectsFromArray:values];
   return self;
 }
-- (DataQueryResponse_Builder*) clearUserPrivilege {
-  result.hasUserPrivilege = NO;
-  result.userPrivilege = [PBBBSUserPrivilege defaultInstance];
+- (DataQueryResponse_Builder*) clearBbsPrivilegeListList {
+  result.mutableBbsPrivilegeListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addBbsPrivilegeList:(PBBBSPrivilege*) value {
+  if (result.mutableBbsPrivilegeListList == nil) {
+    result.mutableBbsPrivilegeListList = [NSMutableArray array];
+  }
+  [result.mutableBbsPrivilegeListList addObject:value];
   return self;
 }
 - (NSArray*) bbsUserListList {

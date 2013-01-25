@@ -21,8 +21,6 @@
 @class PBBBSReward;
 @class PBBBSReward_Builder;
 @class PBBBSUser;
-@class PBBBSUserPrivilege;
-@class PBBBSUserPrivilege_Builder;
 @class PBBBSUser_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
@@ -402,6 +400,7 @@
   PBBBSUser* createUser;
   PBBBSContent* content;
   PBBBSReward* reward;
+  NSMutableArray* mutableBoardAdminListList;
 }
 - (BOOL) hasPostId;
 - (BOOL) hasBoardId;
@@ -427,6 +426,8 @@
 @property (readonly, retain) PBBBSContent* content;
 @property (readonly, retain) PBBBSReward* reward;
 @property (readonly) int32_t status;
+- (NSArray*) boardAdminListList;
+- (PBBBSUser*) boardAdminListAtIndex:(int32_t) index;
 
 + (PBBBSPost*) defaultInstance;
 - (PBBBSPost*) defaultInstance;
@@ -527,6 +528,13 @@
 - (int32_t) status;
 - (PBBBSPost_Builder*) setStatus:(int32_t) value;
 - (PBBBSPost_Builder*) clearStatus;
+
+- (NSArray*) boardAdminListList;
+- (PBBBSUser*) boardAdminListAtIndex:(int32_t) index;
+- (PBBBSPost_Builder*) replaceBoardAdminListAtIndex:(int32_t) index with:(PBBBSUser*) value;
+- (PBBBSPost_Builder*) addBoardAdminList:(PBBBSUser*) value;
+- (PBBBSPost_Builder*) addAllBoardAdminList:(NSArray*) values;
+- (PBBBSPost_Builder*) clearBoardAdminListList;
 @end
 
 @interface PBBBSPrivilege : PBGeneratedMessage {
@@ -584,64 +592,6 @@
 - (int32_t) permission;
 - (PBBBSPrivilege_Builder*) setPermission:(int32_t) value;
 - (PBBBSPrivilege_Builder*) clearPermission;
-@end
-
-@interface PBBBSUserPrivilege : PBGeneratedMessage {
-@private
-  BOOL hasUserId_:1;
-  NSString* userId;
-  NSMutableArray* mutablePrivilegeListList;
-}
-- (BOOL) hasUserId;
-@property (readonly, retain) NSString* userId;
-- (NSArray*) privilegeListList;
-- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index;
-
-+ (PBBBSUserPrivilege*) defaultInstance;
-- (PBBBSUserPrivilege*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBBBSUserPrivilege_Builder*) builder;
-+ (PBBBSUserPrivilege_Builder*) builder;
-+ (PBBBSUserPrivilege_Builder*) builderWithPrototype:(PBBBSUserPrivilege*) prototype;
-
-+ (PBBBSUserPrivilege*) parseFromData:(NSData*) data;
-+ (PBBBSUserPrivilege*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input;
-+ (PBBBSUserPrivilege*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBBBSUserPrivilege*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBBBSUserPrivilege_Builder : PBGeneratedMessage_Builder {
-@private
-  PBBBSUserPrivilege* result;
-}
-
-- (PBBBSUserPrivilege*) defaultInstance;
-
-- (PBBBSUserPrivilege_Builder*) clear;
-- (PBBBSUserPrivilege_Builder*) clone;
-
-- (PBBBSUserPrivilege*) build;
-- (PBBBSUserPrivilege*) buildPartial;
-
-- (PBBBSUserPrivilege_Builder*) mergeFrom:(PBBBSUserPrivilege*) other;
-- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBBBSUserPrivilege_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBBBSUserPrivilege_Builder*) setUserId:(NSString*) value;
-- (PBBBSUserPrivilege_Builder*) clearUserId;
-
-- (NSArray*) privilegeListList;
-- (PBBBSPrivilege*) privilegeListAtIndex:(int32_t) index;
-- (PBBBSUserPrivilege_Builder*) replacePrivilegeListAtIndex:(int32_t) index with:(PBBBSPrivilege*) value;
-- (PBBBSUserPrivilege_Builder*) addPrivilegeList:(PBBBSPrivilege*) value;
-- (PBBBSUserPrivilege_Builder*) addAllPrivilegeList:(NSArray*) values;
-- (PBBBSUserPrivilege_Builder*) clearPrivilegeListList;
 @end
 
 @interface PBBBSActionSource : PBGeneratedMessage {
@@ -883,6 +833,7 @@
   NSString* parentBoardId;
   NSString* desc;
   PBBBSPost* lastPost;
+  NSMutableArray* mutableAdminListList;
 }
 - (BOOL) hasBoardId;
 - (BOOL) hasType;
@@ -902,6 +853,8 @@
 @property (readonly, retain) NSString* parentBoardId;
 @property (readonly, retain) PBBBSPost* lastPost;
 @property (readonly, retain) NSString* desc;
+- (NSArray*) adminListList;
+- (PBBBSUser*) adminListAtIndex:(int32_t) index;
 
 + (PBBBSBoard*) defaultInstance;
 - (PBBBSBoard*) defaultInstance;
@@ -983,5 +936,12 @@
 - (NSString*) desc;
 - (PBBBSBoard_Builder*) setDesc:(NSString*) value;
 - (PBBBSBoard_Builder*) clearDesc;
+
+- (NSArray*) adminListList;
+- (PBBBSUser*) adminListAtIndex:(int32_t) index;
+- (PBBBSBoard_Builder*) replaceAdminListAtIndex:(int32_t) index with:(PBBBSUser*) value;
+- (PBBBSBoard_Builder*) addAdminList:(PBBBSUser*) value;
+- (PBBBSBoard_Builder*) addAllAdminList:(NSArray*) values;
+- (PBBBSBoard_Builder*) clearAdminListList;
 @end
 

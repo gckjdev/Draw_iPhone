@@ -64,11 +64,6 @@ message PBBBSPrivilege{
     required int32 permission = 2;
 }
 
-message PBBBSUserPrivilege{
-    required string userId = 1;
-    repeated PBBBSPrivilege privilegeList = 2;
-}
-
 message PBBBSActionSource{
     required string postId = 1;
     required string postUid = 2;
@@ -108,6 +103,7 @@ message PBBBSBoard{
     optional string parentBoardId = 7;
     optional PBBBSPost lastPost = 8;
     optional string desc = 9;
+    repeated PBBBSUser adminList = 10;
 }
 
 
