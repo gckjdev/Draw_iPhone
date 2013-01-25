@@ -105,6 +105,7 @@
 - (void)updateBoardList
 {
     [[BBSService defaultService] getBBSBoardList:self];
+    [[BBSService defaultService] getBBSPrivilegeList];
     if ([[[BBSManager defaultManager] boardList] count] != 0) {
         [self showActivityWithText:NSLS(@"kLoading")];
     }

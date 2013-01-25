@@ -38,6 +38,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 - (void)updatePrivilegeList:(NSArray *)privilegeList
 {
+    PPDebug(@"<updatePrivilegeList>, privilegeList count = %d", [privilegeList count]);
     self.privilegeList = privilegeList;
 }
 
