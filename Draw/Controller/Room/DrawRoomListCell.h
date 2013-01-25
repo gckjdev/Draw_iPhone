@@ -13,8 +13,6 @@
 @interface DrawRoomListCell : CommonRoomListCell <DiceAvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
-
 - (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile;
 
 @end

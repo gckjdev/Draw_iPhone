@@ -16,6 +16,8 @@
 
 @interface ZJHRoomListCell : CommonRoomListCell <DiceAvatarViewDelegate>
 
+@property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
+
 - (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile;
 
 @end

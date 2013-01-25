@@ -28,7 +28,6 @@
 }
 
 - (void)dealloc {
-    [_roomNameLabel release];
     [_backgroundImageView release];
     [super dealloc];
 }

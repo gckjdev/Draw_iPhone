@@ -25,6 +25,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [_roomNameLabel release];
+    [super dealloc];
+}
+
 + (NSString *)getCellIdentifier
 {
     return @"DrawRoomListCell";
@@ -46,7 +52,7 @@
     
     self.roomNameLabel.shadowColor = [UIColor whiteColor];
     self.roomNameLabel.shadowOffset = CGSizeZero;
-    self.roomNameLabel.shadowBlur = 40.0f;
+    self.roomNameLabel.shadowBlur = 5.0f;
 
 }
 

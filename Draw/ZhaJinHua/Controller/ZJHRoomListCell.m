@@ -16,6 +16,12 @@
 
 @implementation ZJHRoomListCell
 
+- (void)dealloc
+{
+    [_roomNameLabel release];
+    [super dealloc];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -24,6 +30,8 @@
     }
     return self;
 }
+
+
 
 + (NSString *)getCellIdentifier
 {
