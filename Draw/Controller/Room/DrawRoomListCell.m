@@ -25,12 +25,18 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [_roomNameLabel release];
+    [super dealloc];
+}
+
 + (NSString *)getCellIdentifier
 {
     return @"DrawRoomListCell";
 }
 
-#define HEIGHT_DRAW_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 204: 102)
+#define HEIGHT_DRAW_ROOM_LIST_CELL  ([DeviceDetection isIPAD] ? 245: 102)
 
 
 + (CGFloat)getCellHeight
@@ -46,7 +52,7 @@
     
     self.roomNameLabel.shadowColor = [UIColor whiteColor];
     self.roomNameLabel.shadowOffset = CGSizeZero;
-    self.roomNameLabel.shadowBlur = 40.0f;
+    self.roomNameLabel.shadowBlur = 5.0f;
 
 }
 
