@@ -786,23 +786,23 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)roomListBgImage
 {
-    return [_resService imageByName:[GameApp background] inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [_resService imageByName:@"draw_room_bg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListLeftBtnSelectedImage
 {
-    return [_resService imageByName:@"tab_left_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"draw_tab_left_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListLeftBtnUnselectedImage
 {
-    return [_resService imageByName:@"tab_left_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"draw_tab_left_unselected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnSelectedImage
 {
-    return [_resService imageByName:@"tab_right_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"draw_tab_right_selected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListRightBtnUnselectedImage
 {
-    return [_resService imageByName:@"tab_right_unselect" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"draw_tab_right_unselected" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
 - (UIImage *)roomListCenterBtnSelectedImage
@@ -816,20 +816,25 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)roomListCellBgImage
 {
-    return [_resService imageByName:@"room_item" inResourcePackage:RESOURCE_PACKAGE_COMMON];
+    return [_resService imageByName:@"draw_room_cell_bg" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 - (UIImage *)roomListBackBtnImage
 {
-    return [_resService imageByName:@"back" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [_resService imageByName:@"draw_room_back" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 
 - (UIImage *)roomListCreateRoomBtnBgImage
 {
-    return [self inputDialogLeftBtnImage];
+    return [_resService imageByName:@"draw_room_button" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 - (UIImage *)roomListFastEntryBtnBgImage
 {
-    return [self inputDialogRightBtnImage];
+    return [_resService imageByName:@"draw_room_button" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
+
+- (UIImage *)headerBgImage
+{
+    return [_resService imageByName:@"draw_room_title_bg" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
 
 - (UIImage *)userInfoFollowBtnImage

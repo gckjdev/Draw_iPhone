@@ -44,6 +44,7 @@
 - (UIImage *)roomListFastEntryBtnBgImage;
 - (UIImage *)userInfoFollowBtnImage;
 - (UIImage *)userInfoTalkBtnImage;
+- (UIImage *)headerBgImage;
 
 - (UIImage *)bulletinAccessoryImage;
 - (UIImage *)bulletinBackgroundImage;
