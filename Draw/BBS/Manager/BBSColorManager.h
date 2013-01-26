@@ -32,6 +32,13 @@
 - (UIColor *)detailDefaultColor;
 - (UIColor *)detailHeaderSelectedColor;
 
+#pragma mark - bbs board admin
+- (UIColor *)bbsAdminTitleColor;
+- (UIColor *)bbsAdminNickColor;
+- (UIColor *)bbsAdminLineColor;
+- (UIColor *)bbsTopPostFlagColor;
+
+#pragma mark - bbs user action
 - (UIColor *)userActionSplitColor;//758ba2
 - (UIColor *)userActionSourceColor;
 

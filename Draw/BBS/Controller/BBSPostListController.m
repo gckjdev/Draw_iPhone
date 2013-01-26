@@ -13,6 +13,9 @@
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
 #import "CommonUserInfoView.h"
+#import "BoardAdminListView.h"
+
+#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,118) : CGPointMake(0,54))
 
 @interface BBSPostListController ()
 {
@@ -23,6 +26,7 @@
     BBSManager *_bbsManager;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIView *holderView;
 @property (retain, nonatomic) NSURL *tempURL;
 - (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
@@ -67,16 +71,27 @@
 
 - (BOOL)showBoardAdminList
 {
+//    return NO;
     return self.bbsBoard != nil;
 }
 
 - (void)updateTableViewFrame
 {
-    
+    if ([self showBoardAdminList]) {
+        [self.dataTableView setFrame:self.holderView.frame];
+        [self.holderView setBackgroundColor:[UIColor clearColor]];
+    }else{
+        [self.holderView removeFromSuperview];
+    }
 }
 
 - (void)showAdminListView
 {
+    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminListList controller:self];
+    CGRect frame = [adminListView frame];
+    frame.origin = ADMINLISTVIEW_ORIGIN;
+    adminListView.frame = frame;
+    [self.view addSubview:adminListView];
     
 }
 //#define POST_LIST_TAB 100
@@ -157,6 +172,7 @@
     PPRelease(_rankButton);
     PPRelease(_bgImageView);
     PPRelease(_tempURL);
+    [_holderView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -165,6 +181,7 @@
     [self setRankButton:nil];
     [self setBgImageView:nil];
     [_bbsManager setTempPostList:nil];
+    [self setHolderView:nil];
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {

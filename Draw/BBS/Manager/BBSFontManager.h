@@ -27,7 +27,7 @@
 - (UIFont *)indexBoardNameFont;
 - (UIFont *)indexSectionNameFont;
 
-#pragma markpost list font
+#pragma mark - post list font
 - (UIFont *)postNickFont;
 - (UIFont *)postContentFont;
 - (UIFont *)postDateFont;
@@ -35,10 +35,16 @@
 - (UIFont *)postActionFont;
 - (UIFont *)postTopFont;
 
+#pragma mark - board admin
+- (UIFont *)boardAdminTitleFont;
+- (UIFont *)boardAdminNickFont;
+
 #pragma mark post detail font
 - (UIFont *)detailHeaderFont;
 - (UIFont *)detailActionFont;
 - (UIFont *)actionSourceFont;
+
+
 
 #pragma mark creation font
 - (UIFont *)creationDefaulFont;

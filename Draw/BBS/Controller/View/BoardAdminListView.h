@@ -11,6 +11,7 @@
 
 @interface BoardAdminListView : UIView
 @property (nonatomic ,assign)PPViewController *controller;
+@property (retain, nonatomic) IBOutlet UILabel *adminTitle;
 
 
 + (id)adminListViewWithBBSUserList:(NSArray *)userList

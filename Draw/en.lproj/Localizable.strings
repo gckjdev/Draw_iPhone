@@ -1004,7 +1004,8 @@
 "kDeletePostSucceed" = "Succeed!";
 "kDeletePostAlertTitle" = "Tips";
 "kDeletePostAlertMessage" = "Are you sure to delete the post?";
-
+"kBoardAdmin" = "Admin:";
+"NOkBoardAdmin" = "No Admin";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

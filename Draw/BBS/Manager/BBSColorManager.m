@@ -73,6 +73,22 @@ static BBSColorManager* _staticBBSColorManager;
     return [UIColor colorWithRed:0x7c/255.0 green:0xb3/255.0 blue:0xde/255.0 alpha:1];
 }
 
+#pragma mark - bbs board admin
+
+- (UIColor *)bbsAdminTitleColor{
+    return [UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
+}
+- (UIColor *)bbsAdminNickColor{
+    return [UIColor colorWithRed:0x6d/255.0 green:0x98/255.0 blue:0xb8/255.0 alpha:1];
+}
+- (UIColor *)bbsAdminLineColor{
+    return [UIColor colorWithRed:0x54/255.0 green:0x78/255.0 blue:0x9d/255.0 alpha:1];
+}
+- (UIColor *)bbsTopPostFlagColor{
+    return [UIColor colorWithRed:0xe6/255.0 green:0xec/255.0 blue:0xf2/255.0 alpha:1];
+}
+
+
 #pragma mark - post detail color
 - (UIColor *)detailDefaultColor{
     return [UIColor colorWithRed:0x61/255.0 green:0x8d/255.0 blue:0xb4/255.0 alpha:1];
@@ -81,7 +97,7 @@ static BBSColorManager* _staticBBSColorManager;
     return [UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
 }
 
-
+#pragma - mark user action
 - (UIColor *)userActionSplitColor{
     return [UIColor colorWithRed:0x75/255.0 green:0x8b/255.0 blue:0xa2/255.0 alpha:1];
 }
@@ -89,6 +105,8 @@ static BBSColorManager* _staticBBSColorManager;
 - (UIColor *)userActionSourceColor{
     return [UIColor grayColor];
 }
+
+
 #pragma mark - creation color
 - (UIColor *)creationDefaultColor{
     return [UIColor colorWithRed:0x2c/255.0 green:0x4c/255.0 blue:0x6e/255.0 alpha:1];
