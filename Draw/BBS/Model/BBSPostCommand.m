@@ -189,6 +189,9 @@
 
 - (UIImage *)icon
 {
+    if (self.post.status == BBSPostStatusTop) {
+        return [[BBSImageManager defaultManager] bbsPostDetailUnTop];
+    }
     return [[BBSImageManager defaultManager] bbsPostDetailToTop];
 }
 
