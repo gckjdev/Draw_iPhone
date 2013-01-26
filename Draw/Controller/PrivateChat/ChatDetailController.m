@@ -207,7 +207,7 @@
     [super viewDidLoad];
     [self initViews];
     [self initListWithLocalData];
-    [self loadNewMessage];
+    [self loadNewMessage:YES];
 }
 
 
@@ -703,9 +703,11 @@
     }
     return nil;    
 }
-- (void)loadNewMessage
+- (void)loadNewMessage:(BOOL)showActivity
 {
-//    [self showActivityWithText:NSLS(@"kLoading")];
+    if (showActivity) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+    }
     [[ChatService defaultService] getMessageList:self
                                     friendUserId:self.fid
                                  offsetMessageId:self.lastMessageId 
