@@ -207,14 +207,14 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    if (buttonIndex == 1) {
         [self.controller showActivityWithText:NSLS(@"kDeleting")];
         [[BBSService defaultService] deletePost:self.post delegate:self.controller];
     }
 }
 
 -(void)excute{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kDeletePostAlertTitle") message:NSLS(@"kDeletePostAlertMessage") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOk"), nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kDeletePostAlertTitle") message:NSLS(@"kDeletePostAlertMessage") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
     [alert show];
     PPRelease(alert);
 }
