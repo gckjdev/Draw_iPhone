@@ -164,6 +164,8 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
     [self.titleLabel setText:NSLS(@"kFeed")];
+    [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]
+                                      delegete:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -578,6 +580,20 @@ typedef enum{
         [self clearBadge:FeedListTypeComment];
     }else{
         [self failLoadDataForTabID:MyTypeComment];
+    }
+}
+
+- (void)didGetUser:(NSString *)userId
+         opusCount:(NSInteger)count
+        resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        if (count != 0) {
+            //update opus count
+            UIButton * button = [self tabButtonWithTabID:MyTypeOpus];
+            NSString *title = [NSString stringWithFormat:NSLS(@"kOpusCount"),count];
+            [button setTitle:title forState:UIControlStateNormal];
+        }
     }
 }
 

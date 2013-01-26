@@ -66,6 +66,11 @@
                 resultCode:(NSInteger)resultCode;
 
 - (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode;
+
+- (void)didGetUser:(NSString *)userId
+         opusCount:(NSInteger)count
+        resultCode:(NSInteger)resultCode;
+
 @end
 
 @interface FeedService : CommonService
@@ -109,6 +114,9 @@
 
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getOpusCount:(NSString *)targetUid
+            delegete:(id<FeedServiceDelegate>)delegate;
 
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 

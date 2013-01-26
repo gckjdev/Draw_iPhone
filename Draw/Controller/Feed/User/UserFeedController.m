@@ -82,11 +82,16 @@ typedef enum{
 
 #pragma mark - View lifecycle
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
     [self initTabButtons];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
+
+    //load opus count
+    [[FeedService defaultService] getOpusCount:_userId delegete:self];
 }
 
 - (void)viewDidUnload
@@ -350,6 +355,20 @@ typedef enum{
         [self failLoadDataForTabID:type];
     }
     
+}
+
+- (void)didGetUser:(NSString *)userId
+         opusCount:(NSInteger)count
+        resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        if (count != 0) {
+            //update opus count
+            UIButton * button = [self tabButtonWithTabID:UserTypeOpus];
+            NSString *title = [NSString stringWithFormat:NSLS(@"kOpusCount"),count];
+            [button setTitle:title forState:UIControlStateNormal];
+        }
+    }
 }
 
 

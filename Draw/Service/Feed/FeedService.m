@@ -29,6 +29,8 @@ static FeedService *_staticFeedService = nil;
     return _staticFeedService;
 }
 
+#define GET_FEEDLIST_QUEUE @"GET_FEEDLIST_QUEUE"
+
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
@@ -44,10 +46,12 @@ static FeedService *_staticFeedService = nil;
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     
+    dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
+    if (getFeedListQueue == NULL) {
+        getFeedListQueue = workingQueue;
+    }
     
-//    [delegate showActivityWithText:NSLS(@"kParsingData")];
-    
-    dispatch_async(workingQueue, ^{
+    dispatch_async(getFeedListQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
@@ -335,6 +339,34 @@ static FeedService *_staticFeedService = nil;
 
     }];
 }
+
+- (void)getOpusCount:(NSString *)targetUid
+            delegete:(id<FeedServiceDelegate>)delegate
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* appId = [ConfigManager appId];
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getOpusCount:TRAFFIC_SERVER_URL
+                                       appId:appId
+                                       userId:userId
+                                       targetUid:targetUid];
+        
+        NSInteger count = 0;
+        if (output.resultCode == 0) {
+            count = [[output.jsonDataDict objectForKey:PARA_COUNT] integerValue];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetUser:opusCount:resultCode:)]){
+                [delegate didGetUser:userId opusCount:count resultCode:output.resultCode];
+            }
+        });
+    });
+}
+
 - (void)commentOpus:(NSString *)opusId
              author:(NSString *)author 
             comment:(NSString *)comment          
