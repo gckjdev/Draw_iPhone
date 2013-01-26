@@ -211,7 +211,7 @@
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
-    [self updateDrawToUserInfo:feed];
+//    [self updateDrawToUserInfo:feed];
     [self updateDesc:feed.opusDesc];
     [self.loadingActivity setCenter:self.drawImage.center];
     if ([feed hasDrawActions]) {
