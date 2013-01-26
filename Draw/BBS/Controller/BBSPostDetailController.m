@@ -363,13 +363,19 @@ typedef enum{
 }
 
 
+- (BOOL)actionCanDelete:(PBBBSAction *)action
+{
+    return  action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId]);
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSAction *action = [self actionForIndexPath:indexPath];
-    if (action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId])) {
-        return YES;
-    }
-    return NO;
+    return [self actionCanDelete:action];
+//    if (action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId])) {
+//        return YES;
+//    }
+//    return NO;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -384,7 +390,8 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSAction *action = [self actionForIndexPath:indexPath];
-    if (action && action.canDelete) {
+    if ([self actionCanDelete:action]) {
+        [self showActivityWithText:NSLS(@"kDeleting")];
         [[BBSService defaultService] deleteActionWithActionId:action.actionId delegate:self];
     }
 }
@@ -545,6 +552,7 @@ typedef enum{
 
 - (void)didDeleteBBSAction:(NSString *)actionId resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         PBBBSAction *act = nil;
         NSInteger row = 0;
