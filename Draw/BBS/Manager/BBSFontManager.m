@@ -93,11 +93,11 @@ static BBSFontManager* _staticBBSFontManager;
 
 - (UIFont *)boardAdminTitleFont
 {
-    return ISIPHONE ? FONT(14) : FONT(14*2);
+    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
 }
 - (UIFont *)boardAdminNickFont
 {
-    return ISIPHONE ? FONT(14) : FONT(14*2);
+    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
 }
 
 

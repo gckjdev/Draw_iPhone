@@ -15,7 +15,7 @@
 #import "CommonUserInfoView.h"
 #import "BoardAdminListView.h"
 
-#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,52))
+#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,49))
 
 @interface BBSPostListController ()
 {
@@ -133,7 +133,7 @@
     
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
-    [BBSViewManager updateDefaultTableView:self.dataTableView];
+//    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
