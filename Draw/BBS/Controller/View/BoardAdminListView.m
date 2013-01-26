@@ -82,7 +82,7 @@
     [_nick setLineBreakMode:NSLineBreakByTruncatingTail];
     [_nick setFont:NICK_FONT];
     [_nick setBackgroundColor:[UIColor clearColor]];
-    [_nick setTextColor:[UIColor greenColor]];
+    [_nick setTextColor:[[BBSColorManager defaultManager] bbsAdminNickColor]];
     [self addSubview:_nick];
 }
 
@@ -141,6 +141,7 @@
         [self updateAdminView:view frameWithX:x];
         x = CGRectGetMaxX(view.frame) + SPACE_ADMINVIEW;
     }
+    [self updateTitleWithUserList:userList];
 }
 
 - (void)updateTitleWithUserList:(NSArray *)userList

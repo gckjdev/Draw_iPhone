@@ -1031,7 +1031,7 @@
 "kDeletePostAlertMessage" = "确定要删除该帖子吗？";
 
 "kBoardAdmin" = "版主:";
-"NOkBoardAdmin" = "暂无版主";
+"kNoBoardAdmin" = "暂无版主";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

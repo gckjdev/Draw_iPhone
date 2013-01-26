@@ -15,7 +15,7 @@
 #import "CommonUserInfoView.h"
 #import "BoardAdminListView.h"
 
-#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,118) : CGPointMake(0,54))
+#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,52))
 
 @interface BBSPostListController ()
 {
