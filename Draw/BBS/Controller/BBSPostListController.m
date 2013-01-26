@@ -65,6 +65,20 @@
     return self;
 }
 
+- (BOOL)showBoardAdminList
+{
+    return self.bbsBoard != nil;
+}
+
+- (void)updateTableViewFrame
+{
+    
+}
+
+- (void)showAdminListView
+{
+    
+}
 //#define POST_LIST_TAB 100
 
 - (NSInteger)rangeTypeToTabID:(RangeType)rangeType
@@ -78,10 +92,6 @@
 }
 - (void)initViews
 {
-//    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
-    
-
-    
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
     
     NSString *titleName = nil;
@@ -111,7 +121,12 @@
     [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
-    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];    
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
+    
+    [self updateTableViewFrame];
+    if ([self showBoardAdminList]) {
+        [self showAdminListView];
+    }
 }
 
 - (void)viewDidLoad
