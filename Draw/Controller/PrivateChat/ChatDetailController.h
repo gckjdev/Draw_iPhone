@@ -32,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *inputTextBackgroundImage;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 @property (assign, nonatomic) id<ChatDetailControllerDelegate> delegate;
+- (IBAction)clickRefresh:(id)sender;
 
 - (IBAction)clickGraffitiButton:(id)sender; 
 - (void)loadNewMessage:(BOOL)showActivity;

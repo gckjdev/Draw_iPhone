@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
 @interface BoardAdminListView : UIView
+@property (nonatomic ,assign)PPViewController *controller;
+
+
++ (id)adminListViewWithBBSUserList:(NSArray *)userList
+                        controller:(PPViewController *)controller;
 
 @end

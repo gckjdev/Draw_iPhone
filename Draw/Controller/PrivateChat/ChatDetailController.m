@@ -367,6 +367,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)clickRefresh:(id)sender {
+    [self loadNewMessage:YES];
+}
+
 - (IBAction)clickGraffitiButton:(id)sender 
 {
     [self showGraffitiView];
