@@ -346,6 +346,7 @@
 {
     PBBBSPost *post = [self postForIndexPath:indexPath];
     if (post && post.canDelete) {
+        [self showActivityWithText:NSLS(@"kDeleting")];
         [[BBSService defaultService] deletePost:post delegate:self];
     }
 }
