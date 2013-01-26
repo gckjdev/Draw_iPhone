@@ -685,7 +685,7 @@
 
 + (int)getOnlineDrawFleeCoin
 {
-    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_FLEE_COIN" defaultValue:1];
+    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_FLEE_COIN" defaultValue:5];
 }
 
 @end
