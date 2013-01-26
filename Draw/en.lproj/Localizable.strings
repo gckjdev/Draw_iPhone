@@ -1002,6 +1002,9 @@
 "kToUNToping" = "Canceling top...";
 "kDeletePostFailed" = "Failed to delete post.";
 "kDeletePostSucceed" = "Succeed!";
+"kDeletePostAlertTitle" = "Tips";
+"kDeletePostAlertMessage" = "Are you sure to delete the post?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

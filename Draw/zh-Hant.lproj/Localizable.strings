@@ -1024,6 +1024,8 @@
 "kDeletePostFailed" = "對不起，刪除帖子失敗。";
 "kDeletePostSucceed" = "刪除帖子成功！";
 
+"kDeletePostAlertTitle" = "提示";
+"kDeletePostAlertMessage" = "確定要刪除該帖子嗎？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

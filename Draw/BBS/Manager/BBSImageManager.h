@@ -69,6 +69,7 @@
 - (UIImage *)bbsPostDetailDelete;
 - (UIImage *)bbsPostDetailSupport;
 - (UIImage *)bbsPostDetailToTop;
+- (UIImage *)bbsPostDetailUnTop;
 - (UIImage *)bbsPostDetailTransfer;
 - (UIImage *)bbsPostTopBg;
 

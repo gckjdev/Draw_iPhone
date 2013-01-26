@@ -34,7 +34,7 @@
 @property (assign, nonatomic) id<ChatDetailControllerDelegate> delegate;
 
 - (IBAction)clickGraffitiButton:(id)sender; 
-- (void)loadNewMessage;
+- (void)loadNewMessage:(BOOL)showActivity;
 - (id)initWithMessageStat:(MessageStat *)messageStat;
 - (NSString *)fid;
 @end

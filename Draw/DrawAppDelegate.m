@@ -551,7 +551,7 @@ NSString* GlobalGetBoardServerURL()
     
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
     if (type == NotificationTypeMessage && _chatDetailController) {
-        [_chatDetailController loadNewMessage];
+        [_chatDetailController loadNewMessage:NO];
     }
     
     [[NotificationManager defaultManager] showNotification:userInfo];

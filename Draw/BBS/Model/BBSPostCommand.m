@@ -189,6 +189,9 @@
 
 - (UIImage *)icon
 {
+    if (self.post.status == BBSPostStatusTop) {
+        return [[BBSImageManager defaultManager] bbsPostDetailUnTop];
+    }
     return [[BBSImageManager defaultManager] bbsPostDetailToTop];
 }
 
@@ -202,9 +205,18 @@
 
 @implementation BBSPostDeleteCommand
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self.controller showActivityWithText:NSLS(@"kDeleting")];
+        [[BBSService defaultService] deletePost:self.post delegate:self.controller];
+    }
+}
+
 -(void)excute{
-    [self.controller showActivityWithText:NSLS(@"kDeleting")];
-    [[BBSService defaultService] deletePost:self.post delegate:self.controller];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kDeletePostAlertTitle") message:NSLS(@"kDeletePostAlertMessage") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
+    [alert show];
+    PPRelease(alert);
 }
 - (NSString *)name{
     return NSLS(@"kBBSDelete");
