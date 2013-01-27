@@ -112,11 +112,11 @@
     _throwingItem.center = self.view.center;
     
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
             //
         }];
     }else if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
             //
         }];
     }

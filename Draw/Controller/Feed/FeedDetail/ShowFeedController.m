@@ -532,7 +532,7 @@ enum{
     if (item.type == ItemTypeFlower) {
         UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
         [throwItem setImage:[imageManager flower]];
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             [self clickRefresh:nil];
         }];
         [_commentHeader setSeletType:CommentTypeFlower];
@@ -540,7 +540,7 @@ enum{
     }else{
         UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
         [throwItem setImage:[imageManager tomato]];
-        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             [self clickRefresh:nil];
         }];
         [_commentHeader setSeletType:CommentTypeTomato];

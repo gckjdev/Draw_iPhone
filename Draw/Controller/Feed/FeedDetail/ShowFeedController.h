@@ -14,6 +14,7 @@
 #import "CommentHeaderView.h"
 #import "CommentCell.h"
 #import "DrawInfoCell.h"
+#import "UserService.h"
 
 @class Feed;
 @class DrawFeed;
@@ -25,7 +26,7 @@
 @class UseItemScene;
 //@class ToolView;
 
-@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, UIActionSheetDelegate, DrawInfoCellDelegate>
+@interface ShowFeedController : PPTableViewController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, UIActionSheetDelegate, DrawInfoCellDelegate, UserServiceDelegate>
 {
     DrawFeed *_feed;
     UserInfoCell *_userCell;

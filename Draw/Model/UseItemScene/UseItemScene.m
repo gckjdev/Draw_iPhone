@@ -190,4 +190,12 @@
     return [NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),self.feed.itemLimit];
 }
 
++ (BOOL)shouldItemMakeEffectInScene:(UseSceneType)type
+{
+    if (type == UseSceneTypeDrawMatch || type == UseSceneTypeMatchRank) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

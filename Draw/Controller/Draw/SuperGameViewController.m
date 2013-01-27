@@ -25,6 +25,7 @@
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
 #import "AccountService.h"
+#import "UseItemScene.h"
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
@@ -424,12 +425,12 @@
     [self.view addSubview:throwItem];
     [throwItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
             //
         }];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
             //
         }];
     }

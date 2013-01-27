@@ -16,6 +16,7 @@
 #import "MyPaintManager.h"
 #import "PPTableViewController.h"
 #import "OfflineDrawViewController.h"
+#import "UserService.h"
 
 typedef enum {
     FromWeixinOptionShareOpus = 0,
@@ -23,7 +24,7 @@ typedef enum {
 }FromWeixinOption;
 
 @class MyPaint;
-@interface ShareController : CommonTabController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate, OfflineDrawDelegate> {
+@interface ShareController : CommonTabController <UIActionSheetDelegate, ShareCellDelegate, ShowDrawViewDelegate, CommonDialogDelegate,MyPaintManagerDelegate, OfflineDrawDelegate, UserServiceDelegate> {
     
     int EDIT;
     int SHARE_AS_PHOTO;

@@ -79,10 +79,12 @@
 //    [ItemImageView.layer addAnimation:animGroup forKey:ANIM_GROUP];
 }
 
-+ (void)showThrowTomato:(UIImageView*)tomatoImageView 
+
++ (void)showThrowTomato:(UIImageView*)tomatoImageView
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
              itemEnough:(BOOL)enough
+         shouldShowTips:(BOOL)shouldShowTips
              completion:(void (^)(BOOL))completion
 {
     NSString* msg;
@@ -94,7 +96,7 @@
     }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {
-        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];   
+        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:tomatoImageView inViewController:superController];
         
     }else{
         animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
@@ -102,13 +104,17 @@
     //    [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
     [AnimationPlayer showView:tomatoImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
         completion(finished);
-        [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        if (shouldShowTips) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        }
     }];
 }
-+ (void)showThrowFlower:(UIImageView*)flowerImageView 
+
++ (void)showThrowFlower:(UIImageView*)flowerImageView
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
              itemEnough:(BOOL)enough
+         shouldShowTips:(BOOL)shouldShowTips
              completion:(void (^)(BOOL))completion
 {
     NSString* msg;
@@ -120,7 +126,7 @@
     }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {
-        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];        
+        animationGroup =  [DrawGameAnimationManager createThrowItemAnimation:flowerImageView inViewController:superController];
     }else{
         animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
     }
@@ -128,7 +134,10 @@
     //    [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
     [AnimationPlayer showView:flowerImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
         completion(finished);
-        [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        if (shouldShowTips) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        }
+     
     }];
     
 }
@@ -139,7 +148,7 @@
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
 {
-    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling itemEnough:YES completion:^(BOOL finished) {
+    [self showThrowTomato:tomatoImageView animInController:superController rolling:rolling itemEnough:YES shouldShowTips:YES completion:^(BOOL finished) {
         
     }];
 }
@@ -149,7 +158,7 @@
                 rolling:(BOOL)rolling
 {
     
-    [self showThrowFlower:flowerImageView animInController:superController rolling:rolling itemEnough:YES completion:^(BOOL finished) {
+    [self showThrowFlower:flowerImageView animInController:superController rolling:rolling itemEnough:YES shouldShowTips:YES completion:^(BOOL finished) {
         
     }];
 }
