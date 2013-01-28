@@ -19,6 +19,7 @@
 @property (retain, nonatomic) NSString* gameId;
 @property (retain, nonatomic) NSString* function;
 @property (assign, nonatomic) BOOL hasRead;
+@property (copy, nonatomic) NSString* url;
 
 - (id)initWithDict:(NSDictionary*)dict;
 

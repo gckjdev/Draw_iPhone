@@ -15,6 +15,7 @@
 #import "StringUtil.h"
 #import "GameApp.h"
 #import "CommonMessageCenter.h"
+#import "Bulletin.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -52,11 +53,28 @@
     
 }
 
+- (void)handleUrlFromController:(UIViewController*)controller
+                            Url:(NSURL*)Url
+{
+    
+}
+
 + (void)handleGameJump:(UIViewController*)controller
                 gameId:(NSString*)gameId
               function:(NSString*)function
 {
     [[GameApp getGameJumpHandler] controllerForGameId:gameId func:function fromController:controller];
+}
+
++ (void)handleBulletinJump:(UIViewController*)controller
+                  bulletin:(Bulletin*)bulletin
+{
+    if (bulletin.type == JumpTypeGame) {
+        [JumpHandler handleGameJump:controller gameId:bulletin.gameId function:bulletin.function];
+        return;
+    }
+    [[JumpHandler createJumpHandlerWithType:bulletin.type] handleUrlFromController:controller Url:[NSURL URLWithString:bulletin.url]];
+    
 }
 
 + (BOOL)canJump:(JumpType)type
@@ -120,6 +138,11 @@
     //load the web view handler
     
 }
+- (void)handleUrlFromController:(UIViewController*)controller
+                            Url:(NSURL*)Url
+{
+    
+}
 @end
 
 #pragma mark - IntergralJumpHandler
@@ -144,6 +167,13 @@
     [super handleJump:boardView controller:controller URL:URL];
     NSString *url = [URL.queryComponents objectForKey:BOARD_PARA_URL];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+- (void)handleUrlFromController:(UIViewController*)controller
+                            Url:(NSURL*)Url
+{
+    [[UIApplication sharedApplication] openURL:Url];
+    //http://  tel:// msm:// 
+    
 }
 @end
 

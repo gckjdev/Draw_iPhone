@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShowDrawView.h"
 
 @class DrawFeed;
 @class ShowDrawView;
-@interface ReplayView : UIView
+@interface ReplayView : UIView<ShowDrawViewDelegate>
 {
     id _delegate;
     DrawFeed *_feed;

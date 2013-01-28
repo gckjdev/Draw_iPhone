@@ -82,6 +82,10 @@
     [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
     [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
     
+    [self.emptyListTips setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+    [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
+    
 }
 
 - (void)viewDidLoad

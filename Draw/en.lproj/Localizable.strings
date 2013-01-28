@@ -568,7 +568,7 @@
 "kContestEnd" = "The contest is end, fail to submit.";
 
 "kContestNotRunning" = "Sorry, the contest is not running now.";
-"kContesSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
+"kContestSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
 //"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
 //"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
 //"kChangeOpusTitle" = "Change Opus";
@@ -1208,7 +1208,7 @@
 "kRoomNameDuplicated" = "Room name duplicated.";
 
 "kSearchEmpty" = "No matched room";
-"kNoFriendRoom" = "No friend room";
+"kNoFriendRoom" = "No friend online";
 "kMe" = "Me";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a tomato";

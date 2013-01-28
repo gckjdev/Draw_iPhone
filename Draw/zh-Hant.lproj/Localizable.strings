@@ -894,7 +894,7 @@
 "kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
 "kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
 "kContestNotRunning" = "對不起，比賽已經結束或者尚未開始，您不能參加。";
-"kContesSummitCountEnough" = "對不起，你已經提交了%d幅作品了，留點機會給別人哦。";
+"kContestSummitCountEnough" = "對不起，妳已經提交了%d幅作品了，不能再提交了。";
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
@@ -1223,7 +1223,7 @@
 "kRoomNameDuplicated" = "這個房名已經被人用了，換一個吧。";
 
 "kSearchEmpty" = "找不到匹配的房間";
-"kNoFriendRoom" = "暫時沒有好友房間";
+"kNoFriendRoom" = "暫時沒有好友在線";
 "kOnlineUser" = "在線%d人";
 "kCanotSendItemToOverContestOpus" = "比賽已經結束， 不能再丟東西了哦！";
 

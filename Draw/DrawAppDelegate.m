@@ -63,6 +63,7 @@
 #import "GameConfigDataManager.h"
 #import "ZJHHomeViewController.h"
 #import "BulletinService.h"
+#import "PPSmartUpdateDataUtils.h"
 
 
 NSString* GlobalGetServerURL()
@@ -233,6 +234,8 @@ NSString* GlobalGetBoardServerURL()
     [[CommonHelpManager defaultManager] unzipHelpFiles];
     
     [self initImageCacheManager];
+    [PPSmartUpdateDataUtils initPaths];
+
     
     if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK");

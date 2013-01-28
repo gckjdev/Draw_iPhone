@@ -778,7 +778,8 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];       
+    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
 

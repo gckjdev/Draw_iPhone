@@ -14,7 +14,7 @@
 #import "JumpHandler.h"
 
 #define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?90:45)
-#define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?300:150)
+#define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?900:450)
 #define CONTENT_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
 #define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?330:165)
 

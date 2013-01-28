@@ -132,6 +132,8 @@
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBLayout;
+@class PBLayoutList;
+@class PBLayoutList_Builder;
 @class PBLayout_Builder;
 @class PBMessage;
 @class PBMessageStat;

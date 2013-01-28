@@ -29,6 +29,7 @@
 
 - (void)dealloc {
     PPRelease(_webView);
+    [_playProgressLoad release];
     [super dealloc];
 }
 

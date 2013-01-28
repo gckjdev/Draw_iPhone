@@ -348,6 +348,25 @@
     return currentVersion;
 }
 
++ (double)getOnlinePlayDrawSpeed
+{
+    return 0.03;
+    return [MobClickUtils getDoubleValueByKey:@"ONLINE_PLAY_SPEED" defaultValue:0.03];
+}
++ (double)getMaxPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MAX_SPEED" defaultValue:0.05];
+}
++ (double)getMinPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MIN_SPEED" defaultValue:0.001];
+}
++ (double)getDefaultPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_DEFAULT_SPEED" defaultValue:0.005];
+}
+
+
 + (int)getOnLineDrawExp
 {
     return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:15];

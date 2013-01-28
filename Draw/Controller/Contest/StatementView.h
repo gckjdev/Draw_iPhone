@@ -16,6 +16,7 @@
 }
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
 @property(nonatomic, assign)id delegate;
+@property (retain, nonatomic) IBOutlet UIImageView *playProgressLoad;
 
 + (id)createStatementView:(id)delegate;
 - (IBAction)clickCloseButton:(id)sender;
