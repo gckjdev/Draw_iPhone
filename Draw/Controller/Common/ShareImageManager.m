@@ -636,6 +636,11 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"draw_slider_disable"];
 }
 
+- (UIImage *)playProgressLoader
+{
+    return [self fixedAndStrectchableImageNamed:@"draw_player_progress_load"];
+}
+
 
 //for dice main menu
 - (UIImage*)diceShopImage
