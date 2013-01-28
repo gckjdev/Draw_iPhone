@@ -101,8 +101,8 @@ ItemService *_staticItemService = nil;
     [[AccountService defaultService] consumeItem:itemType 
                                           amount:isFree?0:1 
                                     targetUserId:targetUserId 
-                                     awardAmount:awardAmount
-                                        awardExp:awardExp];    
+                                     awardAmount:isFree?0:awardAmount
+                                        awardExp:isFree?0:awardExp];    
     
 }
 
