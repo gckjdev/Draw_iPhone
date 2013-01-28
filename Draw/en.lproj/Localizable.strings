@@ -1208,7 +1208,7 @@
 "kRoomNameDuplicated" = "Room name duplicated.";
 
 "kSearchEmpty" = "No matched room";
-"kNoFriendRoom" = "No friend room";
+"kNoFriendRoom" = "No friend online";
 "kMe" = "Me";
 "kSendMeFlower" = "Send me a flower";
 "kThrowMeTomato" = "Throw me a tomato";

@@ -18,6 +18,7 @@
 #define CODE_KEY_GAME_ID    @"gameId"
 #define CODE_KEY_FUNCTION   @"function"
 #define CODE_KEY_HAS_READ   @"hasRead"
+#define CODE_KEY_URL        @"url"
 
 
 @interface Bulletin (PrivateMethod)
@@ -38,6 +39,7 @@
         self.gameId = [dict objectForKey:PARA_BULLETIN_GAME_ID];
         self.function = [dict objectForKey:PARA_BULLETIN_FUNCTION];
         self.type = [((NSString*)[dict objectForKey:PARA_BULLETIN_TYPE]) intValue];
+        self.url = [dict objectForKey:PARA_BULLETIN_URL];
     }
     return self;
 }
@@ -51,6 +53,7 @@
     [aCoder encodeObject:_date forKey:CODE_KEY_DATE];
     [aCoder encodeObject:_function forKey:CODE_KEY_FUNCTION];
     [aCoder encodeBool:_hasRead forKey:CODE_KEY_HAS_READ];
+    [aCoder encodeObject:_url forKey:CODE_KEY_URL];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -63,7 +66,7 @@
         self.date = [aDecoder decodeObjectForKey:CODE_KEY_DATE];
         self.function = [aDecoder decodeObjectForKey:CODE_KEY_FUNCTION];
         self.hasRead = [aDecoder decodeBoolForKey:CODE_KEY_HAS_READ];
-        
+        self.url = [aDecoder decodeObjectForKey:CODE_KEY_URL];
     }
     return self;
 }

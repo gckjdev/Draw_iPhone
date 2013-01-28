@@ -1232,7 +1232,7 @@
 "kRoomNameDuplicated" = "这个房名已经被人用了，换一个吧。";
 
 "kSearchEmpty" = "找不到匹配的房间";
-"kNoFriendRoom" = "暂时没有好友房间";
+"kNoFriendRoom" = "暂时没有好友在线";
 "kOnlineUser" = "在线%d人";
 /*********************** 大话骰子国际化字符串结束 *************************/
 
