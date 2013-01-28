@@ -86,7 +86,7 @@
         bulletin = [service.bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
         bulletin.hasRead = YES;
         [self.bulletinsTableView reloadData];
-        [JumpHandler handleGameJump:self.superController gameId:bulletin.gameId function:bulletin.function];
+        [JumpHandler handleBulletinJump:self.superController bulletin:bulletin];
     }
 }
 

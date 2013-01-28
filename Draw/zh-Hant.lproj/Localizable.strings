@@ -1223,7 +1223,7 @@
 "kRoomNameDuplicated" = "這個房名已經被人用了，換一個吧。";
 
 "kSearchEmpty" = "找不到匹配的房間";
-"kNoFriendRoom" = "暫時沒有好友房間";
+"kNoFriendRoom" = "暫時沒有好友在線";
 "kOnlineUser" = "在線%d人";
 "kCanotSendItemToOverContestOpus" = "比賽已經結束， 不能再丟東西了哦！";
 
