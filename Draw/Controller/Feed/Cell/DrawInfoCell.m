@@ -202,7 +202,7 @@
 
 - (IBAction)clickToUser:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser:nickName:)]) {
+    if (_targetUser.userId && _delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser:nickName:)]) {
         [_delegate didClickDrawToUser:_targetUser.userId nickName:_targetUser.nickName];
     }
 }
@@ -211,7 +211,6 @@
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
-    [self updateDrawToUserInfo:feed];
     [self updateDesc:feed.opusDesc];
     [self.loadingActivity setCenter:self.drawImage.center];
     if ([feed hasDrawActions]) {

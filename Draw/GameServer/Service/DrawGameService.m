@@ -19,6 +19,7 @@
 #import "UserManager.h"
 #import "CommonGameNetworkService.h"
 #import "NotificationName.h"
+#import "ConfigManager.h"
 
 @implementation DrawGameService
 
@@ -668,7 +669,7 @@ static DrawGameService* _defaultService;
 
 - (void)didBroken:(NSError *)error
 {
-    [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
+//    [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
     
     // TODO check whether keep delegate
     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -1126,12 +1127,37 @@ static DrawGameService* _defaultService;
 //}
 - (void)connectServer
 {
+    self.serverStringList = [self getServerListString];
+    [self dispatchServer];
     [self connectServer:nil];
 }
 //- (int)rule
 //{
 //    
 //}
+
+- (void)dispatchServer
+{
+    if (_serverStringList == nil) {
+        return;
+    }
+    
+    NSArray *serverStringArray = [_serverStringList componentsSeparatedByString:SERVER_LIST_SEPERATOR];
+    NSString *serverString = [serverStringArray objectAtIndex:rand()%serverStringArray.count];
+    
+    NSArray *arr = [serverString componentsSeparatedByString:SERVER_PORT_SEPERATOR];
+    if ([arr count] == 2) {
+        self.serverAddress = [arr objectAtIndex:0];
+        self.serverPort = [[arr objectAtIndex:1] intValue];
+    }else {
+        PPDebug(@"ERROR: Service %@ is not valid(format error)", serverString);
+    }
+}
+
+- (NSString *)getServerListString
+{
+    return [ConfigManager getDrawServerString];
+}
 
 - (PBGameSession*)sessionInRoom:(int)index
 {

@@ -35,6 +35,7 @@ typedef enum {
 
 + (UseItemScene*)createSceneByType:(UseSceneType)type
                               feed:(DrawFeed*)feed;
++ (BOOL)shouldItemMakeEffectInScene:(UseSceneType)type;
 
 - (id)initWithMaxTomatoCount:(int)maxTomatoCount 
               maxFlowerCount:(int)maxFlowerCount 

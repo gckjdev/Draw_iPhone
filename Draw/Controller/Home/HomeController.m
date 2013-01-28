@@ -206,7 +206,7 @@
     [self enterNextControllerWityType:self.notificationType];
 
     [self registerUIApplicationNotification];
-    [self registerNetworkDisconnectedNotification];
+//    [self registerNetworkDisconnectedNotification];//do in super class
     
     PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
     
@@ -215,18 +215,18 @@
 
 }
 
-- (void)registerNetworkDisconnectedNotification
-{
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
-                            usingBlock:^(NSNotification *note) {
-                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
-                            }];
-}
-
-- (void)unregisterNetworkDisconnectedNotification
-{
-    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
-}
+//- (void)registerNetworkDisconnectedNotification
+//{
+//    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
+//                            usingBlock:^(NSNotification *note) {
+//                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+//                            }];
+//}
+//
+//- (void)unregisterNetworkDisconnectedNotification
+//{
+//    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
+//}
 
 - (void)registerUIApplicationNotification
 {
@@ -245,20 +245,6 @@
         
         [self.homeHeaderPanel updateView];
     }];
-}
-
-- (void)handleDisconnectWithError:(NSError *)error
-{
-    PPDebug(@"diconnect error: %@", [error description]);
-    
-    _isTryJoinGame = NO;
-    [self hideActivity];
-    
-    if (error != nil) {
-        [[DrawGameService defaultService] setSession:nil];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-    }
 }
 
 - (void)updateRecoveryDrawCount
@@ -849,6 +835,32 @@
     [self.navigationController pushViewController:rc animated:YES];
 }
 
+#pragma mark - handle network listen
+
+- (void)handleJoinGameResponse
+{
+    [self hideActivity];
+
+}
+
+- (void)handleConnectedResponse
+{
+    [self hideActivity];
+}
+
+- (void)handleDisconnectWithError:(NSError *)error
+{
+    PPDebug(@"diconnect error: %@", [error description]);
+    
+    _isTryJoinGame = NO;
+    [self hideActivity];
+    
+    if (error != nil) {
+        [[DrawGameService defaultService] setSession:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    }
+}
 
 //#define BOARD_PANEL_TAG 201208241
 #pragma mark - board service delegate

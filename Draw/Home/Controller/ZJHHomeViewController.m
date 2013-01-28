@@ -73,21 +73,17 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     PPDebug(@"ZJHHomeViewController view did load");
     // Do any additional setup after loading the view from its nib.
     
-    [self registerNetworkDisconnectedNotification];
+    
     [self registerUIApplicationWillEnterForegroundNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self registerJoinGameResponseNotification];
-    [self registerNetworkConnectedNotification];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unregisterJoinGameResponseNotification];
-    [self unregisterNetworkConnectedNotification];
     [super viewDidDisappear:animated];
 }
 
@@ -108,48 +104,6 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         [self.homeHeaderPanel updateView];
     }];
 }
-
-- (void)registerJoinGameResponseNotification
-{
-    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
-                            usingBlock:^(NSNotification *note) {
-                                [self handleJoinGameResponse];
-                            }];
-}
-
-- (void)unregisterJoinGameResponseNotification
-{
-    [self unregisterNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE];
-}
-
-
-- (void)registerNetworkConnectedNotification
-{
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
-                            usingBlock:^(NSNotification *note) {
-                                [self handleConnectedResponse];
-                            }];
-}
-
-- (void)unregisterNetworkConnectedNotification
-{
-    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_CONNECTED];
-}
-
-
-- (void)registerNetworkDisconnectedNotification
-{
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED 
-                            usingBlock:^(NSNotification *note) {
-                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
-                            }];
-}
-
-- (void)unregisterNetworkDisconnectedNotification
-{
-    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
-}
-
 
 - (void)didReceiveMemoryWarning
 {

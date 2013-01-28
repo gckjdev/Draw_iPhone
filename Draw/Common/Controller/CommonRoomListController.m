@@ -23,6 +23,7 @@
 #import "PPViewController+StarryLoadingView.h"
 #import "CommonDialog.h"
 #import "GameApp.h"
+#import "FXLabel.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -67,6 +68,9 @@
     [_backgroundImageView release];
     [self clearRefreshRoomsTimer];
     PPRelease(_currentSession);
+    [_searchButton release];
+    [_headerBackgroundImageView release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -104,8 +108,8 @@
 
 - (void)handleUpdateOnlineUserCount
 {
-    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
-    [self.titleFontButton setTitle:[NSString stringWithFormat:@"%@(%@)",[GameApp roomTitle], userCount] forState:UIControlStateNormal];
+//    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
 }
 
 - (void)handleDidConnectServer
@@ -315,6 +319,8 @@
     [self.centerTabButton setBackgroundImage:[[GameApp getImageManager] roomListCenterBtnUnselectedImage] forState:UIControlStateNormal];
     [self.createRoomButton setBackgroundImage:[[GameApp getImageManager] roomListCreateRoomBtnBgImage] forState:UIControlStateNormal];
     [self.fastEntryButton setBackgroundImage:[[GameApp getImageManager] roomListFastEntryBtnBgImage] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
+    [self.headerBackgroundImageView setImage:[[GameApp getImageManager] headerBgImage]];
     
     [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
     [self.centerTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
@@ -341,6 +347,9 @@
 
 - (void)viewDidUnload {
     [self setBackgroundImageView:nil];
+    [self setSearchButton:nil];
+    [self setHeaderBackgroundImageView:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 

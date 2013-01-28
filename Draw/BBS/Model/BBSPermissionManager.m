@@ -18,7 +18,7 @@
 
 @end
 
-#define BBS_PERMISSION_KEY @"BBS_PERMISSION"
+#define PERMISSION_SITE @"PERMISSION_SITE"
 
 @implementation BBSPermissionManager
 
@@ -38,6 +38,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 - (void)updatePrivilegeList:(NSArray *)privilegeList
 {
+    PPDebug(@"<updatePrivilegeList>, privilegeList count = %d", [privilegeList count]);
     self.privilegeList = privilegeList;
 }
 
@@ -53,7 +54,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 - (BBSUserPermission)permissionOnBBS
 {
-    return [self permissionOnnBoard:BBS_PERMISSION_KEY];
+    return [self permissionOnnBoard:PERMISSION_SITE];
 }
 
 #define BBS_PERMISSION ([self permissionOnBBS])
@@ -67,15 +68,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 }
 - (BOOL)canDeletePost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionDelete)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionDelete)||([post isMyPost]);
 }
 - (BOOL)canTopPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop);
 }
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId
 {
-    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer)||([post.createUser isMe]);
+    return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer);
 }
 - (BOOL)canForbidUser:(PBBBSUser *)user onBBBoard:(NSString *)boardId
 {

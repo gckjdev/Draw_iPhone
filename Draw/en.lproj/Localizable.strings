@@ -994,6 +994,18 @@
 "kTypeRoom" = "Typing";
 "kDrawRoomTitle" = "Draw Lively";
 "kDrawRoomCellTitle" = "Draw Lively Room %d";
+
+"kTopPost" = "Top";
+"kEditPostFailed" = "Failed to edit post.";
+"kEditPostSucced" = "Succeed!";
+"kToToping" = "Being top...";
+"kToUNToping" = "Canceling top...";
+"kDeletePostFailed" = "Failed to delete post.";
+"kDeletePostSucceed" = "Succeed!";
+"kDeletePostAlertTitle" = "Tips";
+"kDeletePostAlertMessage" = "Are you sure to delete the post?";
+"kBoardAdmin" = "Admin:";
+"kNoBoardAdmin" = "No Admin";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

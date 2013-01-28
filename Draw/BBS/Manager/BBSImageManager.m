@@ -278,6 +278,12 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
+- (UIImage *)bbsPostDetailUnTop{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_untop"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+
 - (UIImage *)bbsPostDetailTransfer{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_transfer"];
     return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];

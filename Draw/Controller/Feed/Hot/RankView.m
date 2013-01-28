@@ -14,6 +14,7 @@
 #import "Draw.h"
 #import "ShareImageManager.h"
 #import "FeedManager.h"
+#import "FeedService.h"
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
@@ -110,12 +111,17 @@
         [feed parseDrawData];
         [showView setDrawActionList:feed.drawData.drawActionList];
         [self insertSubview:showView aboveSubview:self.drawImage];
-//        [showView release];
+
         [showView show];
         
         UIImage *image = [showView createImage];
-
+        
+        //if the server has no image data update the server data
+        if (ISIPAD) {
+            [[FeedService defaultService] updateOpus:feed.feedId image:image];
+        }
         [self.drawImage setImage:image];
+
         feed.drawImage = image;
         self.drawImage.hidden = NO;
         

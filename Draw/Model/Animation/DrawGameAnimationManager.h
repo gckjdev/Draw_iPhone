@@ -36,15 +36,20 @@
 
 + (CAAnimationGroup*)createThrowItemAnimation:(UIImageView*)ItemImageView inViewController:(UIViewController*)viewController;
 
-+ (void)showThrowTomato:(UIImageView*)tomatoImageView 
+
++ (void)showThrowTomato:(UIImageView*)tomatoImageView
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
              itemEnough:(BOOL)enough
+         shouldShowTips:(BOOL)shouldShowTips
              completion:(void (^)(BOOL finished))completion;
-+ (void)showThrowFlower:(UIImageView*)flowerImageView 
+
+
++ (void)showThrowFlower:(UIImageView*)flowerImageView
        animInController:(UIViewController*)superController
                 rolling:(BOOL)rolling
              itemEnough:(BOOL)enough
-             completion:(void (^)(BOOL finished))completion;
+         shouldShowTips:(BOOL)shouldShowTips
+             completion:(void (^)(BOOL))completion;
 
 @end

@@ -69,7 +69,7 @@
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
-//    return @"http://192.168.1.9:8000/api/i?";
+//    return @"http://192.168.1.5:8000/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 }
 
@@ -554,7 +554,7 @@ NSString* GlobalGetBoardServerURL()
     
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
     if (type == NotificationTypeMessage && _chatDetailController) {
-        [_chatDetailController loadNewMessage];
+        [_chatDetailController loadNewMessage:NO];
     }
     
     [[NotificationManager defaultManager] showNotification:userInfo];

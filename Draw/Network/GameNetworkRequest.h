@@ -298,6 +298,11 @@
                       commentUserId:(NSString *)commentUserId 
                     commentNickName:(NSString *)commentNickName;
 
++ (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              userId:(NSString*)userId
+                           targetUid:(NSString*)targetUid;
+
 + (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL
                                   appId:(NSString*)appId
                                  userId:(NSString*)userId

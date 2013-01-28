@@ -30,6 +30,8 @@
 +(BBSManager *)defaultManager;
 -(NSArray *)parentBoardList;
 -(NSArray *)sbuBoardListForBoardId:(NSString *)boardId;
+-(NSArray *)allSubBoardList;
+
 
 - (PBBBSBoard *)boardForBoardId:(NSString *)boardId;
 - (PBBBSBoard *)parentBoardOfsubBoard:(PBBBSBoard *)subBoard;
@@ -56,6 +58,8 @@
               commentCount:(NSInteger)inc;
 - (PBBBSPost *)inceasePost:(PBBBSPost *)post
               supportCount:(NSInteger)inc;
+- (BOOL)replacePost:(PBBBSPost *)post1 withPost:(PBBBSPost *)post2;
+
 //Cache
 - (void)cacheBBSDrawData:(PBBBSDraw *)draw forKey:(NSString *)key;
 - (PBBBSDraw *)loadBBSDrawDataFromCacheWithKey:(NSString *)key;

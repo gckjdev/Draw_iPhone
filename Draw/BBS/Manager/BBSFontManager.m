@@ -87,6 +87,19 @@ static BBSFontManager* _staticBBSFontManager;
 - (UIFont *)postActionFont{
      return ISIPHONE ? FONT(8) : FONT(8*2);
 }
+- (UIFont *)postTopFont{
+    return ISIPHONE ? FONT(9) : FONT(9*2);
+}
+
+- (UIFont *)boardAdminTitleFont
+{
+    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
+}
+- (UIFont *)boardAdminNickFont
+{
+    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
+}
+
 
 #pragma mark post detail page font
 //post detail font

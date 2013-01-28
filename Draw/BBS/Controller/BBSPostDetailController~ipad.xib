@@ -144,7 +144,7 @@
 						<string key="NSFrame">{{0, 916}, {768, 87}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="11651035"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -152,66 +152,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bbs_detail_toolbar@2x.jpg</string>
 						</object>
-					</object>
-					<object class="IBUIButton" id="11651035">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483361</int>
-						<string key="NSFrame">{{170, 936}, {163, 61}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="389474762"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUITitleEdgeInsets.top">0.0</double>
-						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">60</double>
-						<double key="IBUITitleEdgeInsets.right">0.0</double>
-						<string key="IBUINormalTitle">顶</string>
-						<reference key="IBUIHighlightedTitleColor" ref="627056572"/>
-						<reference key="IBUINormalTitleColor" ref="627056572"/>
-						<reference key="IBUINormalTitleShadowColor" ref="869948242"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_detail_support@2x.png</string>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="867748222">
-							<int key="type">1</int>
-							<double key="pointSize">15</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="221274445">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
-					</object>
-					<object class="IBUIButton" id="389474762">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483361</int>
-						<string key="NSFrame">{{439, 936}, {163, 61}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUITitleEdgeInsets.top">0.0</double>
-						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">50</double>
-						<double key="IBUITitleEdgeInsets.right">0.0</double>
-						<string key="IBUINormalTitle">回复</string>
-						<reference key="IBUIHighlightedTitleColor" ref="627056572"/>
-						<reference key="IBUINormalTitleColor" ref="627056572"/>
-						<reference key="IBUINormalTitleShadowColor" ref="869948242"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bbs_detail_comment@2x.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="867748222"/>
-						<reference key="IBUIFont" ref="221274445"/>
 					</object>
 					<object class="IBUIButton" id="927034383">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -310,22 +250,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">supportButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="11651035"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">commentButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="389474762"/>
-					</object>
-					<int key="connectionID">30</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">refreshButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="927034383"/>
@@ -359,24 +283,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickSupportButton:</string>
-						<reference key="source" ref="11651035"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">20</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickReplyButton:</string>
-						<reference key="source" ref="389474762"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">22</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickRefreshButton:</string>
 						<reference key="source" ref="927034383"/>
 						<reference key="destination" ref="372490531"/>
@@ -400,8 +306,6 @@
 							<reference ref="242817712"/>
 							<reference ref="354957643"/>
 							<reference ref="206916258"/>
-							<reference ref="11651035"/>
-							<reference ref="389474762"/>
 							<reference ref="708584971"/>
 							<reference ref="860301866"/>
 							<reference ref="927034383"/>
@@ -435,16 +339,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">18</int>
-						<reference key="object" ref="11651035"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="389474762"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
 						<reference key="object" ref="708584971"/>
 						<reference key="parent" ref="191373211"/>
@@ -468,10 +362,6 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="18.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="21.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -619,8 +509,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bbs_back@2x.png">{60, 53}</string>
 			<string key="bbs_bg@2x.jpg">{640, 960}</string>
-			<string key="bbs_detail_comment@2x.png">{132, 56}</string>
-			<string key="bbs_detail_support@2x.png">{132, 56}</string>
 			<string key="bbs_detail_toolbar@2x.jpg">{640, 80}</string>
 			<string key="bbs_refresh@2x.png">{52, 48}</string>
 		</dictionary>

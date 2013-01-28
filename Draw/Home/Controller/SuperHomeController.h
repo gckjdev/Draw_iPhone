@@ -27,4 +27,7 @@
 - (BOOL)isRegistered;
 - (void)toRegister;
 
+- (void)handleJoinGameResponse;
+- (void)handleConnectedResponse;
+- (void)handleDisconnectWithError:(NSError*)error;
 @end

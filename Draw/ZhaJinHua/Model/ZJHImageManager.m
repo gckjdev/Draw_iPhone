@@ -851,6 +851,10 @@ static ZJHImageManager* shareInstance;
     return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
+- (UIImage *)headerBgImage
+{
+    return nil;
+}
 - (UIImage *)roomListBgImage
 {
     return [_resService imageByName:@"zjh_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];

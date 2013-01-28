@@ -78,6 +78,12 @@ BBSManager *_staticBBSManager;
     return [_boardDict objectForKey:boardId];
 }
 
+-(NSArray *)allSubBoardList
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type==%d",BBSBoardTypeSub];
+    return [_boardList filteredArrayUsingPredicate:predicate];
+}
+
 - (PBBBSBoard *)boardForBoardId:(NSString *)boardId
 {
     for (PBBBSBoard *board in self.boardList) {
@@ -182,6 +188,19 @@ BBSManager *_staticBBSManager;
 }
 
 //return new post
+
+- (BOOL)replacePost:(PBBBSPost *)post1 withPost:(PBBBSPost *)post2
+{
+    if (post1 != nil && post2 != nil) {
+        NSInteger index = [self.tempPostList indexOfObject:post1];
+        if (index >=0 && index < [self.tempPostList count]) {
+            [self.tempPostList replaceObjectAtIndex:index withObject:post2];
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (PBBBSPost *)inceasePost:(PBBBSPost *)post
               commentCount:(NSInteger)inc
 {

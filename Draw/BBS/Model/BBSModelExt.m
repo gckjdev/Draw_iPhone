@@ -11,7 +11,7 @@
 #import "ShareImageManager.h"
 #import "BBSManager.h"
 #import "TimeUtils.h"
-
+#import "BBSPermissionManager.h"
 
 @implementation PBBBSContent (ContentExt)
 - (BOOL)hasThumbImage
@@ -85,6 +85,13 @@
 {
     return [self gender] ? @"m" : @"f";
 }
+
+- (NSString *)description
+{
+    NSString *desc = [NSString stringWithFormat:@"[uid = %@, nick = %@, avatar = %@, gender = %d]", self.userId, self.nickName, self.avatar, self.gender];
+    return desc;
+}
+
 @end
 
 
@@ -92,7 +99,8 @@
 
 - (BOOL)canDelete
 {
-    return [self isMyPost];
+//    return [self isMyPost];
+    return [[BBSPermissionManager defaultManager] canDeletePost:self onBBBoard:self.boardId];
 }
 - (BOOL)isMyPost
 {
@@ -102,6 +110,11 @@
 - (BOOL)canPay
 {
    return [self isMyPost] && [self hasReward] && ![self hasPay];
+}
+
+- (BOOL)isTopPost
+{
+    return self.status == BBSPostStatusTop;
 }
 
 - (NSString *)postUid

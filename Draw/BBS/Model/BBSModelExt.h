@@ -41,6 +41,13 @@ typedef enum{
     BBSPostStatusTop = 0x1 << 2
 }BBSPostStatus;
 
+typedef enum{
+    BBSUserRoleNormal = 0,
+    BBSUserRoleForbided = 0x1,
+    BBSUserRoleBoardAdmin = 0x1 << 1,
+    BBSUserRoleBBSAdmin = 0x1 << 2,
+}BBSUserRole;
+
 
 @interface PBBBSContent (ContentExt)
 
@@ -66,6 +73,7 @@ typedef enum{
 - (BOOL)canDelete;
 - (BOOL)isMyPost;
 - (BOOL)canPay;
+- (BOOL)isTopPost;
 - (NSString *)postUid;
 - (NSString *)postText;
 - (NSDate *)cDate;
@@ -74,6 +82,7 @@ typedef enum{
 - (void)setPay:(BOOL)pay;
 - (BOOL)hasPay;
 - (NSString *)createDateString;
+
 @end
 
 @interface PBBBSAction (ActionExt)

@@ -34,6 +34,7 @@
     self.mask.alpha = 0.6;
     [self.mask addTarget:self action:@selector(clickMaskButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.mask];
+    [self setMaskViewColor:[UIColor lightGrayColor]];
 }
 - (void)initBGView
 {

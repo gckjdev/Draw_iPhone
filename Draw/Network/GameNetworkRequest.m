@@ -1617,6 +1617,40 @@
     
 }
 
++ (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              userId:(NSString*)userId
+                           targetUid:(NSString*)targetUid
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_OPUST_COUNT];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        //action type
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
+
 
 
 + (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL

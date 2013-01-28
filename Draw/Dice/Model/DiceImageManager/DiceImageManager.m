@@ -31,7 +31,10 @@ static DiceImageManager *_defaultManager = nil;
     return _defaultManager;
 }
 
-
+- (UIImage *)headerBgImage
+{
+    return nil;
+}
 
 - (UIImage *)diceNormalRoomListBgImage
 {

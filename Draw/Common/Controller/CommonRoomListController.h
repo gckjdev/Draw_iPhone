@@ -14,6 +14,7 @@
 #import "CommonGameNetworkService.h"
 #import "FriendService.h"
 #import "ShareGameServiceProtocol.h"
+@class FXLabel;
 
 typedef enum {
     CommonRoomFilterAllRoom = 0,
@@ -42,8 +43,10 @@ typedef enum {
 
 
 @property (retain, nonatomic) PBGameSession* currentSession;
+@property (retain, nonatomic) IBOutlet UIButton *searchButton;
+@property (retain, nonatomic) IBOutlet UIImageView *headerBackgroundImageView;
+@property (retain, nonatomic) IBOutlet FXLabel *titleLabel;
 
-@property (retain, nonatomic) IBOutlet UIButton *titleFontButton;
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;
 @property (retain, nonatomic) IBOutlet UIButton *createRoomButton;
 @property (retain, nonatomic) IBOutlet UIButton *fastEntryButton;

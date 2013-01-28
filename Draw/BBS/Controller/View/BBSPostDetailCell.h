@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *reward;
 @property (retain, nonatomic) PBBBSPost *post;
 //@property (retain, assign) id<BBSPostDetailCellDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UIButton *topFlag;
 
 
 + (id)createCell:(id)delegate;

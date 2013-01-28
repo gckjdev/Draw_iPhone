@@ -754,13 +754,13 @@
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             //
         }];
         [_useItemScene throwATomato];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:itemEnough completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             //
         }];
         [_useItemScene throwAFlower];

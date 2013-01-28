@@ -13,6 +13,9 @@
 #import "BBSPostDetailController.h"
 #import "ReplayGraffitiController.h"
 #import "CommonUserInfoView.h"
+#import "BoardAdminListView.h"
+
+#define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,49))
 
 @interface BBSPostListController ()
 {
@@ -23,6 +26,7 @@
     BBSManager *_bbsManager;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIView *holderView;
 @property (retain, nonatomic) NSURL *tempURL;
 - (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
@@ -65,6 +69,31 @@
     return self;
 }
 
+- (BOOL)showBoardAdminList
+{
+//    return NO;
+    return self.bbsBoard != nil;
+}
+
+- (void)updateTableViewFrame
+{
+    if ([self showBoardAdminList]) {
+        [self.dataTableView setFrame:self.holderView.frame];
+        [self.holderView setBackgroundColor:[UIColor clearColor]];
+    }else{
+        [self.holderView removeFromSuperview];
+    }
+}
+
+- (void)showAdminListView
+{
+    BoardAdminListView *adminListView = [BoardAdminListView adminListViewWithBBSUserList:self.bbsBoard.adminListList controller:self];
+    CGRect frame = [adminListView frame];
+    frame.origin = ADMINLISTVIEW_ORIGIN;
+    adminListView.frame = frame;
+    [self.view addSubview:adminListView];
+    
+}
 //#define POST_LIST_TAB 100
 
 - (NSInteger)rangeTypeToTabID:(RangeType)rangeType
@@ -78,10 +107,6 @@
 }
 - (void)initViews
 {
-//    [self.backButton setImage:[_bbsImageManager bbsBackImage] forState:UIControlStateNormal];
-    
-
-    
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
     
     NSString *titleName = nil;
@@ -108,10 +133,15 @@
     
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
-    [BBSViewManager updateDefaultTableView:self.dataTableView];
+//    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
-    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];    
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
+    
+    [self updateTableViewFrame];
+    if ([self showBoardAdminList]) {
+        [self showAdminListView];
+    }
 }
 
 - (void)viewDidLoad
@@ -120,6 +150,13 @@
     [self initViews];
     [self clickTab:[self rangeTypeToTabID:_rangeType]];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.dataTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +172,7 @@
     PPRelease(_rankButton);
     PPRelease(_bgImageView);
     PPRelease(_tempURL);
+    [_holderView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -143,6 +181,7 @@
     [self setRankButton:nil];
     [self setBgImageView:nil];
     [_bbsManager setTempPostList:nil];
+    [self setHolderView:nil];
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {
@@ -260,27 +299,20 @@
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }
 }
-
-- (void)didDeleteBBSPost:(NSString *)postId resultCode:(NSInteger)resultCode
+- (void)didDeleteBBSPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
-        PBBBSPost *p = nil;
-        NSInteger row = 0;
-        for (PBBBSPost *post in self.tabDataList) {
-            if ([post.postId isEqualToString:postId]) {
-                p = post;
-                break;
-            }
-            row ++;
-        }
+        PBBBSPost *p = post;
         if (p) {
+            NSInteger row = [self.tabDataList indexOfObject:p];
             [self.tabDataList removeObject:p];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
             NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
             [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
         }
     }else{
-        PPDebug(@"<didDeleteBBSPost>fail to delete post, postId = %@, resultCode = %d",postId, resultCode);
+        PPDebug(@"<didDeleteBBSPost>fail to delete post, postId = %@, resultCode = %d",post.postId, resultCode);
     }
 }
 
@@ -346,7 +378,8 @@
 {
     PBBBSPost *post = [self postForIndexPath:indexPath];
     if (post && post.canDelete) {
-        [[BBSService defaultService] deletePostWithPostId:post.postId delegate:self];
+        [self showActivityWithText:NSLS(@"kDeleting")];
+        [[BBSService defaultService] deletePost:post delegate:self];
     }
 }
 

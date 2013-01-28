@@ -47,7 +47,10 @@ typedef enum{
               resultCode:(NSInteger)resultCode;
 
 //delete methods
-- (void)didDeleteBBSPost:(NSString *)postId
+//- (void)didDeleteBBSPost:(NSString *)postId
+//              resultCode:(NSInteger)resultCode;
+
+- (void)didDeleteBBSPost:(PBBBSPost *)post
               resultCode:(NSInteger)resultCode;
 
 - (void)didDeleteBBSAction:(NSString *)actionId
@@ -73,6 +76,11 @@ typedef enum{
 - (void)didEditPostPost:(PBBBSPost *)post
              resultCode:(NSInteger)resultCode;
 
+
+- (void)didChangeUser:(NSString *)userId
+                 role:(BBSUserRole)role
+              boardId:(NSString *)boardId
+             resultCode:(NSInteger)resultCode;
 
 @end
 
@@ -152,7 +160,10 @@ typedef enum{
 - (void)getBBSPostWithPostId:(NSString *)postId
                     delegate:(id<BBSServiceDelegate>)delegate;
 
-- (void)deletePostWithPostId:(NSString *)postId
+//- (void)deletePostWithPostId:(NSString *)postId
+//                    delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)deletePost:(PBBBSPost *)post
                     delegate:(id<BBSServiceDelegate>)delegate;
 
 - (void)deleteActionWithActionId:(NSString *)actionId
@@ -167,7 +178,19 @@ typedef enum{
         delegate:(id<BBSServiceDelegate>)delegate;
 
 
+
+#pragma mark - bbs privilege methods
+- (void)changeBBSUser:(NSString *)targetUid
+              role:(BBSUserRole)role
+           boardId:(NSString *)boardId
+        expireDate:(NSDate *)expireDate
+              info:(NSDictionary *)info //for the futrue
+          delegate:(id<BBSServiceDelegate>)delegate;
+
+- (void)getBBSPrivilegeList;
+
 #pragma mark - bbs user methods
+
 
 - (PBBBSUser *)myself;
 @end
