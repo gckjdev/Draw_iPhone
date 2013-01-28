@@ -113,12 +113,14 @@
     [super show];
 }
 
-- (CGFloat)showToIndex:(NSInteger)index
+- (void)showToIndex:(NSInteger)index
 {
-    CGContextClearRect(showContext, self.bounds);
-//    for (NSInteger; <#condition#>; <#increment#>) {
-//        <#statements#>
-//    }
+    self.status = Stop;
+    for (NSInteger i = _playingActionIndex; i < index; ++ i) {
+        DrawAction *action = [_drawActionList objectAtIndex:i];
+        [self drawAction1:action inContext:showContext];
+    }
+    [self setNeedsDisplay];
 }
 
 

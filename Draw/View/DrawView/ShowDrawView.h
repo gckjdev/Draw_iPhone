@@ -55,7 +55,7 @@ typedef enum {
 - (void)pause;
 - (void)resume;
 - (void)playFromDrawActionIndex:(NSInteger)index;
-- (CGFloat)showToIndex:(NSInteger)index;
+- (void)showToIndex:(NSInteger)index; //not include the index
 
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 

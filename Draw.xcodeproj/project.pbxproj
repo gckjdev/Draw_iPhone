@@ -1307,7 +1307,6 @@
 		CA16BAF61682FAD900F81B47 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA16BAF71682FAD900F81B47 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CA16BAF81682FAD900F81B47 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
-		CA16BAF91682FAD900F81B47 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CA16BAFB1682FAD900F81B47 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CA16BAFC1682FAD900F81B47 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA16BAFD1682FAD900F81B47 /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
@@ -1843,8 +1842,6 @@
 		CA16BD161682FAD900F81B47 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		CA16BD171682FAD900F81B47 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
 		CA16BD181682FAD900F81B47 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
-		CA16BD191682FAD900F81B47 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
-		CA16BD1A1682FAD900F81B47 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
 		CA16BD1D1682FAD900F81B47 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA16BD1E1682FAD900F81B47 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		CA16BD211682FAD900F81B47 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -2463,7 +2460,6 @@
 		CA16C07C1682FAE300F81B47 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA16C07D1682FAE300F81B47 /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CA16C07E1682FAE300F81B47 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
-		CA16C07F1682FAE300F81B47 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CA16C0811682FAE300F81B47 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CA16C0821682FAE300F81B47 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CA16C0831682FAE300F81B47 /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
@@ -2985,8 +2981,6 @@
 		CA16C29C1682FAE300F81B47 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		CA16C29D1682FAE300F81B47 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
 		CA16C29E1682FAE300F81B47 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
-		CA16C29F1682FAE300F81B47 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
-		CA16C2A01682FAE300F81B47 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
 		CA16C2A31682FAE300F81B47 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CA16C2A41682FAE300F81B47 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		CA16C2A71682FAE300F81B47 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -5207,7 +5201,6 @@
 		CAB5C88A16994F0200A4CE3B /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CAB5C88B16994F0200A4CE3B /* DiceRobotDecisionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DD4F0C1610412500556CC7 /* DiceRobotDecisionView.m */; };
 		CAB5C88C16994F0200A4CE3B /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
-		CAB5C88D16994F0200A4CE3B /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
 		CAB5C88F16994F0200A4CE3B /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		CAB5C89016994F0200A4CE3B /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA65C0611615A01700EE1C1C /* MyCommentCell.m */; };
 		CAB5C89116994F0200A4CE3B /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
@@ -5761,8 +5754,6 @@
 		CAB5CAC116994F0200A4CE3B /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		CAB5CAC216994F0200A4CE3B /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
 		CAB5CAC316994F0200A4CE3B /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
-		CAB5CAC416994F0200A4CE3B /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
-		CAB5CAC516994F0200A4CE3B /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
 		CAB5CAC816994F0200A4CE3B /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		CAB5CAC916994F0200A4CE3B /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		CAB5CACC16994F0200A4CE3B /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -6197,6 +6188,62 @@
 		CAB5DE5A1669FF7600A23011 /* bbs_create_submit_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */; };
 		CAB5DE5C166A00B600A23011 /* bbs_action_sheet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */; };
 		CAB9D0591568B96800D4F249 /* FriendRoomController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */; };
+		CABEDD2016B64C5900BB9060 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
+		CABEDD2116B64C5900BB9060 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
+		CABEDD2216B64C5900BB9060 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
+		CABEDD2316B64C5900BB9060 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
+		CABEDD2416B64C5900BB9060 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
+		CABEDD2516B64C5900BB9060 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
+		CABEDD2616B64C5900BB9060 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
+		CABEDD2716B64C5900BB9060 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
+		CABEDD2816B64C5900BB9060 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
+		CABEDD2916B64C5900BB9060 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
+		CABEDD2A16B64C5900BB9060 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
+		CABEDD2B16B64C5900BB9060 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
+		CABEDD3816B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */; };
+		CABEDD3916B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */; };
+		CABEDD3A16B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */; };
+		CABEDD3B16B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */; };
+		CABEDD3C16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */; };
+		CABEDD3D16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */; };
+		CABEDD3E16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */; };
+		CABEDD3F16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */; };
+		CABEDD4016B64CAA00BB9060 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */; };
+		CABEDD4116B64CAA00BB9060 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */; };
+		CABEDD4216B64CAA00BB9060 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */; };
+		CABEDD4316B64CAA00BB9060 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */; };
+		CABEDD4416B64CAA00BB9060 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */; };
+		CABEDD4516B64CAA00BB9060 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */; };
+		CABEDD4616B64CAA00BB9060 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */; };
+		CABEDD4716B64CAA00BB9060 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */; };
+		CABEDD4816B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */; };
+		CABEDD4916B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */; };
+		CABEDD4A16B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */; };
+		CABEDD4B16B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */; };
+		CABEDD4C16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */; };
+		CABEDD4D16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */; };
+		CABEDD4E16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */; };
+		CABEDD4F16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */; };
+		CABEDD5016B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */; };
+		CABEDD5116B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */; };
+		CABEDD5216B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */; };
+		CABEDD5316B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */; };
+		CABEDD5416B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CABEDD5516B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CABEDD5616B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CABEDD5716B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CABEDD5816B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */; };
+		CABEDD5916B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */; };
+		CABEDD5A16B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */; };
+		CABEDD5B16B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */; };
+		CABEDD5C16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */; };
+		CABEDD5D16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */; };
+		CABEDD5E16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */; };
+		CABEDD5F16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */; };
+		CABEDD6016B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */; };
+		CABEDD6116B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */; };
+		CABEDD6216B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */; };
+		CABEDD6316B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
 		CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
 		CAC25C3615EF0740007456FA /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
@@ -6341,9 +6388,6 @@
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
-		CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */; };
-		CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */; };
-		CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -9302,6 +9346,21 @@
 		CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_submit_bg@2x.png"; sourceTree = "<group>"; };
 		CAB5DE5B166A00B600A23011 /* bbs_action_sheet_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_action_sheet_bg@2x.png"; sourceTree = "<group>"; };
 		CAB9D0581568B96800D4F249 /* FriendRoomController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FriendRoomController~ipad.xib"; sourceTree = "<group>"; };
+		CABEDD1C16B64C5900BB9060 /* ReplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayView.h; sourceTree = "<group>"; };
+		CABEDD1D16B64C5900BB9060 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
+		CABEDD1E16B64C5900BB9060 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
+		CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
+		CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_bg@2x.png"; sourceTree = "<group>"; };
+		CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_close@2x.png"; sourceTree = "<group>"; };
+		CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_end@2x.png"; sourceTree = "<group>"; };
+		CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_play@2x.png"; sourceTree = "<group>"; };
+		CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_progress@2x.png"; sourceTree = "<group>"; };
+		CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_progress_point@2x.png"; sourceTree = "<group>"; };
+		CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_reset@2x.png"; sourceTree = "<group>"; };
+		CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_speed_bar@2x.png"; sourceTree = "<group>"; };
+		CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_speed_button@2x.png"; sourceTree = "<group>"; };
+		CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_speed_desc@2x.png"; sourceTree = "<group>"; };
+		CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_speed_inc@2x.png"; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		CAC25C2415EF0740007456FA /* BottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenu.h; sourceTree = "<group>"; };
@@ -9452,10 +9511,6 @@
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
-		CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayView.h; sourceTree = "<group>"; };
-		CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
-		CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
-		CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -14966,10 +15021,6 @@
 				CA8974191607230E003A95F7 /* ShowFeedController.m */,
 				CA89741A1607230E003A95F7 /* ShowFeedController.xib */,
 				CA89741B1607230E003A95F7 /* ShowFeedController~ipad.xib */,
-				CAEE2B1C1613EA6F00CD9088 /* ReplayView.h */,
-				CAEE2B1D1613EA6F00CD9088 /* ReplayView.m */,
-				CAEE2B1F1613EAB400CD9088 /* ReplayView.xib */,
-				CAEE2B211613EE5700CD9088 /* ReplayView~ipad.xib */,
 			);
 			path = FeedDetail;
 			sourceTree = "<group>";
@@ -15237,6 +15288,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CABEDD1B16B64C5900BB9060 /* ReplayView */,
 				CA53292916A3E4B200E9E96B /* InputAlertView */,
 				CA1BF4611697CB19004ABCFA /* PickView */,
 				A461C9251565E3700076FD9C /* ChatMessageView */,
@@ -15435,6 +15487,35 @@
 				CAB5DE521669FF7600A23011 /* bbs_create_submit_bg@2x.png */,
 			);
 			path = Creation;
+			sourceTree = "<group>";
+		};
+		CABEDD1B16B64C5900BB9060 /* ReplayView */ = {
+			isa = PBXGroup;
+			children = (
+				CABEDD1C16B64C5900BB9060 /* ReplayView.h */,
+				CABEDD1D16B64C5900BB9060 /* ReplayView.m */,
+				CABEDD1E16B64C5900BB9060 /* ReplayView.xib */,
+				CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */,
+			);
+			path = ReplayView;
+			sourceTree = "<group>";
+		};
+		CABEDD2C16B64CAA00BB9060 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				CABEDD2D16B64CAA00BB9060 /* draw_player_bg@2x.png */,
+				CABEDD2E16B64CAA00BB9060 /* draw_player_close@2x.png */,
+				CABEDD2F16B64CAA00BB9060 /* draw_player_end@2x.png */,
+				CABEDD3016B64CAA00BB9060 /* draw_player_play@2x.png */,
+				CABEDD3116B64CAA00BB9060 /* draw_player_progress@2x.png */,
+				CABEDD3216B64CAA00BB9060 /* draw_player_progress_point@2x.png */,
+				CABEDD3316B64CAA00BB9060 /* draw_player_reset@2x.png */,
+				CABEDD3416B64CAA00BB9060 /* draw_player_speed_bar@2x.png */,
+				CABEDD3516B64CAA00BB9060 /* draw_player_speed_button@2x.png */,
+				CABEDD3616B64CAA00BB9060 /* draw_player_speed_desc@2x.png */,
+				CABEDD3716B64CAA00BB9060 /* draw_player_speed_inc@2x.png */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		CAC13243154C28B9000A8C8F /* Config */ = {
@@ -16658,6 +16739,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CABEDD2C16B64CAA00BB9060 /* Player */,
 				C2160C8016AE7B9C008C2A3E /* Common_roomList */,
 				A4F5BF7216A40224000A503F /* freeCoins */,
 				C235C61516A3F43600D80BA4 /* coins@2x.png */,
@@ -17225,8 +17307,6 @@
 				CA16BD161682FAD900F81B47 /* ContestView~ipad.xib in Resources */,
 				CA16BD171682FAD900F81B47 /* StatementController~ipad.xib in Resources */,
 				CA16BD181682FAD900F81B47 /* StatementView~ipad.xib in Resources */,
-				CA16BD191682FAD900F81B47 /* ReplayView.xib in Resources */,
-				CA16BD1A1682FAD900F81B47 /* ReplayView~ipad.xib in Resources */,
 				CA16BD1D1682FAD900F81B47 /* MyCommentCell.xib in Resources */,
 				CA16BD1E1682FAD900F81B47 /* MyCommentCell~ipad.xib in Resources */,
 				CA16BD211682FAD900F81B47 /* HotController~ipad.xib in Resources */,
@@ -18141,6 +18221,19 @@
 				CA853BFE16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0916B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0E16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
+				CABEDD2616B64C5900BB9060 /* ReplayView.xib in Resources */,
+				CABEDD2A16B64C5900BB9060 /* ReplayView~ipad.xib in Resources */,
+				CABEDD3A16B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */,
+				CABEDD3E16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */,
+				CABEDD4216B64CAA00BB9060 /* draw_player_end@2x.png in Resources */,
+				CABEDD4616B64CAA00BB9060 /* draw_player_play@2x.png in Resources */,
+				CABEDD4A16B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */,
+				CABEDD4E16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */,
+				CABEDD5216B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */,
+				CABEDD5616B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
+				CABEDD5A16B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */,
+				CABEDD5E16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */,
+				CABEDD6216B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18398,8 +18491,6 @@
 				CA16C29C1682FAE300F81B47 /* ContestView~ipad.xib in Resources */,
 				CA16C29D1682FAE300F81B47 /* StatementController~ipad.xib in Resources */,
 				CA16C29E1682FAE300F81B47 /* StatementView~ipad.xib in Resources */,
-				CA16C29F1682FAE300F81B47 /* ReplayView.xib in Resources */,
-				CA16C2A01682FAE300F81B47 /* ReplayView~ipad.xib in Resources */,
 				CA16C2A31682FAE300F81B47 /* MyCommentCell.xib in Resources */,
 				CA16C2A41682FAE300F81B47 /* MyCommentCell~ipad.xib in Resources */,
 				CA16C2A71682FAE300F81B47 /* HotController~ipad.xib in Resources */,
@@ -18972,6 +19063,19 @@
 				CA853BFF16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0A16B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0F16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
+				CABEDD2716B64C5900BB9060 /* ReplayView.xib in Resources */,
+				CABEDD2B16B64C5900BB9060 /* ReplayView~ipad.xib in Resources */,
+				CABEDD3B16B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */,
+				CABEDD3F16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */,
+				CABEDD4316B64CAA00BB9060 /* draw_player_end@2x.png in Resources */,
+				CABEDD4716B64CAA00BB9060 /* draw_player_play@2x.png in Resources */,
+				CABEDD4B16B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */,
+				CABEDD4F16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */,
+				CABEDD5316B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */,
+				CABEDD5716B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
+				CABEDD5B16B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */,
+				CABEDD5F16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */,
+				CABEDD6316B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19243,8 +19347,6 @@
 				CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */,
 				CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */,
 				CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */,
-				CAEE2B201613EAB400CD9088 /* ReplayView.xib in Resources */,
-				CAEE2B221613EE5700CD9088 /* ReplayView~ipad.xib in Resources */,
 				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
 				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
@@ -19799,6 +19901,19 @@
 				CA853C0716B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
 				A4D174AE16B621FE00958355 /* OpusWallController.xib in Resources */,
+				CABEDD2416B64C5900BB9060 /* ReplayView.xib in Resources */,
+				CABEDD2816B64C5900BB9060 /* ReplayView~ipad.xib in Resources */,
+				CABEDD3816B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */,
+				CABEDD3C16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */,
+				CABEDD4016B64CAA00BB9060 /* draw_player_end@2x.png in Resources */,
+				CABEDD4416B64CAA00BB9060 /* draw_player_play@2x.png in Resources */,
+				CABEDD4816B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */,
+				CABEDD4C16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */,
+				CABEDD5016B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */,
+				CABEDD5416B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
+				CABEDD5816B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */,
+				CABEDD5C16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */,
+				CABEDD6016B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20079,8 +20194,6 @@
 				CAB5CAC116994F0200A4CE3B /* ContestView~ipad.xib in Resources */,
 				CAB5CAC216994F0200A4CE3B /* StatementController~ipad.xib in Resources */,
 				CAB5CAC316994F0200A4CE3B /* StatementView~ipad.xib in Resources */,
-				CAB5CAC416994F0200A4CE3B /* ReplayView.xib in Resources */,
-				CAB5CAC516994F0200A4CE3B /* ReplayView~ipad.xib in Resources */,
 				CAB5CAC816994F0200A4CE3B /* MyCommentCell.xib in Resources */,
 				CAB5CAC916994F0200A4CE3B /* MyCommentCell~ipad.xib in Resources */,
 				CAB5CACC16994F0200A4CE3B /* HotController~ipad.xib in Resources */,
@@ -20603,6 +20716,19 @@
 				CA853BFD16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0816B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0D16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
+				CABEDD2516B64C5900BB9060 /* ReplayView.xib in Resources */,
+				CABEDD2916B64C5900BB9060 /* ReplayView~ipad.xib in Resources */,
+				CABEDD3916B64CAA00BB9060 /* draw_player_bg@2x.png in Resources */,
+				CABEDD3D16B64CAA00BB9060 /* draw_player_close@2x.png in Resources */,
+				CABEDD4116B64CAA00BB9060 /* draw_player_end@2x.png in Resources */,
+				CABEDD4516B64CAA00BB9060 /* draw_player_play@2x.png in Resources */,
+				CABEDD4916B64CAA00BB9060 /* draw_player_progress@2x.png in Resources */,
+				CABEDD4D16B64CAA00BB9060 /* draw_player_progress_point@2x.png in Resources */,
+				CABEDD5116B64CAA00BB9060 /* draw_player_reset@2x.png in Resources */,
+				CABEDD5516B64CAA00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
+				CABEDD5916B64CAA00BB9060 /* draw_player_speed_button@2x.png in Resources */,
+				CABEDD5D16B64CAA00BB9060 /* draw_player_speed_desc@2x.png in Resources */,
+				CABEDD6116B64CAA00BB9060 /* draw_player_speed_inc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21027,7 +21153,6 @@
 				CA16BAF61682FAD900F81B47 /* TopPlayer.m in Sources */,
 				CA16BAF71682FAD900F81B47 /* DiceRobotDecisionView.m in Sources */,
 				CA16BAF81682FAD900F81B47 /* TopPlayerView.m in Sources */,
-				CA16BAF91682FAD900F81B47 /* ReplayView.m in Sources */,
 				CA16BAFB1682FAD900F81B47 /* AnimationPlayer.m in Sources */,
 				CA16BAFC1682FAD900F81B47 /* MyCommentCell.m in Sources */,
 				CA16BAFD1682FAD900F81B47 /* StatisticManager.m in Sources */,
@@ -21317,6 +21442,7 @@
 				CAFBBD9E16B01B6500CBE629 /* DrawRoomListController.m in Sources */,
 				CADECC6116B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0416B3A45A006FC155 /* BoardAdminListView.m in Sources */,
+				CABEDD2216B64C5900BB9060 /* ReplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21722,7 +21848,6 @@
 				CA16C07C1682FAE300F81B47 /* TopPlayer.m in Sources */,
 				CA16C07D1682FAE300F81B47 /* DiceRobotDecisionView.m in Sources */,
 				CA16C07E1682FAE300F81B47 /* TopPlayerView.m in Sources */,
-				CA16C07F1682FAE300F81B47 /* ReplayView.m in Sources */,
 				CA16C0811682FAE300F81B47 /* AnimationPlayer.m in Sources */,
 				CA16C0821682FAE300F81B47 /* MyCommentCell.m in Sources */,
 				CA16C0831682FAE300F81B47 /* StatisticManager.m in Sources */,
@@ -22012,6 +22137,7 @@
 				CAFBBD9F16B01B6700CBE629 /* DrawRoomListController.m in Sources */,
 				CADECC6216B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0516B3A45A006FC155 /* BoardAdminListView.m in Sources */,
+				CABEDD2316B64C5900BB9060 /* ReplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22414,7 +22540,6 @@
 				CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */,
 				C2DD4F0D1610412500556CC7 /* DiceRobotDecisionView.m in Sources */,
 				CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */,
-				CAEE2B1E1613EA6F00CD9088 /* ReplayView.m in Sources */,
 				C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */,
 				CA65C0641615A01700EE1C1C /* MyCommentCell.m in Sources */,
 				EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */,
@@ -22716,6 +22841,7 @@
 				A4D174BF16B6222000958355 /* LayoutManager.m in Sources */,
 				A4D174C016B6222000958355 /* Wall.m in Sources */,
 				A4D174C116B6222000958355 /* WallManager.m in Sources */,
+				CABEDD2016B64C5900BB9060 /* ReplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23126,7 +23252,6 @@
 				CAB5C88A16994F0200A4CE3B /* TopPlayer.m in Sources */,
 				CAB5C88B16994F0200A4CE3B /* DiceRobotDecisionView.m in Sources */,
 				CAB5C88C16994F0200A4CE3B /* TopPlayerView.m in Sources */,
-				CAB5C88D16994F0200A4CE3B /* ReplayView.m in Sources */,
 				CAB5C88F16994F0200A4CE3B /* AnimationPlayer.m in Sources */,
 				CAB5C89016994F0200A4CE3B /* MyCommentCell.m in Sources */,
 				CAB5C89116994F0200A4CE3B /* StatisticManager.m in Sources */,
@@ -23419,6 +23544,7 @@
 				CAFBBD9D16B01B6300CBE629 /* DrawRoomListController.m in Sources */,
 				CADECC6016B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0316B3A45A006FC155 /* BoardAdminListView.m in Sources */,
+				CABEDD2116B64C5900BB9060 /* ReplayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
