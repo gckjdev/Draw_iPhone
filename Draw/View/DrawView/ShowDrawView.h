@@ -48,12 +48,15 @@ typedef enum {
 //@property(nonatomic, assign) double playSpeed; //default is 1/30.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) DrawViewStatus status;
-
+@property(nonatomic, assign) double playSpeed;
 
 - (void)play;
 - (void)stop;
 - (void)pause;
 - (void)resume;
+- (void)playFromDrawActionIndex:(NSInteger)index;
+- (void)showToIndex:(NSInteger)index; //not include the index
+
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;
 
 - (void)setShowPenHidden:(BOOL)showPenHidden;
@@ -66,6 +69,7 @@ typedef enum {
                       delegate:(id<ShowDrawViewDelegate>)delegate;
 
 + (BOOL)canPlayDrawVersion:(NSInteger)version;
+
 @end
 
 

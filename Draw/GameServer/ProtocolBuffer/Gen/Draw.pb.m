@@ -4763,7 +4763,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
 
 @interface PBWall ()
 @property (retain) NSString* wallId;
-@property PBWallType type;
+@property PBWallType wallType;
 @property (retain) NSString* userId;
 @property (retain) NSString* wallName;
 @property (retain) PBLayout* layout;
@@ -4780,13 +4780,13 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   hasWallId_ = !!value;
 }
 @synthesize wallId;
-- (BOOL) hasType {
-  return !!hasType_;
+- (BOOL) hasWallType {
+  return !!hasWallType_;
 }
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+- (void) setHasWallType:(BOOL) value {
+  hasWallType_ = !!value;
 }
-@synthesize type;
+@synthesize wallType;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
@@ -4828,7 +4828,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.wallId = @"";
-    self.type = PBWallTypeOpuses;
+    self.wallType = PBWallTypeOpuses;
     self.userId = @"";
     self.wallName = @"";
     self.layout = [PBLayout defaultInstance];
@@ -4859,7 +4859,7 @@ static PBWall* defaultPBWallInstance = nil;
   if (!self.hasWallId) {
     return NO;
   }
-  if (!self.hasType) {
+  if (!self.hasWallType) {
     return NO;
   }
   if (!self.hasUserId) {
@@ -4881,8 +4881,8 @@ static PBWall* defaultPBWallInstance = nil;
   if (self.hasWallId) {
     [output writeString:1 value:self.wallId];
   }
-  if (self.hasType) {
-    [output writeEnum:2 value:self.type];
+  if (self.hasWallType) {
+    [output writeEnum:2 value:self.wallType];
   }
   if (self.hasUserId) {
     [output writeString:3 value:self.userId];
@@ -4911,8 +4911,8 @@ static PBWall* defaultPBWallInstance = nil;
   if (self.hasWallId) {
     size += computeStringSize(1, self.wallId);
   }
-  if (self.hasType) {
-    size += computeEnumSize(2, self.type);
+  if (self.hasWallType) {
+    size += computeEnumSize(2, self.wallType);
   }
   if (self.hasUserId) {
     size += computeStringSize(3, self.userId);
@@ -5007,8 +5007,8 @@ static PBWall* defaultPBWallInstance = nil;
   if (other.hasWallId) {
     [self setWallId:other.wallId];
   }
-  if (other.hasType) {
-    [self setType:other.type];
+  if (other.hasWallType) {
+    [self setWallType:other.wallType];
   }
   if (other.hasUserId) {
     [self setUserId:other.userId];
@@ -5056,7 +5056,7 @@ static PBWall* defaultPBWallInstance = nil;
       case 16: {
         int32_t value = [input readEnum];
         if (PBWallTypeIsValidValue(value)) {
-          [self setType:value];
+          [self setWallType:value];
         } else {
           [unknownFields mergeVarintField:2 value:value];
         }
@@ -5108,20 +5108,20 @@ static PBWall* defaultPBWallInstance = nil;
   result.wallId = @"";
   return self;
 }
-- (BOOL) hasType {
-  return result.hasType;
+- (BOOL) hasWallType {
+  return result.hasWallType;
 }
-- (PBWallType) type {
-  return result.type;
+- (PBWallType) wallType {
+  return result.wallType;
 }
-- (PBWall_Builder*) setType:(PBWallType) value {
-  result.hasType = YES;
-  result.type = value;
+- (PBWall_Builder*) setWallType:(PBWallType) value {
+  result.hasWallType = YES;
+  result.wallType = value;
   return self;
 }
-- (PBWall_Builder*) clearType {
-  result.hasType = NO;
-  result.type = PBWallTypeOpuses;
+- (PBWall_Builder*) clearWallType {
+  result.hasWallType = NO;
+  result.wallType = PBWallTypeOpuses;
   return self;
 }
 - (BOOL) hasUserId {
@@ -5526,13 +5526,13 @@ static PBRect* defaultPBRectInstance = nil;
 
 @interface PBFrame ()
 @property int32_t frameId;
-@property int32_t type;
-@property (retain) NSString* name;
+@property int32_t frameType;
 @property (retain) NSString* image;
 @property (retain) PBRect* iPhoneRect;
 @property (retain) PBRect* iPadRect;
 @property (retain) PBRect* opusIphoneRect;
 @property (retain) PBRect* opusIpadRect;
+@property int32_t price;
 @end
 
 @implementation PBFrame
@@ -5544,20 +5544,13 @@ static PBRect* defaultPBRectInstance = nil;
   hasFrameId_ = !!value;
 }
 @synthesize frameId;
-- (BOOL) hasType {
-  return !!hasType_;
+- (BOOL) hasFrameType {
+  return !!hasFrameType_;
 }
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+- (void) setHasFrameType:(BOOL) value {
+  hasFrameType_ = !!value;
 }
-@synthesize type;
-- (BOOL) hasName {
-  return !!hasName_;
-}
-- (void) setHasName:(BOOL) value {
-  hasName_ = !!value;
-}
-@synthesize name;
+@synthesize frameType;
 - (BOOL) hasImage {
   return !!hasImage_;
 }
@@ -5593,8 +5586,14 @@ static PBRect* defaultPBRectInstance = nil;
   hasOpusIpadRect_ = !!value;
 }
 @synthesize opusIpadRect;
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
 - (void) dealloc {
-  self.name = nil;
   self.image = nil;
   self.iPhoneRect = nil;
   self.iPadRect = nil;
@@ -5605,13 +5604,13 @@ static PBRect* defaultPBRectInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.frameId = 0;
-    self.type = 0;
-    self.name = @"";
+    self.frameType = 0;
     self.image = @"";
     self.iPhoneRect = [PBRect defaultInstance];
     self.iPadRect = [PBRect defaultInstance];
     self.opusIphoneRect = [PBRect defaultInstance];
     self.opusIpadRect = [PBRect defaultInstance];
+    self.price = 0;
   }
   return self;
 }
@@ -5637,11 +5636,8 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (self.hasFrameId) {
     [output writeInt32:1 value:self.frameId];
   }
-  if (self.hasType) {
-    [output writeInt32:2 value:self.type];
-  }
-  if (self.hasName) {
-    [output writeString:5 value:self.name];
+  if (self.hasFrameType) {
+    [output writeInt32:2 value:self.frameType];
   }
   if (self.hasImage) {
     [output writeString:10 value:self.image];
@@ -5658,6 +5654,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (self.hasOpusIpadRect) {
     [output writeMessage:14 value:self.opusIpadRect];
   }
+  if (self.hasPrice) {
+    [output writeInt32:18 value:self.price];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5670,11 +5669,8 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (self.hasFrameId) {
     size += computeInt32Size(1, self.frameId);
   }
-  if (self.hasType) {
-    size += computeInt32Size(2, self.type);
-  }
-  if (self.hasName) {
-    size += computeStringSize(5, self.name);
+  if (self.hasFrameType) {
+    size += computeInt32Size(2, self.frameType);
   }
   if (self.hasImage) {
     size += computeStringSize(10, self.image);
@@ -5690,6 +5686,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   }
   if (self.hasOpusIpadRect) {
     size += computeMessageSize(14, self.opusIpadRect);
+  }
+  if (self.hasPrice) {
+    size += computeInt32Size(18, self.price);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5769,11 +5768,8 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (other.hasFrameId) {
     [self setFrameId:other.frameId];
   }
-  if (other.hasType) {
-    [self setType:other.type];
-  }
-  if (other.hasName) {
-    [self setName:other.name];
+  if (other.hasFrameType) {
+    [self setFrameType:other.frameType];
   }
   if (other.hasImage) {
     [self setImage:other.image];
@@ -5789,6 +5785,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   }
   if (other.hasOpusIpadRect) {
     [self mergeOpusIpadRect:other.opusIpadRect];
+  }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5816,11 +5815,7 @@ static PBFrame* defaultPBFrameInstance = nil;
         break;
       }
       case 16: {
-        [self setType:[input readInt32]];
-        break;
-      }
-      case 42: {
-        [self setName:[input readString]];
+        [self setFrameType:[input readInt32]];
         break;
       }
       case 82: {
@@ -5863,6 +5858,10 @@ static PBFrame* defaultPBFrameInstance = nil;
         [self setOpusIpadRect:[subBuilder buildPartial]];
         break;
       }
+      case 144: {
+        [self setPrice:[input readInt32]];
+        break;
+      }
     }
   }
 }
@@ -5882,36 +5881,20 @@ static PBFrame* defaultPBFrameInstance = nil;
   result.frameId = 0;
   return self;
 }
-- (BOOL) hasType {
-  return result.hasType;
+- (BOOL) hasFrameType {
+  return result.hasFrameType;
 }
-- (int32_t) type {
-  return result.type;
+- (int32_t) frameType {
+  return result.frameType;
 }
-- (PBFrame_Builder*) setType:(int32_t) value {
-  result.hasType = YES;
-  result.type = value;
+- (PBFrame_Builder*) setFrameType:(int32_t) value {
+  result.hasFrameType = YES;
+  result.frameType = value;
   return self;
 }
-- (PBFrame_Builder*) clearType {
-  result.hasType = NO;
-  result.type = 0;
-  return self;
-}
-- (BOOL) hasName {
-  return result.hasName;
-}
-- (NSString*) name {
-  return result.name;
-}
-- (PBFrame_Builder*) setName:(NSString*) value {
-  result.hasName = YES;
-  result.name = value;
-  return self;
-}
-- (PBFrame_Builder*) clearName {
-  result.hasName = NO;
-  result.name = @"";
+- (PBFrame_Builder*) clearFrameType {
+  result.hasFrameType = NO;
+  result.frameType = 0;
   return self;
 }
 - (BOOL) hasImage {
@@ -6050,6 +6033,22 @@ static PBFrame* defaultPBFrameInstance = nil;
   result.opusIpadRect = [PBRect defaultInstance];
   return self;
 }
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (int32_t) price {
+  return result.price;
+}
+- (PBFrame_Builder*) setPrice:(int32_t) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBFrame_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = 0;
+  return self;
+}
 @end
 
 @interface PBLayout ()
@@ -6061,6 +6060,7 @@ static PBFrame* defaultPBFrameInstance = nil;
 @property (retain) NSString* bgImage;
 @property (retain) PBRect* iPhoneRect;
 @property (retain) PBRect* iPadRect;
+@property int32_t price;
 @end
 
 @implementation PBLayout
@@ -6115,6 +6115,13 @@ static PBFrame* defaultPBFrameInstance = nil;
   hasIPadRect_ = !!value;
 }
 @synthesize iPadRect;
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
 - (void) dealloc {
   self.name = nil;
   self.mutableFramesList = nil;
@@ -6132,6 +6139,7 @@ static PBFrame* defaultPBFrameInstance = nil;
     self.bgImage = @"";
     self.iPhoneRect = [PBRect defaultInstance];
     self.iPadRect = [PBRect defaultInstance];
+    self.price = 0;
   }
   return self;
 }
@@ -6190,6 +6198,9 @@ static PBLayout* defaultPBLayoutInstance = nil;
   if (self.hasIPadRect) {
     [output writeMessage:12 value:self.iPadRect];
   }
+  if (self.hasPrice) {
+    [output writeInt32:18 value:self.price];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6222,6 +6233,9 @@ static PBLayout* defaultPBLayoutInstance = nil;
   }
   if (self.hasIPadRect) {
     size += computeMessageSize(12, self.iPadRect);
+  }
+  if (self.hasPrice) {
+    size += computeInt32Size(18, self.price);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6325,6 +6339,9 @@ static PBLayout* defaultPBLayoutInstance = nil;
   if (other.hasIPadRect) {
     [self mergeIPadRect:other.iPadRect];
   }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6388,6 +6405,10 @@ static PBLayout* defaultPBLayoutInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setIPadRect:[subBuilder buildPartial]];
+        break;
+      }
+      case 144: {
+        [self setPrice:[input readInt32]];
         break;
       }
     }
@@ -6560,6 +6581,223 @@ static PBLayout* defaultPBLayoutInstance = nil;
 - (PBLayout_Builder*) clearIPadRect {
   result.hasIPadRect = NO;
   result.iPadRect = [PBRect defaultInstance];
+  return self;
+}
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (int32_t) price {
+  return result.price;
+}
+- (PBLayout_Builder*) setPrice:(int32_t) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBLayout_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = 0;
+  return self;
+}
+@end
+
+@interface PBLayoutList ()
+@property (retain) NSMutableArray* mutableLayoutsList;
+@end
+
+@implementation PBLayoutList
+
+@synthesize mutableLayoutsList;
+- (void) dealloc {
+  self.mutableLayoutsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBLayoutList* defaultPBLayoutListInstance = nil;
++ (void) initialize {
+  if (self == [PBLayoutList class]) {
+    defaultPBLayoutListInstance = [[PBLayoutList alloc] init];
+  }
+}
++ (PBLayoutList*) defaultInstance {
+  return defaultPBLayoutListInstance;
+}
+- (PBLayoutList*) defaultInstance {
+  return defaultPBLayoutListInstance;
+}
+- (NSArray*) layoutsList {
+  return mutableLayoutsList;
+}
+- (PBLayout*) layoutsAtIndex:(int32_t) index {
+  id value = [mutableLayoutsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBLayout* element in self.layoutsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBLayout* element in self.layoutsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBLayout* element in self.layoutsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBLayoutList*) parseFromData:(NSData*) data {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromData:data] build];
+}
++ (PBLayoutList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBLayoutList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromInputStream:input] build];
+}
++ (PBLayoutList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLayoutList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBLayoutList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLayoutList*)[[[PBLayoutList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLayoutList_Builder*) builder {
+  return [[[PBLayoutList_Builder alloc] init] autorelease];
+}
++ (PBLayoutList_Builder*) builderWithPrototype:(PBLayoutList*) prototype {
+  return [[PBLayoutList builder] mergeFrom:prototype];
+}
+- (PBLayoutList_Builder*) builder {
+  return [PBLayoutList builder];
+}
+@end
+
+@interface PBLayoutList_Builder()
+@property (retain) PBLayoutList* result;
+@end
+
+@implementation PBLayoutList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBLayoutList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBLayoutList_Builder*) clear {
+  self.result = [[[PBLayoutList alloc] init] autorelease];
+  return self;
+}
+- (PBLayoutList_Builder*) clone {
+  return [PBLayoutList builderWithPrototype:result];
+}
+- (PBLayoutList*) defaultInstance {
+  return [PBLayoutList defaultInstance];
+}
+- (PBLayoutList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBLayoutList*) buildPartial {
+  PBLayoutList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBLayoutList_Builder*) mergeFrom:(PBLayoutList*) other {
+  if (other == [PBLayoutList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableLayoutsList.count > 0) {
+    if (result.mutableLayoutsList == nil) {
+      result.mutableLayoutsList = [NSMutableArray array];
+    }
+    [result.mutableLayoutsList addObjectsFromArray:other.mutableLayoutsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBLayout_Builder* subBuilder = [PBLayout builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addLayouts:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) layoutsList {
+  if (result.mutableLayoutsList == nil) { return [NSArray array]; }
+  return result.mutableLayoutsList;
+}
+- (PBLayout*) layoutsAtIndex:(int32_t) index {
+  return [result layoutsAtIndex:index];
+}
+- (PBLayoutList_Builder*) replaceLayoutsAtIndex:(int32_t) index with:(PBLayout*) value {
+  [result.mutableLayoutsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBLayoutList_Builder*) addAllLayouts:(NSArray*) values {
+  if (result.mutableLayoutsList == nil) {
+    result.mutableLayoutsList = [NSMutableArray array];
+  }
+  [result.mutableLayoutsList addObjectsFromArray:values];
+  return self;
+}
+- (PBLayoutList_Builder*) clearLayoutsList {
+  result.mutableLayoutsList = nil;
+  return self;
+}
+- (PBLayoutList_Builder*) addLayouts:(PBLayout*) value {
+  if (result.mutableLayoutsList == nil) {
+    result.mutableLayoutsList = [NSMutableArray array];
+  }
+  [result.mutableLayoutsList addObject:value];
   return self;
 }
 @end

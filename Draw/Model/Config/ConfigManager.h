@@ -101,6 +101,11 @@ typedef enum{
 + (BOOL)isShowRecommendApp;
 + (NSString *)currentVersion;
 
++ (double)getOnlinePlayDrawSpeed;
++ (double)getMaxPlayDrawSpeed;
++ (double)getMinPlayDrawSpeed;
++ (double)getDefaultPlayDrawSpeed;
+
 + (int)getOnLineDrawExp;
 + (int)getOnLineGuessExp;
 + (int)getOffLineDrawExp;

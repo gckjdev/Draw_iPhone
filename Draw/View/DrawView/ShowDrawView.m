@@ -14,8 +14,8 @@
 #import "Paint.h"
 #import "ConfigManager.h"
 
-#define DEFAULT_PLAY_SPEED  (1.0f/50.0f)
-#define MIN_PLAY_SPEED      (0.001f)
+//#define DEFAULT_PLAY_SPEED  (0.01)
+//#define MIN_PLAY_SPEED      (0.001f)
 
 @interface ShowDrawView ()
 {
@@ -112,6 +112,18 @@
     self.status = Stop;
     [super show];
 }
+
+- (void)showToIndex:(NSInteger)index
+{
+    self.status = Stop;
+    for (NSInteger i = _playingActionIndex; i < index; ++ i) {
+        DrawAction *action = [_drawActionList objectAtIndex:i];
+        [self drawAction1:action inContext:showContext];
+    }
+    [self setNeedsDisplay];
+}
+
+
 - (void)pause
 {
     if(self.status == Playing){
@@ -169,7 +181,7 @@
         pen.userInteractionEnabled = NO;
         
         pen.penType = 0;
-        
+        self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
     }
     return self;
@@ -329,7 +341,7 @@
 {
     [super drawRect:rect];
     if (Playing == self.status) {
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:MIN_PLAY_SPEED];
+        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
 
         /*
         double now = CACurrentMediaTime();

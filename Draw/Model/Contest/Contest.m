@@ -23,7 +23,7 @@
 @synthesize statementUrl = _statementUrl;
 @synthesize canSubmitCount = _canSummitCount;
 
-#define DEFAULT_CAN_SUMMIT_COUNT 3
+#define DEFAULT_CAN_SUMMIT_COUNT 1
 
 - (void)dealloc
 {
@@ -92,6 +92,31 @@
     return  self;
 }
 
+- (NSString *)canSubmitCountKey
+{
+    return [NSString stringWithFormat:@"CAN_SUBMIT_%@",self.contestId];
+}
+
+- (void)setCanSubmitCount:(NSInteger)canSubmitCount
+{
+    _canSummitCount = canSubmitCount;
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:canSubmitCount forKey:[self canSubmitCountKey]];
+    [defaults synchronize];
+}
+
+- (NSInteger)canSubmitCount
+{
+    if (_canSummitCount == 0) {
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        _canSummitCount = [defaults integerForKey:[self canSubmitCountKey]];
+        if(_canSummitCount == 0){
+            return DEFAULT_CAN_SUMMIT_COUNT;
+        }
+    }
+    return _canSummitCount;
+}
+
 + (Contest *)contestWithDict:(NSDictionary *)dict
 {
     Contest *contest = [[[Contest alloc] initWithDict:dict] autorelease];
@@ -142,7 +167,7 @@
     return times;
 }
 
-- (BOOL)commintCountEnough
+- (BOOL)commitCountEnough
 {
     NSInteger times = [self commitCount];
     return times >= self.canSubmitCount;

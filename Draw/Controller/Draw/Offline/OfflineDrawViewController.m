@@ -249,6 +249,7 @@
         if ([draft.contestId length] != 0) {
             self.contest = [[[Contest alloc] init] autorelease];
             [self.contest setContestId:draft.contestId];
+            [self.contest setCanSubmitCount:1];
         }
         
         PPDebug(@"draft word = %@", [self.word description]);
@@ -721,7 +722,7 @@ enum{
             }
             [self.contest incCommitCount];
             
-            if ([self.contest commintCountEnough]) {
+            if ([self.contest commitCountEnough]) {
                 dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
                                                      message:NSLS(@"kContestSubmitSuccQuitMsg") 
                                                        style:CommonDialogStyleSingleButton 
@@ -903,8 +904,8 @@ enum{
             [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
-        if(self.contest && [self.contest commintCountEnough]){
-            NSString *title = [NSString stringWithFormat:NSLS(@"kContesSummitCountEnough"),_contest.canSubmitCount];
+        if(self.contest && [self.contest commitCountEnough]){
+            NSString *title = [NSString stringWithFormat:NSLS(@"kContestSummitCountEnough"),_contest.canSubmitCount];
             [[CommonMessageCenter defaultCenter] postMessageWithText:title
                                                            delayTime:1.5
                                                              isHappy:NO];

@@ -246,7 +246,7 @@ WordManager *GlobalGetWordManager()
         //load data
         NSNumber* version = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
         
-        [PPSmartUpdateDataUtils initPaths];
+//        [PPSmartUpdateDataUtils initPaths];
         _smartData = [[PPSmartUpdateData alloc] initWithName:WORD_BASE_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:WORD_BASE_ZIP_NAME

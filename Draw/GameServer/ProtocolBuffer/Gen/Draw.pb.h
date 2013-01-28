@@ -32,6 +32,8 @@
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBLayout;
+@class PBLayoutList;
+@class PBLayoutList_Builder;
 @class PBLayout_Builder;
 @class PBMessage;
 @class PBMessageStat;
@@ -1189,23 +1191,23 @@
   BOOL hasWallName_:1;
   BOOL hasMusicUrl_:1;
   BOOL hasLayout_:1;
-  BOOL hasType_:1;
+  BOOL hasWallType_:1;
   NSString* wallId;
   NSString* userId;
   NSString* wallName;
   NSString* musicUrl;
   PBLayout* layout;
-  PBWallType type;
+  PBWallType wallType;
   NSMutableArray* mutableOpusesList;
 }
 - (BOOL) hasWallId;
-- (BOOL) hasType;
+- (BOOL) hasWallType;
 - (BOOL) hasUserId;
 - (BOOL) hasWallName;
 - (BOOL) hasLayout;
 - (BOOL) hasMusicUrl;
 @property (readonly, retain) NSString* wallId;
-@property (readonly) PBWallType type;
+@property (readonly) PBWallType wallType;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* wallName;
 @property (readonly, retain) PBLayout* layout;
@@ -1252,10 +1254,10 @@
 - (PBWall_Builder*) setWallId:(NSString*) value;
 - (PBWall_Builder*) clearWallId;
 
-- (BOOL) hasType;
-- (PBWallType) type;
-- (PBWall_Builder*) setType:(PBWallType) value;
-- (PBWall_Builder*) clearType;
+- (BOOL) hasWallType;
+- (PBWallType) wallType;
+- (PBWall_Builder*) setWallType:(PBWallType) value;
+- (PBWall_Builder*) clearWallType;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
@@ -1365,16 +1367,16 @@
 @interface PBFrame : PBGeneratedMessage {
 @private
   BOOL hasFrameId_:1;
-  BOOL hasType_:1;
-  BOOL hasName_:1;
+  BOOL hasFrameType_:1;
+  BOOL hasPrice_:1;
   BOOL hasImage_:1;
   BOOL hasIPhoneRect_:1;
   BOOL hasIPadRect_:1;
   BOOL hasOpusIphoneRect_:1;
   BOOL hasOpusIpadRect_:1;
   int32_t frameId;
-  int32_t type;
-  NSString* name;
+  int32_t frameType;
+  int32_t price;
   NSString* image;
   PBRect* iPhoneRect;
   PBRect* iPadRect;
@@ -1382,21 +1384,21 @@
   PBRect* opusIpadRect;
 }
 - (BOOL) hasFrameId;
-- (BOOL) hasType;
-- (BOOL) hasName;
+- (BOOL) hasFrameType;
 - (BOOL) hasImage;
 - (BOOL) hasIPhoneRect;
 - (BOOL) hasIPadRect;
 - (BOOL) hasOpusIphoneRect;
 - (BOOL) hasOpusIpadRect;
+- (BOOL) hasPrice;
 @property (readonly) int32_t frameId;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* name;
+@property (readonly) int32_t frameType;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) PBRect* iPhoneRect;
 @property (readonly, retain) PBRect* iPadRect;
 @property (readonly, retain) PBRect* opusIphoneRect;
 @property (readonly, retain) PBRect* opusIpadRect;
+@property (readonly) int32_t price;
 
 + (PBFrame*) defaultInstance;
 - (PBFrame*) defaultInstance;
@@ -1437,15 +1439,10 @@
 - (PBFrame_Builder*) setFrameId:(int32_t) value;
 - (PBFrame_Builder*) clearFrameId;
 
-- (BOOL) hasType;
-- (int32_t) type;
-- (PBFrame_Builder*) setType:(int32_t) value;
-- (PBFrame_Builder*) clearType;
-
-- (BOOL) hasName;
-- (NSString*) name;
-- (PBFrame_Builder*) setName:(NSString*) value;
-- (PBFrame_Builder*) clearName;
+- (BOOL) hasFrameType;
+- (int32_t) frameType;
+- (PBFrame_Builder*) setFrameType:(int32_t) value;
+- (PBFrame_Builder*) clearFrameType;
 
 - (BOOL) hasImage;
 - (NSString*) image;
@@ -1479,6 +1476,11 @@
 - (PBFrame_Builder*) setOpusIpadRectBuilder:(PBRect_Builder*) builderForValue;
 - (PBFrame_Builder*) mergeOpusIpadRect:(PBRect*) value;
 - (PBFrame_Builder*) clearOpusIpadRect;
+
+- (BOOL) hasPrice;
+- (int32_t) price;
+- (PBFrame_Builder*) setPrice:(int32_t) value;
+- (PBFrame_Builder*) clearPrice;
 @end
 
 @interface PBLayout : PBGeneratedMessage {
@@ -1486,6 +1488,7 @@
   BOOL hasLayoutId_:1;
   BOOL hasDisplayMode_:1;
   BOOL hasCoverFlowType_:1;
+  BOOL hasPrice_:1;
   BOOL hasName_:1;
   BOOL hasBgImage_:1;
   BOOL hasIPhoneRect_:1;
@@ -1493,6 +1496,7 @@
   int32_t layoutId;
   int32_t displayMode;
   int32_t coverFlowType;
+  int32_t price;
   NSString* name;
   NSString* bgImage;
   PBRect* iPhoneRect;
@@ -1506,6 +1510,7 @@
 - (BOOL) hasBgImage;
 - (BOOL) hasIPhoneRect;
 - (BOOL) hasIPadRect;
+- (BOOL) hasPrice;
 @property (readonly) int32_t layoutId;
 @property (readonly, retain) NSString* name;
 @property (readonly) int32_t displayMode;
@@ -1513,6 +1518,7 @@
 @property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) PBRect* iPhoneRect;
 @property (readonly, retain) PBRect* iPadRect;
+@property (readonly) int32_t price;
 - (NSArray*) framesList;
 - (PBFrame*) framesAtIndex:(int32_t) index;
 
@@ -1595,5 +1601,59 @@
 - (PBLayout_Builder*) setIPadRectBuilder:(PBRect_Builder*) builderForValue;
 - (PBLayout_Builder*) mergeIPadRect:(PBRect*) value;
 - (PBLayout_Builder*) clearIPadRect;
+
+- (BOOL) hasPrice;
+- (int32_t) price;
+- (PBLayout_Builder*) setPrice:(int32_t) value;
+- (PBLayout_Builder*) clearPrice;
+@end
+
+@interface PBLayoutList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableLayoutsList;
+}
+- (NSArray*) layoutsList;
+- (PBLayout*) layoutsAtIndex:(int32_t) index;
+
++ (PBLayoutList*) defaultInstance;
+- (PBLayoutList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLayoutList_Builder*) builder;
++ (PBLayoutList_Builder*) builder;
++ (PBLayoutList_Builder*) builderWithPrototype:(PBLayoutList*) prototype;
+
++ (PBLayoutList*) parseFromData:(NSData*) data;
++ (PBLayoutList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayoutList*) parseFromInputStream:(NSInputStream*) input;
++ (PBLayoutList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayoutList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLayoutList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLayoutList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLayoutList* result;
+}
+
+- (PBLayoutList*) defaultInstance;
+
+- (PBLayoutList_Builder*) clear;
+- (PBLayoutList_Builder*) clone;
+
+- (PBLayoutList*) build;
+- (PBLayoutList*) buildPartial;
+
+- (PBLayoutList_Builder*) mergeFrom:(PBLayoutList*) other;
+- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayoutList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) layoutsList;
+- (PBLayout*) layoutsAtIndex:(int32_t) index;
+- (PBLayoutList_Builder*) replaceLayoutsAtIndex:(int32_t) index with:(PBLayout*) value;
+- (PBLayoutList_Builder*) addLayouts:(PBLayout*) value;
+- (PBLayoutList_Builder*) addAllLayouts:(NSArray*) values;
+- (PBLayoutList_Builder*) clearLayoutsList;
 @end
 

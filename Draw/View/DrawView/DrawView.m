@@ -126,11 +126,10 @@ typedef enum {
 }TouchType;
 
 
-- (void)handleTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
+- (void)handleDrawTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
 
-    UITouch *touch  = [touches anyObject];
-    
+    UITouch *touch  = [touches anyObject];    
     CGPoint point = [touch locationInView:self];
 
     [self addPoint:point toDrawAction:_currentAction];
@@ -145,16 +144,7 @@ typedef enum {
     }else if(type == TouchTypeMove){
         drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-    }else{
-        
-        
-//        if (paint.penType == WaterPen){
-//            [paint clearPath];
-//            drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-//            [self clearContext:cacheContext];
-//            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-//        }
-        
+    }else{        
         [paint finishAddPoint];
         drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
@@ -165,16 +155,42 @@ typedef enum {
     }
 }
 
+- (UIColor *)colorAtPoint:(CGPoint)point
+{
+    //TODO get Color
+    return nil;
+}
 
+- (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
+{
+    UITouch *touch  = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    UIColor *color = [self colorAtPoint:point];
+    switch (type) {
+        case TouchTypeBegin:
+            //new and show color view and show it in the super view
+            break;
+        case TouchTypeMove:
+            //move the view
+            break;
+        case TouchTypeEnd:
+            //remove the show color view
+            break;
+        default:
+            break;
+    }
+    //set the view with the color
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 
-//    UITouch *touch = [touches anyObject];
-//    _previousPoint1 = _previousPoint2 = _currentPoint = [touch locationInView:self];
-    
+    if (self.touchActionType == TouchActionTypeGetColor) {
+        [self handleGetColorTouches:touches withEvent:event type:TouchTypeBegin];
+        return;
+    }
     [self addNewPaint];
 
-    [self handleTouches:touches withEvent:event type:TouchTypeBegin];
+    [self handleDrawTouches:touches withEvent:event type:TouchTypeBegin];
     
     if (self.delegate && [self.delegate
                             respondsToSelector:@selector(didStartedTouch:)]) {
@@ -185,15 +201,29 @@ typedef enum {
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 
-    [self handleTouches:touches withEvent:event type:TouchTypeEnd];
+    if (self.touchActionType == TouchActionTypeGetColor) {
+        [self handleGetColorTouches:touches withEvent:event type:TouchTypeEnd];
+        return;
+    }
+
+    [self handleDrawTouches:touches withEvent:event type:TouchTypeEnd];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
         [self.delegate didDrawedPaint:_currentAction.paint];
     }
 }
 
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self handleTouches:touches withEvent:event type:TouchTypeMove];
+    if (self.touchActionType == TouchActionTypeGetColor) {
+        [self handleGetColorTouches:touches withEvent:event type:TouchTypeMove];
+        return;
+    }
+
+    [self handleDrawTouches:touches withEvent:event type:TouchTypeMove];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesEnded:touches withEvent:event];
 }
 
 - (void)drawRect:(CGRect)rect

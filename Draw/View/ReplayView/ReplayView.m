@@ -13,6 +13,23 @@
 #import "Draw.h"
 #import "DrawAction.h"
 
+@interface ReplayView()
+{
+    
+}
+@property (retain, nonatomic) IBOutlet UIView *ToolPanel;
+- (IBAction)clickRestart:(id)sender;
+- (IBAction)clickPlay:(UIButton *)sender;
+- (IBAction)clickEnd:(id)sender;
+
+- (IBAction)startDragPlayer:(id)sender forEvent:(UIEvent *)event;
+
+- (IBAction)dragPlayer:(id)sender forEvent:(UIEvent *)event;
+
+- (IBAction)finishDragPlayer:(id)sender forEvent:(UIEvent *)event;
+
+@end
+
 @implementation ReplayView
 @synthesize delegate = _delegate;
 @synthesize holderView = _holderView;
@@ -29,7 +46,6 @@
     ReplayView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;    
     return view;
-
 }
 #define ANIMATION_KEY @"ANIMATION_KEY"
 #define MISS_ANIMATION_VALUE @"VALUE_MISS"
@@ -109,6 +125,36 @@
     PPRelease(_holderView);
     PPRelease(_showView);
     PPRelease(_feed);
+    [_ToolPanel release];
     [super dealloc];
+}
+
+
+#pragma mark - play action
+- (IBAction)clickRestart:(id)sender {
+}
+
+- (IBAction)clickPlay:(UIButton *)sender {
+}
+
+- (IBAction)clickEnd:(id)sender {
+}
+
+
+#pragma mark - play progress
+- (CGPoint)touchPointForEvent:(UIEvent *)event
+{
+     UITouch *touch = [[event allTouches] anyObject];
+// [   touch locationInView:]
+}
+
+- (IBAction)startDragPlayer:(id)sender forEvent:(UIEvent *)event {
+    
+}
+
+- (IBAction)dragPlayer:(id)sender forEvent:(UIEvent *)event {
+}
+
+- (IBAction)finishDragPlayer:(id)sender forEvent:(UIEvent *)event {
 }
 @end
