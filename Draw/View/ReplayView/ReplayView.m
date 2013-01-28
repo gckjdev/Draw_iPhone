@@ -100,8 +100,7 @@
                                      arrayWithArray:
                                      self.feed.drawData.drawActionList];
             self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:list delegate:self];
-            self.showView.autoresizingMask = self.holderView.autoresizingMask;
-            
+            self.showView.autoresizingMask = UIViewAutoresizingNone;
             [self insertSubview:self.showView aboveSubview:self.holderView];
             [self clickPlay:self.playButton];
             [self.holderView removeFromSuperview];
@@ -122,7 +121,7 @@
 - (void)showInView:(UIView *)view
 {
 //    self.center = view.center;
-    self.frame = view.frame;
+    self.frame = view.bounds;
 //    self.center = view.center;
     [view addSubview:self];
     CAAnimation *showAnimation = [AnimationManager scaleAnimationWithFromScale:0.01 
@@ -172,7 +171,7 @@
 
 - (IBAction)clickEnd:(UIButton *)sender {
     [self.showView show];
-    [self.playButton setSelected:YES];
+    [self.playButton setSelected:NO];
     [self updateProgressWithValue:1];
 }
 
