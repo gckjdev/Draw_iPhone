@@ -55,7 +55,7 @@
     [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
     view.delegate = aDelegate;
     
-    view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] findAllWords]];
+    view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] wordsFromCustomWords]];
     
     return view;
 }
@@ -113,9 +113,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    CustomWord *word = [dataList objectAtIndex:[indexPath row]];
+    Word *word = [dataList objectAtIndex:[indexPath row]];
     
-    [cell setWord:word.word];
+    [cell setWord:word.text];
     
     return cell;
 }
@@ -129,8 +129,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    CustomWord *customWord = [dataList objectAtIndex:indexPath.row];
-    [[CustomWordManager defaultManager] deleteWord:customWord.word];
+    Word *word = [dataList objectAtIndex:indexPath.row];
+    [[CustomWordManager defaultManager] deleteWord:word.text];
     
     [dataList removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -139,8 +139,8 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     [self startRunOutAnimation];
-    CustomWord *customWord = [dataList objectAtIndex:selectedRow];
-    NSString *word = customWord.word;
+    Word *customWord = [dataList objectAtIndex:selectedRow];
+    NSString *word = customWord.text;
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
         [self.delegate didSelecCustomWord:word];
     }
@@ -169,7 +169,8 @@
     if ([CustomWordManager isValidWord:targetText]) {
         [[CustomWordManager defaultManager] createCustomWord:targetText];
         [[UserService defaultService] commitWords:targetText viewController:nil];
-        [self.dataList addObject:targetText];
+        Word *word = [Word cusWordWithText:targetText];
+        [self.dataList addObject:word];
         [dataTableView reloadData];
     }
 }

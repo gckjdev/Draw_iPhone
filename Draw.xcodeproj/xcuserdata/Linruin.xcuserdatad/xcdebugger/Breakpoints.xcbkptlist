@@ -7,19 +7,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Draw/Controller/Draw/Offline/OfflineDrawViewController.m"
-         timestampString = "380262551.877323"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "559"
-         endingLineNumber = "559"
-         landmarkName = "-clickOk:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../Common_iPhone_20/3PP-SDK/UMAppNetwork_SDK_3.5.2/Demo/GridView/UMGridViewController.m"
          timestampString = "380282011.772485"
          startingColumnNumber = "9223372036854775807"

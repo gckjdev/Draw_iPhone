@@ -40,7 +40,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     if (self = [super init]) {
         
         //load data
-        [PPSmartUpdateDataUtils initPaths];
         self.smartData = [[[PPSmartUpdateData alloc] initWithName:HOT_WORD_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:HOT_WORD_VERSION_KEY] autorelease];
         
         [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
