@@ -145,16 +145,7 @@ typedef enum {
     }else if(type == TouchTypeMove){
         drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-    }else{
-        
-        
-//        if (paint.penType == WaterPen){
-//            [paint clearPath];
-//            drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-//            [self clearContext:cacheContext];
-//            [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-//        }
-        
+    }else{        
         [paint finishAddPoint];
         drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
         [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
