@@ -247,6 +247,14 @@
 		A4D1744F16B1089C00958355 /* OpusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1744A16B1089C00958355 /* OpusCell.xib */; };
 		A4D1745016B1089C00958355 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744C16B1089C00958355 /* OpusSelectController.m */; };
 		A4D1745116B1089C00958355 /* OpusSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1744D16B1089C00958355 /* OpusSelectController.xib */; };
+		A4D174AD16B621FE00958355 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
+		A4D174AE16B621FE00958355 /* OpusWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D174AC16B621FE00958355 /* OpusWallController.xib */; };
+		A4D174BC16B6222000958355 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B116B6222000958355 /* Frame.m */; };
+		A4D174BD16B6222000958355 /* FrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B316B6222000958355 /* FrameManager.m */; };
+		A4D174BE16B6222000958355 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B516B6222000958355 /* Layout.m */; };
+		A4D174BF16B6222000958355 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B716B6222000958355 /* LayoutManager.m */; };
+		A4D174C016B6222000958355 /* Wall.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B916B6222000958355 /* Wall.m */; };
+		A4D174C116B6222000958355 /* WallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174BB16B6222000958355 /* WallManager.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
 		A4D4ECD1169C154200079C88 /* iOS-shengmeng-releasenote.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCD169C154200079C88 /* iOS-shengmeng-releasenote.html */; };
@@ -6914,6 +6922,21 @@
 		A4D1744B16B1089C00958355 /* OpusSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusSelectController.h; sourceTree = "<group>"; };
 		A4D1744C16B1089C00958355 /* OpusSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusSelectController.m; sourceTree = "<group>"; };
 		A4D1744D16B1089C00958355 /* OpusSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusSelectController.xib; sourceTree = "<group>"; };
+		A4D174AA16B621FE00958355 /* OpusWallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusWallController.h; sourceTree = "<group>"; };
+		A4D174AB16B621FE00958355 /* OpusWallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusWallController.m; sourceTree = "<group>"; };
+		A4D174AC16B621FE00958355 /* OpusWallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusWallController.xib; sourceTree = "<group>"; };
+		A4D174B016B6222000958355 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		A4D174B116B6222000958355 /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		A4D174B216B6222000958355 /* FrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameManager.h; sourceTree = "<group>"; };
+		A4D174B316B6222000958355 /* FrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameManager.m; sourceTree = "<group>"; };
+		A4D174B416B6222000958355 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
+		A4D174B516B6222000958355 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
+		A4D174B616B6222000958355 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
+		A4D174B716B6222000958355 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
+		A4D174B816B6222000958355 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wall.h; sourceTree = "<group>"; };
+		A4D174B916B6222000958355 /* Wall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wall.m; sourceTree = "<group>"; };
+		A4D174BA16B6222000958355 /* WallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallManager.h; sourceTree = "<group>"; };
+		A4D174BB16B6222000958355 /* WallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallManager.m; sourceTree = "<group>"; };
 		A4D3B1581560E4B50013C882 /* ExpressionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionManager.h; sourceTree = "<group>"; };
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
@@ -10589,6 +10612,9 @@
 		A4D1744716B1089C00958355 /* OpusWall */ = {
 			isa = PBXGroup;
 			children = (
+				A4D174AA16B621FE00958355 /* OpusWallController.h */,
+				A4D174AB16B621FE00958355 /* OpusWallController.m */,
+				A4D174AC16B621FE00958355 /* OpusWallController.xib */,
 				A4D1744816B1089C00958355 /* OpusCell.h */,
 				A4D1744916B1089C00958355 /* OpusCell.m */,
 				A4D1744A16B1089C00958355 /* OpusCell.xib */,
@@ -10597,6 +10623,25 @@
 				A4D1744D16B1089C00958355 /* OpusSelectController.xib */,
 			);
 			path = OpusWall;
+			sourceTree = "<group>";
+		};
+		A4D174AF16B6222000958355 /* WallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A4D174B016B6222000958355 /* Frame.h */,
+				A4D174B116B6222000958355 /* Frame.m */,
+				A4D174B216B6222000958355 /* FrameManager.h */,
+				A4D174B316B6222000958355 /* FrameManager.m */,
+				A4D174B416B6222000958355 /* Layout.h */,
+				A4D174B516B6222000958355 /* Layout.m */,
+				A4D174B616B6222000958355 /* LayoutManager.h */,
+				A4D174B716B6222000958355 /* LayoutManager.m */,
+				A4D174B816B6222000958355 /* Wall.h */,
+				A4D174B916B6222000958355 /* Wall.m */,
+				A4D174BA16B6222000958355 /* WallManager.h */,
+				A4D174BB16B6222000958355 /* WallManager.m */,
+			);
+			path = WallLayout;
 			sourceTree = "<group>";
 		};
 		A4D3B1561560E4B50013C882 /* Chat */ = {
@@ -15767,6 +15812,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4D174AF16B6222000958355 /* WallLayout */,
 				CA479465168E984A00D4AF55 /* Analytics */,
 				C2424794167989FD008B4E14 /* DrawSoundManager */,
 				CA1DA8FE167320EA0078B5A9 /* DrawUIManager */,
@@ -19752,6 +19798,7 @@
 				CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0716B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
+				A4D174AE16B621FE00958355 /* OpusWallController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22662,6 +22709,13 @@
 				A4D1744E16B1089C00958355 /* OpusCell.m in Sources */,
 				A4D1745016B1089C00958355 /* OpusSelectController.m in Sources */,
 				CA853C0216B3A45A006FC155 /* BoardAdminListView.m in Sources */,
+				A4D174AD16B621FE00958355 /* OpusWallController.m in Sources */,
+				A4D174BC16B6222000958355 /* Frame.m in Sources */,
+				A4D174BD16B6222000958355 /* FrameManager.m in Sources */,
+				A4D174BE16B6222000958355 /* Layout.m in Sources */,
+				A4D174BF16B6222000958355 /* LayoutManager.m in Sources */,
+				A4D174C016B6222000958355 /* Wall.m in Sources */,
+				A4D174C116B6222000958355 /* WallManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
