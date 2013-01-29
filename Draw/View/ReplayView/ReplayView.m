@@ -93,11 +93,11 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    [[self.superview viewWithTag:MaskViewTag] removeFromSuperview];
     self.showView.delegate = nil;
     [self.showView removeFromSuperview];
     self.showView = nil;
     self.superController = nil;
-    [[self.superview viewWithTag:MaskViewTag] removeFromSuperview];
     [self removeFromSuperview];
 }
 

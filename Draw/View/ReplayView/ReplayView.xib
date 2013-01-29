@@ -55,7 +55,7 @@
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{8, 12}, {304, 320}}</string>
+						<string key="NSFrame">{{8, 10}, {304, 320}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167940551"/>
@@ -268,7 +268,7 @@
 								<reference key="IBUIFont" ref="681682159"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 332}, {320, 104}}</string>
+						<string key="NSFrame">{{0, 329}, {320, 104}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="606717654"/>
