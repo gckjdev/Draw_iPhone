@@ -144,9 +144,10 @@
         index = [self.drawActionList count];
     }
     [self resetView];
-    for (NSInteger i = _playingActionIndex; i < index; ++ i) {
+    for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [self drawAction1:action inContext:showContext];
+        
     }
     [self setNeedsDisplay];
 }
