@@ -17041,6 +17041,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsPrivilegeListList;
 @property (retain) NSMutableArray* mutableBbsUserListList;
 @property (retain) NSMutableArray* mutableWallListList;
+@property (retain) PBWall* wall;
 @end
 
 @implementation DataQueryResponse
@@ -17076,6 +17077,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize mutableBbsPrivilegeListList;
 @synthesize mutableBbsUserListList;
 @synthesize mutableWallListList;
+- (BOOL) hasWall {
+  return !!hasWall_;
+}
+- (void) setHasWall:(BOOL) value {
+  hasWall_ = !!value;
+}
+@synthesize wall;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17088,6 +17096,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsPrivilegeListList = nil;
   self.mutableBbsUserListList = nil;
   self.mutableWallListList = nil;
+  self.wall = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17095,6 +17104,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.resultCode = 0;
     self.totalCount = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
+    self.wall = [PBWall defaultInstance];
   }
   return self;
 }
@@ -17239,6 +17249,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasWall) {
+    if (!self.wall.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -17280,6 +17295,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBWall* element in self.wallListList) {
     [output writeMessage:80 value:element];
+  }
+  if (self.hasWall) {
+    [output writeMessage:81 value:self.wall];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -17328,6 +17346,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBWall* element in self.wallListList) {
     size += computeMessageSize(80, element);
+  }
+  if (self.hasWall) {
+    size += computeMessageSize(81, self.wall);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -17473,6 +17494,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableWallListList addObjectsFromArray:other.mutableWallListList];
   }
+  if (other.hasWall) {
+    [self mergeWall:other.wall];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -17569,6 +17593,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBWall_Builder* subBuilder = [PBWall builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addWallList:[subBuilder buildPartial]];
+        break;
+      }
+      case 650: {
+        PBWall_Builder* subBuilder = [PBWall builder];
+        if (self.hasWall) {
+          [subBuilder mergeFrom:self.wall];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setWall:[subBuilder buildPartial]];
         break;
       }
     }
@@ -17924,6 +17957,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableWallListList = [NSMutableArray array];
   }
   [result.mutableWallListList addObject:value];
+  return self;
+}
+- (BOOL) hasWall {
+  return result.hasWall;
+}
+- (PBWall*) wall {
+  return result.wall;
+}
+- (DataQueryResponse_Builder*) setWall:(PBWall*) value {
+  result.hasWall = YES;
+  result.wall = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setWallBuilder:(PBWall_Builder*) builderForValue {
+  return [self setWall:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeWall:(PBWall*) value {
+  if (result.hasWall &&
+      result.wall != [PBWall defaultInstance]) {
+    result.wall =
+      [[[PBWall builderWithPrototype:result.wall] mergeFrom:value] buildPartial];
+  } else {
+    result.wall = value;
+  }
+  result.hasWall = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearWall {
+  result.hasWall = NO;
+  result.wall = [PBWall defaultInstance];
   return self;
 }
 @end
