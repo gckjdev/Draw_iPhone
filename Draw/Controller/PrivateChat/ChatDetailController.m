@@ -467,6 +467,9 @@
 
 - (void)sendTextMessage:(NSString *)text
 {
+    // load new message to avoid missing new message while staying in send message mode
+    [self loadNewMessage:NO];
+    
     TextMessage *message = [[TextMessage alloc] init];
     [self constructMessage:message];
     [message setText:text];
@@ -479,6 +482,9 @@
 }
 - (void)sendDrawMessage:(NSMutableArray *)drawActionList
 {
+    // load new message to avoid missing new message while staying in send message mode
+    [self loadNewMessage:NO];
+
     DrawMessage *message = [[[DrawMessage alloc] init] autorelease];
     [self constructMessage:message];
     [message setMessageType:MessageTypeDraw];
@@ -686,6 +692,17 @@
     return 10;
 }
 
+#define LAST_MESSAGE_ID_KEY     @"LAST_MESSAGE_ID_KEY"
+
+- (void)saveLastMessageId:(NSString*)messageId
+{
+    [[NSUserDefaults standardUserDefaults] setObject:messageId forKey:LAST_MESSAGE_ID_KEY];
+}
+
+- (NSString*)loadLastMessageId
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_MESSAGE_ID_KEY];
+}
 
 - (NSString *)lastMessageId
 {
