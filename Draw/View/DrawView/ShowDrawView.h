@@ -50,11 +50,12 @@ typedef enum {
 @property(nonatomic, assign) DrawViewStatus status;
 @property(nonatomic, assign) double playSpeed;
 
+- (void)resetView;
 - (void)play;
 - (void)stop;
 - (void)pause;
 - (void)resume;
-- (void)playFromDrawActionIndex:(NSInteger)index;
+- (BOOL)playFromDrawActionIndex:(NSInteger)index;
 - (void)showToIndex:(NSInteger)index; //not include the index
 
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play;

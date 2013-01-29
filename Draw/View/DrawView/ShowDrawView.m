@@ -43,10 +43,27 @@
 - (void)cleanAllActions
 {
     [self setStatus:Stop];
-    
+
     _playingActionIndex = 0;
     _playingPointIndex = 0;
+    self.tempPaint = nil;
+    _currentAction = nil;
+
     [super cleanAllActions];
+}
+
+
+- (void)resetView
+{
+    [self setStatus:Stop];
+    _playingActionIndex = 0;
+    _playingPointIndex = 0;
+    self.tempPaint = nil;
+    _currentAction = nil;
+    [self clearContext:cacheContext];
+    [self clearContext:showContext];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    pen.hidden = YES;
 }
 
 #define VALUE(x) (ISIPAD ? 2*x : x)
@@ -81,7 +98,7 @@
 }
 
 
-- (void)playFromDrawActionIndex:(NSInteger)index
+- (BOOL)playFromDrawActionIndex:(NSInteger)index
 {
     _playingActionIndex = index;
     _playingPointIndex = 0;
@@ -89,33 +106,44 @@
         _currentAction = [self.drawActionList objectAtIndex:index];        
         self.status = Playing;
         [self playCurrentFrame];
+        return YES;
     }else{
         self.status = Stop;
         PPDebug(@"<playFromDrawActionIndex> index out of action array bounds. Stop");
+        return NO;
     }
 }
 
 - (void)play
 {
     PPDebug(@"<ShowDrawView> play");
+    [self resetView];
     [self playFromDrawActionIndex:0];
+
 }
 - (void)stop
 {
     PPDebug(@"<ShowDrawView> stop");
     self.status = Stop;
+    pen.hidden = YES;
 }
 
 - (void)show
 {
     PPDebug(@"<ShowDrawView> show");
-    self.status = Stop;
+    [self resetView];
     [super show];
 }
 
 - (void)showToIndex:(NSInteger)index
 {
-    self.status = Stop;
+    if (index < 0) {
+        index = 0;
+    }
+    if (index > [self.drawActionList count]) {
+        index = [self.drawActionList count];
+    }
+    [self resetView];
     for (NSInteger i = _playingActionIndex; i < index; ++ i) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [self drawAction1:action inContext:showContext];
@@ -299,6 +327,11 @@
     }    
     if(_playingActionIndex >= [self.drawActionList count]-1 && self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
         [self.delegate didPlayDrawView:self];
+
+        self.status = Stop;
+        _playingActionIndex = _playingPointIndex = 0;
+        _currentAction =  nil;
+        self.tempPaint = nil;
     }
 }
 
@@ -332,9 +365,11 @@
 
 - (void)playNextFrame
 {
-    [self updateNextPlayIndex];
-    _playFrameTime = CACurrentMediaTime();
-    [self playCurrentFrame];
+    if (Playing == self.status) {
+        [self updateNextPlayIndex];
+        _playFrameTime = CACurrentMediaTime();
+        [self playCurrentFrame];
+    }
 }
 
 - (void)drawRect:(CGRect)rect

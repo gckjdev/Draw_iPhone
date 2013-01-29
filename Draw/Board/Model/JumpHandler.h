@@ -10,6 +10,8 @@
 #import "BoardView.h"
 #import "XQueryComponents.h"
 
+@class Bulletin;
+
 typedef enum{
     JumpTypeCanotJump = 0,
     JumpTypeGame = 1, // game page
@@ -45,10 +47,14 @@ typedef enum{
 - (void)handleJump:(BoardView *)boardView 
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL;
+- (void)handleUrlFromController:(UIViewController*)controller
+                            Url:(NSURL*)Url;
 
 + (void)handleGameJump:(UIViewController*)controller
                 gameId:(NSString*)gameId
               function:(NSString*)function;
++ (void)handleBulletinJump:(UIViewController*)controller
+                  bulletin:(Bulletin*)bulletin;
 + (BOOL)canJump:(JumpType)type;
 @end
 
