@@ -472,4 +472,5 @@ message DataQueryResponse {
   
   // for wall
   repeated PBWall wallList = 80;
+  optional PBWall wall = 81;
 }

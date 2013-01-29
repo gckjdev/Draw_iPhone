@@ -503,6 +503,8 @@
 #define METHOD_CHANGE_BBS_ROLE @"cbr"
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
 
+#define METHOD_CREATE_USER_WALL @"createWall"
+
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"
 #define PARA_RANGETYPE @"rt"
