@@ -173,7 +173,7 @@ static ShoppingManager *staticShoppingManager = nil;
     return array;
 }
 
-#define DEFAULT_COLOR_PRICE     100
+#define DEFAULT_COLOR_PRICE     250
 #define DEFAULT_PEN_PRICE       400
 #define DEFAULT_TOMATO_PRICE    400
 #define DEFAULT_FLOWER_PRICE    400

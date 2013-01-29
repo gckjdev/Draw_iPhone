@@ -350,7 +350,6 @@
 
 + (double)getOnlinePlayDrawSpeed
 {
-    return 0.03;
     return [MobClickUtils getDoubleValueByKey:@"ONLINE_PLAY_SPEED" defaultValue:0.03];
 }
 + (double)getMaxPlayDrawSpeed

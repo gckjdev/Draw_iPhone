@@ -7,6 +7,7 @@
 //
 
 #import "SmoothQuadCurvePen.h"
+#import "DrawUtils.h"
 
 #define SQC_POINT_COUNT     3
 
@@ -105,6 +106,13 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 
 - (void)addPointIntoPath:(CGPoint)point
 {
+//    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
+    
+    if (!CGRectContainsPoint(DRAW_VIEW_RECT, point)){
+        PPDebug(@"<addPointIntoPath> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
+        return;
+    }
+    
     _hasPoint = YES;
     
     pts[ptsCount] = point;
