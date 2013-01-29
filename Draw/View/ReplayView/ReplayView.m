@@ -52,6 +52,8 @@
 - (IBAction)dragSpeed:(UIButton *)sender forEvent:(UIEvent *)event;
 - (IBAction)finishDragSpeed:(id)sender forEvent:(UIEvent *)event;
 
+- (IBAction)clickPlayerPanel:(id)sender forEvent:(UIEvent *)event;
+- (IBAction)clickSpeedPanel:(id)sender forEvent:(UIEvent *)event;
 
 @end
 
@@ -67,6 +69,15 @@
     [self.speedLoader setImage:[[ShareImageManager defaultManager] speedProgressLoader]];
 }
 
+- (void)updateShowView
+{
+    [self.feed parseDrawData];
+    NSMutableArray *list =  [NSMutableArray arrayWithArray:
+                             self.feed.drawData.drawActionList];
+    self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:list delegate:self];
+    [self.showView setPressEnable:YES];
+}
+
 + (id)createReplayView:(id)delegate
 {
     NSString* identifier = @"ReplayView";
@@ -80,65 +91,18 @@
     [view updateView];
     return view;
 }
-#define ANIMATION_KEY @"ANIMATION_KEY"
-#define MISS_ANIMATION_VALUE @"VALUE_MISS"
-#define SHOW_ANIMATION_VALUE @"VALUE_SHOW"
-
-#define ANIMATION_DURATION 0.4f
 
 - (IBAction)clickCloseButton:(id)sender {
-    CAAnimation *animation = [AnimationManager disappearAnimationWithDuration:ANIMATION_DURATION];
-    animation.delegate = self;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [animation setValue:MISS_ANIMATION_VALUE forKey:ANIMATION_KEY];
-    [animation setRemovedOnCompletion:YES];
-    self.layer.opacity = 0;
-    [self.layer addAnimation:animation forKey:nil];
+    [self.showView setDelegate:nil];
+    [self.showView removeFromSuperview];
+    self.showView = nil;
+    [[self.superview viewWithTag:MaskViewTag] removeFromSuperview];
+    [self removeFromSuperview];
 }
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    
-    if (flag) {
-        NSString *animationValue = [anim valueForKey:ANIMATION_KEY];
-        PPDebug(@"animation value =%@", animationValue);
-        if ([animationValue isEqualToString:MISS_ANIMATION_VALUE]) {
-            PPDebug(@"<animationDidStop>: remove from view");
-            [self.showView stop];
-            self.showView.hidden = YES;
-            [self.showView removeFromSuperview];
-            self.showView = nil;
-            self.feed.drawData = nil;
-            self.feed = nil;
-            [[self.superview viewWithTag:MaskViewTag] removeFromSuperview];
-            [self removeFromSuperview];
-        }else if ([animationValue isEqualToString:SHOW_ANIMATION_VALUE]) {
-            PPDebug(@"<animationDidStop>: start to show draw view.");
-            [self.feed parseDrawData];
-            NSMutableArray *list =  [NSMutableArray
-                                     arrayWithArray:
-                                     self.feed.drawData.drawActionList];
-            self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:list delegate:self];
-            [self.showView setPressEnable:YES];
-            self.showView.autoresizingMask = UIViewAutoresizingNone;
-            [self insertSubview:self.showView aboveSubview:self.holderView];
-            [self clickPlay:self.playButton];
-            [self.holderView removeFromSuperview];
-            if ([self.delegate respondsToSelector:@selector(didStartToReplayWithFeed:)]) {
-                [self.delegate performSelector:@selector(didStartToReplayWithFeed:) withObject:self.feed];
-//                [self.delegate didStartToReplayWithFeed:self.feed];
-            }
-        }
-    }
-//    anim.delegate = nil;
-}
-
 - (void)setViewInfo:(DrawFeed *)feed
 {
     self.feed = feed;
 }
-
-
 
 - (UIView *)maskViewWithFrame:(CGRect)frame
 {
@@ -153,27 +117,28 @@
     [view addSubview:[self maskViewWithFrame:view.bounds]];
     [view addSubview:self];
     self.center = view.center;
-    CAAnimation *showAnimation = [AnimationManager scaleAnimationWithFromScale:0.01 
-                                                                       toScale:1 
-                                                                      duration:ANIMATION_DURATION 
-                                                                      delegate:self 
-                                                              removeCompeleted:YES];
-    showAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [showAnimation setValue:SHOW_ANIMATION_VALUE forKey:ANIMATION_KEY];
-    [self.layer addAnimation:showAnimation forKey:nil];
+    [self updateShowView];
+    [self insertSubview:self.showView aboveSubview:self.holderView];
+    [self.holderView removeFromSuperview];
+    
+    if ([self.delegate respondsToSelector:@selector(didStartToReplayWithFeed:)]) {
+        [self.delegate performSelector:@selector(didStartToReplayWithFeed:) withObject:self.feed];
+    }
+    [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:1];
 }
 - (void)dealloc {
     PPDebug(@"dealloc %@", [self description]);
     PPRelease(_holderView);
     PPRelease(_showView);
     PPRelease(_feed);
-    [_toolPanel release];
-    [_playProgressLoader release];
-    [_playProgressPoint release];
-    [_playButton release];
-    [_speedPanel release];
-    [_speedLoader release];
-    [_speedPoint release];
+    PPRelease(_myPaint);
+    PPRelease(_toolPanel);
+    PPRelease(_playProgressLoader);
+    PPRelease(_playProgressPoint);
+    PPRelease(_playButton);
+    PPRelease(_speedPanel);
+    PPRelease(_speedLoader);
+    PPRelease(_speedPoint);
     [super dealloc];
 }
 
@@ -358,6 +323,32 @@
 
 - (IBAction)finishDragSpeed:(id)sender forEvent:(UIEvent *)event {
     
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint point = [touch locationInView:self.speedPanel];
+    [self setSpeedProgressWithPoint:point];
+    [self performSelector:@selector(dismissSpeedBar) withObject:nil afterDelay:SPEED_HOLDER_TIME];
+}
+
+
+#define PLAYER_PROGRESSBAR_FRAME CGRectMake(30, 5, 260, 20)
+
+- (BOOL)touchInPlayProgressBar:(CGPoint)point
+{
+    return CGRectContainsPoint(PLAYER_PROGRESSBAR_FRAME, point);
+}
+
+- (IBAction)clickPlayerPanel:(id)sender forEvent:(UIEvent *)event {
+    CGPoint point = [self touchPointForEvent:event];
+    PPDebug(@"touch point = %@",NSStringFromCGPoint(point));
+    if ([self touchInPlayProgressBar:point]) {
+        PPDebug(@"<touchInPlayProgressBar>");
+        [self updateProgressWithPoint:point];
+        CGFloat value = [self playProgressValue:[self fixPoint:point]];
+        [self showDrawViewWithProgressValue:value];
+    }
+}
+
+- (IBAction)clickSpeedPanel:(id)sender forEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint point = [touch locationInView:self.speedPanel];
     [self setSpeedProgressWithPoint:point];

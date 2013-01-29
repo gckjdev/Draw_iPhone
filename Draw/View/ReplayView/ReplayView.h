@@ -11,6 +11,7 @@
 
 @class DrawFeed;
 @class ShowDrawView;
+@class MyPaint;
 @interface ReplayView : UIView<ShowDrawViewDelegate>
 {
     id _delegate;
@@ -22,6 +23,7 @@
 @property(nonatomic, retain) IBOutlet UIView *holderView;
 @property(nonatomic, retain) ShowDrawView *showView;
 @property(nonatomic, retain) DrawFeed *feed;
+@property(nonatomic, retain) MyPaint *myPaint;
 
 + (id)createReplayView:(id)delegate;
 - (IBAction)clickCloseButton:(id)sender;
