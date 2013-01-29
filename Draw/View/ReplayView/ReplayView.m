@@ -209,9 +209,10 @@
     view.frame = frame;
 }
 
-- (void)showDrawViewWithProgressValue:(CGFloat)value
+
+- (void)laterShowDrawViewWithProgressValue:(NSNumber *)nValue
 {
-    [self.superController showActivityWithText:NSLS(@"kLoading")];
+    CGFloat value = [nValue floatValue];
     NSInteger index = value *[[self.showView drawActionList] count];
     [self.showView showToIndex:index];
     if ([self isPlaying]) {
@@ -225,7 +226,12 @@
             [self.showView setStatus:Pause];
         }
     }
-    [self.superController performSelector:@selector(hideActivity) withObject:nil afterDelay:0.01];
+    [self.superController hideActivity];
+}
+- (void)showDrawViewWithProgressValue:(CGFloat)value
+{
+    [self.superController showActivityWithText:NSLS(@"kBuffering")];
+    [self performSelector:@selector(laterShowDrawViewWithProgressValue:) withObject:@(value) afterDelay:0.001];
 }
 
 - (CGFloat)playProgressValue:(CGPoint)point
