@@ -197,6 +197,7 @@
 #define PARA_OFFSET @"os"
 #define PARA_COUNT @"ct"
 #define PARA_FORWARD @"fw"
+#define PARA_RET_COUNT @"cnt"
 
 // request parameters
 #define METHOD_GET_MYCOMMENT_LIST @"gmcl"
