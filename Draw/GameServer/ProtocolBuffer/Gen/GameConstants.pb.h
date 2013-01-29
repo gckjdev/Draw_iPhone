@@ -84,7 +84,7 @@ typedef enum {
   GameCommandTypeLocalOtherUserQuit = 305,
   GameCommandTypeLocalTimeOut = 306,
   GameCommandTypeLocalStartGame = 307,
-  GameCommandTypeLocalWordPicked = 308,
+  GameCommandTypeLocalAllUserQuit = 308,
   GameCommandTypeLocalAllUserGuess = 309,
   GameCommandTypeLocalDrawUserChat = 310,
   GameCommandTypeLocalPlayUserQuit = 311,

@@ -641,6 +641,10 @@ static UIImage* _whitePaperImage;
     return [self fixedAndStrectchableImageNamed:@"draw_player_progress_load"];
 }
 
+- (UIImage *)speedProgressLoader
+{
+    return [self fixedAndStrectchableImageNamed:@"draw_player_speed_load"];
+}
 
 //for dice main menu
 - (UIImage*)diceShopImage

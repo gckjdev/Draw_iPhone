@@ -102,7 +102,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalOtherUserQuit:
     case GameCommandTypeLocalTimeOut:
     case GameCommandTypeLocalStartGame:
-    case GameCommandTypeLocalWordPicked:
+    case GameCommandTypeLocalAllUserQuit:
     case GameCommandTypeLocalAllUserGuess:
     case GameCommandTypeLocalDrawUserChat:
     case GameCommandTypeLocalPlayUserQuit:

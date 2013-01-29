@@ -356,7 +356,7 @@ static FeedService *_staticFeedService = nil;
         
         NSInteger count = 0;
         if (output.resultCode == 0) {
-            count = [[output.jsonDataDict objectForKey:PARA_COUNT] integerValue];
+            count = [[output.jsonDataDict objectForKey:PARA_RET_COUNT] integerValue];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

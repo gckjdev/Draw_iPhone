@@ -197,6 +197,7 @@
 #define PARA_OFFSET @"os"
 #define PARA_COUNT @"ct"
 #define PARA_FORWARD @"fw"
+#define PARA_RET_COUNT @"cnt"
 
 // request parameters
 #define METHOD_GET_MYCOMMENT_LIST @"gmcl"
@@ -502,6 +503,8 @@
 #define METHOD_EDIT_BBS_POST @"edp"
 #define METHOD_CHANGE_BBS_ROLE @"cbr"
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
+
+#define METHOD_CREATE_USER_WALL @"createWall"
 
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"
