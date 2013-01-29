@@ -363,7 +363,7 @@
     else{
         name = [[[DrawGameService defaultService] session] roomName];
     }
-    if (name == nil || name.length <= 0) {
+    if (name == nil || name.length <= 0 || name.intValue == [[DrawGameService defaultService] session].sessionId) {
         name = [NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), [[DrawGameService defaultService] session].sessionId];
     }
     self.roomNameLabel.text = name;
