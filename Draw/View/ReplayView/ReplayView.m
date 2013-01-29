@@ -93,6 +93,7 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    self.showView.delegate = nil;
     [self.showView removeFromSuperview];
     self.showView = nil;
     self.superController = nil;
@@ -224,7 +225,7 @@
             [self.showView setStatus:Pause];
         }
     }
-    [self.superController hideActivity];
+    [self.superController performSelector:@selector(hideActivity) withObject:nil afterDelay:0.01];
 }
 
 - (CGFloat)playProgressValue:(CGPoint)point
