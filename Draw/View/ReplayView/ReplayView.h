@@ -8,25 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowDrawView.h"
+#import "PPViewController.h"
 
-@class DrawFeed;
-@class ShowDrawView;
-@class MyPaint;
 @interface ReplayView : UIView<ShowDrawViewDelegate>
 {
-    id _delegate;
-    DrawFeed *_feed;
-    ShowDrawView *_showView;
+
 }
 
-@property(nonatomic, assign) id delegate;
-@property(nonatomic, retain) IBOutlet UIView *holderView;
-@property(nonatomic, retain) ShowDrawView *showView;
-@property(nonatomic, retain) DrawFeed *feed;
-@property(nonatomic, retain) MyPaint *myPaint;
 
-+ (id)createReplayView:(id)delegate;
-- (IBAction)clickCloseButton:(id)sender;
-- (void)setViewInfo:(DrawFeed *)feed;
-- (void)showInView:(UIView *)view;
++ (id)createReplayView;
+- (void)showInController:(PPViewController *)controller
+          withActionList:(NSMutableArray *)actionList
+            isNewVersion:(BOOL)isNewVersion;
 @end

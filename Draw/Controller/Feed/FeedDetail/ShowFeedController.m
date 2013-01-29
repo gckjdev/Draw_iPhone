@@ -579,10 +579,10 @@ enum{
 
 - (void)performReplay
 {
-    ReplayView *replay = [ReplayView createReplayView:self];
-    [replay setViewInfo:self.feed];
-    [replay showInView:self.view];
     [self hideActivity];
+    ReplayView *replay = [ReplayView createReplayView];
+    [self.feed parseDrawData];
+    [replay showInController:self withActionList:self.feed.drawData.drawActionList isNewVersion:[self.feed.drawData isNewVersion]];
 }
 
 - (IBAction)clickActionButton:(id)sender {
@@ -625,12 +625,6 @@ enum{
     
 }
 
-- (void)didStartToReplayWithFeed:(DrawFeed *)feed
-{
-    if ([self.feed.drawData isNewVersion]) {
-        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
-    }
-}
 
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
