@@ -311,8 +311,6 @@
 - (IBAction)dragSpeed:(UIButton *)sender forEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint point = [touch locationInView:self.speedPanel];
-
-    PPDebug(@"drag speed at point = %@",NSStringFromCGPoint(point));
     [self setSpeedProgressWithPoint:point];
 }
 
@@ -345,9 +343,7 @@
 
 - (IBAction)clickPlayerPanel:(id)sender forEvent:(UIEvent *)event {
     CGPoint point = [self touchPointForEvent:event];
-    PPDebug(@"touch point = %@",NSStringFromCGPoint(point));
     if ([self touchInPlayProgressBar:point]) {
-        PPDebug(@"<touchInPlayProgressBar>");
         [self updateProgressWithPoint:point];
         CGFloat value = [self playProgressValue:[self fixPoint:point]];
         [self showDrawViewWithProgressValue:value];

@@ -104,13 +104,29 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 }
 
 
+#define RECT_SPAN_WIDTH 2
+- (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
+{
+    rect.origin.x -= RECT_SPAN_WIDTH;
+    rect.origin.y -= RECT_SPAN_WIDTH;
+    rect.size.width += RECT_SPAN_WIDTH*2;
+    rect.size.height += RECT_SPAN_WIDTH*2;
+    return CGRectContainsPoint(rect, point);
+}
+
 - (void)addPointIntoPath:(CGPoint)point
 {
 //    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
-    
-    if (!CGRectContainsPoint(DRAW_VIEW_RECT, point)){
-        PPDebug(@"<addPointIntoPath> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
-        return;
+    CGRect rect = DRAW_VIEW_RECT;
+    if (!CGRectContainsPoint(rect, point)){
+        if (![self spanRect:rect ContainsPoint:point]) {
+            PPDebug(@"<addPointIntoPath> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
+            return;
+        }
+        point.x = MAX(point.x, 0);
+        point.y = MAX(point.y, 0);
+        point.x = MIN(point.x, DRAW_VIEW_WIDTH);
+        point.y = MIN(point.y, DRAW_VIEW_HEIGHT);
     }
     
     _hasPoint = YES;
