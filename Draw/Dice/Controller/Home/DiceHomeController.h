@@ -11,22 +11,21 @@
 #import "CommonDialog.h"
 #import "DiceGameService.h"
 #import "MenuButton.h"
+#import "SuperHomeController.h"
 
-@class MenuPanel;
-@class BottomMenuPanel;
 
-@interface DiceHomeController : PPViewController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate,MenuButtonDelegate/*, CommonGameServiceDelegate*/>
+@interface DiceHomeController : SuperHomeController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate/*,MenuButtonDelegate, CommonGameServiceDelegate*/>
 {
-    MenuPanel *_menuPanel;
-    BottomMenuPanel *_bottomMenuPanel;
+//    MenuPanel *_menuPanel;
+//    BottomMenuPanel *_bottomMenuPanel;
     NSTimer* _rollAwardDiceTimer;
     BOOL _isTryJoinGame;
     int _awardDicePoint;
     UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property (retain, nonatomic) MenuPanel *menuPanel;
-@property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
+//@property (retain, nonatomic) MenuPanel *menuPanel;
+//@property (retain, nonatomic) BottomMenuPanel *bottomMenuPanel;
 
 - (void)connectServer:(DiceGameRuleType)ruleType;
 
