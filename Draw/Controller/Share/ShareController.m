@@ -27,6 +27,7 @@
 #import "TableTabManager.h"
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
+#import "ReplayView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -300,10 +301,10 @@ typedef enum{
 - (void)performReplay
 {
     MyPaint* currentPaint = _selectedPaint;
-
-    ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
-    [self.navigationController pushViewController:replayController animated:YES];
-    [replayController release];
+    ReplayView *replayView = [ReplayView createReplayView];
+    NSMutableArray *actionList = [currentPaint drawActionList];
+    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion];    
     [self hideActivity];
 }
 

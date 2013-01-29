@@ -17,7 +17,6 @@
 #import "GameBasic.pb.h"
 #import "ShowDrawView.h"
 #import "ShareImageManager.h"
-#import "ReplayGraffitiController.h"
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
@@ -27,7 +26,7 @@
 #import "ChatListController.h"
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
-
+#import "ReplayView.h"
 @interface ChatDetailController ()
 {
     MessageStat *_messageStat;
@@ -589,11 +588,10 @@
 #pragma mark enter replay controller
 - (void)enterReplayController:(DrawMessage *)message
 {
-    ReplayGraffitiController *rg = [[ReplayGraffitiController alloc] initWithDrawActionList:[message drawActionList]];
-    rg.drawDataVersion = message.drawDataVersion;
-    [self.navigationController pushViewController:rg animated:YES];
-    [rg release];
-
+    ReplayView *replayView = [ReplayView createReplayView];
+    NSMutableArray *actionList = [message drawActionList];
+    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
+    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion];
 }
 - (void)clickMessage:(PPMessage *)message 
   withDrawActionList:(NSArray *)drawActionList

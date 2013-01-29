@@ -119,6 +119,9 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 //    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
     CGRect rect = DRAW_VIEW_RECT;
     if (!CGRectContainsPoint(rect, point)){
+        //add By Gamy
+        //we can change point(304.1,320.4) to point(304,320)
+        //this point is not incorrect, but mistake.
         if (![self spanRect:rect ContainsPoint:point]) {
             PPDebug(@"<addPointIntoPath> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
             return;
