@@ -440,6 +440,17 @@
 		C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */; };
 		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
 		C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD101653A7F400003E15 /* ZJHRoomListController.m */; };
+		C252DCEA16B75F0D0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
+		C252DCEB16B75F0D0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
+		C252DCEC16B75F0E0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
+		C252DCED16B75F120007D240 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744916B1089C00958355 /* OpusCell.m */; };
+		C252DCEE16B75F130007D240 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744916B1089C00958355 /* OpusCell.m */; };
+		C252DCEF16B75F150007D240 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744916B1089C00958355 /* OpusCell.m */; };
+		C252DCF016B75F190007D240 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744C16B1089C00958355 /* OpusSelectController.m */; };
+		C252DCF116B75F1C0007D240 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744C16B1089C00958355 /* OpusSelectController.m */; };
+		C252DCF216B75F1E0007D240 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744C16B1089C00958355 /* OpusSelectController.m */; };
+		C252DCF816B7773E0007D240 /* DiceHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252DCF416B776760007D240 /* DiceHomeHeaderPanel.xib */; };
+		C252DCFD16B7774C0007D240 /* DiceHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252DCF316B7766D0007D240 /* DiceHomeHeaderPanel~ipad.xib */; };
 		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
@@ -7129,6 +7140,8 @@
 		C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListCell.m; sourceTree = "<group>"; };
 		C250AD0F1653A7F400003E15 /* ZJHRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListController.h; sourceTree = "<group>"; };
 		C250AD101653A7F400003E15 /* ZJHRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListController.m; sourceTree = "<group>"; };
+		C252DCF316B7766D0007D240 /* DiceHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		C252DCF416B776760007D240 /* DiceHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtrr.h"; sourceTree = "<group>"; };
 		C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtrr.m"; sourceTree = "<group>"; };
 		C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FiltrrCompositions.h"; sourceTree = "<group>"; };
@@ -12916,6 +12929,8 @@
 		CA1DA971167345F10078B5A9 /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				C252DCF316B7766D0007D240 /* DiceHomeHeaderPanel~ipad.xib */,
+				C252DCF416B776760007D240 /* DiceHomeHeaderPanel.xib */,
 				CA1DA96B167332090078B5A9 /* HomeCommonView.h */,
 				CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */,
 				CA1DA94C16732E200078B5A9 /* HomeHeaderPanel.h */,
@@ -18241,6 +18256,8 @@
 				CABEDD9616B6595A00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
 				CABEDD9A16B6595A00BB9060 /* draw_player_speed_button@2x.png in Resources */,
 				CABEDD9E16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */,
+				C252DCF816B7773E0007D240 /* DiceHomeHeaderPanel.xib in Resources */,
+				C252DCFD16B7774C0007D240 /* DiceHomeHeaderPanel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21453,6 +21470,9 @@
 				CADECC6116B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0416B3A45A006FC155 /* BoardAdminListView.m in Sources */,
 				CABEDD2216B64C5900BB9060 /* ReplayView.m in Sources */,
+				C252DCEB16B75F0D0007D240 /* OpusWallController.m in Sources */,
+				C252DCEE16B75F130007D240 /* OpusCell.m in Sources */,
+				C252DCF116B75F1C0007D240 /* OpusSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22148,6 +22168,9 @@
 				CADECC6216B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0516B3A45A006FC155 /* BoardAdminListView.m in Sources */,
 				CABEDD2316B64C5900BB9060 /* ReplayView.m in Sources */,
+				C252DCEC16B75F0E0007D240 /* OpusWallController.m in Sources */,
+				C252DCEF16B75F150007D240 /* OpusCell.m in Sources */,
+				C252DCF216B75F1E0007D240 /* OpusSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23555,6 +23578,9 @@
 				CADECC6016B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0316B3A45A006FC155 /* BoardAdminListView.m in Sources */,
 				CABEDD2116B64C5900BB9060 /* ReplayView.m in Sources */,
+				C252DCEA16B75F0D0007D240 /* OpusWallController.m in Sources */,
+				C252DCED16B75F120007D240 /* OpusCell.m in Sources */,
+				C252DCF016B75F190007D240 /* OpusSelectController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

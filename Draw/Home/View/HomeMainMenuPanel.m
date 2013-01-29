@@ -94,6 +94,8 @@
         list = getDrawMainMenuTypeList();
     }else if(gameAppType() == GameAppTypeZJH){
         list = getZJHMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeDice){
+        list = getDiceMainMenuTypeList();
     }
 //    list = getZJHMainMenuTypeList();
     _pageCount = 0;
