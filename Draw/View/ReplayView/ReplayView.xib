@@ -41,7 +41,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{3, 0}, {313, 437}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="565890114"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -57,7 +56,6 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{8, 9}, {304, 320}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167940551"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -70,7 +68,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{293, 4}, {25, 25}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="355539151"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -111,7 +108,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{7, 1}, {304, 33}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="339467125"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -126,7 +122,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 12}, {1, 10}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="9605191"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -142,7 +137,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{16, 6}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="294088553"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -168,7 +162,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{285, 6}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="528805157"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -194,7 +187,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{84, 50}, {36, 37}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="96605501"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -220,7 +212,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{138, 46}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="738442156"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -249,7 +240,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{201, 50}, {36, 37}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="556998278"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -273,7 +263,6 @@
 						</array>
 						<string key="NSFrame">{{0, 328}, {320, 104}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="606717654"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="853491510">
@@ -291,7 +280,6 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{7.5, 1}, {13, 87}}</string>
 								<reference key="NSSuperview" ref="556998278"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="315453257"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -306,8 +294,6 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{11, 51}, {6, 28}}</string>
 								<reference key="NSSuperview" ref="556998278"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -321,7 +307,6 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{6.5, 38.5}, {15, 15}}</string>
 								<reference key="NSSuperview" ref="556998278"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="844546574"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -343,7 +328,6 @@
 						</array>
 						<string key="NSFrame">{{282, 240}, {27, 91}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="23829651"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="853491510"/>
@@ -352,7 +336,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 437}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="178132777"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -715,176 +698,24 @@
 			<nil key="sourceID"/>
 			<int key="maxID">56</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">ReplayView</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickCloseButton:">id</string>
-						<string key="clickEnd:">id</string>
-						<string key="clickPlay:">UIButton</string>
-						<string key="clickPlayerPanel:forEvent:">id</string>
-						<string key="clickRestart:">id</string>
-						<string key="clickSpeed:">id</string>
-						<string key="clickSpeedPanel:forEvent:">id</string>
-						<string key="dragPlayer:forEvent:">id</string>
-						<string key="dragSpeed:forEvent:">UIButton</string>
-						<string key="finishDragPlayer:forEvent:">id</string>
-						<string key="finishDragSpeed:forEvent:">id</string>
-						<string key="startDragPlayer:forEvent:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickCloseButton:">
-							<string key="name">clickCloseButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickEnd:">
-							<string key="name">clickEnd:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickPlay:">
-							<string key="name">clickPlay:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBActionInfo" key="clickPlayerPanel:forEvent:">
-							<string key="name">clickPlayerPanel:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickRestart:">
-							<string key="name">clickRestart:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSpeed:">
-							<string key="name">clickSpeed:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSpeedPanel:forEvent:">
-							<string key="name">clickSpeedPanel:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dragPlayer:forEvent:">
-							<string key="name">dragPlayer:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dragSpeed:forEvent:">
-							<string key="name">dragSpeed:forEvent:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBActionInfo" key="finishDragPlayer:forEvent:">
-							<string key="name">finishDragPlayer:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="finishDragSpeed:forEvent:">
-							<string key="name">finishDragSpeed:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="startDragPlayer:forEvent:">
-							<string key="name">startDragPlayer:forEvent:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="holderView">UIView</string>
-						<string key="playButton">UIButton</string>
-						<string key="playProgressLoader">UIImageView</string>
-						<string key="playProgressPoint">UIButton</string>
-						<string key="speedLoader">UIImageView</string>
-						<string key="speedPanel">UIView</string>
-						<string key="speedPoint">UIButton</string>
-						<string key="toolPanel">UIView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="holderView">
-							<string key="name">holderView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="playButton">
-							<string key="name">playButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="playProgressLoader">
-							<string key="name">playProgressLoader</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="playProgressPoint">
-							<string key="name">playProgressPoint</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="speedLoader">
-							<string key="name">speedLoader</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="speedPanel">
-							<string key="name">speedPanel</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="speedPoint">
-							<string key="name">speedPoint</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="toolPanel">
-							<string key="name">toolPanel</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ReplayView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">StatementView</string>
-					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickCloseButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickCloseButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickCloseButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="playProgressLoad">UIImageView</string>
-						<string key="webView">UIWebView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="playProgressLoad">
-							<string key="name">playProgressLoad</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="webView">
-							<string key="name">webView</string>
-							<string key="candidateClassName">UIWebView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/StatementView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_player_bg@2x.png">{640, 874}</string>
-			<string key="draw_player_close@2x.png">{41, 41}</string>
-			<string key="draw_player_end@2x.png">{74, 72}</string>
-			<string key="draw_player_pause@2x.png">{89, 90}</string>
-			<string key="draw_player_play@2x.png">{89, 90}</string>
-			<string key="draw_player_progress@2x.png">{621, 52}</string>
-			<string key="draw_player_progress_load@2x.png">{86, 16}</string>
-			<string key="draw_player_progress_point@2x.png">{28, 27}</string>
-			<string key="draw_player_reset@2x.png">{72, 74}</string>
-			<string key="draw_player_speed_bar@2x.png">{26, 174}</string>
-			<string key="draw_player_speed_button@2x.png">{30, 30}</string>
-			<string key="draw_player_speed_load@2x.png">{12, 85}</string>
+			<string key="draw_player_bg@2x.png">{16, 16}</string>
+			<string key="draw_player_close@2x.png">{16, 16}</string>
+			<string key="draw_player_end@2x.png">{16, 16}</string>
+			<string key="draw_player_pause@2x.png">{16, 16}</string>
+			<string key="draw_player_play@2x.png">{16, 16}</string>
+			<string key="draw_player_progress@2x.png">{16, 16}</string>
+			<string key="draw_player_progress_load@2x.png">{16, 16}</string>
+			<string key="draw_player_progress_point@2x.png">{16, 16}</string>
+			<string key="draw_player_reset@2x.png">{16, 16}</string>
+			<string key="draw_player_speed_bar@2x.png">{16, 16}</string>
+			<string key="draw_player_speed_button@2x.png">{16, 16}</string>
+			<string key="draw_player_speed_load@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

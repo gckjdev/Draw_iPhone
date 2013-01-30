@@ -126,8 +126,6 @@ message PBNoCompressDrawData
   optional int32 version = 2 [default=0];      // draw data version
 }
 
-
-
 message PBHotWord
 {
   required string wordId = 1;
@@ -146,20 +144,20 @@ message PBHotWordList
 message PBWallOpus
 {
     required PBFeed opus = 1;
-    optional int32  frameId = 2[default=0];
+    optional int32  frameIdOnWall = 2[default=0];
 }
 
 
 message PBWall{
   required string wallId = 1;                           // 画墙id
 
-  required PBWallType wallType = 2;                         // wall type,
+  required PBWallType wallType = 2;                     // wall type,
 
   required string userId = 3;                           // 用户id
   optional string wallName = 6;                         // 画墙名称
   
   optional PBLayout layout = 7;                         // 画墙布局
-  repeated PBWallOpus opuses = 8;                       // 画墙上装裱的画
+  repeated PBWallOpus wallOpuses = 8;                   // 画墙上装裱的画
   
   optional string musicUrl = 10;                        // 背景音乐
 }
@@ -175,7 +173,8 @@ message PBRect
 message PBFrame{
   required int32 frameId = 1;
   optional int32 frameType = 2;
-  optional string image = 10;
+  optional string thumbImage = 9;
+  optional string image = 10;                   // 相对路径
 
   optional PBRect iPhoneRect = 11;              // 相对于布局的frame
   optional PBRect iPadRect = 12;
@@ -183,7 +182,13 @@ message PBFrame{
   optional PBRect opusIphoneRect = 13;          // 相对于框的frame
   optional PBRect opusIpadRect = 14;
   
+  optional int32 idOnWall = 15;                      // 作为布局上的索引
+
   optional int32 price = 18;
+}
+
+message PBFrameList{
+  repeated PBFrame frames = 1;
 }
 
 message PBLayout{

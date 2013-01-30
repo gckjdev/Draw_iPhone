@@ -60,6 +60,14 @@
 		A41CF57916578D0B0011AE45 /* ZJHCardTypesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CF57716578D0B0011AE45 /* ZJHCardTypesView.xib */; };
 		A41CF58316578EF90011AE45 /* ZJHCardTypesView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41CF58216578EF90011AE45 /* ZJHCardTypesView~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
+		A41D2B4416B910B70094BA7C /* ProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4116B910B70094BA7C /* ProtocolUtil.m */; };
+		A41D2B4516B910B70094BA7C /* WallOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4316B910B70094BA7C /* WallOpus.m */; };
+		A41D2B4E16B910D10094BA7C /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
+		A41D2B4F16B910D10094BA7C /* FrameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4816B910D10094BA7C /* FrameCell.xib */; };
+		A41D2B5016B910D10094BA7C /* FrameSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4A16B910D10094BA7C /* FrameSelectController.m */; };
+		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
+		A41D2B5216B910D10094BA7C /* ReplaceOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */; };
+		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
@@ -248,9 +256,7 @@
 		A4D1745116B1089C00958355 /* OpusSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D1744D16B1089C00958355 /* OpusSelectController.xib */; };
 		A4D174AD16B621FE00958355 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
 		A4D174AE16B621FE00958355 /* OpusWallController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D174AC16B621FE00958355 /* OpusWallController.xib */; };
-		A4D174BC16B6222000958355 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B116B6222000958355 /* Frame.m */; };
 		A4D174BD16B6222000958355 /* FrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B316B6222000958355 /* FrameManager.m */; };
-		A4D174BE16B6222000958355 /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B516B6222000958355 /* Layout.m */; };
 		A4D174BF16B6222000958355 /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B716B6222000958355 /* LayoutManager.m */; };
 		A4D174C016B6222000958355 /* Wall.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B916B6222000958355 /* Wall.m */; };
 		A4D174C116B6222000958355 /* WallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174BB16B6222000958355 /* WallManager.m */; };
@@ -3429,10 +3435,10 @@
 		CA3B56E31514CB7D00A93137 /* GamePlayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E21514CB7D00A93137 /* GamePlayResult.m */; };
 		CA3B56E61514CB9400A93137 /* GameUserComment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E51514CB9300A93137 /* GameUserComment.m */; };
 		CA3B56E91514D41F00A93137 /* DrawAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3B56E81514D41E00A93137 /* DrawAction.m */; };
-		CA3EB8D716B914F600660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */; };
-		CA3EB8D816B914F600660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */; };
-		CA3EB8D916B914F600660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */; };
-		CA3EB8DA16B914F600660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */; };
+		CA3EB8F616B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
+		CA3EB8F716B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
+		CA3EB8F816B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
+		CA3EB8F916B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
 		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
 		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
 		CA3F2ECD1609B3050059667B /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
@@ -6756,6 +6762,20 @@
 		A41CF58216578EF90011AE45 /* ZJHCardTypesView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHCardTypesView~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
+		A41D2B4016B910B70094BA7C /* ProtocolUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolUtil.h; sourceTree = "<group>"; };
+		A41D2B4116B910B70094BA7C /* ProtocolUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolUtil.m; sourceTree = "<group>"; };
+		A41D2B4216B910B70094BA7C /* WallOpus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpus.h; sourceTree = "<group>"; };
+		A41D2B4316B910B70094BA7C /* WallOpus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpus.m; sourceTree = "<group>"; };
+		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
+		A41D2B4716B910D10094BA7C /* FrameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameCell.m; sourceTree = "<group>"; };
+		A41D2B4816B910D10094BA7C /* FrameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameCell.xib; sourceTree = "<group>"; };
+		A41D2B4916B910D10094BA7C /* FrameSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameSelectController.h; sourceTree = "<group>"; };
+		A41D2B4A16B910D10094BA7C /* FrameSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameSelectController.m; sourceTree = "<group>"; };
+		A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameSelectController.xib; sourceTree = "<group>"; };
+		A41D2B4C16B910D10094BA7C /* ReplaceOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceOpusView.h; sourceTree = "<group>"; };
+		A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceOpusView.m; sourceTree = "<group>"; };
+		A41D2B5416B910E30094BA7C /* WallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallService.h; sourceTree = "<group>"; };
+		A41D2B5516B910E30094BA7C /* WallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallService.m; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
@@ -7007,12 +7027,8 @@
 		A4D174AA16B621FE00958355 /* OpusWallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusWallController.h; sourceTree = "<group>"; };
 		A4D174AB16B621FE00958355 /* OpusWallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusWallController.m; sourceTree = "<group>"; };
 		A4D174AC16B621FE00958355 /* OpusWallController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusWallController.xib; sourceTree = "<group>"; };
-		A4D174B016B6222000958355 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
-		A4D174B116B6222000958355 /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		A4D174B216B6222000958355 /* FrameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameManager.h; sourceTree = "<group>"; };
 		A4D174B316B6222000958355 /* FrameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameManager.m; sourceTree = "<group>"; };
-		A4D174B416B6222000958355 /* Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
-		A4D174B516B6222000958355 /* Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layout.m; sourceTree = "<group>"; };
 		A4D174B616B6222000958355 /* LayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutManager.h; sourceTree = "<group>"; };
 		A4D174B716B6222000958355 /* LayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutManager.m; sourceTree = "<group>"; };
 		A4D174B816B6222000958355 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wall.h; sourceTree = "<group>"; };
@@ -8019,7 +8035,7 @@
 		CA3B56E51514CB9300A93137 /* GameUserComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUserComment.m; sourceTree = "<group>"; };
 		CA3B56E71514D41E00A93137 /* DrawAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawAction.h; sourceTree = "<group>"; };
 		CA3B56E81514D41E00A93137 /* DrawAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawAction.m; sourceTree = "<group>"; };
-		CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw@2x.png"; sourceTree = "<group>"; };
+		CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw@2x.png"; sourceTree = "<group>"; };
 		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
 		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
 		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
@@ -10182,6 +10198,15 @@
 			path = RRSGlowLabel;
 			sourceTree = "<group>";
 		};
+		A41D2B5316B910E30094BA7C /* Wall */ = {
+			isa = PBXGroup;
+			children = (
+				A41D2B5416B910E30094BA7C /* WallService.h */,
+				A41D2B5516B910E30094BA7C /* WallService.m */,
+			);
+			path = Wall;
+			sourceTree = "<group>";
+		};
 		A42C520115E614D2001D8208 /* DiceChatMsgManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -10706,6 +10731,14 @@
 		A4D1744716B1089C00958355 /* OpusWall */ = {
 			isa = PBXGroup;
 			children = (
+				A41D2B4616B910D10094BA7C /* FrameCell.h */,
+				A41D2B4716B910D10094BA7C /* FrameCell.m */,
+				A41D2B4816B910D10094BA7C /* FrameCell.xib */,
+				A41D2B4916B910D10094BA7C /* FrameSelectController.h */,
+				A41D2B4A16B910D10094BA7C /* FrameSelectController.m */,
+				A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */,
+				A41D2B4C16B910D10094BA7C /* ReplaceOpusView.h */,
+				A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */,
 				A4D174AA16B621FE00958355 /* OpusWallController.h */,
 				A4D174AB16B621FE00958355 /* OpusWallController.m */,
 				A4D174AC16B621FE00958355 /* OpusWallController.xib */,
@@ -10722,12 +10755,12 @@
 		A4D174AF16B6222000958355 /* WallLayout */ = {
 			isa = PBXGroup;
 			children = (
-				A4D174B016B6222000958355 /* Frame.h */,
-				A4D174B116B6222000958355 /* Frame.m */,
+				A41D2B4016B910B70094BA7C /* ProtocolUtil.h */,
+				A41D2B4116B910B70094BA7C /* ProtocolUtil.m */,
+				A41D2B4216B910B70094BA7C /* WallOpus.h */,
+				A41D2B4316B910B70094BA7C /* WallOpus.m */,
 				A4D174B216B6222000958355 /* FrameManager.h */,
 				A4D174B316B6222000958355 /* FrameManager.m */,
-				A4D174B416B6222000958355 /* Layout.h */,
-				A4D174B516B6222000958355 /* Layout.m */,
 				A4D174B616B6222000958355 /* LayoutManager.h */,
 				A4D174B716B6222000958355 /* LayoutManager.m */,
 				A4D174B816B6222000958355 /* Wall.h */,
@@ -11533,6 +11566,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A41D2B5316B910E30094BA7C /* Wall */,
 				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
 				CAEE45E2165F5590001E02F1 /* SNS */,
 				CA89747B16087678003A95F7 /* Contest */,
@@ -13081,7 +13115,7 @@
 		CA25C3B7168968070064C05D /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				CA3EB8D616B914F600660FE7 /* draw_straw@2x.png */,
+				CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */,
 				CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */,
 				CA22B788169AD58000DAB1C3 /* draw_palette_unbuy@2x.png */,
 				CA25C3B8168968070064C05D /* draw_add@2x.png */,
@@ -18302,7 +18336,7 @@
 				C21C322116B8CA68006B5D14 /* tab_left_unselect@2x.png in Resources */,
 				C21C322216B8CA68006B5D14 /* tab_right_selected@2x.png in Resources */,
 				C21C322316B8CA68006B5D14 /* tab_right_unselect@2x.png in Resources */,
-				CA3EB8D916B914F600660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8F816B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19146,7 +19180,7 @@
 				CABEDD9F16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */,
 				C21C320A16B8C3CF006B5D14 /* CommonRoomListController.xib in Resources */,
 				C21C320D16B8C3D4006B5D14 /* CommonRoomListController~ipad.xib in Resources */,
-				CA3EB8DA16B914F600660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8F916B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19984,7 +20018,9 @@
 				CABEDD9416B6595A00BB9060 /* draw_player_speed_bar@2x.png in Resources */,
 				CABEDD9816B6595A00BB9060 /* draw_player_speed_button@2x.png in Resources */,
 				CABEDD9C16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */,
-				CA3EB8D716B914F600660FE7 /* draw_straw@2x.png in Resources */,
+				A41D2B4F16B910D10094BA7C /* FrameCell.xib in Resources */,
+				A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */,
+				CA3EB8F616B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20801,7 +20837,7 @@
 				CABEDD9D16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */,
 				C21C320816B8C3CD006B5D14 /* CommonRoomListController.xib in Resources */,
 				C21C320B16B8C3D2006B5D14 /* CommonRoomListController~ipad.xib in Resources */,
-				CA3EB8D816B914F600660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8F716B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22914,13 +22950,17 @@
 				A4D1745016B1089C00958355 /* OpusSelectController.m in Sources */,
 				CA853C0216B3A45A006FC155 /* BoardAdminListView.m in Sources */,
 				A4D174AD16B621FE00958355 /* OpusWallController.m in Sources */,
-				A4D174BC16B6222000958355 /* Frame.m in Sources */,
 				A4D174BD16B6222000958355 /* FrameManager.m in Sources */,
-				A4D174BE16B6222000958355 /* Layout.m in Sources */,
 				A4D174BF16B6222000958355 /* LayoutManager.m in Sources */,
 				A4D174C016B6222000958355 /* Wall.m in Sources */,
 				A4D174C116B6222000958355 /* WallManager.m in Sources */,
 				CABEDD2016B64C5900BB9060 /* ReplayView.m in Sources */,
+				A41D2B4416B910B70094BA7C /* ProtocolUtil.m in Sources */,
+				A41D2B4516B910B70094BA7C /* WallOpus.m in Sources */,
+				A41D2B4E16B910D10094BA7C /* FrameCell.m in Sources */,
+				A41D2B5016B910D10094BA7C /* FrameSelectController.m in Sources */,
+				A41D2B5216B910D10094BA7C /* ReplaceOpusView.m in Sources */,
+				A41D2B5616B910E30094BA7C /* WallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

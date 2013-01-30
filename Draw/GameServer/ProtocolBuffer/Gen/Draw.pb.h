@@ -18,6 +18,8 @@
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
 @class PBFrame;
+@class PBFrameList;
+@class PBFrameList_Builder;
 @class PBFrame_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
@@ -1127,15 +1129,15 @@
 
 @interface PBWallOpus : PBGeneratedMessage {
 @private
-  BOOL hasFrameId_:1;
+  BOOL hasFrameIdOnWall_:1;
   BOOL hasOpus_:1;
-  int32_t frameId;
+  int32_t frameIdOnWall;
   PBFeed* opus;
 }
 - (BOOL) hasOpus;
-- (BOOL) hasFrameId;
+- (BOOL) hasFrameIdOnWall;
 @property (readonly, retain) PBFeed* opus;
-@property (readonly) int32_t frameId;
+@property (readonly) int32_t frameIdOnWall;
 
 + (PBWallOpus*) defaultInstance;
 - (PBWallOpus*) defaultInstance;
@@ -1178,10 +1180,10 @@
 - (PBWallOpus_Builder*) mergeOpus:(PBFeed*) value;
 - (PBWallOpus_Builder*) clearOpus;
 
-- (BOOL) hasFrameId;
-- (int32_t) frameId;
-- (PBWallOpus_Builder*) setFrameId:(int32_t) value;
-- (PBWallOpus_Builder*) clearFrameId;
+- (BOOL) hasFrameIdOnWall;
+- (int32_t) frameIdOnWall;
+- (PBWallOpus_Builder*) setFrameIdOnWall:(int32_t) value;
+- (PBWallOpus_Builder*) clearFrameIdOnWall;
 @end
 
 @interface PBWall : PBGeneratedMessage {
@@ -1198,7 +1200,7 @@
   NSString* musicUrl;
   PBLayout* layout;
   PBWallType wallType;
-  NSMutableArray* mutableOpusesList;
+  NSMutableArray* mutableWallOpusesList;
 }
 - (BOOL) hasWallId;
 - (BOOL) hasWallType;
@@ -1212,8 +1214,8 @@
 @property (readonly, retain) NSString* wallName;
 @property (readonly, retain) PBLayout* layout;
 @property (readonly, retain) NSString* musicUrl;
-- (NSArray*) opusesList;
-- (PBWallOpus*) opusesAtIndex:(int32_t) index;
+- (NSArray*) wallOpusesList;
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
 
 + (PBWall*) defaultInstance;
 - (PBWall*) defaultInstance;
@@ -1276,12 +1278,12 @@
 - (PBWall_Builder*) mergeLayout:(PBLayout*) value;
 - (PBWall_Builder*) clearLayout;
 
-- (NSArray*) opusesList;
-- (PBWallOpus*) opusesAtIndex:(int32_t) index;
-- (PBWall_Builder*) replaceOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
-- (PBWall_Builder*) addOpuses:(PBWallOpus*) value;
-- (PBWall_Builder*) addAllOpuses:(NSArray*) values;
-- (PBWall_Builder*) clearOpusesList;
+- (NSArray*) wallOpusesList;
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
+- (PBWall_Builder*) replaceWallOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
+- (PBWall_Builder*) addWallOpuses:(PBWallOpus*) value;
+- (PBWall_Builder*) addAllWallOpuses:(NSArray*) values;
+- (PBWall_Builder*) clearWallOpusesList;
 
 - (BOOL) hasMusicUrl;
 - (NSString*) musicUrl;
@@ -1368,7 +1370,9 @@
 @private
   BOOL hasFrameId_:1;
   BOOL hasFrameType_:1;
+  BOOL hasIdOnWall_:1;
   BOOL hasPrice_:1;
+  BOOL hasThumbImage_:1;
   BOOL hasImage_:1;
   BOOL hasIPhoneRect_:1;
   BOOL hasIPadRect_:1;
@@ -1376,7 +1380,9 @@
   BOOL hasOpusIpadRect_:1;
   int32_t frameId;
   int32_t frameType;
+  int32_t idOnWall;
   int32_t price;
+  NSString* thumbImage;
   NSString* image;
   PBRect* iPhoneRect;
   PBRect* iPadRect;
@@ -1385,19 +1391,23 @@
 }
 - (BOOL) hasFrameId;
 - (BOOL) hasFrameType;
+- (BOOL) hasThumbImage;
 - (BOOL) hasImage;
 - (BOOL) hasIPhoneRect;
 - (BOOL) hasIPadRect;
 - (BOOL) hasOpusIphoneRect;
 - (BOOL) hasOpusIpadRect;
+- (BOOL) hasIdOnWall;
 - (BOOL) hasPrice;
 @property (readonly) int32_t frameId;
 @property (readonly) int32_t frameType;
+@property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) PBRect* iPhoneRect;
 @property (readonly, retain) PBRect* iPadRect;
 @property (readonly, retain) PBRect* opusIphoneRect;
 @property (readonly, retain) PBRect* opusIpadRect;
+@property (readonly) int32_t idOnWall;
 @property (readonly) int32_t price;
 
 + (PBFrame*) defaultInstance;
@@ -1444,6 +1454,11 @@
 - (PBFrame_Builder*) setFrameType:(int32_t) value;
 - (PBFrame_Builder*) clearFrameType;
 
+- (BOOL) hasThumbImage;
+- (NSString*) thumbImage;
+- (PBFrame_Builder*) setThumbImage:(NSString*) value;
+- (PBFrame_Builder*) clearThumbImage;
+
 - (BOOL) hasImage;
 - (NSString*) image;
 - (PBFrame_Builder*) setImage:(NSString*) value;
@@ -1477,10 +1492,64 @@
 - (PBFrame_Builder*) mergeOpusIpadRect:(PBRect*) value;
 - (PBFrame_Builder*) clearOpusIpadRect;
 
+- (BOOL) hasIdOnWall;
+- (int32_t) idOnWall;
+- (PBFrame_Builder*) setIdOnWall:(int32_t) value;
+- (PBFrame_Builder*) clearIdOnWall;
+
 - (BOOL) hasPrice;
 - (int32_t) price;
 - (PBFrame_Builder*) setPrice:(int32_t) value;
 - (PBFrame_Builder*) clearPrice;
+@end
+
+@interface PBFrameList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableFramesList;
+}
+- (NSArray*) framesList;
+- (PBFrame*) framesAtIndex:(int32_t) index;
+
++ (PBFrameList*) defaultInstance;
+- (PBFrameList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBFrameList_Builder*) builder;
++ (PBFrameList_Builder*) builder;
++ (PBFrameList_Builder*) builderWithPrototype:(PBFrameList*) prototype;
+
++ (PBFrameList*) parseFromData:(NSData*) data;
++ (PBFrameList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFrameList*) parseFromInputStream:(NSInputStream*) input;
++ (PBFrameList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBFrameList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBFrameList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBFrameList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBFrameList* result;
+}
+
+- (PBFrameList*) defaultInstance;
+
+- (PBFrameList_Builder*) clear;
+- (PBFrameList_Builder*) clone;
+
+- (PBFrameList*) build;
+- (PBFrameList*) buildPartial;
+
+- (PBFrameList_Builder*) mergeFrom:(PBFrameList*) other;
+- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) framesList;
+- (PBFrame*) framesAtIndex:(int32_t) index;
+- (PBFrameList_Builder*) replaceFramesAtIndex:(int32_t) index with:(PBFrame*) value;
+- (PBFrameList_Builder*) addFrames:(PBFrame*) value;
+- (PBFrameList_Builder*) addAllFrames:(NSArray*) values;
+- (PBFrameList_Builder*) clearFramesList;
 @end
 
 @interface PBLayout : PBGeneratedMessage {
