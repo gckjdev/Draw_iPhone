@@ -1963,20 +1963,20 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coins@2x.png">{50, 57}</string>
-			<string key="dice_bell@2x.png">{69, 86}</string>
-			<string key="dice_runaway@2x.png">{72, 71}</string>
-			<string key="dice_setting@2x.png">{72, 71}</string>
-			<string key="left_bottom_circle@2x.png">{84, 92}</string>
-			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
+			<string key="coins@2x.png">{16, 16}</string>
+			<string key="dice_bell@2x.png">{16, 16}</string>
+			<string key="dice_runaway@2x.png">{16, 16}</string>
+			<string key="dice_setting@2x.png">{16, 16}</string>
+			<string key="left_bottom_circle@2x.png">{16, 16}</string>
+			<string key="left_bottom_circleon@2x.png">{16, 16}</string>
 			<string key="message_icon.png">{16, 16}</string>
-			<string key="open@2x.png">{67, 60}</string>
-			<string key="right_bottom_circle@2x.png">{84, 92}</string>
-			<string key="right_bottom_circleon@2x.png">{84, 92}</string>
+			<string key="open@2x.png">{16, 16}</string>
+			<string key="right_bottom_circle@2x.png">{16, 16}</string>
+			<string key="right_bottom_circleon@2x.png">{16, 16}</string>
 			<string key="table@2x.png">{16, 16}</string>
 			<string key="tools_icon.png">{16, 16}</string>
 			<string key="tools_open_icon.png">{16, 16}</string>
-			<string key="zhai_bg@2x.png">{72, 71}</string>
+			<string key="zhai_bg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

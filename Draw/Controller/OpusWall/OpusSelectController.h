@@ -10,11 +10,20 @@
 #import "FeedService.h"
 #import "OpusCell.h"
 
+@class OpusSelectController;
+
+@protocol OpusSelectControllerDelegate <NSObject>
+
+- (void)didController:(OpusSelectController *)contorller clickOpus:(DrawFeed *)opus;
+
+@end
+
 @interface OpusSelectController : PPTableViewController <FeedServiceDelegate , OpusCellDelegate>
+@property (retain, nonatomic) IBOutlet UIButton *comfirmBtn;
 
 @property (retain, nonatomic) IBOutlet UIScrollView *selectedOpusesHolderView;
+@property (assign, nonatomic) id<OpusSelectControllerDelegate> delegate;
 
-
-
+- (void)hideComfirmButton;
 
 @end

@@ -18,10 +18,10 @@
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
 
-#define SPEED_LOADER_MIN_Y (ISIPAD ? 40 : 16)
-#define SPEED_LOADER_MAX_Y (ISIPAD ? 174 : 84)
+#define SPEED_LOADER_MIN_Y (ISIPAD ? 30 : 14)
+#define SPEED_LOADER_MAX_Y (ISIPAD ? 160 : 79)
 
-#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(64, 15, 648, 60) :CGRectMake(27, 5, 260, 20))
+#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(64, 15, 648, 60) :CGRectMake(27, 5, 260, 25))
 
 
 @interface ReplayView()
@@ -190,14 +190,20 @@
     [sender setSelected:![sender isSelected]];
 }
 
-- (IBAction)clickEnd:(UIButton *)sender {
+- (void)playEnd
+{
+    [self.superController hideActivity];
     [self.showView show];
     [self endToPlay];
 }
 
+- (IBAction)clickEnd:(UIButton *)sender {
+    [self.superController showActivityWithText:NSLS(@"kBuffering")];
+    [self performSelector:@selector(playEnd) withObject:nil afterDelay:0.001];
+}
+
 - (IBAction)clickSpeed:(id)sender {
-    self.speedPanel.hidden = NO;
-    self.speedPanel.alpha = 1;
+    self.speedPanel.hidden = !self.speedPanel.hidden;
 }
 
 
@@ -316,25 +322,13 @@
     [self setSpeedProgressWithPoint:point];
 }
 
-#define DISMISS_TIME 1
-#define SPEED_HOLDER_TIME 2
 
-- (void)dismissSpeedBar
-{
-    [ReplayView cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismissSpeedBar) object:nil];
-    [UIView animateWithDuration:DISMISS_TIME animations:^{
-        self.speedPanel.alpha = 0;
-    } completion:^(BOOL finished) {
-        self.speedPanel.hidden = YES;
-    }];    
-}
 
 - (IBAction)finishDragSpeed:(id)sender forEvent:(UIEvent *)event {
     
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint point = [touch locationInView:self.speedPanel];
     [self setSpeedProgressWithPoint:point];
-    [self performSelector:@selector(dismissSpeedBar) withObject:nil afterDelay:SPEED_HOLDER_TIME];
 }
 
 
@@ -356,7 +350,6 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint point = [touch locationInView:self.speedPanel];
     [self setSpeedProgressWithPoint:point];
-    [self performSelector:@selector(dismissSpeedBar) withObject:nil afterDelay:SPEED_HOLDER_TIME];
 }
 
 #pragma mark - Show Draw View Delegate
@@ -379,7 +372,7 @@
 
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
-    [self dismissSpeedBar];
+    [self.speedPanel setHidden:YES];
 }
 
 

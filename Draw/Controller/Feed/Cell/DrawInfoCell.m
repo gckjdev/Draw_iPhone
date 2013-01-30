@@ -132,12 +132,14 @@
 - (void)updateShowView:(DrawFeed *)feed
 {
     if ([feed.drawImageUrl length] != 0){
+        PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             self.feed.largeImage = image;
             [self loadImageFinish];
         } failure:^(NSError *error) {
             [self.loadingActivity stopAnimating];
         }];
+        return;
     }
     else if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
@@ -161,6 +163,7 @@
     UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
     if (mask == nil) {
         mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
+        [mask setBackgroundColor:[UIColor clearColor]];
         [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
         [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
         [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
@@ -191,8 +194,8 @@
 
 - (void)loadImageFinish
 {
-    [self addMaskView];
     [self.loadingActivity stopAnimating];
+    [self addMaskView];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadDrawPicture)]) {
         [_delegate didLoadDrawPicture];
     }
@@ -212,6 +215,7 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     [self updateDesc:feed.opusDesc];
+//    [self updateShowView:feed];
     [self.loadingActivity setCenter:self.drawImage.center];
     if ([feed hasDrawActions]) {
         PPDebug(@"<setCellInfo>:DrawInfoCell have drawData. start to showView");
@@ -219,12 +223,10 @@
         [self updateTime:feed];
         [self updateDesc:feed.opusDesc];
         return;
-    } 
-    PPDebug(@"<setCellInfo>:DrawInfoCell have no drawData. start to load data");
+    }
     if (!_isLoading) {
-        _getTimes = 1;
-        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
         _isLoading = YES;
+        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     }
 }
 
@@ -247,23 +249,18 @@
         self.feed.createDate = feed.createDate;
         self.feed.opusDesc = feed.opusDesc;
         self.feed.feedType = feed.feedType;
+    
         if ([feed.drawImageUrl length] != 0) {
             self.feed.drawImageUrl = feed.drawImageUrl;
         }
-       [self updateShowView:feed];
-        [self updateTime:feed];
+//        [self updateShowView:feed];
+//        [self updateTime:feed];
         [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }
     }else if(resultCode != 0){
-        if (_getTimes < TRY_GET_FEED_TIMES) {
-            PPDebug(@"warnning:<didGetFeed> try again, feed id = %@",feed.feedId);
-            [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
-            _getTimes ++;            
-        }else{
-            PPDebug(@"warnning:<didGetFeed> fail to get feed, feed id = %@",feed.feedId);
-        }
+        PPDebug(@"warnning:<didGetFeed> fail to get feed, feed id = %@",feed.feedId);
     }
 }
 

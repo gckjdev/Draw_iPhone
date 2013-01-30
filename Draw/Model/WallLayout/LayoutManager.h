@@ -12,7 +12,6 @@
 @interface LayoutManager : NSObject
 
 + (LayoutManager *)sharedLayoutManager;
-
-+ (PBLayout *)createTestData;
+- (PBLayout *)layoutWithLayoutId:(int)layoutId;
 
 @end

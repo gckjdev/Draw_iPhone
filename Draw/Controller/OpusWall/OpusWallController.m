@@ -8,11 +8,16 @@
 
 #import "OpusWallController.h"
 #import "UIImageView+WebCache.h"
+#import "UserManager.h"
+#import "FrameManager.h"
+#import "ProtocolUtil.h"
 
 @interface OpusWallController ()
 
-@property (retain, nonatomic) PBWall_Builder *wallBuilder;
+@property (assign, nonatomic) int wallOpusOrder;
+@property (retain, nonatomic) Wall *wall;
 @property (retain, nonatomic) UIView *wallView;
+
 
 @end
 
@@ -20,17 +25,18 @@
 
 - (void)dealloc
 {
-    [_wallBuilder release];
+    [_wall release];
     [_wallView release];
     [_backButton release];
+    [_setLayoutButton release];
+    [_submitButton release];
     [super dealloc];
 }
 
-
-- (id)initWithWall:(PBWall *)wall
+- (id)initWithWall:(Wall *)wall
 {
     if (self = [super init]) {
-        self.wallBuilder = [PBWall builderWithPrototype:wall];
+        self.wall = wall;
     }
     
     return self;
@@ -40,79 +46,113 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = _wallBuilder.wallName;
     
     [self setNavigationLeftButton:@"返回" action:@selector(clickBack:)];
-    
-    [self addWallView];
+    self.wallView = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    [self.view addSubview:self.wallView];
+
+    [self updateWallView];
 }
 
-- (void)addWallView
+- (void)updateWallView
 {
-    PBRect *pbRect = [DeviceDetection isIPAD] ? _wallBuilder.layout.iPadRect : _wallBuilder.layout.iPhoneRect;
+    self.title = _wall.pbWall.wallName;
+
+    PBRect *pbRect = [DeviceDetection isIPAD] ? _wall.pbWall.layout.iPadRect : _wall.pbWall.layout.iPhoneRect;
     CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
-    self.wallView  = [[[UIView alloc] initWithFrame:rect] autorelease];
-    [self.view addSubview:self.wallView];
+    self.wallView.frame = rect;
     
-    for (PBFrame *frame in _wallBuilder.layout.framesList) {
-        [self.wallView addSubview:[self frameBtn:frame]];
+    [self updateWallOpuses];
+}
+
+- (void)updateWallOpuses
+{
+    for (UIView *view in [self.wallView subviews]) {
+        [view removeFromSuperview];
     }
+    
+    for (WallOpus *wallOpus in [_wall wallOpuses]) {
+        [self.wallView addSubview:[self wallOpusBtn:wallOpus]];
+    }
+    
 
     [self.view bringSubviewToFront:self.backButton];
-}
-
-- (PBWallOpus *)wallOpusWithFrameId:(int)frameId
-{
-    for (PBWallOpus *wallOpus in _wallBuilder.opusesList) {
-        if (wallOpus.frameId == frameId) {
-            return wallOpus;
-        }
-    }
-    
-    return nil;
+    [self.view bringSubviewToFront:self.setLayoutButton];
 }
 
 
-- (PBWallOpus *)wallOpusWithOpusId:(NSString *)opusId
-{
-    for (PBWallOpus *wallOpus in _wallBuilder.opusesList) {
-        if ([wallOpus.opus.feedId isEqualToString:opusId]) {
-            return wallOpus;
-        }
-    }
-    
-    return nil;
-}
 
-- (UIImageView *)opusImageView:(PBFrame *)frame
+- (UIButton *)wallOpusBtn:(WallOpus *)wallOpus
 {
-    PBRect *pbOpusRect = [DeviceDetection isIPAD] ? frame.opusIpadRect : frame.opusIphoneRect;
-    CGRect opusRect = CGRectMake(pbOpusRect.x, pbOpusRect.y, pbOpusRect.width, pbOpusRect.height);
-    UIImageView *opusImageView = [[[UIImageView alloc] initWithFrame:opusRect] autorelease];
-    
-    PBWallOpus *wallOpus = [self wallOpusWithFrameId:frame.frameId];
-    [opusImageView setImageWithURL:[NSURL URLWithString:wallOpus.opus.opusImage]];
-    
-    return opusImageView;
-}
-
-- (UIButton *)frameBtn:(PBFrame *)frame
-{
+    PBFrame *frame = [_wall frameWithFrameIdOnWall:wallOpus.frameIdOnWall];
     PBRect *pbRect = [DeviceDetection isIPAD] ? frame.iPadRect : frame.iPhoneRect;
     CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
     UIButton *button = [[[UIButton alloc] initWithFrame:rect] autorelease];
-    [button setImage:[UIImage imageNamed:frame.image] forState:UIControlStateNormal];
-    button.tag = frame.frameId;
+    UIImage *image = [UIImage imageWithContentsOfFile:[[[FrameManager sharedFrameManager] frameWithFrameId:frame.frameId] image]];
+    [button setImage:image forState:UIControlStateNormal];
+    button.tag = wallOpus.frameIdOnWall;
     
-    [button addTarget:self action:@selector(clickFrame:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(clickWallOpus:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    PBRect *pbOpusRect = [DeviceDetection isIPAD] ? frame.opusIpadRect : frame.opusIphoneRect;
+    CGRect opusRect = CGRectMake(pbOpusRect.x, pbOpusRect.y, pbOpusRect.width, pbOpusRect.height);
+    UIImageView *opusImageView = [[[UIImageView alloc] initWithFrame:opusRect] autorelease];
+    [opusImageView setImageWithURL:[NSURL URLWithString:[wallOpus opus].drawImageUrl]];
+    
+    [button addSubview:opusImageView];
     
     return button;
 }
 
-- (void)clickFrame:(id)sender
+- (void)clickWallOpus:(id)sender
 {
-    UIButton *button = (UIButton *)sender;
-    PPDebug(@"click frame: %d, opus:%@", button.tag, [self wallOpusWithFrameId:button.tag].opus.opusImage);
+    self.wallOpusOrder = ((UIButton *)sender).tag;    
+    
+    PPDebug(@"click wallOpus: %d, opus:%@", self.wallOpusOrder, [[[_wall wallOpusWithFrameIdOnWall:self.wallOpusOrder] opus] wordText]);
+    
+    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplaceOpus"), NSLS(@"kReplaceFrame"), nil] autorelease];
+    [sheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:NSLS(@"kCancel")]) {
+        return;
+    }
+    
+    if ([title isEqualToString:NSLS(@"kReplaceOpus")]) {
+        PPDebug(@"buttonIndex:%d", buttonIndex);
+        OpusSelectController *vc  = [[[OpusSelectController alloc] init] autorelease];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc hideComfirmButton];
+    }
+    
+    if ([title isEqualToString:NSLS(@"kReplaceFrame")]) {
+        FrameSelectController *vc  = [[[FrameSelectController alloc] init] autorelease];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+}
+
+
+
+- (void)didController:(OpusSelectController *)contorller clickOpus:(DrawFeed *)opus
+{
+    [contorller.navigationController popViewControllerAnimated:YES];
+    [_wall replaceWallOpus:self.wallOpusOrder withOpus:opus];
+    [self updateWallOpuses];
+}
+
+- (void)didController:(FrameSelectController *)contorller clickFrame:(PBFrame *)frame
+{
+    [contorller.navigationController popViewControllerAnimated:YES];
+    [_wall replaceWallOpus:self.wallOpusOrder withFrame:frame];
+    [self updateWallOpuses];
+
 }
 
 
@@ -128,6 +168,18 @@
 
 - (void)viewDidUnload {
     [self setBackButton:nil];
+    [self setSetLayoutButton:nil];
+    [self setSubmitButton:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)clickSetLayoutButton:(id)sender {
+    [_wall setLayout:[ProtocolUtil createTestData1]];
+    [self updateWallView];
+}
+
+- (IBAction)clickSubmitButton:(id)sender {
+    
+}
+
 @end

@@ -11,9 +11,9 @@
 #import "UserManager.h"
 #import "OpusCell.h"
 #import "LayoutManager.h"
-#import "Layout.h"
 #import "Wall.h"
 #import "OpusWallController.h"
+#import "ProtocolUtil.h"
 
 #define EACH_FECTH_COUNT 20
 
@@ -32,6 +32,7 @@
 - (void)dealloc {
     [_selectedOpusesHolderView release];
     [_opuses release];
+    [_comfirmBtn release];
     [super dealloc];
 }
 
@@ -43,6 +44,8 @@
     self.opuses = [NSMutableArray array];
     
     [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+    
+    [ProtocolUtil createFramesTestData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,9 +56,14 @@
 
 - (void)viewDidUnload {
     [self setSelectedOpusesHolderView:nil];
+    [self setComfirmBtn:nil];
     [super viewDidUnload];
 }
 
+- (void)hideComfirmButton
+{
+    self.comfirmBtn.hidden = YES;
+}
 
 - (void)didGetFeedList:(NSArray *)feedList
             targetUser:(NSString *)userId
@@ -114,33 +122,21 @@
     }else{
         [_opuses removeObject:opus];
     }
+    
+    if ([_delegate respondsToSelector:@selector(didController:clickOpus:)]) {
+        [_delegate didController:self clickOpus:opus];
+    }
 }
 
-//- (IBAction)clickCreateWallButton:(id)sender {
-//    if ([_opuses count] < 4) {
-//        [self popupMessage:@"请选够四张作品！" title:@"作品数不够"];
-//        return;
-//    }
-//    
-//    NSArray *wallOpuses = [NSArray arrayWithObjects:[WallOpus wallOpusWithFrameId:301 drawFeed:[_opuses objectAtIndex:0]],  [WallOpus wallOpusWithFrameId:302 drawFeed:[_opuses objectAtIndex:1]], [WallOpus wallOpusWithFrameId:303 drawFeed:[_opuses objectAtIndex:2]], [WallOpus wallOpusWithFrameId:304 drawFeed:[_opuses objectAtIndex:3]], nil];
-//
-//    PBWall_Builder *wallBuilder = [[[PBWall_Builder alloc] init] autorelease];
-//    [wallBuilder setWallId:@"xxxxxx"];
-//    [wallBuilder setType:PBWallTypeOpuses];
-//    [wallBuilder setUserId:[[UserManager defaultManager] userId]];
-//    wallBuilder setWallName:<#(NSString *)#>
-//    
-//    Wall *wall = [Wall wallWithWallId:@"xxxxxxx"
-//                             wallType:0
-//                               userId:[[UserManager defaultManager] userId]
-//                             wallName:@"我的作品墙"
-//                               layout:[Layout layoutFromPBLayout:[LayoutManager createTestData]]
-//                           wallOpuses:wallOpuses
-//                             musicUrl:nil];
-//
-//    
-//    OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
+- (IBAction)clickCreateWallButton:(id)sender {
+    if ([_opuses count] < 4) {
+        [self popupMessage:@"请选够四张作品！" title:@"作品数不够"];
+        return;
+    }
+    
+    Wall *wall = [[[Wall alloc] initWithName:@"我的画墙" layout:[ProtocolUtil createTestData] opuses:_opuses musicUrl:nil] autorelease];
+    OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

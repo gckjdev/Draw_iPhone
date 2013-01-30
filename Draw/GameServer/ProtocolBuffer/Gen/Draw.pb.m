@@ -4522,7 +4522,7 @@ static PBHotWordList* defaultPBHotWordListInstance = nil;
 
 @interface PBWallOpus ()
 @property (retain) PBFeed* opus;
-@property int32_t frameId;
+@property int32_t frameIdOnWall;
 @end
 
 @implementation PBWallOpus
@@ -4534,13 +4534,13 @@ static PBHotWordList* defaultPBHotWordListInstance = nil;
   hasOpus_ = !!value;
 }
 @synthesize opus;
-- (BOOL) hasFrameId {
-  return !!hasFrameId_;
+- (BOOL) hasFrameIdOnWall {
+  return !!hasFrameIdOnWall_;
 }
-- (void) setHasFrameId:(BOOL) value {
-  hasFrameId_ = !!value;
+- (void) setHasFrameIdOnWall:(BOOL) value {
+  hasFrameIdOnWall_ = !!value;
 }
-@synthesize frameId;
+@synthesize frameIdOnWall;
 - (void) dealloc {
   self.opus = nil;
   [super dealloc];
@@ -4548,7 +4548,7 @@ static PBHotWordList* defaultPBHotWordListInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.opus = [PBFeed defaultInstance];
-    self.frameId = 0;
+    self.frameIdOnWall = 0;
   }
   return self;
 }
@@ -4577,8 +4577,8 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   if (self.hasOpus) {
     [output writeMessage:1 value:self.opus];
   }
-  if (self.hasFrameId) {
-    [output writeInt32:2 value:self.frameId];
+  if (self.hasFrameIdOnWall) {
+    [output writeInt32:2 value:self.frameIdOnWall];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4592,8 +4592,8 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   if (self.hasOpus) {
     size += computeMessageSize(1, self.opus);
   }
-  if (self.hasFrameId) {
-    size += computeInt32Size(2, self.frameId);
+  if (self.hasFrameIdOnWall) {
+    size += computeInt32Size(2, self.frameIdOnWall);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4673,8 +4673,8 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   if (other.hasOpus) {
     [self mergeOpus:other.opus];
   }
-  if (other.hasFrameId) {
-    [self setFrameId:other.frameId];
+  if (other.hasFrameIdOnWall) {
+    [self setFrameIdOnWall:other.frameIdOnWall];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4707,7 +4707,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
         break;
       }
       case 16: {
-        [self setFrameId:[input readInt32]];
+        [self setFrameIdOnWall:[input readInt32]];
         break;
       }
     }
@@ -4743,20 +4743,20 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   result.opus = [PBFeed defaultInstance];
   return self;
 }
-- (BOOL) hasFrameId {
-  return result.hasFrameId;
+- (BOOL) hasFrameIdOnWall {
+  return result.hasFrameIdOnWall;
 }
-- (int32_t) frameId {
-  return result.frameId;
+- (int32_t) frameIdOnWall {
+  return result.frameIdOnWall;
 }
-- (PBWallOpus_Builder*) setFrameId:(int32_t) value {
-  result.hasFrameId = YES;
-  result.frameId = value;
+- (PBWallOpus_Builder*) setFrameIdOnWall:(int32_t) value {
+  result.hasFrameIdOnWall = YES;
+  result.frameIdOnWall = value;
   return self;
 }
-- (PBWallOpus_Builder*) clearFrameId {
-  result.hasFrameId = NO;
-  result.frameId = 0;
+- (PBWallOpus_Builder*) clearFrameIdOnWall {
+  result.hasFrameIdOnWall = NO;
+  result.frameIdOnWall = 0;
   return self;
 }
 @end
@@ -4767,7 +4767,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
 @property (retain) NSString* userId;
 @property (retain) NSString* wallName;
 @property (retain) PBLayout* layout;
-@property (retain) NSMutableArray* mutableOpusesList;
+@property (retain) NSMutableArray* mutableWallOpusesList;
 @property (retain) NSString* musicUrl;
 @end
 
@@ -4808,7 +4808,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   hasLayout_ = !!value;
 }
 @synthesize layout;
-@synthesize mutableOpusesList;
+@synthesize mutableWallOpusesList;
 - (BOOL) hasMusicUrl {
   return !!hasMusicUrl_;
 }
@@ -4821,7 +4821,7 @@ static PBWallOpus* defaultPBWallOpusInstance = nil;
   self.userId = nil;
   self.wallName = nil;
   self.layout = nil;
-  self.mutableOpusesList = nil;
+  self.mutableWallOpusesList = nil;
   self.musicUrl = nil;
   [super dealloc];
 }
@@ -4848,11 +4848,11 @@ static PBWall* defaultPBWallInstance = nil;
 - (PBWall*) defaultInstance {
   return defaultPBWallInstance;
 }
-- (NSArray*) opusesList {
-  return mutableOpusesList;
+- (NSArray*) wallOpusesList {
+  return mutableWallOpusesList;
 }
-- (PBWallOpus*) opusesAtIndex:(int32_t) index {
-  id value = [mutableOpusesList objectAtIndex:index];
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index {
+  id value = [mutableWallOpusesList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -4870,7 +4870,7 @@ static PBWall* defaultPBWallInstance = nil;
       return NO;
     }
   }
-  for (PBWallOpus* element in self.opusesList) {
+  for (PBWallOpus* element in self.wallOpusesList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -4893,7 +4893,7 @@ static PBWall* defaultPBWallInstance = nil;
   if (self.hasLayout) {
     [output writeMessage:7 value:self.layout];
   }
-  for (PBWallOpus* element in self.opusesList) {
+  for (PBWallOpus* element in self.wallOpusesList) {
     [output writeMessage:8 value:element];
   }
   if (self.hasMusicUrl) {
@@ -4923,7 +4923,7 @@ static PBWall* defaultPBWallInstance = nil;
   if (self.hasLayout) {
     size += computeMessageSize(7, self.layout);
   }
-  for (PBWallOpus* element in self.opusesList) {
+  for (PBWallOpus* element in self.wallOpusesList) {
     size += computeMessageSize(8, element);
   }
   if (self.hasMusicUrl) {
@@ -5019,11 +5019,11 @@ static PBWall* defaultPBWallInstance = nil;
   if (other.hasLayout) {
     [self mergeLayout:other.layout];
   }
-  if (other.mutableOpusesList.count > 0) {
-    if (result.mutableOpusesList == nil) {
-      result.mutableOpusesList = [NSMutableArray array];
+  if (other.mutableWallOpusesList.count > 0) {
+    if (result.mutableWallOpusesList == nil) {
+      result.mutableWallOpusesList = [NSMutableArray array];
     }
-    [result.mutableOpusesList addObjectsFromArray:other.mutableOpusesList];
+    [result.mutableWallOpusesList addObjectsFromArray:other.mutableWallOpusesList];
   }
   if (other.hasMusicUrl) {
     [self setMusicUrl:other.musicUrl];
@@ -5082,7 +5082,7 @@ static PBWall* defaultPBWallInstance = nil;
       case 66: {
         PBWallOpus_Builder* subBuilder = [PBWallOpus builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addOpuses:[subBuilder buildPartial]];
+        [self addWallOpuses:[subBuilder buildPartial]];
         break;
       }
       case 82: {
@@ -5186,33 +5186,33 @@ static PBWall* defaultPBWallInstance = nil;
   result.layout = [PBLayout defaultInstance];
   return self;
 }
-- (NSArray*) opusesList {
-  if (result.mutableOpusesList == nil) { return [NSArray array]; }
-  return result.mutableOpusesList;
+- (NSArray*) wallOpusesList {
+  if (result.mutableWallOpusesList == nil) { return [NSArray array]; }
+  return result.mutableWallOpusesList;
 }
-- (PBWallOpus*) opusesAtIndex:(int32_t) index {
-  return [result opusesAtIndex:index];
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index {
+  return [result wallOpusesAtIndex:index];
 }
-- (PBWall_Builder*) replaceOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value {
-  [result.mutableOpusesList replaceObjectAtIndex:index withObject:value];
+- (PBWall_Builder*) replaceWallOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value {
+  [result.mutableWallOpusesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBWall_Builder*) addAllOpuses:(NSArray*) values {
-  if (result.mutableOpusesList == nil) {
-    result.mutableOpusesList = [NSMutableArray array];
+- (PBWall_Builder*) addAllWallOpuses:(NSArray*) values {
+  if (result.mutableWallOpusesList == nil) {
+    result.mutableWallOpusesList = [NSMutableArray array];
   }
-  [result.mutableOpusesList addObjectsFromArray:values];
+  [result.mutableWallOpusesList addObjectsFromArray:values];
   return self;
 }
-- (PBWall_Builder*) clearOpusesList {
-  result.mutableOpusesList = nil;
+- (PBWall_Builder*) clearWallOpusesList {
+  result.mutableWallOpusesList = nil;
   return self;
 }
-- (PBWall_Builder*) addOpuses:(PBWallOpus*) value {
-  if (result.mutableOpusesList == nil) {
-    result.mutableOpusesList = [NSMutableArray array];
+- (PBWall_Builder*) addWallOpuses:(PBWallOpus*) value {
+  if (result.mutableWallOpusesList == nil) {
+    result.mutableWallOpusesList = [NSMutableArray array];
   }
-  [result.mutableOpusesList addObject:value];
+  [result.mutableWallOpusesList addObject:value];
   return self;
 }
 - (BOOL) hasMusicUrl {
@@ -5527,11 +5527,13 @@ static PBRect* defaultPBRectInstance = nil;
 @interface PBFrame ()
 @property int32_t frameId;
 @property int32_t frameType;
+@property (retain) NSString* thumbImage;
 @property (retain) NSString* image;
 @property (retain) PBRect* iPhoneRect;
 @property (retain) PBRect* iPadRect;
 @property (retain) PBRect* opusIphoneRect;
 @property (retain) PBRect* opusIpadRect;
+@property int32_t idOnWall;
 @property int32_t price;
 @end
 
@@ -5551,6 +5553,13 @@ static PBRect* defaultPBRectInstance = nil;
   hasFrameType_ = !!value;
 }
 @synthesize frameType;
+- (BOOL) hasThumbImage {
+  return !!hasThumbImage_;
+}
+- (void) setHasThumbImage:(BOOL) value {
+  hasThumbImage_ = !!value;
+}
+@synthesize thumbImage;
 - (BOOL) hasImage {
   return !!hasImage_;
 }
@@ -5586,6 +5595,13 @@ static PBRect* defaultPBRectInstance = nil;
   hasOpusIpadRect_ = !!value;
 }
 @synthesize opusIpadRect;
+- (BOOL) hasIdOnWall {
+  return !!hasIdOnWall_;
+}
+- (void) setHasIdOnWall:(BOOL) value {
+  hasIdOnWall_ = !!value;
+}
+@synthesize idOnWall;
 - (BOOL) hasPrice {
   return !!hasPrice_;
 }
@@ -5594,6 +5610,7 @@ static PBRect* defaultPBRectInstance = nil;
 }
 @synthesize price;
 - (void) dealloc {
+  self.thumbImage = nil;
   self.image = nil;
   self.iPhoneRect = nil;
   self.iPadRect = nil;
@@ -5605,11 +5622,13 @@ static PBRect* defaultPBRectInstance = nil;
   if ((self = [super init])) {
     self.frameId = 0;
     self.frameType = 0;
+    self.thumbImage = @"";
     self.image = @"";
     self.iPhoneRect = [PBRect defaultInstance];
     self.iPadRect = [PBRect defaultInstance];
     self.opusIphoneRect = [PBRect defaultInstance];
     self.opusIpadRect = [PBRect defaultInstance];
+    self.idOnWall = 0;
     self.price = 0;
   }
   return self;
@@ -5639,6 +5658,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (self.hasFrameType) {
     [output writeInt32:2 value:self.frameType];
   }
+  if (self.hasThumbImage) {
+    [output writeString:9 value:self.thumbImage];
+  }
   if (self.hasImage) {
     [output writeString:10 value:self.image];
   }
@@ -5653,6 +5675,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   }
   if (self.hasOpusIpadRect) {
     [output writeMessage:14 value:self.opusIpadRect];
+  }
+  if (self.hasIdOnWall) {
+    [output writeInt32:15 value:self.idOnWall];
   }
   if (self.hasPrice) {
     [output writeInt32:18 value:self.price];
@@ -5672,6 +5697,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (self.hasFrameType) {
     size += computeInt32Size(2, self.frameType);
   }
+  if (self.hasThumbImage) {
+    size += computeStringSize(9, self.thumbImage);
+  }
   if (self.hasImage) {
     size += computeStringSize(10, self.image);
   }
@@ -5686,6 +5714,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   }
   if (self.hasOpusIpadRect) {
     size += computeMessageSize(14, self.opusIpadRect);
+  }
+  if (self.hasIdOnWall) {
+    size += computeInt32Size(15, self.idOnWall);
   }
   if (self.hasPrice) {
     size += computeInt32Size(18, self.price);
@@ -5771,6 +5802,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (other.hasFrameType) {
     [self setFrameType:other.frameType];
   }
+  if (other.hasThumbImage) {
+    [self setThumbImage:other.thumbImage];
+  }
   if (other.hasImage) {
     [self setImage:other.image];
   }
@@ -5785,6 +5819,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   }
   if (other.hasOpusIpadRect) {
     [self mergeOpusIpadRect:other.opusIpadRect];
+  }
+  if (other.hasIdOnWall) {
+    [self setIdOnWall:other.idOnWall];
   }
   if (other.hasPrice) {
     [self setPrice:other.price];
@@ -5816,6 +5853,10 @@ static PBFrame* defaultPBFrameInstance = nil;
       }
       case 16: {
         [self setFrameType:[input readInt32]];
+        break;
+      }
+      case 74: {
+        [self setThumbImage:[input readString]];
         break;
       }
       case 82: {
@@ -5858,6 +5899,10 @@ static PBFrame* defaultPBFrameInstance = nil;
         [self setOpusIpadRect:[subBuilder buildPartial]];
         break;
       }
+      case 120: {
+        [self setIdOnWall:[input readInt32]];
+        break;
+      }
       case 144: {
         [self setPrice:[input readInt32]];
         break;
@@ -5895,6 +5940,22 @@ static PBFrame* defaultPBFrameInstance = nil;
 - (PBFrame_Builder*) clearFrameType {
   result.hasFrameType = NO;
   result.frameType = 0;
+  return self;
+}
+- (BOOL) hasThumbImage {
+  return result.hasThumbImage;
+}
+- (NSString*) thumbImage {
+  return result.thumbImage;
+}
+- (PBFrame_Builder*) setThumbImage:(NSString*) value {
+  result.hasThumbImage = YES;
+  result.thumbImage = value;
+  return self;
+}
+- (PBFrame_Builder*) clearThumbImage {
+  result.hasThumbImage = NO;
+  result.thumbImage = @"";
   return self;
 }
 - (BOOL) hasImage {
@@ -6033,6 +6094,22 @@ static PBFrame* defaultPBFrameInstance = nil;
   result.opusIpadRect = [PBRect defaultInstance];
   return self;
 }
+- (BOOL) hasIdOnWall {
+  return result.hasIdOnWall;
+}
+- (int32_t) idOnWall {
+  return result.idOnWall;
+}
+- (PBFrame_Builder*) setIdOnWall:(int32_t) value {
+  result.hasIdOnWall = YES;
+  result.idOnWall = value;
+  return self;
+}
+- (PBFrame_Builder*) clearIdOnWall {
+  result.hasIdOnWall = NO;
+  result.idOnWall = 0;
+  return self;
+}
 - (BOOL) hasPrice {
   return result.hasPrice;
 }
@@ -6047,6 +6124,207 @@ static PBFrame* defaultPBFrameInstance = nil;
 - (PBFrame_Builder*) clearPrice {
   result.hasPrice = NO;
   result.price = 0;
+  return self;
+}
+@end
+
+@interface PBFrameList ()
+@property (retain) NSMutableArray* mutableFramesList;
+@end
+
+@implementation PBFrameList
+
+@synthesize mutableFramesList;
+- (void) dealloc {
+  self.mutableFramesList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBFrameList* defaultPBFrameListInstance = nil;
++ (void) initialize {
+  if (self == [PBFrameList class]) {
+    defaultPBFrameListInstance = [[PBFrameList alloc] init];
+  }
+}
++ (PBFrameList*) defaultInstance {
+  return defaultPBFrameListInstance;
+}
+- (PBFrameList*) defaultInstance {
+  return defaultPBFrameListInstance;
+}
+- (NSArray*) framesList {
+  return mutableFramesList;
+}
+- (PBFrame*) framesAtIndex:(int32_t) index {
+  id value = [mutableFramesList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBFrame* element in self.framesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBFrame* element in self.framesList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBFrame* element in self.framesList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBFrameList*) parseFromData:(NSData*) data {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromData:data] build];
+}
++ (PBFrameList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBFrameList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromInputStream:input] build];
+}
++ (PBFrameList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBFrameList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBFrameList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBFrameList*)[[[PBFrameList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBFrameList_Builder*) builder {
+  return [[[PBFrameList_Builder alloc] init] autorelease];
+}
++ (PBFrameList_Builder*) builderWithPrototype:(PBFrameList*) prototype {
+  return [[PBFrameList builder] mergeFrom:prototype];
+}
+- (PBFrameList_Builder*) builder {
+  return [PBFrameList builder];
+}
+@end
+
+@interface PBFrameList_Builder()
+@property (retain) PBFrameList* result;
+@end
+
+@implementation PBFrameList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBFrameList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBFrameList_Builder*) clear {
+  self.result = [[[PBFrameList alloc] init] autorelease];
+  return self;
+}
+- (PBFrameList_Builder*) clone {
+  return [PBFrameList builderWithPrototype:result];
+}
+- (PBFrameList*) defaultInstance {
+  return [PBFrameList defaultInstance];
+}
+- (PBFrameList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBFrameList*) buildPartial {
+  PBFrameList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBFrameList_Builder*) mergeFrom:(PBFrameList*) other {
+  if (other == [PBFrameList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableFramesList.count > 0) {
+    if (result.mutableFramesList == nil) {
+      result.mutableFramesList = [NSMutableArray array];
+    }
+    [result.mutableFramesList addObjectsFromArray:other.mutableFramesList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBFrameList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBFrame_Builder* subBuilder = [PBFrame builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addFrames:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) framesList {
+  if (result.mutableFramesList == nil) { return [NSArray array]; }
+  return result.mutableFramesList;
+}
+- (PBFrame*) framesAtIndex:(int32_t) index {
+  return [result framesAtIndex:index];
+}
+- (PBFrameList_Builder*) replaceFramesAtIndex:(int32_t) index with:(PBFrame*) value {
+  [result.mutableFramesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFrameList_Builder*) addAllFrames:(NSArray*) values {
+  if (result.mutableFramesList == nil) {
+    result.mutableFramesList = [NSMutableArray array];
+  }
+  [result.mutableFramesList addObjectsFromArray:values];
+  return self;
+}
+- (PBFrameList_Builder*) clearFramesList {
+  result.mutableFramesList = nil;
+  return self;
+}
+- (PBFrameList_Builder*) addFrames:(PBFrame*) value {
+  if (result.mutableFramesList == nil) {
+    result.mutableFramesList = [NSMutableArray array];
+  }
+  [result.mutableFramesList addObject:value];
   return self;
 }
 @end
