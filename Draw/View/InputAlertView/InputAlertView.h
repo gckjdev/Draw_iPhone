@@ -28,5 +28,6 @@
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
 - (void)dismiss:(BOOL)animated;
 - (void)adjustWithKeyBoardRect:(CGRect)rect;
+- (void)setCanClickCommitButton:(BOOL)can;
 
 @end
