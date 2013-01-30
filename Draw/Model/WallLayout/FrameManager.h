@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Draw.pb.h"
 
 @interface FrameManager : NSObject
+
++ (FrameManager *)sharedFrameManager;
+
+- (PBFrame *)frameWithFrameId:(int)frameId;
+- (NSArray *)frames;
+- (NSArray *)framesOfType:(int)type;
 
 @end

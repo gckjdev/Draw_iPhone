@@ -1,157 +1,177 @@
-////
-////  Wall.m
-////  Draw
-////
-////  Created by 王 小涛 on 13-1-25.
-////
-////
 //
-//#import "Wall.h"
+//  Wall.m
+//  Draw
 //
-//@implementation WallOpus
+//  Created by 王 小涛 on 13-1-25.
 //
-//- (void)dealloc
+//
+
+#import "Wall.h"
+#import "UserManager.h"
+#import "FrameManager.h"
+
+@interface Wall ()
+{
+    NSMutableArray *_wallOpuses;
+}
+
+@property (retain, nonatomic) PBWall *pbWall;
+
+@end
+
+@implementation Wall
+
+- (void)dealloc
+{
+    [_pbWall release];
+    [_wallOpuses release];
+    [super dealloc];
+}
+
+- (id)initWithPBWall:(PBWall *)pbWall
+{
+    if (self = [super init]) {
+        self.pbWall = pbWall;
+        
+        
+        _wallOpuses = [[NSMutableArray array] retain];
+        for (PBWallOpus *wallOpus in self.pbWall.wallOpusesList) {
+            [_wallOpuses addObject:[WallOpus fromPBWallOpus:wallOpus]];
+        }
+    }
+    
+    return self;
+}
+
+- (id)initWithName:(NSString *)name
+            layout:(PBLayout *)layout
+            opuses:(NSArray*)opuses
+          musicUrl:(NSString *)musicUrl
+{
+    if (self = [super init]) {
+        PBWall_Builder *builder = [[[PBWall_Builder alloc] init] autorelease];
+        [builder setWallId:nil];
+        [builder setWallName:name];
+        [builder setWallType:PBWallTypeOpuses];
+        [builder setUserId:[[UserManager defaultManager] userId]];
+        [builder setLayout:layout];
+        [builder setMusicUrl:musicUrl];
+        self.pbWall = [builder build];
+
+        _wallOpuses = [[NSMutableArray array] retain];
+        for (int index=0; index<[layout.framesList count] && index<[opuses count]; index++) {
+            PBFrame *frame = [layout.framesList objectAtIndex:index];
+            int frameIdOnWall = [frame idOnWall];
+            WallOpus *wallOpus = [[[WallOpus alloc] initWithFrameIdOnWall:frameIdOnWall opus:[opuses objectAtIndex:index]] autorelease];
+            [_wallOpuses addObject:wallOpus];
+        }
+    }
+    
+    return self;
+}
+
+- (NSArray *)wallOpuses
+{
+    return _wallOpuses;
+}
+
+- (void)setLayout:(PBLayout *)layout
+{
+   self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setLayout:layout] build];
+}
+
+- (void)setWallName:(NSString *)wallName
+{
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setWallName:wallName] build];
+}
+
+- (WallOpus *)wallOpusWithFrameIdOnWall:(int)frameIdOnWall
+{
+    for (WallOpus *wallOpus in self.wallOpuses) {
+        if (wallOpus.frameIdOnWall == frameIdOnWall) {
+            return wallOpus;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)replaceWallOpus:(int)frameIdOnWall withOpus:(DrawFeed *)opus
+{
+    WallOpus *wallOpus = [self wallOpusWithFrameIdOnWall:frameIdOnWall];
+    wallOpus.opus = opus;
+}
+
+- (PBFrame *)frameWithFrameIdOnWall:(int)frameIdOnWall
+{
+    for (PBFrame *frame in self.pbWall.layout.framesList) {
+        if (frame.idOnWall == frameIdOnWall) {
+            return frame;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)replaceWallOpus:(int)frameIdOnWall withFrame:(PBFrame *)frameReplaced
+{
+    NSMutableArray *frameArr = [NSMutableArray arrayWithArray:self.pbWall.layout.framesList];
+    PBFrame *frame = [self frameWithFrameIdOnWall:frameIdOnWall];
+    [frameArr removeObject:frame];
+
+    PBFrame_Builder *frameBuilder = [PBFrame builderWithPrototype:frameReplaced];
+    [frameBuilder setIPhoneRect:frame.iPhoneRect];
+    [frameBuilder setIPadRect:frame.iPadRect];
+    [frameBuilder setOpusIphoneRect:frame.opusIphoneRect];
+    [frameBuilder setOpusIpadRect:frame.opusIpadRect];
+    [frameBuilder setIdOnWall:frameIdOnWall];
+    [frameArr addObject:[frameBuilder build]];
+
+    PBLayout *layout = [[[[PBLayout builderWithPrototype:self.pbWall.layout] clearFramesList] addAllFrames:frameArr] build];
+    [self setLayout:layout];
+}
+
+//- (void)replaceFrame:(int)frameId withFrame:(PBFrame *)frameReplaced
 //{
-//    [_drawFeed release];
-//    [super dealloc];
-//}
-//
-//- (id)initWithPBWallOpus:(PBWallOpus *)pbWallOpus
-//{
-//    if (self = [super init]) {
-//        self.drawFeed = [[DrawFeed alloc] initWithPBFeed:pbWallOpus.opus];
-//        self.frameId = pbWallOpus.frameId;
+//    NSMutableArray *frameArr = [NSMutableArray arrayWithArray:self.pbWall.layout.framesList];
+//    PBFrame *frame = [self frameWithFrameId:frameId];
+//    [frameArr removeObject:frame];
+//    
+//    PBFrame_Builder *frameBuilder = [PBFrame builderWithPrototype:frameReplaced];
+//    [frameBuilder setIPhoneRect:frame.iPhoneRect];
+//    [frameBuilder setIPadRect:frame.iPadRect];
+//    [frameBuilder setOpusIphoneRect:frame.opusIphoneRect];
+//    [frameBuilder setOpusIpadRect:frame.opusIpadRect];
+//    [frameArr addObject:[frameBuilder build]];
+//    
+//    PBLayout *layout = [[[[PBLayout builderWithPrototype:self.pbWall.layout] clearFramesList] addAllFrames:frameArr] build];
+//    [self setLayout:layout];
+//    
+//    
+//    DrawFeed *opus = [[self opusInFrame:frameId] retain];
+//    if (opus == nil) {
+//        return;
 //    }
 //    
-//    return self;
+//    [self.wallOpusDic removeObjectForKey:@(frameId)];
+//    [self.wallOpusDic setObject:opus forKey:@(frameReplaced.frameId)];
+//    [opus release];
+//}
+
+//- (DrawFeed *)opusInFrame:(int)frameId
+//{
+//    return [_wallOpusDic objectForKey:@(frameId)];
 //}
 //
-//- (id)initWithOpusWithFrameId:(int)frameId drawFeed:(DrawFeed *)drawFeed
+//- (int)frameIdWithOpus:(NSString *)opusId
 //{
-//    if (self = [super init]) {
-//        self.drawFeed = drawFeed;
-//        self.frameId = frameId;
-//    }
-//    
-//    return self;
-//}
-//
-//+ (WallOpus *)wallOpusFromPBWallOpus:(PBWallOpus *)pbWallOpus
-//{
-//    return [[[WallOpus alloc] initWithPBWallOpus:pbWallOpus] autorelease];
-//}
-//
-//+ (WallOpus *)wallOpusWithFrameId:(int)frameId drawFeed:(DrawFeed *)drawFeed
-//{
-//    return [[[WallOpus alloc] initWithOpusWithFrameId:frameId drawFeed:drawFeed] autorelease];
-//}
-//
-//@end
-//
-//@interface Wall ()
-//
-//@property (copy, nonatomic, readwrite) NSString *wallId;
-//@property (assign, nonatomic, readwrite) int wallType;
-//@property (copy, nonatomic, readwrite) NSString *userId;
-//
-//@end
-//
-//@implementation Wall
-//
-//- (void)dealloc
-//{
-//    [_wallId release];
-//    [_userId release];
-//    [_wallName release];
-//    [_layout release];
-//    [_wallOpuses release];
-//    [_musicUrl release];
-//    [super dealloc];
-//}
-//
-//- (id)initWithPBWall:(PBWall *)pbWall
-//{
-//    if (self = [super init]) {
-//        self.wallId = pbWall.wallId;
-//        self.wallType = pbWall.type;
-//        self.userId = pbWall.userId;
-//        self.wallName = pbWall.wallName;
-//        self.layout = [Layout layoutFromPBLayout:pbWall.layout];
-//        self.wallOpuses = [NSMutableArray array];
-//        
-//        for (PBWallOpus *pbWallOpus in pbWall.opusesList) {
-//            [self.wallOpuses addObject:[WallOpus wallOpusFromPBWallOpus:pbWallOpus]];
-//        }
-//        
-//        self.musicUrl = pbWall.musicUrl;
-//    }
-//    
-//    return self;
-//}
-//
-//- (id)initWithWallId:(NSString *)wallId
-//            wallType:(int)wallType
-//              userId:(NSString *)userId
-//            wallName:(NSString *)wallName
-//              layout:(Layout *)layout
-//          wallOpuses:(NSArray *)wallOpuses
-//            musicUrl:(NSString *)musicUrl
-//{
-//    if (self = [super init]) {
-//        self.wallId = wallId;
-//        self.wallType = wallType;
-//        self.userId = userId;
-//        self.wallName = wallName;
-//        self.layout = layout;
-//        self.wallOpuses = [NSMutableArray arrayWithArray:wallOpuses];
-//        self.musicUrl = musicUrl;
-//    }
-//    
-//    return self;
-//}
-//
-//+ (Wall*)wallFromPBWall:(PBWall*)pbWall
-//{
-//    return [[[Wall alloc] initWithPBWall:pbWall] autorelease];
-//}
-//
-//+ (Wall*)wallWithWallId:(NSString *)wallId
-//               wallType:(int)wallType
-//                 userId:(NSString *)userId
-//               wallName:(NSString *)wallName
-//                 layout:(Layout *)layout
-//             wallOpuses:(NSArray *)wallOpuses
-//               musicUrl:(NSString *)musicUrl
-//{
-//    return [[Wall alloc] initWithWallId:wallId
-//                               wallType:wallType
-//                                 userId:userId
-//                               wallName:wallName
-//                                 layout:layout
-//                             wallOpuses:wallOpuses
-//                               musicUrl:musicUrl];
-//}
-//
-//- (WallOpus *)wallOpusWithFrameId:(int)frameId
-//{
-//    for (WallOpus *wallOpus in self.wallOpuses) {
-//        if (wallOpus.frameId == frameId) {
-//            return wallOpus;
-//        }
-//    }
-//    
-//    return nil;
-//}
-//
-//- (int)frameIdWithOpusId:(NSString *)opusId
-//{
-//    for (WallOpus *wallOpus in self.wallOpuses) {
-//        if ([wallOpus.drawFeed.feedId isEqualToString:opusId]) {
-//            return wallOpus.frameId;
+//    for (NSNumber *key in _wallOpusDic) {
+//        if ([[[_wallOpusDic objectForKey:key] feedId] isEqualToString:opusId]) {
+//            return key.intValue;
 //        }
 //    }
 //    
 //    return 0;
 //}
-//
-//@end
+
+@end

@@ -118,6 +118,8 @@
 @class PBFeedTimes_Builder;
 @class PBFeed_Builder;
 @class PBFrame;
+@class PBFrameList;
+@class PBFrameList_Builder;
 @class PBFrame_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
