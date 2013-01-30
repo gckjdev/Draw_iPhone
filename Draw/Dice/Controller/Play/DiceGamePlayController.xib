@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">1930</string>
@@ -792,7 +792,6 @@
 						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{292, 425}, {30, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1964,20 +1963,20 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coins@2x.png">{50, 57}</string>
-			<string key="dice_bell@2x.png">{69, 86}</string>
-			<string key="dice_runaway@2x.png">{72, 71}</string>
-			<string key="dice_setting@2x.png">{72, 71}</string>
-			<string key="left_bottom_circle@2x.png">{84, 92}</string>
-			<string key="left_bottom_circleon@2x.png">{84, 92}</string>
+			<string key="coins@2x.png">{16, 16}</string>
+			<string key="dice_bell@2x.png">{16, 16}</string>
+			<string key="dice_runaway@2x.png">{16, 16}</string>
+			<string key="dice_setting@2x.png">{16, 16}</string>
+			<string key="left_bottom_circle@2x.png">{16, 16}</string>
+			<string key="left_bottom_circleon@2x.png">{16, 16}</string>
 			<string key="message_icon.png">{16, 16}</string>
-			<string key="open@2x.png">{67, 60}</string>
-			<string key="right_bottom_circle@2x.png">{84, 92}</string>
-			<string key="right_bottom_circleon@2x.png">{84, 92}</string>
+			<string key="open@2x.png">{16, 16}</string>
+			<string key="right_bottom_circle@2x.png">{16, 16}</string>
+			<string key="right_bottom_circleon@2x.png">{16, 16}</string>
 			<string key="table@2x.png">{16, 16}</string>
 			<string key="tools_icon.png">{16, 16}</string>
 			<string key="tools_open_icon.png">{16, 16}</string>
-			<string key="zhai_bg@2x.png">{72, 71}</string>
+			<string key="zhai_bg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
