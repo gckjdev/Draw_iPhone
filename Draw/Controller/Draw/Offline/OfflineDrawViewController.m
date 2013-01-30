@@ -712,6 +712,7 @@ enum{
 {
     [self hideActivity];
     self.submitButton.userInteractionEnabled = YES;
+    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
         [self.inputAlert dismiss:NO];
         CommonDialog *dialog = nil;
@@ -872,8 +873,10 @@ enum{
 
 - (void)commitOpus
 {
+    
     [self showActivityWithText:NSLS(@"kSending")];
     self.submitButton.userInteractionEnabled = NO;
+    [self.inputAlert setCanClickCommitButton:NO];
     UIImage *image = [drawView createImage];
     NSString *text = self.inputAlert.contentText;
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
