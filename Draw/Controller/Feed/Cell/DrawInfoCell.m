@@ -252,6 +252,7 @@
         self.feed.feedUser = feed.feedUser;
         self.feed.createDate = feed.createDate;
         self.feed.opusDesc = feed.opusDesc;
+        self.feed.feedType = feed.feedType;
         if ([feed.drawImageUrl length] != 0) {
             self.feed.drawImageUrl = feed.drawImageUrl;
         }

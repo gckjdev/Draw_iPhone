@@ -123,6 +123,7 @@
     if ([self.feed isContestFeed]) {
         line.hidden = YES;
     }else{
+        line.hidden = NO;
         [line setCenter:[self splitLineCenter:CommentTypeGuess]];
     }
     //update guess | flower
