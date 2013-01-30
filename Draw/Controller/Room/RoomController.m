@@ -799,12 +799,16 @@
 
 - (IBAction)clickMenu:(id)sender
 {
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
+    if ([DrawGameService defaultService].session.userList.count == 1) {
+        [self quitRoom];
+    } else {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
                                 message:[NSString stringWithFormat:NSLS(@"kQuitGameConfirm") , [ConfigManager getOnlineDrawFleeCoin]]
                                   style:CommonDialogStyleDoubleButton
                               delegate:self];
-    dialog.tag = ROOM_DIALOG_QUIT_ROOM;
-    [dialog showInView:self.view];
+        dialog.tag = ROOM_DIALOG_QUIT_ROOM;
+        [dialog showInView:self.view];
+    }
     
 }
 
