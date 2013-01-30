@@ -11,6 +11,12 @@
 
 #define PROTOCOL_BUFFER_SHARE_KEY       @"pb_share_key"
 
+typedef enum {
+    allRoom = 0,
+    friendRoom = 1,
+    nearByRoom = 2
+}RoomFilter;
+
 @protocol ShareGameServiceProtocol <NSObject>
 @required
 - (void)getRoomList:(int)startIndex

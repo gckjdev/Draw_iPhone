@@ -194,4 +194,6 @@ typedef enum{
 
 + (int)getLevelUpAward;
 
++ (int)onlineRoomCountPerPage;
+
 @end
