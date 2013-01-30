@@ -26,6 +26,7 @@
 #import "LmWallService.h"
 #import "DiceUserInfoView.h"
 #import "PPResourceService.h"
+#import "FXLabel.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -48,15 +49,6 @@
 @implementation DiceRoomListController
 
 #pragma mark - Life cycle
-@synthesize titleFontButton;
-@synthesize helpButton;
-@synthesize createRoomButton;
-@synthesize fastEntryButton;
-@synthesize allRoomButton;
-@synthesize friendRoomButton;
-@synthesize nearByRoomButton;
-@synthesize currentSession = _currentSession;
-@synthesize emptyListTips;
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType
 {
@@ -69,154 +61,32 @@
     return self;
 }
 
-//- (id)init
-//{
-//    self = [super init];
-//    if (self) {
-//        firstLoad = YES;
-//    }
-//    
-//    return self;
-//}
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:@"CommonRoomListController" bundle:nibBundleOrNil];
+    if (self) {
+        _gameService = [DiceGameService defaultService];
+        _diceGameService = [DiceGameService defaultService];
+
+    }
+    return self;
+}
+
 
 - (void)dealloc {
-    _searchView.disappearDelegate = nil;
-    [self clearRefreshRoomsTimer];
-    [createRoomButton release];
-    [fastEntryButton release];
-    [titleFontButton release];
-    [allRoomButton release];
-    [friendRoomButton release];
-    [nearByRoomButton release];
-    PPRelease(_currentSession);
-    [helpButton release];
-    [emptyListTips release];
     [super dealloc];
-}
-
-- (void)checkAndJoinGame:(int)sessionId
-{
-    _isJoiningDice = YES;
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
-        [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [[DiceGameService defaultService] joinGameRequest:sessionId customSelfUser:[[UserManager defaultManager] toDicePBGameUser]];
-    }else {
-        [self showCoinsNotEnoughView];
-    }
-}
-
-- (void)checkAndJoinGame
-{
-    _isJoiningDice = YES;
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
-        [self showActivityWithText:NSLS(@"kJoiningGame")];
-        [_diceGameService joinGameRequestWithCustomUser:[[UserManager defaultManager] toDicePBGameUser]];
-    }else {
-        [self showCoinsNotEnoughView];
-    }
-}
-
-- (void)createRoomWithName:(NSString*)targetText 
-                  password:(NSString*)password
-{
-    _isJoiningDice = YES;
-    [_diceGameService createRoomWithName:targetText password:password];
-    [self showActivityWithText:NSLS(@"kCreatingRoom")];
-}
-
-- (void)refreshRooms:(id)sender
-{
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
-}
-
-- (void)clearRefreshRoomsTimer
-{
-    if (_refreshRoomTimer) {
-        if ([_refreshRoomTimer isValid]) {
-            [_refreshRoomTimer invalidate];
-        }
-        [_refreshRoomTimer release];
-        _refreshRoomTimer = nil;
-    }
-}
-
-- (void)startRefreshRoomsTimer
-{
-    [self clearRefreshRoomsTimer];
-    _refreshRoomTimer = [NSTimer scheduledTimerWithTimeInterval:REFRESH_ROOMS_TIME_INTERVAL 
-                                                         target:self 
-                                                       selector:@selector(refreshRooms:) 
-                                                       userInfo:nil 
-                                                        repeats:NO];
-    [_refreshRoomTimer retain];
-}
-
-- (void)pauseRefreshingRooms
-{
-    _isRefreshing = NO;
-    [self clearRefreshRoomsTimer];
-}
-
-- (void)continueRefreshingRooms
-{
-    _isRefreshing = YES;
-    [self startRefreshRoomsTimer];
-}
-
-- (void)updateRoomList
-{
-    self.emptyListTips.hidden = YES;
-    if (self.dataList.count < 1) {
-        self.emptyListTips.hidden = NO;
-        if (_currentRoomType == friendRoom) {
-            [self.emptyListTips setText:NSLS(@"kNoFriendRoom")];
-        }
-        if (_searchView) {
-            [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
-        }
-    }
-}
-
-
-- (void)getRoomsFinished
-{
-    [self hideActivity];
-    CommonGameNetworkService* service = [DiceGameService defaultService];
-    self.dataList = [NSArray arrayWithArray:service.roomList];
-    [self.dataTableView reloadData];
-    //[[DiceGameService defaultService] registerRoomsNotification:service.roomList]; //don register room notification here
-    //self.noMoreData = YES;
-    //[self dataSourceDidFinishLoadingMoreData];
-    if (_isRefreshing) {
-        [self startRefreshRoomsTimer];
-    }
-    [self updateRoomList];
-    [self updateOnlineUserCount];
 }
 
 - (void)joinGame
 {
     [self hideActivity];
-    if(_isJoiningDice) {
-        DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
-        _isJoiningDice = NO; 
-    }
-}
+    DiceGamePlayController *controller = [[[DiceGamePlayController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 
-- (void)connectServer
-{
-    // Internet Test Server
-    [[DiceGameService defaultService] setRuleType:_ruleType];
-//    [[DiceGameService defaultService] connectServer:self];
-    [[DiceGameService defaultService] connectServer];
-    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
-    _isJoiningDice = NO;    
 }
 
 - (void)registerDiceRoomNotification
 {
-    
     [self registerNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE
                             usingBlock:^(NSNotification *note) {
         PPDebug(@"<DiceRoomListController> NOTIFICAIION_CREATE_ROOM_RESPONSE"); 
@@ -230,42 +100,13 @@
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
         }
     }];
-    
-    [self registerNotificationWithName:NOTIFICAIION_GET_ROOMS_RESPONSE
-                            usingBlock:^(NSNotification *note) {
-        PPDebug(@"<DiceRoomListController> NOTIFICAIION_GET_ROOMS_RESPONSE"); 
-        GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
-        if (message.resultCode == GameResultCodeSuccess) {
-            [self getRoomsFinished];
-        }
-    }];
-    [self registerNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE
-                            usingBlock:^(NSNotification *note) {
-        PPDebug(@"<DiceRoomListController> NOTIFICATION_JOIN_GAME_RESPONSE");  
-        [self hideActivity];
-        GameMessage* message = [CommonGameNetworkService userInfoToMessage:note.userInfo];
-        if (message.resultCode == GameResultCodeSuccess) {
-            [self joinGame];
-        } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
-        } else {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
-        }
-    }];
-    
-    [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED
-                            usingBlock:^(NSNotification *note) {
-                                [self didConnected];
-                            }];
 
-//    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification
-//                            usingBlock:^(NSNotification *note) {
-//        PPDebug(@"<DiceRoomListController> Disconnected from server");
-//        if (![[DiceGameService defaultService] isConnected]) {
-//            [self didBroken];
-//        }
-//    }];
 
+}
+
+- (void)handleUpdateOnlineUserCount
+{
+    
 }
 
 - (void)unregisterDiceRoomNotification
@@ -317,70 +158,61 @@
     }
 }
 
+- (void)initLabels
+{
+    [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
+    [self.titleLabel setGradientEndColor:[UIColor colorWithRed:88/255.0 green:56/255.0 blue:22/255.0 alpha:1.0]];
+    [self.titleLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
+    [self.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    [self.leftTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.leftTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.rightTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.rightTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    [self.fastEntryButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.fastEntryButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+    [self.fastEntryButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.createRoomButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+    [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    
+    [self.emptyListTips setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+    [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    _accountService = [AccountService defaultService];
-   
-    _diceGameService = [DiceGameService defaultService];
+    [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
+    [self.titleLabel setText:[self title]];
+    [self hideCenterTabButton];
+    [self initLabels];
+    
+    
+    
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[self bgImage]];
-    
-//    [createRoomButton setRoyButtonWithColor:[DiceColorManager dialoggreenColor]];
-//    
-//    [fastEntryButton setRoyButtonWithColor:[DiceColorManager dialogYellowColor]];
-    
-    [self.titleFontButton.fontLable setTextColor:[UIColor whiteColor]]; 
-    [self.allRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
-    [self.friendRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
-    [self.nearByRoomButton.fontLable setTextColor:[UIColor whiteColor]]; 
-    
-//    [self.titleFontButton.fontLable setText:[self title]];
-    [self.allRoomButton.fontLable setText:NSLS(@"kAll")];
-    [self.friendRoomButton.fontLable setText:NSLS(@"kFriend")];
-    [self.nearByRoomButton.fontLable setText:NSLS(@"kNearBy")];
-    [self.createRoomButton.fontLable setText:NSLS(@"kCreateRoom")];
-    [self.fastEntryButton.fontLable setText:NSLS(@"kFastEntry")];
-    
-    _isRefreshing = YES;
-    self.emptyListTips.hidden = YES;
-    [self updateOnlineUserCount];    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(roomsDidUpdate:)
-//                                                 name:ROOMS_DID_UPDATE
-//                                               object:nil];
-    [self.fastEntryButton setBackgroundImage:[DiceImageManager defaultManager].fastGameBtnBgImage  forState:UIControlStateNormal];
-    [self.createRoomButton setBackgroundImage:[DiceImageManager defaultManager].createRoomBtnBgImage forState:UIControlStateNormal];
-}
-
-- (void)viewDidUnload
-{
-    [self setCreateRoomButton:nil];
-    [self setFastEntryButton:nil];
-    [self setTitleFontButton:nil];
-    [self setAllRoomButton:nil];
-    [self setFriendRoomButton:nil];
-    [self setNearByRoomButton:nil];
-    [self setHelpButton:nil];
-    [self setEmptyListTips:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self registerDiceRoomNotification];    
     [super viewDidAppear:animated];    
-    [self connectServer];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unregisterDiceRoomNotification];
-    [_searchView disappear];
-    [self clearRefreshRoomsTimer];
     [super viewDidDisappear:animated];
 }
 
@@ -431,35 +263,6 @@
 
 #pragma mark - Button action
 
-- (IBAction)clickBackButton:(id)sender {
-    [[DiceGameService defaultService] quitGame];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)clickFastEntryButton:(id)sender {    
-    [self checkAndJoinGame];
-}
-
-- (IBAction)creatRoom:(id)sender
-{
-    if ([DiceConfigManager meetJoinGameCondictionWithRuleType:_diceGameService.ruleType]) {
-        [self showCreateRoomView];
-    }else {
-        [self showCoinsNotEnoughView];
-    }
-}
-
-- (void)showCreateRoomView
-{
-    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom") 
-                                                            delegate:self 
-                                           ];
-    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
-    [inputDialog showInView:self.view];
-    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
-}
 
 - (void)showCoinsNotEnoughView
 {
@@ -467,112 +270,19 @@
     [dialog showInView:self.view];
 }
 
-- (void)refreshRoomsByFilter:(RoomFilter)filter
-{
-    [[DiceGameService defaultService] getRoomList:0
-                                            count:ROOMS_COUNT_PER_PAGE
-                                         roomType:filter
-                                          keyword:nil
-                                           gameId:[ConfigManager gameId]];
-}
-
-
-- (IBAction)clickAll:(id)sender
-{
-    [self.allRoomButton setSelected:YES];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:NO];
-    [self refreshRoomsByFilter:(RoomFilter)allRoom];
-    _currentRoomType = allRoom;
-    [self continueRefreshingRooms];
-    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
-}
-- (IBAction)clickFriendRoom:(id)sender
-{
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:YES];
-    [self.nearByRoomButton setSelected:NO];
-    [self refreshRoomsByFilter:(RoomFilter)friendRoom];
-    _currentRoomType = friendRoom;
-    [self pauseRefreshingRooms];
-    [self showActivityWithText:NSLS(@"kSearchingRoom")];
-}
-- (IBAction)clickNearBy:(id)sender
-{
-    [self.allRoomButton setSelected:NO];
-    [self.friendRoomButton setSelected:NO];
-    [self.nearByRoomButton setSelected:YES];
-    [self refreshRoomsByFilter:(RoomFilter)nearByRoom];
-    _currentRoomType = nearByRoom;
-}
-
-- (void)updateOnlineUserCount
-{
-    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[[DiceGameService defaultService] onlineUserCount]];
-    [self.titleFontButton.fontLable setText:[NSString stringWithFormat:@"%@(%@)",[self title], userCount]];
-}
-
-#pragma mark - CommonGameServiceDelegate
-- (void)didConnected
-{
-    [self hideActivity];
-    [[DiceGameService defaultService] getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
-    [self.createRoomButton setEnabled:YES];
-    [self.fastEntryButton setEnabled:YES];
-    firstLoad = NO;
-}
-
-- (void)didBroken
-{
-    PPDebug(@"%@ <didBroken>", [self description]);
-    [self hideActivity];
-    
-//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    
-}
-
-#pragma makr - inputDialog delegate
-- (void)didClickOk:(InputDialog *)dialog 
-        targetText:(NSString *)targetText
-{
-    if (dialog.tag == CREATE_ROOM_DIALOG_TAG) {
-        NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
-        [self createRoomWithName:targetText 
-                        password:password];
-    }
-    
-    if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
-        if ([self.currentSession.password isEqualToString:targetText]) {
-            [self checkAndJoinGame:self.currentSession.sessionId];
-        } else {
-            [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
-        }
-    }
-}
-- (void)didClickCancel:(InputDialog *)dialog
-{
-    
-}
-
-#pragma mark - load more delegate
-- (void)loadMoreTableViewDataSource
-{
-    [_diceGameService getRoomList:_diceGameService.roomList.count count:ROOMS_COUNT_PER_PAGE];
-}
 
 - (IBAction)clickHelpButton:(id)sender {
-    if (!helpButton.selected) {
-        helpButton.selected = YES;
-        HelpView *view = [HelpView createHelpView:@"DiceHelpView"];
-        view.delegate = self;
-        [view showInView:self.view];
-    }
+//    if (!helpButton.selected) {
+//        helpButton.selected = YES;
+//        HelpView *view = [HelpView createHelpView:@"DiceHelpView"];
+//        view.delegate = self;
+//        [view showInView:self.view];
+//    }
 }
 
 - (void)didHelpViewHide
 {
-    helpButton.selected = NO;
+//    helpButton.selected = NO;
 }
 
 #pragma mark - common dialog delegate
@@ -597,56 +307,74 @@
     [[LmWallService defaultService] show:self];
 }
 
-#pragma mark - common info view delegate
-- (void)infoViewDidDisappear:(CommonInfoView*)view
+#pragma mark - common room list delegate
+
+
+- (void)handleDidJoinGame
 {
-    _searchView = nil;
-    if (_currentRoomType == allRoom) {
-        [self continueRefreshingRooms];
-    }
-    if (_currentRoomType == friendRoom) {
-        [self clickFriendRoom:nil];
-    }
+    [self hideActivity];
+    [self joinGame];
     
 }
-
-#pragma mark - CommonSearchViewDelegate
-
-- (void)willSearch:(NSString *)keywords byView:(CommonSearchView *)view
+- (PrejoinGameErrorCode)handlePrejoinGameCheck
 {
-    [[DiceGameService defaultService] getRoomList:0
-                                            count:ROOMS_COUNT_PER_PAGE
-                                         roomType:_currentRoomType
-                                          keyword:keywords
-                                           gameId:[ConfigManager gameId]];
-    [self showActivityWithText:NSLS(@"kSearchingRoom")];
-    [self pauseRefreshingRooms];
+    return canJoinGame;
+}
+- (PrejoinGameErrorCode)handlePrejoinGameCheckBySessionId:(int)sessionId
+{
+    return canJoinGame;
+}
+- (void)handleJoinGameError:(PrejoinGameErrorCode)errorCode
+{
+    
+}
+- (void)handleUpdateRoomList
+{
+    self.emptyListTips.hidden = YES;
+}
+- (void)handleDidConnectServer
+{
+    [self hideActivity];
+    self.fastEntryButton.enabled = YES;
+    self.createRoomButton.enabled = YES;
 }
 
-- (IBAction)clickSearch:(id)sender
+- (void)handleNoRoomMessage
 {
+    self.emptyListTips.hidden = NO;
+    if (_currentRoomType == CommonRoomFilterFriendRoom) {
+        [self.emptyListTips setText:NSLS(@"kNoFriendRoom")];
+    }
     if (_searchView) {
-        [_searchView disappear];
-    } else {
-        _searchView = [CommonSearchView showInView:self.view 
-                                           byTheme:CommonSearchViewThemeDice 
-                                           atPoint:CGPointMake(self.view.center.x, self.friendRoomButton.center.y) 
-                                          delegate:self];
+        [self.emptyListTips setText:NSLS(@"kSearchEmpty")];
     }
 }
 
-#pragma mark - dice room list delegate
+
 - (void)didQueryUser:(NSString *)userId
 {
-    MyFriend *friend = [MyFriend friendWithFid:userId 
+    [self hideActivity];
+    MyFriend *friend = [MyFriend friendWithFid:userId
                                       nickName:nil
                                         avatar:nil
-                                        gender:nil 
+                                        gender:nil
                                          level:1];
-    [DiceUserInfoView showFriend:friend 
-                      infoInView:self
-                         canChat:NO
-                      needUpdate:YES];
+    [DiceUserInfoView showFriend:friend infoInView:self canChat:NO needUpdate:YES];
+    return;
 }
+
+- (void)handleLeftTabAction
+{
+    [self refreshRoomsByFilter:CommonRoomFilterAllRoom];
+    [self continueRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+}
+- (void)handleRightTabAction
+{
+    [self refreshRoomsByFilter:CommonRoomFilterFriendRoom];
+    [self pauseRefreshingRooms];
+    [self showActivityWithText:NSLS(@"kSearchingRoom")];
+}
+
 
 @end

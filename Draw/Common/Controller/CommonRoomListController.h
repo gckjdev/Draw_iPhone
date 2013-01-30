@@ -63,6 +63,7 @@ typedef enum {
 - (void)pauseRefreshingRooms;
 - (void)continueRefreshingRooms;
 - (void)refreshRoomsByFilter:(CommonRoomFilter)filter;
+- (void)hideCenterTabButton;
 
 - (void)didQueryUser:(NSString *)userId;
 
