@@ -190,9 +190,16 @@
     [sender setSelected:![sender isSelected]];
 }
 
-- (IBAction)clickEnd:(UIButton *)sender {
+- (void)playEnd
+{
+    [self.superController hideActivity];
     [self.showView show];
     [self endToPlay];
+}
+
+- (IBAction)clickEnd:(UIButton *)sender {
+    [self.superController showActivityWithText:NSLS(@"kBuffering")];
+    [self performSelector:@selector(playEnd) withObject:nil afterDelay:0.001];
 }
 
 - (IBAction)clickSpeed:(id)sender {
