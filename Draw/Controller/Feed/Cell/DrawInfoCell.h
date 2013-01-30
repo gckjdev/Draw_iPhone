@@ -27,7 +27,6 @@
 {
     id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;
-    NSInteger _getTimes;
     BOOL _isLoading;
     FeedUser *_targetUser;
 }

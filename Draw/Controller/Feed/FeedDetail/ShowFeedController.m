@@ -176,18 +176,18 @@ enum{
 {
     if (self.userCell == nil) {
         self.userCell = [UserInfoCell createCell:self];
-        [self.userCell setCellInfo:self.feed];
         self.userCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    [self.userCell setCellInfo:self.feed];
     return self.userCell;
 }
 - (UITableViewCell *)cellForDrawInfoSection
 {
     if (self.drawCell == nil) {
         self.drawCell = [DrawInfoCell createCell:self];
-        [self.drawCell setCellInfo:self.feed];
         self.drawCell.delegate = self;
     }
+    [self.drawCell setCellInfo:self.feed];
     return self.drawCell;
 
 }
@@ -413,11 +413,17 @@ enum{
 - (void)didUpdateShowView
 {
     //update the times
-    [self.commentHeader setViewInfo:self.feed];
+//    [self.commentHeader setViewInfo:self.feed];
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
-    [self updateUserInfo];
+    
+    [self.dataTableView reloadData];
+    
+//    [self updateUserInfo];
+    
+//    NSIndexSet *set = [NSIndexSet indexSetWithIndex:SectionDrawInfo];
+//    [self.dataTableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
