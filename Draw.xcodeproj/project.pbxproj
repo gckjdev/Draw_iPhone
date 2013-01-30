@@ -640,6 +640,38 @@
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
 		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
+		C2C63C0716B91E1B006F91AE /* zjh_room_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F4168DBDB1009F43F7 /* zjh_room_title_bg@2x.png */; };
+		C2C63C0816B91E22006F91AE /* zjh_game_bg_dual.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E0168DBDB1009F43F7 /* zjh_game_bg_dual.jpg */; };
+		C2C63C0916B91E28006F91AE /* zjh_game_bg_dual@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E1168DBDB1009F43F7 /* zjh_game_bg_dual@2x.jpg */; };
+		C2C63C0A16B91E2D006F91AE /* zjh_game_bg_dual_ip5@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E2168DBDB1009F43F7 /* zjh_game_bg_dual_ip5@2x.jpg */; };
+		C2C63C0B16B91E30006F91AE /* zjh_game_bg_dual_ipad@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E3168DBDB1009F43F7 /* zjh_game_bg_dual_ipad@2x.jpg */; };
+		C2C63C0C16B92069006F91AE /* FrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B316B6222000958355 /* FrameManager.m */; };
+		C2C63C0D16B9206B006F91AE /* FrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B316B6222000958355 /* FrameManager.m */; };
+		C2C63C0E16B9206C006F91AE /* FrameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B316B6222000958355 /* FrameManager.m */; };
+		C2C63C0F16B92080006F91AE /* ProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4116B910B70094BA7C /* ProtocolUtil.m */; };
+		C2C63C1016B92082006F91AE /* ProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4116B910B70094BA7C /* ProtocolUtil.m */; };
+		C2C63C1116B92083006F91AE /* ProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4116B910B70094BA7C /* ProtocolUtil.m */; };
+		C2C63C1216B92086006F91AE /* WallOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4316B910B70094BA7C /* WallOpus.m */; };
+		C2C63C1516B92090006F91AE /* WallOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4316B910B70094BA7C /* WallOpus.m */; };
+		C2C63C1616B92092006F91AE /* WallOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4316B910B70094BA7C /* WallOpus.m */; };
+		C2C63C1716B9209B006F91AE /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B716B6222000958355 /* LayoutManager.m */; };
+		C2C63C1816B9209C006F91AE /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B716B6222000958355 /* LayoutManager.m */; };
+		C2C63C1916B9209E006F91AE /* LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B716B6222000958355 /* LayoutManager.m */; };
+		C2C63C1A16B920A0006F91AE /* Wall.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B916B6222000958355 /* Wall.m */; };
+		C2C63C1B16B920A2006F91AE /* Wall.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B916B6222000958355 /* Wall.m */; };
+		C2C63C1C16B920A3006F91AE /* Wall.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174B916B6222000958355 /* Wall.m */; };
+		C2C63C1D16B920A7006F91AE /* WallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174BB16B6222000958355 /* WallManager.m */; };
+		C2C63C1E16B920A8006F91AE /* WallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174BB16B6222000958355 /* WallManager.m */; };
+		C2C63C1F16B920AA006F91AE /* WallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174BB16B6222000958355 /* WallManager.m */; };
+		C2C63C2016B9225A006F91AE /* FrameSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4A16B910D10094BA7C /* FrameSelectController.m */; };
+		C2C63C2116B9225C006F91AE /* FrameSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4A16B910D10094BA7C /* FrameSelectController.m */; };
+		C2C63C2216B92260006F91AE /* FrameSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4A16B910D10094BA7C /* FrameSelectController.m */; };
+		C2C63C2316B92312006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
+		C2C63C2416B92313006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
+		C2C63C2516B92315006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
+		C2C63C2616B9231A006F91AE /* ReplaceOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */; };
+		C2C63C2716B9231C006F91AE /* ReplaceOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */; };
+		C2C63C2816B9231D006F91AE /* ReplaceOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */; };
 		C2CA66D216ACD1DF00215924 /* bulletin_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */; };
 		C2CA66D316ACD1E100215924 /* bulletin_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */; };
 		C2CA66D416ACD1E600215924 /* bulletin_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D54168302DE00E012FC /* bulletin_bg@2x.png */; };
@@ -18344,6 +18376,11 @@
 				C21C322316B8CA68006B5D14 /* tab_right_unselect@2x.png in Resources */,
 				CA3EB8F816B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 				CA3EB8FD16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
+				C2C63C0716B91E1B006F91AE /* zjh_room_title_bg@2x.png in Resources */,
+				C2C63C0816B91E22006F91AE /* zjh_game_bg_dual.jpg in Resources */,
+				C2C63C0916B91E28006F91AE /* zjh_game_bg_dual@2x.jpg in Resources */,
+				C2C63C0A16B91E2D006F91AE /* zjh_game_bg_dual_ip5@2x.jpg in Resources */,
+				C2C63C0B16B91E30006F91AE /* zjh_game_bg_dual_ipad@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21565,6 +21602,15 @@
 				C252DCEB16B75F0D0007D240 /* OpusWallController.m in Sources */,
 				C252DCEE16B75F130007D240 /* OpusCell.m in Sources */,
 				C252DCF116B75F1C0007D240 /* OpusSelectController.m in Sources */,
+				C2C63C0D16B9206B006F91AE /* FrameManager.m in Sources */,
+				C2C63C1016B92082006F91AE /* ProtocolUtil.m in Sources */,
+				C2C63C1516B92090006F91AE /* WallOpus.m in Sources */,
+				C2C63C1816B9209C006F91AE /* LayoutManager.m in Sources */,
+				C2C63C1B16B920A2006F91AE /* Wall.m in Sources */,
+				C2C63C1E16B920A8006F91AE /* WallManager.m in Sources */,
+				C2C63C2116B9225C006F91AE /* FrameSelectController.m in Sources */,
+				C2C63C2416B92313006F91AE /* FrameCell.m in Sources */,
+				C2C63C2716B9231C006F91AE /* ReplaceOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22263,6 +22309,15 @@
 				C252DCEC16B75F0E0007D240 /* OpusWallController.m in Sources */,
 				C252DCEF16B75F150007D240 /* OpusCell.m in Sources */,
 				C252DCF216B75F1E0007D240 /* OpusSelectController.m in Sources */,
+				C2C63C0E16B9206C006F91AE /* FrameManager.m in Sources */,
+				C2C63C1116B92083006F91AE /* ProtocolUtil.m in Sources */,
+				C2C63C1616B92092006F91AE /* WallOpus.m in Sources */,
+				C2C63C1916B9209E006F91AE /* LayoutManager.m in Sources */,
+				C2C63C1C16B920A3006F91AE /* Wall.m in Sources */,
+				C2C63C1F16B920AA006F91AE /* WallManager.m in Sources */,
+				C2C63C2216B92260006F91AE /* FrameSelectController.m in Sources */,
+				C2C63C2516B92315006F91AE /* FrameCell.m in Sources */,
+				C2C63C2816B9231D006F91AE /* ReplaceOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23677,6 +23732,15 @@
 				C252DCEA16B75F0D0007D240 /* OpusWallController.m in Sources */,
 				C252DCED16B75F120007D240 /* OpusCell.m in Sources */,
 				C252DCF016B75F190007D240 /* OpusSelectController.m in Sources */,
+				C2C63C0C16B92069006F91AE /* FrameManager.m in Sources */,
+				C2C63C0F16B92080006F91AE /* ProtocolUtil.m in Sources */,
+				C2C63C1216B92086006F91AE /* WallOpus.m in Sources */,
+				C2C63C1716B9209B006F91AE /* LayoutManager.m in Sources */,
+				C2C63C1A16B920A0006F91AE /* Wall.m in Sources */,
+				C2C63C1D16B920A7006F91AE /* WallManager.m in Sources */,
+				C2C63C2016B9225A006F91AE /* FrameSelectController.m in Sources */,
+				C2C63C2316B92312006F91AE /* FrameCell.m in Sources */,
+				C2C63C2616B9231A006F91AE /* ReplaceOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
