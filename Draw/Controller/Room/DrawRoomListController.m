@@ -44,19 +44,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)hideCenterTabButton
-{
-    self.centerTabButton.hidden = YES;
-    CGRect leftRect = self.leftTabButton.frame;
-    CGRect rightRect = self.rightTabButton.frame;
-    
-    leftRect.size.width += self.centerTabButton.frame.size.width/2;
-    rightRect.size.width += self.centerTabButton.frame.size.width/2;
-    rightRect.origin.x -= self.centerTabButton.frame.size.width/2;
-    [self.leftTabButton setFrame:leftRect];
-    [self.rightTabButton setFrame:rightRect];
-}
-
 - (void)initLabels
 {
     [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
@@ -93,6 +80,7 @@
     [super viewDidLoad];
     
     [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
     [self hideCenterTabButton];
     [self initLabels];
     

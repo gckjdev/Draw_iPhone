@@ -748,7 +748,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)unloadBg
 {
-    return [UIImage imageNamed:@"unloadbg.png"];
+    return [self fixedImageNamed:@"unloadbg"];
 }
 
 - (UIImage *)pointForCurrentSelectedPage
