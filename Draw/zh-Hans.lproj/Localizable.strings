@@ -840,8 +840,8 @@
 "kPickPenColor" = "选择画笔颜色";
 "kPickBGColor" = "选择背景颜色";
 
-"kOpusCount" = "作品（%d）";
-"kJoinCount" = "参加（%d）";
+"kOpusCount" = "作品 (%d)";
+"kJoinCount" = "参加 (%d)";
 
 "kContest" = "画画大赛";
 "kRank" = "画榜";
