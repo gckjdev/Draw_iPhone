@@ -217,7 +217,7 @@
         PPDebug(@"<setCellInfo>:DrawInfoCell have drawData. start to showView");
         [self updateShowView:feed];
         [self updateTime:feed];
-        [self updateDesc:feed.desc];
+        [self updateDesc:feed.opusDesc];
         return;
     } 
     PPDebug(@"<setCellInfo>:DrawInfoCell have no drawData. start to load data");

@@ -55,7 +55,7 @@
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{19, 19}, {730, 698}}</string>
+						<string key="NSFrame">{{19, 18}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167940551"/>
@@ -304,7 +304,6 @@
 								<string key="NSFrame">{{16, 102}, {12, 72}}</string>
 								<reference key="NSSuperview" ref="556998278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
