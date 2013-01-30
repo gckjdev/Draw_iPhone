@@ -3475,6 +3475,10 @@
 		CA3EB8FC16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
 		CA3EB8FD16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
 		CA3EB8FE16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
+		CA3EB93D16B927B300660FE7 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
+		CA3EB93E16B927B300660FE7 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
+		CA3EB93F16B927B300660FE7 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
+		CA3EB94016B927B300660FE7 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
 		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
 		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
 		CA3F2ECD1609B3050059667B /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
@@ -8073,6 +8077,8 @@
 		CA3B56E81514D41E00A93137 /* DrawAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawAction.m; sourceTree = "<group>"; };
 		CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw@2x.png"; sourceTree = "<group>"; };
 		CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw_seleted@2x.png"; sourceTree = "<group>"; };
+		CA3EB93B16B927B300660FE7 /* StrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrawView.h; sourceTree = "<group>"; };
+		CA3EB93C16B927B300660FE7 /* StrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawView.m; sourceTree = "<group>"; };
 		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
 		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
 		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
@@ -13215,6 +13221,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		CA3EB93A16B927B300660FE7 /* StrawView */ = {
+			isa = PBXGroup;
+			children = (
+				CA3EB93B16B927B300660FE7 /* StrawView.h */,
+				CA3EB93C16B927B300660FE7 /* StrawView.m */,
+			);
+			path = StrawView;
+			sourceTree = "<group>";
+		};
 		CA3F2ED41609BCC90059667B /* Opus */ = {
 			isa = PBXGroup;
 			children = (
@@ -15402,6 +15417,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CA3EB93A16B927B300660FE7 /* StrawView */,
 				CABEDD1B16B64C5900BB9060 /* ReplayView */,
 				CA53292916A3E4B200E9E96B /* InputAlertView */,
 				CA1BF4611697CB19004ABCFA /* PickView */,
@@ -21611,6 +21627,7 @@
 				C2C63C2116B9225C006F91AE /* FrameSelectController.m in Sources */,
 				C2C63C2416B92313006F91AE /* FrameCell.m in Sources */,
 				C2C63C2716B9231C006F91AE /* ReplaceOpusView.m in Sources */,
+				CA3EB93F16B927B300660FE7 /* StrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22318,6 +22335,7 @@
 				C2C63C2216B92260006F91AE /* FrameSelectController.m in Sources */,
 				C2C63C2516B92315006F91AE /* FrameCell.m in Sources */,
 				C2C63C2816B9231D006F91AE /* ReplaceOpusView.m in Sources */,
+				CA3EB94016B927B300660FE7 /* StrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23026,6 +23044,7 @@
 				A41D2B5016B910D10094BA7C /* FrameSelectController.m in Sources */,
 				A41D2B5216B910D10094BA7C /* ReplaceOpusView.m in Sources */,
 				A41D2B5616B910E30094BA7C /* WallService.m in Sources */,
+				CA3EB93D16B927B300660FE7 /* StrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23741,6 +23760,7 @@
 				C2C63C2016B9225A006F91AE /* FrameSelectController.m in Sources */,
 				C2C63C2316B92312006F91AE /* FrameCell.m in Sources */,
 				C2C63C2616B9231A006F91AE /* ReplaceOpusView.m in Sources */,
+				CA3EB93E16B927B300660FE7 /* StrawView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
