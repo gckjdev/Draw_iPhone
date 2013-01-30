@@ -148,6 +148,7 @@
 }
 - (void)setViewInfo:(DrawFeed *)feed
 {
+    self.feed = feed;
     [self updateTimes:feed];
     [self updateSplitLines];
 }
