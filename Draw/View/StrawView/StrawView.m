@@ -9,6 +9,9 @@
 #import "StrawView.h"
 
 #define VIEW_SIZE (ISIPAD ? 88.0 : 44.0)
+#define OUT_CIRCLE_R (VIEW_SIZE/2.0-2)
+#define COLOR_CIRCLE_R (OUT_CIRCLE_R-2)
+#define IN_CIRCLE_R (VIEW_SIZE/5.0)
 
 @implementation StrawView
 
@@ -44,7 +47,6 @@
 
 - (CGRect)subRect:(CGRect)rect radius:(CGFloat)radius
 {
-
     CGFloat d = radius * 2;
     CGFloat x = (CGRectGetWidth(rect) - d) / 2 + CGRectGetMinX(rect);
     CGFloat y = (CGRectGetHeight(rect) - d) / 2 + CGRectGetMinY(rect);
@@ -57,6 +59,7 @@
 {
     // Drawing code
 
+//    CGRect rect = [self subRect:rect radius:<#(CGFloat)#>]
     //draw three circles
     
     [super drawRect:rect];
