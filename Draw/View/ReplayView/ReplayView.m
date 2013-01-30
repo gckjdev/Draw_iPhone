@@ -129,7 +129,7 @@
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
     }
     
-    [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:1];
+    [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
 }
 - (void)dealloc {
     PPDebug(@"dealloc %@", [self description]);
