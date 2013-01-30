@@ -57,6 +57,8 @@
 #define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
 #define AWARD_TIPS_FONT ([DeviceDetection isIPAD]?22:11)
 
+#define BOARD_HEIGHT ISIPAD ? 408 : 193
+
 @interface DiceHomeController()
 {
     BoardPanel *_boardPanel;
@@ -74,14 +76,14 @@
 @end
 
 @implementation DiceHomeController
-@synthesize menuPanel = _menuPanel;
-@synthesize bottomMenuPanel = _bottomMenuPanel;
+//@synthesize menuPanel = _menuPanel;
+//@synthesize bottomMenuPanel = _bottomMenuPanel;
 
 
 - (void)dealloc
 {
-    PPRelease(_menuPanel);
-    PPRelease(_bottomMenuPanel);
+//    PPRelease(_menuPanel);
+//    PPRelease(_bottomMenuPanel);
     [super dealloc];
     
 }
@@ -100,27 +102,27 @@
 //        [[BoardService defaultService] getBoardsWithDelegate:self];    
 //    }
 }
-- (void)loadMainMenu
-{
-    self.menuPanel = [MenuPanel menuPanelWithController:self 
-                                            gameAppType:GameAppTypeDice];
-    
-//    CGPoint iphoneCenter = ([DeviceDetection isIPhone5]?CGPointMake(160, 406):CGPointMake(160, 306));
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
-    
-    [self.view insertSubview:self.menuPanel atIndex:0];
-    
-}
+//- (void)loadMainMenu
+//{
+//    self.menuPanel = [MenuPanel menuPanelWithController:self 
+//                                            gameAppType:GameAppTypeDice];
+//    
+////    CGPoint iphoneCenter = ([DeviceDetection isIPhone5]?CGPointMake(160, 406):CGPointMake(160, 306));
+//    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
+//    
+//    [self.view insertSubview:self.menuPanel atIndex:0];
+//    
+//}
 
-- (void)loadBottomMenu
-{
-    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
-                                                    gameAppType:GameAppTypeDice];
-    
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 440);
-    
-    [self.view addSubview:_bottomMenuPanel];
-}
+//- (void)loadBottomMenu
+//{
+//    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
+//                                                    gameAppType:GameAppTypeDice];
+//    
+//    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 440);
+//    
+//    [self.view addSubview:_bottomMenuPanel];
+//}
 
 - (void)playBGM
 {
@@ -135,8 +137,8 @@
     _resService = [PPResourceService defaultService];
 
     [super viewDidLoad];
-    [self loadMainMenu];
-    [self loadBottomMenu];
+//    [self loadMainMenu];
+//    [self loadBottomMenu];
     [self playBGM];
     [self checkIn];
 
@@ -519,95 +521,98 @@
 
 #pragma mark - Button Menu delegate
 
-- (BOOL)isRegistered
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+             didClickMenu:(HomeMenuView *)menu
+                 menuType:(HomeMenuType)type
 {
-    return [[UserManager defaultManager] hasUser];
-}
-
-- (void)toRegister
-{
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [self.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
-}
-
-- (void)didClickMenuButton:(MenuButton *)menuButton
-{
-    PPDebug(@"menu button type = %d", menuButton.type);
     if (![self isRegistered]) {
         [self toRegister];
         return;
     }
-    
-    MenuButtonType type = menuButton.type;
     switch (type) {
-        case MenuButtonTypeDiceShop:
+        case HomeMenuTypeDiceShop:
         {
             VendingController* vc = [[VendingController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
             break;
-        case MenuButtonTypeDiceStart:
+        case HomeMenuTypeDiceStart:
         {
             if ([self respondsToSelector:@selector(connectServer:)]){
                 [self connectServer:DiceGameRuleTypeRuleNormal];
             }
         }
             break;
-        case MenuButtonTypeDiceHappyRoom:
+        case HomeMenuTypeDiceHappyRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
-        case MenuButtonTypeDiceHighRoom:
+        case HomeMenuTypeDiceHighRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case MenuButtonTypeDiceSuperHighRoom:
+        case HomeMenuTypeDiceSuperHighRoom:
         {
             DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
-        case MenuButtonTypeDiceHelp:
+        case HomeMenuTypeDiceHelp:
         {
             HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
             [view showInView:self.view];
         }
             break;
+
+        default:
+            break;
+    }
+}
+
+- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
+               didClickMenu:(HomeMenuView *)menu
+                   menuType:(HomeMenuType)type
+{
+    PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
+    
+    switch (type) {
             //For Bottom Menus
-        case MenuButtonTypeSettings:
+        case HomeMenuTypeDrawSetting:
+        case HomeMenuTypeDrawMe:
         {
             UserSettingController *settings = [[UserSettingController alloc] init];
             [self.navigationController pushViewController:settings animated:YES];
             [settings release];
         }
             break;
-        case MenuButtonTypeFriend:
+        case HomeMenuTypeDrawFriend:
         {
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
-            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
+            //            [[StatisticManager defaultManager] setFanCount:0];
         }
             break;
-        case MenuButtonTypeChat:
+        case HomeMenuTypeDrawMessage:
         {
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            
-            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
-            
+            //            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
-        case MenuButtonTypeFeedback:
+        case HomeMenuTypeDrawMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];
@@ -615,12 +620,107 @@
             
         }
             break;
-        case MenuButtonTypeCheckIn:
             
         default:
             break;
     }
+    [menu updateBadge:0];
 }
+
+- (float)getMainMenuOriginY
+{
+    return BOARD_HEIGHT;
+}
+//- (void)didClickMenuButton:(MenuButton *)menuButton
+//{
+//    PPDebug(@"menu button type = %d", menuButton.type);
+//    if (![self isRegistered]) {
+//        [self toRegister];
+//        return;
+//    }
+//    
+//    MenuButtonType type = menuButton.type;
+//    switch (type) {
+//        case MenuButtonTypeDiceShop:
+//        {
+//            VendingController* vc = [[VendingController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            [vc release];
+//        }
+//            break;
+//        case MenuButtonTypeDiceStart:
+//        {
+//            if ([self respondsToSelector:@selector(connectServer:)]){
+//                [self connectServer:DiceGameRuleTypeRuleNormal];
+//            }
+//        }
+//            break;
+//        case MenuButtonTypeDiceHappyRoom:
+//        {
+//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//            break;
+//            
+//        case MenuButtonTypeDiceHighRoom:
+//        {
+//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//            break;
+//        case MenuButtonTypeDiceSuperHighRoom:
+//        {
+//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//            break;
+//            
+//        case MenuButtonTypeDiceHelp:
+//        {
+//            HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
+//            [view showInView:self.view];
+//        }
+//            break;
+//            //For Bottom Menus
+//        case MenuButtonTypeSettings:
+//        {
+//            UserSettingController *settings = [[UserSettingController alloc] init];
+//            [self.navigationController pushViewController:settings animated:YES];
+//            [settings release];
+//        }
+//            break;
+//        case MenuButtonTypeFriend:
+//        {
+//            FriendController *mfc = [[FriendController alloc] init];
+//            [self.navigationController pushViewController:mfc animated:YES];
+//            [mfc release];
+////            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
+//        }
+//            break;
+//        case MenuButtonTypeChat:
+//        {
+//            ChatListController *controller = [[ChatListController alloc] init];
+//            [self.navigationController pushViewController:controller animated:YES];
+//            [controller release];
+//            
+////            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
+//            
+//        }
+//            break;
+//        case MenuButtonTypeFeedback:
+//        {
+//            FeedbackController* feedBack = [[FeedbackController alloc] init];
+//            [self.navigationController pushViewController:feedBack animated:YES];
+//            [feedBack release];
+//            
+//        }
+//            break;
+//        case MenuButtonTypeCheckIn:
+//            
+//        default:
+//            break;
+//    }
+//}
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     

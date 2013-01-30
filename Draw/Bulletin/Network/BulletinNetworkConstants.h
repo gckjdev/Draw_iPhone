@@ -18,6 +18,7 @@
 #define PARA_BULLETIN_TYPE    @"tp"
 #define PARA_BULLETIN_GAME_ID    @"gid"
 #define PARA_BULLETIN_FUNCTION    @"function"
+#define PARA_BULLETIN_URL       @"url"
 
 
 #define METHOD_GETBULLETINS @"gblt"

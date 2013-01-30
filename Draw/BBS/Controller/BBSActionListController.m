@@ -9,7 +9,7 @@
 #import "BBSActionListController.h"
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
-#import "ReplayGraffitiController.h"
+#import "ReplayView.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
@@ -131,11 +131,9 @@
 {
     [self hideActivity];
     if (resultCode == 0) {
-        ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
-                                        initWithDrawActionList:drawActionList];
-        pg.drawDataVersion = version;
-        [self.navigationController pushViewController:pg animated:YES];
-        [pg release];
+        ReplayView *replayView = [ReplayView createReplayView];
+        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
+        [replayView showInController:self withActionList:drawActionList isNewVersion:isNewVersion];
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }

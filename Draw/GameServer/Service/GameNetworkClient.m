@@ -397,6 +397,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
+    [requestBuilder setAvatar:[user avatar]];
+    [requestBuilder setGender:[user gender]];    
     [requestBuilder setUser:user];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
@@ -421,6 +423,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setUserId:userId];
     [requestBuilder setGameId:gameId];
     [requestBuilder setNickName:[user nickName]];
+    [requestBuilder setAvatar:[user avatar]];
+    [requestBuilder setGender:[user gender]];
     [requestBuilder setUser:user];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];

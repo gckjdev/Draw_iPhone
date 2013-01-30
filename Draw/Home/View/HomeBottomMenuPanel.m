@@ -69,6 +69,8 @@
         list = getDrawBottomMenuTypeList();
     }else if(gameAppType() == GameAppTypeZJH){
         list = getZJHBottomMenuTypeList();
+    }else if(gameAppType() == GameAppTypeDice){
+        list = getDiceBottomMenuTypeList();
     }
 //    list = getZJHBottomMenuTypeList();
     _menuCount = 0;

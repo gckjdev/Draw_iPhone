@@ -17,7 +17,6 @@
 #import "GameBasic.pb.h"
 #import "ShowDrawView.h"
 #import "ShareImageManager.h"
-#import "ReplayGraffitiController.h"
 #import "DrawAppDelegate.h"
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
@@ -27,7 +26,7 @@
 #import "ChatListController.h"
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
-
+#import "ReplayView.h"
 @interface ChatDetailController ()
 {
     MessageStat *_messageStat;
@@ -467,6 +466,9 @@
 
 - (void)sendTextMessage:(NSString *)text
 {
+    // load new message to avoid missing new message while staying in send message mode
+    [self loadNewMessage:NO];
+    
     TextMessage *message = [[TextMessage alloc] init];
     [self constructMessage:message];
     [message setText:text];
@@ -479,6 +481,9 @@
 }
 - (void)sendDrawMessage:(NSMutableArray *)drawActionList
 {
+    // load new message to avoid missing new message while staying in send message mode
+    [self loadNewMessage:NO];
+
     DrawMessage *message = [[[DrawMessage alloc] init] autorelease];
     [self constructMessage:message];
     [message setMessageType:MessageTypeDraw];
@@ -583,11 +588,10 @@
 #pragma mark enter replay controller
 - (void)enterReplayController:(DrawMessage *)message
 {
-    ReplayGraffitiController *rg = [[ReplayGraffitiController alloc] initWithDrawActionList:[message drawActionList]];
-    rg.drawDataVersion = message.drawDataVersion;
-    [self.navigationController pushViewController:rg animated:YES];
-    [rg release];
-
+    ReplayView *replayView = [ReplayView createReplayView];
+    NSMutableArray *actionList = [message drawActionList];
+    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
+    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion];
 }
 - (void)clickMessage:(PPMessage *)message 
   withDrawActionList:(NSArray *)drawActionList
@@ -686,6 +690,17 @@
     return 10;
 }
 
+#define LAST_MESSAGE_ID_KEY     @"LAST_MESSAGE_ID_KEY"
+
+- (void)saveLastMessageId:(NSString*)messageId
+{
+    [[NSUserDefaults standardUserDefaults] setObject:messageId forKey:LAST_MESSAGE_ID_KEY];
+}
+
+- (NSString*)loadLastMessageId
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_MESSAGE_ID_KEY];
+}
 
 - (NSString *)lastMessageId
 {

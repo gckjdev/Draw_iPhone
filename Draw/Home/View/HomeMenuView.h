@@ -56,6 +56,15 @@ typedef enum{
 //    HomeMenuTypeZJHMe,
 //    HomeMenuTypeZJHSetting,
     
+    HomeMenuTypeDiceStart = 3000,
+    HomeMenuTypeDiceHappyRoom,
+    HomeMenuTypeDiceHighRoom,
+    HomeMenuTypeDiceSuperHighRoom,
+    HomeMenuTypeDiceHelp,
+    HomeMenuTypeDiceShop,
+    
+    HomeMenuTypeDiceBottomBegin = 3500,
+    
 }HomeMenuType;
 
 @protocol HomeMenuViewDelegate <HomeCommonViewDelegate>
@@ -91,3 +100,5 @@ int *getDrawMainMenuTypeList();
 int *getDrawBottomMenuTypeList();
 int *getZJHMainMenuTypeList();
 int *getZJHBottomMenuTypeList();
+int *getDiceMainMenuTypeList();
+int *getDiceBottomMenuTypeList();

@@ -26,7 +26,7 @@
 #import "FXLabel.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
-#define ROOMS_COUNT_PER_PAGE  20
+#define ROOMS_COUNT_PER_PAGE    ([ConfigManager onlineRoomCountPerPage])
 
 #define REFRESH_ROOMS_TIME_INTERVAL 2
 
@@ -248,7 +248,7 @@
     }
 }
 
-- (void)registerDiceRoomNotification
+- (void)registerRoomNotification
 {
     
     [self registerNotificationWithName:NOTIFICAIION_CREATE_ROOM_RESPONSE
@@ -307,6 +307,20 @@
     [self unregisterAllNotifications];
 }
 
+- (void)hideCenterTabButton
+{
+    self.centerTabButton.hidden = YES;
+    CGRect leftRect = self.leftTabButton.frame;
+    CGRect rightRect = self.rightTabButton.frame;
+    
+    leftRect.size.width += self.centerTabButton.frame.size.width/2;
+    rightRect.size.width += self.centerTabButton.frame.size.width/2;
+    rightRect.origin.x -= self.centerTabButton.frame.size.width/2;
+    [self.leftTabButton setFrame:leftRect];
+    [self.rightTabButton setFrame:rightRect];
+}
+
+
 - (void)initView
 {
     [self.backgroundImageView setImage:[[GameApp getImageManager] roomListBgImage]];
@@ -322,9 +336,6 @@
     [self.backButton setBackgroundImage:[[GameApp getImageManager] roomListBackBtnImage] forState:UIControlStateNormal];
     [self.headerBackgroundImageView setImage:[[GameApp getImageManager] headerBgImage]];
     
-    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
-    [self.centerTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
-    [self.rightTabButton setTitle:NSLS(@"kTypeRoom") forState:UIControlStateNormal];
     [self.createRoomButton setTitle:NSLS(@"kCreateRoom") forState:UIControlStateNormal];
     [self.fastEntryButton setTitle:NSLS(@"kFastEntry") forState:UIControlStateNormal];
 
@@ -356,7 +367,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self registerDiceRoomNotification];
+    [self registerRoomNotification];
     [super viewDidAppear:animated];
     [self connectServer];
 }

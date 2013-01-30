@@ -154,6 +154,11 @@
 - (UIImage *)drawSliderPoint;
 - (UIImage *)drawSliderDisableImage;
 
+//player
+
+- (UIImage *)playProgressLoader;//draw_player_progress_load@2x.png
+- (UIImage *)speedProgressLoader;
+
 //top player cup
 
 - (UIImage*)goldenCupImage;

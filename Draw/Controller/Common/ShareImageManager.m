@@ -636,37 +636,48 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"draw_slider_disable"];
 }
 
+- (UIImage *)playProgressLoader
+{
+    return [self fixedAndStrectchableImageNamed:@"draw_player_progress_load"];
+}
+
+- (UIImage *)speedProgressLoader
+{
+    return [self fixedAndStrectchableImageNamed:@"draw_player_speed_load"];
+}
 
 //for dice main menu
 - (UIImage*)diceShopImage
 {
-    return [self fixedImageNamed:@"dice_shop"]; 
+    return [UIImage shrinkImage:[self fixedImageNamed:@"dice_shop"] withRate:1.2];
+
 }
 
 
 - (UIImage *)diceStartMenuImage
 {
-    return [self fixedImageNamed:@"dice_start"];    
+    return [UIImage shrinkImage:[self fixedImageNamed:@"dice_start"] withRate:1.2];
 }
 
 - (UIImage*)normalRoomMenuImage
 {
-    return [self fixedImageNamed:@"normal_room"];
+    return [UIImage shrinkImage:[self fixedImageNamed:@"normal_room"] withRate:1.2];
+    
 }
 
 - (UIImage*)highRoomMenuImage
 {
-    return [self fixedImageNamed:@"high_room"];
+    return [UIImage shrinkImage:[self fixedImageNamed:@"high_room"] withRate:1.2];
 }
 
 - (UIImage*)superHighRoomMenuImage
 {
-    return [self fixedImageNamed:@"super_high_room"];
+    return [UIImage shrinkImage:[self fixedImageNamed:@"super_high_room"] withRate:1.2];
 }
 
 - (UIImage *)diceHelpMenuImage
 {
-    return [self fixedImageNamed:@"dice_help"];    
+    return [UIImage shrinkImage:[self fixedImageNamed:@"dice_help"] withRate:1.2];
 }
 
 
@@ -737,7 +748,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)unloadBg
 {
-    return [UIImage imageNamed:@"unloadbg.png"];
+    return [self fixedImageNamed:@"unloadbg"];
 }
 
 - (UIImage *)pointForCurrentSelectedPage

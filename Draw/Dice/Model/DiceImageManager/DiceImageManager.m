@@ -31,11 +31,6 @@ static DiceImageManager *_defaultManager = nil;
     return _defaultManager;
 }
 
-- (UIImage *)headerBgImage
-{
-    return nil;
-}
-
 - (UIImage *)diceNormalRoomListBgImage
 {
     return [UIImage imageNamed:@"dice_room_background.jpg"];
@@ -582,24 +577,6 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage imageNamed:@"settingright_unselect.png"];
 }
 
-- (UIImage *)roomListBackBtnImage
-{
-    return nil;
-}
-- (UIImage *)roomListCellBgImage
-{
-    return nil;
-}
-
-- (UIImage *)roomListCreateRoomBtnBgImage
-{
-    return [UIImage strectchableImageName:@"dice_yellow_roy_button"];
-}
-- (UIImage *)roomListFastEntryBtnBgImage
-{
-    return [UIImage strectchableImageName:@"dice_green_roy_button"];
-}
-
 - (UIImage *)userInfoFollowBtnImage
 {
     return [UIImage strectchableImageName:@"dice_red_roy_button"];
@@ -611,32 +588,55 @@ static DiceImageManager *_defaultManager = nil;
 
 - (UIImage *)roomListBgImage
 {
-    return nil;
+    return [UIImage imageNamed:@"draw_room_bg.png"];
 }
 - (UIImage *)roomListLeftBtnSelectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"draw_tab_left_selected.png"];
 }
 - (UIImage *)roomListLeftBtnUnselectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"draw_tab_left_unselected.png"];
 }
 - (UIImage *)roomListRightBtnSelectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"draw_tab_right_selected.png"];
 }
 - (UIImage *)roomListRightBtnUnselectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"draw_tab_right_unselected.png"];
 }
 
 - (UIImage *)roomListCenterBtnSelectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"tab_center_selected.png"];
 }
 - (UIImage *)roomListCenterBtnUnselectedImage
 {
-    return nil;
+    return [UIImage imageNamed:@"tab_center_unselect.png"];
+}
+
+- (UIImage *)roomListCellBgImage
+{
+    return [UIImage imageNamed:@"draw_room_cell_bg.png"];
+}
+- (UIImage *)roomListBackBtnImage
+{
+    return [UIImage imageNamed:@"draw_room_back.png"];
+}
+
+- (UIImage *)roomListCreateRoomBtnBgImage
+{
+    return [UIImage imageNamed:@"draw_room_button.png"];
+}
+- (UIImage *)roomListFastEntryBtnBgImage
+{
+    return [UIImage imageNamed:@"draw_room_button.png"];
+}
+
+- (UIImage *)headerBgImage
+{
+    return [UIImage imageNamed:@"draw_room_title_bg.png"];
 }
 
 - (UIImage *)bulletinAccessoryImage

@@ -17,39 +17,17 @@
 #import "DiceRoomListCell.h"
 #import "CommonRoomListController.h"
 
-typedef enum {
-    allRoom = 0,
-    friendRoom = 1,
-    nearByRoom = 2
-}RoomFilter;
+
 
 @class FontButton;
 @class PBGameSession;
 @class CommonSearchView;
 
-@interface DiceRoomListController : PPTableViewController</*CommonGameServiceDelegate, */InputDialogDelegate, HelpViewDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate, DiceRoomListCellDelegate> {
-    BOOL _isJoiningDice;
+@interface DiceRoomListController : CommonRoomListController</*CommonGameServiceDelegate, */ HelpViewDelegate, CommonRoomListCellDelegate> {
     DiceGameService* _diceGameService;
-    PBGameSession* _currentSession;
-    NSTimer* _refreshRoomTimer;
-    BOOL firstLoad;
-    int _currentRoomType;
-    CommonSearchView* _searchView;
-    BOOL _isRefreshing;
 }
 
 - (id)initWithRuleType:(DiceGameRuleType)ruleType;
-
-
-@property (retain, nonatomic) IBOutlet FontButton *titleFontButton;
-@property (retain, nonatomic) IBOutlet UIButton *helpButton;
-@property (retain, nonatomic) IBOutlet FontButton *createRoomButton;
-@property (retain, nonatomic) IBOutlet FontButton *fastEntryButton;
-@property (retain, nonatomic) IBOutlet FontButton *allRoomButton;
-@property (retain, nonatomic) IBOutlet FontButton *friendRoomButton;
-@property (retain, nonatomic) IBOutlet FontButton *nearByRoomButton;
-@property (retain, nonatomic) PBGameSession* currentSession;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *emptyListTips;
 
 
 @end

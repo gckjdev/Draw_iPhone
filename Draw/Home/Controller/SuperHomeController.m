@@ -76,14 +76,20 @@
 //    self.mainMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
 
     //TODO update frame
-    [self updateView:self.homeMainMenuPanel originY:MAIN_MENU_ORIGIN_Y];
+    [self updateView:self.homeMainMenuPanel originY:[self getMainMenuOriginY]];
 }
 
 - (void)addBottomMenuView
 {
     self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
     [self.view addSubview:self.homeBottomMenuPanel];
-    [self updateView:self.homeBottomMenuPanel originY:BOTTOM_MENU_ORIGIN_Y];
+    [self updateView:self.homeBottomMenuPanel originY:[self getBottomMenuOriginY]];
+}
+
+- (void)adjustView
+{
+    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
+    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
 }
 
 - (void)viewDidLoad
@@ -96,6 +102,7 @@
     [self addMainMenuView];
     [self addHeaderView];
     [self addBottomMenuView];
+    [self adjustView];
     
     if (!ISIPAD) {
         self.view.frame = [[UIScreen mainScreen] bounds];
@@ -290,6 +297,15 @@
 - (void)handleDisconnectWithError:(NSError*)error
 {
     PPDebug(@"<SuperHomeController> handleDisconnectWithError not impletement yet");
+}
+
+- (float)getMainMenuOriginY
+{
+    return MAIN_MENU_ORIGIN_Y;
+}
+- (float)getBottomMenuOriginY
+{
+    return BOTTOM_MENU_ORIGIN_Y;
 }
 
 @end

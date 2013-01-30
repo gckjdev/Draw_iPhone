@@ -9,6 +9,7 @@
 #import "HomeMenuView.h"
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
+#import "ShareImageManager.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -99,6 +100,20 @@
         case HomeMenuTypeZJHShop:{
             return NSLS(@"kHomeMenuTypeZJHShop");
         }
+            
+        case HomeMenuTypeDiceStart:
+            return NSLS(@"kDiceMenuStart");
+        case HomeMenuTypeDiceHelp:
+            return NSLS(@"kDiceMenuHelp");
+            
+        case HomeMenuTypeDiceHappyRoom:
+            return NSLS(@"kDiceMenuHappyRoom");
+        case HomeMenuTypeDiceHighRoom:
+            return NSLS(@"kDiceMenuHighRoom");
+        case HomeMenuTypeDiceSuperHighRoom:
+            return NSLS(@"kDiceMenuSuperHighRoom");
+        case HomeMenuTypeDiceShop:
+            return NSLS(@"kDiceMenuShop");
 
         default:
         return nil;
@@ -107,6 +122,7 @@
 + (UIImage *)imageForType:(HomeMenuType)type
 {
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
+    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     switch (type) {
             //draw main menu
         case HomeMenuTypeDrawDraw :{
@@ -184,6 +200,20 @@
         case HomeMenuTypeZJHShop:{
             return [imageManager drawHomeShop];
         }
+            
+        //dice
+        case HomeMenuTypeDiceStart:
+            return [shareImageManager diceStartMenuImage];
+        case HomeMenuTypeDiceShop:
+            return [shareImageManager diceShopImage];
+        case HomeMenuTypeDiceHelp:
+            return [shareImageManager diceHelpMenuImage];
+        case HomeMenuTypeDiceHappyRoom:
+            return [shareImageManager normalRoomMenuImage];
+        case HomeMenuTypeDiceHighRoom:
+            return [shareImageManager highRoomMenuImage];
+        case HomeMenuTypeDiceSuperHighRoom:
+            return [shareImageManager superHighRoomMenuImage];
         default:
             return nil;
     }
@@ -205,7 +235,7 @@
 
 + (NSString *)identifierForType:(HomeMenuType)type
 {
-    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin)) {
+    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin) || (type >= HomeMenuTypeDiceStart && type < HomeMenuTypeDiceBottomBegin)) {
         return @"HomeMainMenu";
     }else{
         return @"HomeBottomMenu";
@@ -336,6 +366,31 @@ int *getZJHMainMenuTypeList()
 }
 
 int *getZJHBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawMe,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getDiceMainMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDiceStart,
+        HomeMenuTypeDiceHappyRoom,
+        HomeMenuTypeDiceSuperHighRoom,
+        HomeMenuTypeDiceHelp,
+        HomeMenuTypeDiceShop,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDiceBottomMenuTypeList()
 {
     int static list[] = {
         HomeMenuTypeDrawMe,

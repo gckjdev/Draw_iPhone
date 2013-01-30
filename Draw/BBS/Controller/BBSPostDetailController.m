@@ -9,7 +9,7 @@
 #import "BBSPostDetailController.h"
 #import "BBSPostActionCell.h"
 #import "BBSPostDetailCell.h"
-#import "ReplayGraffitiController.h"
+#import "ReplayView.h"
 #import "GameNetworkConstants.h"
 #import "CommonUserInfoView.h"
 #import "BBSPostCommand.h"
@@ -511,11 +511,9 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode == 0) {
-        ReplayGraffitiController *pg = [[ReplayGraffitiController alloc]
-                                        initWithDrawActionList:drawActionList];
-        pg.drawDataVersion = version;
-        [self.navigationController pushViewController:pg animated:YES];
-        [pg release];
+        ReplayView *replayView = [ReplayView createReplayView];
+        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
+        [replayView showInController:self withActionList:drawActionList isNewVersion:isNewVersion];
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }

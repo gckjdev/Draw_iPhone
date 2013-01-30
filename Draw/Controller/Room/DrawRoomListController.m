@@ -44,19 +44,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)hideCenterTabButton
-{
-    self.centerTabButton.hidden = YES;
-    CGRect leftRect = self.leftTabButton.frame;
-    CGRect rightRect = self.rightTabButton.frame;
-    
-    leftRect.size.width += self.centerTabButton.frame.size.width/2;
-    rightRect.size.width += self.centerTabButton.frame.size.width/2;
-    rightRect.origin.x -= self.centerTabButton.frame.size.width/2;
-    [self.leftTabButton setFrame:leftRect];
-    [self.rightTabButton setFrame:rightRect];
-}
-
 - (void)initLabels
 {
     [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
@@ -82,6 +69,10 @@
     [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
     [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
     
+    [self.emptyListTips setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+    [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
+    
 }
 
 - (void)viewDidLoad
@@ -89,6 +80,7 @@
     [super viewDidLoad];
     
     [self.rightTabButton setTitle:NSLS(@"kFriend") forState:UIControlStateNormal];
+    [self.leftTabButton setTitle:NSLS(@"kAll") forState:UIControlStateNormal];
     [self hideCenterTabButton];
     [self initLabels];
     

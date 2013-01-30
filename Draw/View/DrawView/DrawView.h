@@ -19,6 +19,11 @@
 @end
 
 
+typedef enum{
+    TouchActionTypeDraw = 0,
+    TouchActionTypeGetColor = 1,
+}TouchActionType;
+
 @interface DrawView : SuperDrawView
 {
     CGMutablePathRef tempPath;
@@ -30,7 +35,7 @@
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) ItemType penType;
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
-
+@property(nonatomic, assign) TouchActionType touchActionType;
 
 //@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
 

@@ -348,6 +348,24 @@
     return currentVersion;
 }
 
++ (double)getOnlinePlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"ONLINE_PLAY_SPEED" defaultValue:0.03];
+}
++ (double)getMaxPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MAX_SPEED" defaultValue:0.05];
+}
++ (double)getMinPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MIN_SPEED" defaultValue:0.001];
+}
++ (double)getDefaultPlayDrawSpeed
+{
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_DEFAULT_SPEED" defaultValue:0.005];
+}
+
+
 + (int)getOnLineDrawExp
 {
     return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:15];
@@ -686,6 +704,11 @@
 + (int)getOnlineDrawFleeCoin
 {
     return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_FLEE_COIN" defaultValue:5];
+}
+
++ (int)onlineRoomCountPerPage
+{
+    return [MobClickUtils getIntValueByKey:@"ONLINE_ROOM_COUNT_PER_PAGE" defaultValue:25];
 }
 
 @end

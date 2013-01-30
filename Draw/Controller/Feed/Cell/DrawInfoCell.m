@@ -28,7 +28,6 @@
 @synthesize drawToButton = _drawToButton;
 @synthesize loadingActivity;
 @synthesize feed = _feed;
-@synthesize showView = _showView;
 @synthesize delegate = _delegate;
 
 + (id)createCell:(id<DrawInfoCellDelegate>)delegate
@@ -128,51 +127,19 @@
     [self.opusDesc setText:desc];
 }
 
-- (void)showDrawView:(DrawFeed *)feed
-{
-        if (![feed hasDrawActions]) {
-            return;
-        }
 
-    if (self.showView == nil) {
-        [self.drawImage setHidden:YES];
-        [feed parseDrawData];
-        self.showView = [ShowDrawView showView];
-        self.showView.center = self.drawImage.center;
-        [self.showView resetFrameSize:self.drawImage.frame.size];
-        [self.showView setShowPenHidden:YES];
-        self.showView.drawActionList = feed.drawData.drawActionList;
-        [self addSubview:self.showView];
-        
-        [self.showView show];
-
-        UIImage *image = [self.showView createImage];
-        self.feed.largeImage = image;
-        [self.drawImage setImage:image];
-        [self.drawImage setHidden:NO];
-        [[FeedManager defaultManager] saveFeed:self.feed.feedId largeImage:image];
-        
-        [self.showView removeFromSuperview];
-        [self.loadingActivity stopAnimating];
-
-        self.showView.drawActionList = nil;
-        feed.drawData = nil;
-        self.showView = nil;
-    }
-
-}
 
 - (void)updateShowView:(DrawFeed *)feed
 {
-    if ([feed.drawImageUrl length] != 0 /*&& (![DeviceDetection isIPAD] || feed.deviceType == DeviceTypeIPad)*/) {
+    if ([feed.drawImageUrl length] != 0){
+        PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
-            PPDebug(@"<download image> %@ success", feed.drawImageUrl);
             self.feed.largeImage = image;
             [self loadImageFinish];
         } failure:^(NSError *error) {
-            PPDebug(@"<download image> %@ failure, error=%@", feed.drawImageUrl, [error description]);
             [self.loadingActivity stopAnimating];
         }];
+        return;
     }
     else if (self.feed.largeImage) {
         [self.drawImage setImage:self.feed.largeImage];
@@ -184,15 +151,51 @@
         [self loadImageFinish];        
     }
     else{
-        [self showDrawView:feed];
         [self loadImageFinish];
+        PPDebug(@"<Warning>:cannot find image");
     }
+}
 
+
+#define MASKVIEW_TAG 20130130
+- (void)addMaskView
+{
+    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
+    if (mask == nil) {
+        mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
+        [mask setBackgroundColor:[UIColor clearColor]];
+        [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
+        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
+        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
+        [self addSubview:mask];
+        PPRelease(mask);
+    }
+}
+
+- (void)changeColor:(UIControl *)control
+{
+    control.backgroundColor = [UIColor whiteColor];
+    control.alpha = 0.7;
+}
+
+- (void)removeColor:(UIControl *)control
+{
+    control.backgroundColor = [UIColor clearColor];
+    control.alpha = 1;
+}
+
+- (void)clickDrawImageMask:(UIControl *)control
+{
+    [self removeColor:control];
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawImageMaskView)]) {
+        [_delegate didClickDrawImageMaskView];
+    }
 }
 
 - (void)loadImageFinish
 {
     [self.loadingActivity stopAnimating];
+    [self addMaskView];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadDrawPicture)]) {
         [_delegate didLoadDrawPicture];
     }
@@ -212,25 +215,18 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     [self updateDesc:feed.opusDesc];
+//    [self updateShowView:feed];
     [self.loadingActivity setCenter:self.drawImage.center];
     if ([feed hasDrawActions]) {
         PPDebug(@"<setCellInfo>:DrawInfoCell have drawData. start to showView");
         [self updateShowView:feed];
         [self updateTime:feed];
+        [self updateDesc:feed.opusDesc];
         return;
-    } 
-    PPDebug(@"<setCellInfo>:DrawInfoCell have no drawData. start to load data");
-    
-//    if (self.feed.largeImage == nil) {
-//        self.feed.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feed.feedId];
-//        if(self.feed.largeImage){
-//            [self.drawImage setImage:self.feed.largeImage];
-//        }
-//    }
+    }
     if (!_isLoading) {
-        _getTimes = 1;
-        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
         _isLoading = YES;
+        [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     }
 }
 
@@ -252,31 +248,25 @@
         self.feed.feedUser = feed.feedUser;
         self.feed.createDate = feed.createDate;
         self.feed.opusDesc = feed.opusDesc;
+        self.feed.feedType = feed.feedType;
+    
         if ([feed.drawImageUrl length] != 0) {
             self.feed.drawImageUrl = feed.drawImageUrl;
         }
-       [self updateShowView:feed];
-        [self updateTime:feed];
+//        [self updateShowView:feed];
+//        [self updateTime:feed];
         [self updateDrawToUserInfo:feed];
         if (self.delegate && [self.delegate respondsToSelector:@selector(didUpdateShowView)]) {
             [self.delegate didUpdateShowView];
         }
     }else if(resultCode != 0){
-        if (_getTimes < TRY_GET_FEED_TIMES) {
-            PPDebug(@"warnning:<didGetFeed> try again, feed id = %@",feed.feedId);
-            [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
-            _getTimes ++;            
-        }else{
-            PPDebug(@"warnning:<didGetFeed> fail to get feed, feed id = %@",feed.feedId);
-        }
+        PPDebug(@"warnning:<didGetFeed> fail to get feed, feed id = %@",feed.feedId);
     }
 }
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
-    [_showView stop];
     self.feed.drawData = nil;
-    PPRelease(_showView);
     PPRelease(drawImage);
     PPRelease(timeLabel);
     PPRelease(loadingActivity);

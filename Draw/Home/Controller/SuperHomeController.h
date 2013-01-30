@@ -30,4 +30,6 @@
 - (void)handleJoinGameResponse;
 - (void)handleConnectedResponse;
 - (void)handleDisconnectWithError:(NSError*)error;
+- (float)getMainMenuOriginY;
+- (float)getBottomMenuOriginY;
 @end
