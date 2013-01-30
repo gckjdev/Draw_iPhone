@@ -706,4 +706,9 @@
     return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_FLEE_COIN" defaultValue:5];
 }
 
++ (int)onlineRoomCountPerPage
+{
+    return [MobClickUtils getIntValueByKey:@"ONLINE_ROOM_COUNT_PER_PAGE" defaultValue:25];
+}
+
 @end

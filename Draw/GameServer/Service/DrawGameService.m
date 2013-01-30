@@ -1052,7 +1052,15 @@ static DrawGameService* _defaultService;
         return;
     }
     
-    [_networkClient sendGetRoomsRequest:userId];
+//    [_networkClient sendGetRoomsRequest:userId];
+
+    [_networkClient sendGetRoomsRequest:userId
+                             startIndex:0
+                                  count:count
+                               roomType:allRoom
+                                keyword:nil
+                                 gameId:[GameApp gameId]];
+
 }
 
 - (void)getRoomList:(int)startIndex
