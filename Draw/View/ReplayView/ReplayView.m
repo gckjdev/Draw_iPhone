@@ -23,12 +23,12 @@
 
 #define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(64, 15, 648, 60) :CGRectMake(27, 5, 260, 20))
 
-#define MaskViewTag 20130129
 
 @interface ReplayView()
 {
     NSInteger curPlayIndex;
     ShowDrawView *_showView;
+    UIView *_maskView;
 }
 
 @property(nonatomic, retain) IBOutlet UIView *holderView;
@@ -93,7 +93,7 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
-    [[self.superview viewWithTag:MaskViewTag] removeFromSuperview];
+    [_maskView removeFromSuperview];
     self.showView.delegate = nil;
     [self.showView removeFromSuperview];
     self.showView = nil;
@@ -101,12 +101,12 @@
     [self removeFromSuperview];
 }
 
-- (UIView *)maskViewWithFrame:(CGRect)frame
+- (void)updateMaskViewWithFrame:(CGRect)frame
 {
-    UIView *view = [[UIView alloc] initWithFrame:frame];
-    [view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
-    view.tag = MaskViewTag;
-    return view;
+    if (_maskView == nil) {
+        _maskView = [[UIView alloc] initWithFrame:frame];
+        [_maskView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
+    }
 }
 
 - (void)showInController:(PPViewController *)controller
@@ -115,7 +115,8 @@
 {
     self.superController = controller;
     UIView *view = controller.view;
-    [view addSubview:[self maskViewWithFrame:view.bounds]];
+    [self updateMaskViewWithFrame:view.bounds];
+    [view addSubview:_maskView];
     [view addSubview:self];
     self.center = view.center;
 
@@ -129,7 +130,7 @@
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
     }
     
-    [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:1];
+    [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
 }
 - (void)dealloc {
     PPDebug(@"dealloc %@", [self description]);
@@ -142,6 +143,7 @@
     PPRelease(_speedPanel);
     PPRelease(_speedLoader);
     PPRelease(_speedPoint);
+    PPRelease(_maskView);
     [super dealloc];
 }
 

@@ -10,7 +10,7 @@
 #import "PPTableViewCell.h"
 #import "DrawFeed.h"
 #import "FeedService.h"
-#import "ShowDrawView.h"
+
 //#im
 //#import "HJManagedImageV.h"
 
@@ -20,13 +20,13 @@
 - (void)didUpdateShowView;
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName;
 - (void)didLoadDrawPicture;
+- (void)didClickDrawImageMaskView;
 @end
 
-@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate, ShowDrawViewDelegate>//, HJManagedImageVDelegate>
+@interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate>//, HJManagedImageVDelegate>
 {
     id<DrawInfoCellDelegate> _delegate;
     DrawFeed *_feed;
-    ShowDrawView *_showView;
     NSInteger _getTimes;
     BOOL _isLoading;
     FeedUser *_targetUser;
@@ -34,7 +34,6 @@
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
 @property (retain, nonatomic) DrawFeed *feed;
-@property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *drawToButton;

@@ -800,4 +800,13 @@ enum{
     [self updateActionButtons];
 }
 
+- (void)didClickDrawImageMaskView
+{
+    if ([self.feed showAnswer]) {
+        [self clickActionButton:self.replayButton];
+    }else{
+        [self clickActionButton:self.guessButton];
+    }
+}
+
 @end
