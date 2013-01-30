@@ -3439,6 +3439,10 @@
 		CA3EB8F716B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
 		CA3EB8F816B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
 		CA3EB8F916B9159C00660FE7 /* draw_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */; };
+		CA3EB8FB16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
+		CA3EB8FC16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
+		CA3EB8FD16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
+		CA3EB8FE16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */; };
 		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
 		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
 		CA3F2ECD1609B3050059667B /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
@@ -8036,6 +8040,7 @@
 		CA3B56E71514D41E00A93137 /* DrawAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawAction.h; sourceTree = "<group>"; };
 		CA3B56E81514D41E00A93137 /* DrawAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawAction.m; sourceTree = "<group>"; };
 		CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw@2x.png"; sourceTree = "<group>"; };
+		CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_straw_seleted@2x.png"; sourceTree = "<group>"; };
 		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
 		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
 		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
@@ -13116,6 +13121,7 @@
 			isa = PBXGroup;
 			children = (
 				CA3EB8F516B9159C00660FE7 /* draw_straw@2x.png */,
+				CA3EB8FA16B91A7500660FE7 /* draw_straw_seleted@2x.png */,
 				CA22B792169AD65300DAB1C3 /* draw_palette@2x.png */,
 				CA22B788169AD58000DAB1C3 /* draw_palette_unbuy@2x.png */,
 				CA25C3B8168968070064C05D /* draw_add@2x.png */,
@@ -18337,6 +18343,7 @@
 				C21C322216B8CA68006B5D14 /* tab_right_selected@2x.png in Resources */,
 				C21C322316B8CA68006B5D14 /* tab_right_unselect@2x.png in Resources */,
 				CA3EB8F816B9159C00660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8FD16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19181,6 +19188,7 @@
 				C21C320A16B8C3CF006B5D14 /* CommonRoomListController.xib in Resources */,
 				C21C320D16B8C3D4006B5D14 /* CommonRoomListController~ipad.xib in Resources */,
 				CA3EB8F916B9159C00660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8FE16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20021,6 +20029,7 @@
 				A41D2B4F16B910D10094BA7C /* FrameCell.xib in Resources */,
 				A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */,
 				CA3EB8F616B9159C00660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8FB16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20838,6 +20847,7 @@
 				C21C320816B8C3CD006B5D14 /* CommonRoomListController.xib in Resources */,
 				C21C320B16B8C3D2006B5D14 /* CommonRoomListController~ipad.xib in Resources */,
 				CA3EB8F716B9159C00660FE7 /* draw_straw@2x.png in Resources */,
+				CA3EB8FC16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
