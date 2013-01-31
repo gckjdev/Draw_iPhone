@@ -30,4 +30,6 @@
 - (PBFrame *)frameWithFrameIdOnWall:(int)frameIdOnWall;
 - (void)setLayout:(PBLayout *)layout;
 
+- (PBWall *)toPBWall;
+
 @end

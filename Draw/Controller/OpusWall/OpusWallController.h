@@ -11,9 +11,11 @@
 #import "Wall.h"
 #import "OpusSelectController.h"
 #import "FrameSelectController.h"
+#import "WallService.h"
 
 
-@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate>
+@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate, WallServiceDelegate>
+
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *setLayoutButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;

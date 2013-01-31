@@ -44,7 +44,9 @@
     
     self.opuses = [NSMutableArray array];
     
-    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+//    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+
     
     [ProtocolUtil createFramesTestData];
 }
