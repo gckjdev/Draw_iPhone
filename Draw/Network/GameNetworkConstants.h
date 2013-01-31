@@ -505,6 +505,12 @@
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
 
 #define METHOD_CREATE_USER_WALL @"createWall"
+#define METHOD_GET_USER_WALL_LIST @"getWallList"
+#define METHOD_GET_USER_WALL @"getWall"
+
+#define PARA_WALL_TYPE @"wallType"
+#define PARA_WALL_ID @"wallId"
+
 
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"

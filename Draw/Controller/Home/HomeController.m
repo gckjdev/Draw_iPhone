@@ -82,7 +82,12 @@
 #import "FreeCoinsControllerViewController.h"
 #import "UMGridViewController.h"
 #import "DrawRoomListController.h"
+
+
+
 #import "OpusSelectController.h"
+#import "Wall.h"
+#import "OpusWallController.h"
 
 @interface HomeController()
 {
@@ -887,6 +892,15 @@
 */
 - (IBAction)clickWallButton:(id)sender {
     OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"5109f53503640e6bd334bc4a" delegate:self];
+}
+
+- (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall
+{
+    PPDebug(@"resultCode = %d", resultCode);
+    Wall *wall = [[[Wall alloc] initWithPBWall:pbWall] autorelease];
+    OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

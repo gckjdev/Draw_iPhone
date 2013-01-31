@@ -75,6 +75,11 @@
     return _wallOpuses;
 }
 
+- (void)setWallId:(NSString *)wallId
+{
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setWallId:wallId] build];
+}
+
 - (void)setLayout:(PBLayout *)layout
 {
    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setLayout:layout] build];
@@ -173,5 +178,25 @@
 //    
 //    return 0;
 //}
+
+- (PBWall *)toPBWall
+{
+    PBWall_Builder *builder = [[[PBWall_Builder alloc] init] autorelease];
+    [builder setWallId:self.pbWall.wallId];
+    [builder setWallType:self.pbWall.wallType];
+    [builder setUserId:self.pbWall.userId];
+    [builder setWallName:self.pbWall.wallName];
+    [builder setLayout:self.pbWall.layout];
+    [builder setMusicUrl:self.pbWall.musicUrl];
+    
+    NSMutableArray *pbWallOpuses = [NSMutableArray array];
+    for (WallOpus *wallOpus in _wallOpuses) {
+        [pbWallOpuses addObject:[wallOpus toPBWallOpus]];
+    }
+    
+    [builder addAllWallOpuses:pbWallOpuses];
+    
+    return [builder build];
+}
 
 @end

@@ -7,9 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonService.h"
+#import "Draw.pb.h"
+#import "PPViewController.h"
 
-@interface WallService : NSObject
+@protocol WallServiceDelegate <NSObject>
+
+- (void)didCreateWall:(int)resultCode wallId:(NSString *)wallId;
+- (void)didGetWallList:(int)resultCode wallList:(NSArray *)wallList;
+- (void)didGetWall:(int)resultCode wall:(PBWall *)wall;
+
+
+@end
+
+
+@interface WallService : CommonService
 
 + (WallService *)sharedWallService;
+
+- (void)createWall:(PBWall *)wall
+          delegate:(PPViewController<WallServiceDelegate>*)viewController;
+
+- (void)getWallList:(NSString *)userId
+           wallType:(PBWallType)wallType
+           delegate:(PPViewController<WallServiceDelegate>*)viewController;
+
+
+- (void)getWall:(NSString *)userId
+         wallId:(NSString *)wallId
+       delegate:(PPViewController<WallServiceDelegate>*)viewController;
 
 @end

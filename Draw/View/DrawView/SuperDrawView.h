@@ -52,7 +52,7 @@ typedef enum{
 - (BOOL)isViewBlank;
 - (UIImage*)createImage;
 - (void)showImage:(UIImage *)image;
-
+- (CGContextRef)createBitmapContext;
 
 #pragma mark -show && stroke
 //- (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock;

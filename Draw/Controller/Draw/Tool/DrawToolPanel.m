@@ -40,6 +40,7 @@
 - (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
+- (IBAction)clickStraw:(id)sender;
 - (void)selectPen;
 - (void)selectEraser;
 
@@ -54,6 +55,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *undo;
 @property (retain, nonatomic) IBOutlet UIButton *palette;
 @property (retain, nonatomic) IBOutlet UIButton *eraser;
+@property (retain, nonatomic) IBOutlet UIButton *straw;
 
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
@@ -99,11 +101,20 @@
 {
     [self.pen setSelected:YES];
     [self.eraser setSelected:NO];
+    [self.straw setSelected:NO];
 }
 - (void)selectEraser
 {
     [self.pen setSelected:NO];
+    [self.straw setSelected:NO];
     [self.eraser setSelected:YES];
+}
+
+- (void)selectStraw
+{
+    [self.pen setSelected:NO];
+    [self.eraser setSelected:NO];
+    [self.straw setSelected:YES];
 }
 
 
@@ -314,6 +325,15 @@
         [self.delegate drawToolPanel:self didClickChatButton:sender];
     }
     AnalyticsReport(DRAW_CLICK_CHAT);
+}
+
+- (IBAction)clickStraw:(id)sender {
+    [self selectStraw];
+    [self dismissAllPopTipViews];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickStrawButton:)]) {
+        [self.delegate drawToolPanel:self didClickStrawButton:sender];
+    }
+    AnalyticsReport(DRAW_CLICK_STRAW);
 }
 
 
@@ -572,6 +592,14 @@
     [colorShop showInView:self.superview animated:YES];
 }
 
+#pragma mark - DrawViewStrawDelegate
+- (void)didStrawGetColor:(DrawColor *)color
+{
+    DrawColor *c = [DrawColor colorWithRed:color.red green:color.green blue:color.blue alpha:1];
+    PPDebug(@"<didStrawGetColor> color = %@",[c description]);
+    [self handleSelectColorDelegateWithColor:c updateRecentColor:YES];
+}
+
 #pragma mark - ColorShopView Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
@@ -607,6 +635,7 @@
     PPRelease(_palette);
     
     [_eraser release];
+    [_straw release];
     [super dealloc];
 }
 

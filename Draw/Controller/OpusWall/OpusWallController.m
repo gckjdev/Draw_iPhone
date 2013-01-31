@@ -78,6 +78,8 @@
 
     [self.view bringSubviewToFront:self.backButton];
     [self.view bringSubviewToFront:self.setLayoutButton];
+    [self.view bringSubviewToFront:self.submitButton];
+
 }
 
 
@@ -179,7 +181,14 @@
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    
+    [[WallService sharedWallService] createWall:[_wall toPBWall] delegate:self];
+}
+
+- (void)didCreateWall:(int)resultCode wallId:(NSString *)wallId
+{
+    PPDebug(@"didCreateWall: %d", resultCode);
+    PPDebug(@"wallId: %@", wallId);
+    [_wall setWallId:wallId];
 }
 
 @end

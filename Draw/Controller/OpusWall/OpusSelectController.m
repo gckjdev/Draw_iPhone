@@ -14,6 +14,7 @@
 #import "Wall.h"
 #import "OpusWallController.h"
 #import "ProtocolUtil.h"
+#import "UIViewUtils.h"
 
 #define EACH_FECTH_COUNT 20
 
@@ -43,7 +44,9 @@
     
     self.opuses = [NSMutableArray array];
     
-    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+//    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+
     
     [ProtocolUtil createFramesTestData];
 }
@@ -104,13 +107,28 @@
 
     NSRange range = NSMakeRange(indexPath.row * EACH_CELL_OPUSES_COUNT, MIN(EACH_CELL_OPUSES_COUNT, [dataList count] - indexPath.row * EACH_CELL_OPUSES_COUNT));
 
-    [cell setCellData:[dataList subarrayWithRange:range]];
+    [cell setCellData:[dataList subarrayWithRange:range] delegate:self];
     
     return cell;
 }
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)updateSelectedOpusesView
+{
+    [self.selectedOpusesHolderView removeAllSubviews];
+    
+    for (int index=0; index<[_opuses count]; index++) {
+        OpusView *opusView = [OpusView createView];
+        opusView.delegate = self;
+        [opusView setDrawFeed:[_opuses objectAtIndex:index]];
+        CGRect rect = CGRectMake(index * OPUS_VIEW_WIDTH, 0, OPUS_VIEW_WIDTH, OPUS_VIEW_HEIGHT);
+        opusView.frame = rect;
+        
+        [self.selectedOpusesHolderView addSubview:opusView];
+    }
 }
 
 - (void)didClickOpus:(DrawFeed *)opus
@@ -126,6 +144,8 @@
     if ([_delegate respondsToSelector:@selector(didController:clickOpus:)]) {
         [_delegate didController:self clickOpus:opus];
     }
+    
+    [self updateSelectedOpusesView];
 }
 
 - (IBAction)clickCreateWallButton:(id)sender {

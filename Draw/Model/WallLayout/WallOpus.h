@@ -18,4 +18,7 @@
 + (WallOpus *)fromPBWallOpus:(PBWallOpus *)pbWallOpus;
 - (id)initWithFrameIdOnWall:(int)frameIdOnWall opus:(DrawFeed *)opus;
 
+
+- (PBWallOpus *)toPBWallOpus;
+
 @end

@@ -323,7 +323,6 @@
 						<string key="NSFrame">{{556, 158}, {184, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="1057924229"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -531,6 +530,14 @@
 					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">straw</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="826754050"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUndo:</string>
 						<reference key="source" ref="587674421"/>
@@ -601,6 +608,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">53</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickStraw:</string>
+						<reference key="source" ref="826754050"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">59</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -753,7 +769,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -776,6 +792,7 @@
 						<string key="clickPalette:">id</string>
 						<string key="clickPen:">id</string>
 						<string key="clickRedo:">id</string>
+						<string key="clickStraw:">id</string>
 						<string key="clickUndo:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -807,6 +824,10 @@
 							<string key="name">clickRedo:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="clickStraw:">
+							<string key="name">clickStraw:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clickUndo:">
 							<string key="name">clickUndo:</string>
 							<string key="candidateClassName">id</string>
@@ -822,6 +843,7 @@
 						<string key="pen">UIButton</string>
 						<string key="penWidth">UILabel</string>
 						<string key="redo">UIButton</string>
+						<string key="straw">UIButton</string>
 						<string key="timeSet">UIButton</string>
 						<string key="undo">UIButton</string>
 						<string key="widthSlider">DrawSlider</string>
@@ -861,6 +883,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="redo">
 							<string key="name">redo</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="straw">
+							<string key="name">straw</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="timeSet">

@@ -29,5 +29,8 @@
 
 - (PBFrame *)frameWithFrameIdOnWall:(int)frameIdOnWall;
 - (void)setLayout:(PBLayout *)layout;
+- (void)setWallId:(NSString *)wallId;
+
+- (PBWall *)toPBWall;
 
 @end
