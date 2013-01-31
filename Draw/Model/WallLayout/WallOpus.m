@@ -47,4 +47,25 @@
     return self;
 }
 
+- (PBWallOpus *)toPBWallOpus
+{
+//    required string feedId = 1;
+//    required string userId = 2;
+//    required int32  actionType = 3;
+//    required int32  createDate = 4;
+    
+    PBFeed_Builder *feedBuilder = [[[PBFeed_Builder alloc] init] autorelease];
+    [feedBuilder setFeedId:_opus.feedId];
+    [feedBuilder setUserId:@""];
+    [feedBuilder setActionType:0];
+    [feedBuilder setCreateDate:0];
+    PBFeed *feed = [feedBuilder build];
+    
+    PBWallOpus_Builder *builder = [[[PBWallOpus_Builder alloc] init] autorelease];
+    [builder setFrameIdOnWall:_frameIdOnWall];
+    [builder setOpus:feed];
+    return [builder build];
+}
+
+
 @end
