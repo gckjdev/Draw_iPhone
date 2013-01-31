@@ -869,10 +869,12 @@ enum{
 
 - (NSMutableArray *)compressActionList:(NSArray *)drawActionList
 {
-    return  [DrawAction scaleActionList:drawActionList xScale:1.0 / IPAD_WIDTH_SCALE yScale:1.0 / IPAD_HEIGHT_SCALE];
+    return  [DrawAction scaleActionList:drawActionList
+                                 xScale:1.0 / IPAD_WIDTH_SCALE
+                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
 }
 
-- (void)commitOpus
+- (void)commitOpus:(NSNumber *)share
 {
     
     [self showActivityWithText:NSLS(@"kSending")];
@@ -888,6 +890,10 @@ enum{
                                               contestId:_contest.contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
+    if ([share boolValue]) {
+        //TODO share draw to SNS
+        PPDebug(@"share draw to SNS");
+    }
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -917,7 +923,7 @@ enum{
 
         }
         if (self.inputAlert == nil) {
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus) cancelSeletor:NULL];
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus:) cancelSeletor:NULL];
         }
         [self.inputAlert showInView:self.view animated:YES];
     
