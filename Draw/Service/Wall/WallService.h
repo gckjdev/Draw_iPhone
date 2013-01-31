@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Draw.pb.h"
 
 @interface WallService : NSObject
 
 + (WallService *)sharedWallService;
+
+- (void)createWall:(PBWall *)wall;
 
 @end

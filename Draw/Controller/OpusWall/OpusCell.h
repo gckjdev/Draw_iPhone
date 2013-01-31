@@ -8,17 +8,18 @@
 
 #import "PPTableViewCell.h"
 #import "DrawFeed.h"
+#import "OpusView.h"
 
 #define EACH_CELL_OPUSES_COUNT 4
 
-@protocol OpusCellDelegate <NSObject>
+//@protocol OpusCellDelegate <NSObject>
+//
+//- (void)didClickOpus:(DrawFeed *)opus;
+//
+//@end
 
-- (void)didClickOpus:(DrawFeed *)opus;
+@interface OpusCell : PPTableViewCell <OpusViewProtocol>
 
-@end
-
-@interface OpusCell : PPTableViewCell
-
-- (void)setCellData:(NSArray *)opuses;
+- (void)setCellData:(NSArray *)opuses delegate:(id<OpusViewProtocol>)delegate;
 
 @end

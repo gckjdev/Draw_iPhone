@@ -66,8 +66,9 @@
 		A41D2B4F16B910D10094BA7C /* FrameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4816B910D10094BA7C /* FrameCell.xib */; };
 		A41D2B5016B910D10094BA7C /* FrameSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4A16B910D10094BA7C /* FrameSelectController.m */; };
 		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
-		A41D2B5216B910D10094BA7C /* ReplaceOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
+		A41D2B5916B916BE0094BA7C /* OpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5816B916BE0094BA7C /* OpusView.m */; };
+		A41D2B5B16B917150094BA7C /* OpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B5A16B917150094BA7C /* OpusView.xib */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
@@ -6768,10 +6769,11 @@
 		A41D2B4916B910D10094BA7C /* FrameSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameSelectController.h; sourceTree = "<group>"; };
 		A41D2B4A16B910D10094BA7C /* FrameSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameSelectController.m; sourceTree = "<group>"; };
 		A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrameSelectController.xib; sourceTree = "<group>"; };
-		A41D2B4C16B910D10094BA7C /* ReplaceOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceOpusView.h; sourceTree = "<group>"; };
-		A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceOpusView.m; sourceTree = "<group>"; };
 		A41D2B5416B910E30094BA7C /* WallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallService.h; sourceTree = "<group>"; };
 		A41D2B5516B910E30094BA7C /* WallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallService.m; sourceTree = "<group>"; };
+		A41D2B5716B916BE0094BA7C /* OpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusView.h; sourceTree = "<group>"; };
+		A41D2B5816B916BE0094BA7C /* OpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusView.m; sourceTree = "<group>"; };
+		A41D2B5A16B917150094BA7C /* OpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpusView.xib; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
@@ -10732,8 +10734,6 @@
 				A41D2B4916B910D10094BA7C /* FrameSelectController.h */,
 				A41D2B4A16B910D10094BA7C /* FrameSelectController.m */,
 				A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */,
-				A41D2B4C16B910D10094BA7C /* ReplaceOpusView.h */,
-				A41D2B4D16B910D10094BA7C /* ReplaceOpusView.m */,
 				A4D174AA16B621FE00958355 /* OpusWallController.h */,
 				A4D174AB16B621FE00958355 /* OpusWallController.m */,
 				A4D174AC16B621FE00958355 /* OpusWallController.xib */,
@@ -10743,6 +10743,9 @@
 				A4D1744B16B1089C00958355 /* OpusSelectController.h */,
 				A4D1744C16B1089C00958355 /* OpusSelectController.m */,
 				A4D1744D16B1089C00958355 /* OpusSelectController.xib */,
+				A41D2B5716B916BE0094BA7C /* OpusView.h */,
+				A41D2B5816B916BE0094BA7C /* OpusView.m */,
+				A41D2B5A16B917150094BA7C /* OpusView.xib */,
 			);
 			path = OpusWall;
 			sourceTree = "<group>";
@@ -20012,6 +20015,7 @@
 				CABEDD9C16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */,
 				A41D2B4F16B910D10094BA7C /* FrameCell.xib in Resources */,
 				A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */,
+				A41D2B5B16B917150094BA7C /* OpusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22949,8 +22953,8 @@
 				A41D2B4516B910B70094BA7C /* WallOpus.m in Sources */,
 				A41D2B4E16B910D10094BA7C /* FrameCell.m in Sources */,
 				A41D2B5016B910D10094BA7C /* FrameSelectController.m in Sources */,
-				A41D2B5216B910D10094BA7C /* ReplaceOpusView.m in Sources */,
 				A41D2B5616B910E30094BA7C /* WallService.m in Sources */,
+				A41D2B5916B916BE0094BA7C /* OpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
