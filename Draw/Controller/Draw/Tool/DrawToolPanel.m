@@ -69,7 +69,7 @@
 @synthesize timer = _timer;
 
 
-#define MAX_COLOR_NUMBER 8
+#define MAX_COLOR_NUMBER 7
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
 #define SPACE_COLOR_LEFT (ISIPAD ? 40 : 8)

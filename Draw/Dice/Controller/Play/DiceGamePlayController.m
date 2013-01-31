@@ -29,6 +29,7 @@
 #import "CallDiceView.h"
 #import "CustomDiceManager.h"
 #import "NotificationName.h"
+#import "RoomTitleView.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -194,23 +195,42 @@
 
 - (UIImage *)tableImage
 {
-    UIImage *image = nil;
-    switch (_diceService.ruleType) {
-        case DiceGameRuleTypeRuleNormal:
-            image = [_imageManager diceNormalRoomTableImage];
-            break;
-        case DiceGameRuleTypeRuleHigh:
-            image = [_imageManager diceHighRoomTableImage];
+//    UIImage *image = nil;
+//    switch (_diceService.ruleType) {
+//        case DiceGameRuleTypeRuleNormal:
+//            image = [_imageManager diceNormalRoomTableImage];
+//            break;
+//        case DiceGameRuleTypeRuleHigh:
+//            image = [_imageManager diceHighRoomTableImage];
+//            break;
+//            
+//        case DiceGameRuleTypeRuleSuperHigh:
+//            image = [_imageManager diceSuperHighRoomTableImage];
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    return image;
+    switch ([DeviceDetection deviceScreenType]) {
+        case DEVICE_SCREEN_IPAD:
+        case DEVICE_SCREEN_NEW_IPAD:
+            return [UIImage imageNamed:@"zjh_game_bg_dual_ipad.jpg"];
             break;
             
-        case DiceGameRuleTypeRuleSuperHigh:
-            image = [_imageManager diceSuperHighRoomTableImage];
+        case DEVICE_SCREEN_IPHONE5:
+            return [UIImage imageNamed:@"zjh_game_bg_dual_ip5.jpg"];
             break;
+            
+        case DEVICE_SCREEN_IPHONE:
+            return [UIImage imageNamed:@"zjh_game_bg_dual.jpg"];
+            break;
+            
         default:
             break;
     }
     
-    return image;
+    return nil;
 }
 
 - (void)viewDidLoad
@@ -240,7 +260,7 @@
     [[UIApplication sharedApplication] 
      setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
-    _roomNameLabel.text = [_diceService roomName];
+    [RoomTitleView showRoomTitle:[_diceService roomName] inView:self.view] ;
     
     myCoinsLabel.textColor = [UIColor whiteColor];
     myLevelLabel.textColor = [UIColor whiteColor];

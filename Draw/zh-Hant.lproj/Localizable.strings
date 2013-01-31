@@ -837,8 +837,8 @@
 "kPickBGColor" = "選擇背景顏色";
 
 
-"kOpusCount" = "作品(%d)";
-"kJoinCount" = "參加(%d)";
+"kOpusCount" = "作品 (%d)";
+"kJoinCount" = "參加 (%d)";
 
 
 "kContest" = "畫畫比賽";

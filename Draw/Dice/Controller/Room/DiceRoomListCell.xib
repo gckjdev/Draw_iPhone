@@ -236,7 +236,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{267, 44}, {34, 34}}</string>
 								<reference key="NSSuperview" ref="558338285"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="145493165"/>
 								<int key="IBUITag">106</int>
@@ -438,13 +437,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_room_cell_bg@2x.png">{524, 199}</string>
-			<string key="draw_room_seat_blue@2x.png">{76, 74}</string>
-			<string key="draw_room_seat_orange@2x.png">{76, 74}</string>
-			<string key="draw_room_seat_pink@2x.png">{76, 74}</string>
-			<string key="draw_room_seat_purple@2x.png">{76, 74}</string>
-			<string key="draw_room_seat_white@2x.png">{76, 74}</string>
-			<string key="draw_room_seat_yellow@2x.png">{76, 74}</string>
+			<string key="draw_room_cell_bg@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_blue@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_orange@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_pink@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_purple@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_white@2x.png">{16, 16}</string>
+			<string key="draw_room_seat_yellow@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

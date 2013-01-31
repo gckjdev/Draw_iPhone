@@ -159,6 +159,11 @@
     }];
 }
 
+- (void)setCanClickCommitButton:(BOOL)can
+{
+    self.confirm.userInteractionEnabled = can;
+    self.confirm.enabled = can;
+}
 
 #pragma mark - UITextView Delegate
 
