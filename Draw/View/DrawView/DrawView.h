@@ -15,7 +15,13 @@
 @optional
 - (void)didDrawedPaint:(Paint *)paint;
 - (void)didStartedTouch:(Paint *)paint;
+@end
 
+
+@protocol DrawViewStrawDelegate <NSObject>
+
+@optional
+- (void)didStrawGetColor:(DrawColor *)color;
 @end
 
 
@@ -35,6 +41,7 @@ typedef enum{
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, assign) ItemType penType;
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
+@property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
 
 //@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;

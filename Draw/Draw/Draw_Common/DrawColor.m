@@ -141,6 +141,11 @@
    return [NSString stringWithFormat:@"DrawColor:[red = %f, green = %f, blue = %f ,alpha = %f]", self.red, self.green, self.blue, self.alpha];
 }
 
+- (NSString *)description
+{
+    return [self toString];
+}
+
 + (DrawColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
     return [[[DrawColor alloc] initWithRed:red green:green blue:blue alpha:alpha]autorelease];
@@ -218,6 +223,7 @@
     CGFloat B = (rand()%255)/255.0;    
     return [DrawColor colorWithRed:R green:G blue:B alpha:1];
 }
+
 
 
 @end

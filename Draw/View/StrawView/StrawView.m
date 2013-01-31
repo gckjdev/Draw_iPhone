@@ -8,10 +8,15 @@
 
 #import "StrawView.h"
 
-#define VIEW_SIZE (ISIPAD ? 88.0 : 44.0)
-#define OUT_CIRCLE_R (VIEW_SIZE/2.0-2)
-#define COLOR_CIRCLE_R (OUT_CIRCLE_R-2)
-#define IN_CIRCLE_R (VIEW_SIZE/5.0)
+
+#define VALUE(x) (ISIPAD ? 2.0*x : x)
+
+#define VIEW_SIZE VALUE(50.0)
+#define CONTENT_VIEW_SIZE VALUE(44.0)
+#define OUT_CIRCLE_WIDTH VALUE(1)
+#define IN_CIRCLE_WIDTH VALUE(1)
+#define COLOR_CIRCLE_WIDTH VALUE(15)
+#define CIRCLE_BLUR VALUE(1)
 
 @implementation StrawView
 
@@ -50,18 +55,41 @@
     CGFloat d = radius * 2;
     CGFloat x = (CGRectGetWidth(rect) - d) / 2 + CGRectGetMinX(rect);
     CGFloat y = (CGRectGetHeight(rect) - d) / 2 + CGRectGetMinY(rect);
-    return CGRectMake(x, y, d, d);
+    CGRect subRect = CGRectMake(x, y, d, d);
+//    PPDebug(@"radius = %f, Rect = %@, SubRect = %@", radius, NSStringFromCGRect(rect), NSStringFromCGRect(subRect));
+    return subRect;
 }
 
 
+#define CIRCLE_LINE_COLOR [[UIColor lightGrayColor] CGColor]
 
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
 
-//    CGRect rect = [self subRect:rect radius:<#(CGFloat)#>]
-    //draw three circles
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
+    //color circle
+    CGContextSetStrokeColorWithColor(context, _color.CGColor);
+    CGContextSetLineWidth(context, COLOR_CIRCLE_WIDTH);
+    CGFloat radius = (CONTENT_VIEW_SIZE - COLOR_CIRCLE_WIDTH) / 2;
+    CGRect subRect = [self subRect:rect radius:radius];
+    CGContextStrokeEllipseInRect(context, subRect);
+    
+    //out circle
+    CGContextSetStrokeColorWithColor(context, CIRCLE_LINE_COLOR);
+    CGContextSetLineWidth(context, OUT_CIRCLE_WIDTH);
+    CGContextSetShadow(context, CGSizeMake(-1, 1), CIRCLE_BLUR);
+    radius = (CONTENT_VIEW_SIZE - OUT_CIRCLE_WIDTH) / 2;
+    subRect = [self subRect:rect radius:radius];
+    CGContextStrokeEllipseInRect(context, subRect);
+    
+    CGContextSetStrokeColorWithColor(context, CIRCLE_LINE_COLOR);
+    CGContextSetLineWidth(context, IN_CIRCLE_WIDTH);
+    radius = CONTENT_VIEW_SIZE/2 - COLOR_CIRCLE_WIDTH;
+    subRect = [self subRect:rect radius:radius];
+    CGContextStrokeEllipseInRect(context, subRect);
+        
     [super drawRect:rect];
 }
 
