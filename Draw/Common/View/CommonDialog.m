@@ -10,7 +10,6 @@
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
 #import "DiceImageManager.h"
-#import "FontButton.h"
 #import "LocaleUtils.h"
 #import "CommonImageManager.h"
 #import "UIImageUtil.h"
@@ -135,8 +134,8 @@
                 [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
             }
  
-            [self.backButton.fontLable setText:NSLS(@"kCancel")];
-            [self.oKButton.fontLable setText:NSLS(@"kOK")];
+            [self.backButton.titleLabel setText:NSLS(@"kCancel")];
+            [self.oKButton.titleLabel setText:NSLS(@"kOK")];
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
 //            [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];

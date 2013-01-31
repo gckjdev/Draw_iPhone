@@ -13,7 +13,10 @@
 
 @protocol WallServiceDelegate <NSObject>
 
-- (void)didCreateWall:(int)resultCode;
+- (void)didCreateWall:(int)resultCode wallId:(NSString *)wallId;
+- (void)didGetWallList:(int)resultCode wallList:(NSArray *)wallList;
+- (void)didGetWall:(int)resultCode wall:(PBWall *)wall;
+
 
 @end
 
@@ -24,5 +27,14 @@
 
 - (void)createWall:(PBWall *)wall
           delegate:(PPViewController<WallServiceDelegate>*)viewController;
+
+- (void)getWallList:(NSString *)userId
+           wallType:(PBWallType)wallType
+           delegate:(PPViewController<WallServiceDelegate>*)viewController;
+
+
+- (void)getWall:(NSString *)userId
+         wallId:(NSString *)wallId
+       delegate:(PPViewController<WallServiceDelegate>*)viewController;
 
 @end

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewCell.h"
-#import "FontButton.h"
 #import "CommonChatMessage.h"
 
 @protocol ChatViewCellDelegate <NSObject>

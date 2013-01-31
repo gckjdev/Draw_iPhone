@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HKGirlFontLabel;
 
 typedef enum{
     

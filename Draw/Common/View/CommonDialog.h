@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "commonInfoView.h"
 
-@class FontButton;
 @class CommonDialog;
-@class FontLabel;
+
 typedef enum {
     CommonDialogStyleSingleButton = 0,
     CommonDialogStyleDoubleButton
@@ -39,9 +38,9 @@ typedef void (^DialogSelectionBlock)(void);
     BOOL    _shouldResize;
 }
 
-@property (retain, nonatomic) IBOutlet FontButton *oKButton;
-@property (retain, nonatomic) IBOutlet FontButton *backButton;
-@property (retain, nonatomic) IBOutlet FontLabel *messageLabel;
+@property (retain, nonatomic) IBOutlet UIButton *oKButton;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (assign, nonatomic) CommonDialogStyle style;
 @property (retain, nonatomic) IBOutlet UIImageView *frontBackgroundImageView;

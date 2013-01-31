@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FontLabel.h"
 #import "CMPopTipView.h"
 
-@interface DiceMessageView:FontLabel
+@interface DiceMessageView:UILabel
 
 - (id)initWithFrame:(CGRect)frame
             message:(NSString *)message

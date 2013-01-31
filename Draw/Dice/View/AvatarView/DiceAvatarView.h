@@ -10,7 +10,6 @@
 @class HJManagedImageV;
 @class DACircularProgressView;
 @class DiceAvatarView;
-@class HKGirlFontLabel;
 
 typedef enum {
     AvatarViewStyle_Square = 1,
@@ -40,7 +39,7 @@ typedef enum {
     CFTimeInterval _reciprocolTime;
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
-    HKGirlFontLabel* _rewardCoinLabel;
+    UILabel* _rewardCoinLabel;
     UIImage* _originAvatar;
     BOOL _isBlackAndWhite;
     UIImageView* _clockView;

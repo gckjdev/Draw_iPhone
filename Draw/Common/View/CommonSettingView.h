@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonInfoView.h"
-#import "FontButton.h"
 
 @interface CommonSettingView : CommonInfoView
 

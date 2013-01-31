@@ -22,7 +22,8 @@
                controller:(DiceGamePlayController *)controller
                      view:(UIView *)view
 {
-    HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70) pointSize:50] autorelease];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 70)] autorelease];
+    [label setFont:[UIFont systemFontOfSize:50]];
     label.text = [Item nameForItemType:itemType];
     label.textAlignment = UITextAlignmentCenter;
     label.center = view.center;

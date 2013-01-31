@@ -17,9 +17,6 @@
 #import "DiceRoomListCell.h"
 #import "CommonRoomListController.h"
 
-
-
-@class FontButton;
 @class PBGameSession;
 @class CommonSearchView;
 

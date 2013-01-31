@@ -184,9 +184,11 @@
     [[WallService sharedWallService] createWall:[_wall toPBWall] delegate:self];
 }
 
-- (void)didCreateWall:(int)resultCode
+- (void)didCreateWall:(int)resultCode wallId:(NSString *)wallId
 {
     PPDebug(@"didCreateWall: %d", resultCode);
+    PPDebug(@"wallId: %@", wallId);
+    [_wall setWallId:wallId];
 }
 
 @end

@@ -21,7 +21,6 @@
 //#import "YoumiWallController.h"
 #import "LmWallService.h"
 #import "DiceItem.h"
-#import "FontButton.h"
 #import "CustomDiceManager.h"
 
 
@@ -535,9 +534,9 @@ static VendingController* staticVendingController = nil;
                                                              style:CommonDialogStyleDoubleButton 
                                                           delegate:self];
         dialog.tag = ITEM_TIPS_DIALOG_TAG;
-        [dialog.oKButton.fontLable setText:NSLS(@"kNoMoreShowIt")];
-        [dialog.oKButton.fontLable setAdjustsFontSizeToFitWidth:YES];
-        [dialog.backButton.fontLable setText:NSLS(@"kOK")];
+        [dialog.oKButton.titleLabel setText:NSLS(@"kNoMoreShowIt")];
+        [dialog.oKButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [dialog.backButton.titleLabel setText:NSLS(@"kOK")];
         _currentBuyingItem = anItem.type;
         [dialog showInView:self.view];
     }

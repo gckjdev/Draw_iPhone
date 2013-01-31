@@ -16,7 +16,6 @@
 @class DiceAvatarView;
 @class PBGameUser;
 @class PPViewController;
-@class HKGirlFontLabel;
 
 @interface DiceUserInfoView : CommonInfoView<FriendServiceDelegate, UserServiceDelegate>
 {
@@ -34,7 +33,7 @@
         needUpdate:(BOOL)needUpdate; //if need update the info from service.
 
 
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *coinsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *coinsLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
@@ -42,11 +41,11 @@
 @property (retain, nonatomic) IBOutlet UIImageView *snsTagImageView;
 @property (retain, nonatomic) IBOutlet UILabel *genderLabel;
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
-@property (retain, nonatomic) IBOutlet FontButton *followUserButton;
+@property (retain, nonatomic) IBOutlet UIButton *followUserButton;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet DiceAvatarView *avatar;
-@property (retain, nonatomic) IBOutlet FontButton *chatButton;
+@property (retain, nonatomic) IBOutlet UIButton *chatButton;
 
 @property (retain, nonatomic) MyFriend* targetFriend;
 @property (assign, nonatomic) PPViewController* superViewController;
