@@ -9,7 +9,7 @@
 #import "DrawView.h"
 #import "PPStack.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "StrawView.h"
 
 
 #pragma mark - draw view implementation
@@ -18,6 +18,8 @@
 {
     PPStack *_redoStack;
     CGPoint _currentPoint;
+    StrawView *_strawView;
+    CGContextRef _tempBitmapContext;
     
 }
 #pragma mark Private Helper function
@@ -155,27 +157,68 @@ typedef enum {
     }
 }
 
-- (UIColor *)colorAtPoint:(CGPoint)point
+- (DrawColor *)colorAtPoint:(CGPoint)point inContext:(CGContextRef)context
 {
-    //TODO get Color
-    return nil;
+    unsigned char* data = CGBitmapContextGetData (context);
+    DrawColor *color = nil;
+    CGFloat w = CGRectGetWidth(self.bounds);
+    if (data != NULL) {
+        //offset locates the pixel in the data from x,y.
+        //4 for 4 bytes of data per pixel, w is width of one row of data.
+        int offset = 4*((w*round(point.y))+round(point.x));
+        
+        int alpha =  data[offset++];
+        int red = data[offset++];
+        int green = data[offset++];
+        int blue = data[offset++];
+
+        PPDebug(@"offset:%d, alpha = %d, red = %d, green = %d, blue = %d",offset, alpha, red, green, blue);
+        color = [DrawColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
+    }
+    // Free image data memory for the context
+    
+    if (data) { free(data); }
+    return color;
 }
 
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
     UITouch *touch  = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    UIColor *color = [self colorAtPoint:point];
+
     switch (type) {
         case TouchTypeBegin:
+        {
             //new and show color view and show it in the super view
+            _tempBitmapContext = [self createBitmapContext];
+            DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
+            _strawView = [StrawView strawViewWithColor:color.color];
+            [self addSubview:_strawView];
+            _strawView.center = point;
+        }
             break;
         case TouchTypeMove:
             //move the view
+        {
+            DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
+            [_strawView setColor:color.color];
+            _strawView.center = point;
             break;
+        }
         case TouchTypeEnd:
+        {
             //remove the show color view
+            [_strawView removeFromSuperview];
+            _strawView = nil;
+            DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
+//            color.alpha = 1.0;
+            if (_strawDelegate && [_strawDelegate respondsToSelector:@selector(didStrawGetColor:)]) {
+                [_strawDelegate didStrawGetColor:color];
+            }
+            CGContextRelease(_tempBitmapContext);
+            _tempBitmapContext = NULL;
             break;
+        }
         default:
             break;
     }

@@ -39,12 +39,11 @@
 }
 
 
-- (CGContextRef)createBitmapContext
+- (CGContextRef)createNewBitmapContext
 {
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat height = CGRectGetHeight(self.bounds);
-    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
-    
+    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();    
     CGContextRef context = CGBitmapContextCreate(
                                                  NULL,
                                                  width,
@@ -52,14 +51,14 @@
                                                  8, // 每个通道8位
                                                  width * 4,
                                                  colorSpace,
-                                                 kCGImageAlphaPremultipliedLast);
+                                                 kCGImageAlphaPremultipliedFirst);
     CGColorSpaceRelease(colorSpace);
     return context;
 }
 
 - (CGLayerRef)createLayer
 {
-    CGContextRef context = [self createBitmapContext];
+    CGContextRef context = [self createNewBitmapContext];
     CGLayerRef layer = CGLayerCreateWithContext(context, self.bounds.size, NULL);
     CGContextRelease(context);
     return layer;
@@ -214,16 +213,21 @@
 CGContextScaleCTM(context, 1.0, -1.0);\
 CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
+- (CGContextRef)createBitmapContext
+{
+    CGContextRef context = [self createNewBitmapContext];
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+    CTMContext(context, self.bounds);
+    CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
+    return context;
+}
+
 - (UIImage*)createImage
 {
     
     PPDebug(@"<createImage> image bounds = %@", NSStringFromCGRect(self.bounds));
     CGContextRef context = [self createBitmapContext];
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextFillRect(context, self.bounds);
-    CTMContext(context, self.bounds);
-    CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
-
     CGImageRef image = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     if (image == NULL) {
