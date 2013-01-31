@@ -44,7 +44,6 @@
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "VendingController.h"
-#import "FontButton.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"

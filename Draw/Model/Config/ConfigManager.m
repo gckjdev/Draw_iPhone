@@ -502,7 +502,7 @@
 
 + (NSString*)getAwardItemImageName:(int)dicePoint
 {
-    return [MobClickUtils getStringValueByKey:@"AWARD_ITEM_IMAGE" defaultValue:[NSString stringWithFormat:@"open_bell_%dbig.png", dicePoint]];
+    return [MobClickUtils getStringValueByKey:@"AWARD_ITEM_IMAGE" defaultValue:[NSString stringWithFormat:@"open_bell_%dbigx2.png", dicePoint]];
 }
 
 + (int)getPostponeTime

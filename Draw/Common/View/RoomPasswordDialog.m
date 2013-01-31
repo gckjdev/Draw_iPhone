@@ -9,7 +9,6 @@
 #import "RoomPasswordDialog.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
-#import "FontButton.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
 
@@ -85,16 +84,16 @@
     [self.contentBackground setImage:[DiceImageManager defaultManager].helpBackgroundImage];
     self.isPasswordOptional = YES;
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-    [self.titleLabel.fontLable setText:title];
+    [self.titleLabel.titleLabel setText:title];
     
 //    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:120.0/255.0 green:230.0/255.0 blue:160.0/255.0 alpha:0.95]];
 //    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
-    [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-    [self.okButton.fontLable setText:NSLS(@"kOK")];
-    self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
-    self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.cancelButton.titleLabel setText:NSLS(@"kCancel")];
+    [self.okButton.titleLabel setText:NSLS(@"kOK")];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
     [self.passwordField setBackground:[diceImgManager inputBackgroundImage]];
 }

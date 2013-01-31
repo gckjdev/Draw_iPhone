@@ -8,12 +8,11 @@
 
 #import "CommonDialog.h"
 #import "CallDiceView.h"
-@class FontButton;
 
 @interface DiceRobotDecisionView : CommonDialog
 
 @property (retain, nonatomic) CallDiceView* calldiceView;
-@property (retain, nonatomic) FontButton* wildsButton;
+@property (retain, nonatomic) UIButton* wildsButton;
 
 + (DiceRobotDecisionView*)createDialogWithTitle:(NSString *)title 
                                         message:(NSString *)message 

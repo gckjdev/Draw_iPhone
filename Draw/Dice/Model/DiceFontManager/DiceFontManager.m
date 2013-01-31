@@ -7,7 +7,6 @@
 //
 
 #import "DiceFontManager.h"
-#import "FontManager.h"
 #import "DeviceDetection.h"
 #import "FileUtil.h"
 #import "LogUtil.h"
@@ -71,7 +70,7 @@ static DiceFontManager *_defaultManager = nil;
 //            self.fontName = @"";
 //        }
         
-        [[FontManager sharedManager] loadFontFromPath:[DiceFontManager fontPath]];
+//        [[FontManager sharedManager] loadFontFromPath:[DiceFontManager fontPath]];
         self.fontName = FONT_NAME;
     }
     

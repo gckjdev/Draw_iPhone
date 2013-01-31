@@ -16,7 +16,6 @@
 #import "DiceNotification.h"
 #import "GameMessage.pb.h"
 #import "DiceGamePlayController.h"
-#import "FontButton.h"
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
 #import "DiceColorManager.h"

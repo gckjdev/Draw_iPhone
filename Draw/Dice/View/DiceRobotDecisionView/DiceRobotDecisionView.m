@@ -7,7 +7,6 @@
 //
 
 #import "DiceRobotDecisionView.h"
-#import "FontButton.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -58,16 +57,16 @@
     [view.contentView addSubview:view.calldiceView];
     [view.calldiceView setCenter:CGPointMake(view.contentView.frame.size.width/2, view.contentView.frame.size.height/2)];
 //    
-    view.wildsButton = [[[FontButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)] autorelease];
+    view.wildsButton = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)] autorelease];
     [view.wildsButton setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
-    [view.wildsButton.fontLable setText:NSLS(@"kDiceWilds")];
+    [view.wildsButton.titleLabel setText:NSLS(@"kDiceWilds")];
     [view.wildsButton setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
     [view.wildsButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [view.contentView addSubview:view.wildsButton];
     [view.wildsButton setCenter:CGPointMake(view.frame.origin.x - view.wildsButton.frame.size.width, view.center.y)];
     
-    [view.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
-    [view.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    [view.oKButton.titleLabel setText:NSLS(@"kDoItLikeThis")];
+    [view.backButton.titleLabel setText:NSLS(@"kThinkMyself")];
     return view;
 }
 

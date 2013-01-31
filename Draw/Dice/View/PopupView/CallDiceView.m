@@ -10,7 +10,6 @@
 #import "DiceView.h"
 #import "LocaleUtils.h"
 #import "UIViewUtils.h"
-#import "FontLabel.h"
 #import "DiceFontManager.h"
 
 
@@ -34,7 +33,7 @@
 @interface CallDiceView ()
 
 @property (retain, nonatomic) DiceView *diceView;
-@property (retain, nonatomic) FontLabel *countLabel;
+@property (retain, nonatomic) UILabel *countLabel;
 @property (retain, nonatomic) CMPopTipView *popTipView;
 
 @end
@@ -61,16 +60,18 @@
     if (self) {
         // Initialization code
         
-        self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(countLableWidth + SYMBOL_LABEL_WIDTH, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)   
+        self.diceView = [[[DiceView alloc] initWithFrame:CGRectMake(countLableWidth + SYMBOL_LABEL_WIDTH, 0, DICE_VIEW_WIDTH, DICE_VIEW_HEIGHT)
                                                     dice:dice customDiceType:type] autorelease];
         _diceView.userInteractionEnabled = NO;
         
-        self.countLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT) fontName:[[DiceFontManager defaultManager] fontName] pointSize:SIZE_FONT_COUNT] autorelease];
+        self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT)] autorelease];
+        [self.countLabel setFont:[UIFont systemFontOfSize:SIZE_FONT_COUNT]];
         _countLabel.backgroundColor = [UIColor clearColor];
         _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
         _countLabel.textAlignment = UITextAlignmentLeft;
         
-        FontLabel *symbolLabel = [[[FontLabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT) fontName:[[DiceFontManager defaultManager] fontName] pointSize:SIZE_FONT_SYMBOL] autorelease];
+        UILabel *symbolLabel = [[[UILabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT)] autorelease];
+        [symbolLabel setFont:[UIFont systemFontOfSize:SIZE_FONT_SYMBOL]];
         symbolLabel.backgroundColor = [UIColor clearColor];
         symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
         symbolLabel.textAlignment = UITextAlignmentCenter;

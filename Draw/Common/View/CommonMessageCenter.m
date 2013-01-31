@@ -8,7 +8,6 @@
 
 #import "CommonMessageCenter.h"
 #import "DiceImageManager.h"
-#import "HKGirlFontLabel.h"
 #import "LocaleUtils.h"
 
 #define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD]?24:12)
@@ -37,7 +36,7 @@ CommonMessageViewTheme globalGetTheme() {
 	UIImage *_image;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *faceImageView;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *messageLabel;
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UIImageView* messageBackgroundView;
 
 - (id) init;

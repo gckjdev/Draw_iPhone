@@ -288,11 +288,13 @@
                                                                     AWARD_DICE_SIZE.height)] 
                          autorelease];
     _awardDicePoint = rand()%6 + 1;
-    UIImage* image = [UIImage imageNamed:[ConfigManager getAwardItemImageName:_awardDicePoint]];
-    [diceBtn setImage:image forState:UIControlStateNormal];
+//    UIImage* image = [UIImage imageNamed:[ConfigManager getAwardItemImageName:_awardDicePoint]];
+    UIImage* image = [[DiceImageManager defaultManager] openDiceImageWithDice:_awardDicePoint];
+    [diceBtn setBackgroundImage:image forState:UIControlStateNormal];
     //[diceBtn setCenter:CGPointMake(self.view.frame.size.width-50, self.view.frame.size.height-50)];
     [self.view addSubview:diceBtn];
-    //[diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view bringSubviewToFront:diceBtn];
+    [diceBtn addTarget:self action:@selector(clickAwardDice:) forControlEvents:UIControlEventTouchUpInside];
     diceBtn.tag = AWARD_DICE_TAG;
     CAAnimation* rolling = [AnimationManager rotateAnimationWithRoundCount:-50 duration:25];
     rolling.removedOnCompletion = YES;
@@ -357,9 +359,9 @@
     }
     
     // random get some coins
-    int coins = 0;
-    PPDebug(@"<checkIn> got %d coins", coins);
-    _tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAwardDice:)] autorelease];   
+//    int coins = 0;
+//    PPDebug(@"<checkIn> got %d coins", coins);
+    _tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAwardDice:)] autorelease];
     _tapGestureRecognizer.delegate = self;
     _tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:_tapGestureRecognizer];
@@ -377,7 +379,9 @@
 //    
     if (flag) {
         UIButton* btn = (UIButton*)[self.view viewWithTag:AWARD_DICE_TAG];
-        HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(0, 0, AWARD_DICE_SIZE.width, AWARD_DICE_SIZE.height/2) pointSize:AWARD_TIPS_FONT] autorelease];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, AWARD_DICE_SIZE.width, AWARD_DICE_SIZE.height/2)] autorelease];
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setFont:[UIFont systemFontOfSize:AWARD_TIPS_FONT]];
         [label setText:NSLS(@"kClickMe")];
         CMPopTipView* view = [[[CMPopTipView alloc] initWithCustomView:label needBubblePath:NO] autorelease];
         [view setBackgroundColor:[UIColor yellowColor]];

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FontButton.h"
 
 
 #define DICE_HELP_VIEW_TAG      2012090488
@@ -36,7 +35,7 @@ typedef enum {
 - (void)showInView:(UIView *)view;
 
 //- (void)showInView:(UIView *)view animationType:(AnimationType)animationType;
-@property (retain, nonatomic) IBOutlet FontButton *closeButton;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;

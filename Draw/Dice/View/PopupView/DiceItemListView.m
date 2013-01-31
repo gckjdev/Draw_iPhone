@@ -9,7 +9,6 @@
 #import "DiceItemListView.h"
 #import "DeviceDetection.h"
 #import "DiceImageManager.h"
-#import "FontButton.h"
 #import "DiceFontManager.h"
 #import "ItemManager.h"
 #import "UIViewUtils.h"
@@ -129,10 +128,11 @@
     
     //NSString *title = item.shortName;
     
-    FontButton *buttonTemp = [[[FontButton alloc] initWithFrame:frame fontName:[[DiceFontManager defaultManager] fontName] pointSize:FONT_SIZE_BUTTON] autorelease];
+    UIButton *buttonTemp = [[[UIButton alloc] initWithFrame:frame] autorelease];
+    [buttonTemp.titleLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_BUTTON]];
     [buttonTemp setBackgroundImage:item.itemImage forState:UIControlStateNormal];
     //buttonTemp.fontLable.text = title;
-    buttonTemp.fontLable.frame = CGRectOffset(buttonTemp.fontLable.frame, 0, Y_OFFSET_TITLE);
+    buttonTemp.titleLabel.frame = CGRectOffset(buttonTemp.titleLabel.frame, 0, Y_OFFSET_TITLE);
     [buttonTemp addTarget:self action:@selector(clickToolButton:) forControlEvents:UIControlEventTouchUpInside];
     buttonTemp.tag = tag;
 
