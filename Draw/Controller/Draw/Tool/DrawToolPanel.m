@@ -504,6 +504,7 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
+    [self.straw setSelected:NO];
     if (drawSlider == self.alphaSlider) {
         if ([self.alphaSlider isSelected]) {
             if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
