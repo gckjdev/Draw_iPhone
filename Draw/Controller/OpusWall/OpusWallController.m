@@ -17,7 +17,7 @@
 @property (assign, nonatomic) int wallOpusOrder;
 @property (retain, nonatomic) Wall *wall;
 @property (retain, nonatomic) UIView *wallView;
-
+@property (retain, nonatomic) ChangeAvatar *photoCollection;
 
 @end
 
@@ -30,6 +30,8 @@
     [_backButton release];
     [_setLayoutButton release];
     [_submitButton release];
+    [_bgImageView release];
+    [_photoCollection release];
     [super dealloc];
 }
 
@@ -58,6 +60,12 @@
 {
     self.title = _wall.pbWall.wallName;
 
+    if ([_wall bgImage] == nil) {
+        [self.bgImageView setImageWithURL:[NSURL URLWithString:_wall.pbWall.layout.bgImage]];
+    }else{
+        [self.bgImageView setImage:[_wall bgImage]];
+    }
+    
     PBRect *pbRect = [DeviceDetection isIPAD] ? _wall.pbWall.layout.iPadRect : _wall.pbWall.layout.iPhoneRect;
     CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
     self.wallView.frame = rect;
@@ -172,23 +180,35 @@
     [self setBackButton:nil];
     [self setSetLayoutButton:nil];
     [self setSubmitButton:nil];
+    [self setBgImageView:nil];
     [super viewDidUnload];
 }
 
 - (IBAction)clickSetLayoutButton:(id)sender {
-    [_wall setLayout:[ProtocolUtil createTestData1]];
+//    [_wall setLayout:[ProtocolUtil createTestData1]];
+//    [self updateWallView];
+    
+    self.photoCollection = [[[ChangeAvatar alloc] init] autorelease];
+    [self.photoCollection setAutoRoundRect:NO];
+    [self.photoCollection setImageSize:CGSizeMake(320, 480)];
+    [_photoCollection showSelectionView:self];
+}
+
+- (void)didImageSelected:(UIImage*)image
+{
+    [_wall setBgImage:image];
     [self updateWallView];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    [[WallService sharedWallService] createWall:[_wall toPBWall] delegate:self];
+    [[WallService sharedWallService] createWall:[_wall toPBWall] bgImage:[_wall bgImage] delegate:self];
 }
 
-- (void)didCreateWall:(int)resultCode wallId:(NSString *)wallId
+- (void)didCreateWall:(int)resultCode wall:(PBWall *)wall
 {
     PPDebug(@"didCreateWall: %d", resultCode);
-    PPDebug(@"wallId: %@", wallId);
-    [_wall setWallId:wallId];
+    PPDebug(@"wallId: %@", wall.wallId);
+    [_wall setWallId:wall.wallId];
 }
 
 @end

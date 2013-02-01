@@ -246,6 +246,10 @@
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"
 
+#define PARA_WALL_DATA @"wd"
+#define PARA_WALL_BG_IMAGE @"photo"
+
+
 #define PARA_COMMENT_CONTENT @"comc"
 
 #define PARA_COMMENT_TYPE @"cmt"

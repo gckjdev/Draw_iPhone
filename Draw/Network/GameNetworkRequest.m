@@ -1422,8 +1422,8 @@
         }
 
         return [PPNetworkRequest uploadRequest:baseURL
-                                imageDataDict:imageDict
-                                  postDataDict:dataDict 
+                                 imageDataDict:imageDict
+                                  postDataDict:dataDict
                            constructURLHandler:constructURLHandler 
                                responseHandler:responseHandler 
                                         output:output];
@@ -2517,6 +2517,7 @@
                              appId:(NSString *)appId
                             userId:(NSString *)userId
                               data:(NSData *)data
+                         imageData:(NSData *)imageData
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
         
@@ -2539,12 +2540,31 @@
         return;
     };
     
-    return [PPNetworkRequest sendPostRequest:baseURL
-                                        data:data
-                         constructURLHandler:constructURLHandler
-                             responseHandler:responseHandler
-                                outputFormat:FORMAT_PB
-                                      output:output];
+//    return [PPNetworkRequest sendPostRequest:baseURL
+//                                        data:data
+//                         constructURLHandler:constructURLHandler
+//                             responseHandler:responseHandler
+//                                outputFormat:FORMAT_PB
+//                                      output:output];
+    
+    NSMutableDictionary *dataDict = nil;
+    if (data) {
+        dataDict = [NSMutableDictionary dictionary];
+        [dataDict setObject:data forKey:PARA_WALL_DATA];
+    }
+    
+    NSMutableDictionary *imageDict = nil;
+    if (imageData) {
+        imageDict = [NSMutableDictionary dictionary];
+        [imageDict setObject:imageData forKey:PARA_WALL_BG_IMAGE];
+    }
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                             imageDataDict:imageDict
+                              postDataDict:dataDict
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
 }
 
 

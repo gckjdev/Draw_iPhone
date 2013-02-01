@@ -33,4 +33,7 @@
 
 - (PBWall *)toPBWall;
 
+- (void)setBgImage:(UIImage *)image;
+- (UIImage *)bgImage;
+
 @end

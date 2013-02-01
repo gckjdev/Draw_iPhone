@@ -14,24 +14,27 @@
 #import "ConfigManager.h"
 #import "PPNetworkRequest.h"
 #import "GameMessage.pb.h"
+#import "UIImageExt.h"
 
 @implementation WallService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
 
-- (void)createWall:(PBWall *)wall delegate:(PPViewController<WallServiceDelegate>*)viewController;
-
+- (void)createWall:(PBWall *)wall
+           bgImage:(UIImage *)bgImage
+          delegate:(PPViewController<WallServiceDelegate>*)viewController
 {    
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createWall:TRAFFIC_SERVER_URL
                                                                appId:[ConfigManager appId]
                                                               userId:[[UserManager defaultManager] userId]
-                                                                data:wall.data];
+                                                                data:wall.data
+                                                           imageData:[bgImage data]];
 
-        NSString *wallId;
+        PBWall *pbWall;
         @try {
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            wallId = response.wall.wallId;
+            pbWall = response.wall;
         }
         @catch (NSException *exception) {
             PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
@@ -41,8 +44,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([viewController respondsToSelector:@selector(didCreateWall:wallId:)]){
-                [viewController didCreateWall:output.resultCode wallId:wallId];
+            if ([viewController respondsToSelector:@selector(didCreateWall:wall:)]){
+                [viewController didCreateWall:output.resultCode wall:pbWall];
             }
         });
     });
