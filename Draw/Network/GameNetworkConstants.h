@@ -509,6 +509,7 @@
 #define METHOD_GET_BBS_PRIVILEGELIST @"gbpr"
 
 #define METHOD_CREATE_USER_WALL @"createWall"
+#define METHOD_UPDATE_USER_WALL @"updateWall"
 #define METHOD_GET_USER_WALL_LIST @"getWallList"
 #define METHOD_GET_USER_WALL @"getWall"
 

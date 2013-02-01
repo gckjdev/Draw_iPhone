@@ -209,7 +209,7 @@
 {
     for (FeedTimes *feedTimes in self.timesSet) {
         if (feedTimes.type == type) {
-            return feedTimes.times;
+            return MAX(feedTimes.times, 0);
         }
     }
     return 0;

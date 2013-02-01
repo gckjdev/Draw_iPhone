@@ -13,9 +13,10 @@
 #import "FrameSelectController.h"
 #import "WallService.h"
 #import "ChangeAvatar.h"
+#import "iCarousel.h"
 
 
-@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate, WallServiceDelegate, ChangeAvatarDelegate>
+@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate, WallServiceDelegate, ChangeAvatarDelegate, iCarouselDataSource, iCarouselDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *setLayoutButton;

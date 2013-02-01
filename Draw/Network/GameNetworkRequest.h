@@ -471,8 +471,8 @@
 + (CommonNetworkOutput*)updateWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
-                            wallId:(int)wallId
-                              data:(NSData *)data;
+                              data:(NSData *)data
+                         imageData:(NSData *)imageData;
 
 + (CommonNetworkOutput*)deleteWall:(NSString *)baseURL
                              appId:(NSString *)appId
@@ -490,7 +490,5 @@
                            appId:(NSString *)appId
                           userId:(NSString *)userId
                         wallType:(PBWallType)wallType;
-
-
 
 @end

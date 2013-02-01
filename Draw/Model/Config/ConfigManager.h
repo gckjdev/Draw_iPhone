@@ -38,6 +38,8 @@ typedef enum{
 + (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
 + (NSInteger)opusDescMaxLength;
 + (NSInteger)maxPenWidth;
++ (NSInteger)defaultPenWidth;
++ (NSInteger *)penWidthList;
 
 + (NSString*)getChannelId;
 
@@ -195,5 +197,6 @@ typedef enum{
 + (int)getLevelUpAward;
 
 + (int)onlineRoomCountPerPage;
++ (int)maxWeixinImageWidth;
 
 @end
