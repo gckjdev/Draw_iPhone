@@ -51,6 +51,37 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
     });
 }
 
+- (void)updateWall:(PBWall *)wall
+           bgImage:(UIImage *)bgImage
+          delegate:(PPViewController<WallServiceDelegate>*)viewController
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest updateWall:TRAFFIC_SERVER_URL
+                                                               appId:[ConfigManager appId]
+                                                              userId:[[UserManager defaultManager] userId]
+                                                                data:wall.data
+                                                           imageData:[bgImage data]];
+        
+        PBWall *pbWall;
+        @try {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            pbWall = response.wall;
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([viewController respondsToSelector:@selector(didCreateWall:wall:)]){
+                [viewController didCreateWall:output.resultCode wall:pbWall];
+            }
+        });
+    });
+}
+
 - (void)getWallList:(NSString *)userId
            wallType:(PBWallType)wallType
            delegate:(PPViewController<WallServiceDelegate>*)viewController;

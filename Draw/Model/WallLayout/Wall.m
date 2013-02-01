@@ -9,6 +9,7 @@
 #import "Wall.h"
 #import "UserManager.h"
 #import "FrameManager.h"
+#import "ProtocolUtil.h"
 
 @interface Wall ()
 {
@@ -125,10 +126,10 @@
     [frameArr removeObject:frame];
 
     PBFrame_Builder *frameBuilder = [PBFrame builderWithPrototype:frameReplaced];
-    [frameBuilder setIPhoneRect:frame.iPhoneRect];
-    [frameBuilder setIPadRect:frame.iPadRect];
-    [frameBuilder setOpusIphoneRect:frame.opusIphoneRect];
-    [frameBuilder setOpusIpadRect:frame.opusIpadRect];
+    [frameBuilder setIPhoneRect:[ProtocolUtil pbRectWithX:frame.iPhoneRect.x y:frame.iPhoneRect.y width:frameReplaced.iPhoneRect.width height:frameReplaced.iPhoneRect.height]];
+    [frameBuilder setIPadRect:[ProtocolUtil pbRectWithX:frame.iPadRect.x y:frame.iPadRect.y width:frameReplaced.iPadRect.width height:frameReplaced.iPadRect.height]];
+//    [frameBuilder setIPhoneRect:frame.iPhoneRect];
+//    [frameBuilder setIPadRect:frame.iPadRect];
     [frameBuilder setIdOnWall:frameIdOnWall];
     [frameArr addObject:[frameBuilder build]];
 

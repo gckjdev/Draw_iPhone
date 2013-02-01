@@ -77,7 +77,7 @@
     
     NSArray *frames = [NSArray arrayWithObjects:frame1, frame2, frame3, frame4, nil];
     
-    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:0 coverFlowType:0 frames:frames bgImage:@"default_layout.png" iphoneRect:[self pbRectWithX:0 y:0 width:320 height:480] ipadRect:[self pbRectWithX:2 y:2 width:768 height:1024] price:1000];
+    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:1 coverFlowType:0 frames:frames bgImage:@"default_layout.png" iphoneRect:[self pbRectWithX:0 y:0 width:320 height:480] ipadRect:[self pbRectWithX:2 y:2 width:768 height:1024] price:1000];
     
     return layout1;
 }
@@ -89,6 +89,8 @@
     [builder1 setFrameType:1];
     [builder1 setThumbImage:@"thumb_image/frame_thumb_301.jpg"];
     [builder1 setImage:@"image/frame_301.jpg"];
+    [builder1 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder1 setOpusIphoneRect:[self pbRectWithX:0 y:0 width:80 height:80]];
     [builder1 setPrice:200];
     PBFrame *frame1 = [builder1 build];
     
@@ -97,6 +99,8 @@
     [builder2 setFrameType:1];
     [builder2 setThumbImage:@"thumb_image/frame_thumb_302.jpg"];
     [builder2 setImage:@"image/frame_302.jpg"];
+    [builder2 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder2 setOpusIphoneRect:[self pbRectWithX:10 y:10 width:80 height:80]];
     [builder2 setPrice:200];
     PBFrame *frame2 = [builder2 build];
     
@@ -105,6 +109,8 @@
     [builder3 setFrameType:1];
     [builder3 setThumbImage:@"thumb_image/frame_thumb_303.jpg"];
     [builder3 setImage:@"image/frame_303.jpg"];
+    [builder3 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder3 setOpusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80]];
     [builder3 setPrice:200];
     PBFrame *frame3 = [builder3 build];
     
@@ -114,6 +120,8 @@
     [builder4 setThumbImage:@"thumb_image/frame_thumb_304.jpg"];
     [builder4 setImage:@"image/frame_304.jpg"];
     [builder4 setPrice:200];
+    [builder4 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder4 setOpusIphoneRect:[self pbRectWithX:20 y:20 width:80 height:80]];
     PBFrame *frame4 = [builder4 build];
     
     PBFrame_Builder *builder5 = [[[PBFrame_Builder alloc] init] autorelease];
@@ -122,6 +130,8 @@
     [builder5 setThumbImage:@"thumb_image/frame_thumb_305.jpg"];
     [builder5 setImage:@"image/frame_305.jpg"];
     [builder5 setPrice:200];
+    [builder5 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder5 setOpusIphoneRect:[self pbRectWithX:25 y:25 width:80 height:80]];
     PBFrame *frame5 = [builder5 build];
     
     PBFrameList_Builder *builder = [[[PBFrameList_Builder alloc] init] autorelease];

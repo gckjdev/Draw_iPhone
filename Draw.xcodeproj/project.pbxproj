@@ -137,6 +137,7 @@
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A46E702616BB781900F0E68C /* frames.zip in Resources */ = {isa = PBXBuildFile; fileRef = A46E702416BB781900F0E68C /* frames.zip */; };
 		A46E702716BB781900F0E68C /* layout.pb in Resources */ = {isa = PBXBuildFile; fileRef = A46E702516BB781900F0E68C /* layout.pb */; };
+		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
@@ -6908,6 +6909,8 @@
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
 		A46E702416BB781900F0E68C /* frames.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = frames.zip; sourceTree = "<group>"; };
 		A46E702516BB781900F0E68C /* layout.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = layout.pb; sourceTree = "<group>"; };
+		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		A46E704816BBAA2D00F0E68C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
 		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
@@ -10450,6 +10453,15 @@
 			path = ChatMessageView;
 			sourceTree = "<group>";
 		};
+		A46E704616BBAA2D00F0E68C /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				A46E704716BBAA2D00F0E68C /* iCarousel.h */,
+				A46E704816BBAA2D00F0E68C /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
 		A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -11744,6 +11756,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A46E704616BBAA2D00F0E68C /* iCarousel */,
 				C297004B16A1363500A61521 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
 				A40D71DA16553575000CC598 /* FXLabel */,
@@ -22957,6 +22970,7 @@
 				CA3EB93D16B927B300660FE7 /* StrawView.m in Sources */,
 				A45D261816BA0F58003E68B8 /* OpusView.m in Sources */,
 				CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */,
+				A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

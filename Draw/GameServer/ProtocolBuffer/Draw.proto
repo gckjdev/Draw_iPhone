@@ -195,7 +195,7 @@ message PBFrameList{
 message PBLayout{
   required int32  layoutId = 1;
   optional string name = 2;
-  optional int32  displayMode = 3;                  // 平面的，还是立体的
+  optional int32  displayMode = 3;                  // 平面的，还是立体的，0表示平面，1表示立体。
   optional int32  coverFlowType = 4[default=0];
   repeated PBFrame frames = 6;
   optional string bgImage = 7;

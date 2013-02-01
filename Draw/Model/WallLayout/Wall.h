@@ -10,6 +10,9 @@
 #import "DrawFeed.h"
 #import "WallOpus.h"
 
+#define DISPLAY_MODE_PLANE 0    
+#define DISPLAY_MODE_SOLID 1
+
 @interface Wall : NSObject
 
 @property (retain, nonatomic, readonly) PBWall *pbWall;
