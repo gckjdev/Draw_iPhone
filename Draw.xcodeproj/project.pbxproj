@@ -135,6 +135,8 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A46E702616BB781900F0E68C /* frames.zip in Resources */ = {isa = PBXBuildFile; fileRef = A46E702416BB781900F0E68C /* frames.zip */; };
+		A46E702716BB781900F0E68C /* layout.pb in Resources */ = {isa = PBXBuildFile; fileRef = A46E702516BB781900F0E68C /* layout.pb */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
@@ -6900,6 +6902,8 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A46E702416BB781900F0E68C /* frames.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = frames.zip; sourceTree = "<group>"; };
+		A46E702516BB781900F0E68C /* layout.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = layout.pb; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
 		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
@@ -13656,6 +13660,8 @@
 		CA7D41DE168D7588009F43F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A46E702416BB781900F0E68C /* frames.zip */,
+				A46E702516BB781900F0E68C /* layout.pb */,
 				A4DE140E1697DB7B00841940 /* hot_word.pb */,
 				CA7D41DF168D7588009F43F7 /* TraditionalChineseWord.strings */,
 				CA7D41E4168D7588009F43F7 /* wordbase.zip */,
@@ -20002,6 +20008,8 @@
 				CA3EB8F616B9159C00660FE7 /* draw_straw@2x.png in Resources */,
 				CA3EB8FB16B91A7500660FE7 /* draw_straw_seleted@2x.png in Resources */,
 				A45D261916BA0F58003E68B8 /* OpusView.xib in Resources */,
+				A46E702616BB781900F0E68C /* frames.zip in Resources */,
+				A46E702716BB781900F0E68C /* layout.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

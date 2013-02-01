@@ -173,8 +173,9 @@ message PBRect
 message PBFrame{
   required int32 frameId = 1;
   optional int32 frameType = 2;
-  optional string thumbImage = 9;
-  optional string image = 10;                   // 相对路径
+  optional string thumbImage = 8;
+  optional string image = 9;                    // 相对路径
+  optional string imageUrl = 10;                // URL
 
   optional PBRect iPhoneRect = 11;              // 相对于布局的frame
   optional PBRect iPadRect = 12;
@@ -182,7 +183,7 @@ message PBFrame{
   optional PBRect opusIphoneRect = 13;          // 相对于框的frame
   optional PBRect opusIpadRect = 14;
   
-  optional int32 idOnWall = 15;                      // 作为布局上的索引
+  optional int32 idOnWall = 15;                 // 作为布局上的索引
 
   optional int32 price = 18;
 }
