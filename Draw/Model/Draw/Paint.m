@@ -185,9 +185,37 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     return [[[Paint alloc] initWithWidth:width color:color penType:type] autorelease];
 }
 
+#define RECT_SPAN_WIDTH 2
+- (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
+{
+    rect.origin.x -= RECT_SPAN_WIDTH;
+    rect.origin.y -= RECT_SPAN_WIDTH;
+    rect.size.width += RECT_SPAN_WIDTH*2;
+    rect.size.height += RECT_SPAN_WIDTH*2;
+    return CGRectContainsPoint(rect, point);
+}
+
+
+
 - (void)addPoint:(CGPoint)point
 {
-    [[self getPen] addPointIntoPath:point];
+    //    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
+    CGRect rect = DRAW_VIEW_RECT;
+    if (!CGRectContainsPoint(rect, point)){
+        //add By Gamy
+        //we can change point(304.1,320.4) to point(304,320)
+        //this point is not incorrect, but mistake.
+        if (![self spanRect:rect ContainsPoint:point]) {
+            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(point));
+            return;
+        }
+        point.x = MAX(point.x, 0);
+        point.y = MAX(point.y, 0);
+        point.x = MIN(point.x, DRAW_VIEW_WIDTH);
+        point.y = MIN(point.y, DRAW_VIEW_HEIGHT);
+    }
+    
+    [[self getPen] addPointIntoPath:point];    
     [self.pointNodeList addObject:[PointNode pointWithCGPoint:point]];
 }
 

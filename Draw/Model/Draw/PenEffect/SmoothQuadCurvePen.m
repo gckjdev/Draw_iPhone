@@ -103,7 +103,7 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     [self clearPoints];
 }
 
-
+/*
 #define RECT_SPAN_WIDTH 2
 - (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
@@ -113,10 +113,11 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     rect.size.height += RECT_SPAN_WIDTH*2;
     return CGRectContainsPoint(rect, point);
 }
+*/
 
 - (void)addPointIntoPath:(CGPoint)point
 {
-//    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
+    /* move to [Paint addPoint]
     CGRect rect = DRAW_VIEW_RECT;
     if (!CGRectContainsPoint(rect, point)){
         //add By Gamy
@@ -131,6 +132,7 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
         point.x = MIN(point.x, DRAW_VIEW_WIDTH);
         point.y = MIN(point.y, DRAW_VIEW_HEIGHT);
     }
+    */
     
     _hasPoint = YES;
     

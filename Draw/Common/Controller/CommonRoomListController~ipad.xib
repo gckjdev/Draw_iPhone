@@ -189,7 +189,7 @@
 						<int key="NSvFlags">-2147483329</int>
 						<string key="NSFrame">{{684, 15}, {67, 61}}</string>
 						<reference key="NSSuperview" ref="459047160"/>
-						<reference key="NSNextKeyView" ref="307741035"/>
+						<reference key="NSNextKeyView" ref="358858573"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -379,6 +379,31 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
+					<object class="IBUIButton" id="358858573">
+						<reference key="NSNextResponder" ref="459047160"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{687, 12}, {60, 60}}</string>
+						<reference key="NSSuperview" ref="459047160"/>
+						<reference key="NSNextKeyView" ref="307741035"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">Button</string>
+						<reference key="IBUIHighlightedTitleColor" ref="562421821"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="267166794"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">draw_room_list_reflesh@2x.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="455458305"/>
+						<reference key="IBUIFont" ref="24043080"/>
+					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
@@ -562,6 +587,15 @@
 					</object>
 					<int key="connectionID">92</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickRefreshButton:</string>
+						<reference key="source" ref="358858573"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">100</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -600,6 +634,7 @@
 							<reference ref="602013126"/>
 							<reference ref="480956573"/>
 							<reference ref="279561242"/>
+							<reference ref="358858573"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -685,6 +720,11 @@
 						<reference key="object" ref="480956573"/>
 						<reference key="parent" ref="459047160"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">98</int>
+						<reference key="object" ref="358858573"/>
+						<reference key="parent" ref="459047160"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -711,12 +751,13 @@
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="94.CustomClassName">FXLabel</string>
 				<string key="94.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="98.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">97</int>
+			<int key="maxID">100</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -724,14 +765,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="dice_room_help@2x.png">{16, 16}</string>
-			<string key="dice_tableft_selected@2x.png">{16, 16}</string>
-			<string key="dice_tableft_unselect@2x.png">{16, 16}</string>
-			<string key="dice_tabright_selected@2x.png">{16, 16}</string>
-			<string key="dice_tabright_unselect@2x.png">{16, 16}</string>
-			<string key="room_search@2x.png">{16, 16}</string>
-			<string key="topwood@2x.png">{16, 16}</string>
-			<string key="zjh_dialog_btn@2x.png">{16, 16}</string>
+			<string key="dice_room_help@2x.png">{57, 57}</string>
+			<string key="dice_tableft_selected@2x.png">{184, 59}</string>
+			<string key="dice_tableft_unselect@2x.png">{184, 59}</string>
+			<string key="dice_tabright_selected@2x.png">{184, 59}</string>
+			<string key="dice_tabright_unselect@2x.png">{184, 59}</string>
+			<string key="draw_room_list_reflesh@2x.png">{60, 60}</string>
+			<string key="room_search@2x.png">{57, 51}</string>
+			<string key="topwood@2x.png">{640, 99}</string>
+			<string key="zjh_dialog_btn@2x.png">{160, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

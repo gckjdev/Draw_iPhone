@@ -2567,6 +2567,61 @@
                                     output:output];
 }
 
++ (CommonNetworkOutput*)updateWall:(NSString *)baseURL
+                             appId:(NSString *)appId
+                            userId:(NSString *)userId
+                              data:(NSData *)data
+                         imageData:(NSData *)imageData
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_USER_WALL];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    //    return [PPNetworkRequest sendPostRequest:baseURL
+    //                                        data:data
+    //                         constructURLHandler:constructURLHandler
+    //                             responseHandler:responseHandler
+    //                                outputFormat:FORMAT_PB
+    //                                      output:output];
+    
+    NSMutableDictionary *dataDict = nil;
+    if (data) {
+        dataDict = [NSMutableDictionary dictionary];
+        [dataDict setObject:data forKey:PARA_WALL_DATA];
+    }
+    
+    NSMutableDictionary *imageDict = nil;
+    if (imageData) {
+        imageDict = [NSMutableDictionary dictionary];
+        [imageDict setObject:imageData forKey:PARA_WALL_BG_IMAGE];
+    }
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                             imageDataDict:imageDict
+                              postDataDict:dataDict
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
+}
+
+
 
 + (CommonNetworkOutput*)getWall:(NSString *)baseURL
                           appId:(NSString *)appId
