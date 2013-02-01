@@ -414,7 +414,7 @@
 {
     NSString *str = [self diceTypeString];
     if (str != nil) {
-        CGFloat pointSize = [DeviceDetection isIPAD] ? 40 : 20;
+        CGFloat pointSize = [DeviceDetection isIPAD] ? 38 : 19;
         CGRect frame = [DeviceDetection isIPAD] ? CGRectMake(0, 0, 200, 200) : CGRectMake(0, 0, 100, 100);
         UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         [label setFont:[UIFont systemFontOfSize:pointSize]];

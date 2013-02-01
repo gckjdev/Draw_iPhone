@@ -91,4 +91,9 @@
 
 - (NSString *)shengmengAppId;
 
+//create room dialog color
+- (UIColor*)createRoomDialogRoomNameColor;
+- (UIColor*)createRoomDialogRoomPasswordColor;
+
+
 @end
