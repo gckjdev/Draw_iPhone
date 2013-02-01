@@ -304,4 +304,13 @@
     return [DiceGameJumpHandler defaultHandler];
 }
 
+- (UIColor*)createRoomDialogRoomNameColor
+{
+    return [UIColor blackColor];
+}
+- (UIColor*)createRoomDialogRoomPasswordColor
+{
+    return [UIColor blackColor];
+}
+
 @end
