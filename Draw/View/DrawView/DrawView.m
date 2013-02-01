@@ -10,7 +10,7 @@
 #import "PPStack.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StrawView.h"
-
+#import "ConfigManager.h"
 
 #pragma mark - draw view implementation
 
@@ -28,8 +28,7 @@
 @end
 
 
-#define DEFAULT_LINE_WIDTH (ISIPAD ? 6 : 3)
-
+#define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 
 @implementation DrawView
 
@@ -37,7 +36,6 @@
 @synthesize lineWidth = _lineWidth;
 @synthesize delegate = _delegate;
 @synthesize penType = _penType;
-//@synthesize revocationSupported = _revocationSupported;
 
 
 #pragma mark - util methods
@@ -284,7 +282,7 @@ typedef enum {
     if (self) {
         
         self.lineColor = [DrawColor blackColor];
-        self.lineWidth = DEFAULT_LINE_WIDTH;
+        self.lineWidth = LINE_DEFAULT_WIDTH;
         self.penType = Pencil;
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];

@@ -118,6 +118,10 @@
     }
 
     CGFloat showWidth = self.width;
+
+    if (showWidth < 10) {
+        showWidth += 3;
+    }
     CGFloat x = (SIZE - showWidth) / 2.0;
     CGRect r = CGRectMake(x, x, showWidth, showWidth);
     CGContextFillEllipseInRect(context, r);

@@ -12,14 +12,16 @@
 
 @protocol WidthBoxDelegate <NSObject>
 
-- (void)widthBox:(WidthBox *)widthBox didSelectWidth:(NSInteger)width;
+- (void)widthBox:(WidthBox *)widthBox didSelectWidth:(CGFloat)width;
 
 @end
 
 @interface WidthBox : UIView
 
+@property(nonatomic, assign)id<WidthBoxDelegate>delegate;
+
 + (id)widthBoxWithWidthList:(NSInteger *)list;
 + (id)widthBox; //user default list
-- (void)setWidthSelected:(NSInteger)width;
+- (void)setWidthSelected:(CGFloat)width;
 
 @end
