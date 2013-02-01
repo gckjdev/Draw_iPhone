@@ -24,7 +24,7 @@
     self.dataList = [[FrameManager sharedFrameManager] frames];
     
     for (PBFrame *frame in self.dataList) {
-        PPDebug(@"thumb image:%@", frame.image);
+        PPDebug(@"thumb image:%@", frame.thumbImage);
     }
 }
 

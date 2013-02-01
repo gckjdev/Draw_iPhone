@@ -13,7 +13,6 @@
 @interface Wall ()
 {
     NSMutableArray *_wallOpuses;
-    UIImage *_bgImage;
 }
 
 @property (retain, nonatomic) PBWall *pbWall;
@@ -26,7 +25,6 @@
 {
     [_pbWall release];
     [_wallOpuses release];
-    [_bgImage release];
     [super dealloc];
 }
 
@@ -159,16 +157,9 @@
 }
 
 
-- (void)setBgImage:(UIImage *)image;
+- (void)setBgImage:(NSString *)image;
 {
-    [_bgImage release];
-    _bgImage = [image retain];
-}
-
-
-- (UIImage *)bgImage
-{
-    return _bgImage;
+    [self setLayout:[[[PBLayout builderWithPrototype:self.pbWall.layout] setBgImage:image] build]];
 }
 
 @end

@@ -11,9 +11,11 @@
 #import "UserManager.h"
 #import "FrameManager.h"
 #import "ProtocolUtil.h"
+#import "UIImageView+WebCache.h"
 
 @interface OpusWallController ()
 
+@property (retain, nonatomic) UIImage *bgImage;
 @property (assign, nonatomic) int wallOpusOrder;
 @property (retain, nonatomic) Wall *wall;
 @property (retain, nonatomic) UIView *wallView;
@@ -25,6 +27,7 @@
 
 - (void)dealloc
 {
+    [_bgImage release];
     [_wall release];
     [_wallView release];
     [_backButton release];
@@ -60,12 +63,12 @@
 {
     self.title = _wall.pbWall.wallName;
 
-    if ([_wall bgImage] == nil) {
-        [self.bgImageView setImageWithURL:[NSURL URLWithString:_wall.pbWall.layout.bgImage]];
-    }else{
-        [self.bgImageView setImage:[_wall bgImage]];
-    }
-    
+    [self.bgImageView setImageWithURL:[NSURL URLWithString:_wall.pbWall.layout.bgImage] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        self.bgImage = image;
+    } failure:^(NSError *error) {
+        self.bgImage = nil;
+    }];
+  
     PBRect *pbRect = [DeviceDetection isIPAD] ? _wall.pbWall.layout.iPadRect : _wall.pbWall.layout.iPhoneRect;
     CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
     self.wallView.frame = rect;
@@ -83,14 +86,11 @@
         [self.wallView addSubview:[self wallOpusBtn:wallOpus]];
     }
     
-
     [self.view bringSubviewToFront:self.backButton];
     [self.view bringSubviewToFront:self.setLayoutButton];
     [self.view bringSubviewToFront:self.submitButton];
 
 }
-
-
 
 - (UIButton *)wallOpusBtn:(WallOpus *)wallOpus
 {
@@ -98,7 +98,15 @@
     PBRect *pbRect = [DeviceDetection isIPAD] ? frame.iPadRect : frame.iPhoneRect;
     CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
     UIButton *button = [[[UIButton alloc] initWithFrame:rect] autorelease];
+    
+    UIImageView *frameImageView  = [[[UIImageView alloc] initWithFrame:button.bounds] autorelease];
     UIImage *image = [UIImage imageWithContentsOfFile:[[[FrameManager sharedFrameManager] frameWithFrameId:frame.frameId] image]];
+    if (image == nil) {
+        [frameImageView setImageWithURL:[NSURL URLWithString:frame.imageUrl]];
+    }else{
+        [frameImageView setImage:image];
+    }
+    
     [button setImage:image forState:UIControlStateNormal];
     button.tag = wallOpus.frameIdOnWall;
     
@@ -148,8 +156,6 @@
     }
 }
 
-
-
 - (void)didController:(OpusSelectController *)contorller clickOpus:(DrawFeed *)opus
 {
     [contorller.navigationController popViewControllerAnimated:YES];
@@ -162,7 +168,6 @@
     [contorller.navigationController popViewControllerAnimated:YES];
     [_wall replaceWallOpus:self.wallOpusOrder withFrame:frame];
     [self updateWallOpuses];
-
 }
 
 
@@ -196,19 +201,21 @@
 
 - (void)didImageSelected:(UIImage*)image
 {
-    [_wall setBgImage:image];
-    [self updateWallView];
+    _bgImage = image;
+    self.bgImageView.image = image;
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    [[WallService sharedWallService] createWall:[_wall toPBWall] bgImage:[_wall bgImage] delegate:self];
+    [[WallService sharedWallService] createWall:[_wall toPBWall] bgImage:_bgImage delegate:self];
 }
 
 - (void)didCreateWall:(int)resultCode wall:(PBWall *)wall
 {
-    PPDebug(@"didCreateWall: %d", resultCode);
-    PPDebug(@"wallId: %@", wall.wallId);
-    [_wall setWallId:wall.wallId];
+    if (resultCode == 0) {
+        [_wall setWallId:wall.wallId];
+        [_wall setBgImage:wall.layout.bgImage];
+        self.bgImage = nil;
+    }
 }
 
 @end
