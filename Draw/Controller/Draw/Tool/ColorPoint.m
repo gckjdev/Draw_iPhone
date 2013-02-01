@@ -29,6 +29,7 @@
 
 - (void)dealloc
 {
+    self.delegate = nil;
     PPRelease(_color);
     PPRelease(_selectedPointColor);
     [super dealloc];

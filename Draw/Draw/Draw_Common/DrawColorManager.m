@@ -23,7 +23,7 @@
 @end
 
 #define RECENT_COLOR_LIST_KEY @"RecentColorList"
-#define DEFAULT_COLOR_COUNT 10
+#define DEFAULT_COLOR_COUNT 20
 #define CONST_COLOR_COUNT 2
 
 @implementation DrawColorManager
@@ -31,37 +31,49 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
 
+- (NSArray *)defaultColorList
+{
+    NSMutableArray *defaultList = [NSMutableArray array];
+    DrawColor *color = [DrawColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:127/255.0 green:130/255.0 blue:133/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:252/255.0 green:0/255.0 blue:7/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:0/255.0 green:19/255.0 blue:255/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:255/255.0 green:254/255.0 blue:10/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:241/255.0 green:0/255.0 blue:110/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    color = [DrawColor colorWithRed:46/255.0 green:201/255.0 blue:254/255.0 alpha:1.0];
+    [defaultList addObject:color];
+    
+    color = [DrawColor greenColor];
+    [defaultList addObject:color];
+    color = [DrawColor orangeColor];
+    [defaultList addObject:color];
+    return defaultList;
+}
+
 - (void)updateColorList
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:RECENT_COLOR_LIST_KEY];
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if ([array count] < DEFAULT_COLOR_COUNT) {
-        array = nil;
         self.colorList = [NSMutableArray arrayWithCapacity:DEFAULT_COLOR_COUNT];
-
-        DrawColor *color = [DrawColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:127/255.0 green:130/255.0 blue:133/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:252/255.0 green:0/255.0 blue:7/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:0/255.0 green:19/255.0 blue:255/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:255/255.0 green:254/255.0 blue:10/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:241/255.0 green:0/255.0 blue:110/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        color = [DrawColor colorWithRed:46/255.0 green:201/255.0 blue:254/255.0 alpha:1.0];
-        [self.colorList addObject:color];
-        
-        //TODO add two more colors
-        color = [DrawColor greenColor];
-        [self.colorList addObject:color];
-        color = [DrawColor orangeColor];
-        [self.colorList addObject:color];
+        [self.colorList addObjectsFromArray:array];
+        NSArray *defaultList = [self defaultColorList];
+        NSInteger defaultCount = [defaultList count];
+        NSInteger i = 0;
+        while ([self.colorList count] < DEFAULT_COLOR_COUNT) {
+            id obj = [defaultList objectAtIndex:i];
+            [self.colorList addObject:obj];
+            i = (i+1) % defaultCount;
+        }
     }else{
         self.colorList = [NSMutableArray arrayWithArray:array];
     }

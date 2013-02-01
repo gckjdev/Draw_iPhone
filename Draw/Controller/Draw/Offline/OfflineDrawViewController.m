@@ -176,7 +176,9 @@
 - (void)dealloc
 {
     [self stopRecovery];
-    
+
+    self.delegate = nil;
+    PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_word);

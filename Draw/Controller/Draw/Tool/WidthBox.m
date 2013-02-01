@@ -92,7 +92,11 @@
     }
 }
 
-
+- (void)dealloc{
+    PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
+    [super dealloc];
+}
 
 
 @end

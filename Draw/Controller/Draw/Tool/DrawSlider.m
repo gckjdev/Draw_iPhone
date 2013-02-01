@@ -52,6 +52,8 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
     PPRelease(_bgImage);
     PPRelease(_pointImage);
     PPRelease(loadColor);

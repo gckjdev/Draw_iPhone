@@ -663,6 +663,8 @@
 
 - (void)dealloc {
     
+    PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
     [drawColorManager syncRecentList];
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
