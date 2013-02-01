@@ -8,7 +8,6 @@
 
 #import "DiceImageManager.h"
 #import "UIImageUtil.h"
-#import "HKGirlFontLabel.h"
 #import "LocaleUtils.h"
 #import "PPResourceService.h"
 

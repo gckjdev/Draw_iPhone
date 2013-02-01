@@ -8,7 +8,6 @@
 
 #import "DiceSelectedView.h"
 #import "UIViewUtils.h"
-#import "FontButton.h"
 #import "DiceImageManager.h"
 #import "PPDebug.h"
 #import "DiceFontManager.h"
@@ -144,23 +143,24 @@
 {
     for (UIView *pageView in [self.scrollView subviews]) {
         for (UIView *view in [pageView subviews]) {
-            if ([view isKindOfClass:[FontButton class]]) {
-                FontButton *button = (FontButton *)view;
+            if ([view isKindOfClass:[UIButton class]]) {
+                UIButton *button = (UIButton *)view;
                 button.enabled = NO;
-                button.fontLable.textColor = [UIColor grayColor];
+                [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
 
             }
         }
     }
 }
+
 - (void)enableUserInteraction
 {
     for (UIView *pageView in [self.scrollView subviews]) {
         for (UIView *view in [pageView subviews]) {
-            if ([view isKindOfClass:[FontButton class]]) {
-                FontButton *button = (FontButton *)view;
+            if ([view isKindOfClass:[UIButton class]]) {
+                UIButton *button = (UIButton *)view;
                 button.enabled = YES;
-                button.fontLable.textColor = [UIColor blackColor];
+                [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             }
         }
     }
@@ -254,10 +254,9 @@
 
 - (UIButton *)diceCountSelectedButtonWithFrame:(CGRect)frame num:(int)num
 {
-    FontButton *fontButton = [[[FontButton alloc] initWithFrame:frame 
-                                                       fontName:[[DiceFontManager defaultManager] fontName]
-                                                      pointSize:SIZE_FONT_COUNT_BUTTON] autorelease];
-    fontButton.fontLable.text = [NSString stringWithFormat:@"%d", num];
+    UIButton *fontButton = [[[UIButton alloc] initWithFrame:frame] autorelease];
+    [fontButton.titleLabel setFont:[UIFont systemFontOfSize:SIZE_FONT_COUNT_BUTTON]];
+    [fontButton setTitle:[NSString stringWithFormat:@"%d", num] forState:UIControlStateNormal] ;
     fontButton.tag = num;
     
     [fontButton addTarget:self 
@@ -267,7 +266,7 @@
     [fontButton setBackgroundImage:[[DiceImageManager defaultManager] diceCountSelectedBtnBgImage] forState:UIControlStateSelected];
     
     fontButton.enabled = NO;
-    fontButton.fontLable.textColor = [UIColor grayColor];
+    [fontButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         
     return fontButton;
 }

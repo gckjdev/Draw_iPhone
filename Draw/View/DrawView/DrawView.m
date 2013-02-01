@@ -172,12 +172,12 @@ typedef enum {
         int green = data[offset++];
         int blue = data[offset++];
 
-        PPDebug(@"offset:%d, alpha = %d, red = %d, green = %d, blue = %d",offset, alpha, red, green, blue);
+//        PPDebug(@"offset:%d, alpha = %d, red = %d, green = %d, blue = %d",offset, alpha, red, green, blue);
         color = [DrawColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
     }
     // Free image data memory for the context
     
-    if (data) { free(data); }
+//    if (data) { free(data); }
     return color;
 }
 

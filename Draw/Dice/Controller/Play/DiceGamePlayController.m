@@ -241,7 +241,7 @@
     [UIApplication sharedApplication].idleTimerDisabled=YES;
     self.popupView = [[[DicePopupViewManager alloc] init] autorelease];
     self.wildsLabel.text = NSLS(@"kDiceWilds");
-    self.wildsFlagButton.fontLable.text = NSLS(@"kDiceWilds");
+    [self.wildsFlagButton setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
     self.itemsBoxButton.enabled = NO;
 
     self.gameBeginNoteLabel.hidden = YES;
@@ -278,7 +278,7 @@
     [self disableAllDiceOperationButtons];
     [self hideAllBellViews];
     
-    self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+    [self.openDiceButton setTitle:NSLS(@"kOpenDice") forState:UIControlStateNormal];
     self.wildsFlagButton.hidden = YES;
     self.resultHolderView.hidden = YES;
     self.openDiceButton.hidden = YES;
@@ -999,7 +999,7 @@
         
     if ([_userManager isMe:currentPlayUserId])
     {                        
-        self.openDiceButton.fontLable.text = NSLS(@"kOpenDice");
+        [self.openDiceButton setTitle:NSLS(@"kOpenDice") forState:UIControlStateNormal];
         
         [self robotMakeDecitions];
 
@@ -1016,7 +1016,7 @@
         [_popupView updateItemListView];
 
     }else {
-        self.openDiceButton.fontLable.text = NSLS(@"kScrambleToOpenDice");
+        [self.openDiceButton setTitle:NSLS(@"kScrambleToOpenDice") forState:UIControlStateNormal];
         
         // 不是自己的回合，把下面的按钮全部disable.
         self.wildsButton.enabled = NO;
@@ -1591,9 +1591,9 @@
         [_diceRobotDecision.contentView addSubview:view];
         [view setCenter:CGPointMake(_diceRobotDecision.contentView.frame.size.width/2, _diceRobotDecision.contentView.frame.size.height/2)];
         if (_robotManager.result.isWild) {
-            FontButton* btn = [[[FontButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
+            UIButton* btn = [[[UIButton alloc] initWithFrame:self.wildsFlagButton.frame] autorelease];
             [btn setBackgroundImage:[UIImage imageNamed:@"zhai_bg.png"] forState:UIControlStateNormal];
-            [btn.fontLable setText:NSLS(@"kDiceWilds")];
+            [btn.titleLabel setText:NSLS(@"kDiceWilds")];
             [btn setTitle:NSLS(@"kDiceWilds") forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [_diceRobotDecision.contentView addSubview:btn];
@@ -1602,8 +1602,8 @@
         }
         
     }
-    [_diceRobotDecision.oKButton.fontLable setText:NSLS(@"kDoItLikeThis")];
-    [_diceRobotDecision.backButton.fontLable setText:NSLS(@"kThinkMyself")];
+    [_diceRobotDecision.oKButton.titleLabel setText:NSLS(@"kDoItLikeThis")];
+    [_diceRobotDecision.backButton.titleLabel setText:NSLS(@"kThinkMyself")];
     [_diceRobotDecision showInView:self.view];
 
 }

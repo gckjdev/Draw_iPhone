@@ -8,7 +8,6 @@
 
 #import "ZJHAvatarView.h"
 #import "GameBasic.pb.h"
-#import "HKGirlFontLabel.h"
 #import "ZJHImageManager.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"

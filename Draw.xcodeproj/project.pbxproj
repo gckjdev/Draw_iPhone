@@ -199,7 +199,6 @@
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		A4AC51F915C911750041DC86 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
 		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
@@ -551,7 +550,6 @@
 		C298ED27165603ED000B5753 /* MoneyTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C298ED23165603ED000B5753 /* MoneyTreeView.m */; };
 		C298ED28165603ED000B5753 /* MoneyTreeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED24165603ED000B5753 /* MoneyTreeView.xib */; };
 		C298ED29165603ED000B5753 /* MoneyTreeView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C298ED25165603ED000B5753 /* MoneyTreeView~ipad.xib */; };
-		C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		C29B5F541642749900EF4AB4 /* DealerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5F531642749900EF4AB4 /* DealerView.m */; };
 		C29B5F961644C74500EF4AB4 /* ZJHAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */; };
 		C29B5FB81644CAAD00EF4AB4 /* ZJHMyAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29B5FB71644CAAD00EF4AB4 /* ZJHMyAvatarView.xib */; };
@@ -1289,9 +1287,7 @@
 		CA16BA9A1682FAD900F81B47 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA16BA9B1682FAD900F81B47 /* DiceGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */; };
 		CA16BA9C1682FAD900F81B47 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		CA16BA9D1682FAD900F81B47 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		CA16BA9E1682FAD900F81B47 /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
-		CA16BA9F1682FAD900F81B47 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		CA16BAA01682FAD900F81B47 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		CA16BAA11682FAD900F81B47 /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CA16BAA21682FAD900F81B47 /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
@@ -1537,12 +1533,6 @@
 		CA16BB951682FAD900F81B47 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CA16BB961682FAD900F81B47 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		CA16BB971682FAD900F81B47 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB616606FC100441D77 /* DACircularProgressView.m */; };
-		CA16BB981682FAD900F81B47 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */; };
-		CA16BB991682FAD900F81B47 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBB16606FC100441D77 /* FontLabel.m */; };
-		CA16BB9A1682FAD900F81B47 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */; };
-		CA16BB9B1682FAD900F81B47 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBF16606FC100441D77 /* FontManager.m */; };
-		CA16BB9C1682FAD900F81B47 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC116606FC100441D77 /* ZAttributedString.m */; };
-		CA16BB9D1682FAD900F81B47 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC416606FC100441D77 /* ZFont.m */; };
 		CA16BB9E1682FAD900F81B47 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
 		CA16BB9F1682FAD900F81B47 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CA16BBA01682FAD900F81B47 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
@@ -2440,9 +2430,7 @@
 		CA16C0201682FAE300F81B47 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA16C0211682FAE300F81B47 /* DiceGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */; };
 		CA16C0221682FAE300F81B47 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		CA16C0231682FAE300F81B47 /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		CA16C0241682FAE300F81B47 /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
-		CA16C0251682FAE300F81B47 /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		CA16C0261682FAE300F81B47 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		CA16C0271682FAE300F81B47 /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CA16C0281682FAE300F81B47 /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
@@ -2688,12 +2676,6 @@
 		CA16C11B1682FAE300F81B47 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CA16C11C1682FAE300F81B47 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		CA16C11D1682FAE300F81B47 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB616606FC100441D77 /* DACircularProgressView.m */; };
-		CA16C11E1682FAE300F81B47 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */; };
-		CA16C11F1682FAE300F81B47 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBB16606FC100441D77 /* FontLabel.m */; };
-		CA16C1201682FAE300F81B47 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */; };
-		CA16C1211682FAE300F81B47 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBF16606FC100441D77 /* FontManager.m */; };
-		CA16C1221682FAE300F81B47 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC116606FC100441D77 /* ZAttributedString.m */; };
-		CA16C1231682FAE300F81B47 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC416606FC100441D77 /* ZFont.m */; };
 		CA16C1241682FAE300F81B47 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
 		CA16C1251682FAE300F81B47 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CA16C1261682FAE300F81B47 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
@@ -5191,9 +5173,7 @@
 		CAB5C82E16994F0200A4CE3B /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CAB5C82F16994F0200A4CE3B /* DiceGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5815C7C5D3007ACFB9 /* DiceGameSession.m */; };
 		CAB5C83016994F0200A4CE3B /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		CAB5C83116994F0200A4CE3B /* FontButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51F815C911750041DC86 /* FontButton.m */; };
 		CAB5C83216994F0200A4CE3B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
-		CAB5C83316994F0200A4CE3B /* HKGirlFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */; };
 		CAB5C83416994F0200A4CE3B /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		CAB5C83516994F0200A4CE3B /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CAB5C83616994F0200A4CE3B /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
@@ -5439,12 +5419,6 @@
 		CAB5C92916994F0200A4CE3B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAB5C92A16994F0200A4CE3B /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		CAB5C92B16994F0200A4CE3B /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB616606FC100441D77 /* DACircularProgressView.m */; };
-		CAB5C92C16994F0200A4CE3B /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */; };
-		CAB5C92D16994F0200A4CE3B /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBB16606FC100441D77 /* FontLabel.m */; };
-		CAB5C92E16994F0200A4CE3B /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */; };
-		CAB5C92F16994F0200A4CE3B /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBF16606FC100441D77 /* FontManager.m */; };
-		CAB5C93016994F0200A4CE3B /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC116606FC100441D77 /* ZAttributedString.m */; };
-		CAB5C93116994F0200A4CE3B /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC416606FC100441D77 /* ZFont.m */; };
 		CAB5C93216994F0200A4CE3B /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
 		CAB5C93316994F0200A4CE3B /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAB5C93416994F0200A4CE3B /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
@@ -6585,12 +6559,6 @@
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
 		CAFEFECF16606FC200441D77 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB616606FC100441D77 /* DACircularProgressView.m */; };
-		CAFEFED016606FC200441D77 /* CustomLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */; };
-		CAFEFED116606FC200441D77 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBB16606FC100441D77 /* FontLabel.m */; };
-		CAFEFED216606FC200441D77 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */; };
-		CAFEFED316606FC200441D77 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDBF16606FC100441D77 /* FontManager.m */; };
-		CAFEFED416606FC200441D77 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC116606FC100441D77 /* ZAttributedString.m */; };
-		CAFEFED516606FC200441D77 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDC416606FC100441D77 /* ZFont.m */; };
 		CAFEFEE116606FC200441D77 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
 		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
@@ -6983,8 +6951,6 @@
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
-		A4AC51F715C911750041DC86 /* FontButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontButton.h; sourceTree = "<group>"; };
-		A4AC51F815C911750041DC86 /* FontButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontButton.m; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
 		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
@@ -7314,8 +7280,6 @@
 		C298ED23165603ED000B5753 /* MoneyTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTreeView.m; sourceTree = "<group>"; };
 		C298ED24165603ED000B5753 /* MoneyTreeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyTreeView.xib; sourceTree = "<group>"; };
 		C298ED25165603ED000B5753 /* MoneyTreeView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MoneyTreeView~ipad.xib"; sourceTree = "<group>"; };
-		C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HKGirlFontLabel.h; path = FontLabel/HKGirlFontLabel.h; sourceTree = "<group>"; };
-		C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HKGirlFontLabel.m; path = FontLabel/HKGirlFontLabel.m; sourceTree = "<group>"; };
 		C29B5F521642749900EF4AB4 /* DealerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealerView.h; sourceTree = "<group>"; };
 		C29B5F531642749900EF4AB4 /* DealerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealerView.m; sourceTree = "<group>"; };
 		C29B5F951644C74500EF4AB4 /* ZJHAvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHAvatarView.xib; sourceTree = "<group>"; };
@@ -9830,19 +9794,6 @@
 		CAFEFD2716606FC100441D77 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		CAFEFDB516606FC100441D77 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		CAFEFDB616606FC100441D77 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
-		CAFEFDB816606FC100441D77 /* CustomLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabelUtil.h; sourceTree = "<group>"; };
-		CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabelUtil.m; sourceTree = "<group>"; };
-		CAFEFDBA16606FC100441D77 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
-		CAFEFDBB16606FC100441D77 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
-		CAFEFDBC16606FC100441D77 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
-		CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabelStringDrawing.m; sourceTree = "<group>"; };
-		CAFEFDBE16606FC100441D77 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
-		CAFEFDBF16606FC100441D77 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontManager.m; sourceTree = "<group>"; };
-		CAFEFDC016606FC100441D77 /* ZAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedString.h; sourceTree = "<group>"; };
-		CAFEFDC116606FC100441D77 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAttributedString.m; sourceTree = "<group>"; };
-		CAFEFDC216606FC100441D77 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
-		CAFEFDC316606FC100441D77 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
-		CAFEFDC416606FC100441D77 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		CAFEFDDB16606FC100441D77 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
 		CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		CAFEFDDD16606FC100441D77 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
@@ -10461,8 +10412,6 @@
 		A45E8CD615C77F960089E240 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
-				A4AC51F715C911750041DC86 /* FontButton.h */,
-				A4AC51F815C911750041DC86 /* FontButton.m */,
 				A45E8CD715C77F960089E240 /* DiceView.h */,
 				A45E8CD815C77F960089E240 /* DiceView.m */,
 				C297077F16099DB600BE0789 /* CommonSearchView.h */,
@@ -10711,7 +10660,6 @@
 				A42C528215E756CF001D8208 /* DiceHelpView */,
 				C296871F15DCE03F006968BA /* DiceItemInfoView */,
 				C296872315DCE03F006968BA /* DiceUserInfoView */,
-				C29A300815CA176400BD0B73 /* FontLabel */,
 				A45E8CD615C77F960089E240 /* CommonView */,
 				A45E8CD215C77F8E0089E240 /* AvatarView */,
 				A44DDF3B15C64482005609F6 /* DiceSelectedView */,
@@ -11326,15 +11274,6 @@
 				C2974D5A168302DE00E012FC /* new_bulletin@2x.png */,
 			);
 			path = Bulletin;
-			sourceTree = "<group>";
-		};
-		C29A300815CA176400BD0B73 /* FontLabel */ = {
-			isa = PBXGroup;
-			children = (
-				C29A300915CA17FE00BD0B73 /* HKGirlFontLabel.h */,
-				C29A300A15CA17FE00BD0B73 /* HKGirlFontLabel.m */,
-			);
-			name = FontLabel;
 			sourceTree = "<group>";
 		};
 		C2A3CC04161590FF00663271 /* Core-Utils-Animation */ = {
@@ -16799,7 +16738,6 @@
 				CA98889016A6B7E10050AC78 /* MWPhotoBrowser */,
 				CAC448FC168C4DCC004441EB /* ILColorPicker */,
 				CAFEFDB416606FC100441D77 /* DACircularProgress */,
-				CAFEFDB716606FC100441D77 /* FontLabel */,
 				CAFEFDDA16606FC100441D77 /* UIGlossyButton */,
 			);
 			path = "Component-View";
@@ -16812,26 +16750,6 @@
 				CAFEFDB616606FC100441D77 /* DACircularProgressView.m */,
 			);
 			path = DACircularProgress;
-			sourceTree = "<group>";
-		};
-		CAFEFDB716606FC100441D77 /* FontLabel */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEFDB816606FC100441D77 /* CustomLabelUtil.h */,
-				CAFEFDB916606FC100441D77 /* CustomLabelUtil.m */,
-				CAFEFDBA16606FC100441D77 /* FontLabel.h */,
-				CAFEFDBB16606FC100441D77 /* FontLabel.m */,
-				CAFEFDBC16606FC100441D77 /* FontLabelStringDrawing.h */,
-				CAFEFDBD16606FC100441D77 /* FontLabelStringDrawing.m */,
-				CAFEFDBE16606FC100441D77 /* FontManager.h */,
-				CAFEFDBF16606FC100441D77 /* FontManager.m */,
-				CAFEFDC016606FC100441D77 /* ZAttributedString.h */,
-				CAFEFDC116606FC100441D77 /* ZAttributedString.m */,
-				CAFEFDC216606FC100441D77 /* ZAttributedStringPrivate.h */,
-				CAFEFDC316606FC100441D77 /* ZFont.h */,
-				CAFEFDC416606FC100441D77 /* ZFont.m */,
-			);
-			path = FontLabel;
 			sourceTree = "<group>";
 		};
 		CAFEFDDA16606FC100441D77 /* UIGlossyButton */ = {
@@ -21234,9 +21152,7 @@
 				CA16BA9A1682FAD900F81B47 /* CommonGameSession.m in Sources */,
 				CA16BA9B1682FAD900F81B47 /* DiceGameSession.m in Sources */,
 				CA16BA9C1682FAD900F81B47 /* DiceSelectedView.m in Sources */,
-				CA16BA9D1682FAD900F81B47 /* FontButton.m in Sources */,
 				CA16BA9E1682FAD900F81B47 /* SlideImageView.m in Sources */,
-				CA16BA9F1682FAD900F81B47 /* HKGirlFontLabel.m in Sources */,
 				CA16BAA01682FAD900F81B47 /* DicesResultView.m in Sources */,
 				CA16BAA11682FAD900F81B47 /* FeedClasses.m in Sources */,
 				CA16BAA21682FAD900F81B47 /* DrawFeed.m in Sources */,
@@ -21482,12 +21398,6 @@
 				CA16BB951682FAD900F81B47 /* zip.c in Sources */,
 				CA16BB961682FAD900F81B47 /* SSZipArchive.m in Sources */,
 				CA16BB971682FAD900F81B47 /* DACircularProgressView.m in Sources */,
-				CA16BB981682FAD900F81B47 /* CustomLabelUtil.m in Sources */,
-				CA16BB991682FAD900F81B47 /* FontLabel.m in Sources */,
-				CA16BB9A1682FAD900F81B47 /* FontLabelStringDrawing.m in Sources */,
-				CA16BB9B1682FAD900F81B47 /* FontManager.m in Sources */,
-				CA16BB9C1682FAD900F81B47 /* ZAttributedString.m in Sources */,
-				CA16BB9D1682FAD900F81B47 /* ZFont.m in Sources */,
 				CA16BB9E1682FAD900F81B47 /* UIGlossyButton.m in Sources */,
 				CA16BB9F1682FAD900F81B47 /* UIView+LayerEffects.m in Sources */,
 				CA16BBA01682FAD900F81B47 /* DrawColor.m in Sources */,
@@ -21941,9 +21851,7 @@
 				CA16C0201682FAE300F81B47 /* CommonGameSession.m in Sources */,
 				CA16C0211682FAE300F81B47 /* DiceGameSession.m in Sources */,
 				CA16C0221682FAE300F81B47 /* DiceSelectedView.m in Sources */,
-				CA16C0231682FAE300F81B47 /* FontButton.m in Sources */,
 				CA16C0241682FAE300F81B47 /* SlideImageView.m in Sources */,
-				CA16C0251682FAE300F81B47 /* HKGirlFontLabel.m in Sources */,
 				CA16C0261682FAE300F81B47 /* DicesResultView.m in Sources */,
 				CA16C0271682FAE300F81B47 /* FeedClasses.m in Sources */,
 				CA16C0281682FAE300F81B47 /* DrawFeed.m in Sources */,
@@ -22189,12 +22097,6 @@
 				CA16C11B1682FAE300F81B47 /* zip.c in Sources */,
 				CA16C11C1682FAE300F81B47 /* SSZipArchive.m in Sources */,
 				CA16C11D1682FAE300F81B47 /* DACircularProgressView.m in Sources */,
-				CA16C11E1682FAE300F81B47 /* CustomLabelUtil.m in Sources */,
-				CA16C11F1682FAE300F81B47 /* FontLabel.m in Sources */,
-				CA16C1201682FAE300F81B47 /* FontLabelStringDrawing.m in Sources */,
-				CA16C1211682FAE300F81B47 /* FontManager.m in Sources */,
-				CA16C1221682FAE300F81B47 /* ZAttributedString.m in Sources */,
-				CA16C1231682FAE300F81B47 /* ZFont.m in Sources */,
 				CA16C1241682FAE300F81B47 /* UIGlossyButton.m in Sources */,
 				CA16C1251682FAE300F81B47 /* UIView+LayerEffects.m in Sources */,
 				CA16C1261682FAE300F81B47 /* DrawColor.m in Sources */,
@@ -22645,9 +22547,7 @@
 				CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */,
 				CA963A5915C7C5D4007ACFB9 /* DiceGameSession.m in Sources */,
 				A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */,
-				A4AC51F915C911750041DC86 /* FontButton.m in Sources */,
 				A41A665915C921DA00066E9B /* SlideImageView.m in Sources */,
-				C29A300B15CA17FE00BD0B73 /* HKGirlFontLabel.m in Sources */,
 				EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */,
 				CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */,
 				CA18D40215CFB230001B421A /* DrawFeed.m in Sources */,
@@ -22893,12 +22793,6 @@
 				CAFEFE8316606FC200441D77 /* zip.c in Sources */,
 				CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */,
 				CAFEFECF16606FC200441D77 /* DACircularProgressView.m in Sources */,
-				CAFEFED016606FC200441D77 /* CustomLabelUtil.m in Sources */,
-				CAFEFED116606FC200441D77 /* FontLabel.m in Sources */,
-				CAFEFED216606FC200441D77 /* FontLabelStringDrawing.m in Sources */,
-				CAFEFED316606FC200441D77 /* FontManager.m in Sources */,
-				CAFEFED416606FC200441D77 /* ZAttributedString.m in Sources */,
-				CAFEFED516606FC200441D77 /* ZFont.m in Sources */,
 				CAFEFEE116606FC200441D77 /* UIGlossyButton.m in Sources */,
 				CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
@@ -23362,9 +23256,7 @@
 				CAB5C82E16994F0200A4CE3B /* CommonGameSession.m in Sources */,
 				CAB5C82F16994F0200A4CE3B /* DiceGameSession.m in Sources */,
 				CAB5C83016994F0200A4CE3B /* DiceSelectedView.m in Sources */,
-				CAB5C83116994F0200A4CE3B /* FontButton.m in Sources */,
 				CAB5C83216994F0200A4CE3B /* SlideImageView.m in Sources */,
-				CAB5C83316994F0200A4CE3B /* HKGirlFontLabel.m in Sources */,
 				CAB5C83416994F0200A4CE3B /* DicesResultView.m in Sources */,
 				CAB5C83516994F0200A4CE3B /* FeedClasses.m in Sources */,
 				CAB5C83616994F0200A4CE3B /* DrawFeed.m in Sources */,
@@ -23610,12 +23502,6 @@
 				CAB5C92916994F0200A4CE3B /* zip.c in Sources */,
 				CAB5C92A16994F0200A4CE3B /* SSZipArchive.m in Sources */,
 				CAB5C92B16994F0200A4CE3B /* DACircularProgressView.m in Sources */,
-				CAB5C92C16994F0200A4CE3B /* CustomLabelUtil.m in Sources */,
-				CAB5C92D16994F0200A4CE3B /* FontLabel.m in Sources */,
-				CAB5C92E16994F0200A4CE3B /* FontLabelStringDrawing.m in Sources */,
-				CAB5C92F16994F0200A4CE3B /* FontManager.m in Sources */,
-				CAB5C93016994F0200A4CE3B /* ZAttributedString.m in Sources */,
-				CAB5C93116994F0200A4CE3B /* ZFont.m in Sources */,
 				CAB5C93216994F0200A4CE3B /* UIGlossyButton.m in Sources */,
 				CAB5C93316994F0200A4CE3B /* UIView+LayerEffects.m in Sources */,
 				CAB5C93416994F0200A4CE3B /* DrawColor.m in Sources */,
