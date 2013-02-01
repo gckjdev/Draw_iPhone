@@ -279,28 +279,26 @@ static FeedService *_staticFeedService = nil;
 {
     
     FeedManager *manager = [FeedManager defaultManager];
-    PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
-    if (pbFeed != nil) {
-        PPDebug(@"<getFeedByFeedId> load local data, feedId = %@",feedId);
-        DrawFeed *feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-        if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
-            [delegate didGetFeed:feed
-                      resultCode:0
-                       fromCache:YES];
-        }
-        return;
-    }
 
     NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
     [queue cancelAllOperations];
 
     [queue addOperationWithBlock:^{
         
-        NSInteger resultCode = 0;
+        PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
         DrawFeed *feed = nil;
-        PBFeed *pbFeed = nil;
+        BOOL fromCache = NO;
+
+        NSInteger resultCode = 0;
+        
+        if (pbFeed != nil) {
+            PPDebug(@"<getFeedByFeedId> load local data, feedId = %@",feedId);
+            fromCache = YES;
+            feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+        }
+        else{
         //if local data is nil, load data from remote service
-        if (pbFeed == nil) {
+
             PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
             NSString* userId = [[UserManager defaultManager] userId];
             
@@ -315,7 +313,6 @@ static FeedService *_staticFeedService = nil;
                 resultCode = [response resultCode];
                 
                 if (resultCode == ERROR_SUCCESS) {
-                    
                     NSArray *list = [response feedList];
                     pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                     
@@ -333,7 +330,7 @@ static FeedService *_staticFeedService = nil;
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
                 [delegate didGetFeed:feed
                           resultCode:resultCode
-                           fromCache:NO];
+                           fromCache:fromCache];
             }
         });
 

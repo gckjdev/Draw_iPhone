@@ -14,7 +14,7 @@
 
 #define WIDTH VALUE(26.0)
 #define HEIGHT VALUE(27.0)
-#define CIRCLE_WIDTH VALUE(23.0)
+#define CIRCLE_WIDTH VALUE(22.0)
 #define SELECTED_CIRCLE_WIDTH VALUE(8.0)
 
 @interface ColorPoint()
@@ -75,9 +75,9 @@
     
     CGContextSetFillColorWithColor(context, _color.CGColor);
     
-    CGFloat edge = (WIDTH - CIRCLE_WIDTH)/2.0;
+    CGFloat edge = (WIDTH - CIRCLE_WIDTH)/3;
     CGSize offset = CGSizeMake(edge, edge);
-    CGContextSetShadowWithColor(context, offset, edge/2.0, [UIColor blackColor].CGColor);
+    CGContextSetShadowWithColor(context, offset, edge/2.2, [UIColor blackColor].CGColor);
     CGRect circle = CGRectMake(edge, edge, CIRCLE_WIDTH, CIRCLE_WIDTH);
     CGContextFillEllipseInRect(context, circle);
     

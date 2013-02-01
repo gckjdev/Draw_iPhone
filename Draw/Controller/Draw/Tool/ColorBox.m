@@ -11,7 +11,7 @@
 #import "DrawColorManager.h"
 
 #define VALUE(x) (ISIPAD?(2*x):x)
-#define SPACE_POINT_POINT VALUE(3.7)
+#define SPACE_POINT_POINT (ISIPAD ? 7.0  : 3.65)
 #define CELL_HEIGHT VALUE(35)
 #define DISPLAY_MAX_ROW 5
 

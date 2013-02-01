@@ -34,9 +34,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
 - (NSArray *)defaultColorList
 {
     NSMutableArray *defaultList = [NSMutableArray array];
-    DrawColor *color = [DrawColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    DrawColor *color = [DrawColor blackColor];
     [defaultList addObject:color];
-    color = [DrawColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    color = [DrawColor whiteColor];
     [defaultList addObject:color];
     color = [DrawColor colorWithRed:127/255.0 green:130/255.0 blue:133/255.0 alpha:1.0];
     [defaultList addObject:color];
@@ -63,6 +63,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:RECENT_COLOR_LIST_KEY];
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//    array = nil;
     if ([array count] < DEFAULT_COLOR_COUNT) {
         self.colorList = [NSMutableArray arrayWithCapacity:DEFAULT_COLOR_COUNT];
         [self.colorList addObjectsFromArray:array];

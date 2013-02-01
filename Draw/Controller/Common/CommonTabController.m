@@ -176,6 +176,7 @@
 
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list
 {
+    [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];   
     [self dataSourceDidFinishLoadingMoreData];
 
@@ -198,6 +199,7 @@
 }
 - (void)failLoadDataForTabID:(NSInteger)tabID
 {
+    [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];   
     [self dataSourceDidFinishLoadingMoreData];
 
