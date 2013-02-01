@@ -9,7 +9,7 @@
 #import "StrawView.h"
 
 
-#define VALUE(x) (ISIPAD ? 2.0*x : x)
+#define VALUE(x) (ISIPAD ? 2.0*x : 2.0*x)
 
 #define VIEW_SIZE VALUE(60.0)
 #define CONTENT_VIEW_SIZE VALUE(52.0)

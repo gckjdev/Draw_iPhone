@@ -63,10 +63,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:RECENT_COLOR_LIST_KEY];
     NSArray *array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    PPDebug(@"<updateColorList> saved array count = %d",[array count]);
 //    array = nil;
     if ([array count] < DEFAULT_COLOR_COUNT) {
         self.colorList = [NSMutableArray arrayWithCapacity:DEFAULT_COLOR_COUNT];
         [self.colorList addObjectsFromArray:array];
+        
+        if ([self.colorList count] != 0) {
+            id obj  = [self.colorList objectAtIndex:0];
+            PPDebug(@"%@",obj);
+        }
+        
         NSArray *defaultList = [self defaultColorList];
         NSInteger defaultCount = [defaultList count];
         NSInteger i = 0;
@@ -78,6 +85,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     }else{
         self.colorList = [NSMutableArray arrayWithArray:array];
     }
+    [self.colorList replaceObjectAtIndex:0 withObject:[DrawColor blackColor]];
+    [self.colorList replaceObjectAtIndex:1 withObject:[DrawColor whiteColor]];
 }
 
 - (void)updateBoughtColorList
