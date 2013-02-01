@@ -140,7 +140,7 @@
 //    [self loadMainMenu];
 //    [self loadBottomMenu];
     [self playBGM];
-    [self checkIn];
+//    [self checkIn]; //this checkin function is disabled.
 
 }
 

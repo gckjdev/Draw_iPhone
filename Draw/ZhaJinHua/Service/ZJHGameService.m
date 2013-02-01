@@ -106,7 +106,7 @@ static ZJHGameService *_defaultService;
 {
     [_networkClient sendBetRequest:self.userId
                          sessionId:self.session.sessionId
-                         singleBet:singleBet
+                         singleBet:MAX(singleBet, _gameState.singleBet)
                              count:[self myBetCount]
                          isAutoBet:FALSE];
 }

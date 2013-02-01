@@ -293,4 +293,13 @@
     return @"90386ecaab5c85559c569ab7c79a61e2";
 }
 
+- (UIColor*)createRoomDialogRoomNameColor
+{
+    return [UIColor whiteColor];
+}
+- (UIColor*)createRoomDialogRoomPasswordColor
+{
+    return [UIColor whiteColor];
+}
+
 @end

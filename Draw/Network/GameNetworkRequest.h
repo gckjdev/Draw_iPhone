@@ -461,10 +461,12 @@
 
 
 // for wall
+
 + (CommonNetworkOutput*)createWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
-                              data:(NSData *)data;
+                              data:(NSData *)data
+                         imageData:(NSData *)imageData;
 
 + (CommonNetworkOutput*)updateWall:(NSString *)baseURL
                              appId:(NSString *)appId

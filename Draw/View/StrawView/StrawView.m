@@ -11,12 +11,13 @@
 
 #define VALUE(x) (ISIPAD ? 2.0*x : x)
 
-#define VIEW_SIZE VALUE(50.0)
-#define CONTENT_VIEW_SIZE VALUE(44.0)
+#define VIEW_SIZE VALUE(60.0)
+#define CONTENT_VIEW_SIZE VALUE(52.0)
 #define OUT_CIRCLE_WIDTH VALUE(1)
-#define IN_CIRCLE_WIDTH VALUE(1)
-#define COLOR_CIRCLE_WIDTH VALUE(15)
-#define CIRCLE_BLUR VALUE(1)
+#define IN_CIRCLE_WIDTH 1
+#define COLOR_CIRCLE_WIDTH VALUE(18)
+#define CIRCLE_BLUR VALUE(1.5)
+#define CIRCLE_SHADOW 1
 
 @implementation StrawView
 
@@ -79,11 +80,13 @@
     //out circle
     CGContextSetStrokeColorWithColor(context, CIRCLE_LINE_COLOR);
     CGContextSetLineWidth(context, OUT_CIRCLE_WIDTH);
-    CGContextSetShadow(context, CGSizeMake(-1, 1), CIRCLE_BLUR);
+    CGContextSetShadowWithColor(context, CGSizeMake(-CIRCLE_SHADOW, CIRCLE_SHADOW), CIRCLE_BLUR, CIRCLE_LINE_COLOR);
     radius = (CONTENT_VIEW_SIZE - OUT_CIRCLE_WIDTH) / 2;
     subRect = [self subRect:rect radius:radius];
     CGContextStrokeEllipseInRect(context, subRect);
+
     
+    CGContextSetShadow(context, CGSizeZero, 0);//INNER CIRCLE WITHOUT SHADOW
     CGContextSetStrokeColorWithColor(context, CIRCLE_LINE_COLOR);
     CGContextSetLineWidth(context, IN_CIRCLE_WIDTH);
     radius = CONTENT_VIEW_SIZE/2 - COLOR_CIRCLE_WIDTH;

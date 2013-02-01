@@ -1302,6 +1302,8 @@
 {
     [[self getMyAvatarView] stopReciprocal];
     [self disableAllZJHButtons];
+    
+
     [_gameService raiseBet:chipValue];
 }
 
