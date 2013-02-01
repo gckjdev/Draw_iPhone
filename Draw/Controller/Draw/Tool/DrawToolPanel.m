@@ -20,6 +20,8 @@
 #import "Item.h"
 #import "ConfigManager.h"
 #import "AnalyticsManager.h"
+#import "WidthView.h"
+
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -56,11 +58,13 @@
 @property (retain, nonatomic) IBOutlet UIButton *palette;
 @property (retain, nonatomic) IBOutlet UIButton *eraser;
 @property (retain, nonatomic) IBOutlet UIButton *straw;
-
+@property (retain, nonatomic) WidthView *widthView;
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *palettePopTipView;
+@property (retain, nonatomic) CMPopTipView *widthBoxPopTipView;
+
 
 @property (retain, nonatomic) NSTimer *timer;
 
@@ -83,7 +87,7 @@
 
 #define LINE_MIN_WIDTH VALUE(1.0)
 #define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
-#define LINE_DEFAULT_WIDTH VALUE(3.0)
+#define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 
 #define COLOR_MIN_ALPHA 0.1
 #define COLOR_MAX_ALPHA 1.0
@@ -122,7 +126,7 @@
 {
     [popTipView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
     [popTipView setPointerSize:POP_POINTER_SIZE];
-    [self.palettePopTipView setDelegate:self];
+    [popTipView setDelegate:self];
 }
 
 - (void)updateSliders
@@ -209,6 +213,17 @@
 }
 
 
+- (void)updateWidthBox
+{
+    WidthView *view = [WidthView viewWithWidth:LINE_DEFAULT_WIDTH];
+    [view setSelected:YES];
+    view.center = self.penWidth.center;
+    [self addSubview:view];
+    [view addTarget:self action:@selector(clickWidthBox:) forControlEvents:UIControlEventTouchUpInside];
+    [self.penWidth removeFromSuperview];
+    self.widthView = view;
+}
+
 - (void)updateView
 {
     [self updateRecentColorViews];
@@ -217,13 +232,14 @@
 
     //update width and alpha
     [self updateSliders];
-    
+    [self setWidth:LINE_DEFAULT_WIDTH];
     if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
         [self.palette setSelected:YES];
     }else{
         [self.palette setSelected:NO];
     }
     [self setPenType:Pencil];
+    [self updateWidthBox];
 }
 
 
@@ -262,6 +278,10 @@
     if (self.palettePopTipView != popView) {
         [self.palettePopTipView dismissAnimated:NO];
         self.palettePopTipView = nil;
+    }
+    if (self.widthBoxPopTipView != popView) {
+        [self.widthBoxPopTipView dismissAnimated:NO];
+        self.widthBoxPopTipView = nil;
     }
 }
 
@@ -302,6 +322,19 @@
 }
 
 #pragma mark - click actions
+
+- (void)clickWidthBox:(UIControl *)widthBox
+{
+    [self handlePopTipView:_widthBoxPopTipView contentView:^UIView *{
+        WidthBox *box = [WidthBox widthBox];
+        [box setWidthSelected:self.width];
+        box.delegate = self;
+        return box;
+    } atView:widthBox setter:@selector(setWidthBoxPopTipView:)];
+    AnalyticsReport(DRAW_CLICK_WIDTH_BOX);
+}
+
+
 - (IBAction)clickUndo:(id)sender {
     [self dismissAllPopTipViews];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickUndoButton:)]) {
@@ -486,6 +519,7 @@
     if (drawSlider == self.widthSlider) {
         NSInteger intValue = value;
         self.width = intValue;
+        [self.widthView setWidth:intValue];
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectWidth:)]) {
             [self.delegate drawToolPanel:self didSelectWidth:intValue];
         }
@@ -555,6 +589,8 @@
         self.penPopTipView = nil;
     }else if(popTipView == self.colorBoxPopTipView){
         self.colorBoxPopTipView = nil;
+    }else if(popTipView == self.widthBoxPopTipView){
+        self.widthBoxPopTipView = nil;
     }
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
@@ -565,10 +601,19 @@
         self.penPopTipView = nil;
     }else if(popTipView == self.colorBoxPopTipView){
         self.colorBoxPopTipView = nil;
+    }else if(popTipView == self.widthBoxPopTipView){
+        self.widthBoxPopTipView = nil;
     }
 }
 
 
+#pragma mark - Color Box delegate
+- (void)widthBox:(WidthBox *)widthBox didSelectWidth:(CGFloat)width
+{
+    [self dismissAllPopTipViews];
+    [self.widthSlider setValue:width];
+    [self drawSlider:self.widthSlider didFinishChangeValue:width];
+}
 #pragma mark - Color Box delegate
 
 - (void)dismissColorBoxPopTipView
@@ -599,8 +644,8 @@
     DrawColor *c = [DrawColor colorWithRed:color.red green:color.green blue:color.blue alpha:1];
     PPDebug(@"<didStrawGetColor> color = %@",[c description]);
     [self handleSelectColorDelegateWithColor:c updateRecentColor:YES];
-    [self.alphaSlider setValue:1];
-    [self drawSlider:self.alphaSlider didFinishChangeValue:1];
+    [self.alphaSlider setValue:COLOR_MAX_ALPHA];
+    [self drawSlider:self.alphaSlider didFinishChangeValue:COLOR_MAX_ALPHA];
 }
 
 #pragma mark - ColorShopView Delegate
@@ -622,7 +667,7 @@
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
     PPRelease(_palettePopTipView);
-    
+    PPRelease(_widthBoxPopTipView);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
@@ -636,6 +681,7 @@
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
+    PPRelease(_widthView);
     
     [_eraser release];
     [_straw release];

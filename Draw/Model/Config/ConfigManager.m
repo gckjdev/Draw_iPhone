@@ -120,6 +120,29 @@
     return ISIPAD ? (value * 2) : value;
 }
 
++ (NSInteger)defaultPenWidth
+{
+    NSInteger value = [MobClickUtils getIntValueByKey:@"DEFAULT_PEN_WIDTH" defaultValue:6];
+    return ISIPAD ? (value * 2) : value;    
+}
+
++ (NSInteger *)penWidthList;
+{
+    static int bList[10] = {0};
+    NSString *bonusList = [MobClickUtils getStringValueByKey:@"PEN_WIDTH_LIST" defaultValue:@"1,6,12,20,32"];
+    NSArray *list = [bonusList componentsSeparatedByString:@","];
+    int i = 0;
+    for (NSInteger j = [list count] - 1; j >= 0; -- j) {
+        NSInteger value = [[list objectAtIndex:j] integerValue];
+        if ([DeviceDetection isIPAD]) {
+            value *= 2;
+        }
+        bList[i++] = value;
+    }
+    bList[i] = -1;
+    return bList;
+}
+
 /*
 + (int)getGuessRewardNormal
 {
