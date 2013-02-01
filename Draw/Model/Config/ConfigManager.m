@@ -711,4 +711,14 @@
     return [MobClickUtils getIntValueByKey:@"ONLINE_ROOM_COUNT_PER_PAGE" defaultValue:25];
 }
 
++ (int)maxWeixinImageWidth
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_WEIXIN_IMAGE_WIDTH" defaultValue:320];
+}
+
+
+// http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c79e4b0d9b30df33cb9&uid=50b4596fe4b03dc20a9e7e51
+// http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c32e4b0d9b30df33c94&uid=50b4596fe4b03dc20a9e7e51
+
+
 @end

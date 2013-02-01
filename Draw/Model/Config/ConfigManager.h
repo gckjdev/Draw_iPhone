@@ -195,5 +195,6 @@ typedef enum{
 + (int)getLevelUpAward;
 
 + (int)onlineRoomCountPerPage;
++ (int)maxWeixinImageWidth;
 
 @end

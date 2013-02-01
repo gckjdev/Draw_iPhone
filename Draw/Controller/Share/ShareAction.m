@@ -28,6 +28,8 @@
 #import "AnalyticsManager.h"
 #import "StorageManager.h"
 #import "WordManager.h"
+#import "ConfigManager.h"
+
 
 @interface ShareAction ()
 {
@@ -320,6 +322,8 @@
     [controller release];    
 }
 
+#define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])
+
 - (void)shareViaWeixin:(int)scene
 {
     if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
@@ -330,9 +334,23 @@
         message.title = _drawWord;
         UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
         UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
+        
+        
+        // compress image if it's too big, otherwize it will NOT be shared
+        UIImage *compressImage = image;
+        NSData  *shareData = nil;
+        if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
+            // compress image
+            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(MAX_WEIXIN_IMAGE_WIDTH, MAX_WEIXIN_IMAGE_WIDTH)];
+            shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
+        }
+        else{
+            shareData = [NSData dataWithContentsOfFile:_imageFilePath];
+        }
+        
         [message setThumbImage:thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        ext.imageData = [NSData dataWithContentsOfFile:_imageFilePath];
+        ext.imageData = shareData;
         
         message.mediaObject = ext;
         
