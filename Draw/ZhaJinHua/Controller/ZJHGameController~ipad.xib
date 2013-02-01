@@ -1829,20 +1829,20 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
-			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
-			<string key="zjh_bet@2x.png">{103, 60}</string>
-			<string key="zjh_button_holder_bg_ipad@2x.png">{768, 101}</string>
-			<string key="zjh_chat_button@2x.png">{60, 51}</string>
-			<string key="zjh_check_card@2x.png">{82, 60}</string>
-			<string key="zjh_compare_card@2x.png">{92, 60}</string>
-			<string key="zjh_fold_card@2x.png">{90, 60}</string>
-			<string key="zjh_game_bg_ipad@2x.jpg">{768, 1004}</string>
-			<string key="zjh_game_setting@2x.png">{72, 71}</string>
-			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
-			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
-			<string key="zjh_runaway@2x.png">{72, 72}</string>
-			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
+			<string key="zjh_auto_bet@2x.png">{16, 16}</string>
+			<string key="zjh_auto_bet_on@2x.png">{16, 16}</string>
+			<string key="zjh_bet@2x.png">{16, 16}</string>
+			<string key="zjh_button_holder_bg_ipad@2x.png">{16, 16}</string>
+			<string key="zjh_chat_button@2x.png">{16, 16}</string>
+			<string key="zjh_check_card@2x.png">{16, 16}</string>
+			<string key="zjh_compare_card@2x.png">{16, 16}</string>
+			<string key="zjh_fold_card@2x.png">{16, 16}</string>
+			<string key="zjh_game_bg_ipad@2x.jpg">{16, 16}</string>
+			<string key="zjh_game_setting@2x.png">{16, 16}</string>
+			<string key="zjh_game_total_bet_bg@2x.png">{16, 16}</string>
+			<string key="zjh_raise_bet@2x.png">{16, 16}</string>
+			<string key="zjh_runaway@2x.png">{16, 16}</string>
+			<string key="zjh_user_bet_bg@2x.png">{16, 16}</string>
 			<string key="zjh_vs.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

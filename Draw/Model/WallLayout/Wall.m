@@ -13,6 +13,7 @@
 @interface Wall ()
 {
     NSMutableArray *_wallOpuses;
+    UIImage *_bgImage;
 }
 
 @property (retain, nonatomic) PBWall *pbWall;
@@ -25,6 +26,7 @@
 {
     [_pbWall release];
     [_wallOpuses release];
+    [_bgImage release];
     [super dealloc];
 }
 
@@ -136,49 +138,6 @@
     [self setLayout:layout];
 }
 
-//- (void)replaceFrame:(int)frameId withFrame:(PBFrame *)frameReplaced
-//{
-//    NSMutableArray *frameArr = [NSMutableArray arrayWithArray:self.pbWall.layout.framesList];
-//    PBFrame *frame = [self frameWithFrameId:frameId];
-//    [frameArr removeObject:frame];
-//    
-//    PBFrame_Builder *frameBuilder = [PBFrame builderWithPrototype:frameReplaced];
-//    [frameBuilder setIPhoneRect:frame.iPhoneRect];
-//    [frameBuilder setIPadRect:frame.iPadRect];
-//    [frameBuilder setOpusIphoneRect:frame.opusIphoneRect];
-//    [frameBuilder setOpusIpadRect:frame.opusIpadRect];
-//    [frameArr addObject:[frameBuilder build]];
-//    
-//    PBLayout *layout = [[[[PBLayout builderWithPrototype:self.pbWall.layout] clearFramesList] addAllFrames:frameArr] build];
-//    [self setLayout:layout];
-//    
-//    
-//    DrawFeed *opus = [[self opusInFrame:frameId] retain];
-//    if (opus == nil) {
-//        return;
-//    }
-//    
-//    [self.wallOpusDic removeObjectForKey:@(frameId)];
-//    [self.wallOpusDic setObject:opus forKey:@(frameReplaced.frameId)];
-//    [opus release];
-//}
-
-//- (DrawFeed *)opusInFrame:(int)frameId
-//{
-//    return [_wallOpusDic objectForKey:@(frameId)];
-//}
-//
-//- (int)frameIdWithOpus:(NSString *)opusId
-//{
-//    for (NSNumber *key in _wallOpusDic) {
-//        if ([[[_wallOpusDic objectForKey:key] feedId] isEqualToString:opusId]) {
-//            return key.intValue;
-//        }
-//    }
-//    
-//    return 0;
-//}
-
 - (PBWall *)toPBWall
 {
     PBWall_Builder *builder = [[[PBWall_Builder alloc] init] autorelease];
@@ -197,6 +156,19 @@
     [builder addAllWallOpuses:pbWallOpuses];
     
     return [builder build];
+}
+
+
+- (void)setBgImage:(UIImage *)image;
+{
+    [_bgImage release];
+    _bgImage = [image retain];
+}
+
+
+- (UIImage *)bgImage
+{
+    return _bgImage;
 }
 
 @end

@@ -57,7 +57,6 @@
 + (void)startOfflineGuessDraw:(DrawFeed *)feed
                          from:(UIViewController *)viewController;
 
-//- (void)updateAllBadge;
-
 - (void)enterShareFromWeixin;
+
 @end

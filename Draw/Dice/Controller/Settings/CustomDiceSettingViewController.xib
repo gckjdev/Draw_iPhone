@@ -333,8 +333,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="dice_back@2x.png">{57, 57}</string>
-			<string key="dice_room_header@2x.png">{640, 94}</string>
+			<string key="dice_back@2x.png">{16, 16}</string>
+			<string key="dice_room_header@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
