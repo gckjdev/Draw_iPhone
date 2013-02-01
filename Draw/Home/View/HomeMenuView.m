@@ -219,6 +219,17 @@
     }
 }
 
+
+#define CENTER_DISTANCE_Y 26
+
+- (void)updateView
+{
+    if ([DeviceDetection isIPhone5] && [self isHomeMainMenu]) {
+        CGFloat y = self.center.y - CENTER_DISTANCE_Y;
+        self.badge.center = CGPointMake(self.badge.center.x, y);
+    }
+}
+
 + (id)createView:(id<HomeCommonViewDelegate>)delegate identifier:(NSString *)identifier
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
@@ -232,6 +243,14 @@
     return view;
 }
 
+- (BOOL)isHomeMainMenu
+{
+    NSInteger type = self.type;
+    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin) || (type >= HomeMenuTypeDiceStart && type < HomeMenuTypeDiceBottomBegin)) {
+        return YES;
+    }
+    return NO;
+}
 
 + (NSString *)identifierForType:(HomeMenuType)type
 {
@@ -253,6 +272,8 @@
         UIImage *image = [HomeMenuView imageForType:type];
         [menu updateIcon:image title:title type:type];
         [menu updateBadge:badge];
+        [menu setType:type];
+        [menu updateView];
         return menu;
     }
     return nil;

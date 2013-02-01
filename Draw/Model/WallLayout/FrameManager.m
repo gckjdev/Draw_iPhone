@@ -62,7 +62,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
             [arr addObject:[builder build]];
         }
         
-        _frames = [arr retain];
+        if ([arr count] > 0) {
+            _frames = [arr retain];
+
+        }
     }
     
     return _frames;

@@ -5529,6 +5529,7 @@ static PBRect* defaultPBRectInstance = nil;
 @property int32_t frameType;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* image;
+@property (retain) NSString* imageUrl;
 @property (retain) PBRect* iPhoneRect;
 @property (retain) PBRect* iPadRect;
 @property (retain) PBRect* opusIphoneRect;
@@ -5567,6 +5568,13 @@ static PBRect* defaultPBRectInstance = nil;
   hasImage_ = !!value;
 }
 @synthesize image;
+- (BOOL) hasImageUrl {
+  return !!hasImageUrl_;
+}
+- (void) setHasImageUrl:(BOOL) value {
+  hasImageUrl_ = !!value;
+}
+@synthesize imageUrl;
 - (BOOL) hasIPhoneRect {
   return !!hasIPhoneRect_;
 }
@@ -5612,6 +5620,7 @@ static PBRect* defaultPBRectInstance = nil;
 - (void) dealloc {
   self.thumbImage = nil;
   self.image = nil;
+  self.imageUrl = nil;
   self.iPhoneRect = nil;
   self.iPadRect = nil;
   self.opusIphoneRect = nil;
@@ -5624,6 +5633,7 @@ static PBRect* defaultPBRectInstance = nil;
     self.frameType = 0;
     self.thumbImage = @"";
     self.image = @"";
+    self.imageUrl = @"";
     self.iPhoneRect = [PBRect defaultInstance];
     self.iPadRect = [PBRect defaultInstance];
     self.opusIphoneRect = [PBRect defaultInstance];
@@ -5659,10 +5669,13 @@ static PBFrame* defaultPBFrameInstance = nil;
     [output writeInt32:2 value:self.frameType];
   }
   if (self.hasThumbImage) {
-    [output writeString:9 value:self.thumbImage];
+    [output writeString:8 value:self.thumbImage];
   }
   if (self.hasImage) {
-    [output writeString:10 value:self.image];
+    [output writeString:9 value:self.image];
+  }
+  if (self.hasImageUrl) {
+    [output writeString:10 value:self.imageUrl];
   }
   if (self.hasIPhoneRect) {
     [output writeMessage:11 value:self.iPhoneRect];
@@ -5698,10 +5711,13 @@ static PBFrame* defaultPBFrameInstance = nil;
     size += computeInt32Size(2, self.frameType);
   }
   if (self.hasThumbImage) {
-    size += computeStringSize(9, self.thumbImage);
+    size += computeStringSize(8, self.thumbImage);
   }
   if (self.hasImage) {
-    size += computeStringSize(10, self.image);
+    size += computeStringSize(9, self.image);
+  }
+  if (self.hasImageUrl) {
+    size += computeStringSize(10, self.imageUrl);
   }
   if (self.hasIPhoneRect) {
     size += computeMessageSize(11, self.iPhoneRect);
@@ -5808,6 +5824,9 @@ static PBFrame* defaultPBFrameInstance = nil;
   if (other.hasImage) {
     [self setImage:other.image];
   }
+  if (other.hasImageUrl) {
+    [self setImageUrl:other.imageUrl];
+  }
   if (other.hasIPhoneRect) {
     [self mergeIPhoneRect:other.iPhoneRect];
   }
@@ -5855,12 +5874,16 @@ static PBFrame* defaultPBFrameInstance = nil;
         [self setFrameType:[input readInt32]];
         break;
       }
-      case 74: {
+      case 66: {
         [self setThumbImage:[input readString]];
         break;
       }
-      case 82: {
+      case 74: {
         [self setImage:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setImageUrl:[input readString]];
         break;
       }
       case 90: {
@@ -5972,6 +5995,22 @@ static PBFrame* defaultPBFrameInstance = nil;
 - (PBFrame_Builder*) clearImage {
   result.hasImage = NO;
   result.image = @"";
+  return self;
+}
+- (BOOL) hasImageUrl {
+  return result.hasImageUrl;
+}
+- (NSString*) imageUrl {
+  return result.imageUrl;
+}
+- (PBFrame_Builder*) setImageUrl:(NSString*) value {
+  result.hasImageUrl = YES;
+  result.imageUrl = value;
+  return self;
+}
+- (PBFrame_Builder*) clearImageUrl {
+  result.hasImageUrl = NO;
+  result.imageUrl = @"";
   return self;
 }
 - (BOOL) hasIPhoneRect {

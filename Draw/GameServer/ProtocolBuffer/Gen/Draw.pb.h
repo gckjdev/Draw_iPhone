@@ -1374,6 +1374,7 @@
   BOOL hasPrice_:1;
   BOOL hasThumbImage_:1;
   BOOL hasImage_:1;
+  BOOL hasImageUrl_:1;
   BOOL hasIPhoneRect_:1;
   BOOL hasIPadRect_:1;
   BOOL hasOpusIphoneRect_:1;
@@ -1384,6 +1385,7 @@
   int32_t price;
   NSString* thumbImage;
   NSString* image;
+  NSString* imageUrl;
   PBRect* iPhoneRect;
   PBRect* iPadRect;
   PBRect* opusIphoneRect;
@@ -1393,6 +1395,7 @@
 - (BOOL) hasFrameType;
 - (BOOL) hasThumbImage;
 - (BOOL) hasImage;
+- (BOOL) hasImageUrl;
 - (BOOL) hasIPhoneRect;
 - (BOOL) hasIPadRect;
 - (BOOL) hasOpusIphoneRect;
@@ -1403,6 +1406,7 @@
 @property (readonly) int32_t frameType;
 @property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* image;
+@property (readonly, retain) NSString* imageUrl;
 @property (readonly, retain) PBRect* iPhoneRect;
 @property (readonly, retain) PBRect* iPadRect;
 @property (readonly, retain) PBRect* opusIphoneRect;
@@ -1463,6 +1467,11 @@
 - (NSString*) image;
 - (PBFrame_Builder*) setImage:(NSString*) value;
 - (PBFrame_Builder*) clearImage;
+
+- (BOOL) hasImageUrl;
+- (NSString*) imageUrl;
+- (PBFrame_Builder*) setImageUrl:(NSString*) value;
+- (PBFrame_Builder*) clearImageUrl;
 
 - (BOOL) hasIPhoneRect;
 - (PBRect*) iPhoneRect;

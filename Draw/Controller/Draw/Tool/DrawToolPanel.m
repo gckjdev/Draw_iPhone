@@ -504,6 +504,7 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
+    [self.straw setSelected:NO];
     if (drawSlider == self.alphaSlider) {
         if ([self.alphaSlider isSelected]) {
             if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
@@ -598,6 +599,8 @@
     DrawColor *c = [DrawColor colorWithRed:color.red green:color.green blue:color.blue alpha:1];
     PPDebug(@"<didStrawGetColor> color = %@",[c description]);
     [self handleSelectColorDelegateWithColor:c updateRecentColor:YES];
+    [self.alphaSlider setValue:1];
+    [self drawSlider:self.alphaSlider didFinishChangeValue:1];
 }
 
 #pragma mark - ColorShopView Delegate
