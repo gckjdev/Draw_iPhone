@@ -34,7 +34,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *messagesHolderView;
 @property (retain, nonatomic) IBOutlet UIPlaceholderTextView *inputTextView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputTextViewBgImageView;
-@property (retain, nonatomic) IBOutlet FontButton *closeButton;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 + (id)createChatView;
 - (void)loadContent;

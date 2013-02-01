@@ -10,7 +10,6 @@
 #import "AnimationManager.h"
 #import "ShareImageManager.h"
 #import "LocaleUtils.h"
-#import "FontButton.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
 
@@ -44,16 +43,16 @@
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
     
     [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-    [self.titleLabel.fontLable setText:title];
+    [self.titleLabel.titleLabel setText:title];
     
 //    [self.okButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
 //    [self.cancelButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
     
-    [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-    [self.okButton.fontLable setText:NSLS(@"kOK")];
-    self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
-    self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+    [self.cancelButton.titleLabel setText:NSLS(@"kCancel")];
+    [self.okButton.titleLabel setText:NSLS(@"kOK")];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
 }
 
 - (void)initByZJHTheme:(NSString*)title

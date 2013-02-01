@@ -23,9 +23,7 @@
 #import "CommonMessageCenter.h"
 #import "DiceColorManager.h"
 #import "DiceImageManager.h"
-#import "FontButton.h"
 #import "ChatDetailController.h"
-#import "HKGirlFontLabel.h"
 #import "MessageStat.h"
 
 @implementation DiceUserInfoView
@@ -138,7 +136,7 @@
         statusLabel.text = NSLS(@"kAlreadyBeFriend");
     }else{
         self.followUserButton.hidden = NO; 
-        [self.followUserButton.fontLable setText:NSLS(@"kFollowMe")];
+        [self.followUserButton.titleLabel setText:NSLS(@"kFollowMe")];
     }
 }
 

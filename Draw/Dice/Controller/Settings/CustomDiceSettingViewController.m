@@ -9,7 +9,6 @@
 #import "CustomDiceSettingViewController.h"
 #import "CustomDiceSettingCell.h"
 #import "CustomDiceManager.h"
-#import "FontButton.h"
 
 @interface CustomDiceSettingViewController ()
 
@@ -45,7 +44,7 @@
     
     [self.dataTableView setBackgroundView:nil];
 
-    [self.controllerTitle.fontLable setText:NSLS(@"kCustomDice")];
+    [self.controllerTitle.titleLabel setText:NSLS(@"kCustomDice")];
     
 }
 

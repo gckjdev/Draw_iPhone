@@ -9,7 +9,6 @@
 #import "PPViewController.h"
 #import "ColorShopView.h"
 #import "CommonItemInfoView.h"
-#import "HKGirlFontLabel.h"
 #import "UICustomPageControl.h"
 #import "CommonDialog.h"
 
@@ -23,7 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *coinsButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyCoinButton;
 @property (retain, nonatomic) IBOutlet UIImageView *outItem;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *titleImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *coinsShopButton;

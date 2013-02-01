@@ -25,9 +25,11 @@
 @property (assign, nonatomic) id target;
 @property (assign, nonatomic) SEL cancelSeletor;
 @property (assign, nonatomic) SEL commitSeletor;
+@property (retain, nonatomic) IBOutlet UIButton *share;
 
 - (IBAction)clickCancel:(id)sender;
 - (IBAction)clickConfirm:(id)sender;
+- (IBAction)clickShare:(id)sender;
 
 @end
 
@@ -42,6 +44,7 @@
     [self.confirm setTitle:NSLS(@"kTwoSpaceConfirm") forState:UIControlStateNormal];
 
     [self addTarget:self action:@selector(clickMask:) forControlEvents:UIControlEventTouchUpInside];
+    self.share.selected = YES;
 }
 
 + (id)createView
@@ -90,6 +93,7 @@
     PPRelease(_content);
     PPRelease(_cancel);
     PPRelease(_confirm);
+    [_share release];
     [super dealloc];
 }
 
@@ -141,10 +145,16 @@
 }
 - (IBAction)clickConfirm:(id)sender {
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
-        [self.target performSelector:self.commitSeletor];
+        NSNumber *share = @(self.share.selected);
+        [self.target performSelector:self.commitSeletor withObject:share];
     }
     [self dismiss:YES];
 }
+
+- (IBAction)clickShare:(id)sender {
+    self.share.selected = !self.share.isSelected;
+}
+
 - (IBAction)clickMask:(id)sender {
     //dismiss
     [self dismiss:YES];

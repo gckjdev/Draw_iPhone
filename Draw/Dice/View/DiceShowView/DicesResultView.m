@@ -12,7 +12,6 @@
 #import "DeviceDetection.h"
 #import "AnimationManager.h"
 #import "DiceGameService.h"
-#import "HKGirlFontLabel.h"
 
 
 #define TAG_OFFSET_BOTTOM      110
@@ -417,7 +416,8 @@
     if (str != nil) {
         CGFloat pointSize = [DeviceDetection isIPAD] ? 40 : 20;
         CGRect frame = [DeviceDetection isIPAD] ? CGRectMake(0, 0, 200, 200) : CGRectMake(0, 0, 100, 100);
-        HKGirlFontLabel *label = [[[HKGirlFontLabel alloc] initWithFrame:frame pointSize:pointSize] autorelease];
+        UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        [label setFont:[UIFont systemFontOfSize:pointSize]];
         label.textAlignment = UITextAlignmentCenter;
         label.center = self.center;
         label.text = str;

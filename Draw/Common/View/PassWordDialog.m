@@ -12,7 +12,6 @@
 #import "AnimationManager.h"
 #import "UserManager.h"
 #import "StringUtil.h"
-#import "FontButton.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
 
@@ -28,18 +27,18 @@
     switch (theme) {
         case CommonInputDialogThemeDice:{ 
             [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
-            [self.titleLabel.fontLable setText:title];
+            [self.titleLabel.titleLabel setText:title];
             
             [self.cancelButton setBackgroundImage:[diceImgManager fastGameBtnBgImage] 
                                          forState:UIControlStateNormal];
             [self.okButton setBackgroundImage:[diceImgManager diceQuitBtnImage] 
                                      forState:UIControlStateNormal];
             
-            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-            [self.okButton.fontLable setText:NSLS(@"kOK")];
-            self.titleLabel.fontLable.font = [UIFont boldSystemFontOfSize:fontSize];
-            self.titleLabel.fontLable.adjustsFontSizeToFitWidth = YES;
-            self.titleLabel.fontLable.lineBreakMode = UILineBreakModeTailTruncation;
+            [self.cancelButton.titleLabel setText:NSLS(@"kCancel")];
+            [self.okButton.titleLabel setText:NSLS(@"kOK")];
+            self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+            self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+            self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
             
             [self.targetTextField setBackground:[diceImgManager inputBackgroundImage]];
             [self.anotherPasswordTextField setBackground:[diceImgManager inputBackgroundImage]];
@@ -55,8 +54,8 @@
             [self.okButton setBackgroundImage:[diceImgManager diceQuitBtnImage]
                                      forState:UIControlStateNormal];
             
-            [self.cancelButton.fontLable setText:NSLS(@"kCancel")];
-            [self.okButton.fontLable setText:NSLS(@"kOK")];
+            [self.cancelButton.titleLabel setText:NSLS(@"kCancel")];
+            [self.okButton.titleLabel setText:NSLS(@"kOK")];
             self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
             self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
             self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;

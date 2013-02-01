@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HKGirlFontLabel.h"
 #import "UIGlossyButton.h"
 
 @protocol DiceBetViewDelegate <NSObject>
@@ -22,14 +21,14 @@
 @interface DiceBetView : UIView
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *titleLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *noteLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *anteLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *anteCoinsLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *winLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *winOddsLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *loseLabel;
-@property (retain, nonatomic) IBOutlet HKGirlFontLabel *loseOddsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *noteLabel;
+@property (retain, nonatomic) IBOutlet UILabel *anteLabel;
+@property (retain, nonatomic) IBOutlet UILabel *anteCoinsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *winLabel;
+@property (retain, nonatomic) IBOutlet UILabel *winOddsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *loseLabel;
+@property (retain, nonatomic) IBOutlet UILabel *loseOddsLabel;
 @property (retain, nonatomic) IBOutlet UIGlossyButton *betWinButton;
 @property (retain, nonatomic) IBOutlet UIGlossyButton *betLoseButton;
 

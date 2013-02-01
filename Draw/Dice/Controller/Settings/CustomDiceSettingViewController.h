@@ -7,11 +7,10 @@
 //
 
 #import "PPTableViewController.h"
-@class FontButton;
 
 @interface CustomDiceSettingViewController : PPTableViewController
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
-@property (retain, nonatomic) IBOutlet FontButton *controllerTitle;
+@property (retain, nonatomic) IBOutlet UIButton *controllerTitle;
 
 
 @end

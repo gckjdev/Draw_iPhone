@@ -16,13 +16,14 @@
 #import "PenBox.h"
 #import "ColorBox.h"
 #import "ColorShopView.h"
-
+#import "DrawView.h"
 
 @class DrawToolPanel;
 
 @protocol DrawToolPanelDelegate <NSObject>
 
 @optional
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button;
@@ -41,7 +42,7 @@
 - (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel;
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate>
 {
     
 }

@@ -44,7 +44,6 @@
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "VendingController.h"
-#import "FontButton.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
@@ -320,8 +319,8 @@ enum{
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
-    
-    
+    drawView.strawDelegate = _drawToolPanel;
+//    [drawView setTouchActionType:TouchActionTypeGetColor];
     
     [drawView setDrawEnabled:YES];
 //    [drawView setRevocationSupported:YES];
@@ -465,13 +464,14 @@ enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initDrawToolPanel];
     [self initDrawView];
     [self initWordLabel];
     [self initSubmitButton];
 //    _unDraftPaintCount = 0;
 //    _lastSaveTime = time(0);
     _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
-    [self initDrawToolPanel];
+
 
     [self initRecovery];    
 }
@@ -868,10 +868,12 @@ enum{
 
 - (NSMutableArray *)compressActionList:(NSArray *)drawActionList
 {
-    return  [DrawAction scaleActionList:drawActionList xScale:1.0 / IPAD_WIDTH_SCALE yScale:1.0 / IPAD_HEIGHT_SCALE];
+    return  [DrawAction scaleActionList:drawActionList
+                                 xScale:1.0 / IPAD_WIDTH_SCALE
+                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
 }
 
-- (void)commitOpus
+- (void)commitOpus:(NSNumber *)share
 {
     
     [self showActivityWithText:NSLS(@"kSending")];
@@ -887,6 +889,10 @@ enum{
                                               contestId:_contest.contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
+    if ([share boolValue]) {
+        //TODO share draw to SNS
+        PPDebug(@"share draw to SNS");
+    }
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -916,7 +922,7 @@ enum{
 
         }
         if (self.inputAlert == nil) {
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus) cancelSeletor:NULL];
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus:) cancelSeletor:NULL];
         }
         [self.inputAlert showInView:self.view animated:YES];
     
@@ -1017,6 +1023,10 @@ enum{
         _isNewDraft = NO;
     }
 }
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
+{
+    drawView.touchActionType = TouchActionTypeGetColor;
+}
 
 - (void)performRevoke
 {
@@ -1036,12 +1046,14 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     [self.eraserColor setAlpha:1.0];
     [drawView setLineColor:self.eraserColor];
     [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     _isNewDraft = NO;
 
     self.eraserColor = [DrawColor colorWithColor:self.penColor];
@@ -1060,6 +1072,7 @@ enum{
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
                bought:(BOOL)bought
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
@@ -1072,11 +1085,13 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     drawView.lineWidth = width;
     PPDebug(@"<didSelectWidth> width = %f",width);
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     self.tempColor = color;
     self.penColor = color;
     [drawView setLineColor:[DrawColor colorWithColor:color]];
@@ -1084,6 +1099,7 @@ enum{
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     _alpha = alpha;
     if (drawView.lineColor != self.eraserColor) {
         DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];

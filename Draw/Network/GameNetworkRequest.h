@@ -481,13 +481,12 @@
 + (CommonNetworkOutput*)getWall:(NSString *)baseURL
                           appId:(NSString *)appId
                          userId:(NSString *)userId
-                         wallId:(int)wallId;
+                         wallId:(NSString *)wallId;
 
 
 + (CommonNetworkOutput*)getWalls:(NSString *)baseURL
                            appId:(NSString *)appId
                           userId:(NSString *)userId
-                          wallId:(int)wallId
                         wallType:(PBWallType)wallType;
 
 

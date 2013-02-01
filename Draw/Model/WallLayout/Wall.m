@@ -75,6 +75,11 @@
     return _wallOpuses;
 }
 
+- (void)setWallId:(NSString *)wallId
+{
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setWallId:wallId] build];
+}
+
 - (void)setLayout:(PBLayout *)layout
 {
    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setLayout:layout] build];
