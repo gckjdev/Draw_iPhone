@@ -11,11 +11,11 @@
 
 #define VALUE(x) (ISIPAD ? 2.0*x : x)
 
-#define VIEW_SIZE VALUE(50.0)
-#define CONTENT_VIEW_SIZE VALUE(44.0)
+#define VIEW_SIZE VALUE(60.0)
+#define CONTENT_VIEW_SIZE VALUE(52.0)
 #define OUT_CIRCLE_WIDTH VALUE(1)
 #define IN_CIRCLE_WIDTH VALUE(1)
-#define COLOR_CIRCLE_WIDTH VALUE(15)
+#define COLOR_CIRCLE_WIDTH VALUE(18)
 #define CIRCLE_BLUR VALUE(1)
 
 @implementation StrawView
@@ -79,7 +79,7 @@
     //out circle
     CGContextSetStrokeColorWithColor(context, CIRCLE_LINE_COLOR);
     CGContextSetLineWidth(context, OUT_CIRCLE_WIDTH);
-    CGContextSetShadow(context, CGSizeMake(-1, 1), CIRCLE_BLUR);
+    CGContextSetShadow(context, CGSizeMake(-1, 0), CIRCLE_BLUR);
     radius = (CONTENT_VIEW_SIZE - OUT_CIRCLE_WIDTH) / 2;
     subRect = [self subRect:rect radius:radius];
     CGContextStrokeEllipseInRect(context, subRect);
