@@ -491,6 +491,12 @@
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
 		C26224CE1670849C008BF3FB /* ZJHUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26224CD1670849C008BF3FB /* ZJHUserInfoView.m */; };
+		C266EF3116BB76D4005206C6 /* OpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45D261616BA0F58003E68B8 /* OpusView.m */; };
+		C266EF3216BB76D6005206C6 /* OpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45D261616BA0F58003E68B8 /* OpusView.m */; };
+		C266EF3316BB76D7005206C6 /* OpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45D261616BA0F58003E68B8 /* OpusView.m */; };
+		C266EF3416BB76E3005206C6 /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
+		C266EF3516BB76E6005206C6 /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
+		C266EF3616BB76E7005206C6 /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -21568,6 +21574,8 @@
 				C2C63C2416B92313006F91AE /* FrameCell.m in Sources */,
 				CA3EB93F16B927B300660FE7 /* StrawView.m in Sources */,
 				CAF7E82B16BB662B00F09584 /* WidthBox.m in Sources */,
+				C266EF3216BB76D6005206C6 /* OpusView.m in Sources */,
+				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22268,6 +22276,8 @@
 				C2C63C2516B92315006F91AE /* FrameCell.m in Sources */,
 				CA3EB94016B927B300660FE7 /* StrawView.m in Sources */,
 				CAF7E82C16BB662B00F09584 /* WidthBox.m in Sources */,
+				C266EF3316BB76D7005206C6 /* OpusView.m in Sources */,
+				C266EF3616BB76E7005206C6 /* WallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23679,6 +23689,8 @@
 				C2C63C2316B92312006F91AE /* FrameCell.m in Sources */,
 				CA3EB93E16B927B300660FE7 /* StrawView.m in Sources */,
 				CAF7E82A16BB662B00F09584 /* WidthBox.m in Sources */,
+				C266EF3116BB76D4005206C6 /* OpusView.m in Sources */,
+				C266EF3416BB76E3005206C6 /* WallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -118,7 +118,7 @@
 
 
 #define WIDTH_COUNT_VIEW        (([DeviceDetection isIPAD]) ? 28 : 14 )
-#define FONT_SIZE_BUTTON        (([DeviceDetection isIPAD]) ? 36 : 18 )
+#define FONT_SIZE_BUTTON        (([DeviceDetection isIPAD]) ? 34 : 17 )
 #define FONT_SIZE_COUNT_LABEL   (([DeviceDetection isIPAD]) ? 20 : 10 )
 #define Y_OFFSET_TITLE          (([DeviceDetection isIPAD]) ? -8 : -4 )
 - (UIButton *)itemButton:(CGRect)frame 

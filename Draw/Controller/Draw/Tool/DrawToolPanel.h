@@ -17,6 +17,7 @@
 #import "ColorBox.h"
 #import "ColorShopView.h"
 #import "DrawView.h"
+#import "WidthBox.h"
 
 @class DrawToolPanel;
 
@@ -42,7 +43,7 @@
 - (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel;
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate, WidthBoxDelegate>
 {
     
 }
