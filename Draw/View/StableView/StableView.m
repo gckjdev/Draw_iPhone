@@ -90,6 +90,7 @@
             }
             [alreadyHasFlag retain];
         }
+        numberButton.hidden = YES;// no more use the tool number --kira
         
     }
     return self;

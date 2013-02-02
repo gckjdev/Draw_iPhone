@@ -1007,6 +1007,8 @@
 "kBoardAdmin" = "Admin:";
 "kNoBoardAdmin" = "No Admin";
 "kBuffering" = "Buffering...";
+"kPaintPlayerItemDescription" = "It's a player for paints. You can replay a paint at custom speed and jump to any progress.";
+"kPaintPlayerItem" = "Paint Player";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

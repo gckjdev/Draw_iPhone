@@ -939,5 +939,10 @@ static UIImage* _whitePaperImage;
 {
     return [_resService imageByName:@"auto_recovery" inResourcePackage:RESOURCE_PACKAGE_DRAW];
 }
+
+- (UIImage *)paintPlayerImage
+{
+    return [_resService imageByName:@"paint_player" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+}
 @end
 

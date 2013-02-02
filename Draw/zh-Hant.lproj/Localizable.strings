@@ -1030,6 +1030,8 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暫無版主";
 "kBuffering" = "正在緩沖...";
+"kPaintPlayerItemDescription" = "這是一個作品播放器。你可以在播放繪畫過程中調速，還可以跳到任意進度。";
+"kPaintPlayerItem" = "作品播放器";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
