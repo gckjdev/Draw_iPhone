@@ -942,7 +942,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)paintPlayerImage
 {
-    return [_resService imageByName:@"paint_player" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [self fixedAndStrectchableImageNamed:@"paint_player"];
 }
 @end
 
