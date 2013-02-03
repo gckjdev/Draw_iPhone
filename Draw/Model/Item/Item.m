@@ -193,6 +193,9 @@
             return manager.shopItemPaletteImage;
         case ColorAlphaItem:
             return manager.shopItemAlphaImage;
+        case PaintPlayerItem:
+            return manager.paintPlayerImage;
+            
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
         case ItemTypeCut: 
@@ -262,6 +265,8 @@
             return NSLS(@"kPaletteItem");
         case ColorAlphaItem:
             return NSLS(@"kColorAlphaItem");
+        case PaintPlayerItem:
+            return NSLS(@"kPaintPlayerItem");
         case ItemTypeRollAgain:
             return NSLS(@"kRollAgain");
         case ItemTypeCut:
@@ -297,6 +302,8 @@
             return NSLS(@"kPaletteItemDescription");
         case ColorAlphaItem:
             return NSLS(@"kColorAlphaItemDescription");
+        case PaintPlayerItem:
+            return NSLS(@"kPaintPlayerItemDescription");
         default:
             return nil;
     }
@@ -374,9 +381,9 @@
         case WaterPen:
             return [Item waterPen];
         case PaletteItem:
-            return [Item PaletteItem];
+            return [Item paletteItem];
         case ColorAlphaItem:
-            return [Item ColorAlphaItem];
+            return [Item colorAlphaItem];
         default:
             break;
     }
@@ -491,7 +498,7 @@
                                 amount:[[ItemManager defaultManager] amountForItem:WaterPen]] autorelease];
 }
 
-+ (Item*)PaletteItem
++ (Item*)paletteItem
 {
     return [[[Item alloc] initWithType:PaletteItem
                                  image:[Item imageForItemType:PaletteItem]
@@ -502,7 +509,7 @@
                                 amount:[[ItemManager defaultManager] amountForItem:PaletteItem]] autorelease];
 }
 
-+ (Item*)ColorAlphaItem
++ (Item*)colorAlphaItem
 {
     return [[[Item alloc] initWithType:ColorAlphaItem
                                  image:[Item imageForItemType:ColorAlphaItem]
@@ -511,6 +518,17 @@
                       buyAmountForOnce:1
                                  price:[[ShoppingManager defaultManager] getColorAlphaItemPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:ColorAlphaItem]] autorelease];
+}
+
++ (Item*)paintPlayerItem
+{
+    return [[[Item alloc] initWithType:PaintPlayerItem
+                                 image:[Item imageForItemType:PaintPlayerItem]
+                                  name:[Item nameForItemType:PaintPlayerItem]
+                           description:[Item descriptionForItemType:PaintPlayerItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getPaintPlayerItemPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:PaintPlayerItem]] autorelease];
 }
 
 
