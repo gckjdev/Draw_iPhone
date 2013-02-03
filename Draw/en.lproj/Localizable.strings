@@ -630,6 +630,8 @@
 "kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
+"kSending" = "Sending... (%3.f%%)";
+
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
 "kOpusDetail" = "View";

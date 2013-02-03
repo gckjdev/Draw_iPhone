@@ -206,7 +206,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            imageData:imageData 
                                                            targetUid:targetUid 
                                                            contestId:contestId
-                                                                desc:desc];
+                                                                desc:desc
+                                                    progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didCreateDraw:)]){

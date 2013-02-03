@@ -53,6 +53,9 @@ static FeedService *_staticFeedService = nil;
     
     dispatch_async(getFeedListQueue, ^{
         
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
+        
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
@@ -85,6 +88,8 @@ static FeedService *_staticFeedService = nil;
             }
             
         });
+        
+        [subPool drain];
     });
 
 }
@@ -103,6 +108,9 @@ static FeedService *_staticFeedService = nil;
     
 //    [delegate showActivityWithText:NSLS(@"kParsingData")];
     dispatch_async(workingQueue, ^{
+
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getContestOpusListWithProtocolBuffer:TRAFFIC_SERVER_URL contestId:contestId
@@ -135,6 +143,8 @@ static FeedService *_staticFeedService = nil;
             }
             
         });
+        
+        [subPool drain];
     });
     
 }
@@ -145,6 +155,9 @@ static FeedService *_staticFeedService = nil;
                delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
     dispatch_async(workingQueue, ^{
+
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
@@ -169,6 +182,8 @@ static FeedService *_staticFeedService = nil;
                 [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
             }
         });
+        
+        [subPool drain];
     });
 }
 
@@ -179,6 +194,9 @@ static FeedService *_staticFeedService = nil;
                delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
     dispatch_async(workingQueue, ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
@@ -206,6 +224,8 @@ static FeedService *_staticFeedService = nil;
                               resultCode:resultCode];
             }
         });
+        
+        [subPool drain];
     });
 }
 
@@ -216,6 +236,9 @@ static FeedService *_staticFeedService = nil;
                   delegate:(id<FeedServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
         
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getFeedCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL
@@ -237,6 +260,8 @@ static FeedService *_staticFeedService = nil;
                 [delegate didGetFeedCommentList:list opusId:opusId type:type resultCode:resultCode offset:offset];
             }            
         });
+        
+        [subPool drain];
     });
 
 }
@@ -246,6 +271,9 @@ static FeedService *_staticFeedService = nil;
                 delegate:(id<FeedServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
         
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
@@ -269,6 +297,8 @@ static FeedService *_staticFeedService = nil;
                 [delegate didGetMyCommentList:list resultCode:resultCode];
             }            
         });
+        
+        [subPool drain];
     });
 }
 
@@ -284,6 +314,9 @@ static FeedService *_staticFeedService = nil;
     [queue cancelAllOperations];
 
     [queue addOperationWithBlock:^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
         
         PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
         DrawFeed *feed = nil;
@@ -301,6 +334,7 @@ static FeedService *_staticFeedService = nil;
 
             PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
             NSString* userId = [[UserManager defaultManager] userId];
+            
             
             CommonNetworkOutput* output = [GameNetworkRequest
                                            getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
@@ -333,7 +367,8 @@ static FeedService *_staticFeedService = nil;
                            fromCache:fromCache];
             }
         });
-
+        
+        [subPool drain];
     }];
 }
 

@@ -635,7 +635,9 @@
 "kReplyComment" = "回複評論";
 "kReply" = "回複";
 "kCorrect" = "猜對了！";
-"kSending" = "發送中...";
+"kSending" = "正在發送中...";
+"kSendingProgress" = "正在發送中 (%3.f%%)";
+
 "kNoCommentTips" = "還沒有人評論";
 "kFeedDetail" = "猜畫詳情";
 "kOpusDetail" = "查看作品";

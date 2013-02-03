@@ -1353,7 +1353,8 @@
                          imageData:(NSData *)imageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
-                              desc:(NSString *)desc;
+                              desc:(NSString *)desc
+                  progressDelegate:(id)progressDelegate;
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1426,7 +1427,8 @@
                                   postDataDict:dataDict
                            constructURLHandler:constructURLHandler 
                                responseHandler:responseHandler 
-                                        output:output];
+                                        output:output
+                              progressDelegate:progressDelegate];
         
     }
 }

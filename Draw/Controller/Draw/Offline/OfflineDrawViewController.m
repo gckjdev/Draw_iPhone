@@ -48,6 +48,7 @@
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
 #import "SelectHotWordController.h"
+#import "MBProgressHUD.h"
 
 @interface OfflineDrawViewController()
 {
@@ -79,7 +80,7 @@
 //    BOOL _userSaved;
     BOOL _isNewDraft;
 
-
+    
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -92,7 +93,8 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) InputAlertView *inputAlert;
-
+//@property (retain, nonatomic) TKProgressBarView *progressView;
+@property (retain, nonatomic) MBProgressHUD *progressView;
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
 - (void)initDrawView;
@@ -178,6 +180,7 @@
     [self stopRecovery];
 
     self.delegate = nil;
+    PPRelease(_progressView);
     PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
@@ -713,6 +716,8 @@ enum{
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
+    [self hideProgressView];
+    
     self.submitButton.userInteractionEnabled = YES;
     [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
@@ -783,9 +788,9 @@ enum{
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:temp];
-    PPRelease(temp);
+//    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+//    PPRelease(temp);
     return data;
 }
 
@@ -795,13 +800,13 @@ enum{
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
-//    _unDraftPaintCount = 0;
-//    _lastSaveTime = 0;
     _isNewDraft = YES;
-    UIImage *image = [drawView createImage];    
-    
-    __block BOOL result = NO;
 
+    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+    UIImage *image = [drawView createImage];
+    
+    BOOL result = NO;
+    
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
@@ -844,7 +849,8 @@ enum{
     @finally {
         
     }
-        
+    
+    [subPool drain];        
 }
 
 #pragma mark - Actions
@@ -875,10 +881,49 @@ enum{
                                  yScale:1.0 / IPAD_HEIGHT_SCALE];
 }
 
+// TODO move to common
+- (void)showProgressView
+{
+    if (self.progressView == nil){
+        self.progressView = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
+    }
+    
+    [self.progressView setProgress:0.0];
+    [self.progressView setMode:MBProgressHUDModeDeterminate];
+    [self.progressView setLabelText:NSLS(@"kSending")];
+    
+    [self.view addSubview:_progressView];
+    [self.progressView show:YES];
+}
+
+- (void)hideProgressView
+{
+    [self.progressView hide:YES];
+    self.progressView = nil;
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    PPDebug(@"upload progress=%f", progress);
+
+    if (progress == 1.0f){
+        // make this because after uploading data, it takes server sometime to process
+        progress = 0.99;
+    }
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    [self.progressView setLabelText:progressText];
+    
+    [self.progressView setProgress:progress];        
+}
+
 - (void)commitOpus:(NSNumber *)share
 {
     
-    [self showActivityWithText:NSLS(@"kSending")];
+//    [self showActivityWithText:NSLS(@"kSending")];
+    
+    [self showProgressView];
+    
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
     UIImage *image = [drawView createImage];
