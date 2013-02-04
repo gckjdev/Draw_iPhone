@@ -12,9 +12,9 @@
 @class CommonRoundAvatarView;
 
 typedef enum {
-    AvatarViewStyle_Square = 1,
-    AvatarViewStyle_Round = 2,
-}AvatarViewStyle;
+    CommonRoundAvatarViewStyle_Square = 1,
+    CommonRoundAvatarViewStyle_Round = 2,
+}CommonRoundAvatarViewStyle;
 
 @protocol CommonRoundAvatarViewDelegate <NSObject>
 
@@ -35,7 +35,7 @@ typedef enum {
     UIImageView *bgView;
     float _currentProgress;
     NSTimer* _timer;
-    AvatarViewStyle _currentStyle;
+    CommonRoundAvatarViewStyle _currentStyle;
     CFTimeInterval _reciprocolTime;
     UIView* _rewardView;
     UIImageView* _rewardCoinView;
@@ -61,7 +61,7 @@ typedef enum {
 - (void)setCurrentProgress:(CGFloat)progress;
 - (void)setProgressBarWidth:(CGFloat)width;
 - (void)setProgressHidden:(BOOL)hidden;
-- (void)setAvatarStyle:(AvatarViewStyle)style;
+- (void)setAvatarStyle:(CommonRoundAvatarViewStyle)style;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime 
            fromProgress:(float)progress;

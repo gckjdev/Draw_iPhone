@@ -217,7 +217,6 @@
 		A4B7640A15C28F8E003B4E72 /* DiceGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763FE15C28F8E003B4E72 /* DiceGameService.m */; };
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
-		A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
 		A4BE1E7016567D9000406B98 /* RoomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE1E6F16567D9000406B98 /* RoomTitleView.m */; };
 		A4BE1E7216567DC500406B98 /* RoomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E7116567DC400406B98 /* RoomTitleView.xib */; };
 		A4BE1E761656847100406B98 /* RoomTitleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */; };
@@ -682,6 +681,10 @@
 		C2C63C2316B92312006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
 		C2C63C2416B92313006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
 		C2C63C2516B92315006F91AE /* FrameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B4716B910D10094BA7C /* FrameCell.m */; };
+		C2CA1C0A16BF5B4C003ECD36 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		C2CA1C0B16BF5B4D003ECD36 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		C2CA1C0C16BF5B4F003ECD36 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		C2CA1C1116BF6072003ECD36 /* common_round_avatar_waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2CA1C1016BF6072003ECD36 /* common_round_avatar_waiting_user@2x.png */; };
 		C2CA66D216ACD1DF00215924 /* bulletin_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */; };
 		C2CA66D316ACD1E100215924 /* bulletin_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */; };
 		C2CA66D416ACD1E600215924 /* bulletin_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D54168302DE00E012FC /* bulletin_bg@2x.png */; };
@@ -2137,7 +2140,6 @@
 		CA16BECD1682FAD900F81B47 /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9D72C0167885C30075CF93 /* dialogue@2x.png */; };
 		CA16BED71682FAD900F81B47 /* ZJHUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AA1679C1DE008B4E14 /* ZJHUserInfoView.xib */; };
 		CA16BED81682FAD900F81B47 /* ZJHUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AC1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib */; };
-		CA16BEE11682FAD900F81B47 /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
 		CA16BEE21682FAD900F81B47 /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CFF167F1BB200E012FC /* BulletinCell.xib */; };
 		CA16BEE31682FAD900F81B47 /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		CA16BEE41682FAD900F81B47 /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
@@ -3275,7 +3277,6 @@
 		CA16C4531682FAE300F81B47 /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9D72C0167885C30075CF93 /* dialogue@2x.png */; };
 		CA16C45D1682FAE300F81B47 /* ZJHUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AA1679C1DE008B4E14 /* ZJHUserInfoView.xib */; };
 		CA16C45E1682FAE300F81B47 /* ZJHUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AC1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib */; };
-		CA16C4671682FAE300F81B47 /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
 		CA16C4681682FAE300F81B47 /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CFF167F1BB200E012FC /* BulletinCell.xib */; };
 		CA16C4691682FAE300F81B47 /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		CA16C46A1682FAE300F81B47 /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
@@ -6053,7 +6054,6 @@
 		CAB5CBC216994F0200A4CE3B /* dialogue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9D72C0167885C30075CF93 /* dialogue@2x.png */; };
 		CAB5CBC316994F0200A4CE3B /* ZJHUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AA1679C1DE008B4E14 /* ZJHUserInfoView.xib */; };
 		CAB5CBC416994F0200A4CE3B /* ZJHUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AC1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib */; };
-		CAB5CBC516994F0200A4CE3B /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
 		CAB5CBC616994F0200A4CE3B /* BulletinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974CFF167F1BB200E012FC /* BulletinCell.xib */; };
 		CAB5CBC716994F0200A4CE3B /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		CAB5CBC816994F0200A4CE3B /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
@@ -6997,7 +6997,6 @@
 		A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceNetworkClient.m; sourceTree = "<group>"; };
 		A4B7648A15C382D6003B4E72 /* DiceImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceImageManager.h; sourceTree = "<group>"; };
 		A4B7648B15C382D6003B4E72 /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
-		A4B93910167C539D00401E9C /* waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "waiting_user@2x.png"; sourceTree = "<group>"; };
 		A4BE1E6E16567D8E00406B98 /* RoomTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomTitleView.h; sourceTree = "<group>"; };
 		A4BE1E6F16567D9000406B98 /* RoomTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomTitleView.m; sourceTree = "<group>"; };
 		A4BE1E7116567DC400406B98 /* RoomTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomTitleView.xib; sourceTree = "<group>"; };
@@ -7403,6 +7402,7 @@
 		C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
 		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
+		C2CA1C1016BF6072003ECD36 /* common_round_avatar_waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_round_avatar_waiting_user@2x.png"; sourceTree = "<group>"; };
 		C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_unselect@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_selected@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092D16AE8EBA003BBE2D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
@@ -16830,6 +16830,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2CA1C1016BF6072003ECD36 /* common_round_avatar_waiting_user@2x.png */,
 				CABEDD2C16B64CAA00BB9060 /* Player */,
 				C2160C8016AE7B9C008C2A3E /* Common_roomList */,
 				A4F5BF7216A40224000A503F /* freeCoins */,
@@ -16843,7 +16844,6 @@
 				C20E7183168C584600E37127 /* wechat@2x.png */,
 				CA25C3A2168968070064C05D /* DrawPage */,
 				C2974D52168302DE00E012FC /* Bulletin */,
-				A4B93910167C539D00401E9C /* waiting_user@2x.png */,
 				CA9D72C0167885C30075CF93 /* dialogue@2x.png */,
 				CA1260F216785F0C00DD96F4 /* HomePage */,
 				A4CCE72D16771A6D00F90726 /* exps */,
@@ -17615,7 +17615,6 @@
 				CA16BECD1682FAD900F81B47 /* dialogue@2x.png in Resources */,
 				CA16BED71682FAD900F81B47 /* ZJHUserInfoView.xib in Resources */,
 				CA16BED81682FAD900F81B47 /* ZJHUserInfoView~ipad.xib in Resources */,
-				CA16BEE11682FAD900F81B47 /* waiting_user@2x.png in Resources */,
 				CA16BEE21682FAD900F81B47 /* BulletinCell.xib in Resources */,
 				CA16BEE31682FAD900F81B47 /* BulletinCell~ipad.xib in Resources */,
 				CA16BEE41682FAD900F81B47 /* BulletinView.xib in Resources */,
@@ -18841,7 +18840,6 @@
 				CA16C4531682FAE300F81B47 /* dialogue@2x.png in Resources */,
 				CA16C45D1682FAE300F81B47 /* ZJHUserInfoView.xib in Resources */,
 				CA16C45E1682FAE300F81B47 /* ZJHUserInfoView~ipad.xib in Resources */,
-				CA16C4671682FAE300F81B47 /* waiting_user@2x.png in Resources */,
 				CA16C4681682FAE300F81B47 /* BulletinCell.xib in Resources */,
 				CA16C4691682FAE300F81B47 /* BulletinCell~ipad.xib in Resources */,
 				CA16C46A1682FAE300F81B47 /* BulletinView.xib in Resources */,
@@ -19704,7 +19702,6 @@
 				CA9D72C1167885C30075CF93 /* dialogue@2x.png in Resources */,
 				C24247AB1679C1DE008B4E14 /* ZJHUserInfoView.xib in Resources */,
 				C24247AD1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib in Resources */,
-				A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */,
 				C2974D06167F1BB200E012FC /* BulletinCell.xib in Resources */,
 				C2974D07167F1BB200E012FC /* BulletinCell~ipad.xib in Resources */,
 				C2974D09167F1BB200E012FC /* BulletinView.xib in Resources */,
@@ -20050,6 +20047,7 @@
 				A46E702716BB781900F0E68C /* layout.pb in Resources */,
 				C266EF5416BBA8B6005206C6 /* draw_room_list_reflesh@2x.png in Resources */,
 				C27FC12016BD79970005E8E3 /* paint_player@2x.png in Resources */,
+				C2CA1C1116BF6072003ECD36 /* common_round_avatar_waiting_user@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20559,7 +20557,6 @@
 				CAB5CBC216994F0200A4CE3B /* dialogue@2x.png in Resources */,
 				CAB5CBC316994F0200A4CE3B /* ZJHUserInfoView.xib in Resources */,
 				CAB5CBC416994F0200A4CE3B /* ZJHUserInfoView~ipad.xib in Resources */,
-				CAB5CBC516994F0200A4CE3B /* waiting_user@2x.png in Resources */,
 				CAB5CBC616994F0200A4CE3B /* BulletinCell.xib in Resources */,
 				CAB5CBC716994F0200A4CE3B /* BulletinCell~ipad.xib in Resources */,
 				CAB5CBC816994F0200A4CE3B /* BulletinView.xib in Resources */,
@@ -21590,6 +21587,7 @@
 				CAF7E82B16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3216BB76D6005206C6 /* OpusView.m in Sources */,
 				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
+				C2CA1C0B16BF5B4D003ECD36 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22292,6 +22290,7 @@
 				CAF7E82C16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3316BB76D7005206C6 /* OpusView.m in Sources */,
 				C266EF3616BB76E7005206C6 /* WallService.m in Sources */,
+				C2CA1C0C16BF5B4F003ECD36 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23705,6 +23704,7 @@
 				CAF7E82A16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3116BB76D4005206C6 /* OpusView.m in Sources */,
 				C266EF3416BB76E3005206C6 /* WallService.m in Sources */,
+				C2CA1C0A16BF5B4C003ECD36 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
