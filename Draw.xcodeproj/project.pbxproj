@@ -138,6 +138,8 @@
 		A46E702616BB781900F0E68C /* frames.zip in Resources */ = {isa = PBXBuildFile; fileRef = A46E702416BB781900F0E68C /* frames.zip */; };
 		A46E702716BB781900F0E68C /* layout.pb in Resources */ = {isa = PBXBuildFile; fileRef = A46E702516BB781900F0E68C /* layout.pb */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		A46E706616BBC1C300F0E68C /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E706516BBC1C300F0E68C /* WallOpusView.m */; };
+		A46E706816BBC20C00F0E68C /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46E706716BBC20C00F0E68C /* WallOpusView.xib */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
@@ -218,6 +220,9 @@
 		A4B7640B15C28F8E003B4E72 /* DiceNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7640015C28F8E003B4E72 /* DiceNetworkClient.m */; };
 		A4B7648C15C382D6003B4E72 /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7648B15C382D6003B4E72 /* DiceImageManager.m */; };
 		A4B93911167C539D00401E9C /* waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B93910167C539D00401E9C /* waiting_user@2x.png */; };
+		A4BDB61416BF4F9C00B39750 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		A4BDB61516BF4F9D00B39750 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
+		A4BDB61616BF4F9E00B39750 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A4BE1E7016567D9000406B98 /* RoomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4BE1E6F16567D9000406B98 /* RoomTitleView.m */; };
 		A4BE1E7216567DC500406B98 /* RoomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E7116567DC400406B98 /* RoomTitleView.xib */; };
 		A4BE1E761656847100406B98 /* RoomTitleView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BE1E751656847000406B98 /* RoomTitleView~ipad.xib */; };
@@ -6917,6 +6922,9 @@
 		A46E702516BB781900F0E68C /* layout.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = layout.pb; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		A46E704816BBAA2D00F0E68C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		A46E706416BBC1C300F0E68C /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
+		A46E706516BBC1C300F0E68C /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
+		A46E706716BBC20C00F0E68C /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
 		A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemService.m; sourceTree = "<group>"; };
 		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
@@ -10767,6 +10775,9 @@
 				A4D1744B16B1089C00958355 /* OpusSelectController.h */,
 				A4D1744C16B1089C00958355 /* OpusSelectController.m */,
 				A4D1744D16B1089C00958355 /* OpusSelectController.xib */,
+				A46E706416BBC1C300F0E68C /* WallOpusView.h */,
+				A46E706516BBC1C300F0E68C /* WallOpusView.m */,
+				A46E706716BBC20C00F0E68C /* WallOpusView.xib */,
 			);
 			path = OpusWall;
 			sourceTree = "<group>";
@@ -20037,6 +20048,7 @@
 				A45D261916BA0F58003E68B8 /* OpusView.xib in Resources */,
 				A46E702616BB781900F0E68C /* frames.zip in Resources */,
 				A46E702716BB781900F0E68C /* layout.pb in Resources */,
+				A46E706816BBC20C00F0E68C /* WallOpusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21576,6 +21588,7 @@
 				CAF7E82B16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3216BB76D6005206C6 /* OpusView.m in Sources */,
 				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
+				A4BDB61516BF4F9D00B39750 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22278,6 +22291,7 @@
 				CAF7E82C16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3316BB76D7005206C6 /* OpusView.m in Sources */,
 				C266EF3616BB76E7005206C6 /* WallService.m in Sources */,
+				A4BDB61616BF4F9E00B39750 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22981,6 +22995,7 @@
 				A45D261816BA0F58003E68B8 /* OpusView.m in Sources */,
 				CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */,
 				A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */,
+				A46E706616BBC1C300F0E68C /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23691,6 +23706,7 @@
 				CAF7E82A16BB662B00F09584 /* WidthBox.m in Sources */,
 				C266EF3116BB76D4005206C6 /* OpusView.m in Sources */,
 				C266EF3416BB76E3005206C6 /* WallService.m in Sources */,
+				A4BDB61416BF4F9C00B39750 /* iCarousel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

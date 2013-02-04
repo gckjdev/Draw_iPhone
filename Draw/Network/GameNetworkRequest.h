@@ -420,6 +420,12 @@
                                    userId:(NSString*)userId
                              targetUserId:(NSString*)targetUserId;
 
++ (CommonNetworkOutput*)getUserListSimpleInfo:(NSString*)baseURL
+                                       userId:(NSString *)userId
+                                        appId:(NSString*)appId
+                                       gameId:(NSString*)gameId
+                                    ByUserIds:(NSString*)targetUserIds;
+
 + (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL
                                    userId:(NSString *)userId
                                     appId:(NSString*)appId 

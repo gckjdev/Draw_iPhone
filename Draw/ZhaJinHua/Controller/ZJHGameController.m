@@ -758,11 +758,6 @@
     self.autoBetButton.selected = NO;
     [_gameService reset];
     [self clearAll];
-    if (![_ruleConfig isCoinsEnough]) {
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-        [self quiteGame];
-    }
-    
     [_gameService syncAccount:self];
 }
 
@@ -1652,9 +1647,12 @@
 
 - (void)didSyncFinish
 {
-    [[self getMyAvatarView] update]; 
+    if (![_ruleConfig isCoinsEnough]) {
+        [self quiteGame];
+    }else{
+        [[self getMyAvatarView] update];
+    }
 }
-
 
 - (void)coinAnimationFinished
 {

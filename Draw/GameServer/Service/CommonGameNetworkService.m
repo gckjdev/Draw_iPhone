@@ -255,7 +255,6 @@
 
 - (void)handleMoreOnJoinGameResponse:(GameMessage*)message
 {
-    [_userSimpleInfo  removeAllObjects];
 }
 
 - (void)handleMoreOnNextPlayerStartNotificationRequest:(GameMessage*)message
@@ -274,6 +273,8 @@
             self.session = [self createSession];
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
+            [_userSimpleInfo  removeAllObjects];
+            [self getAccount:_session.userList];
 
             [self handleMoreOnJoinGameResponse:message];
         }
@@ -295,9 +296,7 @@
                     // current play session
                     [_session updateSession:sessionChanged];
                     
-                    if (sessionChanged.usersAddedList) {
-                        [self getAccount];
-                    }
+                    [self getAccount:sessionChanged.usersAddedList];
                 }
             }
         }
@@ -593,10 +592,18 @@
     return [self.session isGamePlaying];
 }
 
-- (void)getAccount
+- (void)getAccount:(NSArray *)userList
 {
-//    [_userSimpleInfo removeAllObjects];
-    NSArray* userArray = [self.session userList];
+//    NSArray* userArray = [self.session userList];
+    
+    NSMutableArray *userIds = [NSMutableArray array];
+    for (PBGameUser *user in userList) {
+        if ([self.userId isEqualToString:user.userId]) {
+            continue;
+        }
+        [userIds addObject:user.userId];
+    }
+    
     dispatch_async(_getUserInfoQueue, ^{
         
         //获取concurrent queue
@@ -604,20 +611,18 @@
         
         //创建1个queue group
         dispatch_group_t queueGroup = dispatch_group_create();
-        
-        for (PBGameUser *user in userArray) {
-            if ([self.userId isEqualToString:user.userId]) {
-                continue;
-            }
             
-            dispatch_group_async(queueGroup, aQueue, ^{
-                MyFriend *userInfo = [[UserService defaultService] getUserSimpleInfo:user.userId];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_userSimpleInfo setObject:userInfo forKey:user.userId];
-                    PPDebug(@"<getUserInfo> complete %@ %@ %ld", user.userId, userInfo.nickName, userInfo.coins);
-                });
+        dispatch_group_async(queueGroup, aQueue, ^{
+            NSArray *userInfoList = [[UserService defaultService] getUserListSimpleInfo:userIds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (int index = 0; index<[userInfoList count]; index++) {
+                    PPDebug(@"userId:%@", [userIds objectAtIndex:index]);
+                    PPDebug(@"description:%@", [userInfoList objectAtIndex:index]);
+                    [_userSimpleInfo setObject:[userInfoList objectAtIndex:index] forKey:[userIds objectAtIndex:index]];
+                }
+                
             });
-        }
+        });
         
         //等待组内任务全部完成
         PPDebug(@"wait for getting all user info");
