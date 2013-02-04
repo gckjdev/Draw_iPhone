@@ -442,11 +442,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_width_normal@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="810605277">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="718028949">
 							<int key="type">1</int>
 							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="170550939">
+						<object class="NSFont" key="IBUIFont" id="605826740">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
@@ -477,8 +477,8 @@
 						<reference key="IBUINormalTitleShadowColor" ref="806468247"/>
 						<reference key="IBUIHighlightedBackgroundImage" ref="55405763"/>
 						<reference key="IBUINormalBackgroundImage" ref="717862025"/>
-						<reference key="IBUIFontDescription" ref="810605277"/>
-						<reference key="IBUIFont" ref="170550939"/>
+						<reference key="IBUIFontDescription" ref="718028949"/>
+						<reference key="IBUIFont" ref="605826740"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 206}</string>
@@ -883,16 +883,16 @@
 			<string key="draw_oil@2x.png">{71, 92}</string>
 			<string key="draw_palette@2x.png">{75, 61}</string>
 			<string key="draw_palette_unbuy@2x.png">{85, 71}</string>
-			<string key="draw_redo_highlight@2x.png">{16, 16}</string>
-			<string key="draw_redo_normal@2x.png">{16, 16}</string>
+			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
+			<string key="draw_redo_normal@2x.png">{69, 71}</string>
 			<string key="draw_rubber@2x.png">{122, 122}</string>
 			<string key="draw_straw@2x.png">{96, 96}</string>
 			<string key="draw_straw_seleted@2x.png">{96, 96}</string>
-			<string key="draw_tool_bg@2x.png">{16, 16}</string>
-			<string key="draw_undo_highlight@2x.png">{16, 16}</string>
-			<string key="draw_undo_normal@2x.png">{16, 16}</string>
-			<string key="draw_width_highlight@2x.png">{16, 16}</string>
-			<string key="draw_width_normal@2x.png">{16, 16}</string>
+			<string key="draw_tool_bg@2x.png">{188, 97}</string>
+			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
+			<string key="draw_undo_normal@2x.png">{69, 71}</string>
+			<string key="draw_width_highlight@2x.png">{67, 34}</string>
+			<string key="draw_width_normal@2x.png">{67, 34}</string>
 			<string key="group_message@2x.png">{74, 74}</string>
 			<string key="pen_pencil@2x.png">{122, 122}</string>
 			<string key="selected_pen_rubber@2x.png">{122, 122}</string>

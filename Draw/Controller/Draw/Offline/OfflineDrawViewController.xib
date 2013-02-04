@@ -96,11 +96,11 @@
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">提交</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="581427480">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="448108155">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor" id="724414392">
+						<object class="NSColor" key="IBUINormalTitleColor" id="52939081">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
@@ -108,19 +108,19 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="64809545">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="600384771">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_highlight@2x.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="589629182">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="694331836">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_normal@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="890280637">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="451604501">
 							<int key="type">2</int>
 							<double key="pointSize">16</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="10912022">
+						<object class="NSFont" key="IBUIFont" id="310722144">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
@@ -206,13 +206,13 @@
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">保存</string>
-						<reference key="IBUIHighlightedTitleColor" ref="581427480"/>
-						<reference key="IBUINormalTitleColor" ref="724414392"/>
+						<reference key="IBUIHighlightedTitleColor" ref="448108155"/>
+						<reference key="IBUINormalTitleColor" ref="52939081"/>
 						<reference key="IBUINormalTitleShadowColor" ref="373991744"/>
-						<reference key="IBUIHighlightedBackgroundImage" ref="64809545"/>
-						<reference key="IBUINormalBackgroundImage" ref="589629182"/>
-						<reference key="IBUIFontDescription" ref="890280637"/>
-						<reference key="IBUIFont" ref="10912022"/>
+						<reference key="IBUIHighlightedBackgroundImage" ref="600384771"/>
+						<reference key="IBUINormalBackgroundImage" ref="694331836"/>
+						<reference key="IBUIFontDescription" ref="451604501"/>
+						<reference key="IBUIFont" ref="310722144"/>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -441,11 +441,11 @@
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{73, 59}</string>
-				<string>{16, 16}</string>
-				<string>{16, 16}</string>
+				<string>{91, 56}</string>
+				<string>{91, 56}</string>
 				<string>{640, 960}</string>
 				<string>{622, 649}</string>
-				<string>{16, 16}</string>
+				<string>{640, 79}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
