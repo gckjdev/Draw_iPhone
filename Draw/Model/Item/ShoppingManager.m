@@ -198,7 +198,7 @@ static ShoppingManager *staticShoppingManager = nil;
 
 #define DEFAULT_PALETTE_PRICE   4000
 #define DEFAULT_ALPHA_PRICE     3000
-#define DEFAULT_PAINTA_PLAYER_PRICE 1000
+#define DEFAULT_PAINTA_PLAYER_PRICE 2000
 
 - (NSInteger)getColorPrice
 {
@@ -252,7 +252,7 @@ static ShoppingManager *staticShoppingManager = nil;
 {
     NSString* price = [MobClick getConfigParams:@"PAINT_PLAYER_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getPaintPlayerPrice>: price is nil, return default price = %d",DEFAULT_ALPHA_PRICE);
+        PPDebug(@"<getPaintPlayerPrice>: price is nil, return default price = %d",DEFAULT_PAINTA_PLAYER_PRICE);
         return DEFAULT_PAINTA_PLAYER_PRICE;
     }
     NSInteger retPrice = [price integerValue];
