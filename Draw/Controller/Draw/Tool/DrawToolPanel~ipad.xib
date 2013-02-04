@@ -198,11 +198,11 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUIHighlightedImage" id="934595076">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="483302114">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_straw_seleted@2x.png</string>
 								</object>
-								<reference key="IBUISelectedImage" ref="934595076"/>
+								<reference key="IBUISelectedImage" ref="483302114"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_straw@2x.png</string>
@@ -611,6 +611,14 @@
 					<int key="connectionID">69</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">straw</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="257603996"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUndo:</string>
 						<reference key="source" ref="587674421"/>
@@ -690,15 +698,6 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">58</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickStraw:</string>
-						<reference key="source" ref="257603996"/>
-						<reference key="destination" ref="191373211"/>
-						<int key="IBEventType">8</int>
-					</object>
-					<int key="connectionID">59</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -890,7 +889,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">70</int>
+			<int key="maxID">71</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
