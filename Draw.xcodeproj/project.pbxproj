@@ -13452,10 +13452,10 @@
 		CA53292916A3E4B200E9E96B /* InputAlertView */ = {
 			isa = PBXGroup;
 			children = (
-				CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */,
 				CA53292A16A3E4FA00E9E96B /* InputAlertView.h */,
 				CA53292B16A3E4FA00E9E96B /* InputAlertView.m */,
 				CA53293016A3E50D00E9E96B /* InputAlertView.xib */,
+				CA53293516A3E51F00E9E96B /* InputAlertView~ipad.xib */,
 			);
 			path = InputAlertView;
 			sourceTree = "<group>";
