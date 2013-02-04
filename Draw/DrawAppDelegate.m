@@ -418,11 +418,6 @@ NSString* GlobalGetBoardServerURL()
      */
     [[AudioManager defaultManager] backgroundMusicStart];
 
-    //update the statistic
-    // rem by Benson due to ViewDidAppear also called it
-//    if (_homeController) {
-//        [[UserService defaultService] getStatistic:_homeController];        
-//    }
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -459,7 +454,7 @@ NSString* GlobalGetBoardServerURL()
     [[MusicItemManager defaultManager] saveMusicItems];
     [[MyPaintManager defaultManager] removeAlldeletedPaints];
     [[FeedManager defaultManager] removeOldCache];
-//    [Feed]
+
 }
 
 #pragma mark - Device Notification Delegate
@@ -504,9 +499,6 @@ NSString* GlobalGetBoardServerURL()
                                           otherButtonTitles: nil];
     [alert show];
     [alert release];
-	
-	// try again
-	// [self bindDevice];
 }
 
 - (void)showNotification:(NSDictionary*)payload
