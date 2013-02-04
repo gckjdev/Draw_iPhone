@@ -83,9 +83,11 @@
         }else {
             self.status = ContestStatusRunning;
         }
+        
+        // init canSubmitCount for contest opus
         self.canSubmitCount = DEFAULT_CAN_SUMMIT_COUNT;
         NSNumber *number = [dict objectForKey:PARA_CAN_SUBMIT_COUNT];
-        if (number) {
+        if (number && number.integerValue > 0) {
             self.canSubmitCount = number.integerValue;
         }
     }

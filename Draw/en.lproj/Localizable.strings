@@ -295,6 +295,7 @@
 
 "kShareOtherText" = "What An Awesome Drawing - %@ ";
 "kShareMeText" = "My Awesome Drawing for %@ %@";
+"kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";
 
 "kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
 "kShareGIFMeText" = "My Awesome Drawing for %@ ";

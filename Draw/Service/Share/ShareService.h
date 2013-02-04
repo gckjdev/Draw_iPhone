@@ -16,4 +16,6 @@
 - (void)shareWithImage:(UIImage*)image drawUserId:(NSString*)drawUserId isDrawByMe:(BOOL)isDrawByMe drawWord:(NSString*)drawWord;
 - (UIImage*)synthesisImage:(UIImage*)srcImage waterMarkText:(NSString*)text;
 - (NSString*)synthesisImageFile:(NSString*)filePath waterMarkText:(NSString*)text;
+- (NSString*)synthesisImageWithImage:(UIImage*)sourceImage waterMarkText:(NSString*)text;
+
 @end
