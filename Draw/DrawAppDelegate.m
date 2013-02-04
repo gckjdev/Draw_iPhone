@@ -225,48 +225,30 @@ NSString* GlobalGetBoardServerURL()
     
     application.applicationIconBadgeNumber = 0;
 
+    // init mob click
+    [MobClick startWithAppkey:[GameApp umengId]
+                 reportPolicy:BATCH
+                    channelId:[ConfigManager getChannelId]];
+    [MobClick updateOnlineConfig];
+    
+    [self initImageCacheManager];
+    [PPSmartUpdateDataUtils initPaths];    
     
     if (isDrawApp()) {
         [WordManager defaultManager];
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles];
     }
-    
-    [[CommonHelpManager defaultManager] unzipHelpFiles];
-    
-    [self initImageCacheManager];
-    [PPSmartUpdateDataUtils initPaths];
 
+    if (!isDrawApp()){
+        [[CommonHelpManager defaultManager] unzipHelpFiles];
+    }
     
     if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
-    
-    // TODO Check whether this is required or not?
-    /*
-    NSArray* drawSoundArray = [NSArray arrayWithObjects:
-                                @"ding.m4a", 
-                                @"dingding.mp3", 
-                                @"correct.mp3", 
-                                @"oowrong.mp3", 
-                                @"congratulations.mp3", 
-                                @"rolling.mp3",
-                               @"open.aiff", nil];
-    NSArray* diceArray = [[DiceSoundManager defaultManager] diceSoundNameArray];
-    if (isDrawApp()){
-        [[AudioManager defaultManager] initSounds:drawSoundArray];        
-    }
-    else{
-        [[AudioManager defaultManager] initSounds:[drawSoundArray arrayByAddingObjectsFromArray:diceArray]];        
-    }
-    */
         
-    // init mob click 
-    [MobClick startWithAppkey:[GameApp umengId]
-                 reportPolicy:BATCH 
-                    channelId:[ConfigManager getChannelId]];
-    [MobClick updateOnlineConfig];
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil forceServer:YES];
