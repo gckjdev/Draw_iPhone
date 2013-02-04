@@ -45,7 +45,7 @@
 							<object class="IBUIImageView" id="489884257">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{512, 488}</string>
+								<string key="NSFrameSize">{514, 445}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="233157296"/>
@@ -60,7 +60,7 @@
 							<object class="IBUIImageView" id="1017048559">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{18, 64}, {484, 250}}</string>
+								<string key="NSFrame">{{40, 93}, {441, 201}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="97012623"/>
@@ -75,7 +75,7 @@
 							<object class="IBUIButton" id="1066784357">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{18, 397}, {200, 64}}</string>
+								<string key="NSFrame">{{45, 351}, {170, 64}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="812579915"/>
@@ -99,11 +99,11 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">input_alert_button@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="160876584">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="1066710509">
 									<int key="type">2</int>
 									<double key="pointSize">35</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="67212041">
+								<object class="NSFont" key="IBUIFont" id="140851612">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">35</double>
 									<int key="NSfFlags">16</int>
@@ -112,7 +112,7 @@
 							<object class="IBUIButton" id="812579915">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{302, 397}, {200, 64}}</string>
+								<string key="NSFrame">{{306, 351}, {170, 64}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -127,13 +127,13 @@
 								<reference key="IBUINormalTitleColor" ref="759030979"/>
 								<reference key="IBUINormalTitleShadowColor" ref="65492060"/>
 								<reference key="IBUINormalBackgroundImage" ref="1033823674"/>
-								<reference key="IBUIFontDescription" ref="160876584"/>
-								<reference key="IBUIFont" ref="67212041"/>
+								<reference key="IBUIFontDescription" ref="1066710509"/>
+								<reference key="IBUIFont" ref="140851612"/>
 							</object>
 							<object class="IBUILabel" id="233157296">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{76, 0}, {360, 60}}</string>
+								<string key="NSFrame">{{78, 17}, {360, 60}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="600190575"/>
@@ -167,7 +167,7 @@
 							<object class="IBUITextView" id="97012623">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{32, 78}, {456, 222}}</string>
+								<string key="NSFrame">{{46, 98}, {430, 190}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="697055029"/>
@@ -179,7 +179,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText"/>
+								<string key="IBUIText">test</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
@@ -202,7 +202,7 @@
 							<object class="IBUIButton" id="697055029">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{46, 346}, {28, 28}}</string>
+								<string key="NSFrame">{{55, 306}, {28, 28}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="284730635"/>
@@ -242,7 +242,7 @@
 							<object class="IBUIButton" id="549499065">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{331, 346}, {28, 28}}</string>
+								<string key="NSFrame">{{316, 306}, {28, 28}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="32454779"/>
@@ -266,7 +266,7 @@
 							<object class="IBUILabel" id="284730635">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{84, 338}, {130, 42}}</string>
+								<string key="NSFrame">{{93, 297}, {130, 42}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="549499065"/>
@@ -299,7 +299,7 @@
 							<object class="IBUILabel" id="32454779">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{368, 338}, {130, 42}}</string>
+								<string key="NSFrame">{{353, 297}, {130, 42}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1066784357"/>
@@ -322,7 +322,7 @@
 							<object class="IBUIButton" id="600190575">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{459, 12}, {36, 36}}</string>
+								<string key="NSFrame">{{445, 29}, {36, 36}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1017048559"/>
@@ -352,7 +352,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{128, 193}, {512, 488}}</string>
+						<string key="NSFrame">{{127, 202.5}, {514, 445}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="489884257"/>
@@ -709,11 +709,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="input_alert_bg@2x.png">{512, 489}</string>
+			<string key="input_alert_bg@2x.png">{514, 445}</string>
 			<string key="input_alert_button@2x.png">{199, 63}</string>
 			<string key="input_alert_check@2x.png">{27, 27}</string>
 			<string key="input_alert_close@2x.png">{35, 36}</string>
-			<string key="input_alert_content_bg@2x.png">{464, 250}</string>
+			<string key="input_alert_content_bg@2x.png">{441, 201}</string>
 			<string key="input_alert_uncheck@2x.png">{26, 27}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
