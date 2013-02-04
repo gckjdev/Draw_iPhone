@@ -208,30 +208,21 @@
     [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
     [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
+    // sync bulletin
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
+    
     [self enterNextControllerWityType:self.notificationType];
 
     [self registerUIApplicationNotification];
-//    [self registerNetworkDisconnectedNotification];//do in super class
     
-    PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
+    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
 //    [self.view bringSubviewToFront:self.testBulletin];
 //    [self.view bringSubviewToFront:self.testCreateWallBtn];
 
 }
-
-//- (void)registerNetworkDisconnectedNotification
-//{
-//    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
-//                            usingBlock:^(NSNotification *note) {
-//                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
-//                            }];
-//}
-//
-//- (void)unregisterNetworkDisconnectedNotification
-//{
-//    [self unregisterNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED];
-//}
 
 - (void)registerUIApplicationNotification
 {
@@ -248,6 +239,10 @@
             [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
         
+        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+            [self updateAllBadge];
+        }];
+        
         [self.homeHeaderPanel updateView];
     }];
 }
@@ -259,23 +254,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {        
-    [[UserService defaultService] getStatistic:self];
-
-    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
-//    [self loadBoards];
     [super viewDidAppear:animated];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    /*
-    [_boardPanel clearAds];
-    [_boardPanel stopTimer];
-     */
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];

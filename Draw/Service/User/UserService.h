@@ -32,6 +32,9 @@
 @end
 
 @interface UserService : CommonService
+{
+    BOOL    _isCallingGetStatistic;
+}
 
 + (UserService*)defaultService;
 

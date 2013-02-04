@@ -839,17 +839,22 @@ static UserService* _defaultUserService;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
+    if (_isCallingGetStatistic){
+        PPDebug(@"<getStatistic> but it's calling");
+        return;
+    }
+    
     NSString* userId = [[UserManager defaultManager] userId];
     if ([userId length] == 0)
         return;
     
+    _isCallingGetStatistic = YES;
+    
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];
-        
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];        
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            
+                        
             if (output.resultCode == ERROR_SUCCESS) {
                 long messageCount = [[output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT] longValue];
                 long feedCount = [[output.jsonDataDict objectForKey:PARA_FEED_COUNT] longValue];
@@ -874,6 +879,8 @@ static UserService* _defaultUserService;
             if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
                 [viewController didSyncStatisticWithResultCode:output.resultCode];
             }
+            
+            _isCallingGetStatistic = NO;
         });
     });
 
