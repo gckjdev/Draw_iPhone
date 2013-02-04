@@ -623,6 +623,10 @@ BBSService *_staticBBSService;
             return;
         }
     
+        if (actionType == ActionTypeSupport) {
+            [[BBSManager defaultManager] increasePostSupportTimes:postId];
+        }
+    
         dispatch_async(workingQueue, ^{
             NSString *nText = text;
             
@@ -674,11 +678,11 @@ BBSService *_staticBBSService;
                 
                 PBBBSAction *buildAction = nil;
                 NSInteger resultCode = [output resultCode];
-                
-                if (resultCode == ERROR_SUCCESS) {
+                if (resultCode != ERROR_SUCCESS) {
                     if (actionType == ActionTypeSupport) {
-                        [[BBSManager defaultManager] increasePostSupportTimes:postId];
+                        [[BBSManager defaultManager] decreasePostSupportTimes:postId];
                     }
+                }else if (resultCode == ERROR_SUCCESS) {
                     NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
                     NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
                     NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];

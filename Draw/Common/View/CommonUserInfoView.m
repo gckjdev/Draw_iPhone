@@ -92,7 +92,7 @@
                             level:_targetFriend.level
                        drunkPoint:0
                            wealth:_targetFriend.coins];
-    [self.avatarView setAvatarStyle:AvatarViewStyle_Square];
+    [self.avatarView setAvatarStyle:CommonRoundAvatarViewStyle_Square];
 }
 
 - (void)initLevelAndName

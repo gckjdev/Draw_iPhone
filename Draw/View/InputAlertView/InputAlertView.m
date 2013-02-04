@@ -10,7 +10,9 @@
 #import "BlockUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ConfigManager.h"
-
+#import "UserManager.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
 
 @interface InputAlertView ()
 {
@@ -25,17 +27,40 @@
 @property (assign, nonatomic) id target;
 @property (assign, nonatomic) SEL cancelSeletor;
 @property (assign, nonatomic) SEL commitSeletor;
-@property (retain, nonatomic) IBOutlet UIButton *share;
+@property (retain, nonatomic) IBOutlet UILabel *shareToSina;
+@property (retain, nonatomic) IBOutlet UILabel *shareToQQ;
 
 - (IBAction)clickCancel:(id)sender;
 - (IBAction)clickConfirm:(id)sender;
-- (IBAction)clickShare:(id)sender;
+- (IBAction)clickSinaCheckBox:(UIButton *)sender;
+- (IBAction)clickQQCheckBox:(UIButton *)sender;
+- (IBAction)clickClose:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UIButton *sinaCheckBox;
+@property (retain, nonatomic) IBOutlet UIButton *qqCheckBox;
 
 @end
 
 
 @implementation InputAlertView
 
+- (BOOL)canShareViaSina
+{
+    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)canShareViaQQ
+{
+    if ([[UserManager defaultManager] hasBindQQWeibo] == NO ||
+        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+        return NO;
+    }
+    return YES;
+}
 
 - (void)updateView
 {
@@ -44,7 +69,12 @@
     [self.confirm setTitle:NSLS(@"kTwoSpaceConfirm") forState:UIControlStateNormal];
 
     [self addTarget:self action:@selector(clickMask:) forControlEvents:UIControlEventTouchUpInside];
-    self.share.selected = YES;
+
+    [self.sinaCheckBox setSelected:[self canShareViaSina]];
+    [self.qqCheckBox setSelected:[self canShareViaQQ]];
+
+    [self.shareToSina setText:NSLS(@"kSinaWeibo")];
+    [self.shareToQQ setText:NSLS(@"kTencentWeibo")];
 }
 
 + (id)createView
@@ -93,7 +123,10 @@
     PPRelease(_content);
     PPRelease(_cancel);
     PPRelease(_confirm);
-    [_share release];
+    [_shareToSina release];
+    [_shareToQQ release];
+    [_sinaCheckBox release];
+    [_qqCheckBox release];
     [super dealloc];
 }
 
@@ -143,20 +176,57 @@
     }
     [self dismiss:YES];
 }
+
+- (NSSet *)setForShareType
+{
+    NSMutableSet *set = [NSMutableSet setWithCapacity:2];
+    if (self.sinaCheckBox.isSelected) {
+        [set addObject:@(TYPE_SINA)];
+    }
+    if (self.qqCheckBox.isSelected) {
+        [set addObject:@(TYPE_QQ)];
+    }
+    return set;
+}
+
 - (IBAction)clickConfirm:(id)sender {
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
-        NSNumber *share = @(self.share.selected);
-        [self.target performSelector:self.commitSeletor withObject:share];
+        NSSet *shareSet = [self setForShareType];
+        [self.target performSelector:self.commitSeletor withObject:shareSet];
     }
     [self dismiss:YES];
 }
 
-- (IBAction)clickShare:(id)sender {
-    self.share.selected = !self.share.isSelected;
+
+- (IBAction)clickSinaCheckBox:(UIButton *)sender {
+    if (sender.isSelected) {
+        [sender setSelected:NO];
+    }else{
+        if ([self canShareViaSina]) {
+            [sender setSelected:YES];
+        }else{
+            //TODO bang sina weibo, when finish setting self.sinaCheckBox.selected = YES;
+        }
+    }
+}
+
+- (IBAction)clickQQCheckBox:(UIButton *)sender {
+    if (sender.isSelected) {
+        [sender setSelected:NO];
+    }else{
+        if ([self canShareViaQQ]) {
+            [sender setSelected:YES];
+        }else{
+            //TODO bang QQ weibo, when finish setting self.qqCheckBox.selected = YES;
+        }
+    }
+}
+
+- (IBAction)clickClose:(id)sender {
+    [self dismiss:YES];
 }
 
 - (IBAction)clickMask:(id)sender {
-    //dismiss
     [self dismiss:YES];
 }
 
@@ -184,20 +254,4 @@
         textView.text = [textView.text substringToIndex:length];
     }
 }
-
-/*
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    
-    PPDebug(@"shouldChangeTextInRange, textView.text = %@, text = %@",text, textView.text);
-    
-    if ([text isEqualToString:@"\n"]) {
-        if ([textView.text length] != 0) {
-            [self clickConfirm:self.confirm];
-        }
-        return NO;
-    }
-    return YES;
-}
-*/
 @end

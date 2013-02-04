@@ -216,4 +216,6 @@
 - (UIImage *)shopItemPaletteImage;
 - (UIImage *)autoRecoveryDraftImage;
 - (UIImage *)paintPlayerImage;
+
+- (UIImage *)commonRoundAavatarNoUserImage;
 @end

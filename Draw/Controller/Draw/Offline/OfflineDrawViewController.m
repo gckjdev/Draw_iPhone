@@ -127,28 +127,6 @@
 
 #pragma mark - Static Method
 
-/*
-
-+ (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController
-{
-    LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
-    [fromController.navigationController pushViewController:vc animated:YES];
-    return [vc autorelease];
-}
-
-+ (OfflineDrawViewController *)startDraw:(Word *)word 
-   fromController:(UIViewController*)fromController 
-        targetUid:(NSString *)targetUid
-{
-    LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
-    [fromController.navigationController pushViewController:vc animated:YES];
-    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
-    return [vc autorelease];
-}
-
-*/
 + (OfflineDrawViewController *)startDrawWithContest:(Contest *)contest
                                      fromController:(UIViewController*)fromController
                                     startController:(UIViewController*)startController
@@ -917,7 +895,7 @@ enum{
     [self.progressView setProgress:progress];        
 }
 
-- (void)commitOpus:(NSNumber *)share
+- (void)commitOpus:(NSSet *)share
 {
     
 //    [self showActivityWithText:NSLS(@"kSending")];
@@ -936,9 +914,12 @@ enum{
                                               contestId:_contest.contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
-    if ([share boolValue]) {
-        //TODO share draw to SNS
-        PPDebug(@"share draw to SNS");
+    for (NSNumber *value in share) {
+        if ([value integerValue] == TYPE_SINA) {
+            //TODO share to sina weibo
+        }else if([value integerValue] == TYPE_QQ){
+            //TODO share to qq weibo
+        }
     }
 }
 

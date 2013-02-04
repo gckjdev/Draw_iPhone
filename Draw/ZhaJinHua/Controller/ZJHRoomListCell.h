@@ -8,13 +8,13 @@
 
 #import "CommonRoomListCell.h"
 #import "PPTableViewCell.h"
-#import "DiceAvatarView.h"
+#import "CommonRoundAvatarView.h"
 #import "GameConstants.pb.h"
 
 @class PBGameSession;
 @class PPViewController;
 
-@interface ZJHRoomListCell : CommonRoomListCell <DiceAvatarViewDelegate>
+@interface ZJHRoomListCell : CommonRoomListCell <CommonRoundAvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 
