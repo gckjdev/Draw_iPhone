@@ -161,6 +161,7 @@
 #define METHOD_FEEDBACK @"fb"
 #define METHOD_COMMIT_WORDS @"cw"
 
+#define METHOD_GET_TARGET_USER_LIST_INFO    @"gtuli"
 #define METHOD_GET_TARGET_USER_INFO    @"gtui"
 #define METHOD_DELETE_FEED @"delf"
 #define METHOD_GET_RECOMMEND_APP    @"gra"

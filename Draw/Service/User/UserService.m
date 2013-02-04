@@ -839,17 +839,22 @@ static UserService* _defaultUserService;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController
 {
+    if (_isCallingGetStatistic){
+        PPDebug(@"<getStatistic> but it's calling");
+        return;
+    }
+    
     NSString* userId = [[UserManager defaultManager] userId];
     if ([userId length] == 0)
         return;
     
+    _isCallingGetStatistic = YES;
+    
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];
-        
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];        
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            
+                        
             if (output.resultCode == ERROR_SUCCESS) {
                 long messageCount = [[output.jsonDataDict objectForKey:PARA_MESSAGE_COUNT] longValue];
                 long feedCount = [[output.jsonDataDict objectForKey:PARA_FEED_COUNT] longValue];
@@ -874,9 +879,49 @@ static UserService* _defaultUserService;
             if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
                 [viewController didSyncStatisticWithResultCode:output.resultCode];
             }
+            
+            _isCallingGetStatistic = NO;
         });
     });
 
+}
+
+
+#define USER_ID_SEPRATOR @"$"
+
+- (NSArray *)getUserListSimpleInfo:(NSArray *)userIdList
+{
+    if ([userIdList count] <= 0) {
+        return nil;
+    }
+    
+    NSString *fromUserId = [[UserManager defaultManager] userId];
+    
+    NSString *userIds = [userIdList objectAtIndex:0];
+    for (int index=0; index<[userIdList count]; index++) {
+        [[userIds stringByAppendingString:USER_ID_SEPRATOR] stringByAppendingString:[userIdList objectAtIndex:index]];
+    }
+    
+    CommonNetworkOutput* output = [GameNetworkRequest getUserListSimpleInfo:SERVER_URL
+                                                                     userId:fromUserId
+                                                                      appId:[ConfigManager appId]
+                                                                     gameId:[ConfigManager gameId]
+                                                                  ByUserIds:userIds];
+
+    
+    NSMutableArray *userList = [NSMutableArray array];
+    
+    if (output.resultCode == ERROR_SUCCESS) {
+        
+        for(int index=0; index<[output.jsonDataArray count]; index++)
+        {
+            MyFriend *user = [MyFriend friendWithDict:[output.jsonDataArray objectAtIndex:index]];
+            user.friendUserId = [userIdList objectAtIndex:index];
+            [userList addObject:user];
+        }
+    }
+    
+    return userList;
 }
 
 - (MyFriend*)getUserSimpleInfo:(NSString *)userId

@@ -29,6 +29,7 @@ typedef enum
     ColorAlphaItem = 1102,
     PaintPlayerItem = 1103,
     ColorStrawItem = 1104,
+
     
     //Liar dice.
 //    ItemTypeChangeDice = 2000,

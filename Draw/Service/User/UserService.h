@@ -32,6 +32,9 @@
 @end
 
 @interface UserService : CommonService
+{
+    BOOL    _isCallingGetStatistic;
+}
 
 + (UserService*)defaultService;
 
@@ -82,5 +85,6 @@
 
 // a network block method to query user basic info
 - (MyFriend*)getUserSimpleInfo:(NSString *)userId;
+- (NSArray *)getUserListSimpleInfo:(NSArray *)userIdList;
 
 @end

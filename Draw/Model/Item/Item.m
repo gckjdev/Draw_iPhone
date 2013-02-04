@@ -170,31 +170,33 @@
     DiceImageManager* diceManager = [DiceImageManager defaultManager];
     switch (type) {
         case ItemTypeFlower:
-            return manager.flower;
+            return [manager flower];
         case ItemTypeTomato:
-            return manager.tomato;
+            return [manager tomato];
         case ItemTypeColor:
-            return manager.printOil;
+            return [manager printOil];
         case ItemTypeRemoveAd:
-            return manager.removeAd;
+            return [manager removeAd];
         case ItemTypeTips:
-            return manager.tipBag;
+            return [manager tipBag];
         case Pen:
-            return manager.penImage;
+            return [manager penImage];
         case IcePen:
-            return manager.iceImage;
+            return [manager iceImage];
         case Quill:
-            return manager.quillImage;
+            return [manager quillImage];
         case WaterPen:
-            return manager.waterPenImage;
+            return [manager waterPenImage];
         case Pencil:
-            return manager.pencilImage;
+            return [manager pencilImage];
         case PaletteItem:
-            return manager.shopItemPaletteImage;
+            return [manager shopItemPaletteImage];
         case ColorAlphaItem:
-            return manager.shopItemAlphaImage;
+            return [manager shopItemAlphaImage];
         case PaintPlayerItem:
-            return manager.paintPlayerImage;
+            return [manager paintPlayerImage];
+        case ColorStrawItem:
+            return [manager strawImage];
             
         case ItemTypeRollAgain: 
             return [diceManager toShopImage:diceManager.diceToolRollAgainImage];
@@ -267,6 +269,8 @@
             return NSLS(@"kColorAlphaItem");
         case PaintPlayerItem:
             return NSLS(@"kPaintPlayerItem");
+        case ColorStrawItem:
+            return NSLS(@"kStraw");
         case ItemTypeRollAgain:
             return NSLS(@"kRollAgain");
         case ItemTypeCut:
@@ -304,6 +308,8 @@
             return NSLS(@"kColorAlphaItemDescription");
         case PaintPlayerItem:
             return NSLS(@"kPaintPlayerItemDescription");
+        case ColorStrawItem:
+            return NSLS(@"kStrawDescription");
         default:
             return nil;
     }
@@ -386,6 +392,8 @@
             return [Item colorAlphaItem];
         case PaintPlayerItem:
             return [Item paintPlayerItem];
+        case ColorStrawItem:
+            return [Item straw];
         default:
             break;
     }
@@ -531,6 +539,17 @@
                       buyAmountForOnce:1
                                  price:[[ShoppingManager defaultManager] getPaintPlayerItemPrice]
                                 amount:[[ItemManager defaultManager] amountForItem:PaintPlayerItem]] autorelease];
+}
+
++ (Item*)straw
+{
+    return [[[Item alloc] initWithType:ColorStrawItem
+                                 image:[Item imageForItemType:ColorStrawItem]
+                                  name:[Item nameForItemType:ColorStrawItem]
+                           description:[Item descriptionForItemType:ColorStrawItem]
+                      buyAmountForOnce:1
+                                 price:[[ShoppingManager defaultManager] getStrawPrice]
+                                amount:[[ItemManager defaultManager] amountForItem:ColorStrawItem]] autorelease];
 }
 
 

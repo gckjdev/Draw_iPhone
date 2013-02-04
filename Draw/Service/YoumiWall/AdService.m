@@ -49,9 +49,7 @@ static AdService* _defaultService;
 - (void)initWappuAdSDK
 {
     // init Wanpu Ad
-    PPDebug(@"wanpu test 1");
-//    [AppConnect getConnect:[GameApp wanpuAdPublisherId] pid:[ConfigManager getChannelId]];   
-    PPDebug(@"wanpu test 2");
+//    [AppConnect getConnect:[GameApp wanpuAdPublisherId] pid:[ConfigManager getChannelId]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectSuccess:) name:WAPS_CONNECT_SUCCESS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectFailed:) name:WAPS_CONNECT_FAILED object:nil];        
 }

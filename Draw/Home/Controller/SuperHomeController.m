@@ -119,9 +119,6 @@
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
     [self.homeHeaderPanel updateView];
-    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
-    }];
     [[UserService defaultService] getStatistic:self];
     
     [self registerJoinGameResponseNotification];
