@@ -390,6 +390,8 @@
             return [Item paletteItem];
         case ColorAlphaItem:
             return [Item colorAlphaItem];
+        case PaintPlayerItem:
+            return [Item paintPlayerItem];
         default:
             break;
     }

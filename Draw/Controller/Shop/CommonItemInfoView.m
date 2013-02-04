@@ -130,6 +130,16 @@
     [view showInView:superController.view];
 }
 
++ (void)showItem:(Item*)anItem
+      infoInView:(UIView *)view
+     canBuyAgain:(BOOL)canBuyAgain
+        delegate:(id<CommonItemInfoViewDelegate>)delegate
+{
+    CommonItemInfoView* cView = [CommonItemInfoView createItemInfoView];
+    [cView initViewWithItem:anItem canBuyAgain:canBuyAgain];
+    cView.delegate = delegate;
+    [cView showInView:view];    
+}
 
 - (IBAction)clickMask:(id)sender
 {

@@ -14,6 +14,9 @@
 #import "DrawAction.h"
 #import "ShareImageManager.h"
 #import "ConfigManager.h"
+#import "AccountService.h"
+#import "ItemType.h"
+#import "Item.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
@@ -34,6 +37,7 @@
 @property(nonatomic, retain) IBOutlet UIView *holderView;
 @property(nonatomic, retain) ShowDrawView *showView;
 @property(nonatomic, assign) PPViewController *superController;
+@property (retain, nonatomic) IBOutlet UIControl *playerToolMask;
 
 
 @property (retain, nonatomic) IBOutlet UIView *toolPanel;
@@ -63,6 +67,7 @@
 
 - (IBAction)clickPlayerPanel:(id)sender forEvent:(UIEvent *)event;
 - (IBAction)clickSpeedPanel:(id)sender forEvent:(UIEvent *)event;
+- (IBAction)clickPlayerToolMask:(id)sender;
 
 @end
 
@@ -71,12 +76,20 @@
 @synthesize holderView = _holderView;
 @synthesize showView = _showView;
 
+- (BOOL)hasBounghtPlayer
+{
+    return [[AccountService defaultService] hasEnoughItemAmount:PaintPlayerItem amount:1];
+}
 
 - (void)updateView
 {
     [self.playProgressLoader setImage:[[ShareImageManager defaultManager] playProgressLoader]];
     [self.speedLoader setImage:[[ShareImageManager defaultManager] speedProgressLoader]];
     [self.speedPanel setHidden:YES];
+    if ([self hasBounghtPlayer]) {
+        [self.playerToolMask removeFromSuperview];
+        self.playerToolMask = nil;
+    }
 }
 
 + (id)createReplayView
@@ -144,6 +157,7 @@
     PPRelease(_speedLoader);
     PPRelease(_speedPoint);
     PPRelease(_maskView);
+    PPRelease(_playerToolMask);
     [super dealloc];
 }
 
@@ -350,6 +364,26 @@
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint point = [touch locationInView:self.speedPanel];
     [self setSpeedProgressWithPoint:point];
+}
+
+- (IBAction)clickPlayerToolMask:(id)sender {
+    if (![self hasBounghtPlayer]) {
+        [CommonItemInfoView showItem:[Item itemWithType:PaintPlayerItem amount:1]
+                          infoInView:self
+                         canBuyAgain:YES
+                            delegate:self];
+    }
+}
+
+- (void)didBuyItem:(Item*)anItem
+            result:(int)result
+{
+    if (result == 0) {
+        [self.playerToolMask removeFromSuperview];
+        self.playerToolMask = nil;
+    }else{
+        PPDebug(@"<didBuyItem> item type = %d, failed",anItem.type);
+    }
 }
 
 #pragma mark - Show Draw View Delegate

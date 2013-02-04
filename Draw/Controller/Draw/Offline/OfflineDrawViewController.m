@@ -1092,7 +1092,8 @@ enum{
         switch (anItem.type) {
             case PaletteItem:
             case ColorAlphaItem:
-                [self.drawToolPanel updateView];
+            case ColorStrawItem:
+                [self.drawToolPanel updateNeedBuyToolViews];
                 break;
             case Pen:
             case Pencil:
