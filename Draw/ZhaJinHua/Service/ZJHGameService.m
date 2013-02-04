@@ -510,10 +510,12 @@ static ZJHGameService *_defaultService;
 {
     switch (self.rule) {
         case PBZJHRuleTypeDual:
+            return @"192.168.1.5:8030";
             return [ConfigManager getZJHServerListStringWithDual];
             break;
             
         case PBZJHRuleTypeNormal:
+            return @"192.168.1.5:8028";
             return [ConfigManager getZJHServerListStringWithNormal];
             break;
             
@@ -551,11 +553,6 @@ static ZJHGameService *_defaultService;
     if ([_userManager isMe:userId]) {
         return [self myBalance];
     }
-    
-
-//    PPDebug(@"totalBet: %d", );
-//    PPDebug(@"compareAward: %d", );
-//    PPDebug(@"resultAward: %d", );
     
     int balance = [[self.userSimpleInfo objectForKey:userId] coins] - [[self userPlayInfo:userId] totalBet] + [[self userPlayInfo:userId] compareAward] + [[self userPlayInfo:userId] resultAward];
     

@@ -879,6 +879,44 @@ static UserService* _defaultUserService;
 
 }
 
+
+#define USER_ID_SEPRATOR @"$"
+
+- (NSArray *)getUserListSimpleInfo:(NSArray *)userIdList
+{
+    if ([userIdList count] <= 0) {
+        return nil;
+    }
+    
+    NSString *fromUserId = [[UserManager defaultManager] userId];
+    
+    NSString *userIds = [userIdList objectAtIndex:0];
+    for (int index=0; index<[userIdList count]; index++) {
+        [[userIds stringByAppendingString:USER_ID_SEPRATOR] stringByAppendingString:[userIdList objectAtIndex:index]];
+    }
+    
+    CommonNetworkOutput* output = [GameNetworkRequest getUserListSimpleInfo:SERVER_URL
+                                                                     userId:fromUserId
+                                                                      appId:[ConfigManager appId]
+                                                                     gameId:[ConfigManager gameId]
+                                                                  ByUserIds:userIds];
+
+    
+    NSMutableArray *userList = [NSMutableArray array];
+    
+    if (output.resultCode == ERROR_SUCCESS) {
+        
+        for(int index=0; index<[output.jsonDataArray count]; index++)
+        {
+            MyFriend *user = [MyFriend friendWithDict:[output.jsonDataArray objectAtIndex:index]];
+            user.friendUserId = [userIdList objectAtIndex:index];
+            [userList addObject:user];
+        }
+    }
+    
+    return userList;
+}
+
 - (MyFriend*)getUserSimpleInfo:(NSString *)userId
 {
     NSString *fromUserId = [[UserManager defaultManager] userId];

@@ -107,6 +107,6 @@
 
 - (BOOL)isMyTurn;
 - (BOOL)isGamePlaying;
-- (void)getAccount;
+- (void)getAccount:(NSArray *)userList;
 
 @end

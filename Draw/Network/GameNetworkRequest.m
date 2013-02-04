@@ -2357,6 +2357,38 @@
     
 }
 
++ (CommonNetworkOutput*)getUserListSimpleInfo:(NSString*)baseURL
+                                       userId:(NSString *)userId
+                                        appId:(NSString*)appId
+                                       gameId:(NSString*)gameId
+                                    ByUserIds:(NSString*)targetUserIds
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TARGET_USER_LIST_INFO];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserIds];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataArray = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
+
 + (CommonNetworkOutput*)getUserSimpleInfo:(NSString*)baseURL
                                    userId:(NSString *)userId
                                     appId:(NSString*)appId 
