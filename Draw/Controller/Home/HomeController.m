@@ -216,7 +216,7 @@
     PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
     
 //    [self.view bringSubviewToFront:self.testBulletin];
-    [self.view bringSubviewToFront:self.testCreateWallBtn];
+//    [self.view bringSubviewToFront:self.testCreateWallBtn];
 
 }
 

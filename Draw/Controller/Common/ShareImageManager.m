@@ -942,7 +942,12 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)paintPlayerImage
 {
-    return [self fixedAndStrectchableImageNamed:@"paint_player"];
+    return [self fixedAndStrectchableImageNamed:@"shop_item_paint_player"];
+}
+
+- (UIImage *)strawImage
+{
+    return [self fixedAndStrectchableImageNamed:@"shop_item_straw"];
 }
 
 - (UIImage *)commonRoundAavatarNoUserImage
