@@ -99,13 +99,13 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">input_alert_button@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="557122168">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="150708171">
 									<int key="type">2</int>
-									<double key="pointSize">19</double>
+									<double key="pointSize">17</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="226933095">
+								<object class="NSFont" key="IBUIFont" id="133167277">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">19</double>
+									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -115,7 +115,6 @@
 								<string key="NSFrame">{{151, 162}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -127,8 +126,8 @@
 								<reference key="IBUINormalTitleColor" ref="423342157"/>
 								<reference key="IBUINormalTitleShadowColor" ref="65492060"/>
 								<reference key="IBUINormalBackgroundImage" ref="1033823674"/>
-								<reference key="IBUIFontDescription" ref="557122168"/>
-								<reference key="IBUIFont" ref="226933095"/>
+								<reference key="IBUIFontDescription" ref="150708171"/>
+								<reference key="IBUIFont" ref="133167277"/>
 							</object>
 							<object class="IBUILabel" id="233157296">
 								<reference key="NSNextResponder" ref="590426723"/>

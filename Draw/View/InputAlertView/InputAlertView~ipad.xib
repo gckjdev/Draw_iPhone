@@ -99,13 +99,13 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">input_alert_button@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="133742628">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="160876584">
 									<int key="type">2</int>
-									<double key="pointSize">38</double>
+									<double key="pointSize">35</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="571835508">
+								<object class="NSFont" key="IBUIFont" id="67212041">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">38</double>
+									<double key="NSSize">35</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -127,8 +127,8 @@
 								<reference key="IBUINormalTitleColor" ref="759030979"/>
 								<reference key="IBUINormalTitleShadowColor" ref="65492060"/>
 								<reference key="IBUINormalBackgroundImage" ref="1033823674"/>
-								<reference key="IBUIFontDescription" ref="133742628"/>
-								<reference key="IBUIFont" ref="571835508"/>
+								<reference key="IBUIFontDescription" ref="160876584"/>
+								<reference key="IBUIFont" ref="67212041"/>
 							</object>
 							<object class="IBUILabel" id="233157296">
 								<reference key="NSNextResponder" ref="590426723"/>
