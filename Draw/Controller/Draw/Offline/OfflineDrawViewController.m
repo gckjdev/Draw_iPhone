@@ -904,7 +904,7 @@ enum{
 
 - (void)setProgress:(CGFloat)progress
 {
-    PPDebug(@"upload progress=%f", progress);
+    PPDebug(@"opus upload progress=%f", progress);
 
     if (progress == 1.0f){
         // make this because after uploading data, it takes server sometime to process
