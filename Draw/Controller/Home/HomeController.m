@@ -215,7 +215,7 @@
     
     PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
     
-    [self.view bringSubviewToFront:self.testBulletin];
+//    [self.view bringSubviewToFront:self.testBulletin];
     [self.view bringSubviewToFront:self.testCreateWallBtn];
 
 }
@@ -598,33 +598,35 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_ONLINE];
             
-            [self showActivityWithText:NSLS(@"kJoiningGame")];
-            NSString* userId = [_userManager userId];
-            NSString* nickName = [_userManager nickName];
-            
-            if (userId == nil){
-                userId = [NSString GetUUID];
-            }
-            
-            if (nickName == nil){
-                nickName = NSLS(@"guest");
-            }
-            
-            if ([[DrawGameService defaultService] isConnected]){
-                [[DrawGameService defaultService] joinGame:userId
-                                                  nickName:nickName
-                                                    avatar:[_userManager avatarURL]
-                                                    gender:[_userManager isUserMale]
-                                                  location:[_userManager location]
-                                                 userLevel:[[LevelService defaultService] level]
-                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
-                                               snsUserData:[_userManager snsUserData]];
-            }
-            else{
-                
-                [self showActivityWithText:NSLS(@"kConnectingServer")];
-                [[RouterService defaultService] tryFetchServerList:self];
-            }
+//            [self showActivityWithText:NSLS(@"kJoiningGame")];
+//            NSString* userId = [_userManager userId];
+//            NSString* nickName = [_userManager nickName];
+//            
+//            if (userId == nil){
+//                userId = [NSString GetUUID];
+//            }
+//            
+//            if (nickName == nil){
+//                nickName = NSLS(@"guest");
+//            }
+//            
+//            if ([[DrawGameService defaultService] isConnected]){
+//                [[DrawGameService defaultService] joinGame:userId
+//                                                  nickName:nickName
+//                                                    avatar:[_userManager avatarURL]
+//                                                    gender:[_userManager isUserMale]
+//                                                  location:[_userManager location]
+//                                                 userLevel:[[LevelService defaultService] level]
+//                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
+//                                               snsUserData:[_userManager snsUserData]];
+//            }
+//            else{
+//                
+//                [self showActivityWithText:NSLS(@"kConnectingServer")];
+//                [[RouterService defaultService] tryFetchServerList:self];
+//            }
+            UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
+            [self.navigationController pushViewController:rc animated:YES];
             
         }
             
