@@ -132,42 +132,27 @@
 
 - (void)updateSliders
 {
-    CGPoint center = self.widthSlider.center;
+//    CGPoint center = self.widthSlider.center;
+    CGRect frame = self.widthSlider.frame;
     [self.widthSlider removeFromSuperview];
-    self.widthSlider = [[[DrawSlider alloc] init] autorelease];
-    self.widthSlider.center = center;
-    self.widthSlider.delegate = self;
-    
-    [self.widthSlider setMaxValue:LINE_MAX_WIDTH];
-    [self.widthSlider setMinValue:LINE_MIN_WIDTH];
-    [self.widthSlider setValue:LINE_DEFAULT_WIDTH];
+    self.widthSlider = [DrawSlider sliderWithMaxValue:LINE_MAX_WIDTH
+                                             minValue:LINE_MIN_WIDTH
+                                         defaultValue:LINE_DEFAULT_WIDTH
+                                             delegate:self];
+    self.widthSlider.frame = frame;    
     [self.colorAlpha setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
     [self addSubview:self.widthSlider];
 
-    center = self.alphaSlider.center;
+    frame = self.alphaSlider.frame;
     [self.alphaSlider removeFromSuperview];
-    
-//    if ([DeviceDetection isIPhone5] || [DeviceDetection isIPAD]) {
-        self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
-        self.alphaSlider.center = center;
-        [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
-        [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
-        [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
-        
-        self.alphaSlider.delegate = self;
-        [self addSubview:self.alphaSlider];
-        [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
-//        
-//    }else{
-//        [self.colorAlpha removeFromSuperview];
-//        self.alphaSlider = nil;
-//        self.colorAlpha = nil;
-//    }
-    
-    //TODO implement color alpha
-//    self.alphaSlider.hidden = YES;
-//    self.colorAlpha.hidden = YES;
-//    [self.alphaSlider setEnabled:NO];
+    self.alphaSlider = [DrawSlider sliderWithMaxValue:COLOR_MAX_ALPHA
+                                             minValue:COLOR_MIN_ALPHA
+                                         defaultValue:COLOR_DEFAULT_ALPHA
+                                             delegate:self];
+    self.alphaSlider.frame = frame;
+    [self addSubview:self.alphaSlider];
+    [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
+
 }
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color

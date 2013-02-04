@@ -623,13 +623,17 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
 }
+- (UIImage *)drawSliderLoader
+{
+     return [self fixedAndStrectchableImageNamed:@"draw_slider_load"];
+}
 - (UIImage *)drawSliderBG
 {
-    return [self fixedImageNamed:@"draw_slider_bg"];
+    return [self fixedAndStrectchableImageNamed:@"draw_slider_bg"];
 }
 - (UIImage *)drawSliderPoint
 {
-    return [self fixedImageNamed:@"draw_slider_point"];
+    return [self fixedAndStrectchableImageNamed:@"draw_slider_point"];
 }
 - (UIImage *)drawSliderDisableImage
 {

@@ -3754,6 +3754,10 @@
 		CA5B073616BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073016BFFD41004A64C4 /* draw_slider_point@2x.png */; };
 		CA5B073716BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073016BFFD41004A64C4 /* draw_slider_point@2x.png */; };
 		CA5B073816BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073016BFFD41004A64C4 /* draw_slider_point@2x.png */; };
+		CA5B073A16BFFE30004A64C4 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
+		CA5B073B16BFFE30004A64C4 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
+		CA5B073C16BFFE30004A64C4 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
+		CA5B073D16BFFE30004A64C4 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
 		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
@@ -8276,6 +8280,7 @@
 		CA5B067E16BFC2FF004A64C4 /* draw_width_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_width_normal@2x.png"; sourceTree = "<group>"; };
 		CA5B072F16BFFD40004A64C4 /* draw_slider_load@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_slider_load@2x.png"; sourceTree = "<group>"; };
 		CA5B073016BFFD41004A64C4 /* draw_slider_point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_slider_point@2x.png"; sourceTree = "<group>"; };
+		CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawSlider.xib; sourceTree = "<group>"; };
 		CA639115152FEA3D007564C6 /* RouterTrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTrafficServer.h; sourceTree = "<group>"; };
 		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
@@ -13420,6 +13425,7 @@
 				CA5328DD16A3E1E000E9E96B /* ColorPoint.m */,
 				CA5328DE16A3E1E000E9E96B /* DrawSlider.h */,
 				CA5328DF16A3E1E000E9E96B /* DrawSlider.m */,
+				CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */,
 				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
 				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
 				CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */,
@@ -18445,6 +18451,7 @@
 				CA5B072D16BFC2FF004A64C4 /* draw_width_normal@2x.png in Resources */,
 				CA5B073316BFFD42004A64C4 /* draw_slider_load@2x.png in Resources */,
 				CA5B073716BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */,
+				CA5B073C16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19302,6 +19309,7 @@
 				CA5B072E16BFC2FF004A64C4 /* draw_width_normal@2x.png in Resources */,
 				CA5B073416BFFD42004A64C4 /* draw_slider_load@2x.png in Resources */,
 				CA5B073816BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */,
+				CA5B073D16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20159,6 +20167,7 @@
 				CA5B072B16BFC2FF004A64C4 /* draw_width_normal@2x.png in Resources */,
 				CA5B073116BFFD42004A64C4 /* draw_slider_load@2x.png in Resources */,
 				CA5B073516BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */,
+				CA5B073A16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20988,6 +20997,7 @@
 				CA5B072C16BFC2FF004A64C4 /* draw_width_normal@2x.png in Resources */,
 				CA5B073216BFFD42004A64C4 /* draw_slider_load@2x.png in Resources */,
 				CA5B073616BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */,
+				CA5B073B16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
