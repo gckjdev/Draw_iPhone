@@ -373,16 +373,19 @@
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     [self showActivityWithText:NSLS(@"kRevoking")];
     [self performSelector:@selector(performRevoke) withObject:nil afterDelay:0.1f];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     [drawView setLineColor:self.eraserColor];
     [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     self.penColor.alpha = 1.0;
     [drawView changeBackWithColor:self.penColor];
     [self didDrawedPaint:[DrawAction changeBackgroundActionWithColor:self.penColor].paint];
@@ -397,6 +400,7 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
                bought:(BOOL)bought
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
@@ -406,10 +410,12 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     drawView.lineWidth = width;
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     self.tempColor = color;
     self.penColor = color;
     [drawView setLineColor:[DrawColor colorWithColor:color]];
@@ -418,6 +424,7 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     _alpha = alpha;
     if (drawView.lineColor != self.eraserColor) {
         [drawView.lineColor setAlpha:alpha];
@@ -437,6 +444,13 @@
 {
     [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:NO];
 }
+
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
+{
+    drawView.touchActionType = TouchActionTypeGetColor;
+}
+
+
 #pragma mark - Recent Color
 
 - (void)updateRecentColors
