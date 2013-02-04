@@ -656,6 +656,12 @@
     [self selectPen];
 }
 
+- (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
+{
+    [self dismissColorBoxPopTipView];
+    [self selectPen];
+}
+
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
     [self handleSelectColorDelegateWithColor:color updateRecentColor:NO];

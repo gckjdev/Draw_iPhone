@@ -93,6 +93,18 @@
     }
 }
 
++ (NSInteger)getHotOpusCountOnce
+{
+    return [MobClickUtils getIntValueByKey:@"HOT_OPUS_FETCH_LIMIT" defaultValue:18];
+}
++ (NSInteger)getTimelineCountOnce
+{
+    return [MobClickUtils getIntValueByKey:@"TIMELINE_FETCH_LIMIT" defaultValue:12];
+}
++ (BOOL)showOpusCount
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_OPUS_COUNT" defaultValue:NO];
+}
 
 + (NSInteger)historyRankNumber
 {
