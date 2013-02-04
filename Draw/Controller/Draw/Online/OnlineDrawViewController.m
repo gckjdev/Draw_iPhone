@@ -330,7 +330,8 @@
         switch (anItem.type) {
             case PaletteItem:
             case ColorAlphaItem:
-                [self.drawToolPanel updateView];
+            case ColorStrawItem:
+                [self.drawToolPanel updateNeedBuyToolViews];
                 break;
             case Pen:
             case Pencil:
@@ -413,7 +414,7 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
-    _alpha = _alpha;
+    _alpha = alpha;
     if (drawView.lineColor != self.eraserColor) {
         [drawView.lineColor setAlpha:alpha];
     }

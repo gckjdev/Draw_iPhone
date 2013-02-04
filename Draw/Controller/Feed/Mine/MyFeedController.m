@@ -21,6 +21,7 @@
 #import "CommentController.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
+#import "ConfigManager.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -164,8 +165,10 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
     [self.titleLabel setText:NSLS(@"kFeed")];
-    [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]
-                                      delegete:self];
+    if ([ConfigManager showOpusCount]) {
+        [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]
+                                          delegete:self];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -426,7 +429,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 12;
+    return [ConfigManager getTimelineCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

@@ -213,8 +213,12 @@
         [dataTableView endUpdates];
         
         [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        NSInteger groupId = willBuyGroup.groupId;
         NSArray * colorList = [ColorGroup colorListForGroupId:willBuyGroup.groupId];
         [[DrawColorManager sharedDrawColorManager] addBoughtColorList:colorList];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didBuyColorList:groupId:)]) {
+            [self.delegate didBuyColorList:colorList groupId:groupId];
+        }
         willBuyGroup = nil;
     }
 }

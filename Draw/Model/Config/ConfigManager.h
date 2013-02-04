@@ -62,6 +62,10 @@ typedef enum{
 + (NSString*)getMusicDownloadHomeURL;
 
 
++ (NSInteger)getHotOpusCountOnce;
++ (NSInteger)getTimelineCountOnce;
++ (BOOL)showOpusCount;
+
 + (BOOL)isInReview;
 + (BOOL)isInReviewVersion;
 

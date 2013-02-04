@@ -295,7 +295,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 24;
+    return [ConfigManager getHotOpusCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
