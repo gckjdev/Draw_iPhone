@@ -13,6 +13,11 @@
 #import "UserManager.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
+#import "PPViewController.h"
+#import "MBProgressHUD.h"
+#import "UserService.h"
+#import "GameSNSService.h"
+#import "CommonMessageCenter.h"
 
 @interface InputAlertView ()
 {
@@ -75,6 +80,7 @@
 
     [self.shareToSina setText:NSLS(@"kSinaWeibo")];
     [self.shareToQQ setText:NSLS(@"kTencentWeibo")];
+//    [self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
 }
 
 + (id)createView
@@ -106,7 +112,6 @@
     view.commitSeletor = commitSeletor;
     view.cancelSeletor = cancelSeletor;
     return view;
-
 }
 
 
@@ -115,18 +120,16 @@
     return self.content.text;
 }
 
-
-
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_title);
     PPRelease(_content);
     PPRelease(_cancel);
     PPRelease(_confirm);
-    [_shareToSina release];
-    [_shareToQQ release];
-    [_sinaCheckBox release];
-    [_qqCheckBox release];
+    PPRelease(_shareToSina);
+    PPRelease(_shareToQQ);
+    PPRelease(_sinaCheckBox);
+    PPRelease(_qqCheckBox);
     [super dealloc];
 }
 
@@ -205,7 +208,7 @@
         if ([self canShareViaSina]) {
             [sender setSelected:YES];
         }else{
-            //TODO bang sina weibo, when finish setting self.sinaCheckBox.selected = YES;
+            [self bindSNS:TYPE_SINA sender:sender];
         }
     }
 }
@@ -217,7 +220,7 @@
         if ([self canShareViaQQ]) {
             [sender setSelected:YES];
         }else{
-            //TODO bang QQ weibo, when finish setting self.qqCheckBox.selected = YES;
+            [self bindSNS:TYPE_QQ sender:sender];
         }
     }
 }
@@ -254,4 +257,57 @@
         textView.text = [textView.text substringToIndex:length];
     }
 }
+
+#pragma mark - Share SNS Control
+
+- (void)bindSNS:(int)snsType sender:(UIControl*)sender
+{    
+    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    NSString* name = [service snsName];
+    
+    [service logout];    
+    [service login:^(NSDictionary *userInfo) {
+        PPDebug(@"%@ Login Success", name);
+        
+        [MBProgressHUD showHUDAddedTo:self animated:YES];
+        
+        [service readMyUserInfo:^(NSDictionary *userInfo) {
+
+            [MBProgressHUD hideHUDForView:self animated:YES];
+            
+            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+            UserManager* userManager = [UserManager defaultManager];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+                                                           userInfo:userInfo
+                                                     viewController:nil];
+            
+            
+            
+            
+        } failureBlock:^(NSError *error) {
+
+            [MBProgressHUD hideHUDForView:self animated:YES];            
+            PPDebug(@"%@ readMyUserInfo Failure", name);
+        }];
+        
+        [sender setSelected:YES];
+        
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){
+            [service followUser:[service officialWeiboId]
+                         userId:[service officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                       [GameSNSService updateFollowOfficialWeibo:service];
+                   } failureBlock:^(NSError *error) {
+                       PPDebug(@"follow weibo but error=%@", [error description]);
+                   }];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"%@ Login Failure", name);
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:2];
+    }];
+}
+
+
 @end

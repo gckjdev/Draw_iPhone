@@ -485,9 +485,10 @@ typedef enum{
         
         //add the friend into the follow list
         TableTab *tab = [_tabManager tabForID:TabTypeFollow];
-        [tab.dataList insertObject:myFriend atIndex:0];
-        [self.dataTableView reloadData];
-        
+        if (myFriend) {
+            [tab.dataList insertObject:myFriend atIndex:0];
+            [self.dataTableView reloadData];
+        }
     } else {
         [self popupMessage:NSLS(@"kFollowFailed") title:nil];
     }

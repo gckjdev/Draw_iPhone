@@ -148,15 +148,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
 
 - (void)updateColorListWithColor:(DrawColor *)color
 {
-    NSUInteger index = [self.colorList indexOfObject:color];
-    if (index == NSNotFound || index >= DEFAULT_COLOR_COUNT){
-        [self.colorList removeLastObject];
-    }else if(index >= CONST_COLOR_COUNT){
-        [self.colorList removeObjectAtIndex:index];
-    }else{
-        return;
+    if (color) {
+        NSUInteger index = [self.colorList indexOfObject:color];
+        if (index == NSNotFound || index >= DEFAULT_COLOR_COUNT){
+            [self.colorList removeLastObject];
+        }else if(index >= CONST_COLOR_COUNT){
+            [self.colorList removeObjectAtIndex:index];
+        }else{
+            return;
+        }
+        [self.colorList insertObject:color atIndex:CONST_COLOR_COUNT];        
     }
-    [self.colorList insertObject:color atIndex:CONST_COLOR_COUNT];
 }
 
 - (void)syncRecentList

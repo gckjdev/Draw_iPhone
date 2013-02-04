@@ -158,14 +158,16 @@
 
 - (void)didMessageStat:(MessageStat *)messageStat createNewMessage:(PPMessage *)message
 {
-    messageStat.messageType = message.messageType;
-    messageStat.latestText = message.text;
-    messageStat.latestCreateDate = message.createDate;
-    messageStat.numberOfMessage++;
-    messageStat.numberOfNewMessage = 0;
-    
-    [self.tabDataList removeObject:messageStat];
-    [self.tabDataList insertObject:messageStat atIndex:0];
+    if (message && messageStat) {
+        messageStat.messageType = message.messageType;
+        messageStat.latestText = message.text;
+        messageStat.latestCreateDate = message.createDate;
+        messageStat.numberOfMessage++;
+        messageStat.numberOfNewMessage = 0;
+        
+        [self.tabDataList removeObject:messageStat];
+        [self.tabDataList insertObject:messageStat atIndex:0];        
+    }
 }
 
 #define NODATA_LABEL_TAG  90

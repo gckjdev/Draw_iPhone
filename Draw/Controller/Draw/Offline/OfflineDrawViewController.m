@@ -49,6 +49,10 @@
 #import "AnalyticsManager.h"
 #import "SelectHotWordController.h"
 #import "MBProgressHUD.h"
+#import "GameSNSService.h"
+#import "PPSNSIntegerationService.h"
+#import "ShareService.h"
+#import "FileUtil.h"
 
 @interface OfflineDrawViewController()
 {
@@ -95,6 +99,10 @@
 @property (retain, nonatomic) InputAlertView *inputAlert;
 //@property (retain, nonatomic) TKProgressBarView *progressView;
 @property (retain, nonatomic) MBProgressHUD *progressView;
+
+@property (retain, nonatomic) NSString *tempImageFilePath;
+@property (retain, nonatomic) NSSet *shareWeiboSet;
+
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
 - (void)initDrawView;
@@ -158,6 +166,8 @@
     [self stopRecovery];
 
     self.delegate = nil;
+    PPRelease(_shareWeiboSet);
+    PPRelease(_tempImageFilePath);
     PPRelease(_progressView);
     PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
@@ -738,11 +748,15 @@ enum{
             self.draft = nil;
         }
         
+        // share weibo after submit opus success
+        [self shareToWeibo];
+
     }else if(resultCode == ERROR_CONTEST_END){
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
+
     
 }
 
@@ -895,6 +909,64 @@ enum{
     [self.progressView setProgress:progress];        
 }
 
+- (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
+{
+
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+    
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* text = nil;
+    
+    if ([[self getOpusComment] length] > 0){
+        text = [NSString stringWithFormat:NSLS(@"kShareMeTextWithComment"), [self getOpusComment], snsOfficialNick, self.word.text];
+    }
+    else{
+        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, self.word.text];
+    }
+    
+    if (imagePath != nil) {
+        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+            
+            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+                if (earnCoins > 0){
+//                    NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+//                    [self popupMessage:msg title:nil];
+                }
+//            });
+            
+        } failureBlock:^(NSError *error) {
+            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+        }];
+    }
+    
+    return;
+    
+}
+
+- (void)writeTempFile:(UIImage*)image
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
+                                                                      waterMarkText:[ConfigManager getShareImageWaterMark]];
+    [pool drain];
+}
+
+- (void)shareToWeibo
+{
+    for (NSNumber *value in self.shareWeiboSet) {
+        [self shareViaSNS:[value integerValue] imagePath:self.tempImageFilePath];
+    }
+    
+    self.shareWeiboSet = nil;
+}
+
+- (NSString*)getOpusComment
+{
+    return self.inputAlert.contentText;
+}
+
 - (void)commitOpus:(NSSet *)share
 {
     
@@ -905,6 +977,11 @@ enum{
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
     UIImage *image = [drawView createImage];
+
+    // create temp file for weibo sharing
+    [self writeTempFile:image];
+    [self setShareWeiboSet:share];    
+
     NSString *text = self.inputAlert.contentText;
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
@@ -914,13 +991,9 @@ enum{
                                               contestId:_contest.contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
-    for (NSNumber *value in share) {
-        if ([value integerValue] == TYPE_SINA) {
-            //TODO share to sina weibo
-        }else if([value integerValue] == TYPE_QQ){
-            //TODO share to qq weibo
-        }
-    }
+
+    
+
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
