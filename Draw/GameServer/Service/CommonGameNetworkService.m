@@ -269,12 +269,11 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{ 
         if ([message resultCode] == 0){
+            [_userSimpleInfo  removeAllObjects];
             PBGameSession* pbSession = [[message joinGameResponse] gameSession];
             self.session = [self createSession];
             [_session fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
-            [_userSimpleInfo  removeAllObjects];
-            [self getAccount:_session.userList];
 
             [self handleMoreOnJoinGameResponse:message];
         }
@@ -295,8 +294,6 @@
                 if (sessionId == _session.sessionId){
                     // current play session
                     [_session updateSession:sessionChanged];
-                    
-                    [self getAccount:sessionChanged.usersAddedList];
                 }
             }
         }
@@ -593,9 +590,7 @@
 }
 
 - (void)getAccount:(NSArray *)userList
-{
-//    NSArray* userArray = [self.session userList];
-    
+{    
     NSMutableArray *userIds = [NSMutableArray array];
     for (PBGameUser *user in userList) {
         if ([self.userId isEqualToString:user.userId]) {

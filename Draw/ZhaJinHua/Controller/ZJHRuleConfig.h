@@ -56,4 +56,6 @@
 - (ZJHMyAvatarView *)bigAvatarWithFrame:(CGRect)frame;
 - (ZJHAvatarView *)avatarWithFrame:(CGRect)frame;
 
+- (void)getAccount:(NSArray *)userList;
+
 @end

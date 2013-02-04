@@ -83,6 +83,9 @@
     }
 }
 
-
+- (void)getAccount:(NSArray *)userList
+{
+    [[ZJHGameService defaultService] getAccount:userList];
+}
 
 @end

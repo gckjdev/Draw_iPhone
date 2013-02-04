@@ -680,8 +680,8 @@
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
     [self clearAll];
     
-    [_gameService getAccount];
-
+    [_ruleConfig getAccount:_gameService.session.userList];
+    
     [self updateAllUsersAvatar];
     
     [self updateWaitGameNoteLabel];

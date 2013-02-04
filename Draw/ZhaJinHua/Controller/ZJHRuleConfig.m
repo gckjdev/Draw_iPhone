@@ -197,4 +197,9 @@
     return avatar;
 }
 
+- (void)getAccount:(NSArray *)userList
+{
+    
+}
+
 @end
