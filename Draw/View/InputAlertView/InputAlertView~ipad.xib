@@ -99,11 +99,11 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">input_alert_button@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="673495943">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="133742628">
 									<int key="type">2</int>
 									<double key="pointSize">38</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="853239615">
+								<object class="NSFont" key="IBUIFont" id="571835508">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">38</double>
 									<int key="NSfFlags">16</int>
@@ -127,8 +127,8 @@
 								<reference key="IBUINormalTitleColor" ref="759030979"/>
 								<reference key="IBUINormalTitleShadowColor" ref="65492060"/>
 								<reference key="IBUINormalBackgroundImage" ref="1033823674"/>
-								<reference key="IBUIFontDescription" ref="673495943"/>
-								<reference key="IBUIFont" ref="853239615"/>
+								<reference key="IBUIFontDescription" ref="133742628"/>
+								<reference key="IBUIFont" ref="571835508"/>
 							</object>
 							<object class="IBUILabel" id="233157296">
 								<reference key="NSNextResponder" ref="590426723"/>
@@ -180,6 +180,10 @@
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
+								</object>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
@@ -187,11 +191,11 @@
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
-									<double key="pointSize">14</double>
+									<double key="pointSize">25</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">25</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -281,11 +285,11 @@
 								<reference key="IBUIShadowColor" ref="65492060"/>
 								<string key="IBUIShadowOffset">{2, 2}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="586768495">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="237992780">
 									<int key="type">2</int>
 									<double key="pointSize">22</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="87883874">
+								<object class="NSFont" key="IBUIFont" id="414537125">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">22</double>
 									<int key="NSfFlags">16</int>
@@ -311,8 +315,8 @@
 								<reference key="IBUIShadowColor" ref="65492060"/>
 								<string key="IBUIShadowOffset">{2, 2}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="586768495"/>
-								<reference key="IBUIFont" ref="87883874"/>
+								<reference key="IBUIFontDescription" ref="237992780"/>
+								<reference key="IBUIFont" ref="414537125"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIButton" id="600190575">
