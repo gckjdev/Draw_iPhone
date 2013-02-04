@@ -945,6 +945,11 @@ static UIImage* _whitePaperImage;
     return [self fixedAndStrectchableImageNamed:@"paint_player"];
 }
 
+- (UIImage *)strawImage
+{
+    return [self fixedAndStrectchableImageNamed:@"straw"];
+}
+
 - (UIImage *)commonRoundAavatarNoUserImage
 {
     return [UIImage imageNamed:@"common_round_avatar_waiting_user.png"];

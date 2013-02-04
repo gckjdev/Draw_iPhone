@@ -396,7 +396,7 @@ static VendingController* staticVendingController = nil;
     if (self) {
         if ([ConfigManager isProVersion]){
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw],nil];
                 if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
                     [_itemList addObject:[Item colorAlphaItem]];
                 }
@@ -409,7 +409,7 @@ static VendingController* staticVendingController = nil;
         }
         else{
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], nil];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw],nil];
                 if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
                     [_itemList addObject:[Item colorAlphaItem]];
                 }
