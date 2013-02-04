@@ -80,6 +80,7 @@
 
     [self.shareToSina setText:NSLS(@"kSinaWeibo")];
     [self.shareToQQ setText:NSLS(@"kTencentWeibo")];
+//    [self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
 }
 
 + (id)createView
