@@ -217,9 +217,10 @@
 
     [self registerUIApplicationNotification];
     
-    PPDebug(@"recovery data count=%d", [[DrawRecoveryService defaultService] recoveryDrawCount]);
+    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
-    [self.view bringSubviewToFront:self.testCreateWallBtn];
+//    [self.view bringSubviewToFront:self.testBulletin];
+//    [self.view bringSubviewToFront:self.testCreateWallBtn];
 
 }
 
@@ -253,21 +254,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {        
-    [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
-//    [self loadBoards];
     [super viewDidAppear:animated];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    /*
-    [_boardPanel clearAds];
-    [_boardPanel stopTimer];
-     */
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];

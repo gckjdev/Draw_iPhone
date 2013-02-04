@@ -14,6 +14,8 @@
 #import "CommonMessageCenter.h"
 #import "DrawUserInfoView.h"
 #import "UseItemScene.h"
+#import "ConfigManager.h"
+
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
     UserTypeOpus = FeedListTypeUserOpus,    
@@ -90,8 +92,10 @@ typedef enum{
     [self initTabButtons];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
 
-    //load opus count
-    [[FeedService defaultService] getOpusCount:_userId delegete:self];
+    if ([ConfigManager showOpusCount]) {
+        //load opus count
+        [[FeedService defaultService] getOpusCount:_userId delegete:self];
+    }
 }
 
 - (void)viewDidUnload
@@ -278,7 +282,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 12;
+    return [ConfigManager getTimelineCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

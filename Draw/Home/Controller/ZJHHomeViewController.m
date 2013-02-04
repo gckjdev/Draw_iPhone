@@ -159,11 +159,11 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         case HomeMenuTypeZJHRichSite: {
             [_gameService setRule:PBZJHRuleTypeRich];
             
-            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
-            if(![ruleConfig isCoinsEnough]){
-                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
-                return;
-            }
+//            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+//            if(![ruleConfig isCoinsEnough]){
+//                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+//                return;
+//            }
             
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
@@ -172,11 +172,11 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         case HomeMenuTypeZJHNormalSite: {
             [_gameService setRule:PBZJHRuleTypeNormal];
             
-            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
-            if(![ruleConfig isCoinsEnough]){
-                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
-                return;
-            }
+//            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+//            if(![ruleConfig isCoinsEnough]){
+//                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+//                return;
+//            }
             
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
@@ -185,11 +185,11 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
         case HomeMenuTypeZJHVSSite: {
             [_gameService setRule:PBZJHRuleTypeDual];
             
-            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
-            if(![ruleConfig isCoinsEnough]){
-                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
-                return;
-            }
+//            ZJHRuleConfig *ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
+//            if(![ruleConfig isCoinsEnough]){
+//                [self showCoinsNotEnoughView:[ruleConfig coinsNeedToJoinGame]];
+//                return;
+//            }
             
             ZJHRoomListController* vc = [[[ZJHRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];

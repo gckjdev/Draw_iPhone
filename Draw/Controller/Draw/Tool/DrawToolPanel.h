@@ -61,6 +61,7 @@
 - (void)dismissAllPopTipViews;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color;
+- (void)updateNeedBuyToolViews;
 
 #pragma mark - Timer
 

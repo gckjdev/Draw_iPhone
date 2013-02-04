@@ -70,12 +70,16 @@ NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
 //    return @"http://192.168.1.5:8000/api/i?";
+
+//    return @"http://192.168.1.5:8000/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
+//    return @"192.168.1.5:8100/api/i?";
+
 //    return @"http://192.168.1.198:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -248,14 +252,15 @@ NSString* GlobalGetBoardServerURL()
         PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
-        
-    
+            
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil forceServer:YES];
     
+    /* remove this due to online draw server changed
     if (isDrawApp()){
         [[RouterService defaultService] fetchServerListAtBackground];    
     }
+    */
     
     // Push Setup
     BOOL isAskBindDevice = NO;

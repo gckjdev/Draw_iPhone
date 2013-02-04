@@ -199,6 +199,7 @@ static ShoppingManager *staticShoppingManager = nil;
 #define DEFAULT_PALETTE_PRICE   4000
 #define DEFAULT_ALPHA_PRICE     3000
 #define DEFAULT_PAINTA_PLAYER_PRICE 2000
+#define DEFAULT_STRAW_PRICE 600
 
 - (NSInteger)getColorPrice
 {
@@ -257,6 +258,18 @@ static ShoppingManager *staticShoppingManager = nil;
     }
     NSInteger retPrice = [price integerValue];
     PPDebug(@"<getPaintPlayerPrice>: price string = %@,price value = %d",price,retPrice);
+    return retPrice;
+}
+
+- (NSInteger)getStrawPrice
+{
+    NSString* price = [MobClick getConfigParams:@"STRAW_PRICE"];
+    if (price == nil) {
+        PPDebug(@"<getStrawPrice>: price is nil, return default price = %d",DEFAULT_STRAW_PRICE);
+        return DEFAULT_STRAW_PRICE;
+    }
+    NSInteger retPrice = [price integerValue];
+    PPDebug(@"<getStrawPrice>: price string = %@,price value = %d",price,retPrice);
     return retPrice;
 }
 

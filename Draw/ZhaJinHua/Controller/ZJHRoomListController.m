@@ -94,6 +94,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(![_ruleConfig isCoinsEnough]){
+        [self showCoinsNotEnoughView:[_ruleConfig coinsNeedToJoinGame]];
+        return;
+    }
+    
+    
     
     self.currentSession = [_gameService sessionInRoom:indexPath.row];
     if (self.currentSession.password == nil
@@ -106,6 +112,19 @@
     }
     
     
+}
+
+- (void)showCoinsNotEnoughView:(int)thresholdCoins
+{
+    NSString *message = nil;
+    if ([ConfigManager wallEnabled]) {
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndGetFreeCoins"), thresholdCoins];
+    }else {
+        message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughAndEnterCoinsShop"), thresholdCoins];
+    }
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotEnoughCoin") message:message style:CommonDialogStyleDoubleButton delegate:self];
+    [dialog showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning

@@ -522,31 +522,6 @@ static DrawGameService* _defaultService;
     [self postNotification:NOTIFICAIION_GET_ROOMS_RESPONSE message:message];
 }
 
-//- (void)handleRoomNotificationRequest:(GameMessage*)message
-//{
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        
-//        PPDebug(@"<handleRoomNotificationRequest> handle room nitification");
-//        RoomNotificationRequest* notification = [message roomNotificationRequest];
-//        
-//        if ([notification sessionsChangedList]){
-//            for (PBGameSessionChanged* sessionChanged in [notification sessionsChangedList]){
-//                int sessionId = [sessionChanged sessionId];
-//                if (sessionId == _session.sessionId){
-//                    // current play session
-//                    [_session updateSession:sessionChanged];
-//                    
-//                    if (sessionChanged.usersAddedList) {
-////                        [self getAccount];            TODO:check later
-//                    }
-//                }
-//            }
-//        }
-//        [self handleMoreOnRoomNotificationRequest:message];
-//        [self postNotification:NOTIFICATION_ROOM message:message];
-//    });
-//}
-
 - (void)handleCreateRoomResponse:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{

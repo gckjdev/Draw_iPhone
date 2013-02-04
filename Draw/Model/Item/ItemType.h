@@ -27,7 +27,9 @@ typedef enum
     Eraser = 1100,
     PaletteItem = 1101,
     ColorAlphaItem = 1102,
-    PaintPlayerItem,
+    PaintPlayerItem = 1103,
+    ColorStrawItem = 1104,
+
     
     //Liar dice.
 //    ItemTypeChangeDice = 2000,

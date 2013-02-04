@@ -1012,6 +1012,8 @@
 "kBuffering" = "Buffering...";
 "kPaintPlayerItemDescription" = "It's a player for paints. You can replay a paint at custom speed and jump to any progress.";
 "kPaintPlayerItem" = "Paint Player";
+"kStraw" = "Straw";
+"kStrawDescription" = "It is a color picker for picking color on the paint.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

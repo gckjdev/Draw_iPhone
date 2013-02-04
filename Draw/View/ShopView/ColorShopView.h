@@ -17,7 +17,7 @@
 
 @optional
 - (void)didPickedColorView:(ColorView *)colorView;
-
+- (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId;
 @end
 
 
