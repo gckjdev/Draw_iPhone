@@ -130,7 +130,7 @@
 - (BOOL)isChangeBackAction
 {
     //for changing from integer to float.
-    return self.paint.width > BACK_GROUND_WIDTH - 10;
+    return self.paint.width > BACK_GROUND_WIDTH/5;
 }
 
 - (BOOL)isCleanAction

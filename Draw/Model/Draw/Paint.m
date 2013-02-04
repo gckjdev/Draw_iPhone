@@ -198,12 +198,11 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (BOOL)isChangeBGPaint
 {
-    return self.width > (BACK_GROUND_WIDTH - 10);
+    return self.width > (BACK_GROUND_WIDTH/10);
 }
 
 - (void)addPoint:(CGPoint)point
 {
-    //    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
     CGRect rect = DRAW_VIEW_RECT;
     if (!CGRectContainsPoint(rect, point) && ![self isChangeBGPaint]){
         //add By Gamy
