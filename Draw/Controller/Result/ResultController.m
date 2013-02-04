@@ -427,10 +427,10 @@
         [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
     }else{
         continueButton.hidden = YES;
-        downButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
-        ToolView* tomatoToolView = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
-        [tomatoToolView setCenter:CGPointMake(downButton.center.x, tomatoToolView.center.y)];
-        [downLabel setCenter:CGPointMake(downButton.center.x, downLabel.center.y)];
+        upButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
+        ToolView* flowerToolView = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
+        [flowerToolView setCenter:CGPointMake(self.view.center.x, flowerToolView.center.y)];
+        [upLabel setCenter:CGPointMake(self.view.center.x, downLabel.center.y)];
     }
     
     //init the share button
