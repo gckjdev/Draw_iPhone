@@ -442,11 +442,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_width_normal@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="718028949">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="480770304">
 							<int key="type">1</int>
 							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="605826740">
+						<object class="NSFont" key="IBUIFont" id="723923878">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
@@ -477,8 +477,8 @@
 						<reference key="IBUINormalTitleShadowColor" ref="806468247"/>
 						<reference key="IBUIHighlightedBackgroundImage" ref="55405763"/>
 						<reference key="IBUINormalBackgroundImage" ref="717862025"/>
-						<reference key="IBUIFontDescription" ref="718028949"/>
-						<reference key="IBUIFont" ref="605826740"/>
+						<reference key="IBUIFontDescription" ref="480770304"/>
+						<reference key="IBUIFont" ref="723923878"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 206}</string>

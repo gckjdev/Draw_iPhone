@@ -11,6 +11,7 @@
 #import "ItemType.h"
 #import "PenEffectProtocol.h"
 
+#define BACK_GROUND_WIDTH 3000
 
 @class DrawColor;
 @class GameMessage;
