@@ -44,6 +44,7 @@
 //support limit
 - (NSUInteger)supportMaxTimes;
 - (void)increasePostSupportTimes:(NSString *)postId;
+- (void)decreasePostSupportTimes:(NSString *)postId;
 - (BOOL)canSupportPost:(NSString *)postId;
 
 //content

@@ -260,7 +260,8 @@
                          imageData:(NSData *)imageData
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
-                              desc:(NSString *)desc;
+                              desc:(NSString *)desc
+                  progressDelegate:(id)progressDelegate;
 
 
 

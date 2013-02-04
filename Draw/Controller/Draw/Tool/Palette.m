@@ -25,6 +25,8 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
     PPRelease(_colorChip);
     PPRelease(_colorPicker);
     PPRelease(_huePicker);

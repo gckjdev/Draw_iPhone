@@ -11,7 +11,7 @@
 #import "DrawColorManager.h"
 
 #define VALUE(x) (ISIPAD?(2*x):x)
-#define SPACE_POINT_POINT VALUE(3.7)
+#define SPACE_POINT_POINT (ISIPAD ? 7.0  : 3.65)
 #define CELL_HEIGHT VALUE(35)
 #define DISPLAY_MAX_ROW 5
 
@@ -23,6 +23,9 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIView *defaultColorView;
+
+@property (retain, nonatomic) IBOutlet UIView *defaultColorView2;
+
 @property (retain, nonatomic) IBOutlet UITableView *colorTableView;
 @property (assign, nonatomic) NSInteger colorRow;
 - (IBAction)clickCloseButton:(id)sender;
@@ -36,10 +39,13 @@
 @implementation ColorBox
 
 - (void)dealloc {
-    [_defaultColorView release];
-    [_colorTableView release];
-    [_closeButton release];
-    [_moreButton release];
+    PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
+    PPRelease(_defaultColorView);
+    PPRelease(_colorTableView);
+    PPRelease(_closeButton);
+    PPRelease(_moreButton);
+    PPRelease(_defaultColorView2);
     [super dealloc];
 }
 
@@ -91,10 +97,17 @@
     if (count % COLOR_NUMBER_FOR_ROW != 0) {
         self.colorRow ++;
     }
+    NSArray *recentList = [[DrawColorManager sharedDrawColorManager]
+                           recentColorList];
+    NSArray *list1 = [recentList subarrayWithRange:NSMakeRange(0, COLOR_NUMBER_FOR_ROW)];
     
-    [self updateView:self.defaultColorView addColorList:[[DrawColorManager sharedDrawColorManager]
-                                                         recentColorList]];
-
+    NSInteger length = MIN(COLOR_NUMBER_FOR_ROW, (recentList.count - COLOR_NUMBER_FOR_ROW));
+    
+    NSArray *list2 = [recentList subarrayWithRange:NSMakeRange(COLOR_NUMBER_FOR_ROW, length)];
+    
+    [self updateView:self.defaultColorView addColorList:list1];
+    [self updateView:self.defaultColorView2 addColorList:list2];
+    
     //resize tableView size
     NSInteger row = MIN(DISPLAY_MAX_ROW, self.colorRow);
     CGFloat tableHeight = row * CELL_HEIGHT;

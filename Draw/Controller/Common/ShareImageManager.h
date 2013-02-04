@@ -215,5 +215,7 @@
 - (UIImage *)shopItemAlphaImage;
 - (UIImage *)shopItemPaletteImage;
 - (UIImage *)autoRecoveryDraftImage;
+- (UIImage *)paintPlayerImage;
 
+- (UIImage *)commonRoundAavatarNoUserImage;
 @end

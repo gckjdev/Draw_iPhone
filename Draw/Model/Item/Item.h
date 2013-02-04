@@ -63,8 +63,8 @@
 + (Item*)brushPen;
 + (Item*)iceCreamPen;
 + (Item*)waterPen;
-+ (Item*)PaletteItem;
-+ (Item*)ColorAlphaItem;
++ (Item*)paletteItem;
++ (Item*)colorAlphaItem;
 
 + (UIImage *)imageForItemType:(ItemType)type;
 + (NSString *)nameForItemType:(ItemType)type;
@@ -76,6 +76,7 @@
 
 + (UIImage *)seletedPenImageForType:(ItemType)type;
 + (UIImage *)showPenImageForType:(ItemType)type;
++ (Item*)paintPlayerItem;
 
 - (int)unitPrice;
 

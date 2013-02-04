@@ -295,6 +295,7 @@
 
 "kShareOtherText" = "What An Awesome Drawing - %@ ";
 "kShareMeText" = "My Awesome Drawing for %@ %@";
+"kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";
 
 "kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
 "kShareGIFMeText" = "My Awesome Drawing for %@ ";
@@ -630,6 +631,8 @@
 "kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
+"kSending" = "Sending... (%3.f%%)";
+
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
 "kOpusDetail" = "View";
@@ -973,7 +976,7 @@
 
 "kDefaultWaterMark" = "@Draw Lively";
 
-"kAddOpusDesc" = "Add some words to the opus?";
+"kAddOpusDesc" = "Add some words...";
 "kTwoSpaceCancel" = "Cancel";
 "kTwoSpaceConfirm" = "Confirm";
 
@@ -1007,6 +1010,8 @@
 "kBoardAdmin" = "Admin:";
 "kNoBoardAdmin" = "No Admin";
 "kBuffering" = "Buffering...";
+"kPaintPlayerItemDescription" = "It's a player for paints. You can replay a paint at custom speed and jump to any progress.";
+"kPaintPlayerItem" = "Paint Player";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

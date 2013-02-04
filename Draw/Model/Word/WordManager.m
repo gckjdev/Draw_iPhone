@@ -96,13 +96,15 @@ WordManager *GlobalGetWordManager()
 - (NSString *)cnWordDictPath
 {
     NSString *fileName = @"CN_Words_Dict.plist"; 
-    return [[self wordDir] stringByAppendingPathComponent:fileName];
+    NSString* path = [[self wordDir] stringByAppendingPathComponent:fileName];
+    return path;
 }
 
 - (NSString *)enWordDictPath
 {
     NSString *fileName = @"EN_Words_Dict.plist"; 
-    return [[self wordDir] stringByAppendingPathComponent:fileName];
+    NSString *path = [[self wordDir] stringByAppendingPathComponent:fileName];
+    return path;
 }
 
 - (NSString *)wordBaseDictPath

@@ -296,6 +296,7 @@
 "kShareOtherText" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai- hua-hua/id513819630?mt=8";
 
 "kShareMeText" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
+"kShareMeTextWithComment" = "%@，我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
 
 //"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 //
@@ -635,7 +636,9 @@
 "kReplyComment" = "回複評論";
 "kReply" = "回複";
 "kCorrect" = "猜對了！";
-"kSending" = "發送中...";
+"kSending" = "正在發送中...";
+"kSendingProgress" = "正在發送中 (%3.f%%)";
+
 "kNoCommentTips" = "還沒有人評論";
 "kFeedDetail" = "猜畫詳情";
 "kOpusDetail" = "查看作品";
@@ -985,7 +988,7 @@
 "kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
 
 
-"kAddOpusDesc" = "您可以為作品添加壹段描述...";
+"kAddOpusDesc" = "為你的作品添加一段描述";
 "kTwoSpaceCancel" = "取  消";
 "kTwoSpaceConfirm" = "確  定";
 
@@ -1030,6 +1033,8 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暫無版主";
 "kBuffering" = "正在緩沖...";
+"kPaintPlayerItemDescription" = "這是一個作品播放器。你可以在播放繪畫過程中調速，還可以跳到任意進度。";
+"kPaintPlayerItem" = "作品播放器";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

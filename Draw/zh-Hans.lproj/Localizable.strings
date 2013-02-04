@@ -296,6 +296,7 @@
 "kShareOtherText" = "我在玩%@，猜猜TA画的是什么？快来围观! #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareMeText" = "我在玩%@，快来围观我画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMeTextWithComment" = "%@，看看我用%@画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 "kShareGIFOtherText" = "我在玩@猜猜画画手机版，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
@@ -638,7 +639,11 @@
 "kReplyComment" = "回复评论";
 "kReply" = "回复";
 "kCorrect" = "猜对了！";
-"kSending" = "发送中...";
+"kSending" = "正在发送中...";
+
+"kSendingProgress" = "正在发送中 (%3.f%%)";
+
+
 "kNoCommentTips" = "还没有人评论";
 "kFeedDetail" = "猜画详情";
 "kOpusDetail" = "查看作品";
@@ -996,7 +1001,7 @@
 "kWeiboShareMessage" = "我在玩%@，快来猜猜这幅是神马？A、[%@] B、[%@] C、[%@] D、[%@] E、[以上皆不是] #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 
 
-"kAddOpusDesc" = "您可以为作品添加一段描述...";
+"kAddOpusDesc" = "为你的作品添加一段描述";
 "kTwoSpaceCancel" = "取  消";
 "kTwoSpaceConfirm" = "确  定";
 
@@ -1033,6 +1038,8 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暂无版主";
 "kBuffering" = "正在缓冲...";
+"kPaintPlayerItemDescription" = "这是一个作品播放器。你可以在播放绘画过程中调速，还可以跳到任意进度。";
+"kPaintPlayerItem" = "作品播放器";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

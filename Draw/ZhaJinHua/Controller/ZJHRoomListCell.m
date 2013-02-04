@@ -65,20 +65,20 @@
     [self.backgroundImageView setImage:[[PPResourceService defaultService] imageByName:imageName inResourcePackage:[getGameApp() resourcesPackage]]];
 
     for (int i = 0; i < 6; i ++) {
-        DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        CommonRoundAvatarView* avatar = (CommonRoundAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         avatar.delegate = self;
         [avatar setGestureRecognizerEnable:NO];
         [avatar setUrlString:nil userId:nil gender:NO level:0 drunkPoint:0 wealth:0];
     }
     for (int i = 0; i < session.usersList.count; i ++) {
-        DiceAvatarView* avatar = (DiceAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        CommonRoundAvatarView* avatar = (CommonRoundAvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
         PBGameUser* user = [session.usersList objectAtIndex:i];
         [avatar setUrlString:user.avatar userId:user.userId gender:user.gender level:user.userLevel drunkPoint:0 wealth:0];
         [avatar setGestureRecognizerEnable:YES];
     }
 }
 
-- (void)didClickOnAvatar:(DiceAvatarView *)view
+- (void)didClickOnAvatar:(CommonRoundAvatarView *)view
 {
     if (delegate && [delegate respondsToSelector:@selector(didQueryUser:)]) {
         [delegate didQueryUser:view.userId];

@@ -209,17 +209,17 @@
     [UIView commitAnimations];
 }
 
-- (void)setAvatarStyle:(AvatarViewStyle)style
+- (void)setAvatarStyle:(CommonRoundAvatarViewStyle)style
 {
-    if (style == AvatarViewStyle_Square) {
+    if (style == CommonRoundAvatarViewStyle_Square) {
         progressView.hidden = YES;
         imageView.layer.cornerRadius = 0;
-        _currentStyle = AvatarViewStyle_Square;
+        _currentStyle = CommonRoundAvatarViewStyle_Square;
         [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     } else {
         progressView.hidden = NO;
         imageView.layer.cornerRadius = imageView.frame.size.width/2;
-        _currentStyle = AvatarViewStyle_Round;
+        _currentStyle = CommonRoundAvatarViewStyle_Round;
         [bgView setImage:nil];
     }
     imageView.layer.masksToBounds = YES;
@@ -326,7 +326,7 @@
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth
 {
-    [imageView setImage:[DiceImageManager defaultManager].whiteSofaImage];
+    [imageView setImage:[ShareImageManager defaultManager].commonRoundAavatarNoUserImage];
     [self setUserId:userId];
     if (userId) {
         [self setAvatarUrl:urlString gender:gender];

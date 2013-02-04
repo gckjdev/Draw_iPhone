@@ -90,6 +90,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
     
     dispatch_async(workingQueue, ^{
+
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         PBNoCompressDrawData* drawData = [DrawAction drawActionListToPBNoCompressDrawData:arrayList];
         NSData* data = [drawData data];
@@ -98,6 +100,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         
         // backup data to file
         [data writeToFile:dataPath atomically:YES];
+
+        // release temp objects
+        [subPool drain];
     });
     
     [arrayList release];

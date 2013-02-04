@@ -48,6 +48,11 @@
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
 #import "SelectHotWordController.h"
+#import "MBProgressHUD.h"
+#import "GameSNSService.h"
+#import "PPSNSIntegerationService.h"
+#import "ShareService.h"
+#import "FileUtil.h"
 
 @interface OfflineDrawViewController()
 {
@@ -79,7 +84,7 @@
 //    BOOL _userSaved;
     BOOL _isNewDraft;
 
-
+    
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -92,6 +97,11 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) InputAlertView *inputAlert;
+//@property (retain, nonatomic) TKProgressBarView *progressView;
+@property (retain, nonatomic) MBProgressHUD *progressView;
+
+@property (retain, nonatomic) NSString *tempImageFilePath;
+@property (retain, nonatomic) NSSet *shareWeiboSet;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
@@ -125,28 +135,6 @@
 
 #pragma mark - Static Method
 
-/*
-
-+ (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController
-{
-    LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language];
-    [fromController.navigationController pushViewController:vc animated:YES];
-    return [vc autorelease];
-}
-
-+ (OfflineDrawViewController *)startDraw:(Word *)word 
-   fromController:(UIViewController*)fromController 
-        targetUid:(NSString *)targetUid
-{
-    LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
-    [fromController.navigationController pushViewController:vc animated:YES];
-    PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
-    return [vc autorelease];
-}
-
-*/
 + (OfflineDrawViewController *)startDrawWithContest:(Contest *)contest
                                      fromController:(UIViewController*)fromController
                                     startController:(UIViewController*)startController
@@ -176,7 +164,12 @@
 - (void)dealloc
 {
     [self stopRecovery];
-    
+
+    self.delegate = nil;
+    PPRelease(_shareWeiboSet);
+    PPRelease(_tempImageFilePath);
+    PPRelease(_progressView);
+    PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_word);
@@ -711,6 +704,8 @@ enum{
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
+    [self hideProgressView];
+    
     self.submitButton.userInteractionEnabled = YES;
     [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
@@ -753,11 +748,15 @@ enum{
             self.draft = nil;
         }
         
+        // share weibo after submit opus success
+        [self shareToWeibo];
+
     }else if(resultCode == ERROR_CONTEST_END){
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
+
     
 }
 
@@ -781,9 +780,9 @@ enum{
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:temp];
-    PPRelease(temp);
+//    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+//    PPRelease(temp);
     return data;
 }
 
@@ -793,13 +792,13 @@ enum{
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
-//    _unDraftPaintCount = 0;
-//    _lastSaveTime = 0;
     _isNewDraft = YES;
-    UIImage *image = [drawView createImage];    
-    
-    __block BOOL result = NO;
 
+    NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+    UIImage *image = [drawView createImage];
+    
+    BOOL result = NO;
+    
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
@@ -842,7 +841,8 @@ enum{
     @finally {
         
     }
-        
+    
+    [subPool drain];        
 }
 
 #pragma mark - Actions
@@ -873,13 +873,115 @@ enum{
                                  yScale:1.0 / IPAD_HEIGHT_SCALE];
 }
 
-- (void)commitOpus:(NSNumber *)share
+// TODO move to common
+- (void)showProgressView
+{
+    if (self.progressView == nil){
+        self.progressView = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
+    }
+    
+    [self.progressView setProgress:0.0];
+    [self.progressView setMode:MBProgressHUDModeDeterminate];
+    [self.progressView setLabelText:NSLS(@"kSending")];
+    
+    [self.view addSubview:_progressView];
+    [self.progressView show:YES];
+}
+
+- (void)hideProgressView
+{
+    [self.progressView hide:YES];
+    self.progressView = nil;
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    PPDebug(@"opus upload progress=%f", progress);
+
+    if (progress == 1.0f){
+        // make this because after uploading data, it takes server sometime to process
+        progress = 0.99;
+    }
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    [self.progressView setLabelText:progressText];
+    
+    [self.progressView setProgress:progress];        
+}
+
+- (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
+{
+
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+    
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* text = nil;
+    
+    if ([[self getOpusComment] length] > 0){
+        text = [NSString stringWithFormat:NSLS(@"kShareMeTextWithComment"), [self getOpusComment], snsOfficialNick, self.word.text];
+    }
+    else{
+        text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, self.word.text];
+    }
+    
+    if (imagePath != nil) {
+        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+            
+            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+                if (earnCoins > 0){
+//                    NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
+//                    [self popupMessage:msg title:nil];
+                }
+//            });
+            
+        } failureBlock:^(NSError *error) {
+            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+        }];
+    }
+    
+    return;
+    
+}
+
+- (void)writeTempFile:(UIImage*)image
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
+                                                                      waterMarkText:[ConfigManager getShareImageWaterMark]];
+    [pool drain];
+}
+
+- (void)shareToWeibo
+{
+    for (NSNumber *value in self.shareWeiboSet) {
+        [self shareViaSNS:[value integerValue] imagePath:self.tempImageFilePath];
+    }
+    
+    self.shareWeiboSet = nil;
+}
+
+- (NSString*)getOpusComment
+{
+    return self.inputAlert.contentText;
+}
+
+- (void)commitOpus:(NSSet *)share
 {
     
-    [self showActivityWithText:NSLS(@"kSending")];
+//    [self showActivityWithText:NSLS(@"kSending")];
+    
+    [self showProgressView];
+    
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
     UIImage *image = [drawView createImage];
+
+    // create temp file for weibo sharing
+    [self writeTempFile:image];
+    [self setShareWeiboSet:share];    
+
     NSString *text = self.inputAlert.contentText;
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
@@ -889,10 +991,9 @@ enum{
                                               contestId:_contest.contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
-    if ([share boolValue]) {
-        //TODO share draw to SNS
-        PPDebug(@"share draw to SNS");
-    }
+
+    
+
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

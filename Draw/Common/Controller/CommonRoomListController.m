@@ -592,5 +592,11 @@
 
 }
 
+- (IBAction)clickRefreshButton:(id)sender
+{
+    [self refreshRoomsByFilter:_currentRoomType];
+    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
+}
+
 
 @end

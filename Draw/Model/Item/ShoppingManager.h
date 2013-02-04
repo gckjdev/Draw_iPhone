@@ -54,5 +54,6 @@
 
 - (NSInteger)getPaletteItemPrice;
 - (NSInteger)getColorAlphaItemPrice;
+- (NSInteger)getPaintPlayerItemPrice;
 
 @end
