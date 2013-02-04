@@ -230,6 +230,17 @@ static ShareService* _defaultService;
     return resultingImage;
 }
 
+- (NSString*)synthesisImageWithImage:(UIImage*)sourceImage waterMarkText:(NSString*)text
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+    UIImage* image = [self synthesisImage:sourceImage waterMarkText:text];
+    BOOL result=[[image data] writeToFile:path atomically:YES];
+    if (result) {
+        return path;
+    }
+    return nil;
+}
+
 - (NSString*)synthesisImageFile:(NSString*)filePath waterMarkText:(NSString*)text
 {
     NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
