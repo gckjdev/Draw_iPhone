@@ -154,6 +154,23 @@ BBSManager *_staticBBSManager;
         [defaults synchronize];
     }
 }
+
+- (void)decreasePostSupportTimes:(NSString *)postId
+{
+    NSString *key = [self supportTimesKeyForPostId:postId];
+    if (key) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        int count = [defaults integerForKey:key];
+        count++;
+        if (count < 0) {
+            count = 0;
+        }
+        [defaults setInteger:count forKey:key];
+        [defaults synchronize];
+    }
+}
+
+
 - (BOOL)canSupportPost:(NSString *)postId
 {
     NSString *key = [self supportTimesKeyForPostId:postId];
