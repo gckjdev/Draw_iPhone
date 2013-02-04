@@ -61,6 +61,7 @@
 						<string key="NSFrame">{{19, 100}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<int key="IBUITag">20120403</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -94,13 +95,17 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{2, 2}</string>
+						<double key="IBUIContentEdgeInsets.top">0.0</double>
+						<double key="IBUIContentEdgeInsets.bottom">4</double>
+						<double key="IBUIContentEdgeInsets.left">1</double>
+						<double key="IBUIContentEdgeInsets.right">0.0</double>
+						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">提交</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor" id="280164239">
+						<object class="NSColor" key="IBUINormalTitleColor" id="974048616">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
@@ -108,11 +113,11 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="1058420078">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="850046378">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_highlight@2x.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="234702652">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="121151739">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_normal@2x.png</string>
 						</object>
@@ -203,16 +208,20 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{2, 2}</string>
+						<double key="IBUIContentEdgeInsets.top">0.0</double>
+						<double key="IBUIContentEdgeInsets.bottom">4</double>
+						<double key="IBUIContentEdgeInsets.left">1</double>
+						<double key="IBUIContentEdgeInsets.right">0.0</double>
+						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">保存</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleColor" ref="280164239"/>
+						<reference key="IBUINormalTitleColor" ref="974048616"/>
 						<reference key="IBUINormalTitleShadowColor" ref="373991744"/>
-						<reference key="IBUIHighlightedBackgroundImage" ref="1058420078"/>
-						<reference key="IBUINormalBackgroundImage" ref="234702652"/>
+						<reference key="IBUIHighlightedBackgroundImage" ref="850046378"/>
+						<reference key="IBUINormalBackgroundImage" ref="121151739"/>
 						<reference key="IBUIFontDescription" ref="796859412"/>
 						<reference key="IBUIFont" ref="543460469"/>
 					</object>

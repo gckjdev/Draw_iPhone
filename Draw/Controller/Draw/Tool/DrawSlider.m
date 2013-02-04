@@ -65,13 +65,21 @@
 }
 
 
+- (void)updateView
+{
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.bgImage setImage:[imageManager drawSliderBG]];
+    [self.loaderImage setImage:[imageManager drawSliderLoader]];
+    [self.pointImage setImage:[imageManager drawSliderPoint]];
 
+}
 + (id)sliderWithMaxValue:(CGFloat)maxValue
                 minValue:(CGFloat)minValue
             defaultValue:(CGFloat)defaultValue
                 delegate:(id<DrawSliderDelegate>) delegate
 {
     DrawSlider *slider = [UIView createViewWithXibIdentifier:@"DrawSlider"];
+    [slider updateView];
     [slider setMaxValue:maxValue];
     [slider setMinValue:minValue];
     [slider setValue:defaultValue];
