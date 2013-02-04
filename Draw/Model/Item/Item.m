@@ -195,7 +195,7 @@
             return [manager shopItemAlphaImage];
         case PaintPlayerItem:
             return [manager paintPlayerImage];
-        case Straw:
+        case ColorStrawItem:
             return [manager strawImage];
             
         case ItemTypeRollAgain: 
@@ -269,7 +269,7 @@
             return NSLS(@"kColorAlphaItem");
         case PaintPlayerItem:
             return NSLS(@"kPaintPlayerItem");
-        case Straw:
+        case ColorStrawItem:
             return NSLS(@"kStraw");
         case ItemTypeRollAgain:
             return NSLS(@"kRollAgain");
@@ -308,7 +308,7 @@
             return NSLS(@"kColorAlphaItemDescription");
         case PaintPlayerItem:
             return NSLS(@"kPaintPlayerItemDescription");
-        case Straw:
+        case ColorStrawItem:
             return NSLS(@"kStrawDescription");
         default:
             return nil;
@@ -392,6 +392,8 @@
             return [Item colorAlphaItem];
         case PaintPlayerItem:
             return [Item paintPlayerItem];
+        case ColorStrawItem:
+            return [Item straw];
         default:
             break;
     }
@@ -541,13 +543,13 @@
 
 + (Item*)straw
 {
-    return [[[Item alloc] initWithType:Straw
-                                 image:[Item imageForItemType:Straw]
-                                  name:[Item nameForItemType:Straw]
-                           description:[Item descriptionForItemType:Straw]
+    return [[[Item alloc] initWithType:ColorStrawItem
+                                 image:[Item imageForItemType:ColorStrawItem]
+                                  name:[Item nameForItemType:ColorStrawItem]
+                           description:[Item descriptionForItemType:ColorStrawItem]
                       buyAmountForOnce:1
                                  price:[[ShoppingManager defaultManager] getStrawPrice]
-                                amount:[[ItemManager defaultManager] amountForItem:Straw]] autorelease];
+                                amount:[[ItemManager defaultManager] amountForItem:ColorStrawItem]] autorelease];
 }
 
 
