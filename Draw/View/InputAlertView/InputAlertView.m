@@ -106,7 +106,6 @@
     view.commitSeletor = commitSeletor;
     view.cancelSeletor = cancelSeletor;
     return view;
-
 }
 
 
@@ -115,18 +114,16 @@
     return self.content.text;
 }
 
-
-
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_title);
     PPRelease(_content);
     PPRelease(_cancel);
     PPRelease(_confirm);
-    [_shareToSina release];
-    [_shareToQQ release];
-    [_sinaCheckBox release];
-    [_qqCheckBox release];
+    PPRelease(_shareToSina);
+    PPRelease(_shareToQQ);
+    PPRelease(_sinaCheckBox);
+    PPRelease(_qqCheckBox);
     [super dealloc];
 }
 
@@ -205,7 +202,7 @@
         if ([self canShareViaSina]) {
             [sender setSelected:YES];
         }else{
-            //TODO bang sina weibo, when finish setting self.sinaCheckBox.selected = YES;
+            //TODO bang sina weibo, when finished, set self.sinaCheckBox.selected = YES;
         }
     }
 }
@@ -217,7 +214,7 @@
         if ([self canShareViaQQ]) {
             [sender setSelected:YES];
         }else{
-            //TODO bang QQ weibo, when finish setting self.qqCheckBox.selected = YES;
+            //TODO bang QQ weibo, when finished, set self.qqCheckBox.selected = YES;
         }
     }
 }
