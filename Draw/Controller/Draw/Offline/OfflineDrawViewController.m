@@ -307,14 +307,15 @@ enum{
 }
 
 
+#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
 
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    CGRect frame = DRAW_VIEW_FRAME;
+    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
+    drawView = [[DrawView alloc] initWithFrame:frame];
     drawView.strawDelegate = _drawToolPanel;
-//    [drawView setTouchActionType:TouchActionTypeGetColor];
-    
     [drawView setDrawEnabled:YES];
 //    [drawView setRevocationSupported:YES];
     drawView.delegate = self;

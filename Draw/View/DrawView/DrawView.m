@@ -164,12 +164,12 @@ typedef enum {
         //offset locates the pixel in the data from x,y.
         //4 for 4 bytes of data per pixel, w is width of one row of data.
         int offset = 4*((w*round(point.y))+round(point.x));
-        
-        int alpha =  data[offset++];
+
         int red = data[offset++];
         int green = data[offset++];
         int blue = data[offset++];
-
+        int alpha =  data[offset++];
+        
 //        PPDebug(@"offset:%d, alpha = %d, red = %d, green = %d, blue = %d",offset, alpha, red, green, blue);
         color = [DrawColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
     }

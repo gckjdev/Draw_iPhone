@@ -254,8 +254,9 @@
             [poptipView.customView removeFromSuperview];
             [poptipView setCustomView:contentView];
         }
+ 
     }
-    [poptipView presentPointingAtView:self inView:inView animated:NO];
+    [poptipView presentPointingAtView:self inView:inView animated:NO pointDirection:PointDirectionDown];
     [poptipView setPointerSize:POP_POINT_SIZE];
 }
 - (void)dismissPopupView
