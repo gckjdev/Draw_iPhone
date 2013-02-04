@@ -26,6 +26,11 @@
       infoInView:(PPViewController<CommonItemInfoViewDelegate>*)superController 
      canBuyAgain:(BOOL)canBuyAgain;
 
++ (void)showItem:(Item*)anItem
+      infoInView:(UIView *)view
+     canBuyAgain:(BOOL)canBuyAgain
+        delegate:(id<CommonItemInfoViewDelegate>)delegate;
+
 @property (retain, nonatomic) IBOutlet UIImageView* backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ShowDrawView.h"
 #import "PPViewController.h"
+#import "CommonItemInfoView.h"
 
-@interface ReplayView : UIView<ShowDrawViewDelegate>
+@interface ReplayView : UIView<ShowDrawViewDelegate, CommonItemInfoViewDelegate>
 {
 
 }

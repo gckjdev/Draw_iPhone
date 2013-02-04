@@ -156,15 +156,8 @@
         
         self.alphaSlider.delegate = self;
         [self addSubview:self.alphaSlider];
-        
-
         [self.colorAlpha setText:NSLS(@"kColorAlpha")];
         
-        if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
-            [self.alphaSlider setSelected:YES];
-        }else{
-            [self.alphaSlider setSelected:NO];
-        }
     }else{
         [self.colorAlpha removeFromSuperview];
         self.alphaSlider = nil;
@@ -224,6 +217,27 @@
     self.widthView = view;
 }
 
+- (void)updateNeedBuyToolViews
+{
+    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+        [self.palette setSelected:YES];
+    }else{
+        [self.palette setSelected:NO];
+    }
+    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+        [self.alphaSlider setSelected:YES];
+    }else{
+        [self.alphaSlider setSelected:NO];
+    }
+    [self.straw setSelected:NO];
+    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+        //TODO set straw unbuy image
+    }else{
+        //TODO set straw bought image
+    }
+    
+}
+
 - (void)updateView
 {
     [self updateRecentColorViews];
@@ -233,13 +247,9 @@
     //update width and alpha
     [self updateSliders];
     [self setWidth:LINE_DEFAULT_WIDTH];
-    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
-        [self.palette setSelected:YES];
-    }else{
-        [self.palette setSelected:NO];
-    }
     [self setPenType:Pencil];
     [self updateWidthBox];
+    [self updateNeedBuyToolViews];
 }
 
 
@@ -361,6 +371,12 @@
 }
 
 - (IBAction)clickStraw:(id)sender {
+    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
+            [_delegate drawToolPanel:self startToBuyItem:ColorStrawItem];
+        }
+        return;
+    }
     [self selectStraw];
     [self dismissAllPopTipViews];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickStrawButton:)]) {

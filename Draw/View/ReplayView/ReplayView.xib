@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -270,16 +270,27 @@
 								<reference key="IBUIFontDescription" ref="144970244"/>
 								<reference key="IBUIFont" ref="681682159"/>
 							</object>
+							<object class="IBUIView" id="329683754">
+								<reference key="NSNextResponder" ref="355539151"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrameSize">{320, 104}</string>
+								<reference key="NSSuperview" ref="355539151"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="606717654"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor" id="853491510">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 						</array>
 						<string key="NSFrame">{{0, 327}, {320, 104}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="606717654"/>
+						<reference key="NSNextKeyView" ref="329683754"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="853491510">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="853491510"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIView" id="556998278">
@@ -423,6 +434,14 @@
 					<int key="connectionID">43</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerToolMask</string>
+						<reference key="source" ref="421994044"/>
+						<reference key="destination" ref="329683754"/>
+					</object>
+					<int key="connectionID">58</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickCloseButton:</string>
 						<reference key="source" ref="167940551"/>
@@ -557,6 +576,15 @@
 					</object>
 					<int key="connectionID">51</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickPlayerToolMask:</string>
+						<reference key="source" ref="329683754"/>
+						<reference key="destination" ref="421994044"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -616,6 +644,7 @@
 							<reference ref="294088553"/>
 							<reference ref="339467125"/>
 							<reference ref="9605191"/>
+							<reference ref="329683754"/>
 						</array>
 						<reference key="parent" ref="421994044"/>
 					</object>
@@ -679,6 +708,11 @@
 						<reference key="object" ref="315453257"/>
 						<reference key="parent" ref="556998278"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">57</int>
+						<reference key="object" ref="329683754"/>
+						<reference key="parent" ref="355539151"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -706,13 +740,15 @@
 				<string key="4.CustomClassName">ReplayView</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="57.CustomClassName">UIControl</string>
+				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">56</int>
+			<int key="maxID">59</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -724,6 +760,7 @@
 						<string key="clickEnd:">id</string>
 						<string key="clickPlay:">UIButton</string>
 						<string key="clickPlayerPanel:forEvent:">id</string>
+						<string key="clickPlayerToolMask:">id</string>
 						<string key="clickRestart:">id</string>
 						<string key="clickSpeed:">id</string>
 						<string key="clickSpeedPanel:forEvent:">id</string>
@@ -748,6 +785,10 @@
 						</object>
 						<object class="IBActionInfo" key="clickPlayerPanel:forEvent:">
 							<string key="name">clickPlayerPanel:forEvent:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickPlayerToolMask:">
+							<string key="name">clickPlayerToolMask:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickRestart:">
@@ -788,6 +829,7 @@
 						<string key="playButton">UIButton</string>
 						<string key="playProgressLoader">UIImageView</string>
 						<string key="playProgressPoint">UIButton</string>
+						<string key="playerToolMask">UIControl</string>
 						<string key="speedLoader">UIImageView</string>
 						<string key="speedPanel">UIView</string>
 						<string key="speedPoint">UIButton</string>
@@ -809,6 +851,10 @@
 						<object class="IBToOneOutletInfo" key="playProgressPoint">
 							<string key="name">playProgressPoint</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerToolMask">
+							<string key="name">playerToolMask</string>
+							<string key="candidateClassName">UIControl</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="speedLoader">
 							<string key="name">speedLoader</string>
@@ -885,6 +931,6 @@
 			<string key="draw_player_speed_button@2x.png">{30, 30}</string>
 			<string key="draw_player_speed_load@2x.png">{12, 85}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
