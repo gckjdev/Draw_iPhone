@@ -99,6 +99,7 @@ typedef enum {
   GameCommandTypeLocalCompareCard = 320,
   GameCommandTypeLocalNotCurrentTurnFoldCard = 321,
   GameCommandTypeLocalChangeCard = 322,
+  GameCommandTypeLocalWordPicked = 323,
   GameCommandTypeRoomNotificationRequest = 701,
   GameCommandTypeRoomNotificationResponse = 702,
   GameCommandTypeRollDiceBeginNotificationRequest = 711,

@@ -117,6 +117,7 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeLocalCompareCard:
     case GameCommandTypeLocalNotCurrentTurnFoldCard:
     case GameCommandTypeLocalChangeCard:
+    case GameCommandTypeLocalWordPicked:
     case GameCommandTypeRoomNotificationRequest:
     case GameCommandTypeRoomNotificationResponse:
     case GameCommandTypeRollDiceBeginNotificationRequest:
