@@ -1213,8 +1213,6 @@ enum{
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-//    VendingController *vend = [VendingController instance];
-//    [self.navigationController pushViewController:vend animated:YES];
     [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
 

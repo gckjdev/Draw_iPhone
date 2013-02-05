@@ -149,6 +149,7 @@
                                              minValue:COLOR_MIN_ALPHA
                                          defaultValue:COLOR_DEFAULT_ALPHA
                                              delegate:self];
+    
     self.alphaSlider.frame = frame;
     [self addSubview:self.alphaSlider];
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
@@ -190,8 +191,6 @@
     [self updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 
-
-
 - (void)updateNeedBuyToolViews
 {
     if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
@@ -205,11 +204,11 @@
         [self.alphaSlider setSelected:NO];
     }
     [self.straw setSelected:NO];
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
-        //TODO set straw unbuy image
-    }else{
-        //TODO set straw bought image
-    }
+//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+//        //TODO set straw unbuy image
+//    }else{
+//        //TODO set straw bought image
+//    }
     
 }
 
@@ -528,6 +527,8 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     [self.straw setSelected:NO];
+    [self dismissAllPopTipViews];
+    
     if (drawSlider == self.alphaSlider) {
         if ([self.alphaSlider isSelected]) {
             if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
@@ -551,7 +552,6 @@
         [drawSlider popupWithContenView:width];
         [width setSelected:YES];
     }
-    [self dismissAllPopTipViews];
 }
 
 - (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image

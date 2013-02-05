@@ -276,10 +276,6 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="231337641"/>
-						<object class="NSCustomResource" key="IBUISelectedImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_palette_unbuy@2x.png</string>
-						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_palette@2x.png</string>
@@ -308,7 +304,6 @@
 						<string key="NSFrame">{{219, 146}, {95, 22}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="397568519"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1001,7 +996,6 @@
 			<string key="draw_color_bg@2x.png">{622, 84}</string>
 			<string key="draw_oil@2x.png">{71, 92}</string>
 			<string key="draw_palette@2x.png">{75, 61}</string>
-			<string key="draw_palette_unbuy@2x.png">{85, 71}</string>
 			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_redo_normal@2x.png">{69, 71}</string>
 			<string key="draw_rubber@2x.png">{122, 122}</string>
