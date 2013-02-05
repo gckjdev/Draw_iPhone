@@ -35,18 +35,18 @@
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
-
+- (IBAction)clickPalette:(id)sender;
+- (IBAction)clickStraw:(id)sender;
 - (IBAction)clickPen:(id)sender;
 - (IBAction)clickEraser:(id)sender;
 - (IBAction)clickAddColor:(id)sender;
-- (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
-- (IBAction)clickStraw:(id)sender;
 - (IBAction)clickWidthBox:(UIButton *)widthBox;
 - (void)selectPen;
 - (void)selectEraser;
 
+@property (retain, nonatomic) IBOutlet UIImageView *colorBGImageView;
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UIButton *penWidth;
@@ -225,6 +225,18 @@
     [self updateNeedBuyToolViews];
 }
 
+- (void)userItem:(ItemType)type
+{
+    switch (type) {
+        case ColorStrawItem:
+            [self clickStraw:self.straw];
+            break;
+        case PaletteItem:
+            [self clickPalette:self.palette];
+        default:
+            break;
+    }
+}
 
 + (id)createViewWithdelegate:(id)delegate
 {

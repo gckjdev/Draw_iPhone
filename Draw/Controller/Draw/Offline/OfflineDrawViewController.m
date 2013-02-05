@@ -1095,6 +1095,7 @@ enum{
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
+                [self.drawToolPanel userItem:anItem.type];
                 break;
             case Pen:
             case Pencil:
