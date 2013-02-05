@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -58,7 +58,7 @@
 					<object class="IBUIImageView" id="622016577">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{8, 46}, {304, 320}}</string>
+						<string key="NSFrame">{{8, 40}, {304, 320}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="640944265"/>
@@ -73,7 +73,7 @@
 					<object class="IBUIImageView" id="400329107">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrameSize">{320, 50}</string>
+						<string key="NSFrameSize">{320, 40}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1050928452"/>
@@ -81,13 +81,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_title_bg@2x.png</string>
+							<string key="NSResourceName">draw_title_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="1050928452">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{4, 5}, {37, 37}}</string>
+						<string key="NSFrame">{{4, 0}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="362739228"/>
@@ -131,7 +131,7 @@
 					<object class="IBUIButton" id="362739228">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{278, 5}, {37, 37}}</string>
+						<string key="NSFrame">{{278, 0}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="622016577"/>
@@ -202,7 +202,7 @@
 					<object class="IBUIImageView" id="343183796">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 322}, {300, 44}}</string>
+						<string key="NSFrame">{{10, 314}, {300, 44}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="189962214"/>
@@ -217,7 +217,7 @@
 					<object class="IBUILabel" id="189962214">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 324}, {300, 40}}</string>
+						<string key="NSFrame">{{10, 318}, {300, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -570,22 +570,22 @@
 				<string>draw_color_bg@2x.png</string>
 				<string>draw_main_bg@2x.jpg</string>
 				<string>draw_paper@2x.png</string>
-				<string>draw_title_bg@2x.png</string>
+				<string>draw_title_bg@2x.jpg</string>
 				<string>guess_popup@2x.png</string>
 				<string>round@2x.png</string>
 				<string>run@2x.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{627, 88}</string>
+				<string>{622, 84}</string>
 				<string>{640, 960}</string>
 				<string>{622, 649}</string>
-				<string>{640, 102}</string>
+				<string>{640, 79}</string>
 				<string>{57, 67}</string>
 				<string>{74, 74}</string>
 				<string>{74, 74}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

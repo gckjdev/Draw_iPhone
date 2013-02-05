@@ -73,7 +73,7 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 
 - (void)constructPath:(NSArray*)pointList
 {
-    PPDebug(@"<constructPath> point count=%d", [pointList count]);
+//    PPDebug(@"<constructPath> point count=%d", [pointList count]);
     [self startAddPoint];
     
     int pointCount = [pointList count];

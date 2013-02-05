@@ -111,7 +111,7 @@
     return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
 }
 
-#define BACK_GROUND_WIDTH 3000
+
 
 + (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color
 {
@@ -121,6 +121,7 @@
     return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
 }
 
+
 + (DrawAction *)clearScreenAction
 {
     return [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
@@ -129,7 +130,7 @@
 - (BOOL)isChangeBackAction
 {
     //for changing from integer to float.
-    return self.paint.width > BACK_GROUND_WIDTH - 10;
+    return self.paint.width > BACK_GROUND_WIDTH/5;
 }
 
 - (BOOL)isCleanAction

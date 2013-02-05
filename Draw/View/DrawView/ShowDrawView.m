@@ -118,6 +118,7 @@
 {
     PPDebug(@"<ShowDrawView> play");
     [self resetView];
+    [self setNeedsDisplay];
     [self playFromDrawActionIndex:0];
 
 }

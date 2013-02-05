@@ -307,7 +307,6 @@ NSString* GlobalGetBoardServerURL()
         [[UserService defaultService] loginByDeviceWithViewController:rootController];
     }
 
-
     // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
         [self checkAppVersion:[ConfigManager appId]];

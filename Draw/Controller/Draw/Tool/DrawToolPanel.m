@@ -43,13 +43,14 @@
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
 - (IBAction)clickStraw:(id)sender;
+- (IBAction)clickWidthBox:(UIButton *)widthBox;
 - (void)selectPen;
 - (void)selectEraser;
 
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
-@property (retain, nonatomic) IBOutlet UILabel *penWidth;
-@property (retain, nonatomic) IBOutlet UILabel *colorAlpha;
+@property (retain, nonatomic) IBOutlet UIButton *penWidth;
+@property (retain, nonatomic) IBOutlet UIButton *colorAlpha;
 @property (retain, nonatomic) IBOutlet UIButton *pen;
 @property (retain, nonatomic) IBOutlet UIButton *chat;
 @property (retain, nonatomic) IBOutlet UIButton *timeSet;
@@ -58,7 +59,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *palette;
 @property (retain, nonatomic) IBOutlet UIButton *eraser;
 @property (retain, nonatomic) IBOutlet UIButton *straw;
-@property (retain, nonatomic) WidthView *widthView;
+//@property (retain, nonatomic) WidthView *widthView;
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
@@ -80,7 +81,7 @@
 
 #define SPACE_COLOR_LEFT (ISIPAD ? 40 : 8)
 #define SPACE_COLOR_COLOR (ISIPAD ? 14 : ((ISIPHONE5) ? 7 :2))
-#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(9))
+#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(13))
 
 #define ALPHA_FONT_SIZE VALUE(14.0)
 #define TIMESET_FONT_SIZE VALUE(15.0)
@@ -131,43 +132,27 @@
 
 - (void)updateSliders
 {
-    CGPoint center = self.widthSlider.center;
+//    CGPoint center = self.widthSlider.center;
+    CGRect frame = self.widthSlider.frame;
     [self.widthSlider removeFromSuperview];
-    self.widthSlider = [[[DrawSlider alloc] init] autorelease];
-    self.widthSlider.center = center;
-    self.widthSlider.delegate = self;
-    
-    [self.widthSlider setMaxValue:LINE_MAX_WIDTH];
-    [self.widthSlider setMinValue:LINE_MIN_WIDTH];
-    [self.widthSlider setValue:LINE_DEFAULT_WIDTH];
-    [self.penWidth setText:NSLS(@"kPenWidth")];
-    
+    self.widthSlider = [DrawSlider sliderWithMaxValue:LINE_MAX_WIDTH
+                                             minValue:LINE_MIN_WIDTH
+                                         defaultValue:LINE_DEFAULT_WIDTH
+                                             delegate:self];
+    self.widthSlider.frame = frame;    
+    [self.colorAlpha setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
     [self addSubview:self.widthSlider];
 
-    center = self.alphaSlider.center;
+    frame = self.alphaSlider.frame;
     [self.alphaSlider removeFromSuperview];
-    
-    if ([DeviceDetection isIPhone5] || [DeviceDetection isIPAD]) {
-        self.alphaSlider = [[[DrawSlider alloc] init] autorelease];
-        self.alphaSlider.center = center;
-        [self.alphaSlider setMaxValue:COLOR_MAX_ALPHA];
-        [self.alphaSlider setMinValue:COLOR_MIN_ALPHA];
-        [self.alphaSlider setValue:COLOR_DEFAULT_ALPHA];
-        
-        self.alphaSlider.delegate = self;
-        [self addSubview:self.alphaSlider];
-        [self.colorAlpha setText:NSLS(@"kColorAlpha")];
-        
-    }else{
-        [self.colorAlpha removeFromSuperview];
-        self.alphaSlider = nil;
-        self.colorAlpha = nil;
-    }
-    
-    //TODO implement color alpha
-//    self.alphaSlider.hidden = YES;
-//    self.colorAlpha.hidden = YES;
-//    [self.alphaSlider setEnabled:NO];
+    self.alphaSlider = [DrawSlider sliderWithMaxValue:COLOR_MAX_ALPHA
+                                             minValue:COLOR_MIN_ALPHA
+                                         defaultValue:COLOR_DEFAULT_ALPHA
+                                             delegate:self];
+    self.alphaSlider.frame = frame;
+    [self addSubview:self.alphaSlider];
+    [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
+
 }
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color
@@ -206,16 +191,6 @@
 }
 
 
-- (void)updateWidthBox
-{
-    WidthView *view = [WidthView viewWithWidth:LINE_DEFAULT_WIDTH];
-    [view setSelected:YES];
-    view.center = self.penWidth.center;
-    [self addSubview:view];
-    [view addTarget:self action:@selector(clickWidthBox:) forControlEvents:UIControlEventTouchUpInside];
-    [self.penWidth removeFromSuperview];
-    self.widthView = view;
-}
 
 - (void)updateNeedBuyToolViews
 {
@@ -248,7 +223,6 @@
     [self updateSliders];
     [self setWidth:LINE_DEFAULT_WIDTH];
     [self setPenType:Pencil];
-    [self updateWidthBox];
     [self updateNeedBuyToolViews];
 }
 
@@ -333,7 +307,7 @@
 
 #pragma mark - click actions
 
-- (void)clickWidthBox:(UIControl *)widthBox
+- (IBAction)clickWidthBox:(UIButton *)widthBox
 {
     [self handlePopTipView:_widthBoxPopTipView contentView:^UIView *{
         WidthBox *box = [WidthBox widthBox];
@@ -535,7 +509,6 @@
     if (drawSlider == self.widthSlider) {
         NSInteger intValue = value;
         self.width = intValue;
-        [self.widthView setWidth:intValue];
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectWidth:)]) {
             [self.delegate drawToolPanel:self didSelectWidth:intValue];
         }
@@ -705,7 +678,6 @@
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
-    PPRelease(_widthView);
     
     [_eraser release];
     [_straw release];

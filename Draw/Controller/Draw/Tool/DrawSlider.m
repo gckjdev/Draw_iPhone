@@ -9,42 +9,45 @@
 #import "DrawSlider.h"
 #import "CMPopTipView.h"
 #import "ShareImageManager.h"
+#import "UIViewUtils.h"
 
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
-#define WIDTH VALUE(92.5)
+//#define WIDTH VALUE(92.5)
 
 
-#define SPACE_EDGE_CONTENT VALUE(5)
-#define HEIGHT (VALUE(12.0)+SPACE_EDGE_CONTENT*2)
-
-#define POINT_WIDTH VALUE(11.0)
-#define POINT_HEIGHT VALUE(12.0)
-
-
-
-#define LOAD_START_X VALUE(4.0)
-#define LOAD_START_Y (VALUE(3.8)+SPACE_EDGE_CONTENT)
-#define LOAD_HEIGHT VALUE(2.6)
-#define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
-#define LOAD_MIN_X (LOAD_START_X)
-#define LOAD_MAX_X (WIDTH - LOAD_START_X*1.4)
-
-#define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
-
+//#define SPACE_EDGE_CONTENT VALUE(5)
+//#define HEIGHT (VALUE(12.0)+SPACE_EDGE_CONTENT*2)
+//
+//#define POINT_WIDTH VALUE(11.0)
+//#define POINT_HEIGHT VALUE(12.0)
+//
+//
+//
+//#define LOAD_START_X VALUE(4.0)
+//#define LOAD_START_Y (VALUE(3.8)+SPACE_EDGE_CONTENT)
+//#define LOAD_HEIGHT VALUE(2.6)
+//#define LOAD_WIDTH (WIDTH - LOAD_START_X*2)
+//#define LOAD_MIN_X (LOAD_START_X)
+//#define LOAD_MAX_X (WIDTH - LOAD_START_X*1.4)
+//
+//#define POINT_X ([self xFromPercent:_percent] - POINT_WIDTH/2)
+//
 #define POP_POINT_SIZE VALUE(6.0)
 
 
 @interface DrawSlider()
 {
-    CGPoint currentPoint;
     UIColor *loadColor;
-    CGFloat _percent;
+    CGFloat _value;
 }
-@property(nonatomic, retain) UIImage *bgImage;
-@property(nonatomic, retain) UIImage *pointImage;
-
-
+@property (retain, nonatomic) IBOutlet UIImageView *loaderImage;
+@property(nonatomic, retain) IBOutlet UIImageView *bgImage;
+@property(nonatomic, retain) IBOutlet UIImageView *pointImage;
+- (IBAction)changeValue:(id)sender;
+- (CGFloat)valueFromPoint:(CGPoint)point;
+- (CGPoint)pointFromValue:(CGFloat)value;
+- (void)updateViewWithValue:(CGFloat)value;
 @end
 
 @implementation DrawSlider
@@ -57,159 +60,109 @@
     PPRelease(_bgImage);
     PPRelease(_pointImage);
     PPRelease(loadColor);
+    PPRelease(_loaderImage);
     [super dealloc];
 }
 
-- (id)init
+
+- (void)updateView
 {
-    self = [super initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-    if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        
-        //171 123 98
-        loadColor = [[UIColor colorWithRed:171/255.0 green:123/255.0 blue:98/255.0 alpha:1] retain];
-        
-        currentPoint = CGPointZero;
-        [self addTarget:self action:@selector(changeValue:) forControlEvents:UIControlEventValueChanged];
-        [self setMaxValue:1.0];
-        [self setMinValue:0.01];
-        _percent = 0.5;
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    [self.bgImage setImage:[imageManager drawSliderBG]];
+    [self.loaderImage setImage:[imageManager drawSliderLoader]];
+    [self.pointImage setImage:[imageManager drawSliderPoint]];
 
-        self.bgImage = [[ShareImageManager defaultManager] drawSliderBG];
-        self.pointImage = [[ShareImageManager defaultManager] drawSliderPoint];
-
-    }
-    return self;
+}
++ (id)sliderWithMaxValue:(CGFloat)maxValue
+                minValue:(CGFloat)minValue
+            defaultValue:(CGFloat)defaultValue
+                delegate:(id<DrawSliderDelegate>) delegate
+{
+    DrawSlider *slider = [UIView createViewWithXibIdentifier:@"DrawSlider"];
+    [slider updateView];
+    [slider setMaxValue:maxValue];
+    [slider setMinValue:minValue];
+    [slider setValue:defaultValue];
+    [slider setDelegate:delegate];
+//    [slider addTarget:self action:@selector(changeValue:)
+//     forControlEvents:UIControlEventValueChanged];
+    return slider;
 }
 
+#define HALF_POINT_WDITH CGRectGetMidX(self.pointImage.bounds)
+#define MIN_POINT_X (CGRectGetMinX(self.bgImage.frame) + HALF_POINT_WDITH)
+#define MAX_POINT_X (CGRectGetMaxX(self.bgImage.frame) - HALF_POINT_WDITH)
+#define CENTER_Y CGRectGetMidY(self.bgImage.frame)
+#define LENGTH (MAX_POINT_X - MIN_POINT_X)
+
+- (CGPoint)fixPoint:(CGPoint)point
+{
+    point.y = CENTER_Y;
+    point.x = MIN(point.x, MAX_POINT_X);
+    point.x = MAX(point.x, MIN_POINT_X);
+    return point;
+    
+}
+- (CGFloat)valueFromPoint:(CGPoint)point
+{
+    point = [self fixPoint:point];
+    CGFloat percent = (point.x - MIN_POINT_X) / LENGTH;
+    return percent * (_maxValue - _minValue) + _minValue;
+}
+- (CGPoint)pointFromValue:(CGFloat)value
+{
+    CGFloat percent = (value - _minValue) / (_maxValue -_minValue);
+    CGFloat x = percent * LENGTH + MIN_POINT_X;
+    return [self fixPoint:CGPointMake(x, CENTER_Y)];
+}
+- (void)updateViewWithValue:(CGFloat)value
+{
+    CGPoint point = [self pointFromValue:value];
+    [self.pointImage setCenter:point];
+    CGRect frame = self.loaderImage.frame;
+    frame.size.width = point.x - MIN_POINT_X;
+    [self.loaderImage setFrame:frame];
+}
 - (CGFloat)value
 {
-    return (_percent * (_maxValue - _minValue)) + _minValue;
+    return _value;
 }
 
 - (void)setValue:(CGFloat)value
 {
-    if (value >= _maxValue) {
-        _percent = 1.0;
-    }else if(value <= _minValue){
-        _percent = 0.0;
+    _value = MIN(_maxValue, value);
+    _value = MAX(_minValue, value);
+    PPDebug(@"<setValue> value = %f", _value);
+    [self updateViewWithValue:_value];
+    
+}
+
+- (void)updateValueWithPoint:(CGPoint)point
+{
+    self.value = [self valueFromPoint:point];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    if (selected) {
+        self.alpha = 0.7;
     }else{
-        _percent = (value - _minValue) / (_maxValue - _minValue);
+        self.alpha = 1.0;
     }
-    //update the point
-    [self setNeedsDisplay];
 }
 
-- (void)setMinValue:(CGFloat)minValue
-{
-    _minValue = minValue;
-}
 
-- (void)setMaxValue:(CGFloat)maxValue
-{
-    _maxValue = maxValue;
-}
-
-- (void)changeValue:(id)sender
+- (IBAction)changeValue:(id)sender
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didValueChange:)]) {
         [self.delegate drawSlider:self didValueChange:self.value];
     }
 }
 
-//- (CGFloat)loadStartX
-//{
-//    return 4.0;
-//}
-//
-//- (CGFloat)loadStartY
-//{
-//    return 3.8;
-//}
-//
-//- (CGFloat)loadHeight
-//{
-//    return 2.6;
-//}
-//
-//- (CGFloat)loadMinX
-//{
-//    return LOAD_START_X;
-//}
-//
-//- (CGFloat)loadMaxX
-//{
-//    return WIDTH - LOAD_START_X;
-//}
-
-
-- (CGFloat)percentFromX:(CGFloat)x
-{
-    if (x <= LOAD_MIN_X) {
-        return 0;
-    }
-    if (x >= LOAD_MAX_X) {
-        return 1.0;
-    }
-    return (x-LOAD_MIN_X)/LOAD_WIDTH;
-}
-
-- (CGFloat)xFromPercent:(CGFloat)percent
-{
-    if (percent >= 1.0) {
-        return LOAD_MAX_X;
-    }
-    if (percent <= 0.0) {
-        return LOAD_MIN_X;
-    }
-    return LOAD_MIN_X + percent * LOAD_WIDTH;
-}
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-
-
-
-- (void)drawRect:(CGRect)rect
-{
-    
-    CGRect contentRect = CGRectMake(0, SPACE_EDGE_CONTENT, WIDTH, HEIGHT-SPACE_EDGE_CONTENT*2);
-    
-    if (self.selected) {
-        [[[ShareImageManager defaultManager] drawSliderDisableImage] drawInRect:contentRect];
-    }else{
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        
-        CGContextSetFillColorWithColor(context, loadColor.CGColor);
-        
-        // Drawing code
-        //Draw bg
-        [self.bgImage drawInRect:contentRect];
-
-        //Draw load
-        CGRect r = CGRectMake(LOAD_START_X, LOAD_START_Y, POINT_X, LOAD_HEIGHT);
-        CGContextFillRect(context, r);
-        
-        //draw point
-        r = CGRectMake(POINT_X, SPACE_EDGE_CONTENT, POINT_WIDTH, POINT_HEIGHT);
-        
-        [self.pointImage drawInRect:r];
-    }
-    
-    [super drawRect:rect];
-}
-
-- (void)updateValueWithCurrentPoint
-{
-    _percent = [self percentFromX:currentPoint.x];
-}
-
-
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    currentPoint = [touch locationInView:self];
-    [self updateValueWithCurrentPoint];
-    [self setNeedsDisplay];
+    CGPoint currentPoint = [touch locationInView:self];
+    [self updateValueWithPoint:currentPoint];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didStartToChangeValue:)]) {
         [self.delegate drawSlider:self didStartToChangeValue:self.value];
     }
@@ -217,21 +170,21 @@
 }
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    currentPoint = [touch locationInView:self];
-    [self updateValueWithCurrentPoint];
-    [self setNeedsDisplay];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    CGPoint currentPoint = [touch locationInView:self];
+    [self updateValueWithPoint:currentPoint];
+//    [self sendActionsForControlEvents:UIControlEventValueChanged];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didValueChange:)]) {
+        [self.delegate drawSlider:self didValueChange:self.value];
+    }
     return YES;
 }
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    currentPoint = [touch locationInView:self];
-    [self updateValueWithCurrentPoint];
-    [self setNeedsDisplay];
+    CGPoint currentPoint = [touch locationInView:self];
+    [self updateValueWithPoint:currentPoint];
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didFinishChangeValue:)]) {
         [self.delegate drawSlider:self didFinishChangeValue:self.value];
     }
-
 }
 
 @end
@@ -254,8 +207,9 @@
             [poptipView.customView removeFromSuperview];
             [poptipView setCustomView:contentView];
         }
+ 
     }
-    [poptipView presentPointingAtView:self inView:inView animated:NO];
+    [poptipView presentPointingAtView:self inView:inView animated:NO pointDirection:PointDirectionDown];
     [poptipView setPointerSize:POP_POINT_SIZE];
 }
 - (void)dismissPopupView

@@ -61,4 +61,5 @@ typedef enum {
 - (BOOL)isChangeBackAction;
 - (BOOL)isCleanAction;
 - (BOOL)isDrawAction;
+
 @end
