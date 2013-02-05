@@ -126,6 +126,11 @@
     return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:300];
 }
 
++ (double)minAlpha
+{
+    double value = [MobClickUtils getDoubleValueByKey:@"MIN_ALPHA" defaultValue:0.05];
+    return value;
+}
 + (NSInteger)maxPenWidth
 {
     NSInteger value = [MobClickUtils getIntValueByKey:@"MAX_PEN_WIDTH" defaultValue:36];
