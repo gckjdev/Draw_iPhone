@@ -84,7 +84,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUITitleShadowOffset">{2, 2}</string>
 								<string key="IBUINormalTitle">取  消</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="65492060">
 									<int key="NSColorSpace">3</int>
@@ -121,7 +120,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUITitleShadowOffset">{2, 2}</string>
 								<string key="IBUINormalTitle">确  定</string>
 								<reference key="IBUIHighlightedTitleColor" ref="65492060"/>
 								<reference key="IBUINormalTitleColor" ref="759030979"/>
@@ -150,7 +148,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -291,7 +289,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="237992780">
 									<int key="type">2</int>
@@ -321,7 +319,7 @@
 								<reference key="IBUITextColor" ref="925027204"/>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="237992780"/>
 								<reference key="IBUIFont" ref="414537125"/>
