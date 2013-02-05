@@ -195,7 +195,7 @@
     [self loadBottomMenu];
     [self loadBoards];
      */
-    [self playBackgroundMusic];
+//    [self playBackgroundMusic];
     
     [self initRecommendButton];
     self.view.backgroundColor = [UIColor whiteColor];

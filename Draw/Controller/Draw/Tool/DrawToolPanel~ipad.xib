@@ -182,7 +182,7 @@
 							<object class="IBUIButton" id="257603996">
 								<reference key="NSNextResponder" ref="1048604451"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{566, 8}, {81, 69}}</string>
+								<string key="NSFrame">{{581, 5.5}, {57, 78}}</string>
 								<reference key="NSSuperview" ref="1048604451"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="476021577"/>
@@ -242,7 +242,7 @@
 								<string key="NSFrame">{{655, 8}, {88, 69}}</string>
 								<reference key="NSSuperview" ref="1048604451"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="510518648"/>
+								<reference key="NSNextKeyView" ref="268355946"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -278,7 +278,7 @@
 						<string key="NSFrame">{{582, 113}, {79, 70}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="606420503"/>
+						<reference key="NSNextKeyView" ref="96719713"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -308,7 +308,7 @@
 						<string key="NSFrame">{{680, 113}, {79, 70}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="510518648"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -351,10 +351,10 @@
 					<object class="IBUIButton" id="510518648">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483329</int>
-						<string key="NSFrame">{{-2400, 118}, {81, 72}}</string>
+						<string key="NSFrame">{{680, 113}, {79, 70}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="96719713"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -388,10 +388,10 @@
 					<object class="IBUIButton" id="96719713">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483329</int>
-						<string key="NSFrame">{{-2400, 119}, {79, 70}}</string>
+						<string key="NSFrame">{{582, 113}, {79, 70}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="268355946"/>
+						<reference key="NSNextKeyView" ref="606420503"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1070,8 +1070,8 @@
 			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_redo_normal@2x.png">{69, 71}</string>
 			<string key="draw_rubber@2x.png">{122, 122}</string>
-			<string key="draw_straw@2x.png">{96, 96}</string>
-			<string key="draw_straw_seleted@2x.png">{96, 96}</string>
+			<string key="draw_straw@2x.png">{57, 78}</string>
+			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
 			<string key="draw_tool_bg@2x.png">{188, 97}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>
