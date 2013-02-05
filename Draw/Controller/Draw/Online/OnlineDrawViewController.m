@@ -77,6 +77,8 @@
 
 - (void)dealloc
 {
+    [drawGameService setDrawDelegate:nil];
+    
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);

@@ -60,6 +60,8 @@
 @synthesize drawBackground;
 - (void)dealloc
 {
+    [drawGameService setShowDelegate:nil];
+    
     moveButton = nil;
     _shopController = nil;
     lastScaleTarget = nil;
