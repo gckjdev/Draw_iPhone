@@ -683,7 +683,7 @@
 
 - (NSInteger)loadNewDataCount
 {
-    return 50;
+    return 30;
 }
 - (NSInteger)loadMoreDataCount
 {

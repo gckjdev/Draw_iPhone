@@ -131,6 +131,8 @@
     double value = [MobClickUtils getDoubleValueByKey:@"MIN_ALPHA" defaultValue:0.05];
     return value;
 }
+
+
 + (NSInteger)maxPenWidth
 {
     NSInteger value = [MobClickUtils getIntValueByKey:@"MAX_PEN_WIDTH" defaultValue:36];
@@ -160,6 +162,11 @@
     return bList;
 }
 
++ (NSInteger)getMessageStatMaxCount
+{
+    NSInteger value = [MobClickUtils getIntValueByKey:@"MESSAGE_STAT_MAX_COUNT" defaultValue:30];
+    return value;
+}
 /*
 + (int)getGuessRewardNormal
 {

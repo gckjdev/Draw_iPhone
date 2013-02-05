@@ -40,6 +40,8 @@ typedef enum{
 + (NSInteger)maxPenWidth;
 + (double)minAlpha;
 
++ (NSInteger)getMessageStatMaxCount; //MESSAGE_STAT_MAX_COUNT
+
 + (NSInteger)defaultPenWidth;
 + (NSInteger *)penWidthList;
 
