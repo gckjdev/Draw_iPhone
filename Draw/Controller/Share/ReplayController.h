@@ -10,10 +10,11 @@
 #import "PPViewController.h"
 #import "ShowDrawView.h"
 #import "ShareAction.h"
+#import "UserService.h"
 
 @class MyPaint;
 
-@interface ReplayController : PPViewController<ShowDrawViewDelegate>
+@interface ReplayController : PPViewController<ShowDrawViewDelegate, UserServiceDelegate>
 
 @property (nonatomic, retain) MyPaint *paint;
 @property (nonatomic, retain) ShareAction *shareAction;

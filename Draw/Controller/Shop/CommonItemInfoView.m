@@ -137,7 +137,7 @@
 {
     CommonItemInfoView* cView = [CommonItemInfoView createItemInfoView];
     [cView initViewWithItem:anItem canBuyAgain:canBuyAgain];
-    cView.delegate = delegate;
+    cView.delegate = delegate;  // delegate warning here is OK, no need to double check
     [cView showInView:view];    
 }
 

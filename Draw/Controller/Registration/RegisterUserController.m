@@ -159,9 +159,9 @@
                                     password:@""     
                                     nickName:userId 
                                    avatarURL:avatar];
-    [[DrawGameService defaultService] setUserId:userId];
-    [[DrawGameService defaultService] setNickName:userId];
-    [[DrawGameService defaultService] setAvatar:avatar];
+//    [[DrawGameService defaultService] setUserId:userId];
+//    [[DrawGameService defaultService] setNickName:userId];
+//    [[DrawGameService defaultService] setAvatar:avatar];
 }
 
 - (BOOL)verifyField
