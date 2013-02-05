@@ -84,7 +84,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUITitleShadowOffset">{2, 2}</string>
 								<string key="IBUINormalTitle">取  消</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="65492060">
 									<int key="NSColorSpace">3</int>
@@ -121,7 +120,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUITitleShadowOffset">{2, 2}</string>
 								<string key="IBUINormalTitle">确  定</string>
 								<reference key="IBUIHighlightedTitleColor" ref="65492060"/>
 								<reference key="IBUINormalTitleColor" ref="759030979"/>
@@ -150,7 +148,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -202,7 +200,7 @@
 							<object class="IBUIButton" id="697055029">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{55, 306}, {28, 28}}</string>
+								<string key="NSFrame">{{55, 296}, {128, 48}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="284730635"/>
@@ -211,6 +209,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<double key="IBUIContentEdgeInsets.top">0.0</double>
+								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
+								<double key="IBUIContentEdgeInsets.left">0.0</double>
+								<double key="IBUIContentEdgeInsets.right">100</double>
 								<string key="IBUINormalTitle">不分享</string>
 								<reference key="IBUIHighlightedTitleColor" ref="65492060"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -242,7 +244,7 @@
 							<object class="IBUIButton" id="549499065">
 								<reference key="NSNextResponder" ref="590426723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{316, 306}, {28, 28}}</string>
+								<string key="NSFrame">{{316, 296}, {128, 48}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="32454779"/>
@@ -251,6 +253,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<double key="IBUIContentEdgeInsets.top">0.0</double>
+								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
+								<double key="IBUIContentEdgeInsets.left">0.0</double>
+								<double key="IBUIContentEdgeInsets.right">100</double>
 								<string key="IBUINormalTitle">不分享</string>
 								<reference key="IBUIHighlightedTitleColor" ref="65492060"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -283,7 +289,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="237992780">
 									<int key="type">2</int>
@@ -313,7 +319,7 @@
 								<reference key="IBUITextColor" ref="925027204"/>
 								<nil key="IBUIHighlightedColor"/>
 								<reference key="IBUIShadowColor" ref="65492060"/>
-								<string key="IBUIShadowOffset">{2, 2}</string>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="237992780"/>
 								<reference key="IBUIFont" ref="414537125"/>
@@ -624,6 +630,79 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">InputAlertView</string>
 					<string key="superclassName">UIControl</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickCancel:">id</string>
+						<string key="clickClose:">id</string>
+						<string key="clickConfirm:">id</string>
+						<string key="clickQQCheckBox:">UIButton</string>
+						<string key="clickSinaCheckBox:">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickCancel:">
+							<string key="name">clickCancel:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickClose:">
+							<string key="name">clickClose:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickConfirm:">
+							<string key="name">clickConfirm:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickQQCheckBox:">
+							<string key="name">clickQQCheckBox:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="clickSinaCheckBox:">
+							<string key="name">clickSinaCheckBox:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="cancel">UIButton</string>
+						<string key="confirm">UIButton</string>
+						<string key="content">UITextView</string>
+						<string key="qqCheckBox">UIButton</string>
+						<string key="shareToQQ">UILabel</string>
+						<string key="shareToSina">UILabel</string>
+						<string key="sinaCheckBox">UIButton</string>
+						<string key="title">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="cancel">
+							<string key="name">cancel</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="confirm">
+							<string key="name">confirm</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="content">
+							<string key="name">content</string>
+							<string key="candidateClassName">UITextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="qqCheckBox">
+							<string key="name">qqCheckBox</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="shareToQQ">
+							<string key="name">shareToQQ</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="shareToSina">
+							<string key="name">shareToSina</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="sinaCheckBox">
+							<string key="name">sinaCheckBox</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="title">
+							<string key="name">title</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/InputAlertView.h</string>

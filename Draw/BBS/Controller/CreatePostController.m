@@ -202,11 +202,16 @@
 
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
+    if (ISIPAD) {
+        return;
+    }
     PPDebug(@"<keyboardWillShowWithRect> keyboardRect = %@",NSStringFromCGRect(keyboardRect));
     CGRect frame = self.panel.frame;
     CGSize size = CGSizeMake(frame.size.width, keyboardRect.origin.y);
     frame.size = size;
     
+    PPDebug(@"<keyboardWillShowWithRect> panel Rect = %@",NSStringFromCGRect(frame));
+
     [UIView animateWithDuration:0.3 animations:^{
         self.panel.frame = frame;
     }];

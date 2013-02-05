@@ -733,9 +733,6 @@
 - (IBAction)clickChangeRoom:(id)sender
 {
     // update data before change room
-    [[DrawGameService defaultService] setNickName:[_userManager nickName]];
-    [[DrawGameService defaultService] setAvatar:[_userManager avatarURL]];
-    [[DrawGameService defaultService] setGender:[_userManager isUserMale]];
     [[DrawGameService defaultService] setGuessDiffLevel:[ConfigManager guessDifficultLevel]];
     
     if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){

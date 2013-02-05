@@ -204,9 +204,9 @@
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
-    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
-    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
-    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
+//    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
+//    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
+//    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     // sync bulletin
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {

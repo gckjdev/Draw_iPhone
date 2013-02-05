@@ -35,18 +35,18 @@
 #pragma mark - click actions
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
-
+- (IBAction)clickPalette:(id)sender;
+- (IBAction)clickStraw:(id)sender;
 - (IBAction)clickPen:(id)sender;
 - (IBAction)clickEraser:(id)sender;
 - (IBAction)clickAddColor:(id)sender;
-- (IBAction)clickPalette:(id)sender;
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
-- (IBAction)clickStraw:(id)sender;
 - (IBAction)clickWidthBox:(UIButton *)widthBox;
 - (void)selectPen;
 - (void)selectEraser;
 
+@property (retain, nonatomic) IBOutlet UIImageView *colorBGImageView;
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) IBOutlet UIButton *penWidth;
@@ -90,7 +90,7 @@
 #define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
 #define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 
-#define COLOR_MIN_ALPHA 0.1
+#define COLOR_MIN_ALPHA ([ConfigManager minAlpha])
 #define COLOR_MAX_ALPHA 1.0
 #define COLOR_DEFAULT_ALPHA 1.0
 
@@ -149,6 +149,7 @@
                                              minValue:COLOR_MIN_ALPHA
                                          defaultValue:COLOR_DEFAULT_ALPHA
                                              delegate:self];
+    
     self.alphaSlider.frame = frame;
     [self addSubview:self.alphaSlider];
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
@@ -190,8 +191,6 @@
     [self updateRecentColorViewWithColor:[DrawColor blackColor]];
 }
 
-
-
 - (void)updateNeedBuyToolViews
 {
     if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
@@ -205,11 +204,11 @@
         [self.alphaSlider setSelected:NO];
     }
     [self.straw setSelected:NO];
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
-        //TODO set straw unbuy image
-    }else{
-        //TODO set straw bought image
-    }
+//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+//        //TODO set straw unbuy image
+//    }else{
+//        //TODO set straw bought image
+//    }
     
 }
 
@@ -226,6 +225,18 @@
     [self updateNeedBuyToolViews];
 }
 
+- (void)userItem:(ItemType)type
+{
+    switch (type) {
+        case ColorStrawItem:
+            [self clickStraw:self.straw];
+            break;
+        case PaletteItem:
+            [self clickPalette:self.palette];
+        default:
+            break;
+    }
+}
 
 + (id)createViewWithdelegate:(id)delegate
 {
@@ -528,6 +539,8 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     [self.straw setSelected:NO];
+    [self dismissAllPopTipViews];
+    
     if (drawSlider == self.alphaSlider) {
         if ([self.alphaSlider isSelected]) {
             if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
@@ -551,7 +564,6 @@
         [drawSlider popupWithContenView:width];
         [width setSelected:YES];
     }
-    [self dismissAllPopTipViews];
 }
 
 - (void)penBox:(PenBox *)penBox didSelectPen:(ItemType)penType penImage:(UIImage *)image

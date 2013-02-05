@@ -550,13 +550,16 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+#define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"
 
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image
 {
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];    
     
-    dispatch_async(workingQueue, ^{
+    dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
+    
+    dispatch_async(updateOpusQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId data:nil imageData:[image data]];
         if (output.resultCode == 0) {
             PPDebug(@"<updateOpus> succ!");

@@ -96,10 +96,9 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">4</double>
+						<double key="IBUIContentEdgeInsets.bottom">2</double>
 						<double key="IBUIContentEdgeInsets.left">1</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">提交</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -121,13 +120,13 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_normal@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="796859412">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="605853301">
 							<int key="type">2</int>
-							<double key="pointSize">36</double>
+							<double key="pointSize">34</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="543460469">
+						<object class="NSFont" key="IBUIFont" id="308515567">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">36</double>
+							<double key="NSSize">34</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -180,7 +179,7 @@
 						<string key="IBUIText">八个字八个字八个八个</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xMDU4ODIzNTI5IDAuMDIzNTI5NDExNzYgMC4wMDM5MjE1Njg2MjcAA</bytes>
+							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
@@ -209,10 +208,9 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">4</double>
+						<double key="IBUIContentEdgeInsets.bottom">2</double>
 						<double key="IBUIContentEdgeInsets.left">1</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<string key="IBUITitleShadowOffset">{1, 1}</string>
 						<string key="IBUINormalTitle">保存</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -222,8 +220,8 @@
 						<reference key="IBUINormalTitleShadowColor" ref="373991744"/>
 						<reference key="IBUIHighlightedBackgroundImage" ref="850046378"/>
 						<reference key="IBUINormalBackgroundImage" ref="121151739"/>
-						<reference key="IBUIFontDescription" ref="796859412"/>
-						<reference key="IBUIFont" ref="543460469"/>
+						<reference key="IBUIFontDescription" ref="605853301"/>
+						<reference key="IBUIFont" ref="308515567"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{768, 1004}</string>

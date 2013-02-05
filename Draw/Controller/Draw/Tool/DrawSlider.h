@@ -18,7 +18,6 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value;
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value;
 
-
 @end
 
 @interface DrawSlider : UIControl
@@ -31,6 +30,8 @@
 @property(nonatomic, assign)CGFloat maxValue;
 @property(nonatomic, assign)CGFloat minValue;
 @property(nonatomic, assign)id<DrawSliderDelegate> delegate;
+//@property(nonatomic, assign)BOOL canSlide;
+
 - (CGFloat)value;
 - (void)setValue:(CGFloat)value;
 

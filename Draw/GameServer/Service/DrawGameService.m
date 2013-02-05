@@ -20,43 +20,44 @@
 #import "CommonGameNetworkService.h"
 #import "NotificationName.h"
 #import "ConfigManager.h"
+#import "LevelService.h"
 
 @implementation DrawGameService
 
 static DrawGameService* _defaultService;
 
-@synthesize userId = _userId;
-@synthesize nickName = _nickName;
+//@synthesize userId = [self userId];
+//@synthesize nickName = _nickName;
 @synthesize drawDelegate = _drawDelegate;
 @synthesize roomDelegate = _roomDelegate;
 @synthesize session = _session;
 @synthesize gameObserverList = _gameObserverList;
 @synthesize homeDelegate = _homeDelegate;
 @synthesize historySessionSet = _historySessionSet;
-@synthesize avatar = _avatar;
+//@synthesize avatar = _avatar;
 @synthesize serverAddress = _serverAddress;
 @synthesize serverPort = _serverPort;
-@synthesize gender = _gender;
+//@synthesize gender = _gender;
 @synthesize guessDiffLevel = _guessDiffLevel;
 @synthesize showDelegate = _showDelegate;
 @synthesize onlineUserCount = _onlineUserCount;
 @synthesize roomId = _roomId;
 @synthesize snsUserData = _snsUserData;
-@synthesize location = _location;
+//@synthesize location = _location;
 
 - (void)dealloc
 {
     [self clearKeepAliveTimer];
 
-    [_location release];
+//    [_location release];
     [_snsUserData release];
     [_roomId release];
     [_serverAddress release];
-    [_avatar release];
+//    [_avatar release];
     [_historySessionSet release];
     [_session release];
-    [_nickName release];
-    [_userId release];
+//    [_nickName release];
+//    [[self userId] release];
     [_networkClient disconnect];
     [_networkClient release];
     [_gameObserverList release];
@@ -91,6 +92,37 @@ static DrawGameService* _defaultService;
     _roomList = [[NSMutableArray alloc] init];
     _gameId = [GameApp gameId];
     return self;
+}
+
+#pragma mark - User Info
+- (BOOL)gender
+{
+    return [[UserManager defaultManager] isUserMale];
+}
+
+- (NSString*)avatar
+{
+    return [[UserManager defaultManager] avatarURL];
+}
+
+- (NSString*)userId
+{
+    return [[UserManager defaultManager] userId];
+}
+
+- (NSString*)location
+{
+    return [[UserManager defaultManager] location];
+}
+
+- (NSString*)nickName
+{
+    return [[UserManager defaultManager] nickName];
+}
+
+- (int)userLevel
+{
+    return [[LevelService defaultService] level];
 }
 
 #define DISCONNECT_TIMER_INTERVAL   10
@@ -164,7 +196,7 @@ static DrawGameService* _defaultService;
 
 - (BOOL)isMeHost
 {
-    if ([self.session isHostUser:_userId]) {
+    if ([self.session isHostUser:[self userId]]) {
         return YES;
     }
     return NO;
@@ -172,7 +204,7 @@ static DrawGameService* _defaultService;
 
 - (BOOL)isMyTurn
 {
-    if ([self.session isCurrentPlayUser:_userId]) {
+    if ([self.session isCurrentPlayUser:[self userId]]) {
         return YES;
     }
     return NO;
@@ -257,7 +289,7 @@ static DrawGameService* _defaultService;
         // create game session
         if ([message resultCode] == 0){
             PBGameSession* pbSession = [[message joinGameResponse] gameSession];
-            self.session = [GameSession fromPBGameSession:pbSession userId:_userId];
+            self.session = [GameSession fromPBGameSession:pbSession userId:[self userId]];
             PPDebug(@"<handleJoinGameResponse> Create Session = %@", [self.session description]);
             
             [self updateOnlineUserCount:message];
@@ -692,19 +724,14 @@ static DrawGameService* _defaultService;
     
     [self clearHistoryUser];
     
-    [self setUserId:userId];
-    [self setNickName:nickName];
-    [self setAvatar:avatar];
-    [self setGender:gender];
     [self setGuessDiffLevel:guessDiffLevel];
-    _userLevel = userLevel;
     
-    [_networkClient sendJoinGameRequest:_userId 
-                               nickName:_nickName 
-                                 avatar:_avatar
-                                 gender:_gender
-                               location:location      
-                              userLevel:_userLevel
+    [_networkClient sendJoinGameRequest:[self userId] 
+                               nickName:[self nickName]
+                                 avatar:[self avatar]
+                                 gender:[self gender]
+                               location:[self location]
+                              userLevel:[self userLevel]
                             snsUserList:snsUserData
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
@@ -718,12 +745,12 @@ static DrawGameService* _defaultService;
 - (void)startGame
 {
     
-    PPDebug(@"<startGame> %@ at %d", _userId, [_session sessionId]);
+    PPDebug(@"<startGame> %@ at %d", [self userId], [_session sessionId]);
     if ([_networkClient isConnected] == NO){
         return;
     }
     
-    [_networkClient sendStartGameRequest:_userId sessionId:[_session sessionId]];    
+    [_networkClient sendStartGameRequest:[self userId] sessionId:[_session sessionId]];    
     
     [self scheduleKeepAliveTimer];
     [self.session removeAllDrawActions];
@@ -732,18 +759,18 @@ static DrawGameService* _defaultService;
 
 - (void)changeRoom
 {
-    PPDebug(@"<changeRoom> %@, %@", _userId, _nickName);
+    PPDebug(@"<changeRoom> %@, %@", [self userId], [self nickName]);
     
     [_session setStatus:SESSION_WAITING];    
     
-    [_networkClient sendJoinGameRequest:_userId 
-                               nickName:_nickName 
-                                 avatar:_avatar
-                                 gender:_gender
-                               location:_location 
-                              userLevel:_userLevel
+    [_networkClient sendJoinGameRequest:[self userId] 
+                               nickName:[self nickName]
+                                 avatar:[self avatar]
+                                 gender:[self gender]
+                               location:[self location]
+                              userLevel:[self userLevel]
                             snsUserList:_snsUserData
-                         guessDiffLevel:_guessDiffLevel
+                         guessDiffLevel:[self guessDiffLevel]
                               sessionId:[_session sessionId]
                                  roomId:nil
                                roomName:nil
@@ -763,7 +790,7 @@ static DrawGameService* _defaultService;
     PPDebug(@"<sendDrawData>");
 
     
-    [_networkClient sendDrawDataRequest:_userId
+    [_networkClient sendDrawDataRequest:[self userId]
                               sessionId:[_session sessionId]
                               pointList:pointList
                                   color:color
@@ -782,7 +809,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"<cleanDraw>");
 
-    [_networkClient sendCleanDraw:_userId
+    [_networkClient sendCleanDraw:[self userId]
                         sessionId:[_session sessionId]];  
     [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
     
@@ -799,7 +826,7 @@ static DrawGameService* _defaultService;
     [[_session currentTurn] setWord:word];
     [[_session currentTurn] setLevel:level];
     
-    [_networkClient sendStartDraw:_userId
+    [_networkClient sendStartDraw:[self userId]
                         sessionId:[_session sessionId]
                              word:word
                             level:level
@@ -814,7 +841,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"prolong game");
     
-    [_networkClient sendProlongGame:_userId
+    [_networkClient sendProlongGame:[self userId]
                           sessionId:[_session sessionId]];
     
     [self scheduleKeepAliveTimer];
@@ -825,7 +852,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"<askQuickGame>");
     
-    [_networkClient sendAskQuickGame:_userId
+    [_networkClient sendAskQuickGame:[self userId]
                            sessionId:[_session sessionId]];
 
     [self scheduleKeepAliveTimer];
@@ -835,7 +862,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"<sendGroupChatMessage>");
 
-    [_networkClient sendChatMessage:_userId 
+    [_networkClient sendChatMessage:[self userId] 
                           sessionId:[_session sessionId] 
                            userList:nil 
                             message:message
@@ -845,7 +872,7 @@ static DrawGameService* _defaultService;
 - (void)privateChatMessage:(NSArray*)userList message:(NSString*)message
 {
     PPDebug(@"<sendPrivateChatMessage>");
-    [_networkClient sendChatMessage:_userId 
+    [_networkClient sendChatMessage:[self userId] 
                           sessionId:[_session sessionId] 
                            userList:userList 
                             message:message
@@ -855,7 +882,7 @@ static DrawGameService* _defaultService;
 - (void)groupChatExpression:(NSString*)key 
 {
     PPDebug(@"<sendGroupChatExpression>");    
-    [_networkClient sendChatExpression:_userId 
+    [_networkClient sendChatExpression:[self userId] 
                              sessionId:[_session sessionId] 
                               userList:nil 
                                    key:key
@@ -865,7 +892,7 @@ static DrawGameService* _defaultService;
 - (void)privateChatExpression:(NSArray*)userList key:(NSString*)key 
 {
     PPDebug(@"<sendGroupChatExpression> to all users");    
-    [_networkClient sendChatExpression:_userId 
+    [_networkClient sendChatExpression:[self userId] 
                              sessionId:[_session sessionId] 
                               userList:userList 
                                    key:key
@@ -878,7 +905,7 @@ static DrawGameService* _defaultService;
     PPDebug(@"<DrawGameService> userId = %@, guess word = %@", guessUserId,word);
     [_networkClient sendGuessWord:word
                       guessUserId:guessUserId
-                           userId:_userId
+                           userId:[self userId]
                         sessionId:[_session sessionId]];
     
     [self scheduleKeepAliveTimer];
@@ -889,7 +916,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"<quitGame>");
     
-//    [_networkClient sendQuitGame:_userId
+//    [_networkClient sendQuitGame:[self userId]
 //                       sessionId:[_session sessionId]];
     
     [_networkClient disconnect];
@@ -928,7 +955,7 @@ static DrawGameService* _defaultService;
 {
     PPDebug(@"<keepAlive>");
     
-    [_networkClient sendKeepAlive:_userId sessionId:[_session sessionId]];
+    [_networkClient sendKeepAlive:[self userId] sessionId:[_session sessionId]];
 }
 
 #define KEEP_ALIVE_TIMER_INTERVAL       90
@@ -992,20 +1019,15 @@ static DrawGameService* _defaultService;
     [_session setStatus:SESSION_WAITING];
     [self clearHistoryUser];
     
-    [self setUserId:userId];
-    [self setNickName:nickName];
-    [self setAvatar:avatar];
-    [self setGender:gender];
     [self setGuessDiffLevel:guessDiffLevel];
     [self setRoomId:roomId];
-    _userLevel = userLevel;
     
-    [_networkClient sendJoinGameRequest:_userId 
-                               nickName:_nickName 
-                                 avatar:_avatar
-                                 gender:_gender
-                               location:location 
-                              userLevel:_userLevel
+    [_networkClient sendJoinGameRequest:[self userId] 
+                               nickName:[self nickName]
+                                 avatar:[self avatar]
+                                 gender:[self gender]
+                               location:[self location]
+                              userLevel:[self userLevel]
                             snsUserList:snsUserData     
                          guessDiffLevel:guessDiffLevel
                               sessionId:-1
