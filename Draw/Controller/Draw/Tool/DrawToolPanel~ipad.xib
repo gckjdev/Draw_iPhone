@@ -182,7 +182,7 @@
 							<object class="IBUIButton" id="257603996">
 								<reference key="NSNextResponder" ref="1048604451"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{566, 8}, {81, 69}}</string>
+								<string key="NSFrame">{{581, 5.5}, {57, 78}}</string>
 								<reference key="NSSuperview" ref="1048604451"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="476021577"/>
@@ -1070,8 +1070,8 @@
 			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_redo_normal@2x.png">{69, 71}</string>
 			<string key="draw_rubber@2x.png">{122, 122}</string>
-			<string key="draw_straw@2x.png">{96, 96}</string>
-			<string key="draw_straw_seleted@2x.png">{96, 96}</string>
+			<string key="draw_straw@2x.png">{57, 78}</string>
+			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
 			<string key="draw_tool_bg@2x.png">{188, 97}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>

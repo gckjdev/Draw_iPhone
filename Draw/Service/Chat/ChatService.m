@@ -90,9 +90,6 @@ static ChatService *_chatService = nil;
     [queue cancelAllOperations];
     if ([queue operationCount] != 0) {
         PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
-//        if (delegate && [delegate respondsToSelector:@selector(didGetMessages:forward:resultCode:)]){
-//            [delegate didGetMessages:nil forward:forward resultCode:0];
-//        }
         return;
     }
     

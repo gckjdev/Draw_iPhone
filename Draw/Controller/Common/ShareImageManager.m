@@ -425,18 +425,7 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"toolbox.png"];
 }
 
-- (UIImage *)fixedImageNamed:(NSString *)name
-{
-    NSString *temp = name;
-    if ([DeviceDetection isIPAD]) {
-        temp = [NSString stringWithFormat:@"%@@2x.png",name];        
-    }else{
-
-    }
-    return [UIImage imageNamed:temp];
-}
-
-- (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name
+- (NSString *)fixImageName:(NSString *)name
 {
     NSString *temp = name;
     if ([DeviceDetection isIPAD]) {
@@ -444,6 +433,18 @@ static UIImage* _whitePaperImage;
     }else{
         temp = [NSString stringWithFormat:@"%@.png",name];
     }
+    return temp;
+}
+
+- (UIImage *)fixedImageNamed:(NSString *)name
+{
+    NSString *temp = [self fixImageName:name];
+    return [UIImage imageNamed:temp];
+}
+
+- (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name
+{
+    NSString *temp = [self fixImageName:name];
     return [UIImage strectchableImageName:temp];
 }
 
@@ -625,7 +626,12 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)drawSliderLoader
 {
-     return [self fixedAndStrectchableImageNamed:@"draw_slider_load"];
+//    NSString *name = [self fixImageName:@"draw_slider_load"];
+//    return [UIImage strectchableImageName:name topCapHeight:<#(int)#>]
+    UIImage*image = [self fixedImageNamed:@"draw_slider_load"];
+    NSInteger height = image.size.height / 2;
+    NSInteger width = image.size.width - 2;
+    return [image stretchableImageWithLeftCapWidth:width topCapHeight:height];
 }
 - (UIImage *)drawSliderBG
 {

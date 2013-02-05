@@ -120,7 +120,7 @@
     CGPoint point = [self pointFromValue:value];
     [self.pointImage setCenter:point];
     CGRect frame = self.loaderImage.frame;
-    frame.size.width = point.x - MIN_POINT_X;
+    frame.size.width = point.x - MIN_POINT_X + HALF_POINT_WDITH;
     [self.loaderImage setFrame:frame];
 }
 - (CGFloat)value
