@@ -7,6 +7,8 @@
 //  Copyright 2012Âπ?__MyCompanyName__. All rights reserved.
 //
 
+
+
 #import "DrawAppDelegate.h"
 
 #import "OnlineDrawViewController.h"
@@ -569,5 +571,12 @@ NSString* GlobalGetBoardServerURL()
         }
     }
 }
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running);    }  });
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running); db.killOp(d.opid);    }  });
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.waitingForLock && (d.op == "query"  || d.op == "getmore") && d.ns == "game.action" && d.locks["^game"] == "R")         printjson(d)      });
+
 
 @end
