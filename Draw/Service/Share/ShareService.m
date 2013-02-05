@@ -40,6 +40,7 @@ static ShareService* _defaultService;
                isDrawByMe:(BOOL)isDrawByMe 
                  drawWord:(NSString*)drawWord
 {
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:snsType];
     NSArray* wordArray = [[WordManager defaultManager] randDrawWordList];
     NSMutableArray* array2 = [NSMutableArray arrayWithArray:wordArray];
     [array2 insertObject:[Word wordWithText:drawWord level:0] atIndex:(rand()%3)];
@@ -67,7 +68,7 @@ static ShareService* _defaultService;
         }
 //        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
     }
-    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
+    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
     
     PPDebug(@"Share Weibo Text=%@", text); 
     return text;

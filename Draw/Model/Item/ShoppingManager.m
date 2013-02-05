@@ -373,7 +373,7 @@ static ShoppingManager *staticShoppingManager = nil;
 {
     NSString* price = [MobClick getConfigParams:@"TOMATO_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getTomatoPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        PPDebug(@"<getTomatoPrice>: price is nil, return default price = %d",DEFAULT_TOMATO_PRICE);
         return DEFAULT_TOMATO_PRICE;
     }
     NSInteger retPrice = [price integerValue];
@@ -385,7 +385,7 @@ static ShoppingManager *staticShoppingManager = nil;
 {
     NSString* price = [MobClick getConfigParams:@"FLOWER_PRICE"];
     if (price == nil) {
-        PPDebug(@"<getFlowerPrice>: price is nil, return default price = %d",DEFAULT_PEN_PRICE);
+        PPDebug(@"<getFlowerPrice>: price is nil, return default price = %d",DEFAULT_FLOWER_PRICE);
         return DEFAULT_FLOWER_PRICE;
     }
     NSInteger retPrice = [price integerValue];
