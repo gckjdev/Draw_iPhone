@@ -415,7 +415,7 @@
     }else{
         upButton.hidden = downButton.hidden = YES;
         upLabel.hidden = downLabel.hidden = YES;
-        continueButton.frame = upButton.frame;
+        continueButton.center = CGPointMake(self.view.center.x, continueButton.center.y);
     }
     
     //init the continue button

@@ -130,8 +130,10 @@
     drawView = [[DrawView alloc] initWithFrame:frame];
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
+    drawView.strawDelegate = self.drawToolPanel;
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = self.bgColor = [DrawColor whiteColor];
+    self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
 }
 
@@ -149,9 +151,9 @@
 {
     [super viewDidLoad];
     drawGameService.drawDelegate = self;
-    [self initDrawView];
     [self initWordLabel];
     [self initDrawToolPanel];
+    [self initDrawView];
 }
 
 
@@ -336,6 +338,7 @@
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
+                [self.drawToolPanel userItem:anItem.type];
                 break;
             case Pen:
             case Pencil:
@@ -442,7 +445,7 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:NO];
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button

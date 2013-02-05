@@ -144,6 +144,7 @@
 
 - (void)setSelected:(BOOL)selected
 {
+    [super setSelected:selected];
     if (selected) {
         self.alpha = 0.7;
     }else{
@@ -159,14 +160,21 @@
     }
 }
 
+- (BOOL)canSlide
+{
+    return ![self isSelected];
+}
+
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint currentPoint = [touch locationInView:self];
-    [self updateValueWithPoint:currentPoint];
+    if ([self canSlide]) {
+        [self updateValueWithPoint:currentPoint];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawSlider:didStartToChangeValue:)]) {
         [self.delegate drawSlider:self didStartToChangeValue:self.value];
     }
-    return YES;
+    return [self canSlide];
 }
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
