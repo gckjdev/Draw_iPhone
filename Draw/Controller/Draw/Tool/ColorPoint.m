@@ -67,6 +67,11 @@
     }
 }
 
+- (CGColorRef)shadowColor
+{
+    return [UIColor colorWithRed:76/255. green:75/255. blue:75/255. alpha:1].CGColor;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     
@@ -77,7 +82,7 @@
     
     CGFloat edge = (WIDTH - CIRCLE_WIDTH)/3;
     CGSize offset = CGSizeMake(edge, edge);
-    CGContextSetShadowWithColor(context, offset, edge/2.2, [UIColor blackColor].CGColor);
+    CGContextSetShadowWithColor(context, offset, edge/2.2, [self shadowColor]);
     CGRect circle = CGRectMake(edge, edge, CIRCLE_WIDTH, CIRCLE_WIDTH);
     CGContextFillEllipseInRect(context, circle);
     
