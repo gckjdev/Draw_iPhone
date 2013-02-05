@@ -333,7 +333,7 @@
     AudioManager *audioManager = [AudioManager defaultManager];
     
     [audioManager setBackGroundMusicWithURL:url];
-    [audioManager backgroundMusicStart];
+//    [audioManager backgroundMusicStart];
 
 }
 

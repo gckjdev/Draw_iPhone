@@ -90,7 +90,7 @@
 #define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
 #define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 
-#define COLOR_MIN_ALPHA 0.1
+#define COLOR_MIN_ALPHA ([ConfigManager minAlpha])
 #define COLOR_MAX_ALPHA 1.0
 #define COLOR_DEFAULT_ALPHA 1.0
 
