@@ -405,7 +405,7 @@ NSString* GlobalGetBoardServerURL()
 //        sleep(60);
     });     
     
-    [[AudioManager defaultManager] backgroundMusicStop];
+//    [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
     
     [[UserStatusService defaultService] stop];

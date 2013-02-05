@@ -136,7 +136,7 @@ enum {
     rowOfVolumeSetting = 1;
     rowOfMusicSettings = 2;
     //rowOfChatVoice = 3;
-    rowsInSectionSound = isDrawApp()?3:2;//TODO:hide custom music in dice, fix it later
+    rowsInSectionSound = 1;//isDrawApp()?3:2;//TODO:hide background music in dice, fix it later
     
     rowsInSectionAccount = ROW_ACCOUNT_COUNT;
 }
