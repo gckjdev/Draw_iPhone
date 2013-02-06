@@ -107,7 +107,7 @@
 
 - (id)copy
 {
-    return [PointNode pointWithCGPoint:self.point];
+    return [[PointNode pointWithCGPoint:self.point] retain];
 }
 
 - (BOOL)equalsToPoint:(PointNode *)point
