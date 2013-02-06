@@ -10,10 +10,8 @@
 #import "UserService.h"
 #import "PPViewController.h"
 #import "PassWordDialog.h"
-#import "DrawDataService.h"
-#import "RemoteDrawView.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, UITextFieldDelegate, InputDialogDelegate, DrawDataServiceDelegate, RemoteDrawViewDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, UITextFieldDelegate, InputDialogDelegate>
 {
     int _currentLoginType;
 }
@@ -38,7 +36,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *inviteLabel;
 @property (retain, nonatomic) NSArray *remoteDrawArray;
 
-- (void)addRemoteDraw;
+
 - (IBAction)backgroundTap:(id)sender;
 
 @end

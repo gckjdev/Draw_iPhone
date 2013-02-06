@@ -52,12 +52,12 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_main_bg@2x.jpg</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="622016577">
 						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{19, 100}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
@@ -81,7 +81,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_title_bg@2x.jpg</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="1050928452">
@@ -168,7 +168,7 @@
 						<string key="NSFrame">{{163, 519}, {525, 80}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="249326835"/>
+						<reference key="NSNextKeyView" ref="908480053"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -205,7 +205,7 @@
 						<string key="NSFrame">{{19, 718}, {730, 80}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="249326835"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -220,7 +220,7 @@
 						<string key="NSFrame">{{19, 721}, {730, 74}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="908480053"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -568,22 +568,22 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>draw_color_bg@2x.png</string>
-				<string>draw_main_bg@2x.jpg</string>
 				<string>draw_paper@2x.png</string>
-				<string>draw_title_bg@2x.jpg</string>
 				<string>guess_popup@2x.png</string>
 				<string>round@2x.png</string>
 				<string>run@2x.png</string>
+				<string>topwood@2x.jpg</string>
+				<string>wood_bg@2x.jpg</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{622, 84}</string>
-				<string>{640, 960}</string>
 				<string>{622, 649}</string>
-				<string>{640, 79}</string>
 				<string>{57, 67}</string>
 				<string>{74, 74}</string>
 				<string>{74, 74}</string>
+				<string>{640, 79}</string>
+				<string>{640, 960}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

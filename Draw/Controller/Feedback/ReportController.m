@@ -210,11 +210,9 @@
 {
     [super viewDidLoad];
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
-    
-    [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
     [self.contentBackground setImage:[[ShareImageManager defaultManager] inputImage]];    
     [self.contactBackground setImage:[[ShareImageManager defaultManager] inputImage]];
-    [self.doneButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
+    
     [self.doneButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
     [self.contentText becomeFirstResponder];

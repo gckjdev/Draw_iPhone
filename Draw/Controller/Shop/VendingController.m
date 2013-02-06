@@ -101,8 +101,8 @@ static VendingController* staticVendingController = nil;
 
 - (void)initButtons
 {
-    [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.coinsShopButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+//    [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+//    [self.coinsShopButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     NSString* buyCoinButtonTitle;
     if ([ConfigManager wallEnabled]) {
         buyCoinButtonTitle = NSLS(@"kFreeCoins");

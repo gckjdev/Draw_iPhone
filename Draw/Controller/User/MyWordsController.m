@@ -52,7 +52,6 @@
     [titleLabel setText:NSLS(@"kCustomWordManage")];
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     

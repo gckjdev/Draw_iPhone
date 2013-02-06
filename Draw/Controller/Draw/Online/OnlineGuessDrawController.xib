@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="277364555">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">277</int>
-						<string key="NSFrameSize">{320, 400}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="973067626"/>
@@ -52,7 +52,7 @@
 					</object>
 					<object class="IBUIImageView" id="497967122">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">277</int>
+						<int key="NSvFlags">-2147483371</int>
 						<string key="NSFrame">{{8, 40}, {304, 320}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -76,21 +76,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_title_bg@2x.jpg</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="790563261">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{0, 384}, {320, 89}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">topwood@2x.png</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="1032732930">
@@ -439,7 +425,7 @@
 						<string key="NSFrame">{{272, 322}, {42, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="790563261"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -592,7 +578,6 @@
 							<reference ref="258493630"/>
 							<reference ref="807406468"/>
 							<reference ref="428937063"/>
-							<reference ref="790563261"/>
 							<reference ref="55418512"/>
 							<reference ref="74675580"/>
 							<reference ref="460061405"/>
@@ -691,11 +676,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">83</int>
-						<reference key="object" ref="790563261"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">98</int>
 						<reference key="object" ref="74675580"/>
 						<reference key="parent" ref="191373211"/>
@@ -730,7 +710,6 @@
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="98.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -818,7 +797,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_main_bg@2x.jpg">{640, 960}</string>
 			<string key="draw_paper@2x.png">{622, 649}</string>
-			<string key="draw_title_bg@2x.jpg">{640, 79}</string>
 			<string key="group_message@2x.png">{74, 74}</string>
 			<string key="guess_popup@2x.png">{57, 67}</string>
 			<string key="normalpallets@2x.png">{640, 81}</string>
@@ -826,7 +804,7 @@
 			<string key="run@2x.png">{74, 74}</string>
 			<string key="timeset@2x.png">{76, 74}</string>
 			<string key="toolbox@2x.png">{84, 95}</string>
-			<string key="topwood@2x.png">{640, 99}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
 			<string key="wood_button@2x.png">{71, 84}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
