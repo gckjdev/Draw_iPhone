@@ -420,6 +420,7 @@
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
+		C23496A616C1F75F00550F36 /* zjh_game_total_bet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E8168DBDB1009F43F7 /* zjh_game_total_bet_bg@2x.png */; };
 		C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
 		C235C61916A3F43600D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
 		C235C61A16A3F43600D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
@@ -18459,6 +18460,7 @@
 				CA5B073716BFFD42004A64C4 /* draw_slider_point@2x.png in Resources */,
 				CA5B073C16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 				CA5B074116C0106A004A64C4 /* DrawSlider~ipad.xib in Resources */,
+				C23496A616C1F75F00550F36 /* zjh_game_total_bet_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
