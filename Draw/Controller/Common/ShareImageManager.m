@@ -285,31 +285,37 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)myFoucsImage
 {
-    return [UIImage strectchableImageName:@"draw_tab_left_unselected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_left_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_left_unselected"];
 }
 
 - (UIImage *)myFoucsSelectedImage
 {
-     return [UIImage strectchableImageName:@"draw_tab_left_selected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_left_selected"];
+//     return [UIImage strectchableImageName:@"draw_tab_left_selected"];
 }
 
 - (UIImage *)focusMeImage
 {
-    return [UIImage strectchableImageName:@"draw_tab_right_unselected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_right_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_right_unselected"];
 }
 
 - (UIImage *)focusMeSelectedImage
 {
-    return [UIImage strectchableImageName:@"draw_tab_right_selected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_right_selected"];
+//    return [UIImage strectchableImageName:@"draw_tab_right_selected"];
 }
 
 - (UIImage *)middleTabImage
 {
-    return [UIImage strectchableImageName:@"draw_tab_mid_unselected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_mid_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_mid_unselected"];
 }
 - (UIImage *)middleTabSelectedImage
 {
-    return [UIImage strectchableImageName:@"draw_tab_mid_selected"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_mid_selected"];
+//    return [UIImage strectchableImageName:@"draw_tab_mid_selected"];
 }
 
 
