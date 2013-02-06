@@ -11,6 +11,7 @@
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
 #define WILDS_BUTTON_FRAME ([DeviceDetection isIPAD]?(CGRectMake(0, 0, 40, 40)):(CGRectMake(0, 0, 80, 80)))
+#define BUTTON_FONT ([DeviceDetection isIPAD]?18:9)
 
 @implementation DiceRobotDecisionView
 @synthesize wildsButton;
@@ -67,6 +68,9 @@
     
     [view.oKButton.titleLabel setText:NSLS(@"kDoItLikeThis")];
     [view.backButton.titleLabel setText:NSLS(@"kThinkMyself")];
+    [view.oKButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT]];
+    [view.backButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT]];
+    
     return view;
 }
 

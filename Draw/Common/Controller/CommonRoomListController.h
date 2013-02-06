@@ -64,6 +64,7 @@ typedef enum {
 - (void)continueRefreshingRooms;
 - (void)refreshRoomsByFilter:(CommonRoomFilter)filter;
 - (void)hideCenterTabButton;
+- (void)connectServer;//for dice room list overwrite
 
 - (void)didQueryUser:(NSString *)userId;
 

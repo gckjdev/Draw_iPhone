@@ -313,4 +313,9 @@
     return [UIColor blackColor];
 }
 
+- (NSString *)shengmengAppId
+{
+    return @"";
+}
+
 @end
