@@ -44,7 +44,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="196868302"/>
+						<reference key="NSNextKeyView" ref="893204748"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -55,10 +55,10 @@
 					<object class="IBUIImageView" id="196868302">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">277</int>
-						<string key="NSFrameSize">{320, 420}</string>
+						<string key="NSFrame">{{10, 5}, {300, 410}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="893204748"/>
+						<reference key="NSNextKeyView" ref="801585677"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -83,10 +83,10 @@
 					<object class="IBUIButton" id="573170804">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
-						<string key="NSFrame">{{8, 6}, {35, 28}}</string>
+						<string key="NSFrame">{{8, 7}, {34, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="801585677"/>
+						<reference key="NSNextKeyView" ref="196868302"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -105,7 +105,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_back@2x.png</string>
+							<string key="NSResourceName">back@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="250195160">
 							<int key="type">2</int>
@@ -138,11 +138,11 @@
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="869642044"/>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="317040344">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="577396184">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_normal@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="317040344"/>
+						<reference key="IBUINormalBackgroundImage" ref="577396184"/>
 						<reference key="IBUIFontDescription" ref="250195160"/>
 						<reference key="IBUIFont" ref="316471983"/>
 					</object>
@@ -209,6 +209,7 @@
 						<string key="NSFrame">{{103, 419}, {115, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -420,7 +421,7 @@
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -496,7 +497,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_back@2x.png">{73, 59}</string>
+			<string key="back@2x.png">{67, 53}</string>
 			<string key="draw_button_normal@2x.png">{91, 56}</string>
 			<string key="draw_title_bg@2x.jpg">{640, 79}</string>
 			<string key="light_yellow_bg@2x.png">{640, 960}</string>

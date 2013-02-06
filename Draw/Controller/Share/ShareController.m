@@ -671,7 +671,7 @@ typedef enum{
         
         [self showChooseWeixinOptionActionSheet];
     }else{
-        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
+//        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
         self.titleLabel.text = NSLS(@"kShareTitle");
     }
