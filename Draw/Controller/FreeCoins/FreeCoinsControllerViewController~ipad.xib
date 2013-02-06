@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">wood_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="713700516">
@@ -64,7 +64,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">topwood@2x.png</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="740719788">
@@ -834,8 +834,8 @@
 			<string key="free_coins_remain_time_bg@2x.png">{86, 32}</string>
 			<string key="money_tree_note_bg@2x.png">{180, 91}</string>
 			<string key="more_apps_icon.png">{16, 16}</string>
-			<string key="topwood@2x.png">{640, 79}</string>
-			<string key="wood_bg@2x.png">{640, 960}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 			<string key="wood_paper_big@2x.png">{452, 428}</string>
 			<string key="wood_paper_small@2x.png">{457, 208}</string>
 		</dictionary>

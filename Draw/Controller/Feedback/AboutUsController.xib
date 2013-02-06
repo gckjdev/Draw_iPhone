@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">wood_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="87350878">
@@ -150,7 +150,7 @@ Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvCg</
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">topwood@2x.png</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="293682909">
@@ -766,8 +766,8 @@ Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvCg</
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back@2x.png">{67, 53}</string>
 			<string key="paper@2x.png">{622, 649}</string>
-			<string key="topwood@2x.png">{640, 79}</string>
-			<string key="wood_bg@2x.png">{640, 960}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

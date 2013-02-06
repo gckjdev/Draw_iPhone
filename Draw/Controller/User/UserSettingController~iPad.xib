@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">wood_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="223910571">
@@ -63,7 +63,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_title_bg@2x.jpg</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="669003164">
@@ -643,9 +643,9 @@
 			<string key="back@2x.png">{67, 53}</string>
 			<string key="draw_button_highlight@2x.png">{91, 56}</string>
 			<string key="draw_button_normal@2x.png">{91, 56}</string>
-			<string key="draw_title_bg@2x.jpg">{640, 79}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
 			<string key="user_picbg@2x.png">{142, 147}</string>
-			<string key="wood_bg@2x.png">{640, 960}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

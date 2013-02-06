@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_main_bg@2x.jpg</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="353237098">
@@ -63,7 +63,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_title_bg@2x.jpg</string>
+							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="342817569">
@@ -129,6 +129,7 @@
 						<string key="NSFrame">{{0, 277}, {768, 727}}</string>
 						<reference key="NSSuperview" ref="320383738"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -237,7 +238,7 @@
 						<string key="IBUINormalTitle">All</string>
 						<reference key="IBUIHighlightedTitleColor" ref="309040052"/>
 						<reference key="IBUISelectedTitleColor" ref="309040052"/>
-						<object class="NSColor" key="IBUINormalTitleColor" id="1047658794">
+						<object class="NSColor" key="IBUINormalTitleColor" id="254544239">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
@@ -267,7 +268,7 @@
 						<string key="IBUINormalTitle">Draft</string>
 						<reference key="IBUIHighlightedTitleColor" ref="309040052"/>
 						<reference key="IBUISelectedTitleColor" ref="309040052"/>
-						<reference key="IBUINormalTitleColor" ref="1047658794"/>
+						<reference key="IBUINormalTitleColor" ref="254544239"/>
 						<reference key="IBUINormalTitleShadowColor" ref="6944340"/>
 						<reference key="IBUIFontDescription" ref="291089218"/>
 						<reference key="IBUIFont" ref="1069767249"/>
@@ -287,7 +288,7 @@
 						<string key="IBUINormalTitle">Mine</string>
 						<reference key="IBUIHighlightedTitleColor" ref="309040052"/>
 						<reference key="IBUISelectedTitleColor" ref="309040052"/>
-						<reference key="IBUINormalTitleColor" ref="1047658794"/>
+						<reference key="IBUINormalTitleColor" ref="254544239"/>
 						<reference key="IBUINormalTitleShadowColor" ref="6944340"/>
 						<reference key="IBUIFontDescription" ref="291089218"/>
 						<reference key="IBUIFont" ref="1069767249"/>
@@ -701,8 +702,8 @@
 			<string key="back@2x.png">{67, 53}</string>
 			<string key="draw_button_highlight@2x.png">{91, 56}</string>
 			<string key="draw_button_normal@2x.png">{91, 56}</string>
-			<string key="draw_main_bg@2x.jpg">{640, 960}</string>
-			<string key="draw_title_bg@2x.jpg">{640, 79}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
