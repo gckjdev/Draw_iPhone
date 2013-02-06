@@ -274,33 +274,42 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"color_mask.png"];    
 }
 
+/*
+ draw_tab_left_selected
+ draw_tab_left_unselected
+ draw_tab_mid_selected
+ draw_tab_mid_unselected
+ draw_tab_right_selected
+ draw_tab_right_unselected
+*/
+
 - (UIImage *)myFoucsImage
 {
-    return [UIImage strectchableImageName:@"myfoucs.png"];
+    return [UIImage strectchableImageName:@"draw_tab_left_unselected"];
 }
 
 - (UIImage *)myFoucsSelectedImage
 {
-     return [UIImage strectchableImageName:@"myfoucs_selected.png"];
+     return [UIImage strectchableImageName:@"draw_tab_left_selected"];
 }
 
 - (UIImage *)focusMeImage
 {
-    return [UIImage strectchableImageName:@"focusme.png"];
+    return [UIImage strectchableImageName:@"draw_tab_right_unselected"];
 }
 
 - (UIImage *)focusMeSelectedImage
 {
-    return [UIImage strectchableImageName:@"focusme_selected.png"];
+    return [UIImage strectchableImageName:@"draw_tab_right_selected"];
 }
 
 - (UIImage *)middleTabImage
 {
-    return [UIImage strectchableImageName:@"middle_tab.png"];
+    return [UIImage strectchableImageName:@"draw_tab_mid_unselected"];
 }
 - (UIImage *)middleTabSelectedImage
 {
-    return [UIImage strectchableImageName:@"middle_tab_selected.png"];
+    return [UIImage strectchableImageName:@"draw_tab_mid_selected"];
 }
 
 
