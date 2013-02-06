@@ -55,7 +55,7 @@
     size.width = (size.width < MESSAGE_MIN_WIDTH) ? MESSAGE_MIN_WIDTH : size.width;
     size.width = size.width * 1.1;
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
-    if (self = [self initWithFrame:rect fontName:fontName pointSize:pointSize]) {
+    if (self = [self initWithFrame:rect]) {
         self.text = message;
         self.lineBreakMode = mode;
         self.textAlignment = textAlignment;
