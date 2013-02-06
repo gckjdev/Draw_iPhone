@@ -749,7 +749,7 @@
 			<string key="dice_room_help@2x.png">{57, 57}</string>
 			<string key="draw_room_list_reflesh@2x.png">{60, 60}</string>
 			<string key="room_search@2x.png">{57, 51}</string>
-			<string key="topwood@2x.png">{640, 99}</string>
+			<string key="topwood@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
