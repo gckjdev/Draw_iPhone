@@ -655,7 +655,6 @@ typedef enum{
 
     if (self.isFromWeiXin) {
         [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
-        [self.clearButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
         self.backButton.hidden = YES;
         self.awardCoinTips.hidden = YES;
         self.titleLabel.text = NSLS(@"kShareToWeiXinTitle");

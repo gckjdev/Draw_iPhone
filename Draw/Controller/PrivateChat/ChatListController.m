@@ -88,15 +88,11 @@
     //use local data
     [self initListWithLocalData];    
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [addChatButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
- 
     [self.titleLabel setText:NSLS(@"kChatListTitle")];
     
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];
-    
 }
 
 

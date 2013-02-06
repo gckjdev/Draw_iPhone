@@ -23,7 +23,6 @@
 
 @optional
 - (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
-- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode;
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode;
 
 - (void)didCreateDraw:(int)resultCode;

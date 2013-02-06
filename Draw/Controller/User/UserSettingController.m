@@ -225,8 +225,6 @@ enum {
     
     [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
-    [saveButton setBackgroundImage:[imageManager orangeImage] 
-                          forState:UIControlStateNormal];
     [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
     [avatarButton addSubview:imageView];

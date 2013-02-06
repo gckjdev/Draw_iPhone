@@ -52,7 +52,7 @@
 					</object>
 					<object class="IBUIImageView" id="497967122">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">-2147483329</int>
 						<string key="NSFrame">{{19, 100}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -85,7 +85,6 @@
 						<string key="NSFrame">{{0, 838}, {768, 194}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -836,7 +835,7 @@
 			<string key="run@2x.png">{74, 74}</string>
 			<string key="timeset@2x.png">{76, 74}</string>
 			<string key="toolbox@2x.png">{84, 95}</string>
-			<string key="topwood@2x.png">{640, 99}</string>
+			<string key="topwood@2x.png">{640, 79}</string>
 			<string key="wood_button@2x.png">{71, 84}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

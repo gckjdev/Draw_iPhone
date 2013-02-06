@@ -154,8 +154,6 @@
     
     self.titleLabel.text = NSLS(@"kReplayTitle");
     [self.shareButton setTitle:NSLS(@"kReplayShare") forState:UIControlStateNormal];
-    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
-                                forState:UIControlStateNormal];
 
     if (_paint.drawWord == nil){
         self.wordLabel.text = @"";

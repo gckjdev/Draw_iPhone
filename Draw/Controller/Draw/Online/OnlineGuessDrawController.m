@@ -778,12 +778,12 @@
     
 }
 
-#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
+//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
 
 - (void)initShowView
 {
     CGRect frame = DRAW_VIEW_FRAME;
-    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
+//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     showView = [[ShowDrawView alloc] initWithFrame:frame];
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     [self.view insertSubview:showView aboveSubview:drawBackground];
