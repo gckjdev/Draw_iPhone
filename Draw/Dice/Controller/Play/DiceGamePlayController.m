@@ -1113,7 +1113,7 @@
 }
 
 - (IBAction)clickWildsButton:(id)sender {
-    self.wildsButton.selected = !self.wildsFlagButton.selected;
+    self.wildsButton.selected = !self.wildsButton.selected;
 }
 
 - (void)callDiceSuccess

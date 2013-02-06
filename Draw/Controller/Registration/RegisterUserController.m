@@ -18,9 +18,8 @@
 #import "AccountService.h"
 #import "ShareImageManager.h"
 #import "UserManager.h"
-#import "RemoteDrawView.h"
 #import "GameBasic.pb.h"
-#import "ShowRemoteDrawController.h"
+//#import "ShowRemoteDrawController.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
 #import "PPSNSCommonService.h"
@@ -94,7 +93,7 @@
         facebookButton.hidden = NO;        
     }
     
-    [self addRemoteDraw];    
+//    [self addRemoteDraw];    
     [self.userIdTextField becomeFirstResponder];
 }
 
@@ -396,52 +395,6 @@
 #define DRAW_VIEW_COUNT 6
 #define DRAW_VIEW_START_Y_IPHONE 210
 #define DRAW_VIEW_START_Y_IPAD 440
-
-- (void)addRemoteDraw
-{
-    CGFloat yStart;
-    if ([DeviceDetection isIPAD]) {
-        yStart = DRAW_VIEW_START_Y_IPAD;
-    }else {
-        yStart = DRAW_VIEW_START_Y_IPHONE;
-    }
-    
-    for (int i= 0 ; i < [self.remoteDrawArray count] && i<DRAW_VIEW_COUNT ; i++) {
-        RemoteDrawView *remoteDrawView  = [RemoteDrawView creatRemoteDrawView];
-        PBDraw *draw = [self.remoteDrawArray objectAtIndex:i];
-        [remoteDrawView setViewByRemoteDrawData:draw index:i];
-        remoteDrawView.delegate = self;
-        
-        CGFloat xSpace, ySpace , x, y;
-        xSpace = (self.view.frame.size.width - 3 * remoteDrawView.frame.size.width)/4;
-        ySpace = xSpace;
-        x = ((i % 3) + 1) * xSpace + (i % 3) * (remoteDrawView.frame.size.width);
-        y = yStart + (i / 3) * (remoteDrawView.frame.size.height);
-        
-        remoteDrawView.frame = (CGRect){CGPointMake(x, y), remoteDrawView.frame.size};
-        [self.view addSubview:remoteDrawView];
-        
-        [remoteDrawView.showDrawView play];
-    }
-}
-
-#pragma mark - DrawDataServiceDelegate method
-- (void)didFindRecentDraw:(NSArray *)remoteDrawDataList result:(int)resultCode
-{
-    self.remoteDrawArray = remoteDrawDataList;
-    
-    [self addRemoteDraw];
-}
-
-#pragma mark - RemoteDrawViewDelegate method
-- (void)didClickPlaybackButton:(int)index
-{
-    PPDebug(@"<didClickPlaybackButton> index:%d",index);
-    PBDraw *draw = [self.remoteDrawArray objectAtIndex:index];
-    ShowRemoteDrawController *controller = [[ShowRemoteDrawController alloc] initWithPBDraw:draw];
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-}
 
 
 @end

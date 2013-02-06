@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -236,7 +236,6 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{640, 106}, {81, 82}}</string>
 								<reference key="NSSuperview" ref="695515670"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="506328380"/>
 								<int key="IBUITag">106</int>
@@ -455,14 +454,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_room_cell_bg@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_blue@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_orange@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_pink@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_purple@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_white@2x.png">{16, 16}</string>
-			<string key="draw_room_seat_yellow@2x.png">{16, 16}</string>
+			<string key="draw_room_cell_bg@2x.png">{524, 199}</string>
+			<string key="draw_room_seat_blue@2x.png">{76, 74}</string>
+			<string key="draw_room_seat_orange@2x.png">{76, 74}</string>
+			<string key="draw_room_seat_pink@2x.png">{76, 74}</string>
+			<string key="draw_room_seat_purple@2x.png">{76, 74}</string>
+			<string key="draw_room_seat_white@2x.png">{76, 74}</string>
+			<string key="draw_room_seat_yellow@2x.png">{76, 74}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

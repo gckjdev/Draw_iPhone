@@ -13,6 +13,8 @@
 
 @protocol WallServiceDelegate <NSObject>
 
+@optional
+
 - (void)didCreateWall:(int)resultCode wall:(PBWall *)wall;
 - (void)didUpdateWall:(int)resultCode wall:(PBWall *)wall;
 - (void)didGetWallList:(int)resultCode wallList:(NSArray *)wallList;
