@@ -304,7 +304,9 @@ WordManager *GlobalGetWordManager()
     //if can find the unique letter, then rand a word.
     NSInteger index = rand() % 3 + 1;
     NSArray *wordArray = [self wordArrayOfLevel:index];
-    index = rand() %[wordArray count];
+    if ([wordArray count] > 0){
+        index = rand() % [wordArray count];
+    }
     Word *word = [wordArray objectAtIndex:index];
     NSString *str = [word.text substringToIndex:1];
     return str;
