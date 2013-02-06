@@ -149,7 +149,7 @@
         _statusLabel.text = NSLS(@"kAlreadyBeFriend");
     }else{
         self.followUserButton.hidden = NO; 
-        [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
+        
     }
 }
 
@@ -173,12 +173,14 @@
     [self.followUserButton setBackgroundImage:[[GameApp getImageManager] userInfoFollowBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
+    [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [self.chatToUserButton setHidden:!canChat];
     [self.userName setText:NSLS(@"kQuerying")];
     
     [self.contentView bringSubviewToFront:self.backgroundImageView];
     [self.contentView bringSubviewToFront:self.avatarView];
     [self.contentView bringSubviewToFront:self.userName];
+    
     
     
 }
