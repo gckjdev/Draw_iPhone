@@ -608,7 +608,7 @@ enum{
             if ([_targetUid length] == 0) {
                 sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                sc = [[SelectHotWordController alloc] initWithTargetUid:self.targetUid];
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
             }
             sc.superController = self.startController;
             [_startController.navigationController pushViewController:sc animated:NO];

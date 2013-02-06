@@ -77,7 +77,8 @@
 
 - (void)initTitle
 {
-
+    [self.chatButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
+    [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
 }
 
 - (void)initAvatar
@@ -138,6 +139,9 @@
         self.followUserButton.hidden = NO; 
         [self.followUserButton.titleLabel setText:NSLS(@"kFollowMe")];
     }
+    
+    [self.followUserButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+    [self.chatButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
 }
 
 - (void)initCoins
@@ -162,6 +166,12 @@
     [self initButton];
     [self resetUserInfo];
     [self.backgroundImageView setImage:[DiceImageManager defaultManager].popupBackgroundImage];
+    
+    [self.userName setText:NSLS(@"kQuerying")];
+    
+    [self.contentView bringSubviewToFront:self.backgroundImageView];
+    [self.contentView bringSubviewToFront:self.avatar];
+    [self.contentView bringSubviewToFront:self.userName];
     
 }
 
@@ -265,6 +275,10 @@
 
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
+    [self.contentView sendSubviewToBack:self.userName];
+    [self.contentView sendSubviewToBack:self.avatar];
+    [self.contentView sendSubviewToBack:self.backgroundImageView];
+    
     if (resultCode == 0 && user != nil) {
         self.targetFriend = user;
         [self resetUserInfo];
