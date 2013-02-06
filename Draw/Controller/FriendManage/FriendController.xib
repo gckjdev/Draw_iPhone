@@ -186,7 +186,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">myfoucs@2x.png</string>
+							<string key="NSResourceName">draw_tab_left_unselected@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="303299717">
 							<int key="type">2</int>
@@ -222,7 +222,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">focusme@2x.png</string>
+							<string key="NSResourceName">draw_tab_right_unselected@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="303299717"/>
 						<reference key="IBUIFont" ref="577528585"/>
@@ -655,9 +655,9 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="15.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="15.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -812,9 +812,9 @@
 			<string key="back@2x.png">{67, 53}</string>
 			<string key="draw_button_highlight@2x.png">{91, 56}</string>
 			<string key="draw_button_normal@2x.png">{91, 56}</string>
-			<string key="focusme@2x.png">{54, 59}</string>
+			<string key="draw_tab_left_unselected@2x.png">{138, 61}</string>
+			<string key="draw_tab_right_unselected@2x.png">{138, 61}</string>
 			<string key="focusme_selected@2x.png">{54, 59}</string>
-			<string key="myfoucs@2x.png">{54, 59}</string>
 			<string key="myfoucs_selected@2x.png">{54, 59}</string>
 			<string key="number@2x.png">{50, 45}</string>
 			<string key="paper@2x.png">{622, 649}</string>

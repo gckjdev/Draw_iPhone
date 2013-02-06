@@ -222,6 +222,10 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">draw_tab_left_unselected@2x.png</string>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="671414923">
 							<int key="type">2</int>
 							<double key="pointSize">28</double>
@@ -249,6 +253,10 @@
 						<reference key="IBUISelectedTitleColor" ref="724063413"/>
 						<reference key="IBUINormalTitleColor" ref="31889126"/>
 						<reference key="IBUINormalTitleShadowColor" ref="178589935"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">draw_tab_right_unselected@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="671414923"/>
 						<reference key="IBUIFont" ref="870396194"/>
 					</object>
@@ -643,9 +651,9 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -667,6 +675,47 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">CommonTabController</string>
+					<string key="superclassName">PPTableViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickBackButton:">id</string>
+						<string key="clickRefreshButton:">id</string>
+						<string key="clickTabButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickBackButton:">
+							<string key="name">clickBackButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRefreshButton:">
+							<string key="name">clickRefreshButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabButton:">
+							<string key="name">clickTabButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="noDataTipLabl">UILabel</string>
+						<string key="titleLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="noDataTipLabl">
+							<string key="name">noDataTipLabl</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="titleLabel">
+							<string key="name">titleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/CommonTabController.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">FriendController</string>
 					<string key="superclassName">CommonTabController</string>
@@ -718,6 +767,22 @@
 						<string key="minorKey">./Classes/FriendController.h</string>
 					</object>
 				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewController</string>
+					<string key="superclassName">PPViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPViewController.h</string>
+					</object>
+				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
@@ -732,6 +797,8 @@
 			<string key="back@2x.png">{67, 53}</string>
 			<string key="draw_button_highlight@2x.png">{91, 56}</string>
 			<string key="draw_button_normal@2x.png">{91, 56}</string>
+			<string key="draw_tab_left_unselected@2x.png">{138, 61}</string>
+			<string key="draw_tab_right_unselected@2x.png">{138, 61}</string>
 			<string key="number@2x.png">{50, 45}</string>
 			<string key="paper@2x.png">{622, 649}</string>
 			<string key="topwood@2x.jpg">{640, 79}</string>
