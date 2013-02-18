@@ -19,6 +19,8 @@ typedef enum {
     CommonInputDialogThemeZJH,
 }CommonInputDialogTheme;
 
+typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
+
 @class InputDialog;
 @protocol InputDialogDelegate <NSObject>
 
@@ -35,7 +37,8 @@ typedef enum {
 
 @interface InputDialog : CommonInfoView<UITextFieldDelegate>
 {
-    
+    InputDialogSelectionBlock _clickOkBlock;
+    InputDialogSelectionBlock _clickCancelBlock;
 }
 
 - (void)setDialogTitle:(NSString *)title;
@@ -55,6 +58,9 @@ typedef enum {
 + (InputDialog *)dialogWith:(NSString *)title 
                    delegate:(id<InputDialogDelegate>)delegate 
                       theme:(CommonInputDialogTheme)theme;
++ (InputDialog *)dialogWith:(NSString *)title
+                    clickOK:(InputDialogSelectionBlock)clickOk
+                clickCancel:(InputDialogSelectionBlock)clickCancel;
 
 - (void)initView:(NSString*)title;
 @end

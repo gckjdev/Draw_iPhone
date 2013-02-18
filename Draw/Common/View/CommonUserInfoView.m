@@ -24,7 +24,7 @@
 #import "CommonRoundAvatarView.h"
 #import "CommonImageManager.h"
 #import "StringUtil.h"
-
+#import "SuperUserManageAction.h"
 
 #import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
@@ -51,6 +51,7 @@
     PPRelease(_coinsLabel);
     PPRelease(_avatarView);
     PPRelease(_coinImageView);
+    [_superUserManageButton release];
     [super dealloc];
 }
 
@@ -352,6 +353,12 @@
         [self updateUserInfoView];
     }
     
+}
+
+- (IBAction)clickSuperUserManageButton:(id)sender
+{
+    SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
+    [action showInController:_superViewController];
 }
 
 @end

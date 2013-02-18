@@ -22,6 +22,7 @@
     MyFriend* _targetFriend;
     PPViewController*   _superViewController;
 }
+@property (retain, nonatomic) IBOutlet UIButton *superUserManageButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UILabel *userName;

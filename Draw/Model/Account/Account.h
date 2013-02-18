@@ -35,7 +35,9 @@ typedef enum  {
     
     MoneyTreeAward = 203,
     
-    BBSReward = 300
+    BBSReward = 300,
+    
+    SuperUserCharge = 400,
     
 }BalanceSourceType;
 

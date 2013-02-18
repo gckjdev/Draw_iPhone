@@ -16,6 +16,7 @@
 @interface InputDialog ()
 
 - (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title;
+- (void)initWithTitle:(NSString*)title;
 
 @end
 
@@ -137,6 +138,19 @@
     
 }
 
+- (void)initWithTitle:(NSString *)title
+{
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.titleLabel setTitle:title forState:UIControlStateNormal];
+    
+    [self.bgView setImage:[[GameApp getImageManager] commonDialogBgImage]];
+    [self.targetTextField setBackground:[[GameApp getImageManager] inputDialogInputBgImage]];
+    
+    [self.okButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+    [self.cancelButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+}
+
 //- (void)updateTextFields
 //{
 //    ShareImageManager *imageManager = [ShareImageManager defaultManager];
@@ -150,12 +164,18 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickCancel:)]) {
         [self.delegate didClickCancel:self];
     }
+    if (_clickCancelBlock != nil) {
+        _clickCancelBlock(self.targetTextField.text);
+    }
 }
 
 - (IBAction)clickOkButton:(id)sender {
     [self disappear];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOk:targetText:)]) {
         [self.delegate didClickOk:self targetText:self.targetTextField.text];
+    }
+    if (_clickOkBlock != nil) {
+        _clickOkBlock(self.targetTextField.text);
     }
 }
 
@@ -205,6 +225,31 @@
     }
     return view;
 
+}
+
+- (void)setClickOkBlock:(InputDialogSelectionBlock)block
+{
+    [_clickOkBlock release];
+    _clickOkBlock = [block copy];
+}
+- (void)setClickCancelBlock:(InputDialogSelectionBlock)block
+{
+    [_clickCancelBlock release];
+    _clickCancelBlock = [block copy];
+}
+
++ (InputDialog *)dialogWith:(NSString *)title
+                    clickOK:(InputDialogSelectionBlock)clickOk
+                clickCancel:(InputDialogSelectionBlock)clickCancel
+{
+    InputDialog* view = [self createDialogWithTheme:CommonInputDialogThemeDraw];
+    if (view) {
+        [view initWithTitle:title];
+        view.delegate = nil;
+        [view setClickOkBlock:clickOk];
+        [view setClickCancelBlock:clickCancel];
+    }
+    return view;
 }
 
 - (void)showInView:(UIView *)view
