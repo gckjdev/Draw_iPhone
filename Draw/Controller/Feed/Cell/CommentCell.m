@@ -129,17 +129,17 @@
     //set comment
 
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
-    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+/*    CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     
     self.commentLabel.frame = CGRectMake(COMMENT_BASE_X, COMMENT_BASE_Y, COMMENT_WIDTH,commentSize.height);
-        
+  */      
     [self.commentLabel setText:[NSString stringWithFormat:@"%@", comment]];
     [self.commentLabel setFont:font];
     
-    CGFloat y = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height - 0.5;
-    CGFloat x = splitLine.center.x;
-    splitLine.center = CGPointMake(x, y);
-//    PPDebug(@"center = (%f,%f)",x,y);
+//    CGFloat y = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height - 0.5;
+//    CGFloat x = splitLine.center.x;
+//    splitLine.center = CGPointMake(x, y);
+    
 }
 
 
