@@ -37,12 +37,16 @@ typedef enum{
 }
 
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
-@property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
+
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
+@property(nonatomic, retain) DrawColor* bgColor; //default is black
+@property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, assign) ItemType penType;
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
+
+//- (DrawColor *)bgColor;
 
 //@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
 
