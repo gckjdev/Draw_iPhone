@@ -142,6 +142,7 @@
         _isJoiningGame = YES;
         [_gameService joinGameRequest:sessionId];
     } else {
+        [self popupMessage:NSLS(@"kJoinGameError") title:nil];
         [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
 }
@@ -283,7 +284,7 @@
                                 } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
                                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
                                 } else {
-                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameFailure") delayTime:1.5 isHappy:NO];
+                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameError") delayTime:1.5 isHappy:NO];
                                 }
                             }];
     

@@ -60,6 +60,8 @@
 @synthesize drawBackground;
 - (void)dealloc
 {
+    [drawGameService setShowDelegate:nil];
+    
     moveButton = nil;
     _shopController = nil;
     lastScaleTarget = nil;
@@ -776,15 +778,16 @@
     
 }
 
+//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
+
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    CGRect frame = DRAW_VIEW_FRAME;
+//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
+    showView = [[ShowDrawView alloc] initWithFrame:frame];
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     [self.view insertSubview:showView aboveSubview:drawBackground];
 }
-
-
-
 
 - (void)initWithCachData
 {

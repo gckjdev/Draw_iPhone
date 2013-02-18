@@ -9,6 +9,7 @@
 #import "ConfigManager.h"
 #import "LocaleUtils.h"
 #import "PPApplication.h"
+#import "UserManager.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -126,6 +127,13 @@
     return [MobClickUtils getIntValueByKey:@"OPUS_DESC_MAX_LENGTH" defaultValue:300];
 }
 
++ (double)minAlpha
+{
+    double value = [MobClickUtils getDoubleValueByKey:@"MIN_ALPHA" defaultValue:0.05];
+    return value;
+}
+
+
 + (NSInteger)maxPenWidth
 {
     NSInteger value = [MobClickUtils getIntValueByKey:@"MAX_PEN_WIDTH" defaultValue:36];
@@ -155,6 +163,11 @@
     return bList;
 }
 
++ (NSInteger)getMessageStatMaxCount
+{
+    NSInteger value = [MobClickUtils getIntValueByKey:@"MESSAGE_STAT_MAX_COUNT" defaultValue:30];
+    return value;
+}
 /*
 + (int)getGuessRewardNormal
 {
@@ -189,17 +202,20 @@
 
 + (NSString*)getDrawServerString
 {
-    //    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8027"];
-    
-    if (([LocaleUtils isChina] == YES ||
-         [LocaleUtils isOtherChina] == YES)){
-        
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN" defaultValue:@"58.215.172.169:9111"];
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType ){        
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN" defaultValue:@"58.215.172.169:9000"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN" defaultValue:@"58.215.172.169:9111"];
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN" defaultValue:@"58.215.172.169:9010"];
     }
 }
+
+/*
+
+ 5.8版本即将发布，先公告一下功能特性给大家：1) 解决了回放作品有竖线的问题； 2) 提供了回放播放器； 3) 画画增加了五种默认粗细，可直接选择； 4) 画画支持取色； 5) 在线猜画可以显示所有房间列表，可以自由选择房间加入； 6) 修复了创建自定义词闪退的问题； 7) 解决了画画比赛保存为草稿后无法提交的问题； 8) 增加画画上传进度的显示，支持直接分享到微博； 9) iPhone和iPod Touch也支持透明度了。
+ 
+ 
+ */
 
 + (GuessLevel)guessDifficultLevel
 {

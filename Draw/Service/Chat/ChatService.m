@@ -76,6 +76,7 @@ static ChatService *_chatService = nil;
     });
 }
 
+#define GET_MESSAGELIST_QUEUE @"GET_MESSAGELIST_QUEUE"
 
 - (void)getMessageList:(id<ChatServiceDelegate>)delegate 
           friendUserId:(NSString *)friendUserId 
@@ -85,8 +86,14 @@ static ChatService *_chatService = nil;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
+    NSOperationQueue *queue = [self getOperationQueue:GET_MESSAGELIST_QUEUE];
+    [queue cancelAllOperations];
+    if ([queue operationCount] != 0) {
+        PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
+        return;
+    }
     
-    dispatch_async(workingQueue, ^{            
+    [queue addOperationWithBlock: ^{
         CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL 
                                                                    appId:[ConfigManager appId] 
                                                                   userId:userId 
@@ -110,12 +117,11 @@ static ChatService *_chatService = nil;
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             if (delegate && [delegate respondsToSelector:@selector(didGetMessages:forward:resultCode:)]){
                 [delegate didGetMessages:messageList forward:forward resultCode:output.resultCode];
             }
         }); 
-    });
+    }];
 }
 
 

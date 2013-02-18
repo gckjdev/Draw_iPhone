@@ -1113,7 +1113,7 @@
 }
 
 - (IBAction)clickWildsButton:(id)sender {
-    self.wildsButton.selected = !self.wildsFlagButton.selected;
+    self.wildsButton.selected = !self.wildsButton.selected;
 }
 
 - (void)callDiceSuccess
@@ -1602,8 +1602,8 @@
         }
         
     }
-    [_diceRobotDecision.oKButton.titleLabel setText:NSLS(@"kDoItLikeThis")];
-    [_diceRobotDecision.backButton.titleLabel setText:NSLS(@"kThinkMyself")];
+    [_diceRobotDecision.oKButton setTitle:NSLS(@"kDoItLikeThis") forState:UIControlStateNormal];
+    [_diceRobotDecision.backButton setTitle:NSLS(@"kThinkMyself") forState:UIControlStateNormal];
     [_diceRobotDecision showInView:self.view];
 
 }

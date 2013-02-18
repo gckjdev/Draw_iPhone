@@ -77,6 +77,8 @@
 
 - (void)dealloc
 {
+    [drawGameService setDrawDelegate:nil];
+    
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
@@ -120,14 +122,20 @@
     [self.drawToolPanel startTimer];
 }
 
+//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
+
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];   
+    CGRect frame = DRAW_VIEW_FRAME;
+//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
+    drawView = [[DrawView alloc] initWithFrame:frame];
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
+    drawView.strawDelegate = self.drawToolPanel;
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.eraserColor = self.bgColor = [DrawColor whiteColor];
+    self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
 }
 
@@ -145,9 +153,9 @@
 {
     [super viewDidLoad];
     drawGameService.drawDelegate = self;
-    [self initDrawView];
     [self initWordLabel];
     [self initDrawToolPanel];
+    [self initDrawView];
 }
 
 
@@ -332,6 +340,7 @@
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
+                [self.drawToolPanel userItem:anItem.type];
                 break;
             case Pen:
             case Pencil:
@@ -369,16 +378,19 @@
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     [self showActivityWithText:NSLS(@"kRevoking")];
     [self performSelector:@selector(performRevoke) withObject:nil afterDelay:0.1f];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     [drawView setLineColor:self.eraserColor];
     [drawView setPenType:Eraser];
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     self.penColor.alpha = 1.0;
     [drawView changeBackWithColor:self.penColor];
     [self didDrawedPaint:[DrawAction changeBackgroundActionWithColor:self.penColor].paint];
@@ -393,6 +405,7 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
                bought:(BOOL)bought
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
@@ -402,10 +415,12 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     drawView.lineWidth = width;
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     self.tempColor = color;
     self.penColor = color;
     [drawView setLineColor:[DrawColor colorWithColor:color]];
@@ -414,6 +429,7 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
+    drawView.touchActionType = TouchActionTypeDraw;
     _alpha = alpha;
     if (drawView.lineColor != self.eraserColor) {
         [drawView.lineColor setAlpha:alpha];
@@ -431,8 +447,15 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:NO];
+    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
+
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
+{
+    drawView.touchActionType = TouchActionTypeGetColor;
+}
+
+
 #pragma mark - Recent Color
 
 - (void)updateRecentColors

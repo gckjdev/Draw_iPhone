@@ -32,7 +32,8 @@
 #define INFUSE_VIEW_FRAME ([DeviceDetection isIPAD] ? IPAD_INFUSEVIEW_FRAME : IPHONE_INFUSEVIEW_FRAME)
 
 @interface ShareEditController ()
-
+- (IBAction)publish:(id)sender;
+- (IBAction)clickBackButon:(id)sender;
 @end
 
 @implementation ShareEditController
@@ -476,8 +477,6 @@ enum {
     
     self.shareTitleLabel.text = NSLS(@"kShareWeiboTitle");
     [self.shareButton setTitle:NSLS(@"kShareSend") forState:UIControlStateNormal];
-    [self.shareButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
-                                forState:UIControlStateNormal];
     [self.inputBackground setImage:[[ShareImageManager defaultManager] inputImage]];
     
     if ([self.imageFilePath hasSuffix:@"gif"]){                              

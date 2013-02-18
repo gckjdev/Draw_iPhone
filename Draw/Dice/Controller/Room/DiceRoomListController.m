@@ -103,6 +103,12 @@
 
 }
 
+- (void)connectServer
+{
+    [[DiceGameService defaultService] setRuleType:_ruleType];// set type and connect server
+    [super connectServer];
+}
+
 - (void)handleUpdateOnlineUserCount
 {
     

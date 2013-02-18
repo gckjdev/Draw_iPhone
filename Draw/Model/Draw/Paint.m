@@ -196,12 +196,15 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 
+- (BOOL)isChangeBGPaint
+{
+    return self.width > (BACK_GROUND_WIDTH/10);
+}
 
 - (void)addPoint:(CGPoint)point
 {
-    //    PPDebug(@"<addPointIntoPath> Point = %@,", NSStringFromCGPoint(point));
     CGRect rect = DRAW_VIEW_RECT;
-    if (!CGRectContainsPoint(rect, point)){
+    if (!CGRectContainsPoint(rect, point) && ![self isChangeBGPaint]){
         //add By Gamy
         //we can change point(304.1,320.4) to point(304,320)
         //this point is not incorrect, but mistake.

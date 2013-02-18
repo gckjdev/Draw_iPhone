@@ -54,13 +54,13 @@
 {
     GameNetworkClient *_networkClient;
     
-    NSString *_userId;
-    NSString *_nickName;
-    BOOL _gender;
+//    NSString *_userId;
+//    NSString *_nickName;
+//    BOOL _gender;
     int  _guessDiffLevel;
     NSString *_roomId;
-    NSString *_location;
-    int      _userLevel;
+//    NSString *_location;
+//    int      _userLevel;
     NSArray  *_snsUserData;
 
 //    int _sessionId;
@@ -80,13 +80,13 @@
     NSMutableArray                  *_roomList;
 }
 
-@property (nonatomic, retain) NSString* userId;
-@property (nonatomic, retain) NSString* nickName;
-@property (nonatomic, retain) NSString* avatar;
+//@property (nonatomic, retain) NSString* userId;
+//@property (nonatomic, retain) NSString* nickName;
+//@property (nonatomic, retain) NSString* avatar;
 @property (nonatomic, retain) NSString* roomId;
-@property (nonatomic, retain) NSString* location;
+//@property (nonatomic, retain) NSString* location;
 @property (nonatomic, retain) NSArray* snsUserData;
-@property (nonatomic, assign) BOOL gender;
+//@property (nonatomic, assign) BOOL gender;
 @property (nonatomic, assign) int guessDiffLevel;
 
 @property (nonatomic, assign) id<DrawGameServiceDelegate> drawDelegate;
@@ -176,6 +176,6 @@
 - (Word *)word;
 - (NSInteger)language;
 
-
+- (NSString *)userId;
 
 @end

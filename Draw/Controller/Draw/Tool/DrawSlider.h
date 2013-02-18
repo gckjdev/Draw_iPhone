@@ -14,13 +14,9 @@
 @protocol DrawSliderDelegate <NSObject>
 
 @optional
-- (void)drawSlider:(DrawSlider *)drawSlider
-    didValueChange:(CGFloat)value;
-//       pointCenter:(CGPoint)center;
-
+- (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value;
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value;
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value;
-
 
 @end
 
@@ -34,8 +30,15 @@
 @property(nonatomic, assign)CGFloat maxValue;
 @property(nonatomic, assign)CGFloat minValue;
 @property(nonatomic, assign)id<DrawSliderDelegate> delegate;
+//@property(nonatomic, assign)BOOL canSlide;
+
 - (CGFloat)value;
 - (void)setValue:(CGFloat)value;
+
++ (id)sliderWithMaxValue:(CGFloat)maxValue
+                minValue:(CGFloat)minValue
+            defaultValue:(CGFloat)defaultValue
+                delegate:(id<DrawSliderDelegate>) delegate;
 @end
 
 @class CMPopTipView;

@@ -101,8 +101,8 @@ static VendingController* staticVendingController = nil;
 
 - (void)initButtons
 {
-    [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
-    [self.coinsShopButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+//    [self.buyCoinButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+//    [self.coinsShopButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     NSString* buyCoinButtonTitle;
     if ([ConfigManager wallEnabled]) {
         buyCoinButtonTitle = NSLS(@"kFreeCoins");
@@ -396,11 +396,11 @@ static VendingController* staticVendingController = nil;
     if (self) {
         if ([ConfigManager isProVersion]){
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw],nil];
-                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
-                    [_itemList addObject:[Item colorAlphaItem]];
-                }
-                [_itemList addObjectsFromArray:[NSArray arrayWithObjects:[Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw], [Item colorAlphaItem], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+//                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
+//                    [_itemList addObject:[Item colorAlphaItem]];
+//                }
+//                [_itemList addObjectsFromArray:[NSArray arrayWithObjects:[Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]];
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {
@@ -409,11 +409,11 @@ static VendingController* staticVendingController = nil;
         }
         else{
             if (isDrawApp()) {
-                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw],nil];
-                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
-                    [_itemList addObject:[Item colorAlphaItem]];
-                }
-                [_itemList addObjectsFromArray:[NSArray arrayWithObjects:[Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]];
+                _itemList = [[NSMutableArray alloc] initWithObjects:[Item removeAd], [Item tips], [Item colors], [Item tomato], [Item flower], [Item paletteItem], [Item paintPlayerItem], [Item straw], [Item colorAlphaItem], [Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil];
+//                if ([DeviceDetection isIPAD] || [DeviceDetection isIPhone5]) {
+//                    [_itemList addObject:[Item colorAlphaItem]];
+//                }
+//                [_itemList addObjectsFromArray:[NSArray arrayWithObjects:[Item iceCreamPen], [Item brushPen], [Item featherPen], [Item waterPen], nil]];
             }
             
             if (isDiceApp() || isZhajinhuaApp()) {

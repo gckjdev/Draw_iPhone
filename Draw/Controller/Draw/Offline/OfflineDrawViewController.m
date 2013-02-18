@@ -307,14 +307,15 @@ enum{
 }
 
 
+//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
 
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    drawView = [[DrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    CGRect frame = DRAW_VIEW_FRAME;
+//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
+    drawView = [[DrawView alloc] initWithFrame:frame];
     drawView.strawDelegate = _drawToolPanel;
-//    [drawView setTouchActionType:TouchActionTypeGetColor];
-    
     [drawView setDrawEnabled:YES];
 //    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
@@ -607,7 +608,7 @@ enum{
             if ([_targetUid length] == 0) {
                 sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                sc = [[SelectHotWordController alloc] initWithTargetUid:self.targetUid];
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
             }
             sc.superController = self.startController;
             [_startController.navigationController pushViewController:sc animated:NO];
@@ -1094,6 +1095,7 @@ enum{
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
+                [self.drawToolPanel userItem:anItem.type];
                 break;
             case Pen:
             case Pencil:
@@ -1212,8 +1214,6 @@ enum{
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-//    VendingController *vend = [VendingController instance];
-//    [self.navigationController pushViewController:vend animated:YES];
     [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
 }
 

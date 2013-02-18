@@ -524,9 +524,9 @@
     AvatarView *avatar = [[AvatarView alloc] initWithUrlString:_draw.avatar type:Guesser gender:YES level:1];
     avatar.userId = _draw.userId;
     if ([DeviceDetection isIPAD]) {
-        avatar.center = CGPointMake(21 * 2, 22 * 2);
+        avatar.center = CGPointMake(21 * 2, 50);
     }else{
-        avatar.center = CGPointMake(21, 22);
+        avatar.center = CGPointMake(21, 20);
     }
     avatar.delegate = self;
     [self.view addSubview:avatar];

@@ -570,7 +570,7 @@
             
         case HomeMenuTypeDiceHelp:
         {
-            HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
+            HelpView *view = [HelpView createHelpView:@"DiceHelpView"];
             [view showInView:self.view];
         }
             break;

@@ -26,6 +26,7 @@
     [label setFont:[UIFont systemFontOfSize:50]];
     label.text = [Item nameForItemType:itemType];
     label.textAlignment = UITextAlignmentCenter;
+    [label setBackgroundColor:[UIColor clearColor]];
     label.center = view.center;
     
     [view addSubview:label];

@@ -274,33 +274,48 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"color_mask.png"];    
 }
 
+/*
+ draw_tab_left_selected
+ draw_tab_left_unselected
+ draw_tab_mid_selected
+ draw_tab_mid_unselected
+ draw_tab_right_selected
+ draw_tab_right_unselected
+*/
+
 - (UIImage *)myFoucsImage
 {
-    return [UIImage strectchableImageName:@"myfoucs.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_left_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_left_unselected"];
 }
 
 - (UIImage *)myFoucsSelectedImage
 {
-     return [UIImage strectchableImageName:@"myfoucs_selected.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_left_selected"];
+//     return [UIImage strectchableImageName:@"draw_tab_left_selected"];
 }
 
 - (UIImage *)focusMeImage
 {
-    return [UIImage strectchableImageName:@"focusme.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_right_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_right_unselected"];
 }
 
 - (UIImage *)focusMeSelectedImage
 {
-    return [UIImage strectchableImageName:@"focusme_selected.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_right_selected"];
+//    return [UIImage strectchableImageName:@"draw_tab_right_selected"];
 }
 
 - (UIImage *)middleTabImage
 {
-    return [UIImage strectchableImageName:@"middle_tab.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_mid_unselected"];
+//    return [UIImage strectchableImageName:@"draw_tab_mid_unselected"];
 }
 - (UIImage *)middleTabSelectedImage
 {
-    return [UIImage strectchableImageName:@"middle_tab_selected.png"];
+    return [self fixedAndStrectchableImageNamed:@"draw_tab_mid_selected"];
+//    return [UIImage strectchableImageName:@"draw_tab_mid_selected"];
 }
 
 
@@ -425,18 +440,7 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"toolbox.png"];
 }
 
-- (UIImage *)fixedImageNamed:(NSString *)name
-{
-    NSString *temp = name;
-    if ([DeviceDetection isIPAD]) {
-        temp = [NSString stringWithFormat:@"%@@2x.png",name];        
-    }else{
-
-    }
-    return [UIImage imageNamed:temp];
-}
-
-- (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name
+- (NSString *)fixImageName:(NSString *)name
 {
     NSString *temp = name;
     if ([DeviceDetection isIPAD]) {
@@ -444,6 +448,18 @@ static UIImage* _whitePaperImage;
     }else{
         temp = [NSString stringWithFormat:@"%@.png",name];
     }
+    return temp;
+}
+
+- (UIImage *)fixedImageNamed:(NSString *)name
+{
+    NSString *temp = [self fixImageName:name];
+    return [UIImage imageNamed:temp];
+}
+
+- (UIImage *)fixedAndStrectchableImageNamed:(NSString *)name
+{
+    NSString *temp = [self fixImageName:name];
     return [UIImage strectchableImageName:temp];
 }
 
@@ -623,13 +639,22 @@ static UIImage* _whitePaperImage;
 {
     return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
 }
+- (UIImage *)drawSliderLoader
+{
+//    NSString *name = [self fixImageName:@"draw_slider_load"];
+//    return [UIImage strectchableImageName:name topCapHeight:<#(int)#>]
+    UIImage*image = [self fixedImageNamed:@"draw_slider_load"];
+    NSInteger height = image.size.height / 2;
+    NSInteger width = image.size.width - 2;
+    return [image stretchableImageWithLeftCapWidth:width topCapHeight:height];
+}
 - (UIImage *)drawSliderBG
 {
-    return [self fixedImageNamed:@"draw_slider_bg"];
+    return [self fixedAndStrectchableImageNamed:@"draw_slider_bg"];
 }
 - (UIImage *)drawSliderPoint
 {
-    return [self fixedImageNamed:@"draw_slider_point"];
+    return [self fixedAndStrectchableImageNamed:@"draw_slider_point"];
 }
 - (UIImage *)drawSliderDisableImage
 {

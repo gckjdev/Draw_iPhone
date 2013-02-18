@@ -7,6 +7,8 @@
 //  Copyright 2012Âπ?__MyCompanyName__. All rights reserved.
 //
 
+
+
 #import "DrawAppDelegate.h"
 
 #import "OnlineDrawViewController.h"
@@ -69,7 +71,7 @@
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
-//    return @"http://192.168.1.5:8000/api/i?";
+//    return @"http://58.215.172.169:8000/api/i?";
 
 //    return @"http://192.168.1.5:8000/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
@@ -78,7 +80,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"192.168.1.5:8100/api/i?";
+//    return @"http://58.215.172.169:8100/api/i?";
 
 //    return @"http://192.168.1.198:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
@@ -307,7 +309,6 @@ NSString* GlobalGetBoardServerURL()
         [[UserService defaultService] loginByDeviceWithViewController:rootController];
     }
 
-
     // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
         [self checkAppVersion:[ConfigManager appId]];
@@ -406,7 +407,7 @@ NSString* GlobalGetBoardServerURL()
 //        sleep(60);
     });     
     
-    [[AudioManager defaultManager] backgroundMusicStop];
+//    [[AudioManager defaultManager] backgroundMusicStop];
     [[MusicItemManager defaultManager] saveMusicItems];
     
     [[UserStatusService defaultService] stop];
@@ -421,7 +422,7 @@ NSString* GlobalGetBoardServerURL()
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    [[AudioManager defaultManager] backgroundMusicStart];
+//    [[AudioManager defaultManager] backgroundMusicStart];
 
     application.applicationIconBadgeNumber = 0;
 }
@@ -570,5 +571,12 @@ NSString* GlobalGetBoardServerURL()
         }
     }
 }
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running);    }  });
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running); db.killOp(d.opid);    }  });
+
+// db.currentOp().inprog.forEach(    function(d){      if(d.waitingForLock && (d.op == "query"  || d.op == "getmore") && d.ns == "game.action" && d.locks["^game"] == "R")         printjson(d)      });
+
 
 @end

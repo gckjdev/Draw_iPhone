@@ -124,6 +124,9 @@
     _winOdds = winOdds;
     _loseOdds = loseOdds;
     
+    [betWinButton setBackgroundImage:[[DiceImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+    [betLoseButton setBackgroundImage:[[DiceImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+    
 //    [betWinButton setRoyButtonWithColor:[UIColor yellowColor]];
 //    [betLoseButton setRoyButtonWithColor:[UIColor yellowColor]];
 }

@@ -51,7 +51,7 @@
                                                  8, // 每个通道8位
                                                  width * 4,
                                                  colorSpace,
-                                                 kCGImageAlphaPremultipliedFirst);
+                                                 kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(colorSpace);
     return context;
 }
@@ -70,7 +70,13 @@
     showLayerRef = [self createLayer];
     cacheContext = CGLayerGetContext(cacheLayerRef);
     showContext = CGLayerGetContext(showLayerRef);
-
+    
+    
+//    CGContextSetFillColorWithColor(cacheContext, [UIColor redColor].CGColor);
+//    CGContextSetFillColorWithColor(showContext, [UIColor greenColor].CGColor);
+//    [self clearContext:cacheContext];
+//    [self clearContext:showContext];
+    
     CGContextSetLineJoin(showContext, kCGLineJoinRound);
     CGContextSetLineCap(showContext, kCGLineCapRound);
     // rem by Benson, use default flatness

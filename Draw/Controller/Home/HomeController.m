@@ -195,7 +195,7 @@
     [self loadBottomMenu];
     [self loadBoards];
      */
-    [self playBackgroundMusic];
+//    [self playBackgroundMusic];
     
     [self initRecommendButton];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -204,9 +204,9 @@
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
-    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
-    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
-    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
+//    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
+//    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
+//    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     // sync bulletin
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
@@ -333,7 +333,7 @@
     AudioManager *audioManager = [AudioManager defaultManager];
     
     [audioManager setBackGroundMusicWithURL:url];
-    [audioManager backgroundMusicStart];
+//    [audioManager backgroundMusicStart];
 
 }
 

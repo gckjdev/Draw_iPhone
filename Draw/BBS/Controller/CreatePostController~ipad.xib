@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -94,7 +94,7 @@
 							<object class="IBUIImageView" id="173573302">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">272</int>
-								<string key="NSFrame">{{48, 122}, {672, 756}}</string>
+								<string key="NSFrame">{{48, 122}, {672, 438}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="446010930"/>
@@ -110,7 +110,7 @@
 							<object class="IBUITextView" id="446010930">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">276</int>
-								<string key="NSFrame">{{48, 122}, {672, 756}}</string>
+								<string key="NSFrame">{{48, 122}, {672, 438}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="182883062"/>
@@ -213,7 +213,7 @@
 							<object class="IBUIButton" id="453295058">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{544, 910}, {57, 51}}</string>
+								<string key="NSFrame">{{544, 592}, {57, 51}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="60379430"/>
@@ -238,7 +238,7 @@
 							<object class="IBUIButton" id="60379430">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{660, 910}, {57, 51}}</string>
+								<string key="NSFrame">{{660, 592}, {57, 51}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -263,7 +263,7 @@
 							<object class="IBUIButton" id="182883062">
 								<reference key="NSNextResponder" ref="399887529"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{52, 910}, {150, 51}}</string>
+								<string key="NSFrame">{{52, 592}, {150, 51}}</string>
 								<reference key="NSSuperview" ref="399887529"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="453295058"/>
@@ -307,7 +307,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{768, 1024}</string>
+						<string key="NSFrameSize">{768, 706}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="934006334"/>
@@ -710,6 +710,6 @@
 			<string key="bbs_create_reward_option">{16, 16}</string>
 			<string key="bbs_create_submit_bg@2x.png">{80, 48}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
