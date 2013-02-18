@@ -276,44 +276,13 @@
     return self;
 }
 
-
-#define DEFAULT_COLOR_NUMBER 5
-
 #pragma mark - Update Data
 
-enum{
-    YELLOW_COLOR = 0,
-    RED_COLOR = 1,  
-    BLUE_COLOR,
-    BLACK_COLOR,
-    COLOR_COUNT
-};
-
-- (DrawColor *)randColor
-{
-    srand(time(0)+ self.hash);
-    NSInteger rand = random() % COLOR_COUNT;
-    switch (rand) {
-        case RED_COLOR:
-            return [DrawColor redColor];
-        case BLUE_COLOR:
-            return [DrawColor blueColor];
-        case YELLOW_COLOR:
-            return [DrawColor yellowColor];
-        case BLACK_COLOR:
-        default:
-            return [DrawColor blackColor];            
-    }
-}
-
-
-//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
 
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
     CGRect frame = DRAW_VIEW_FRAME;
-//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     drawView = [[DrawView alloc] initWithFrame:frame];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
@@ -325,17 +294,7 @@ enum{
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
-        NSInteger count = [self.draft.drawActionList count];
-        //find the last clean action or change back action
-        for (NSInteger i = count - 1; i >= 0; -- i) {
-            DrawAction *action = [self.draft.drawActionList objectAtIndex:i];
-            if ([action isCleanAction]) {
-                break;
-            }else if([action isChangeBackAction]){
-                self.eraserColor = [DrawColor colorWithColor:[action.paint color]];
-                [self.eraserColor setAlpha:1.0];
-            }
-        }
+        [self synEraserColor];
     }
     [self.view insertSubview:drawView aboveSubview:paperView];
     self.penColor = [DrawColor blackColor];
@@ -547,14 +506,6 @@ enum{
 
 - (void)quit
 {
-//    UIViewController *superController = _startController;
-    
-//    if (superController == nil) {
-//        superController = [self superShowFeedController];
-//    }
-//    if (superController == nil) {
-//        superController = [self superShareController];
-//    }
     if (_startController) {
         [self.navigationController popToViewController:_startController animated:YES];
     }else {
@@ -598,9 +549,6 @@ enum{
                                                      animated:NO];
             return;
         }
-
-//        UIViewController *superController = [self superShowFeedController];
-        
         //if come from feed detail controller
         if (_startController != nil) {
             [self.navigationController popToViewController:_startController animated:NO];
@@ -612,8 +560,6 @@ enum{
             }
             sc.superController = self.startController;
             [_startController.navigationController pushViewController:sc animated:NO];
-//            [superController.navigationController pushViewController:sc animated:NO];
-//            [sc release];
         }else{
             //if come from home controller
             if ([_targetUid length] == 0) {
@@ -847,6 +793,13 @@ enum{
 }
 
 #pragma mark - Actions
+- (void)synEraserColor
+{
+    self.eraserColor = drawView.bgColor;
+    if (drawView.penType == Eraser) {
+        drawView.lineColor = self.eraserColor;
+    }
+}
 
 - (void)performSaveDraft
 {
@@ -1125,6 +1078,7 @@ enum{
     if (canRedo) {
         [drawView redo];
         _isNewDraft = NO;
+        [self synEraserColor];
     }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
@@ -1137,6 +1091,7 @@ enum{
     [drawView revoke:^{
         [self hideActivity];
     }];
+    [self synEraserColor];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
