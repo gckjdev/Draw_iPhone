@@ -609,6 +609,7 @@
             
         dispatch_group_async(queueGroup, aQueue, ^{
             NSArray *userInfoList = [[UserService defaultService] getUserListSimpleInfo:userIds];
+        
             dispatch_async(dispatch_get_main_queue(), ^{
                 for (int index = 0; index<[userInfoList count]; index++) {
                     PPDebug(@"userId:%@", [userIds objectAtIndex:index]);
