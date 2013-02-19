@@ -67,6 +67,8 @@
 #import "BulletinService.h"
 #import "PPSmartUpdateDataUtils.h"
 
+#import "BBSService.h"
+
 
 NSString* GlobalGetServerURL()
 {    
@@ -345,6 +347,7 @@ NSString* GlobalGetBoardServerURL()
 //    [GameConfigDataManager createTestConfigData];  
 //    [GameConfigDataManager defaultInstance];
 
+    [[BBSService defaultService] getBBSPrivilegeList];//kira:get bbs permission first, for super user manage
 
     return YES;
 }

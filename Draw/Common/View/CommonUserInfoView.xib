@@ -313,7 +313,7 @@
 							</object>
 							<object class="IBUIButton" id="542292638">
 								<reference key="NSNextResponder" ref="612304589"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{105, 136}, {55, 44}}</string>
 								<reference key="NSSuperview" ref="612304589"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -686,7 +686,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="ZJHUserInfoBackground.png">{16, 16}</string>
-			<string key="coins@2x.png">{50, 57}</string>
+			<string key="coins@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

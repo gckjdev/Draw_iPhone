@@ -8,6 +8,16 @@
 
 #import "CommonService.h"
 
+typedef enum {
+    BLACK_USER_TYPE_USERID = 0,
+    BLACK_USER_TYPE_DEVICEID,
+}BlackUserType;
+
+typedef enum {
+    BLACK_ACTION_TYPE_BLACK = 0,
+    BLACK_ACTION_TYPE_UNBLACK,
+}BlackActionType;
+
 @class PPViewController;
 @class MyFriend;
 @protocol UserServiceDelegate <NSObject>
@@ -86,5 +96,12 @@
 // a network block method to query user basic info
 - (MyFriend*)getUserSimpleInfo:(NSString *)userId;
 - (NSArray *)getUserListSimpleInfo:(NSArray *)userIdList;
+
+- (void)blackUser:(NSString*)targetUserId
+             type:(BlackUserType)type
+     successBlock:(void (^)(void))successBlock;
+- (void)unblackUser:(NSString*)targetUserId
+               type:(BlackUserType)type
+       successBlock:(void (^)(void))successBlock;
 
 @end

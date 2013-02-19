@@ -25,6 +25,7 @@
 #import "CommonImageManager.h"
 #import "StringUtil.h"
 #import "SuperUserManageAction.h"
+#import "BBSPermissionManager.h"
 
 #import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
@@ -183,7 +184,10 @@
     [self.contentView bringSubviewToFront:self.userName];
     
     
-    
+    if ([[BBSPermissionManager defaultManager] canCharge]
+          && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList]) {
+        [self.superUserManageButton setHidden:NO];
+    }
 }
 
 + (CommonUserInfoView*)createUserInfoView

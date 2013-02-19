@@ -424,7 +424,7 @@
 							</object>
 							<object class="IBUIButton" id="471599422">
 								<reference key="NSNextResponder" ref="215299453"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{186, 229}, {55, 44}}</string>
 								<reference key="NSSuperview" ref="215299453"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -835,7 +835,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">orange_button@2x.png</string>
-			<string key="NS.object.0">{71, 84}</string>
+			<string key="NS.object.0">{16, 16}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

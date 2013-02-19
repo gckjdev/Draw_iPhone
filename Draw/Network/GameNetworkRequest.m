@@ -452,27 +452,40 @@
                         transactionId:(NSString*)transactionId
                    transactionReceipt:(NSString*)transactionRecepit
 {
+    return [GameNetworkRequest chargeAccount:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
+    
+}
+
++ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+                        transactionId:(NSString*)transactionId
+                   transactionReceipt:(NSString*)transactionRecepit
+                               byUser:(NSString*)byUserId
+{
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
-    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         // set input parameters
-        NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_CHARGE_ACCOUNT];      
+        NSString* str = [NSString stringWithString:baseURL];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CHARGE_ACCOUNT];
         str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
         str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
         return str;
     };
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
         return;
-    }; 
+    };
     
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
@@ -2723,6 +2736,42 @@
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
                             outputFormat:FORMAT_PB
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)blackUser:(NSString*)baseURL
+                            appId:(NSString* )appId
+                     targetUserId:(NSString*)targetUserId
+                           userId:(NSString*)userId
+                   targetDeviceId:(NSString*)targetDeviceId
+                             type:(int)type
+                       actionType:(int)actionType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_BLACK_USER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
+        str = [str stringByAddQueryParameter:PARA_DEVICEID value:targetDeviceId];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
                                   output:output];
 }
 

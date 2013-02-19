@@ -110,8 +110,12 @@
     
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     
-    [self updateAllBadge];//for bulletins
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
     [self registerNetworkDisconnectedNotification];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

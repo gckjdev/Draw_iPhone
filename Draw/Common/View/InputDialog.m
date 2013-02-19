@@ -278,6 +278,8 @@
     PPRelease(bgView);
     PPRelease(titleLabel);
     PPRelease(targetTextField);
+    PPRelease(_clickCancelBlock);
+    PPRelease(_clickOkBlock);
     [super dealloc];
 }
 @end

@@ -129,6 +129,8 @@
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
+#define METHOD_BLACK_USER   @"blu"
+
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
 #define PARA_CORRECT_TIMES @"crt"
@@ -182,6 +184,7 @@
 #define PARA_SOURCE @"sr"
 #define PARA_TRANSACTION_ID @"tid"
 #define PARA_TRANSACTION_RECEIPT @"tre"
+#define  PARA_ADMIN_USER_ID  @"auid"
 #define PARA_ITEM_TYPE @"it"
 #define PARA_ITEM_AMOUNT @"ia"
 #define PARA_ITEMS @"is"

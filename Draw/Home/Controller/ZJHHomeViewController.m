@@ -36,6 +36,7 @@
 #import "Reachability.h"
 #import "AnalyticsManager.h"
 #import "FreeCoinsControllerViewController.h"
+#import "BulletinService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -100,6 +101,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 [_gameService reset];
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
+        
+        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+            [self updateAllBadge];
+        }];
         
         [self.homeHeaderPanel updateView];
     }];
