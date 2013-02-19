@@ -209,9 +209,9 @@
 //    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     // sync bulletin
-    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
-    }];
+//    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+//        [self updateAllBadge];
+//    }];  --do it in superHomeContoller-viewDidLoad
     
     [self enterNextControllerWityType:self.notificationType];
 

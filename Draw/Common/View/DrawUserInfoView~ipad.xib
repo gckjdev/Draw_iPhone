@@ -430,7 +430,7 @@
 							</object>
 							<object class="IBUIButton" id="973540934">
 								<reference key="NSNextResponder" ref="853774378"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{457, 525}, {55, 44}}</string>
 								<reference key="NSSuperview" ref="853774378"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>

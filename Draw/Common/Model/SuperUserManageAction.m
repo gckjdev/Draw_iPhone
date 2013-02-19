@@ -11,11 +11,15 @@
 #import "CommonDialog.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
+#import "UserService.h"
 
 typedef enum
 {
     SuperUserManageActionIndexCharge = 0,
-    SuperUserManageActionIndexBlackList,
+    SuperUserManageActionIndexBlackUserId,
+    SuperUserManageActionIndexBlackDevice,
+    SuperUserManageActionIndexUnblackUserId,
+    SuperUserManageActionIndexUnblackDevice,
 }SuperUserManageActionIndex;
 
 @implementation SuperUserManageAction
@@ -36,7 +40,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"充值" otherButtonTitles:@"列入黑名单", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"充值" otherButtonTitles:@"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -72,15 +76,46 @@ typedef enum
             [dialog.targetTextField setPlaceholder:@"请输入要充值的金额"];
             [dialog showInView:_superController.view];
         } break;
-        case SuperUserManageActionIndexBlackList: {
+        case SuperUserManageActionIndexBlackUserId: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                //
+                [[UserService defaultService] blackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                }];
             } clickCancelBlock:^{
                 //
             }];
             [dialog showInView:_superController.view];
         } break;
-            
+        case SuperUserManageActionIndexBlackDevice: {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                [[UserService defaultService] blackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                }];
+            } clickCancelBlock:^{
+                //
+            }];
+            [dialog showInView:_superController.view];
+        } break;
+        case SuperUserManageActionIndexUnblackUserId: {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定解除该用户黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                [[UserService defaultService] unblackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
+                }];
+            } clickCancelBlock:^{
+                //
+            }];
+            [dialog showInView:_superController.view];
+        } break;
+        case SuperUserManageActionIndexUnblackDevice: {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要解除该用户的设备黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                [[UserService defaultService] unblackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
+                }];
+            } clickCancelBlock:^{
+                //
+            }];
+            [dialog showInView:_superController.view];
+        } break;
         default:
             break;
     }
