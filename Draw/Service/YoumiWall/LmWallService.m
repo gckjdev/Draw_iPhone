@@ -36,6 +36,14 @@ static LmWallService* _defaultService;
     return _defaultService;
 }
 
+- (void)setUserInfo
+{
+    //此属性针对多账户用户，主要用于区分不同账户下的积分    
+    if ([[UserManager defaultManager] hasUser]){
+        [_adWallView.UserAttribute setObject:[[UserManager defaultManager] userId]
+                                      forKey:@"accountname"];
+    }    
+}
 
 - (void)prepareWallService
 {
@@ -49,11 +57,7 @@ static LmWallService* _defaultService;
 
     self.adWallView = [[[immobView alloc] initWithAdUnitID:[GameApp lmwallId]] autorelease];
     
-    //此属性针对多账户用户，主要用于区分不同账户下的积分
-    if ([[UserManager defaultManager] hasUser]){
-        [_adWallView.UserAttribute setObject:[[UserManager defaultManager] userId] 
-                                      forKey:@"accountname"];
-    }
+    [self setUserInfo];
     _adWallView.delegate=self;
     
     
@@ -77,6 +81,8 @@ static LmWallService* _defaultService;
 {
     if ([[UserManager defaultManager] hasUser] == NO)
         return;
+    
+    [self setUserInfo];
      
     if ([ConfigManager wallType] == WallTypeLimei){
         NSString* userId = [[UserManager defaultManager] userId];
@@ -90,7 +96,9 @@ static LmWallService* _defaultService;
 }
 
 - (void)show:(UIViewController*)viewController
-{        
+{
+    [self setUserInfo];
+    
     switch ([ConfigManager wallType]) {
         case WallTypeLimei:
         {
@@ -138,6 +146,9 @@ static LmWallService* _defaultService;
 
 - (void)handleScoreAdded:(int)score wallType:(int)wallType
 {
+    // prepare data
+    [self setUserInfo];
+
     // charge account
     [[AccountService defaultService] chargeAccount:score source:LmAppReward];
     
@@ -202,6 +213,7 @@ static LmWallService* _defaultService;
     PPDebug(@"<immobViewDidReceiveAd>");
     if ([self.adWallView isAdReady]){
         [_viewController.view addSubview:self.adWallView];
+        [self setUserInfo];
         [self.adWallView immobViewDisplay];
     }    
 }

@@ -503,9 +503,6 @@
 		C266EF5516BBA8B6005206C6 /* draw_room_list_reflesh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C266EF5316BBA8B6005206C6 /* draw_room_list_reflesh@2x.png */; };
 		C266EF5616BBA8B6005206C6 /* draw_room_list_reflesh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C266EF5316BBA8B6005206C6 /* draw_room_list_reflesh@2x.png */; };
 		C266EF5716BBA8B6005206C6 /* draw_room_list_reflesh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C266EF5316BBA8B6005206C6 /* draw_room_list_reflesh@2x.png */; };
-		C26D4CD316D374A9009414AA /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
-		C26D4CD916D374AD009414AA /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
-		C26D4CDA16D374AE009414AA /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
 		C27DB87416BFA6E800747741 /* shop_item_paint_player@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27DB87216BFA6E800747741 /* shop_item_paint_player@2x.png */; };
 		C27DB87516BFA6E800747741 /* shop_item_straw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27DB87316BFA6E800747741 /* shop_item_straw@2x.png */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
@@ -1344,10 +1341,6 @@
 		CA16BAC41682FAD900F81B47 /* DrawGameProApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87615E89B2B002050DB /* DrawGameProApp.m */; };
 		CA16BAC51682FAD900F81B47 /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA16BAC61682FAD900F81B47 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
-		CA16BAC71682FAD900F81B47 /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
-		CA16BAC81682FAD900F81B47 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2915EF0740007456FA /* MenuButton.m */; };
-		CA16BAC91682FAD900F81B47 /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */; };
-		CA16BACA1682FAD900F81B47 /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C3215EF0740007456FA /* MenuPanel.m */; };
 		CA16BACB1682FAD900F81B47 /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
 		CA16BACC1682FAD900F81B47 /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		CA16BACD1682FAD900F81B47 /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
@@ -1791,16 +1784,6 @@
 		CA16BC991682FAD900F81B47 /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		CA16BC9A1682FAD900F81B47 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CA16BC9B1682FAD900F81B47 /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
-		CA16BC9C1682FAD900F81B47 /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
-		CA16BC9D1682FAD900F81B47 /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */; };
-		CA16BC9E1682FAD900F81B47 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2A15EF0740007456FA /* MenuButton.xib */; };
-		CA16BC9F1682FAD900F81B47 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */; };
-		CA16BCA01682FAD900F81B47 /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */; };
-		CA16BCA11682FAD900F81B47 /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */; };
-		CA16BCA21682FAD900F81B47 /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3315EF0740007456FA /* MenuPanel.xib */; };
-		CA16BCA31682FAD900F81B47 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
-		CA16BCA41682FAD900F81B47 /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
-		CA16BCA51682FAD900F81B47 /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
 		CA16BCA61682FAD900F81B47 /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
 		CA16BCA71682FAD900F81B47 /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CA16BCA81682FAD900F81B47 /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
@@ -2475,10 +2458,6 @@
 		CA16C04A1682FAE300F81B47 /* DrawGameProApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87615E89B2B002050DB /* DrawGameProApp.m */; };
 		CA16C04B1682FAE300F81B47 /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA16C04C1682FAE300F81B47 /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
-		CA16C04D1682FAE300F81B47 /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
-		CA16C04E1682FAE300F81B47 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2915EF0740007456FA /* MenuButton.m */; };
-		CA16C04F1682FAE300F81B47 /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */; };
-		CA16C0501682FAE300F81B47 /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C3215EF0740007456FA /* MenuPanel.m */; };
 		CA16C0511682FAE300F81B47 /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
 		CA16C0521682FAE300F81B47 /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		CA16C0531682FAE300F81B47 /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
@@ -2908,16 +2887,6 @@
 		CA16C21F1682FAE300F81B47 /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		CA16C2201682FAE300F81B47 /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CA16C2211682FAE300F81B47 /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
-		CA16C2221682FAE300F81B47 /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
-		CA16C2231682FAE300F81B47 /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */; };
-		CA16C2241682FAE300F81B47 /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2A15EF0740007456FA /* MenuButton.xib */; };
-		CA16C2251682FAE300F81B47 /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */; };
-		CA16C2261682FAE300F81B47 /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */; };
-		CA16C2271682FAE300F81B47 /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */; };
-		CA16C2281682FAE300F81B47 /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3315EF0740007456FA /* MenuPanel.xib */; };
-		CA16C2291682FAE300F81B47 /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
-		CA16C22A1682FAE300F81B47 /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
-		CA16C22B1682FAE300F81B47 /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
 		CA16C22C1682FAE300F81B47 /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
 		CA16C22D1682FAE300F81B47 /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CA16C22E1682FAE300F81B47 /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
@@ -3368,6 +3337,9 @@
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
+		CA32FA3116D378BC00E8C1C1 /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
+		CA32FA3716D378BD00E8C1C1 /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
+		CA32FA3816D378BE00E8C1C1 /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
 		CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA335D5316A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA335D5416A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
@@ -5257,10 +5229,6 @@
 		CAB5C85816994F0200A4CE3B /* DrawGameProApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87615E89B2B002050DB /* DrawGameProApp.m */; };
 		CAB5C85916994F0200A4CE3B /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CAB5C85A16994F0200A4CE3B /* DiceSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF87A215EB4D2D003FA6B6 /* DiceSettingView.m */; };
-		CAB5C85B16994F0200A4CE3B /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
-		CAB5C85C16994F0200A4CE3B /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2915EF0740007456FA /* MenuButton.m */; };
-		CAB5C85D16994F0200A4CE3B /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */; };
-		CAB5C85E16994F0200A4CE3B /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C3215EF0740007456FA /* MenuPanel.m */; };
 		CAB5C85F16994F0200A4CE3B /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
 		CAB5C86016994F0200A4CE3B /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		CAB5C86116994F0200A4CE3B /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
@@ -5722,16 +5690,6 @@
 		CAB5CA4416994F0200A4CE3B /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		CAB5CA4516994F0200A4CE3B /* DiceSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACF87A315EB4D2D003FA6B6 /* DiceSettingView.xib */; };
 		CAB5CA4616994F0200A4CE3B /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
-		CAB5CA4716994F0200A4CE3B /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
-		CAB5CA4816994F0200A4CE3B /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */; };
-		CAB5CA4916994F0200A4CE3B /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2A15EF0740007456FA /* MenuButton.xib */; };
-		CAB5CA4A16994F0200A4CE3B /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */; };
-		CAB5CA4B16994F0200A4CE3B /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */; };
-		CAB5CA4C16994F0200A4CE3B /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */; };
-		CAB5CA4D16994F0200A4CE3B /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3315EF0740007456FA /* MenuPanel.xib */; };
-		CAB5CA4E16994F0200A4CE3B /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
-		CAB5CA4F16994F0200A4CE3B /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
-		CAB5CA5016994F0200A4CE3B /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
 		CAB5CA5116994F0200A4CE3B /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
 		CAB5CA5216994F0200A4CE3B /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
 		CAB5CA5316994F0200A4CE3B /* add_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C3415F0A65700178323 /* add_color@2x.png */; };
@@ -6341,20 +6299,6 @@
 		CABEDD9E16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */; };
 		CABEDD9F16B6595A00BB9060 /* draw_player_speed_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
-		CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2515EF0740007456FA /* BottomMenu.m */; };
-		CAC25C3615EF0740007456FA /* BottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2615EF0740007456FA /* BottomMenu.xib */; };
-		CAC25C3715EF0740007456FA /* BottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */; };
-		CAC25C3815EF0740007456FA /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2915EF0740007456FA /* MenuButton.m */; };
-		CAC25C3915EF0740007456FA /* MenuButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2A15EF0740007456FA /* MenuButton.xib */; };
-		CAC25C3A15EF0740007456FA /* MenuButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */; };
-		CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */; };
-		CAC25C3C15EF0740007456FA /* BottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */; };
-		CAC25C3D15EF0740007456FA /* BottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */; };
-		CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C3215EF0740007456FA /* MenuPanel.m */; };
-		CAC25C3F15EF0740007456FA /* MenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3315EF0740007456FA /* MenuPanel.xib */; };
-		CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */; };
-		CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4115EF078B007456FA /* DiceMenu.xib */; };
-		CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */; };
 		CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC25C6715EF20FB007456FA /* DiceHomeController.m */; };
 		CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6815EF20FB007456FA /* DiceHomeController.xib */; };
 		CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC25C6B15EF2D01007456FA /* DiceHomeController~ipad.xib */; };
@@ -9490,24 +9434,6 @@
 		CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_player_speed_load@2x.png"; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
-		CAC25C2415EF0740007456FA /* BottomMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenu.h; sourceTree = "<group>"; };
-		CAC25C2515EF0740007456FA /* BottomMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenu.m; sourceTree = "<group>"; };
-		CAC25C2615EF0740007456FA /* BottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenu.xib; sourceTree = "<group>"; };
-		CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenu~ipad.xib"; sourceTree = "<group>"; };
-		CAC25C2815EF0740007456FA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
-		CAC25C2915EF0740007456FA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
-		CAC25C2A15EF0740007456FA /* MenuButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuButton.xib; sourceTree = "<group>"; };
-		CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuButton~ipad.xib"; sourceTree = "<group>"; };
-		CAC25C2D15EF0740007456FA /* BottomMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomMenuPanel.h; sourceTree = "<group>"; };
-		CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomMenuPanel.m; sourceTree = "<group>"; };
-		CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BottomMenuPanel.xib; sourceTree = "<group>"; };
-		CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
-		CAC25C3115EF0740007456FA /* MenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuPanel.h; sourceTree = "<group>"; };
-		CAC25C3215EF0740007456FA /* MenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuPanel.m; sourceTree = "<group>"; };
-		CAC25C3315EF0740007456FA /* MenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuPanel.xib; sourceTree = "<group>"; };
-		CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MenuPanel~ipad.xib"; sourceTree = "<group>"; };
-		CAC25C4115EF078B007456FA /* DiceMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceMenu.xib; sourceTree = "<group>"; };
-		CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceMenu~ipad.xib"; sourceTree = "<group>"; };
 		CAC25C6615EF20FB007456FA /* DiceHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceHomeController.h; sourceTree = "<group>"; };
 		CAC25C6715EF20FB007456FA /* DiceHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceHomeController.m; sourceTree = "<group>"; };
 		CAC25C6815EF20FB007456FA /* DiceHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeController.xib; sourceTree = "<group>"; };
@@ -12789,8 +12715,6 @@
 				CA25C42416899E080064C05D /* DrawTestViewController.h */,
 				CA25C42316899E080064C05D /* DrawTestViewController.m */,
 				CA25C42516899E080064C05D /* DrawTestViewController.xib */,
-				CAC25C2315EF0740007456FA /* Menu */,
-				CAC25C2C15EF0740007456FA /* Panel */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
@@ -15697,38 +15621,6 @@
 			path = CommonResource;
 			sourceTree = "<group>";
 		};
-		CAC25C2315EF0740007456FA /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				CAC25C2415EF0740007456FA /* BottomMenu.h */,
-				CAC25C2515EF0740007456FA /* BottomMenu.m */,
-				CAC25C2615EF0740007456FA /* BottomMenu.xib */,
-				CAC25C2715EF0740007456FA /* BottomMenu~ipad.xib */,
-				CAC25C4115EF078B007456FA /* DiceMenu.xib */,
-				CAC25C4215EF078B007456FA /* DiceMenu~ipad.xib */,
-				CAC25C2815EF0740007456FA /* MenuButton.h */,
-				CAC25C2915EF0740007456FA /* MenuButton.m */,
-				CAC25C2A15EF0740007456FA /* MenuButton.xib */,
-				CAC25C2B15EF0740007456FA /* MenuButton~ipad.xib */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
-		CAC25C2C15EF0740007456FA /* Panel */ = {
-			isa = PBXGroup;
-			children = (
-				CAC25C2D15EF0740007456FA /* BottomMenuPanel.h */,
-				CAC25C2E15EF0740007456FA /* BottomMenuPanel.m */,
-				CAC25C2F15EF0740007456FA /* BottomMenuPanel.xib */,
-				CAC25C3015EF0740007456FA /* BottomMenuPanel~ipad.xib */,
-				CAC25C3115EF0740007456FA /* MenuPanel.h */,
-				CAC25C3215EF0740007456FA /* MenuPanel.m */,
-				CAC25C3315EF0740007456FA /* MenuPanel.xib */,
-				CAC25C3415EF0740007456FA /* MenuPanel~ipad.xib */,
-			);
-			path = Panel;
-			sourceTree = "<group>";
-		};
 		CAC25C6515EF20CD007456FA /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -17307,16 +17199,6 @@
 				CA16BC991682FAD900F81B47 /* DiceHelpView~ipad.xib in Resources */,
 				CA16BC9A1682FAD900F81B47 /* DiceSettingView.xib in Resources */,
 				CA16BC9B1682FAD900F81B47 /* DiceSettingView~ipad.xib in Resources */,
-				CA16BC9C1682FAD900F81B47 /* BottomMenu.xib in Resources */,
-				CA16BC9D1682FAD900F81B47 /* BottomMenu~ipad.xib in Resources */,
-				CA16BC9E1682FAD900F81B47 /* MenuButton.xib in Resources */,
-				CA16BC9F1682FAD900F81B47 /* MenuButton~ipad.xib in Resources */,
-				CA16BCA01682FAD900F81B47 /* BottomMenuPanel.xib in Resources */,
-				CA16BCA11682FAD900F81B47 /* BottomMenuPanel~ipad.xib in Resources */,
-				CA16BCA21682FAD900F81B47 /* MenuPanel.xib in Resources */,
-				CA16BCA31682FAD900F81B47 /* MenuPanel~ipad.xib in Resources */,
-				CA16BCA41682FAD900F81B47 /* DiceMenu.xib in Resources */,
-				CA16BCA51682FAD900F81B47 /* DiceMenu~ipad.xib in Resources */,
 				CA16BCA61682FAD900F81B47 /* DiceHomeController.xib in Resources */,
 				CA16BCA71682FAD900F81B47 /* DiceHomeController~ipad.xib in Resources */,
 				CA16BCA81682FAD900F81B47 /* add_color@2x.png in Resources */,
@@ -18534,16 +18416,6 @@
 				CA16C21F1682FAE300F81B47 /* DiceHelpView~ipad.xib in Resources */,
 				CA16C2201682FAE300F81B47 /* DiceSettingView.xib in Resources */,
 				CA16C2211682FAE300F81B47 /* DiceSettingView~ipad.xib in Resources */,
-				CA16C2221682FAE300F81B47 /* BottomMenu.xib in Resources */,
-				CA16C2231682FAE300F81B47 /* BottomMenu~ipad.xib in Resources */,
-				CA16C2241682FAE300F81B47 /* MenuButton.xib in Resources */,
-				CA16C2251682FAE300F81B47 /* MenuButton~ipad.xib in Resources */,
-				CA16C2261682FAE300F81B47 /* BottomMenuPanel.xib in Resources */,
-				CA16C2271682FAE300F81B47 /* BottomMenuPanel~ipad.xib in Resources */,
-				CA16C2281682FAE300F81B47 /* MenuPanel.xib in Resources */,
-				CA16C2291682FAE300F81B47 /* MenuPanel~ipad.xib in Resources */,
-				CA16C22A1682FAE300F81B47 /* DiceMenu.xib in Resources */,
-				CA16C22B1682FAE300F81B47 /* DiceMenu~ipad.xib in Resources */,
 				CA16C22C1682FAE300F81B47 /* DiceHomeController.xib in Resources */,
 				CA16C22D1682FAE300F81B47 /* DiceHomeController~ipad.xib in Resources */,
 				CA16C22E1682FAE300F81B47 /* add_color@2x.png in Resources */,
@@ -19403,16 +19275,6 @@
 				EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */,
 				CACF87A515EB4D2D003FA6B6 /* DiceSettingView.xib in Resources */,
 				EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */,
-				CAC25C3615EF0740007456FA /* BottomMenu.xib in Resources */,
-				CAC25C3715EF0740007456FA /* BottomMenu~ipad.xib in Resources */,
-				CAC25C3915EF0740007456FA /* MenuButton.xib in Resources */,
-				CAC25C3A15EF0740007456FA /* MenuButton~ipad.xib in Resources */,
-				CAC25C3C15EF0740007456FA /* BottomMenuPanel.xib in Resources */,
-				CAC25C3D15EF0740007456FA /* BottomMenuPanel~ipad.xib in Resources */,
-				CAC25C3F15EF0740007456FA /* MenuPanel.xib in Resources */,
-				CAC25C4015EF0740007456FA /* MenuPanel~ipad.xib in Resources */,
-				CAC25C4315EF078B007456FA /* DiceMenu.xib in Resources */,
-				CAC25C4415EF078B007456FA /* DiceMenu~ipad.xib in Resources */,
 				CAC25C6A15EF20FB007456FA /* DiceHomeController.xib in Resources */,
 				CAC25C6C15EF2D02007456FA /* DiceHomeController~ipad.xib in Resources */,
 				EA856C6D15F0A65700178323 /* add_color@2x.png in Resources */,
@@ -20267,16 +20129,6 @@
 				CAB5CA4416994F0200A4CE3B /* DiceHelpView~ipad.xib in Resources */,
 				CAB5CA4516994F0200A4CE3B /* DiceSettingView.xib in Resources */,
 				CAB5CA4616994F0200A4CE3B /* DiceSettingView~ipad.xib in Resources */,
-				CAB5CA4716994F0200A4CE3B /* BottomMenu.xib in Resources */,
-				CAB5CA4816994F0200A4CE3B /* BottomMenu~ipad.xib in Resources */,
-				CAB5CA4916994F0200A4CE3B /* MenuButton.xib in Resources */,
-				CAB5CA4A16994F0200A4CE3B /* MenuButton~ipad.xib in Resources */,
-				CAB5CA4B16994F0200A4CE3B /* BottomMenuPanel.xib in Resources */,
-				CAB5CA4C16994F0200A4CE3B /* BottomMenuPanel~ipad.xib in Resources */,
-				CAB5CA4D16994F0200A4CE3B /* MenuPanel.xib in Resources */,
-				CAB5CA4E16994F0200A4CE3B /* MenuPanel~ipad.xib in Resources */,
-				CAB5CA4F16994F0200A4CE3B /* DiceMenu.xib in Resources */,
-				CAB5CA5016994F0200A4CE3B /* DiceMenu~ipad.xib in Resources */,
 				CAB5CA5116994F0200A4CE3B /* DiceHomeController.xib in Resources */,
 				CAB5CA5216994F0200A4CE3B /* DiceHomeController~ipad.xib in Resources */,
 				CAB5CA5316994F0200A4CE3B /* add_color@2x.png in Resources */,
@@ -21315,10 +21167,6 @@
 				CA16BAC41682FAD900F81B47 /* DrawGameProApp.m in Sources */,
 				CA16BAC51682FAD900F81B47 /* GameApp.m in Sources */,
 				CA16BAC61682FAD900F81B47 /* DiceSettingView.m in Sources */,
-				CA16BAC71682FAD900F81B47 /* BottomMenu.m in Sources */,
-				CA16BAC81682FAD900F81B47 /* MenuButton.m in Sources */,
-				CA16BAC91682FAD900F81B47 /* BottomMenuPanel.m in Sources */,
-				CA16BACA1682FAD900F81B47 /* MenuPanel.m in Sources */,
 				CA16BACB1682FAD900F81B47 /* DiceHomeController.m in Sources */,
 				CA16BACC1682FAD900F81B47 /* GCServer.m in Sources */,
 				CA16BACD1682FAD900F81B47 /* DiceConfigManager.m in Sources */,
@@ -21665,7 +21513,7 @@
 				C266EF3216BB76D6005206C6 /* OpusView.m in Sources */,
 				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
 				C24E621D16BF6AB2003132E6 /* iCarousel.m in Sources */,
-				C26D4CD916D374AD009414AA /* SuperUserManageAction.m in Sources */,
+				CA32FA3716D378BD00E8C1C1 /* SuperUserManageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22016,10 +21864,6 @@
 				CA16C04A1682FAE300F81B47 /* DrawGameProApp.m in Sources */,
 				CA16C04B1682FAE300F81B47 /* GameApp.m in Sources */,
 				CA16C04C1682FAE300F81B47 /* DiceSettingView.m in Sources */,
-				CA16C04D1682FAE300F81B47 /* BottomMenu.m in Sources */,
-				CA16C04E1682FAE300F81B47 /* MenuButton.m in Sources */,
-				CA16C04F1682FAE300F81B47 /* BottomMenuPanel.m in Sources */,
-				CA16C0501682FAE300F81B47 /* MenuPanel.m in Sources */,
 				CA16C0511682FAE300F81B47 /* DiceHomeController.m in Sources */,
 				CA16C0521682FAE300F81B47 /* GCServer.m in Sources */,
 				CA16C0531682FAE300F81B47 /* DiceConfigManager.m in Sources */,
@@ -22366,7 +22210,7 @@
 				C266EF3316BB76D7005206C6 /* OpusView.m in Sources */,
 				C266EF3616BB76E7005206C6 /* WallService.m in Sources */,
 				C24E621E16BF6AB3003132E6 /* iCarousel.m in Sources */,
-				C26D4CDA16D374AE009414AA /* SuperUserManageAction.m in Sources */,
+				CA32FA3816D378BE00E8C1C1 /* SuperUserManageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22714,10 +22558,6 @@
 				CA67B87715E89B2B002050DB /* DrawGameProApp.m in Sources */,
 				CA67B87D15E89FB0002050DB /* GameApp.m in Sources */,
 				CACF87A415EB4D2D003FA6B6 /* DiceSettingView.m in Sources */,
-				CAC25C3515EF0740007456FA /* BottomMenu.m in Sources */,
-				CAC25C3815EF0740007456FA /* MenuButton.m in Sources */,
-				CAC25C3B15EF0740007456FA /* BottomMenuPanel.m in Sources */,
-				CAC25C3E15EF0740007456FA /* MenuPanel.m in Sources */,
 				CAC25C6915EF20FB007456FA /* DiceHomeController.m in Sources */,
 				C225866E15EF5AA4009D686D /* GCServer.m in Sources */,
 				A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */,
@@ -23423,10 +23263,6 @@
 				CAB5C85816994F0200A4CE3B /* DrawGameProApp.m in Sources */,
 				CAB5C85916994F0200A4CE3B /* GameApp.m in Sources */,
 				CAB5C85A16994F0200A4CE3B /* DiceSettingView.m in Sources */,
-				CAB5C85B16994F0200A4CE3B /* BottomMenu.m in Sources */,
-				CAB5C85C16994F0200A4CE3B /* MenuButton.m in Sources */,
-				CAB5C85D16994F0200A4CE3B /* BottomMenuPanel.m in Sources */,
-				CAB5C85E16994F0200A4CE3B /* MenuPanel.m in Sources */,
 				CAB5C85F16994F0200A4CE3B /* DiceHomeController.m in Sources */,
 				CAB5C86016994F0200A4CE3B /* GCServer.m in Sources */,
 				CAB5C86116994F0200A4CE3B /* DiceConfigManager.m in Sources */,
@@ -23776,7 +23612,7 @@
 				C266EF3116BB76D4005206C6 /* OpusView.m in Sources */,
 				C266EF3416BB76E3005206C6 /* WallService.m in Sources */,
 				C24E621C16BF6AB0003132E6 /* iCarousel.m in Sources */,
-				C26D4CD316D374A9009414AA /* SuperUserManageAction.m in Sources */,
+				CA32FA3116D378BC00E8C1C1 /* SuperUserManageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
