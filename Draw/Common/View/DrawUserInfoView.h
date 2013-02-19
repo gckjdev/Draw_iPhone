@@ -11,6 +11,7 @@
 #import "UserService.h"
 #import "MWPhotoBrowser.h"
 #import "StableView.h"
+#import "CommonUserInfoView.h"
 
 @class PPViewController;
 @class MyFriend;
@@ -27,6 +28,7 @@
 + (void)showPBBBSUser:(PBBBSUser*)user
            infoInView:(PPViewController*)superController
            needUpdate:(BOOL)needUpdate;
+@property (retain, nonatomic) IBOutlet UIButton *superUserManageButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;

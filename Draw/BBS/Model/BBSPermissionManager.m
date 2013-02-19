@@ -87,4 +87,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
     return (BBS_PERMISSION & PermissionForbidUser) != 0;
 }
 
+- (BOOL)canForbidUserIntoBlackUserList
+{
+    return (BBS_PERMISSION & PermissionBlackUserList) != 0;
+}
+
+- (BOOL)canCharge
+{
+    return (BBS_PERMISSION & PermissionCharge) != 0;
+}
+
 @end

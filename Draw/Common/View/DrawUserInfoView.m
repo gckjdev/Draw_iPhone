@@ -25,6 +25,7 @@
 #import "GameApp.h"
 #import "Bbs.pb.h"
 #import "SelectHotWordController.h"
+#import "SuperUserManageAction.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -64,6 +65,7 @@
     PPRelease(followUserButton);
     PPRelease(statusLabel);
     PPRelease(levelLabel);
+    [_superUserManageButton release];
     [super dealloc];
 }
 
@@ -116,6 +118,8 @@
     [self.drawToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     [self.exploreUserFeedButton setTitle:NSLS(@"kExploreHim") forState:UIControlStateNormal];
     [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)initLevelAndName
@@ -403,6 +407,12 @@
         self.targetFriend = user;
         [self updateUserInfoView];
     }
+}
+
+- (IBAction)clickSuperUserManageButton:(id)sender
+{
+    SuperUserManageAction* action = [[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins];
+    [action showInController:_superViewController];
 }
 
 @end

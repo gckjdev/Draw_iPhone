@@ -20,7 +20,7 @@
     CGPoint _currentPoint;
     StrawView *_strawView;
     CGContextRef _tempBitmapContext;
-    
+    DrawColor *_bgColor;
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
@@ -37,6 +37,29 @@
 @synthesize delegate = _delegate;
 @synthesize penType = _penType;
 
+
+- (void)synBGColor
+{
+    NSInteger count = [self.drawActionList count];
+    for (NSInteger i = count - 1; i >= 0; -- i) {
+        DrawAction *action = [self.drawActionList objectAtIndex:i];
+        if ([action isChangeBackAction]) {
+            self.bgColor = action.paint.color;
+            return;
+        }
+    }
+    self.bgColor = [DrawColor whiteColor];
+}
+
+- (DrawColor *)bgColor
+{
+    if (_bgColor == nil) {
+        self.bgColor = [DrawColor whiteColor];
+    }
+    return _bgColor;
+}
+
+//- ()
 
 #pragma mark - util methods
 - (CGFloat)correctValue:(CGFloat)value max:(CGFloat)max min:(CGFloat)min
@@ -98,15 +121,16 @@
     [self.drawActionList addObject:cleanAction];
     [self drawAction1:cleanAction inContext:showContext];
     [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
-    
+    self.bgColor = [DrawColor whiteColor];
 }
 - (void)changeBackWithColor:(DrawColor *)color
 {
     [self clearRedoStack];
-    DrawAction *cleanAction = [DrawAction changeBackgroundActionWithColor:color];
-    [self.drawActionList addObject:cleanAction];
-    [self drawAction1:cleanAction inContext:showContext];
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];    
+    DrawAction *changBackAction = [DrawAction changeBackgroundActionWithColor:color];
+    [self.drawActionList addObject:changBackAction];
+    [self drawAction1:changBackAction inContext:showContext];
+    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    self.bgColor = color;
 }
 
 - (void)setDrawEnabled:(BOOL)enabled
@@ -297,6 +321,7 @@ typedef enum {
     PPRelease(_drawActionList);
     PPRelease(_lineColor);
     PPRelease(_redoStack);
+    PPRelease(_bgColor);
     [super dealloc];
 }
 
@@ -317,7 +342,7 @@ typedef enum {
         rect = [DrawUtils rectForPath:lastAction.paint.path withWidth:lastAction.paint.width bounds:self.bounds];
     }
     [self setNeedsDisplayInRect:rect showCacheLayer:NO];
-    
+    [self synBGColor];
     // call block
     if (finishiBlock != NULL){
         finishiBlock();
@@ -330,10 +355,11 @@ typedef enum {
     return [_drawActionList count] > 0;
 }
 
+
 - (void)revoke:(dispatch_block_t)finishBlock
 {
     if ([self canRevoke]) {
-        id obj = [_drawActionList lastObject];
+        DrawAction *obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
         [self showForRevoke:obj finishBlock:finishBlock];
@@ -352,6 +378,9 @@ typedef enum {
             [self.drawActionList addObject:action];
             CGRect rect = [self drawAction1:action inContext:showContext];
             [self setNeedsDisplayInRect:rect showCacheLayer:NO];
+            if ([action isChangeBackAction]) {
+                self.bgColor = [action.paint color];
+            }
         }        
     }
 }
@@ -365,6 +394,7 @@ typedef enum {
 - (void)showDraft:(MyPaint *)draft
 {
     self.drawActionList = draft.drawActionList;
+    [self synBGColor];
     [self show];
 }
 

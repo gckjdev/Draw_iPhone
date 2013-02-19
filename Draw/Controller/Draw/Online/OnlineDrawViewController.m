@@ -362,11 +362,21 @@
     }
 }
 
+
+- (void)synEraserColor
+{
+    self.eraserColor = drawView.bgColor;
+    if (drawView.penType == Eraser) {
+        drawView.lineColor = self.eraserColor;
+    }
+}
+
 #pragma mark - Draw Tool Panel Delegate
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
     [drawView redo];
+    [self synEraserColor];
 }
 
 - (void)performRevoke
@@ -374,6 +384,7 @@
     [drawView revoke:^{
         [self hideActivity];
     }];
+    [self synEraserColor];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
