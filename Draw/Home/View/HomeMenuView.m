@@ -203,17 +203,23 @@
             
         //dice
         case HomeMenuTypeDiceStart:
-            return [shareImageManager diceStartMenuImage];
+//            return [shareImageManager diceStartMenuImage];
+            return [imageManager zjhHomeStart];
         case HomeMenuTypeDiceShop:
-            return [shareImageManager diceShopImage];
+//            return [shareImageManager diceShopImage];
+            return [imageManager drawHomeShop];
         case HomeMenuTypeDiceHelp:
-            return [shareImageManager diceHelpMenuImage];
+//            return [shareImageManager diceHelpMenuImage];
+            return [imageManager zjhHomeHelp];
         case HomeMenuTypeDiceHappyRoom:
-            return [shareImageManager normalRoomMenuImage];
+//            return [shareImageManager normalRoomMenuImage];
+            return [imageManager zjhHomeNormalSite];
         case HomeMenuTypeDiceHighRoom:
-            return [shareImageManager highRoomMenuImage];
+//            return [shareImageManager highRoomMenuImage];
+            return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceSuperHighRoom:
-            return [shareImageManager superHighRoomMenuImage];
+//            return [shareImageManager superHighRoomMenuImage];
+            return [imageManager zjhHomeVSSite];
         default:
             return nil;
     }
@@ -404,8 +410,9 @@ int *getDiceMainMenuTypeList()
         HomeMenuTypeDiceStart,
         HomeMenuTypeDiceHappyRoom,
         HomeMenuTypeDiceSuperHighRoom,
-        HomeMenuTypeDiceHelp,
+        HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDiceShop,
+        HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
     return list;

@@ -110,6 +110,14 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Button Menu delegate
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickChargeButton:(UIButton *)button
+{
+    //ENTER CHARGE PAGE
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 #pragma mark Panel delegate
 

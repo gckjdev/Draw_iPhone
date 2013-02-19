@@ -276,7 +276,8 @@
 
 - (NSString*)homeHeaderViewId
 {
-    return @"DiceHomeHeaderPanel";
+//    return @"DiceHomeHeaderPanel";
+    return @"ZJHHomeHeaderPanel";
 }
 
 - (NSString *)roomListCellBgImageName
