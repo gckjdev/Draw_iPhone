@@ -3349,10 +3349,10 @@
 		CA32FA3F16D4699600E8C1C1 /* zjh_home_rich_site@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611916785F0D00DD96F4 /* zjh_home_rich_site@2x.png */; };
 		CA32FA4016D4699600E8C1C1 /* zjh_home_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611A16785F0D00DD96F4 /* zjh_home_start@2x.png */; };
 		CA32FA4116D4699600E8C1C1 /* zjh_home_vs_site@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611B16785F0D00DD96F4 /* zjh_home_vs_site@2x.png */; };
-		CA32FA4416D4848F00E8C1C1 /* UndoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* UndoCache.m */; };
-		CA32FA4516D4848F00E8C1C1 /* UndoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* UndoCache.m */; };
-		CA32FA4616D4848F00E8C1C1 /* UndoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* UndoCache.m */; };
-		CA32FA4716D4848F00E8C1C1 /* UndoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* UndoCache.m */; };
+		CA32FA4416D4848F00E8C1C1 /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* Offscreen.m */; };
+		CA32FA4516D4848F00E8C1C1 /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* Offscreen.m */; };
+		CA32FA4616D4848F00E8C1C1 /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* Offscreen.m */; };
+		CA32FA4716D4848F00E8C1C1 /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32FA4316D4848F00E8C1C1 /* Offscreen.m */; };
 		CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA335D5316A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
 		CA335D5416A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
@@ -4819,10 +4819,10 @@
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
-		CA8F135316D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
-		CA8F135416D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
-		CA8F135516D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
-		CA8F135616D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
+		CA8F135316D4ABF30004F225 /* OffscreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* OffscreenManager.m */; };
+		CA8F135416D4ABF30004F225 /* OffscreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* OffscreenManager.m */; };
+		CA8F135516D4ABF30004F225 /* OffscreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* OffscreenManager.m */; };
+		CA8F135616D4ABF30004F225 /* OffscreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* OffscreenManager.m */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -8017,8 +8017,8 @@
 		CA3221A6151F65AD0039A384 /* UserSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingController.h; sourceTree = "<group>"; };
 		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
 		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
-		CA32FA4216D4848E00E8C1C1 /* UndoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoCache.h; sourceTree = "<group>"; };
-		CA32FA4316D4848F00E8C1C1 /* UndoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoCache.m; sourceTree = "<group>"; };
+		CA32FA4216D4848E00E8C1C1 /* Offscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offscreen.h; sourceTree = "<group>"; };
+		CA32FA4316D4848F00E8C1C1 /* Offscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offscreen.m; sourceTree = "<group>"; };
 		CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_reward_action_content_bg@2x.png"; sourceTree = "<group>"; };
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
@@ -9320,8 +9320,8 @@
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
-		CA8F135116D4ABF30004F225 /* UndoCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoCacheManager.h; sourceTree = "<group>"; };
-		CA8F135216D4ABF30004F225 /* UndoCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoCacheManager.m; sourceTree = "<group>"; };
+		CA8F135116D4ABF30004F225 /* OffscreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffscreenManager.h; sourceTree = "<group>"; };
+		CA8F135216D4ABF30004F225 /* OffscreenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffscreenManager.m; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bbs.pb.h; sourceTree = "<group>"; };
 		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
@@ -11505,10 +11505,10 @@
 				CA051DB21546802D00D0A00A /* ShowDrawView.m */,
 				CAACE19715F499E6002EB53A /* SuperDrawView.h */,
 				CAACE19815F499E6002EB53A /* SuperDrawView.m */,
-				CA32FA4216D4848E00E8C1C1 /* UndoCache.h */,
-				CA32FA4316D4848F00E8C1C1 /* UndoCache.m */,
-				CA8F135116D4ABF30004F225 /* UndoCacheManager.h */,
-				CA8F135216D4ABF30004F225 /* UndoCacheManager.m */,
+				CA32FA4216D4848E00E8C1C1 /* Offscreen.h */,
+				CA32FA4316D4848F00E8C1C1 /* Offscreen.m */,
+				CA8F135116D4ABF30004F225 /* OffscreenManager.h */,
+				CA8F135216D4ABF30004F225 /* OffscreenManager.m */,
 			);
 			path = DrawView;
 			sourceTree = "<group>";
@@ -21548,8 +21548,8 @@
 				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
 				C24E621D16BF6AB2003132E6 /* iCarousel.m in Sources */,
 				CA32FA3716D378BD00E8C1C1 /* SuperUserManageAction.m in Sources */,
-				CA32FA4616D4848F00E8C1C1 /* UndoCache.m in Sources */,
-				CA8F135516D4ABF30004F225 /* UndoCacheManager.m in Sources */,
+				CA32FA4616D4848F00E8C1C1 /* Offscreen.m in Sources */,
+				CA8F135516D4ABF30004F225 /* OffscreenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22247,8 +22247,8 @@
 				C266EF3616BB76E7005206C6 /* WallService.m in Sources */,
 				C24E621E16BF6AB3003132E6 /* iCarousel.m in Sources */,
 				CA32FA3816D378BE00E8C1C1 /* SuperUserManageAction.m in Sources */,
-				CA32FA4716D4848F00E8C1C1 /* UndoCache.m in Sources */,
-				CA8F135616D4ABF30004F225 /* UndoCacheManager.m in Sources */,
+				CA32FA4716D4848F00E8C1C1 /* Offscreen.m in Sources */,
+				CA8F135616D4ABF30004F225 /* OffscreenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22946,8 +22946,8 @@
 				CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */,
 				A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */,
 				C260DDDF16D1D2CD0008A243 /* SuperUserManageAction.m in Sources */,
-				CA32FA4416D4848F00E8C1C1 /* UndoCache.m in Sources */,
-				CA8F135316D4ABF30004F225 /* UndoCacheManager.m in Sources */,
+				CA32FA4416D4848F00E8C1C1 /* Offscreen.m in Sources */,
+				CA8F135316D4ABF30004F225 /* OffscreenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23653,8 +23653,8 @@
 				C266EF3416BB76E3005206C6 /* WallService.m in Sources */,
 				C24E621C16BF6AB0003132E6 /* iCarousel.m in Sources */,
 				CA32FA3116D378BC00E8C1C1 /* SuperUserManageAction.m in Sources */,
-				CA32FA4516D4848F00E8C1C1 /* UndoCache.m in Sources */,
-				CA8F135416D4ABF30004F225 /* UndoCacheManager.m in Sources */,
+				CA32FA4516D4848F00E8C1C1 /* Offscreen.m in Sources */,
+				CA8F135416D4ABF30004F225 /* OffscreenManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

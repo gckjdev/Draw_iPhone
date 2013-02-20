@@ -6,13 +6,13 @@
 //
 //
 
-#import "UndoCache.h"
+#import "Offscreen.h"
 #import "DrawUtils.h"
 
 
 #define DEFAULT_CAPACITY 50
 
-@interface UndoCache()
+@interface Offscreen()
 {
     CGContextRef cacheContext;
     CGLayerRef cacheLayer;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation UndoCache
+@implementation Offscreen
 
 - (id)initWithCapacity:(NSUInteger)capacity
 {

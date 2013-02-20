@@ -1,5 +1,5 @@
 //
-//  UndoCache.h
+//  Offscreen.h
 //  Draw
 //
 //  Created by gamy on 13-2-20.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UndoCache : NSObject
+@interface Offscreen : NSObject
 
 @property(nonatomic, assign, readonly)NSUInteger paintCount;
 @property(nonatomic, assign, readonly)NSUInteger capacity;

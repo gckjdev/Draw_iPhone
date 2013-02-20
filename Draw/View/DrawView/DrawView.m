@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StrawView.h"
 #import "ConfigManager.h"
-#import "UndoCache.h"
+#import "Offscreen.h"
 
 #pragma mark - draw view implementation
 
@@ -23,7 +23,7 @@
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
     
-    UndoCache *_undoCache;
+    Offscreen *_undoCache;
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
