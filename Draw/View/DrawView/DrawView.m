@@ -21,6 +21,8 @@
     StrawView *_strawView;
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
+    
+    
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;

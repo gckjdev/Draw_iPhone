@@ -25,7 +25,18 @@
 @synthesize itemImage;
 @synthesize splitLine;
 @synthesize feed = _feed;
-//@synthesize superViewController = _superViewController;
+
+
+
+/*
+UIColor * color(int red, int green, int blue)
+{
+    return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+    
+}
+#define COMMENT_REPLY_COLOR color(219,185,155)
+*/
+#define COMMENT_REPLY_COLOR [UIColor lightGrayColor]
 
 + (id)createCell:(id)delegate
 {
@@ -46,13 +57,13 @@
 }
 
 
-#define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 12*2 : 12)
+#define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 13*2 : 13)
-#define COMMENT_SPACE ([DeviceDetection isIPAD] ? 20 : 10)
+#define COMMENT_CONST_HEIGHT ([DeviceDetection isIPAD] ? 68 : 40)
 //#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
-#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
+//#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
@@ -60,7 +71,7 @@
 
 
 - (IBAction)clickReplyButton:(id)sender {
-    if (self.delegate && [self.delegate 
+    if (self.delegate && [self.delegate
                           respondsToSelector:@selector(didStartToReplyToFeed:)]) {
         [self.delegate didStartToReplyToFeed:self.feed];
     }
@@ -75,10 +86,11 @@
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     PPDebug(@"start to cal height, comment = %@",comment);
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
-    CGFloat height = COMMENT_BASE_Y + COMMENT_SPACE + commentSize.height;
+    CGFloat height = COMMENT_CONST_HEIGHT + commentSize.height;
     PPDebug(@"comment = %@,height = %f", comment,height);
     return height;
 }
+
 
 #define SHOW_COMMENT_COUNT 3
 
@@ -119,7 +131,7 @@
     UIFont *nickFont = [UIFont systemFontOfSize:NICK_FONT_SIZE];
     [self.nickNameLabel setFont:nickFont];
     [self.nickNameLabel setText:author.nickName];
-    [self.nickNameLabel setTextColor:[UIColor grayColor]];
+    [self.nickNameLabel setTextColor:[UIColor darkGrayColor]];
     itemImage.hidden = YES;
     commentLabel.hidden = NO;
     if (feed.feedType == ItemTypeFlower) {
@@ -136,7 +148,7 @@
     NSString *comment = [feed commentInFeedDeatil];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     [self.commentLabel setFont:font];
-    [self.commentLabel setTextColor:[UIColor blackColor]];
+//    [self.commentLabel setTextColor:COMMENT_CONTENT_COLOR];
     [self.commentLabel setLineBreakMode:NSLineBreakByCharWrapping];
     if ([DeviceDetection isOS6] && [feed commentInfo] != nil && [comment length] != 0) {
         NSInteger length = [comment length];
@@ -146,7 +158,7 @@
             //set attributed
             PPDebug(@"comment = %@,length = %d,loc = %d",comment,length,loc);
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:comment];
-            [attr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(0, loc)];
+            [attr addAttribute:NSForegroundColorAttributeName value:COMMENT_REPLY_COLOR range:NSMakeRange(0, loc)];
             [self.commentLabel setText:nil];
             [self.commentLabel setAttributedText:attr];
             [attr release];
