@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StrawView.h"
 #import "ConfigManager.h"
+#import "UndoCache.h"
 
 #pragma mark - draw view implementation
 
@@ -22,11 +23,12 @@
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
     
-    
+    UndoCache *_undoCache;
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
-
+- (void)updateUndoCache;
+- (void)updateShowContextWithUndoCache;
 @end
 
 
@@ -324,6 +326,7 @@ typedef enum {
     PPRelease(_lineColor);
     PPRelease(_redoStack);
     PPRelease(_bgColor);
+    PPRelease(_undoCache);
     [super dealloc];
 }
 
@@ -399,5 +402,17 @@ typedef enum {
     [self synBGColor];
     [self show];
 }
+
+#pragma mark -- undo cache
+
+- (void)updateUndoCache
+{
+//    _undoCache updatContextWithCGLayer:showLayerRef paintCount:<#(NSInteger)#>
+}
+- (void)updateShowContextWithUndoCache
+{
+    
+}
+
 
 @end

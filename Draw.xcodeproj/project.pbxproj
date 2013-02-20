@@ -4819,6 +4819,10 @@
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
+		CA8F135316D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
+		CA8F135416D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
+		CA8F135516D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
+		CA8F135616D4ABF30004F225 /* UndoCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8F135216D4ABF30004F225 /* UndoCacheManager.m */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -9316,6 +9320,8 @@
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
+		CA8F135116D4ABF30004F225 /* UndoCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoCacheManager.h; sourceTree = "<group>"; };
+		CA8F135216D4ABF30004F225 /* UndoCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoCacheManager.m; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bbs.pb.h; sourceTree = "<group>"; };
 		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
@@ -11501,6 +11507,8 @@
 				CAACE19815F499E6002EB53A /* SuperDrawView.m */,
 				CA32FA4216D4848E00E8C1C1 /* UndoCache.h */,
 				CA32FA4316D4848F00E8C1C1 /* UndoCache.m */,
+				CA8F135116D4ABF30004F225 /* UndoCacheManager.h */,
+				CA8F135216D4ABF30004F225 /* UndoCacheManager.m */,
 			);
 			path = DrawView;
 			sourceTree = "<group>";
@@ -21541,6 +21549,7 @@
 				C24E621D16BF6AB2003132E6 /* iCarousel.m in Sources */,
 				CA32FA3716D378BD00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4616D4848F00E8C1C1 /* UndoCache.m in Sources */,
+				CA8F135516D4ABF30004F225 /* UndoCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22239,6 +22248,7 @@
 				C24E621E16BF6AB3003132E6 /* iCarousel.m in Sources */,
 				CA32FA3816D378BE00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4716D4848F00E8C1C1 /* UndoCache.m in Sources */,
+				CA8F135616D4ABF30004F225 /* UndoCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22937,6 +22947,7 @@
 				A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */,
 				C260DDDF16D1D2CD0008A243 /* SuperUserManageAction.m in Sources */,
 				CA32FA4416D4848F00E8C1C1 /* UndoCache.m in Sources */,
+				CA8F135316D4ABF30004F225 /* UndoCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23643,6 +23654,7 @@
 				C24E621C16BF6AB0003132E6 /* iCarousel.m in Sources */,
 				CA32FA3116D378BC00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4516D4848F00E8C1C1 /* UndoCache.m in Sources */,
+				CA8F135416D4ABF30004F225 /* UndoCacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
