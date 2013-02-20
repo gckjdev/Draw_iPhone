@@ -515,6 +515,11 @@
 		C28A23CF166C9123007C9EA5 /* FallingCoinImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CC166C9123007C9EA5 /* FallingCoinImageView.m */; };
 		C28A23D0166C9123007C9EA5 /* FallingCoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23CE166C9123007C9EA5 /* FallingCoinView.m */; };
 		C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
+		C28BD0DB16D4B03B00E974A6 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		C28BD0DC16D4B03B00E974A6 /* common_dialog_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D716D4B03B00E974A6 /* common_dialog_btn_bg@2x.png */; };
+		C28BD0DD16D4B03B00E974A6 /* common_dialog_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */; };
+		C28BD0DE16D4B03B00E974A6 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
+		C28BD0DF16D4B03B00E974A6 /* common_dialog_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -7224,6 +7229,11 @@
 		C28A23CD166C9123007C9EA5 /* FallingCoinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingCoinView.h; sourceTree = "<group>"; };
 		C28A23CE166C9123007C9EA5 /* FallingCoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingCoinView.m; sourceTree = "<group>"; };
 		C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_bg@2x.png"; sourceTree = "<group>"; };
+		C28BD0D716D4B03B00E974A6 /* common_dialog_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_btn_bg@2x.png"; sourceTree = "<group>"; };
+		C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_close_btn@2x.png"; sourceTree = "<group>"; };
+		C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_head_bg@2x.png"; sourceTree = "<group>"; };
+		C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_input_bg@2x.png"; sourceTree = "<group>"; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -11165,6 +11175,18 @@
 				C28A23CE166C9123007C9EA5 /* FallingCoinView.m */,
 			);
 			path = coinView;
+			sourceTree = "<group>";
+		};
+		C28BD0D516D4B03B00E974A6 /* common_dialog */ = {
+			isa = PBXGroup;
+			children = (
+				C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */,
+				C28BD0D716D4B03B00E974A6 /* common_dialog_btn_bg@2x.png */,
+				C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */,
+				C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */,
+				C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */,
+			);
+			path = common_dialog;
 			sourceTree = "<group>";
 		};
 		C2916CBD1606B9C300B0996E /* DiceRobotManager */ = {
@@ -16788,6 +16810,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C28BD0D516D4B03B00E974A6 /* common_dialog */,
 				C24E621716BF6575003132E6 /* common_round_avatar_waiting_user@2x.png */,
 				CABEDD2C16B64CAA00BB9060 /* Player */,
 				C2160C8016AE7B9C008C2A3E /* Common_roomList */,
@@ -20015,6 +20038,11 @@
 				CAB978E516C23EC6008C2901 /* draw_tab_mid_unselected@2x.png in Resources */,
 				CAB978EB16C2456E008C2901 /* topwood@2x.jpg in Resources */,
 				CAB978EF16C2456E008C2901 /* wood_bg@2x.jpg in Resources */,
+				C28BD0DB16D4B03B00E974A6 /* common_dialog_bg@2x.png in Resources */,
+				C28BD0DC16D4B03B00E974A6 /* common_dialog_btn_bg@2x.png in Resources */,
+				C28BD0DD16D4B03B00E974A6 /* common_dialog_close_btn@2x.png in Resources */,
+				C28BD0DE16D4B03B00E974A6 /* common_dialog_head_bg@2x.png in Resources */,
+				C28BD0DF16D4B03B00E974A6 /* common_dialog_input_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
