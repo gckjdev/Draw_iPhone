@@ -25,15 +25,17 @@
 @synthesize itemImage;
 @synthesize splitLine;
 @synthesize feed = _feed;
-//@synthesize superViewController = _superViewController;
 
 
+
+/*
 UIColor * color(int red, int green, int blue)
 {
     return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
     
 }
-//#define COMMENT_REPLY_COLOR color(219,185,155)
+#define COMMENT_REPLY_COLOR color(219,185,155)
+*/
 #define COMMENT_REPLY_COLOR [UIColor lightGrayColor]
 
 + (id)createCell:(id)delegate

@@ -296,4 +296,32 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     
     return rect; //make sure all the values are integer
 }
+
+
++ (CGContextRef)createNewBitmapContext:(CGRect)rect
+{
+    CGFloat width = CGRectGetWidth(rect);
+    CGFloat height = CGRectGetHeight(rect);
+    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(
+                                                 NULL,
+                                                 width,
+                                                 height,
+                                                 8, // 每个通道8位
+                                                 width * 4,
+                                                 colorSpace,
+                                                 kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease(colorSpace);
+    return context;
+
+}
+
++ (CGLayerRef)createCGLayerWithRect:(CGRect)rect
+{
+    CGContextRef context = [DrawUtils createNewBitmapContext:rect];
+    CGLayerRef layer = CGLayerCreateWithContext(context, rect.size, NULL);
+    CGContextRelease(context);
+    return layer;
+}
+
 @end
