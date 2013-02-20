@@ -11,14 +11,18 @@
 
 @interface Offscreen : NSObject
 
-@property(nonatomic, assign, readonly)NSUInteger paintCount;
+@property(nonatomic, assign, readonly)NSUInteger actionCount;
 @property(nonatomic, assign, readonly)NSUInteger capacity;
+
+
++ (id)offscreenWithCapacity:(NSUInteger)capacity;
++ (id)unlimitOffscreen;
 
 - (id)initWithCapacity:(NSUInteger)capacity; //default is 50, 0 for no limit
 - (CGLayerRef)cacheLayer;
-- (void)updatContextWithCGLayer:(CGLayerRef)layer paintCount:(NSInteger)paintCount;
+- (void)updatContextWithCGLayer:(CGLayerRef)layer actionCount:(NSInteger)actionCount;
 - (void)addContextWithCGLayer:(CGLayerRef)layer
-                   paintCount:(NSInteger)paintCount;
+                   actionCount:(NSInteger)actionCount;
 - (BOOL)isFull;
 - (BOOL)noLimit;
 @end

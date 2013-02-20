@@ -60,8 +60,8 @@ UIColor * color(int red, int green, int blue)
 #define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
-#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 13*2 : 13)
-#define COMMENT_CONST_HEIGHT ([DeviceDetection isIPAD] ? 68 : 40)
+#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 23 : 13)
+#define COMMENT_CONST_HEIGHT ([DeviceDetection isIPAD] ? 78 : 40)
 //#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
 //#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
