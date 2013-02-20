@@ -65,11 +65,11 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="156037224">
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="701549157">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -431,7 +431,7 @@
 							<object class="IBUIButton" id="973540934">
 								<reference key="NSNextResponder" ref="853774378"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{457, 525}, {55, 44}}</string>
+								<string key="NSFrame">{{340, 519}, {240, 57}}</string>
 								<reference key="NSSuperview" ref="853774378"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -441,13 +441,10 @@
 								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">管理</string>
 								<reference key="IBUIHighlightedTitleColor" ref="80806260"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
+								<reference key="IBUINormalTitleColor" ref="80806260"/>
 								<reference key="IBUINormalTitleShadowColor" ref="655269349"/>
-								<reference key="IBUIFontDescription" ref="156037224"/>
-								<reference key="IBUIFont" ref="701549157"/>
+								<reference key="IBUIFontDescription" ref="615726183"/>
+								<reference key="IBUIFont" ref="580530187"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{72, 198}, {624, 628}}</string>
@@ -841,7 +838,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">orange_button@2x.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<string key="NS.object.0">{71, 84}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

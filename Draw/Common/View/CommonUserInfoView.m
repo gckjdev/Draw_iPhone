@@ -35,6 +35,11 @@
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
 
+@interface CommonUserInfoView ()
+@property (retain, nonatomic) SuperUserManageAction* superUserManageAction;
+
+@end
+
 @implementation CommonUserInfoView
 
 - (void)dealloc {
@@ -53,6 +58,7 @@
     PPRelease(_avatarView);
     PPRelease(_coinImageView);
     [_superUserManageButton release];
+    PPRelease(_superUserManageAction);
     [super dealloc];
 }
 
@@ -174,6 +180,7 @@
     [self.backgroundImageView setImage:[[GameApp getImageManager] commonDialogBgImage]];
     [self.followUserButton setBackgroundImage:[[GameApp getImageManager] userInfoFollowBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
+    [self.superUserManageButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
     [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [self.chatToUserButton setHidden:!canChat];
@@ -359,10 +366,15 @@
     
 }
 
+- (void)showSuperUserManageOptions
+{
+    self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
+    [_superUserManageAction showInController:_superViewController];
+}
+
 - (IBAction)clickSuperUserManageButton:(id)sender
 {
-    SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
-    [action showInController:_superViewController];
+    [self showSuperUserManageOptions];
 }
 
 @end

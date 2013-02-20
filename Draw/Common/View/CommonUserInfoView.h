@@ -58,4 +58,5 @@
                    canChat:(BOOL)canChat;
 - (void)show;
 - (void)updateInfoFromService;
+- (void)showSuperUserManageOptions;
 @end
