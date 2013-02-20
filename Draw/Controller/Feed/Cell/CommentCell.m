@@ -31,8 +31,10 @@
 UIColor * color(int red, int green, int blue)
 {
     return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
+    
 }
-#define COMMENT_REPLY_COLOR color(219,185,155)
+//#define COMMENT_REPLY_COLOR color(219,185,155)
+#define COMMENT_REPLY_COLOR [UIColor lightGrayColor]
 
 + (id)createCell:(id)delegate
 {
@@ -53,7 +55,7 @@ UIColor * color(int red, int green, int blue)
 }
 
 
-#define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 12*2 : 12)
+#define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
 #define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 13*2 : 13)
@@ -127,7 +129,7 @@ UIColor * color(int red, int green, int blue)
     UIFont *nickFont = [UIFont systemFontOfSize:NICK_FONT_SIZE];
     [self.nickNameLabel setFont:nickFont];
     [self.nickNameLabel setText:author.nickName];
-    [self.nickNameLabel setTextColor:[UIColor grayColor]];
+    [self.nickNameLabel setTextColor:[UIColor darkGrayColor]];
     itemImage.hidden = YES;
     commentLabel.hidden = NO;
     if (feed.feedType == ItemTypeFlower) {
