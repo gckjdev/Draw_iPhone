@@ -127,7 +127,7 @@ UIColor * color(int red, int green, int blue)
     UIFont *nickFont = [UIFont systemFontOfSize:NICK_FONT_SIZE];
     [self.nickNameLabel setFont:nickFont];
     [self.nickNameLabel setText:author.nickName];
-//    [self.nickNameLabel setTextColor:COMMENT_NICK_COLOR];
+    [self.nickNameLabel setTextColor:[UIColor grayColor]];
     itemImage.hidden = YES;
     commentLabel.hidden = NO;
     if (feed.feedType == ItemTypeFlower) {
