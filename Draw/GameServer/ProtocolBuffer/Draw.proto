@@ -143,23 +143,21 @@ message PBHotWordList
 
 message PBWallOpus
 {
-    required PBFeed opus = 1;
-    optional int32  frameIdOnWall = 2[default=0];
+    required int32 idOnWall = 1;        // 在墙上的位置
+    optional PBFeed opus = 2;           // 作品
+    optional PBFrame frame = 3;         // 框
 }
 
-
 message PBWall{
-  required string wallId = 1;                           // 画墙id
+  required string wallId = 1;                       
+  required PBWallType type = 2;                 // 墙的类型,
 
-  required PBWallType wallType = 2;                     // wall type,
+  required string userId = 3;                   // 画墙所有者的id
+  optional string name = 6;                     // 画墙名称
+  
+  optional PBLayout content = 7;                // 画墙内容
 
-  required string userId = 3;                           // 用户id
-  optional string wallName = 6;                         // 画墙名称
-  
-  optional PBLayout layout = 7;                         // 画墙布局
-  repeated PBWallOpus wallOpuses = 8;                   // 画墙上装裱的画
-  
-  optional string musicUrl = 10;                        // 背景音乐
+  optional string musicUrl = 10;                // 背景音乐
 }
 
 message PBRect
@@ -172,38 +170,33 @@ message PBRect
 
 message PBFrame{
   required int32 frameId = 1;
-  optional int32 frameType = 2;
-  optional string thumbImage = 8;
-  optional string image = 9;                    // 相对路径
-  optional string imageUrl = 10;                // URL
-
-  optional PBRect iPhoneRect = 11;              // 相对于布局的frame
-  optional PBRect iPadRect = 12;
+  optional int32 type = 2;                      // 框的类型
   
-  optional PBRect opusIphoneRect = 13;          // 相对于框的frame
-  optional PBRect opusIpadRect = 14;
-  
-  optional int32 idOnWall = 15;                 // 作为布局上的索引
+  optional string imageUrl = 10;                // 框的背景URL
 
-  optional int32 price = 18;
+  optional PBRect opusIphoneRect = 13;          // 作品相对于框的frame
+  optional PBRect opusIpadRect = 14;            // 作品相对于框的frame
+  
+  optional int32 price = 18;                    // 框的价格
 }
 
 message PBFrameList{
   repeated PBFrame frames = 1;
 }
 
+
+
 message PBLayout{
   required int32  layoutId = 1;
-  optional string name = 2;
-  optional int32  displayMode = 3;                  // 平面的，还是立体的，0表示平面，1表示立体。
-  optional int32  coverFlowType = 4[default=0];
-  repeated PBFrame frames = 6;
-  optional string bgImage = 7;
+  optional string name = 2;                         // 布局名称
 
-  optional PBRect iPhoneRect = 11;
-  optional PBRect iPadRect = 12;
+  optional int32  displayMode = 3;                  // 展示方式
+
+  repeated PBWallOpus wallOpuses = 5;               // 作品
   
-  optional int32 price = 18;
+  optional string imageUrl = 7;                     // 背景URL
+  
+  optional int32 price = 18;                        // 价格
 }
 
 message PBLayoutList{

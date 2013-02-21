@@ -30,22 +30,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                                                               userId:[[UserManager defaultManager] userId]
                                                                 data:wall.data
                                                            imageData:[bgImage data]];
-
         PBWall *pbWall;
-        @try {
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            pbWall = response.wall;
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
-        }
-        @finally {
-            
+        NSInteger resultCode = output.resultCode;
+
+        if (resultCode == 0) {
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                pbWall = response.wall;
+                resultCode = response.resultCode;
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+            }
+            @finally {
+                
+            }
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didCreateWall:wall:)]){
-                [viewController didCreateWall:output.resultCode wall:pbWall];
+                [viewController didCreateWall:resultCode wall:pbWall];
             }
         });
     });
@@ -59,24 +63,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         CommonNetworkOutput* output = [GameNetworkRequest updateWall:TRAFFIC_SERVER_URL
                                                                appId:[ConfigManager appId]
                                                               userId:[[UserManager defaultManager] userId]
+                                                              wallId:wall.wallId
                                                                 data:wall.data
                                                            imageData:[bgImage data]];
         
         PBWall *pbWall;
-        @try {
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            pbWall = response.wall;
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
-        }
-        @finally {
-            
+        NSInteger resultCode = output.resultCode;
+
+        if (resultCode == 0) {
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                pbWall = response.wall;
+                resultCode = response.resultCode;
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+            }
+            @finally {
+                
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([viewController respondsToSelector:@selector(didCreateWall:wall:)]){
-                [viewController didCreateWall:output.resultCode wall:pbWall];
+            if ([viewController respondsToSelector:@selector(didUpdateWall:wall:)]){
+                [viewController didUpdateWall:resultCode wall:pbWall];
             }
         });
     });
@@ -93,20 +103,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                                                           wallType:wallType];
         
         NSArray *wallList;
-        @try {
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            wallList = response.wallListList;
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
-        }
-        @finally {
-            
+        NSInteger resultCode = output.resultCode;
+
+        if (resultCode == 0) {
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                wallList = response.wallListList;
+                resultCode = response.resultCode;
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+            }
+            @finally {
+                
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didGetWallList:wallList:)]){
-                [viewController didGetWallList:output.resultCode wallList:wallList];
+                [viewController didGetWallList:resultCode wallList:wallList];
             }
         });
     });
@@ -122,21 +137,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                                                            userId:userId
                                                            wallId:wallId];
         
-        PBWall *wall;
-        @try {
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            wall = response.wall;
-        }
-        @catch (NSException *exception) {
-            PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
-        }
-        @finally {
-            
+        PBWall *wall = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == 0) {
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                wall = response.wall;
+                resultCode = response.resultCode;
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+            }
+            @finally {
+                
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([viewController respondsToSelector:@selector(didGetWall:wall:)]){
-                [viewController didGetWall:output.resultCode wall:wall];
+                [viewController didGetWall:resultCode wall:wall];
             }
         });
     });

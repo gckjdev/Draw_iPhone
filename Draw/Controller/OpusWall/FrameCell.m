@@ -8,6 +8,8 @@
 
 #import "FrameCell.h"
 #import "FrameManager.h"
+#import "UIButton+WebCache.h"
+#import "UIViewUtils.h"
 
 #define FRAME_BUTTON_TAG_OFFSET 200
 
@@ -32,19 +34,18 @@
 
 - (void)setCellData:(NSArray *)frames
 {
+    [self removeAllSubviews];
+    
     self.frames = frames;
     
     for (int index=0; index<[frames count] && index<MAX_FRAMES_EACH_CELL; index++)
     {
         PBFrame *frame = [frames objectAtIndex:index];
-        PPDebug(@"%@", frame.thumbImage);
-        UIImage *image = [UIImage imageWithContentsOfFile:frame.thumbImage];
-        [[self frameButtonOfIndex:index] setImage:image forState:UIControlStateNormal];
+        PPDebug(@"%@", frame.imageUrl);
+        [[self frameButtonOfIndex:index] setImageWithURL:[NSURL URLWithString:frame.imageUrl]];
         [[self frameButtonOfIndex:index] addTarget:self action:@selector(clickFrame:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
 }
-
 
 - (UIButton *)frameButtonOfIndex:(int)index
 {

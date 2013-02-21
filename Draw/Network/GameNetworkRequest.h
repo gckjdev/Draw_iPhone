@@ -486,6 +486,7 @@
 + (CommonNetworkOutput*)updateWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
+                            wallId:(NSString *)wallId
                               data:(NSData *)data
                          imageData:(NSData *)imageData;
 
