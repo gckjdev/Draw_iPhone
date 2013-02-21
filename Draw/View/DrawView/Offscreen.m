@@ -22,6 +22,15 @@
 
 @implementation Offscreen
 
++ (id)offscreenWithCapacity:(NSUInteger)capacity
+{
+    return [[[Offscreen alloc] initWithCapacity:capacity] autorelease];
+}
+
++ (id)unlimitOffscreen
+{
+    return [[[Offscreen alloc] initWithCapacity:0] autorelease];
+}
 - (id)initWithCapacity:(NSUInteger)capacity
 {
     self = [super init];
@@ -30,7 +39,7 @@
         cacheContext = CGLayerGetContext(cacheLayer);
         CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
         CGContextSetLineCap(cacheContext, kCGLineCapRound);
-        _paintCount = 0;
+        _actionCount = 0;
         _capacity = capacity;
     }
     return self;    
@@ -54,19 +63,19 @@
 
 
 - (void)updatContextWithCGLayer:(CGLayerRef)layer
-                     paintCount:(NSInteger)paintCount
+                     actionCount:(NSInteger)actionCount
 {
-    PPDebug(@"<updatContextWithCGLayer> paintCount = %d", paintCount);
-    _paintCount = paintCount;
+    PPDebug(@"<updatContextWithCGLayer> actionCount = %d", actionCount);
+    _actionCount = actionCount;
     CGContextClearRect(cacheContext, DRAW_VIEW_RECT);
     CGContextDrawLayerAtPoint(cacheContext, CGPointZero, layer);
 }
 
 - (void)addContextWithCGLayer:(CGLayerRef)layer
-                   paintCount:(NSInteger)paintCount
+                   actionCount:(NSInteger)actionCount
 {
-    PPDebug(@"<addContextWithCGLayer> paintCount = %d", paintCount);
-    _paintCount += paintCount;
+    PPDebug(@"<addContextWithCGLayer> actionCount = %d", actionCount);
+    _actionCount += actionCount;
     CGContextDrawLayerAtPoint(cacheContext, CGPointZero, layer);
 }
 
@@ -77,7 +86,7 @@
 
 - (BOOL)isFull
 {
-    return ![self noLimit] && (_paintCount >= _capacity);
+    return ![self noLimit] && (_actionCount >= _capacity);
 }
 
 
