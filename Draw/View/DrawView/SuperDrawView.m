@@ -21,6 +21,12 @@
 
 
 
+- (void)cleanAllActions
+{
+    [_drawActionList removeAllObjects];
+    [osManager clean];
+}
+
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);

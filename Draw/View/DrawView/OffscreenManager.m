@@ -19,6 +19,8 @@
 
 @end
 
+#define MAX_CAN_UNDO_COUNT 200
+
 #define DEFAULT_LEVEL 4
 #define DEFAULT_UNDO_STEP 50
 
@@ -245,6 +247,9 @@
 
 - (BOOL)canUndo
 {
+    if ([self actionCount] <= MAX_CAN_UNDO_COUNT) {
+        return YES;
+    }
     for (NSInteger i = 0; i < _level - 1; ++ i) {
         Offscreen *os = [_offscreenList objectAtIndex:i];
         if ([os actionCount] != 0) {
