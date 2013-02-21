@@ -60,9 +60,8 @@
     _playingPointIndex = 0;
     self.tempPaint = nil;
     _currentAction = nil;
-    [self clearContext:cacheContext];
-    [self clearContext:showContext];
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    [osManager clean];
+
     pen.hidden = YES;
 }
 
@@ -147,8 +146,8 @@
     [self resetView];
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
-        [self drawAction1:action inContext:showContext];
-        
+//        [self drawAction1:action inContext:showContext];
+        [osManager addDrawAction:action];
     }
     [self setNeedsDisplay];
 }
@@ -188,8 +187,8 @@
         }
     }else{
         self.status = Stop;
-        CGRect rect = [self drawAction1:action inContext:showContext];
-        [self setNeedsDisplayInRect:rect showCacheLayer:NO];
+        CGRect rect = [osManager addDrawAction:action];
+        [self setNeedsDisplayInRect:rect];
     }
 }
 
@@ -213,6 +212,8 @@
         pen.penType = 0;
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
+        
+        osManager = [[OffscreenManager showViewOffscreenManager] retain];;
     }
     return self;
 }
@@ -295,7 +296,6 @@
         _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
     }
     
-//    PPDebug(@"<updateNextPlayIndex> action=%d, index=%d ", _playingActionIndex, _playingPointIndex);
 }
 
 - (void)updateTempPaint
@@ -342,22 +342,22 @@
     [self updateTempPaint];
     if (self.status == Playing) {
         if (self.tempPaint) {
-            CGRect drawBox; // = [DrawUtils rectForPath:_tempPaint.path withWidth:_tempPaint.width bounds:self.bounds];
             if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
+
+                [self drawPaint:self.tempPaint show:YES];
                 self.tempPaint = nil;
-                drawBox = [self drawAction1:_currentAction inContext:showContext];
-                [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
                 [self callDidDrawPaintDelegate];
                 
-            }else
-            {
-                [self setStrokeColor:self.tempPaint.color lineWidth:self.tempPaint.width inContext:cacheContext];
-                drawBox = [self strokePaint1:self.tempPaint inContext:cacheContext clear:YES];
-                [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
+            }else if([self.tempPaint pointCount] == 1){
+                [self drawDrawAction:_currentAction show:NO];
+                [osManager setStrokeColor:self.tempPaint.color width:self.tempPaint.width];
+                [osManager updateLastPaint:self.tempPaint];
+                [self setNeedsDisplay];
+            }else{
+                [self drawPaint:self.tempPaint show:YES];
             }
         }else{
-            CGRect drawBox = [self drawAction1:_currentAction inContext:showContext];
-            [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
+            [self drawDrawAction:_currentAction show:YES];
         }
     }
     if(!_showPenHidden){

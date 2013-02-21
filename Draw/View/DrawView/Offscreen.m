@@ -73,7 +73,7 @@
 - (void)updateContextWithCGLayer:(CGLayerRef)layer
                      actionCount:(NSInteger)actionCount
 {
-    PPDebug(@"<updatContextWithCGLayer> actionCount = %d", actionCount);
+//    PPDebug(@"<updatContextWithCGLayer> actionCount = %d", actionCount);
     _actionCount = actionCount;
     CGContextClearRect(cacheContext, _rect);
     CGContextDrawLayerAtPoint(cacheContext, CGPointZero, layer);
@@ -82,7 +82,7 @@
 - (void)addContextWithCGLayer:(CGLayerRef)layer
                    actionCount:(NSInteger)actionCount
 {
-    PPDebug(@"<addContextWithCGLayer> actionCount = %d", actionCount);
+//    PPDebug(@"<addContextWithCGLayer> actionCount = %d", actionCount);
     _actionCount += actionCount;
     CGContextDrawLayerAtPoint(cacheContext, CGPointZero, layer);
 }
@@ -114,9 +114,11 @@
         CGContextClearRect(context, _rect);
         return _rect;
     }else if([action isChangeBackAction]){
+        CGContextSaveGState(context);
         CGColorRef color = action.paint.color.CGColor;
         CGContextSetFillColorWithColor(context, color);
         CGContextFillRect(context, _rect);
+        CGContextRestoreGState(context);
         return _rect;
     }else if([action isDrawAction]){
         [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
@@ -127,14 +129,12 @@
     return _rect;
 }
 
-
 - (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear
 {
     if (clear) {
-        _actionCount = 1;
-    }else{
-        _actionCount ++;
+        [self clear];
     }
+    _actionCount ++;
     return [self strokePaint:paint inContext:cacheContext clear:clear];
 }
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
@@ -143,13 +143,24 @@
 }
 - (CGRect)drawAction:(DrawAction *)action clear:(BOOL)clear
 {
+    if (clear) {
+        [self clear];
+    }
     _actionCount ++;
     return [self drawAction:action inContext:cacheContext];
+}
+
+- (void)showInContext:(CGContextRef)context
+{
+    if ([self hasContentToShow]) {
+        CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayer);
+    }
 }
 
 - (void)clear
 {
     _actionCount = 0;
+    _hasImage = NO;
     CGContextClearRect(cacheContext, _rect);
 }
 
@@ -163,6 +174,24 @@
     return ![self noLimit] && (_actionCount >= _capacity);
 }
 
+- (BOOL)hasContentToShow
+{
+    return _actionCount > 0 || _hasImage;
+}
 
+#define CTMContext(context,rect) \
+CGContextScaleCTM(context, 1.0, -1.0);\
+CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+
+
+- (void)showImage:(UIImage *)image
+{
+    if (image) {
+        [self clear];
+        _hasImage = YES;
+        CTMContext(cacheContext, self.rect);
+        CGContextDrawImage(cacheContext, self.rect, image.CGImage);
+    }
+}
 
 @end

@@ -21,80 +21,23 @@
 
 
 
-//CGPoint midPoint(CGPoint p1, CGPoint p2)
-//{
-//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
-//}
-
-
-
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     _currentAction = nil;
-    CGLayerRelease(cacheLayerRef), cacheLayerRef = NULL;
-    CGLayerRelease(showLayerRef), showLayerRef = NULL;
+    PPRelease(osManager);
     [super dealloc];
 }
 
-/*
-- (CGContextRef)createNewBitmapContext
-{
-    CGFloat width = CGRectGetWidth(self.bounds);
-    CGFloat height = CGRectGetHeight(self.bounds);
-    CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();    
-    CGContextRef context = CGBitmapContextCreate(
-                                                 NULL,
-                                                 width,
-                                                 height,
-                                                 8, // 每个通道8位
-                                                 width * 4,
-                                                 colorSpace,
-                                                 kCGImageAlphaPremultipliedLast);
-    CGColorSpaceRelease(colorSpace);
-    return context;
-}
-*/
 - (CGLayerRef)createLayer
 {
-    /*
-    CGContextRef context = [self createNewBitmapContext];
-    CGLayerRef layer = CGLayerCreateWithContext(context, self.bounds.size, NULL);
-    CGContextRelease(context);
-    return layer;
-     */
     return [DrawUtils createCGLayerWithRect:self.bounds];
 }
-
-- (void)setupCGLayer
-{
-    cacheLayerRef = [self createLayer];
-    showLayerRef = [self createLayer];
-    cacheContext = CGLayerGetContext(cacheLayerRef);
-    showContext = CGLayerGetContext(showLayerRef);
-    
-    
-//    CGContextSetFillColorWithColor(cacheContext, [UIColor redColor].CGColor);
-//    CGContextSetFillColorWithColor(showContext, [UIColor greenColor].CGColor);
-//    [self clearContext:cacheContext];
-//    [self clearContext:showContext];
-    
-    CGContextSetLineJoin(showContext, kCGLineJoinRound);
-    CGContextSetLineCap(showContext, kCGLineCapRound);
-    // rem by Benson, use default flatness
-//    CGContextSetFlatness(showContext, 0.6f);
-
-    CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
-    CGContextSetLineCap(cacheContext, kCGLineCapRound);
-//    CGContextSetFlatness(cacheContext, 0.6f);
-}
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupCGLayer];
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -112,111 +55,38 @@
 
 - (void)show
 {
-    CGContextClearRect(showContext, self.bounds);
-    for (DrawAction *action in self.drawActionList) {
-        [self drawAction1:action inContext:showContext];
-    }
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    [osManager updateWithDrawActionList:self.drawActionList];
+    [self setNeedsDisplay];
+ 
 }
 
 
-
-- (void)cleanAllActions
+- (void)drawPaint:(Paint *)paint show:(BOOL)show
 {
-    _currentAction = nil;
-    [self.drawActionList removeAllObjects];
-    CGContextClearRect(showContext, self.bounds);
-//    showCacheLayer = NO;
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    CGRect rect = [osManager updateLastPaint:paint];
+    if (show) {
+        [self setNeedsDisplayInRect:rect];
+    }
+}
+- (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
+{
+    CGRect rect = [osManager addDrawAction:drawAction];
+    if (show) {
+        [self setNeedsDisplayInRect:rect];
+    }
 }
 
 - (void)addDrawAction:(DrawAction *)drawAction
 {
     [self.drawActionList addObject:drawAction];
 }
-
-- (CGRect)drawAction1:(DrawAction *)action inContext:(CGContextRef)context
-{
-    if ([action isCleanAction]) {
-        CGContextClearRect(context, self.bounds);
-        return self.bounds;
-    }else if([action isChangeBackAction]){
-        CGColorRef color = action.paint.color.CGColor;
-        CGContextSetFillColorWithColor(context, color);
-        CGContextFillRect(context, self.bounds);
-        return self.bounds;
-    }else if([action isDrawAction]){
-        [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
-        CGRect rect = [self strokePaint1:action.paint inContext:context clear:NO];
-        return rect;
-    }
-    
-    return self.bounds;
-}
-
-- (void)clearContext:(CGContextRef)context
-{
-    CGContextClearRect(context, self.bounds);
-}
-
-/*
-- (void)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
-{
-    if (clear) {
-        CGRect drawBox = self.bounds;
-        CGContextClearRect(context, drawBox);
-    }
-    CGContextAddPath(context, paint.path);
-    CGContextStrokePath(context);
-}
-*/
-
-
-- (CGRect)strokePaint1:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
-{
-    if (clear) {
-        CGRect drawBox = self.bounds;
-        CGContextClearRect(context, drawBox);
-    }
-    CGPathRef path = paint.path;
-    CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width bounds:self.bounds];
-    CGContextAddPath(context, path);
-    CGContextStrokePath(context);
-    
-    return rect;
-}
-
-
-- (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width inContext:(CGContextRef)context
-{
-    CGContextSetLineWidth(context, width);
-    CGContextSetStrokeColorWithColor(context, color.CGColor);
-}
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextDrawLayerAtPoint(context, CGPointZero, showLayerRef);
-    if (showCacheLayer) {
-        CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayerRef);
-    }
-    
+    [osManager showAllLayersInContext:context];
     [super drawRect:rect];
 }
 
-
-//- (void)setNeedsDisplayShowCacheLayer:(BOOL)show
-//{
-//    showCacheLayer = show;
-//    [self setNeedsDisplay];
-//}
-
-
-- (void)setNeedsDisplayInRect:(CGRect)rect showCacheLayer:(BOOL)show
-{
-    showCacheLayer = show;
-    [self setNeedsDisplayInRect:rect];
-}
 
 #define CTMContext(context,rect) \
 CGContextScaleCTM(context, 1.0, -1.0);\
@@ -228,7 +98,7 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
     CTMContext(context, self.bounds);
-    CGContextDrawLayerInRect(context, self.bounds, showLayerRef);
+    [osManager showAllLayersInContext:context];
     return context;
 }
 
@@ -254,13 +124,9 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     if (image) {
         [self setBackgroundColor:[UIColor clearColor]];
         PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
-        if (showContext == NULL) {
-            [self setupCGLayer];
-        }
-//        CGContextClearRect(showContext, self.bounds);
-        CTMContext(showContext, self.bounds);
-        CGContextDrawImage(showContext, self.bounds, image.CGImage);
-        [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+        [osManager clean];
+        Offscreen *os = [osManager enteryScreen];
+        [os showImage:image];
     }
 }
 @end
