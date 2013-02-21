@@ -21,7 +21,7 @@ NSObject<GameAppProtocol>* getGameApp()
     else if ([bundleId isEqualToString:DRAW_APP_PRO_BUNDLE_ID]){
         currentApp =  [[DrawGameProApp alloc] init];
     }
-    else if ([bundleId isEqualToString:DICE_APP_BUNDLE_ID]){
+    else if ([bundleId isEqualToString:DICE_APP_BUNDLE_ID] || [bundleId isEqualToString:OLD_DICE_APP_BUNDLE_ID]){
         currentApp = [[DiceGameApp alloc] init];
     }   
     else if ([bundleId isEqualToString:ZJH_APP_BUNDLE_ID]){

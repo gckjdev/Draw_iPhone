@@ -46,14 +46,6 @@ typedef enum{
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
 
-//- (DrawColor *)bgColor;
-
-//@property(nonatomic, assign, getter = isRevocationSupported) BOOL revocationSupported;
-
-//- (void)addCleanAction;
-//- (DrawAction *)addChangeBackAction:(DrawColor *)color;
-
-
 
 - (void)clearScreen;
 - (void)changeBackWithColor:(DrawColor *)color;
@@ -64,6 +56,6 @@ typedef enum{
 - (void)revoke:(dispatch_block_t)finishBlock; //undo
 - (BOOL)canRedo;
 - (void)redo;
-
 - (void)showDraft:(MyPaint *)draft;
+
 @end
