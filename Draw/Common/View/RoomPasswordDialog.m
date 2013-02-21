@@ -148,8 +148,8 @@
     self.roomNameLabel.text = NSLS(@"kRoomNameLabel");
     self.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
     
-    [self.roomNameLabel setTextColor:[GameApp createRoomDialogRoomNameColor]];
-    [self.passwordLabel setTextColor:[GameApp createRoomDialogRoomPasswordColor]];
+//    [self.roomNameLabel setTextColor:[GameApp createRoomDialogRoomNameColor]];
+//    [self.passwordLabel setTextColor:[GameApp createRoomDialogRoomPasswordColor]];
 }
 
 - (void)updateTextFields

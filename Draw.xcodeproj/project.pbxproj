@@ -406,6 +406,10 @@
 		C21C322116B8CA68006B5D14 /* tab_left_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2160C8516AE7B9C008C2A3E /* tab_left_unselect@2x.png */; };
 		C21C322216B8CA68006B5D14 /* tab_right_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2160C8616AE7B9C008C2A3E /* tab_right_selected@2x.png */; };
 		C21C322316B8CA68006B5D14 /* tab_right_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2160C8716AE7B9C008C2A3E /* tab_right_unselect@2x.png */; };
+		C21D414E16D5B401006A0AA3 /* CustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C21D414D16D5B401006A0AA3 /* CustomUITextField.m */; };
+		C21D414F16D5B401006A0AA3 /* CustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C21D414D16D5B401006A0AA3 /* CustomUITextField.m */; };
+		C21D415016D5B401006A0AA3 /* CustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C21D414D16D5B401006A0AA3 /* CustomUITextField.m */; };
+		C21D415116D5B401006A0AA3 /* CustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C21D414D16D5B401006A0AA3 /* CustomUITextField.m */; };
 		C223232D165C659E00D7ECE4 /* ZJHSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */; };
 		C223396A164E3CA100D2C123 /* AppleOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */; };
 		C223396B164E3CA100D2C123 /* CMOpenALSound.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233964164E3CA100D2C123 /* CMOpenALSound.m */; };
@@ -7138,6 +7142,8 @@
 		C2160C8516AE7B9C008C2A3E /* tab_left_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_left_unselect@2x.png"; sourceTree = "<group>"; };
 		C2160C8616AE7B9C008C2A3E /* tab_right_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_right_selected@2x.png"; sourceTree = "<group>"; };
 		C2160C8716AE7B9C008C2A3E /* tab_right_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_right_unselect@2x.png"; sourceTree = "<group>"; };
+		C21D414C16D5B401006A0AA3 /* CustomUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUITextField.h; sourceTree = "<group>"; };
+		C21D414D16D5B401006A0AA3 /* CustomUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUITextField.m; sourceTree = "<group>"; };
 		C223232C165C659E00D7ECE4 /* ZJHSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHSettingView~ipad.xib"; sourceTree = "<group>"; };
 		C2233961164E3CA100D2C123 /* AppleOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleOpenALSupport.c; sourceTree = "<group>"; };
 		C2233962164E3CA100D2C123 /* AppleOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleOpenALSupport.h; sourceTree = "<group>"; };
@@ -11046,6 +11052,15 @@
 			path = Common_roomList;
 			sourceTree = "<group>";
 		};
+		C21D414B16D5B3E5006A0AA3 /* CustomUITextField */ = {
+			isa = PBXGroup;
+			children = (
+				C21D414C16D5B401006A0AA3 /* CustomUITextField.h */,
+				C21D414D16D5B401006A0AA3 /* CustomUITextField.m */,
+			);
+			path = CustomUITextField;
+			sourceTree = "<group>";
+		};
 		C2233960164E3CA100D2C123 /* SoundEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -12175,6 +12190,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				C21D414B16D5B3E5006A0AA3 /* CustomUITextField */,
 				C2EE145B1665FE4F00ADBE2E /* MDCShineEffect */,
 				A45AA836162FC0140030D668 /* UIPlaceholderTextView */,
 				A41A665615C921DA00066E9B /* UISlideImageView */,
@@ -21578,6 +21594,7 @@
 				CA32FA3716D378BD00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4616D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135516D4ABF30004F225 /* OffscreenManager.m in Sources */,
+				C21D415016D5B401006A0AA3 /* CustomUITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22277,6 +22294,7 @@
 				CA32FA3816D378BE00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4716D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135616D4ABF30004F225 /* OffscreenManager.m in Sources */,
+				C21D415116D5B401006A0AA3 /* CustomUITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22976,6 +22994,7 @@
 				C260DDDF16D1D2CD0008A243 /* SuperUserManageAction.m in Sources */,
 				CA32FA4416D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135316D4ABF30004F225 /* OffscreenManager.m in Sources */,
+				C21D414E16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23683,6 +23702,7 @@
 				CA32FA3116D378BC00E8C1C1 /* SuperUserManageAction.m in Sources */,
 				CA32FA4516D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135416D4ABF30004F225 /* OffscreenManager.m in Sources */,
+				C21D414F16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
