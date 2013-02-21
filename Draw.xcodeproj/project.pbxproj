@@ -4200,7 +4200,6 @@
 		CA7D4502168DBDB1009F43F7 /* raise_bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4429168DBDB1009F43F7 /* raise_bet.mp3 */; };
 		CA7D4503168DBDB1009F43F7 /* raise_bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D442A168DBDB1009F43F7 /* raise_bet1_F.mp3 */; };
 		CA7D4504168DBDB1009F43F7 /* raise_bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D442B168DBDB1009F43F7 /* raise_bet1_M.mp3 */; };
-		CA7D480F168DBDCD009F43F7 /* font.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4507168DBDCB009F43F7 /* font.zip */; };
 		CA7D481F168DBDCD009F43F7 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451A168DBDCB009F43F7 /* help.zip */; };
 		CA7D4820168DBDCD009F43F7 /* dice_ag_1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451E168DBDCB009F43F7 /* dice_ag_1.png */; };
 		CA7D4821168DBDCD009F43F7 /* dice_ag_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451F168DBDCB009F43F7 /* dice_ag_2.png */; };
@@ -9613,12 +9612,12 @@
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
-		CAE9A9F416D6316A008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/DiceDefault-568h@2x.jpg"; sourceTree = "<group>"; };
-		CAE9A9F716D63172008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/DiceDefault.jpg; sourceTree = "<group>"; };
-		CAE9A9F916D63176008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.jpg"; sourceTree = "<group>"; };
-		CAE9A9FA16D63188008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.jpg"; sourceTree = "<group>"; };
-		CAE9A9FC16D6318D008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/DiceDefault~ipad.jpg"; sourceTree = "<group>"; };
-		CAE9A9FE16D63190008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.jpg"; sourceTree = "<group>"; };
+		CAE9A9F416D6316A008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/DiceDefault-568h@2x.jpg"; sourceTree = "<group>"; };
+		CAE9A9F716D63172008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = en.lproj/DiceDefault.jpg; sourceTree = "<group>"; };
+		CAE9A9F916D63176008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.jpg"; sourceTree = "<group>"; };
+		CAE9A9FA16D63188008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.jpg"; sourceTree = "<group>"; };
+		CAE9A9FC16D6318D008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = en; path = "en.lproj/DiceDefault~ipad.jpg"; sourceTree = "<group>"; };
+		CAE9A9FE16D63190008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.jpg"; sourceTree = "<group>"; };
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_bg@2x.png"; sourceTree = "<group>"; };
@@ -17642,7 +17641,6 @@
 				CA16BEE41682FAD900F81B47 /* BulletinView.xib in Resources */,
 				CA16BEE51682FAD900F81B47 /* BulletinView~ipad.xib in Resources */,
 				CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */,
-				CA7D480F168DBDCD009F43F7 /* font.zip in Resources */,
 				CA7D481F168DBDCD009F43F7 /* help.zip in Resources */,
 				CA7D4820168DBDCD009F43F7 /* dice_ag_1.png in Resources */,
 				CA7D4821168DBDCD009F43F7 /* dice_ag_2.png in Resources */,
