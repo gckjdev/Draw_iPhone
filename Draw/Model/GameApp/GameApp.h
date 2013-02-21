@@ -14,14 +14,16 @@
 // Bundle ID
 #define DRAW_APP_BUNDLE_ID      @"com.orange.draw"
 #define DRAW_APP_PRO_BUNDLE_ID  @"com.orange.drawpro"
-#define DICE_APP_BUNDLE_ID      @"com.orange.dice"
+#define DICE_APP_BUNDLE_ID      @"com.orange.newdice"
+#define OLD_DICE_APP_BUNDLE_ID  @"com.orange.dice"
 #define ZJH_APP_BUNDLE_ID       @"com.orange.zhajinhua"
 
 // App ID
 #define DRAW_APP_ID             @"513819630"
 #define DRAW_PRO_APP_ID         @"541354772"
-#define DICE_PRO_APP_ID         @"557072001"
-#define DICE_APP_ID             @"557072001"
+#define DICE_PRO_APP_ID         @"606131564"
+#define DICE_APP_ID             @"606131564"
+#define OLD_DICE_APP_ID         @"557072001"
 #define ZJH_APP_ID              @"585525675"
 #define CANDY_APP_ID            @"test"
 
