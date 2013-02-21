@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1138.47</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -41,7 +41,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{132, 43}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="509874865"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -56,7 +55,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{14, 9}, {105, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="550890461">
 							<int key="NSColorSpace">3</int>
@@ -91,7 +89,6 @@
 				</array>
 				<string key="NSFrameSize">{132, 43}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="134690070"/>
 				<reference key="IBUIBackgroundColor" ref="550890461"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -215,6 +212,6 @@
 			<string key="NS.key.0">zjh_room_title_bg@2x.png</string>
 			<string key="NS.object.0">{265, 87}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
