@@ -167,6 +167,9 @@
             startIndex = 0;
         }else{
             startIndex = endIndex - os.capacity;
+            if (startIndex < 0) {
+                startIndex = 0;
+            }
         }
         [self updateOS:os WithDrawActionList:drawActionList start:startIndex end:endIndex];
         endIndex = startIndex;
