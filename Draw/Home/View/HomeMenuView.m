@@ -221,7 +221,7 @@
             return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceSuperHighRoom:
 //            return [shareImageManager superHighRoomMenuImage];
-            return [imageManager zjhHomeVSSite];
+            return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceFreeCoins:
             //            return [shareImageManager diceShopImage];
             return [imageManager drawFreeCoins];
@@ -431,8 +431,8 @@ int *getDiceMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDiceStart,
         HomeMenuTypeDiceHappyRoom,
         HomeMenuTypeDiceSuperHighRoom,
-        HomeMenuTypeDiceShop,
         HomeMenuTypeDiceHelp,
+        HomeMenuTypeDiceShop,
         HomeMenuTypeEnd,
     };
     return list;

@@ -1158,9 +1158,9 @@
 "kDiceNet" = "凈骰";
 "kDiceWai" = "圍骰";
 
-"kDiceMenuHappyRoom" = "歡樂場";
+"kDiceMenuHappyRoom" = "普通場";
 "kDiceMenuHighRoom" = "勁爆場";
-"kDiceMenuSuperHighRoom" = "超爆場";
+"kDiceMenuSuperHighRoom" = "富豪場";
 
 "kDiceHappyRoom" = "歡樂場%d號房";
 "kDiceHighRoom" = "勁爆場%d號房";

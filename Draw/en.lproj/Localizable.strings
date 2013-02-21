@@ -1137,9 +1137,9 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "HAPPY";
+"kDiceMenuHappyRoom" = "Poor";
 "kDiceMenuHighRoom" = "CARNIVAL";
-"kDiceMenuSuperHighRoom" = "CRAZY";
+"kDiceMenuSuperHighRoom" = "Rich";
 
 "kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
