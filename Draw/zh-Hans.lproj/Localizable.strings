@@ -1165,9 +1165,9 @@
 "kDiceWai" = "围骰";
 
 
-"kDiceMenuHappyRoom" = "欢乐场";
+"kDiceMenuHappyRoom" = "普通场";
 "kDiceMenuHighRoom" = "劲爆场";
-"kDiceMenuSuperHighRoom" = "超爆场";
+"kDiceMenuSuperHighRoom" = "富豪场";
 
 "kDiceHappyRoom" = "欢乐场%d号房";
 "kDiceHighRoom" = "劲爆场%d号房";
