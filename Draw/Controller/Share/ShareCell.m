@@ -49,11 +49,11 @@
     float seperator;
     
     if ([DeviceDetection isIPAD]) {
-        imageButtonHeight = 170;
+        imageButtonHeight = 189.4;
         imageButtonWidth = 150;
         seperator = 33.6;
     } else {
-        imageButtonHeight = 85;
+        imageButtonHeight = 94.7;
         imageButtonWidth = 75;
         seperator = 4;
     }
@@ -66,6 +66,11 @@
         [button addTarget:cell action:@selector(clickPaintButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
+}
+
++ (float)getCellHeight
+{
+    return [DeviceDetection isIPAD]?193.4:98.7;
 }
 
 + (NSString*)getIdentifier

@@ -454,11 +454,7 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([DeviceDetection isIPAD]) {
-        return 180;
-    } else {
-        return 90;
-    }
+    return [ShareCell getCellHeight];
         
 }
 
