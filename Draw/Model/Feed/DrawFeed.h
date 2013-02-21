@@ -92,6 +92,6 @@ typedef enum{
 - (BOOL)canSendFlower;
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
-
 - (BOOL)hasDrawActions;
+
 @end

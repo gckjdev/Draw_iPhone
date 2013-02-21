@@ -120,8 +120,7 @@
     [self.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
     [self.anotherPasswordTextField setPlaceholder:NSLS(@"kNewPasswordHolder")];
     [self.targetTextField setPlaceholder:NSLS(@"kConfirmPasswordHolder")];
-    
-    [self.anotherPasswordTextField setPlaceholderColor:[UIColor redColor]];
+
 }
 
 - (void)updateTextFields

@@ -11,6 +11,7 @@
 #import "AnimationManager.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
+#import "CustomUITextField.h"
 
 
 @implementation RoomPasswordDialog
@@ -150,6 +151,7 @@
     
 //    [self.roomNameLabel setTextColor:[GameApp createRoomDialogRoomNameColor]];
 //    [self.passwordLabel setTextColor:[GameApp createRoomDialogRoomPasswordColor]];
+
 }
 
 - (void)updateTextFields

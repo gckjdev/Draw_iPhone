@@ -75,7 +75,19 @@
     
     PBFrame *frame4 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:3];
     
-    NSArray *frames = [NSArray arrayWithObjects:frame1, frame2, frame3, frame4, nil];
+    PBFrame *frame5 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:4];
+    
+    PBFrame *frame6 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:5];
+    
+    PBFrame *frame7 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:6];
+    
+    PBFrame *frame8 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:7];
+
+    
+    PBFrame *frame9 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:8];
+
+    
+    NSArray *frames = [NSArray arrayWithObjects:frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, nil];
     
     PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:1 coverFlowType:0 frames:frames bgImage:@"default_layout.png" iphoneRect:[self pbRectWithX:0 y:0 width:320 height:480] ipadRect:[self pbRectWithX:2 y:2 width:768 height:1024] price:1000];
     

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonInfoView.h"
+#import "CustomUITextField.h"
 
 #define INPUT_DIALOG_THEME_DRAW @"InputDialog"
 #define INPUT_DIALOG_THEME_DICE @"DiceInputDialog"
@@ -22,6 +23,7 @@ typedef enum {
 typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 
 @class InputDialog;
+@class CustomUITextField;
 @protocol InputDialogDelegate <NSObject>
 
 @optional
@@ -47,7 +49,7 @@ typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UIButton *titleLabel;
-@property (retain, nonatomic) IBOutlet UITextField *targetTextField;
+@property (retain, nonatomic) IBOutlet CustomUITextField *targetTextField;
 @property (assign, nonatomic) id<InputDialogDelegate> delegate;
 
 - (IBAction)clickCancelButton:(id)sender;

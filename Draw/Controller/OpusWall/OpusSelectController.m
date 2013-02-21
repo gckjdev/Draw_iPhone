@@ -15,6 +15,7 @@
 #import "OpusWallController.h"
 #import "ProtocolUtil.h"
 #import "UIViewUtils.h"
+#import "UIImageView+WebCache.h"
 
 #define EACH_FECTH_COUNT 20
 
@@ -44,8 +45,8 @@
     
     self.opuses = [NSMutableArray array];
     
-    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
-//    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+//    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
 
     
     [ProtocolUtil createFramesTestData];
@@ -94,7 +95,7 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int count = ([dataList count] / EACH_CELL_OPUSES_COUNT) + ([dataList count] % EACH_CELL_OPUSES_COUNT == 0 ? 0 : 1);
+    int count = ([dataList count] / MAX_OPUSES_EACH_CELL) + ([dataList count] % MAX_OPUSES_EACH_CELL == 0 ? 0 : 1);
     return count;
 }
 
@@ -103,11 +104,12 @@
     OpusCell *cell = [tableView dequeueReusableCellWithIdentifier:[OpusCell getCellIdentifier]];
     if (cell == nil) {
         cell = [OpusCell createCell:self];
+        cell.delegate = self;
     }
 
-    NSRange range = NSMakeRange(indexPath.row * EACH_CELL_OPUSES_COUNT, MIN(EACH_CELL_OPUSES_COUNT, [dataList count] - indexPath.row * EACH_CELL_OPUSES_COUNT));
+    NSRange range = NSMakeRange(indexPath.row * MAX_OPUSES_EACH_CELL, MIN(MAX_OPUSES_EACH_CELL, [dataList count] - indexPath.row * MAX_OPUSES_EACH_CELL));
 
-    [cell setCellData:[dataList subarrayWithRange:range] delegate:self];
+    [cell setCellData:[dataList subarrayWithRange:range]];
     
     return cell;
 }
@@ -121,12 +123,10 @@
     [self.selectedOpusesHolderView removeAllSubviews];
     
     for (int index=0; index<[_opuses count]; index++) {
-        OpusView *opusView = [OpusView createView];
-        opusView.delegate = self;
-        [opusView setDrawFeed:[_opuses objectAtIndex:index]];
-        CGRect rect = CGRectMake(index * OPUS_VIEW_WIDTH, 0, OPUS_VIEW_WIDTH, OPUS_VIEW_HEIGHT);
-        opusView.frame = rect;
         
+        CGRect rect = CGRectMake(index * OPUS_VIEW_WIDTH, 0, OPUS_VIEW_WIDTH, OPUS_VIEW_HEIGHT);
+        UIImageView *opusView  = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+        [opusView setImageWithURL:[NSURL URLWithString:[_opuses objectAtIndex:index]]];
         [self.selectedOpusesHolderView addSubview:opusView];
     }
 }

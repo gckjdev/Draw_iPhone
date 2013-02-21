@@ -22,10 +22,6 @@
     // Do any additional setup after loading the view from its nib.
     
     self.dataList = [[FrameManager sharedFrameManager] frames];
-    
-    for (PBFrame *frame in self.dataList) {
-        PPDebug(@"thumb image:%@", frame.thumbImage);
-    }
 }
 
 - (void)didReceiveMemoryWarning

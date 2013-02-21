@@ -13,6 +13,7 @@
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
 
+
 @interface InputDialog ()
 
 - (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title;
@@ -116,6 +117,7 @@
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+
 }
 
 - (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
