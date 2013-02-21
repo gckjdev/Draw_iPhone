@@ -38,7 +38,7 @@
     [super dealloc];
 }
 
-
+/*
 - (CGContextRef)createNewBitmapContext
 {
     CGFloat width = CGRectGetWidth(self.bounds);
@@ -55,13 +55,16 @@
     CGColorSpaceRelease(colorSpace);
     return context;
 }
-
+*/
 - (CGLayerRef)createLayer
 {
+    /*
     CGContextRef context = [self createNewBitmapContext];
     CGLayerRef layer = CGLayerCreateWithContext(context, self.bounds.size, NULL);
     CGContextRelease(context);
     return layer;
+     */
+    return [DrawUtils createCGLayerWithRect:self.bounds];
 }
 
 - (void)setupCGLayer
@@ -221,7 +224,7 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 - (CGContextRef)createBitmapContext
 {
-    CGContextRef context = [self createNewBitmapContext];
+    CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];//[self createNewBitmapContext];
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
     CTMContext(context, self.bounds);

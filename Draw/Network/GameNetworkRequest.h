@@ -102,6 +102,14 @@
                         transactionId:(NSString*)transactionId
                    transactionReceipt:(NSString*)transactionRecepit;
 
++ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+                        transactionId:(NSString*)transactionId
+                   transactionReceipt:(NSString*)transactionRecepit
+                               byUser:(NSString*)byUserId;
+
 + (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
@@ -498,5 +506,13 @@
                            appId:(NSString *)appId
                           userId:(NSString *)userId
                         wallType:(PBWallType)wallType;
+
++ (CommonNetworkOutput*)blackUser:(NSString*)baseURL
+                            appId:(NSString* )appId
+                     targetUserId:(NSString*)targetUserId
+                           userId:(NSString*)userId
+                   targetDeviceId:(NSString*)targetDeviceId
+                             type:(int)type
+                       actionType:(int)actionType;
 
 @end

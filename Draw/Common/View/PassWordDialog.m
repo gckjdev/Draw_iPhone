@@ -14,6 +14,7 @@
 #import "StringUtil.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
+#import "CustomUITextField.h"
 
 @implementation PassWordDialog
 @synthesize anotherPasswordTextField;
@@ -119,6 +120,7 @@
     [self.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
     [self.anotherPasswordTextField setPlaceholder:NSLS(@"kNewPasswordHolder")];
     [self.targetTextField setPlaceholder:NSLS(@"kConfirmPasswordHolder")];
+
 }
 
 - (void)updateTextFields
@@ -212,11 +214,11 @@
     const NSInteger UP_HEIGHT = 15;
     [self upView:self.anotherPasswordTextField height:UP_HEIGHT+10];
     [self upView:self.targetTextField height:UP_HEIGHT+5];
-    [self upView:self.cancelButton height:UP_HEIGHT];
-    [self upView:self.okButton height:UP_HEIGHT];
+//    [self upView:self.cancelButton height:UP_HEIGHT];
+//    [self upView:self.okButton height:UP_HEIGHT];
     
     [self decreaseView:self.contentView height:UP_HEIGHT];
-    [self decreaseView:self.bgView height:UP_HEIGHT];
+//    [self decreaseView:self.bgView height:UP_HEIGHT];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag

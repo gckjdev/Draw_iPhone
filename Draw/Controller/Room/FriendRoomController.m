@@ -26,6 +26,7 @@
 #import "NotificationManager.h"
 #import "MyFriend.h"
 #import "NotificationName.h"
+#import "CustomUITextField.h"
 
 @interface FriendRoomController ()
 

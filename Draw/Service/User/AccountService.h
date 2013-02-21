@@ -59,6 +59,10 @@
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source;
 
+- (void)chargeAccount:(int)amount
+               toUser:(NSString*)userId
+               source:(BalanceSourceType)source;
+
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
 

@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">light_yellow_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="455976161">
@@ -72,7 +72,7 @@
 						<string key="NSFrame">{{9, 41}, {302, 371}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="604703104"/>
+						<reference key="NSNextKeyView" ref="535934834"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="466568067">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -102,20 +102,6 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">topwood@2x.jpg</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="604703104">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{0, 420}, {320, 40}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="535934834"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bottom_menubg@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="51975597">
@@ -293,6 +279,7 @@
 						<string key="NSFrame">{{264, 421}, {38, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">104</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -588,7 +575,6 @@
 							<reference ref="789324363"/>
 							<reference ref="470753644"/>
 							<reference ref="33311402"/>
-							<reference ref="604703104"/>
 							<reference ref="943438689"/>
 							<reference ref="608461199"/>
 							<reference ref="745717694"/>
@@ -664,11 +650,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">29</int>
-						<reference key="object" ref="604703104"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
 						<reference key="object" ref="943438689"/>
 						<reference key="parent" ref="191373211"/>
@@ -698,7 +679,6 @@
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -807,25 +787,20 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1552" key="NS.object.0"/>
-		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back@2x.png">{67, 53}</string>
-			<string key="bottom_menubg@2x.png">{640, 86}</string>
 			<string key="detail_comment@2x.png">{72, 72}</string>
 			<string key="detail_flower@2x.png">{72, 72}</string>
 			<string key="detail_guess@2x.png">{72, 72}</string>
 			<string key="detail_replay@2x.png">{72, 72}</string>
 			<string key="detail_share@2x.png">{72, 72}</string>
 			<string key="detail_tomato@2x.png">{72, 72}</string>
-			<string key="light_yellow_bg@2x.png">{640, 960}</string>
 			<string key="paper@2x.png">{622, 649}</string>
 			<string key="refresh@2x.png">{60, 60}</string>
 			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

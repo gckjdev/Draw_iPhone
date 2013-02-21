@@ -320,43 +320,89 @@ static AccountService* _defaultAccountService;
    transactionRecepit:(NSString*)transactionRecepit
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    
-    // update balance locally
-    [[AccountManager defaultManager] increaseBalance:amount sourceType:source]; 
+    [[AccountManager defaultManager] increaseBalance:amount sourceType:source];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest chargeAccount:SERVER_URL 
-                                            userId:userId 
-                                            amount:amount 
-                                            source:source 
-                                     transactionId:transactionId 
-                                transactionReceipt:transactionRecepit];
-                
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest chargeAccount:SERVER_URL
+                                            userId:userId
+                                            amount:amount
+                                            source:source
+                                     transactionId:transactionId
+                                transactionReceipt:transactionRecepit
+                                            byUser:userId];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 // update balance from server
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 if (balance != [[AccountManager defaultManager] getBalance]){
-                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
+                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d",
                             [[AccountManager defaultManager] getBalance], balance);
                 }
-
+                
             }
-            else{                
+            else{
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
                 if (output.resultCode == 70003 || output.resultCode == 70004){
                     PPDebug(@"<chargeAccount> fake IAP, refund money");
-                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];                     
+                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];
                 }
             }
             
             if (source == PurchaseType){
-                [self verifyReceiptWithAmount:amount 
-                                transactionId:transactionId 
+                [self verifyReceiptWithAmount:amount
+                                transactionId:transactionId
                            transactionRecepit:transactionRecepit];
             }
-        });        
+        });
+    });
+}
+
+- (void)chargeAccount:(int)amount
+               toUser:(NSString*)userId
+               source:(BalanceSourceType)source
+        transactionId:(NSString*)transactionId
+   transactionRecepit:(NSString*)transactionRecepit
+             byUserId:(NSString*)byUserId
+{
+    // update balance locally
+//    [[AccountManager defaultManager] increaseBalance:amount sourceType:source];
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest chargeAccount:SERVER_URL
+                                            userId:userId
+                                            amount:amount
+                                            source:source
+                                     transactionId:transactionId
+                                transactionReceipt:transactionRecepit
+                                            byUser:byUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+//                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+//                if (balance != [[AccountManager defaultManager] getBalance]){
+//                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d",
+//                            [[AccountManager defaultManager] getBalance], balance);
+//                }
+                
+            }
+            else{
+                PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP, refund money");
+//                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];
+                }
+            }
+            
+//            if (source == PurchaseType){
+//                [self verifyReceiptWithAmount:amount
+//                                transactionId:transactionId
+//                           transactionRecepit:transactionRecepit];
+//            }
+        });
     });
 }
 
@@ -370,12 +416,20 @@ static AccountService* _defaultAccountService;
                source:(BalanceSourceType)source
 {
     if (amount > 0) {
-        [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];        
+        [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];
     }
-
 }
 
-- (void)deductAccount:(int)amount 
+- (void)chargeAccount:(int)amount
+               toUser:(NSString *)userId
+               source:(BalanceSourceType)source
+{
+    if (amount > 0) {
+        [self chargeAccount:amount toUser:userId source:source transactionId:nil transactionRecepit:nil byUserId:[[UserManager defaultManager] userId]];
+    }
+}
+
+- (void)deductAccount:(int)amount
                source:(BalanceSourceType)source
 {
     if (amount <= 0) {

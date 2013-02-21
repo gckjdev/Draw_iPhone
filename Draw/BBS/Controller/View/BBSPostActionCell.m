@@ -108,7 +108,21 @@
 {
     
     NSString *text = [action showText];
-    [self.content setText:text];
+    if ([DeviceDetection isOS6] && [action isReply]) {
+        NSInteger length = [text length];
+        NSInteger contentLength = [[action.content text] length];
+        NSInteger loc = length - contentLength;
+        if (loc > 0) {
+            NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text];
+            [attr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(0, loc)];
+            [self.content setAttributedText:attr];
+            [attr release];
+        }else{
+            [self.content setText:text];            
+        }
+    }else{
+        [self.content setText:text];
+    }
     
     //reset the size
     CGRect frame = self.content.frame;

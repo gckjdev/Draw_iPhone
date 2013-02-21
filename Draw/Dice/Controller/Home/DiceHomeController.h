@@ -7,14 +7,12 @@
 //
 
 #import "PPViewController.h"
-#import "BoardService.h"
 #import "CommonDialog.h"
 #import "DiceGameService.h"
-#import "MenuButton.h"
 #import "SuperHomeController.h"
+#import "HomeHeaderPanel.h"
 
-
-@interface DiceHomeController : SuperHomeController<BoardServiceDelegate, CommonDialogDelegate, UIGestureRecognizerDelegate/*,MenuButtonDelegate, CommonGameServiceDelegate*/>
+@interface DiceHomeController : SuperHomeController<CommonDialogDelegate, UIGestureRecognizerDelegate, HomeHeaderPanelDelegate>
 {
 //    MenuPanel *_menuPanel;
 //    BottomMenuPanel *_bottomMenuPanel;

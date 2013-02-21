@@ -24,7 +24,8 @@
 #import "CommonRoundAvatarView.h"
 #import "CommonImageManager.h"
 #import "StringUtil.h"
-
+#import "SuperUserManageAction.h"
+#import "BBSPermissionManager.h"
 
 #import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
@@ -33,6 +34,11 @@
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
+
+@interface CommonUserInfoView ()
+@property (retain, nonatomic) SuperUserManageAction* superUserManageAction;
+
+@end
 
 @implementation CommonUserInfoView
 
@@ -51,6 +57,8 @@
     PPRelease(_coinsLabel);
     PPRelease(_avatarView);
     PPRelease(_coinImageView);
+    [_superUserManageButton release];
+    PPRelease(_superUserManageAction);
     [super dealloc];
 }
 
@@ -172,6 +180,7 @@
     [self.backgroundImageView setImage:[[GameApp getImageManager] commonDialogBgImage]];
     [self.followUserButton setBackgroundImage:[[GameApp getImageManager] userInfoFollowBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
+    [self.superUserManageButton setBackgroundImage:[[GameApp getImageManager] userInfoTalkBtnImage] forState:UIControlStateNormal];
     [self.chatToUserButton setTitle:NSLS(@"kChatToHim") forState:UIControlStateNormal];
     [self.followUserButton setTitle:NSLS(@"kFollowMe") forState:UIControlStateNormal];
     [self.chatToUserButton setHidden:!canChat];
@@ -182,7 +191,10 @@
     [self.contentView bringSubviewToFront:self.userName];
     
     
-    
+    if ([[BBSPermissionManager defaultManager] canCharge]
+          && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList]) {
+        [self.superUserManageButton setHidden:NO];
+    }
 }
 
 + (CommonUserInfoView*)createUserInfoView
@@ -352,6 +364,17 @@
         [self updateUserInfoView];
     }
     
+}
+
+- (void)showSuperUserManageOptions
+{
+    self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
+    [_superUserManageAction showInController:_superViewController];
+}
+
+- (IBAction)clickSuperUserManageButton:(id)sender
+{
+    [self showSuperUserManageOptions];
 }
 
 @end

@@ -36,6 +36,7 @@
 #import "Reachability.h"
 #import "AnalyticsManager.h"
 #import "FreeCoinsControllerViewController.h"
+#import "BulletinService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -101,6 +102,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
         }
         
+        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+            [self updateAllBadge];
+        }];
+        
         [self.homeHeaderPanel updateView];
     }];
 }
@@ -109,6 +114,14 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark - Button Menu delegate
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickChargeButton:(UIButton *)button
+{
+    //ENTER CHARGE PAGE
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark Panel delegate

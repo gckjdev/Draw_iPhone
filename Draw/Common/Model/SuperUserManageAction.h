@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SuperUserManageAction : NSObject
+
+@interface SuperUserManageAction : NSObject <UIActionSheetDelegate> {
+    NSString* _targetUserId;
+    NSString* _targetUserNickName;
+    int _targetUserCurrentBalance;
+    UIViewController* _superController;
+}
+
+- (id)initWithTargetUserId:(NSString*)userId
+                    nickName:(NSString*)nickName
+                     balance:(int)balance;
+
+- (void)showInController:(UIViewController*)controller;
 
 @end

@@ -296,8 +296,12 @@
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
-        [self.chargeButton setBackgroundImage:[imageManager zjhHomeChargeBG]
+
+        [self.chargeButton setBackgroundImage:[imageManager zjhHomeFreeCoinBG]
                                      forState:UIControlStateNormal];
+
+//        [self.chargeButton setBackgroundImage:[imageManager zjhHomeChargeBG]
+//                                     forState:UIControlStateNormal];
         [self.freeCoin setBackgroundImage:[imageManager zjhHomeFreeCoinBG]
                                  forState:UIControlStateNormal];
     }

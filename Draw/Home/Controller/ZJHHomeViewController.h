@@ -8,8 +8,9 @@
 
 #import "SuperHomeController.h"
 #import "CommonDialog.h"
+#import "HomeHeaderPanel.h"
 
-@interface ZJHHomeViewController : SuperHomeController <CommonDialogDelegate>
+@interface ZJHHomeViewController : SuperHomeController <CommonDialogDelegate, HomeHeaderPanelDelegate>
 {
     
 }

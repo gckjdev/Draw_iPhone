@@ -55,10 +55,6 @@
 //#import "FacetimeMainController.h"
 
 
-#import "BoardPanel.h"
-#import "MenuPanel.h"
-#import "BottomMenuPanel.h"
-#import "BoardManager.h"
 
 
 #import "ContestController.h"
@@ -91,12 +87,10 @@
 
 @interface HomeController()
 {
-    BoardPanel *_boardPanel;
-    NSTimeInterval interval;
+
 }
 - (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
-//- (void)updateBoardPanelWithBoards:(NSArray *)boards;
 @end
 
 @implementation HomeController
@@ -149,36 +143,6 @@
     }
 }
 
-/*
-- (void)loadBoards
-{
-    NSArray *borads = [[BoardManager defaultManager] boardList];
-    [self updateBoardPanelWithBoards:borads];
-
-}
-
-- (void)loadMainMenu
-{
-    self.menuPanel = [MenuPanel menuPanelWithController:self 
-                                            gameAppType:GameAppTypeDraw];
-    
-    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
-    
-    [self.view insertSubview:self.menuPanel atIndex:0];
-
-}
-
-- (void)loadBottomMenu
-{
-    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
-                                                    gameAppType:GameAppTypeDraw];
-    
-    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 438);
-    
-    [self.view addSubview:_bottomMenuPanel];
-}
-*/
-
 
 - (void)viewDidLoad
 {        
@@ -190,12 +154,6 @@
     }
     
     [super viewDidLoad];
-    /*
-    [self loadMainMenu];
-    [self loadBottomMenu];
-    [self loadBoards];
-     */
-//    [self playBackgroundMusic];
     
     [self initRecommendButton];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -209,9 +167,9 @@
 //    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
     
     // sync bulletin
-    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
-    }];
+//    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+//        [self updateAllBadge];
+//    }];  --do it in superHomeContoller-viewDidLoad
     
     [self enterNextControllerWityType:self.notificationType];
 
@@ -855,29 +813,6 @@
     }
 }
 
-//#define BOARD_PANEL_TAG 201208241
-#pragma mark - board service delegate
-/*
-- (void)cleanBoardPanel
-{
-    for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:[BoardPanel class]]) {
-            [view removeFromSuperview];
-        }
-    }
-}
-- (void)updateBoardPanelWithBoards:(NSArray *)boards
-{
-    if ([boards count] != 0) {
-        [self cleanBoardPanel];
-        _boardPanel = [BoardPanel boardPanelWithController:self];
-        [_boardPanel setBoardList:boards];
-        [self.view addSubview:_boardPanel];  
-    }
-
-}
-
-*/
 - (IBAction)clickWallButton:(id)sender {
     OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];

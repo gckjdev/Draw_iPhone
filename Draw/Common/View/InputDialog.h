@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonInfoView.h"
+#import "CustomUITextField.h"
 
 #define INPUT_DIALOG_THEME_DRAW @"InputDialog"
 #define INPUT_DIALOG_THEME_DICE @"DiceInputDialog"
@@ -19,7 +20,10 @@ typedef enum {
     CommonInputDialogThemeZJH,
 }CommonInputDialogTheme;
 
+typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
+
 @class InputDialog;
+@class CustomUITextField;
 @protocol InputDialogDelegate <NSObject>
 
 @optional
@@ -35,7 +39,8 @@ typedef enum {
 
 @interface InputDialog : CommonInfoView<UITextFieldDelegate>
 {
-    
+    InputDialogSelectionBlock _clickOkBlock;
+    InputDialogSelectionBlock _clickCancelBlock;
 }
 
 - (void)setDialogTitle:(NSString *)title;
@@ -44,7 +49,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UIButton *titleLabel;
-@property (retain, nonatomic) IBOutlet UITextField *targetTextField;
+@property (retain, nonatomic) IBOutlet CustomUITextField *targetTextField;
 @property (assign, nonatomic) id<InputDialogDelegate> delegate;
 
 - (IBAction)clickCancelButton:(id)sender;
@@ -55,6 +60,9 @@ typedef enum {
 + (InputDialog *)dialogWith:(NSString *)title 
                    delegate:(id<InputDialogDelegate>)delegate 
                       theme:(CommonInputDialogTheme)theme;
++ (InputDialog *)dialogWith:(NSString *)title
+                    clickOK:(InputDialogSelectionBlock)clickOk
+                clickCancel:(InputDialogSelectionBlock)clickCancel;
 
 - (void)initView:(NSString*)title;
 @end

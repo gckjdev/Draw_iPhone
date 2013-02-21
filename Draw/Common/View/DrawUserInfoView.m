@@ -25,9 +25,15 @@
 #import "GameApp.h"
 #import "Bbs.pb.h"
 #import "SelectHotWordController.h"
+#import "SuperUserManageAction.h"
+#import "BBSPermissionManager.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
+
+@interface DrawUserInfoView ()
+@property (retain, nonatomic) SuperUserManageAction* superUserManageAction;
+@end
 
 @implementation DrawUserInfoView
 @synthesize backgroundImageView;
@@ -64,6 +70,8 @@
     PPRelease(followUserButton);
     PPRelease(statusLabel);
     PPRelease(levelLabel);
+    PPRelease(_superUserManageAction);
+    PPRelease(_superUserManageButton);
     [super dealloc];
 }
 
@@ -116,6 +124,13 @@
     [self.drawToUserButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
     [self.exploreUserFeedButton setTitle:NSLS(@"kExploreHim") forState:UIControlStateNormal];
     [self.exploreUserFeedButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+    
+    [self.superUserManageButton setBackgroundImage:[ShareImageManager defaultManager].orangeImage forState:UIControlStateNormal];
+    
+    if ([[BBSPermissionManager defaultManager] canCharge]
+          && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList]) {
+        [self.superUserManageButton setHidden:NO];
+    }
 }
 
 - (void)initLevelAndName
@@ -403,6 +418,12 @@
         self.targetFriend = user;
         [self updateUserInfoView];
     }
+}
+
+- (IBAction)clickSuperUserManageButton:(id)sender
+{
+    self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
+    [self.superUserManageAction showInController:_superViewController];
 }
 
 @end

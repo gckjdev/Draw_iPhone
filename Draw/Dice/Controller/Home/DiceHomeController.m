@@ -7,12 +7,6 @@
 //
 
 #import "DiceHomeController.h"
-//#import "Board.h"
-#import "BoardPanel.h"
-#import "BottomMenuPanel.h"
-#import "MenuPanel.h"
-#import "BoardService.h"
-#import "BoardManager.h"
 #import "CommonGameNetworkService.h"
 #import "DiceGamePlayController.h"
 #import "StringUtil.h"
@@ -46,6 +40,7 @@
 #import "PPResourceService.h"
 #import "NotificationName.h"
 #import "ZJHRoomListController.h"
+#import "FreeCoinsControllerViewController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -57,18 +52,12 @@
 #define AWARD_DICE_SIZE ([DeviceDetection isIPAD]?CGSizeMake(100, 110):CGSizeMake(50, 55))
 #define AWARD_TIPS_FONT ([DeviceDetection isIPAD]?22:11)
 
-#define BOARD_HEIGHT ISIPAD ? 408 : 193
 
 @interface DiceHomeController()
 {
-    BoardPanel *_boardPanel;
-    NSTimeInterval interval;
-    BOOL hasGetLocalBoardList;
-    
     PPResourceService *_resService;
 }
 
-- (void)updateBoardPanelWithBoards:(NSArray *)boards;
 - (void)registerDiceGameNotification;
 - (void)showWall;
 - (void)checkIn;
@@ -82,47 +71,9 @@
 
 - (void)dealloc
 {
-//    PPRelease(_menuPanel);
-//    PPRelease(_bottomMenuPanel);
     [super dealloc];
     
 }
-
-- (void)loadBoards:(BOOL)localOnly
-{    
-//    hasGetLocalBoardList = NO;
-//    interval = 1;
-//    Board *defaultBoard = [Board defaultBoard];
-//    NSArray *borads = [NSArray arrayWithObject:defaultBoard];
-//    PPDebug(@"<viewDidLoad> update Board Panel With Default Boards ");
-
-    [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
-    
-//    if (localOnly == NO){
-//        [[BoardService defaultService] getBoardsWithDelegate:self];    
-//    }
-}
-//- (void)loadMainMenu
-//{
-//    self.menuPanel = [MenuPanel menuPanelWithController:self 
-//                                            gameAppType:GameAppTypeDice];
-//    
-////    CGPoint iphoneCenter = ([DeviceDetection isIPhone5]?CGPointMake(160, 406):CGPointMake(160, 306));
-//    self.menuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 686) : CGPointMake(160, 306);
-//    
-//    [self.view insertSubview:self.menuPanel atIndex:0];
-//    
-//}
-
-//- (void)loadBottomMenu
-//{
-//    self.bottomMenuPanel = [BottomMenuPanel panelWithController:self
-//                                                    gameAppType:GameAppTypeDice];
-//    
-//    self.bottomMenuPanel.center = [DeviceDetection isIPAD] ? CGPointMake(384, 961) : CGPointMake(160, 440);
-//    
-//    [self.view addSubview:_bottomMenuPanel];
-//}
 
 - (void)playBGM
 {
@@ -137,10 +88,7 @@
     _resService = [PPResourceService defaultService];
 
     [super viewDidLoad];
-//    [self loadMainMenu];
-//    [self loadBottomMenu];
     [self playBGM];
-//    [self checkIn]; //this checkin function is disabled.
 
 }
 
@@ -148,15 +96,12 @@
 {
     [[AdService defaultService] setViewController:self];    
 
-    [self loadBoards:YES];    
-    [self registerDiceGameNotification];    
+    [self registerDiceGameNotification];
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [_boardPanel stopTimer];
-    [_boardPanel clearAds];
     [self unregisterDiceGameNotifications];
     [super viewDidDisappear:animated];
 }
@@ -164,27 +109,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    _boardPanel = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-
-#pragma mark - Board Service Delegate
-- (void)updateBoardList:(NSTimer *)theTimer
-{
-    interval *= 2;
-    if (interval < NSTimeIntervalSince1970) {
-        PPDebug(@"<updateBoardList> timeinterval = %f", interval);
-        [[BoardService defaultService] syncBoards];
-    }
-}
-
-- (void)didGetBoards:(NSArray *)boards
-          resultCode:(NSInteger)resultCode
-{
-
-}
 
 - (void)joinGameResponse:(GameMessage*)message
 {
@@ -204,34 +132,6 @@
         _isTryJoinGame = NO;
     }
 }
-
-- (void)updateBoardPanelWithBoards:(NSArray *)boards
-{
-    if ([boards count] != 0) {
-        
-        // remove old board
-        [_boardPanel stopTimer];
-        [_boardPanel removeFromSuperview];
-        
-        // create new board and show it
-        _boardPanel = [BoardPanel boardPanelWithController:self];
-        [_boardPanel setBoardList:boards];
-        [self.view addSubview:_boardPanel]; 
-        
-        // if there are other views, bring them to front if needed
-        UIView* awardButton = [self.view viewWithTag:AWARD_DICE_TAG];
-        if (awardButton) {
-            [self.view bringSubviewToFront:awardButton];
-        }
-        
-        UIView* helpView = [self.view viewWithTag:DICE_HELP_VIEW_TAG];
-        if (helpView){
-            [self.view bringSubviewToFront:helpView];
-        }
-    }
-    
-}
-
 #pragma mark - code for rolling award dice
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -405,15 +305,6 @@
                                 [self joinGameResponse:[CommonGameNetworkService userInfoToMessage:[note userInfo]]];
     }];
     
-    [self registerNotificationWithName:BOARD_UPDATE_NOTIFICATION // TODO set right name here
-                            usingBlock:^(NSNotification *note) {
-                                [self updateBoardPanelWithBoards:[[BoardManager defaultManager] boardList]];
-                            }];    
-    
-    [self registerNotificationWithName:UIApplicationDidEnterBackgroundNotification
-                            usingBlock:^(NSNotification *note) {
-                                [_boardPanel clearAds];
-                            }];
     
     [self registerNotificationWithName:NOTIFICATION_NETWORK_CONNECTED // TODO set right name here
                             usingBlock:^(NSNotification *note) {
@@ -429,7 +320,6 @@
 - (void)unregisterDiceGameNotifications
 {
     [self unregisterNotificationWithName:NOTIFICATION_JOIN_GAME_RESPONSE];
-    [self unregisterNotificationWithName:BOARD_UPDATE_NOTIFICATION];
     [self unregisterNotificationWithName:NOTIFICATION_NETWORK_CONNECTED];
 }
 
@@ -524,6 +414,15 @@
 
 
 #pragma mark - Button Menu delegate
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickChargeButton:(UIButton *)button
+{
+    //ENTER CHARGE PAGE 
+    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - Button Menu delegate
 
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
@@ -534,6 +433,14 @@
         return;
     }
     switch (type) {
+
+        case HomeMenuTypeDrawFreeCoins:
+        {
+            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+
         case HomeMenuTypeDiceShop:
         {
             VendingController* vc = [[VendingController alloc] init];
@@ -631,100 +538,6 @@
     [menu updateBadge:0];
 }
 
-- (float)getMainMenuOriginY
-{
-    return BOARD_HEIGHT;
-}
-//- (void)didClickMenuButton:(MenuButton *)menuButton
-//{
-//    PPDebug(@"menu button type = %d", menuButton.type);
-//    if (![self isRegistered]) {
-//        [self toRegister];
-//        return;
-//    }
-//    
-//    MenuButtonType type = menuButton.type;
-//    switch (type) {
-//        case MenuButtonTypeDiceShop:
-//        {
-//            VendingController* vc = [[VendingController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            [vc release];
-//        }
-//            break;
-//        case MenuButtonTypeDiceStart:
-//        {
-//            if ([self respondsToSelector:@selector(connectServer:)]){
-//                [self connectServer:DiceGameRuleTypeRuleNormal];
-//            }
-//        }
-//            break;
-//        case MenuButtonTypeDiceHappyRoom:
-//        {
-//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleNormal] autorelease];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//            break;
-//            
-//        case MenuButtonTypeDiceHighRoom:
-//        {
-//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleHigh] autorelease];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//            break;
-//        case MenuButtonTypeDiceSuperHighRoom:
-//        {
-//            DiceRoomListController* vc = [[[DiceRoomListController alloc] initWithRuleType:DiceGameRuleTypeRuleSuperHigh] autorelease];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//            break;
-//            
-//        case MenuButtonTypeDiceHelp:
-//        {
-//            HelpView *view = [HelpView createHelpView:@"ZJHHelpView"];
-//            [view showInView:self.view];
-//        }
-//            break;
-//            //For Bottom Menus
-//        case MenuButtonTypeSettings:
-//        {
-//            UserSettingController *settings = [[UserSettingController alloc] init];
-//            [self.navigationController pushViewController:settings animated:YES];
-//            [settings release];
-//        }
-//            break;
-//        case MenuButtonTypeFriend:
-//        {
-//            FriendController *mfc = [[FriendController alloc] init];
-//            [self.navigationController pushViewController:mfc animated:YES];
-//            [mfc release];
-////            [_bottomMenuPanel setMenuBadge:0 forMenuType:MenuButtonTypeFriend];
-//        }
-//            break;
-//        case MenuButtonTypeChat:
-//        {
-//            ChatListController *controller = [[ChatListController alloc] init];
-//            [self.navigationController pushViewController:controller animated:YES];
-//            [controller release];
-//            
-////            [_bottomMenuPanel setMenuBadge:0 forMenuType:type];
-//            
-//        }
-//            break;
-//        case MenuButtonTypeFeedback:
-//        {
-//            FeedbackController* feedBack = [[FeedbackController alloc] init];
-//            [self.navigationController pushViewController:feedBack animated:YES];
-//            [feedBack release];
-//            
-//        }
-//            break;
-//        case MenuButtonTypeCheckIn:
-//            
-//        default:
-//            break;
-//    }
-//}
 
 - (IBAction)clickZhaJinHuaButton:(id)sender {
     
