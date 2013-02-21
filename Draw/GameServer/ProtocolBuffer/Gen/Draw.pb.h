@@ -1129,15 +1129,19 @@
 
 @interface PBWallOpus : PBGeneratedMessage {
 @private
-  BOOL hasFrameIdOnWall_:1;
+  BOOL hasIdOnWall_:1;
   BOOL hasOpus_:1;
-  int32_t frameIdOnWall;
+  BOOL hasFrame_:1;
+  int32_t idOnWall;
   PBFeed* opus;
+  PBFrame* frame;
 }
+- (BOOL) hasIdOnWall;
 - (BOOL) hasOpus;
-- (BOOL) hasFrameIdOnWall;
+- (BOOL) hasFrame;
+@property (readonly) int32_t idOnWall;
 @property (readonly, retain) PBFeed* opus;
-@property (readonly) int32_t frameIdOnWall;
+@property (readonly, retain) PBFrame* frame;
 
 + (PBWallOpus*) defaultInstance;
 - (PBWallOpus*) defaultInstance;
@@ -1173,6 +1177,11 @@
 - (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBWallOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
+- (BOOL) hasIdOnWall;
+- (int32_t) idOnWall;
+- (PBWallOpus_Builder*) setIdOnWall:(int32_t) value;
+- (PBWallOpus_Builder*) clearIdOnWall;
+
 - (BOOL) hasOpus;
 - (PBFeed*) opus;
 - (PBWallOpus_Builder*) setOpus:(PBFeed*) value;
@@ -1180,42 +1189,41 @@
 - (PBWallOpus_Builder*) mergeOpus:(PBFeed*) value;
 - (PBWallOpus_Builder*) clearOpus;
 
-- (BOOL) hasFrameIdOnWall;
-- (int32_t) frameIdOnWall;
-- (PBWallOpus_Builder*) setFrameIdOnWall:(int32_t) value;
-- (PBWallOpus_Builder*) clearFrameIdOnWall;
+- (BOOL) hasFrame;
+- (PBFrame*) frame;
+- (PBWallOpus_Builder*) setFrame:(PBFrame*) value;
+- (PBWallOpus_Builder*) setFrameBuilder:(PBFrame_Builder*) builderForValue;
+- (PBWallOpus_Builder*) mergeFrame:(PBFrame*) value;
+- (PBWallOpus_Builder*) clearFrame;
 @end
 
 @interface PBWall : PBGeneratedMessage {
 @private
   BOOL hasWallId_:1;
   BOOL hasUserId_:1;
-  BOOL hasWallName_:1;
+  BOOL hasName_:1;
   BOOL hasMusicUrl_:1;
-  BOOL hasLayout_:1;
-  BOOL hasWallType_:1;
+  BOOL hasContent_:1;
+  BOOL hasType_:1;
   NSString* wallId;
   NSString* userId;
-  NSString* wallName;
+  NSString* name;
   NSString* musicUrl;
-  PBLayout* layout;
-  PBWallType wallType;
-  NSMutableArray* mutableWallOpusesList;
+  PBLayout* content;
+  PBWallType type;
 }
 - (BOOL) hasWallId;
-- (BOOL) hasWallType;
+- (BOOL) hasType;
 - (BOOL) hasUserId;
-- (BOOL) hasWallName;
-- (BOOL) hasLayout;
+- (BOOL) hasName;
+- (BOOL) hasContent;
 - (BOOL) hasMusicUrl;
 @property (readonly, retain) NSString* wallId;
-@property (readonly) PBWallType wallType;
+@property (readonly) PBWallType type;
 @property (readonly, retain) NSString* userId;
-@property (readonly, retain) NSString* wallName;
-@property (readonly, retain) PBLayout* layout;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) PBLayout* content;
 @property (readonly, retain) NSString* musicUrl;
-- (NSArray*) wallOpusesList;
-- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
 
 + (PBWall*) defaultInstance;
 - (PBWall*) defaultInstance;
@@ -1256,34 +1264,27 @@
 - (PBWall_Builder*) setWallId:(NSString*) value;
 - (PBWall_Builder*) clearWallId;
 
-- (BOOL) hasWallType;
-- (PBWallType) wallType;
-- (PBWall_Builder*) setWallType:(PBWallType) value;
-- (PBWall_Builder*) clearWallType;
+- (BOOL) hasType;
+- (PBWallType) type;
+- (PBWall_Builder*) setType:(PBWallType) value;
+- (PBWall_Builder*) clearType;
 
 - (BOOL) hasUserId;
 - (NSString*) userId;
 - (PBWall_Builder*) setUserId:(NSString*) value;
 - (PBWall_Builder*) clearUserId;
 
-- (BOOL) hasWallName;
-- (NSString*) wallName;
-- (PBWall_Builder*) setWallName:(NSString*) value;
-- (PBWall_Builder*) clearWallName;
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBWall_Builder*) setName:(NSString*) value;
+- (PBWall_Builder*) clearName;
 
-- (BOOL) hasLayout;
-- (PBLayout*) layout;
-- (PBWall_Builder*) setLayout:(PBLayout*) value;
-- (PBWall_Builder*) setLayoutBuilder:(PBLayout_Builder*) builderForValue;
-- (PBWall_Builder*) mergeLayout:(PBLayout*) value;
-- (PBWall_Builder*) clearLayout;
-
-- (NSArray*) wallOpusesList;
-- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
-- (PBWall_Builder*) replaceWallOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
-- (PBWall_Builder*) addWallOpuses:(PBWallOpus*) value;
-- (PBWall_Builder*) addAllWallOpuses:(NSArray*) values;
-- (PBWall_Builder*) clearWallOpusesList;
+- (BOOL) hasContent;
+- (PBLayout*) content;
+- (PBWall_Builder*) setContent:(PBLayout*) value;
+- (PBWall_Builder*) setContentBuilder:(PBLayout_Builder*) builderForValue;
+- (PBWall_Builder*) mergeContent:(PBLayout*) value;
+- (PBWall_Builder*) clearContent;
 
 - (BOOL) hasMusicUrl;
 - (NSString*) musicUrl;
@@ -1369,49 +1370,29 @@
 @interface PBFrame : PBGeneratedMessage {
 @private
   BOOL hasFrameId_:1;
-  BOOL hasFrameType_:1;
-  BOOL hasIdOnWall_:1;
+  BOOL hasType_:1;
   BOOL hasPrice_:1;
-  BOOL hasThumbImage_:1;
-  BOOL hasImage_:1;
   BOOL hasImageUrl_:1;
-  BOOL hasIPhoneRect_:1;
-  BOOL hasIPadRect_:1;
   BOOL hasOpusIphoneRect_:1;
   BOOL hasOpusIpadRect_:1;
   int32_t frameId;
-  int32_t frameType;
-  int32_t idOnWall;
+  int32_t type;
   int32_t price;
-  NSString* thumbImage;
-  NSString* image;
   NSString* imageUrl;
-  PBRect* iPhoneRect;
-  PBRect* iPadRect;
   PBRect* opusIphoneRect;
   PBRect* opusIpadRect;
 }
 - (BOOL) hasFrameId;
-- (BOOL) hasFrameType;
-- (BOOL) hasThumbImage;
-- (BOOL) hasImage;
+- (BOOL) hasType;
 - (BOOL) hasImageUrl;
-- (BOOL) hasIPhoneRect;
-- (BOOL) hasIPadRect;
 - (BOOL) hasOpusIphoneRect;
 - (BOOL) hasOpusIpadRect;
-- (BOOL) hasIdOnWall;
 - (BOOL) hasPrice;
 @property (readonly) int32_t frameId;
-@property (readonly) int32_t frameType;
-@property (readonly, retain) NSString* thumbImage;
-@property (readonly, retain) NSString* image;
+@property (readonly) int32_t type;
 @property (readonly, retain) NSString* imageUrl;
-@property (readonly, retain) PBRect* iPhoneRect;
-@property (readonly, retain) PBRect* iPadRect;
 @property (readonly, retain) PBRect* opusIphoneRect;
 @property (readonly, retain) PBRect* opusIpadRect;
-@property (readonly) int32_t idOnWall;
 @property (readonly) int32_t price;
 
 + (PBFrame*) defaultInstance;
@@ -1453,39 +1434,15 @@
 - (PBFrame_Builder*) setFrameId:(int32_t) value;
 - (PBFrame_Builder*) clearFrameId;
 
-- (BOOL) hasFrameType;
-- (int32_t) frameType;
-- (PBFrame_Builder*) setFrameType:(int32_t) value;
-- (PBFrame_Builder*) clearFrameType;
-
-- (BOOL) hasThumbImage;
-- (NSString*) thumbImage;
-- (PBFrame_Builder*) setThumbImage:(NSString*) value;
-- (PBFrame_Builder*) clearThumbImage;
-
-- (BOOL) hasImage;
-- (NSString*) image;
-- (PBFrame_Builder*) setImage:(NSString*) value;
-- (PBFrame_Builder*) clearImage;
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBFrame_Builder*) setType:(int32_t) value;
+- (PBFrame_Builder*) clearType;
 
 - (BOOL) hasImageUrl;
 - (NSString*) imageUrl;
 - (PBFrame_Builder*) setImageUrl:(NSString*) value;
 - (PBFrame_Builder*) clearImageUrl;
-
-- (BOOL) hasIPhoneRect;
-- (PBRect*) iPhoneRect;
-- (PBFrame_Builder*) setIPhoneRect:(PBRect*) value;
-- (PBFrame_Builder*) setIPhoneRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBFrame_Builder*) mergeIPhoneRect:(PBRect*) value;
-- (PBFrame_Builder*) clearIPhoneRect;
-
-- (BOOL) hasIPadRect;
-- (PBRect*) iPadRect;
-- (PBFrame_Builder*) setIPadRect:(PBRect*) value;
-- (PBFrame_Builder*) setIPadRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBFrame_Builder*) mergeIPadRect:(PBRect*) value;
-- (PBFrame_Builder*) clearIPadRect;
 
 - (BOOL) hasOpusIphoneRect;
 - (PBRect*) opusIphoneRect;
@@ -1500,11 +1457,6 @@
 - (PBFrame_Builder*) setOpusIpadRectBuilder:(PBRect_Builder*) builderForValue;
 - (PBFrame_Builder*) mergeOpusIpadRect:(PBRect*) value;
 - (PBFrame_Builder*) clearOpusIpadRect;
-
-- (BOOL) hasIdOnWall;
-- (int32_t) idOnWall;
-- (PBFrame_Builder*) setIdOnWall:(int32_t) value;
-- (PBFrame_Builder*) clearIdOnWall;
 
 - (BOOL) hasPrice;
 - (int32_t) price;
@@ -1565,40 +1517,28 @@
 @private
   BOOL hasLayoutId_:1;
   BOOL hasDisplayMode_:1;
-  BOOL hasCoverFlowType_:1;
   BOOL hasPrice_:1;
   BOOL hasName_:1;
-  BOOL hasBgImage_:1;
-  BOOL hasIPhoneRect_:1;
-  BOOL hasIPadRect_:1;
+  BOOL hasImageUrl_:1;
   int32_t layoutId;
   int32_t displayMode;
-  int32_t coverFlowType;
   int32_t price;
   NSString* name;
-  NSString* bgImage;
-  PBRect* iPhoneRect;
-  PBRect* iPadRect;
-  NSMutableArray* mutableFramesList;
+  NSString* imageUrl;
+  NSMutableArray* mutableWallOpusesList;
 }
 - (BOOL) hasLayoutId;
 - (BOOL) hasName;
 - (BOOL) hasDisplayMode;
-- (BOOL) hasCoverFlowType;
-- (BOOL) hasBgImage;
-- (BOOL) hasIPhoneRect;
-- (BOOL) hasIPadRect;
+- (BOOL) hasImageUrl;
 - (BOOL) hasPrice;
 @property (readonly) int32_t layoutId;
 @property (readonly, retain) NSString* name;
 @property (readonly) int32_t displayMode;
-@property (readonly) int32_t coverFlowType;
-@property (readonly, retain) NSString* bgImage;
-@property (readonly, retain) PBRect* iPhoneRect;
-@property (readonly, retain) PBRect* iPadRect;
+@property (readonly, retain) NSString* imageUrl;
 @property (readonly) int32_t price;
-- (NSArray*) framesList;
-- (PBFrame*) framesAtIndex:(int32_t) index;
+- (NSArray*) wallOpusesList;
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
 
 + (PBLayout*) defaultInstance;
 - (PBLayout*) defaultInstance;
@@ -1649,36 +1589,17 @@
 - (PBLayout_Builder*) setDisplayMode:(int32_t) value;
 - (PBLayout_Builder*) clearDisplayMode;
 
-- (BOOL) hasCoverFlowType;
-- (int32_t) coverFlowType;
-- (PBLayout_Builder*) setCoverFlowType:(int32_t) value;
-- (PBLayout_Builder*) clearCoverFlowType;
+- (NSArray*) wallOpusesList;
+- (PBWallOpus*) wallOpusesAtIndex:(int32_t) index;
+- (PBLayout_Builder*) replaceWallOpusesAtIndex:(int32_t) index with:(PBWallOpus*) value;
+- (PBLayout_Builder*) addWallOpuses:(PBWallOpus*) value;
+- (PBLayout_Builder*) addAllWallOpuses:(NSArray*) values;
+- (PBLayout_Builder*) clearWallOpusesList;
 
-- (NSArray*) framesList;
-- (PBFrame*) framesAtIndex:(int32_t) index;
-- (PBLayout_Builder*) replaceFramesAtIndex:(int32_t) index with:(PBFrame*) value;
-- (PBLayout_Builder*) addFrames:(PBFrame*) value;
-- (PBLayout_Builder*) addAllFrames:(NSArray*) values;
-- (PBLayout_Builder*) clearFramesList;
-
-- (BOOL) hasBgImage;
-- (NSString*) bgImage;
-- (PBLayout_Builder*) setBgImage:(NSString*) value;
-- (PBLayout_Builder*) clearBgImage;
-
-- (BOOL) hasIPhoneRect;
-- (PBRect*) iPhoneRect;
-- (PBLayout_Builder*) setIPhoneRect:(PBRect*) value;
-- (PBLayout_Builder*) setIPhoneRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBLayout_Builder*) mergeIPhoneRect:(PBRect*) value;
-- (PBLayout_Builder*) clearIPhoneRect;
-
-- (BOOL) hasIPadRect;
-- (PBRect*) iPadRect;
-- (PBLayout_Builder*) setIPadRect:(PBRect*) value;
-- (PBLayout_Builder*) setIPadRectBuilder:(PBRect_Builder*) builderForValue;
-- (PBLayout_Builder*) mergeIPadRect:(PBRect*) value;
-- (PBLayout_Builder*) clearIPadRect;
+- (BOOL) hasImageUrl;
+- (NSString*) imageUrl;
+- (PBLayout_Builder*) setImageUrl:(NSString*) value;
+- (PBLayout_Builder*) clearImageUrl;
 
 - (BOOL) hasPrice;
 - (int32_t) price;

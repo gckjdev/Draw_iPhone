@@ -247,9 +247,8 @@
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"
 
-#define PARA_WALL_DATA @"wd"
-#define PARA_WALL_BG_IMAGE @"photo"
-
+#define PARA_WALL_DATA @"wall_data"
+#define PARA_WALL_BG_IMAGE @"wall_bg_image"
 
 #define PARA_COMMENT_CONTENT @"comc"
 
@@ -515,8 +514,7 @@
 #define METHOD_GET_USER_WALL @"getWall"
 
 #define PARA_WALL_TYPE @"wallType"
-#define PARA_WALL_ID @"wallId"
-
+#define PARA_WALL_ID @"wall_id"
 
 #define PARA_BOARDID @"bid"
 #define PARA_BONUS @"bn"

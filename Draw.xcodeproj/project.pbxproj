@@ -267,6 +267,9 @@
 		A4D6A766167591D3008DC151 /* ZJHRuleConfigFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */; };
 		A4D6A77116759321008DC151 /* ZJHGameController_dual~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */; };
 		A4D6A7781675B4C3008DC151 /* ZJHGameController_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */; };
+		A4DA53BD16D6068D00C02BC4 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DA53BC16D6068B00C02BC4 /* WallOpusView.m */; };
+		A4DA53BF16D606A400C02BC4 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DA53BE16D606A300C02BC4 /* WallOpusView.xib */; };
+		A4DA53C016D6127600C02BC4 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
 		A4DE140F1697DB7B00841940 /* hot_word.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4DE140E1697DB7B00841940 /* hot_word.pb */; };
 		A4DE141B1697DBA900841940 /* hot_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14111697DBA900841940 /* hot_words_bg@2x.png */; };
 		A4DE141C1697DBA900841940 /* load_from_draft_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */; };
@@ -478,7 +481,6 @@
 		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
 		C250AD141653A7F400003E15 /* ZJHRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD101653A7F400003E15 /* ZJHRoomListController.m */; };
 		C252DCEA16B75F0D0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
-		C252DCEB16B75F0D0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
 		C252DCEC16B75F0E0007D240 /* OpusWallController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D174AB16B621FE00958355 /* OpusWallController.m */; };
 		C252DCED16B75F120007D240 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744916B1089C00958355 /* OpusCell.m */; };
 		C252DCEE16B75F130007D240 /* OpusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744916B1089C00958355 /* OpusCell.m */; };
@@ -7099,6 +7101,9 @@
 		A4D6A762167591D3008DC151 /* ZJHRuleConfigFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRuleConfigFactory.m; sourceTree = "<group>"; };
 		A4D6A76F16759321008DC151 /* ZJHGameController_dual~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ip5.xib"; sourceTree = "<group>"; };
 		A4D6A7771675B4C3008DC151 /* ZJHGameController_dual~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController_dual~ipad.xib"; sourceTree = "<group>"; };
+		A4DA53BB16D6068A00C02BC4 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
+		A4DA53BC16D6068B00C02BC4 /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
+		A4DA53BE16D606A300C02BC4 /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
 		A4DE14111697DBA900841940 /* hot_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load_from_draft_btn@2x.png"; sourceTree = "<group>"; };
@@ -10803,6 +10808,9 @@
 				A4D1744B16B1089C00958355 /* OpusSelectController.h */,
 				A4D1744C16B1089C00958355 /* OpusSelectController.m */,
 				A4D1744D16B1089C00958355 /* OpusSelectController.xib */,
+				A4DA53BB16D6068A00C02BC4 /* WallOpusView.h */,
+				A4DA53BC16D6068B00C02BC4 /* WallOpusView.m */,
+				A4DA53BE16D606A300C02BC4 /* WallOpusView.xib */,
 			);
 			path = OpusWall;
 			sourceTree = "<group>";
@@ -20116,6 +20124,7 @@
 				CAB978E516C23EC6008C2901 /* draw_tab_mid_unselected@2x.png in Resources */,
 				CAB978EB16C2456E008C2901 /* topwood@2x.jpg in Resources */,
 				CAB978EF16C2456E008C2901 /* wood_bg@2x.jpg in Resources */,
+				A4DA53BF16D606A400C02BC4 /* WallOpusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21646,7 +21655,6 @@
 				CADECC6116B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0416B3A45A006FC155 /* BoardAdminListView.m in Sources */,
 				CABEDD2216B64C5900BB9060 /* ReplayView.m in Sources */,
-				C252DCEB16B75F0D0007D240 /* OpusWallController.m in Sources */,
 				C252DCEE16B75F130007D240 /* OpusCell.m in Sources */,
 				C252DCF116B75F1C0007D240 /* OpusSelectController.m in Sources */,
 				C2C63C0D16B9206B006F91AE /* FrameManager.m in Sources */,
@@ -21662,6 +21670,7 @@
 				C266EF3216BB76D6005206C6 /* OpusView.m in Sources */,
 				C266EF3516BB76E6005206C6 /* WallService.m in Sources */,
 				C24E621D16BF6AB2003132E6 /* iCarousel.m in Sources */,
+				A4DA53C016D6127600C02BC4 /* OpusWallController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23063,6 +23072,7 @@
 				CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */,
 				A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */,
 				C260DDDF16D1D2CD0008A243 /* SuperUserManageAction.m in Sources */,
+				A4DA53BD16D6068D00C02BC4 /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

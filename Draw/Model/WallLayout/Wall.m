@@ -12,9 +12,6 @@
 #import "ProtocolUtil.h"
 
 @interface Wall ()
-{
-    NSMutableArray *_wallOpuses;
-}
 
 @property (retain, nonatomic) PBWall *pbWall;
 
@@ -25,7 +22,6 @@
 - (void)dealloc
 {
     [_pbWall release];
-    [_wallOpuses release];
     [super dealloc];
 }
 
@@ -33,12 +29,6 @@
 {
     if (self = [super init]) {
         self.pbWall = pbWall;
-        
-        
-        _wallOpuses = [[NSMutableArray array] retain];
-        for (PBWallOpus *wallOpus in self.pbWall.wallOpusesList) {
-            [_wallOpuses addObject:[WallOpus fromPBWallOpus:wallOpus]];
-        }
     }
     
     return self;
@@ -52,28 +42,20 @@
     if (self = [super init]) {
         PBWall_Builder *builder = [[[PBWall_Builder alloc] init] autorelease];
         [builder setWallId:nil];
-        [builder setWallName:name];
-        [builder setWallType:PBWallTypeOpuses];
+        [builder setName:name];
+        [builder setType:PBWallTypeOpuses];
         [builder setUserId:[[UserManager defaultManager] userId]];
-        [builder setLayout:layout];
+        [builder setContent:layout];
+        
+        for (int index=0; index<[layout.wallOpusesList count] && index<[opuses count]; index++) {
+            [self replaceWallOpus:[[layout.wallOpusesList objectAtIndex:index] idOnWall] withOpus:[opuses objectAtIndex:index]];
+        }
+        
         [builder setMusicUrl:musicUrl];
         self.pbWall = [builder build];
-
-        _wallOpuses = [[NSMutableArray array] retain];
-        for (int index=0; index<[layout.framesList count] && index<[opuses count]; index++) {
-            PBFrame *frame = [layout.framesList objectAtIndex:index];
-            int frameIdOnWall = [frame idOnWall];
-            WallOpus *wallOpus = [[[WallOpus alloc] initWithFrameIdOnWall:frameIdOnWall opus:[opuses objectAtIndex:index]] autorelease];
-            [_wallOpuses addObject:wallOpus];
-        }
     }
     
     return self;
-}
-
-- (NSArray *)wallOpuses
-{
-    return _wallOpuses;
 }
 
 - (void)setWallId:(NSString *)wallId
@@ -83,18 +65,18 @@
 
 - (void)setLayout:(PBLayout *)layout
 {
-   self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setLayout:layout] build];
+   self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setContent:layout] build];
 }
 
 - (void)setWallName:(NSString *)wallName
 {
-    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setWallName:wallName] build];
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setName:wallName] build];
 }
 
-- (WallOpus *)wallOpusWithFrameIdOnWall:(int)frameIdOnWall
+- (PBWallOpus *)wallOpusWithIdOnWall:(int)idOnWall
 {
-    for (WallOpus *wallOpus in self.wallOpuses) {
-        if (wallOpus.frameIdOnWall == frameIdOnWall) {
+    for (PBWallOpus *wallOpus in self.pbWall.content.wallOpusesList) {
+        if (wallOpus.idOnWall == idOnWall) {
             return wallOpus;
         }
     }
@@ -102,65 +84,106 @@
     return nil;
 }
 
-- (void)replaceWallOpus:(int)frameIdOnWall withOpus:(DrawFeed *)opus
+- (PBFrame *)frameInWallOpus:(int)idOnWall
 {
-    WallOpus *wallOpus = [self wallOpusWithFrameIdOnWall:frameIdOnWall];
-    wallOpus.opus = opus;
+    PBWallOpus *wallOpus = [self wallOpusWithIdOnWall:idOnWall];
+    return wallOpus.frame;
 }
 
-- (PBFrame *)frameWithFrameIdOnWall:(int)frameIdOnWall
+- (PBFeed *)DrawFeedToPBFeed:(DrawFeed *)drawFeed
 {
-    for (PBFrame *frame in self.pbWall.layout.framesList) {
-        if (frame.idOnWall == frameIdOnWall) {
-            return frame;
-        }
+    PBFeed_Builder *feedBuilder = [[[PBFeed_Builder alloc] init] autorelease];
+    [feedBuilder setOpusId:drawFeed.feedId];
+    [feedBuilder setOpusWord:drawFeed.wordText];
+    [feedBuilder setOpusImage:drawFeed.drawImageUrl];
+    [feedBuilder setDrawData:drawFeed.pbDraw];
+    
+    PBFeed *feed = [feedBuilder build];
+    
+    return feed;
+}
+
+- (void)replaceWallOpus:(int)idOnWall withOpus:(DrawFeed *)newOpus
+{
+    PBWallOpus *wallOpus = [self wallOpusWithIdOnWall:idOnWall];
+    if (wallOpus == nil) {
+        return;
     }
     
-    return nil;
+    PBWallOpus_Builder *builder = [PBWallOpus builderWithPrototype:wallOpus];
+    [builder setOpus:[self DrawFeedToPBFeed:newOpus]];
+    PBWallOpus *newWallOpus = [builder build];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.pbWall.content.wallOpusesList];
+    [arr removeObject:wallOpus];
+    [arr addObject:newWallOpus];
+    
+    PBLayout *content = [[[[PBLayout builderWithPrototype:_pbWall.content] clearWallOpusesList] addAllWallOpuses:arr] build];
+    
+    
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setContent:content] build];
 }
 
-- (void)replaceWallOpus:(int)frameIdOnWall withFrame:(PBFrame *)frameReplaced
+- (void)replaceWallOpus:(int)idOnWall withFrame:(PBFrame *)newFrame
 {
-    NSMutableArray *frameArr = [NSMutableArray arrayWithArray:self.pbWall.layout.framesList];
-    PBFrame *frame = [self frameWithFrameIdOnWall:frameIdOnWall];
-    [frameArr removeObject:frame];
-
-    PBFrame_Builder *frameBuilder = [PBFrame builderWithPrototype:frameReplaced];
-    [frameBuilder setIPhoneRect:[ProtocolUtil pbRectWithX:frame.iPhoneRect.x y:frame.iPhoneRect.y width:frameReplaced.iPhoneRect.width height:frameReplaced.iPhoneRect.height]];
-    [frameBuilder setIPadRect:[ProtocolUtil pbRectWithX:frame.iPadRect.x y:frame.iPadRect.y width:frameReplaced.iPadRect.width height:frameReplaced.iPadRect.height]];
-//    [frameBuilder setIPhoneRect:frame.iPhoneRect];
-//    [frameBuilder setIPadRect:frame.iPadRect];
-    [frameBuilder setIdOnWall:frameIdOnWall];
-    [frameArr addObject:[frameBuilder build]];
-
-    PBLayout *layout = [[[[PBLayout builderWithPrototype:self.pbWall.layout] clearFramesList] addAllFrames:frameArr] build];
-    [self setLayout:layout];
+    PBWallOpus *wallOpus = [self wallOpusWithIdOnWall:idOnWall];
+    if (wallOpus == nil) {
+        return;
+    }
+        
+    PBWallOpus_Builder *builder = [PBWallOpus builderWithPrototype:wallOpus];
+    [builder setFrame:newFrame];
+    PBWallOpus *newWallOpus = [builder build];
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:self.pbWall.content.wallOpusesList];
+    [arr removeObject:wallOpus];
+    [arr addObject:newWallOpus];
+    
+    PBLayout *content = [[[[PBLayout builderWithPrototype:_pbWall.content] clearWallOpusesList] addAllWallOpuses:arr] build];
+    
+    
+    self.pbWall = [[[PBWall builderWithPrototype:_pbWall] setContent:content] build];
 }
 
 - (PBWall *)toPBWall
-{
+{    
     PBWall_Builder *builder = [[[PBWall_Builder alloc] init] autorelease];
-    [builder setWallId:self.pbWall.wallId];
-    [builder setWallType:self.pbWall.wallType];
-    [builder setUserId:self.pbWall.userId];
-    [builder setWallName:self.pbWall.wallName];
-    [builder setLayout:self.pbWall.layout];
+    [builder setWallId:_pbWall.wallId];
+    [builder setType:_pbWall.type];
+    [builder setUserId:_pbWall.userId];
+    [builder setName:_pbWall.name];
+    [builder setContent:[self contentWithoutOpusDetailInfo]];
     [builder setMusicUrl:self.pbWall.musicUrl];
     
-    NSMutableArray *pbWallOpuses = [NSMutableArray array];
-    for (WallOpus *wallOpus in _wallOpuses) {
-        [pbWallOpuses addObject:[wallOpus toPBWallOpus]];
+    return [builder build];
+}
+
+- (PBLayout *)contentWithoutOpusDetailInfo
+{
+    NSMutableArray *wallOpusList = [NSMutableArray array];
+    for (PBWallOpus *wallOpus in _pbWall.content.wallOpusesList) {
+        PBFeed_Builder *feedBuilder = [[[PBFeed_Builder alloc] init] autorelease];
+        [feedBuilder setFeedId:wallOpus.opus.opusId];
+        [feedBuilder setOpusImage:wallOpus.opus.opusImage];
+        PBFeed *newOpus = [feedBuilder build];
+        
+        PBWallOpus_Builder *wallOpusBuilder = [PBWallOpus builderWithPrototype:wallOpus];
+        PBWallOpus *newWallOpus = [[wallOpusBuilder setOpus:newOpus] build];
+        
+        [wallOpusList addObject:newWallOpus];
     }
     
-    [builder addAllWallOpuses:pbWallOpuses];
+    PBLayout_Builder *layoutBuilder = [PBLayout builderWithPrototype:_pbWall.content];
+    [[layoutBuilder clearWallOpusesList] addAllWallOpuses:wallOpusList];
+    PBLayout *newContent = [layoutBuilder build];
     
-    return [builder build];
+    return newContent;
 }
 
 
 - (void)setBgImage:(NSString *)image;
 {
-    [self setLayout:[[[PBLayout builderWithPrototype:self.pbWall.layout] setBgImage:image] build]];
+    [self setLayout:[[[PBLayout builderWithPrototype:self.pbWall.content] setImageUrl:image] build]];
 }
 
 @end

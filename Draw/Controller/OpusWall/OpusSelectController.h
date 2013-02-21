@@ -18,7 +18,7 @@
 
 @end
 
-@interface OpusSelectController : PPTableViewController <FeedServiceDelegate, OpusViewProtocol>
+@interface OpusSelectController : PPTableViewController <FeedServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *comfirmBtn;
 
 @property (retain, nonatomic) IBOutlet UIScrollView *selectedOpusesHolderView;

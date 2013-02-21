@@ -22,6 +22,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *setLayoutButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *setBgImageBtn;
+
 
 - (id)initWithWall:(Wall *)wall;
 
