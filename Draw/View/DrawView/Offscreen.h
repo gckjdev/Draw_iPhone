@@ -9,20 +9,38 @@
 #import <Foundation/Foundation.h>
 
 
+@class DrawColor;
+@class DrawAction;
+@class Paint;
+
 @interface Offscreen : NSObject
 
 @property(nonatomic, assign, readonly)NSUInteger actionCount;
 @property(nonatomic, assign, readonly)NSUInteger capacity;
+@property(nonatomic, assign, readonly)CGRect rect; //default is DRAW_VIEW_RECT
 
+
+- (id)initWithCapacity:(NSUInteger)capacity; //default is 50, 0 for no limit
+- (id)initWithCapacity:(NSUInteger)capacity rect:(CGRect)rect; //default is 50, 0 for no limit
+
+- (CGLayerRef)cacheLayer;
 
 + (id)offscreenWithCapacity:(NSUInteger)capacity;
 + (id)unlimitOffscreen;
 
-- (id)initWithCapacity:(NSUInteger)capacity; //default is 50, 0 for no limit
-- (CGLayerRef)cacheLayer;
-- (void)updatContextWithCGLayer:(CGLayerRef)layer actionCount:(NSInteger)actionCount;
+
+
+- (void)updateContextWithCGLayer:(CGLayerRef)layer
+                    actionCount:(NSInteger)actionCount;
 - (void)addContextWithCGLayer:(CGLayerRef)layer
                    actionCount:(NSInteger)actionCount;
+
+- (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear;
+- (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width;
+- (CGRect)drawAction:(DrawAction *)action;
+- (void)clear;
+
 - (BOOL)isFull;
 - (BOOL)noLimit;
+
 @end

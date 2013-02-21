@@ -86,7 +86,7 @@
         Offscreen *os = [_offscreenList objectAtIndex:index];
         if ([os isFull]) {
             [self adjustOffscreenAtIndex:index + 1 withOffscreen:os];
-            [os updatContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
+            [os updateContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
         }else{
             [os addContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
         }
@@ -106,6 +106,7 @@
     if ([entery isFull]) {
         [self adjustOffscreenAtIndex:0 withOffscreen:entery];
     }
+
     //Draw the action in the entry screen.
 }
 
