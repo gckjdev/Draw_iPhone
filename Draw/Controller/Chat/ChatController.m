@@ -22,6 +22,7 @@
 #import "ChatService.h"
 #import "NotificationManager.h"
 #import "PPMessage.h"
+#import "CustomUITextField.h"
 
 #define NUM_EXPRESSION_IN_ONE_PAGE 5
 
