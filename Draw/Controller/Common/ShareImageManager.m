@@ -790,34 +790,34 @@ static UIImage* _whitePaperImage;
 
 - (UIImage*)commonDialogBgImage
 {
-    return [UIImage imageNamed:@"logout.png"];
+    return [UIImage imageNamed:@"common_dialog_bg.png"];
 }
 - (UIImage*)commonDialogLeftBtnImage
 {
-    return [self greenImage];
+    return [UIImage imageNamed:@"common_dialog_btn_bg.png"];
 }
 - (UIImage*)commonDialogRightBtnImage
 {
-    return [self redImage];
+    return [UIImage imageNamed:@"common_dialog_btn_bg.png"];
 }
 
 - (UIImage *)inputDialogBgImage
 {
-    return [UIImage imageNamed:@"logout.png"];
+    return [UIImage imageNamed:@"common_dialog_bg.png"];
 }
 
 - (UIImage*)inputDialogInputBgImage
 {
     //    return [UIImage strectchableImageName:@"zjh_input_bg.png" leftCapWidth:15 topCapHeight:15];
-    return [self inputImage];
+    return [UIImage strectchableImageName:@"common_dialog_input_bg.png"];
 }
 - (UIImage*)inputDialogLeftBtnImage
 {
-    return [self greenImage];
+    return [UIImage imageNamed:@"common_dialog_btn_bg.png"];
 }
 - (UIImage*)inputDialogRightBtnImage
 {
-    return [self redImage];
+    return [UIImage imageNamed:@"common_dialog_btn_bg.png"];
 }
 
 - (UIImage *)roomListBgImage
