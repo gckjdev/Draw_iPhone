@@ -825,7 +825,7 @@
 - (IBAction)clickWallButton:(id)sender {
     OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
-//    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"5109f53503640e6bd334bc4a" delegate:self];
+//    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"5124368e036488e85a572746" delegate:self];
 }
 
 - (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall

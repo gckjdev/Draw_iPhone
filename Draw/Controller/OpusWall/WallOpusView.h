@@ -7,14 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WallOpus.h"
+#import "Draw.pb.h"
+
+@protocol WallOpusViewDelegate <NSObject>
+- (void)didClickWallOpus:(PBWallOpus*)wallOpus;
+
+@end
 
 @interface WallOpusView : UIView
 
-@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (assign, nonatomic) id<WallOpusViewDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIButton *frameButton;
-@property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
+@property (retain, nonatomic) IBOutlet UIButton *opusButton;
 
-+ (id)createViewWithRect:(CGRect)rect pbFrame:(PBFrame *)pbFrame;
++ (id)createViewWithWallOpus:(PBWallOpus *)wallOpus;
+- (void)updateViewWithWallOpus:(PBWallOpus *)wallOpus;
 
 @end

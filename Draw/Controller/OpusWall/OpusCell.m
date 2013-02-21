@@ -7,8 +7,11 @@
 //
 
 #import "OpusCell.h"
-#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "UIViewUtils.h"
+
+
+#define OPUS_BUTTON_TAG_OFFSET 200
 
 @interface OpusCell ()
 
@@ -34,30 +37,33 @@
     return OPUS_VIEW_HEIGHT;
 }
 
-- (void)setCellData:(NSArray *)opuses delegate:(id<OpusViewProtocol>)aDelegate
+- (void)setCellData:(NSArray *)opuses
 {
     [self removeAllSubviews];
     
     self.opuses = opuses;
     
-    int index = 0;
-    for (; index < [opuses count] && index < EACH_CELL_OPUSES_COUNT; index++) {
+    for (int index=0; index<[opuses count] && index<MAX_OPUSES_EACH_CELL; index++)
+    {
         DrawFeed *feed = [opuses objectAtIndex:index];
-
-        OpusView *opusView = [OpusView createView];
-        opusView.delegate = aDelegate;
-        opusView.frame = [self opusViewFrame:index];
-        [opusView setDrawFeed:feed];
-        
-        [self addSubview:opusView];
+        PPDebug(@"%@", feed.drawImageUrl);
+        [[self opusButtonOfIndex:index] setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
+        [[self opusButtonOfIndex:index] addTarget:self action:@selector(clickOpus:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
-- (CGRect)opusViewFrame:(int)index
+- (UIButton *)opusButtonOfIndex:(int)index
 {
-    CGRect rect = CGRectMake(index * OPUS_VIEW_WIDTH, 0, OPUS_VIEW_WIDTH, OPUS_VIEW_HEIGHT);
-    return rect;
+    return (UIButton *)[self viewWithTag:(OPUS_BUTTON_TAG_OFFSET + index)];
 }
 
+- (void)clickOpus:(id)sender
+{
+    int index = ((UIButton *)sender).tag - OPUS_BUTTON_TAG_OFFSET;
+    DrawFeed *opus = [_opuses objectAtIndex:index];
+    if ([delegate respondsToSelector:@selector(didClickOpus:)]) {
+        [delegate didClickOpus:opus];
+    }
+}
 
 @end

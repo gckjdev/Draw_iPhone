@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MyPaintButton.h"
+#import "PPTableViewCell.h"
 #define IMAGES_PER_LINE 4
 
 @class MyPaint;
@@ -18,7 +19,7 @@
 - (void)didSelectPaint:(MyPaint *)paint;
 @end
 
-@interface ShareCell : UITableViewCell
+@interface ShareCell : PPTableViewCell
 {
 
 }

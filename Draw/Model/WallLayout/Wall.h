@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "DrawFeed.h"
-#import "WallOpus.h"
 
 #define DISPLAY_MODE_PLANE 0    
 #define DISPLAY_MODE_SOLID 1
@@ -18,20 +17,20 @@
 @property (retain, nonatomic, readonly) PBWall *pbWall;
 
 - (id)initWithPBWall:(PBWall *)pbWall;
+
 - (id)initWithName:(NSString *)name
             layout:(PBLayout *)layout
             opuses:(NSArray*)opuses
           musicUrl:(NSString *)musicUrl;
 
-- (NSArray *)wallOpuses;
+- (PBWallOpus *)wallOpusWithIdOnWall:(int)idOnWall;
 
-- (WallOpus *)wallOpusWithFrameIdOnWall:(int)frameIdOnWall;
+- (void)replaceWallOpus:(int)idOnWall withOpus:(DrawFeed *)newOpus;
+- (void)replaceWallOpus:(int)idOnWall withFrame:(PBFrame *)newFrame;
 
-- (void)replaceWallOpus:(int)frameIdOnWall withOpus:(DrawFeed *)opus;
-- (void)replaceWallOpus:(int)frameIdOnWall withFrame:(PBFrame *)frame;
-
-- (PBFrame *)frameWithFrameIdOnWall:(int)frameIdOnWall;
+- (PBFrame *)frameInWallOpus:(int)idOnWall;
 - (void)setLayout:(PBLayout *)layout;
+
 - (void)setWallId:(NSString *)wallId;
 
 - (PBWall *)toPBWall;

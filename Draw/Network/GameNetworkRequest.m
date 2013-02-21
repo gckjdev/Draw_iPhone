@@ -2611,12 +2611,14 @@
                               postDataDict:dataDict
                        constructURLHandler:constructURLHandler
                            responseHandler:responseHandler
+                              outputFormat:FORMAT_PB
                                     output:output];
 }
 
 + (CommonNetworkOutput*)updateWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
+                            wallId:(NSString *)wallId
                               data:(NSData *)data
                          imageData:(NSData *)imageData
 {
@@ -2630,6 +2632,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_USER_WALL];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_WALL_ID value:wallId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
@@ -2665,6 +2668,7 @@
                               postDataDict:dataDict
                        constructURLHandler:constructURLHandler
                            responseHandler:responseHandler
+                              outputFormat:FORMAT_PB
                                     output:output];
 }
 

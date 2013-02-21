@@ -50,22 +50,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
         NSString *framesPbFile = [_smartData.dataFilePath stringByAppendingPathComponent:FRAMES_PB];
         NSData *data = [NSData dataWithContentsOfFile:framesPbFile];
         
-        NSMutableArray *arr  = [NSMutableArray array];
-        for (PBFrame *frame in [[PBFrameList parseFromData:data] framesList]) {
-            NSString *imagePath = [self.smartData.dataFilePath stringByAppendingPathComponent:frame.image];
-            NSString *thumbImagePath = [self.smartData.dataFilePath stringByAppendingPathComponent:frame.thumbImage];
-            
-            PBFrame_Builder *builder = [PBFrame builderWithPrototype:frame];
-            [builder setImage:imagePath];
-            [builder setThumbImage:thumbImagePath];
-            
-            [arr addObject:[builder build]];
-        }
-        
-        if ([arr count] > 0) {
-            _frames = [arr retain];
-
-        }
+        _frames = [[[PBFrameList parseFromData:data] framesList] retain];
     }
     
     return _frames;
@@ -75,7 +60,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
 {
     NSMutableArray *arr = [NSMutableArray array];
     for (PBFrame *frame in self.frames) {
-        if (frame.frameType == type) {
+        if (frame.type == type) {
             [arr addObject:frame];
         }
     }
@@ -93,11 +78,5 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
     
     return nil;
 }
-
-- (NSString *)imageDirectory
-{
-    return self.smartData.dataFilePath;
-}
-
 
 @end

@@ -347,6 +347,8 @@
 
 - (BOOL)supportRecovery
 {
+    return NO;
+    
     if (targetType == TypeGraffiti){
         return NO;
     }
@@ -1097,10 +1099,11 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
 {
     if ([drawView canRevoke]) {
-        _isNewDraft = NO;
-        
-        [self showActivityWithText:NSLS(@"kRevoking")];
+        _isNewDraft = NO;        
+//        [self showActivityWithText:NSLS(@"kRevoking")];
         [self performSelector:@selector(performRevoke) withObject:nil afterDelay:0.1f];
+    }else{
+        [self popupUnhappyMessage:NSLS(@"kCannotRevoke") title:nil];
     }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button

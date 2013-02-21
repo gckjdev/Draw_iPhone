@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DrawAction.h"
+#import "Offscreen.h"
 
 @interface OffscreenManager : NSObject
 
@@ -23,12 +24,37 @@
 
 
 //add draw action and draw it in the last layer.
-- (void)addDrawAction:(DrawAction *)action;
+- (CGRect)addDrawAction:(DrawAction *)action;
+
+- (void)updateWithDrawActionList:(NSArray *)drawActionList;
 
 //show all the action render in the layer list
 - (void)showAllLayersInContext:(CGContextRef)context;
 
 //show to index, and return the real index. such as: show to index 12, but can return 10. real index <= index is guaranteed
-- (NSUInteger)showToIndex:(NSUInteger)index inContext:(CGContextRef)context;
 
+- (NSUInteger)closestIndexWithActionIndex:(NSUInteger)index;
+
+//- (void)removeContentAfterIndex:(NSUInteger)index;
+
+//find the offscreen which the action is in;
+- (Offscreen *)offScreenForActionIndex:(NSInteger)index;
+
+//clean all the layer.
+- (void)clean;
+
+//return total action count;
+- (NSUInteger)actionCount;
+
+- (BOOL)isEmpty;
+
+
+- (Offscreen *)enteryScreen;
+
+- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width;
+
+- (CGRect)updateLastPaint:(Paint *)paint;
+
+
+- (BOOL)canUndo;
 @end

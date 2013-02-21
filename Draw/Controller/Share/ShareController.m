@@ -454,11 +454,7 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([DeviceDetection isIPAD]) {
-        return 180;
-    } else {
-        return 90;
-    }
+    return [ShareCell getCellHeight];
         
 }
 
@@ -648,8 +644,7 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad]; 
-    
-    ShareImageManager* imageManager = [ShareImageManager defaultManager];
+
     [self initTabButtons];
     UIButton *allButton = [self tabButtonWithTabID:TabTypeAll];
 
