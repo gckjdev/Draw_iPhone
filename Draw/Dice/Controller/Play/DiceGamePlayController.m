@@ -589,7 +589,6 @@
         [avatar setImage:[[DiceImageManager defaultManager] whiteSofaImage]];
         avatar.userId = nil;
         [nameLabel setText:nil];
-        
     }
     
     // set user on seat

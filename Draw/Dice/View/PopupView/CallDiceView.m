@@ -30,8 +30,8 @@
 #define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
 
 
-#define SIZE_FONT_COUNT     ([DeviceDetection isIPAD] ? 48 : 24 )
-#define SIZE_FONT_SYMBOL    ([DeviceDetection isIPAD] ? 34 : 17 )
+#define SIZE_FONT_COUNT     ([DeviceDetection isIPAD] ? 40 : 24 )
+#define SIZE_FONT_SYMBOL    ([DeviceDetection isIPAD] ? 30 : 17 )
 
 @interface CallDiceView ()
 
