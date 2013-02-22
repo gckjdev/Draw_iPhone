@@ -646,7 +646,7 @@ static AdService* _defaultService;
     
     // Create LM Ad View
     GADBannerView* adView = nil;
-    adView = [[[GADBannerView alloc] initWithAdSize:GAD_SIZE_320x50];
+    adView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     
     if ([DeviceDetection isIPAD]){
         [adView setFrame:iPadFrame];
