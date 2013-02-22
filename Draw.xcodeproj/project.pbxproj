@@ -6468,6 +6468,22 @@
 		CAE9AA3016D65EF3008392F9 /* DiceDefault~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3216D65EF3008392F9 /* DiceDefault~ipad.png */; };
 		CAE9AA3416D65EFE008392F9 /* DiceDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3616D65EFE008392F9 /* DiceDefault.png */; };
 		CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3916D65F04008392F9 /* DiceDefault-568h@2x.png */; };
+		CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4916D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4A16D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4B16D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA4F16D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5016D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5116D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5516D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5616D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5716D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5B16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5C16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5D16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -9615,12 +9631,21 @@
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_bg@2x.png"; sourceTree = "<group>"; };
-		CAE9AA3116D65EF3008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
-		CAE9AA3316D65EF8008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
-		CAE9AA3516D65EFE008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/DiceDefault.png; sourceTree = "<group>"; };
-		CAE9AA3816D65F04008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
-		CAE9AA3A16D65F08008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.png"; sourceTree = "<group>"; };
-		CAE9AA3B16D65F0C008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CAE9AA3116D65EF3008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CAE9AA3316D65EF8008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CAE9AA3516D65EFE008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/DiceDefault.png; sourceTree = "<group>"; };
+		CAE9AA3816D65F04008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CAE9AA3A16D65F08008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.png"; sourceTree = "<group>"; };
+		CAE9AA3B16D65F0C008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CAE9AA4516D71D80008392F9 /* DrawPenProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPenProtocol.h; sourceTree = "<group>"; };
+		CAE9AA4616D71E61008392F9 /* DrawPenFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPenFactory.h; sourceTree = "<group>"; };
+		CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawPenFactory.m; sourceTree = "<group>"; };
+		CAE9AA4C16D71FCD008392F9 /* DashPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashPen.h; sourceTree = "<group>"; };
+		CAE9AA4D16D71FCD008392F9 /* DashPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashPen.m; sourceTree = "<group>"; };
+		CAE9AA5216D71FE2008392F9 /* BlurPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurPen.h; sourceTree = "<group>"; };
+		CAE9AA5316D71FE2008392F9 /* BlurPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurPen.m; sourceTree = "<group>"; };
+		CAE9AA5816D71FF9008392F9 /* MarkPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkPen.h; sourceTree = "<group>"; };
+		CAE9AA5916D71FFA008392F9 /* MarkPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -12752,6 +12777,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
 				CAD6EACD15805D780004A483 /* DrawManager.h */,
 				CAD6EACE15805D780004A483 /* DrawManager.m */,
@@ -16012,6 +16038,22 @@
 				CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */,
 			);
 			path = Dice;
+			sourceTree = "<group>";
+		};
+		CAE9AA3F16D71D42008392F9 /* DrawPen */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9AA4516D71D80008392F9 /* DrawPenProtocol.h */,
+				CAE9AA4616D71E61008392F9 /* DrawPenFactory.h */,
+				CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */,
+				CAE9AA4C16D71FCD008392F9 /* DashPen.h */,
+				CAE9AA4D16D71FCD008392F9 /* DashPen.m */,
+				CAE9AA5216D71FE2008392F9 /* BlurPen.h */,
+				CAE9AA5316D71FE2008392F9 /* BlurPen.m */,
+				CAE9AA5816D71FF9008392F9 /* MarkPen.h */,
+				CAE9AA5916D71FFA008392F9 /* MarkPen.m */,
+			);
+			path = DrawPen;
 			sourceTree = "<group>";
 		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
@@ -21651,6 +21693,10 @@
 				CA32FA4616D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135516D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D415016D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4A16D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA5016D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5616D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5C16D71FFA008392F9 /* MarkPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22351,6 +22397,10 @@
 				CA32FA4716D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135616D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D415116D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4B16D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA5116D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5716D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5D16D71FFA008392F9 /* MarkPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23051,6 +23101,10 @@
 				CA32FA4416D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135316D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D414E16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23759,6 +23813,10 @@
 				CA32FA4516D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135416D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D414F16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4916D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA4F16D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5516D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5B16D71FFA008392F9 /* MarkPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
