@@ -30,7 +30,7 @@
     
     CGContextSetLineDash(context, 0, NULL, 0);
     CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetShadow(context, CGSizeMake(0, 0), 0);
+    CGContextSetShadowWithColor(context, CGSizeZero, 0, NULL);
 }
 
 - (id)init

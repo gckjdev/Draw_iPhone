@@ -1145,7 +1145,7 @@
 
 "kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";
-"kDiceSuperHighRoom" = "Crazy Room %d";
+"kDiceSuperHighRoom" = "Rich Room %d";
 
 "kBetViewTitle" = "Bet(%d)";
 "kBetNote" = "Player【%@】challenge, would you bet?";
