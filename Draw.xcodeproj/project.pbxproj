@@ -292,6 +292,11 @@
 		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
+		A4DFF2D316D751F50050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
+		A4DFF2D416D751F50050D2CE /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DFF2D216D751F50050D2CE /* WallOpusView.xib */; };
+		A4DFF2D516D75C3B0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
+		A4DFF2D616D75C3D0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
+		A4DFF2D716D75C3E0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
 		A4F5BF7916A40224000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
@@ -7158,6 +7163,9 @@
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
+		A4DFF2D016D751F40050D2CE /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
+		A4DFF2D116D751F50050D2CE /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
+		A4DFF2D216D751F50050D2CE /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
@@ -10836,6 +10844,9 @@
 		A4D1744716B1089C00958355 /* OpusWall */ = {
 			isa = PBXGroup;
 			children = (
+				A4DFF2D016D751F40050D2CE /* WallOpusView.h */,
+				A4DFF2D116D751F50050D2CE /* WallOpusView.m */,
+				A4DFF2D216D751F50050D2CE /* WallOpusView.xib */,
 				A45D261516BA0F58003E68B8 /* OpusView.h */,
 				A45D261616BA0F58003E68B8 /* OpusView.m */,
 				A45D261716BA0F58003E68B8 /* OpusView.xib */,
@@ -20214,6 +20225,7 @@
 				C21D416516D602A8006A0AA3 /* my_paint_tag@2x.png in Resources */,
 				C21D416916D602A8006A0AA3 /* paint_bg@2x.png in Resources */,
 				C21D416D16D602A8006A0AA3 /* paint_name_bg@2x.jpg in Resources */,
+				A4DFF2D416D751F50050D2CE /* WallOpusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21764,6 +21776,7 @@
 				CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
+				A4DFF2D616D75C3D0050D2CE /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22475,6 +22488,7 @@
 				CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
+				A4DFF2D716D75C3E0050D2CE /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23186,6 +23200,7 @@
 				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
+				A4DFF2D316D751F50050D2CE /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23905,6 +23920,7 @@
 				CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
+				A4DFF2D516D75C3B0050D2CE /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
