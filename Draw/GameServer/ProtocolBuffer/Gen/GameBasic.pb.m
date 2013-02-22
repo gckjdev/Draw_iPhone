@@ -19,6 +19,17 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBPriceCountryIsValidValue(PBPriceCountry value) {
+  switch (value) {
+    case PBPriceCountryAll:
+    case PBPriceCountryChina:
+    case PBPriceCountryJapan:
+    case PBPriceCountryKorea:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBKeyValue ()
 @property (retain) NSString* name;
 @property (retain) NSString* value;
@@ -5298,6 +5309,837 @@ static PBUserResult* defaultPBUserResultInstance = nil;
 - (PBUserResult_Builder*) clearGainCoins {
   result.hasGainCoins = NO;
   result.gainCoins = 0;
+  return self;
+}
+@end
+
+@interface PBPriceInfo ()
+@property (retain) NSString* price;
+@property (retain) NSString* currency;
+@property PBPriceCountry country;
+@end
+
+@implementation PBPriceInfo
+
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
+- (BOOL) hasCurrency {
+  return !!hasCurrency_;
+}
+- (void) setHasCurrency:(BOOL) value {
+  hasCurrency_ = !!value;
+}
+@synthesize currency;
+- (BOOL) hasCountry {
+  return !!hasCountry_;
+}
+- (void) setHasCountry:(BOOL) value {
+  hasCountry_ = !!value;
+}
+@synthesize country;
+- (void) dealloc {
+  self.price = nil;
+  self.currency = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.price = @"";
+    self.currency = @"";
+    self.country = PBPriceCountryAll;
+  }
+  return self;
+}
+static PBPriceInfo* defaultPBPriceInfoInstance = nil;
++ (void) initialize {
+  if (self == [PBPriceInfo class]) {
+    defaultPBPriceInfoInstance = [[PBPriceInfo alloc] init];
+  }
+}
++ (PBPriceInfo*) defaultInstance {
+  return defaultPBPriceInfoInstance;
+}
+- (PBPriceInfo*) defaultInstance {
+  return defaultPBPriceInfoInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasPrice) {
+    return NO;
+  }
+  if (!self.hasCurrency) {
+    return NO;
+  }
+  if (!self.hasCountry) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasPrice) {
+    [output writeString:1 value:self.price];
+  }
+  if (self.hasCurrency) {
+    [output writeString:2 value:self.currency];
+  }
+  if (self.hasCountry) {
+    [output writeEnum:3 value:self.country];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasPrice) {
+    size += computeStringSize(1, self.price);
+  }
+  if (self.hasCurrency) {
+    size += computeStringSize(2, self.currency);
+  }
+  if (self.hasCountry) {
+    size += computeEnumSize(3, self.country);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBPriceInfo*) parseFromData:(NSData*) data {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromData:data] build];
+}
++ (PBPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBPriceInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromInputStream:input] build];
+}
++ (PBPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromCodedInputStream:input] build];
+}
++ (PBPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBPriceInfo*)[[[PBPriceInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBPriceInfo_Builder*) builder {
+  return [[[PBPriceInfo_Builder alloc] init] autorelease];
+}
++ (PBPriceInfo_Builder*) builderWithPrototype:(PBPriceInfo*) prototype {
+  return [[PBPriceInfo builder] mergeFrom:prototype];
+}
+- (PBPriceInfo_Builder*) builder {
+  return [PBPriceInfo builder];
+}
+@end
+
+@interface PBPriceInfo_Builder()
+@property (retain) PBPriceInfo* result;
+@end
+
+@implementation PBPriceInfo_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBPriceInfo alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBPriceInfo_Builder*) clear {
+  self.result = [[[PBPriceInfo alloc] init] autorelease];
+  return self;
+}
+- (PBPriceInfo_Builder*) clone {
+  return [PBPriceInfo builderWithPrototype:result];
+}
+- (PBPriceInfo*) defaultInstance {
+  return [PBPriceInfo defaultInstance];
+}
+- (PBPriceInfo*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBPriceInfo*) buildPartial {
+  PBPriceInfo* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBPriceInfo_Builder*) mergeFrom:(PBPriceInfo*) other {
+  if (other == [PBPriceInfo defaultInstance]) {
+    return self;
+  }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
+  }
+  if (other.hasCurrency) {
+    [self setCurrency:other.currency];
+  }
+  if (other.hasCountry) {
+    [self setCountry:other.country];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setPrice:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setCurrency:[input readString]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBPriceCountryIsValidValue(value)) {
+          [self setCountry:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (NSString*) price {
+  return result.price;
+}
+- (PBPriceInfo_Builder*) setPrice:(NSString*) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBPriceInfo_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = @"";
+  return self;
+}
+- (BOOL) hasCurrency {
+  return result.hasCurrency;
+}
+- (NSString*) currency {
+  return result.currency;
+}
+- (PBPriceInfo_Builder*) setCurrency:(NSString*) value {
+  result.hasCurrency = YES;
+  result.currency = value;
+  return self;
+}
+- (PBPriceInfo_Builder*) clearCurrency {
+  result.hasCurrency = NO;
+  result.currency = @"";
+  return self;
+}
+- (BOOL) hasCountry {
+  return result.hasCountry;
+}
+- (PBPriceCountry) country {
+  return result.country;
+}
+- (PBPriceInfo_Builder*) setCountry:(PBPriceCountry) value {
+  result.hasCountry = YES;
+  result.country = value;
+  return self;
+}
+- (PBPriceInfo_Builder*) clearCountry {
+  result.hasCountry = NO;
+  result.country = PBPriceCountryAll;
+  return self;
+}
+@end
+
+@interface PBGameItem ()
+@property int32_t itemId;
+@property (retain) NSString* name;
+@property (retain) NSString* desc;
+@property (retain) NSString* image;
+@property (retain) NSString* demoImage;
+@property int32_t soldType;
+@property (retain) NSString* appleProductId;
+@property (retain) NSMutableArray* mutablePriceDescInfoList;
+@property BOOL hasDiscount;
+@property int32_t discount;
+@end
+
+@implementation PBGameItem
+
+- (BOOL) hasItemId {
+  return !!hasItemId_;
+}
+- (void) setHasItemId:(BOOL) value {
+  hasItemId_ = !!value;
+}
+@synthesize itemId;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasImage {
+  return !!hasImage_;
+}
+- (void) setHasImage:(BOOL) value {
+  hasImage_ = !!value;
+}
+@synthesize image;
+- (BOOL) hasDemoImage {
+  return !!hasDemoImage_;
+}
+- (void) setHasDemoImage:(BOOL) value {
+  hasDemoImage_ = !!value;
+}
+@synthesize demoImage;
+- (BOOL) hasSoldType {
+  return !!hasSoldType_;
+}
+- (void) setHasSoldType:(BOOL) value {
+  hasSoldType_ = !!value;
+}
+@synthesize soldType;
+- (BOOL) hasAppleProductId {
+  return !!hasAppleProductId_;
+}
+- (void) setHasAppleProductId:(BOOL) value {
+  hasAppleProductId_ = !!value;
+}
+@synthesize appleProductId;
+@synthesize mutablePriceDescInfoList;
+- (BOOL) hasHasDiscount {
+  return !!hasHasDiscount_;
+}
+- (void) setHasHasDiscount:(BOOL) value {
+  hasHasDiscount_ = !!value;
+}
+- (BOOL) hasDiscount {
+  return !!hasDiscount_;
+}
+- (void) setHasDiscount:(BOOL) value {
+  hasDiscount_ = !!value;
+}
+- (BOOL) hasDiscount {
+  return !!hasDiscount_;
+}
+- (void) setHasDiscount:(BOOL) value {
+  hasDiscount_ = !!value;
+}
+@synthesize discount;
+- (void) dealloc {
+  self.name = nil;
+  self.desc = nil;
+  self.image = nil;
+  self.demoImage = nil;
+  self.appleProductId = nil;
+  self.mutablePriceDescInfoList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.itemId = 0;
+    self.name = @"";
+    self.desc = @"";
+    self.image = @"";
+    self.demoImage = @"";
+    self.soldType = 0;
+    self.appleProductId = @"";
+    self.hasDiscount = NO;
+    self.discount = 0;
+  }
+  return self;
+}
+static PBGameItem* defaultPBGameItemInstance = nil;
++ (void) initialize {
+  if (self == [PBGameItem class]) {
+    defaultPBGameItemInstance = [[PBGameItem alloc] init];
+  }
+}
++ (PBGameItem*) defaultInstance {
+  return defaultPBGameItemInstance;
+}
+- (PBGameItem*) defaultInstance {
+  return defaultPBGameItemInstance;
+}
+- (NSArray*) priceDescInfoList {
+  return mutablePriceDescInfoList;
+}
+- (PBPriceInfo*) priceDescInfoAtIndex:(int32_t) index {
+  id value = [mutablePriceDescInfoList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasItemId) {
+    return NO;
+  }
+  if (!self.hasName) {
+    return NO;
+  }
+  if (!self.hasSoldType) {
+    return NO;
+  }
+  for (PBPriceInfo* element in self.priceDescInfoList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasItemId) {
+    [output writeInt32:1 value:self.itemId];
+  }
+  if (self.hasName) {
+    [output writeString:2 value:self.name];
+  }
+  if (self.hasDesc) {
+    [output writeString:3 value:self.desc];
+  }
+  if (self.hasImage) {
+    [output writeString:11 value:self.image];
+  }
+  if (self.hasDemoImage) {
+    [output writeString:12 value:self.demoImage];
+  }
+  if (self.hasSoldType) {
+    [output writeInt32:21 value:self.soldType];
+  }
+  if (self.hasAppleProductId) {
+    [output writeString:22 value:self.appleProductId];
+  }
+  for (PBPriceInfo* element in self.priceDescInfoList) {
+    [output writeMessage:23 value:element];
+  }
+  if (self.hasHasDiscount) {
+    [output writeBool:24 value:self.hasDiscount];
+  }
+  if (self.hasDiscount) {
+    [output writeInt32:25 value:self.discount];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasItemId) {
+    size += computeInt32Size(1, self.itemId);
+  }
+  if (self.hasName) {
+    size += computeStringSize(2, self.name);
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(3, self.desc);
+  }
+  if (self.hasImage) {
+    size += computeStringSize(11, self.image);
+  }
+  if (self.hasDemoImage) {
+    size += computeStringSize(12, self.demoImage);
+  }
+  if (self.hasSoldType) {
+    size += computeInt32Size(21, self.soldType);
+  }
+  if (self.hasAppleProductId) {
+    size += computeStringSize(22, self.appleProductId);
+  }
+  for (PBPriceInfo* element in self.priceDescInfoList) {
+    size += computeMessageSize(23, element);
+  }
+  if (self.hasHasDiscount) {
+    size += computeBoolSize(24, self.hasDiscount);
+  }
+  if (self.hasDiscount) {
+    size += computeInt32Size(25, self.discount);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGameItem*) parseFromData:(NSData*) data {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromData:data] build];
+}
++ (PBGameItem*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItem*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromInputStream:input] build];
+}
++ (PBGameItem*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItem*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGameItem*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItem*)[[[PBGameItem builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItem_Builder*) builder {
+  return [[[PBGameItem_Builder alloc] init] autorelease];
+}
++ (PBGameItem_Builder*) builderWithPrototype:(PBGameItem*) prototype {
+  return [[PBGameItem builder] mergeFrom:prototype];
+}
+- (PBGameItem_Builder*) builder {
+  return [PBGameItem builder];
+}
+@end
+
+@interface PBGameItem_Builder()
+@property (retain) PBGameItem* result;
+@end
+
+@implementation PBGameItem_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGameItem alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGameItem_Builder*) clear {
+  self.result = [[[PBGameItem alloc] init] autorelease];
+  return self;
+}
+- (PBGameItem_Builder*) clone {
+  return [PBGameItem builderWithPrototype:result];
+}
+- (PBGameItem*) defaultInstance {
+  return [PBGameItem defaultInstance];
+}
+- (PBGameItem*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGameItem*) buildPartial {
+  PBGameItem* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGameItem_Builder*) mergeFrom:(PBGameItem*) other {
+  if (other == [PBGameItem defaultInstance]) {
+    return self;
+  }
+  if (other.hasItemId) {
+    [self setItemId:other.itemId];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
+  if (other.hasImage) {
+    [self setImage:other.image];
+  }
+  if (other.hasDemoImage) {
+    [self setDemoImage:other.demoImage];
+  }
+  if (other.hasSoldType) {
+    [self setSoldType:other.soldType];
+  }
+  if (other.hasAppleProductId) {
+    [self setAppleProductId:other.appleProductId];
+  }
+  if (other.mutablePriceDescInfoList.count > 0) {
+    if (result.mutablePriceDescInfoList == nil) {
+      result.mutablePriceDescInfoList = [NSMutableArray array];
+    }
+    [result.mutablePriceDescInfoList addObjectsFromArray:other.mutablePriceDescInfoList];
+  }
+  if (other.hasHasDiscount) {
+    [self setHasDiscount:other.hasDiscount];
+  }
+  if (other.hasDiscount) {
+    [self setDiscount:other.discount];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGameItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGameItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setItemId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setDesc:[input readString]];
+        break;
+      }
+      case 90: {
+        [self setImage:[input readString]];
+        break;
+      }
+      case 98: {
+        [self setDemoImage:[input readString]];
+        break;
+      }
+      case 168: {
+        [self setSoldType:[input readInt32]];
+        break;
+      }
+      case 178: {
+        [self setAppleProductId:[input readString]];
+        break;
+      }
+      case 186: {
+        PBPriceInfo_Builder* subBuilder = [PBPriceInfo builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addPriceDescInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 192: {
+        [self setHasDiscount:[input readBool]];
+        break;
+      }
+      case 200: {
+        [self setDiscount:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasItemId {
+  return result.hasItemId;
+}
+- (int32_t) itemId {
+  return result.itemId;
+}
+- (PBGameItem_Builder*) setItemId:(int32_t) value {
+  result.hasItemId = YES;
+  result.itemId = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearItemId {
+  result.hasItemId = NO;
+  result.itemId = 0;
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBGameItem_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBGameItem_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
+  return self;
+}
+- (BOOL) hasImage {
+  return result.hasImage;
+}
+- (NSString*) image {
+  return result.image;
+}
+- (PBGameItem_Builder*) setImage:(NSString*) value {
+  result.hasImage = YES;
+  result.image = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearImage {
+  result.hasImage = NO;
+  result.image = @"";
+  return self;
+}
+- (BOOL) hasDemoImage {
+  return result.hasDemoImage;
+}
+- (NSString*) demoImage {
+  return result.demoImage;
+}
+- (PBGameItem_Builder*) setDemoImage:(NSString*) value {
+  result.hasDemoImage = YES;
+  result.demoImage = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearDemoImage {
+  result.hasDemoImage = NO;
+  result.demoImage = @"";
+  return self;
+}
+- (BOOL) hasSoldType {
+  return result.hasSoldType;
+}
+- (int32_t) soldType {
+  return result.soldType;
+}
+- (PBGameItem_Builder*) setSoldType:(int32_t) value {
+  result.hasSoldType = YES;
+  result.soldType = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearSoldType {
+  result.hasSoldType = NO;
+  result.soldType = 0;
+  return self;
+}
+- (BOOL) hasAppleProductId {
+  return result.hasAppleProductId;
+}
+- (NSString*) appleProductId {
+  return result.appleProductId;
+}
+- (PBGameItem_Builder*) setAppleProductId:(NSString*) value {
+  result.hasAppleProductId = YES;
+  result.appleProductId = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearAppleProductId {
+  result.hasAppleProductId = NO;
+  result.appleProductId = @"";
+  return self;
+}
+- (NSArray*) priceDescInfoList {
+  if (result.mutablePriceDescInfoList == nil) { return [NSArray array]; }
+  return result.mutablePriceDescInfoList;
+}
+- (PBPriceInfo*) priceDescInfoAtIndex:(int32_t) index {
+  return [result priceDescInfoAtIndex:index];
+}
+- (PBGameItem_Builder*) replacePriceDescInfoAtIndex:(int32_t) index with:(PBPriceInfo*) value {
+  [result.mutablePriceDescInfoList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameItem_Builder*) addAllPriceDescInfo:(NSArray*) values {
+  if (result.mutablePriceDescInfoList == nil) {
+    result.mutablePriceDescInfoList = [NSMutableArray array];
+  }
+  [result.mutablePriceDescInfoList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameItem_Builder*) clearPriceDescInfoList {
+  result.mutablePriceDescInfoList = nil;
+  return self;
+}
+- (PBGameItem_Builder*) addPriceDescInfo:(PBPriceInfo*) value {
+  if (result.mutablePriceDescInfoList == nil) {
+    result.mutablePriceDescInfoList = [NSMutableArray array];
+  }
+  [result.mutablePriceDescInfoList addObject:value];
+  return self;
+}
+- (BOOL) hasHasDiscount {
+  return result.hasHasDiscount;
+}
+- (BOOL) hasDiscount {
+  return result.hasDiscount;
+}
+- (PBGameItem_Builder*) setHasDiscount:(BOOL) value {
+  result.hasHasDiscount = YES;
+  result.hasDiscount = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearHasDiscount {
+  result.hasHasDiscount = NO;
+  result.hasDiscount = NO;
+  return self;
+}
+- (BOOL) hasDiscount {
+  return result.hasDiscount;
+}
+- (int32_t) discount {
+  return result.discount;
+}
+- (PBGameItem_Builder*) setDiscount:(int32_t) value {
+  result.hasDiscount = YES;
+  result.discount = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearDiscount {
+  result.hasDiscount = NO;
+  result.discount = 0;
   return self;
 }
 @end

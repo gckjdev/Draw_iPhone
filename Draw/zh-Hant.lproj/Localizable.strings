@@ -309,7 +309,7 @@
 "kShareGIFOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 "kShareGIFMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我的動畫炫圖！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 
-"kShareSend" = "發送微博";
+"kShareSend" = "發送";
 
 "kPublishingWeibo" = "發送微博中...";
 "kPublishWeiboSucc" = "微博已成功發送";
