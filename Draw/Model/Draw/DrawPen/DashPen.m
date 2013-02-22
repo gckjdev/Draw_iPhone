@@ -24,8 +24,8 @@
 {
     [super updateCGContext:context paint:paint];
     if (paint) {
-        CGFloat lengths[] = {20,20};
-        CGContextSetLineDash(context, 0, lengths, 2);    
+        CGFloat lengths[] = {50, 50};
+        CGContextSetLineDash(context, 0, lengths, 2);
     }
 }
 
