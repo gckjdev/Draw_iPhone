@@ -157,7 +157,8 @@ typedef enum {
 
     if (type == TouchTypeBegin) {
         [self drawDrawAction:_currentAction show:NO];
-        [osManager setStrokeColor:paint.color width:paint.width];
+//        [osManager setStrokeColor:paint.color width:paint.width];
+        [osManager updateDrawPenWithPaint:paint];
         [osManager updateLastPaint:paint];
         [self setNeedsDisplay];
 

@@ -10,11 +10,13 @@
 #import "DashPen.h"
 #import "MarkPen.h"
 #import "BlurPen.h"
+#import "DefaultPen.h"
 
 @implementation DrawPenFactory
 
 + (id<DrawPenProtocol>)createDrawPen:(DrawPenType)type
 {
+    PPDebug(@"<createDrawPen> type = %d", type);
     switch (type) {
         case DrawPenTypeBlur:
             return [[[BlurPen alloc] init] autorelease];
@@ -26,7 +28,7 @@
             return [[[MarkPen alloc] init] autorelease];
             
         default:
-            return nil;
+            return [[[DefaultPen alloc] init] autorelease];
     }
 }
 

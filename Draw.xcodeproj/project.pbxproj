@@ -190,6 +190,8 @@
 		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
+		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
+		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
@@ -292,11 +294,6 @@
 		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		A4DF0556160C25B400246A40 /* ReverseItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0555160C25B400246A40 /* ReverseItemAction.m */; };
 		A4DF0589160D735E00246A40 /* CutItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DF0588160D735E00246A40 /* CutItemAction.m */; };
-		A4DFF2D316D751F50050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
-		A4DFF2D416D751F50050D2CE /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DFF2D216D751F50050D2CE /* WallOpusView.xib */; };
-		A4DFF2D516D75C3B0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
-		A4DFF2D616D75C3D0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
-		A4DFF2D716D75C3E0050D2CE /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DFF2D116D751F50050D2CE /* WallOpusView.m */; };
 		A4E7876A16366FF8003557AD /* ZhaJinHua.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4E7876916366FF8003557AD /* ZhaJinHua.proto */; };
 		A4E787941636753F003557AD /* ZJHGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E787931636753F003557AD /* ZJHGameState.m */; };
 		A4F5BF7916A40224000A503F /* coin_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4F5BF7316A40224000A503F /* coin_tree@2x.png */; };
@@ -6515,6 +6512,10 @@
 		CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
+		CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -7017,6 +7018,9 @@
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
+		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
+		A4A0CEC816D7631D004AC167 /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
+		A4A0CEC916D7631D004AC167 /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHGameController_dual.xib; sourceTree = "<group>"; };
@@ -7163,9 +7167,6 @@
 		A4DF0555160C25B400246A40 /* ReverseItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReverseItemAction.m; sourceTree = "<group>"; };
 		A4DF0587160D735E00246A40 /* CutItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutItemAction.h; sourceTree = "<group>"; };
 		A4DF0588160D735E00246A40 /* CutItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutItemAction.m; sourceTree = "<group>"; };
-		A4DFF2D016D751F40050D2CE /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
-		A4DFF2D116D751F50050D2CE /* WallOpusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallOpusView.m; sourceTree = "<group>"; };
-		A4DFF2D216D751F50050D2CE /* WallOpusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallOpusView.xib; sourceTree = "<group>"; };
 		A4E7876916366FF8003557AD /* ZhaJinHua.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZhaJinHua.proto; sourceTree = "<group>"; };
 		A4E787921636753F003557AD /* ZJHGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameState.h; sourceTree = "<group>"; };
 		A4E787931636753F003557AD /* ZJHGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameState.m; sourceTree = "<group>"; };
@@ -9694,6 +9695,8 @@
 		CAE9AA5916D71FFA008392F9 /* MarkPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkPen.m; sourceTree = "<group>"; };
 		CAE9AA6A16D72725008392F9 /* DefaultPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultPen.h; sourceTree = "<group>"; };
 		CAE9AA6B16D72725008392F9 /* DefaultPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPen.m; sourceTree = "<group>"; };
+		CAE9AA7816D72F14008392F9 /* SuperPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperPen.h; sourceTree = "<group>"; };
+		CAE9AA7916D72F15008392F9 /* SuperPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -10844,9 +10847,9 @@
 		A4D1744716B1089C00958355 /* OpusWall */ = {
 			isa = PBXGroup;
 			children = (
-				A4DFF2D016D751F40050D2CE /* WallOpusView.h */,
-				A4DFF2D116D751F50050D2CE /* WallOpusView.m */,
-				A4DFF2D216D751F50050D2CE /* WallOpusView.xib */,
+				A4A0CEC716D7631D004AC167 /* WallOpusView.h */,
+				A4A0CEC816D7631D004AC167 /* WallOpusView.m */,
+				A4A0CEC916D7631D004AC167 /* WallOpusView.xib */,
 				A45D261516BA0F58003E68B8 /* OpusView.h */,
 				A45D261616BA0F58003E68B8 /* OpusView.m */,
 				A45D261716BA0F58003E68B8 /* OpusView.xib */,
@@ -16124,6 +16127,8 @@
 				CAE9AA5316D71FE2008392F9 /* BlurPen.m */,
 				CAE9AA5816D71FF9008392F9 /* MarkPen.h */,
 				CAE9AA5916D71FFA008392F9 /* MarkPen.m */,
+				CAE9AA7816D72F14008392F9 /* SuperPen.h */,
+				CAE9AA7916D72F15008392F9 /* SuperPen.m */,
 			);
 			path = DrawPen;
 			sourceTree = "<group>";
@@ -20225,7 +20230,7 @@
 				C21D416516D602A8006A0AA3 /* my_paint_tag@2x.png in Resources */,
 				C21D416916D602A8006A0AA3 /* paint_bg@2x.png in Resources */,
 				C21D416D16D602A8006A0AA3 /* paint_name_bg@2x.jpg in Resources */,
-				A4DFF2D416D751F50050D2CE /* WallOpusView.xib in Resources */,
+				A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21776,7 +21781,7 @@
 				CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
-				A4DFF2D616D75C3D0050D2CE /* WallOpusView.m in Sources */,
+				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22488,7 +22493,7 @@
 				CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
-				A4DFF2D716D75C3E0050D2CE /* WallOpusView.m in Sources */,
+				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23200,7 +23205,8 @@
 				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
-				A4DFF2D316D751F50050D2CE /* WallOpusView.m in Sources */,
+				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
+				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23920,7 +23926,7 @@
 				CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
-				A4DFF2D516D75C3B0050D2CE /* WallOpusView.m in Sources */,
+				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

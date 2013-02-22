@@ -43,6 +43,7 @@
 - (void)dealloc
 {
     PPRelease(_offscreenList);
+    PPRelease(_drawPen);
     [super dealloc];
 }
 
@@ -103,6 +104,18 @@
     return [_offscreenList objectAtIndex:0];
 }
 
+- (void)updateDrawPenWithPaint:(Paint *)paint
+{
+    if (paint) {
+        if (paint.penType != [self.drawPen penType]) {
+            self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
+        }
+        CGContextRef context = [[self enteryScreen] cacheContext];
+//        CGContextRestoreGState(context);
+        [self.drawPen updateCGContext:context paint:paint];
+//        CGContextSaveGState(context);
+    }
+}
 
 - (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width
 {

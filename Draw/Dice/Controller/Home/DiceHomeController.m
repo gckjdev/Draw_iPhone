@@ -90,16 +90,17 @@
     [super viewDidLoad];
     [self playBGM];
 
-    self.adView = [[AdService defaultService] createAdInView:self
-                                                       frame:CGRectMake(0, 120, 0, 0)
-                                                   iPadFrame:CGRectMake(15, 150, 320, 50)
-                                                     useLmAd:YES];
+
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [[AdService defaultService] setViewController:self];
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, 120, 0, 0)
+                                                   iPadFrame:CGRectMake(15, 150, 320, 50)
+                                                     useLmAd:YES];
 
     [self registerDiceGameNotification];
     [super viewDidAppear:animated];
@@ -107,6 +108,9 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+
     [self unregisterDiceGameNotifications];
     [super viewDidDisappear:animated];
 }
