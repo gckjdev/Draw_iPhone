@@ -9,11 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DrawPenProtocol.h"
 
-typedef enum{
-    DrawPenTypeDash = 1000,
-    DrawPenTypeBlur,
-    DrawPenTypeMark,
-}DrawPenType;
+
 
 
 //Pencil = 1000,

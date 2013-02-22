@@ -7,6 +7,9 @@
 //
 
 #import "DrawPenFactory.h"
+#import "DashPen.h"
+#import "MarkPen.h"
+#import "BlurPen.h"
 
 @implementation DrawPenFactory
 
@@ -14,16 +17,13 @@
 {
     switch (type) {
         case DrawPenTypeBlur:
-            
-            break;
+            return [[[BlurPen alloc] init] autorelease];
         
         case DrawPenTypeDash:
-            
-            break;
+            return [[[DashPen alloc] init] autorelease];
 
         case DrawPenTypeMark:
-            
-            break;
+            return [[[MarkPen alloc] init] autorelease];
             
         default:
             return nil;
