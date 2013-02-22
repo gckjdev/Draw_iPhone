@@ -414,9 +414,10 @@
 {
     NSString *str = [self diceTypeString];
     if (str != nil) {
-        CGFloat pointSize = [DeviceDetection isIPAD] ? 38 : 19;
+        CGFloat pointSize = [DeviceDetection isIPAD] ? 30 : 15;
         CGRect frame = [DeviceDetection isIPAD] ? CGRectMake(0, 0, 200, 200) : CGRectMake(0, 0, 100, 100);
         UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        [label setBackgroundColor:[UIColor clearColor]];
         [label setFont:[UIFont systemFontOfSize:pointSize]];
         label.textAlignment = UITextAlignmentCenter;
         label.center = self.center;

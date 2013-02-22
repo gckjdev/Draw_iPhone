@@ -25,7 +25,10 @@
 #define COUNT_LABEL_WIDTH_2     ([DeviceDetection isIPAD] ? 60 : 30 )
 #define SYMBOL_LABEL_WIDTH      ([DeviceDetection isIPAD] ? 24 : 12 )
 
-#define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+//#define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+
+#define CALL_DICE_POPUP_VIEW_BG_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
+
 
 #define SIZE_FONT_COUNT     ([DeviceDetection isIPAD] ? 48 : 24 )
 #define SIZE_FONT_SYMBOL    ([DeviceDetection isIPAD] ? 34 : 17 )
@@ -67,13 +70,15 @@
         self.countLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, countLableWidth, CALL_DICE_VIEW_HEIGHT)] autorelease];
         [self.countLabel setFont:[UIFont systemFontOfSize:SIZE_FONT_COUNT]];
         _countLabel.backgroundColor = [UIColor clearColor];
-        _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count]; 
+        _countLabel.text = [NSString stringWithFormat:NSLS(@"%d"), count];
+        _countLabel.textColor = [UIColor whiteColor];
         _countLabel.textAlignment = UITextAlignmentLeft;
         
         UILabel *symbolLabel = [[[UILabel alloc] initWithFrame:CGRectMake(countLableWidth, 0, SYMBOL_LABEL_WIDTH, CALL_DICE_VIEW_HEIGHT)] autorelease];
         [symbolLabel setFont:[UIFont systemFontOfSize:SIZE_FONT_SYMBOL]];
         symbolLabel.backgroundColor = [UIColor clearColor];
-        symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")]; 
+        symbolLabel.textColor = [UIColor whiteColor];
+        symbolLabel.text = [NSString stringWithFormat:NSLS(@"x")];
         symbolLabel.textAlignment = UITextAlignmentCenter;
         
         [self addSubview:_countLabel];

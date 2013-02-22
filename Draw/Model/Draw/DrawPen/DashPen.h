@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawPenProtocol.h"
 
-@interface DashPen : NSObject
+@interface DashPen : NSObject<DrawPenProtocol>
 
 @end

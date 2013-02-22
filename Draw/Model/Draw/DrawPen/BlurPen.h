@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawPenProtocol.h"
 
-@interface BlurPen : NSObject
+@interface BlurPen : NSObject<DrawPenProtocol>
 
 @end

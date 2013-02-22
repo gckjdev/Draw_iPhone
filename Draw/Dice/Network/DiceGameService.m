@@ -610,7 +610,7 @@ CGFloat *oddsAddr(bool win)
     
     CGFloat multiple = 1.0;
     if (self.diceSession.wilds) {
-        multiple = win ? 0.7 : 1.3;
+        multiple = win ? 0.3 : 0.7;
     }
     
     return oddsArr[oddsAddress] * multiple;
