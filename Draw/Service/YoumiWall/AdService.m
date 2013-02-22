@@ -19,6 +19,8 @@
 #import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
+#import "GADBannerView.h"
+
 //#import "YoumiWallService.h"
 //#import "YoumiWallController.h"
 
@@ -632,6 +634,48 @@ static AdService* _defaultService;
                             appId:[GameApp wanpuAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
                             frame:frame 
                         iPadFrame:iPadFrame];
+}
+
+- (UIView*)createAdmobAdInView:(UIView*)superView
+                         frame:(CGRect)frame
+                     iPadFrame:(CGRect)iPadFrame
+{
+    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
+        return nil;
+    }
+    
+    // Create LM Ad View
+    GADBannerView* adView = nil;
+    adView = [[[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    
+    if ([DeviceDetection isIPAD]){
+        [adView setFrame:iPadFrame];
+    }
+    else{
+        [adView setFrame:frame];
+    }
+    
+              //   GADBannerView *adView =
+              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+              //   adView.rootViewController = self;
+              //   adView.adUnitID = @"ID created when registering my app";
+              //
+              //   // Place the ad view onto the screen.
+              //   [self.view addSubview:adView];
+              //   [adView release];
+              //
+              //   // Request an ad without any additional targeting information.
+              //   [adView loadRequest:nil];
+              
+    adView.tag = AD_VIEW_TAG;
+    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+              adView.adUnitID = [ConfigManager getAdMobId];
+    
+    [adView loadRequest:nil];
+              
+    [superView addSubview:adView];
+    return adView;
+
 }
 
 #pragma mark - Wanpu Delegates

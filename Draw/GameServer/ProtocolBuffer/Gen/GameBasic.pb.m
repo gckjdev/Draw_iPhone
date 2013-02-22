@@ -5591,8 +5591,8 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
 @property int32_t soldType;
 @property (retain) NSString* appleProductId;
 @property (retain) NSMutableArray* mutablePriceDescInfoList;
-@property BOOL hasDiscount;
-@property int32_t discount;
+@property BOOL isPromotion;
+@property int32_t promotionDiscount;
 @end
 
 @implementation PBGameItem
@@ -5647,25 +5647,25 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
 }
 @synthesize appleProductId;
 @synthesize mutablePriceDescInfoList;
-- (BOOL) hasHasDiscount {
-  return !!hasHasDiscount_;
+- (BOOL) hasIsPromotion {
+  return !!hasIsPromotion_;
 }
-- (void) setHasHasDiscount:(BOOL) value {
-  hasHasDiscount_ = !!value;
+- (void) setHasIsPromotion:(BOOL) value {
+  hasIsPromotion_ = !!value;
 }
-- (BOOL) hasDiscount {
-  return !!hasDiscount_;
+- (BOOL) isPromotion {
+  return !!isPromotion_;
 }
-- (void) setHasDiscount:(BOOL) value {
-  hasDiscount_ = !!value;
+- (void) setIsPromotion:(BOOL) value {
+  isPromotion_ = !!value;
 }
-- (BOOL) hasDiscount {
-  return !!hasDiscount_;
+- (BOOL) hasPromotionDiscount {
+  return !!hasPromotionDiscount_;
 }
-- (void) setHasDiscount:(BOOL) value {
-  hasDiscount_ = !!value;
+- (void) setHasPromotionDiscount:(BOOL) value {
+  hasPromotionDiscount_ = !!value;
 }
-@synthesize discount;
+@synthesize promotionDiscount;
 - (void) dealloc {
   self.name = nil;
   self.desc = nil;
@@ -5684,8 +5684,8 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
     self.demoImage = @"";
     self.soldType = 0;
     self.appleProductId = @"";
-    self.hasDiscount = NO;
-    self.discount = 0;
+    self.isPromotion = NO;
+    self.promotionDiscount = 0;
   }
   return self;
 }
@@ -5750,11 +5750,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   for (PBPriceInfo* element in self.priceDescInfoList) {
     [output writeMessage:23 value:element];
   }
-  if (self.hasHasDiscount) {
-    [output writeBool:24 value:self.hasDiscount];
+  if (self.hasIsPromotion) {
+    [output writeBool:24 value:self.isPromotion];
   }
-  if (self.hasDiscount) {
-    [output writeInt32:25 value:self.discount];
+  if (self.hasPromotionDiscount) {
+    [output writeInt32:25 value:self.promotionDiscount];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5789,11 +5789,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   for (PBPriceInfo* element in self.priceDescInfoList) {
     size += computeMessageSize(23, element);
   }
-  if (self.hasHasDiscount) {
-    size += computeBoolSize(24, self.hasDiscount);
+  if (self.hasIsPromotion) {
+    size += computeBoolSize(24, self.isPromotion);
   }
-  if (self.hasDiscount) {
-    size += computeInt32Size(25, self.discount);
+  if (self.hasPromotionDiscount) {
+    size += computeInt32Size(25, self.promotionDiscount);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5897,11 +5897,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
     }
     [result.mutablePriceDescInfoList addObjectsFromArray:other.mutablePriceDescInfoList];
   }
-  if (other.hasHasDiscount) {
-    [self setHasDiscount:other.hasDiscount];
+  if (other.hasIsPromotion) {
+    [self setIsPromotion:other.isPromotion];
   }
-  if (other.hasDiscount) {
-    [self setDiscount:other.discount];
+  if (other.hasPromotionDiscount) {
+    [self setPromotionDiscount:other.promotionDiscount];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5959,11 +5959,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
         break;
       }
       case 192: {
-        [self setHasDiscount:[input readBool]];
+        [self setIsPromotion:[input readBool]];
         break;
       }
       case 200: {
-        [self setDiscount:[input readInt32]];
+        [self setPromotionDiscount:[input readInt32]];
         break;
       }
     }
@@ -6110,36 +6110,36 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   [result.mutablePriceDescInfoList addObject:value];
   return self;
 }
-- (BOOL) hasHasDiscount {
-  return result.hasHasDiscount;
+- (BOOL) hasIsPromotion {
+  return result.hasIsPromotion;
 }
-- (BOOL) hasDiscount {
-  return result.hasDiscount;
+- (BOOL) isPromotion {
+  return result.isPromotion;
 }
-- (PBGameItem_Builder*) setHasDiscount:(BOOL) value {
-  result.hasHasDiscount = YES;
-  result.hasDiscount = value;
+- (PBGameItem_Builder*) setIsPromotion:(BOOL) value {
+  result.hasIsPromotion = YES;
+  result.isPromotion = value;
   return self;
 }
-- (PBGameItem_Builder*) clearHasDiscount {
-  result.hasHasDiscount = NO;
-  result.hasDiscount = NO;
+- (PBGameItem_Builder*) clearIsPromotion {
+  result.hasIsPromotion = NO;
+  result.isPromotion = NO;
   return self;
 }
-- (BOOL) hasDiscount {
-  return result.hasDiscount;
+- (BOOL) hasPromotionDiscount {
+  return result.hasPromotionDiscount;
 }
-- (int32_t) discount {
-  return result.discount;
+- (int32_t) promotionDiscount {
+  return result.promotionDiscount;
 }
-- (PBGameItem_Builder*) setDiscount:(int32_t) value {
-  result.hasDiscount = YES;
-  result.discount = value;
+- (PBGameItem_Builder*) setPromotionDiscount:(int32_t) value {
+  result.hasPromotionDiscount = YES;
+  result.promotionDiscount = value;
   return self;
 }
-- (PBGameItem_Builder*) clearDiscount {
-  result.hasDiscount = NO;
-  result.discount = 0;
+- (PBGameItem_Builder*) clearPromotionDiscount {
+  result.hasPromotionDiscount = NO;
+  result.promotionDiscount = 0;
   return self;
 }
 @end
