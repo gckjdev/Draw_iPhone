@@ -12,6 +12,13 @@
 #import "Feed.h"
 
 
+/*****************************************************
+ 
+ This Class is kept for legacy code
+ 
+ 
+ ******************************************************/
+
 @protocol ItemServiceDelegate <NSObject>
 
 @optional

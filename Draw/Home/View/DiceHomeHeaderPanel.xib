@@ -35,55 +35,70 @@
 			</object>
 			<object class="IBUIView" id="191373211">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">-2147483356</int>
+				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="933691820">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrameSize">{320, 163}</string>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 180}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="758505495"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">dice_home_header_bg@2x.png</string>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="210643890">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{0, 120}, {320, 60}}</string>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{0, 125}, {160, 55}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="59452543"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">dice_home_header_foot@2x.png</string>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="758505495">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{7, 7}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="1006200176"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">man1@2x.png</string>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="59452543">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{117, 13}, {201, 204}}</string>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{138, 17}, {179, 200}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="794634109"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">dice_home_header_man@2x.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="794634109">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{264, 4}, {50, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -93,7 +108,7 @@
 						<double key="IBUIContentEdgeInsets.bottom">2</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
-						<string key="IBUINormalTitle">充值</string>
+						<string key="IBUINormalTitle">公告</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="287676737">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -123,7 +138,7 @@
 					</object>
 					<object class="IBUIButton" id="41678693">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{264, 28}, {50, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="210643890"/>
@@ -149,7 +164,7 @@
 					</object>
 					<object class="IBUILabel" id="1006200176">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{63, 4}, {141, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="218733648"/>
@@ -182,7 +197,7 @@
 					</object>
 					<object class="IBUILabel" id="893143396">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{65, 22}, {60, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="795360296"/>
@@ -213,7 +228,7 @@
 					</object>
 					<object class="IBUILabel" id="795360296">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{80, 37}, {60, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="41678693"/>
@@ -237,7 +252,7 @@
 					</object>
 					<object class="IBUIImageView" id="536620801">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{63, 41}, {16, 15}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="893143396"/>
@@ -251,7 +266,7 @@
 					</object>
 					<object class="IBUIButton" id="218733648">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{300, 0}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="536620801"/>
@@ -283,7 +298,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 193}</string>
+				<string key="NSFrameSize">{320, 180}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="933691820"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -333,14 +348,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">freeCoin</string>
-						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="41678693"/>
-					</object>
-					<int key="connectionID">32</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bulletinBadge</string>
 						<reference key="source" ref="191373211"/>
 						<reference key="destination" ref="218733648"/>
@@ -356,6 +363,14 @@
 					<int key="connectionID">36</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">chargeButton</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="41678693"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBulletinButton:</string>
 						<reference key="source" ref="794634109"/>
@@ -366,12 +381,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickFreeCoinButton:</string>
+						<string key="label">clickChargeButton:</string>
 						<reference key="source" ref="41678693"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">39</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -490,7 +505,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">39</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -498,10 +513,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_home_badge@2x.png">{36, 38}</string>
-			<string key="common_home_coin@2x.png">{29, 25}</string>
-			<string key="zjh_home_charge_bg@2x.png">{95, 43}</string>
-			<string key="zjh_home_freecoin_bg@2x.png">{95, 43}</string>
+			<string key="common_home_badge@2x.png">{16, 16}</string>
+			<string key="common_home_coin@2x.png">{16, 16}</string>
+			<string key="dice_home_header_bg@2x.png">{16, 16}</string>
+			<string key="dice_home_header_foot@2x.png">{16, 16}</string>
+			<string key="dice_home_header_man@2x.png">{16, 16}</string>
+			<string key="man1@2x.png">{16, 16}</string>
+			<string key="zjh_home_charge_bg@2x.png">{16, 16}</string>
+			<string key="zjh_home_freecoin_bg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

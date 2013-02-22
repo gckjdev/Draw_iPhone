@@ -13,10 +13,14 @@
 #import "LocaleUtils.h"
 #import "DiceFontManager.h"
 
-#define MESSAGE_BACKGROUND_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
-#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+//#define MESSAGE_BACKGROUND_COLOR [UIColor colorWithRed:177./255. green:218./255. blue:199./255. alpha:0.7]
+#define MESSAGE_BACKGROUND_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]
 
-#define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 36 : 18 )
+//#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:255./255. green:234./255. blue:80./255. alpha:0.4]
+#define CALL_DICE_VIEW_BACKGROUND_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
+
+
+#define SIZE_FONT_OPEN_DICE     ([DeviceDetection isIPAD] ? 32 : 16 )
 
 #define SIZE_FONT_CHAT_MESSAGE  ([DeviceDetection isIPAD] ? 26 : 13 )
 

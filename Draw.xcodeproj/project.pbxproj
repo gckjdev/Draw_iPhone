@@ -1018,6 +1018,30 @@
 		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
 		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
+		CA16410F16D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411016D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411116D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411216D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16412116D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412216D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412316D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412416D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412716D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412816D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412916D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412A16D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412D16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16412E16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16412F16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16413016D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413916D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
 		CA1656FF160C032800E433BE /* RankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1656FD160C032600E433BE /* RankView.m */; };
 		CA165700160C032800E433BE /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
 		CA165704160C037800E433BE /* RankFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165703160C037600E433BE /* RankFirstView.xib */; };
@@ -4198,7 +4222,6 @@
 		CA7D4502168DBDB1009F43F7 /* raise_bet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4429168DBDB1009F43F7 /* raise_bet.mp3 */; };
 		CA7D4503168DBDB1009F43F7 /* raise_bet1_F.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D442A168DBDB1009F43F7 /* raise_bet1_F.mp3 */; };
 		CA7D4504168DBDB1009F43F7 /* raise_bet1_M.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA7D442B168DBDB1009F43F7 /* raise_bet1_M.mp3 */; };
-		CA7D480F168DBDCD009F43F7 /* font.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4507168DBDCB009F43F7 /* font.zip */; };
 		CA7D481F168DBDCD009F43F7 /* help.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451A168DBDCB009F43F7 /* help.zip */; };
 		CA7D4820168DBDCD009F43F7 /* dice_ag_1.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451E168DBDCB009F43F7 /* dice_ag_1.png */; };
 		CA7D4821168DBDCD009F43F7 /* dice_ag_2.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D451F168DBDCB009F43F7 /* dice_ag_2.png */; };
@@ -4339,9 +4362,6 @@
 		CA7D48A8168DBDCD009F43F7 /* dice_message_tip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45B1168DBDCB009F43F7 /* dice_message_tip@2x.png */; };
 		CA7D48A9168DBDCD009F43F7 /* dice_popup_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45B2168DBDCB009F43F7 /* dice_popup_bg@2x.png */; };
 		CA7D48AA168DBDCD009F43F7 /* dice_quit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45B3168DBDCB009F43F7 /* dice_quit_btn@2x.png */; };
-		CA7D48AD168DBDCD009F43F7 /* DiceDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45B6168DBDCB009F43F7 /* DiceDefault-568h@2x.png */; };
-		CA7D48AE168DBDCD009F43F7 /* DiceDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45B8168DBDCB009F43F7 /* DiceDefault.png */; };
-		CA7D48AF168DBDCD009F43F7 /* DiceDefault~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45BA168DBDCB009F43F7 /* DiceDefault~ipad.png */; };
 		CA7D48B0168DBDCD009F43F7 /* audio_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45BD168DBDCB009F43F7 /* audio_off@2x.png */; };
 		CA7D48B1168DBDCD009F43F7 /* audio_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45BE168DBDCB009F43F7 /* audio_on@2x.png */; };
 		CA7D48B2168DBDCD009F43F7 /* bell_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D45BF168DBDCB009F43F7 /* bell_1@2x.png */; };
@@ -6464,6 +6484,32 @@
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
+		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
+		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
+		CAE9AA0516D633E3008392F9 /* dice_home_header_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */; };
+		CAE9AA3016D65EF3008392F9 /* DiceDefault~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3216D65EF3008392F9 /* DiceDefault~ipad.png */; };
+		CAE9AA3416D65EFE008392F9 /* DiceDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3616D65EFE008392F9 /* DiceDefault.png */; };
+		CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA3916D65F04008392F9 /* DiceDefault-568h@2x.png */; };
+		CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4916D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4A16D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4B16D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
+		CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA4F16D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5016D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5116D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
+		CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5516D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5616D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5716D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
+		CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5B16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5C16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA5D16D71FFA008392F9 /* MarkPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5916D71FFA008392F9 /* MarkPen.m */; };
+		CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
+		CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
+		CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
+		CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -7933,6 +7979,18 @@
 		CA1377F11525A7CB00B5790B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA1377F31525A80200B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA16410D16D72452001C615F /* GameItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemService.h; sourceTree = "<group>"; };
+		CA16410E16D72452001C615F /* GameItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemService.m; sourceTree = "<group>"; };
+		CA16411F16D724CA001C615F /* GameItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItem.h; sourceTree = "<group>"; };
+		CA16412016D724CA001C615F /* GameItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItem.m; sourceTree = "<group>"; };
+		CA16412516D724DF001C615F /* GameItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemManager.h; sourceTree = "<group>"; };
+		CA16412616D724DF001C615F /* GameItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemManager.m; sourceTree = "<group>"; };
+		CA16412B16D724EE001C615F /* UserGameItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItem.h; sourceTree = "<group>"; };
+		CA16412C16D724EF001C615F /* UserGameItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItem.m; sourceTree = "<group>"; };
+		CA16413116D724FD001C615F /* UserGameItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItemManager.h; sourceTree = "<group>"; };
+		CA16413216D724FD001C615F /* UserGameItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItemManager.m; sourceTree = "<group>"; };
+		CA16413716D7255D001C615F /* UserGameItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItemService.h; sourceTree = "<group>"; };
+		CA16413816D7255D001C615F /* UserGameItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItemService.m; sourceTree = "<group>"; };
 		CA1656FC160C032500E433BE /* RankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankView.h; sourceTree = "<group>"; };
 		CA1656FD160C032600E433BE /* RankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankView.m; sourceTree = "<group>"; };
 		CA1656FE160C032700E433BE /* RankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankView.xib; sourceTree = "<group>"; };
@@ -8840,9 +8898,6 @@
 		CA7D45B1168DBDCB009F43F7 /* dice_message_tip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_message_tip@2x.png"; sourceTree = "<group>"; };
 		CA7D45B2168DBDCB009F43F7 /* dice_popup_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_popup_bg@2x.png"; sourceTree = "<group>"; };
 		CA7D45B3168DBDCB009F43F7 /* dice_quit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_quit_btn@2x.png"; sourceTree = "<group>"; };
-		CA7D45B7168DBDCB009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
-		CA7D45B9168DBDCB009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/DiceDefault.png; sourceTree = "<group>"; };
-		CA7D45BB168DBDCB009F43F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
 		CA7D45BD168DBDCB009F43F7 /* audio_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_off@2x.png"; sourceTree = "<group>"; };
 		CA7D45BE168DBDCB009F43F7 /* audio_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "audio_on@2x.png"; sourceTree = "<group>"; };
 		CA7D45BF168DBDCB009F43F7 /* bell_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bell_1@2x.png"; sourceTree = "<group>"; };
@@ -8970,9 +9025,6 @@
 		CA7D4640168DBDCB009F43F7 /* dice_tabright_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_tabright_unselect@2x.png"; sourceTree = "<group>"; };
 		CA7D4641168DBDCB009F43F7 /* dice_user_backgroung@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_user_backgroung@2x.png"; sourceTree = "<group>"; };
 		CA7D4642168DBDCB009F43F7 /* dice_yellow_roy_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_yellow_roy_button@2x.png"; sourceTree = "<group>"; };
-		CA7D4643168DBDCB009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
-		CA7D4644168DBDCB009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.png"; sourceTree = "<group>"; };
-		CA7D4645168DBDCB009F43F7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
 		CA7D4647168DBDCB009F43F7 /* dice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = dice.m4a; sourceTree = "<group>"; };
 		CA7D4648168DBDCB009F43F7 /* item.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = item.aiff; sourceTree = "<group>"; };
 		CA7D4649168DBDCB009F43F7 /* open.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = open.aiff; sourceTree = "<group>"; };
@@ -9614,6 +9666,26 @@
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
+		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
+		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
+		CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_bg@2x.png"; sourceTree = "<group>"; };
+		CAE9AA3116D65EF3008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CAE9AA3316D65EF8008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault~ipad.png"; sourceTree = "<group>"; };
+		CAE9AA3516D65EFE008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = en.lproj/DiceDefault.png; sourceTree = "<group>"; };
+		CAE9AA3816D65F04008392F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CAE9AA3A16D65F08008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault.png"; sourceTree = "<group>"; };
+		CAE9AA3B16D65F0C008392F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/DiceDefault-568h@2x.png"; sourceTree = "<group>"; };
+		CAE9AA4516D71D80008392F9 /* DrawPenProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPenProtocol.h; sourceTree = "<group>"; };
+		CAE9AA4616D71E61008392F9 /* DrawPenFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPenFactory.h; sourceTree = "<group>"; };
+		CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawPenFactory.m; sourceTree = "<group>"; };
+		CAE9AA4C16D71FCD008392F9 /* DashPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashPen.h; sourceTree = "<group>"; };
+		CAE9AA4D16D71FCD008392F9 /* DashPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashPen.m; sourceTree = "<group>"; };
+		CAE9AA5216D71FE2008392F9 /* BlurPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurPen.h; sourceTree = "<group>"; };
+		CAE9AA5316D71FE2008392F9 /* BlurPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurPen.m; sourceTree = "<group>"; };
+		CAE9AA5816D71FF9008392F9 /* MarkPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkPen.h; sourceTree = "<group>"; };
+		CAE9AA5916D71FFA008392F9 /* MarkPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkPen.m; sourceTree = "<group>"; };
+		CAE9AA6A16D72725008392F9 /* DefaultPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultPen.h; sourceTree = "<group>"; };
+		CAE9AA6B16D72725008392F9 /* DefaultPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -11552,6 +11624,10 @@
 			children = (
 				CA02B52615AC241800B2A3E2 /* ItemService.h */,
 				CA02B52715AC241800B2A3E2 /* ItemService.m */,
+				CA16410D16D72452001C615F /* GameItemService.h */,
+				CA16410E16D72452001C615F /* GameItemService.m */,
+				CA16413716D7255D001C615F /* UserGameItemService.h */,
+				CA16413816D7255D001C615F /* UserGameItemService.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -12745,6 +12821,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
 				CAD6EACD15805D780004A483 /* DrawManager.h */,
 				CAD6EACE15805D780004A483 /* DrawManager.m */,
@@ -12852,6 +12929,7 @@
 		CA1260F216785F0C00DD96F4 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9A9FF16D632C9008392F9 /* Dice */,
 				CA1260F316785F0C00DD96F4 /* Common */,
 				CA12610516785F0D00DD96F4 /* Draw */,
 				CA12611116785F0D00DD96F4 /* Zhajinhua */,
@@ -12959,6 +13037,21 @@
 				CA13772F15245AE600B5790B /* MyPaintManager.m */,
 			);
 			path = MyPaint;
+			sourceTree = "<group>";
+		};
+		CA16411E16D724B5001C615F /* GameItem */ = {
+			isa = PBXGroup;
+			children = (
+				CA16411F16D724CA001C615F /* GameItem.h */,
+				CA16412016D724CA001C615F /* GameItem.m */,
+				CA16412516D724DF001C615F /* GameItemManager.h */,
+				CA16412616D724DF001C615F /* GameItemManager.m */,
+				CA16412B16D724EE001C615F /* UserGameItem.h */,
+				CA16412C16D724EF001C615F /* UserGameItem.m */,
+				CA16413116D724FD001C615F /* UserGameItemManager.h */,
+				CA16413216D724FD001C615F /* UserGameItemManager.m */,
+			);
+			path = GameItem;
 			sourceTree = "<group>";
 		};
 		CA1882A91648C7C7000942D6 /* Storage */ = {
@@ -14438,11 +14531,11 @@
 		CA7D451B168DBDCB009F43F7 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9AA3216D65EF3008392F9 /* DiceDefault~ipad.png */,
+				CAE9AA3616D65EFE008392F9 /* DiceDefault.png */,
+				CAE9AA3916D65F04008392F9 /* DiceDefault-568h@2x.png */,
 				CA7D451C168DBDCB009F43F7 /* beautifulDice */,
 				CA7D45AC168DBDCB009F43F7 /* common */,
-				CA7D45B6168DBDCB009F43F7 /* DiceDefault-568h@2x.png */,
-				CA7D45B8168DBDCB009F43F7 /* DiceDefault.png */,
-				CA7D45BA168DBDCB009F43F7 /* DiceDefault~ipad.png */,
 				CA7D45BC168DBDCB009F43F7 /* game */,
 				CA7D4614168DBDCB009F43F7 /* home */,
 				CA7D4626168DBDCB009F43F7 /* icon */,
@@ -15996,6 +16089,34 @@
 			path = Item;
 			sourceTree = "<group>";
 		};
+		CAE9A9FF16D632C9008392F9 /* Dice */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */,
+				CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */,
+				CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */,
+			);
+			path = Dice;
+			sourceTree = "<group>";
+		};
+		CAE9AA3F16D71D42008392F9 /* DrawPen */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9AA4516D71D80008392F9 /* DrawPenProtocol.h */,
+				CAE9AA4616D71E61008392F9 /* DrawPenFactory.h */,
+				CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */,
+				CAE9AA6A16D72725008392F9 /* DefaultPen.h */,
+				CAE9AA6B16D72725008392F9 /* DefaultPen.m */,
+				CAE9AA4C16D71FCD008392F9 /* DashPen.h */,
+				CAE9AA4D16D71FCD008392F9 /* DashPen.m */,
+				CAE9AA5216D71FE2008392F9 /* BlurPen.h */,
+				CAE9AA5316D71FE2008392F9 /* BlurPen.m */,
+				CAE9AA5816D71FF9008392F9 /* MarkPen.h */,
+				CAE9AA5916D71FFA008392F9 /* MarkPen.m */,
+			);
+			path = DrawPen;
+			sourceTree = "<group>";
+		};
 		CAECE0271503B25500BC2404 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -16025,6 +16146,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA16411E16D724B5001C615F /* GameItem */,
 				A4D174AF16B6222000958355 /* WallLayout */,
 				CA479465168E984A00D4AF55 /* Analytics */,
 				C2424794167989FD008B4E14 /* DrawSoundManager */,
@@ -17623,7 +17745,6 @@
 				CA16BEE41682FAD900F81B47 /* BulletinView.xib in Resources */,
 				CA16BEE51682FAD900F81B47 /* BulletinView~ipad.xib in Resources */,
 				CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */,
-				CA7D480F168DBDCD009F43F7 /* font.zip in Resources */,
 				CA7D481F168DBDCD009F43F7 /* help.zip in Resources */,
 				CA7D4820168DBDCD009F43F7 /* dice_ag_1.png in Resources */,
 				CA7D4821168DBDCD009F43F7 /* dice_ag_2.png in Resources */,
@@ -17764,9 +17885,6 @@
 				CA7D48A8168DBDCD009F43F7 /* dice_message_tip@2x.png in Resources */,
 				CA7D48A9168DBDCD009F43F7 /* dice_popup_bg@2x.png in Resources */,
 				CA7D48AA168DBDCD009F43F7 /* dice_quit_btn@2x.png in Resources */,
-				CA7D48AD168DBDCD009F43F7 /* DiceDefault-568h@2x.png in Resources */,
-				CA7D48AE168DBDCD009F43F7 /* DiceDefault.png in Resources */,
-				CA7D48AF168DBDCD009F43F7 /* DiceDefault~ipad.png in Resources */,
 				CA7D48B0168DBDCD009F43F7 /* audio_off@2x.png in Resources */,
 				CA7D48B1168DBDCD009F43F7 /* audio_on@2x.png in Resources */,
 				CA7D48B2168DBDCD009F43F7 /* bell_1@2x.png in Resources */,
@@ -18391,6 +18509,12 @@
 				C21D416716D602A8006A0AA3 /* my_paint_tag@2x.png in Resources */,
 				C21D416B16D602A8006A0AA3 /* paint_bg@2x.png in Resources */,
 				C21D416F16D602A8006A0AA3 /* paint_name_bg@2x.jpg in Resources */,
+				CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */,
+				CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */,
+				CAE9AA0516D633E3008392F9 /* dice_home_header_bg@2x.png in Resources */,
+				CAE9AA3016D65EF3008392F9 /* DiceDefault~ipad.png in Resources */,
+				CAE9AA3416D65EFE008392F9 /* DiceDefault.png in Resources */,
+				CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21629,6 +21753,17 @@
 				CA32FA4616D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135516D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D415016D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4A16D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA5016D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5616D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5C16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411116D72452001C615F /* GameItemService.m in Sources */,
+				CA16412316D724CA001C615F /* GameItem.m in Sources */,
+				CA16412916D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412F16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
+				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22329,6 +22464,17 @@
 				CA32FA4716D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135616D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D415116D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4B16D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA5116D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5716D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5D16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411216D72452001C615F /* GameItemService.m in Sources */,
+				CA16412416D724CA001C615F /* GameItem.m in Sources */,
+				CA16412A16D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16413016D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
+				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23029,6 +23175,17 @@
 				CA32FA4416D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135316D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D414E16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16410F16D72452001C615F /* GameItemService.m in Sources */,
+				CA16412116D724CA001C615F /* GameItem.m in Sources */,
+				CA16412716D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412D16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
+				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23737,6 +23894,17 @@
 				CA32FA4516D4848F00E8C1C1 /* Offscreen.m in Sources */,
 				CA8F135416D4ABF30004F225 /* OffscreenManager.m in Sources */,
 				C21D414F16D5B401006A0AA3 /* CustomUITextField.m in Sources */,
+				CAE9AA4916D71E61008392F9 /* DrawPenFactory.m in Sources */,
+				CAE9AA4F16D71FCD008392F9 /* DashPen.m in Sources */,
+				CAE9AA5516D71FE2008392F9 /* BlurPen.m in Sources */,
+				CAE9AA5B16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411016D72452001C615F /* GameItemService.m in Sources */,
+				CA16412216D724CA001C615F /* GameItem.m in Sources */,
+				CA16412816D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412E16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
+				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23899,33 +24067,6 @@
 			name = "ZJHDefault~ipad.png";
 			sourceTree = "<group>";
 		};
-		CA7D45B6168DBDCB009F43F7 /* DiceDefault-568h@2x.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA7D45B7168DBDCB009F43F7 /* en */,
-				CA7D4643168DBDCB009F43F7 /* zh-Hans */,
-			);
-			name = "DiceDefault-568h@2x.png";
-			sourceTree = "<group>";
-		};
-		CA7D45B8168DBDCB009F43F7 /* DiceDefault.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA7D45B9168DBDCB009F43F7 /* en */,
-				CA7D4644168DBDCB009F43F7 /* zh-Hans */,
-			);
-			name = DiceDefault.png;
-			sourceTree = "<group>";
-		};
-		CA7D45BA168DBDCB009F43F7 /* DiceDefault~ipad.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA7D45BB168DBDCB009F43F7 /* en */,
-				CA7D4645168DBDCB009F43F7 /* zh-Hans */,
-			);
-			name = "DiceDefault~ipad.png";
-			sourceTree = "<group>";
-		};
 		CA7D461A168DBDCB009F43F7 /* dice_default_board@2x.jpg */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -23960,6 +24101,33 @@
 			name = "Default@2x.png";
 			path = /gitdata/Draw_iPhone/Draw/Resource;
 			sourceTree = "<absolute>";
+		};
+		CAE9AA3216D65EF3008392F9 /* DiceDefault~ipad.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAE9AA3116D65EF3008392F9 /* en */,
+				CAE9AA3316D65EF8008392F9 /* zh-Hans */,
+			);
+			name = "DiceDefault~ipad.png";
+			sourceTree = "<group>";
+		};
+		CAE9AA3616D65EFE008392F9 /* DiceDefault.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAE9AA3516D65EFE008392F9 /* en */,
+				CAE9AA3A16D65F08008392F9 /* zh-Hans */,
+			);
+			name = DiceDefault.png;
+			sourceTree = "<group>";
+		};
+		CAE9AA3916D65F04008392F9 /* DiceDefault-568h@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CAE9AA3816D65F04008392F9 /* en */,
+				CAE9AA3B16D65F0C008392F9 /* zh-Hans */,
+			);
+			name = "DiceDefault-568h@2x.png";
+			sourceTree = "<group>";
 		};
 		CAFEFAA116606E4800441D77 /* Language.strings */ = {
 			isa = PBXVariantGroup;

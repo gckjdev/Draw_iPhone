@@ -174,7 +174,7 @@ enum PBPriceCountry{
 
 message PBPriceInfo {
   required string  price = 1;                     // 单个售价，如 6
-  required string  currency = 2;                  // 货币类型字符串, 如 金币／元／美元
+  required string  currency = 2;                  // 货币类型显示字符串, 如 金币／元／美元
   required PBPriceCountry  country = 3;           // 适用国家
 }
 
@@ -188,8 +188,8 @@ message PBGameItem {
 
   required int32  soldType = 21;                  // 销售类型，0:金币购买；1:直接人民币购买
   optional string appleProductId = 22;            // Apple IAP购买ID
-  repeated PBPriceInfo priceDescInfo = 23;        // 价格信息
-  optional bool   isPromotion = 24;               // 是否促销
+  repeated PBPriceInfo priceDescInfo = 23;        // 价格信息，多个，用于多语言国际化
+  optional bool   hasDiscount = 24;               // 是否有促销折扣
   optional int32  discount = 25;                  // 促销折扣值，百分比，如7折为 70, 8折为 80
 }
 

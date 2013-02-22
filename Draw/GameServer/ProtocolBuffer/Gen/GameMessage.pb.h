@@ -121,6 +121,8 @@
 @class PBFrameList;
 @class PBFrameList_Builder;
 @class PBFrame_Builder;
+@class PBGameItem;
+@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -149,6 +151,8 @@
 @class PBPoint_Builder;
 @class PBPoker;
 @class PBPoker_Builder;
+@class PBPriceInfo;
+@class PBPriceInfo_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;
