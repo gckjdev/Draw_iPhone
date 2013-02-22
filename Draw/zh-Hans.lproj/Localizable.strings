@@ -1118,11 +1118,11 @@
 
 "kZJHFeedbackTips" = "欢迎加入QQ群:228119679, 关注官方新浪微博 @欢乐棋牌";
 
-"kDiceRoom" = "欢乐大话%d号房";
+"kDiceRoom" = "大话%d号房";
 
 "kDice_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的大话骰游戏，马上下载试玩吧。\n%@";
 
-"kDice_email_subject" = "分享［欢乐大话骰］移动版游戏";
+"kDice_email_subject" = "分享［大话骰］移动版游戏";
 
 "kZJH_share_message_body" = "亲爱的朋友，今天向您隆重推出一款全新的多人在线游戏——《%@》。这款游戏可以说是目前最好玩的扑克牌游戏，马上下载试玩吧。\n%@";
 
@@ -1130,9 +1130,9 @@
 
 "kJoining" = "正在进入房间";
 "kCreatingRoom" = "正在创建房间";
-"kDiceShop" = "欢乐大话骰商店";
+"kDiceShop" = "大话骰商店";
 
-"kDiceRoomListTitle" = "欢乐大话骰";
+"kDiceRoomListTitle" = "大话骰";
 "kDiceGameRules"= "游戏规则";
 "kDicePropDescription" = "道具说明";
 "kDiceWilds" = "斋";
@@ -1169,9 +1169,9 @@
 "kDiceMenuHighRoom" = "劲爆场";
 "kDiceMenuSuperHighRoom" = "富豪场";
 
-"kDiceHappyRoom" = "欢乐场%d号房";
+"kDiceHappyRoom" = "普通场%d号房";
 "kDiceHighRoom" = "劲爆场%d号房";
-"kDiceSuperHighRoom" = "超爆场%d号房";
+"kDiceSuperHighRoom" = "富豪场%d号房";
 
 "kBetViewTitle" = "赚一把(%d)";
 "kBetNote" = "玩家【%@】开骰了，你要下注赚一把吗？";
