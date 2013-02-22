@@ -1018,6 +1018,30 @@
 		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
 		CA1377EF1525A2D700B5790B /* ShareImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377EE1525A2D700B5790B /* ShareImageManager.m */; };
 		CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
+		CA16410F16D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411016D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411116D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16411216D72452001C615F /* GameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16410E16D72452001C615F /* GameItemService.m */; };
+		CA16412116D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412216D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412316D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412416D724CA001C615F /* GameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412016D724CA001C615F /* GameItem.m */; };
+		CA16412716D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412816D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412916D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412A16D724DF001C615F /* GameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412616D724DF001C615F /* GameItemManager.m */; };
+		CA16412D16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16412E16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16412F16D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16413016D724EF001C615F /* UserGameItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16412C16D724EF001C615F /* UserGameItem.m */; };
+		CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413216D724FD001C615F /* UserGameItemManager.m */; };
+		CA16413916D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
+		CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA16413816D7255D001C615F /* UserGameItemService.m */; };
 		CA1656FF160C032800E433BE /* RankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1656FD160C032600E433BE /* RankView.m */; };
 		CA165700160C032800E433BE /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
 		CA165704160C037800E433BE /* RankFirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA165703160C037600E433BE /* RankFirstView.xib */; };
@@ -7953,6 +7977,18 @@
 		CA1377F11525A7CB00B5790B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA1377F31525A80200B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CA1377F41525A80D00B5790B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA16410D16D72452001C615F /* GameItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemService.h; sourceTree = "<group>"; };
+		CA16410E16D72452001C615F /* GameItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemService.m; sourceTree = "<group>"; };
+		CA16411F16D724CA001C615F /* GameItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItem.h; sourceTree = "<group>"; };
+		CA16412016D724CA001C615F /* GameItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItem.m; sourceTree = "<group>"; };
+		CA16412516D724DF001C615F /* GameItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemManager.h; sourceTree = "<group>"; };
+		CA16412616D724DF001C615F /* GameItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemManager.m; sourceTree = "<group>"; };
+		CA16412B16D724EE001C615F /* UserGameItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItem.h; sourceTree = "<group>"; };
+		CA16412C16D724EF001C615F /* UserGameItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItem.m; sourceTree = "<group>"; };
+		CA16413116D724FD001C615F /* UserGameItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItemManager.h; sourceTree = "<group>"; };
+		CA16413216D724FD001C615F /* UserGameItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItemManager.m; sourceTree = "<group>"; };
+		CA16413716D7255D001C615F /* UserGameItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGameItemService.h; sourceTree = "<group>"; };
+		CA16413816D7255D001C615F /* UserGameItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGameItemService.m; sourceTree = "<group>"; };
 		CA1656FC160C032500E433BE /* RankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankView.h; sourceTree = "<group>"; };
 		CA1656FD160C032600E433BE /* RankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankView.m; sourceTree = "<group>"; };
 		CA1656FE160C032700E433BE /* RankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankView.xib; sourceTree = "<group>"; };
@@ -11584,6 +11620,10 @@
 			children = (
 				CA02B52615AC241800B2A3E2 /* ItemService.h */,
 				CA02B52715AC241800B2A3E2 /* ItemService.m */,
+				CA16410D16D72452001C615F /* GameItemService.h */,
+				CA16410E16D72452001C615F /* GameItemService.m */,
+				CA16413716D7255D001C615F /* UserGameItemService.h */,
+				CA16413816D7255D001C615F /* UserGameItemService.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -12993,6 +13033,21 @@
 				CA13772F15245AE600B5790B /* MyPaintManager.m */,
 			);
 			path = MyPaint;
+			sourceTree = "<group>";
+		};
+		CA16411E16D724B5001C615F /* GameItem */ = {
+			isa = PBXGroup;
+			children = (
+				CA16411F16D724CA001C615F /* GameItem.h */,
+				CA16412016D724CA001C615F /* GameItem.m */,
+				CA16412516D724DF001C615F /* GameItemManager.h */,
+				CA16412616D724DF001C615F /* GameItemManager.m */,
+				CA16412B16D724EE001C615F /* UserGameItem.h */,
+				CA16412C16D724EF001C615F /* UserGameItem.m */,
+				CA16413116D724FD001C615F /* UserGameItemManager.h */,
+				CA16413216D724FD001C615F /* UserGameItemManager.m */,
+			);
+			path = GameItem;
 			sourceTree = "<group>";
 		};
 		CA1882A91648C7C7000942D6 /* Storage */ = {
@@ -16085,6 +16140,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA16411E16D724B5001C615F /* GameItem */,
 				A4D174AF16B6222000958355 /* WallLayout */,
 				CA479465168E984A00D4AF55 /* Analytics */,
 				C2424794167989FD008B4E14 /* DrawSoundManager */,
@@ -21697,6 +21753,12 @@
 				CAE9AA5016D71FCD008392F9 /* DashPen.m in Sources */,
 				CAE9AA5616D71FE2008392F9 /* BlurPen.m in Sources */,
 				CAE9AA5C16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411116D72452001C615F /* GameItemService.m in Sources */,
+				CA16412316D724CA001C615F /* GameItem.m in Sources */,
+				CA16412916D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412F16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22401,6 +22463,12 @@
 				CAE9AA5116D71FCD008392F9 /* DashPen.m in Sources */,
 				CAE9AA5716D71FE2008392F9 /* BlurPen.m in Sources */,
 				CAE9AA5D16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411216D72452001C615F /* GameItemService.m in Sources */,
+				CA16412416D724CA001C615F /* GameItem.m in Sources */,
+				CA16412A16D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16413016D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23105,6 +23173,12 @@
 				CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */,
 				CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */,
 				CAE9AA5A16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16410F16D72452001C615F /* GameItemService.m in Sources */,
+				CA16412116D724CA001C615F /* GameItem.m in Sources */,
+				CA16412716D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412D16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23817,6 +23891,12 @@
 				CAE9AA4F16D71FCD008392F9 /* DashPen.m in Sources */,
 				CAE9AA5516D71FE2008392F9 /* BlurPen.m in Sources */,
 				CAE9AA5B16D71FFA008392F9 /* MarkPen.m in Sources */,
+				CA16411016D72452001C615F /* GameItemService.m in Sources */,
+				CA16412216D724CA001C615F /* GameItem.m in Sources */,
+				CA16412816D724DF001C615F /* GameItemManager.m in Sources */,
+				CA16412E16D724EF001C615F /* UserGameItem.m in Sources */,
+				CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */,
+				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
