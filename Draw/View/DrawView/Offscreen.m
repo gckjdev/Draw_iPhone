@@ -42,6 +42,7 @@
         cacheContext = CGLayerGetContext(cacheLayer);
         CGContextSetLineJoin(cacheContext, kCGLineJoinRound);
         CGContextSetLineCap(cacheContext, kCGLineCapRound);
+//        CGContextSaveGState(cacheContext);
         _actionCount = 0;
         _capacity = capacity;
     }
@@ -61,7 +62,6 @@
 - (void)dealloc
 {
     CGLayerRelease(cacheLayer), cacheLayer = NULL;
-    PPRelease(_drawPen);
     [super dealloc];
 }
 
@@ -70,6 +70,10 @@
     return cacheLayer;
 }
 
+- (CGContextRef)cacheContext
+{
+    return cacheContext;
+}
 
 - (void)updateContextWithCGLayer:(CGLayerRef)layer
                      actionCount:(NSInteger)actionCount
@@ -130,12 +134,15 @@
     return _rect;
 }
 
+//- (void)updateDrawPen:()
+
 - (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear
 {
     if (clear) {
         [self clear];
     }
     _actionCount ++;
+    
     return [self strokePaint:paint inContext:cacheContext clear:clear];
 }
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width

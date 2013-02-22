@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Paint.h"
-
+#import "SuperPen.h"
 
 typedef enum{
     DrawPenTypeDefault = 1000,
+    DrawPenTypeMark,
     DrawPenTypeDash,
     DrawPenTypeBlur,
-    DrawPenTypeMark,
 }DrawPenType;
 
 

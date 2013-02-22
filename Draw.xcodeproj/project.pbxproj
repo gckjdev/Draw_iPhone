@@ -6510,6 +6510,10 @@
 		CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
+		CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
+		CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
@@ -9686,6 +9690,8 @@
 		CAE9AA5916D71FFA008392F9 /* MarkPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkPen.m; sourceTree = "<group>"; };
 		CAE9AA6A16D72725008392F9 /* DefaultPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultPen.h; sourceTree = "<group>"; };
 		CAE9AA6B16D72725008392F9 /* DefaultPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPen.m; sourceTree = "<group>"; };
+		CAE9AA7816D72F14008392F9 /* SuperPen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperPen.h; sourceTree = "<group>"; };
+		CAE9AA7916D72F15008392F9 /* SuperPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -16113,6 +16119,8 @@
 				CAE9AA5316D71FE2008392F9 /* BlurPen.m */,
 				CAE9AA5816D71FF9008392F9 /* MarkPen.h */,
 				CAE9AA5916D71FFA008392F9 /* MarkPen.m */,
+				CAE9AA7816D72F14008392F9 /* SuperPen.h */,
+				CAE9AA7916D72F15008392F9 /* SuperPen.m */,
 			);
 			path = DrawPen;
 			sourceTree = "<group>";
@@ -21764,6 +21772,7 @@
 				CA16413516D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
+				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22475,6 +22484,7 @@
 				CA16413616D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
+				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23186,6 +23196,7 @@
 				CA16413316D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413916D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
+				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23905,6 +23916,7 @@
 				CA16413416D724FD001C615F /* UserGameItemManager.m in Sources */,
 				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
+				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

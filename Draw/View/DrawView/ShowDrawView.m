@@ -350,7 +350,8 @@
                 
             }else if([self.tempPaint pointCount] == 1){
                 [self drawDrawAction:_currentAction show:NO];
-                [osManager setStrokeColor:self.tempPaint.color width:self.tempPaint.width];
+                [osManager updateDrawPenWithPaint:self.tempPaint];
+//                [osManager setStrokeColor:self.tempPaint.color width:self.tempPaint.width];
                 [osManager updateLastPaint:self.tempPaint];
                 [self setNeedsDisplay];
             }else{

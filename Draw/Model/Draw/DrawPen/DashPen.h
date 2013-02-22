@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "DrawPenProtocol.h"
 
-@interface DashPen : NSObject<DrawPenProtocol>
+@interface DashPen : SuperPen<DrawPenProtocol>
 
 @end

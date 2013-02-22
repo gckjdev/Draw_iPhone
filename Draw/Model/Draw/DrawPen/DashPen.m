@@ -11,13 +11,20 @@
 @implementation DashPen
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        PPDebug(@"Create %@ pen", [self name]);
+    }
+    return self;
+}
+
 - (void)updateCGContext:(CGContextRef)context paint:(Paint *)paint
 {
+    [super updateCGContext:context paint:paint];
     if (paint) {
-        CGContextSetLineWidth(context, paint.width);
-        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-        
-        CGFloat lengths[] = {3,3};
+        CGFloat lengths[] = {20,20};
         CGContextSetLineDash(context, 0, lengths, 2);    
     }
 }
