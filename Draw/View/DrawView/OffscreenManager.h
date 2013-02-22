@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "DrawAction.h"
 #import "Offscreen.h"
-#import "DrawPenFactory.h"
+
 
 
 @interface OffscreenManager : NSObject
 
 @property (nonatomic, assign, readonly)NSUInteger level; //default is 3
 @property (nonatomic, assign, readonly)NSUInteger step; //default is 50
-@property(nonatomic, retain)id<DrawPenProtocol> drawPen;
+
 
 //draw view: the level should be >= 4
 //show view: level must be 2 step must be 1

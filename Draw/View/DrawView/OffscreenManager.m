@@ -43,7 +43,7 @@
 - (void)dealloc
 {
     PPRelease(_offscreenList);
-    PPRelease(_drawPen);
+//    PPRelease(_drawPen);
     [super dealloc];
 }
 
@@ -106,15 +106,16 @@
 
 - (void)updateDrawPenWithPaint:(Paint *)paint
 {
-    if (paint) {
-        if (paint.penType != [self.drawPen penType]) {
-            self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
-        }
-        CGContextRef context = [[self enteryScreen] cacheContext];
-//        CGContextRestoreGState(context);
-        [self.drawPen updateCGContext:context paint:paint];
+    [self setStrokeColor:paint.color width:paint.width];
+//    if (paint) {
+//        if (paint.penType != [self.drawPen penType]) {
+//            self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
+//        }
+//        CGContextRef context = [[self enteryScreen] cacheContext];
+////        CGContextRestoreGState(context);
+//        [self.drawPen updateCGContext:context paint:paint];
 //        CGContextSaveGState(context);
-    }
+//    }
 }
 
 - (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width

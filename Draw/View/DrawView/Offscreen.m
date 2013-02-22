@@ -10,6 +10,7 @@
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import "Paint.h"
+#import "DrawPenFactory.h"
 
 #define DEFAULT_CAPACITY 50
 
@@ -62,6 +63,7 @@
 - (void)dealloc
 {
     CGLayerRelease(cacheLayer), cacheLayer = NULL;
+    PPRelease(_drawPen);
     [super dealloc];
 }
 
@@ -92,12 +94,21 @@
     CGContextDrawLayerAtPoint(cacheContext, CGPointZero, layer);
 }
 
+- (void)updateContext:(CGContextRef)context withPaint:(Paint *)paint
+{
+    if ([self.drawPen penType] != paint.penType) {
+        self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
+        [self.drawPen updateCGContext:context paint:paint];
+    }
+}
+
 - (CGRect)strokePaint:(Paint *)paint inContext:(CGContextRef)context clear:(BOOL)clear
 {
     if (clear) {
         CGRect drawBox = _rect;
         CGContextClearRect(context, drawBox);
     }
+    [self updateContext:context withPaint:paint];
     CGPathRef path = paint.path;
     CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width bounds:_rect];
     CGContextAddPath(context, path);
@@ -119,13 +130,12 @@
         CGContextClearRect(context, _rect);
         return _rect;
     }else if([action isChangeBackAction]){
-        CGContextSaveGState(context);
         CGColorRef color = action.paint.color.CGColor;
         CGContextSetFillColorWithColor(context, color);
         CGContextFillRect(context, _rect);
-        CGContextRestoreGState(context);
         return _rect;
     }else if([action isDrawAction]){
+        [self updateContext:context withPaint:action.paint];
         [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
         CGRect rect = [self strokePaint:action.paint inContext:context clear:NO];
         return rect;
@@ -147,7 +157,7 @@
 }
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
 {
-    [self setStrokeColor:color lineWidth:width inContext:cacheContext];
+//    [self setStrokeColor:color lineWidth:width inContext:cacheContext];
 }
 - (CGRect)drawAction:(DrawAction *)action clear:(BOOL)clear
 {
