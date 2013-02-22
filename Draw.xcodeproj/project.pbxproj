@@ -192,6 +192,9 @@
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
+		A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
+		A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
+		A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
@@ -21782,6 +21785,7 @@
 				CA16413B16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
+				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22494,6 +22498,7 @@
 				CA16413C16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
+				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23927,6 +23932,7 @@
 				CA16413A16D7255E001C615F /* UserGameItemService.m in Sources */,
 				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
+				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
