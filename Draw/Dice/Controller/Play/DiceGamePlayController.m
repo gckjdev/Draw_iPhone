@@ -1245,13 +1245,13 @@
 }
 
 - (void)popupOpenDiceView
-{
-    DiceAvatarView *userAvatarView = [self avatarViewOfUser:_diceService.openDiceUserId];
+{    
+    UIView *atView = [_userManager isMe:_diceService.openDiceUserId] ? myDiceListHolderView : [self avatarViewOfUser:_diceService.openDiceUserId];
     
-    PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:userAvatarView.tag];
+    PointDirection pointDirection = [self popupDirectionWithUserAvatarViewTag:atView.tag];
     
     [_popupView popupOpenDiceViewWithOpenType:_diceService.openType
-                                              atView:userAvatarView 
+                                              atView:atView 
                                               inView:self.view
                                         aboveSubView:self.popupLevel1View
                                       pointDirection:pointDirection];
@@ -1318,6 +1318,8 @@
     _second = DURATION_PLAYER_BET;
     
     self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];
+    [self.view bringSubviewToFront:self.waitForPlayerBetLabel];
+
     self.waitForPlayerBetLabel.alpha = 0;
     self.waitForPlayerBetLabel.hidden = NO;
     [UIView animateWithDuration:1 animations:^{
@@ -1644,7 +1646,8 @@
 {
     _second--;
     
-    self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];    
+    self.waitForPlayerBetLabel.text = [NSString stringWithFormat:NSLS(@"kWaitForPlayerBet"), _second];
+    
     if (_second <= 0) {
         [self killTimer];
         self.waitForPlayerBetLabel.hidden = YES;

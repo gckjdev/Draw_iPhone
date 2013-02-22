@@ -57,6 +57,8 @@
     CGRect rect = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height);
     if (self = [self initWithFrame:rect]) {
         self.text = message;
+        self.textColor = [UIColor whiteColor];
+        self.font = [UIFont systemFontOfSize:pointSize];
         self.lineBreakMode = mode;
         self.textAlignment = textAlignment;
         self.numberOfLines = 0;

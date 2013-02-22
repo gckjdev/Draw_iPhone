@@ -19,7 +19,7 @@
 
 #define WIDTH_COUNT_BUTTON  ([DeviceDetection isIPAD] ? 68 : 30)
 #define HEIGHT_COUNT_BUTTON ([DeviceDetection isIPAD] ? 72 : 32)
-#define SIZE_FONT_COUNT_BUTTON  ([DeviceDetection isIPAD] ? 48 : 24)
+#define SIZE_FONT_COUNT_BUTTON  ([DeviceDetection isIPAD] ? 40 : 20)
 
 @interface DiceSelectedView ()
 {
