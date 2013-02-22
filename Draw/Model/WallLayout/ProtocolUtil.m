@@ -21,73 +21,73 @@
     return [builder build];
 }
 
-+ (PBFrame *)pbFrameWithFrameId:(int)frameId iphoneRect:(PBRect*)iphoneRect ipadRect:(PBRect*)ipadRect opusIphoneRect:(PBRect*)opusIphoneRect opusIpadRect:(PBRect*)opusIpadRect idOnWall:(int)idOnWall
++ (PBWallOpus *)pbWallOpusWithIdOnWall:(int)idOnWall frameId:(int)frameId
 {
-    PBFrame_Builder *builder = [[[PBFrame_Builder alloc] init] autorelease];
-    [builder setFrameId:frameId];
-    [builder setOpusIphoneRect:opusIphoneRect];
-    [builder setOpusIpadRect:ipadRect];
+    PBWallOpus_Builder *builder = [[[PBWallOpus_Builder alloc] init] autorelease];
     [builder setIdOnWall:idOnWall];
+    [builder setFrame:[self pbFrameWithFrameId:frameId]];
     return [builder build];
 }
 
-+ (PBLayout *)pbLayoutWithLayoutId:(int)layoutId name:(NSString *)name displayMode:(int)displayMode coverFlowType:(int)coverFlowType frames:(NSArray *)frames bgImage:(NSString *)bgImage iphoneRect:(PBRect *)iphoneRect ipadRect:(PBRect*)ipadRect price:(int)price 
+
++ (PBFrame *)pbFrameWithFrameId:(int)frameId
+{
+    PBFrame_Builder *builder = [[[PBFrame_Builder alloc] init] autorelease];
+    [builder setFrameId:frameId];
+    return [builder build];
+}
+
++ (PBLayout *)pbLayoutWithLayoutId:(int)layoutId
+                              name:(NSString *)name
+                       displayMode:(int)displayMode
+                        wallOpuses:(NSArray *)wallOpuses
+                           bgImage:(NSString *)bgImage
+                             price:(int)price
 {
     PBLayout_Builder *builder = [[[PBLayout_Builder alloc] init] autorelease];
     [builder setLayoutId:layoutId];
     [builder setName:name];
     [builder setDisplayMode:displayMode];
-    [builder setCoverFlowType:coverFlowType];
-    [builder addAllFrames:frames];
-    [builder setBgImage:bgImage];
-    [builder setIPhoneRect:iphoneRect];
-    [builder setIPadRect:ipadRect];
+    [builder addAllWallOpuses:wallOpuses];
+    [builder setImageUrl:bgImage];
     [builder setPrice:price];
     return [builder build];
 }
 
 + (PBLayout *)createTestData1
 {
-    PBFrame *frame1 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:110 y:40 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:0];
+    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frameId:301];
+    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frameId:302];
+    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frameId:303];
+    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frameId:304];
+    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frameId:305];
+    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frameId:304];
+    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frameId:303];
+    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frameId:302];
+    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frameId:301];
+
+    NSArray *wallOpuses = [NSArray arrayWithObjects:wallOpus1, wallOpus2, wallOpus3, wallOpus4, wallOpus5, wallOpus6, wallOpus7, wallOpus8, wallOpus9, nil];
     
-//    PBFrame *frame2 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:40 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:1];
-    
-    PBFrame *frame3 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:40 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:2];
-    
-    PBFrame *frame4 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:3];
-    
-    NSArray *frames = [NSArray arrayWithObjects:frame1, frame3, frame4, nil];
-    
-    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:0 coverFlowType:0 frames:frames bgImage:@"default_layout.png" iphoneRect:[self pbRectWithX:0 y:0 width:320 height:480] ipadRect:[self pbRectWithX:2 y:2 width:768 height:1024] price:1000];
+    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:0  wallOpuses:wallOpuses bgImage:@"default_layout.png" price:1000];
     
     return layout1;
 }
 
 + (PBLayout *)createTestData
 {
-    PBFrame *frame1 = [self pbFrameWithFrameId:301 iphoneRect:[self pbRectWithX:40 y:40 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:0];
+    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frameId:301];
+    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frameId:302];
+    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frameId:303];
+    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frameId:304];
+    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frameId:305];
+    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frameId:304];
+    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frameId:303];
+    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frameId:302];
+    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frameId:301];
     
-    PBFrame *frame2 = [self pbFrameWithFrameId:302 iphoneRect:[self pbRectWithX:170 y:40 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:1];
+    NSArray *wallOpuses = [NSArray arrayWithObjects:wallOpus1, wallOpus2, wallOpus3, wallOpus4, wallOpus5, wallOpus6, wallOpus7, wallOpus8, wallOpus9, nil];
     
-    PBFrame *frame3 = [self pbFrameWithFrameId:303 iphoneRect:[self pbRectWithX:40 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:2];
-    
-    PBFrame *frame4 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:3];
-    
-    PBFrame *frame5 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:4];
-    
-    PBFrame *frame6 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:5];
-    
-    PBFrame *frame7 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:6];
-    
-    PBFrame *frame8 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:7];
-
-    
-    PBFrame *frame9 = [self pbFrameWithFrameId:304 iphoneRect:[self pbRectWithX:170 y:170 width:110 height:110] ipadRect:nil opusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80] opusIpadRect:nil idOnWall:8];
-
-    
-    NSArray *frames = [NSArray arrayWithObjects:frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, nil];
-    
-    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:1 coverFlowType:0 frames:frames bgImage:@"default_layout.png" iphoneRect:[self pbRectWithX:0 y:0 width:320 height:480] ipadRect:[self pbRectWithX:2 y:2 width:768 height:1024] price:1000];
+    PBLayout *layout1 = [self pbLayoutWithLayoutId:1000 name:@"默认布局" displayMode:4  wallOpuses:wallOpuses bgImage:@"default_layout.png" price:1000];
     
     return layout1;
 }

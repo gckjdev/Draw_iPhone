@@ -11,9 +11,8 @@
 #import "PPSmartUpdateData.h"
 #import "Draw.pb.h"
 
-#define FRAMES_ZIP @"frames.zip"
-#define BUNDLE_PATH @"frames.zip"
 #define FRAMES_PB @"frames.pb"
+#define BUNDLE_PATH @"frames.pb"
 #define LAYOUT_VERSION_KEY @"1.0"
 
 @interface FrameManager()
@@ -31,7 +30,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
 {
     if (self = [super init]) {
         //check and update data
-        self.smartData = [[[PPSmartUpdateData alloc] initWithName:FRAMES_ZIP type:SMART_UPDATE_DATA_TYPE_ZIP bundlePath:BUNDLE_PATH initDataVersion:LAYOUT_VERSION_KEY] autorelease];
+        self.smartData = [[[PPSmartUpdateData alloc] initWithName:FRAMES_PB type:SMART_UPDATE_DATA_TYPE_ZIP bundlePath:BUNDLE_PATH initDataVersion:LAYOUT_VERSION_KEY] autorelease];
         
         [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
             PPDebug(@"checkUpdateAndDownload successfully");
@@ -47,9 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FrameManager);
 - (NSArray *)frames
 {
     if (_frames == nil) {
-        NSString *framesPbFile = [_smartData.dataFilePath stringByAppendingPathComponent:FRAMES_PB];
-        NSData *data = [NSData dataWithContentsOfFile:framesPbFile];
-        
+        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];        
         _frames = [[[PBFrameList parseFromData:data] framesList] retain];
     }
     
