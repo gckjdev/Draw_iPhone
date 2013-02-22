@@ -772,7 +772,7 @@
 
 + (NSString*)getAdMobId
 {
-    return [MobClickUtils getIntValueByKey:@"ADMOB_ID" defaultValue:@""];
+    return [MobClickUtils getStringValueByKey:@"ADMOB_ID" defaultValue:@"a14fed16c562e5d"];
 }
 
 // http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c79e4b0d9b30df33cb9&uid=50b4596fe4b03dc20a9e7e51
