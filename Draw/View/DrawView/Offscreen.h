@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DrawPenProtocol.h"
+#import "DrawPenFactory.h"
 
 @class DrawColor;
 @class DrawAction;
@@ -19,7 +20,7 @@
 @property(nonatomic, assign, readonly)NSUInteger capacity;
 @property(nonatomic, assign, readonly)CGRect rect; //default is DRAW_VIEW_RECT
 @property(nonatomic, assign, readonly)BOOL hasImage;
-
+@property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 
 - (id)initWithCapacity:(NSUInteger)capacity; //default is 50, 0 for no limit
 - (id)initWithCapacity:(NSUInteger)capacity rect:(CGRect)rect; //default is 50, 0 for no limit

@@ -7,16 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Paint.h"
+
+
+typedef enum{
+    DrawPenTypeDefault = 1000,
+    DrawPenTypeDash,
+    DrawPenTypeBlur,
+    DrawPenTypeMark,
+}DrawPenType;
+
 
 @protocol DrawPenProtocol <NSObject>
+
+@required
+- (void)updateCGContext:(CGContextRef)context paint:(Paint *)paint;
+- (DrawPenType)penType;
 
 @optional
 - (UIImage *)penImage;
 - (NSString *)name;
 - (NSString *)desc;
 
-@required
-- (void)updateCGContext:(CGContextRef)context;
 
 @end
 

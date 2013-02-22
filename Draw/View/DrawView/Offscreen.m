@@ -61,6 +61,7 @@
 - (void)dealloc
 {
     CGLayerRelease(cacheLayer), cacheLayer = NULL;
+    PPRelease(_drawPen);
     [super dealloc];
 }
 
