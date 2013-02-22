@@ -424,9 +424,9 @@ static AccountService* _defaultAccountService;
                toUser:(NSString *)userId
                source:(BalanceSourceType)source
 {
-    if (amount > 0) {
-        [self chargeAccount:amount toUser:userId source:source transactionId:nil transactionRecepit:nil byUserId:[[UserManager defaultManager] userId]];
-    }
+    
+    [self chargeAccount:amount toUser:userId source:source transactionId:nil transactionRecepit:nil byUserId:[[UserManager defaultManager] userId]];
+    
 }
 
 - (void)deductAccount:(int)amount
