@@ -1345,19 +1345,19 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 
 @interface PBGameItem : PBGeneratedMessage {
 @private
-  BOOL hasHasDiscount_:1;
+  BOOL hasIsPromotion_:1;
   BOOL hasItemId_:1;
   BOOL hasSoldType_:1;
-  BOOL hasDiscount_:1;
+  BOOL hasPromotionDiscount_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasImage_:1;
   BOOL hasDemoImage_:1;
   BOOL hasAppleProductId_:1;
-  BOOL hasDiscount_:1;
+  BOOL isPromotion_:1;
   int32_t itemId;
   int32_t soldType;
-  int32_t discount;
+  int32_t promotionDiscount;
   NSString* name;
   NSString* desc;
   NSString* image;
@@ -1372,8 +1372,8 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (BOOL) hasDemoImage;
 - (BOOL) hasSoldType;
 - (BOOL) hasAppleProductId;
-- (BOOL) hasHasDiscount;
-- (BOOL) hasDiscount;
+- (BOOL) hasIsPromotion;
+- (BOOL) hasPromotionDiscount;
 @property (readonly) int32_t itemId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
@@ -1381,8 +1381,8 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 @property (readonly, retain) NSString* demoImage;
 @property (readonly) int32_t soldType;
 @property (readonly, retain) NSString* appleProductId;
-- (BOOL) hasDiscount;
-@property (readonly) int32_t discount;
+- (BOOL) isPromotion;
+@property (readonly) int32_t promotionDiscount;
 - (NSArray*) priceDescInfoList;
 - (PBPriceInfo*) priceDescInfoAtIndex:(int32_t) index;
 
@@ -1462,14 +1462,14 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBGameItem_Builder*) addAllPriceDescInfo:(NSArray*) values;
 - (PBGameItem_Builder*) clearPriceDescInfoList;
 
-- (BOOL) hasHasDiscount;
-- (BOOL) hasDiscount;
-- (PBGameItem_Builder*) setHasDiscount:(BOOL) value;
-- (PBGameItem_Builder*) clearHasDiscount;
+- (BOOL) hasIsPromotion;
+- (BOOL) isPromotion;
+- (PBGameItem_Builder*) setIsPromotion:(BOOL) value;
+- (PBGameItem_Builder*) clearIsPromotion;
 
-- (BOOL) hasDiscount;
-- (int32_t) discount;
-- (PBGameItem_Builder*) setDiscount:(int32_t) value;
-- (PBGameItem_Builder*) clearDiscount;
+- (BOOL) hasPromotionDiscount;
+- (int32_t) promotionDiscount;
+- (PBGameItem_Builder*) setPromotionDiscount:(int32_t) value;
+- (PBGameItem_Builder*) clearPromotionDiscount;
 @end
 
