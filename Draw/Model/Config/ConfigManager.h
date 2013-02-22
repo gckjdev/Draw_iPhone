@@ -207,4 +207,6 @@ typedef enum{
 + (int)onlineRoomCountPerPage;
 + (int)maxWeixinImageWidth;
 
++ (NSString*)getAdMobId;
+
 @end

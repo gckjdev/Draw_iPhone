@@ -37,6 +37,7 @@
 #import "AnalyticsManager.h"
 #import "FreeCoinsControllerViewController.h"
 #import "BulletinService.h"
+#import "AdService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -72,19 +73,28 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     [super viewDidLoad];
     _gameService  = [ZJHGameService defaultService];
     PPDebug(@"ZJHHomeViewController view did load");
-    // Do any additional setup after loading the view from its nib.
-    
+
+
     
     [self registerUIApplicationWillEnterForegroundNotification];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    // Do any additional setup after loading the view from its nib.
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, 120, 0, 0)
+                                                   iPadFrame:CGRectMake(15, 150, 320, 50)
+                                                     useLmAd:YES];
+    
     [super viewDidAppear:animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+    
     [super viewDidDisappear:animated];
 }
 
