@@ -542,6 +542,8 @@ static AdService* _defaultService;
         return nil;
     }
     
+    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
+    
     if ([self isShowWanpuAd] == YES){
         return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
     }        
@@ -572,6 +574,8 @@ static AdService* _defaultService;
         return nil;
     }
     
+    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+
     if ([self isShowWanpuAd] == YES){
         return [self createWanpuAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
@@ -579,6 +583,7 @@ static AdService* _defaultService;
     if ([self isShowAderAd] == YES){
         return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
+    
     
     if (useLmAd == NO || [self isShowLmAd] == NO){
         return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
@@ -636,6 +641,19 @@ static AdService* _defaultService;
                         iPadFrame:iPadFrame];
 }
 
+- (void)loadAdmobView:(GADBannerView*)adView
+{
+    GADRequest* request = [[GADRequest alloc] init];
+    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
+    if ([[UserManager defaultManager] hasUser]){
+        [adView loadRequest:request];
+    }
+    else{
+        [adView loadRequest:nil];
+    }
+    [request release];
+}
+
 - (UIView*)createAdmobAdInView:(UIView*)superView
                          frame:(CGRect)frame
                      iPadFrame:(CGRect)iPadFrame
@@ -669,9 +687,10 @@ static AdService* _defaultService;
               
     adView.tag = AD_VIEW_TAG;
     adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-              adView.adUnitID = [ConfigManager getAdMobId];
+    adView.adUnitID = [ConfigManager getAdMobId];
+    adView.delegate = self;
     
-    [adView loadRequest:nil];
+    [self loadAdmobView:adView];
               
     [superView addSubview:adView];
     return adView;
@@ -688,6 +707,60 @@ static AdService* _defaultService;
 - (void)onWanpuConnectFailed:(id)sender
 {
     PPDebug(@"<onWanpuConnectFailed>");    
+}
+
+#pragma mark - AdMob Delegate
+
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    PPDebug(@"<adViewDidReceiveAd> success");
+    
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error;
+{
+    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
+//    [self loadAdmobView:view];
+}
+
+#pragma mark Click-Time Lifecycle Notifications
+
+// Sent just before presenting the user a full screen view, such as a browser,
+// in response to clicking on an ad.  Use this opportunity to stop animations,
+// time sensitive interactions, etc.
+//
+// Normally the user looks at the ad, dismisses it, and control returns to your
+// application by calling adViewDidDismissScreen:.  However if the user hits the
+// Home button or clicks on an App Store link your application will end.  On iOS
+// 4.0+ the next method called will be applicationWillResignActive: of your
+// UIViewController (UIApplicationWillResignActiveNotification).  Immediately
+// after that adViewWillLeaveApplication: is called.
+- (void)adViewWillPresentScreen:(GADBannerView *)adView
+{
+    PPDebug(@"<adViewWillPresentScreen>");      
+}
+
+// Sent just before dismissing a full screen view.
+- (void)adViewWillDismissScreen:(GADBannerView *)adView
+{
+    PPDebug(@"<adViewWillDismissScreen>");      
+}
+
+// Sent just after dismissing a full screen view.  Use this opportunity to
+// restart anything you may have stopped as part of adViewWillPresentScreen:.
+- (void)adViewDidDismissScreen:(GADBannerView *)adView
+{
+    PPDebug(@"<adViewDidDismissScreen>");    
+}
+
+// Sent just before the application will background or terminate because the
+// user clicked on an ad that will launch another application (such as the App
+// Store).  The normal UIApplicationDelegate methods, like
+// applicationDidEnterBackground:, will be called immediately before this.
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView
+{
+    PPDebug(@"<adViewWillLeaveApplication>");
 }
 
 @end

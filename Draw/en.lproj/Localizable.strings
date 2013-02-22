@@ -1110,10 +1110,14 @@
 "kDicePropDescription" = "Item";
 "kDiceWilds" = " W ";
 
-"kDiceMenuStart" = "START"; 
-"kDiceMenuHelp" = "HELP"; 
-"kDiceMenuRoom" = "ROOM"; 
-"kDiceMenuShop" = "SHOP"; 
+"kDiceMenuStart" = "Start";
+"kDiceMenuHelp" = "Help"; 
+"kDiceMenuRoom" = "Room"; 
+"kDiceMenuShop" = "Shop"; 
+"kDiceMenuHappyRoom" = "Poor";
+"kDiceMenuHighRoom" = "Carnival";
+"kDiceMenuSuperHighRoom" = "Rich";
+
 
 "kCoinsNotEnoughAndEnterCoinsShop" = "Your coins are not enough. Buy some now?";
 "kCoinsNotEnoughAndGetFreeCoins" = "Your coins are not enough. get some free coins now?";
@@ -1137,9 +1141,7 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "Poor";
-"kDiceMenuHighRoom" = "CARNIVAL";
-"kDiceMenuSuperHighRoom" = "Rich";
+
 
 "kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";

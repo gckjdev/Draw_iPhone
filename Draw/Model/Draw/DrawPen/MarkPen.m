@@ -12,11 +12,8 @@
 
 - (void)updateCGContext:(CGContextRef)context paint:(Paint *)paint
 {
+    [super updateCGContext:context paint:paint];
     if (paint) {
-        
-        CGContextSetLineWidth(context, paint.width);
-        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
-        
         //set mark
         CGContextSetLineCap(context, kCGLineCapSquare);
     }

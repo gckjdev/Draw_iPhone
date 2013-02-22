@@ -272,6 +272,7 @@
 						<string key="NSFrame">{{48, 286}, {672, 131}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -306,7 +307,7 @@
 					<object class="IBUIButton" id="709108999">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{156, 103}, {36, 36}}</string>
+						<string key="NSFrame">{{151.5, 98.5}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="997203346"/>
@@ -318,18 +319,18 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">99</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
-						<reference key="IBUINormalTitleColor" ref="75250085"/>
+						<reference key="IBUINormalTitleColor" ref="857487715"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="655419462">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="989978213">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">number@2x.png</string>
+							<string key="NSResourceName">common_home_badge@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="370031241">
-							<int key="type">2</int>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1039931788">
+							<int key="type">1</int>
 							<double key="pointSize">20</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="1071417130">
-							<string key="NSName">Helvetica-Bold</string>
+						<object class="NSFont" key="IBUIFont" id="498934366">
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">20</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -337,7 +338,7 @@
 					<object class="IBUIButton" id="370521146">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{348, 103}, {36, 36}}</string>
+						<string key="NSFrame">{{343.5, 98.5}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="664520852"/>
@@ -349,16 +350,16 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">99</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
-						<reference key="IBUINormalTitleColor" ref="75250085"/>
+						<reference key="IBUINormalTitleColor" ref="857487715"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
-						<reference key="IBUINormalBackgroundImage" ref="655419462"/>
-						<reference key="IBUIFontDescription" ref="370031241"/>
-						<reference key="IBUIFont" ref="1071417130"/>
+						<reference key="IBUINormalBackgroundImage" ref="989978213"/>
+						<reference key="IBUIFontDescription" ref="1039931788"/>
+						<reference key="IBUIFont" ref="498934366"/>
 					</object>
 					<object class="IBUIButton" id="152909415">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{540, 103}, {36, 36}}</string>
+						<string key="NSFrame">{{535.5, 98.5}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="351911279"/>
@@ -370,16 +371,16 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">99</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
-						<reference key="IBUINormalTitleColor" ref="75250085"/>
+						<reference key="IBUINormalTitleColor" ref="857487715"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
-						<reference key="IBUINormalBackgroundImage" ref="655419462"/>
-						<reference key="IBUIFontDescription" ref="370031241"/>
-						<reference key="IBUIFont" ref="1071417130"/>
+						<reference key="IBUINormalBackgroundImage" ref="989978213"/>
+						<reference key="IBUIFontDescription" ref="1039931788"/>
+						<reference key="IBUIFont" ref="498934366"/>
 					</object>
 					<object class="IBUIButton" id="186491029">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{708, 103}, {36, 36}}</string>
+						<string key="NSFrame">{{703.5, 98.5}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="977230230"/>
@@ -391,11 +392,11 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">99</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
-						<reference key="IBUINormalTitleColor" ref="75250085"/>
+						<reference key="IBUINormalTitleColor" ref="857487715"/>
 						<reference key="IBUINormalTitleShadowColor" ref="120212596"/>
-						<reference key="IBUINormalBackgroundImage" ref="655419462"/>
-						<reference key="IBUIFontDescription" ref="370031241"/>
-						<reference key="IBUIFont" ref="1071417130"/>
+						<reference key="IBUINormalBackgroundImage" ref="989978213"/>
+						<reference key="IBUIFontDescription" ref="1039931788"/>
+						<reference key="IBUIFont" ref="498934366"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
@@ -749,7 +750,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back@2x.png">{67, 53}</string>
-			<string key="number@2x.png">{50, 45}</string>
+			<string key="common_home_badge@2x.png">{36, 38}</string>
 			<string key="refresh@2x.png">{60, 60}</string>
 			<string key="topwood@2x.jpg">{640, 79}</string>
 		</dictionary>

@@ -25,8 +25,6 @@
 {
     PBFrame_Builder *builder = [[[PBFrame_Builder alloc] init] autorelease];
     [builder setFrameId:frameId];
-    [builder setIPhoneRect:iphoneRect];
-    [builder setIPadRect:ipadRect];
     [builder setOpusIphoneRect:opusIphoneRect];
     [builder setOpusIpadRect:ipadRect];
     [builder setIdOnWall:idOnWall];
@@ -98,51 +96,41 @@
 {
     PBFrame_Builder *builder1 = [[[PBFrame_Builder alloc] init] autorelease];
     [builder1 setFrameId:301];
-    [builder1 setFrameType:1];
-    [builder1 setThumbImage:@"thumb_image/frame_thumb_301.jpg"];
-    [builder1 setImage:@"image/frame_301.jpg"];
-    [builder1 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder1 setType:1];
+    [builder1 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_301.jpg"];
     [builder1 setOpusIphoneRect:[self pbRectWithX:0 y:0 width:80 height:80]];
     [builder1 setPrice:200];
     PBFrame *frame1 = [builder1 build];
     
     PBFrame_Builder *builder2 = [[[PBFrame_Builder alloc] init] autorelease];
     [builder2 setFrameId:302];
-    [builder2 setFrameType:1];
-    [builder2 setThumbImage:@"thumb_image/frame_thumb_302.jpg"];
-    [builder2 setImage:@"image/frame_302.jpg"];
-    [builder2 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder2 setType:1];
+    [builder2 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_302.jpg"];
     [builder2 setOpusIphoneRect:[self pbRectWithX:10 y:10 width:80 height:80]];
     [builder2 setPrice:200];
     PBFrame *frame2 = [builder2 build];
     
     PBFrame_Builder *builder3 = [[[PBFrame_Builder alloc] init] autorelease];
     [builder3 setFrameId:303];
-    [builder3 setFrameType:1];
-    [builder3 setThumbImage:@"thumb_image/frame_thumb_303.jpg"];
-    [builder3 setImage:@"image/frame_303.jpg"];
-    [builder3 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
+    [builder3 setType:1];
+    [builder3 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_303.jpg"];
     [builder3 setOpusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80]];
     [builder3 setPrice:200];
     PBFrame *frame3 = [builder3 build];
     
     PBFrame_Builder *builder4 = [[[PBFrame_Builder alloc] init] autorelease];
     [builder4 setFrameId:304];
-    [builder4 setFrameType:1];
-    [builder4 setThumbImage:@"thumb_image/frame_thumb_304.jpg"];
-    [builder4 setImage:@"image/frame_304.jpg"];
+    [builder4 setType:1];
+    [builder4 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_304.jpg"];
     [builder4 setPrice:200];
-    [builder4 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
     [builder4 setOpusIphoneRect:[self pbRectWithX:20 y:20 width:80 height:80]];
     PBFrame *frame4 = [builder4 build];
     
     PBFrame_Builder *builder5 = [[[PBFrame_Builder alloc] init] autorelease];
     [builder5 setFrameId:305];
-    [builder5 setFrameType:1];
-    [builder5 setThumbImage:@"thumb_image/frame_thumb_305.jpg"];
-    [builder5 setImage:@"image/frame_305.jpg"];
+    [builder5 setType:1];
+    [builder5 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_305.jpg"];
     [builder5 setPrice:200];
-    [builder5 setIPhoneRect:[self pbRectWithX:0 y:0 width:110 height:110]];
     [builder5 setOpusIphoneRect:[self pbRectWithX:25 y:25 width:80 height:80]];
     PBFrame *frame5 = [builder5 build];
     

@@ -140,7 +140,7 @@
                                          defaultValue:LINE_DEFAULT_WIDTH
                                              delegate:self];
     self.widthSlider.frame = frame;    
-    [self.colorAlpha setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
+    [self.penWidth setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
     [self addSubview:self.widthSlider];
 
     frame = self.alphaSlider.frame;

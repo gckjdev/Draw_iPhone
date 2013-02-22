@@ -12,13 +12,13 @@
 #import "FrameManager.h"
 #import "ProtocolUtil.h"
 #import "UIImageView+WebCache.h"
+#import "WallOpusView.h"
 
 @interface OpusWallController ()
 
 @property (retain, nonatomic) UIImage *bgImage;
 @property (assign, nonatomic) int wallOpusOrder;
 @property (retain, nonatomic) Wall *wall;
-@property (retain, nonatomic) UIView *wallView;
 @property (retain, nonatomic) ChangeAvatar *photoCollection;
 
 @end
@@ -29,13 +29,9 @@
 {
     [_bgImage release];
     [_wall release];
-    [_wallView release];
-    [_backButton release];
-    [_setLayoutButton release];
-    [_submitButton release];
     [_bgImageView release];
     [_photoCollection release];
-    [_setBgImageBtn release];
+    [_iCarouselView release];
     [super dealloc];
 }
 
@@ -54,76 +50,28 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setNavigationLeftButton:@"返回" action:@selector(clickBack:)];
+    
     self.title = _wall.pbWall.name;
-
-    [self updateLayout];
-}
-
-- (void)updateLayout
-{
-//    [self.wallView removeFromSuperview];
-//
-//    PBRect *pbRect = [DeviceDetection isIPAD] ? _wall.pbWall.layout.iPadRect : _wall.pbWall.layout.iPhoneRect;
-//    CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
-//    
-//    if (_bgImage == nil) {
-//        [self.bgImageView setImageWithURL:[NSURL URLWithString:_wall.pbWall.layout.bgImage] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//            self.bgImage = image;
-//        } failure:^(NSError *error) {
-//            self.bgImage = nil;
-//        }];
-//    }else{
-//        self.bgImageView.image = _bgImage;
-//    }
-//    
-//    if (_wall.pbWall.layout.displayMode == DISPLAY_MODE_PLANE) {
-//
-//        self.wallView = [[[UIView alloc] initWithFrame:rect] autorelease];
-//        [self.view addSubview:self.wallView];
-//        
-//        [self updateWallOpuses];
-//    }else{
-//        self.wallView = [[[iCarousel alloc] initWithFrame:rect] autorelease];
-//        ((iCarousel *)self.wallView).delegate = self;
-//        ((iCarousel *)self.wallView).dataSource = self;
-//        ((iCarousel *)self.wallView).decelerationRate = 0.5;
-//
-//        ((iCarousel *)self.wallView).type = _wall.pbWall.layout.coverFlowType;
-//        [self.view addSubview:self.wallView];
-//    }
-//    
-//    [self.view bringSubviewToFront:self.backButton];
-//    [self.view bringSubviewToFront:self.setLayoutButton];
-//    [self.view bringSubviewToFront:self.submitButton];
-//    [self.view bringSubviewToFront:self.setBgImageBtn];
-}
-
-- (void)updateWallOpuses
-{
-//    if (_wall.pbWall.layout.displayMode == DISPLAY_MODE_PLANE) {
-//        for (UIView *view in [self.wallView subviews]) {
-//            [view removeFromSuperview];
-//        }
-//        
-//        for (WallOpus *wallOpus in [_wall wallOpuses]) {
-//            [self.wallView addSubview:[self wallOpusBtn:wallOpus]];
-//        }
-//        
-//
-//    }else{
-//        [((iCarousel *)self.wallView) reloadData];
-//    }
+    
+    self.iCarouselView.delegate = self;
+    self.iCarouselView.dataSource = self;
+    self.iCarouselView.decelerationRate = 0.5;
+    self.iCarouselView.type = _wall.pbWall.content.displayMode;
+    
+    [self.bgImageView setImageWithURL:[NSURL URLWithString:_wall.pbWall.content.imageUrl]];
+    [self.iCarouselView reloadData];
 }
 
 
 #define MAX_COVER_FLOW_FRAME_WIDTH 200.0f
 #define MAX_COVER_FLOW_FRAME_HEIGHT 200.0f
 
-//- (UIButton *)wallOpusBtn:(WallOpus *)wallOpus
+//- (UIButton *)wallOpusBtn:(PBWallOpus *)wallOpus
 //{
-//    PBFrame *frame = [_wall frameWithFrameIdOnWall:wallOpus.frameIdOnWall];
+//    PBFrame *frame = [wallOpus frame];
 //    
-//    PBRect *pbRect = [DeviceDetection isIPAD] ? frame.iPadRect : frame.iPhoneRect;
+//    
+//    
 //    CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
 //
 //    
@@ -158,51 +106,51 @@
 //    return button;
 //}
 
-- (void)clickWallOpus:(id)sender
-{
-    self.wallOpusOrder = ((UIButton *)sender).tag;    
-    
-    PPDebug(@"click wallOpus: %d, opus:%@", self.wallOpusOrder, [[[_wall wallOpusWithFrameIdOnWall:self.wallOpusOrder] opus] wordText]);
-    
-    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplaceOpus"), NSLS(@"kReplaceFrame"), nil] autorelease];
-    [sheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:NSLS(@"kCancel")]) {
-        return;
-    }
-    
-    if ([title isEqualToString:NSLS(@"kReplaceOpus")]) {
-        PPDebug(@"buttonIndex:%d", buttonIndex);
-        OpusSelectController *vc  = [[[OpusSelectController alloc] init] autorelease];
-        vc.delegate = self;
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc hideComfirmButton];
-    }
-    
-    if ([title isEqualToString:NSLS(@"kReplaceFrame")]) {
-        FrameSelectController *vc  = [[[FrameSelectController alloc] init] autorelease];
-        vc.delegate = self;
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }
-}
+//- (void)clickWallOpus:(id)sender
+//{
+//    self.wallOpusOrder = ((UIButton *)sender).tag;    
+//    
+//    PPDebug(@"click wallOpus: %d, opus:%@", self.wallOpusOrder, [[[_wall wallOpusWithFrameIdOnWall:self.wallOpusOrder] opus] wordText]);
+//    
+//    UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplaceOpus"), NSLS(@"kReplaceFrame"), nil] autorelease];
+//    [sheet showInView:self.view];
+//}
+//
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+//    if ([title isEqualToString:NSLS(@"kCancel")]) {
+//        return;
+//    }
+//    
+//    if ([title isEqualToString:NSLS(@"kReplaceOpus")]) {
+//        PPDebug(@"buttonIndex:%d", buttonIndex);
+//        OpusSelectController *vc  = [[[OpusSelectController alloc] init] autorelease];
+//        vc.delegate = self;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        [vc hideComfirmButton];
+//    }
+//    
+//    if ([title isEqualToString:NSLS(@"kReplaceFrame")]) {
+//        FrameSelectController *vc  = [[[FrameSelectController alloc] init] autorelease];
+//        vc.delegate = self;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//    }
+//}
 
 - (void)didController:(OpusSelectController *)contorller clickOpus:(DrawFeed *)opus
 {
     [contorller.navigationController popViewControllerAnimated:YES];
     [_wall replaceWallOpus:self.wallOpusOrder withOpus:opus];
-    [self updateWallOpuses];
+    [self.iCarouselView reloadData];
 }
 
 - (void)didController:(FrameSelectController *)contorller clickFrame:(PBFrame *)frame
 {
     [contorller.navigationController popViewControllerAnimated:YES];
     [_wall replaceWallOpus:self.wallOpusOrder withFrame:frame];
-    [self updateWallOpuses];
+    [self.iCarouselView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -216,31 +164,20 @@
 }
 
 - (void)viewDidUnload {
-    [self setBackButton:nil];
-    [self setSetLayoutButton:nil];
-    [self setSubmitButton:nil];
     [self setBgImageView:nil];
-    [self setSetBgImageBtn:nil];
-    [self setWallOpusView:nil];
-    [self setFrameImageView:nil];
-    [self setOpusImageView:nil];
+    [self setICarouselView:nil];
     [super viewDidUnload];
 }
 
 
 static int layoutTest;
+
 - (IBAction)clickSetLayoutButton:(id)sender {
     if (layoutTest) {
-        [_wall setDisplayMode:layoutTest ];
-        [self updateLayout];
+        [self.iCarouselView reloadData];
     }else{
-        [_wall setDisplayMode:layoutTest];
-        [self updateLayout];
+        [self.iCarouselView reloadData];
     }
-
-//        [_wall setCoverFlowType:((++layoutTest)%12)];
-//        [self updateLayout];
-   
 }
 
 - (void)didImageSelected:(UIImage*)image
@@ -259,14 +196,14 @@ static int layoutTest;
 
 - (void)didCreateWall:(int)resultCode wall:(PBWall *)wall
 {
-//    if (resultCode == 0) {
-//        PPDebug(@"new wall: %@", wall.wallId);
-//        [_wall setWallId:wall.wallId];
-//        [_wall setBgImage:wall.layout.bgImage];
-//        self.bgImage = nil;
-//    }else{
-//        PPDebug(@"create wall failed!");
-//    }
+    if (resultCode == 0) {
+        PPDebug(@"new wall: %@", wall.wallId);
+        [_wall setWallId:wall.wallId];
+        [_wall setBgImage:wall.content.imageUrl];
+        self.bgImage = nil;
+    }else{
+        PPDebug(@"create wall failed!");
+    }
 }
 
 - (void)didUpdateWall:(int)resultCode wall:(PBWall *)wall
@@ -279,14 +216,14 @@ static int layoutTest;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-//    return [_wall.pbWall.layout.framesList count];
+    return [_wall.pbWall.content.wallOpusesList count];
 }
 
 - (NSUInteger)numberOfVisibleItemsInCarousel:(iCarousel *)carousel
 {
     //limit the number of items views loaded concurrently (for performance reasons)
     //this also affects the appearance of circular-type carousels
-//    return [_wall.wallOpuses count];
+    return [_wall.pbWall.content.wallOpusesList count];
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
@@ -294,7 +231,7 @@ static int layoutTest;
 	//create new view if no view is available for recycling
 	if (view == nil)
 	{
-//        view = [self wallOpusBtn:[_wall.wallOpuses objectAtIndex:index]];
+        view = [WallOpusView createViewWithWallOpus:[_wall.pbWall.content.wallOpusesList objectAtIndex:index]];
 	}
 
 	return view;
@@ -329,7 +266,7 @@ static int layoutTest;
 {
     //implement 'flip3D' style carousel
     transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * ((iCarousel *)self.wallView).itemWidth);
+    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * self.iCarouselView.itemWidth);
 }
 
 - (BOOL)carouselShouldWrap:(iCarousel *)carousel

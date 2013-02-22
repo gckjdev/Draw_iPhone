@@ -120,8 +120,8 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="89807391">
 								<reference key="NSNextResponder" ref="463414045"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{320, 429}</string>
+								<int key="NSvFlags">274</int>
+								<string key="NSFrameSize">{320, 396}</string>
 								<reference key="NSSuperview" ref="463414045"/>
 								<reference key="NSNextKeyView" ref="971859199"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -129,7 +129,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 429}</string>
+						<string key="NSFrame">{{0, 33}, {320, 396}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -204,43 +204,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">backButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="971859199"/>
-					</object>
-					<int key="connectionID">11</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">setLayoutButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="113228100"/>
-					</object>
-					<int key="connectionID">14</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">submitButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="11764029"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">setBgImageBtn</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="151625766"/>
-					</object>
-					<int key="connectionID">24</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgImageView</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="89807391"/>
 					</object>
 					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">iCarouselView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="463414045"/>
+					</object>
+					<int key="connectionID">39</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -356,6 +332,7 @@
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="26.CustomClassName">iCarousel</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -363,7 +340,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">38</int>
+			<int key="maxID">39</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

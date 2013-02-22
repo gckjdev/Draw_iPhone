@@ -13,6 +13,7 @@
 #import "AderDelegateProtocal.h"
 #import "AdMoGoView.h"
 #import "WapsOffer/AppConnect.h"
+#import "GADBannerViewDelegate.h"
 
 typedef enum
 {
@@ -32,7 +33,7 @@ typedef enum
 
 @end
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal, GADBannerViewDelegate>
 {
 //    LmmobAdBannerView   *_adView;
 //    NSMutableDictionary *_allAdViews;
