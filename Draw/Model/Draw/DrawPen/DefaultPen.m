@@ -20,7 +20,7 @@
 
 - (DrawPenType)penType
 {
-    return DrawPenTypeDash;
+    return DrawPenTypeDefault;
 }
 
 - (UIImage *)penImage
