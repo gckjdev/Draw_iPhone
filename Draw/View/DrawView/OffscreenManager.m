@@ -15,9 +15,11 @@
     NSMutableArray *_offscreenList;
 }
 
-- (Offscreen *)enteryScreen;
+
 
 @end
+
+#define MAX_CAN_UNDO_COUNT 200
 
 #define DEFAULT_LEVEL 4
 #define DEFAULT_UNDO_STEP 50
@@ -82,11 +84,12 @@
 - (void)adjustOffscreenAtIndex:(NSUInteger)index
                  withOffscreen:(Offscreen *)offscreen;
 {
-    if (index < _step) {
+//    PPDebug(@"<adjustOffscreenAtIndex> index = %d",index);
+    if (index < _level) {
         Offscreen *os = [_offscreenList objectAtIndex:index];
         if ([os isFull]) {
             [self adjustOffscreenAtIndex:index + 1 withOffscreen:os];
-            [os updatContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
+            [os updateContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
         }else{
             [os addContextWithCGLayer:offscreen.cacheLayer actionCount:offscreen.actionCount];
         }
@@ -99,14 +102,80 @@
 {
     return [_offscreenList objectAtIndex:0];
 }
+
+
+- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width
+{
+    [[self enteryScreen] setStrokeColor:color lineWidth:width];
+}
+
+- (CGRect)updateLastPaint:(Paint *)paint
+{
+    return [[self enteryScreen] strokePaint:paint clear:YES];
+}
+
+- (void)printOSInfo
+{
+    PPDebug(@"======<printOSInfo> total action count = %d ======", [self actionCount]);
+    for (NSInteger i = _level - 1; i >= 0; -- i) {
+        Offscreen *os = [_offscreenList objectAtIndex:i];
+        PPDebug(@"OS index = %d, action count = %d", i, os.actionCount);
+    }
+    
+}
+
 //add draw action and draw it in the last layer.
-- (void)addDrawAction:(DrawAction *)action
+- (CGRect)addDrawAction:(DrawAction *)action
 {
     Offscreen *entery = [self enteryScreen];
-    if ([entery isFull]) {
-        [self adjustOffscreenAtIndex:0 withOffscreen:entery];
+    BOOL full = [entery isFull];
+    if (full) {
+        [self adjustOffscreenAtIndex:1 withOffscreen:entery];
     }
     //Draw the action in the entry screen.
+    CGRect rect = [entery drawAction:action clear:full];
+//    PPDebug(@"<addDrawAction>");
+//    [self printOSInfo];
+    return  rect;
+}
+
+- (void)updateOS:(Offscreen*)os WithDrawActionList:(NSArray *)drawActionList
+                             start:(NSInteger)start
+                               end:(NSInteger)end
+{
+    PPDebug(@"<updateOS> start = %d, end = %d",start, end);
+    if (start < end && start >= 0 && end <= [drawActionList count]) {
+        [os clear];
+        for (NSInteger i = start; i < end; ++ i) {
+            DrawAction *action = [drawActionList objectAtIndex:i];
+            [os drawAction:action clear:NO];
+        }
+    }
+}
+
+- (void)updateWithDrawActionList:(NSArray *)drawActionList
+{
+    
+    PPDebug(@"<updateWithDrawActionList> , action count = %d", [drawActionList count]);
+    NSUInteger index = 0;
+    NSInteger startIndex = 0;
+    NSInteger endIndex = [drawActionList count];
+    for (; index < _level; ++ index) {
+        //cal start and end index
+        Offscreen *os = [_offscreenList objectAtIndex:index];
+        if ([os noLimit]) {
+            startIndex = 0;
+        }else{
+            startIndex = endIndex - os.capacity;
+            if (startIndex < 0) {
+                startIndex = 0;
+            }
+        }
+        [self updateOS:os WithDrawActionList:drawActionList start:startIndex end:endIndex];
+        endIndex = startIndex;
+    }
+
+    [self printOSInfo];
 }
 
 //show all the action render in the layer list
@@ -114,24 +183,89 @@
 {
     for (NSInteger i = _level - 1; i >= 0; -- i) {
         Offscreen *os = [_offscreenList objectAtIndex:i];
-        if (os.actionCount > 0) {
-            CGContextDrawLayerAtPoint(context, CGPointZero, os.cacheLayer);
-        }
+        [os showInContext:context];
     }
 }
 
 //show to index, and return the real index. such as: show to index 12, but can return 10. real index <= index is guaranteed
-- (NSUInteger)showToIndex:(NSUInteger)index inContext:(CGContextRef)context
+
+- (NSUInteger)closestIndexWithActionIndex:(NSUInteger)index
 {
     NSInteger count = 0;
     for (NSInteger i = _level - 1; i >= 0; -- i) {
         Offscreen *os = [_offscreenList objectAtIndex:i];
-        count += os.actionCount;
-        if (os.actionCount > 0 && count <= index) {
-            CGContextDrawLayerAtPoint(context, CGPointZero, os.cacheLayer);
+        if ((count + os.actionCount)<= index) {
+            count += os.actionCount;
+        }else{
+            break;
         }
     }
+    PPDebug(@"<closestIndexWithActionIndex>");
+    [self printOSInfo];
+    PPDebug(@"<closestIndexWithActionIndex> input index = %d, return index = %d",index, count);
     return count;
+
+}
+
+- (Offscreen *)offScreenForActionIndex:(NSInteger)index
+{
+    PPDebug(@"<offScreenForActionIndex>");
+    [self printOSInfo];
+    
+    NSInteger count = 0;
+    for (NSInteger i = _level - 1; i >= 0; -- i) {
+        Offscreen *os = [_offscreenList objectAtIndex:i];
+        count += os.actionCount;
+        if (index < count) {
+            return os;
+        }
+    }
+    return nil;
+}
+
+
+//clean all the layer.
+- (void)clean
+{
+    for (Offscreen *os in _offscreenList) {
+        [os clear];
+    }
+}
+
+//return total action count;
+- (NSUInteger)actionCount
+{
+    NSUInteger count = 0;
+    for (Offscreen *os in _offscreenList) {
+        count += [os actionCount];
+    }
+    return count;
+}
+
+- (BOOL)isEmpty
+{
+    return [self actionCount] == 0;
+}
+
+
+- (BOOL)canUndo
+{
+    if ([self actionCount] <= MAX_CAN_UNDO_COUNT) {
+        return YES;
+    }
+    for (NSInteger i = 0; i < _level - 1; ++ i) {
+        Offscreen *os = [_offscreenList objectAtIndex:i];
+        if ([os actionCount] != 0) {
+            return YES;
+        }
+    }
+    return NO;
+//    for (Offscreen *os in _offscreenList) {
+////        count += [os actionCount];
+//        if([os actionCount] > 0){
+//            flag |= YES;
+//        }
+//    }
 }
 
 @end

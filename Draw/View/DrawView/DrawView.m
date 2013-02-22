@@ -11,7 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StrawView.h"
 #import "ConfigManager.h"
-#import "Offscreen.h"
 
 #pragma mark - draw view implementation
 
@@ -23,12 +22,11 @@
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
     
-    Offscreen *_undoCache;
+    NSMutableSet *toucheSet;
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
-- (void)updateUndoCache;
-- (void)updateShowContextWithUndoCache;
+
 @end
 
 
@@ -98,23 +96,6 @@
     }
 }
 
-//- (BOOL)isEventLegal:(UIEvent *)event
-//{
-//    if(event && ([[event allTouches] count] == 1))
-//    {
-//        return YES;
-//    }
-//    return NO;
-//}
-
-//- (CGPoint)touchPoint:(UIEvent *)event
-//{
-//    for (UITouch *touch in [event allTouches]) {
-//        CGPoint point = [touch locationInView:self];
-//        return point;
-//    }
-//    return ILLEGAL_POINT;
-//}
 
 #pragma mark - paint action
 
@@ -123,8 +104,8 @@
     [self clearRedoStack];
     DrawAction *cleanAction = [DrawAction clearScreenAction];
     [self.drawActionList addObject:cleanAction];
-    [self drawAction1:cleanAction inContext:showContext];
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    [osManager addDrawAction:cleanAction];
+    [self drawDrawAction:cleanAction show:YES];
     self.bgColor = [DrawColor whiteColor];
 }
 - (void)changeBackWithColor:(DrawColor *)color
@@ -132,8 +113,7 @@
     [self clearRedoStack];
     DrawAction *changBackAction = [DrawAction changeBackgroundActionWithColor:color];
     [self.drawActionList addObject:changBackAction];
-    [self drawAction1:changBackAction inContext:showContext];
-    [self setNeedsDisplayInRect:self.bounds showCacheLayer:NO];
+    [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
 }
 
@@ -156,30 +136,36 @@ typedef enum {
 
 - (void)handleDrawTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
-
-    UITouch *touch  = [touches anyObject];    
+    for (UITouch *touche in touches) {
+        [toucheSet addObject:touche];
+    }
+    NSInteger count = [toucheSet count];
+    if (type == TouchTypeEnd) {
+        [toucheSet removeAllObjects];
+    }
+    if (count != 1) {
+        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", count, type);
+        return;
+        
+    }
+    UITouch *touch  = [touches anyObject];
     CGPoint point = [touch locationInView:self];
 
     [self addPoint:point toDrawAction:_currentAction];
     
     Paint *paint = [_currentAction paint];
-    
-    CGRect drawBox; //= [paint rectForPath];
+
     if (type == TouchTypeBegin) {
-        [self setStrokeColor:paint.color lineWidth:paint.width inContext:cacheContext];
-        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
+        [self drawDrawAction:_currentAction show:NO];
+        [osManager setStrokeColor:paint.color width:paint.width];
+        [osManager updateLastPaint:paint];
+        [self setNeedsDisplay];
+
     }else if(type == TouchTypeMove){
-        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-    }else{        
+        [self drawPaint:paint show:YES];
+    }else{
         [paint finishAddPoint];
-        drawBox = [self strokePaint1:paint inContext:cacheContext clear:YES];
-        [self setNeedsDisplayInRect:drawBox showCacheLayer:YES];
-        
-        [self setStrokeColor:paint.color lineWidth:paint.width inContext:showContext];
-        drawBox = [self strokePaint1:paint inContext:showContext clear:NO];
-        [self setNeedsDisplayInRect:drawBox showCacheLayer:NO];
+        [self drawPaint:paint show:YES];
     }
 }
 
@@ -210,6 +196,12 @@ typedef enum {
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
     UITouch *touch  = [touches anyObject];
+
+    if ([touch tapCount] != 1) {
+        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", [touch tapCount], type);
+        return;
+    }
+    
     CGPoint point = [touch locationInView:self];
 
     switch (type) {
@@ -315,6 +307,10 @@ typedef enum {
         _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
         _redoStack = [[PPStack alloc] init];
+        
+        osManager = [[OffscreenManager drawViewOffscreenManager] retain];
+        toucheSet = [[NSMutableSet setWithCapacity:4] retain];
+        [self setMultipleTouchEnabled:YES];
     }
     
     return self;
@@ -326,7 +322,7 @@ typedef enum {
     PPRelease(_lineColor);
     PPRelease(_redoStack);
     PPRelease(_bgColor);
-    PPRelease(_undoCache);
+    PPRelease(toucheSet);
     [super dealloc];
 }
 
@@ -335,34 +331,35 @@ typedef enum {
 #pragma mark - Revoke
 - (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock
 {
-    // draw on show context, this takes a lot of performance if the draw
-    CGContextClearRect(showContext, self.bounds);
-    for (DrawAction *action in self.drawActionList) {
-        [self drawAction1:action inContext:showContext];
+    NSUInteger count = [self.drawActionList count];
+    NSUInteger index = [osManager closestIndexWithActionIndex:count];
+    Offscreen *os = [osManager offScreenForActionIndex:index];
+    [os clear];
+//    [osManager removeContentAfterIndex:count];
+    for (; index < count; ++ index) {
+        DrawAction *action = [self.drawActionList objectAtIndex:index];
+        [os drawAction:action clear:NO];
     }
-    
-    // refresh screen
-    CGRect rect = self.bounds;
-    if (lastAction.paint != nil){
-        rect = [DrawUtils rectForPath:lastAction.paint.path withWidth:lastAction.paint.width bounds:self.bounds];
-    }
-    [self setNeedsDisplayInRect:rect showCacheLayer:NO];
+    [self setNeedsDisplay];
+
     [self synBGColor];
+    
     // call block
     if (finishiBlock != NULL){
         finishiBlock();
     }
-    
+
 }
 
 - (BOOL)canRevoke
 {
-    return [_drawActionList count] > 0;
+    return [_drawActionList count] > 0 && [osManager canUndo];
 }
 
 
 - (void)revoke:(dispatch_block_t)finishBlock
 {
+    
     if ([self canRevoke]) {
         DrawAction *obj = [_drawActionList lastObject];
         [_redoStack push:obj];
@@ -378,11 +375,12 @@ typedef enum {
 - (void)redo
 {
     if ([self canRedo]) {
+        
         DrawAction *action = [_redoStack pop];
         if (action) {
             [self.drawActionList addObject:action];
-            CGRect rect = [self drawAction1:action inContext:showContext];
-            [self setNeedsDisplayInRect:rect showCacheLayer:NO];
+            [osManager addDrawAction:action];
+            [self setNeedsDisplay];
             if ([action isChangeBackAction]) {
                 self.bgColor = [action.paint color];
             }
@@ -404,15 +402,6 @@ typedef enum {
 }
 
 #pragma mark -- undo cache
-
-- (void)updateUndoCache
-{
-//    _undoCache updatContextWithCGLayer:showLayerRef paintCount:<#(NSInteger)#>
-}
-- (void)updateShowContextWithUndoCache
-{
-    
-}
 
 
 @end

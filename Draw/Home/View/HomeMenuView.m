@@ -74,7 +74,9 @@
         case HomeMenuTypeDrawApps:{
             return NSLS(@"kMore_apps");
         }
-        case HomeMenuTypeDrawFreeCoins:{
+        case HomeMenuTypeDrawFreeCoins:
+        case HomeMenuTypeDiceFreeCoins:
+        {
             return NSLS(@"kFreeGetCoins");
         }
         case HomeMenuTypeDrawPlayWithFriend:{
@@ -219,7 +221,10 @@
             return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceSuperHighRoom:
 //            return [shareImageManager superHighRoomMenuImage];
-            return [imageManager zjhHomeVSSite];
+            return [imageManager zjhHomeRichSite];
+        case HomeMenuTypeDiceFreeCoins:
+            //            return [shareImageManager diceShopImage];
+            return [imageManager drawFreeCoins];
         default:
             return nil;
     }
@@ -404,18 +409,38 @@ int *getZJHBottomMenuTypeList()
     return list;
 }
 
-int *getDiceMainMenuTypeList()
+
+
+int *getDiceMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
         HomeMenuTypeDiceStart,
         HomeMenuTypeDiceHappyRoom,
         HomeMenuTypeDiceSuperHighRoom,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDiceFreeCoins,
         HomeMenuTypeDiceShop,
         HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
     return list;
+}
+
+int *getDiceMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeDiceStart,
+        HomeMenuTypeDiceHappyRoom,
+        HomeMenuTypeDiceSuperHighRoom,
+        HomeMenuTypeDiceHelp,
+        HomeMenuTypeDiceShop,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDiceMainMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDiceMainMenuTypeListWithFreeCoins() : getDiceMainMenuTypeListWithoutFreeCoins());
 }
 
 int *getDiceBottomMenuTypeList()

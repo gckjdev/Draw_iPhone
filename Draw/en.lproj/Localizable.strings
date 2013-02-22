@@ -1014,6 +1014,8 @@
 "kPaintPlayerItem" = "Paint Player";
 "kStraw" = "Straw";
 "kStrawDescription" = "It is a color picker for picking color on the paint.";
+"kCannotRevoke" = "Can't Revoke any more!";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1135,9 +1137,9 @@
 "kDiceWai" = "Wai";
 
 
-"kDiceMenuHappyRoom" = "HAPPY";
+"kDiceMenuHappyRoom" = "Poor";
 "kDiceMenuHighRoom" = "CARNIVAL";
-"kDiceMenuSuperHighRoom" = "CRAZY";
+"kDiceMenuSuperHighRoom" = "Rich";
 
 "kDiceHappyRoom" = "Happy Room %d";
 "kDiceHighRoom" = "Carnival Room %d";

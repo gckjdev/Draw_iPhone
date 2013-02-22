@@ -14,6 +14,8 @@
 @class PBDice_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
+@class PBGameItem;
+@class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
 @class PBGameSessionChanged_Builder;
@@ -26,6 +28,8 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBPriceInfo;
+@class PBPriceInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserDice;

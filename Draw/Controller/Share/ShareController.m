@@ -644,8 +644,7 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad]; 
-    
-    ShareImageManager* imageManager = [ShareImageManager defaultManager];
+
     [self initTabButtons];
     UIButton *allButton = [self tabButtonWithTabID:TabTypeAll];
 

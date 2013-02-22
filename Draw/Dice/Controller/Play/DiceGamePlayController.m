@@ -292,7 +292,7 @@
     
     self.adView = [[AdService defaultService] createAdInView:self                  
                                                        frame:CGRectMake(0, 0, 320, 50) 
-                                                   iPadFrame:CGRectMake(224, 30, 320, 50)
+                                                   iPadFrame:CGRectMake(224, 88, 320, 50)
                                                      useLmAd:YES];
     
     [self updateAllPlayersAvatar];

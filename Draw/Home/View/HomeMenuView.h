@@ -62,6 +62,7 @@ typedef enum{
     HomeMenuTypeDiceSuperHighRoom,
     HomeMenuTypeDiceHelp,
     HomeMenuTypeDiceShop,
+    HomeMenuTypeDiceFreeCoins,
     
     HomeMenuTypeDiceBottomBegin = 3500,
     
