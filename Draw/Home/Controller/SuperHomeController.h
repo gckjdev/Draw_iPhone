@@ -22,6 +22,7 @@
 @property(nonatomic, retain)HomeHeaderPanel *homeHeaderPanel;
 @property(nonatomic, retain)HomeMainMenuPanel *homeMainMenuPanel;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+@property(nonatomic, retain)UIView *adView;
 
 - (void)updateAllBadge;
 - (BOOL)isRegistered;

@@ -542,6 +542,8 @@ static AdService* _defaultService;
         return nil;
     }
     
+    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
+    
     if ([self isShowWanpuAd] == YES){
         return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
     }        
@@ -572,6 +574,8 @@ static AdService* _defaultService;
         return nil;
     }
     
+    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+
     if ([self isShowWanpuAd] == YES){
         return [self createWanpuAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
@@ -579,6 +583,7 @@ static AdService* _defaultService;
     if ([self isShowAderAd] == YES){
         return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
     }
+    
     
     if (useLmAd == NO || [self isShowLmAd] == NO){
         return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
@@ -669,9 +674,17 @@ static AdService* _defaultService;
               
     adView.tag = AD_VIEW_TAG;
     adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-              adView.adUnitID = [ConfigManager getAdMobId];
+    adView.adUnitID = [ConfigManager getAdMobId];
     
-    [adView loadRequest:nil];
+    GADRequest* request = [[GADRequest alloc] init];
+    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
+    if ([[UserManager defaultManager] hasUser]){
+        [adView loadRequest:request];
+    }
+    else{
+        [adView loadRequest:nil];
+    }
+    [request release];
               
     [superView addSubview:adView];
     return adView;

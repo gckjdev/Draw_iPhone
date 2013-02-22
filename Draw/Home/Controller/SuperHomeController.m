@@ -36,6 +36,7 @@
 
 -(void)dealloc
 {
+    PPRelease(_adView);
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_homeHeaderPanel);
     PPRelease(_homeMainMenuPanel);
@@ -128,6 +129,9 @@
     [self registerJoinGameResponseNotification];
     [self registerNetworkConnectedNotification];
     
+    if (self.adView){
+        [self.view bringSubviewToFront:self.adView];
+    }    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -139,6 +143,7 @@
 
 - (void)viewDidUnload
 {
+    self.adView = nil;
     self.homeHeaderPanel = nil;
     self.homeMainMenuPanel = nil;
     self.homeBottomMenuPanel = nil;
