@@ -95,5 +95,4 @@
 - (UIColor*)createRoomDialogRoomNameColor;
 - (UIColor*)createRoomDialogRoomPasswordColor;
 
-
 @end

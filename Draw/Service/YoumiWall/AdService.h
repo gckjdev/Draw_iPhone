@@ -77,6 +77,10 @@ typedef enum
                          frame:(CGRect)frame 
                      iPadFrame:(CGRect)iPadFrame;
 
+- (UIView*)createAdmobAdInView:(UIView*)superView
+                         frame:(CGRect)frame
+                     iPadFrame:(CGRect)iPadFrame;
+
 @property (nonatomic, retain) PPViewController* viewController;
 
 
