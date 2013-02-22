@@ -21,6 +21,8 @@
     StrawView *_strawView;
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
+    
+    NSMutableSet *toucheSet;
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
@@ -134,8 +136,19 @@ typedef enum {
 
 - (void)handleDrawTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
-
-    UITouch *touch  = [touches anyObject];    
+    for (UITouch *touche in touches) {
+        [toucheSet addObject:touche];
+    }
+    NSInteger count = [toucheSet count];
+    if (type == TouchTypeEnd) {
+        [toucheSet removeAllObjects];
+    }
+    if (count != 1) {
+        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", count, type);
+        return;
+        
+    }
+    UITouch *touch  = [touches anyObject];
     CGPoint point = [touch locationInView:self];
 
     [self addPoint:point toDrawAction:_currentAction];
@@ -183,6 +196,12 @@ typedef enum {
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
     UITouch *touch  = [touches anyObject];
+
+    if ([touch tapCount] != 1) {
+        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", [touch tapCount], type);
+        return;
+    }
+    
     CGPoint point = [touch locationInView:self];
 
     switch (type) {
@@ -290,6 +309,8 @@ typedef enum {
         _redoStack = [[PPStack alloc] init];
         
         osManager = [[OffscreenManager drawViewOffscreenManager] retain];
+        toucheSet = [[NSMutableSet setWithCapacity:4] retain];
+        [self setMultipleTouchEnabled:YES];
     }
     
     return self;
@@ -301,6 +322,7 @@ typedef enum {
     PPRelease(_lineColor);
     PPRelease(_redoStack);
     PPRelease(_bgColor);
+    PPRelease(toucheSet);
     [super dealloc];
 }
 
