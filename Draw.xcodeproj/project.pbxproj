@@ -3207,8 +3207,6 @@
 		CA16C3F01682FAE300F81B47 /* CommonDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F01677712300725802 /* CommonDialog~ipad.xib */; };
 		CA16C3F11682FAE300F81B47 /* CommonDiceDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F11677712300725802 /* CommonDiceDialog.xib */; };
 		CA16C3F21682FAE300F81B47 /* CommonDiceDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F21677712300725802 /* CommonDiceDialog~ipad.xib */; };
-		CA16C3F31682FAE300F81B47 /* CommonMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F51677712300725802 /* CommonMessageView.xib */; };
-		CA16C3F41682FAE300F81B47 /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F61677712300725802 /* CommonMessageView~ipad.xib */; };
 		CA16C3F51682FAE300F81B47 /* CommonStarryDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FB1677712300725802 /* CommonStarryDialog.xib */; };
 		CA16C3F61682FAE300F81B47 /* CommonStarryDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FC1677712300725802 /* CommonStarryDialog~ipad.xib */; };
 		CA16C3F71682FAE300F81B47 /* CommonUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537FF1677712300725802 /* CommonUserInfoView.xib */; };
@@ -18917,8 +18915,6 @@
 				CA16C3F01682FAE300F81B47 /* CommonDialog~ipad.xib in Resources */,
 				CA16C3F11682FAE300F81B47 /* CommonDiceDialog.xib in Resources */,
 				CA16C3F21682FAE300F81B47 /* CommonDiceDialog~ipad.xib in Resources */,
-				CA16C3F31682FAE300F81B47 /* CommonMessageView.xib in Resources */,
-				CA16C3F41682FAE300F81B47 /* CommonMessageView~ipad.xib in Resources */,
 				CA16C3F51682FAE300F81B47 /* CommonStarryDialog.xib in Resources */,
 				CA16C3F61682FAE300F81B47 /* CommonStarryDialog~ipad.xib in Resources */,
 				CA16C3F71682FAE300F81B47 /* CommonUserInfoView.xib in Resources */,

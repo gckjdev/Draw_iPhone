@@ -178,7 +178,7 @@
 
 - (NSString *)popupMessageDialogBackgroundImage
 {
-    return @"dialogue@2x.png";
+    return @"common_dialog_bg@2x.png";
 }
 
 - (BOOL)supportWeixin
@@ -215,7 +215,7 @@
 
 - (UIColor*)popupMessageDialogFontColor
 {
-    return [UIColor blackColor];
+    return [UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1];;
 }
 
 - (NSString *)resourcesPackage
