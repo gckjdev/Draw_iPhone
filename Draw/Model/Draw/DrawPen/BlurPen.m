@@ -15,16 +15,13 @@
     [super updateCGContext:context paint:paint];
     if (paint) {
         
-        NSUInteger blur = 20;//rand() % (NSInteger)paint.width;
+        NSUInteger blur = paint.width/2;
         //set blur
-//        CGContextSetShadowWithColor(context, CGSizeMake(0, 5), 5, paint.color.CGColor);
-//        CGContextSetShadowWithColor(context, CGSizeMake(0, -5), 5, paint.color.CGColor);
-//        CGContextSetShadowWithColor(context, CGSizeMake(5, 0), 5, paint.color.CGColor);
         PPDebug(@"blur = %d",blur);
-        
-        CGContextSetShadowWithColor(context, CGSizeMake(0.1,0.1), blur, paint.color.CGColor);
-        CGContextSetLineWidth(context, 1);
-        CGContextSetStrokeColorWithColor(context, paint.color.CGColor);
+        DrawColor *temp = [DrawColor colorWithColor:paint.color];
+        CGContextSetShadowWithColor(context, CGSizeMake(0.001,0.001), blur, temp.CGColor);
+        CGContextSetLineWidth(context, paint.width);
+        CGContextSetStrokeColorWithColor(context, temp.CGColor);
     }
 }
 

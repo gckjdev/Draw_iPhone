@@ -566,10 +566,10 @@
 "kContestSubmitSuccMsg" = "Thank you for your participation, you can submit other %d works, one more?";
 "kContestSubmitSuccQuitMsg" = "Thank you for your participation!";
 
-"kContestEnd" = "The contest is end, fail to submit.";
+"kContestEnd" = "The contest is end, commit the opus as normal?";
 
 "kContestNotRunning" = "Sorry, the contest is not running now.";
-"kContestSummitCountEnough" = "Sorry. You can only summit %d opus to one contest";
+"kContestCommitCountEnough" = "Sorry. You can only summit %d opus to one contest. Commit it as the normal opus?";
 //"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
 //"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
 //"kChangeOpusTitle" = "Change Opus";

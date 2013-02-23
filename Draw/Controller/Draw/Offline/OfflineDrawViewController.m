@@ -84,6 +84,7 @@
 //    BOOL _userSaved;
     BOOL _isNewDraft;
 
+    BOOL _commitAsNormal;
     
 }
 
@@ -464,6 +465,7 @@
 #define DIALOG_TAG_SUBMIT 201206071
 #define DIALOG_TAG_CHANGE_BACK 201207281
 #define DIALOG_TAG_COMMIT_OPUS 201208111
+#define DIALOG_TAG_COMMIT_AS_NORMAL_OPUS 201302231
 
 
 
@@ -529,6 +531,10 @@
         [_willBuyPen setAlpha:1];
         [drawView setPenType:_willBuyPen.penType];   
         [PenView savePenType:_willBuyPen.penType];
+    }else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
+    {
+        //TODO click input Alert ok button
+        [self.inputAlert clickConfirm];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         
@@ -650,6 +656,19 @@
     */
 }
 
+- (void)alertCommitContestOpusAsNormalOpus:(NSString *)message
+{
+    //TODO alert: Submit as the normal opus
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
+                                         message:message
+                                           style:CommonDialogStyleDoubleButton
+                                        delegate:self];
+    dialog.tag =  DIALOG_TAG_COMMIT_AS_NORMAL_OPUS;
+    [dialog showInView:self.view];
+    _commitAsNormal = YES;
+    
+}
+
 - (void)didCreateDraw:(int)resultCode
 {
     [self hideActivity];
@@ -701,7 +720,8 @@
         [self shareToWeibo];
 
     }else if(resultCode == ERROR_CONTEST_END){
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
+        [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
     }
@@ -939,12 +959,15 @@
     [self setShareWeiboSet:share];    
 
     NSString *text = self.inputAlert.contentText;
+    
+    NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
+    
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
                                                drawWord:self.word
                                                language:languageType
                                               targetUid:self.targetUid
-                                              contestId:_contest.contestId
+                                              contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                delegate:self];
 
@@ -971,10 +994,12 @@
         }
     }else {
         if(self.contest && [self.contest commitCountEnough]){
-            NSString *title = [NSString stringWithFormat:NSLS(@"kContestSummitCountEnough"),_contest.canSubmitCount];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:title
-                                                           delayTime:1.5
-                                                             isHappy:NO];
+            [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestCommitCountEnough")];
+            
+//            NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),_contest.canSubmitCount];
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:title
+//                                                           delayTime:1.5
+//                                                             isHappy:NO];
             return;
 
         }

@@ -99,6 +99,8 @@
     if ([self.drawPen penType] != paint.penType) {
         self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
         [self.drawPen updateCGContext:context paint:paint];
+    }else if([self.drawPen penType] == DrawPenTypeBlur){
+        [self.drawPen updateCGContext:context paint:paint];
     }
 }
 
