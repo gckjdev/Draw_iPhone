@@ -235,13 +235,19 @@ CommonMessageViewTheme globalGetTheme() {
 	UIImage *img = nil;
 	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
     [_messageView setImage:img];
+    _messageView.faceImageView.hidden = NO;
     [_messageView.messageBackgroundView setImage:[UIImage imageNamed:[GameApp popupMessageDialogBackgroundImage]]];
     [_messageView.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
 	if (!img) {
-        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y+horizon)];
-        [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
+        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y)];
+        
+    } else {
+        float x = (_messageView.bounds.size.width/2 + _messageView.faceImageView.frame.origin.x/2 + _messageView.faceImageView.frame.size.width/2);
+        [_messageView.messageLabel setCenter:CGPointMake(x, _messageView.messageLabel.center.y)];
     }
-	    
+    [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
+    
+	   
 	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
     
     

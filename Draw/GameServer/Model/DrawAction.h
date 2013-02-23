@@ -27,7 +27,7 @@ typedef enum {
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
 
-- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action dataVersion:(int)dataVersion;
 - (PBNoCompressDrawAction *)toPBNoCompressDrawAction;
 
 - (NSInteger)pointCount;

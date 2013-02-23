@@ -25,26 +25,54 @@
     [super dealloc];
 }
 
-- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action dataVersion:(int)dataVersion
 {
     self = [ super init];
     if (self) {
         self.type = action.type;
         if (self.type != DRAW_ACTION_TYPE_CLEAN) {
-            DrawColor *color = [[[DrawColor alloc] initWithPBColor:action.color] autorelease];
-            CGFloat lineWidth = [action width];
-            NSInteger penType = [action penType];
+            DrawColor *color = nil;
+            
+            if ([DrawUtils isNotVersion1:dataVersion]){
+                color = [[[DrawColor alloc] initWithRed:action.red green:action.green blue:action.blue alpha:action.alpha] autorelease];
+            }
+            else{
+                color = [[[DrawColor alloc] initWithPBColor:action.color] autorelease];
+            }
+            
             
             NSMutableArray *pointList = nil;
-            NSUInteger count = [[action pointList] count];
-            if (count > 0) {
-                pointList = [[[NSMutableArray alloc] initWithCapacity:count] autorelease];
-                for (PBPoint *point in action.pointList) {
-                    [pointList addObject:[PointNode pointWithPBPoint:point]];
+            if ([DrawUtils isNotVersion1:dataVersion]){
+                // new version
+                NSUInteger count = [[action pointXList] count];
+                if (count > 0) {
+                    pointList = [[NSMutableArray alloc] initWithCapacity:count];
+                    for (int i=0; i<count; i++){
+                        [pointList addObject:[PointNode pointWithCGPoint:
+                                              CGPointMake([[action.pointXList objectAtIndex:i] floatValue],
+                                                          [[action.pointYList objectAtIndex:i] floatValue])]];
+                    }
                 }
             }
-            Paint *paint = [[Paint alloc] initWithWidth:lineWidth color:color penType:penType pointList:pointList];
+            else{
+                // old version handling
+                NSUInteger count = [[action pointList] count];
+                if (count > 0) {
+                    pointList = [[NSMutableArray alloc] initWithCapacity:count];
+                    for (PBPoint *point in action.pointList) {
+                        [pointList addObject:[PointNode pointWithPBPoint:point]];
+                    }
+                }
+            }
+
+            CGFloat lineWidth = [action width];
+            NSInteger penType = [action penType];
+            Paint *paint = [[Paint alloc] initWithWidth:lineWidth
+                                                  color:color
+                                                penType:penType
+                                              pointList:pointList];
             self.paint = paint;
+            PPRelease(pointList);
             PPRelease(paint);
         }
     }
@@ -58,10 +86,28 @@
     [builder setType:self.type];
     if (self.type != DRAW_ACTION_TYPE_CLEAN) {
         Paint *paint = self.paint;
-        PBColor *color = [paint.color toPBColor];
-        [builder setColor:color];
         [builder setWidth:paint.width];
         [builder setPenType:paint.penType];
+
+        // set color, new version
+        [builder setAlpha:[paint.color alpha]];
+        [builder setBlue:[paint.color blue]];
+        [builder setRed:[paint.color red]];
+        [builder setGreen:[paint.color green]];
+        
+        // set points, new version
+        NSUInteger pCount = [paint pointCount];
+        if (pCount != 0) {
+            for (PointNode *value in paint.pointNodeList) {
+                [builder addPointX:[value x]];
+                [builder addPointY:[value y]];
+            }
+        }
+        
+        /* below is old data storage
+        PBColor *color = [paint.color toPBColor];
+        [builder setColor:color];
+        
         //set point list
         NSUInteger pCount = [paint pointCount];
         if (pCount != 0) {
@@ -73,6 +119,7 @@
             PPRelease(pBuilder);
             [builder addAllPoint:pList];
         }
+         */
     }
     PBNoCompressDrawAction *action = [builder build];
     [builder release];
@@ -280,7 +327,7 @@
 {
     NSMutableArray *drawActionList = [NSMutableArray array];
     for (PBNoCompressDrawAction *action in [data drawActionListList]) {
-        DrawAction *dAction = [[DrawAction alloc] initWithPBNoCompressDrawAction:action];
+        DrawAction *dAction = [[DrawAction alloc] initWithPBNoCompressDrawAction:action dataVersion:data.version];
         [drawActionList addObject:dAction];
         PPRelease(dAction);
     }

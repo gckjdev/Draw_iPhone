@@ -610,7 +610,11 @@
 #pragma mark - draw data version
 + (int)currentDrawDataVersion
 {
-    return 1;
+    // version 0 : old
+    // version 1 : support alpha
+    // version 2 : support pens, new data compress
+    
+    return 2;
 }
 
 
