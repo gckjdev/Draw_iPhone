@@ -99,6 +99,12 @@
     return [NSString stringWithFormat:@"CAN_SUBMIT_%@",self.contestId];
 }
 
+- (NSString *)endDateKey
+{
+    return [NSString stringWithFormat:@"ENDATE_%@",self.contestId];
+}
+
+
 - (void)setCanSubmitCount:(NSInteger)canSubmitCount
 {
     _canSummitCount = canSubmitCount;
@@ -119,6 +125,27 @@
     return _canSummitCount;
 }
 
+- (void)setEndDate:(NSDate *)endDate
+{
+    if (_endDate != endDate) {
+        [_endDate release];
+        _endDate = [endDate retain];
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:endDate forKey:[self endDateKey]];
+        [defaults synchronize];
+    }
+}
+
+- (NSDate *)endDate
+{
+    if (_endDate == nil) {
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        _endDate = [[defaults objectForKey:[self endDateKey]] retain];
+    }
+    return _endDate;
+
+}
+
 + (Contest *)contestWithDict:(NSDictionary *)dict
 {
     Contest *contest = [[[Contest alloc] initWithDict:dict] autorelease];
@@ -126,7 +153,7 @@
 }
 - (BOOL)isPassed
 {
-    return ([self.endDate timeIntervalSinceNow] < 0);
+    return ([self.endDate timeIntervalSinceNow] <= 0);
 }
 - (BOOL)isPending
 {

@@ -533,8 +533,9 @@
         [PenView savePenType:_willBuyPen.penType];
     }else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
+        [self showInputAlertView];
         //TODO click input Alert ok button
-        [self.inputAlert clickConfirm];
+//        [self.inputAlert clickConfirm];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         
@@ -680,13 +681,15 @@
         [self.inputAlert dismiss:NO];
         CommonDialog *dialog = nil;
         if (self.contest) {
-            self.contest.opusCount ++;
-            if (![self.contest joined]) {
-                self.contest.participantCount ++;
+            if (!_commitAsNormal) {
+                self.contest.opusCount ++;
+                if (![self.contest joined]) {
+                    self.contest.participantCount ++;
+                }
+                [self.contest incCommitCount];
             }
-            [self.contest incCommitCount];
             
-            if ([self.contest commitCountEnough]) {
+            if ([self.contest commitCountEnough] || _commitAsNormal) {
                 dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSubmitSuccTitle") 
                                                      message:NSLS(@"kContestSubmitSuccQuitMsg") 
                                                        style:CommonDialogStyleSingleButton 
@@ -975,6 +978,14 @@
 
 }
 
+- (void)showInputAlertView
+{
+    if (self.inputAlert == nil) {
+        self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus:) cancelSeletor:NULL];
+    }
+    [self.inputAlert showInView:self.view animated:YES];
+}
+
 - (IBAction)clickSubmitButton:(id)sender {
 
     [self stopRecovery];
@@ -993,21 +1004,17 @@
             [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
         }
     }else {
-        if(self.contest && [self.contest commitCountEnough]){
-            [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestCommitCountEnough")];
-            
-//            NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),_contest.canSubmitCount];
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:title
-//                                                           delayTime:1.5
-//                                                             isHappy:NO];
-            return;
-
+        if(self.contest){
+            if ([self.contest commitCountEnough]) {
+                NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
+                [self alertCommitContestOpusAsNormalOpus:title];
+                return;
+            }else if([self.contest isPassed]){
+                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
+                return;
+            }
         }
-        if (self.inputAlert == nil) {
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus:) cancelSeletor:NULL];
-        }
-        [self.inputAlert showInView:self.view animated:YES];
-    
+        [self showInputAlertView];
     }
 }
 

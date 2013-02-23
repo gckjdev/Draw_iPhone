@@ -577,7 +577,8 @@
 "kContestSubmitSuccQuitMsg" = "谢谢您的参与！";
 
 "kContestNotRunning" = "对不起，比赛已经结束或者尚未开始，您不能参加。";
-"kContestCommitCountEnough" = "对不起，你已经提交了%d幅作品了，不能再提交了。把作品提交为普通作品？";
+"kContestCommitCountEnough" = "对不起，你已经提交了%d幅作品了，不能再参加了。";
+"kContestCommitEnoughCommitAsNormal" = "对不起，你已经提交了%d幅作品了，不能再提交了。把作品提交为普通作品？";
 
 //"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币哦。";
 //"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
