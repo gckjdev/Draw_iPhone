@@ -51,6 +51,8 @@
 + (CGPoint)zipPoint:(CGPoint)point size:(NSInteger)size;
 + (CGFloat)distanceBetweenPoint:(CGPoint)point1 point2:(CGPoint)point2;
 
++ (BOOL)isNotVersion1:(int)dataVersion;
+
 + (NSInteger)compressDrawColor:(DrawColor *)color;
 + (DrawColor *)decompressIntDrawColor:(NSInteger)intColor;
 

@@ -100,21 +100,6 @@ message PBDrawAction {
   optional int32 penType = 5;
 }
 
-// internal usage, to store draw data
-//message PBDraw {
-//  required string userId = 1;    
-//  required string word = 2;
-//  required int32 level = 3;
-//  required int32 language = 4;                 // 1 Chinese, 2 English
-//  optional int32 createDate = 5;
-//  optional string nickName = 6;
-//  optional string avatar = 7;
-//  optional bool   gender = 8;
-//
-//  repeated PBDrawAction drawData = 10;  
-//  optional string opusId = 11;
-//}
-
 message PBMessage {
   required string messageId = 1;
   required string from = 2;

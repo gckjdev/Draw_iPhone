@@ -3405,6 +3405,12 @@ static PBColor* defaultPBColorInstance = nil;
 @property (retain) PBColor* color;
 @property Float32 width;
 @property int32_t penType;
+@property (retain) NSMutableArray* mutablePointXList;
+@property (retain) NSMutableArray* mutablePointYList;
+@property Float32 red;
+@property Float32 blue;
+@property Float32 green;
+@property Float32 alpha;
 @end
 
 @implementation PBNoCompressDrawAction
@@ -3438,9 +3444,41 @@ static PBColor* defaultPBColorInstance = nil;
   hasPenType_ = !!value;
 }
 @synthesize penType;
+@synthesize mutablePointXList;
+@synthesize mutablePointYList;
+- (BOOL) hasRed {
+  return !!hasRed_;
+}
+- (void) setHasRed:(BOOL) value {
+  hasRed_ = !!value;
+}
+@synthesize red;
+- (BOOL) hasBlue {
+  return !!hasBlue_;
+}
+- (void) setHasBlue:(BOOL) value {
+  hasBlue_ = !!value;
+}
+@synthesize blue;
+- (BOOL) hasGreen {
+  return !!hasGreen_;
+}
+- (void) setHasGreen:(BOOL) value {
+  hasGreen_ = !!value;
+}
+@synthesize green;
+- (BOOL) hasAlpha {
+  return !!hasAlpha_;
+}
+- (void) setHasAlpha:(BOOL) value {
+  hasAlpha_ = !!value;
+}
+@synthesize alpha;
 - (void) dealloc {
   self.mutablePointList = nil;
   self.color = nil;
+  self.mutablePointXList = nil;
+  self.mutablePointYList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3449,6 +3487,10 @@ static PBColor* defaultPBColorInstance = nil;
     self.color = [PBColor defaultInstance];
     self.width = 0;
     self.penType = 0;
+    self.red = 0;
+    self.blue = 0;
+    self.green = 0;
+    self.alpha = 0;
   }
   return self;
 }
@@ -3470,6 +3512,20 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (PBPoint*) pointAtIndex:(int32_t) index {
   id value = [mutablePointList objectAtIndex:index];
   return value;
+}
+- (NSArray*) pointXList {
+  return mutablePointXList;
+}
+- (Float32) pointXAtIndex:(int32_t) index {
+  id value = [mutablePointXList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) pointYList {
+  return mutablePointYList;
+}
+- (Float32) pointYAtIndex:(int32_t) index {
+  id value = [mutablePointYList objectAtIndex:index];
+  return [value floatValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasType) {
@@ -3503,6 +3559,24 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (self.hasPenType) {
     [output writeInt32:5 value:self.penType];
   }
+  for (NSNumber* value in self.mutablePointXList) {
+    [output writeFloat:11 value:[value floatValue]];
+  }
+  for (NSNumber* value in self.mutablePointYList) {
+    [output writeFloat:12 value:[value floatValue]];
+  }
+  if (self.hasRed) {
+    [output writeFloat:21 value:self.red];
+  }
+  if (self.hasBlue) {
+    [output writeFloat:22 value:self.blue];
+  }
+  if (self.hasGreen) {
+    [output writeFloat:23 value:self.green];
+  }
+  if (self.hasAlpha) {
+    [output writeFloat:24 value:self.alpha];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3526,6 +3600,30 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   }
   if (self.hasPenType) {
     size += computeInt32Size(5, self.penType);
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePointXList.count;
+    size += dataSize;
+    size += 1 * self.mutablePointXList.count;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePointYList.count;
+    size += dataSize;
+    size += 1 * self.mutablePointYList.count;
+  }
+  if (self.hasRed) {
+    size += computeFloatSize(21, self.red);
+  }
+  if (self.hasBlue) {
+    size += computeFloatSize(22, self.blue);
+  }
+  if (self.hasGreen) {
+    size += computeFloatSize(23, self.green);
+  }
+  if (self.hasAlpha) {
+    size += computeFloatSize(24, self.alpha);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3620,6 +3718,30 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (other.hasPenType) {
     [self setPenType:other.penType];
   }
+  if (other.mutablePointXList.count > 0) {
+    if (result.mutablePointXList == nil) {
+      result.mutablePointXList = [NSMutableArray array];
+    }
+    [result.mutablePointXList addObjectsFromArray:other.mutablePointXList];
+  }
+  if (other.mutablePointYList.count > 0) {
+    if (result.mutablePointYList == nil) {
+      result.mutablePointYList = [NSMutableArray array];
+    }
+    [result.mutablePointYList addObjectsFromArray:other.mutablePointYList];
+  }
+  if (other.hasRed) {
+    [self setRed:other.red];
+  }
+  if (other.hasBlue) {
+    [self setBlue:other.blue];
+  }
+  if (other.hasGreen) {
+    [self setGreen:other.green];
+  }
+  if (other.hasAlpha) {
+    [self setAlpha:other.alpha];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3666,6 +3788,30 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 40: {
         [self setPenType:[input readInt32]];
+        break;
+      }
+      case 93: {
+        [self addPointX:[input readFloat]];
+        break;
+      }
+      case 101: {
+        [self addPointY:[input readFloat]];
+        break;
+      }
+      case 173: {
+        [self setRed:[input readFloat]];
+        break;
+      }
+      case 181: {
+        [self setBlue:[input readFloat]];
+        break;
+      }
+      case 189: {
+        [self setGreen:[input readFloat]];
+        break;
+      }
+      case 197: {
+        [self setAlpha:[input readFloat]];
         break;
       }
     }
@@ -3776,6 +3922,132 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (PBNoCompressDrawAction_Builder*) clearPenType {
   result.hasPenType = NO;
   result.penType = 0;
+  return self;
+}
+- (NSArray*) pointXList {
+  if (result.mutablePointXList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointXList;
+}
+- (Float32) pointXAtIndex:(int32_t) index {
+  return [result pointXAtIndex:index];
+}
+- (PBNoCompressDrawAction_Builder*) replacePointXAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePointXList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addPointX:(Float32) value {
+  if (result.mutablePointXList == nil) {
+    result.mutablePointXList = [NSMutableArray array];
+  }
+  [result.mutablePointXList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addAllPointX:(NSArray*) values {
+  if (result.mutablePointXList == nil) {
+    result.mutablePointXList = [NSMutableArray array];
+  }
+  [result.mutablePointXList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearPointXList {
+  result.mutablePointXList = nil;
+  return self;
+}
+- (NSArray*) pointYList {
+  if (result.mutablePointYList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointYList;
+}
+- (Float32) pointYAtIndex:(int32_t) index {
+  return [result pointYAtIndex:index];
+}
+- (PBNoCompressDrawAction_Builder*) replacePointYAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePointYList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addPointY:(Float32) value {
+  if (result.mutablePointYList == nil) {
+    result.mutablePointYList = [NSMutableArray array];
+  }
+  [result.mutablePointYList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) addAllPointY:(NSArray*) values {
+  if (result.mutablePointYList == nil) {
+    result.mutablePointYList = [NSMutableArray array];
+  }
+  [result.mutablePointYList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearPointYList {
+  result.mutablePointYList = nil;
+  return self;
+}
+- (BOOL) hasRed {
+  return result.hasRed;
+}
+- (Float32) red {
+  return result.red;
+}
+- (PBNoCompressDrawAction_Builder*) setRed:(Float32) value {
+  result.hasRed = YES;
+  result.red = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearRed {
+  result.hasRed = NO;
+  result.red = 0;
+  return self;
+}
+- (BOOL) hasBlue {
+  return result.hasBlue;
+}
+- (Float32) blue {
+  return result.blue;
+}
+- (PBNoCompressDrawAction_Builder*) setBlue:(Float32) value {
+  result.hasBlue = YES;
+  result.blue = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearBlue {
+  result.hasBlue = NO;
+  result.blue = 0;
+  return self;
+}
+- (BOOL) hasGreen {
+  return result.hasGreen;
+}
+- (Float32) green {
+  return result.green;
+}
+- (PBNoCompressDrawAction_Builder*) setGreen:(Float32) value {
+  result.hasGreen = YES;
+  result.green = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearGreen {
+  result.hasGreen = NO;
+  result.green = 0;
+  return self;
+}
+- (BOOL) hasAlpha {
+  return result.hasAlpha;
+}
+- (Float32) alpha {
+  return result.alpha;
+}
+- (PBNoCompressDrawAction_Builder*) setAlpha:(Float32) value {
+  result.hasAlpha = YES;
+  result.alpha = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearAlpha {
+  result.hasAlpha = NO;
+  result.alpha = 0;
   return self;
 }
 @end
