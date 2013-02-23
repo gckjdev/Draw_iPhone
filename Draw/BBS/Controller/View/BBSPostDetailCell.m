@@ -72,7 +72,7 @@
     BBSPostDetailCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
-    [cell.content setLineBreakMode:NSLineBreakByTruncatingTail];
+    [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
     cell.content.font = CONTENT_FONT;
     [cell updateViews];
     cell.delegate = delegate;
