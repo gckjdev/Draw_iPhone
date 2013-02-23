@@ -177,38 +177,3 @@ message PBGameItem {
   optional bool   isPromotion = 24;               // 是否有促销折扣
   optional int32  promotionDiscount = 25;         // 促销折扣值，百分比，如7折为 70, 8折为 80
 }
-
-//message PBFeed {
-//  required string feedId = 1;
-//  required string userId = 2;
-//  required int32  actionType = 3;
-//  required int32  createDate = 4;
-//  
-//  // for user info
-//  optional string nickName = 21;
-//  optional string avatar = 22;
-//  optional bool   gender = 23;
-//
-//  // for user draw
-//  optional PBDraw drawData = 31;
-//  optional string targetUserId = 32;
-//  optional string targetUserNickName = 33;
-//  
-//  // for user guess
-//  optional string opusId = 41;          // 猜作品的ID
-//  optional bool   isCorrect = 42;
-//  optional int32  score = 43;
-//  repeated string guessWords = 44;  
-//  optional int32  opusStatus = 45;      // 猜作品的状态：0：正常；1：已删除
-//  
-//  // for user comment
-//  optional string comment = 51;
-//  
-//  // common data
-//  optional int32  matchTimes = 61;
-//  optional int32  correctTimes = 62;
-//  optional int32  guessTimes = 63;
-//  optional int32  commentTimes = 64;
-//
-//}
-
