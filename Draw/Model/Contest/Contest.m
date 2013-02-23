@@ -127,9 +127,9 @@
 
 - (void)setEndDate:(NSDate *)endDate
 {
-    if (_startDate != endDate) {
-        [_startDate release];
-        _startDate = [endDate retain];
+    if (_endDate != endDate) {
+        [_endDate release];
+        _endDate = [endDate retain];
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:endDate forKey:[self endDateKey]];
         [defaults synchronize];
