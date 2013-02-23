@@ -15,7 +15,8 @@
     [super updateCGContext:context paint:paint];
     if (paint) {
         //set mark
-        CGContextSetLineCap(context, kCGLineCapSquare);
+//        CGContextSetLineCap(context, kCGLineCapSquare);
+        CGContextSetLineCap(context, kCGLineCapButt);
     }
 }
 
