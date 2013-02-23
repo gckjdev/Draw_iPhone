@@ -1006,7 +1006,7 @@
     }else {
         if(self.contest){
             if ([self.contest commitCountEnough]) {
-                NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),_contest.canSubmitCount];
+                NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
                 [self alertCommitContestOpusAsNormalOpus:title];
                 return;
             }else if([self.contest isPassed]){

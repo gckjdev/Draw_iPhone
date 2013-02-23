@@ -569,7 +569,10 @@
 "kContestEnd" = "The contest is end, commit the opus as normal?";
 
 "kContestNotRunning" = "Sorry, the contest is not running now.";
-"kContestCommitCountEnough" = "Sorry. You can only summit %d opus to one contest. Commit it as the normal opus?";
+"kContestCommitCountEnough" = "Sorry. You can only summit %d opus to one contest.";
+
+"kContestCommitEnoughCommitAsNormal" = "Sorry. You can only summit %d opus to one contest. Commit it as the normal opus?";
+
 //"kDedutCoinChangeOpusAlertMessage" = "If you change the opus, the system will deduct 1 coin.";
 //"kNoCoinChangeOpusMessage" = "You have no coins, buy Some!";
 //"kChangeOpusTitle" = "Change Opus";
