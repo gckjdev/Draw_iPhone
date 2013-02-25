@@ -143,7 +143,7 @@ message PBHotWordList
 
 message PBWallOpus
 {
-    required int32 idOnWall = 1;        // 在墙上的位置
+    required int32 idOnWall = 1;        // 在墙上的位置,从0开始
     optional PBFeed opus = 2;           // 作品
     optional PBFrame frame = 3;         // 框
 }

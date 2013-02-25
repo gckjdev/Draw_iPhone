@@ -14,9 +14,10 @@
 #import "WallService.h"
 #import "ChangeAvatar.h"
 #import "iCarousel.h"
+#import "WallOpusView.h"
 
 
-@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate, WallServiceDelegate, ChangeAvatarDelegate, iCarouselDataSource, iCarouselDelegate>
+@interface OpusWallController : PPViewController <UIActionSheetDelegate, OpusSelectControllerDelegate, FrameSelectControllerDelegate, WallServiceDelegate, ChangeAvatarDelegate, iCarouselDataSource, iCarouselDelegate, WallOpusViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet iCarousel *iCarouselView;

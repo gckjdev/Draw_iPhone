@@ -46,7 +46,7 @@
     self.opuses = [NSMutableArray array];
     
 //    [[FeedService defaultService] getUserOpusList:@"50d51066e4b0d73d234e4234" offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
-    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
+    [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager]  userId] offset:_start limit:EACH_FECTH_COUNT type:FeedListTypeUserOpus delegate:self];
 
     
     [ProtocolUtil createFramesTestData];
@@ -126,7 +126,7 @@
         
         CGRect rect = CGRectMake(index * OPUS_VIEW_WIDTH, 0, OPUS_VIEW_WIDTH, OPUS_VIEW_HEIGHT);
         UIImageView *opusView  = [[[UIImageView alloc] initWithFrame:rect] autorelease];
-        [opusView setImageWithURL:[NSURL URLWithString:[_opuses objectAtIndex:index]]];
+        [opusView setImageWithURL:[NSURL URLWithString:[[_opuses objectAtIndex:index] drawImageUrl]]];
         [self.selectedOpusesHolderView addSubview:opusView];
     }
 }

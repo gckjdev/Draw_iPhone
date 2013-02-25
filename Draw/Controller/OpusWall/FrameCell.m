@@ -33,9 +33,7 @@
 }
 
 - (void)setCellData:(NSArray *)frames
-{
-    [self removeAllSubviews];
-    
+{    
     self.frames = frames;
     
     for (int index=0; index<[frames count] && index<MAX_FRAMES_EACH_CELL; index++)
