@@ -118,8 +118,12 @@ message PBNoCompressDrawAction{
     optional PBColor color = 3;
     optional float width = 4;
     optional int32 penType = 5;
-    
+
     // Start from draw version == 2
+    
+    //support shape, shape info
+    optional PBShapeInfo shapeInfo = 10;
+
     // Point X, Y
     repeated float pointX = 11;
     repeated float pointY = 12;
@@ -129,6 +133,8 @@ message PBNoCompressDrawAction{
     optional float blue = 22;
     optional float green = 23;
     optional float alpha = 24;
+
+
 
 }
 

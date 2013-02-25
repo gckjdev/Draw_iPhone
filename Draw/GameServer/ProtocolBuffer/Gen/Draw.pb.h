@@ -874,6 +874,7 @@
   BOOL hasType_:1;
   BOOL hasPenType_:1;
   BOOL hasColor_:1;
+  BOOL hasShapeInfo_:1;
   Float32 width;
   Float32 red;
   Float32 blue;
@@ -882,6 +883,7 @@
   int32_t type;
   int32_t penType;
   PBColor* color;
+  PBShapeInfo* shapeInfo;
   NSMutableArray* mutablePointXList;
   NSMutableArray* mutablePointYList;
   NSMutableArray* mutablePointList;
@@ -890,6 +892,7 @@
 - (BOOL) hasColor;
 - (BOOL) hasWidth;
 - (BOOL) hasPenType;
+- (BOOL) hasShapeInfo;
 - (BOOL) hasRed;
 - (BOOL) hasBlue;
 - (BOOL) hasGreen;
@@ -898,6 +901,7 @@
 @property (readonly, retain) PBColor* color;
 @property (readonly) Float32 width;
 @property (readonly) int32_t penType;
+@property (readonly, retain) PBShapeInfo* shapeInfo;
 @property (readonly) Float32 red;
 @property (readonly) Float32 blue;
 @property (readonly) Float32 green;
@@ -971,6 +975,13 @@
 - (int32_t) penType;
 - (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value;
 - (PBNoCompressDrawAction_Builder*) clearPenType;
+
+- (BOOL) hasShapeInfo;
+- (PBShapeInfo*) shapeInfo;
+- (PBNoCompressDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value;
+- (PBNoCompressDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue;
+- (PBNoCompressDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value;
+- (PBNoCompressDrawAction_Builder*) clearShapeInfo;
 
 - (NSArray*) pointXList;
 - (Float32) pointXAtIndex:(int32_t) index;

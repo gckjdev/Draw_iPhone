@@ -3405,6 +3405,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property (retain) PBColor* color;
 @property Float32 width;
 @property int32_t penType;
+@property (retain) PBShapeInfo* shapeInfo;
 @property (retain) NSMutableArray* mutablePointXList;
 @property (retain) NSMutableArray* mutablePointYList;
 @property Float32 red;
@@ -3444,6 +3445,13 @@ static PBColor* defaultPBColorInstance = nil;
   hasPenType_ = !!value;
 }
 @synthesize penType;
+- (BOOL) hasShapeInfo {
+  return !!hasShapeInfo_;
+}
+- (void) setHasShapeInfo:(BOOL) value {
+  hasShapeInfo_ = !!value;
+}
+@synthesize shapeInfo;
 @synthesize mutablePointXList;
 @synthesize mutablePointYList;
 - (BOOL) hasRed {
@@ -3477,6 +3485,7 @@ static PBColor* defaultPBColorInstance = nil;
 - (void) dealloc {
   self.mutablePointList = nil;
   self.color = nil;
+  self.shapeInfo = nil;
   self.mutablePointXList = nil;
   self.mutablePointYList = nil;
   [super dealloc];
@@ -3487,6 +3496,7 @@ static PBColor* defaultPBColorInstance = nil;
     self.color = [PBColor defaultInstance];
     self.width = 0;
     self.penType = 0;
+    self.shapeInfo = [PBShapeInfo defaultInstance];
     self.red = 0;
     self.blue = 0;
     self.green = 0;
@@ -3541,6 +3551,11 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       return NO;
     }
   }
+  if (self.hasShapeInfo) {
+    if (!self.shapeInfo.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -3558,6 +3573,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   }
   if (self.hasPenType) {
     [output writeInt32:5 value:self.penType];
+  }
+  if (self.hasShapeInfo) {
+    [output writeMessage:10 value:self.shapeInfo];
   }
   for (NSNumber* value in self.mutablePointXList) {
     [output writeFloat:11 value:[value floatValue]];
@@ -3600,6 +3618,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   }
   if (self.hasPenType) {
     size += computeInt32Size(5, self.penType);
+  }
+  if (self.hasShapeInfo) {
+    size += computeMessageSize(10, self.shapeInfo);
   }
   {
     int32_t dataSize = 0;
@@ -3718,6 +3739,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   if (other.hasPenType) {
     [self setPenType:other.penType];
   }
+  if (other.hasShapeInfo) {
+    [self mergeShapeInfo:other.shapeInfo];
+  }
   if (other.mutablePointXList.count > 0) {
     if (result.mutablePointXList == nil) {
       result.mutablePointXList = [NSMutableArray array];
@@ -3788,6 +3812,15 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 40: {
         [self setPenType:[input readInt32]];
+        break;
+      }
+      case 82: {
+        PBShapeInfo_Builder* subBuilder = [PBShapeInfo builder];
+        if (self.hasShapeInfo) {
+          [subBuilder mergeFrom:self.shapeInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setShapeInfo:[subBuilder buildPartial]];
         break;
       }
       case 93: {
@@ -3922,6 +3955,36 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (PBNoCompressDrawAction_Builder*) clearPenType {
   result.hasPenType = NO;
   result.penType = 0;
+  return self;
+}
+- (BOOL) hasShapeInfo {
+  return result.hasShapeInfo;
+}
+- (PBShapeInfo*) shapeInfo {
+  return result.shapeInfo;
+}
+- (PBNoCompressDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value {
+  result.hasShapeInfo = YES;
+  result.shapeInfo = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue {
+  return [self setShapeInfo:[builderForValue build]];
+}
+- (PBNoCompressDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value {
+  if (result.hasShapeInfo &&
+      result.shapeInfo != [PBShapeInfo defaultInstance]) {
+    result.shapeInfo =
+      [[[PBShapeInfo builderWithPrototype:result.shapeInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.shapeInfo = value;
+  }
+  result.hasShapeInfo = YES;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearShapeInfo {
+  result.hasShapeInfo = NO;
+  result.shapeInfo = [PBShapeInfo defaultInstance];
   return self;
 }
 - (NSArray*) pointXList {
