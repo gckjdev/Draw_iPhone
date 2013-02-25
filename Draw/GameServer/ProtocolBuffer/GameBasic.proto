@@ -91,6 +91,14 @@ message PBGameSessionChanged {
   repeated PBGameUser usersUpdated = 7;
 }
 
+message PBShapeInfo {
+    required int32 type = 1;
+    required float startX = 2;
+    required float startY = 3;
+    required float endX = 4;
+    required float endY = 5;
+}
+
 // internal usage, to store draw data
 message PBDrawAction {
   required int32 type = 1;                      // 0 : draw, 1 : clean draw
@@ -98,22 +106,9 @@ message PBDrawAction {
   optional float width = 3;
   optional int32 color = 4;
   optional int32 penType = 5;
-}
 
-// internal usage, to store draw data
-//message PBDraw {
-//  required string userId = 1;    
-//  required string word = 2;
-//  required int32 level = 3;
-//  required int32 language = 4;                 // 1 Chinese, 2 English
-//  optional int32 createDate = 5;
-//  optional string nickName = 6;
-//  optional string avatar = 7;
-//  optional bool   gender = 8;
-//
-//  repeated PBDrawAction drawData = 10;  
-//  optional string opusId = 11;
-//}
+  optional PBShapeInfo shapeInfo = 10;
+}
 
 message PBMessage {
   required string messageId = 1;
@@ -192,38 +187,3 @@ message PBGameItem {
   optional bool   isPromotion = 24;               // 是否有促销折扣
   optional int32  promotionDiscount = 25;         // 促销折扣值，百分比，如7折为 70, 8折为 80
 }
-
-//message PBFeed {
-//  required string feedId = 1;
-//  required string userId = 2;
-//  required int32  actionType = 3;
-//  required int32  createDate = 4;
-//  
-//  // for user info
-//  optional string nickName = 21;
-//  optional string avatar = 22;
-//  optional bool   gender = 23;
-//
-//  // for user draw
-//  optional PBDraw drawData = 31;
-//  optional string targetUserId = 32;
-//  optional string targetUserNickName = 33;
-//  
-//  // for user guess
-//  optional string opusId = 41;          // 猜作品的ID
-//  optional bool   isCorrect = 42;
-//  optional int32  score = 43;
-//  repeated string guessWords = 44;  
-//  optional int32  opusStatus = 45;      // 猜作品的状态：0：正常；1：已删除
-//  
-//  // for user comment
-//  optional string comment = 51;
-//  
-//  // common data
-//  optional int32  matchTimes = 61;
-//  optional int32  correctTimes = 62;
-//  optional int32  guessTimes = 63;
-//  optional int32  commentTimes = 64;
-//
-//}
-

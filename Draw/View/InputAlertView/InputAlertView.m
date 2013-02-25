@@ -248,6 +248,10 @@
     self.confirm.enabled = can;
 }
 
+- (void)clickConfirm
+{
+    [self clickConfirm:self.confirm];
+}
 #pragma mark - UITextView Delegate
 
 - (void)textViewDidChange:(UITextView *)textView

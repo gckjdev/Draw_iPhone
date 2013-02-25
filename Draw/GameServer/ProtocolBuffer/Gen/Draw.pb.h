@@ -55,6 +55,8 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBShapeInfo;
+@class PBShapeInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -865,25 +867,47 @@
 @interface PBNoCompressDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
+  BOOL hasRed_:1;
+  BOOL hasBlue_:1;
+  BOOL hasGreen_:1;
+  BOOL hasAlpha_:1;
   BOOL hasType_:1;
   BOOL hasPenType_:1;
   BOOL hasColor_:1;
   Float32 width;
+  Float32 red;
+  Float32 blue;
+  Float32 green;
+  Float32 alpha;
   int32_t type;
   int32_t penType;
   PBColor* color;
+  NSMutableArray* mutablePointXList;
+  NSMutableArray* mutablePointYList;
   NSMutableArray* mutablePointList;
 }
 - (BOOL) hasType;
 - (BOOL) hasColor;
 - (BOOL) hasWidth;
 - (BOOL) hasPenType;
+- (BOOL) hasRed;
+- (BOOL) hasBlue;
+- (BOOL) hasGreen;
+- (BOOL) hasAlpha;
 @property (readonly) int32_t type;
 @property (readonly, retain) PBColor* color;
 @property (readonly) Float32 width;
 @property (readonly) int32_t penType;
+@property (readonly) Float32 red;
+@property (readonly) Float32 blue;
+@property (readonly) Float32 green;
+@property (readonly) Float32 alpha;
 - (NSArray*) pointList;
 - (PBPoint*) pointAtIndex:(int32_t) index;
+- (NSArray*) pointXList;
+- (Float32) pointXAtIndex:(int32_t) index;
+- (NSArray*) pointYList;
+- (Float32) pointYAtIndex:(int32_t) index;
 
 + (PBNoCompressDrawAction*) defaultInstance;
 - (PBNoCompressDrawAction*) defaultInstance;
@@ -947,6 +971,40 @@
 - (int32_t) penType;
 - (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value;
 - (PBNoCompressDrawAction_Builder*) clearPenType;
+
+- (NSArray*) pointXList;
+- (Float32) pointXAtIndex:(int32_t) index;
+- (PBNoCompressDrawAction_Builder*) replacePointXAtIndex:(int32_t) index with:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addPointX:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addAllPointX:(NSArray*) values;
+- (PBNoCompressDrawAction_Builder*) clearPointXList;
+
+- (NSArray*) pointYList;
+- (Float32) pointYAtIndex:(int32_t) index;
+- (PBNoCompressDrawAction_Builder*) replacePointYAtIndex:(int32_t) index with:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addPointY:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addAllPointY:(NSArray*) values;
+- (PBNoCompressDrawAction_Builder*) clearPointYList;
+
+- (BOOL) hasRed;
+- (Float32) red;
+- (PBNoCompressDrawAction_Builder*) setRed:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) clearRed;
+
+- (BOOL) hasBlue;
+- (Float32) blue;
+- (PBNoCompressDrawAction_Builder*) setBlue:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) clearBlue;
+
+- (BOOL) hasGreen;
+- (Float32) green;
+- (PBNoCompressDrawAction_Builder*) setGreen:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) clearGreen;
+
+- (BOOL) hasAlpha;
+- (Float32) alpha;
+- (PBNoCompressDrawAction_Builder*) setAlpha:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) clearAlpha;
 @end
 
 @interface PBNoCompressDrawData : PBGeneratedMessage {

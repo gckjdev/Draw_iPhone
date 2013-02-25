@@ -157,6 +157,8 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBShapeInfo;
+@class PBShapeInfo_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
 @class PBUserItem;

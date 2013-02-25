@@ -580,7 +580,7 @@
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一副？";
 "kSubmitSuccTitle" = "提交成功";
 
-"kContestEnd" = "很抱歉，比賽已經結束，不能再提交作品了。";
+"kContestEnd" = "很抱歉，比賽已經結束，把作品提交為普通作品？";
 "kContestSubmitSuccMsg" = "謝謝您的參與，還可以提交%d幅作品，再來一幅？";
 "kContestSubmitSuccQuitMsg" = "謝謝您的參與！";
 
@@ -897,7 +897,8 @@
 "kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
 "kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
 "kContestNotRunning" = "對不起，比賽已經結束或者尚未開始，您不能參加。";
-"kContestSummitCountEnough" = "對不起，妳已經提交了%d幅作品了，不能再提交了。";
+"kContestCommitCountEnough" = "對不起，妳已經提交了%d幅作品了，不能再參加了。";
+"kContestCommitEnoughCommitAsNormal" = "對不起，妳已經提交了%d幅作品了，不能再提交了。把作品提交為普通作品？";
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";

@@ -99,6 +99,8 @@
     if ([self.drawPen penType] != paint.penType) {
         self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
         [self.drawPen updateCGContext:context paint:paint];
+    }else if([self.drawPen penType] == DrawPenTypeBlur){
+        [self.drawPen updateCGContext:context paint:paint];
     }
 }
 
@@ -135,7 +137,7 @@
         CGContextFillRect(context, _rect);
         return _rect;
     }else if([action isDrawAction]){
-        [self updateContext:context withPaint:action.paint];
+//        [self updateContext:context withPaint:action.paint];
         [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
         CGRect rect = [self strokePaint:action.paint inContext:context clear:NO];
         return rect;

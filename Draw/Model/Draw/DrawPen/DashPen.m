@@ -25,6 +25,10 @@
     [super updateCGContext:context paint:paint];
     if (paint) {
         CGFloat lengths[] = {50, 50};
+        if (!ISIPAD) {
+            lengths[0] /= 2;
+            lengths[1] /= 2;
+        }
         CGContextSetLineDash(context, 0, lengths, 2);
     }
 }

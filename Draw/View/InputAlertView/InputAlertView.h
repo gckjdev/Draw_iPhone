@@ -29,5 +29,5 @@
 - (void)dismiss:(BOOL)animated;
 - (void)adjustWithKeyBoardRect:(CGRect)rect;
 - (void)setCanClickCommitButton:(BOOL)can;
-
+- (void)clickConfirm;
 @end

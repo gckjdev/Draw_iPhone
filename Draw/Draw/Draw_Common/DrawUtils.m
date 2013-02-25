@@ -11,6 +11,11 @@
 
 @implementation DrawUtils
 
++ (BOOL)isNotVersion1:(int)dataVersion
+{
+    return (dataVersion > 1);
+}
+
 + (CGPoint)illegalPoint
 {
     return ILLEGAL_POINT;
