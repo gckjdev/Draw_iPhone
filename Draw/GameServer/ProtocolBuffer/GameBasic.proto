@@ -93,10 +93,10 @@ message PBGameSessionChanged {
 
 message PBShapeInfo {
     required int32 type = 1;
-    required float startX = 2;
-    required float startY = 3;
-    required float endX = 4;
-    required float endY = 5;
+    optional float width = 2;
+    optional int32 penType = 3;
+    repeated float rectComponent = 4; //startX, startY, endX, endY
+    repeated float colorComponent = 5; //R G B A
 }
 
 // internal usage, to store draw data

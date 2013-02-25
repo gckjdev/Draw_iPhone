@@ -36,7 +36,9 @@
 - (UIColor *)color;
 - (CGColorRef)CGColor;
 - (NSString *)toString;
+- (NSArray *)toRGBAComponent;
 
++ (DrawColor *)colorWithRGBAComponent:(NSArray *)component;
 + (DrawColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
 + (DrawColor *)colorWithColor:(DrawColor *)color;
