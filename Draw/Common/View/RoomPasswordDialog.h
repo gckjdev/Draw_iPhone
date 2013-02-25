@@ -8,14 +8,12 @@
 
 #import "InputDialog.h"
 
-@class CustomUITextField;
-
 #define ROOM_PASSWORD_DIALOG    @"RoomPasswordDialog"
 #define DICE_ROOM_PASSWORD_DIALOG   @"DiceRoomPasswordDialog"
 #define ZJH_ROOM_PASSWORD_DIALOG   @"ZJHRoomPasswordDialog"
 
 @interface RoomPasswordDialog : InputDialog
-@property (retain, nonatomic) IBOutlet CustomUITextField *passwordField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordField;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *passwordLabel;
 @property (assign, nonatomic) BOOL isPasswordOptional;

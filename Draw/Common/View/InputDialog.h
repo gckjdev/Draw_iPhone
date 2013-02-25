@@ -23,7 +23,6 @@ typedef enum {
 typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 
 @class InputDialog;
-@class CustomUITextField;
 @protocol InputDialogDelegate <NSObject>
 
 @optional
@@ -49,7 +48,7 @@ typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgView;
 @property (retain, nonatomic) IBOutlet UIButton *titleLabel;
-@property (retain, nonatomic) IBOutlet CustomUITextField *targetTextField;
+@property (retain, nonatomic) IBOutlet UITextField *targetTextField;
 @property (assign, nonatomic) id<InputDialogDelegate> delegate;
 
 - (IBAction)clickCancelButton:(id)sender;
