@@ -154,6 +154,7 @@ static FeedService *_staticFeedService = nil;
                   limit:(NSInteger)limit 
                delegate:(PPViewController<FeedServiceDelegate> *)delegate
 {
+//    [delegate showActivityWithText:NSLS(@"kParsingData")];
     dispatch_async(workingQueue, ^{
 
         // add by Benson
@@ -170,13 +171,22 @@ static FeedService *_staticFeedService = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
-            [delegate showActivityWithText:NSLS(@"kParsingData")];
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbFeedList:pbFeedList];
+
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbFeedList:pbFeedList];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getUserFeedList> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
         }
-        PPDebug(@"<FeedService> parse data finish, start display the views.");        
+
+        PPDebug(@"<FeedService> parse data finish, start display the views.");
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
                 [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
@@ -210,12 +220,21 @@ static FeedService *_staticFeedService = nil;
         if (resultCode == ERROR_SUCCESS){
             PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
 //            [delegate showActivityWithText:NSLS(@"kParsingData")];
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbFeedList:pbFeedList];
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbFeedList:pbFeedList];            
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getUserOpusList> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
+        
         }
-        PPDebug(@"<FeedService> parse data finish, start display the views.");        
+        PPDebug(@"<FeedService> parse data finish, start display the views.");
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
                 [delegate didGetFeedList:list 
@@ -249,10 +268,18 @@ static FeedService *_staticFeedService = nil;
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbCommentFeedList:pbFeedList];
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbCommentFeedList:pbFeedList];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getOpusCommentList> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }        
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -286,10 +313,19 @@ static FeedService *_staticFeedService = nil;
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
-            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-            resultCode = [response resultCode];
-            NSArray *pbFeedList = [response feedList];
-            list = [FeedManager parsePbCommentFeedList:pbFeedList];
+            @try {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbCommentFeedList:pbFeedList];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getMyCommentList> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
+
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -343,19 +379,28 @@ static FeedService *_staticFeedService = nil;
             resultCode = [output resultCode];
 
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
                 
-                if (resultCode == ERROR_SUCCESS) {
-                    NSArray *list = [response feedList];
-                    pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                @try{
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
                     
-                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-                    if ([feed isKindOfClass:[DrawFeed class]]) {
-                    }else{
-                        feed = nil;
+                    if (resultCode == ERROR_SUCCESS) {
+                        NSArray *list = [response feedList];
+                        pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                        
+                        feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+                        if ([feed isKindOfClass:[DrawFeed class]]) {
+                        }else{
+                            feed = nil;
+                        }
                     }
                 }
+                @catch (NSException *exception) {
+                    PPDebug(@"<getFeedByFeedId> catch exception =%@", [exception description]);
+                    resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                @finally {
+                }            
             }
         }
         //send back to delegate
@@ -555,7 +600,7 @@ static FeedService *_staticFeedService = nil;
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];    
+    NSString* appId = [ConfigManager appId];
     
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     
