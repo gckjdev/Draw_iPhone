@@ -38,9 +38,7 @@
 }
 
 - (void)setCellData:(NSArray *)opuses
-{
-    [self removeAllSubviews];
-    
+{    
     self.opuses = opuses;
     
     for (int index=0; index<[opuses count] && index<MAX_OPUSES_EACH_CELL; index++)
@@ -54,7 +52,11 @@
 
 - (UIButton *)opusButtonOfIndex:(int)index
 {
-    return (UIButton *)[self viewWithTag:(OPUS_BUTTON_TAG_OFFSET + index)];
+//    for (UIView *view in [self subviews]) {
+//        PPDebug(@"view = %@,tag = %d", view, view.tag);
+//    }
+    UIButton *button = (UIButton *)[self viewWithTag:(OPUS_BUTTON_TAG_OFFSET + index)];
+    return button;
 }
 
 - (void)clickOpus:(id)sender

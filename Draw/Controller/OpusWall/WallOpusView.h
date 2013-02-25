@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Draw.pb.h"
 
+#define WALLOPUSVIEW_WIDTH 250
+#define WALLOPUSVIEW_HEIGHT 320
+
 @protocol WallOpusViewDelegate <NSObject>
 - (void)didClickWallOpus:(PBWallOpus*)wallOpus;
 

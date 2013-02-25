@@ -29,7 +29,7 @@
 - (void)replaceWallOpus:(int)idOnWall withFrame:(PBFrame *)newFrame;
 
 - (PBFrame *)frameInWallOpus:(int)idOnWall;
-- (void)setLayout:(PBLayout *)layout;
+- (void)setDisplayMode:(int)displayMode;
 
 - (void)setWallId:(NSString *)wallId;
 

@@ -38,7 +38,13 @@ AUTO_CREATE_VIEW_BY_XIB(WallOpusView);
 
 - (void)updateViewWithWallOpus:(PBWallOpus *)wallOpus
 {
+    PPDebug(@"frame imageUrl: %@", wallOpus.frame.imageUrl);
+    PPDebug(@"opus imageUrl: %@", wallOpus.opus.opusImage);
     [self.frameButton setImageWithURL:[NSURL URLWithString:wallOpus.frame.imageUrl]];
+    
+    PBRect *pbRect = [DeviceDetection isIPAD] ? wallOpus.frame.opusIpadRect : wallOpus.frame.opusIphoneRect;
+    CGRect rect = CGRectMake(pbRect.x, pbRect.y, pbRect.width, pbRect.height);
+    self.opusButton.frame = rect;
     [self.opusButton setImageWithURL:[NSURL URLWithString:wallOpus.opus.opusImage]];
     self.wallOpus = wallOpus;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "ProtocolUtil.h"
+#import "FrameManager.h"
 
 @implementation ProtocolUtil
 
@@ -21,19 +22,36 @@
     return [builder build];
 }
 
-+ (PBWallOpus *)pbWallOpusWithIdOnWall:(int)idOnWall frameId:(int)frameId
++ (PBWallOpus *)pbWallOpusWithIdOnWall:(int)idOnWall frame:(PBFrame *)frame
 {
     PBWallOpus_Builder *builder = [[[PBWallOpus_Builder alloc] init] autorelease];
     [builder setIdOnWall:idOnWall];
-    [builder setFrame:[self pbFrameWithFrameId:frameId]];
+    
+    if (frame == nil) {
+        [builder setFrame:[self blankFrame]];
+    }else{
+        [builder setFrame:frame];
+    }
+    
     return [builder build];
 }
 
 
 + (PBFrame *)pbFrameWithFrameId:(int)frameId
+                           type:(int)type
+                       imageUrl:(NSString *)imageUrl
+                 opusIphoneRect:(PBRect *)opusIphoneRect
+                   opusIpadRect:(PBRect *)opusIpadRect
+                          price:(int)price
 {
     PBFrame_Builder *builder = [[[PBFrame_Builder alloc] init] autorelease];
+    
     [builder setFrameId:frameId];
+    [builder setType:type];
+    [builder setImageUrl:imageUrl];
+    [builder setOpusIphoneRect:opusIpadRect];
+    [builder setOpusIpadRect:opusIpadRect];
+    [builder setPrice:price];
     return [builder build];
 }
 
@@ -56,15 +74,15 @@
 
 + (PBLayout *)createTestData1
 {
-    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frameId:301];
-    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frameId:302];
-    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frameId:303];
-    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frameId:304];
-    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frameId:305];
-    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frameId:304];
-    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frameId:303];
-    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frameId:302];
-    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frameId:301];
+    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frame:[[FrameManager sharedFrameManager] frameWithFrameId:301]];
+    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frame:[[FrameManager sharedFrameManager] frameWithFrameId:302]];
+    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frame:[[FrameManager sharedFrameManager] frameWithFrameId:303]];
+    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frame:[[FrameManager sharedFrameManager] frameWithFrameId:304]];
+    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frame:[[FrameManager sharedFrameManager] frameWithFrameId:305]];
+    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frame:[[FrameManager sharedFrameManager] frameWithFrameId:304]];
+    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frame:[[FrameManager sharedFrameManager] frameWithFrameId:303]];
+    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frame:[[FrameManager sharedFrameManager] frameWithFrameId:302]];
+    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frame:[[FrameManager sharedFrameManager] frameWithFrameId:301]];
 
     NSArray *wallOpuses = [NSArray arrayWithObjects:wallOpus1, wallOpus2, wallOpus3, wallOpus4, wallOpus5, wallOpus6, wallOpus7, wallOpus8, wallOpus9, nil];
     
@@ -75,15 +93,15 @@
 
 + (PBLayout *)createTestData
 {
-    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frameId:301];
-    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frameId:302];
-    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frameId:303];
-    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frameId:304];
-    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frameId:305];
-    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frameId:304];
-    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frameId:303];
-    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frameId:302];
-    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frameId:301];
+    PBWallOpus *wallOpus1 = [self pbWallOpusWithIdOnWall:0 frame:[[FrameManager sharedFrameManager] frameWithFrameId:300]];
+    PBWallOpus *wallOpus2 = [self pbWallOpusWithIdOnWall:1 frame:[[FrameManager sharedFrameManager] frameWithFrameId:301]];
+    PBWallOpus *wallOpus3 = [self pbWallOpusWithIdOnWall:2 frame:[[FrameManager sharedFrameManager] frameWithFrameId:302]];
+    PBWallOpus *wallOpus4 = [self pbWallOpusWithIdOnWall:3 frame:[[FrameManager sharedFrameManager] frameWithFrameId:303]];
+    PBWallOpus *wallOpus5 = [self pbWallOpusWithIdOnWall:4 frame:[[FrameManager sharedFrameManager] frameWithFrameId:304]];
+    PBWallOpus *wallOpus6 = [self pbWallOpusWithIdOnWall:5 frame:[[FrameManager sharedFrameManager] frameWithFrameId:305]];
+    PBWallOpus *wallOpus7 = [self pbWallOpusWithIdOnWall:6 frame:[[FrameManager sharedFrameManager] frameWithFrameId:304]];
+    PBWallOpus *wallOpus8 = [self pbWallOpusWithIdOnWall:7 frame:[[FrameManager sharedFrameManager] frameWithFrameId:303]];
+    PBWallOpus *wallOpus9 = [self pbWallOpusWithIdOnWall:8 frame:[[FrameManager sharedFrameManager] frameWithFrameId:301]];
     
     NSArray *wallOpuses = [NSArray arrayWithObjects:wallOpus1, wallOpus2, wallOpus3, wallOpus4, wallOpus5, wallOpus6, wallOpus7, wallOpus8, wallOpus9, nil];
     
@@ -98,7 +116,7 @@
     [builder1 setFrameId:301];
     [builder1 setType:1];
     [builder1 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_301.jpg"];
-    [builder1 setOpusIphoneRect:[self pbRectWithX:0 y:0 width:80 height:80]];
+    [builder1 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
     [builder1 setPrice:200];
     PBFrame *frame1 = [builder1 build];
     
@@ -106,7 +124,7 @@
     [builder2 setFrameId:302];
     [builder2 setType:1];
     [builder2 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_302.jpg"];
-    [builder2 setOpusIphoneRect:[self pbRectWithX:10 y:10 width:80 height:80]];
+    [builder2 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
     [builder2 setPrice:200];
     PBFrame *frame2 = [builder2 build];
     
@@ -114,7 +132,7 @@
     [builder3 setFrameId:303];
     [builder3 setType:1];
     [builder3 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_303.jpg"];
-    [builder3 setOpusIphoneRect:[self pbRectWithX:15 y:15 width:80 height:80]];
+    [builder3 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
     [builder3 setPrice:200];
     PBFrame *frame3 = [builder3 build];
     
@@ -123,7 +141,7 @@
     [builder4 setType:1];
     [builder4 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_304.jpg"];
     [builder4 setPrice:200];
-    [builder4 setOpusIphoneRect:[self pbRectWithX:20 y:20 width:80 height:80]];
+    [builder4 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
     PBFrame *frame4 = [builder4 build];
     
     PBFrame_Builder *builder5 = [[[PBFrame_Builder alloc] init] autorelease];
@@ -131,12 +149,34 @@
     [builder5 setType:1];
     [builder5 setImageUrl:@"http://58.215.160.100:8080/app_res/test/frame_305.jpg"];
     [builder5 setPrice:200];
-    [builder5 setOpusIphoneRect:[self pbRectWithX:25 y:25 width:80 height:80]];
+    [builder5 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
     PBFrame *frame5 = [builder5 build];
     
+    PBFrame_Builder *builder6 = [[[PBFrame_Builder alloc] init] autorelease];
+    [builder6 setFrameId:300];
+    [builder6 setType:0];
+    [builder6 setImageUrl:@"blank frame.jpg"];
+    [builder6 setPrice:200];
+    [builder6 setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
+    PBFrame *frame6 = [builder6 build];
+    
     PBFrameList_Builder *builder = [[[PBFrameList_Builder alloc] init] autorelease];
-    [builder addAllFrames:[NSArray arrayWithObjects:frame1, frame2, frame3, frame4, frame5, nil]];
-    [[[builder build] data] writeToFile:@"/Users/Linruin/gitdata/frames.pb" atomically:YES];
+    [builder addAllFrames:[NSArray arrayWithObjects:frame1, frame2, frame3, frame4, frame5, frame6, nil]];
+    [[[builder build] data] writeToFile:@"/Users/Linruin/frames.pb" atomically:YES];
+}
+
+
++ (PBFrame *)blankFrame
+{
+    PBFrame_Builder *builder = [[[PBFrame_Builder alloc] init] autorelease];
+    [builder setFrameId:300];
+    [builder setType:0];
+    [builder setImageUrl:nil];
+    [builder setPrice:200];
+    [builder setOpusIphoneRect:[self pbRectWithX:80 y:113 width:120 height:95]];
+    PBFrame *frame6 = [builder build];
+    
+    return frame6;
 }
 
 

@@ -70,7 +70,7 @@
 					<object class="IBUIButton" id="630792171">
 						<reference key="NSNextResponder" ref="800643772"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{36, 48}, {208, 224}}</string>
+						<string key="NSFrame">{{65, 113}, {120, 95}}</string>
 						<reference key="NSSuperview" ref="800643772"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -88,7 +88,7 @@
 						<reference key="IBUIFont" ref="181916274"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{280, 320}</string>
+				<string key="NSFrameSize">{250, 320}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
