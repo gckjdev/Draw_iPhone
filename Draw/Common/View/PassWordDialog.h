@@ -21,8 +21,8 @@
 {
     
 }
-@property (retain, nonatomic) IBOutlet CustomUITextField *oldPasswordTextField;
-@property (retain, nonatomic) IBOutlet CustomUITextField *anotherPasswordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *oldPasswordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *anotherPasswordTextField;
 + (PassWordDialog *)dialogWith:(NSString *)title 
                       delegate:(id<InputDialogDelegate>)delegate;
 + (PassWordDialog *)dialogWith:(NSString *)title 
