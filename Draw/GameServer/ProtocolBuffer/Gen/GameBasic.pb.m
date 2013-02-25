@@ -3244,12 +3244,357 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 }
 @end
 
+@interface PBShapeInfo ()
+@property int32_t type;
+@property Float32 startX;
+@property Float32 startY;
+@property Float32 endX;
+@property Float32 endY;
+@end
+
+@implementation PBShapeInfo
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasStartX {
+  return !!hasStartX_;
+}
+- (void) setHasStartX:(BOOL) value {
+  hasStartX_ = !!value;
+}
+@synthesize startX;
+- (BOOL) hasStartY {
+  return !!hasStartY_;
+}
+- (void) setHasStartY:(BOOL) value {
+  hasStartY_ = !!value;
+}
+@synthesize startY;
+- (BOOL) hasEndX {
+  return !!hasEndX_;
+}
+- (void) setHasEndX:(BOOL) value {
+  hasEndX_ = !!value;
+}
+@synthesize endX;
+- (BOOL) hasEndY {
+  return !!hasEndY_;
+}
+- (void) setHasEndY:(BOOL) value {
+  hasEndY_ = !!value;
+}
+@synthesize endY;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.startX = 0;
+    self.startY = 0;
+    self.endX = 0;
+    self.endY = 0;
+  }
+  return self;
+}
+static PBShapeInfo* defaultPBShapeInfoInstance = nil;
++ (void) initialize {
+  if (self == [PBShapeInfo class]) {
+    defaultPBShapeInfoInstance = [[PBShapeInfo alloc] init];
+  }
+}
++ (PBShapeInfo*) defaultInstance {
+  return defaultPBShapeInfoInstance;
+}
+- (PBShapeInfo*) defaultInstance {
+  return defaultPBShapeInfoInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasStartX) {
+    return NO;
+  }
+  if (!self.hasStartY) {
+    return NO;
+  }
+  if (!self.hasEndX) {
+    return NO;
+  }
+  if (!self.hasEndY) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasStartX) {
+    [output writeFloat:2 value:self.startX];
+  }
+  if (self.hasStartY) {
+    [output writeFloat:3 value:self.startY];
+  }
+  if (self.hasEndX) {
+    [output writeFloat:4 value:self.endX];
+  }
+  if (self.hasEndY) {
+    [output writeFloat:5 value:self.endY];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasStartX) {
+    size += computeFloatSize(2, self.startX);
+  }
+  if (self.hasStartY) {
+    size += computeFloatSize(3, self.startY);
+  }
+  if (self.hasEndX) {
+    size += computeFloatSize(4, self.endX);
+  }
+  if (self.hasEndY) {
+    size += computeFloatSize(5, self.endY);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBShapeInfo*) parseFromData:(NSData*) data {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromData:data] build];
+}
++ (PBShapeInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromInputStream:input] build];
+}
++ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromCodedInputStream:input] build];
+}
++ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBShapeInfo*)[[[PBShapeInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBShapeInfo_Builder*) builder {
+  return [[[PBShapeInfo_Builder alloc] init] autorelease];
+}
++ (PBShapeInfo_Builder*) builderWithPrototype:(PBShapeInfo*) prototype {
+  return [[PBShapeInfo builder] mergeFrom:prototype];
+}
+- (PBShapeInfo_Builder*) builder {
+  return [PBShapeInfo builder];
+}
+@end
+
+@interface PBShapeInfo_Builder()
+@property (retain) PBShapeInfo* result;
+@end
+
+@implementation PBShapeInfo_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBShapeInfo alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBShapeInfo_Builder*) clear {
+  self.result = [[[PBShapeInfo alloc] init] autorelease];
+  return self;
+}
+- (PBShapeInfo_Builder*) clone {
+  return [PBShapeInfo builderWithPrototype:result];
+}
+- (PBShapeInfo*) defaultInstance {
+  return [PBShapeInfo defaultInstance];
+}
+- (PBShapeInfo*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBShapeInfo*) buildPartial {
+  PBShapeInfo* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBShapeInfo_Builder*) mergeFrom:(PBShapeInfo*) other {
+  if (other == [PBShapeInfo defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasStartX) {
+    [self setStartX:other.startX];
+  }
+  if (other.hasStartY) {
+    [self setStartY:other.startY];
+  }
+  if (other.hasEndX) {
+    [self setEndX:other.endX];
+  }
+  if (other.hasEndY) {
+    [self setEndY:other.endY];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 21: {
+        [self setStartX:[input readFloat]];
+        break;
+      }
+      case 29: {
+        [self setStartY:[input readFloat]];
+        break;
+      }
+      case 37: {
+        [self setEndX:[input readFloat]];
+        break;
+      }
+      case 45: {
+        [self setEndY:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBShapeInfo_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBShapeInfo_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasStartX {
+  return result.hasStartX;
+}
+- (Float32) startX {
+  return result.startX;
+}
+- (PBShapeInfo_Builder*) setStartX:(Float32) value {
+  result.hasStartX = YES;
+  result.startX = value;
+  return self;
+}
+- (PBShapeInfo_Builder*) clearStartX {
+  result.hasStartX = NO;
+  result.startX = 0;
+  return self;
+}
+- (BOOL) hasStartY {
+  return result.hasStartY;
+}
+- (Float32) startY {
+  return result.startY;
+}
+- (PBShapeInfo_Builder*) setStartY:(Float32) value {
+  result.hasStartY = YES;
+  result.startY = value;
+  return self;
+}
+- (PBShapeInfo_Builder*) clearStartY {
+  result.hasStartY = NO;
+  result.startY = 0;
+  return self;
+}
+- (BOOL) hasEndX {
+  return result.hasEndX;
+}
+- (Float32) endX {
+  return result.endX;
+}
+- (PBShapeInfo_Builder*) setEndX:(Float32) value {
+  result.hasEndX = YES;
+  result.endX = value;
+  return self;
+}
+- (PBShapeInfo_Builder*) clearEndX {
+  result.hasEndX = NO;
+  result.endX = 0;
+  return self;
+}
+- (BOOL) hasEndY {
+  return result.hasEndY;
+}
+- (Float32) endY {
+  return result.endY;
+}
+- (PBShapeInfo_Builder*) setEndY:(Float32) value {
+  result.hasEndY = YES;
+  result.endY = value;
+  return self;
+}
+- (PBShapeInfo_Builder*) clearEndY {
+  result.hasEndY = NO;
+  result.endY = 0;
+  return self;
+}
+@end
+
 @interface PBDrawAction ()
 @property int32_t type;
 @property (retain) NSMutableArray* mutablePointsList;
 @property Float32 width;
 @property int32_t color;
 @property int32_t penType;
+@property (retain) PBShapeInfo* shapeInfo;
 @end
 
 @implementation PBDrawAction
@@ -3283,8 +3628,16 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   hasPenType_ = !!value;
 }
 @synthesize penType;
+- (BOOL) hasShapeInfo {
+  return !!hasShapeInfo_;
+}
+- (void) setHasShapeInfo:(BOOL) value {
+  hasShapeInfo_ = !!value;
+}
+@synthesize shapeInfo;
 - (void) dealloc {
   self.mutablePointsList = nil;
+  self.shapeInfo = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3293,6 +3646,7 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
     self.width = 0;
     self.color = 0;
     self.penType = 0;
+    self.shapeInfo = [PBShapeInfo defaultInstance];
   }
   return self;
 }
@@ -3319,6 +3673,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (!self.hasType) {
     return NO;
   }
+  if (self.hasShapeInfo) {
+    if (!self.shapeInfo.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -3340,6 +3699,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasPenType) {
     [output writeInt32:5 value:self.penType];
+  }
+  if (self.hasShapeInfo) {
+    [output writeMessage:10 value:self.shapeInfo];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3373,6 +3735,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasPenType) {
     size += computeInt32Size(5, self.penType);
+  }
+  if (self.hasShapeInfo) {
+    size += computeMessageSize(10, self.shapeInfo);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3467,6 +3832,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasPenType) {
     [self setPenType:other.penType];
   }
+  if (other.hasShapeInfo) {
+    [self mergeShapeInfo:other.shapeInfo];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3511,6 +3879,15 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 40: {
         [self setPenType:[input readInt32]];
+        break;
+      }
+      case 82: {
+        PBShapeInfo_Builder* subBuilder = [PBShapeInfo builder];
+        if (self.hasShapeInfo) {
+          [subBuilder mergeFrom:self.shapeInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setShapeInfo:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3609,6 +3986,36 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearPenType {
   result.hasPenType = NO;
   result.penType = 0;
+  return self;
+}
+- (BOOL) hasShapeInfo {
+  return result.hasShapeInfo;
+}
+- (PBShapeInfo*) shapeInfo {
+  return result.shapeInfo;
+}
+- (PBDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value {
+  result.hasShapeInfo = YES;
+  result.shapeInfo = value;
+  return self;
+}
+- (PBDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue {
+  return [self setShapeInfo:[builderForValue build]];
+}
+- (PBDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value {
+  if (result.hasShapeInfo &&
+      result.shapeInfo != [PBShapeInfo defaultInstance]) {
+    result.shapeInfo =
+      [[[PBShapeInfo builderWithPrototype:result.shapeInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.shapeInfo = value;
+  }
+  result.hasShapeInfo = YES;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShapeInfo {
+  result.hasShapeInfo = NO;
+  result.shapeInfo = [PBShapeInfo defaultInstance];
   return self;
 }
 @end

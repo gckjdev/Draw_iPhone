@@ -22,6 +22,8 @@
 @class PBPriceInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBShapeInfo;
+@class PBShapeInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -793,16 +795,102 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBGameSessionChanged_Builder*) clearUsersUpdatedList;
 @end
 
+@interface PBShapeInfo : PBGeneratedMessage {
+@private
+  BOOL hasStartX_:1;
+  BOOL hasStartY_:1;
+  BOOL hasEndX_:1;
+  BOOL hasEndY_:1;
+  BOOL hasType_:1;
+  Float32 startX;
+  Float32 startY;
+  Float32 endX;
+  Float32 endY;
+  int32_t type;
+}
+- (BOOL) hasType;
+- (BOOL) hasStartX;
+- (BOOL) hasStartY;
+- (BOOL) hasEndX;
+- (BOOL) hasEndY;
+@property (readonly) int32_t type;
+@property (readonly) Float32 startX;
+@property (readonly) Float32 startY;
+@property (readonly) Float32 endX;
+@property (readonly) Float32 endY;
+
++ (PBShapeInfo*) defaultInstance;
+- (PBShapeInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBShapeInfo_Builder*) builder;
++ (PBShapeInfo_Builder*) builder;
++ (PBShapeInfo_Builder*) builderWithPrototype:(PBShapeInfo*) prototype;
+
++ (PBShapeInfo*) parseFromData:(NSData*) data;
++ (PBShapeInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBShapeInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBShapeInfo* result;
+}
+
+- (PBShapeInfo*) defaultInstance;
+
+- (PBShapeInfo_Builder*) clear;
+- (PBShapeInfo_Builder*) clone;
+
+- (PBShapeInfo*) build;
+- (PBShapeInfo*) buildPartial;
+
+- (PBShapeInfo_Builder*) mergeFrom:(PBShapeInfo*) other;
+- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBShapeInfo_Builder*) setType:(int32_t) value;
+- (PBShapeInfo_Builder*) clearType;
+
+- (BOOL) hasStartX;
+- (Float32) startX;
+- (PBShapeInfo_Builder*) setStartX:(Float32) value;
+- (PBShapeInfo_Builder*) clearStartX;
+
+- (BOOL) hasStartY;
+- (Float32) startY;
+- (PBShapeInfo_Builder*) setStartY:(Float32) value;
+- (PBShapeInfo_Builder*) clearStartY;
+
+- (BOOL) hasEndX;
+- (Float32) endX;
+- (PBShapeInfo_Builder*) setEndX:(Float32) value;
+- (PBShapeInfo_Builder*) clearEndX;
+
+- (BOOL) hasEndY;
+- (Float32) endY;
+- (PBShapeInfo_Builder*) setEndY:(Float32) value;
+- (PBShapeInfo_Builder*) clearEndY;
+@end
+
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
   BOOL hasType_:1;
   BOOL hasColor_:1;
   BOOL hasPenType_:1;
+  BOOL hasShapeInfo_:1;
   Float32 width;
   int32_t type;
   int32_t color;
   int32_t penType;
+  PBShapeInfo* shapeInfo;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -810,10 +898,12 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
+- (BOOL) hasShapeInfo;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
+@property (readonly, retain) PBShapeInfo* shapeInfo;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -877,6 +967,13 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (int32_t) penType;
 - (PBDrawAction_Builder*) setPenType:(int32_t) value;
 - (PBDrawAction_Builder*) clearPenType;
+
+- (BOOL) hasShapeInfo;
+- (PBShapeInfo*) shapeInfo;
+- (PBDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value;
+- (PBDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue;
+- (PBDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value;
+- (PBDrawAction_Builder*) clearShapeInfo;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

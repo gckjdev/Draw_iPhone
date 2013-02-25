@@ -168,6 +168,7 @@
 								<string key="NSFrame">{{165, 122.5}, {83, 30}}</string>
 								<reference key="NSSuperview" ref="843572510"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -403,7 +404,6 @@
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="35.CustomClassName">CustomUITextField</string>
 				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -437,14 +437,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">CustomUITextField</string>
-					<string key="superclassName">UITextField</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CustomUITextField.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">InputDialog</string>
 					<string key="superclassName">CommonInfoView</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -465,7 +457,7 @@
 						<string key="bgView">UIImageView</string>
 						<string key="cancelButton">UIButton</string>
 						<string key="okButton">UIButton</string>
-						<string key="targetTextField">CustomUITextField</string>
+						<string key="targetTextField">UITextField</string>
 						<string key="titleLabel">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -483,7 +475,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="targetTextField">
 							<string key="name">targetTextField</string>
-							<string key="candidateClassName">CustomUITextField</string>
+							<string key="candidateClassName">UITextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleLabel">
 							<string key="name">titleLabel</string>
