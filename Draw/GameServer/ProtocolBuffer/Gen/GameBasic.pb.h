@@ -797,27 +797,25 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 
 @interface PBShapeInfo : PBGeneratedMessage {
 @private
-  BOOL hasStartX_:1;
-  BOOL hasStartY_:1;
-  BOOL hasEndX_:1;
-  BOOL hasEndY_:1;
+  BOOL hasWidth_:1;
   BOOL hasType_:1;
-  Float32 startX;
-  Float32 startY;
-  Float32 endX;
-  Float32 endY;
+  BOOL hasPenType_:1;
+  Float32 width;
   int32_t type;
+  int32_t penType;
+  NSMutableArray* mutableRectComponentList;
+  NSMutableArray* mutableColorComponentList;
 }
 - (BOOL) hasType;
-- (BOOL) hasStartX;
-- (BOOL) hasStartY;
-- (BOOL) hasEndX;
-- (BOOL) hasEndY;
+- (BOOL) hasWidth;
+- (BOOL) hasPenType;
 @property (readonly) int32_t type;
-@property (readonly) Float32 startX;
-@property (readonly) Float32 startY;
-@property (readonly) Float32 endX;
-@property (readonly) Float32 endY;
+@property (readonly) Float32 width;
+@property (readonly) int32_t penType;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (NSArray*) colorComponentList;
+- (Float32) colorComponentAtIndex:(int32_t) index;
 
 + (PBShapeInfo*) defaultInstance;
 - (PBShapeInfo*) defaultInstance;
@@ -858,25 +856,29 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBShapeInfo_Builder*) setType:(int32_t) value;
 - (PBShapeInfo_Builder*) clearType;
 
-- (BOOL) hasStartX;
-- (Float32) startX;
-- (PBShapeInfo_Builder*) setStartX:(Float32) value;
-- (PBShapeInfo_Builder*) clearStartX;
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBShapeInfo_Builder*) setWidth:(Float32) value;
+- (PBShapeInfo_Builder*) clearWidth;
 
-- (BOOL) hasStartY;
-- (Float32) startY;
-- (PBShapeInfo_Builder*) setStartY:(Float32) value;
-- (PBShapeInfo_Builder*) clearStartY;
+- (BOOL) hasPenType;
+- (int32_t) penType;
+- (PBShapeInfo_Builder*) setPenType:(int32_t) value;
+- (PBShapeInfo_Builder*) clearPenType;
 
-- (BOOL) hasEndX;
-- (Float32) endX;
-- (PBShapeInfo_Builder*) setEndX:(Float32) value;
-- (PBShapeInfo_Builder*) clearEndX;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (PBShapeInfo_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBShapeInfo_Builder*) addRectComponent:(Float32) value;
+- (PBShapeInfo_Builder*) addAllRectComponent:(NSArray*) values;
+- (PBShapeInfo_Builder*) clearRectComponentList;
 
-- (BOOL) hasEndY;
-- (Float32) endY;
-- (PBShapeInfo_Builder*) setEndY:(Float32) value;
-- (PBShapeInfo_Builder*) clearEndY;
+- (NSArray*) colorComponentList;
+- (Float32) colorComponentAtIndex:(int32_t) index;
+- (PBShapeInfo_Builder*) replaceColorComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBShapeInfo_Builder*) addColorComponent:(Float32) value;
+- (PBShapeInfo_Builder*) addAllColorComponent:(NSArray*) values;
+- (PBShapeInfo_Builder*) clearColorComponentList;
 @end
 
 @interface PBDrawAction : PBGeneratedMessage {

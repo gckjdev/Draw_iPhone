@@ -21,7 +21,8 @@
 
 - (void)dealloc
 {
-    [_paint release];
+    PPRelease(_paint);
+    PPRelease(_shapeInfo);
     [super dealloc];
 }
 
@@ -30,7 +31,7 @@
     self = [ super init];
     if (self) {
         self.type = action.type;
-        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+        if (self.type == DRAW_ACTION_TYPE_DRAW) {
             DrawColor *color = nil;
             
             if ([DrawUtils isNotVersion1:dataVersion]){
@@ -75,6 +76,11 @@
             PPRelease(pointList);
             PPRelease(paint);
         }
+        else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+            self.shapeInfo = [ShapeInfo shapeWithPBShapeInfo:action.shapeInfo];
+        }else{
+            //Clean
+        }
     }
     return self;
 
@@ -84,7 +90,7 @@
 {
     PBNoCompressDrawAction_Builder *builder = [[PBNoCompressDrawAction_Builder alloc] init];
     [builder setType:self.type];
-    if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+    if (self.type == DRAW_ACTION_TYPE_DRAW) {
         Paint *paint = self.paint;
         [builder setWidth:paint.width];
         [builder setPenType:paint.penType];
@@ -103,23 +109,10 @@
                 [builder addPointY:[value y]];
             }
         }
-        
-        /* below is old data storage
-        PBColor *color = [paint.color toPBColor];
-        [builder setColor:color];
-        
-        //set point list
-        NSUInteger pCount = [paint pointCount];
-        if (pCount != 0) {
-            NSMutableArray *pList = [NSMutableArray arrayWithCapacity:pCount];
-            PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
-            for (PointNode *value in paint.pointNodeList) {
-                [pList addObject:value.toPBPoint];
-            }
-            PPRelease(pBuilder);
-            [builder addAllPoint:pList];
-        }
-         */
+    }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+        [builder setShapeInfo:[self.shapeInfo toPBShape]];
+    }else{
+        //Clean
     }
     PBNoCompressDrawAction *action = [builder build];
     [builder release];
@@ -140,7 +133,7 @@
     if (self) {
         self.type = action.type;
         
-        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+        if (self.type == DRAW_ACTION_TYPE_DRAW) {
             NSInteger intColor = [action color];
             CGFloat lineWidth = [action width];        
             NSArray *pointList = [action pointsList];
@@ -148,6 +141,8 @@
             Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList penType:penType];
             self.paint = paint;
             [paint release];
+        }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+            
         }
     }
     return self;
@@ -349,6 +344,152 @@
         return nData;
     }
     return nil;
+}
+
+@end
+
+
+
+
+
+@implementation ShapeInfo
+
+- (void)dealloc
+{
+    PPRelease(_color);
+    [super dealloc];
+}
+
++ (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo
+{
+    ShapeInfo *shape = [[ShapeInfo alloc] init];
+    [shape setType:shapeInfo.type];
+    [shape setPenType:shapeInfo.penType];
+    [shape setWidth:shapeInfo.width];
+    
+    if ([shapeInfo.rectComponentList count] < 4 || [shapeInfo.colorComponentList count] < 4) {
+        return nil;
+    }
+    //set color
+    [shape setColor:[DrawColor colorWithRGBAComponent:shapeInfo.colorComponentList]];
+    
+    //set point
+    CGFloat startX = [[shapeInfo.rectComponentList objectAtIndex:0] floatValue];
+    CGFloat startY = [[shapeInfo.rectComponentList objectAtIndex:1] floatValue];
+    shape.startPoint = CGPointMake(startX, startY);
+    
+    CGFloat endX = [[shapeInfo.rectComponentList objectAtIndex:2] floatValue];
+    CGFloat endY = [[shapeInfo.rectComponentList objectAtIndex:3] floatValue];
+    shape.endPoint = CGPointMake(endX, endY);
+    
+    return [shape autorelease];
+}
+
+- (CGRect)rect
+{
+    CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
+    CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
+    CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
+    CGFloat height = ABS(self.startPoint.x - self.endPoint.x);
+    return CGRectMake(x, y, width, height);
+}
+
+
+- (CGRect)bounds
+{
+    CGRect rect = [self rect];
+    rect.origin = CGPointZero;
+    return rect;
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+    if (context != NULL) {
+        CGContextSaveGState(context);
+        CGContextSetFillColorWithColor(context, self.color.CGColor);
+        switch (self.type) {
+            case ShapeTypeBeeline:
+            {
+                CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+                CGPoint points[2];
+                points[0] = self.startPoint;
+                points[1] = self.endPoint;
+                CGContextStrokeLineSegments(context, points, 2);
+                break;
+            }
+
+            case ShapeTypeRectangle:
+            {
+                CGContextFillRect(context, self.rect);
+                break;
+            }
+
+            case ShapeTypeEllipse:
+            {
+                CGContextFillEllipseInRect(context, self.rect);
+                break;
+            }
+
+            case ShapeTypeStar:
+            {
+                CGRect rect = [self rect];
+
+                CGFloat xRatio = 0.5 * (1 - tanf(0.2 * M_PI));
+                CGFloat yRatio = 0.5 * (1 - tanf(0.1 * M_PI));
+
+                CGFloat minX = CGRectGetMinX(rect);
+                CGFloat minY = CGRectGetMinY(rect);
+
+                CGFloat maxX = CGRectGetMaxX(rect);
+                CGFloat maxY = CGRectGetMaxY(rect);
+                CGFloat width = CGRectGetWidth(rect);
+                CGFloat height = CGRectGetHeight(rect);
+                
+                CGContextMoveToPoint(context, minX, minY + yRatio * height);
+                
+                CGContextAddLineToPoint(context, maxX, minY + yRatio * height);
+                CGContextAddLineToPoint(context, minX + xRatio * width + minX, maxY);
+                CGContextAddLineToPoint(context, minX + width / 2, minY);
+                CGContextAddLineToPoint(context, maxY - xRatio * width, maxY);
+                
+                CGContextClosePath(context);
+                CGContextFillPath(context);
+                break;
+            }
+
+            case ShapeTypeTriangle:
+            {
+                CGRect rect = [self rect];
+                CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinX(rect));
+                CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
+                CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+
+                CGContextClosePath(context);
+                CGContextFillPath(context);
+                break;
+            }
+            default:
+                break;
+        }
+        CGContextRestoreGState(context);
+    }
+}
+
+- (NSArray *)rectComponent
+{
+    return [NSArray arrayWithObjects:@(_startPoint.x), @(_startPoint.y), @(_endPoint.x), @(_endPoint.y), nil];
+}
+
+- (PBShapeInfo *)toPBShape
+{
+    PBShapeInfo_Builder *builder = [[[PBShapeInfo_Builder alloc] init] autorelease];
+    
+    [builder setType:self.type];
+    [builder setWidth:self.width];
+    [builder addAllColorComponent:[self.color toRGBAComponent]];
+    [builder addAllRectComponent:[self rectComponent]];
+    
+    return [builder build];
 }
 
 @end
