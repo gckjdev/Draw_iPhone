@@ -82,11 +82,7 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 - (void)drawInContext:(CGContextRef)context
 {
     if (context != NULL) {
-        CGContextSaveGState(context);
-//        if (self.startPoint.y > self.endPoint.y) {
-//            CTMContext(context, DRAW_VIEW_RECT);
-//        }
-        
+        CGContextSaveGState(context);        
         CGContextSetFillColorWithColor(context, self.color.CGColor);
         
         switch (self.type) {
@@ -127,15 +123,19 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
                 CGFloat width = CGRectGetWidth(rect);
                 CGFloat height = CGRectGetHeight(rect);
                 
-                CGContextMoveToPoint(context, minX, minY + yRatio * height);
-                
-                CGContextAddLineToPoint(context, maxX, minY + yRatio * height);
-                CGContextAddLineToPoint(context, minX + xRatio * width, maxY);
-                CGContextAddLineToPoint(context, minX + width / 2, minY);
-                CGContextAddLineToPoint(context, maxX - xRatio * width, maxY);
-                
-//                cmt
-                
+                if (self.startPoint.y > self.endPoint.y) {
+                    CGContextMoveToPoint(context, minX, maxY - yRatio * height);
+                    CGContextAddLineToPoint(context, maxX, maxY - yRatio * height);
+                    CGContextAddLineToPoint(context, minX + xRatio * width, minY);
+                    CGContextAddLineToPoint(context, minX + width / 2, maxY);
+                    CGContextAddLineToPoint(context, maxX - xRatio * width, minY);                    
+                }else{
+                    CGContextMoveToPoint(context, minX, minY + yRatio * height);
+                    CGContextAddLineToPoint(context, maxX, minY + yRatio * height);
+                    CGContextAddLineToPoint(context, minX + xRatio * width, maxY);
+                    CGContextAddLineToPoint(context, minX + width / 2, minY);
+                    CGContextAddLineToPoint(context, maxX - xRatio * width, maxY);
+                }
                 CGContextClosePath(context);
                 CGContextFillPath(context);
                 break;
@@ -145,11 +145,15 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
             {
                 CGRect rect = [self rect];
                 
-                
-                CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinY(rect));
-                CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-                CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-                
+                if (self.startPoint.y > self.endPoint.y) {
+                    CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+                    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+                    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+                }else{
+                    CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinY(rect));
+                    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
+                    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+                }
                 CGContextClosePath(context);
                 CGContextFillPath(context);
                 break;
