@@ -201,9 +201,13 @@ typedef enum {
     
     if (type == TouchTypeBegin) {
         [shape setStartPoint:point];
-        
+        [osManager addDrawAction:_currentAction];
+        [self setNeedsDisplay];
     }else{
         [shape setEndPoint:point];
+        [osManager updateLastAction:_currentAction];
+//        [self setNeedsDisplayInRect:rect];
+        [self setNeedsDisplay];
     }
 }
 

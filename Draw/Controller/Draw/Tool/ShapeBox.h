@@ -16,7 +16,7 @@
 
 @optional
 - (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type;
-- (void)shapeBox:(ShapeBox *)shapeBox didClickCloseButton:(UIButton *)close;
+- (void)dismissShapeBox:(ShapeBox *)shapeBox;
 
 @end
 

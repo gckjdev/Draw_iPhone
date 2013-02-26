@@ -30,17 +30,24 @@
 }
 
 
+- (void)dismiss
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dismissShapeBox:)]) {
+        [self.delegate dismissShapeBox:self];
+    }
+}
+
 - (IBAction)selectShape:(UIButton *)sender {
     sender.selected = YES;
     if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didSelectShapeType:)]) {
         [self.delegate shapeBox:self didSelectShapeType:sender.tag];
     }
+    [self dismiss];
 }
 
+
 - (IBAction)close:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didClickCloseButton:)]) {
-        [self.delegate shapeBox:self didClickCloseButton:sender];
-    }
+    [self dismiss];
 }
 
 - (ShapeType)shapeType

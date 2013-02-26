@@ -155,8 +155,20 @@
     }
     _actionCount ++;
     
-    return [self strokePaint:paint inContext:cacheContext clear:clear];
+    return [self strokePaint:paint inContext:cacheContext clear:NO];
 }
+
+- (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
+{
+    if (clear) {
+        [self clear];
+    }
+    _actionCount ++;
+    
+    [shape drawInContext:cacheContext];
+    return [shape rect];
+}
+
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
 {
 //    [self setStrokeColor:color lineWidth:width inContext:cacheContext];

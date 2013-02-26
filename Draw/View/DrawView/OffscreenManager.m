@@ -128,6 +128,17 @@
     return [[self enteryScreen] strokePaint:paint clear:YES];
 }
 
+- (CGRect)updateLastAction:(DrawAction *)action
+{
+    if (action.type == DRAW_ACTION_TYPE_DRAW) {
+        return [self updateLastPaint:action.paint];
+    }else if(action.type == DRAW_ACTION_TYPE_SHAPE)
+    {
+        return [[self enteryScreen] drawShape:action.shapeInfo clear:YES];
+    }
+    return [[self enteryScreen] rect];
+}
+
 - (void)printOSInfo
 {
     PPDebug(@"======<printOSInfo> total action count = %d ======", [self actionCount]);

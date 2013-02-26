@@ -637,7 +637,7 @@
 
 #pragma mark ShapeBox Delegate
 
-- (void)shapeBox:(ShapeBox *)shapeBox didClickCloseButton:(UIButton *)close
+- (void)dismissShapeBox:(ShapeBox *)shapeBox
 {
     [self dismissAllPopTipViews];
 }

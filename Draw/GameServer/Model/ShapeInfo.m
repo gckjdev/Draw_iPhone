@@ -9,6 +9,8 @@
 #import "ShapeInfo.h"
 #import "Draw.pb.h"
 #import "DrawColor.h"
+#import "DrawUtils.h"
+
 
 @implementation ShapeInfo
 
@@ -73,10 +75,18 @@
     return rect;
 }
 
+#define CTMContext(context,rect) \
+CGContextScaleCTM(context, 1.0, -1.0);\
+CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+
 - (void)drawInContext:(CGContextRef)context
 {
     if (context != NULL) {
         CGContextSaveGState(context);
+//        if (self.startPoint.y > self.endPoint.y) {
+//            CTMContext(context, DRAW_VIEW_RECT);
+//        }
+        
         CGContextSetFillColorWithColor(context, self.color.CGColor);
         
         switch (self.type) {
@@ -124,6 +134,8 @@
                 CGContextAddLineToPoint(context, minX + width / 2, minY);
                 CGContextAddLineToPoint(context, maxX - xRatio * width, maxY);
                 
+//                cmt
+                
                 CGContextClosePath(context);
                 CGContextFillPath(context);
                 break;
@@ -132,6 +144,8 @@
             case ShapeTypeTriangle:
             {
                 CGRect rect = [self rect];
+                
+                
                 CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinY(rect));
                 CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
                 CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));

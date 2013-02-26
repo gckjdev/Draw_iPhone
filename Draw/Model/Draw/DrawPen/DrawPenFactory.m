@@ -16,7 +16,9 @@
 
 + (id<DrawPenProtocol>)createDrawPen:(DrawPenType)type
 {
+    //return default pen
     PPDebug(@"<createDrawPen> type = %d", type);
+    return [[[DefaultPen alloc] init] autorelease];
     switch (type) {
         case DrawPenTypeBlur:
             return [[[BlurPen alloc] init] autorelease];
