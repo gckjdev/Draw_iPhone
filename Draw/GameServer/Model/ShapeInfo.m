@@ -20,6 +20,19 @@
     [super dealloc];
 }
 
+- (CGPoint)toIPadPoint:(CGPoint)point
+{
+    point.x *= IPAD_WIDTH_SCALE;
+    point.y *= IPAD_HEIGHT_SCALE;
+    return point;
+}
+- (CGPoint)toIPhonePoint:(CGPoint)point
+{
+    point.x /= IPAD_WIDTH_SCALE;
+    point.y /= IPAD_HEIGHT_SCALE;
+    return point;
+}
+
 + (id)shapeWithType:(ShapeType)type
             penType:(ItemType)penType
               width:(CGFloat)with
@@ -54,7 +67,10 @@
     CGFloat endX = [[shapeInfo.rectComponentList objectAtIndex:2] floatValue];
     CGFloat endY = [[shapeInfo.rectComponentList objectAtIndex:3] floatValue];
     shape.endPoint = CGPointMake(endX, endY);
-    
+    if (ISIPAD) {
+        shape.startPoint = [shape toIPadPoint:shape.startPoint];
+        shape.endPoint = [shape toIPadPoint:shape.endPoint];
+    }
     return [shape autorelease];
 }
 
@@ -75,9 +91,6 @@
     return rect;
 }
 
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 - (void)drawInContext:(CGContextRef)context
 {
@@ -167,15 +180,30 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 - (NSArray *)rectComponent
 {
-    return [NSArray arrayWithObjects:@(_startPoint.x), @(_startPoint.y), @(_endPoint.x), @(_endPoint.y), nil];
+    CGPoint start = self.startPoint, end = self.endPoint;
+    if (ISIPAD) {
+        start = [self toIPhonePoint:self.startPoint];
+        end = [self toIPhonePoint:self.endPoint];
+    }
+    return [self rectComponentWithStartPoint:start endPoint:end];
 }
+
+- (NSArray *)rectComponentWithStartPoint:(CGPoint)start endPoint:(CGPoint)end
+{
+    return [NSArray arrayWithObjects:@(start.x), @(start.y), @(end.x), @(end.y), nil];
+}
+
 
 - (PBShapeInfo *)toPBShape
 {
     PBShapeInfo_Builder *builder = [[[PBShapeInfo_Builder alloc] init] autorelease];
     
     [builder setType:self.type];
-    [builder setWidth:self.width];
+    if (ISIPAD) {
+        [builder setWidth:self.width / 2];
+    }else{
+        [builder setWidth:self.width];
+    }
     [builder addAllColorComponent:[self.color toRGBAComponent]];
     [builder addAllRectComponent:[self rectComponent]];
     

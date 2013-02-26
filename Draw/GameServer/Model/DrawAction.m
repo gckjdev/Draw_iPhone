@@ -223,7 +223,7 @@
         return YES;
     }
     for (DrawAction *action in actionList) {
-        if (action.type == DRAW_ACTION_TYPE_DRAW && action.pointCount > 0){
+        if (([action isDrawAction] && action.pointCount > 0) || [action isShapeAction]){
             return NO;
         }
     }
