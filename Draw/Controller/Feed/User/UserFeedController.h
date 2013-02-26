@@ -13,7 +13,7 @@
 #import "CommonTabController.h"
 #import "RankView.h"
 
-@interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate>
+@interface UserFeedController : CommonTabController<FeedServiceDelegate, RankViewDelegate, UIActionSheetDelegate>
 {
     NSString *_userId;
     NSString *_nickName;
