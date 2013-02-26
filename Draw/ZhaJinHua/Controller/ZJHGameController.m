@@ -678,6 +678,19 @@
 - (void)gameStart
 {
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
+    
+//    if ([_gameService myCardType] >= PBZJHCardTypeStraight && [_gameService myCardType] <= PBZJHCardTypeThreeOfAKind) {
+//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
+//    }else{
+//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
+//    }
+    
+//    if ([_gameService myCardType] != PBZJHCardTypeHighCard) {
+        [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
+//    }else{
+//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
+//    }
+    
     [self clearAll];
     
     [_ruleConfig getAccount:_gameService.session.userList];
@@ -1238,9 +1251,13 @@
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
-    if ([_userManager isMe:view.userInfo.userId]) {
-        [self clickFoldCardButton:nil];
-    }
+        if ([_userManager isMe:view.userInfo.userId]) {
+            if (_gameService.timeoutAcion == PBZJHUserActionFoldCard) {
+                [self clickFoldCardButton:nil];
+            }else{
+                [self clickBetButton:nil];
+            }
+        }
 }
 
 #pragma mark - poker view protocol
@@ -1710,6 +1727,10 @@
 {
     ZJHAvatarView *avatar = [self getAvatarViewByUserId:userId];
     [avatar showExpression:key];
+}
+
+- (IBAction)clickTimeoutSettingButton:(id)sender {
+    
 }
 
 @end

@@ -477,42 +477,59 @@
 
 // for wall
 
-+ (CommonNetworkOutput*)createWall:(NSString *)baseURL
++ (CommonNetworkOutput *)createWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
                               data:(NSData *)data
                          imageData:(NSData *)imageData;
 
-+ (CommonNetworkOutput*)updateWall:(NSString *)baseURL
++ (CommonNetworkOutput *)updateWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
                             wallId:(NSString *)wallId
                               data:(NSData *)data
                          imageData:(NSData *)imageData;
 
-+ (CommonNetworkOutput*)deleteWall:(NSString *)baseURL
++ (CommonNetworkOutput *)deleteWall:(NSString *)baseURL
                              appId:(NSString *)appId
                             userId:(NSString *)userId
                             wallId:(int)wallId;
 
 
-+ (CommonNetworkOutput*)getWall:(NSString *)baseURL
++ (CommonNetworkOutput *)getWall:(NSString *)baseURL
                           appId:(NSString *)appId
                          userId:(NSString *)userId
                          wallId:(NSString *)wallId;
 
 
-+ (CommonNetworkOutput*)getWalls:(NSString *)baseURL
++ (CommonNetworkOutput *)getWalls:(NSString *)baseURL
                            appId:(NSString *)appId
                           userId:(NSString *)userId
                         wallType:(PBWallType)wallType;
 
-+ (CommonNetworkOutput*)blackUser:(NSString*)baseURL
+
+// black user
++ (CommonNetworkOutput *)blackUser:(NSString*)baseURL
                             appId:(NSString* )appId
                      targetUserId:(NSString*)targetUserId
                            userId:(NSString*)userId
                    targetDeviceId:(NSString*)targetDeviceId
                              type:(int)type
                        actionType:(int)actionType;
+
+
+// for item
++ (CommonNetworkOutput *)buyItem:(NSString *)baseURL
+                           appId:(NSString *)appId
+                          userId:(NSString *)userId
+                          itemId:(int)itemId
+                           count:(int)count
+                          toUser:(NSString *)toUser;
+
++ (CommonNetworkOutput *)useItem:(NSString *)baseURL
+                           appId:(NSString *)appId
+                          userId:(NSString *)userId
+                          itemId:(int)itemId
+                          toUser:(NSString *)toUser;
 
 @end

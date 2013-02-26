@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "SuperDrawView.h"
 #import "MyPaint.h"
+#import "ShapeInfo.h"
 
+
+@class DrawView;
 @protocol DrawViewDelegate <NSObject>
 
 @optional
-- (void)didDrawedPaint:(Paint *)paint;
-- (void)didStartedTouch:(Paint *)paint;
+
+- (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action;
+- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action;
+
+
 @end
 
 
@@ -45,6 +51,7 @@ typedef enum{
 @property(nonatomic, retain) DrawColor* bgColor; //default is black
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, assign) ItemType penType;
+@property(nonatomic, assign) ShapeType shapeType;
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;

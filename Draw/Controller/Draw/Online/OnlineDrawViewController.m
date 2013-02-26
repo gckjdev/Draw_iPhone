@@ -283,19 +283,23 @@
 
 #pragma mark - Draw View Delegate
 
-- (void)didDrawedPaint:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
-    
-    NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];    
-    NSMutableArray *pointList = paint.numberPointList;
-    CGFloat width = paint.width;
-    if ([DeviceDetection isIPAD]) {
-        width /= 2;
+    if ([action isDrawAction]) {
+        Paint *paint = paint;
+        NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
+        NSMutableArray *pointList = paint.numberPointList;
+        CGFloat width = paint.width;
+        if ([DeviceDetection isIPAD]) {
+            width /= 2;
+        }
+        [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];        
+    }else if([action isShapeAction]){
+        //TODO send shape action
     }
-    [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];
 }
 
-- (void)didStartedTouch:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
 {
     [self.drawToolPanel dismissAllPopTipViews];
     [self updateRecentColors];

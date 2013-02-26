@@ -7,25 +7,65 @@
 //
 
 #import "ShapeBox.h"
+#import "UIViewUtils.h"
+
+@interface ShapeBox()
+{
+    
+}
+
+- (IBAction)selectShape:(UIButton *)sender;
+- (IBAction)close:(id)sender;
+
+
+@end
 
 @implementation ShapeBox
 
-- (id)initWithFrame:(CGRect)frame
++ (id)shapeBoxWithDelegate:(id<ShapeBoxDelegate>)delegate
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    ShapeBox *box = [UIView createViewWithXibIdentifier:@"ShapeBox"];
+    box.delegate = delegate;
+    return box;
+}
+
+
+- (void)dismiss
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dismissShapeBox:)]) {
+        [self.delegate dismissShapeBox:self];
     }
-    return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (IBAction)selectShape:(UIButton *)sender {
+    sender.selected = YES;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didSelectShapeType:)]) {
+        [self.delegate shapeBox:self didSelectShapeType:sender.tag];
+    }
+    [self dismiss];
+}
+
+
+- (IBAction)close:(id)sender {
+    [self dismiss];
+}
+
+- (ShapeType)shapeType
 {
-    // Drawing code
+    for (UIButton *button in self.subviews) {
+        if ([button isKindOfClass:[UIButton class]] && button.isSelected) {
+            return button.tag;
+        }
+    }
+    return ShapeTypeNone;
 }
-*/
 
+- (void)setShapeType:(ShapeType)type
+{
+    for (UIButton *button in self.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            [button setSelected:(button.tag == type)];
+        }
+    }
+}
 @end

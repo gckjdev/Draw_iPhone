@@ -74,6 +74,8 @@ BOOL GameCommandTypeIsValidValue(GameCommandType value) {
     case GameCommandTypeCompareCardResponse:
     case GameCommandTypeChangeCardRequest:
     case GameCommandTypeChangeCardResponse:
+    case GameCommandTypeTimeoutSettingRequest:
+    case GameCommandTypeTimeoutSettingResponse:
     case GameCommandTypeUserJoinNotificationRequest:
     case GameCommandTypeUserJoinNotificationResponse:
     case GameCommandTypeUserQuitNotificationRequest:

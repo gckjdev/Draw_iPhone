@@ -4936,6 +4936,10 @@
 		CA9A7ED316DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9A7ED516DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
+		CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
+		CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
+		CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
@@ -9487,6 +9491,8 @@
 		CA9A7EC216DC57B10089BD51 /* ShapeBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeBox.m; sourceTree = "<group>"; };
 		CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeBox.xib; sourceTree = "<group>"; };
 		CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShapeBox~ipad.xib"; sourceTree = "<group>"; };
+		CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
+		CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
@@ -15527,6 +15533,8 @@
 				CA3B56E51514CB9300A93137 /* GameUserComment.m */,
 				CA3B56E71514D41E00A93137 /* DrawAction.h */,
 				CA3B56E81514D41E00A93137 /* DrawAction.m */,
+				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
+				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -21835,6 +21843,7 @@
 				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
+				CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22549,6 +22558,7 @@
 				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
+				CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23263,6 +23273,7 @@
 				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
+				CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23985,6 +23996,7 @@
 				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
+				CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
