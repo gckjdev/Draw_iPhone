@@ -390,7 +390,7 @@
     CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
     CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
     CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
-    CGFloat height = ABS(self.startPoint.x - self.endPoint.x);
+    CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
     return CGRectMake(x, y, width, height);
 }
 
@@ -407,6 +407,7 @@
     if (context != NULL) {
         CGContextSaveGState(context);
         CGContextSetFillColorWithColor(context, self.color.CGColor);
+        
         switch (self.type) {
             case ShapeTypeBeeline:
             {
@@ -417,29 +418,29 @@
                 CGContextStrokeLineSegments(context, points, 2);
                 break;
             }
-
+                
             case ShapeTypeRectangle:
             {
                 CGContextFillRect(context, self.rect);
                 break;
             }
-
+                
             case ShapeTypeEllipse:
             {
                 CGContextFillEllipseInRect(context, self.rect);
                 break;
             }
-
+                
             case ShapeTypeStar:
             {
                 CGRect rect = [self rect];
-
+                
                 CGFloat xRatio = 0.5 * (1 - tanf(0.2 * M_PI));
                 CGFloat yRatio = 0.5 * (1 - tanf(0.1 * M_PI));
-
+                
                 CGFloat minX = CGRectGetMinX(rect);
                 CGFloat minY = CGRectGetMinY(rect);
-
+                
                 CGFloat maxX = CGRectGetMaxX(rect);
                 CGFloat maxY = CGRectGetMaxY(rect);
                 CGFloat width = CGRectGetWidth(rect);
@@ -448,22 +449,22 @@
                 CGContextMoveToPoint(context, minX, minY + yRatio * height);
                 
                 CGContextAddLineToPoint(context, maxX, minY + yRatio * height);
-                CGContextAddLineToPoint(context, minX + xRatio * width + minX, maxY);
+                CGContextAddLineToPoint(context, minX + xRatio * width, maxY);
                 CGContextAddLineToPoint(context, minX + width / 2, minY);
-                CGContextAddLineToPoint(context, maxY - xRatio * width, maxY);
+                CGContextAddLineToPoint(context, maxX - xRatio * width, maxY);
                 
                 CGContextClosePath(context);
                 CGContextFillPath(context);
                 break;
             }
-
+                
             case ShapeTypeTriangle:
             {
                 CGRect rect = [self rect];
-                CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinX(rect));
+                CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMinY(rect));
                 CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
                 CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-
+                
                 CGContextClosePath(context);
                 CGContextFillPath(context);
                 break;
