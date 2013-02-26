@@ -94,6 +94,9 @@ enum GameCommandType {
 
   CHANGE_CARD_REQUEST = 813;        // 换牌
   CHANGE_CARD_RESPONSE = 814;       
+
+  TIMEOUT_SETTING_REQUEST = 815;   // 超时选择
+  TIMEOUT_SETTING_RESPONSE = 816;
   
   // server --> client
   
