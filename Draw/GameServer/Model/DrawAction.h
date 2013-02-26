@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemType.h"
+#import "ShapeInfo.h"
 
 @class Paint;
 @class PBDrawAction;
 @class DrawColor;
 @class PBNoCompressDrawAction;
 @class PBNoCompressDrawData;
-@class PBShapeInfo;
-@class ShapeInfo;
+
 
 
 typedef enum {
@@ -70,34 +70,3 @@ typedef enum {
 
 @end
 
-
-
-#pragma mark -- Shape Info
-
-typedef enum{
-    ShapeTypeBeeline,
-    ShapeTypeRectangle,
-    ShapeTypeEllipse,
-    ShapeTypeStar,
-    ShapeTypeTriangle
-}ShapeType;
-
-@interface ShapeInfo : NSObject
-{
-    
-}
-
-@property(nonatomic, assign)CGPoint startPoint;
-@property(nonatomic, assign)CGPoint endPoint;
-
-@property(nonatomic, assign)ItemType penType;
-@property(nonatomic, assign)ShapeType type;
-@property(nonatomic, assign)CGFloat width;
-
-@property(nonatomic, retain)DrawColor *color;
-
-+ (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo;
-- (void)drawInContext:(CGContextRef)context;
-- (CGRect)rect;
-- (PBShapeInfo *)toPBShape;
-@end
