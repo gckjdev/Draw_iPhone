@@ -114,6 +114,14 @@ enum BetType{
   BET_TYPE_RAISE = 2;       // 加注
 }
 
+message TimeoutSettingRequest{
+  optional PBZJHUserAction action = 1 [default = FOLD_CARD];
+}
+
+message TimeoutSettingResponse{
+
+}
+
 message BetRequest{
   required int32 singleBet = 1;                                 // 单注大小
   required int32 count = 2 [default = 1];                       // 注数
@@ -438,6 +446,10 @@ message GameMessage {
   
   optional ChangeCardRequest changeCardRequest = 161;
   optional ChangeCardResponse changeCardResponse = 162;
+  
+  optional TimeoutSettingRequest timeoutSettingRequest =163;
+  optional TimeoutSettingResponse timeoutSettingResponse =164;
+
   
   // Normal
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置

@@ -1712,4 +1712,8 @@
     [avatar showExpression:key];
 }
 
+- (IBAction)clickTimeoutSettingButton:(id)sender {
+    
+}
+
 @end
