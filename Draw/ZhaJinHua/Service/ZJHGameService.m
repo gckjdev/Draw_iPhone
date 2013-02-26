@@ -632,11 +632,11 @@ static ZJHGameService *_defaultService;
     self.gameState = nil;
 }
 
-- (void)setTimeoutSetting:(int)setting
+- (void)setTimeoutSettingWithAction:(PBZJHUserAction)action
 {
     [_networkClient sendTimeoutSettingRequest:self.userId
                                     sessionId:self.session.sessionId
-                                      setting:setting];
+                                       action:action];
 }
 
 @end

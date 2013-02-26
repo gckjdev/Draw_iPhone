@@ -120,9 +120,9 @@
     }
 }
 
-- (void) sendTimeoutSettingRequest:(NSString *)userId
+- (void)sendTimeoutSettingRequest:(NSString *)userId
                          sessionId:(int)sessionId
-                            action:(PBZJHUserAction)action
+                            action:(int)action
 {
     TimeoutSettingRequest_Builder *builder = [[[TimeoutSettingRequest_Builder alloc] init] autorelease];
     [builder setAction:action];
