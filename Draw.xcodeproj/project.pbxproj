@@ -4924,6 +4924,18 @@
 		CA988AFF16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA98892516A6B7E50050AC78 /* MWPhotoBrowser.bundle */; };
 		CA9A274D1655E9DE00B7A0DA /* CreatePostController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */; };
 		CA9A274E1655E9DE00B7A0DA /* CreatePostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */; };
+		CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
+		CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
+		CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
+		CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
+		CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
+		CA9A7ECE16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
+		CA9A7ECF16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
+		CA9A7ED016DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
+		CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9A7ED316DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9A7ED516DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
@@ -9471,6 +9483,10 @@
 		CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostController.h; sourceTree = "<group>"; };
 		CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostController.m; sourceTree = "<group>"; };
 		CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatePostController.xib; sourceTree = "<group>"; };
+		CA9A7EC116DC57B10089BD51 /* ShapeBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeBox.h; sourceTree = "<group>"; };
+		CA9A7EC216DC57B10089BD51 /* ShapeBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeBox.m; sourceTree = "<group>"; };
+		CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeBox.xib; sourceTree = "<group>"; };
+		CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShapeBox~ipad.xib"; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
@@ -13542,6 +13558,10 @@
 				CA5328EC16A3E1E000E9E96B /* PenBox~ipad.xib */,
 				CAF7E82716BB662B00F09584 /* WidthBox.h */,
 				CAF7E82816BB662B00F09584 /* WidthBox.m */,
+				CA9A7EC116DC57B10089BD51 /* ShapeBox.h */,
+				CA9A7EC216DC57B10089BD51 /* ShapeBox.m */,
+				CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */,
+				CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -18547,6 +18567,8 @@
 				CAE9AA3016D65EF3008392F9 /* DiceDefault~ipad.png in Resources */,
 				CAE9AA3416D65EFE008392F9 /* DiceDefault.png in Resources */,
 				CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */,
+				CA9A7ECF16DC57D40089BD51 /* ShapeBox.xib in Resources */,
+				CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19393,6 +19415,8 @@
 				C21D416816D602A8006A0AA3 /* my_paint_tag@2x.png in Resources */,
 				C21D416C16D602A8006A0AA3 /* paint_bg@2x.png in Resources */,
 				C21D417016D602A8006A0AA3 /* paint_name_bg@2x.jpg in Resources */,
+				CA9A7ED016DC57D40089BD51 /* ShapeBox.xib in Resources */,
+				CA9A7ED516DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20250,6 +20274,8 @@
 				C24A0F3816DB63FE00F04872 /* all_my_words_bg@2x.jpg in Resources */,
 				C24A0F3A16DB63FE00F04872 /* all_my_words_table_bg@2x.png in Resources */,
 				C24A0F3C16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */,
+				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
+				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21074,6 +21100,8 @@
 				C24A0F3916DB63FE00F04872 /* all_my_words_bg@2x.jpg in Resources */,
 				C24A0F3B16DB63FE00F04872 /* all_my_words_table_bg@2x.png in Resources */,
 				C24A0F3D16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */,
+				CA9A7ECE16DC57D40089BD51 /* ShapeBox.xib in Resources */,
+				CA9A7ED316DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21806,6 +21834,7 @@
 				CAE9AA6E16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
+				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22519,6 +22548,7 @@
 				CAE9AA6F16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
+				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23232,6 +23262,7 @@
 				CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
+				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23953,6 +23984,7 @@
 				CAE9AA6D16D72725008392F9 /* DefaultPen.m in Sources */,
 				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
+				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
