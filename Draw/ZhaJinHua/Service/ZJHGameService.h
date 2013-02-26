@@ -74,4 +74,7 @@
 
 - (void)reset;
 
+- (void)setTimeoutSetting:(int)setting;
+
+
 @end

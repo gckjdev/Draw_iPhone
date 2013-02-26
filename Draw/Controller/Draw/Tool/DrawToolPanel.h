@@ -18,6 +18,7 @@
 #import "ColorShopView.h"
 #import "DrawView.h"
 #import "WidthBox.h"
+#import "ShapeBox.h"
 
 @class DrawToolPanel;
 
@@ -36,14 +37,14 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color;
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type;
-
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectShapeType:(ShapeType)type;
 
 //online
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickChatButton:(UIButton *)button;
 - (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel;
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate, WidthBoxDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate, WidthBoxDelegate, ShapeBoxDelegate>
 {
     
 }
@@ -52,6 +53,7 @@
 @property(nonatomic, assign)CGFloat width;
 @property(nonatomic, assign)CGFloat alpha;
 @property(nonatomic, assign)ItemType penType;
+@property(nonatomic, assign)ShapeType shapeType;
 @property(nonatomic, assign)NSInteger timerDuration;
 
 

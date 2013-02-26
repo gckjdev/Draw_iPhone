@@ -58,6 +58,8 @@
 
 - (void)updateDrawPenWithPaint:(Paint *)paint;
 
+- (CGRect)updateLastAction:(DrawAction *)action;
+
 - (CGRect)updateLastPaint:(Paint *)paint;
 
 

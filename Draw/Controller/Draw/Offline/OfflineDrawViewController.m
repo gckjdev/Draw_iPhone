@@ -608,18 +608,19 @@
     }
 }
 
-
-- (void)didStartedTouch:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
 {
     [self.drawToolPanel dismissAllPopTipViews];
     [self updateRecentColors];
-    _isNewDraft = NO;
+    if (action) {
+        _isNewDraft = NO;
+    }
 }
 
 #define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
 #define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
 
-- (void)didDrawedPaint:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
     // add back auto save for future recovery
     if (![self supportRecovery]){
@@ -1147,7 +1148,10 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
 {
-    drawView.touchActionType = TouchActionTypeDraw;
+    if (drawView.touchActionType == TouchActionTypeGetColor) {
+        drawView.touchActionType = TouchActionTypeDraw;
+    }
+
     _isNewDraft = NO;
 
     self.eraserColor = [DrawColor colorWithColor:self.penColor];
@@ -1166,7 +1170,6 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
                bought:(BOOL)bought
 {
-    drawView.touchActionType = TouchActionTypeDraw;
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
@@ -1179,13 +1182,17 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
-    drawView.touchActionType = TouchActionTypeDraw;
+    if (drawView.touchActionType == TouchActionTypeGetColor) {
+        drawView.touchActionType = TouchActionTypeDraw;
+    }
     drawView.lineWidth = width;
     PPDebug(@"<didSelectWidth> width = %f",width);
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
 {
-    drawView.touchActionType = TouchActionTypeDraw;
+    if (drawView.touchActionType == TouchActionTypeGetColor) {
+        drawView.touchActionType = TouchActionTypeDraw;
+    }
     self.tempColor = color;
     self.penColor = color;
     [drawView setLineColor:[DrawColor colorWithColor:color]];
@@ -1193,7 +1200,9 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
 {
-    drawView.touchActionType = TouchActionTypeDraw;
+    if (drawView.touchActionType == TouchActionTypeGetColor) {
+        drawView.touchActionType = TouchActionTypeDraw;
+    }
     _alpha = alpha;
     if (drawView.lineColor != self.eraserColor) {
         DrawColor *color = [DrawColor colorWithColor:drawView.lineColor];
@@ -1205,6 +1214,12 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
     [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+}
+
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectShapeType:(ShapeType)type
+{
+    drawView.touchActionType = TouchActionTypeShape;
+    drawView.shapeType = type;
 }
 
 #pragma mark - Recent Color

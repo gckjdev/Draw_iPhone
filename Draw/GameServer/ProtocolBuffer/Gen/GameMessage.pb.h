@@ -213,6 +213,10 @@
 @class StartGameRequest_Builder;
 @class StartGameResponse;
 @class StartGameResponse_Builder;
+@class TimeoutSettingRequest;
+@class TimeoutSettingRequest_Builder;
+@class TimeoutSettingResponse;
+@class TimeoutSettingResponse_Builder;
 @class UnRegisterRoomsNotificationRequest;
 @class UnRegisterRoomsNotificationRequest_Builder;
 @class UnRegisterRoomsNotificationResponse;
@@ -1227,6 +1231,93 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) isWild;
 - (UserDiceNotification_Builder*) setIsWild:(BOOL) value;
 - (UserDiceNotification_Builder*) clearIsWild;
+@end
+
+@interface TimeoutSettingRequest : PBGeneratedMessage {
+@private
+  BOOL hasAction_:1;
+  PBZJHUserAction action;
+}
+- (BOOL) hasAction;
+@property (readonly) PBZJHUserAction action;
+
++ (TimeoutSettingRequest*) defaultInstance;
+- (TimeoutSettingRequest*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TimeoutSettingRequest_Builder*) builder;
++ (TimeoutSettingRequest_Builder*) builder;
++ (TimeoutSettingRequest_Builder*) builderWithPrototype:(TimeoutSettingRequest*) prototype;
+
++ (TimeoutSettingRequest*) parseFromData:(NSData*) data;
++ (TimeoutSettingRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TimeoutSettingRequest*) parseFromInputStream:(NSInputStream*) input;
++ (TimeoutSettingRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TimeoutSettingRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TimeoutSettingRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TimeoutSettingRequest_Builder : PBGeneratedMessage_Builder {
+@private
+  TimeoutSettingRequest* result;
+}
+
+- (TimeoutSettingRequest*) defaultInstance;
+
+- (TimeoutSettingRequest_Builder*) clear;
+- (TimeoutSettingRequest_Builder*) clone;
+
+- (TimeoutSettingRequest*) build;
+- (TimeoutSettingRequest*) buildPartial;
+
+- (TimeoutSettingRequest_Builder*) mergeFrom:(TimeoutSettingRequest*) other;
+- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasAction;
+- (PBZJHUserAction) action;
+- (TimeoutSettingRequest_Builder*) setAction:(PBZJHUserAction) value;
+- (TimeoutSettingRequest_Builder*) clearAction;
+@end
+
+@interface TimeoutSettingResponse : PBGeneratedMessage {
+@private
+}
+
++ (TimeoutSettingResponse*) defaultInstance;
+- (TimeoutSettingResponse*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (TimeoutSettingResponse_Builder*) builder;
++ (TimeoutSettingResponse_Builder*) builder;
++ (TimeoutSettingResponse_Builder*) builderWithPrototype:(TimeoutSettingResponse*) prototype;
+
++ (TimeoutSettingResponse*) parseFromData:(NSData*) data;
++ (TimeoutSettingResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TimeoutSettingResponse*) parseFromInputStream:(NSInputStream*) input;
++ (TimeoutSettingResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (TimeoutSettingResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (TimeoutSettingResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface TimeoutSettingResponse_Builder : PBGeneratedMessage_Builder {
+@private
+  TimeoutSettingResponse* result;
+}
+
+- (TimeoutSettingResponse*) defaultInstance;
+
+- (TimeoutSettingResponse_Builder*) clear;
+- (TimeoutSettingResponse_Builder*) clone;
+
+- (TimeoutSettingResponse*) build;
+- (TimeoutSettingResponse*) buildPartial;
+
+- (TimeoutSettingResponse_Builder*) mergeFrom:(TimeoutSettingResponse*) other;
+- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface BetRequest : PBGeneratedMessage {
@@ -3554,16 +3645,18 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface GameMessage : PBGeneratedMessage {
 @private
   BOOL hasSessionId_:1;
+  BOOL hasStartOffset_:1;
   BOOL hasMessageId_:1;
   BOOL hasTimeStamp_:1;
   BOOL hasRound_:1;
   BOOL hasMaxCount_:1;
   BOOL hasOnlineUserCount_:1;
-  BOOL hasStartOffset_:1;
-  BOOL hasMac_:1;
-  BOOL hasUserId_:1;
-  BOOL hasToUserId_:1;
   BOOL hasCurrentPlayUserId_:1;
+  BOOL hasToUserId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasMac_:1;
+  BOOL hasBetResponse_:1;
+  BOOL hasBetRequest_:1;
   BOOL hasUseItemResponse_:1;
   BOOL hasUseItemRequest_:1;
   BOOL hasBetDiceResponse_:1;
@@ -3574,9 +3667,6 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasRegisterRoomsNotificationResponse_:1;
   BOOL hasRegisterRoomsNotificationRequest_:1;
   BOOL hasGameOverNotificationResponse_:1;
-  BOOL hasGameOverNotificationRequest_:1;
-  BOOL hasBetRequest_:1;
-  BOOL hasBetResponse_:1;
   BOOL hasCheckCardRequest_:1;
   BOOL hasCheckCardResponse_:1;
   BOOL hasFoldCardRequest_:1;
@@ -3587,6 +3677,8 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasCompareCardResponse_:1;
   BOOL hasChangeCardRequest_:1;
   BOOL hasChangeCardResponse_:1;
+  BOOL hasTimeoutSettingRequest_:1;
+  BOOL hasTimeoutSettingResponse_:1;
   BOOL hasJoinGameRequest_:1;
   BOOL hasJoinGameResponse_:1;
   BOOL hasStartGameRequest_:1;
@@ -3612,20 +3704,23 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasCallDiceResponse_:1;
   BOOL hasOpenDiceRequest_:1;
   BOOL hasOpenDiceResponse_:1;
+  BOOL hasGameOverNotificationRequest_:1;
   BOOL hasCompleteReason_:1;
   BOOL hasResultCode_:1;
   BOOL hasCommand_:1;
   int64_t sessionId;
+  int32_t startOffset;
   int32_t messageId;
   int32_t timeStamp;
   int32_t round;
   int32_t maxCount;
   int32_t onlineUserCount;
-  int32_t startOffset;
-  NSString* mac;
-  NSString* userId;
-  NSString* toUserId;
   NSString* currentPlayUserId;
+  NSString* toUserId;
+  NSString* userId;
+  NSString* mac;
+  BetResponse* betResponse;
+  BetRequest* betRequest;
   UseItemResponse* useItemResponse;
   UseItemRequest* useItemRequest;
   BetDiceResponse* betDiceResponse;
@@ -3636,9 +3731,6 @@ BOOL BetTypeIsValidValue(BetType value);
   RegisterRoomsNotificationResponse* registerRoomsNotificationResponse;
   RegisterRoomsNotificationRequest* registerRoomsNotificationRequest;
   GameOverNotificationResponse* gameOverNotificationResponse;
-  GameOverNotificationRequest* gameOverNotificationRequest;
-  BetRequest* betRequest;
-  BetResponse* betResponse;
   CheckCardRequest* checkCardRequest;
   CheckCardResponse* checkCardResponse;
   FoldCardRequest* foldCardRequest;
@@ -3649,6 +3741,8 @@ BOOL BetTypeIsValidValue(BetType value);
   CompareCardResponse* compareCardResponse;
   ChangeCardRequest* changeCardRequest;
   ChangeCardResponse* changeCardResponse;
+  TimeoutSettingRequest* timeoutSettingRequest;
+  TimeoutSettingResponse* timeoutSettingResponse;
   JoinGameRequest* joinGameRequest;
   JoinGameResponse* joinGameResponse;
   StartGameRequest* startGameRequest;
@@ -3674,6 +3768,7 @@ BOOL BetTypeIsValidValue(BetType value);
   CallDiceResponse* callDiceResponse;
   OpenDiceRequest* openDiceRequest;
   OpenDiceResponse* openDiceResponse;
+  GameOverNotificationRequest* gameOverNotificationRequest;
   GameCompleteReason completeReason;
   GameResultCode resultCode;
   GameCommandType command;
@@ -3736,6 +3831,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasCompareCardResponse;
 - (BOOL) hasChangeCardRequest;
 - (BOOL) hasChangeCardResponse;
+- (BOOL) hasTimeoutSettingRequest;
+- (BOOL) hasTimeoutSettingResponse;
 - (BOOL) hasStartOffset;
 - (BOOL) hasMaxCount;
 - (BOOL) hasTimeStamp;
@@ -3798,6 +3895,8 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) CompareCardResponse* compareCardResponse;
 @property (readonly, retain) ChangeCardRequest* changeCardRequest;
 @property (readonly, retain) ChangeCardResponse* changeCardResponse;
+@property (readonly, retain) TimeoutSettingRequest* timeoutSettingRequest;
+@property (readonly, retain) TimeoutSettingResponse* timeoutSettingResponse;
 @property (readonly) int32_t startOffset;
 @property (readonly) int32_t maxCount;
 @property (readonly) int32_t timeStamp;
@@ -4222,6 +4321,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (GameMessage_Builder*) setChangeCardResponseBuilder:(ChangeCardResponse_Builder*) builderForValue;
 - (GameMessage_Builder*) mergeChangeCardResponse:(ChangeCardResponse*) value;
 - (GameMessage_Builder*) clearChangeCardResponse;
+
+- (BOOL) hasTimeoutSettingRequest;
+- (TimeoutSettingRequest*) timeoutSettingRequest;
+- (GameMessage_Builder*) setTimeoutSettingRequest:(TimeoutSettingRequest*) value;
+- (GameMessage_Builder*) setTimeoutSettingRequestBuilder:(TimeoutSettingRequest_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeTimeoutSettingRequest:(TimeoutSettingRequest*) value;
+- (GameMessage_Builder*) clearTimeoutSettingRequest;
+
+- (BOOL) hasTimeoutSettingResponse;
+- (TimeoutSettingResponse*) timeoutSettingResponse;
+- (GameMessage_Builder*) setTimeoutSettingResponse:(TimeoutSettingResponse*) value;
+- (GameMessage_Builder*) setTimeoutSettingResponseBuilder:(TimeoutSettingResponse_Builder*) builderForValue;
+- (GameMessage_Builder*) mergeTimeoutSettingResponse:(TimeoutSettingResponse*) value;
+- (GameMessage_Builder*) clearTimeoutSettingResponse;
 
 - (BOOL) hasStartOffset;
 - (int32_t) startOffset;
