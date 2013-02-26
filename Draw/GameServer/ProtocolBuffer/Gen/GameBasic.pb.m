@@ -3246,10 +3246,10 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 
 @interface PBShapeInfo ()
 @property int32_t type;
-@property Float32 startX;
-@property Float32 startY;
-@property Float32 endX;
-@property Float32 endY;
+@property Float32 width;
+@property int32_t penType;
+@property (retain) NSMutableArray* mutableRectComponentList;
+@property (retain) NSMutableArray* mutableColorComponentList;
 @end
 
 @implementation PBShapeInfo
@@ -3261,44 +3261,32 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
   hasType_ = !!value;
 }
 @synthesize type;
-- (BOOL) hasStartX {
-  return !!hasStartX_;
+- (BOOL) hasWidth {
+  return !!hasWidth_;
 }
-- (void) setHasStartX:(BOOL) value {
-  hasStartX_ = !!value;
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
 }
-@synthesize startX;
-- (BOOL) hasStartY {
-  return !!hasStartY_;
+@synthesize width;
+- (BOOL) hasPenType {
+  return !!hasPenType_;
 }
-- (void) setHasStartY:(BOOL) value {
-  hasStartY_ = !!value;
+- (void) setHasPenType:(BOOL) value {
+  hasPenType_ = !!value;
 }
-@synthesize startY;
-- (BOOL) hasEndX {
-  return !!hasEndX_;
-}
-- (void) setHasEndX:(BOOL) value {
-  hasEndX_ = !!value;
-}
-@synthesize endX;
-- (BOOL) hasEndY {
-  return !!hasEndY_;
-}
-- (void) setHasEndY:(BOOL) value {
-  hasEndY_ = !!value;
-}
-@synthesize endY;
+@synthesize penType;
+@synthesize mutableRectComponentList;
+@synthesize mutableColorComponentList;
 - (void) dealloc {
+  self.mutableRectComponentList = nil;
+  self.mutableColorComponentList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.type = 0;
-    self.startX = 0;
-    self.startY = 0;
-    self.endX = 0;
-    self.endY = 0;
+    self.width = 0;
+    self.penType = 0;
   }
   return self;
 }
@@ -3314,20 +3302,22 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
 - (PBShapeInfo*) defaultInstance {
   return defaultPBShapeInfoInstance;
 }
+- (NSArray*) rectComponentList {
+  return mutableRectComponentList;
+}
+- (Float32) rectComponentAtIndex:(int32_t) index {
+  id value = [mutableRectComponentList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) colorComponentList {
+  return mutableColorComponentList;
+}
+- (Float32) colorComponentAtIndex:(int32_t) index {
+  id value = [mutableColorComponentList objectAtIndex:index];
+  return [value floatValue];
+}
 - (BOOL) isInitialized {
   if (!self.hasType) {
-    return NO;
-  }
-  if (!self.hasStartX) {
-    return NO;
-  }
-  if (!self.hasStartY) {
-    return NO;
-  }
-  if (!self.hasEndX) {
-    return NO;
-  }
-  if (!self.hasEndY) {
     return NO;
   }
   return YES;
@@ -3336,17 +3326,17 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
   if (self.hasType) {
     [output writeInt32:1 value:self.type];
   }
-  if (self.hasStartX) {
-    [output writeFloat:2 value:self.startX];
+  if (self.hasWidth) {
+    [output writeFloat:2 value:self.width];
   }
-  if (self.hasStartY) {
-    [output writeFloat:3 value:self.startY];
+  if (self.hasPenType) {
+    [output writeInt32:3 value:self.penType];
   }
-  if (self.hasEndX) {
-    [output writeFloat:4 value:self.endX];
+  for (NSNumber* value in self.mutableRectComponentList) {
+    [output writeFloat:4 value:[value floatValue]];
   }
-  if (self.hasEndY) {
-    [output writeFloat:5 value:self.endY];
+  for (NSNumber* value in self.mutableColorComponentList) {
+    [output writeFloat:5 value:[value floatValue]];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3360,17 +3350,23 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
   if (self.hasType) {
     size += computeInt32Size(1, self.type);
   }
-  if (self.hasStartX) {
-    size += computeFloatSize(2, self.startX);
+  if (self.hasWidth) {
+    size += computeFloatSize(2, self.width);
   }
-  if (self.hasStartY) {
-    size += computeFloatSize(3, self.startY);
+  if (self.hasPenType) {
+    size += computeInt32Size(3, self.penType);
   }
-  if (self.hasEndX) {
-    size += computeFloatSize(4, self.endX);
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableRectComponentList.count;
+    size += dataSize;
+    size += 1 * self.mutableRectComponentList.count;
   }
-  if (self.hasEndY) {
-    size += computeFloatSize(5, self.endY);
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutableColorComponentList.count;
+    size += dataSize;
+    size += 1 * self.mutableColorComponentList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3450,17 +3446,23 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
   if (other.hasType) {
     [self setType:other.type];
   }
-  if (other.hasStartX) {
-    [self setStartX:other.startX];
+  if (other.hasWidth) {
+    [self setWidth:other.width];
   }
-  if (other.hasStartY) {
-    [self setStartY:other.startY];
+  if (other.hasPenType) {
+    [self setPenType:other.penType];
   }
-  if (other.hasEndX) {
-    [self setEndX:other.endX];
+  if (other.mutableRectComponentList.count > 0) {
+    if (result.mutableRectComponentList == nil) {
+      result.mutableRectComponentList = [NSMutableArray array];
+    }
+    [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
   }
-  if (other.hasEndY) {
-    [self setEndY:other.endY];
+  if (other.mutableColorComponentList.count > 0) {
+    if (result.mutableColorComponentList == nil) {
+      result.mutableColorComponentList = [NSMutableArray array];
+    }
+    [result.mutableColorComponentList addObjectsFromArray:other.mutableColorComponentList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3488,19 +3490,19 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
         break;
       }
       case 21: {
-        [self setStartX:[input readFloat]];
+        [self setWidth:[input readFloat]];
         break;
       }
-      case 29: {
-        [self setStartY:[input readFloat]];
+      case 24: {
+        [self setPenType:[input readInt32]];
         break;
       }
       case 37: {
-        [self setEndX:[input readFloat]];
+        [self addRectComponent:[input readFloat]];
         break;
       }
       case 45: {
-        [self setEndY:[input readFloat]];
+        [self addColorComponent:[input readFloat]];
         break;
       }
     }
@@ -3522,68 +3524,98 @@ static PBShapeInfo* defaultPBShapeInfoInstance = nil;
   result.type = 0;
   return self;
 }
-- (BOOL) hasStartX {
-  return result.hasStartX;
+- (BOOL) hasWidth {
+  return result.hasWidth;
 }
-- (Float32) startX {
-  return result.startX;
+- (Float32) width {
+  return result.width;
 }
-- (PBShapeInfo_Builder*) setStartX:(Float32) value {
-  result.hasStartX = YES;
-  result.startX = value;
+- (PBShapeInfo_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
   return self;
 }
-- (PBShapeInfo_Builder*) clearStartX {
-  result.hasStartX = NO;
-  result.startX = 0;
+- (PBShapeInfo_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 0;
   return self;
 }
-- (BOOL) hasStartY {
-  return result.hasStartY;
+- (BOOL) hasPenType {
+  return result.hasPenType;
 }
-- (Float32) startY {
-  return result.startY;
+- (int32_t) penType {
+  return result.penType;
 }
-- (PBShapeInfo_Builder*) setStartY:(Float32) value {
-  result.hasStartY = YES;
-  result.startY = value;
+- (PBShapeInfo_Builder*) setPenType:(int32_t) value {
+  result.hasPenType = YES;
+  result.penType = value;
   return self;
 }
-- (PBShapeInfo_Builder*) clearStartY {
-  result.hasStartY = NO;
-  result.startY = 0;
+- (PBShapeInfo_Builder*) clearPenType {
+  result.hasPenType = NO;
+  result.penType = 0;
   return self;
 }
-- (BOOL) hasEndX {
-  return result.hasEndX;
+- (NSArray*) rectComponentList {
+  if (result.mutableRectComponentList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableRectComponentList;
 }
-- (Float32) endX {
-  return result.endX;
+- (Float32) rectComponentAtIndex:(int32_t) index {
+  return [result rectComponentAtIndex:index];
 }
-- (PBShapeInfo_Builder*) setEndX:(Float32) value {
-  result.hasEndX = YES;
-  result.endX = value;
+- (PBShapeInfo_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableRectComponentList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
   return self;
 }
-- (PBShapeInfo_Builder*) clearEndX {
-  result.hasEndX = NO;
-  result.endX = 0;
+- (PBShapeInfo_Builder*) addRectComponent:(Float32) value {
+  if (result.mutableRectComponentList == nil) {
+    result.mutableRectComponentList = [NSMutableArray array];
+  }
+  [result.mutableRectComponentList addObject:[NSNumber numberWithFloat:value]];
   return self;
 }
-- (BOOL) hasEndY {
-  return result.hasEndY;
-}
-- (Float32) endY {
-  return result.endY;
-}
-- (PBShapeInfo_Builder*) setEndY:(Float32) value {
-  result.hasEndY = YES;
-  result.endY = value;
+- (PBShapeInfo_Builder*) addAllRectComponent:(NSArray*) values {
+  if (result.mutableRectComponentList == nil) {
+    result.mutableRectComponentList = [NSMutableArray array];
+  }
+  [result.mutableRectComponentList addObjectsFromArray:values];
   return self;
 }
-- (PBShapeInfo_Builder*) clearEndY {
-  result.hasEndY = NO;
-  result.endY = 0;
+- (PBShapeInfo_Builder*) clearRectComponentList {
+  result.mutableRectComponentList = nil;
+  return self;
+}
+- (NSArray*) colorComponentList {
+  if (result.mutableColorComponentList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableColorComponentList;
+}
+- (Float32) colorComponentAtIndex:(int32_t) index {
+  return [result colorComponentAtIndex:index];
+}
+- (PBShapeInfo_Builder*) replaceColorComponentAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutableColorComponentList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBShapeInfo_Builder*) addColorComponent:(Float32) value {
+  if (result.mutableColorComponentList == nil) {
+    result.mutableColorComponentList = [NSMutableArray array];
+  }
+  [result.mutableColorComponentList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBShapeInfo_Builder*) addAllColorComponent:(NSArray*) values {
+  if (result.mutableColorComponentList == nil) {
+    result.mutableColorComponentList = [NSMutableArray array];
+  }
+  [result.mutableColorComponentList addObjectsFromArray:values];
+  return self;
+}
+- (PBShapeInfo_Builder*) clearColorComponentList {
+  result.mutableColorComponentList = nil;
   return self;
 }
 @end

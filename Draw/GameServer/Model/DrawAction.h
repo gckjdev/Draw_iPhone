@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ItemType.h"
+#import "ShapeInfo.h"
 
 @class Paint;
 @class PBDrawAction;
@@ -14,10 +16,13 @@
 @class PBNoCompressDrawAction;
 @class PBNoCompressDrawData;
 
+
+
 typedef enum {
     
     DRAW_ACTION_TYPE_DRAW,
-    DRAW_ACTION_TYPE_CLEAN
+    DRAW_ACTION_TYPE_CLEAN,
+    DRAW_ACTION_TYPE_SHAPE,
 } DRAW_ACTION_TYPE;
 
 @interface DrawAction : NSObject <NSCoding>{
@@ -26,6 +31,7 @@ typedef enum {
 
 @property (nonatomic, assign) DRAW_ACTION_TYPE type;
 @property (nonatomic, retain) Paint *paint;
+@property (nonatomic, retain) ShapeInfo *shapeInfo;
 
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action dataVersion:(int)dataVersion;
 - (PBNoCompressDrawAction *)toPBNoCompressDrawAction;
@@ -35,6 +41,9 @@ typedef enum {
 - (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
 
 + (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
++ (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo;
+
+
 + (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color;
 + (DrawAction *)clearScreenAction;
 
@@ -61,5 +70,6 @@ typedef enum {
 - (BOOL)isChangeBackAction;
 - (BOOL)isCleanAction;
 - (BOOL)isDrawAction;
-
+- (BOOL)isShapeAction;
 @end
+

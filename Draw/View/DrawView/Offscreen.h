@@ -12,6 +12,7 @@
 @class DrawColor;
 @class DrawAction;
 @class Paint;
+@class ShapeInfo;
 
 @interface Offscreen : NSObject
 
@@ -39,8 +40,9 @@
                    actionCount:(NSInteger)actionCount;
 
 - (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear;
+- (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear;
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width;
-//- (CGRect)drawAction:(DrawAction *)action;
+
 - (CGRect)drawAction:(DrawAction *)action clear:(BOOL)clear;
 - (void)clear;
 - (void)showInContext:(CGContextRef)context;

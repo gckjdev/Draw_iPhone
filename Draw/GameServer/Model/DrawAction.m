@@ -21,7 +21,8 @@
 
 - (void)dealloc
 {
-    [_paint release];
+    PPRelease(_paint);
+    PPRelease(_shapeInfo);
     [super dealloc];
 }
 
@@ -30,7 +31,7 @@
     self = [ super init];
     if (self) {
         self.type = action.type;
-        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+        if (self.type == DRAW_ACTION_TYPE_DRAW) {
             DrawColor *color = nil;
             
             if ([DrawUtils isNotVersion1:dataVersion]){
@@ -75,6 +76,11 @@
             PPRelease(pointList);
             PPRelease(paint);
         }
+        else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+            self.shapeInfo = [ShapeInfo shapeWithPBShapeInfo:action.shapeInfo];
+        }else{
+            //Clean
+        }
     }
     return self;
 
@@ -84,7 +90,7 @@
 {
     PBNoCompressDrawAction_Builder *builder = [[PBNoCompressDrawAction_Builder alloc] init];
     [builder setType:self.type];
-    if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+    if (self.type == DRAW_ACTION_TYPE_DRAW) {
         Paint *paint = self.paint;
         [builder setWidth:paint.width];
         [builder setPenType:paint.penType];
@@ -103,23 +109,10 @@
                 [builder addPointY:[value y]];
             }
         }
-        
-        /* below is old data storage
-        PBColor *color = [paint.color toPBColor];
-        [builder setColor:color];
-        
-        //set point list
-        NSUInteger pCount = [paint pointCount];
-        if (pCount != 0) {
-            NSMutableArray *pList = [NSMutableArray arrayWithCapacity:pCount];
-            PBPoint_Builder *pBuilder = [[PBPoint_Builder alloc] init];
-            for (PointNode *value in paint.pointNodeList) {
-                [pList addObject:value.toPBPoint];
-            }
-            PPRelease(pBuilder);
-            [builder addAllPoint:pList];
-        }
-         */
+    }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+        [builder setShapeInfo:[self.shapeInfo toPBShape]];
+    }else{
+        //Clean
     }
     PBNoCompressDrawAction *action = [builder build];
     [builder release];
@@ -140,7 +133,7 @@
     if (self) {
         self.type = action.type;
         
-        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+        if (self.type == DRAW_ACTION_TYPE_DRAW) {
             NSInteger intColor = [action color];
             CGFloat lineWidth = [action width];        
             NSArray *pointList = [action pointsList];
@@ -148,6 +141,8 @@
             Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList penType:penType];
             self.paint = paint;
             [paint release];
+        }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+            
         }
     }
     return self;
@@ -158,7 +153,13 @@
     return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
 }
 
-
++ (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo
+{
+    DrawAction *action = [[DrawAction alloc] init];
+    [action setType:DRAW_ACTION_TYPE_SHAPE];
+    [action setShapeInfo:shapeInfo];
+    return [action autorelease];
+}
 
 + (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color
 {
@@ -190,6 +191,10 @@
     return self.type == DRAW_ACTION_TYPE_DRAW;
 }
 
+- (BOOL)isShapeAction
+{
+    return self.type = DRAW_ACTION_TYPE_SHAPE;
+}
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.paint forKey:@"paint"];

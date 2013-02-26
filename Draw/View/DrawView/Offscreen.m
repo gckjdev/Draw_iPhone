@@ -137,10 +137,12 @@
         CGContextFillRect(context, _rect);
         return _rect;
     }else if([action isDrawAction]){
-//        [self updateContext:context withPaint:action.paint];
         [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
         CGRect rect = [self strokePaint:action.paint inContext:context clear:NO];
         return rect;
+    }else if([action isShapeAction]){
+        [self setStrokeColor:action.shapeInfo.color lineWidth:action.shapeInfo.width inContext:context];
+        return [self drawShape:action.shapeInfo clear:NO];
     }
     
     return _rect;
@@ -155,8 +157,20 @@
     }
     _actionCount ++;
     
-    return [self strokePaint:paint inContext:cacheContext clear:clear];
+    return [self strokePaint:paint inContext:cacheContext clear:NO];
 }
+
+- (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
+{
+    if (clear) {
+        [self clear];
+    }
+    _actionCount ++;
+    
+    [shape drawInContext:cacheContext];
+    return [shape rect];
+}
+
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
 {
 //    [self setStrokeColor:color lineWidth:width inContext:cacheContext];

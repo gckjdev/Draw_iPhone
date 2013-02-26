@@ -146,6 +146,25 @@
     return [self toString];
 }
 
+- (NSArray *)toRGBAComponent
+{
+    NSArray *array = [NSArray arrayWithObjects:@(self.red),@(self.green),@(self.blue),@(self.alpha), nil];
+    return array;
+}
+
++ (DrawColor *)colorWithRGBAComponent:(NSArray *)component
+{
+    if ([component count] >= 4) {
+        CGFloat red = [[component objectAtIndex:0] floatValue];
+        CGFloat green = [[component objectAtIndex:1] floatValue];
+        CGFloat blue = [[component objectAtIndex:2] floatValue];
+        CGFloat alpha = [[component objectAtIndex:3] floatValue];
+        return [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
+    }
+    return nil;
+}
+
+
 + (DrawColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
     return [[[DrawColor alloc] initWithRed:red green:green blue:blue alpha:alpha]autorelease];
