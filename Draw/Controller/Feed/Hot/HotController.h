@@ -12,7 +12,7 @@
 #import "TopPlayerView.h"
 #import "UserService.h"
 
-@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,TopPlayerViewDelegate,UserServiceDelegate>
+@interface HotController : CommonTabController<FeedServiceDelegate,RankViewDelegate,TopPlayerViewDelegate,UserServiceDelegate, UIActionSheetDelegate>
 {
     
 }

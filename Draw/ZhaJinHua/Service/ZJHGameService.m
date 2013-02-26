@@ -52,8 +52,7 @@ static ZJHGameService *_defaultService;
         _networkClient = [CommonGameNetworkClient defaultInstance];
         _userManager = [UserManager defaultManager];
         _accountService = [AccountService defaultService];
-//        _getUserInfoQueue = dispatch_queue_create("ZJHGameServiceGetUserInfoQueue", NULL);
-//        self.userSimpleInfo = [NSMutableDictionary dictionary];
+        _timeoutAcion = PBZJHUserActionFoldCard;
     }
 
     return self;
@@ -61,8 +60,6 @@ static ZJHGameService *_defaultService;
 
 - (void)dealloc
 {
-//    dispatch_release(_getUserInfoQueue);
-//    [_userSimpleInfo release];
     [super dealloc];
 }
 
@@ -514,6 +511,7 @@ static ZJHGameService *_defaultService;
             break;
             
         case PBZJHRuleTypeNormal:
+            return @"192.168.1.5:8028";
             return [ConfigManager getZJHServerListStringWithNormal];
             break;
             
@@ -630,6 +628,14 @@ static ZJHGameService *_defaultService;
 - (void)reset
 {
     self.gameState = nil;
+}
+
+- (void)setTimeoutSettingWithAction:(PBZJHUserAction)action
+{
+    _timeoutAcion = action;
+    [_networkClient sendTimeoutSettingRequest:self.userId
+                                    sessionId:self.session.sessionId
+                                       action:action];
 }
 
 @end

@@ -120,4 +120,23 @@
     }
 }
 
+- (void)sendTimeoutSettingRequest:(NSString *)userId
+                         sessionId:(int)sessionId
+                            action:(int)action
+{
+    TimeoutSettingRequest_Builder *builder = [[[TimeoutSettingRequest_Builder alloc] init] autorelease];
+    [builder setAction:action];
+    TimeoutSettingRequest *timeoutSetting = [builder build];
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeTimeoutSettingRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setTimeoutSettingRequest:timeoutSetting];
+    
+    GameMessage* gameMessage = [self build:messageBuilder];
+    [self sendData:[gameMessage data]];
+}
+
 @end

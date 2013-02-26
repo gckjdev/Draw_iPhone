@@ -7,7 +7,22 @@
 //
 
 #import "GameItemService.h"
+//#import "GameNetworkRequest.h"
+//#import "PPNetworkRequest.h"
+//#import "GameNetworkConstants.h"
 
 @implementation GameItemService
+
+- (void)getItem:(int)itemId
+{
+}
+
+- (void)getItemList
+{
+    
+}
+
+
+
 
 @end

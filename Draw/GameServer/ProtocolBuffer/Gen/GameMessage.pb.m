@@ -4022,6 +4022,327 @@ static UserDiceNotification* defaultUserDiceNotificationInstance = nil;
 }
 @end
 
+@interface TimeoutSettingRequest ()
+@property PBZJHUserAction action;
+@end
+
+@implementation TimeoutSettingRequest
+
+- (BOOL) hasAction {
+  return !!hasAction_;
+}
+- (void) setHasAction:(BOOL) value {
+  hasAction_ = !!value;
+}
+@synthesize action;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.action = PBZJHUserActionFoldCard;
+  }
+  return self;
+}
+static TimeoutSettingRequest* defaultTimeoutSettingRequestInstance = nil;
++ (void) initialize {
+  if (self == [TimeoutSettingRequest class]) {
+    defaultTimeoutSettingRequestInstance = [[TimeoutSettingRequest alloc] init];
+  }
+}
++ (TimeoutSettingRequest*) defaultInstance {
+  return defaultTimeoutSettingRequestInstance;
+}
+- (TimeoutSettingRequest*) defaultInstance {
+  return defaultTimeoutSettingRequestInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasAction) {
+    [output writeEnum:1 value:self.action];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasAction) {
+    size += computeEnumSize(1, self.action);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (TimeoutSettingRequest*) parseFromData:(NSData*) data {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromData:data] build];
+}
++ (TimeoutSettingRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingRequest*) parseFromInputStream:(NSInputStream*) input {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromInputStream:input] build];
+}
++ (TimeoutSettingRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (TimeoutSettingRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingRequest*)[[[TimeoutSettingRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingRequest_Builder*) builder {
+  return [[[TimeoutSettingRequest_Builder alloc] init] autorelease];
+}
++ (TimeoutSettingRequest_Builder*) builderWithPrototype:(TimeoutSettingRequest*) prototype {
+  return [[TimeoutSettingRequest builder] mergeFrom:prototype];
+}
+- (TimeoutSettingRequest_Builder*) builder {
+  return [TimeoutSettingRequest builder];
+}
+@end
+
+@interface TimeoutSettingRequest_Builder()
+@property (retain) TimeoutSettingRequest* result;
+@end
+
+@implementation TimeoutSettingRequest_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[TimeoutSettingRequest alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (TimeoutSettingRequest_Builder*) clear {
+  self.result = [[[TimeoutSettingRequest alloc] init] autorelease];
+  return self;
+}
+- (TimeoutSettingRequest_Builder*) clone {
+  return [TimeoutSettingRequest builderWithPrototype:result];
+}
+- (TimeoutSettingRequest*) defaultInstance {
+  return [TimeoutSettingRequest defaultInstance];
+}
+- (TimeoutSettingRequest*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (TimeoutSettingRequest*) buildPartial {
+  TimeoutSettingRequest* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (TimeoutSettingRequest_Builder*) mergeFrom:(TimeoutSettingRequest*) other {
+  if (other == [TimeoutSettingRequest defaultInstance]) {
+    return self;
+  }
+  if (other.hasAction) {
+    [self setAction:other.action];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (TimeoutSettingRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        int32_t value = [input readEnum];
+        if (PBZJHUserActionIsValidValue(value)) {
+          [self setAction:value];
+        } else {
+          [unknownFields mergeVarintField:1 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasAction {
+  return result.hasAction;
+}
+- (PBZJHUserAction) action {
+  return result.action;
+}
+- (TimeoutSettingRequest_Builder*) setAction:(PBZJHUserAction) value {
+  result.hasAction = YES;
+  result.action = value;
+  return self;
+}
+- (TimeoutSettingRequest_Builder*) clearAction {
+  result.hasAction = NO;
+  result.action = PBZJHUserActionFoldCard;
+  return self;
+}
+@end
+
+@interface TimeoutSettingResponse ()
+@end
+
+@implementation TimeoutSettingResponse
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static TimeoutSettingResponse* defaultTimeoutSettingResponseInstance = nil;
++ (void) initialize {
+  if (self == [TimeoutSettingResponse class]) {
+    defaultTimeoutSettingResponseInstance = [[TimeoutSettingResponse alloc] init];
+  }
+}
++ (TimeoutSettingResponse*) defaultInstance {
+  return defaultTimeoutSettingResponseInstance;
+}
+- (TimeoutSettingResponse*) defaultInstance {
+  return defaultTimeoutSettingResponseInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (TimeoutSettingResponse*) parseFromData:(NSData*) data {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromData:data] build];
+}
++ (TimeoutSettingResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingResponse*) parseFromInputStream:(NSInputStream*) input {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromInputStream:input] build];
+}
++ (TimeoutSettingResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (TimeoutSettingResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TimeoutSettingResponse*)[[[TimeoutSettingResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (TimeoutSettingResponse_Builder*) builder {
+  return [[[TimeoutSettingResponse_Builder alloc] init] autorelease];
+}
++ (TimeoutSettingResponse_Builder*) builderWithPrototype:(TimeoutSettingResponse*) prototype {
+  return [[TimeoutSettingResponse builder] mergeFrom:prototype];
+}
+- (TimeoutSettingResponse_Builder*) builder {
+  return [TimeoutSettingResponse builder];
+}
+@end
+
+@interface TimeoutSettingResponse_Builder()
+@property (retain) TimeoutSettingResponse* result;
+@end
+
+@implementation TimeoutSettingResponse_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[TimeoutSettingResponse alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (TimeoutSettingResponse_Builder*) clear {
+  self.result = [[[TimeoutSettingResponse alloc] init] autorelease];
+  return self;
+}
+- (TimeoutSettingResponse_Builder*) clone {
+  return [TimeoutSettingResponse builderWithPrototype:result];
+}
+- (TimeoutSettingResponse*) defaultInstance {
+  return [TimeoutSettingResponse defaultInstance];
+}
+- (TimeoutSettingResponse*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (TimeoutSettingResponse*) buildPartial {
+  TimeoutSettingResponse* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (TimeoutSettingResponse_Builder*) mergeFrom:(TimeoutSettingResponse*) other {
+  if (other == [TimeoutSettingResponse defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (TimeoutSettingResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
 @interface BetRequest ()
 @property int32_t singleBet;
 @property int32_t count;
@@ -13491,6 +13812,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
 @property (retain) CompareCardResponse* compareCardResponse;
 @property (retain) ChangeCardRequest* changeCardRequest;
 @property (retain) ChangeCardResponse* changeCardResponse;
+@property (retain) TimeoutSettingRequest* timeoutSettingRequest;
+@property (retain) TimeoutSettingResponse* timeoutSettingResponse;
 @property int32_t startOffset;
 @property int32_t maxCount;
 @property int32_t timeStamp;
@@ -13905,6 +14228,20 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   hasChangeCardResponse_ = !!value;
 }
 @synthesize changeCardResponse;
+- (BOOL) hasTimeoutSettingRequest {
+  return !!hasTimeoutSettingRequest_;
+}
+- (void) setHasTimeoutSettingRequest:(BOOL) value {
+  hasTimeoutSettingRequest_ = !!value;
+}
+@synthesize timeoutSettingRequest;
+- (BOOL) hasTimeoutSettingResponse {
+  return !!hasTimeoutSettingResponse_;
+}
+- (void) setHasTimeoutSettingResponse:(BOOL) value {
+  hasTimeoutSettingResponse_ = !!value;
+}
+@synthesize timeoutSettingResponse;
 - (BOOL) hasStartOffset {
   return !!hasStartOffset_;
 }
@@ -13985,6 +14322,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
   self.compareCardResponse = nil;
   self.changeCardRequest = nil;
   self.changeCardResponse = nil;
+  self.timeoutSettingRequest = nil;
+  self.timeoutSettingResponse = nil;
   self.mac = nil;
   [super dealloc];
 }
@@ -14048,6 +14387,8 @@ static FacetimeChatResponse* defaultFacetimeChatResponseInstance = nil;
     self.compareCardResponse = [CompareCardResponse defaultInstance];
     self.changeCardRequest = [ChangeCardRequest defaultInstance];
     self.changeCardResponse = [ChangeCardResponse defaultInstance];
+    self.timeoutSettingRequest = [TimeoutSettingRequest defaultInstance];
+    self.timeoutSettingResponse = [TimeoutSettingResponse defaultInstance];
     self.startOffset = 0;
     self.maxCount = 0;
     self.timeStamp = 0;
@@ -14366,6 +14707,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   if (self.hasChangeCardResponse) {
     [output writeMessage:162 value:self.changeCardResponse];
   }
+  if (self.hasTimeoutSettingRequest) {
+    [output writeMessage:163 value:self.timeoutSettingRequest];
+  }
+  if (self.hasTimeoutSettingResponse) {
+    [output writeMessage:164 value:self.timeoutSettingResponse];
+  }
   if (self.hasStartOffset) {
     [output writeInt32:1000 value:self.startOffset];
   }
@@ -14560,6 +14907,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasChangeCardResponse) {
     size += computeMessageSize(162, self.changeCardResponse);
+  }
+  if (self.hasTimeoutSettingRequest) {
+    size += computeMessageSize(163, self.timeoutSettingRequest);
+  }
+  if (self.hasTimeoutSettingResponse) {
+    size += computeMessageSize(164, self.timeoutSettingResponse);
   }
   if (self.hasStartOffset) {
     size += computeInt32Size(1000, self.startOffset);
@@ -14821,6 +15174,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (other.hasChangeCardResponse) {
     [self mergeChangeCardResponse:other.changeCardResponse];
+  }
+  if (other.hasTimeoutSettingRequest) {
+    [self mergeTimeoutSettingRequest:other.timeoutSettingRequest];
+  }
+  if (other.hasTimeoutSettingResponse) {
+    [self mergeTimeoutSettingResponse:other.timeoutSettingResponse];
   }
   if (other.hasStartOffset) {
     [self setStartOffset:other.startOffset];
@@ -15340,6 +15699,24 @@ static GameMessage* defaultGameMessageInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setChangeCardResponse:[subBuilder buildPartial]];
+        break;
+      }
+      case 1306: {
+        TimeoutSettingRequest_Builder* subBuilder = [TimeoutSettingRequest builder];
+        if (self.hasTimeoutSettingRequest) {
+          [subBuilder mergeFrom:self.timeoutSettingRequest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setTimeoutSettingRequest:[subBuilder buildPartial]];
+        break;
+      }
+      case 1314: {
+        TimeoutSettingResponse_Builder* subBuilder = [TimeoutSettingResponse builder];
+        if (self.hasTimeoutSettingResponse) {
+          [subBuilder mergeFrom:self.timeoutSettingResponse];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setTimeoutSettingResponse:[subBuilder buildPartial]];
         break;
       }
       case 8000: {
@@ -16959,6 +17336,66 @@ static GameMessage* defaultGameMessageInstance = nil;
 - (GameMessage_Builder*) clearChangeCardResponse {
   result.hasChangeCardResponse = NO;
   result.changeCardResponse = [ChangeCardResponse defaultInstance];
+  return self;
+}
+- (BOOL) hasTimeoutSettingRequest {
+  return result.hasTimeoutSettingRequest;
+}
+- (TimeoutSettingRequest*) timeoutSettingRequest {
+  return result.timeoutSettingRequest;
+}
+- (GameMessage_Builder*) setTimeoutSettingRequest:(TimeoutSettingRequest*) value {
+  result.hasTimeoutSettingRequest = YES;
+  result.timeoutSettingRequest = value;
+  return self;
+}
+- (GameMessage_Builder*) setTimeoutSettingRequestBuilder:(TimeoutSettingRequest_Builder*) builderForValue {
+  return [self setTimeoutSettingRequest:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeTimeoutSettingRequest:(TimeoutSettingRequest*) value {
+  if (result.hasTimeoutSettingRequest &&
+      result.timeoutSettingRequest != [TimeoutSettingRequest defaultInstance]) {
+    result.timeoutSettingRequest =
+      [[[TimeoutSettingRequest builderWithPrototype:result.timeoutSettingRequest] mergeFrom:value] buildPartial];
+  } else {
+    result.timeoutSettingRequest = value;
+  }
+  result.hasTimeoutSettingRequest = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearTimeoutSettingRequest {
+  result.hasTimeoutSettingRequest = NO;
+  result.timeoutSettingRequest = [TimeoutSettingRequest defaultInstance];
+  return self;
+}
+- (BOOL) hasTimeoutSettingResponse {
+  return result.hasTimeoutSettingResponse;
+}
+- (TimeoutSettingResponse*) timeoutSettingResponse {
+  return result.timeoutSettingResponse;
+}
+- (GameMessage_Builder*) setTimeoutSettingResponse:(TimeoutSettingResponse*) value {
+  result.hasTimeoutSettingResponse = YES;
+  result.timeoutSettingResponse = value;
+  return self;
+}
+- (GameMessage_Builder*) setTimeoutSettingResponseBuilder:(TimeoutSettingResponse_Builder*) builderForValue {
+  return [self setTimeoutSettingResponse:[builderForValue build]];
+}
+- (GameMessage_Builder*) mergeTimeoutSettingResponse:(TimeoutSettingResponse*) value {
+  if (result.hasTimeoutSettingResponse &&
+      result.timeoutSettingResponse != [TimeoutSettingResponse defaultInstance]) {
+    result.timeoutSettingResponse =
+      [[[TimeoutSettingResponse builderWithPrototype:result.timeoutSettingResponse] mergeFrom:value] buildPartial];
+  } else {
+    result.timeoutSettingResponse = value;
+  }
+  result.hasTimeoutSettingResponse = YES;
+  return self;
+}
+- (GameMessage_Builder*) clearTimeoutSettingResponse {
+  result.hasTimeoutSettingResponse = NO;
+  result.timeoutSettingResponse = [TimeoutSettingResponse defaultInstance];
   return self;
 }
 - (BOOL) hasStartOffset {

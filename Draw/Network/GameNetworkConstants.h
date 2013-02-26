@@ -145,6 +145,10 @@
 #define ACTION_TYPE_COMMENT  3
 #define ACTION_TYPE_SAVE     100
 
+// for item
+#define METHOD_BUY_ITEM @"buyItem"
+
+
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
