@@ -18,6 +18,19 @@
     [super dealloc];
 }
 
++ (id)shapeWithType:(ShapeType)type
+            penType:(ItemType)penType
+              width:(CGFloat)with
+              color:(DrawColor *)color
+{
+    ShapeInfo *shapeInfo = [[ShapeInfo alloc] init];
+    [shapeInfo setType:type];
+    [shapeInfo setPenType:penType];
+    [shapeInfo setWidth:with];
+    [shapeInfo setColor:color];
+    return [shapeInfo autorelease];
+}
+
 + (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo
 {
     ShapeInfo *shape = [[ShapeInfo alloc] init];

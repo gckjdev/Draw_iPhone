@@ -21,6 +21,7 @@
 #import "ConfigManager.h"
 #import "AnalyticsManager.h"
 #import "WidthView.h"
+#import "ShapeBox.h"
 
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
@@ -43,6 +44,7 @@
 - (IBAction)clickPaintBucket:(id)sender;
 - (IBAction)clickChat:(id)sender;
 - (IBAction)clickWidthBox:(UIButton *)widthBox;
+- (IBAction)clickShape:(id)sender;
 - (void)selectPen;
 - (void)selectEraser;
 
@@ -65,6 +67,7 @@
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *palettePopTipView;
 @property (retain, nonatomic) CMPopTipView *widthBoxPopTipView;
+@property (retain, nonatomic) CMPopTipView *shapeBoxPopTipView;
 
 
 @property (retain, nonatomic) NSTimer *timer;
@@ -269,7 +272,6 @@
         [self.colorBoxPopTipView dismissAnimated:NO];
         self.colorBoxPopTipView = nil;
     }
-
     if (self.palettePopTipView != popView) {
         [self.palettePopTipView dismissAnimated:NO];
         self.palettePopTipView = nil;
@@ -277,6 +279,10 @@
     if (self.widthBoxPopTipView != popView) {
         [self.widthBoxPopTipView dismissAnimated:NO];
         self.widthBoxPopTipView = nil;
+    }
+    if(popView != self.shapeBoxPopTipView){
+        [self.shapeBoxPopTipView dismissAnimated:NO];
+        self.shapeBoxPopTipView = nil;
     }
 }
 
@@ -327,6 +333,15 @@
         return box;
     } atView:widthBox setter:@selector(setWidthBoxPopTipView:)];
     AnalyticsReport(DRAW_CLICK_WIDTH_BOX);
+}
+
+- (IBAction)clickShape:(id)sender {
+    [self handlePopTipView:_shapeBoxPopTipView contentView:^UIView *{
+        ShapeBox *shapeBox = [ShapeBox shapeBoxWithDelegate:self];
+        [shapeBox setShapeType:self.shapeType];
+        return shapeBox;
+    } atView:sender setter:@selector(setShapeBoxPopTipView:)];
+    AnalyticsReport(DRAW_CLICK_SHAPE_BOX);
 }
 
 
@@ -592,6 +607,8 @@
         self.colorBoxPopTipView = nil;
     }else if(popTipView == self.widthBoxPopTipView){
         self.widthBoxPopTipView = nil;
+    }else if(popTipView == self.shapeBoxPopTipView){
+        self.shapeBoxPopTipView = nil;
     }
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
@@ -604,6 +621,8 @@
         self.colorBoxPopTipView = nil;
     }else if(popTipView == self.widthBoxPopTipView){
         self.widthBoxPopTipView = nil;
+    }else if(popTipView == self.shapeBoxPopTipView){
+        self.shapeBoxPopTipView = nil;
     }
 }
 
@@ -615,6 +634,22 @@
     [self.widthSlider setValue:width];
     [self drawSlider:self.widthSlider didFinishChangeValue:width];
 }
+
+#pragma mark ShapeBox Delegate
+
+- (void)shapeBox:(ShapeBox *)shapeBox didClickCloseButton:(UIButton *)close
+{
+    [self dismissAllPopTipViews];
+}
+
+- (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type
+{
+    self.shapeType = type;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectShapeType:)]) {
+        [self.delegate drawToolPanel:self didSelectShapeType:type];
+    }
+}
+
 #pragma mark - Color Box delegate
 
 - (void)dismissColorBoxPopTipView
@@ -677,6 +712,7 @@
     PPRelease(_penPopTipView);
     PPRelease(_palettePopTipView);
     PPRelease(_widthBoxPopTipView);
+    PPRelease(_shapeBoxPopTipView);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);

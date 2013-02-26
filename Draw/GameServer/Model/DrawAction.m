@@ -153,7 +153,13 @@
     return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
 }
 
-
++ (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo
+{
+    DrawAction *action = [[DrawAction alloc] init];
+    [action setType:DRAW_ACTION_TYPE_SHAPE];
+    [action setShapeInfo:shapeInfo];
+    return [action autorelease];
+}
 
 + (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color
 {
@@ -185,6 +191,10 @@
     return self.type == DRAW_ACTION_TYPE_DRAW;
 }
 
+- (BOOL)isShapeAction
+{
+    return self.type = DRAW_ACTION_TYPE_SHAPE;
+}
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.paint forKey:@"paint"];

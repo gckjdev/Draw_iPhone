@@ -608,18 +608,19 @@
     }
 }
 
-
-- (void)didStartedTouch:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
 {
     [self.drawToolPanel dismissAllPopTipViews];
     [self updateRecentColors];
-    _isNewDraft = NO;
+    if (action) {
+        _isNewDraft = NO;
+    }
 }
 
 #define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
 #define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
 
-- (void)didDrawedPaint:(Paint *)paint
+- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
     // add back auto save for future recovery
     if (![self supportRecovery]){

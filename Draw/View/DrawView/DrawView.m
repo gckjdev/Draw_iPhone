@@ -81,12 +81,22 @@
     return p;
 }
 
-- (void)addNewPaint
+- (void)addNewAction
 {
-    Paint *currentPaint = [Paint paintWithWidth:self.lineWidth color:self.lineColor penType:_penType];
-    _currentAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
-    [self.drawActionList addObject:_currentAction];
-    
+    if (self.touchActionType == DRAW_ACTION_TYPE_DRAW) {
+        Paint *currentPaint = [Paint paintWithWidth:self.lineWidth
+                                              color:self.lineColor
+                                            penType:_penType];
+        _currentAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint];
+        [self.drawActionList addObject:_currentAction];
+    }else if(self.touchActionType == DRAW_ACTION_TYPE_SHAPE){
+        ShapeInfo *shape = [ShapeInfo shapeWithType:self.shapeType
+                                            penType:_penType
+                                              width:_lineWidth
+                                              color:_lineColor];
+        _currentAction = [DrawAction actionWithShpapeInfo:shape];
+        [self.drawActionList addObject:_currentAction];
+    }
 }
 
 - (void)addPoint:(CGPoint)point toDrawAction:(DrawAction *)drawAction
@@ -170,6 +180,34 @@ typedef enum {
     }
 }
 
+- (void)handleShapeTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
+{
+    for (UITouch *touche in touches) {
+        [toucheSet addObject:touche];
+    }
+    NSInteger count = [toucheSet count];
+    if (type == TouchTypeEnd) {
+        [toucheSet removeAllObjects];
+    }
+    if (count != 1) {
+        PPDebug(@"<handleShapeTouches> touch tapCount = %d, type = %d", count, type);
+        return;
+        
+    }
+    UITouch *touch  = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    ShapeInfo *shape = [_currentAction shapeInfo];
+    
+    if (type == TouchTypeBegin) {
+        [shape setStartPoint:point];
+        
+    }else{
+        [shape setEndPoint:point];
+    }
+}
+
+
 - (DrawColor *)colorAtPoint:(CGPoint)point inContext:(CGContextRef)context
 {
     unsigned char* data = CGBitmapContextGetData (context);
@@ -193,6 +231,7 @@ typedef enum {
 //    if (data) { free(data); }
     return color;
 }
+
 
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
@@ -248,39 +287,46 @@ typedef enum {
 
     if (self.touchActionType == TouchActionTypeGetColor) {
         [self handleGetColorTouches:touches withEvent:event type:TouchTypeBegin];
-        return;
+    }else{
+        [self addNewAction];
+        if(self.touchActionType == TouchActionTypeShape){
+            [self handleShapeTouches:touches withEvent:event type:TouchTypeBegin];
+        }else if(self.touchActionType == TouchActionTypeDraw){
+            [self handleDrawTouches:touches withEvent:event type:TouchTypeBegin];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didStartTouchWithAction:)]) {
+            [self.delegate drawView:self didStartTouchWithAction:_currentAction];
+        }
+        [self clearRedoStack];
     }
-    [self addNewPaint];
-
-    [self handleDrawTouches:touches withEvent:event type:TouchTypeBegin];
-    
-    if (self.delegate && [self.delegate
-                            respondsToSelector:@selector(didStartedTouch:)]) {
-            [self.delegate didStartedTouch:_currentAction.paint];
-    }
-    [self clearRedoStack];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 
     if (self.touchActionType == TouchActionTypeGetColor) {
         [self handleGetColorTouches:touches withEvent:event type:TouchTypeEnd];
-        return;
-    }
-
-    [self handleDrawTouches:touches withEvent:event type:TouchTypeEnd];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didDrawedPaint:)]) {
-        [self.delegate didDrawedPaint:_currentAction.paint];
+    }else{
+        if(self.touchActionType == TouchActionTypeShape){
+            [self handleShapeTouches:touches withEvent:event type:TouchTypeEnd];
+        }else if(self.touchActionType == TouchActionTypeDraw){
+            [self handleDrawTouches:touches withEvent:event type:TouchTypeEnd];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
+            [self.delegate drawView:self didFinishDrawAction:_currentAction];
+        }
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.touchActionType == TouchActionTypeGetColor) {
         [self handleGetColorTouches:touches withEvent:event type:TouchTypeMove];
-        return;
+    }else{
+        if(self.touchActionType == TouchActionTypeShape){
+            [self handleShapeTouches:touches withEvent:event type:TouchTypeMove];
+        }else if(self.touchActionType == TouchActionTypeDraw){
+            [self handleDrawTouches:touches withEvent:event type:TouchTypeMove];
+        }
     }
-
-    [self handleDrawTouches:touches withEvent:event type:TouchTypeMove];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event

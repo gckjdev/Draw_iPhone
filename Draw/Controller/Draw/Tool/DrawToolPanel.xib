@@ -189,7 +189,7 @@
 								<string key="NSFrame">{{237.5, 1.5}, {29, 39}}</string>
 								<reference key="NSSuperview" ref="518756962"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="476021577"/>
+								<reference key="NSNextKeyView" ref="535350486"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -263,6 +263,29 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_palette@2x.png</string>
 								</object>
+								<reference key="IBUIFontDescription" ref="36910274"/>
+								<reference key="IBUIFont" ref="915704697"/>
+							</object>
+							<object class="IBUIButton" id="535350486">
+								<reference key="NSNextResponder" ref="518756962"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{243, 0}, {73, 44}}</string>
+								<reference key="NSSuperview" ref="518756962"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="476021577"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">Shape</string>
+								<reference key="IBUIHighlightedTitleColor" ref="806468247"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="231337641"/>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="915704697"/>
 							</object>
@@ -357,6 +380,7 @@
 						<string key="NSFrame">{{283, 55}, {34, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -704,6 +728,15 @@
 					</object>
 					<int key="connectionID">70</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickShape:</string>
+						<reference key="source" ref="535350486"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -770,6 +803,7 @@
 							<reference ref="476021577"/>
 							<reference ref="257603996"/>
 							<reference ref="1041540627"/>
+							<reference ref="535350486"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -844,6 +878,11 @@
 						<reference key="object" ref="341213902"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">72</int>
+						<reference key="object" ref="535350486"/>
+						<reference key="parent" ref="518756962"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -879,13 +918,14 @@
 				<real value="0.0" key="65.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="66.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">71</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -938,6 +978,7 @@
 						<string key="clickPalette:">id</string>
 						<string key="clickPen:">id</string>
 						<string key="clickRedo:">id</string>
+						<string key="clickShape:">id</string>
 						<string key="clickStraw:">id</string>
 						<string key="clickUndo:">id</string>
 						<string key="clickWidthBox:">UIButton</string>
@@ -969,6 +1010,10 @@
 						</object>
 						<object class="IBActionInfo" key="clickRedo:">
 							<string key="name">clickRedo:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickShape:">
+							<string key="name">clickShape:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickStraw:">

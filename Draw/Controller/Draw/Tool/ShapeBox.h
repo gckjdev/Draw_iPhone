@@ -16,10 +16,20 @@
 
 @optional
 - (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type;
+- (void)shapeBox:(ShapeBox *)shapeBox didClickCloseButton:(UIButton *)close;
 
 @end
 
 
 @interface ShapeBox : UIView
+{
+    
+}
+
+@property(nonatomic, assign)id<ShapeBoxDelegate>delegate;
+
++ (id)shapeBoxWithDelegate:(id<ShapeBoxDelegate>)delegate;
+- (ShapeType)shapeType;
+- (void)setShapeType:(ShapeType)type;
 
 @end
