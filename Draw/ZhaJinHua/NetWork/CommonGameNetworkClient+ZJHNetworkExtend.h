@@ -34,5 +34,9 @@
                     sessionId:(int)sessionId
                        cardId:(int)cardId;
 
+- (void)sendTimeoutSettingRequest:(NSString *)userId
+                         sessionId:(int)sessionId
+                            action:(int)action;
+
 
 @end

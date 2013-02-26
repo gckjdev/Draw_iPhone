@@ -74,7 +74,7 @@
 
 - (void)reset;
 
-- (void)setTimeoutSetting:(int)setting;
+- (void)setTimeoutSettingWithAction:(PBZJHUserAction)action;
 
 
 @end
