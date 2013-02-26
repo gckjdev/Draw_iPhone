@@ -129,7 +129,7 @@
     TimeoutSettingRequest *timeoutSetting = [builder build];
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
-    [messageBuilder setCommand:GameCommandTypeBetRequest];
+    [messageBuilder setCommand:GameCommandTypeTimeoutSettingRequest];
     [messageBuilder setMessageId:[self generateMessageId]];
     [messageBuilder setUserId:userId];
     [messageBuilder setSessionId:sessionId];

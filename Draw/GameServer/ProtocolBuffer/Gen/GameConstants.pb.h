@@ -56,6 +56,8 @@ typedef enum {
   GameCommandTypeCompareCardResponse = 812,
   GameCommandTypeChangeCardRequest = 813,
   GameCommandTypeChangeCardResponse = 814,
+  GameCommandTypeTimeoutSettingRequest = 815,
+  GameCommandTypeTimeoutSettingResponse = 816,
   GameCommandTypeUserJoinNotificationRequest = 51,
   GameCommandTypeUserJoinNotificationResponse = 52,
   GameCommandTypeUserQuitNotificationRequest = 53,

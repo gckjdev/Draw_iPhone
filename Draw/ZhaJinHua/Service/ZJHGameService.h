@@ -16,6 +16,9 @@
 
 @property (readonly, retain, nonatomic) ZJHGameState *gameState;
 @property (retain, nonatomic) NSArray *chipValues;
+@property (assign, nonatomic) PBZJHUserAction timeoutAcion;
+
+
 + (ZJHGameService*)defaultService;
 
 - (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
