@@ -1091,6 +1091,7 @@
             case Quill:
             case WaterPen:
             {
+                drawView.touchActionType = TouchActionTypeDraw;
                 [self.drawToolPanel setPenType:anItem.type];
                 [drawView setPenType:anItem.type];
                 break;
@@ -1172,6 +1173,7 @@
 {
     if (bought) {
         PPDebug(@"<didSelectPen> pen type = %d",penType);
+        drawView.touchActionType = TouchActionTypeDraw;
         drawView.penType = penType;
         //set draw color
         drawView.lineColor = [DrawColor colorWithColor:self.penColor];
@@ -1257,5 +1259,7 @@
 //- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
 //{
 //}
+
+
 
 @end
