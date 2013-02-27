@@ -63,18 +63,38 @@
     
 }
 
+- (void)setEndPoint:(CGPoint)endPoint
+{
+    _endPoint = endPoint;
+    PPDebug(@"setEnPoint = %@, start point = %@",NSStringFromCGPoint(endPoint), NSStringFromCGPoint(_startPoint));
+}
+
+
+#define MIN_DISTANCE (ISIPAD ? 5 : 5/2.)
+- (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
+{
+    BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
+//    BOOL flag = CGPointEqualToPoint(p1, p2);
+//    if (!flag) {
+//        PPDebug(@"NOT Equal!! p1 = %@, p3 = %@", NSStringFromCGPoint(p1),NSStringFromCGPoint(p2));
+//    }
+    return flag;
+}
+
 - (CGRect)rect
 {
-    if (CGPointEqualToPoint(self.startPoint, self.endPoint)) {
+    if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
+        self.endPoint = self.startPoint;
         CGFloat x = self.startPoint.x;
         CGFloat y = self.startPoint.y;
         return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
+    }else{
+        CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
+        CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
+        CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
+        CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
+        return CGRectMake(x, y, width, height);        
     }
-    CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
-    CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
-    CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
-    CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
-    return CGRectMake(x, y, width, height);
 }
 
 
@@ -91,7 +111,6 @@
     if (context != NULL) {
         CGContextSaveGState(context);        
         CGContextSetFillColorWithColor(context, self.color.CGColor);
-        
         switch (self.type) {
             case ShapeTypeBeeline:
             {
@@ -130,7 +149,7 @@
                 CGFloat width = CGRectGetWidth(rect);
                 CGFloat height = CGRectGetHeight(rect);
                 
-                if (self.startPoint.y > self.endPoint.y) {
+                if (self.startPoint.y > self.endPoint.y /*&& ![self point1:self.startPoint equalToPoint:self.endPoint]*/) {
                     CGContextMoveToPoint(context, minX, maxY - yRatio * height);
                     CGContextAddLineToPoint(context, maxX, maxY - yRatio * height);
                     CGContextAddLineToPoint(context, minX + xRatio * width, minY);
@@ -152,7 +171,7 @@
             {
                 CGRect rect = [self rect];
                 
-                if (self.startPoint.y > self.endPoint.y) {
+                if (self.startPoint.y > self.endPoint.y /*&& ![self point1:self.startPoint equalToPoint:self.endPoint]*/) {
                     CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
                     CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
                     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
