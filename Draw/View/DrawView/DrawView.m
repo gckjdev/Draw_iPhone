@@ -452,7 +452,19 @@ typedef enum {
     [self show];
 }
 
-#pragma mark -- undo cache
+//- (void)setTouchActionType:(TouchActionType)touchActionType
+//{
+//    _touchActionType = touchActionType;
+//}
 
+- (void)setLineWidth:(CGFloat)lineWidth
+{
+    _lineWidth = lineWidth;
+//    if ([_currentAction isShapeAction]) {
+//        _currentAction.shapeInfo.width = lineWidth;
+//        [osManager updateLastAction:_currentAction];
+//        [self setNeedsDisplay];
+//    }
+}
 
 @end

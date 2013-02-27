@@ -168,7 +168,7 @@
     _actionCount ++;
     
     [shape drawInContext:cacheContext];
-    return [shape rect];
+    return _rect;//[shape rect];
 }
 
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width

@@ -76,6 +76,11 @@
 
 - (CGRect)rect
 {
+    if (CGPointEqualToPoint(self.startPoint, self.endPoint)) {
+        CGFloat x = self.startPoint.x;
+        CGFloat y = self.startPoint.y;
+        return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
+    }
     CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
     CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
     CGFloat width = ABS(self.startPoint.x - self.endPoint.x);

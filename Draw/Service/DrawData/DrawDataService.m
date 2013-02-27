@@ -155,10 +155,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
     [builder setScore:[drawWord score]];
-    NSInteger i = 0;
-    PPDebug(@"<buildPBDraw> count = %d",[drawActionList count]);
     for (DrawAction* drawAction in drawActionList){
-        PPDebug(@"build index = %d, type = %d",i++, drawAction.type);
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];
     }

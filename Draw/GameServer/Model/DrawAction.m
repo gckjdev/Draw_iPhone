@@ -142,7 +142,8 @@
             self.paint = paint;
             [paint release];
         }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
-            
+            ShapeInfo *shape = [ShapeInfo shapeWithPBShapeInfo:action.shapeInfo];
+            self.shapeInfo = shape;
         }
     }
     return self;
@@ -193,7 +194,7 @@
 
 - (BOOL)isShapeAction
 {
-    return self.type = DRAW_ACTION_TYPE_SHAPE;
+    return self.type == DRAW_ACTION_TYPE_SHAPE;
 }
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
