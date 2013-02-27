@@ -318,7 +318,7 @@ typedef enum {
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
             [self.delegate drawView:self didFinishDrawAction:_currentAction];
         }
-        [self printOSInfoWithTag:@"<TouchesEnded>"];
+//        [self printOSInfoWithTag:@"<TouchesEnded>"];
 //        PPDebug(@"<touchesEnded>");
 //        [osManager printOSInfo];
 //        osManager
@@ -386,7 +386,7 @@ typedef enum {
 #pragma mark - Revoke
 - (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock
 {
-    [self printOSInfoWithTag:@"<Revoke> Before"];
+//    [self printOSInfoWithTag:@"<Revoke> Before"];
     
     NSUInteger count = [self.drawActionList count];
     NSUInteger index = [osManager closestIndexWithActionIndex:count];
@@ -405,7 +405,7 @@ typedef enum {
     if (finishiBlock != NULL){
         finishiBlock();
     }
-    [self printOSInfoWithTag:@"<Revoke> after"];
+//    [self printOSInfoWithTag:@"<Revoke> after"];
 }
 
 - (BOOL)canRevoke
@@ -435,11 +435,11 @@ typedef enum {
         
         DrawAction *action = [_redoStack pop];
         if (action) {
-            [self printOSInfoWithTag:@"<Redo> before"];
+//            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
             [osManager addDrawAction:action];
             [self setNeedsDisplay];
-            [self printOSInfoWithTag:@"<Redo> after"];
+//            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isChangeBackAction]) {
                 self.bgColor = [action.paint color];
             }

@@ -362,6 +362,7 @@
             }
         }else{
             [self drawDrawAction:_currentAction show:YES];
+            [self callDidDrawPaintDelegate];
         }
     }
     if(!_showPenHidden){
