@@ -111,6 +111,7 @@
         CGContextClearRect(context, drawBox);
     }
     [self updateContext:context withPaint:paint];
+    [self setStrokeColor:paint.color lineWidth:paint.width inContext:context];
     CGPathRef path = paint.path;
     CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width bounds:_rect];
     CGContextAddPath(context, path);

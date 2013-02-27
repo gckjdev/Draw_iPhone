@@ -120,9 +120,11 @@ message PBNoCompressDrawAction{
     optional int32 penType = 5;
 
     // Start from draw version == 2
-    
     //support shape, shape info
-    optional PBShapeInfo shapeInfo = 10;
+
+    optional int32 shapeType = 6;
+    repeated float rectComponent = 7; //startX, startY, endX, endY
+
 
     // Point X, Y
     repeated float pointX = 11;

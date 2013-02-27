@@ -46,32 +46,21 @@
     return [shapeInfo autorelease];
 }
 
-+ (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo
+
+- (void)setPointsWithPointComponent:(NSArray *)pointComponent
 {
-    ShapeInfo *shape = [[ShapeInfo alloc] init];
-    [shape setType:shapeInfo.type];
-    [shape setPenType:shapeInfo.penType];
-    [shape setWidth:shapeInfo.width];
+    CGFloat startX = [[pointComponent objectAtIndex:0] floatValue];
+    CGFloat startY = [[pointComponent objectAtIndex:1] floatValue];
+    self.startPoint = CGPointMake(startX, startY);
     
-    if ([shapeInfo.rectComponentList count] < 4 || [shapeInfo.colorComponentList count] < 4) {
-        return nil;
-    }
-    //set color
-    [shape setColor:[DrawColor colorWithRGBAComponent:shapeInfo.colorComponentList]];
-    
-    //set point
-    CGFloat startX = [[shapeInfo.rectComponentList objectAtIndex:0] floatValue];
-    CGFloat startY = [[shapeInfo.rectComponentList objectAtIndex:1] floatValue];
-    shape.startPoint = CGPointMake(startX, startY);
-    
-    CGFloat endX = [[shapeInfo.rectComponentList objectAtIndex:2] floatValue];
-    CGFloat endY = [[shapeInfo.rectComponentList objectAtIndex:3] floatValue];
-    shape.endPoint = CGPointMake(endX, endY);
+    CGFloat endX = [[pointComponent objectAtIndex:2] floatValue];
+    CGFloat endY = [[pointComponent objectAtIndex:3] floatValue];
+    self.endPoint = CGPointMake(endX, endY);
     if (ISIPAD) {
-        shape.startPoint = [shape toIPadPoint:shape.startPoint];
-        shape.endPoint = [shape toIPadPoint:shape.endPoint];
+        self.startPoint = [self toIPadPoint:self.startPoint];
+        self.endPoint = [self toIPadPoint:self.endPoint];
     }
-    return [shape autorelease];
+    
 }
 
 - (CGRect)rect
@@ -198,21 +187,5 @@
     return [NSArray arrayWithObjects:@(start.x), @(start.y), @(end.x), @(end.y), nil];
 }
 
-
-- (PBShapeInfo *)toPBShape
-{
-    PBShapeInfo_Builder *builder = [[[PBShapeInfo_Builder alloc] init] autorelease];
-    
-    [builder setType:self.type];
-    if (ISIPAD) {
-        [builder setWidth:self.width / 2];
-    }else{
-        [builder setWidth:self.width];
-    }
-    [builder addAllColorComponent:[self.color toRGBAComponent]];
-    [builder addAllRectComponent:[self rectComponent]];
-    
-    return [builder build];
-}
 
 @end

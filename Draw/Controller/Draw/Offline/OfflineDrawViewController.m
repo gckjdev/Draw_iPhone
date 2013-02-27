@@ -1195,6 +1195,9 @@
     if (drawView.touchActionType == TouchActionTypeGetColor) {
         drawView.touchActionType = TouchActionTypeDraw;
     }
+    if (drawView.penType == Eraser) {
+        drawView.penType = Pencil;
+    }
     self.tempColor = color;
     self.penColor = color;
     [drawView setLineColor:[DrawColor colorWithColor:color]];

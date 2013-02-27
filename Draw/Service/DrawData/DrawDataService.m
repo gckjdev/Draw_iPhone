@@ -117,8 +117,19 @@ static DrawDataService* _defaultDrawDataService = nil;
     [dataBuilder setType:[drawAction type]];
 
     if ([drawAction isShapeAction]) {
-        PBShapeInfo *shape = [[drawAction shapeInfo] toPBShape];
-        [dataBuilder setShapeInfo:shape];
+        [dataBuilder setShapeType:drawAction.shapeInfo.type];
+        [dataBuilder addAllRectComponent:[drawAction.shapeInfo rectComponent]];
+
+        CGFloat width = [[drawAction shapeInfo] width];
+        if ([DeviceDetection isIPAD]) {
+            width /= 2;
+        }
+        [dataBuilder setWidth:width];
+        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.shapeInfo.color];
+        [dataBuilder setColor:intColor];
+        [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
+
+        
     }else{
         NSArray *pointList = drawAction.paint.numberPointList;
         

@@ -31,9 +31,11 @@
     self = [ super init];
     if (self) {
         self.type = action.type;
-        if (self.type == DRAW_ACTION_TYPE_DRAW) {
+        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+
+            CGFloat lineWidth = [action width];
+            NSInteger penType = [action penType];
             DrawColor *color = nil;
-            
             if ([DrawUtils isNotVersion1:dataVersion]){
                 color = [[[DrawColor alloc] initWithRed:action.red green:action.green blue:action.blue alpha:action.alpha] autorelease];
             }
@@ -41,48 +43,63 @@
                 color = [[[DrawColor alloc] initWithPBColor:action.color] autorelease];
             }
             
-            
-            NSMutableArray *pointList = nil;
-            if ([DrawUtils isNotVersion1:dataVersion]){
-                // new version
-                NSUInteger count = [[action pointXList] count];
-                if (count > 0) {
-                    pointList = [[NSMutableArray alloc] initWithCapacity:count];
-                    for (int i=0; i<count; i++){
-                        [pointList addObject:[PointNode pointWithCGPoint:
-                                              CGPointMake([[action.pointXList objectAtIndex:i] floatValue],
-                                                          [[action.pointYList objectAtIndex:i] floatValue])]];
+            if (self.type == DRAW_ACTION_TYPE_DRAW) {
+                
+                NSMutableArray *pointList = nil;
+                if ([DrawUtils isNotVersion1:dataVersion]){
+                    // new version
+                    NSUInteger count = [[action pointXList] count];
+                    if (count > 0) {
+                        pointList = [[NSMutableArray alloc] initWithCapacity:count];
+                        for (int i=0; i<count; i++){
+                            [pointList addObject:[PointNode pointWithCGPoint:
+                                                  CGPointMake([[action.pointXList objectAtIndex:i] floatValue],
+                                                              [[action.pointYList objectAtIndex:i] floatValue])]];
+                        }
                     }
                 }
-            }
-            else{
-                // old version handling
-                NSUInteger count = [[action pointList] count];
-                if (count > 0) {
-                    pointList = [[NSMutableArray alloc] initWithCapacity:count];
-                    for (PBPoint *point in action.pointList) {
-                        [pointList addObject:[PointNode pointWithPBPoint:point]];
+                else{
+                    // old version handling
+                    NSUInteger count = [[action pointList] count];
+                    if (count > 0) {
+                        pointList = [[NSMutableArray alloc] initWithCapacity:count];
+                        for (PBPoint *point in action.pointList) {
+                            [pointList addObject:[PointNode pointWithPBPoint:point]];
+                        }
                     }
                 }
+                
+                Paint *paint = [[Paint alloc] initWithWidth:lineWidth
+                                                      color:color
+                                                    penType:penType
+                                                  pointList:pointList];
+                self.paint = paint;
+                PPRelease(pointList);
+                PPRelease(paint);
             }
-
-            CGFloat lineWidth = [action width];
-            NSInteger penType = [action penType];
-            Paint *paint = [[Paint alloc] initWithWidth:lineWidth
-                                                  color:color
-                                                penType:penType
-                                              pointList:pointList];
-            self.paint = paint;
-            PPRelease(pointList);
-            PPRelease(paint);
+            else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+                self.shapeInfo = [ShapeInfo shapeWithType:action.shapeType penType:penType width:lineWidth color:color];
+                [self.shapeInfo setPointsWithPointComponent:action.rectComponentList];
+            }
         }
-        else if(self.type == DRAW_ACTION_TYPE_SHAPE){
-            self.shapeInfo = [ShapeInfo shapeWithPBShapeInfo:action.shapeInfo];
-        }else{
-            //Clean
-        }
+        
     }
+
     return self;
+
+}
+
+
+- (void)updateBuilder:(PBNoCompressDrawAction_Builder *)builder withColor:(DrawColor *)color penType:(ItemType)penType width:(CGFloat)width
+{
+    [builder setWidth:width];
+    [builder setPenType:penType];
+    
+    // set color, new version
+    [builder setAlpha:[color alpha]];
+    [builder setBlue:[color blue]];
+    [builder setRed:[color red]];
+    [builder setGreen:[color green]];
 
 }
 
@@ -92,14 +109,7 @@
     [builder setType:self.type];
     if (self.type == DRAW_ACTION_TYPE_DRAW) {
         Paint *paint = self.paint;
-        [builder setWidth:paint.width];
-        [builder setPenType:paint.penType];
-
-        // set color, new version
-        [builder setAlpha:[paint.color alpha]];
-        [builder setBlue:[paint.color blue]];
-        [builder setRed:[paint.color red]];
-        [builder setGreen:[paint.color green]];
+        [self updateBuilder:builder withColor:paint.color penType:paint.penType width:paint.width];
         
         // set points, new version
         NSUInteger pCount = [paint pointCount];
@@ -110,7 +120,10 @@
             }
         }
     }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
-        [builder setShapeInfo:[self.shapeInfo toPBShape]];
+        ShapeInfo *shape = self.shapeInfo;
+        [self updateBuilder:builder withColor:shape.color penType:shape.penType width:shape.width];
+        [builder setShapeType:shape.type];
+        [builder addAllRectComponent:shape.rectComponent];
     }else{
         //Clean
     }
@@ -133,16 +146,18 @@
     if (self) {
         self.type = action.type;
         
+        NSInteger intColor = [action color];
+        CGFloat lineWidth = [action width];
+        NSInteger penType = [action penType];
+        
         if (self.type == DRAW_ACTION_TYPE_DRAW) {
-            NSInteger intColor = [action color];
-            CGFloat lineWidth = [action width];        
             NSArray *pointList = [action pointsList];
-            NSInteger penType = [action penType];
             Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList penType:penType];
             self.paint = paint;
             [paint release];
         }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
-            ShapeInfo *shape = [ShapeInfo shapeWithPBShapeInfo:action.shapeInfo];
+            ShapeInfo *shape = [ShapeInfo shapeWithType:action.shapeType penType:penType width:lineWidth color:[DrawUtils decompressIntDrawColor:intColor]];
+            [shape setPointsWithPointComponent:action.rectComponentList];
             self.shapeInfo = shape;
         }
     }
