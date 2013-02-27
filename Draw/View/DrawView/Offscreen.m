@@ -163,10 +163,8 @@
 - (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
 {
     if (clear) {
-        [self clear];
+        CGContextClearRect(cacheContext, _rect);
     }
-    _actionCount ++;
-    
     [shape drawInContext:cacheContext];
     return _rect;//[shape rect];
 }
