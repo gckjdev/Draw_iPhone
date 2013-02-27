@@ -3409,6 +3409,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property (retain) NSMutableArray* mutableRectComponentList;
 @property (retain) NSMutableArray* mutablePointXList;
 @property (retain) NSMutableArray* mutablePointYList;
+@property int32_t rgbColor;
 @property Float32 red;
 @property Float32 blue;
 @property Float32 green;
@@ -3456,6 +3457,13 @@ static PBColor* defaultPBColorInstance = nil;
 @synthesize mutableRectComponentList;
 @synthesize mutablePointXList;
 @synthesize mutablePointYList;
+- (BOOL) hasRgbColor {
+  return !!hasRgbColor_;
+}
+- (void) setHasRgbColor:(BOOL) value {
+  hasRgbColor_ = !!value;
+}
+@synthesize rgbColor;
 - (BOOL) hasRed {
   return !!hasRed_;
 }
@@ -3499,6 +3507,7 @@ static PBColor* defaultPBColorInstance = nil;
     self.width = 0;
     self.penType = 0;
     self.shapeType = 0;
+    self.rgbColor = 0;
     self.red = 0;
     self.blue = 0;
     self.green = 0;
@@ -3590,6 +3599,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   for (NSNumber* value in self.mutablePointYList) {
     [output writeFloat:12 value:[value floatValue]];
   }
+  if (self.hasRgbColor) {
+    [output writeInt32:20 value:self.rgbColor];
+  }
   if (self.hasRed) {
     [output writeFloat:21 value:self.red];
   }
@@ -3646,6 +3658,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     dataSize = 4 * self.mutablePointYList.count;
     size += dataSize;
     size += 1 * self.mutablePointYList.count;
+  }
+  if (self.hasRgbColor) {
+    size += computeInt32Size(20, self.rgbColor);
   }
   if (self.hasRed) {
     size += computeFloatSize(21, self.red);
@@ -3773,6 +3788,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     }
     [result.mutablePointYList addObjectsFromArray:other.mutablePointYList];
   }
+  if (other.hasRgbColor) {
+    [self setRgbColor:other.rgbColor];
+  }
   if (other.hasRed) {
     [self setRed:other.red];
   }
@@ -3847,6 +3865,10 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 101: {
         [self addPointY:[input readFloat]];
+        break;
+      }
+      case 160: {
+        [self setRgbColor:[input readInt32]];
         break;
       }
       case 173: {
@@ -4082,6 +4104,22 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 }
 - (PBNoCompressDrawAction_Builder*) clearPointYList {
   result.mutablePointYList = nil;
+  return self;
+}
+- (BOOL) hasRgbColor {
+  return result.hasRgbColor;
+}
+- (int32_t) rgbColor {
+  return result.rgbColor;
+}
+- (PBNoCompressDrawAction_Builder*) setRgbColor:(int32_t) value {
+  result.hasRgbColor = YES;
+  result.rgbColor = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearRgbColor {
+  result.hasRgbColor = NO;
+  result.rgbColor = 0;
   return self;
 }
 - (BOOL) hasRed {

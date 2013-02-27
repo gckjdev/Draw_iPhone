@@ -872,6 +872,7 @@
   BOOL hasType_:1;
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
+  BOOL hasRgbColor_:1;
   BOOL hasColor_:1;
   Float32 width;
   Float32 red;
@@ -881,6 +882,7 @@
   int32_t type;
   int32_t penType;
   int32_t shapeType;
+  int32_t rgbColor;
   PBColor* color;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointXList;
@@ -892,6 +894,7 @@
 - (BOOL) hasWidth;
 - (BOOL) hasPenType;
 - (BOOL) hasShapeType;
+- (BOOL) hasRgbColor;
 - (BOOL) hasRed;
 - (BOOL) hasBlue;
 - (BOOL) hasGreen;
@@ -901,6 +904,7 @@
 @property (readonly) Float32 width;
 @property (readonly) int32_t penType;
 @property (readonly) int32_t shapeType;
+@property (readonly) int32_t rgbColor;
 @property (readonly) Float32 red;
 @property (readonly) Float32 blue;
 @property (readonly) Float32 green;
@@ -1002,6 +1006,11 @@
 - (PBNoCompressDrawAction_Builder*) addPointY:(Float32) value;
 - (PBNoCompressDrawAction_Builder*) addAllPointY:(NSArray*) values;
 - (PBNoCompressDrawAction_Builder*) clearPointYList;
+
+- (BOOL) hasRgbColor;
+- (int32_t) rgbColor;
+- (PBNoCompressDrawAction_Builder*) setRgbColor:(int32_t) value;
+- (PBNoCompressDrawAction_Builder*) clearRgbColor;
 
 - (BOOL) hasRed;
 - (Float32) red;

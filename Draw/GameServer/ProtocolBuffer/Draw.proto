@@ -131,6 +131,7 @@ message PBNoCompressDrawAction{
     repeated float pointY = 12;
     
     // Color RGB & Alpha
+    optional int32 rgbColor = 20;
     optional float red = 21;
     optional float blue = 22;
     optional float green = 23;
