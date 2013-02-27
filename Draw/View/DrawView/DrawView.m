@@ -457,14 +457,14 @@ typedef enum {
 //    _touchActionType = touchActionType;
 //}
 
-- (void)setLineWidth:(CGFloat)lineWidth
-{
-    _lineWidth = lineWidth;
+//- (void)setLineWidth:(CGFloat)lineWidth
+//{
+//    _lineWidth = lineWidth;
 //    if ([_currentAction isShapeAction]) {
 //        _currentAction.shapeInfo.width = lineWidth;
 //        [osManager updateLastAction:_currentAction];
 //        [self setNeedsDisplay];
 //    }
-}
+//}
 
 @end
