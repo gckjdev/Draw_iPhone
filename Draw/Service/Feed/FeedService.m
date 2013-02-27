@@ -614,4 +614,22 @@ static FeedService *_staticFeedService = nil;
     });
 }
 
+- (void)rejectOpusDrawToMe:(NSString *)opusId
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* appId = [ConfigManager appId];
+    
+    dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
+    
+    dispatch_async(updateOpusQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest rejectOpusDrawToMe:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId type:FeedTypeDraw];
+        if (output.resultCode == 0) {
+            PPDebug(@"<updateOpus> succ!");
+        }else{
+            PPDebug(@"<updateOpus> fail!");
+        }
+    });
+    
+}
+
 @end

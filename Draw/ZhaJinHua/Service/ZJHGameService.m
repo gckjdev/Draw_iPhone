@@ -632,6 +632,9 @@ static ZJHGameService *_defaultService;
 
 - (void)setTimeoutSettingWithAction:(PBZJHUserAction)action
 {
+    if (action == _timeoutAcion) {
+        return;
+    }
     _timeoutAcion = action;
     [_networkClient sendTimeoutSettingRequest:self.userId
                                     sessionId:self.session.sessionId

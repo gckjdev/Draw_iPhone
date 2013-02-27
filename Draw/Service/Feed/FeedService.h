@@ -154,4 +154,6 @@
 
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image;
 
+- (void)rejectOpusDrawToMe:(NSString *)opusId;
+
 @end
