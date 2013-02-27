@@ -293,7 +293,7 @@ typedef enum{
 - (void)alertDeleteConfirm
 {
     CommonDialog* dialog = nil;
-    dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+    dialog = [CommonDialog createDialogWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理员权限>", NSLS(@"kSure_delete")]
                                              message:NSLS(@"kAre_you_sure")
                                                style:CommonDialogStyleDoubleButton
                                             delegate:nil clickOkBlock:^{
@@ -460,7 +460,7 @@ typedef enum{
     
     if ([[UserManager defaultManager] isSuperUser]) {
         UIActionSheet* actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:NSLS(@"kOpusOperation")
+                                      initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
                                       delegate:self
                                       cancelButtonTitle:NSLS(@"kCancel")
                                       destructiveButtonTitle:NSLS(@"kOpusDetail")
