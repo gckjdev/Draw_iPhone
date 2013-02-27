@@ -131,6 +131,7 @@
           && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList]) {
         [self.superUserManageButton setHidden:NO];
     }
+    
 }
 
 - (void)initLevelAndName

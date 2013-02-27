@@ -116,20 +116,24 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     [dataBuilder setType:[drawAction type]];
 
-    NSArray *pointList = drawAction.paint.numberPointList;
-
-    [dataBuilder addAllPoints:pointList];
-    
-    CGFloat width = [[drawAction paint] width];
-    if ([DeviceDetection isIPAD]) {
-        width /= 2;
+    if ([drawAction isShapeAction]) {
+        PBShapeInfo *shape = [[drawAction shapeInfo] toPBShape];
+        [dataBuilder setShapeInfo:shape];
+    }else{
+        NSArray *pointList = drawAction.paint.numberPointList;
+        
+        [dataBuilder addAllPoints:pointList];
+        
+        CGFloat width = [[drawAction paint] width];
+        if ([DeviceDetection isIPAD]) {
+            width /= 2;
+        }
+        [dataBuilder setWidth:width];
+        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];
+        [dataBuilder setColor:intColor];
+        
+        [dataBuilder setPenType:[[drawAction paint] penType]];
     }
-    [dataBuilder setWidth:width];
-    NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];    
-    [dataBuilder setColor:intColor];
-    
-    [dataBuilder setPenType:[[drawAction paint] penType]];
-    
     PBDrawAction *action = [dataBuilder build];
     [dataBuilder release];    
     return action;
@@ -151,7 +155,10 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
     [builder setScore:[drawWord score]];
+    NSInteger i = 0;
+    PPDebug(@"<buildPBDraw> count = %d",[drawActionList count]);
     for (DrawAction* drawAction in drawActionList){
+        PPDebug(@"build index = %d, type = %d",i++, drawAction.type);
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];
     }

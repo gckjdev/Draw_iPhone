@@ -20,6 +20,7 @@
 #import "GameBasic.pb.h"
 #import "SDWebImageManager.h"
 #import "PPSNSConstants.h"
+#import "BBSPermissionManager.h"
 
 #define KEY_USERID          @"USER_KEY_USERID"
 #define KEY_NICKNAME        @"USER_KEY_NICKNAME"
@@ -851,6 +852,11 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:FOLLOW_WEIBO];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isSuperUser
+{
+    return [[BBSPermissionManager defaultManager] canCharge] && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList];
 }
 
 @end

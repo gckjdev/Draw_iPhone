@@ -37,7 +37,7 @@
 {
     self = [super init];
     if (self) {
-        PPDebug(@"Create %@ pen", [self name]);
+//        PPDebug(@"Create %@ pen", [self name]);
     }
     return self;
 

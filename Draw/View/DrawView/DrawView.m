@@ -207,7 +207,6 @@ typedef enum {
     }else{
         [shape setEndPoint:point];
         [osManager updateLastAction:_currentAction];
-//        [self setNeedsDisplayInRect:rect];
         [self setNeedsDisplay];
     }
 }
