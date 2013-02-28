@@ -96,4 +96,6 @@
 - (UIColor*)createRoomDialogRoomPasswordColor;
 - (UIColor*)buttonTitleColor;
 
+- (NSString*)shopTitle;
+
 @end

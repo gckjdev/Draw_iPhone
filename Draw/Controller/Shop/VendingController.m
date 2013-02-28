@@ -450,7 +450,7 @@ static VendingController* staticVendingController = nil;
     [self createItemList];
     self.titleImageView.hidden = !isDrawApp();
     self.titleLabel.hidden = !isDiceApp();
-    self.titleLabel.text = NSLS(@"kDiceShop");
+    self.titleLabel.text = [GameApp shopTitle];//NSLS(@"kDiceShop");
     self.bgImageView.image = [UIImage imageNamed:[GameApp background]];
     
     self.coinsShopButton.hidden = YES;
