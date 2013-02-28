@@ -82,7 +82,7 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeHeader];
+    [self setPullRefreshType:PullRefreshTypeBoth];
     [super viewDidLoad];
 
     //use local data
@@ -179,6 +179,9 @@
             [self.tabDataList removeAllObjects];
         }
         [self finishLoadDataForTabID:self.currentTab.tabID resultList:statList];
+        if ([statList count] < MESSAGE_STAT_MAX_COUNT) {
+            [self.currentTab setHasMoreData:NO];
+        }
     }else{
         [self failLoadDataForTabID:self.currentTab.tabID];
     }
@@ -210,6 +213,15 @@
     }
     return nil;
 }
+
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+//    if (count < MESSAGE_STAT_MAX_COUNT ) {
+//        self.noMoreData = YES;
+//    }
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
