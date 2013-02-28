@@ -292,6 +292,10 @@
             _currentAction = nil;
             _status = Stop;
         }
+//        PPDebug(@"<updateNextPlayIndex> index = %d, action Type = %d", _playingActionIndex, _currentAction.type);
+//        if (_currentAction.type == DRAW_ACTION_TYPE_SHAPE) {
+//            PPDebug(@"Stop!!!");
+//        }
     }else{
         _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
     }
@@ -351,7 +355,6 @@
             }else if([self.tempPaint pointCount] == 1){
                 [self drawDrawAction:_currentAction show:NO];
                 [osManager updateDrawPenWithPaint:self.tempPaint];
-//                [osManager setStrokeColor:self.tempPaint.color width:self.tempPaint.width];
                 [osManager updateLastPaint:self.tempPaint];
                 [self setNeedsDisplay];
             }else{
@@ -359,6 +362,7 @@
             }
         }else{
             [self drawDrawAction:_currentAction show:YES];
+            [self callDidDrawPaintDelegate];
         }
     }
     if(!_showPenHidden){
@@ -462,4 +466,5 @@
 {
     return  gestureRecognizer.view == self;
 }
+
 @end

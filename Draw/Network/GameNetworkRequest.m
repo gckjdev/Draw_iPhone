@@ -1446,6 +1446,52 @@
     }
 }
 
++ (CommonNetworkOutput*)rejectOpusDrawToMe:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                    opusId:(NSString*)opusId
+                                      type:(int)newType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    if (userId == nil || opusId == nil){
+        PPDebug(@"<updateOpus> but userId nil or opusId nil");
+        return nil;
+    }
+    
+    NSString *method = METHOD_UPDATE_OPUS;
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID intValue:newType];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:@""];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                             imageDataDict:nil
+                              postDataDict:nil
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
+    
+}
+
 + (CommonNetworkOutput*)updateOpus:(NSString*)baseURL
                              appId:(NSString*)appId
                             userId:(NSString*)userId

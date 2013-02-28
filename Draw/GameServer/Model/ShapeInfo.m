@@ -46,41 +46,50 @@
     return [shapeInfo autorelease];
 }
 
-+ (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo
+
+- (void)setPointsWithPointComponent:(NSArray *)pointComponent
 {
-    ShapeInfo *shape = [[ShapeInfo alloc] init];
-    [shape setType:shapeInfo.type];
-    [shape setPenType:shapeInfo.penType];
-    [shape setWidth:shapeInfo.width];
+    CGFloat startX = [[pointComponent objectAtIndex:0] floatValue];
+    CGFloat startY = [[pointComponent objectAtIndex:1] floatValue];
+    self.startPoint = CGPointMake(startX, startY);
     
-    if ([shapeInfo.rectComponentList count] < 4 || [shapeInfo.colorComponentList count] < 4) {
-        return nil;
-    }
-    //set color
-    [shape setColor:[DrawColor colorWithRGBAComponent:shapeInfo.colorComponentList]];
-    
-    //set point
-    CGFloat startX = [[shapeInfo.rectComponentList objectAtIndex:0] floatValue];
-    CGFloat startY = [[shapeInfo.rectComponentList objectAtIndex:1] floatValue];
-    shape.startPoint = CGPointMake(startX, startY);
-    
-    CGFloat endX = [[shapeInfo.rectComponentList objectAtIndex:2] floatValue];
-    CGFloat endY = [[shapeInfo.rectComponentList objectAtIndex:3] floatValue];
-    shape.endPoint = CGPointMake(endX, endY);
+    CGFloat endX = [[pointComponent objectAtIndex:2] floatValue];
+    CGFloat endY = [[pointComponent objectAtIndex:3] floatValue];
+    self.endPoint = CGPointMake(endX, endY);
     if (ISIPAD) {
-        shape.startPoint = [shape toIPadPoint:shape.startPoint];
-        shape.endPoint = [shape toIPadPoint:shape.endPoint];
+        self.startPoint = [self toIPadPoint:self.startPoint];
+        self.endPoint = [self toIPadPoint:self.endPoint];
     }
-    return [shape autorelease];
+    
+}
+
+- (void)setEndPoint:(CGPoint)endPoint
+{
+    _endPoint = endPoint;
+}
+
+
+#define MIN_DISTANCE (ISIPAD ? 8 : 8/2.)
+- (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
+{
+    BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
+    return flag;
 }
 
 - (CGRect)rect
 {
-    CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
-    CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
-    CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
-    CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
-    return CGRectMake(x, y, width, height);
+    if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
+        self.endPoint = self.startPoint;
+        CGFloat x = self.startPoint.x;
+        CGFloat y = self.startPoint.y;
+        return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
+    }else{
+        CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
+        CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
+        CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
+        CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
+        return CGRectMake(x, y, width, height);        
+    }
 }
 
 
@@ -97,7 +106,6 @@
     if (context != NULL) {
         CGContextSaveGState(context);        
         CGContextSetFillColorWithColor(context, self.color.CGColor);
-        
         switch (self.type) {
             case ShapeTypeBeeline:
             {
@@ -136,7 +144,7 @@
                 CGFloat width = CGRectGetWidth(rect);
                 CGFloat height = CGRectGetHeight(rect);
                 
-                if (self.startPoint.y > self.endPoint.y) {
+                if (self.startPoint.y > self.endPoint.y /*&& ![self point1:self.startPoint equalToPoint:self.endPoint]*/) {
                     CGContextMoveToPoint(context, minX, maxY - yRatio * height);
                     CGContextAddLineToPoint(context, maxX, maxY - yRatio * height);
                     CGContextAddLineToPoint(context, minX + xRatio * width, minY);
@@ -158,7 +166,7 @@
             {
                 CGRect rect = [self rect];
                 
-                if (self.startPoint.y > self.endPoint.y) {
+                if (self.startPoint.y > self.endPoint.y /*&& ![self point1:self.startPoint equalToPoint:self.endPoint]*/) {
                     CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
                     CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
                     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
@@ -193,21 +201,5 @@
     return [NSArray arrayWithObjects:@(start.x), @(start.y), @(end.x), @(end.y), nil];
 }
 
-
-- (PBShapeInfo *)toPBShape
-{
-    PBShapeInfo_Builder *builder = [[[PBShapeInfo_Builder alloc] init] autorelease];
-    
-    [builder setType:self.type];
-    if (ISIPAD) {
-        [builder setWidth:self.width / 2];
-    }else{
-        [builder setWidth:self.width];
-    }
-    [builder addAllColorComponent:[self.color toRGBAComponent]];
-    [builder addAllRectComponent:[self rectComponent]];
-    
-    return [builder build];
-}
 
 @end

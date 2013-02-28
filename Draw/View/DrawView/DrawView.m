@@ -239,12 +239,22 @@ typedef enum {
 
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
+    
+    for (UITouch *touche in touches) {
+        [toucheSet addObject:touche];
+    }
+    NSInteger count = [toucheSet count];
+    if (type == TouchTypeEnd) {
+        [toucheSet removeAllObjects];
+    }
+    if (count != 1) {
+        PPDebug(@"<handleShapeTouches> touch tapCount = %d, type = %d", count, type);
+        return;
+        
+    }
+    
     UITouch *touch  = [touches anyObject];
 
-    if ([touch tapCount] != 1) {
-        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", [touch tapCount], type);
-        return;
-    }
     
     CGPoint point = [touch locationInView:self];
 
@@ -318,6 +328,10 @@ typedef enum {
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
             [self.delegate drawView:self didFinishDrawAction:_currentAction];
         }
+//        [self printOSInfoWithTag:@"<TouchesEnded>"];
+//        PPDebug(@"<touchesEnded>");
+//        [osManager printOSInfo];
+//        osManager
     }
 }
 
@@ -382,6 +396,8 @@ typedef enum {
 #pragma mark - Revoke
 - (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock
 {
+//    [self printOSInfoWithTag:@"<Revoke> Before"];
+    
     NSUInteger count = [self.drawActionList count];
     NSUInteger index = [osManager closestIndexWithActionIndex:count];
     Offscreen *os = [osManager offScreenForActionIndex:index];
@@ -399,7 +415,7 @@ typedef enum {
     if (finishiBlock != NULL){
         finishiBlock();
     }
-
+//    [self printOSInfoWithTag:@"<Revoke> after"];
 }
 
 - (BOOL)canRevoke
@@ -429,9 +445,11 @@ typedef enum {
         
         DrawAction *action = [_redoStack pop];
         if (action) {
+//            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
             [osManager addDrawAction:action];
             [self setNeedsDisplay];
+//            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isChangeBackAction]) {
                 self.bgColor = [action.paint color];
             }
@@ -452,7 +470,28 @@ typedef enum {
     [self show];
 }
 
-#pragma mark -- undo cache
 
+- (void)printOSInfoWithTag:(NSString *)tag
+{
+    PPDebug(tag);
+    PPDebug(@"Action list count = %d",[_drawActionList count]);
+    [osManager printOSInfo];
+}
+
+
+//- (void)setTouchActionType:(TouchActionType)touchActionType
+//{
+//    _touchActionType = touchActionType;
+//}
+
+//- (void)setLineWidth:(CGFloat)lineWidth
+//{
+//    _lineWidth = lineWidth;
+//    if ([_currentAction isShapeAction]) {
+//        _currentAction.shapeInfo.width = lineWidth;
+//        [osManager updateLastAction:_currentAction];
+//        [self setNeedsDisplay];
+//    }
+//}
 
 @end

@@ -280,6 +280,12 @@
                               data:(NSData*)data
                          imageData:(NSData *)imageData;
 
++ (CommonNetworkOutput*)rejectOpusDrawToMe:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                    opusId:(NSString*)opusId
+                                      type:(int)newType;
+
 + (CommonNetworkOutput*)guessOpus:(NSString*)baseURL
                             appId:(NSString*)appId
                            userId:(NSString*)userId

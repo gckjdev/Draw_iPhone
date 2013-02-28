@@ -42,8 +42,6 @@
 @class PBPriceInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBShapeInfo;
-@class PBShapeInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;

@@ -713,7 +713,7 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIButton" id="512636603">
+					<object class="IBUIButton" id="479849459">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{70, 401}, {31, 21}}</string>
@@ -1020,7 +1020,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">timeoutSettingButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="512636603"/>
+						<reference key="destination" ref="479849459"/>
 					</object>
 					<int key="connectionID">3925</int>
 				</object>
@@ -1133,7 +1133,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTimeoutSettingButton:</string>
-						<reference key="source" ref="512636603"/>
+						<reference key="source" ref="479849459"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1195,7 +1195,7 @@
 							<reference ref="235632527"/>
 							<reference ref="541768009"/>
 							<reference ref="116997832"/>
-							<reference ref="512636603"/>
+							<reference ref="479849459"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1374,7 +1374,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3924</int>
-						<reference key="object" ref="512636603"/>
+						<reference key="object" ref="479849459"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1449,19 +1449,19 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
-			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
-			<string key="zjh_bet@2x.png">{103, 60}</string>
-			<string key="zjh_button_holder_bg@2x.png">{640, 110}</string>
-			<string key="zjh_chat_button@2x.png">{60, 51}</string>
-			<string key="zjh_check_card@2x.png">{82, 60}</string>
-			<string key="zjh_compare_card@2x.png">{92, 60}</string>
-			<string key="zjh_fold_card@2x.png">{90, 60}</string>
-			<string key="zjh_game_bg_dual_ip5@2x.jpg">{640, 1096}</string>
-			<string key="zjh_game_setting@2x.png">{72, 71}</string>
-			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
-			<string key="zjh_runaway@2x.png">{72, 72}</string>
-			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
+			<string key="zjh_auto_bet@2x.png">{16, 16}</string>
+			<string key="zjh_auto_bet_on@2x.png">{16, 16}</string>
+			<string key="zjh_bet@2x.png">{16, 16}</string>
+			<string key="zjh_button_holder_bg@2x.png">{16, 16}</string>
+			<string key="zjh_chat_button@2x.png">{16, 16}</string>
+			<string key="zjh_check_card@2x.png">{16, 16}</string>
+			<string key="zjh_compare_card@2x.png">{16, 16}</string>
+			<string key="zjh_fold_card@2x.png">{16, 16}</string>
+			<string key="zjh_game_bg_dual_ip5@2x.jpg">{16, 16}</string>
+			<string key="zjh_game_setting@2x.png">{16, 16}</string>
+			<string key="zjh_raise_bet@2x.png">{16, 16}</string>
+			<string key="zjh_runaway@2x.png">{16, 16}</string>
+			<string key="zjh_user_bet_bg@2x.png">{16, 16}</string>
 			<string key="zjh_vs.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

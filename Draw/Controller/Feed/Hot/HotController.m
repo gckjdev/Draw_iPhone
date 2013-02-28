@@ -344,63 +344,6 @@ typedef enum{
     }
 }
 
-- (void)enterDetailFeed:(DrawFeed *)feed
-{
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
-}
-
-- (void)alertDeleteConfirm
-{
-    CommonDialog* dialog = nil;
-    dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
-                                         message:NSLS(@"kAre_you_sure")
-                                           style:CommonDialogStyleDoubleButton
-                                        delegate:nil clickOkBlock:^{
-                                            if (_selectedFeed) {
-                                                [self showActivityWithText:NSLS(@"kDeleting")];
-                                                [[FeedService defaultService] deleteFeed:_selectedFeed delegate:self];
-                                            }
-                                            _selectedFeed = nil;
-                                        } clickCancelBlock:^{
-                                            //
-                                        }];
-    [dialog showInView:self.view];
-}
-
-
-typedef enum{
-    ActionSheetIndexDetail = 0,
-    ActionSheetIndexDelete = 1,
-    ActionSheetIndexCancel,
-}ActionSheetIndex;
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    _selectedFeed = nil;
-    DrawFeed* feed = _selectedRankView.feed;
-    
-    switch (buttonIndex) {
-        case ActionSheetIndexDelete:
-        {
-            _selectedFeed = feed;
-            [self alertDeleteConfirm];
-        }
-            break;
-        case ActionSheetIndexDetail:
-        {
-            PPDebug(@"Detail");
-            [self enterDetailFeed:feed];
-        }
-            break;
-        default:
-        {
-            
-        }
-            break;
-    }
-}
 
 #pragma mark - feed service delegate
 
@@ -432,37 +375,14 @@ typedef enum{
     }
 }
 
-- (void)didDeleteFeed:(Feed *)feed resultCode:(NSInteger)resultCode;
-
-{
-    [self hideActivity];
-    if (resultCode != 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeleteFail") delayTime:1.5 isHappy:NO];
-        return;
-    }
-    [self finishDeleteData:feed ForTabID:self.currentTab.tabID];
-}
-
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
+
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
     
-    if ([[UserManager defaultManager] isSuperUser]) {
-        UIActionSheet* actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:NSLS(@"kOpusOperation")
-                                      delegate:self
-                                      cancelButtonTitle:NSLS(@"kCancel")
-                                      destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                      otherButtonTitles:NSLS(@"kDelete"), nil];
-        [actionSheet showInView:self.view];
-        [actionSheet release];
-        _selectedRankView = rankView;
-    } else {
-//        ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-//        [self.navigationController pushViewController:sc animated:YES];
-//        [sc release];
-        [self enterDetailFeed:rankView.feed];
-    }
 }
 
 

@@ -22,8 +22,6 @@
 @class PBPriceInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBShapeInfo;
-@class PBShapeInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -795,104 +793,19 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBGameSessionChanged_Builder*) clearUsersUpdatedList;
 @end
 
-@interface PBShapeInfo : PBGeneratedMessage {
-@private
-  BOOL hasWidth_:1;
-  BOOL hasType_:1;
-  BOOL hasPenType_:1;
-  Float32 width;
-  int32_t type;
-  int32_t penType;
-  NSMutableArray* mutableRectComponentList;
-  NSMutableArray* mutableColorComponentList;
-}
-- (BOOL) hasType;
-- (BOOL) hasWidth;
-- (BOOL) hasPenType;
-@property (readonly) int32_t type;
-@property (readonly) Float32 width;
-@property (readonly) int32_t penType;
-- (NSArray*) rectComponentList;
-- (Float32) rectComponentAtIndex:(int32_t) index;
-- (NSArray*) colorComponentList;
-- (Float32) colorComponentAtIndex:(int32_t) index;
-
-+ (PBShapeInfo*) defaultInstance;
-- (PBShapeInfo*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBShapeInfo_Builder*) builder;
-+ (PBShapeInfo_Builder*) builder;
-+ (PBShapeInfo_Builder*) builderWithPrototype:(PBShapeInfo*) prototype;
-
-+ (PBShapeInfo*) parseFromData:(NSData*) data;
-+ (PBShapeInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input;
-+ (PBShapeInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBShapeInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBShapeInfo_Builder : PBGeneratedMessage_Builder {
-@private
-  PBShapeInfo* result;
-}
-
-- (PBShapeInfo*) defaultInstance;
-
-- (PBShapeInfo_Builder*) clear;
-- (PBShapeInfo_Builder*) clone;
-
-- (PBShapeInfo*) build;
-- (PBShapeInfo*) buildPartial;
-
-- (PBShapeInfo_Builder*) mergeFrom:(PBShapeInfo*) other;
-- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBShapeInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasType;
-- (int32_t) type;
-- (PBShapeInfo_Builder*) setType:(int32_t) value;
-- (PBShapeInfo_Builder*) clearType;
-
-- (BOOL) hasWidth;
-- (Float32) width;
-- (PBShapeInfo_Builder*) setWidth:(Float32) value;
-- (PBShapeInfo_Builder*) clearWidth;
-
-- (BOOL) hasPenType;
-- (int32_t) penType;
-- (PBShapeInfo_Builder*) setPenType:(int32_t) value;
-- (PBShapeInfo_Builder*) clearPenType;
-
-- (NSArray*) rectComponentList;
-- (Float32) rectComponentAtIndex:(int32_t) index;
-- (PBShapeInfo_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
-- (PBShapeInfo_Builder*) addRectComponent:(Float32) value;
-- (PBShapeInfo_Builder*) addAllRectComponent:(NSArray*) values;
-- (PBShapeInfo_Builder*) clearRectComponentList;
-
-- (NSArray*) colorComponentList;
-- (Float32) colorComponentAtIndex:(int32_t) index;
-- (PBShapeInfo_Builder*) replaceColorComponentAtIndex:(int32_t) index with:(Float32) value;
-- (PBShapeInfo_Builder*) addColorComponent:(Float32) value;
-- (PBShapeInfo_Builder*) addAllColorComponent:(NSArray*) values;
-- (PBShapeInfo_Builder*) clearColorComponentList;
-@end
-
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
   BOOL hasType_:1;
   BOOL hasColor_:1;
   BOOL hasPenType_:1;
-  BOOL hasShapeInfo_:1;
+  BOOL hasShapeType_:1;
   Float32 width;
   int32_t type;
   int32_t color;
   int32_t penType;
-  PBShapeInfo* shapeInfo;
+  int32_t shapeType;
+  NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -900,14 +813,16 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (BOOL) hasWidth;
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
-- (BOOL) hasShapeInfo;
+- (BOOL) hasShapeType;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
-@property (readonly, retain) PBShapeInfo* shapeInfo;
+@property (readonly) int32_t shapeType;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
 
 + (PBDrawAction*) defaultInstance;
 - (PBDrawAction*) defaultInstance;
@@ -970,12 +885,17 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBDrawAction_Builder*) setPenType:(int32_t) value;
 - (PBDrawAction_Builder*) clearPenType;
 
-- (BOOL) hasShapeInfo;
-- (PBShapeInfo*) shapeInfo;
-- (PBDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value;
-- (PBDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue;
-- (PBDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value;
-- (PBDrawAction_Builder*) clearShapeInfo;
+- (BOOL) hasShapeType;
+- (int32_t) shapeType;
+- (PBDrawAction_Builder*) setShapeType:(int32_t) value;
+- (PBDrawAction_Builder*) clearShapeType;
+
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBDrawAction_Builder*) addRectComponent:(Float32) value;
+- (PBDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
+- (PBDrawAction_Builder*) clearRectComponentList;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

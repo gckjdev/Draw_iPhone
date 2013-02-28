@@ -111,6 +111,7 @@
         CGContextClearRect(context, drawBox);
     }
     [self updateContext:context withPaint:paint];
+    [self setStrokeColor:paint.color lineWidth:paint.width inContext:context];
     CGPathRef path = paint.path;
     CGRect rect = [DrawUtils rectForPath:path withWidth:paint.width bounds:_rect];
     CGContextAddPath(context, path);
@@ -163,12 +164,10 @@
 - (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
 {
     if (clear) {
-        [self clear];
+        CGContextClearRect(cacheContext, _rect);
     }
-    _actionCount ++;
-    
     [shape drawInContext:cacheContext];
-    return [shape rect];
+    return _rect;//[shape rect];
 }
 
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width

@@ -64,4 +64,7 @@
 
 
 - (BOOL)canUndo;
+
+- (void)printOSInfo;
+
 @end
