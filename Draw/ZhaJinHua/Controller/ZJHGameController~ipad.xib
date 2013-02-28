@@ -411,6 +411,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{633, 922}, {90, 64}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -591,7 +592,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{276, 683}, {216, 96}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="962014495"/>
+						<reference key="NSNextKeyView" ref="316893186"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="846204045"/>
 						<int key="IBUITag">2000</int>
@@ -639,7 +640,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{511, 681}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="675463111"/>
+						<reference key="NSNextKeyView" ref="962014495"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -678,7 +679,7 @@
 						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{605, 667}, {100, 35}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="316893186"/>
+						<reference key="NSNextKeyView" ref="675463111"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUITag">3001</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -758,7 +759,7 @@
 						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{639, 671}, {80, 27}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
-						<reference key="NSNextKeyView" ref="130240245"/>
+						<reference key="NSNextKeyView" ref="745004756"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -918,11 +919,12 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<double key="preferredMaxLayoutWidth">400</double>
 					</object>
-					<object class="IBUIButton" id="1008382100">
+					<object class="IBUIButton" id="745004756">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{206, 736}, {63, 43}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
+						<reference key="NSNextKeyView" ref="130240245"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1319,7 +1321,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">timeoutSettingButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1008382100"/>
+						<reference key="destination" ref="745004756"/>
 					</object>
 					<int key="connectionID">3928</int>
 				</object>
@@ -1456,7 +1458,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTimeoutSettingButton:</string>
-						<reference key="source" ref="1008382100"/>
+						<reference key="source" ref="745004756"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1530,7 +1532,7 @@
 							<reference ref="309843530"/>
 							<reference ref="294048138"/>
 							<reference ref="373835693"/>
-							<reference ref="1008382100"/>
+							<reference ref="745004756"/>
 							<reference ref="863054290"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -1788,7 +1790,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3927</int>
-						<reference key="object" ref="1008382100"/>
+						<reference key="object" ref="745004756"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 				</array>
@@ -1874,20 +1876,20 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
-			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
-			<string key="zjh_bet@2x.png">{103, 60}</string>
-			<string key="zjh_button_holder_bg_ipad@2x.png">{768, 101}</string>
-			<string key="zjh_chat_button@2x.png">{60, 51}</string>
-			<string key="zjh_check_card@2x.png">{82, 60}</string>
-			<string key="zjh_compare_card@2x.png">{92, 60}</string>
-			<string key="zjh_fold_card@2x.png">{90, 60}</string>
-			<string key="zjh_game_bg_ipad@2x.jpg">{768, 1004}</string>
-			<string key="zjh_game_setting@2x.png">{72, 71}</string>
-			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
-			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
-			<string key="zjh_runaway@2x.png">{72, 72}</string>
-			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
+			<string key="zjh_auto_bet@2x.png">{16, 16}</string>
+			<string key="zjh_auto_bet_on@2x.png">{16, 16}</string>
+			<string key="zjh_bet@2x.png">{16, 16}</string>
+			<string key="zjh_button_holder_bg_ipad@2x.png">{16, 16}</string>
+			<string key="zjh_chat_button@2x.png">{16, 16}</string>
+			<string key="zjh_check_card@2x.png">{16, 16}</string>
+			<string key="zjh_compare_card@2x.png">{16, 16}</string>
+			<string key="zjh_fold_card@2x.png">{16, 16}</string>
+			<string key="zjh_game_bg_ipad@2x.jpg">{16, 16}</string>
+			<string key="zjh_game_setting@2x.png">{16, 16}</string>
+			<string key="zjh_game_total_bet_bg@2x.png">{16, 16}</string>
+			<string key="zjh_raise_bet@2x.png">{16, 16}</string>
+			<string key="zjh_runaway@2x.png">{16, 16}</string>
+			<string key="zjh_user_bet_bg@2x.png">{16, 16}</string>
 			<string key="zjh_vs.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
