@@ -228,6 +228,17 @@
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
 		A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AE15DE40F100E4F735 /* DiceItemManager.m */; };
+		A4CA707F16DF268400114CA7 /* timeout_action_bet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */; };
+		A4CA708016DF268400114CA7 /* timeout_action_fold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */; };
+		A4CA708116DF268400114CA7 /* timeout_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */; };
+		A4CA708216DF268E00114CA7 /* timeout_action_bet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */; };
+		A4CA708316DF268E00114CA7 /* timeout_action_fold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */; };
+		A4CA708416DF268E00114CA7 /* timeout_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */; };
+		A4CA708616DF26A600114CA7 /* topwood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708516DF26A600114CA7 /* topwood@2x.png */; };
+		A4CA708716DF26AD00114CA7 /* topwood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708516DF26A600114CA7 /* topwood@2x.png */; };
+		A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A4CA709016DF270100114CA7 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A4CA709116DF270100114CA7 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
 		A4CCE73B16771A6D00F90726 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72E16771A6D00F90726 /* face_anger@2x.png */; };
 		A4CCE73C16771A6D00F90726 /* face_crazy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */; };
 		A4CCE73D16771A6D00F90726 /* face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73016771A6D00F90726 /* face_cry@2x.png */; };
@@ -7110,6 +7121,14 @@
 		A4C516AC15DE40F100E4F735 /* DiceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItem.m; sourceTree = "<group>"; };
 		A4C516AD15DE40F100E4F735 /* DiceItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemManager.h; sourceTree = "<group>"; };
 		A4C516AE15DE40F100E4F735 /* DiceItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemManager.m; sourceTree = "<group>"; };
+		A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_action_bet@2x.png"; sourceTree = "<group>"; };
+		A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_action_fold@2x.png"; sourceTree = "<group>"; };
+		A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_setting_bg@2x.png"; sourceTree = "<group>"; };
+		A4CA708516DF26A600114CA7 /* topwood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topwood@2x.png"; sourceTree = "<group>"; };
+		A4CA708816DF26EC00114CA7 /* TimeoutSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutSettingView.h; sourceTree = "<group>"; };
+		A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutSettingView.m; sourceTree = "<group>"; };
+		A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeoutSettingView.xib; sourceTree = "<group>"; };
+		A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TimeoutSettingView~ipad.xib"; sourceTree = "<group>"; };
 		A4CCE72E16771A6D00F90726 /* face_anger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_anger@2x.png"; sourceTree = "<group>"; };
 		A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_crazy@2x.png"; sourceTree = "<group>"; };
 		A4CCE73016771A6D00F90726 /* face_cry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_cry@2x.png"; sourceTree = "<group>"; };
@@ -11091,6 +11110,10 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA708816DF26EC00114CA7 /* TimeoutSettingView.h */,
+				A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */,
+				A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */,
+				A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */,
 				A4CCE7B51678355E00F90726 /* ZJHHelpView~ipad.xib */,
 				A4CCE7A91678276D00F90726 /* ZJHHelpView.xib */,
 				C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */,
@@ -14410,6 +14433,7 @@
 		CA7D43AD168DBDB1009F43F7 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA708516DF26A600114CA7 /* topwood@2x.png */,
 				CA7D43AE168DBDB1009F43F7 /* avatar_default@2x.png */,
 				CA7D43AF168DBDB1009F43F7 /* avatar_default_big@2x.png */,
 				CA7D43B0168DBDB1009F43F7 /* chat_message_bg_center@2x.png */,
@@ -14512,6 +14536,9 @@
 		CA7D43FF168DBDB1009F43F7 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */,
+				A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */,
+				A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */,
 				CA7D4400168DBDB1009F43F7 /* zjh_audio_off@2x.png */,
 				CA7D4401168DBDB1009F43F7 /* zjh_audio_on@2x.png */,
 				CA7D4402168DBDB1009F43F7 /* zjh_close_btn@2x.png */,
@@ -19440,6 +19467,12 @@
 				C24A0F5A16DDACA300F04872 /* draw_tab_mid_selected@2x.png in Resources */,
 				C24A0F5B16DDACA300F04872 /* draw_tab_mid_unselected@2x.png in Resources */,
 				C24A0F5C16DDACAB00F04872 /* draw_room_title_bg@2x.png in Resources */,
+				A4CA708216DF268E00114CA7 /* timeout_action_bet@2x.png in Resources */,
+				A4CA708316DF268E00114CA7 /* timeout_action_fold@2x.png in Resources */,
+				A4CA708416DF268E00114CA7 /* timeout_setting_bg@2x.png in Resources */,
+				A4CA708716DF26AD00114CA7 /* topwood@2x.png in Resources */,
+				A4CA709016DF270100114CA7 /* TimeoutSettingView.xib in Resources */,
+				A4CA709116DF270100114CA7 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20299,6 +20332,10 @@
 				C24A0F3C16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
+				A4CA707F16DF268400114CA7 /* timeout_action_bet@2x.png in Resources */,
+				A4CA708016DF268400114CA7 /* timeout_action_fold@2x.png in Resources */,
+				A4CA708116DF268400114CA7 /* timeout_setting_bg@2x.png in Resources */,
+				A4CA708616DF26A600114CA7 /* topwood@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22579,6 +22616,7 @@
 				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
