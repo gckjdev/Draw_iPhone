@@ -615,6 +615,8 @@ static FeedService *_staticFeedService = nil;
 }
 
 - (void)rejectOpusDrawToMe:(NSString *)opusId
+              successBlock:(void (^)(void))successBlock
+                 failBlock:(void (^)(void))failBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
@@ -625,8 +627,10 @@ static FeedService *_staticFeedService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest rejectOpusDrawToMe:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId type:FeedTypeDraw];
         if (output.resultCode == 0) {
             PPDebug(@"<updateOpus> succ!");
+            successBlock();
         }else{
             PPDebug(@"<updateOpus> fail!");
+            failBlock();
         }
     });
     

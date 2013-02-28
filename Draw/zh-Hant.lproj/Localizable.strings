@@ -1040,6 +1040,10 @@
 "kStrawDescription" = "吸管可以用來在獲取作品指定位置的顏色。";
 
 "kCannotRevoke" = "不能撤銷了";
+"kRefuse" = "拒絕";
+"kAskSureRefuse" = "確定要拒絕這幅作品嗎?";
+"kRefuseOpusSuccess" = "成功拒絕了這幅作品!";
+"kRefuseOpusFail" = "拒絕失敗，可能網絡不太好，晚點再試試？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
