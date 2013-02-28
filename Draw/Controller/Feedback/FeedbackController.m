@@ -478,7 +478,7 @@ enum {
 
 #define BADGE_VIEW_WIDTH ([DeviceDetection isIPAD] ?  36 : 18)
 #define BADGE_VIEW_HEIGHT ([DeviceDetection isIPAD] ?  38 : 19)
-#define BADGE_LABEL_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ?  13 : 25)]
+#define BADGE_LABEL_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ?  23 : 11)]
 
 - (UIView *)badgeView{
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, BADGE_VIEW_WIDTH, BADGE_VIEW_HEIGHT)] autorelease];
