@@ -66,18 +66,13 @@
 - (void)setEndPoint:(CGPoint)endPoint
 {
     _endPoint = endPoint;
-    PPDebug(@"setEnPoint = %@, start point = %@",NSStringFromCGPoint(endPoint), NSStringFromCGPoint(_startPoint));
 }
 
 
-#define MIN_DISTANCE (ISIPAD ? 5 : 5/2.)
+#define MIN_DISTANCE (ISIPAD ? 8 : 8/2.)
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
     BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
-//    BOOL flag = CGPointEqualToPoint(p1, p2);
-//    if (!flag) {
-//        PPDebug(@"NOT Equal!! p1 = %@, p3 = %@", NSStringFromCGPoint(p1),NSStringFromCGPoint(p2));
-//    }
     return flag;
 }
 
