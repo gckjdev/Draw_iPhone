@@ -643,6 +643,13 @@ typedef enum{
                        destructiveButtonTitle:NSLS(@"kReply") 
                        otherButtonTitles:NSLS(@"kOpusDetail"), nil];
             
+    } else if (type == MyTypeDrawToMe) {
+        actionSheet = [[UIActionSheet alloc]
+                       initWithTitle:NSLS(@"kOpusOperation")
+                       delegate:self
+                       cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:NSLS(@"kOpusDetail")
+                       otherButtonTitles:NSLS(@"kRefuse"), nil];
     }
     [actionSheet showInView:self.view];
     [actionSheet release];
@@ -667,6 +674,7 @@ typedef enum{
 typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexDelete = 1,
+    ActionSheetIndexRefuse = 1,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
 
@@ -706,6 +714,30 @@ typedef enum{
         }else if(buttonIndex == indexOfCommentOpus){
             [self enterOpusDetail:_selectedCommentFeed];
         }
+    }else if(type == MyTypeDrawToMe){
+        DrawFeed *feed = _selectRanView.feed;
+        
+        switch (buttonIndex) {
+            case ActionSheetIndexRefuse:
+            {
+                _seletedFeed = feed;
+                [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId];
+            }
+                break;
+            case ActionSheetIndexDetail:
+            {
+                PPDebug(@"Detail");
+                [self enterDetailFeed:feed];
+            }
+                break;
+            default:
+            {
+                
+            }
+                break;
+        }
+        [_selectRanView setRankViewSelected:NO];
+        _selectRanView = nil;
     }
 
 }
@@ -726,11 +758,11 @@ typedef enum{
 - (void)didClickRankView:(RankView *)rankView
 {
     TableTab *tab = [self currentTab];
-    if(tab.tabID == MyTypeOpus && ![rankView.feed isContestFeed]){
+    if((tab.tabID == MyTypeOpus || tab.tabID == MyTypeDrawToMe)&& ![rankView.feed isContestFeed]){
         //action sheet
         _selectRanView = rankView;
         [rankView setRankViewSelected:YES];
-        [self showActionSheetForType:MyTypeOpus];
+        [self showActionSheetForType:tab.tabID];
     }else{
         [self enterDetailFeed:rankView.feed];
     }
