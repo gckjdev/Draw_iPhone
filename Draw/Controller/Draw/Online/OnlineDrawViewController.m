@@ -286,7 +286,7 @@
 - (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
     if ([action isDrawAction]) {
-        Paint *paint = paint;
+        Paint *paint = action.paint;
         NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
         NSMutableArray *pointList = paint.numberPointList;
         CGFloat width = paint.width;

@@ -179,6 +179,9 @@ typedef enum{
     }
     [self.searchUserButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
     [self.inviteButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+    
+    [self.searchUserButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
+    [self.inviteButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
 
 }
 

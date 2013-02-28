@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemType.h"
+#import "DrawColor.h"
 
 typedef enum{
     ShapeTypeNone = 0,

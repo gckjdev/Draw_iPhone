@@ -302,4 +302,9 @@
 {
     return [UIColor whiteColor];
 }
+
+- (UIColor*)buttonTitleColor
+{
+    return [UIColor whiteColor];
+}
 @end

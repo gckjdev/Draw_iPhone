@@ -12,6 +12,7 @@
 #import "DeviceDetection.h"
 #import "PenFactory.h"
 #import "PointNode.h"
+#import "OnlineDrawViewController.h"
 
 CGPoint midPoint(CGPoint p1, CGPoint p2)
 {
@@ -36,6 +37,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 //@synthesize pointList = _pointList;
 @synthesize penType = _penType;
 @synthesize pointNodeList = _pointNodeList;
+
 
 - (id<PenEffectProtocol>)getPen
 {

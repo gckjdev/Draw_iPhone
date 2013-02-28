@@ -363,6 +363,10 @@
 {
     self.targetFriend = afriend;
     self.superViewController = superController;
+    self.drawToUserButton.enabled = NO;
+    self.chatToUserButton.enabled = NO;
+    self.superUserManageButton.enabled = NO;
+    self.exploreUserFeedButton.enabled = NO;
 }
 
 
@@ -396,6 +400,8 @@
     [view show];
     if (needUpdate) {
         [view updateInfoFromService];
+    } else {
+        [view activeAllButtons];
     }
 }
 
@@ -411,6 +417,14 @@
     [self showFriend:friend infoInView:superController needUpdate:needUpdate];
 }
 
+- (void)activeAllButtons
+{
+    self.drawToUserButton.enabled = YES;
+    self.chatToUserButton.enabled = YES;
+    self.superUserManageButton.enabled = YES;
+    self.exploreUserFeedButton.enabled = YES;
+}
+
 #pragma mark - user service delegate
 
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
@@ -418,6 +432,7 @@
     if (resultCode == 0 && user != nil) {
         self.targetFriend = user;
         [self updateUserInfoView];
+        [self activeAllButtons];
     }
 }
 
