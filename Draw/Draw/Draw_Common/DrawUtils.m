@@ -158,6 +158,26 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
+// new compress, with 8 bits for alpha
++ (NSUInteger)compressColor8WithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
+{
+    NSUInteger ret = (NSUInteger)(alpha * 255.0) +
+                     ((NSUInteger)(blue * 255.0) << 8) +
+                     ((NSUInteger)(green * 255.0) << 16) +
+                     ((NSUInteger)(red * 255.0) << 24);
+    return ret;
+}
+
+// new decompress, with 8 bits for alpha
++ (void)decompressColor8:(NSUInteger)intColor red:(CGFloat*)red green:(CGFloat*)green blue:(CGFloat*)blue alpha:(CGFloat*)alpha
+{
+    *alpha = (intColor % (1<<8)) / 255.0;
+    *blue = ((intColor >> 8) % (1<<8)) / 255.0;
+    *green = ((intColor >> 16) % (1<<8)) / 255.0;
+    *red = ((intColor >> 24) % (1<<8)) / 255.0;
+}
+
+
 + (NSInteger)roundFloatValue:(CGFloat)value
 {
     NSInteger round = value;
@@ -209,6 +229,12 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
 {
     return [DrawUtils compressRed:color.red green:color.green blue:color.blue alpha:color.alpha];
 }
+
++ (NSUInteger)compressDrawColor8:(DrawColor *)color
+{
+    return [DrawUtils compressColor8WithRed:color.red green:color.green blue:color.blue alpha:color.alpha];
+}
+
 + (DrawColor *)decompressIntDrawColor:(NSInteger)intColor
 {
 

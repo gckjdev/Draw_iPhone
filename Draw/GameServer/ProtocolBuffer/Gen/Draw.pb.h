@@ -872,8 +872,8 @@
   BOOL hasType_:1;
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
-  BOOL hasRgbColor_:1;
   BOOL hasColor_:1;
+  BOOL hasRgbColor_:1;
   Float32 width;
   Float32 red;
   Float32 blue;
@@ -882,8 +882,8 @@
   int32_t type;
   int32_t penType;
   int32_t shapeType;
-  int32_t rgbColor;
   PBColor* color;
+  int32_t rgbColor;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointXList;
   NSMutableArray* mutablePointYList;

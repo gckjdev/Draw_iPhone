@@ -37,7 +37,15 @@
             NSInteger penType = [action penType];
             DrawColor *color = nil;
             if ([DrawUtils isNotVersion1:dataVersion]){
-                color = [[[DrawColor alloc] initWithRed:action.red green:action.green blue:action.blue alpha:action.alpha] autorelease];
+                if ([action hasRgbColor]){
+                    CGFloat red, green, blue, alpha;
+                    [DrawUtils decompressColor8:action.rgbColor red:&red green:&green blue:&blue alpha:&alpha];
+                    color = [[[DrawColor alloc] initWithRed:red green:green blue:blue alpha:alpha] autorelease];
+                }
+                else{
+                    // to be deleted later
+                    color = [[[DrawColor alloc] initWithRed:action.red green:action.green blue:action.blue alpha:action.alpha] autorelease];
+                }
             }
             else{
                 color = [[[DrawColor alloc] initWithPBColor:action.color] autorelease];
@@ -96,10 +104,14 @@
     [builder setPenType:penType];
     
     // set color, new version
+    [builder setRgbColor:[DrawUtils compressDrawColor8:color]];
+    
+    /* to be deleted
     [builder setAlpha:[color alpha]];
     [builder setBlue:[color blue]];
     [builder setRed:[color red]];
     [builder setGreen:[color green]];
+     */
 
 }
 
