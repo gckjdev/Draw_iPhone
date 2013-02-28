@@ -979,5 +979,10 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"common_round_avatar_waiting_user.png"];
 }
+
+- (UIImage *)badgeImage{
+    return [UIImage imageNamed:@"common_home_badge@2x.png"];
+}
+
 @end
 

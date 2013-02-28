@@ -45,8 +45,9 @@ typedef enum{
     HomeMenuTypeZJHRichSite,
     HomeMenuTypeZJHNormalSite,
     HomeMenuTypeZJHVSSite,
+    HomeMenuTypeZJHCharge,
     HomeMenuTypeZJHShop,
-    
+
     //ZJH bottom menu start at 2500
     HomeMenuTypeZJHBottomBegin = 2500,
 //    HomeMenuTypeZJHHome = 2500,
