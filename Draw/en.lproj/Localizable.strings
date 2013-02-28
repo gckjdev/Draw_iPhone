@@ -1296,6 +1296,7 @@
 "kIWantToGoNow" = "I wanna go, see u next time";
 "kShutUp" = "All shut up";
 "kLevelUpAwardMessage" = "Congratulations for upgrade to level %d! You are awarded %d coins!";
+"kZJHShopTitle" = "Three Card Store";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

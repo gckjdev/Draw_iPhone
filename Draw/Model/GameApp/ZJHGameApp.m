@@ -307,4 +307,9 @@
 {
     return [UIColor whiteColor];
 }
+
+- (NSString*)shopTitle
+{
+    return NSLS(@"kZJHShopTitle");
+}
 @end

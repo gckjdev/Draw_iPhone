@@ -324,4 +324,9 @@
     return @"";
 }
 
+- (NSString*)shopTitle
+{
+    return NSLS(@"kDiceShop");
+}
+
 @end
