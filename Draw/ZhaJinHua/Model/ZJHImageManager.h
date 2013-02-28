@@ -100,4 +100,8 @@
 - (UIImage *)dialogBtnImage;
 
 - (UIImage *)inputDialogBgImage;
+
+- (UIImage *)timeoutActionBetImage;
+- (UIImage *)timeoutActionFoldImage;
+
 @end

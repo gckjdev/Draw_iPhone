@@ -57,5 +57,6 @@
 - (ZJHAvatarView *)avatarWithFrame:(CGRect)frame;
 
 - (void)getAccount:(NSArray *)userList;
+- (int)maxTotal;
 
 @end
