@@ -19,6 +19,7 @@
 #import "FallingCoinView.h"
 #import "ChatView.h"
 #import "LevelService.h"
+#import "TimeoutSettingView.h"
 
 @class ZJHGameService;
 @class UserManager;
@@ -27,7 +28,7 @@
 @class ZJHImageManager;
 @class BetTable;
 
-@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, FallingCoinViewDelegate, ChatViewDelegate, LevelServiceDelegate> {
+@interface ZJHGameController : PPViewController <ZJHPokerViewProtocol, ZJHAvatarViewDelegate, DealerViewDelegate, ChipsSelectViewProtocol, MoneyTreeViewDelegate, CommonDialogDelegate, AccountServiceDelegate, FallingCoinViewDelegate, ChatViewDelegate, LevelServiceDelegate, TimeoutSettingViewDelegate> {
     BOOL _isComparing;
     BOOL _isShowingComparing;
     FallingCoinView* _coinView;
@@ -89,5 +90,6 @@
 
 @property (retain, nonatomic) IBOutlet FXLabel *waitGameNoteLabel;
 
+@property (retain, nonatomic) IBOutlet UIButton *timeoutSettingButton;
 
 @end

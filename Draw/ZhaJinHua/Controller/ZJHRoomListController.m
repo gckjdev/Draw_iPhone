@@ -99,8 +99,6 @@
         return;
     }
     
-    
-    
     self.currentSession = [_gameService sessionInRoom:indexPath.row];
     if (self.currentSession.password == nil
         || self.currentSession.password.length <= 0

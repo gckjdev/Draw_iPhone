@@ -963,6 +963,12 @@
 "kHomeMenuTypeZJHVSSite" = "单挑场";
 "kHomeMenuTypeZJHShop" = "充值";
 
+
+"kSetTimeoutAction" = "设置超时操作";
+"kFoldCard" = "弃牌";
+"kBetOrCompareCard" = "跟注";
+"kEndWithMaxTotal" = "总注达到上限:%d，系统自动判定胜负!";
+
 "kBulletin" = "公告";
 
 "kShareTo" = "分享到...";
@@ -1342,4 +1348,7 @@
 "kNotBindMailMessage" = "您还没设置您的邮箱帐户，请在系统设置里面设置您的邮箱。";
 
 "kJoinGameError" = "无法加入房间，可能房间已满或正在游戏";
+
+
+
 /*********************** BBS国际化字符串结束 *************************/

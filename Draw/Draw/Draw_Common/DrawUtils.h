@@ -77,6 +77,11 @@
 + (CGContextRef)createNewBitmapContext:(CGRect)rect;
 + (CGLayerRef)createCGLayerWithRect:(CGRect)rect;
 
+// new compress and decompress
++ (NSUInteger)compressColor8WithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
++ (void)decompressColor8:(NSUInteger)intColor red:(CGFloat*)red green:(CGFloat*)green blue:(CGFloat*)blue alpha:(CGFloat*)alpha;
++ (NSUInteger)compressDrawColor8:(DrawColor *)color;
+
 //+ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width;
 
 /*

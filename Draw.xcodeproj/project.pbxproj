@@ -46,6 +46,15 @@
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
 		A404A9E21643607F007CA21A /* ChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9E01643607F007CA21A /* ChipView.m */; };
 		A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9EE1643DD54007CA21A /* PopupViewManager.m */; };
+		A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0816DF34FD00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0916DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
+		A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0B16DF34FD00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0C16DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
+		A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
 		A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40D71A816548737000CC598 /* PokerView~ipad.xib */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
@@ -228,6 +237,17 @@
 		A4C516A915DE40A800E4F735 /* DiceItemListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516A815DE40A800E4F735 /* DiceItemListView.m */; };
 		A4C516AF15DE40F100E4F735 /* DiceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AC15DE40F100E4F735 /* DiceItem.m */; };
 		A4C516B015DE40F100E4F735 /* DiceItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C516AE15DE40F100E4F735 /* DiceItemManager.m */; };
+		A4CA707F16DF268400114CA7 /* timeout_action_bet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */; };
+		A4CA708016DF268400114CA7 /* timeout_action_fold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */; };
+		A4CA708116DF268400114CA7 /* timeout_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */; };
+		A4CA708216DF268E00114CA7 /* timeout_action_bet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */; };
+		A4CA708316DF268E00114CA7 /* timeout_action_fold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */; };
+		A4CA708416DF268E00114CA7 /* timeout_setting_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */; };
+		A4CA708616DF26A600114CA7 /* topwood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708516DF26A600114CA7 /* topwood@2x.png */; };
+		A4CA708716DF26AD00114CA7 /* topwood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708516DF26A600114CA7 /* topwood@2x.png */; };
+		A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A4CA709016DF270100114CA7 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A4CA709116DF270100114CA7 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
 		A4CCE73B16771A6D00F90726 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72E16771A6D00F90726 /* face_anger@2x.png */; };
 		A4CCE73C16771A6D00F90726 /* face_crazy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */; };
 		A4CCE73D16771A6D00F90726 /* face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73016771A6D00F90726 /* face_cry@2x.png */; };
@@ -3813,6 +3833,26 @@
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
+		CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A5216DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5316DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5416DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5516DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5E16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A5F16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6016DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6116DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
 		CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
@@ -7110,6 +7150,14 @@
 		A4C516AC15DE40F100E4F735 /* DiceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItem.m; sourceTree = "<group>"; };
 		A4C516AD15DE40F100E4F735 /* DiceItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemManager.h; sourceTree = "<group>"; };
 		A4C516AE15DE40F100E4F735 /* DiceItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceItemManager.m; sourceTree = "<group>"; };
+		A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_action_bet@2x.png"; sourceTree = "<group>"; };
+		A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_action_fold@2x.png"; sourceTree = "<group>"; };
+		A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeout_setting_bg@2x.png"; sourceTree = "<group>"; };
+		A4CA708516DF26A600114CA7 /* topwood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topwood@2x.png"; sourceTree = "<group>"; };
+		A4CA708816DF26EC00114CA7 /* TimeoutSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeoutSettingView.h; sourceTree = "<group>"; };
+		A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeoutSettingView.m; sourceTree = "<group>"; };
+		A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeoutSettingView.xib; sourceTree = "<group>"; };
+		A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TimeoutSettingView~ipad.xib"; sourceTree = "<group>"; };
 		A4CCE72E16771A6D00F90726 /* face_anger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_anger@2x.png"; sourceTree = "<group>"; };
 		A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_crazy@2x.png"; sourceTree = "<group>"; };
 		A4CCE73016771A6D00F90726 /* face_cry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "face_cry@2x.png"; sourceTree = "<group>"; };
@@ -8387,6 +8435,16 @@
 		CA67B87C15E89FB0002050DB /* GameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameApp.m; sourceTree = "<group>"; };
 		CA67B8A715EB2928002050DB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		CA67B8A915EB292E002050DB /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		CA683A4416DF3FF7002178FC /* BeelineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeelineShape.h; sourceTree = "<group>"; };
+		CA683A4516DF3FF7002178FC /* BeelineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeelineShape.m; sourceTree = "<group>"; };
+		CA683A4A16DF4027002178FC /* RectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleShape.h; sourceTree = "<group>"; };
+		CA683A4B16DF4027002178FC /* RectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectangleShape.m; sourceTree = "<group>"; };
+		CA683A5016DF403C002178FC /* EllipseShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseShape.h; sourceTree = "<group>"; };
+		CA683A5116DF403C002178FC /* EllipseShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseShape.m; sourceTree = "<group>"; };
+		CA683A5C16DF4071002178FC /* StarShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarShape.h; sourceTree = "<group>"; };
+		CA683A5D16DF4072002178FC /* StarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarShape.m; sourceTree = "<group>"; };
+		CA683A6216DF40AD002178FC /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
+		CA683A6316DF40AE002178FC /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
 		CA6D351F15F71574004DC293 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
 		CA6D352015F71574004DC293 /* small_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_setting@2x.png"; sourceTree = "<group>"; };
 		CA6D353315F71918004DC293 /* en */ = {isa = PBXFileReference; explicitFileType = image.icns; name = en; path = "en.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
@@ -11091,6 +11149,10 @@
 		A4E7878116367338003557AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA708816DF26EC00114CA7 /* TimeoutSettingView.h */,
+				A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */,
+				A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */,
+				A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */,
 				A4CCE7B51678355E00F90726 /* ZJHHelpView~ipad.xib */,
 				A4CCE7A91678276D00F90726 /* ZJHHelpView.xib */,
 				C26224CC1670849C008BF3FB /* ZJHUserInfoView.h */,
@@ -13761,6 +13823,25 @@
 			path = GameApp;
 			sourceTree = "<group>";
 		};
+		CA683A3E16DF3F9B002178FC /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
+				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
+				CA683A6216DF40AD002178FC /* TriangleShape.h */,
+				CA683A6316DF40AE002178FC /* TriangleShape.m */,
+				CA683A4416DF3FF7002178FC /* BeelineShape.h */,
+				CA683A4516DF3FF7002178FC /* BeelineShape.m */,
+				CA683A4A16DF4027002178FC /* RectangleShape.h */,
+				CA683A4B16DF4027002178FC /* RectangleShape.m */,
+				CA683A5016DF403C002178FC /* EllipseShape.h */,
+				CA683A5116DF403C002178FC /* EllipseShape.m */,
+				CA683A5C16DF4071002178FC /* StarShape.h */,
+				CA683A5D16DF4072002178FC /* StarShape.m */,
+			);
+			name = Shape;
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -14410,6 +14491,7 @@
 		CA7D43AD168DBDB1009F43F7 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA708516DF26A600114CA7 /* topwood@2x.png */,
 				CA7D43AE168DBDB1009F43F7 /* avatar_default@2x.png */,
 				CA7D43AF168DBDB1009F43F7 /* avatar_default_big@2x.png */,
 				CA7D43B0168DBDB1009F43F7 /* chat_message_bg_center@2x.png */,
@@ -14512,6 +14594,9 @@
 		CA7D43FF168DBDB1009F43F7 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				A4CA707C16DF268400114CA7 /* timeout_action_bet@2x.png */,
+				A4CA707D16DF268400114CA7 /* timeout_action_fold@2x.png */,
+				A4CA707E16DF268400114CA7 /* timeout_setting_bg@2x.png */,
 				CA7D4400168DBDB1009F43F7 /* zjh_audio_off@2x.png */,
 				CA7D4401168DBDB1009F43F7 /* zjh_audio_on@2x.png */,
 				CA7D4402168DBDB1009F43F7 /* zjh_close_btn@2x.png */,
@@ -15529,6 +15614,7 @@
 		CA96E267150DD63900292335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA683A3E16DF3F9B002178FC /* Shape */,
 				CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */,
 				CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */,
 				CA96E26C150DE4FD00292335 /* GameSession.h */,
@@ -15543,8 +15629,6 @@
 				CA3B56E51514CB9300A93137 /* GameUserComment.m */,
 				CA3B56E71514D41E00A93137 /* DrawAction.h */,
 				CA3B56E81514D41E00A93137 /* DrawAction.m */,
-				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
-				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -18587,6 +18671,8 @@
 				CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */,
 				CA9A7ECF16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
+				A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19440,6 +19526,12 @@
 				C24A0F5A16DDACA300F04872 /* draw_tab_mid_selected@2x.png in Resources */,
 				C24A0F5B16DDACA300F04872 /* draw_tab_mid_unselected@2x.png in Resources */,
 				C24A0F5C16DDACAB00F04872 /* draw_room_title_bg@2x.png in Resources */,
+				A4CA708216DF268E00114CA7 /* timeout_action_bet@2x.png in Resources */,
+				A4CA708316DF268E00114CA7 /* timeout_action_fold@2x.png in Resources */,
+				A4CA708416DF268E00114CA7 /* timeout_setting_bg@2x.png in Resources */,
+				A4CA708716DF26AD00114CA7 /* topwood@2x.png in Resources */,
+				A4CA709016DF270100114CA7 /* TimeoutSettingView.xib in Resources */,
+				A4CA709116DF270100114CA7 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20299,6 +20391,12 @@
 				C24A0F3C16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
+				A4CA707F16DF268400114CA7 /* timeout_action_bet@2x.png in Resources */,
+				A4CA708016DF268400114CA7 /* timeout_action_fold@2x.png in Resources */,
+				A4CA708116DF268400114CA7 /* timeout_setting_bg@2x.png in Resources */,
+				A4CA708616DF26A600114CA7 /* topwood@2x.png in Resources */,
+				A406DF0816DF34FD00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0916DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21130,6 +21228,8 @@
 				C24A0F5416DDACA200F04872 /* draw_tab_right_selected@2x.png in Resources */,
 				C24A0F5516DDACA300F04872 /* draw_tab_right_unselected@2x.png in Resources */,
 				C24A0F5D16DDACAC00F04872 /* draw_room_title_bg@2x.png in Resources */,
+				A406DF0B16DF34FD00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0C16DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21864,6 +21964,12 @@
 				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5416DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A6016DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22579,6 +22685,12 @@
 				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */,
+				CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */,
+				CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5516DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A6116DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23294,6 +23406,12 @@
 				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5216DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24017,6 +24135,12 @@
 				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5316DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A5F16DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

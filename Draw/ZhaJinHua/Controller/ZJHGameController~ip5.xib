@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<int key="IBDocument.SystemTarget">1536</int>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -875,7 +875,7 @@
 					<object class="IBUILabel" id="909526062">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{60, 263}, {200, 21}}</string>
+						<string key="NSFrame">{{60, 254}, {200, 40}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="859829263"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -892,6 +892,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -903,6 +904,26 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<double key="preferredMaxLayoutWidth">200</double>
+					</object>
+					<object class="IBUIButton" id="894514967">
+						<reference key="NSNextResponder" ref="483638841"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{70, 393}, {31, 21}}</string>
+						<reference key="NSSuperview" ref="483638841"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="129307563"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="395620140"/>
+						<reference key="IBUIFontDescription" ref="670079205"/>
+						<reference key="IBUIFont" ref="669435553"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
@@ -1301,6 +1322,14 @@
 					<int key="connectionID">3931</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timeoutSettingButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="894514967"/>
+					</object>
+					<int key="connectionID">3935</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickChatButton:</string>
 						<reference key="source" ref="863054290"/>
@@ -1430,6 +1459,15 @@
 					</object>
 					<int key="connectionID">3900</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTimeoutSettingButton:</string>
+						<reference key="source" ref="894514967"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">3937</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1499,6 +1537,7 @@
 							<reference ref="882465781"/>
 							<reference ref="43419799"/>
 							<reference ref="909526062"/>
+							<reference ref="894514967"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1756,6 +1795,11 @@
 						<reference key="object" ref="909526062"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3934</int>
+						<reference key="object" ref="894514967"/>
+						<reference key="parent" ref="483638841"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1812,6 +1856,7 @@
 				<string key="3902.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3904.CustomClassName">FXLabel</string>
 				<string key="3904.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="3934.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="56.CustomClassName">FXLabel</string>
@@ -1830,7 +1875,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3931</int>
+			<int key="maxID">3937</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1838,22 +1883,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="zjh_auto_bet@2x.png">{127, 60}</string>
-			<string key="zjh_auto_bet_on@2x.png">{127, 60}</string>
-			<string key="zjh_bet@2x.png">{103, 60}</string>
-			<string key="zjh_button_holder_bg@2x.png">{640, 110}</string>
-			<string key="zjh_chat_button@2x.png">{60, 51}</string>
-			<string key="zjh_check_card@2x.png">{82, 60}</string>
-			<string key="zjh_compare_card@2x.png">{92, 60}</string>
-			<string key="zjh_fold_card@2x.png">{90, 60}</string>
-			<string key="zjh_game_bg_ip5@2x.jpg">{640, 1096}</string>
-			<string key="zjh_game_setting@2x.png">{72, 71}</string>
-			<string key="zjh_game_total_bet_bg@2x.png">{329, 43}</string>
-			<string key="zjh_raise_bet@2x.png">{98, 60}</string>
-			<string key="zjh_runaway@2x.png">{72, 72}</string>
-			<string key="zjh_user_bet_bg@2x.png">{100, 34}</string>
+			<string key="zjh_auto_bet@2x.png">{16, 16}</string>
+			<string key="zjh_auto_bet_on@2x.png">{16, 16}</string>
+			<string key="zjh_bet@2x.png">{16, 16}</string>
+			<string key="zjh_button_holder_bg@2x.png">{16, 16}</string>
+			<string key="zjh_chat_button@2x.png">{16, 16}</string>
+			<string key="zjh_check_card@2x.png">{16, 16}</string>
+			<string key="zjh_compare_card@2x.png">{16, 16}</string>
+			<string key="zjh_fold_card@2x.png">{16, 16}</string>
+			<string key="zjh_game_bg_ip5@2x.jpg">{16, 16}</string>
+			<string key="zjh_game_setting@2x.png">{16, 16}</string>
+			<string key="zjh_game_total_bet_bg@2x.png">{16, 16}</string>
+			<string key="zjh_raise_bet@2x.png">{16, 16}</string>
+			<string key="zjh_runaway@2x.png">{16, 16}</string>
+			<string key="zjh_user_bet_bg@2x.png">{16, 16}</string>
 			<string key="zjh_vs.png">{16, 16}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

@@ -3600,7 +3600,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     [output writeFloat:12 value:[value floatValue]];
   }
   if (self.hasRgbColor) {
-    [output writeInt32:20 value:self.rgbColor];
+    [output writeUInt32:20 value:self.rgbColor];
   }
   if (self.hasRed) {
     [output writeFloat:21 value:self.red];
@@ -3660,7 +3660,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     size += 1 * self.mutablePointYList.count;
   }
   if (self.hasRgbColor) {
-    size += computeInt32Size(20, self.rgbColor);
+    size += computeUInt32Size(20, self.rgbColor);
   }
   if (self.hasRed) {
     size += computeFloatSize(21, self.red);
@@ -3868,7 +3868,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
         break;
       }
       case 160: {
-        [self setRgbColor:[input readInt32]];
+        [self setRgbColor:[input readUInt32]];
         break;
       }
       case 173: {

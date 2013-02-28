@@ -60,7 +60,7 @@
     [view.roundAvatar setProgressBarWidth:0.07];
     //        _roundAvatar.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [view addSubview:view.roundAvatar];
-//    view.roundAvatar.delegate = view;
+    view.roundAvatar.delegate = view;
     [view initRewardLabel];
     [view addTapGuesture];
     
@@ -226,6 +226,7 @@
     if (user) {
         self.roundAvatar.hidden = NO;
         [self.roundAvatar setAvatarUrl:user.avatar gender:user.gender];
+        self.roundAvatar.delegate = self;
     }
 }
 
@@ -331,26 +332,5 @@
         [view removeFromSuperview];
     }];
 }
-
-
-//- (void)showExpression:(UIImage *)image
-//{
-//    UIImageView *view = [[[UIImageView alloc] initWithFrame:self.roundAvatarPlaceView.frame] autorelease];
-//    view.transform = CGAffineTransformMakeScale(1.05, 1.05);
-//    view.center = self.roundAvatarPlaceView.center;
-//    view.image = image;
-//    CAAnimation *moveVerticalAni = [AnimationManager moveVerticalAnimationFrom:view.center.y to:view.center.y - ([DeviceDetection isIPAD] ? 20 : 10) duration:0.5];
-//    moveVerticalAni.repeatCount = 3;
-//    moveVerticalAni.autoreverses = YES;
-//    [view.layer addAnimation:moveVerticalAni forKey:nil];
-//    
-//    CAAnimation *appearAni = [AnimationManager disappearAnimationFrom:1 to:0 delay:3 duration:1];
-//    
-//    [view.layer addAnimation:appearAni forKey:nil];
-//    [self addSubview:view];
-//    [view performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:4];
-//}
-
-
 
 @end
