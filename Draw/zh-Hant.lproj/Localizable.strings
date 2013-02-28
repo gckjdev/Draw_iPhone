@@ -1299,6 +1299,7 @@
 "kZJHFreeCoinsAwardNote" = "恭喜你獲得%d金幣";
 "kDrawFreeCoinsAwardNote" = "恭喜你獲得%d金幣 + %d鮮花 + %d錦囊(剩余次數:%d)";
 "kLevelUpAwardMessage" = "恭喜升到%d級! 我們給您獎勵了%d個金幣哦!";
+"kZJHShopTitle" = "炸金花商店";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

@@ -44,7 +44,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="713539296"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -66,7 +65,6 @@
 										<int key="NSvFlags">274</int>
 										<string key="NSFrameSize">{307, 360}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="396263088"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -76,7 +74,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{5, 69}, {297, 54}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="58454433"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -90,7 +87,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{5, 179}, {297, 54}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="711677905"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -101,7 +97,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{5, 288}, {297, 55}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="207098718"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -112,7 +107,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{37, 89}, {17, 17}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="86274896"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -126,7 +120,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{57, 89}, {42, 17}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="791406378"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -157,7 +150,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{45, 309}, {42, 17}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="792334924"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -184,7 +176,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{129, 89}, {17, 17}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="82807652"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -195,7 +186,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{154, 89}, {42, 17}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="276348225"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -215,7 +205,6 @@
 										<int key="NSvFlags">-2147483355</int>
 										<string key="NSFrame">{{221, 20}, {61, 61}}</string>
 										<reference key="NSSuperview" ref="562959135"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="338791629"/>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -227,7 +216,6 @@
 								</array>
 								<string key="NSFrameSize">{307, 360}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="185083813"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="432984982">
 									<int key="NSColorSpace">3</int>
@@ -240,7 +228,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{24, 23}, {61, 61}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="270631237"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -251,7 +238,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{24, 137}, {61, 61}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="113605286"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -262,7 +248,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{24, 243}, {61, 61}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="833121197"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -273,7 +258,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{122, 23}, {61, 61}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="412827066"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -284,7 +268,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{23, 200}, {17, 17}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="373843065"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -295,7 +278,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{45, 199}, {42, 17}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="142699992"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -315,7 +297,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{23, 309}, {17, 17}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="19251433"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -326,7 +307,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{230, 89}, {17, 17}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="591335896"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -337,7 +317,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{251, 89}, {42, 17}}</string>
 								<reference key="NSSuperview" ref="792382614"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="983130616"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -355,7 +334,6 @@
 						</array>
 						<string key="NSFrame">{{7, 41}, {307, 360}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="562959135"/>
 						<reference key="IBUIBackgroundColor" ref="432984982"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -370,7 +348,6 @@
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{8.5, 9.5}, {34, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="691337008"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -407,7 +384,6 @@
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{80.5, 6}, {159, 33}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="750872099"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -421,7 +397,6 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{7, 404}, {115, 54}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="622926089"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -435,7 +410,6 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{130, 416}, {95, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="151623773"/>
 						<reference key="IBUIBackgroundColor" ref="432984982"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -459,7 +433,6 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{132, 419}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="427970999"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -473,7 +446,6 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{232, 416}, {82, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -515,7 +487,6 @@
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{247.5, 8}, {66.5, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="792382614"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -541,7 +512,6 @@
 						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{46, 403}, {36, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="943779253"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -551,7 +521,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{58, 6}, {192, 33}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="322271871"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="432984982"/>
@@ -583,7 +552,6 @@
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
 						<string key="NSFrame">{{141, 369}, {38, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="146562100"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -595,7 +563,6 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="708246902"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -998,7 +965,6 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="46.CustomClassName">HKGirlFontLabel</string>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
