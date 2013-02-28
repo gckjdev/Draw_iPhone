@@ -3834,6 +3834,26 @@
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
+		CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
+		CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
+		CA683A5216DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5316DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5416DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5516DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
+		CA683A5E16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A5F16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6016DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6116DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
+		CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
+		CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
 		CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
@@ -8416,6 +8436,16 @@
 		CA67B87C15E89FB0002050DB /* GameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameApp.m; sourceTree = "<group>"; };
 		CA67B8A715EB2928002050DB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		CA67B8A915EB292E002050DB /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		CA683A4416DF3FF7002178FC /* BeelineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeelineShape.h; sourceTree = "<group>"; };
+		CA683A4516DF3FF7002178FC /* BeelineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeelineShape.m; sourceTree = "<group>"; };
+		CA683A4A16DF4027002178FC /* RectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleShape.h; sourceTree = "<group>"; };
+		CA683A4B16DF4027002178FC /* RectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectangleShape.m; sourceTree = "<group>"; };
+		CA683A5016DF403C002178FC /* EllipseShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseShape.h; sourceTree = "<group>"; };
+		CA683A5116DF403C002178FC /* EllipseShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseShape.m; sourceTree = "<group>"; };
+		CA683A5C16DF4071002178FC /* StarShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarShape.h; sourceTree = "<group>"; };
+		CA683A5D16DF4072002178FC /* StarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarShape.m; sourceTree = "<group>"; };
+		CA683A6216DF40AD002178FC /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
+		CA683A6316DF40AE002178FC /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
 		CA6D351F15F71574004DC293 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
 		CA6D352015F71574004DC293 /* small_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_setting@2x.png"; sourceTree = "<group>"; };
 		CA6D353315F71918004DC293 /* en */ = {isa = PBXFileReference; explicitFileType = image.icns; name = en; path = "en.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
@@ -13794,6 +13824,25 @@
 			path = GameApp;
 			sourceTree = "<group>";
 		};
+		CA683A3E16DF3F9B002178FC /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
+				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
+				CA683A6216DF40AD002178FC /* TriangleShape.h */,
+				CA683A6316DF40AE002178FC /* TriangleShape.m */,
+				CA683A4416DF3FF7002178FC /* BeelineShape.h */,
+				CA683A4516DF3FF7002178FC /* BeelineShape.m */,
+				CA683A4A16DF4027002178FC /* RectangleShape.h */,
+				CA683A4B16DF4027002178FC /* RectangleShape.m */,
+				CA683A5016DF403C002178FC /* EllipseShape.h */,
+				CA683A5116DF403C002178FC /* EllipseShape.m */,
+				CA683A5C16DF4071002178FC /* StarShape.h */,
+				CA683A5D16DF4072002178FC /* StarShape.m */,
+			);
+			name = Shape;
+			sourceTree = "<group>";
+		};
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
@@ -15566,6 +15615,7 @@
 		CA96E267150DD63900292335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA683A3E16DF3F9B002178FC /* Shape */,
 				CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */,
 				CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */,
 				CA96E26C150DE4FD00292335 /* GameSession.h */,
@@ -15580,8 +15630,6 @@
 				CA3B56E51514CB9300A93137 /* GameUserComment.m */,
 				CA3B56E71514D41E00A93137 /* DrawAction.h */,
 				CA3B56E81514D41E00A93137 /* DrawAction.m */,
-				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
-				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -21919,6 +21967,11 @@
 				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5416DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A6016DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22635,6 +22688,11 @@
 				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */,
+				CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */,
+				CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5516DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A6116DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23351,6 +23409,11 @@
 				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5216DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24075,6 +24138,11 @@
 				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
+				CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */,
+				CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */,
+				CA683A5316DF403D002178FC /* EllipseShape.m in Sources */,
+				CA683A5F16DF4074002178FC /* StarShape.m in Sources */,
+				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -314,6 +314,11 @@
     return [UIColor blackColor];
 }
 
+- (UIColor*)buttonTitleColor
+{
+    return [UIColor whiteColor];
+}
+
 - (NSString *)shengmengAppId
 {
     return @"";

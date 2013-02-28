@@ -22,6 +22,7 @@
 #import "UseItemScene.h"
 #import "MyFriend.h"
 #import "ConfigManager.h"
+#import "CommonMessageCenter.h"
 
 typedef enum{
     MyTypeFeed = FeedListTypeAll,
@@ -721,7 +722,17 @@ typedef enum{
             case ActionSheetIndexRefuse:
             {
                 _seletedFeed = feed;
-                [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId];
+                CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kAskSureRefuse") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                    [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId successBlock:^{
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusSuccess") delayTime:1.5];
+                        
+                    } failBlock:^{
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusFail") delayTime:1.5];
+                    }];
+                } clickCancelBlock:^{
+                    //
+                }];
+                [dialog showInView:self.view];
             }
                 break;
             case ActionSheetIndexDetail:

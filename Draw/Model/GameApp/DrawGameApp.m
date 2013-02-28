@@ -302,4 +302,9 @@
     return [UIColor whiteColor];
 }
 
+- (UIColor*)buttonTitleColor
+{
+    return [UIColor colorWithRed:83/255.0 green:52/255.0 blue:20/255.0 alpha:1];
+}
+
 @end
