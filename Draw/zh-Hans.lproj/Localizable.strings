@@ -961,8 +961,11 @@
 "kHomeMenuTypeZJHRichSite" = "富豪场";
 "kHomeMenuTypeZJHNormalSite" = "普通场";
 "kHomeMenuTypeZJHVSSite" = "单挑场";
-"kHomeMenuTypeZJHShop" = "充值";
+"kHomeMenuTypeZJHCharge" = "充值";
+"kHomeMenuTypeZJHShop" = "商店";
 
+"kAlreadLastVersion" = "已经是最新版本啦!";
+"kAppUpdate" = "版本升级";
 
 "kSetTimeoutAction" = "设置超时操作";
 "kFoldCard" = "弃牌";

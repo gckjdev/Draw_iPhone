@@ -218,7 +218,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }
-        case HomeMenuTypeZJHShop:{
+        case HomeMenuTypeZJHCharge:{
             
             if ([self isRegistered] == NO) {
                 [self toRegister];
@@ -229,6 +229,19 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             [self.navigationController pushViewController:controller animated:YES];
         }
             break;
+            
+        case HomeMenuTypeZJHShop:{
+            
+            if ([self isRegistered] == NO) {
+                [self toRegister];
+                return;
+            }
+            
+            VendingController* controller = [[[VendingController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+            break;
+            
         case HomeMenuTypeDrawFreeCoins:
         {            
             FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];

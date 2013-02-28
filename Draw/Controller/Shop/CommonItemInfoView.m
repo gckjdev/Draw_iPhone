@@ -58,7 +58,7 @@
 
 - (void)initView
 {
-    if (isDrawApp()) {
+    if (isDrawApp() || isZhajinhuaApp()) {
         [self.backgroundImageView setImage:[ShareImageManager defaultManager].friendDetailBgImage];
     }
     if (isDiceApp()) {

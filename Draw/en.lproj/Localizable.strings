@@ -943,6 +943,7 @@
 "kHomeMenuTypeZJHRichSite" = "Rich";
 "kHomeMenuTypeZJHNormalSite" = "Poor";
 "kHomeMenuTypeZJHVSSite" = "One-One";
+"kHomeMenuTypeZJHCharge" = "Charge";
 "kHomeMenuTypeZJHShop" = "Shop";
 
 "kBulletin" = "Bulletin";
@@ -1109,6 +1110,9 @@
 "kFoldCard" = "Fold";
 "kBetOrCompareCard" = "Bet";
 "kEndWithMaxTotal" = "The total bet hits the threshold:%d, game over!";
+
+"kAlreadLastVersion" = "It's the last version now!";
+"kAppUpdate" = "Version update";
 
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
