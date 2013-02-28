@@ -145,6 +145,8 @@ typedef enum{
                            forState:UIControlStateSelected];
     
     
+    
+    
     switch (_type) {
         case ControllerTypeInviteFriend:
             [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
@@ -156,9 +158,9 @@ typedef enum{
             }
             
             [searchUserButton setTitle:NSLS(@"kSMSInvite") forState:UIControlStateNormal];
-            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [inviteButton setTitle:NSLS(@"kWeixinInvite") forState:UIControlStateNormal];
-            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             break;
         case ControllerTypeSelectFriend:
             [self.titleLabel setText:NSLS(@"kSelectContacts")];    
@@ -169,12 +171,14 @@ typedef enum{
         default:
             [self.titleLabel setText:NSLS(@"kMyFriends")];    
             [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
-            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
-            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             editButton.hidden = YES;
             break;
     }
+    [self.searchUserButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+    [self.inviteButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
 
 }
 
@@ -197,6 +201,8 @@ typedef enum{
     self.newFanNumber.hidden = YES;
     [[FriendService defaultService] getRelationCount:self];
     [self clickTabButton:self.currentTabButton];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

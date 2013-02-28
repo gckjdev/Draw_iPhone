@@ -209,4 +209,7 @@ typedef enum{
 
 + (NSString*)getAdMobId;
 
++ (int)maxTotalBetWithNormalRule;
++ (int)maxTotalBetWithDualRule;
++ (int)maxTotalBetWithRichRule;
 @end

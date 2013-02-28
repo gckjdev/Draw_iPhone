@@ -1102,6 +1102,11 @@
 "kZJH_share_message_body" = "I found a very funny poker game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@";
 "kZJH_email_subject" = "Share a funny iOS game - Awesome Poker";
 
+"kSetTimeoutAction" = "Set timout action";
+"kFoldCard" = "Fold";
+"kBetOrCompareCard" = "Bet";
+"kEndWithMaxTotal" = "The total bet hits the threshold:%d, game over!";
+
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
 

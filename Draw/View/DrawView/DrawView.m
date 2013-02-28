@@ -239,12 +239,22 @@ typedef enum {
 
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
+    
+    for (UITouch *touche in touches) {
+        [toucheSet addObject:touche];
+    }
+    NSInteger count = [toucheSet count];
+    if (type == TouchTypeEnd) {
+        [toucheSet removeAllObjects];
+    }
+    if (count != 1) {
+        PPDebug(@"<handleShapeTouches> touch tapCount = %d, type = %d", count, type);
+        return;
+        
+    }
+    
     UITouch *touch  = [touches anyObject];
 
-    if ([touch tapCount] != 1) {
-        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", [touch tapCount], type);
-        return;
-    }
     
     CGPoint point = [touch locationInView:self];
 

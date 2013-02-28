@@ -947,5 +947,15 @@ static ZJHImageManager* shareInstance;
     return [_resService imageByName:@"" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
+- (UIImage *)timeoutActionBetImage
+{
+    return [UIImage imageNamed:@"timeout_action_bet@2x.png"];
+}
+
+- (UIImage *)timeoutActionFoldImage
+{
+    return [UIImage imageNamed:@"timeout_action_fold@2x.png"];
+}
+
 
 @end
