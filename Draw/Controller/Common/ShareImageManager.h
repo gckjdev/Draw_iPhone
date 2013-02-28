@@ -221,4 +221,7 @@
 - (UIImage *)strawImage;
 
 - (UIImage *)commonRoundAavatarNoUserImage;
+
+
+- (UIImage *)badgeImage;
 @end

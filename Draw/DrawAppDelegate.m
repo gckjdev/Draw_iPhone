@@ -311,10 +311,10 @@ NSString* GlobalGetBoardServerURL()
 
     // Check Whether App Has Update
     if ([DeviceDetection isOS5]){
-        [self checkAppVersion:[ConfigManager appId]];
+        [UIUtils checkAppVersion:[ConfigManager appId]];
     }
     else if (isAskBindDevice == NO){        
-        [self checkAppVersion:[ConfigManager appId]];
+        [UIUtils checkAppVersion:[ConfigManager appId]];
     }
     
     // Show Root View
@@ -550,7 +550,7 @@ NSString* GlobalGetBoardServerURL()
 {
     if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
         if (buttonIndex == 1){
-            [self openAppForUpgrade:[ConfigManager appId]];
+            [UIUtils openAppForUpgrade:[ConfigManager appId]];
         }
     }
 }

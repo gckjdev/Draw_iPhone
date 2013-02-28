@@ -21,6 +21,8 @@
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "UMGridViewController.h"
+#import "UIUtils.h"
+#import "ShareImageManager.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -36,6 +38,7 @@
 @property (assign, nonatomic) int rowOfMoreApp;
 @property (assign, nonatomic) int rowOfGiveReview;
 @property (assign, nonatomic) int rowOfAbout;
+@property (assign, nonatomic) int rowOfAppUpdate;
 @property (assign, nonatomic) int numberOfRows;
 @property (assign, nonatomic) int rowOfFollow;
 
@@ -55,20 +58,11 @@
 @synthesize rowOfMoreApp;
 @synthesize rowOfGiveReview;
 @synthesize rowOfAbout;
+@synthesize rowOfAppUpdate;
 @synthesize numberOfRows;
 @synthesize qqGroupLabel = _qqGroupLabel;
 
 #pragma mark - Table dataSource ,table view delegate
-//enum {
-//    SHARE = 0,
-//    ADD_WORDS,
-//    REPORT_BUG,
-//    FEEDBACK,
-//    MORE_APP,
-//    GIVE_REVIEW,
-//    ABOUT,
-//    FEEDBACK_COUNT
-//};
 
 #define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
 #define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
@@ -83,6 +77,7 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
+        rowOfAppUpdate = count++;
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -99,6 +94,7 @@
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
+        rowOfAppUpdate = count++;
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -140,8 +136,14 @@
         [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
     } else if (anIndex == rowOfAbout) {
         [aCell.textLabel setText:NSLS(@"kAbout_us")];
-    } 
-    
+    } else if (anIndex == rowOfAppUpdate){
+        [aCell.textLabel setText:NSLS(@"kAppUpdate")];
+        if ([UIUtils checkAppHasUpdateVersion]) {
+            aCell.accessoryView = [self badgeView];
+        }else{
+            aCell.accessoryView = nil;
+        }
+    }
     
     if ([DeviceDetection isIPAD]) {
         [aCell.textLabel setFont:[UIFont systemFontOfSize:32]];
@@ -340,8 +342,15 @@ enum {
         AboutUsController* rc = [[AboutUsController alloc] init];
         [self.navigationController pushViewController:rc animated:YES];
         [rc release];
-    } 
+    }
     
+    else if (indexPath.row  == rowOfAppUpdate) {
+        if ([UIUtils checkAppHasUpdateVersion]) {
+            [UIUtils openApp:[GameApp appId]];
+        }else{
+            [self popupMessage:NSLS(@"kAlreadLastVersion") title:nil];
+        }
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -465,7 +474,23 @@ enum {
         [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
         [userDefaults synchronize];
     }
+}
+
+#define BADGE_VIEW_WIDTH ([DeviceDetection isIPAD] ?  36 : 18)
+#define BADGE_VIEW_HEIGHT ([DeviceDetection isIPAD] ?  38 : 19)
+#define BADGE_LABEL_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ?  13 : 25)]
+
+- (UIView *)badgeView{
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, BADGE_VIEW_WIDTH, BADGE_VIEW_HEIGHT)] autorelease];
+    imageView.image = [[ShareImageManager defaultManager] badgeImage];
     
+    UILabel *label = [[[UILabel alloc] initWithFrame:imageView.bounds] autorelease];
+    label.font = BADGE_LABEL_FONT;
+    label.backgroundColor = [UIColor clearColor];
+    label.text = @"1";
+    label.textAlignment = UITextAlignmentCenter;
+    [imageView addSubview:label];
+    return imageView;
 }
 
 @end
