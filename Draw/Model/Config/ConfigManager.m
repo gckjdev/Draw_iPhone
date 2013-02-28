@@ -783,4 +783,21 @@
 // http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c32e4b0d9b30df33c94&uid=50b4596fe4b03dc20a9e7e51
 
 
+
++ (int)maxTotalBetWithNormalRule
+{
+    return  [MobClickUtils getIntValueByKey:@"MAX_TOTAL_BET_WITH_NORMAL_RULE" defaultValue:50000];
+}
+
++ (int)maxTotalBetWithDualRule
+{    return  [MobClickUtils getIntValueByKey:@"MAX_TOTAL_BET_WITH_DUAL_RULE" defaultValue:500000];
+}
+
++ (int)maxTotalBetWithRichRule
+{
+    return  [MobClickUtils getIntValueByKey:@"MAX_TOTAL_BET_WITH_RICH_RULE" defaultValue:500000];
+}
+
+
+
 @end

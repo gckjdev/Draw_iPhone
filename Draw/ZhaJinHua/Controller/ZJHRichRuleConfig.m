@@ -33,4 +33,9 @@
     return [[ZJHImageManager defaultManager] gameBgImage];
 }
 
+- (int)maxTotal
+{
+    return [ConfigManager maxTotalBetWithRichRule];
+}
+
 @end

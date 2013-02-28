@@ -1153,6 +1153,11 @@
 "kZJHUpgradeMsg" = "恭喜！您剛剛升到第%d級";
 "kZJHDegradeMsg" = "噢，你玩得太不認真了，都降到%d級了";
 
+"kSetTimeoutAction" = "設置超時操作";
+"kFoldCard" = "棄牌";
+"kBetOrCompareCard" = "跟註";
+"kEndWithMaxTotal" = "總註達到上限:%d，系統自動判定勝負!";
+
 "kClickMe" = "點我一下";
 
 "kDiceSnake" = "蛇骰";

@@ -435,7 +435,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">5000000</string>
+						<string key="IBUIText">50000</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45MTM2NzU2ODg5IDEgMAA</bytes>
@@ -499,7 +499,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">20000</string>
+						<string key="IBUIText">200</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMDY4MTgxODE4IDEgMQA</bytes>
@@ -883,7 +883,7 @@
 					<object class="IBUILabel" id="1018745468">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{60, 220}, {200, 21}}</string>
+						<string key="NSFrame">{{60, 210}, {200, 42}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<reference key="NSNextKeyView" ref="859829263"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -900,6 +900,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -911,11 +912,12 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<double key="preferredMaxLayoutWidth">200</double>
 					</object>
-					<object class="IBUIButton" id="377401351">
+					<object class="IBUIButton" id="307224438">
 						<reference key="NSNextResponder" ref="483638841"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 321}, {31, 31}}</string>
+						<string key="NSFrame">{{69, 330}, {31, 21}}</string>
 						<reference key="NSSuperview" ref="483638841"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -1303,6 +1305,14 @@
 					<int key="connectionID">3939</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timeoutSettingButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="307224438"/>
+					</object>
+					<int key="connectionID">3943</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickChatButton:</string>
 						<reference key="source" ref="863054290"/>
@@ -1435,7 +1445,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTimeoutSettingButton:</string>
-						<reference key="source" ref="377401351"/>
+						<reference key="source" ref="307224438"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1510,7 +1520,7 @@
 							<reference ref="5058208"/>
 							<reference ref="863054290"/>
 							<reference ref="1018745468"/>
-							<reference ref="377401351"/>
+							<reference ref="307224438"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1769,7 +1779,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3941</int>
-						<reference key="object" ref="377401351"/>
+						<reference key="object" ref="307224438"/>
 						<reference key="parent" ref="483638841"/>
 					</object>
 				</array>
@@ -1847,7 +1857,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">3942</int>
+			<int key="maxID">3944</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -203,9 +203,29 @@ static ZJHGameService *_defaultService;
     return [self isGamePlaying] && [[self myPlayInfo] canFoldCard];
 }
 
+- (int)remainUserCount
+{
+    int count = 0;
+    for (NSString *key in [_gameState.usersInfo allKeys]) {
+        ZJHUserPlayInfo *user = [_gameState.usersInfo objectForKey:key];
+        if (user.alreadCompareLose || user.alreadFoldCard) {
+            continue;
+        }
+        count++;
+    }
+    
+    PPDebug(@"count: %d", count);
+    
+    return count;
+}
+
 - (BOOL)canICompareCard
 {
-    return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0);
+    if ([self isMyBalanceEnough]) {
+        return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0) && ([self remainUserCount] > 2);
+    }else{
+        return [self isGamePlaying] && [self isMyTurn] && [[self myPlayInfo] canCompareCard] && (self.session.myTurnTimes >=2) && ([[self compareUserIdList] count] > 0);
+    }
 }
 
 - (BOOL)canIShowCard:(int)cardId
@@ -628,13 +648,11 @@ static ZJHGameService *_defaultService;
 - (void)reset
 {
     self.gameState = nil;
+    self.timeoutAcion = PBZJHUserActionFoldCard;
 }
 
 - (void)setTimeoutSettingWithAction:(PBZJHUserAction)action
 {
-    if (action == _timeoutAcion) {
-        return;
-    }
     _timeoutAcion = action;
     [_networkClient sendTimeoutSettingRequest:self.userId
                                     sessionId:self.session.sessionId

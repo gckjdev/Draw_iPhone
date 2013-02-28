@@ -88,4 +88,9 @@
     [[ZJHGameService defaultService] getAccount:userList];
 }
 
+- (int)maxTotal
+{
+    return [ConfigManager maxTotalBetWithDualRule];
+}
+
 @end

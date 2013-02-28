@@ -66,6 +66,7 @@
 @property (retain, nonatomic) ZJHRuleConfig *ruleConfig;
 @property (retain, nonatomic) NSDictionary *userPosInfoDic;
 @property (retain, nonatomic) ChatView *chatView;
+@property (retain, nonatomic) TimeoutSettingView *timeoutSettingView;
 @end
 
 @implementation ZJHGameController
@@ -128,6 +129,8 @@
     PPRelease(_centerUpAvatar);
     PPRelease(_chatView);
     PPRelease(_moneyTreeHolder);
+    [_timeoutSettingButton release];
+    PPRelease(_timeoutSettingView);
     [super dealloc];
 }
 
@@ -261,6 +264,8 @@
 {
     [super viewDidLoad];
     
+    self.timeoutSettingButton.hidden = YES;
+    
     self.ruleConfig = [ZJHRuleConfigFactory createRuleConfig];
     _gameService.chipValues = [_ruleConfig chipValues];
     [_gameService syncAccount:self];
@@ -301,6 +306,15 @@
     [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
     // waitting label
     [self updateWaitGameNoteLabel];
+}
+
+- (void)updateTimeoutSetting{
+    self.timeoutSettingButton.hidden = NO;
+    if (_gameService.timeoutAcion == PBZJHUserActionBet) {
+        [self.timeoutSettingButton setImage:[_imageManager timeoutActionBetImage] forState:UIControlStateNormal];
+    }else{
+        [self.timeoutSettingButton setImage:[_imageManager timeoutActionFoldImage] forState:UIControlStateNormal];
+    }
 }
 
 #define WAIT_GAME_NOTE_DISAPPEAR_DURATION (2.0)
@@ -595,10 +609,13 @@
     [self updateTotalBetAndSingleBet];
     [self updateUserTotalBet:_userManager.userId];
     [[self getMyAvatarView] update];
+
 }
 
 - (void)checkCardSuccess
 {
+    [self updateTimeoutSetting];
+
     [[self getMyPokersView] faceUpCardsWithCardType:nil
                                         xMotiontype:ZJHPokerXMotionTypeNone
                                           animation:YES];
@@ -679,17 +696,12 @@
 {
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
     
-//    if ([_gameService myCardType] >= PBZJHCardTypeStraight && [_gameService myCardType] <= PBZJHCardTypeThreeOfAKind) {
-//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
-//    }else{
-//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
-//    }
-    
-//    if ([_gameService myCardType] != PBZJHCardTypeHighCard) {
+    if ([_gameService myCardType] >= PBZJHCardTypeStraight && [_gameService myCardType] <= PBZJHCardTypeThreeOfAKind) {
         [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
-//    }else{
-//        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
-//    }
+    }else{
+        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
+    }
+    
     
     [self clearAll];
     
@@ -737,6 +749,10 @@
 
 - (void)gameOver
 {
+    if(_gameService.gameState.totalBet >= [_ruleConfig maxTotal]){
+        [self infoUser:[NSString stringWithFormat:NSLS(@"kEndWithMaxTotal"), [_ruleConfig maxTotal]]];
+    }
+    
     [self updateZJHButtons];
     [self clearAllAvatarReciprocals];
     [self updateAllUsersAvatar];
@@ -759,6 +775,8 @@
 
 - (void)clearAll
 {
+    [self.timeoutSettingView dismiss];
+    self.timeoutSettingButton.hidden = YES;
     [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
@@ -1230,6 +1248,7 @@
     [self setCenterUpTotalBetBg:nil];
     [self setCenterUpTotalBet:nil];
     [self setCenterUpAvatar:nil];
+    [self setTimeoutSettingButton:nil];
     [super viewDidUnload];
 }
 
@@ -1248,6 +1267,14 @@
                            canChat:NO];
 }
 
+- (void)infoUser:(NSString *)info
+{
+    self.waitGameNoteLabel.text = info;
+    self.waitGameNoteLabel.hidden = NO;
+    [self.waitGameNoteLabel.layer addAnimation:[AnimationManager disappearAnimationFrom:1.0 to:0 delay:7 duration:2] forKey:nil];
+    [self.waitGameNoteLabel performSelector:@selector(setHidden:) withObject:[NSNumber numberWithBool:YES] afterDelay:9];
+}
+
 - (void)reciprocalEnd:(ZJHAvatarView*)view
 {
     PPDebug(@"################# [controller: %@] TIME OUT: auto fold ##################", [self description]);
@@ -1255,7 +1282,11 @@
             if (_gameService.timeoutAcion == PBZJHUserActionFoldCard) {
                 [self clickFoldCardButton:nil];
             }else{
-                [self clickBetButton:nil];
+                if ([_gameService isMyBalanceEnough]) {
+                   [self clickBetButton:nil];
+                }else{
+                    [self compareToUser:[[_gameService compareUserIdList] objectAtIndex:0]];
+                }
             }
         }
 }
@@ -1361,6 +1392,9 @@
     self.foldCardButton.userInteractionEnabled = [_gameService canIFoldCard] && !self.dealerView.isDealing;
     [self.foldCardButton setTitleColor:(self.foldCardButton.userInteractionEnabled ? TITLE_COLOR_WHEN_ENABLE : TITLE_COLOR_WHEN_DISABLE) forState:UIControlStateNormal];
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
+    
+    [self.timeoutSettingView dismiss];
+    self.timeoutSettingButton.hidden = ![[_gameService userPlayInfo:_userManager.userId] alreadCheckCard];
 }
 
 - (void)disableAllZJHButtons
@@ -1730,7 +1764,16 @@
 }
 
 - (IBAction)clickTimeoutSettingButton:(id)sender {
-    
+    if (self.timeoutSettingView == nil) {
+        self.timeoutSettingView = [TimeoutSettingView createTimeoutSettingView];
+        self.timeoutSettingView.delegate = self;
+    }
+    [self.timeoutSettingView showInView:self.view];
+}
+
+- (void)didSelectTimeoutAction:(PBZJHUserAction)action{
+    [_gameService setTimeoutSettingWithAction:action];
+    [self updateTimeoutSetting];
 }
 
 @end
