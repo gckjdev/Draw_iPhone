@@ -46,6 +46,15 @@
 		A404A9AB16426545007CA21A /* ChipsSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9AA16426545007CA21A /* ChipsSelectView.m */; };
 		A404A9E21643607F007CA21A /* ChipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9E01643607F007CA21A /* ChipView.m */; };
 		A404A9EF1643DD57007CA21A /* PopupViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A404A9EE1643DD54007CA21A /* PopupViewManager.m */; };
+		A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0816DF34FD00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0916DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
+		A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0B16DF34FD00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0C16DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
+		A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA708916DF26EC00114CA7 /* TimeoutSettingView.m */; };
+		A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708A16DF26EC00114CA7 /* TimeoutSettingView.xib */; };
+		A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CA708B16DF26EC00114CA7 /* TimeoutSettingView~ipad.xib */; };
 		A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40D71A816548737000CC598 /* PokerView~ipad.xib */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
@@ -18614,6 +18623,8 @@
 				CAE9AA3716D65F04008392F9 /* DiceDefault-568h@2x.png in Resources */,
 				CA9A7ECF16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
+				A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20336,6 +20347,8 @@
 				A4CA708016DF268400114CA7 /* timeout_action_fold@2x.png in Resources */,
 				A4CA708116DF268400114CA7 /* timeout_setting_bg@2x.png in Resources */,
 				A4CA708616DF26A600114CA7 /* topwood@2x.png in Resources */,
+				A406DF0816DF34FD00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0916DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21167,6 +21180,8 @@
 				C24A0F5416DDACA200F04872 /* draw_tab_right_selected@2x.png in Resources */,
 				C24A0F5516DDACA300F04872 /* draw_tab_right_unselected@2x.png in Resources */,
 				C24A0F5D16DDACAC00F04872 /* draw_room_title_bg@2x.png in Resources */,
+				A406DF0B16DF34FD00852E59 /* TimeoutSettingView.xib in Resources */,
+				A406DF0C16DF34FD00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21901,6 +21916,7 @@
 				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23332,6 +23348,7 @@
 				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24055,6 +24072,7 @@
 				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
 				CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */,
+				A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
