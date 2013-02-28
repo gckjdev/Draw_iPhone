@@ -55,8 +55,6 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBShapeInfo;
-@class PBShapeInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -873,8 +871,9 @@
   BOOL hasAlpha_:1;
   BOOL hasType_:1;
   BOOL hasPenType_:1;
+  BOOL hasShapeType_:1;
+  BOOL hasRgbColor_:1;
   BOOL hasColor_:1;
-  BOOL hasShapeInfo_:1;
   Float32 width;
   Float32 red;
   Float32 blue;
@@ -882,8 +881,10 @@
   Float32 alpha;
   int32_t type;
   int32_t penType;
+  int32_t shapeType;
+  int32_t rgbColor;
   PBColor* color;
-  PBShapeInfo* shapeInfo;
+  NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointXList;
   NSMutableArray* mutablePointYList;
   NSMutableArray* mutablePointList;
@@ -892,7 +893,8 @@
 - (BOOL) hasColor;
 - (BOOL) hasWidth;
 - (BOOL) hasPenType;
-- (BOOL) hasShapeInfo;
+- (BOOL) hasShapeType;
+- (BOOL) hasRgbColor;
 - (BOOL) hasRed;
 - (BOOL) hasBlue;
 - (BOOL) hasGreen;
@@ -901,13 +903,16 @@
 @property (readonly, retain) PBColor* color;
 @property (readonly) Float32 width;
 @property (readonly) int32_t penType;
-@property (readonly, retain) PBShapeInfo* shapeInfo;
+@property (readonly) int32_t shapeType;
+@property (readonly) int32_t rgbColor;
 @property (readonly) Float32 red;
 @property (readonly) Float32 blue;
 @property (readonly) Float32 green;
 @property (readonly) Float32 alpha;
 - (NSArray*) pointList;
 - (PBPoint*) pointAtIndex:(int32_t) index;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
 - (NSArray*) pointXList;
 - (Float32) pointXAtIndex:(int32_t) index;
 - (NSArray*) pointYList;
@@ -976,12 +981,17 @@
 - (PBNoCompressDrawAction_Builder*) setPenType:(int32_t) value;
 - (PBNoCompressDrawAction_Builder*) clearPenType;
 
-- (BOOL) hasShapeInfo;
-- (PBShapeInfo*) shapeInfo;
-- (PBNoCompressDrawAction_Builder*) setShapeInfo:(PBShapeInfo*) value;
-- (PBNoCompressDrawAction_Builder*) setShapeInfoBuilder:(PBShapeInfo_Builder*) builderForValue;
-- (PBNoCompressDrawAction_Builder*) mergeShapeInfo:(PBShapeInfo*) value;
-- (PBNoCompressDrawAction_Builder*) clearShapeInfo;
+- (BOOL) hasShapeType;
+- (int32_t) shapeType;
+- (PBNoCompressDrawAction_Builder*) setShapeType:(int32_t) value;
+- (PBNoCompressDrawAction_Builder*) clearShapeType;
+
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (PBNoCompressDrawAction_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addRectComponent:(Float32) value;
+- (PBNoCompressDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
+- (PBNoCompressDrawAction_Builder*) clearRectComponentList;
 
 - (NSArray*) pointXList;
 - (Float32) pointXAtIndex:(int32_t) index;
@@ -996,6 +1006,11 @@
 - (PBNoCompressDrawAction_Builder*) addPointY:(Float32) value;
 - (PBNoCompressDrawAction_Builder*) addAllPointY:(NSArray*) values;
 - (PBNoCompressDrawAction_Builder*) clearPointYList;
+
+- (BOOL) hasRgbColor;
+- (int32_t) rgbColor;
+- (PBNoCompressDrawAction_Builder*) setRgbColor:(int32_t) value;
+- (PBNoCompressDrawAction_Builder*) clearRgbColor;
 
 - (BOOL) hasRed;
 - (Float32) red;

@@ -18,7 +18,7 @@ typedef enum{
     ShapeTypeStar,
 }ShapeType;
 
-@class PBShapeInfo;
+//@class PBShapeInfo;
 @class DrawColor;
 
 @interface ShapeInfo : NSObject
@@ -34,10 +34,12 @@ typedef enum{
 
 @property(nonatomic, retain)DrawColor *color;
 
-+ (id)shapeWithPBShapeInfo:(PBShapeInfo *)shapeInfo;
+
 + (id)shapeWithType:(ShapeType) type penType:(ItemType)penType width:(CGFloat)with color:(DrawColor *)color;
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;
-- (PBShapeInfo *)toPBShape;
+- (void)setPointsWithPointComponent:(NSArray *)pointComponent;
+- (NSArray *)rectComponent;
+
 
 @end

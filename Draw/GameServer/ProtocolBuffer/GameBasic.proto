@@ -90,7 +90,7 @@ message PBGameSessionChanged {
   repeated string userIdsDeleted = 6;
   repeated PBGameUser usersUpdated = 7;
 }
-
+/*
 message PBShapeInfo {
     required int32 type = 1;
     optional float width = 2;
@@ -98,6 +98,7 @@ message PBShapeInfo {
     repeated float rectComponent = 4; //startX, startY, endX, endY
     repeated float colorComponent = 5; //R G B A
 }
+*/
 
 // internal usage, to store draw data
 message PBDrawAction {
@@ -106,8 +107,8 @@ message PBDrawAction {
   optional float width = 3;
   optional int32 color = 4;
   optional int32 penType = 5;
-
-  optional PBShapeInfo shapeInfo = 10;
+  optional int32 shapeType = 6;
+  repeated float rectComponent = 7; //startX, startY, endX, endY
 }
 
 message PBMessage {
