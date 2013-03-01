@@ -41,6 +41,7 @@
 #import "NotificationName.h"
 #import "ZJHRoomListController.h"
 #import "FreeCoinsControllerViewController.h"
+#import "BBSBoardController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -490,6 +491,14 @@
             [view showInView:self.view];
         }
             break;
+            
+        case HomeMenuTypeDrawBBS: {
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES
+             ];
+            PPRelease(bbs);
+            break;
+        }
 
         default:
             break;

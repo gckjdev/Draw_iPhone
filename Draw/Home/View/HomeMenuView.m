@@ -431,6 +431,7 @@ int *getDiceMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDiceSuperHighRoom,
         HomeMenuTypeDiceFreeCoins,
         HomeMenuTypeDiceShop,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
@@ -443,8 +444,9 @@ int *getDiceMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDiceStart,
         HomeMenuTypeDiceHappyRoom,
         HomeMenuTypeDiceSuperHighRoom,
-        HomeMenuTypeDiceHelp,
         HomeMenuTypeDiceShop,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
     return list;
