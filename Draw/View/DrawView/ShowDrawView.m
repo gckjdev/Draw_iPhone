@@ -246,8 +246,8 @@
 
 - (void)resetFrameSize:(CGSize)size
 {
-    CGFloat xScale = size.width / CGRectGetWidth(DRAW_VIEW_FRAME);
-    CGFloat yScele = size.height / CGRectGetHeight(DRAW_VIEW_FRAME);
+    CGFloat xScale = size.width / CGRectGetWidth(self.frame);
+    CGFloat yScele = size.height / CGRectGetHeight(self.frame);
     [self.layer setTransform:CATransform3DMakeScale(xScale, yScele, 1)];
 }
 
