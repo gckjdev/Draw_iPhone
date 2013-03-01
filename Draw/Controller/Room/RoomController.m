@@ -35,6 +35,7 @@
 #import "DrawSoundManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
+#define AVATAR_HOLDER_VIEW_TAG_OFFSET 120130301
 
 @interface RoomController ()
 
@@ -193,20 +194,22 @@
 #define AVATAR_FRAME_TAG    20120406
 #define DRAWING_MARK_FRAME ([DeviceDetection isIPAD]) ? CGRectMake(40 * 2, 40 * 2, 25 * 2, 25 * 2) : CGRectMake(40, 40, 25, 25)
 #define ORG_POINT  ([DeviceDetection isIPAD]) ? CGPointMake(124, 341) : CGPointMake(46, 150)
-#define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 128 : 64
-#define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 124 : 62
+#define AVATAR_WIDTH ([DeviceDetection isIPAD]) ? 142 : 71
+#define AVATAR_HEIGTH ([DeviceDetection isIPAD]) ? 142 : 71
 - (void)prepareAvatars
 {
     int imageStartTag = 31;
     int imageEndTag = 36;
-    float seperatorX = ([DeviceDetection isIPAD]) ? 196 : 80;
-    float seperatorY = ([DeviceDetection isIPAD]) ? 220 : 99;
-    CGPoint orgPoint = ORG_POINT;
+//    float seperatorX = ([DeviceDetection isIPAD]) ? 196 : 80;
+//    float seperatorY = ([DeviceDetection isIPAD]) ? 220 : 99;
+//    CGPoint orgPoint = ORG_POINT;
     for (int i = imageStartTag; i <= imageEndTag; i++) {
-        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:CGRectMake(orgPoint.x+((i-31)%3)*seperatorX, orgPoint.y+((i-31)/3)*seperatorY, AVATAR_WIDTH, AVATAR_HEIGTH) gender:NO level:0];
+        int holderViewTag = i-imageStartTag+AVATAR_HOLDER_VIEW_TAG_OFFSET;
+        UIView* holderView = [self.view viewWithTag:holderViewTag];
+        AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:holderView.frame gender:NO level:0];
         avatarView.tag = i;
         [avatarView setImage:nil];
-        avatarView.hidden = NO;
+        avatarView.hidden = YES;
         avatarView.delegate = self;
         [self.view addSubview:avatarView];
         [avatarView release];
@@ -259,6 +262,7 @@
         [imageView setAvatarUrl:avatar gender:[user gender]];
         [imageView setUserId:user.userId];
         [imageView setAvatarSelected:NO level:user.level];
+        imageView.hidden = NO;
         //[imageView setFrame:viewForFrame.frame];
         
         // set default image firstly
@@ -327,6 +331,7 @@
         [imageView setUserId:nil];
         [imageView setHasPen:NO];
         [imageView setAvatarSelected:NO level:0];
+        imageView.hidden = YES;
         
         [[imageView viewWithTag:AVATAR_FRAME_TAG] removeFromSuperview];
     }
