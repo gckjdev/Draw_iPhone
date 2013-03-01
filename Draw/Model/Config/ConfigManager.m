@@ -796,6 +796,9 @@
     return  [MobClickUtils getIntValueByKey:@"MAX_TOTAL_BET_WITH_RICH_RULE" defaultValue:500000];
 }
 
-
++ (BOOL)showBetViewEnabled
+{
+    return [MobClickUtils getIntValueByKey:@"BET_VIEW_ENABLED" defaultValue:1];
+}
 
 @end
