@@ -293,7 +293,6 @@
 						<string key="NSFrame">{{455, 908}, {278, 74}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -961,14 +960,14 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{16, 16}</string>
-			<string key="draw_button_highlight@2x.png">{16, 16}</string>
-			<string key="draw_button_normal@2x.png">{16, 16}</string>
-			<string key="green_button@2x.png">{16, 16}</string>
-			<string key="orange_button@2x.png">{16, 16}</string>
-			<string key="paper@2x.png">{16, 16}</string>
-			<string key="topwood@2x.jpg">{16, 16}</string>
-			<string key="wood_bg2@2x.png">{16, 16}</string>
+			<string key="back@2x.png">{67, 53}</string>
+			<string key="draw_button_highlight@2x.png">{91, 56}</string>
+			<string key="draw_button_normal@2x.png">{91, 56}</string>
+			<string key="green_button@2x.png">{71, 84}</string>
+			<string key="orange_button@2x.png">{71, 84}</string>
+			<string key="paper@2x.png">{622, 649}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg2@2x.png">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
