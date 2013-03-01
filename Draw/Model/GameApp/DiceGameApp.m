@@ -314,9 +314,19 @@
     return [UIColor blackColor];
 }
 
+- (UIColor*)buttonTitleColor
+{
+    return [UIColor whiteColor];
+}
+
 - (NSString *)shengmengAppId
 {
     return @"";
+}
+
+- (NSString*)shopTitle
+{
+    return NSLS(@"kDiceShop");
 }
 
 @end

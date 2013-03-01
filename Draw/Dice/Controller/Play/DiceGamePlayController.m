@@ -1056,7 +1056,9 @@
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
     [_popupView dismissItemListView];
-    [self showWaitForPlayerBetNote];
+    if ([ConfigManager showBetViewEnabled]) {
+        [self showWaitForPlayerBetNote];
+    }
 }
 
 - (void)openDice
@@ -1079,7 +1081,10 @@
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
     [_popupView dismissItemListView];
-    [self showBetView];
+    
+    if ([ConfigManager showBetViewEnabled]) {
+        [self showBetView];
+    }
 }
 
 - (void)playOpenDiceVoice

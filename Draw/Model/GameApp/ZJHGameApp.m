@@ -302,4 +302,14 @@
 {
     return [UIColor whiteColor];
 }
+
+- (UIColor*)buttonTitleColor
+{
+    return [UIColor whiteColor];
+}
+
+- (NSString*)shopTitle
+{
+    return NSLS(@"kZJHShopTitle");
+}
 @end

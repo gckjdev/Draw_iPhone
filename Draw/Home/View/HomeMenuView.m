@@ -99,9 +99,14 @@
         case HomeMenuTypeZJHVSSite:{
             return NSLS(@"kHomeMenuTypeZJHVSSite");
         }
+        case HomeMenuTypeZJHCharge:{
+            return NSLS(@"kHomeMenuTypeZJHCharge");
+        }
+            
         case HomeMenuTypeZJHShop:{
             return NSLS(@"kHomeMenuTypeZJHShop");
         }
+            
             
         case HomeMenuTypeDiceStart:
             return NSLS(@"kDiceMenuStart");
@@ -199,9 +204,14 @@
         case HomeMenuTypeZJHVSSite:{
             return [imageManager zjhHomeVSSite];
         }
+        case HomeMenuTypeZJHCharge:{
+            return [imageManager drawHomeShop];
+        }
         case HomeMenuTypeZJHShop:{
             return [imageManager drawHomeShop];
         }
+            
+            
             
         //dice
         case HomeMenuTypeDiceStart:
@@ -369,8 +379,9 @@ int *getZJHMainMenuTypeListWithFreeCoins()
         HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHVSSite,
         HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeZJHShop,
+        HomeMenuTypeZJHCharge,
         HomeMenuTypeDrawBBS,
+        HomeMenuTypeZJHShop,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };
@@ -384,8 +395,9 @@ int *getZJHMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeZJHNormalSite,
         HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHVSSite,
-        HomeMenuTypeZJHShop,
+        HomeMenuTypeZJHCharge,
         HomeMenuTypeDrawBBS,
+        HomeMenuTypeZJHShop,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };
@@ -419,6 +431,7 @@ int *getDiceMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDiceSuperHighRoom,
         HomeMenuTypeDiceFreeCoins,
         HomeMenuTypeDiceShop,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
@@ -431,8 +444,9 @@ int *getDiceMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDiceStart,
         HomeMenuTypeDiceHappyRoom,
         HomeMenuTypeDiceSuperHighRoom,
-        HomeMenuTypeDiceHelp,
         HomeMenuTypeDiceShop,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDiceHelp,
         HomeMenuTypeEnd,
     };
     return list;

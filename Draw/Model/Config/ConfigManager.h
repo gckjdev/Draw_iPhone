@@ -212,4 +212,7 @@ typedef enum{
 + (int)maxTotalBetWithNormalRule;
 + (int)maxTotalBetWithDualRule;
 + (int)maxTotalBetWithRichRule;
++ (BOOL)showBetViewEnabled;
+
+
 @end

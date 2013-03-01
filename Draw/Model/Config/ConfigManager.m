@@ -494,9 +494,7 @@
 }
 
 + (NSString*)getZJHServerListStringWithNormal
-{
-//    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8027"];
-    
+{    
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
     
@@ -798,6 +796,9 @@
     return  [MobClickUtils getIntValueByKey:@"MAX_TOTAL_BET_WITH_RICH_RULE" defaultValue:500000];
 }
 
-
++ (BOOL)showBetViewEnabled
+{
+    return [MobClickUtils getIntValueByKey:@"BET_VIEW_ENABLED" defaultValue:1];
+}
 
 @end

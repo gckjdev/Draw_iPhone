@@ -959,7 +959,8 @@
 "kHomeMenuTypeZJHRichSite" = "富豪場";
 "kHomeMenuTypeZJHNormalSite" = "普通場";
 "kHomeMenuTypeZJHVSSite" = "單挑場";
-"kHomeMenuTypeZJHShop" = "充值";
+"kHomeMenuTypeZJHCharge" = "充值";
+"kHomeMenuTypeZJHShop" = "商店";
 
 "kBulletin" = "公告";
 
@@ -1040,6 +1041,10 @@
 "kStrawDescription" = "吸管可以用來在獲取作品指定位置的顏色。";
 
 "kCannotRevoke" = "不能撤銷了";
+"kRefuse" = "拒絕";
+"kAskSureRefuse" = "確定要拒絕這幅作品嗎?";
+"kRefuseOpusSuccess" = "成功拒絕了這幅作品!";
+"kRefuseOpusFail" = "拒絕失敗，可能網絡不太好，晚點再試試？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1152,6 +1157,10 @@
 
 "kZJHUpgradeMsg" = "恭喜！您剛剛升到第%d級";
 "kZJHDegradeMsg" = "噢，你玩得太不認真了，都降到%d級了";
+
+"kAlreadLastVersion" = "已經是最新版本啦!";
+"kAppUpdate" = "版本升級";
+
 
 "kSetTimeoutAction" = "設置超時操作";
 "kFoldCard" = "棄牌";
@@ -1295,6 +1304,7 @@
 "kZJHFreeCoinsAwardNote" = "恭喜你獲得%d金幣";
 "kDrawFreeCoinsAwardNote" = "恭喜你獲得%d金幣 + %d鮮花 + %d錦囊(剩余次數:%d)";
 "kLevelUpAwardMessage" = "恭喜升到%d級! 我們給您獎勵了%d個金幣哦!";
+"kZJHShopTitle" = "炸金花商店";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

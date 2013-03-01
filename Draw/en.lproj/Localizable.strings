@@ -943,6 +943,7 @@
 "kHomeMenuTypeZJHRichSite" = "Rich";
 "kHomeMenuTypeZJHNormalSite" = "Poor";
 "kHomeMenuTypeZJHVSSite" = "One-One";
+"kHomeMenuTypeZJHCharge" = "Charge";
 "kHomeMenuTypeZJHShop" = "Shop";
 
 "kBulletin" = "Bulletin";
@@ -1018,7 +1019,10 @@
 "kStraw" = "Straw";
 "kStrawDescription" = "It is a color picker for picking color on the paint.";
 "kCannotRevoke" = "Can't Revoke any more!";
-
+"kRefuse" = "Refuse";
+"kAskSureRefuse" = "Are you sure to reject this paint?";
+"kRefuseOpusSuccess" = "Refuse this opus successfully!";
+"kRefuseOpusFail" = "Fail to refuse this opus, try later.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1106,6 +1110,9 @@
 "kFoldCard" = "Fold";
 "kBetOrCompareCard" = "Bet";
 "kEndWithMaxTotal" = "The total bet hits the threshold:%d, game over!";
+
+"kAlreadLastVersion" = "It's the last version now!";
+"kAppUpdate" = "Version update";
 
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
@@ -1289,6 +1296,7 @@
 "kIWantToGoNow" = "I wanna go, see u next time";
 "kShutUp" = "All shut up";
 "kLevelUpAwardMessage" = "Congratulations for upgrade to level %d! You are awarded %d coins!";
+"kZJHShopTitle" = "Three Card Store";
 /*********************** 炸金花国际化字符串结束 *************************/
 
 

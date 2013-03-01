@@ -13,13 +13,13 @@
 #import "UIButtonExt.h"
 #import "Item.h"
 
-#define PICK_TOOL_VIEW_WIDTH ([DeviceDetection isIPAD] ? 708  : 290)
+#define PICK_TOOL_VIEW_WIDTH ([DeviceDetection isIPAD] ? 138  : 69)
 
 #define TITLE_LABEL_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 10 * 2, PICK_TOOL_VIEW_WIDTH, 35 * 2) : CGRectMake(0, 10, PICK_TOOL_VIEW_WIDTH, 35))
 
-#define PICK_TOOLVIEW_FRAME ([DeviceDetection isIPAD] ? CGRectMake(15 * 2, 420, PICK_TOOL_VIEW_WIDTH, 145 * 2) : CGRectMake(15, 180, PICK_TOOL_VIEW_WIDTH, 145))
+#define PICK_TOOLVIEW_FRAME ([DeviceDetection isIPAD] ? CGRectMake(613, 293, PICK_TOOL_VIEW_WIDTH, 447) : CGRectMake(250, 120, PICK_TOOL_VIEW_WIDTH, 224))
 
-#define TOOL_Y ([DeviceDetection isIPAD] ? 55 * 2 : 55)
+//#define TOOL_X ([DeviceDetection isIPAD] ? 8 : 4)
 
 #define TITLE_FONT_SIZE ([DeviceDetection isIPAD] ? 18 * 2 : 18)
 
@@ -46,12 +46,12 @@
 {
     self = [super initWithFrame:PICK_TOOLVIEW_FRAME];
     if (self) {
-        _title = [[UILabel alloc] initWithFrame:TITLE_LABEL_FRAME];
-        [self addSubview:_title];
-        [_title setBackgroundColor:[UIColor clearColor]];
-        [_title setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
-        [_title setText:NSLS(@"kPickToolTitle")];
-        [_title setTextAlignment:UITextAlignmentCenter];
+//        _title = [[UILabel alloc] initWithFrame:TITLE_LABEL_FRAME];
+//        [self addSubview:_title];
+//        [_title setBackgroundColor:[UIColor clearColor]];
+//        [_title setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
+//        [_title setText:NSLS(@"kPickToolTitle")];
+//        [_title setTextAlignment:UITextAlignmentCenter];
         [self setImage:[[ShareImageManager defaultManager] pickToolBackground]];
         self.tools = tools;
         [self updateToolViews];
@@ -102,19 +102,22 @@
         return;
     }
 //    [self sortTools];
-    CGFloat width = self.frame.size.width;
-    CGFloat xSpace = (width - [ToolView width] * count)/ (count + 1);
-    CGFloat x = xSpace;
+    CGFloat toolWidth = [ToolView width]*0.8;
+    CGFloat toolHeight = [ToolView height]*0.8;
+    CGFloat toolX = (self.frame.size.width - toolWidth)/2;
+    CGFloat height = self.frame.size.height;
+    CGFloat ySpace = (height - toolHeight * count)/ (count + 1);
+    CGFloat y = ySpace;
     for (int i = 0; i < count; ++ i) {
         ToolView *tool = [_toolArray objectAtIndex:i];
-        tool.frame = CGRectMake(x, TOOL_Y, [ToolView width], [ToolView height] + 20);
-        [tool setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [tool.titleLabel setFont:[UIFont systemFontOfSize:TOOL_DESC_FONT_SIZE]];
-        [tool setTitle:[Item actionNameForItemType:tool.itemType] forState:UIControlStateNormal];
-        [tool centerImageAndTitle:-1];
+        tool.frame = CGRectMake(toolX, y, toolWidth, toolHeight);
+//        [tool setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [tool.titleLabel setFont:[UIFont systemFontOfSize:TOOL_DESC_FONT_SIZE]];
+//        [tool setTitle:[Item actionNameForItemType:tool.itemType] forState:UIControlStateNormal];
+//        [tool centerImageAndTitle:-1];
         [tool addTarget:self action:@selector(clickToolView:)];
         [self addSubview:tool];
-        x += xSpace + [ToolView width];
+        y += ySpace + toolHeight;
     }
 }
 
