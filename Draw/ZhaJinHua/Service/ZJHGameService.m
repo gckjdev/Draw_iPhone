@@ -527,17 +527,14 @@ static ZJHGameService *_defaultService;
 {
     switch (self.rule) {
         case PBZJHRuleTypeDual:
-//            return @"192.168.1.5:8030";
             return [ConfigManager getZJHServerListStringWithDual];
             break;
             
         case PBZJHRuleTypeNormal:
-//            return @"192.168.1.5:8028";
             return [ConfigManager getZJHServerListStringWithNormal];
             break;
             
         case PBZJHRuleTypeRich:
-//            return @"192.168.1.5:8029";
             return [ConfigManager getZJHServerListStringWithRich];
             break;
             

@@ -761,6 +761,7 @@
     [self performSelector:@selector(showAllUserGameResult) withObject:nil afterDelay:3.0];
     [self performSelector:@selector(resetGame) withObject:nil afterDelay:9.0];
     [_levelService addExp:[ConfigManager getZhajinhuaExp] delegate:self];
+    
 }
 
 - (void)levelUp:(int)newLevel
@@ -815,7 +816,7 @@
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
 //            [self bet:YES];
-            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:1];
+            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
         }else{
             [_gameService setAutoBet:NO];
         }
