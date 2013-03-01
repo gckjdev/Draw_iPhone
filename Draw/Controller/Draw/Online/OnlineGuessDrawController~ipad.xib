@@ -405,7 +405,7 @@
 					<object class="IBUIButton" id="205357811">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{673, 191}, {74, 74}}</string>
+						<string key="NSFrame">{{667, 195}, {86, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="428937063"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -712,7 +712,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_main_bg@2x.jpg">{640, 960}</string>
 			<string key="draw_paper@2x.png">{622, 649}</string>
-			<string key="group_message@2x.png">{74, 74}</string>
+			<string key="group_message@2x.png">{86, 66}</string>
 			<string key="guess_popup@2x.png">{57, 67}</string>
 			<string key="normalpallets@2x.png">{698, 50}</string>
 			<string key="round@2x.png">{74, 74}</string>
