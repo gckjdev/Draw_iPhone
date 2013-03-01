@@ -644,7 +644,7 @@ static DiceImageManager *_defaultManager = nil;
 }
 - (UIImage *)bulletinBackgroundImage
 {
-    return [_resService stretchableImageWithImageName:@"bulletin_bg" inResourcePackage:RESOURCE_PACKAGE_DICE];
+    return [UIImage strectchableImageName:@"bulletin_bg"];
 }
 - (UIImage *)bulletinButtomImage
 {
