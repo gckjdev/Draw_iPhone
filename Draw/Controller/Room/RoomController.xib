@@ -42,7 +42,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{327, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="399993801"/>
+						<reference key="NSNextKeyView" ref="122819113"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -50,7 +50,7 @@
 							<string key="NSResourceName">draw_main_bg@2x.jpg</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="399993801">
+					<object class="IBUIImageView" id="122819113">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">293</int>
 						<string key="NSFrameSize">{320, 40}</string>
@@ -63,7 +63,7 @@
 							<string key="NSResourceName">topwood@2x.jpg</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="519049033">
+					<object class="IBUIImageView" id="517039760">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{49.5, 63}, {221, 34}}</string>
@@ -272,7 +272,7 @@
 						<int key="NSvFlags">-2147483355</int>
 						<string key="NSFrame">{{278, 4}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="519049033"/>
+						<reference key="NSNextKeyView" ref="517039760"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -636,8 +636,8 @@
 							<reference ref="340078950"/>
 							<reference ref="286192317"/>
 							<reference ref="559700846"/>
-							<reference ref="399993801"/>
-							<reference ref="519049033"/>
+							<reference ref="122819113"/>
+							<reference ref="517039760"/>
 							<reference ref="878148696"/>
 							<reference ref="150537652"/>
 							<reference ref="114674505"/>
@@ -747,12 +747,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
-						<reference key="object" ref="399993801"/>
+						<reference key="object" ref="122819113"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">56</int>
-						<reference key="object" ref="519049033"/>
+						<reference key="object" ref="517039760"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -800,19 +800,19 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="changeroom@2x.png">{74, 74}</string>
-			<string key="draw_main_bg@2x.jpg">{640, 960}</string>
-			<string key="group_message@2x.png">{86, 66}</string>
-			<string key="room_seat_bg_1@2x.png">{142, 142}</string>
-			<string key="room_seat_bg_2@2x.png">{142, 142}</string>
-			<string key="room_seat_bg_3@2x.png">{142, 142}</string>
-			<string key="room_seat_bg_4@2x.png">{142, 142}</string>
-			<string key="room_seat_bg_5@2x.png">{142, 142}</string>
-			<string key="room_seat_bg_6@2x.png">{142, 142}</string>
-			<string key="room_start_btn_bg@2x.png">{282, 86}</string>
-			<string key="room_title_bg@2x.png">{442, 67}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="changeroom@2x.png">{16, 16}</string>
+			<string key="draw_main_bg@2x.jpg">{16, 16}</string>
+			<string key="group_message@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_1@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_2@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_3@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_4@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_5@2x.png">{16, 16}</string>
+			<string key="room_seat_bg_6@2x.png">{16, 16}</string>
+			<string key="room_start_btn_bg@2x.png">{16, 16}</string>
+			<string key="room_title_bg@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

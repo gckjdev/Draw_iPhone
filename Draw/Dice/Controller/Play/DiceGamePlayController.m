@@ -1056,7 +1056,9 @@
     [self popupOpenDiceView];  
     [self playOpenDiceVoice];
     [_popupView dismissItemListView];
-    [self showWaitForPlayerBetNote];
+    if ([ConfigManager showBetViewEnabled]) {
+        [self showWaitForPlayerBetNote];
+    }
 }
 
 - (void)openDice
