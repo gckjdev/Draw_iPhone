@@ -379,6 +379,9 @@ static AdService* _defaultService;
 
 - (void)clearAdView:(UIView*)adView
 {
+    if (adView == nil || adView.superview == nil){
+        return;
+    }
     
     @try {
         PPDebug(@"<clearAdView>");
@@ -390,7 +393,7 @@ static AdService* _defaultService;
         }
         else if ([adView isKindOfClass:[immobView class]]){
             ((immobView*)adView).delegate = nil;  
-        }            
+        }        
     }
     @catch (NSException *exception) {
         PPDebug(@"<clearAdView> catch exception=%@", [exception description]);
