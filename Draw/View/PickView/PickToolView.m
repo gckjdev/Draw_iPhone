@@ -17,9 +17,9 @@
 
 #define TITLE_LABEL_FRAME ([DeviceDetection isIPAD] ? CGRectMake(0, 10 * 2, PICK_TOOL_VIEW_WIDTH, 35 * 2) : CGRectMake(0, 10, PICK_TOOL_VIEW_WIDTH, 35))
 
-#define PICK_TOOLVIEW_FRAME ([DeviceDetection isIPAD] ? CGRectMake(613, 273, PICK_TOOL_VIEW_WIDTH, 427) : CGRectMake(250, 100, PICK_TOOL_VIEW_WIDTH, 214))
+#define PICK_TOOLVIEW_FRAME ([DeviceDetection isIPAD] ? CGRectMake(613, 293, PICK_TOOL_VIEW_WIDTH, 447) : CGRectMake(250, 120, PICK_TOOL_VIEW_WIDTH, 224))
 
-#define TOOL_X ([DeviceDetection isIPAD] ? 8 : 4)
+//#define TOOL_X ([DeviceDetection isIPAD] ? 8 : 4)
 
 #define TITLE_FONT_SIZE ([DeviceDetection isIPAD] ? 18 * 2 : 18)
 
@@ -102,19 +102,22 @@
         return;
     }
 //    [self sortTools];
+    CGFloat toolWidth = [ToolView width]*0.8;
+    CGFloat toolHeight = [ToolView height]*0.8;
+    CGFloat toolX = (self.frame.size.width - toolWidth)/2;
     CGFloat height = self.frame.size.height;
-    CGFloat ySpace = (height - [ToolView height] * count)/ (count + 1);
+    CGFloat ySpace = (height - toolHeight * count)/ (count + 1);
     CGFloat y = ySpace;
     for (int i = 0; i < count; ++ i) {
         ToolView *tool = [_toolArray objectAtIndex:i];
-        tool.frame = CGRectMake(TOOL_X, y, [ToolView width], [ToolView height] + 20);
+        tool.frame = CGRectMake(toolX, y, toolWidth, toolHeight);
 //        [tool setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 //        [tool.titleLabel setFont:[UIFont systemFontOfSize:TOOL_DESC_FONT_SIZE]];
 //        [tool setTitle:[Item actionNameForItemType:tool.itemType] forState:UIControlStateNormal];
 //        [tool centerImageAndTitle:-1];
         [tool addTarget:self action:@selector(clickToolView:)];
         [self addSubview:tool];
-        y += ySpace + [ToolView height];
+        y += ySpace + toolHeight;
     }
 }
 
