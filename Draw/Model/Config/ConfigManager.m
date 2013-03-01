@@ -494,9 +494,7 @@
 }
 
 + (NSString*)getZJHServerListStringWithNormal
-{
-//    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8028"];
-    
+{    
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
     
@@ -508,8 +506,6 @@
 }
 + (NSString *)getZJHServerListStringWithRich
 {
-//    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8029"];
-
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
         
@@ -521,8 +517,6 @@
 }
 + (NSString *)getZJHServerListStringWithDual
 {
-//    return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"192.168.1.5:8030"];
-
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
         

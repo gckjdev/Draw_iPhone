@@ -816,7 +816,7 @@
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
 //            [self bet:YES];
-            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:1];
+            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.5];
         }else{
             [_gameService setAutoBet:NO];
         }
