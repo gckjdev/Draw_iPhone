@@ -614,6 +614,12 @@
 
 - (void)checkCardSuccess
 {
+    if ([_gameService myCardType] >= PBZJHCardTypeStraight && [_gameService myCardType] <= PBZJHCardTypeThreeOfAKind) {
+        [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
+    }else{
+        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
+    }
+    
     [self updateTimeoutSetting];
 
     [[self getMyPokersView] faceUpCardsWithCardType:nil
@@ -696,12 +702,7 @@
 {
     PPDebug(@"########################### Game Start :%@ ####################", self.description);
     
-    if ([_gameService myCardType] >= PBZJHCardTypeStraight && [_gameService myCardType] <= PBZJHCardTypeThreeOfAKind) {
-        [_gameService setTimeoutSettingWithAction:PBZJHUserActionBet];
-    }else{
-        [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
-    }
-    
+    [_gameService setTimeoutSettingWithAction:PBZJHUserActionFoldCard];
     
     [self clearAll];
     
@@ -749,6 +750,9 @@
 
 - (void)gameOver
 {
+    [self.timeoutSettingView dismiss];
+    self.timeoutSettingButton.hidden = YES;
+    
     if(_gameService.gameState.totalBet >= [_ruleConfig maxTotal]){
         [self infoUser:[NSString stringWithFormat:NSLS(@"kEndWithMaxTotal"), [_ruleConfig maxTotal]]];
     }
@@ -776,8 +780,6 @@
 
 - (void)clearAll
 {
-    [self.timeoutSettingView dismiss];
-    self.timeoutSettingButton.hidden = YES;
     [self hideMyCardType];
     [self clearAllUserPokers];
     [self hideAllUserTotalBet];
@@ -815,8 +817,7 @@
         
     if ([_gameService isMyTurn] && [_gameService isMeAutoBet]) {
         if ([_gameService isMyBalanceEnough]) {
-//            [self bet:YES];
-            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.3];
+            [self performSelector:@selector(bet:) withObject:[NSNumber numberWithBool:YES] afterDelay:0.2];
         }else{
             [_gameService setAutoBet:NO];
         }
@@ -878,12 +879,6 @@
     [UIView animateWithDuration:1 animations:^{
         pokerView.layer.position = CGPointMake(self.vsImageView.center.x, self.vsImageView.center.y - COMPARE_CARD_OFFSET);
         otherPokerView.layer.position = CGPointMake(self.vsImageView.center.x, self.vsImageView.center.y + COMPARE_CARD_OFFSET);
-//        if ([_userManager isMe:userId]) {
-//            pokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
-//        }
-//        if ([_userManager isMe:targetUserId]) {
-//            otherPokerView.layer.transform = CATransform3DMakeScale(28/35.0, 37/48.0, 1);
-//        }
         
     } completion:^(BOOL finished) {
         self.vsImageView.hidden = NO;
@@ -1395,7 +1390,7 @@
     [self.foldCardButton setBackgroundImage:(self.foldCardButton.userInteractionEnabled ? [_imageManager foldCardBtnBgImage] : [_imageManager foldCardBtnDisableBgImage]) forState:UIControlStateNormal];
     
     [self.timeoutSettingView dismiss];
-    self.timeoutSettingButton.hidden = ![[_gameService userPlayInfo:_userManager.userId] alreadCheckCard];
+    self.timeoutSettingButton.hidden = ![_gameService canISetTimeoutSetting];
 }
 
 - (void)disableAllZJHButtons

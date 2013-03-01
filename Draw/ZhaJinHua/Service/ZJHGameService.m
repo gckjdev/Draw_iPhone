@@ -658,4 +658,25 @@ static ZJHGameService *_defaultService;
                                        action:action];
 }
 
+- (BOOL)canISetTimeoutSetting
+{
+    PPDebug(@"alreadCompareLose: %d", [[self myPlayInfo] alreadCompareLose]);
+    PPDebug(@"alreadFoldCard: %d", [[self myPlayInfo] alreadFoldCard]);
+    
+    ZJHUserPlayInfo *myInfo = [self myPlayInfo];
+    if (![self isGamePlaying]) {
+        return NO;
+    }
+    
+    if ([myInfo alreadCompareLose] || [myInfo alreadFoldCard]) {
+        return NO;
+    }
+    
+    if ([myInfo alreadCheckCard]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

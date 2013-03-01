@@ -22,6 +22,7 @@
 + (ZJHGameService*)defaultService;
 
 - (ZJHUserPlayInfo *)userPlayInfo:(NSString *)userId;
+- (ZJHUserPlayInfo *)myPlayInfo;
 
 - (NSArray *)pokersOfUser:(NSString *)userId;
 - (int)betCountOfUser:(NSString *)userId;
@@ -78,6 +79,7 @@
 - (void)reset;
 
 - (void)setTimeoutSettingWithAction:(PBZJHUserAction)action;
+- (BOOL)canISetTimeoutSetting;
 
 
 @end
