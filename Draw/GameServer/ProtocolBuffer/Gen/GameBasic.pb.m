@@ -28,6 +28,15 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value) {
       return NO;
   }
 }
+BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value) {
+  switch (value) {
+    case PBDrawItemTypeNomal:
+    case PBDrawItemTypeTool:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBKeyValue ()
 @property (retain) NSString* name;
 @property (retain) NSString* value;
@@ -5856,6 +5865,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property (retain) NSString* desc;
 @property (retain) NSString* image;
 @property (retain) NSString* demoImage;
+@property int32_t type;
 @property (retain) NSString* appleProductId;
 @property (retain) PBPriceInfo* priceInfo;
 @property (retain) PBPromotionInfo* promotionInfo;
@@ -5898,6 +5908,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasDemoImage_ = !!value;
 }
 @synthesize demoImage;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
 - (BOOL) hasAppleProductId {
   return !!hasAppleProductId_;
 }
@@ -5936,6 +5953,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.desc = @"";
     self.image = @"";
     self.demoImage = @"";
+    self.type = 0;
     self.appleProductId = @"";
     self.priceInfo = [PBPriceInfo defaultInstance];
     self.promotionInfo = [PBPromotionInfo defaultInstance];
@@ -5989,6 +6007,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDemoImage) {
     [output writeString:12 value:self.demoImage];
   }
+  if (self.hasType) {
+    [output writeInt32:15 value:self.type];
+  }
   if (self.hasAppleProductId) {
     [output writeString:22 value:self.appleProductId];
   }
@@ -6021,6 +6042,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   }
   if (self.hasDemoImage) {
     size += computeStringSize(12, self.demoImage);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(15, self.type);
   }
   if (self.hasAppleProductId) {
     size += computeStringSize(22, self.appleProductId);
@@ -6121,6 +6145,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasDemoImage) {
     [self setDemoImage:other.demoImage];
   }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
   if (other.hasAppleProductId) {
     [self setAppleProductId:other.appleProductId];
   }
@@ -6169,6 +6196,10 @@ static PBGameItem* defaultPBGameItemInstance = nil;
       }
       case 98: {
         [self setDemoImage:[input readString]];
+        break;
+      }
+      case 120: {
+        [self setType:[input readInt32]];
         break;
       }
       case 178: {
@@ -6276,6 +6307,22 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   result.demoImage = @"";
   return self;
 }
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBGameItem_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
 - (BOOL) hasAppleProductId {
   return result.hasAppleProductId;
 }
@@ -6350,6 +6397,207 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 - (PBGameItem_Builder*) clearPromotionInfo {
   result.hasPromotionInfo = NO;
   result.promotionInfo = [PBPromotionInfo defaultInstance];
+  return self;
+}
+@end
+
+@interface PBGameItemList ()
+@property (retain) NSMutableArray* mutableItemsListList;
+@end
+
+@implementation PBGameItemList
+
+@synthesize mutableItemsListList;
+- (void) dealloc {
+  self.mutableItemsListList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBGameItemList* defaultPBGameItemListInstance = nil;
++ (void) initialize {
+  if (self == [PBGameItemList class]) {
+    defaultPBGameItemListInstance = [[PBGameItemList alloc] init];
+  }
+}
++ (PBGameItemList*) defaultInstance {
+  return defaultPBGameItemListInstance;
+}
+- (PBGameItemList*) defaultInstance {
+  return defaultPBGameItemListInstance;
+}
+- (NSArray*) itemsListList {
+  return mutableItemsListList;
+}
+- (PBGameItem*) itemsListAtIndex:(int32_t) index {
+  id value = [mutableItemsListList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBGameItem* element in self.itemsListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBGameItem* element in self.itemsListList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBGameItem* element in self.itemsListList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGameItemList*) parseFromData:(NSData*) data {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromData:data] build];
+}
++ (PBGameItemList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItemList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromInputStream:input] build];
+}
++ (PBGameItemList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGameItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGameItemList*)[[[PBGameItemList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGameItemList_Builder*) builder {
+  return [[[PBGameItemList_Builder alloc] init] autorelease];
+}
++ (PBGameItemList_Builder*) builderWithPrototype:(PBGameItemList*) prototype {
+  return [[PBGameItemList builder] mergeFrom:prototype];
+}
+- (PBGameItemList_Builder*) builder {
+  return [PBGameItemList builder];
+}
+@end
+
+@interface PBGameItemList_Builder()
+@property (retain) PBGameItemList* result;
+@end
+
+@implementation PBGameItemList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGameItemList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGameItemList_Builder*) clear {
+  self.result = [[[PBGameItemList alloc] init] autorelease];
+  return self;
+}
+- (PBGameItemList_Builder*) clone {
+  return [PBGameItemList builderWithPrototype:result];
+}
+- (PBGameItemList*) defaultInstance {
+  return [PBGameItemList defaultInstance];
+}
+- (PBGameItemList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGameItemList*) buildPartial {
+  PBGameItemList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGameItemList_Builder*) mergeFrom:(PBGameItemList*) other {
+  if (other == [PBGameItemList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableItemsListList.count > 0) {
+    if (result.mutableItemsListList == nil) {
+      result.mutableItemsListList = [NSMutableArray array];
+    }
+    [result.mutableItemsListList addObjectsFromArray:other.mutableItemsListList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameItem_Builder* subBuilder = [PBGameItem builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addItemsList:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) itemsListList {
+  if (result.mutableItemsListList == nil) { return [NSArray array]; }
+  return result.mutableItemsListList;
+}
+- (PBGameItem*) itemsListAtIndex:(int32_t) index {
+  return [result itemsListAtIndex:index];
+}
+- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value {
+  [result.mutableItemsListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values {
+  if (result.mutableItemsListList == nil) {
+    result.mutableItemsListList = [NSMutableArray array];
+  }
+  [result.mutableItemsListList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameItemList_Builder*) clearItemsListList {
+  result.mutableItemsListList = nil;
+  return self;
+}
+- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value {
+  if (result.mutableItemsListList == nil) {
+    result.mutableItemsListList = [NSMutableArray array];
+  }
+  [result.mutableItemsListList addObject:value];
   return self;
 }
 @end

@@ -166,8 +166,13 @@ enum PBGameCurrency{
   INGOT = 1;            // 元宝
 }
 
+enum PBDrawItemType{
+  Nomal = 0;            // 普通道具
+  Tool = 1;             // 画画工具
+}
+
 message PBPriceInfo {
-  required int32 price = 1;                         // 单个售价，如 6
+  required int32 price = 1;                       // 单个售价，如 6
   optional PBGameCurrency currency = 2;           // 游戏货币
 }
 
@@ -183,6 +188,8 @@ message PBGameItem {
 
   optional string image = 11;                     // 道具图片地址，远程URL
   optional string demoImage = 12;                 // 道具效果演示图片URL
+  
+  optional int32 type = 15;                       // 类型
 
   optional string appleProductId = 22;            // Apple IAP购买ID
   
@@ -191,5 +198,5 @@ message PBGameItem {
 }
 
 message PBGameItemList {
-  repeated PBGameItem itemList = 1;
+  repeated PBGameItem items = 1;
 }

@@ -5,6 +5,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
 @class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
@@ -36,6 +38,13 @@ typedef enum {
 } PBGameCurrency;
 
 BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
+
+typedef enum {
+  PBDrawItemTypeNomal = 0,
+  PBDrawItemTypeTool = 1,
+} PBDrawItemType;
+
+BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 
 
 @interface GameBasicRoot : NSObject {
@@ -1413,6 +1422,7 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 @interface PBGameItem : PBGeneratedMessage {
 @private
   BOOL hasItemId_:1;
+  BOOL hasType_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasImage_:1;
@@ -1421,6 +1431,7 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
   BOOL hasPriceInfo_:1;
   BOOL hasPromotionInfo_:1;
   int32_t itemId;
+  int32_t type;
   NSString* name;
   NSString* desc;
   NSString* image;
@@ -1434,6 +1445,7 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 - (BOOL) hasDesc;
 - (BOOL) hasImage;
 - (BOOL) hasDemoImage;
+- (BOOL) hasType;
 - (BOOL) hasAppleProductId;
 - (BOOL) hasPriceInfo;
 - (BOOL) hasPromotionInfo;
@@ -1442,6 +1454,7 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 @property (readonly, retain) NSString* desc;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* demoImage;
+@property (readonly) int32_t type;
 @property (readonly, retain) NSString* appleProductId;
 @property (readonly, retain) PBPriceInfo* priceInfo;
 @property (readonly, retain) PBPromotionInfo* promotionInfo;
@@ -1505,6 +1518,11 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 - (PBGameItem_Builder*) setDemoImage:(NSString*) value;
 - (PBGameItem_Builder*) clearDemoImage;
 
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBGameItem_Builder*) setType:(int32_t) value;
+- (PBGameItem_Builder*) clearType;
+
 - (BOOL) hasAppleProductId;
 - (NSString*) appleProductId;
 - (PBGameItem_Builder*) setAppleProductId:(NSString*) value;
@@ -1523,5 +1541,54 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 - (PBGameItem_Builder*) setPromotionInfoBuilder:(PBPromotionInfo_Builder*) builderForValue;
 - (PBGameItem_Builder*) mergePromotionInfo:(PBPromotionInfo*) value;
 - (PBGameItem_Builder*) clearPromotionInfo;
+@end
+
+@interface PBGameItemList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableItemsListList;
+}
+- (NSArray*) itemsListList;
+- (PBGameItem*) itemsListAtIndex:(int32_t) index;
+
++ (PBGameItemList*) defaultInstance;
+- (PBGameItemList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGameItemList_Builder*) builder;
++ (PBGameItemList_Builder*) builder;
++ (PBGameItemList_Builder*) builderWithPrototype:(PBGameItemList*) prototype;
+
++ (PBGameItemList*) parseFromData:(NSData*) data;
++ (PBGameItemList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGameItemList*) parseFromInputStream:(NSInputStream*) input;
++ (PBGameItemList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGameItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGameItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGameItemList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBGameItemList* result;
+}
+
+- (PBGameItemList*) defaultInstance;
+
+- (PBGameItemList_Builder*) clear;
+- (PBGameItemList_Builder*) clone;
+
+- (PBGameItemList*) build;
+- (PBGameItemList*) buildPartial;
+
+- (PBGameItemList_Builder*) mergeFrom:(PBGameItemList*) other;
+- (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) itemsListList;
+- (PBGameItem*) itemsListAtIndex:(int32_t) index;
+- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values;
+- (PBGameItemList_Builder*) clearItemsListList;
 @end
 
