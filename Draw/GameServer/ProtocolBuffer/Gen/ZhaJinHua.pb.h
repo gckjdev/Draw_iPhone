@@ -24,6 +24,8 @@
 @class PBPoker_Builder;
 @class PBPriceInfo;
 @class PBPriceInfo_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserItem;

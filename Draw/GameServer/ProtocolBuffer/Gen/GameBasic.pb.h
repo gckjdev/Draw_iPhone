@@ -20,6 +20,8 @@
 @class PBMessage_Builder;
 @class PBPriceInfo;
 @class PBPriceInfo_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserItem;
@@ -29,13 +31,11 @@
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
-  PBPriceCountryAll = 0,
-  PBPriceCountryChina = 1,
-  PBPriceCountryJapan = 2,
-  PBPriceCountryKorea = 3,
-} PBPriceCountry;
+  PBGameCurrencyCoin = 0,
+  PBGameCurrencyIngot = 1,
+} PBGameCurrency;
 
-BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
+BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 
 
 @interface GameBasicRoot : NSObject {
@@ -1300,17 +1300,13 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 @private
   BOOL hasPrice_:1;
   BOOL hasCurrency_:1;
-  BOOL hasCountry_:1;
-  NSString* price;
-  NSString* currency;
-  PBPriceCountry country;
+  int32_t price;
+  PBGameCurrency currency;
 }
 - (BOOL) hasPrice;
 - (BOOL) hasCurrency;
-- (BOOL) hasCountry;
-@property (readonly, retain) NSString* price;
-@property (readonly, retain) NSString* currency;
-@property (readonly) PBPriceCountry country;
+@property (readonly) int32_t price;
+@property (readonly) PBGameCurrency currency;
 
 + (PBPriceInfo*) defaultInstance;
 - (PBPriceInfo*) defaultInstance;
@@ -1347,63 +1343,108 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasPrice;
-- (NSString*) price;
-- (PBPriceInfo_Builder*) setPrice:(NSString*) value;
+- (int32_t) price;
+- (PBPriceInfo_Builder*) setPrice:(int32_t) value;
 - (PBPriceInfo_Builder*) clearPrice;
 
 - (BOOL) hasCurrency;
-- (NSString*) currency;
-- (PBPriceInfo_Builder*) setCurrency:(NSString*) value;
+- (PBGameCurrency) currency;
+- (PBPriceInfo_Builder*) setCurrency:(PBGameCurrency) value;
 - (PBPriceInfo_Builder*) clearCurrency;
+@end
 
-- (BOOL) hasCountry;
-- (PBPriceCountry) country;
-- (PBPriceInfo_Builder*) setCountry:(PBPriceCountry) value;
-- (PBPriceInfo_Builder*) clearCountry;
+@interface PBPromotionInfo : PBGeneratedMessage {
+@private
+  BOOL hasDiscount_:1;
+  BOOL hasLimitTime_:1;
+  int32_t discount;
+  int32_t limitTime;
+}
+- (BOOL) hasDiscount;
+- (BOOL) hasLimitTime;
+@property (readonly) int32_t discount;
+@property (readonly) int32_t limitTime;
+
++ (PBPromotionInfo*) defaultInstance;
+- (PBPromotionInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBPromotionInfo_Builder*) builder;
++ (PBPromotionInfo_Builder*) builder;
++ (PBPromotionInfo_Builder*) builderWithPrototype:(PBPromotionInfo*) prototype;
+
++ (PBPromotionInfo*) parseFromData:(NSData*) data;
++ (PBPromotionInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPromotionInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBPromotionInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBPromotionInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBPromotionInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBPromotionInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBPromotionInfo* result;
+}
+
+- (PBPromotionInfo*) defaultInstance;
+
+- (PBPromotionInfo_Builder*) clear;
+- (PBPromotionInfo_Builder*) clone;
+
+- (PBPromotionInfo*) build;
+- (PBPromotionInfo*) buildPartial;
+
+- (PBPromotionInfo_Builder*) mergeFrom:(PBPromotionInfo*) other;
+- (PBPromotionInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBPromotionInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasDiscount;
+- (int32_t) discount;
+- (PBPromotionInfo_Builder*) setDiscount:(int32_t) value;
+- (PBPromotionInfo_Builder*) clearDiscount;
+
+- (BOOL) hasLimitTime;
+- (int32_t) limitTime;
+- (PBPromotionInfo_Builder*) setLimitTime:(int32_t) value;
+- (PBPromotionInfo_Builder*) clearLimitTime;
 @end
 
 @interface PBGameItem : PBGeneratedMessage {
 @private
-  BOOL hasIsPromotion_:1;
   BOOL hasItemId_:1;
-  BOOL hasSoldType_:1;
-  BOOL hasPromotionDiscount_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasImage_:1;
   BOOL hasDemoImage_:1;
   BOOL hasAppleProductId_:1;
-  BOOL isPromotion_:1;
+  BOOL hasPriceInfo_:1;
+  BOOL hasPromotionInfo_:1;
   int32_t itemId;
-  int32_t soldType;
-  int32_t promotionDiscount;
   NSString* name;
   NSString* desc;
   NSString* image;
   NSString* demoImage;
   NSString* appleProductId;
-  NSMutableArray* mutablePriceDescInfoList;
+  PBPriceInfo* priceInfo;
+  PBPromotionInfo* promotionInfo;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
 - (BOOL) hasImage;
 - (BOOL) hasDemoImage;
-- (BOOL) hasSoldType;
 - (BOOL) hasAppleProductId;
-- (BOOL) hasIsPromotion;
-- (BOOL) hasPromotionDiscount;
+- (BOOL) hasPriceInfo;
+- (BOOL) hasPromotionInfo;
 @property (readonly) int32_t itemId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* demoImage;
-@property (readonly) int32_t soldType;
 @property (readonly, retain) NSString* appleProductId;
-- (BOOL) isPromotion;
-@property (readonly) int32_t promotionDiscount;
-- (NSArray*) priceDescInfoList;
-- (PBPriceInfo*) priceDescInfoAtIndex:(int32_t) index;
+@property (readonly, retain) PBPriceInfo* priceInfo;
+@property (readonly, retain) PBPromotionInfo* promotionInfo;
 
 + (PBGameItem*) defaultInstance;
 - (PBGameItem*) defaultInstance;
@@ -1464,31 +1505,23 @@ BOOL PBPriceCountryIsValidValue(PBPriceCountry value);
 - (PBGameItem_Builder*) setDemoImage:(NSString*) value;
 - (PBGameItem_Builder*) clearDemoImage;
 
-- (BOOL) hasSoldType;
-- (int32_t) soldType;
-- (PBGameItem_Builder*) setSoldType:(int32_t) value;
-- (PBGameItem_Builder*) clearSoldType;
-
 - (BOOL) hasAppleProductId;
 - (NSString*) appleProductId;
 - (PBGameItem_Builder*) setAppleProductId:(NSString*) value;
 - (PBGameItem_Builder*) clearAppleProductId;
 
-- (NSArray*) priceDescInfoList;
-- (PBPriceInfo*) priceDescInfoAtIndex:(int32_t) index;
-- (PBGameItem_Builder*) replacePriceDescInfoAtIndex:(int32_t) index with:(PBPriceInfo*) value;
-- (PBGameItem_Builder*) addPriceDescInfo:(PBPriceInfo*) value;
-- (PBGameItem_Builder*) addAllPriceDescInfo:(NSArray*) values;
-- (PBGameItem_Builder*) clearPriceDescInfoList;
+- (BOOL) hasPriceInfo;
+- (PBPriceInfo*) priceInfo;
+- (PBGameItem_Builder*) setPriceInfo:(PBPriceInfo*) value;
+- (PBGameItem_Builder*) setPriceInfoBuilder:(PBPriceInfo_Builder*) builderForValue;
+- (PBGameItem_Builder*) mergePriceInfo:(PBPriceInfo*) value;
+- (PBGameItem_Builder*) clearPriceInfo;
 
-- (BOOL) hasIsPromotion;
-- (BOOL) isPromotion;
-- (PBGameItem_Builder*) setIsPromotion:(BOOL) value;
-- (PBGameItem_Builder*) clearIsPromotion;
-
-- (BOOL) hasPromotionDiscount;
-- (int32_t) promotionDiscount;
-- (PBGameItem_Builder*) setPromotionDiscount:(int32_t) value;
-- (PBGameItem_Builder*) clearPromotionDiscount;
+- (BOOL) hasPromotionInfo;
+- (PBPromotionInfo*) promotionInfo;
+- (PBGameItem_Builder*) setPromotionInfo:(PBPromotionInfo*) value;
+- (PBGameItem_Builder*) setPromotionInfoBuilder:(PBPromotionInfo_Builder*) builderForValue;
+- (PBGameItem_Builder*) mergePromotionInfo:(PBPromotionInfo*) value;
+- (PBGameItem_Builder*) clearPromotionInfo;
 @end
 

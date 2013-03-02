@@ -153,6 +153,8 @@
 @class PBPoker_Builder;
 @class PBPriceInfo;
 @class PBPriceInfo_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;

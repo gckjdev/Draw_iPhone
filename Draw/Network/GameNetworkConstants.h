@@ -147,6 +147,7 @@
 
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
+#define METHOD_USE_ITEM @"useItem"
 
 
 

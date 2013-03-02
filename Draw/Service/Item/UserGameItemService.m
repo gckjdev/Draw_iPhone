@@ -20,7 +20,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (void)buyItem:(int)itemId
           count:(int)count
-        handler:(UserItemResultHandler )handler
+        handler:(BuyItemResultHandler )handler
 {
     dispatch_async(workingQueue, ^{
         
@@ -33,18 +33,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 }
 
 - (void)giveItem:(int)itemId
-          toUser:(NSString *)userId
+          toUser:(NSString *)toUserId
            count:(int)count
-         handler:(UserItemResultHandler)handler
+         handler:(BuyItemResultHandler)handler
 {
+    CommonNetworkOutput *output = [GameNetworkRequest buyItem:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count toUser:toUserId];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        handler(output.resultCode, itemId, count, toUserId);
+    });
 }
 
 - (void)useItem:(int)itemId
-         toUser:(NSString *)userId
-        handler:(UserItemResultHandler)handler
+         toOpus:(NSString *)toOpusId
+        handler:(UseItemResultHandler)handler
 {
+    CommonNetworkOutput *output = [GameNetworkRequest useItem:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId toOpusId:toOpusId];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        handler(output.resultCode, itemId, toOpusId);
+    });
 }
 
 @end

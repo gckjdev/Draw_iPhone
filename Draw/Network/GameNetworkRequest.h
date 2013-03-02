@@ -536,6 +536,6 @@
                            appId:(NSString *)appId
                           userId:(NSString *)userId
                           itemId:(int)itemId
-                          toUser:(NSString *)toUser;
+                        toOpusId:(NSString *)toOpusId;
 
 @end
