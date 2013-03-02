@@ -283,17 +283,19 @@
 					<object class="IBUIButton" id="992074465">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{80, 920}, {250, 64}}</string>
+						<string key="NSFrame">{{80, 928}, {250, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="573846320"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">查找用户</string>
 						<reference key="IBUIHighlightedTitleColor" ref="724063413"/>
-						<reference key="IBUINormalTitleColor" ref="724063413"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4zMjU0OTAxOTYxIDAuMjAzOTIxNTY4NiAwLjA3ODQzMTM3MjU1AA</bytes>
+						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="178589935"/>
 						<reference key="IBUIFontDescription" ref="671414923"/>
 						<reference key="IBUIFont" ref="870396194"/>
@@ -301,17 +303,18 @@
 					<object class="IBUIButton" id="573846320">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{438, 920}, {250, 64}}</string>
+						<string key="NSFrame">{{438, 928}, {250, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">邀请用户</string>
 						<reference key="IBUIHighlightedTitleColor" ref="724063413"/>
-						<reference key="IBUINormalTitleColor" ref="724063413"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4zMjU0OTAxOTYxIDAuMjAzOTIxNTY4NiAwLjA3ODQzMTM3MjU1AA</bytes>
+						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="178589935"/>
 						<reference key="IBUIFontDescription" ref="671414923"/>
 						<reference key="IBUIFont" ref="870396194"/>

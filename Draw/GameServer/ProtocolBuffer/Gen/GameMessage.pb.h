@@ -112,6 +112,8 @@
 @class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
+@class PBDrawBg;
+@class PBDrawBg_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
 @class PBFeedTimes;
