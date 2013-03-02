@@ -6402,14 +6402,14 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 @end
 
 @interface PBGameItemList ()
-@property (retain) NSMutableArray* mutableItemListList;
+@property (retain) NSMutableArray* mutableItemsListList;
 @end
 
 @implementation PBGameItemList
 
-@synthesize mutableItemListList;
+@synthesize mutableItemsListList;
 - (void) dealloc {
-  self.mutableItemListList = nil;
+  self.mutableItemsListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -6429,15 +6429,15 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 - (PBGameItemList*) defaultInstance {
   return defaultPBGameItemListInstance;
 }
-- (NSArray*) itemListList {
-  return mutableItemListList;
+- (NSArray*) itemsListList {
+  return mutableItemsListList;
 }
-- (PBGameItem*) itemListAtIndex:(int32_t) index {
-  id value = [mutableItemListList objectAtIndex:index];
+- (PBGameItem*) itemsListAtIndex:(int32_t) index {
+  id value = [mutableItemsListList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  for (PBGameItem* element in self.itemListList) {
+  for (PBGameItem* element in self.itemsListList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -6445,7 +6445,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBGameItem* element in self.itemListList) {
+  for (PBGameItem* element in self.itemsListList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -6457,7 +6457,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   }
 
   size = 0;
-  for (PBGameItem* element in self.itemListList) {
+  for (PBGameItem* element in self.itemsListList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
@@ -6535,11 +6535,11 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   if (other == [PBGameItemList defaultInstance]) {
     return self;
   }
-  if (other.mutableItemListList.count > 0) {
-    if (result.mutableItemListList == nil) {
-      result.mutableItemListList = [NSMutableArray array];
+  if (other.mutableItemsListList.count > 0) {
+    if (result.mutableItemsListList == nil) {
+      result.mutableItemsListList = [NSMutableArray array];
     }
-    [result.mutableItemListList addObjectsFromArray:other.mutableItemListList];
+    [result.mutableItemsListList addObjectsFromArray:other.mutableItemsListList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -6565,39 +6565,39 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
       case 10: {
         PBGameItem_Builder* subBuilder = [PBGameItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addItemList:[subBuilder buildPartial]];
+        [self addItemsList:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (NSArray*) itemListList {
-  if (result.mutableItemListList == nil) { return [NSArray array]; }
-  return result.mutableItemListList;
+- (NSArray*) itemsListList {
+  if (result.mutableItemsListList == nil) { return [NSArray array]; }
+  return result.mutableItemsListList;
 }
-- (PBGameItem*) itemListAtIndex:(int32_t) index {
-  return [result itemListAtIndex:index];
+- (PBGameItem*) itemsListAtIndex:(int32_t) index {
+  return [result itemsListAtIndex:index];
 }
-- (PBGameItemList_Builder*) replaceItemListAtIndex:(int32_t) index with:(PBGameItem*) value {
-  [result.mutableItemListList replaceObjectAtIndex:index withObject:value];
+- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value {
+  [result.mutableItemsListList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBGameItemList_Builder*) addAllItemList:(NSArray*) values {
-  if (result.mutableItemListList == nil) {
-    result.mutableItemListList = [NSMutableArray array];
+- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values {
+  if (result.mutableItemsListList == nil) {
+    result.mutableItemsListList = [NSMutableArray array];
   }
-  [result.mutableItemListList addObjectsFromArray:values];
+  [result.mutableItemsListList addObjectsFromArray:values];
   return self;
 }
-- (PBGameItemList_Builder*) clearItemListList {
-  result.mutableItemListList = nil;
+- (PBGameItemList_Builder*) clearItemsListList {
+  result.mutableItemsListList = nil;
   return self;
 }
-- (PBGameItemList_Builder*) addItemList:(PBGameItem*) value {
-  if (result.mutableItemListList == nil) {
-    result.mutableItemListList = [NSMutableArray array];
+- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value {
+  if (result.mutableItemsListList == nil) {
+    result.mutableItemsListList = [NSMutableArray array];
   }
-  [result.mutableItemListList addObject:value];
+  [result.mutableItemsListList addObject:value];
   return self;
 }
 @end

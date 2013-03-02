@@ -1545,10 +1545,10 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 
 @interface PBGameItemList : PBGeneratedMessage {
 @private
-  NSMutableArray* mutableItemListList;
+  NSMutableArray* mutableItemsListList;
 }
-- (NSArray*) itemListList;
-- (PBGameItem*) itemListAtIndex:(int32_t) index;
+- (NSArray*) itemsListList;
+- (PBGameItem*) itemsListAtIndex:(int32_t) index;
 
 + (PBGameItemList*) defaultInstance;
 - (PBGameItemList*) defaultInstance;
@@ -1584,11 +1584,11 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) itemListList;
-- (PBGameItem*) itemListAtIndex:(int32_t) index;
-- (PBGameItemList_Builder*) replaceItemListAtIndex:(int32_t) index with:(PBGameItem*) value;
-- (PBGameItemList_Builder*) addItemList:(PBGameItem*) value;
-- (PBGameItemList_Builder*) addAllItemList:(NSArray*) values;
-- (PBGameItemList_Builder*) clearItemListList;
+- (NSArray*) itemsListList;
+- (PBGameItem*) itemsListAtIndex:(int32_t) index;
+- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values;
+- (PBGameItemList_Builder*) clearItemsListList;
 @end
 
