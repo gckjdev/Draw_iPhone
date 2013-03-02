@@ -10,21 +10,23 @@
 #import "CommonService.h"
 #import "GameBasic.pb.h"
 
-typedef void* (^UserItemResultHandler)(int resultCode, int itemId, int count, NSString *userId);
+typedef void* (^BuyItemResultHandler)(int resultCode, int itemId, int count, NSString *toUserId);
+typedef void* (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOpusId);
+
 
 @interface UserGameItemService : CommonService
 
 - (void)buyItem:(int)itemId
            count:(int)count
-         handler:(UserItemResultHandler)handler;
+         handler:(BuyItemResultHandler)handler;
 
 - (void)giveItem:(int)itemId
          toUser:(NSString *)userId
           count:(int)count
-        handler:(UserItemResultHandler)handler;
+        handler:(BuyItemResultHandler)handler;
 
 - (void)useItem:(int)itemId
-         toUser:(NSString *)userId
-        handler:(UserItemResultHandler)handler;
+         toOpus:(NSString *)opusId
+        handler:(UseItemResultHandler)handler;
 
 @end
