@@ -113,6 +113,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
+@class PBDrawBgList;
+@class PBDrawBgList_Builder;
 @class PBDrawBg_Builder;
 @class PBDraw_Builder;
 @class PBFeed;

@@ -160,6 +160,10 @@ message PBDrawBg
     optional string remoteUrl  = 3;
 }
 
+message PBDrawBgList
+{
+    repeated PBDrawBg drawBgs = 1;
+}
 
 message PBHotWord
 {
