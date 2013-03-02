@@ -24,6 +24,12 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
+- (void)dealloc
+{
+    [_itemsList release];
+    [super dealloc];
+}
+
 - (id)init
 {
     if (self = [super init]) {
@@ -32,8 +38,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         
         [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
             PPDebug(@"checkUpdateAndDownload successfully");
+            NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+            self.itemsList = [[PBGameItemList parseFromData:data] itemsListList];
         } failureBlock:^(NSError *error) {
             PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+        }];
     }
     
     return self;

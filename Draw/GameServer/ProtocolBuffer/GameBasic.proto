@@ -198,5 +198,5 @@ message PBGameItem {
 }
 
 message PBGameItemList {
-  repeated PBGameItem itemsList = 1;
+  repeated PBGameItem items = 1;
 }
