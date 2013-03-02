@@ -23,6 +23,8 @@ message PBDraw {
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
   optional int32 score = 12;                  // draw word score
+
+  optional PBDrawBg drawBg = 20;
 }
 
 message PBFeedTimes{
@@ -145,9 +147,19 @@ message PBNoCompressDrawAction{
 
 message PBNoCompressDrawData
 {
-  repeated PBNoCompressDrawAction drawActionList = 1;
-  optional int32 version = 2 [default=0];      // draw data version
+    repeated PBNoCompressDrawAction drawActionList = 1;
+    optional int32 version = 2 [default=0];      // draw data version
+    optional PBDrawBg drawBg = 3; //draw bg info
 }
+
+
+message PBDrawBg
+{
+    required string bgId = 1;
+    optional string localUrl  = 2;
+    optional string remoteUrl  = 3;
+}
+
 
 message PBHotWord
 {

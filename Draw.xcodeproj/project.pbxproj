@@ -116,6 +116,7 @@
 		A454207516E060AB0073A431 /* Dice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA16C4741682FFDA00F81B47 /* Dice-Info.plist */; };
 		A454207716E060B90073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		A454207816E060BA0073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
+		A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F61677712300725802 /* CommonMessageView~ipad.xib */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
@@ -3532,6 +3533,8 @@
 		CA42FE4C165F2FF30097453A /* BBSUserActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA42FE4A165F2FF30097453A /* BBSUserActionCell.xib */; };
 		CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		CA479468168E986400D4AF55 /* AnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA479467168E986400D4AF55 /* AnalyticsManager.m */; };
+		CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA48588F16E19D8500AEE725 /* DrawBgManager.m */; };
+		CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA48588F16E19D8500AEE725 /* DrawBgManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -8325,6 +8328,8 @@
 		CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGameAnimationManager.m; sourceTree = "<group>"; };
 		CA479466168E986400D4AF55 /* AnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsManager.h; sourceTree = "<group>"; };
 		CA479467168E986400D4AF55 /* AnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsManager.m; sourceTree = "<group>"; };
+		CA48588E16E19D8500AEE725 /* DrawBgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBgManager.h; sourceTree = "<group>"; };
+		CA48588F16E19D8500AEE725 /* DrawBgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawBgManager.m; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -12985,6 +12990,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA48588816E19D4500AEE725 /* DrawBg */,
 				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
 				CAD6EACD15805D780004A483 /* DrawManager.h */,
@@ -13614,6 +13620,15 @@
 				CA479467168E986400D4AF55 /* AnalyticsManager.m */,
 			);
 			path = Analytics;
+			sourceTree = "<group>";
+		};
+		CA48588816E19D4500AEE725 /* DrawBg */ = {
+			isa = PBXGroup;
+			children = (
+				CA48588E16E19D8500AEE725 /* DrawBgManager.h */,
+				CA48588F16E19D8500AEE725 /* DrawBgManager.m */,
+			);
+			path = DrawBg;
 			sourceTree = "<group>";
 		};
 		CA507F4916AE9D3B00CCB00F /* Command */ = {
@@ -19574,6 +19589,7 @@
 				A406DF1016DF4FF800852E59 /* friend_detail_bg.png in Resources */,
 				A454207316E058BE0073A431 /* CommonMessageView.xib in Resources */,
 				A454207416E060A10073A431 /* Zhajinhua-Info.plist in Resources */,
+				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23468,6 +23484,7 @@
 				CA683A5216DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
+				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24197,6 +24214,7 @@
 				CA683A5316DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A5F16DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
+				CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
