@@ -183,7 +183,6 @@ enum {
         return;
     }
     
-    
     NSString *shareBodyModel = [GameApp shareMessageBody];
 
     NSString* weiboId = @"";

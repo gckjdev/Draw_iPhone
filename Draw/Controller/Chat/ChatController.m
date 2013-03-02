@@ -141,20 +141,20 @@
     [chatTitleLabel setText:NSLS(@"kChatTitle")];
     [closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
-    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] redImage] forState:UIControlStateNormal];
+    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
     
     [self configureExpressionScrollView];
     
-    UIImage *bgImage = [[ShareImageManager defaultManager] messageImage];
+//    UIImage *bgImage = [[ShareImageManager defaultManager] messageImage];
     
     if (_chatType == GameChatTypeChatGroup) {
         viewBgImageView.hidden = YES;
         userView.hidden = YES;
-        [chatInfoViewBgImageView setImage:bgImage];
+//        [chatInfoViewBgImageView setImage:bgImage];
     }
      
     if (_chatType == GameChatTypeChatPrivate) {
-        viewBgImageView.image = bgImage;
+//        viewBgImageView.image = bgImage;
         
         // Selected a user as defalut selected.
         GameSession *session = [[DrawGameService defaultService] session];
