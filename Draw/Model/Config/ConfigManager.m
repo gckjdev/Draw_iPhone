@@ -422,12 +422,12 @@
 
 + (int)getOnLineDrawExp
 {
-    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:15];
+    return [MobClickUtils getIntValueByKey:@"ONLINE_DRAW_EXP" defaultValue:5];//15 --> 5 ,2013.3.2  --kira
 }
 
 + (int)getOnLineGuessExp
 {
-    return [MobClickUtils getIntValueByKey:@"ONLINE_GUESS_EXP" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"ONLINE_GUESS_EXP" defaultValue:2];//10 --> 2 ,2013.3.2  --kira
 }
 
 + (int)getOffLineDrawExp

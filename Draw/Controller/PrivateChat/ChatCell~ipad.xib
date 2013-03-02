@@ -104,7 +104,7 @@
 							<object class="IBUILabel" id="266380227">
 								<reference key="NSNextResponder" ref="78891759"/>
 								<int key="NSvFlags">294</int>
-								<string key="NSFrame">{{141, 14}, {240, 40}}</string>
+								<string key="NSFrame">{{141, 14}, {513, 40}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="525501870"/>
@@ -135,7 +135,7 @@
 							<object class="IBUILabel" id="724891367">
 								<reference key="NSNextResponder" ref="78891759"/>
 								<int key="NSvFlags">294</int>
-								<string key="NSFrame">{{141, 84}, {240, 40}}</string>
+								<string key="NSFrame">{{141, 84}, {338, 40}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="994679954"/>
@@ -162,7 +162,6 @@
 								<string key="NSFrame">{{0, 141}, {720, 1}}</string>
 								<reference key="NSSuperview" ref="78891759"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zMDk4MDM5MjE2IDAuMjQzMTM3MjU0OSAwLjEyNTQ5MDE5NjEAA</bytes>
@@ -434,6 +433,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ChatCell</string>
 					<string key="superclassName">PPTableViewCell</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickAvatar:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickAvatar:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickAvatar:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarImage">UIImageView</string>
 						<string key="countBackground">UIImageView</string>

@@ -161,17 +161,24 @@ message PBUserResult {
   required int32 gainCoins = 5;             // 获得的金币
 }
 
-enum PBPriceCountry{
-  ALL = 0;
-  CHINA = 1;
-  JAPAN = 2;
-  KOREA = 3;
+enum PBGameCurrency{
+  COIN = 0;             // 金币
+  INGOT = 1;            // 元宝
+}
+
+enum PBDrawItemType{
+  Nomal = 0;            // 普通道具
+  Tool = 1;             // 画画工具
 }
 
 message PBPriceInfo {
-  required string  price = 1;                     // 单个售价，如 6
-  required string  currency = 2;                  // 货币类型显示字符串, 如 金币／元／美元
-  required PBPriceCountry  country = 3;           // 适用国家
+  required int32 price = 1;                       // 单个售价，如 6
+  optional PBGameCurrency currency = 2;           // 游戏货币
+}
+
+message PBPromotionInfo{
+  required int32 discount = 2;                    // 折扣，90表示九折，85表示85折
+  optional int32 limitTime = 3;                   // 限时
 }
 
 message PBGameItem {
@@ -181,10 +188,15 @@ message PBGameItem {
 
   optional string image = 11;                     // 道具图片地址，远程URL
   optional string demoImage = 12;                 // 道具效果演示图片URL
+  
+  optional int32 type = 15;                       // 类型
 
-  required int32  soldType = 21;                  // 销售类型，0:金币购买；1:直接人民币购买
   optional string appleProductId = 22;            // Apple IAP购买ID
-  repeated PBPriceInfo priceDescInfo = 23;        // 价格信息，多个，用于多语言国际化
-  optional bool   isPromotion = 24;               // 是否有促销折扣
-  optional int32  promotionDiscount = 25;         // 促销折扣值，百分比，如7折为 70, 8折为 80
+  
+  optional PBPriceInfo priceInfo = 23;            // 价格信息
+  optional PBPromotionInfo promotionInfo = 24;    // 促销信息
+}
+
+message PBGameItemList {
+  repeated PBGameItem items = 1;
 }

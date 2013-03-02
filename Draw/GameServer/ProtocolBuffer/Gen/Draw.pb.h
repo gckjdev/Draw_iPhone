@@ -26,6 +26,8 @@
 @class PBFrameList_Builder;
 @class PBFrame_Builder;
 @class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
 @class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
@@ -55,6 +57,8 @@
 @class PBPoint_Builder;
 @class PBPriceInfo;
 @class PBPriceInfo_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;
