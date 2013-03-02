@@ -116,6 +116,7 @@
 		A454207516E060AB0073A431 /* Dice-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA16C4741682FFDA00F81B47 /* Dice-Info.plist */; };
 		A454207716E060B90073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		A454207816E060BA0073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
+		A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537F61677712300725802 /* CommonMessageView~ipad.xib */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A454CBC4155A181500896761 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CBC2155A181500896761 /* MessageCell.m */; };
@@ -19574,6 +19575,7 @@
 				A406DF1016DF4FF800852E59 /* friend_detail_bg.png in Resources */,
 				A454207316E058BE0073A431 /* CommonMessageView.xib in Resources */,
 				A454207416E060A10073A431 /* Zhajinhua-Info.plist in Resources */,
+				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
