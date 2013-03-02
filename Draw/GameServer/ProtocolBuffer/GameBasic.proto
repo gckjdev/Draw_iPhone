@@ -189,3 +189,7 @@ message PBGameItem {
   optional PBPriceInfo priceInfo = 23;            // 价格信息
   optional PBPromotionInfo promotionInfo = 24;    // 促销信息
 }
+
+message PBGameItemList {
+  repeated PBGameItem itemList = 1;
+}
