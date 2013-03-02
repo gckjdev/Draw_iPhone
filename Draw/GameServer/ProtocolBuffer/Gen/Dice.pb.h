@@ -15,6 +15,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
 @class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;

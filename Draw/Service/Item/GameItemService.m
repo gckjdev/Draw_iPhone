@@ -7,11 +7,11 @@
 //
 
 #import "GameItemService.h"
-//#import "GameNetworkRequest.h"
-//#import "PPNetworkRequest.h"
-//#import "GameNetworkConstants.h"
+#import "SynthesizeSingleton.h"
 
 @implementation GameItemService
+
+SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)getItem:(int)itemId
 {
