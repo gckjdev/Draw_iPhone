@@ -78,7 +78,7 @@ typedef enum
         } break;
         case SuperUserManageActionIndexBlackUserId: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [[UserService defaultService] blackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
+                [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
                 }];
             } clickCancelBlock:^{
@@ -88,7 +88,7 @@ typedef enum
         } break;
         case SuperUserManageActionIndexBlackDevice: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [[UserService defaultService] blackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
+                [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
                 }];
             } clickCancelBlock:^{
@@ -98,7 +98,7 @@ typedef enum
         } break;
         case SuperUserManageActionIndexUnblackUserId: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定解除该用户黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [[UserService defaultService] unblackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
+                [[UserService defaultService] superUnblackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
                 }];
             } clickCancelBlock:^{
@@ -108,7 +108,7 @@ typedef enum
         } break;
         case SuperUserManageActionIndexUnblackDevice: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要解除该用户的设备黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [[UserService defaultService] unblackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
+                [[UserService defaultService] superUnblackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
                 }];
             } clickCancelBlock:^{

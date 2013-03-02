@@ -254,11 +254,11 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)drawingMarkSmallImage
 {
-    return [UIImage imageNamed:@"print_tip.png"];        
+    return [UIImage imageNamed:@"my_paint_tag.png"];        
 }
 - (UIImage *)drawingMarkLargeImage
 {
-    return [UIImage imageNamed:@"print_tipbig.png"];            
+    return [UIImage imageNamed:@"my_paint_tag.png"];            
 }
 - (UIImage *)scoreBackgroundImage
 {

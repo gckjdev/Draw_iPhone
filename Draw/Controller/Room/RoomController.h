@@ -31,6 +31,7 @@ enum{
     
     UserManager *_userManager;
 }
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (retain, nonatomic) IBOutlet UIButton *prolongButton;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
