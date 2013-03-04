@@ -432,6 +432,7 @@
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
+  BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
   BOOL hasTargetUserId_:1;
@@ -465,6 +466,7 @@
   NSString* nickName;
   NSString* avatar;
   NSString* opusId;
+  NSString* drawDataUrl;
   NSString* opusDesc;
   NSString* targetUserNickName;
   NSString* targetUserId;
@@ -488,6 +490,7 @@
 - (BOOL) hasTargetUserNickName;
 - (BOOL) hasHistoryScore;
 - (BOOL) hasOpusDesc;
+- (BOOL) hasDrawDataUrl;
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
@@ -521,6 +524,7 @@
 @property (readonly, retain) NSString* targetUserNickName;
 @property (readonly) Float64 historyScore;
 @property (readonly, retain) NSString* opusDesc;
+@property (readonly, retain) NSString* drawDataUrl;
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
@@ -654,6 +658,11 @@
 - (NSString*) opusDesc;
 - (PBFeed_Builder*) setOpusDesc:(NSString*) value;
 - (PBFeed_Builder*) clearOpusDesc;
+
+- (BOOL) hasDrawDataUrl;
+- (NSString*) drawDataUrl;
+- (PBFeed_Builder*) setDrawDataUrl:(NSString*) value;
+- (PBFeed_Builder*) clearDrawDataUrl;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;

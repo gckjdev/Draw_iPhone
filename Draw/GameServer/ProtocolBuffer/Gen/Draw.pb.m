@@ -1401,6 +1401,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* targetUserNickName;
 @property Float64 historyScore;
 @property (retain) NSString* opusDesc;
+@property (retain) NSString* drawDataUrl;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
@@ -1535,6 +1536,13 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   hasOpusDesc_ = !!value;
 }
 @synthesize opusDesc;
+- (BOOL) hasDrawDataUrl {
+  return !!hasDrawDataUrl_;
+}
+- (void) setHasDrawDataUrl:(BOOL) value {
+  hasDrawDataUrl_ = !!value;
+}
+@synthesize drawDataUrl;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -1684,6 +1692,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   self.targetUserId = nil;
   self.targetUserNickName = nil;
   self.opusDesc = nil;
+  self.drawDataUrl = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
@@ -1714,6 +1723,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.targetUserNickName = @"";
     self.historyScore = 0;
     self.opusDesc = @"";
+    self.drawDataUrl = @"";
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
@@ -1837,6 +1847,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasOpusDesc) {
     [output writeString:35 value:self.opusDesc];
   }
+  if (self.hasDrawDataUrl) {
+    [output writeString:36 value:self.drawDataUrl];
+  }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
   }
@@ -1950,6 +1963,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasOpusDesc) {
     size += computeStringSize(35, self.opusDesc);
+  }
+  if (self.hasDrawDataUrl) {
+    size += computeStringSize(36, self.drawDataUrl);
   }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
@@ -2136,6 +2152,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasOpusDesc) {
     [self setOpusDesc:other.opusDesc];
   }
+  if (other.hasDrawDataUrl) {
+    [self setDrawDataUrl:other.drawDataUrl];
+  }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
@@ -2286,6 +2305,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 282: {
         [self setOpusDesc:[input readString]];
+        break;
+      }
+      case 290: {
+        [self setDrawDataUrl:[input readString]];
         break;
       }
       case 330: {
@@ -2630,6 +2653,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearOpusDesc {
   result.hasOpusDesc = NO;
   result.opusDesc = @"";
+  return self;
+}
+- (BOOL) hasDrawDataUrl {
+  return result.hasDrawDataUrl;
+}
+- (NSString*) drawDataUrl {
+  return result.drawDataUrl;
+}
+- (PBFeed_Builder*) setDrawDataUrl:(NSString*) value {
+  result.hasDrawDataUrl = YES;
+  result.drawDataUrl = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDrawDataUrl {
+  result.hasDrawDataUrl = NO;
+  result.drawDataUrl = @"";
   return self;
 }
 - (BOOL) hasOpusId {

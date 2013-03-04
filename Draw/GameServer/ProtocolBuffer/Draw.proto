@@ -64,6 +64,7 @@ message PBFeed {
   optional string targetUserNickName = 33;
   optional double historyScore = 34;    // 指示该作品的历史总得分
   optional string opusDesc = 35;
+  optional string drawDataUrl = 36;     // 新增，用于返回数据文件的URL
 
   // for user guess
   optional string opusId = 41;          // 猜作品的ID
