@@ -203,6 +203,13 @@
 		A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
+		A491413016E43D1900106265 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491412E16E43D1900106265 /* StoreController.m */; };
+		A491413116E43D1900106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491412F16E43D1900106265 /* StoreController.xib */; };
+		A491413416E4502900106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491413316E4502900106265 /* StoreCell.m */; };
+		A491413616E4504F00106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491413516E4504F00106265 /* StoreCell.xib */; };
+		A491413716E4507700106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491413516E4504F00106265 /* StoreCell.xib */; };
+		A491413816E4507800106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491413516E4504F00106265 /* StoreCell.xib */; };
+		A491413916E4507800106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491413516E4504F00106265 /* StoreCell.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -7109,6 +7116,12 @@
 		A48B09CD169FAAC500B56975 /* UMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMWebViewController.h; sourceTree = "<group>"; };
 		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
+		A491412D16E43D1900106265 /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
+		A491412E16E43D1900106265 /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
+		A491412F16E43D1900106265 /* StoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreController.xib; sourceTree = "<group>"; };
+		A491413216E4502900106265 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
+		A491413316E4502900106265 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
+		A491413516E4504F00106265 /* StoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
@@ -12847,6 +12860,12 @@
 				C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */,
 				C2433A2815AC025900325A76 /* CommonItemInfoView.xib */,
 				C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */,
+				A491412D16E43D1900106265 /* StoreController.h */,
+				A491412E16E43D1900106265 /* StoreController.m */,
+				A491412F16E43D1900106265 /* StoreController.xib */,
+				A491413216E4502900106265 /* StoreCell.h */,
+				A491413316E4502900106265 /* StoreCell.m */,
+				A491413516E4504F00106265 /* StoreCell.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -18728,6 +18747,7 @@
 				A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */,
 				A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 				A454207516E060AB0073A431 /* Dice-Info.plist in Resources */,
+				A491413816E4507800106265 /* StoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19590,6 +19610,7 @@
 				A454207316E058BE0073A431 /* CommonMessageView.xib in Resources */,
 				A454207416E060A10073A431 /* Zhajinhua-Info.plist in Resources */,
 				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
+				A491413716E4507700106265 /* StoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20462,6 +20483,8 @@
 				C2795D1116E097E300A2D2FB /* room_seat_bg_6@2x.png in Resources */,
 				C2795D1316E097E300A2D2FB /* room_start_btn_bg@2x.png in Resources */,
 				C2795D1516E097E300A2D2FB /* room_title_bg@2x.png in Resources */,
+				A491413116E43D1900106265 /* StoreController.xib in Resources */,
+				A491413616E4504F00106265 /* StoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21302,6 +21325,7 @@
 				C2795D1216E097E300A2D2FB /* room_seat_bg_6@2x.png in Resources */,
 				C2795D1416E097E300A2D2FB /* room_start_btn_bg@2x.png in Resources */,
 				C2795D1616E097E300A2D2FB /* room_title_bg@2x.png in Resources */,
+				A491413916E4507800106265 /* StoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23485,6 +23509,8 @@
 				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
+				A491413016E43D1900106265 /* StoreController.m in Sources */,
+				A491413416E4502900106265 /* StoreCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
