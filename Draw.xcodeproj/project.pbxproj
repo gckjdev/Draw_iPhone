@@ -3538,6 +3538,12 @@
 		CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA48588F16E19D8500AEE725 /* DrawBgManager.m */; };
 		CA485B2A16E1F02C00AEE725 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA485B2916E1F02C00AEE725 /* draw_bg.zip */; };
 		CA485B2B16E1F02C00AEE725 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA485B2916E1F02C00AEE725 /* draw_bg.zip */; };
+		CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
+		CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
+		CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
+		CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
+		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
@@ -8335,6 +8341,10 @@
 		CA48588E16E19D8500AEE725 /* DrawBgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBgManager.h; sourceTree = "<group>"; };
 		CA48588F16E19D8500AEE725 /* DrawBgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawBgManager.m; sourceTree = "<group>"; };
 		CA485B2916E1F02C00AEE725 /* draw_bg.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = draw_bg.zip; sourceTree = "<group>"; };
+		CA485F5016E440E300AEE725 /* DrawBgBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBgBox.h; sourceTree = "<group>"; };
+		CA485F5116E440E300AEE725 /* DrawBgBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawBgBox.m; sourceTree = "<group>"; };
+		CA485F5216E440E300AEE725 /* DrawBgBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawBgBox.xib; sourceTree = "<group>"; };
+		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
@@ -13670,6 +13680,10 @@
 		CA5328D716A3E1E000E9E96B /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA485F5016E440E300AEE725 /* DrawBgBox.h */,
+				CA485F5116E440E300AEE725 /* DrawBgBox.m */,
+				CA485F5216E440E300AEE725 /* DrawBgBox.xib */,
+				CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */,
 				CA5328D816A3E1E000E9E96B /* ColorBox.h */,
 				CA5328D916A3E1E000E9E96B /* ColorBox.m */,
 				CA5328DA16A3E1E000E9E96B /* ColorBox.xib */,
@@ -20471,6 +20485,8 @@
 				C2795D1516E097E300A2D2FB /* room_title_bg@2x.png in Resources */,
 				CA485B2A16E1F02C00AEE725 /* draw_bg.zip in Resources */,
 				C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */,
+				CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */,
+				CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21312,6 +21328,8 @@
 				C2795D1416E097E300A2D2FB /* room_start_btn_bg@2x.png in Resources */,
 				C2795D1616E097E300A2D2FB /* room_title_bg@2x.png in Resources */,
 				CA485B2B16E1F02C00AEE725 /* draw_bg.zip in Resources */,
+				CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */,
+				CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23495,6 +23513,7 @@
 				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
+				CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24225,6 +24244,7 @@
 				CA683A5F16DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */,
+				CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
