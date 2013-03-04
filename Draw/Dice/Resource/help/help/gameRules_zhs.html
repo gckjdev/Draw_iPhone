@@ -1,65 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<link href="style.css" rel="stylesheet" type="text/css" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1138.47">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 30.0px STSong}
+    p.p2 {margin: 0.0px 0.0px 6.0px 0.0px; font: 30.0px Times; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 30.0px Times; min-height: 14.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px STSong}
+    li.li5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px Times}
+    li.li6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px STSong}
+    span.s1 {font: 30.0px STSong}
+    span.s2 {font: 30.0px Times}
+    ul.ul1 {list-style-type: disc}
+    ul.ul2 {list-style-type: circle}
+  </style>
 </head>
 <body>
-<div id="content">
-  <div class="explain">
-    <p>欢乐大话骰是一种大众娱乐休闲游戏，其玩法和酒吧里面的大话骰类似。</p>
-    <hr />
-    <p><h2>基本规则</h2></p>
-    <ul>
-      <li>骰子有6个点数，其中以2最小，1最大。<br>即：2 &#8249; 3 &#8249; 4 &#8249; 5 &#8249; 6&#8249; 1</li>
-      <li>点数1为特殊点，在没有被叫或者没有斋的情况下，点数1可以当作任意的点数。除非当前局为<B>叫斋局</B>， 或有玩家叫了1点。</li>
-      <li>如果当前是<B>叫斋局</B>, 玩家可以选择叫当前所叫骰子数的<B>2倍或以上</B>数目来<B>破斋</B>，除非游戏中禁止破斋。</li>
-      <li>每局游戏第一个叫的玩家，其所叫骰子个数必须<B>大于或等于玩家个数</B>。</li>
-      <li>如果所叫骰子个数跟当前玩家个数相等，则表示<B>叫斋</B>。</li>
-      <li>如果玩家在其当前轮次的15秒内未做出决定, 系统将自动在当前所叫骰子数上加1叫骰; 如果不能继续叫骰，系统将会开骰。</li>
-      <li>如果玩家中途逃跑或者断线， 系统将会接管当前这局游戏，并于当前局游戏结束后把玩家踢出房间。</li>
-      <li>游戏中有两个场： 普通场， 富豪场。每个场的详细规则见下。</li>
-    </ul>
-    <hr />
-     <p><h2>游戏流程</h2></p>
-    <ul>
-      <li>摇骰盅：游戏开始时，系统为玩家摇骰盅，每个玩家有五个骰子。</li>
-      <li>首叫：游戏开始后，由第一个进入房间的玩家先叫骰；一局结束后，第二局由上一局的输家先叫骰。</li>
-      <li>叫骰
-        <ul>
-          <li>2个人玩的时候，只能从2个X(骰数)开始叫，3个人玩的时候，只能从3个X(骰数）开始叫，依次类推。</li>
-          <li>叫数只能越叫越大（例如：2个5、3个2，喊了2个5之后就不能再喊2个3之类的。）</li>
-          <li>叫过1点，则1点以后不能当作其他数了，只能当1，(视为叫斋)。</li>
-          <li>玩家如果叫的个数是上一家的两倍或以上，则可以破斋。例如，上一家叫3个2斋，下一家叫6个2，则不是斋。</li>  
-          <li>玩家叫的个数如果和玩家个数一样，例如3个人玩，其中一个玩家叫了3个2，则认为其叫斋了。 </li>
-          <li>如果玩家超过15秒没有叫骰，则由系统替其叫骰或开骰(当无骰可叫时)。</li>
-        </ul>
-      </li>
-      <li>开骰：开骰分为"开"和"抢开"两种 开表示开上一家的骰子。抢开表示开非上一家的骰子。玩家一旦开骰，该轮游戏结束。 </li>
-      <li>玩家下注：在一轮结束的时候，玩家可以根据实际情况对结果进行下注，下注有底注和赔率，如果玩家下注，赢了的话，则获得(底注*赔率)个金币，输了扣除(底注)个金币。 </li>
-      <li>胜负：玩家开骰后(假设最后一个玩家叫的数是M个X)，如果所有玩家的骰子中X的个数加起来(考虑不同游戏规则和斋规则)大于或等于M个，则开骰玩家输，被开玩家胜出，否则，开骰玩家赢，被开玩家输。例如，最后叫骰玩家叫了5个3，计算所有玩家的骰子(考虑叫斋规则)，骰数为3的有4个，则叫骰玩家赢。 </li>
-    </ul>
-    <hr />
-    <p><h2>普通场游戏规则</h2></p>
-     基本规则适用于本场，并附加以下规则：
-    <ul>
-	    <li>赌注为固定的100金币，赢家将获得100金币，输家则失去100金币。</li>
-	    <li>本场不允许<B>破斋</B>。</li>
-	    <li>本场准入门槛是：200金币。</li>
-    </ul>
-    <hr />
-    <p><h2>富豪场游戏规则</h2></p>
-     基本规则适用于本场，并附加以下规则：
-      <li>净骰：如果玩家摇出来的五个骰子，点数都是一样的，则这种点数可以当作七个来用。例如玩家摇出的骰子的点数都是5，则可以当作7个5来使用。</li>
-      <li>围骰：如果玩家摇出来的五个骰子，其中有一种点数是1，一种点数是X，则玩家可以当作6个X来使用。例如玩家开出3个1和2个2，则玩家可以当作6个2来使用。</li>
-      <li>蛇骰：如果玩家开出来的五个骰子的点数都不一样，则玩家计算任何点数的骰子数时，都是0。例如玩家开出1、2、3、4、5。则可以认为玩家任何点数的骰子数都是0。</li>
-      <li>赢的玩家可以获得的金币为：(| 叫骰数 - 实际骰数 |+1) * 底注。其中底注是随着游戏进行不断增加的：每一局开始的时候，底注为50，玩家每叫一次骰，底注增加50。输的玩家则扣除相应的金币。例如玩家A叫了8个2，玩家B开，实际上有10个2，则玩家B输，扣除(|8-10|+1)*100＝300金币，玩家A获得300金币。</li>
-      <li>本场允许<B>破斋</B>。</li>
-      <li>本场准入门槛是：10,000金币。</li>
-    </ul>
-    <hr />
-  </div>
-</div>
+<p class="p1">大话骰是一种大众娱乐休闲游戏，其玩法和酒吧里面的大话骰类似。</p>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">基本规则</h2>
+<p class="p3"><br></p>
+<ul class="ul1">
+  <li class="li5"><span class="s1">骰子有</span>6<span class="s1">个点数，其中以</span>2<span class="s1">最小，</span>1<span class="s1">最大。</span><br>
+<span class="s1">即：</span>2 ‹ 3 ‹ 4 ‹ 5 ‹ 6‹ 1</li>
+  <li class="li6"><span class="s2"></span>点数<span class="s2">1</span>为特殊点，在没有被叫或者没有斋的情况下，点数<span class="s2">1</span>可以当作任意的点数。除非当前局为叫斋局，<span class="s2"> </span>或有玩家叫了<span class="s2">1</span>点。</li>
+  <li class="li6"><span class="s2"></span>如果当前是叫斋局<span class="s2">, </span>玩家可以选择叫当前所叫骰子数的<span class="s2"><b>2</b></span>倍或以上数目来破斋，除非游戏中禁止破斋。</li>
+  <li class="li6"><span class="s2"></span>每局游戏第一个叫的玩家，其所叫骰子个数必须大于或等于玩家个数。</li>
+  <li class="li6"><span class="s2"></span>如果所叫骰子个数跟当前玩家个数相等，则表示叫斋。</li>
+  <li class="li6"><span class="s2"></span>如果玩家在其当前轮次的<span class="s2">15</span>秒内未做出决定<span class="s2">, </span>系统将自动在当前所叫骰子数上加<span class="s2">1</span>叫骰<span class="s2">; </span>如果不能继续叫骰，系统将会开骰。</li>
+  <li class="li6"><span class="s2"></span>如果玩家中途逃跑或者断线，<span class="s2"> </span>系统将会接管当前这局游戏，并于当前局游戏结束后把玩家踢出房间。</li>
+  <li class="li6"><span class="s2"></span>游戏中有两个场：<span class="s2"> </span>普通场，<span class="s2"> </span>富豪场。每个场的详细规则见下。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">游戏流程</h2>
+<p class="p3"><br></p>
+<ul class="ul1">
+  <li class="li6"><span class="s2"></span>摇骰盅：游戏开始时，系统为玩家摇骰盅，每个玩家有五个骰子。</li>
+  <li class="li6"><span class="s2"></span>首叫：游戏开始后，由第一个进入房间的玩家先叫骰；一局结束后，第二局由上一局的输家先叫骰。</li>
+  <li class="li5"><span class="s1">叫骰</span></li>
+  <ul class="ul2">
+    <li class="li6"><span class="s2">2</span>个人玩的时候，只能从<span class="s2">2</span>个<span class="s2">X(</span>骰数<span class="s2">)</span>开始叫，<span class="s2">3</span>个人玩的时候，只能从<span class="s2">3</span>个<span class="s2">X(</span>骰数）开始叫，依次类推。</li>
+    <li class="li6"><span class="s2"></span>叫数只能越叫越大（例如：<span class="s2">2</span>个<span class="s2">5</span>、<span class="s2">3</span>个<span class="s2">2</span>，喊了<span class="s2">2</span>个<span class="s2">5</span>之后就不能再喊<span class="s2">2</span>个<span class="s2">3</span>之类的。）</li>
+    <li class="li6"><span class="s2"></span>叫过<span class="s2">1</span>点，则<span class="s2">1</span>点以后不能当作其他数了，只能当<span class="s2">1</span>，<span class="s2">(</span>视为叫斋<span class="s2">)</span>。</li>
+    <li class="li6"><span class="s2"></span>玩家如果叫的个数是上一家的两倍或以上，则可以破斋。例如，上一家叫<span class="s2">3</span>个<span class="s2">2</span>斋，下一家叫<span class="s2">6</span>个<span class="s2">2</span>，则不是斋。</li>
+    <li class="li6"><span class="s2"></span>玩家叫的个数如果和玩家个数一样，例如<span class="s2">3</span>个人玩，其中一个玩家叫了<span class="s2">3</span>个<span class="s2">2</span>，则认为其叫斋了。</li>
+    <li class="li6"><span class="s2"></span>如果玩家超过<span class="s2">15</span>秒没有叫骰，则由系统替其叫骰或开骰<span class="s2">(</span>当无骰可叫时<span class="s2">)</span>。</li>
+  </ul>
+  <li class="li6"><span class="s2"></span>开骰：开骰分为<span class="s2">"</span>开<span class="s2">"</span>和<span class="s2">"</span>抢开<span class="s2">"</span>两种<span class="s2"> </span>开表示开上一家的骰子。抢开表示开非上一家的骰子。玩家一旦开骰，该轮游戏结束。</li>
+  <li class="li6"><span class="s2"></span>玩家下注：在一轮结束的时候，玩家可以根据实际情况对结果进行下注，下注有底注和赔率，如果玩家下注，赢了的话，则获得<span class="s2">(</span>底注<span class="s2">*</span>赔率<span class="s2">)</span>个金币，输了扣除<span class="s2">(</span>底注<span class="s2">)</span>个金币。</li>
+  <li class="li6"><span class="s2"></span>胜负：玩家开骰后<span class="s2">(</span>假设最后一个玩家叫的数是<span class="s2">M</span>个<span class="s2">X)</span>，如果所有玩家的骰子中<span class="s2">X</span>的个数加起来<span class="s2">(</span>考虑不同游戏规则和斋规则<span class="s2">)</span>大于或等于<span class="s2">M</span>个，则开骰玩家输，被开玩家胜出，否则，开骰玩家赢，被开玩家输。例如，最后叫骰玩家叫了<span class="s2">5</span>个<span class="s2">3</span>，计算所有玩家的骰子<span class="s2">(</span>考虑叫斋规则<span class="s2">)</span>，骰数为<span class="s2">3</span>的有<span class="s2">4</span>个，则叫骰玩家赢。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">普通场游戏规则</h2>
+<p class="p3"><br></p>
+<p class="p6">基本规则适用于本场，并附加以下规则：</p>
+<ul class="ul1">
+  <li class="li6"><span class="s2"></span>赌注为固定的<span class="s2">100</span>金币，赢家将获得<span class="s2">100</span>金币，输家则失去<span class="s2">100</span>金币。</li>
+  <li class="li6"><span class="s2"></span>本场不允许破斋。</li>
+  <li class="li6"><span class="s2"></span>本场准入门槛是：<span class="s2">200</span>金币。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">富豪场游戏规则</h2>
+<p class="p3"><br></p>
+<p class="p6">基本规则适用于本场，并附加以下规则：</p>
+<p class="p6">净骰：如果玩家摇出来的五个骰子，点数都是一样的，则这种点数可以当作七个来用。例如玩家摇出的骰子的点数都是<span class="s2">5</span>，则可以当作<span class="s2">7</span>个<span class="s2">5</span>来使用。</p>
+<p class="p6">围骰：如果玩家摇出来的五个骰子，其中有一种点数是<span class="s2">1</span>，一种点数是<span class="s2">X</span>，则玩家可以当作<span class="s2">6</span>个<span class="s2">X</span>来使用。例如玩家开出<span class="s2">3</span>个<span class="s2">1</span>和<span class="s2">2</span>个<span class="s2">2</span>，则玩家可以当作<span class="s2">6</span>个<span class="s2">2</span>来使用。</p>
+<p class="p6">蛇骰：如果玩家开出来的五个骰子的点数都不一样，则玩家计算任何点数的骰子数时，都是<span class="s2">0</span>。例如玩家开出<span class="s2">1</span>、<span class="s2">2</span>、<span class="s2">3</span>、<span class="s2">4</span>、<span class="s2">5</span>。则可以认为玩家任何点数的骰子数都是<span class="s2">0</span>。</p>
+<p class="p6">赢的玩家可以获得的金币为：<span class="s2">(| </span>叫骰数<span class="s2"> - </span>实际骰数<span class="s2"> |+1) * </span>底注。其中底注是随着游戏进行不断增加的：每一局开始的时候，底注为<span class="s2">50</span>，玩家每叫一次骰，底注增加<span class="s2">50</span>。输的玩家则扣除相应的金币。例如玩家<span class="s2">A</span>叫了<span class="s2">8</span>个<span class="s2">2</span>，玩家<span class="s2">B</span>开，实际上有<span class="s2">10</span>个<span class="s2">2</span>，则玩家<span class="s2">B</span>输，扣除<span class="s2">(|8-10|+1)*100</span>＝<span class="s2">300</span>金币，玩家<span class="s2">A</span>获得<span class="s2">300</span>金币。</p>
+<p class="p6">本场允许破斋。</p>
+<p class="p6">本场准入门槛是：<span class="s2">10,000</span>金币。</p>
+<p class="p2"><br></p>
 </body>
 </html>
