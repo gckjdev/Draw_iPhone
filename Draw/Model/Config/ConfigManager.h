@@ -214,5 +214,6 @@ typedef enum{
 + (int)maxTotalBetWithRichRule;
 + (BOOL)showBetViewEnabled;
 
++ (NSString *)currentDrawBgVersion;
 
 @end
