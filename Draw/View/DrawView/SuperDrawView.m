@@ -107,20 +107,21 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
     UIColor *color = nil;
     color = [UIColor whiteColor];
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, self.bounds);
 
-    
+    /*
     if (self.drawBg) {
         UIImage *image = [self.drawBg localImage];
         if (image) {
-//            CGContextDrawImage(context, self.bounds, image.CGImage);
-            [image drawAsPatternInRect:self.bounds];
+            color = [UIColor colorWithPatternImage:image];
         }
     }
 
-
+*/
     CTMContext(context, self.bounds);
+    
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, self.bounds);
+    
     [osManager showAllLayersInContext:context];
     return context;
 }
