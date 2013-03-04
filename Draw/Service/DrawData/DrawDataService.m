@@ -168,7 +168,10 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
     [builder setScore:[drawWord score]];
-    [builder setDrawBg:drawBg];
+    
+    if (drawBg != nil){
+        [builder setDrawBg:drawBg];
+    }
     //TODO save size
     
     for (DrawAction* drawAction in drawActionList){
