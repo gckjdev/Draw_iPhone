@@ -83,6 +83,7 @@
     PPRelease(_onlinePlayerCountLabel);
     PPRelease(_privateChatController);
     PPRelease(_groupChatController);
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -138,6 +139,7 @@
     [popupButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
     
 }
 
@@ -184,6 +186,7 @@
     [self setChangeRoomButton:nil];
     [self setPrivateChatController:nil];
     [self setGroupChatController:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

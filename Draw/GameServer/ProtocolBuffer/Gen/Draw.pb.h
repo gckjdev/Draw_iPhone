@@ -13,6 +13,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
+@class PBDrawBgList;
+@class PBDrawBgList_Builder;
 @class PBDrawBg_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
@@ -1183,6 +1185,55 @@
 - (NSString*) remoteUrl;
 - (PBDrawBg_Builder*) setRemoteUrl:(NSString*) value;
 - (PBDrawBg_Builder*) clearRemoteUrl;
+@end
+
+@interface PBDrawBgList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableDrawBgsList;
+}
+- (NSArray*) drawBgsList;
+- (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
+
++ (PBDrawBgList*) defaultInstance;
+- (PBDrawBgList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDrawBgList_Builder*) builder;
++ (PBDrawBgList_Builder*) builder;
++ (PBDrawBgList_Builder*) builderWithPrototype:(PBDrawBgList*) prototype;
+
++ (PBDrawBgList*) parseFromData:(NSData*) data;
++ (PBDrawBgList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDrawBgList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDrawBgList* result;
+}
+
+- (PBDrawBgList*) defaultInstance;
+
+- (PBDrawBgList_Builder*) clear;
+- (PBDrawBgList_Builder*) clone;
+
+- (PBDrawBgList*) build;
+- (PBDrawBgList*) buildPartial;
+
+- (PBDrawBgList_Builder*) mergeFrom:(PBDrawBgList*) other;
+- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) drawBgsList;
+- (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
+- (PBDrawBgList_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value;
+- (PBDrawBgList_Builder*) addDrawBgs:(PBDrawBg*) value;
+- (PBDrawBgList_Builder*) addAllDrawBgs:(NSArray*) values;
+- (PBDrawBgList_Builder*) clearDrawBgsList;
 @end
 
 @interface PBHotWord : PBGeneratedMessage {

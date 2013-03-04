@@ -68,6 +68,7 @@
 #import "PPSmartUpdateDataUtils.h"
 
 #import "BBSService.h"
+#import "DrawBgManager.h"
 
 
 NSString* GlobalGetServerURL()
@@ -227,6 +228,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [DrawBgManager defaultManager];
     srand(time(0));
     
     application.applicationIconBadgeNumber = 0;

@@ -801,4 +801,9 @@
     return [MobClickUtils getIntValueByKey:@"BET_VIEW_ENABLED" defaultValue:1];
 }
 
++ (NSString *)currentDrawBgVersion
+{
+    return @"1.0";
+}
+
 @end

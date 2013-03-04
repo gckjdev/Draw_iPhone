@@ -1000,9 +1000,9 @@ static UserService* _defaultUserService;
     });
 }
 
-- (void)blackUser:(NSString*)targetUserId
-             type:(BlackUserType)type
-     successBlock:(void (^)(void))successBlock
+- (void)superBlackUser:(NSString *)targetUserId
+                  type:(BlackUserType)type
+          successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
@@ -1024,9 +1024,9 @@ static UserService* _defaultUserService;
         });
     });
 }
-- (void)unblackUser:(NSString*)targetUserId
-               type:(BlackUserType)type
-       successBlock:(void (^)(void))successBlock
+- (void)superUnblackUser:(NSString *)targetUserId
+                    type:(BlackUserType)type
+            successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
