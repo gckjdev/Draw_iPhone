@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
 
-@protocol GameItmeServiceDelegate <NSObject>
-
-- (void)didGetItem:(int)resultCode item:(PBGameItem *)item;
-- (void)didGetItemList:(int)resultCode itemList:(NSArray *)itemList;
-
-@end
+typedef void (^GetItemsListResultHandler)(BOOL success, NSArray *itemsList);
 
 @interface GameItemService : NSObject
 
-- (void)getItem:(int)itemId;
-- (void)getItemList;
++ (GameItemService *)sharedGameItemService;
+
+- (void)getItemsList:(GetItemsListResultHandler)handler;
+
+- (void)getItemsListWithType:(int)type
+               resultHandler:(GetItemsListResultHandler)handler;
+
+- (void)getPromotingItemsList:(GetItemsListResultHandler)handler;
 
 @end

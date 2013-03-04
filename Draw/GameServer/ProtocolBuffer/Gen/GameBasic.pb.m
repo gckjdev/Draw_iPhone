@@ -5763,7 +5763,8 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
 
 @interface PBPromotionInfo ()
 @property int32_t discount;
-@property int32_t limitTime;
+@property int32_t startDate;
+@property int32_t expireDate;
 @end
 
 @implementation PBPromotionInfo
@@ -5775,20 +5776,28 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
   hasDiscount_ = !!value;
 }
 @synthesize discount;
-- (BOOL) hasLimitTime {
-  return !!hasLimitTime_;
+- (BOOL) hasStartDate {
+  return !!hasStartDate_;
 }
-- (void) setHasLimitTime:(BOOL) value {
-  hasLimitTime_ = !!value;
+- (void) setHasStartDate:(BOOL) value {
+  hasStartDate_ = !!value;
 }
-@synthesize limitTime;
+@synthesize startDate;
+- (BOOL) hasExpireDate {
+  return !!hasExpireDate_;
+}
+- (void) setHasExpireDate:(BOOL) value {
+  hasExpireDate_ = !!value;
+}
+@synthesize expireDate;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.discount = 0;
-    self.limitTime = 0;
+    self.startDate = 0;
+    self.expireDate = 0;
   }
   return self;
 }
@@ -5812,10 +5821,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasDiscount) {
-    [output writeInt32:2 value:self.discount];
+    [output writeInt32:1 value:self.discount];
   }
-  if (self.hasLimitTime) {
-    [output writeInt32:3 value:self.limitTime];
+  if (self.hasStartDate) {
+    [output writeInt32:2 value:self.startDate];
+  }
+  if (self.hasExpireDate) {
+    [output writeInt32:3 value:self.expireDate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5827,10 +5839,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 
   size = 0;
   if (self.hasDiscount) {
-    size += computeInt32Size(2, self.discount);
+    size += computeInt32Size(1, self.discount);
   }
-  if (self.hasLimitTime) {
-    size += computeInt32Size(3, self.limitTime);
+  if (self.hasStartDate) {
+    size += computeInt32Size(2, self.startDate);
+  }
+  if (self.hasExpireDate) {
+    size += computeInt32Size(3, self.expireDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5910,8 +5925,11 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   if (other.hasDiscount) {
     [self setDiscount:other.discount];
   }
-  if (other.hasLimitTime) {
-    [self setLimitTime:other.limitTime];
+  if (other.hasStartDate) {
+    [self setStartDate:other.startDate];
+  }
+  if (other.hasExpireDate) {
+    [self setExpireDate:other.expireDate];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5934,12 +5952,16 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
         }
         break;
       }
-      case 16: {
+      case 8: {
         [self setDiscount:[input readInt32]];
         break;
       }
+      case 16: {
+        [self setStartDate:[input readInt32]];
+        break;
+      }
       case 24: {
-        [self setLimitTime:[input readInt32]];
+        [self setExpireDate:[input readInt32]];
         break;
       }
     }
@@ -5961,20 +5983,36 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   result.discount = 0;
   return self;
 }
-- (BOOL) hasLimitTime {
-  return result.hasLimitTime;
+- (BOOL) hasStartDate {
+  return result.hasStartDate;
 }
-- (int32_t) limitTime {
-  return result.limitTime;
+- (int32_t) startDate {
+  return result.startDate;
 }
-- (PBPromotionInfo_Builder*) setLimitTime:(int32_t) value {
-  result.hasLimitTime = YES;
-  result.limitTime = value;
+- (PBPromotionInfo_Builder*) setStartDate:(int32_t) value {
+  result.hasStartDate = YES;
+  result.startDate = value;
   return self;
 }
-- (PBPromotionInfo_Builder*) clearLimitTime {
-  result.hasLimitTime = NO;
-  result.limitTime = 0;
+- (PBPromotionInfo_Builder*) clearStartDate {
+  result.hasStartDate = NO;
+  result.startDate = 0;
+  return self;
+}
+- (BOOL) hasExpireDate {
+  return result.hasExpireDate;
+}
+- (int32_t) expireDate {
+  return result.expireDate;
+}
+- (PBPromotionInfo_Builder*) setExpireDate:(int32_t) value {
+  result.hasExpireDate = YES;
+  result.expireDate = value;
+  return self;
+}
+- (PBPromotionInfo_Builder*) clearExpireDate {
+  result.hasExpireDate = NO;
+  result.expireDate = 0;
   return self;
 }
 @end

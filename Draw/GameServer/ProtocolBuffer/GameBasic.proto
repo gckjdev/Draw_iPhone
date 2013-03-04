@@ -182,8 +182,9 @@ message PBPriceInfo {
 }
 
 message PBPromotionInfo{
-  required int32 discount = 2;                    // 折扣，90表示九折，85表示85折
-  optional int32 limitTime = 3;                   // 限时
+  required int32 discount = 1;                    // 折扣，90表示九折，85表示85折
+  optional int32 startDate = 2;                   // 起始日期
+  optional int32 expireDate = 3;                  // 截止日期
 }
 
 message PBGameItem {

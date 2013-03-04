@@ -1385,14 +1385,18 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 @interface PBPromotionInfo : PBGeneratedMessage {
 @private
   BOOL hasDiscount_:1;
-  BOOL hasLimitTime_:1;
+  BOOL hasStartDate_:1;
+  BOOL hasExpireDate_:1;
   int32_t discount;
-  int32_t limitTime;
+  int32_t startDate;
+  int32_t expireDate;
 }
 - (BOOL) hasDiscount;
-- (BOOL) hasLimitTime;
+- (BOOL) hasStartDate;
+- (BOOL) hasExpireDate;
 @property (readonly) int32_t discount;
-@property (readonly) int32_t limitTime;
+@property (readonly) int32_t startDate;
+@property (readonly) int32_t expireDate;
 
 + (PBPromotionInfo*) defaultInstance;
 - (PBPromotionInfo*) defaultInstance;
@@ -1433,10 +1437,15 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (PBPromotionInfo_Builder*) setDiscount:(int32_t) value;
 - (PBPromotionInfo_Builder*) clearDiscount;
 
-- (BOOL) hasLimitTime;
-- (int32_t) limitTime;
-- (PBPromotionInfo_Builder*) setLimitTime:(int32_t) value;
-- (PBPromotionInfo_Builder*) clearLimitTime;
+- (BOOL) hasStartDate;
+- (int32_t) startDate;
+- (PBPromotionInfo_Builder*) setStartDate:(int32_t) value;
+- (PBPromotionInfo_Builder*) clearStartDate;
+
+- (BOOL) hasExpireDate;
+- (int32_t) expireDate;
+- (PBPromotionInfo_Builder*) setExpireDate:(int32_t) value;
+- (PBPromotionInfo_Builder*) clearExpireDate;
 @end
 
 @interface PBGameItem : PBGeneratedMessage {
