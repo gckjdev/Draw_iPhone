@@ -22,7 +22,15 @@
 #import "AnalyticsManager.h"
 #import "WidthView.h"
 #import "ShapeBox.h"
-
+#import "DrawBgBox.h"
+#import "DrawSlider.h"
+#import "ColorPoint.h"
+#import "WidthBox.h"
+#import "Palette.h"
+#import "ColorShopView.h"
+#import "ColorBox.h"
+#import "Draw.pb.h"
+#import "DrawBgManager.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -45,6 +53,9 @@
 - (IBAction)clickChat:(id)sender;
 - (IBAction)clickWidthBox:(UIButton *)widthBox;
 - (IBAction)clickShape:(id)sender;
+- (IBAction)clickDrawBg:(id)sender;
+
+
 - (void)selectPen;
 - (void)selectEraser;
 
@@ -68,6 +79,7 @@
 @property (retain, nonatomic) CMPopTipView *palettePopTipView;
 @property (retain, nonatomic) CMPopTipView *widthBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *shapeBoxPopTipView;
+@property (retain, nonatomic) CMPopTipView *drawBgBoxPopTipView;
 
 
 @property (retain, nonatomic) NSTimer *timer;
@@ -284,6 +296,10 @@
         [self.shapeBoxPopTipView dismissAnimated:NO];
         self.shapeBoxPopTipView = nil;
     }
+    if (popView != self.drawBgBoxPopTipView) {
+        [self.drawBgBoxPopTipView dismissAnimated:NO];
+        self.drawBgBoxPopTipView = nil;
+    }
 }
 
 - (void)dismissAllPopTipViews
@@ -342,6 +358,15 @@
         return shapeBox;
     } atView:sender setter:@selector(setShapeBoxPopTipView:)];
     AnalyticsReport(DRAW_CLICK_SHAPE_BOX);
+}
+
+- (IBAction)clickDrawBg:(id)sender {
+    [self handlePopTipView:_drawBgBoxPopTipView contentView:^UIView *{
+        DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
+        [drawBgBox updateViewsWithSelectedBgId:self.drawBgId];
+        return drawBgBox;
+    } atView:sender setter:@selector(setDrawBgBoxPopTipView:)];
+    AnalyticsReport(DRAW_CLICK_DRAWBG_BOX);
 }
 
 
@@ -597,7 +622,7 @@
 
 #pragma mark - CMPopTipView Delegate
 
-- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+- (void)finishDismissPopTipView:(CMPopTipView *)popTipView
 {
     if (popTipView == self.palettePopTipView) {
         self.palettePopTipView = nil;
@@ -609,21 +634,18 @@
         self.widthBoxPopTipView = nil;
     }else if(popTipView == self.shapeBoxPopTipView){
         self.shapeBoxPopTipView = nil;
-    }
+    }else if(popTipView == self.drawBgBoxPopTipView){
+        self.drawBgBoxPopTipView = nil;
+    }    
+}
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    [self finishDismissPopTipView:popTipView];
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
 {
-    if (popTipView == self.palettePopTipView) {
-        self.palettePopTipView = nil;
-    }else if(popTipView == self.penPopTipView){
-        self.penPopTipView = nil;
-    }else if(popTipView == self.colorBoxPopTipView){
-        self.colorBoxPopTipView = nil;
-    }else if(popTipView == self.widthBoxPopTipView){
-        self.widthBoxPopTipView = nil;
-    }else if(popTipView == self.shapeBoxPopTipView){
-        self.shapeBoxPopTipView = nil;
-    }
+    [self finishDismissPopTipView:popTipView];
 }
 
 
@@ -648,6 +670,19 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectShapeType:)]) {
         [self.delegate drawToolPanel:self didSelectShapeType:type];
     }
+}
+
+#pragma mark -- Draw BG Box delegate
+- (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg
+{
+    self.drawBgId = drawBg.bgId;
+    PPDebug(@"<didSelectedDrawBg>:bg id = %@",self.drawBgId);
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectDrawBg:)]) {
+        [self.delegate drawToolPanel:self didSelectDrawBg:drawBg];
+    }
+    [self performSelector:@selector(dismissAllPopTipViews)];
+
 }
 
 #pragma mark - Color Box delegate
@@ -713,6 +748,8 @@
     PPRelease(_palettePopTipView);
     PPRelease(_widthBoxPopTipView);
     PPRelease(_shapeBoxPopTipView);
+    PPRelease(_drawBgBoxPopTipView);
+    PPRelease(_drawBgId);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);

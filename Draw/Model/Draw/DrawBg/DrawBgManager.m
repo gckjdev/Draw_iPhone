@@ -39,7 +39,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
 - (void)updateDrawBgList
 {
-    return;
     if (_drawBgList) {
         PPRelease(_drawBgList);
     }
@@ -118,10 +117,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return _drawBgList;
 }
 
-+ (void)createTestData
++ (void)createTestData:(NSUInteger)number
 {
     PBDrawBgList_Builder *lBuilder = [[[PBDrawBgList_Builder alloc] init] autorelease];
-    for (NSInteger i = 1; i < 3; ++i) {
+    for (NSInteger i = 1; i <= number; ++i) {
         NSString *bgId = [NSString stringWithFormat:@"%d",i];
         NSString *localUrl = [NSString stringWithFormat:@"%d.jpg",i];
         NSString *remoteUrl = @"http://58.215.160.100:8080/app_res/smart_data/draw_bg/";
@@ -138,7 +137,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     PBDrawBgList *list = [lBuilder build];
     NSData *data = [list data];
     PPDebug(@"<Write Data>, data length = %d",[data length]);
-    [data writeToFile:@"/Users/qqn_pipi/tool/draw_bg.dat" atomically:YES];
+    [data writeToFile:@"/Users/qqn_pipi/tool/draw_bg/meta.pb" atomically:YES];
 }
 
 @end

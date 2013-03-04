@@ -15,7 +15,7 @@
 @class DrawColor;
 @class PBNoCompressDrawAction;
 @class PBNoCompressDrawData;
-
+@class PBDrawBg;
 
 
 typedef enum {
@@ -65,7 +65,7 @@ typedef enum {
 
 
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
-+ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList;
++ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList pbdrawBg:(PBDrawBg *)drawBg size:(CGSize)size;
 
 - (BOOL)isChangeBackAction;
 - (BOOL)isCleanAction;

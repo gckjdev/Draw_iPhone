@@ -13,6 +13,7 @@
 #import "DrawAction.h"
 #import "ItemType.h"
 #import "OffscreenManager.h"
+#import "DrawBgManager.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -44,6 +45,9 @@
 
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
 - (void)drawPaint:(Paint *)paint show:(BOOL)show;
+
+- (void)setDrawBg:(PBDrawBg *)drawBg;
+- (PBDrawBg *)drawBg;
 
 
 @end

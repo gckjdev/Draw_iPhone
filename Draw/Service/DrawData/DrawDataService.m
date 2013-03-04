@@ -151,12 +151,14 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 }
 
-- (PBDraw*)buildPBDraw:(NSString*)userId 
-                  nick:(NSString *)nick 
+- (PBDraw*)buildPBDraw:(NSString*)userId
+                  nick:(NSString *)nick
                 avatar:(NSString *)avatar
         drawActionList:(NSArray*)drawActionList
               drawWord:(Word*)drawWord
               language:(LanguageType)language
+                drawBg:(PBDrawBg *)drawBg
+                  size:(CGSize)size
 {
     PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
     [builder setUserId:userId];
@@ -166,6 +168,9 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setLevel:[drawWord level]];
     [builder setLanguage:language];
     [builder setScore:[drawWord score]];
+    [builder setDrawBg:drawBg];
+    //TODO save size
+    
     for (DrawAction* drawAction in drawActionList){
         PBDrawAction *action = [self buildPBDrawAction:drawAction];
         [builder addDrawData:action];
@@ -184,6 +189,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
+                   drawBg:(PBDrawBg *)drawBg //new attributes By Gamy
+                     size:(CGSize)size
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -197,7 +204,9 @@ static DrawDataService* _defaultDrawDataService = nil;
                               avatar:avatar
                       drawActionList:drawActionList
                             drawWord:drawWord 
-                            language:language];
+                            language:language
+                              drawBg:drawBg
+                                size:size];
     
     NSData *imageData = nil;
     if (image) {

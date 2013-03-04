@@ -21,7 +21,7 @@
 - (NSArray *)pbDrawBgList;
 
 //Test Code
-+ (void)createTestData;
++ (void)createTestData:(NSUInteger)number;
 
 @end
 

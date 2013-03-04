@@ -408,7 +408,8 @@
     drawView.touchActionType = TouchActionTypeDraw;
     self.penColor.alpha = 1.0;
     [drawView changeBackWithColor:self.penColor];
-    [self didDrawedPaint:[DrawAction changeBackgroundActionWithColor:self.penColor].paint];
+    [self drawView:drawView didFinishDrawAction:[DrawAction changeBackgroundActionWithColor:self.penColor]];
+
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [drawView.lineColor setAlpha:_alpha];

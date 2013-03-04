@@ -130,6 +130,7 @@
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
 #define METHOD_BLACK_USER   @"blu"
+#define METHOD_BLACK_FRIEND @"blf"
 
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
