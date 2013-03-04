@@ -165,6 +165,8 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
 @class PBUserItem;

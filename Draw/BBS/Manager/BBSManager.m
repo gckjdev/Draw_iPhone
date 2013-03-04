@@ -104,25 +104,29 @@ BBSManager *_staticBBSManager;
 
 #pragma mark - create post&&action limit
 
-#define FREQUENCY_KEY @"FREQUENCY_KEY"
+//#define FREQUENCY_KEY @"FREQUENCY_KEY"
 - (void)updateLastCreationDate
 {
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setDouble:interval forKey:FREQUENCY_KEY];
-    [ud synchronize];
+    _lastCreationDate = interval;
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//    [ud setDouble:interval forKey:FREQUENCY_KEY];
+//    [ud synchronize];
 }
 
 - (NSTimeInterval)lastCreationDateInterval
 {
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    return [ud doubleForKey:FREQUENCY_KEY];
+    return _lastCreationDate;
+    
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//    return [ud doubleForKey:FREQUENCY_KEY];
 }
 
 - (NSInteger)creationFrequency
 {
     return [ConfigManager getBBSCreationFrequency];
 }
+
 - (BOOL)isCreationFrequent
 {
     NSTimeInterval it =[[NSDate date] timeIntervalSince1970] - [self lastCreationDateInterval];
