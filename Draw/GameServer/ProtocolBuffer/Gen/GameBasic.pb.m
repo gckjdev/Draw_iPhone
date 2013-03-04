@@ -5643,7 +5643,8 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
 
 @interface PBPromotionInfo ()
 @property int32_t discount;
-@property int32_t limitTime;
+@property int32_t startDate;
+@property int32_t expireDate;
 @end
 
 @implementation PBPromotionInfo
@@ -5655,20 +5656,28 @@ static PBPriceInfo* defaultPBPriceInfoInstance = nil;
   hasDiscount_ = !!value;
 }
 @synthesize discount;
-- (BOOL) hasLimitTime {
-  return !!hasLimitTime_;
+- (BOOL) hasStartDate {
+  return !!hasStartDate_;
 }
-- (void) setHasLimitTime:(BOOL) value {
-  hasLimitTime_ = !!value;
+- (void) setHasStartDate:(BOOL) value {
+  hasStartDate_ = !!value;
 }
-@synthesize limitTime;
+@synthesize startDate;
+- (BOOL) hasExpireDate {
+  return !!hasExpireDate_;
+}
+- (void) setHasExpireDate:(BOOL) value {
+  hasExpireDate_ = !!value;
+}
+@synthesize expireDate;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.discount = 0;
-    self.limitTime = 0;
+    self.startDate = 0;
+    self.expireDate = 0;
   }
   return self;
 }
@@ -5692,10 +5701,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasDiscount) {
-    [output writeInt32:2 value:self.discount];
+    [output writeInt32:1 value:self.discount];
   }
-  if (self.hasLimitTime) {
-    [output writeInt32:3 value:self.limitTime];
+  if (self.hasStartDate) {
+    [output writeInt32:2 value:self.startDate];
+  }
+  if (self.hasExpireDate) {
+    [output writeInt32:3 value:self.expireDate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5707,10 +5719,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 
   size = 0;
   if (self.hasDiscount) {
-    size += computeInt32Size(2, self.discount);
+    size += computeInt32Size(1, self.discount);
   }
-  if (self.hasLimitTime) {
-    size += computeInt32Size(3, self.limitTime);
+  if (self.hasStartDate) {
+    size += computeInt32Size(2, self.startDate);
+  }
+  if (self.hasExpireDate) {
+    size += computeInt32Size(3, self.expireDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5790,8 +5805,11 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   if (other.hasDiscount) {
     [self setDiscount:other.discount];
   }
-  if (other.hasLimitTime) {
-    [self setLimitTime:other.limitTime];
+  if (other.hasStartDate) {
+    [self setStartDate:other.startDate];
+  }
+  if (other.hasExpireDate) {
+    [self setExpireDate:other.expireDate];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5814,12 +5832,16 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
         }
         break;
       }
-      case 16: {
+      case 8: {
         [self setDiscount:[input readInt32]];
         break;
       }
+      case 16: {
+        [self setStartDate:[input readInt32]];
+        break;
+      }
       case 24: {
-        [self setLimitTime:[input readInt32]];
+        [self setExpireDate:[input readInt32]];
         break;
       }
     }
@@ -5841,20 +5863,36 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   result.discount = 0;
   return self;
 }
-- (BOOL) hasLimitTime {
-  return result.hasLimitTime;
+- (BOOL) hasStartDate {
+  return result.hasStartDate;
 }
-- (int32_t) limitTime {
-  return result.limitTime;
+- (int32_t) startDate {
+  return result.startDate;
 }
-- (PBPromotionInfo_Builder*) setLimitTime:(int32_t) value {
-  result.hasLimitTime = YES;
-  result.limitTime = value;
+- (PBPromotionInfo_Builder*) setStartDate:(int32_t) value {
+  result.hasStartDate = YES;
+  result.startDate = value;
   return self;
 }
-- (PBPromotionInfo_Builder*) clearLimitTime {
-  result.hasLimitTime = NO;
-  result.limitTime = 0;
+- (PBPromotionInfo_Builder*) clearStartDate {
+  result.hasStartDate = NO;
+  result.startDate = 0;
+  return self;
+}
+- (BOOL) hasExpireDate {
+  return result.hasExpireDate;
+}
+- (int32_t) expireDate {
+  return result.expireDate;
+}
+- (PBPromotionInfo_Builder*) setExpireDate:(int32_t) value {
+  result.hasExpireDate = YES;
+  result.expireDate = value;
+  return self;
+}
+- (PBPromotionInfo_Builder*) clearExpireDate {
+  result.hasExpireDate = NO;
+  result.expireDate = 0;
   return self;
 }
 @end
@@ -6402,14 +6440,14 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 @end
 
 @interface PBGameItemList ()
-@property (retain) NSMutableArray* mutableItemsListList;
+@property (retain) NSMutableArray* mutableItemsList;
 @end
 
 @implementation PBGameItemList
 
-@synthesize mutableItemsListList;
+@synthesize mutableItemsList;
 - (void) dealloc {
-  self.mutableItemsListList = nil;
+  self.mutableItemsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -6429,15 +6467,15 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 - (PBGameItemList*) defaultInstance {
   return defaultPBGameItemListInstance;
 }
-- (NSArray*) itemsListList {
-  return mutableItemsListList;
+- (NSArray*) itemsList {
+  return mutableItemsList;
 }
-- (PBGameItem*) itemsListAtIndex:(int32_t) index {
-  id value = [mutableItemsListList objectAtIndex:index];
+- (PBGameItem*) itemsAtIndex:(int32_t) index {
+  id value = [mutableItemsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  for (PBGameItem* element in self.itemsListList) {
+  for (PBGameItem* element in self.itemsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -6445,7 +6483,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBGameItem* element in self.itemsListList) {
+  for (PBGameItem* element in self.itemsList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -6457,7 +6495,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   }
 
   size = 0;
-  for (PBGameItem* element in self.itemsListList) {
+  for (PBGameItem* element in self.itemsList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
@@ -6535,11 +6573,11 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   if (other == [PBGameItemList defaultInstance]) {
     return self;
   }
-  if (other.mutableItemsListList.count > 0) {
-    if (result.mutableItemsListList == nil) {
-      result.mutableItemsListList = [NSMutableArray array];
+  if (other.mutableItemsList.count > 0) {
+    if (result.mutableItemsList == nil) {
+      result.mutableItemsList = [NSMutableArray array];
     }
-    [result.mutableItemsListList addObjectsFromArray:other.mutableItemsListList];
+    [result.mutableItemsList addObjectsFromArray:other.mutableItemsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -6565,39 +6603,39 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
       case 10: {
         PBGameItem_Builder* subBuilder = [PBGameItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addItemsList:[subBuilder buildPartial]];
+        [self addItems:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (NSArray*) itemsListList {
-  if (result.mutableItemsListList == nil) { return [NSArray array]; }
-  return result.mutableItemsListList;
+- (NSArray*) itemsList {
+  if (result.mutableItemsList == nil) { return [NSArray array]; }
+  return result.mutableItemsList;
 }
-- (PBGameItem*) itemsListAtIndex:(int32_t) index {
-  return [result itemsListAtIndex:index];
+- (PBGameItem*) itemsAtIndex:(int32_t) index {
+  return [result itemsAtIndex:index];
 }
-- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value {
-  [result.mutableItemsListList replaceObjectAtIndex:index withObject:value];
+- (PBGameItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBGameItem*) value {
+  [result.mutableItemsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values {
-  if (result.mutableItemsListList == nil) {
-    result.mutableItemsListList = [NSMutableArray array];
+- (PBGameItemList_Builder*) addAllItems:(NSArray*) values {
+  if (result.mutableItemsList == nil) {
+    result.mutableItemsList = [NSMutableArray array];
   }
-  [result.mutableItemsListList addObjectsFromArray:values];
+  [result.mutableItemsList addObjectsFromArray:values];
   return self;
 }
-- (PBGameItemList_Builder*) clearItemsListList {
-  result.mutableItemsListList = nil;
+- (PBGameItemList_Builder*) clearItemsList {
+  result.mutableItemsList = nil;
   return self;
 }
-- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value {
-  if (result.mutableItemsListList == nil) {
-    result.mutableItemsListList = [NSMutableArray array];
+- (PBGameItemList_Builder*) addItems:(PBGameItem*) value {
+  if (result.mutableItemsList == nil) {
+    result.mutableItemsList = [NSMutableArray array];
   }
-  [result.mutableItemsListList addObject:value];
+  [result.mutableItemsList addObject:value];
   return self;
 }
 @end

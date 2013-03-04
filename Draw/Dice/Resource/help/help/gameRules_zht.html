@@ -1,65 +1,82 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<link href="style.css" rel="stylesheet" type="text/css" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1138.47">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 30.0px STSong}
+    p.p2 {margin: 0.0px 0.0px 6.0px 0.0px; font: 30.0px Times; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 12.0px 0.0px; font: 30.0px Times; min-height: 14.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px STSong}
+    li.li5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px Times}
+    li.li6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 30.0px STSong}
+    span.s1 {font: 30.0px STSong}
+    span.s2 {font: 30.0px Times}
+    ul.ul1 {list-style-type: disc}
+    ul.ul2 {list-style-type: circle}
+  </style>
 </head>
 <body>
-<div id="content">
-  <div class="explain">
-    <p>歡樂大話骰是一種大眾娛樂休閑游戲，其玩法和酒吧裡面的大話骰類似。</p>
-    <hr />
-    <p><h2>基本規則</h2></p>
-    <ul>
-      <li>骰子有6個點數，其中以2最小，1最大。<br>即：2 &#8249; 3 &#8249; 4 &#8249; 5 &#8249; 6&#8249; 1</li>
-      <li>點數1為特殊點，在沒有被叫或者沒有齋的情況下，點數1可以當作任意的點數。除非當前局為<B>叫齋局</B>， 或有玩家叫了1點。</li>
-      <li>如果當前是<B>叫齋局</B>, 玩家可以選擇叫當前所叫骰子數的<B>2倍或以上</B>數目來<B>破齋</B>，除非游戲中禁止破齋。</li>
-      <li>每局游戲第一個叫的玩家，其所叫骰子個數必須<B>大於或等於玩家個數</B>。</li>
-      <li>如果所叫骰子個數跟當前玩家個數相等，則表示<B>叫齋</B>。</li>
-      <li>如果玩家在其當前輪次的15秒內未做出決定, 系統將自動在當前所叫骰子數上加1叫骰; 如果不能繼續叫骰，系統將會開骰。</li>
-      <li>如果玩家中途逃跑或者斷線， 系統將會接管當前這局游戲，並於當前局游戲結束後把玩家踢出房間。</li>
-      <li>游戲中有兩個場： 普通場， 富豪場。每個場的詳細規則見下。</li>
-    </ul>
-    <hr />
-     <p><h2>游戲流程</h2></p>
-    <ul>
-      <li>搖骰盅：游戲開始時，系統為玩家搖骰盅，每個玩家有五個骰子。</li>
-      <li>首叫：游戲開始後，由第一個進入房間的玩家先叫骰；一局結束後，第二局由上一局的輸家先叫骰。</li>
-      <li>叫骰
-        <ul>
-          <li>2個人玩的時候，只能從2個X(骰數)開始叫，3個人玩的時候，只能從3個X(骰數）開始叫，依次類推。</li>
-          <li>叫數只能越叫越大（例如：2個5、3個2，喊了2個5之後就不能再喊2個3之類的。）</li>
-          <li>叫過1點，則1點以後不能當作其他數了，只能當1，(視為叫齋)。</li>
-          <li>玩家如果叫的個數是上一家的兩倍或以上，則可以破齋。例如，上一家叫3個2齋，下一家叫6個2，則不是齋。</li>  
-          <li>玩家叫的個數如果和玩家個數一樣，例如3個人玩，其中一個玩家叫了3個2，則認為其叫齋了。 </li>
-          <li>如果玩家超過15秒沒有叫骰，則由系統替其叫骰或開骰(當無骰可叫時)。</li>
-        </ul>
-      </li>
-      <li>開骰：開骰分為"開"和"搶開"兩種 開表示開上一家的骰子。搶開表示開非上一家的骰子。玩家一旦開骰，該輪游戲結束。 </li>
-      <li>玩家下註：在一輪結束的時候，玩家可以根據實際情況對結果進行下註，下註有底註和賠率，如果玩家下註，贏了的話，則獲得(底註*賠率)個金幣，輸了扣除(底註)個金幣。 </li>
-      <li>勝負：玩家開骰後(假設最後一個玩家叫的數是M個X)，如果所有玩家的骰子中X的個數加起來(考慮不同游戲規則和齋規則)大於或等於M個，則開骰玩家輸，被開玩家勝出，否則，開骰玩家贏，被開玩家輸。例如，最後叫骰玩家叫了5個3，計算所有玩家的骰子(考慮叫齋規則)，骰數為3的有4個，則叫骰玩家贏。 </li>
-    </ul>
-    <hr />
-    <p><h2>普通場游戲規則</h2></p>
-     基本規則適用於本場，並附加以下規則：
-    <ul>
-	    <li>賭註為固定的100金幣，贏家將獲得100金幣，輸家則失去100金幣。</li>
-	    <li>本場不允許<B>破齋</B>。</li>
-	    <li>本場準入門檻是：200金幣。</li>
-    </ul>
-    <hr />
-    <p><h2>富豪場游戲規則</h2></p>
-     基本規則適用於本場，並附加以下規則：
-      <li>凈骰：如果玩家搖出來的五個骰子，點數都是一樣的，則這種點數可以當作七個來用。例如玩家搖出的骰子的點數都是5，則可以當作7個5來使用。</li>
-      <li>圍骰：如果玩家搖出來的五個骰子，其中有一種點數是1，一種點數是X，則玩家可以當作6個X來使用。例如玩家開出3個1和2個2，則玩家可以當作6個2來使用。</li>
-      <li>蛇骰：如果玩家開出來的五個骰子的點數都不一樣，則玩家計算任何點數的骰子數時，都是0。例如玩家開出1、2、3、4、5。則可以認為玩家任何點數的骰子數都是0。</li>
-      <li>贏的玩家可以獲得的金幣為：(| 叫骰數 - 實際骰數 |+1) * 底註。其中底註是隨著游戲進行不斷增加的：每一局開始的時候，底註為50，玩家每叫一次骰，底註增加50。輸的玩家則扣除相應的金幣。例如玩家A叫了8個2，玩家B開，實際上有10個2，則玩家B輸，扣除(|8-10|+1)*100＝300金幣，玩家A獲得300金幣。</li>
-      <li>本場允許<B>破齋</B>。</li>
-      <li>本場準入門檻是：10,000金幣。</li>
-    </ul>
-    <hr />
-  </div>
-</div>
+<p class="p1">大話骰是一種大眾娛樂休閑游戲，其玩法和酒吧裡面的大話骰類似。</p>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">基本規則</h2>
+<p class="p3"><br></p>
+<ul class="ul1">
+  <li class="li5"><span class="s1">骰子有</span>6<span class="s1">個點數，其中以</span>2<span class="s1">最小，</span>1<span class="s1">最大。</span><br>
+<span class="s1">即：</span>2 ‹ 3 ‹ 4 ‹ 5 ‹ 6‹ 1</li>
+  <li class="li6"><span class="s2"></span>點數<span class="s2">1</span>為特殊點，在沒有被叫或者沒有齋的情況下，點數<span class="s2">1</span>可以當作任意的點數。除非當前局為叫齋局，<span class="s2"> </span>或有玩家叫了<span class="s2">1</span>點。</li>
+  <li class="li6"><span class="s2"></span>如果當前是叫齋局<span class="s2">, </span>玩家可以選擇叫當前所叫骰子數的<span class="s2"><b>2</b></span>倍或以上數目來破齋，除非游戲中禁止破齋。</li>
+  <li class="li6"><span class="s2"></span>每局游戲第一個叫的玩家，其所叫骰子個數必須大於或等於玩家個數。</li>
+  <li class="li6"><span class="s2"></span>如果所叫骰子個數跟當前玩家個數相等，則表示叫齋。</li>
+  <li class="li6"><span class="s2"></span>如果玩家在其當前輪次的<span class="s2">15</span>秒內未做出決定<span class="s2">, </span>系統將自動在當前所叫骰子數上加<span class="s2">1</span>叫骰<span class="s2">; </span>如果不能繼續叫骰，系統將會開骰。</li>
+  <li class="li6"><span class="s2"></span>如果玩家中途逃跑或者斷線，<span class="s2"> </span>系統將會接管當前這局游戲，並於當前局游戲結束後把玩家踢出房間。</li>
+  <li class="li6"><span class="s2"></span>游戲中有兩個場：<span class="s2"> </span>普通場，<span class="s2"> </span>富豪場。每個場的詳細規則見下。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">游戲流程</h2>
+<p class="p3"><br></p>
+<ul class="ul1">
+  <li class="li6"><span class="s2"></span>搖骰盅：游戲開始時，系統為玩家搖骰盅，每個玩家有五個骰子。</li>
+  <li class="li6"><span class="s2"></span>首叫：游戲開始後，由第一個進入房間的玩家先叫骰；一局結束後，第二局由上一局的輸家先叫骰。</li>
+  <li class="li5"><span class="s1">叫骰</span></li>
+  <ul class="ul2">
+    <li class="li6"><span class="s2">2</span>個人玩的時候，只能從<span class="s2">2</span>個<span class="s2">X(</span>骰數<span class="s2">)</span>開始叫，<span class="s2">3</span>個人玩的時候，只能從<span class="s2">3</span>個<span class="s2">X(</span>骰數）開始叫，依次類推。</li>
+    <li class="li6"><span class="s2"></span>叫數只能越叫越大（例如：<span class="s2">2</span>個<span class="s2">5</span>、<span class="s2">3</span>個<span class="s2">2</span>，喊了<span class="s2">2</span>個<span class="s2">5</span>之後就不能再喊<span class="s2">2</span>個<span class="s2">3</span>之類的。）</li>
+    <li class="li6"><span class="s2"></span>叫過<span class="s2">1</span>點，則<span class="s2">1</span>點以後不能當作其他數了，只能當<span class="s2">1</span>，<span class="s2">(</span>視為叫齋<span class="s2">)</span>。</li>
+    <li class="li6"><span class="s2"></span>玩家如果叫的個數是上一家的兩倍或以上，則可以破齋。例如，上一家叫<span class="s2">3</span>個<span class="s2">2</span>齋，下一家叫<span class="s2">6</span>個<span class="s2">2</span>，則不是齋。</li>
+    <li class="li6"><span class="s2"></span>玩家叫的個數如果和玩家個數一樣，例如<span class="s2">3</span>個人玩，其中一個玩家叫了<span class="s2">3</span>個<span class="s2">2</span>，則認為其叫齋了。</li>
+    <li class="li6"><span class="s2"></span>如果玩家超過<span class="s2">15</span>秒沒有叫骰，則由系統替其叫骰或開骰<span class="s2">(</span>當無骰可叫時<span class="s2">)</span>。</li>
+  </ul>
+  <li class="li6"><span class="s2"></span>開骰：開骰分為<span class="s2">"</span>開<span class="s2">"</span>和<span class="s2">"</span>搶開<span class="s2">"</span>兩種<span class="s2"> </span>開表示開上一家的骰子。搶開表示開非上一家的骰子。玩家一旦開骰，該輪游戲結束。</li>
+  <li class="li6"><span class="s2"></span>玩家下註：在一輪結束的時候，玩家可以根據實際情況對結果進行下註，下註有底註和賠率，如果玩家下註，贏了的話，則獲得<span class="s2">(</span>底註<span class="s2">*</span>賠率<span class="s2">)</span>個金幣，輸了扣除<span class="s2">(</span>底註<span class="s2">)</span>個金幣。</li>
+  <li class="li6"><span class="s2"></span>勝負：玩家開骰後<span class="s2">(</span>假設最後一個玩家叫的數是<span class="s2">M</span>個<span class="s2">X)</span>，如果所有玩家的骰子中<span class="s2">X</span>的個數加起來<span class="s2">(</span>考慮不同游戲規則和齋規則<span class="s2">)</span>大於或等於<span class="s2">M</span>個，則開骰玩家輸，被開玩家勝出，否則，開骰玩家贏，被開玩家輸。例如，最後叫骰玩家叫了<span class="s2">5</span>個<span class="s2">3</span>，計算所有玩家的骰子<span class="s2">(</span>考慮叫齋規則<span class="s2">)</span>，骰數為<span class="s2">3</span>的有<span class="s2">4</span>個，則叫骰玩家贏。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">普通場游戲規則</h2>
+<p class="p3"><br></p>
+<p class="p6">基本規則適用於本場，並附加以下規則：</p>
+<ul class="ul1">
+  <li class="li6"><span class="s2"></span>賭註為固定的<span class="s2">100</span>金幣，贏家將獲得<span class="s2">100</span>金幣，輸家則失去<span class="s2">100</span>金幣。</li>
+  <li class="li6"><span class="s2"></span>本場不允許破齋。</li>
+  <li class="li6"><span class="s2"></span>本場準入門檻是：<span class="s2">200</span>金幣。</li>
+</ul>
+<p class="p2"><br></p>
+<p class="p3"><br></p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 36.0px STSong">富豪場游戲規則</h2>
+<p class="p3"><br></p>
+<p class="p6">基本規則適用於本場，並附加以下規則：</p>
+<p class="p6">凈骰：如果玩家搖出來的五個骰子，點數都是一樣的，則這種點數可以當作七個來用。例如玩家搖出的骰子的點數都是<span class="s2">5</span>，則可以當作<span class="s2">7</span>個<span class="s2">5</span>來使用。</p>
+<p class="p6">圍骰：如果玩家搖出來的五個骰子，其中有一種點數是<span class="s2">1</span>，一種點數是<span class="s2">X</span>，則玩家可以當作<span class="s2">6</span>個<span class="s2">X</span>來使用。例如玩家開出<span class="s2">3</span>個<span class="s2">1</span>和<span class="s2">2</span>個<span class="s2">2</span>，則玩家可以當作<span class="s2">6</span>個<span class="s2">2</span>來使用。</p>
+<p class="p6">蛇骰：如果玩家開出來的五個骰子的點數都不一樣，則玩家計算任何點數的骰子數時，都是<span class="s2">0</span>。例如玩家開出<span class="s2">1</span>、<span class="s2">2</span>、<span class="s2">3</span>、<span class="s2">4</span>、<span class="s2">5</span>。則可以認為玩家任何點數的骰子數都是<span class="s2">0</span>。</p>
+<p class="p6">贏的玩家可以獲得的金幣為：<span class="s2">(| </span>叫骰數<span class="s2"> - </span>實際骰數<span class="s2"> |+1) * </span>底註。其中底註是隨著游戲進行不斷增加的：每一局開始的時候，底註為<span class="s2">50</span>，玩家每叫一次骰，底註增加<span class="s2">50</span>。輸的玩家則扣除相應的金幣。例如玩家<span class="s2">A</span>叫了<span class="s2">8</span>個<span class="s2">2</span>，玩家<span class="s2">B</span>開，實際上有<span class="s2">10</span>個<span class="s2">2</span>，則玩家<span class="s2">B</span>輸，扣除<span class="s2">(|8-10|+1)*100</span>＝<span class="s2">300</span>金幣，玩家<span class="s2">A</span>獲得<span class="s2">300</span>金幣。</p>
+<p class="p6">本場允許破齋。</p>
+<p class="p6">本場準入門檻是：<span class="s2">10,000</span>金幣。</p>
+<p class="p2"><br></p>
 </body>
 </html>

@@ -2824,6 +2824,38 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)blackFriend:(NSString*)baseURL
+                              appId:(NSString* )appId
+                       targetUserId:(NSString*)targetUserId
+                             userId:(NSString*)userId
+                         actionType:(int)actionType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_BLACK_FRIEND];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:actionType];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 
 + (CommonNetworkOutput *)buyItem:(NSString *)baseURL
