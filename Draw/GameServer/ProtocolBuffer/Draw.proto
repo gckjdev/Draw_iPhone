@@ -24,7 +24,8 @@ message PBDraw {
   optional string opusId = 11;
   optional int32 score = 12;                  // draw word score
 
-  optional PBDrawBg drawBg = 20;
+  optional PBDrawBg drawBg = 20;              // draw background info
+  optional PBSize size = 21;                  // draw rect size
 }
 
 message PBFeedTimes{
@@ -158,6 +159,12 @@ message PBDrawBg
     required string bgId = 1;
     optional string localUrl  = 2;
     optional string remoteUrl  = 3;
+}
+
+message PBSize
+{
+    optional float width = 1 [default=304.0];
+    optional float height = 2 [default=320.0];
 }
 
 message PBDrawBgList

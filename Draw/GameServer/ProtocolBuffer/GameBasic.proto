@@ -109,6 +109,11 @@ message PBDrawAction {
   optional int32 penType = 5;
   optional int32 shapeType = 6;
   repeated float rectComponent = 7; //startX, startY, endX, endY
+  
+  // for no compressed points, add 2012-03-04
+  repeated float pointsX = 11;
+  repeated float pointsY = 12;
+
 }
 
 message PBMessage {

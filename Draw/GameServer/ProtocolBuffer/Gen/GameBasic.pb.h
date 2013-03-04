@@ -815,6 +815,8 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
   int32_t penType;
   int32_t shapeType;
   NSMutableArray* mutableRectComponentList;
+  NSMutableArray* mutablePointsXList;
+  NSMutableArray* mutablePointsYList;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -832,6 +834,10 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
 - (Float32) rectComponentAtIndex:(int32_t) index;
+- (NSArray*) pointsXList;
+- (Float32) pointsXAtIndex:(int32_t) index;
+- (NSArray*) pointsYList;
+- (Float32) pointsYAtIndex:(int32_t) index;
 
 + (PBDrawAction*) defaultInstance;
 - (PBDrawAction*) defaultInstance;
@@ -905,6 +911,20 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (PBDrawAction_Builder*) addRectComponent:(Float32) value;
 - (PBDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
 - (PBDrawAction_Builder*) clearRectComponentList;
+
+- (NSArray*) pointsXList;
+- (Float32) pointsXAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replacePointsXAtIndex:(int32_t) index with:(Float32) value;
+- (PBDrawAction_Builder*) addPointsX:(Float32) value;
+- (PBDrawAction_Builder*) addAllPointsX:(NSArray*) values;
+- (PBDrawAction_Builder*) clearPointsXList;
+
+- (NSArray*) pointsYList;
+- (Float32) pointsYAtIndex:(int32_t) index;
+- (PBDrawAction_Builder*) replacePointsYAtIndex:(int32_t) index with:(Float32) value;
+- (PBDrawAction_Builder*) addPointsY:(Float32) value;
+- (PBDrawAction_Builder*) addAllPointsY:(NSArray*) values;
+- (PBDrawAction_Builder*) clearPointsYList;
 @end
 
 @interface PBMessage : PBGeneratedMessage {
@@ -1545,10 +1565,10 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 
 @interface PBGameItemList : PBGeneratedMessage {
 @private
-  NSMutableArray* mutableItemsListList;
+  NSMutableArray* mutableItemsList;
 }
-- (NSArray*) itemsListList;
-- (PBGameItem*) itemsListAtIndex:(int32_t) index;
+- (NSArray*) itemsList;
+- (PBGameItem*) itemsAtIndex:(int32_t) index;
 
 + (PBGameItemList*) defaultInstance;
 - (PBGameItemList*) defaultInstance;
@@ -1584,11 +1604,11 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBGameItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSArray*) itemsListList;
-- (PBGameItem*) itemsListAtIndex:(int32_t) index;
-- (PBGameItemList_Builder*) replaceItemsListAtIndex:(int32_t) index with:(PBGameItem*) value;
-- (PBGameItemList_Builder*) addItemsList:(PBGameItem*) value;
-- (PBGameItemList_Builder*) addAllItemsList:(NSArray*) values;
-- (PBGameItemList_Builder*) clearItemsListList;
+- (NSArray*) itemsList;
+- (PBGameItem*) itemsAtIndex:(int32_t) index;
+- (PBGameItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addItems:(PBGameItem*) value;
+- (PBGameItemList_Builder*) addAllItems:(NSArray*) values;
+- (PBGameItemList_Builder*) clearItemsList;
 @end
 
