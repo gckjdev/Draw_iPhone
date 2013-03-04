@@ -131,6 +131,11 @@
     return (self.relation & RelationTypeFollow) != 0;
 }
 
+- (BOOL)hasBlack
+{
+    return (self.relation & RelationTypeBlack) != 0;
+}
+
 - (BOOL)isMyFan
 {
     return (self.relation & RelationTypeFan) != 0;

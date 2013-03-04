@@ -523,6 +523,13 @@
                              type:(int)type
                        actionType:(int)actionType;
 
+//black friend
++ (CommonNetworkOutput*)blackFriend:(NSString*)baseURL
+                              appId:(NSString* )appId
+                       targetUserId:(NSString*)targetUserId
+                             userId:(NSString*)userId
+                         actionType:(int)actionType;
+
 
 // for item
 + (CommonNetworkOutput *)buyItem:(NSString *)baseURL

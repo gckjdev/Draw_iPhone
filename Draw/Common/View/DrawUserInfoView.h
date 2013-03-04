@@ -29,6 +29,7 @@
            infoInView:(PPViewController*)superController
            needUpdate:(BOOL)needUpdate;
 @property (retain, nonatomic) IBOutlet UIButton *superUserManageButton;
+@property (retain, nonatomic) IBOutlet UIButton *blackFriendButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *mask;
 @property (retain, nonatomic) IBOutlet UIView *contentView;
