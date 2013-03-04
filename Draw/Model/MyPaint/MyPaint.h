@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+@class PBDrawBg;
 @interface MyPaint : NSManagedObject
 {
 //    NSData *_drawData;
@@ -39,6 +39,7 @@
 @property (nonatomic, retain) NSData * drawWordData;
 
 @property (nonatomic, assign) NSInteger drawDataVersion;
+@property (nonatomic, retain) PBDrawBg *drawBg;
 
 - (void)updateDrawData;
 

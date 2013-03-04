@@ -33,6 +33,7 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize imageFilePath = _imageFilePath;
 @synthesize drawDataVersion = _drawDataVersion;
+@synthesize drawBg = _drawBg;
 
 - (NSString *)imageFilePath
 {
@@ -73,6 +74,7 @@
     PPRelease(_thumbImage);
     PPRelease(_drawActionList);
     PPRelease(_imageFilePath);
+    PPRelease(_drawBg);
     [super dealloc];
 }
 

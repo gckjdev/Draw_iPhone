@@ -23,6 +23,7 @@
     DrawColor *_bgColor;
     
     NSMutableSet *toucheSet;
+
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
@@ -107,6 +108,7 @@
 }
 
 
+
 #pragma mark - paint action
 
 - (void)clearScreen
@@ -131,6 +133,7 @@
 {
     self.userInteractionEnabled = enabled;
 }
+
 
 
 #pragma mark Gesture Handler
@@ -466,6 +469,9 @@ typedef enum {
 - (void)showDraft:(MyPaint *)draft
 {
     self.drawActionList = draft.drawActionList;
+    if (draft.drawBg) {
+        [self setDrawBg: draft.drawBg];
+    }
     [self synBGColor];
     [self show];
 }

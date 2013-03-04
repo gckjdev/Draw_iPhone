@@ -98,6 +98,7 @@
 #define DRAW_CLICK_STRAW                            @"DRAW_CLICK_STRAW"
 #define DRAW_CLICK_WIDTH_BOX                        @"DRAW_CLICK_WIDTH_BOX"
 #define DRAW_CLICK_SHAPE_BOX                        @"DRAW_CLICK_SHAPE_BOX"
+#define DRAW_CLICK_DRAWBG_BOX                       @"DRAW_CLICK_DRAWBG_BOX"
 
 @interface AnalyticsManager : NSObject
 

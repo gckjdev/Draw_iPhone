@@ -19,6 +19,9 @@
 #import "DrawView.h"
 #import "WidthBox.h"
 #import "ShapeBox.h"
+#import "DrawBgBox.h"
+
+
 
 @class DrawToolPanel;
 
@@ -39,12 +42,27 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type;
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectShapeType:(ShapeType)type;
 
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectDrawBg:(PBDrawBg *)drawBg;
+
 //online
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickChatButton:(UIButton *)button;
 - (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel;
 @end
 
-@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate, WidthBoxDelegate, ShapeBoxDelegate>
+
+//@protocol ColorPointDelegate;
+//@protocol DrawSliderDelegate;
+//@protocol CMPopTipViewDelegate;
+//@protocol PenBoxDelegate;
+//@protocol ColorBoxDelegate;
+//@protocol ColorShopViewDelegate;
+//@protocol DrawViewStrawDelegate;
+//@protocol WidthBoxDelegate;
+//@protocol ShapeBoxDelegate;
+//@protocol ColorPickingBoxDelegate;
+
+
+@interface DrawToolPanel : UIView<ColorPointDelegate, DrawSliderDelegate, CMPopTipViewDelegate, PenBoxDelegate, ColorBoxDelegate, ColorShopViewDelegate, DrawViewStrawDelegate, WidthBoxDelegate, ShapeBoxDelegate, DrawBgBoxDelegate>
 {
     
 }
@@ -55,7 +73,7 @@
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, assign)ShapeType shapeType;
 @property(nonatomic, assign)NSInteger timerDuration;
-
+@property(nonatomic, retain)NSString *drawBgId;
 
 
 + (id)createViewWithdelegate:(id)delegate;

@@ -482,6 +482,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
             paint.drawDataVersion = nDraw.version;
+            paint.drawBg = nDraw.drawBg;
             return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw];
         }else if ([self saveDataAsPBDraw:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];

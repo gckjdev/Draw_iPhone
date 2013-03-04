@@ -366,7 +366,7 @@
     }
     return drawActionList;
 }
-+ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList
++ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList pbdrawBg:(PBDrawBg *)drawBg size:(CGSize)size
 {
     if ([drawActionList count] != 0) {
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:drawActionList.count];
@@ -377,6 +377,8 @@
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         [builder addAllDrawActionList:array];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
+        [builder setDrawBg:drawBg];
+        //TODO save size
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
         return nData;

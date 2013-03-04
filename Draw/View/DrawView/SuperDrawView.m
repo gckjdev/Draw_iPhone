@@ -11,7 +11,9 @@
 
 
 @interface SuperDrawView()
-
+{
+    PBDrawBg *_drawBg;
+}
 
 
 @end
@@ -33,6 +35,7 @@
     PPRelease(_drawActionList);
     _currentAction = nil;
     PPRelease(osManager);
+    PPRelease(_drawBg);
     [super dealloc];
 }
 
@@ -101,8 +104,22 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 - (CGContextRef)createBitmapContext
 {
     CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];//[self createNewBitmapContext];
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+
+    UIColor *color = nil;
+    color = [UIColor whiteColor];
+    CGContextSetFillColorWithColor(context, color.CGColor);
     CGContextFillRect(context, self.bounds);
+
+    
+    if (self.drawBg) {
+        UIImage *image = [self.drawBg localImage];
+        if (image) {
+//            CGContextDrawImage(context, self.bounds, image.CGImage);
+            [image drawAsPatternInRect:self.bounds];
+        }
+    }
+
+
     CTMContext(context, self.bounds);
     [osManager showAllLayersInContext:context];
     return context;
@@ -124,6 +141,21 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     }
 
 }
+
+- (void)setDrawBg:(PBDrawBg *)drawBg
+{
+    if (_drawBg != drawBg) {
+        PPRelease(_drawBg);
+        _drawBg = [drawBg retain];
+        UIImage *image = [drawBg localImage];
+        self.backgroundColor = [UIColor colorWithPatternImage:image];
+    }
+}
+- (PBDrawBg *)drawBg
+{
+    return _drawBg;
+}
+
 
 - (void)showImage:(UIImage *)image
 {
