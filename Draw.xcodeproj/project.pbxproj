@@ -460,6 +460,7 @@
 		C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233968164E3CA100D2C123 /* DebugOutput.m */; };
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
+		C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
 		C23496A616C1F75F00550F36 /* zjh_game_total_bet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E8168DBDB1009F43F7 /* zjh_game_total_bet_bg@2x.png */; };
 		C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
@@ -7329,6 +7330,7 @@
 		C223397E164E41C800D2C123 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
+		C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "result_paint_name_bg@2x.png"; sourceTree = "<group>"; };
 		C22E21851608664F00DE3035 /* DiceRobotItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRobotItemAction.h; sourceTree = "<group>"; };
 		C22E21861608664F00DE3035 /* DiceRobotItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotItemAction.m; sourceTree = "<group>"; };
 		C235C61516A3F43600D80BA4 /* coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coins@2x.png"; sourceTree = "<group>"; };
@@ -14122,6 +14124,7 @@
 		CA7D41F6168D7588009F43F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */,
 				C2795CFE16E097E300A2D2FB /* room */,
 				C21D416116D602A8006A0AA3 /* myPaint */,
 				C27DB87216BFA6E800747741 /* shop_item_paint_player@2x.png */,
@@ -20467,6 +20470,7 @@
 				C2795D1316E097E300A2D2FB /* room_start_btn_bg@2x.png in Resources */,
 				C2795D1516E097E300A2D2FB /* room_title_bg@2x.png in Resources */,
 				CA485B2A16E1F02C00AEE725 /* draw_bg.zip in Resources */,
+				C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
