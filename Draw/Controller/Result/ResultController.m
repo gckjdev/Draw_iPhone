@@ -307,6 +307,10 @@
     ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     [self.whitePaper setImage:[shareImageManager whitePaperImage]];
     [self.drawImage setImage:_image];
+    
+    self.drawImage.layer.shadowOffset = CGSizeMake(0, 3);
+    self.drawImage.layer.shadowOpacity = 0.6;
+    self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
 - (int)calExp
@@ -424,7 +428,8 @@
     }else{
         upButton.hidden = downButton.hidden = YES;
         upLabel.hidden = downLabel.hidden = YES;
-        continueButton.center = CGPointMake(self.view.center.x, continueButton.center.y);
+        continueButton.center = CGPointMake(self.view.center.x*0.75, continueButton.center.y);
+        saveButton.center  = CGPointMake(self.view.center.x/4, continueButton.center.y);
     }
     
     //init the continue button
