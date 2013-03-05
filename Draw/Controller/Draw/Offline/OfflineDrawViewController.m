@@ -749,7 +749,8 @@
                       drawWord:self.word
                       language:languageType
                       drawBg:drawView.drawBg
-                      size:drawView.frame.size];
+                      size:drawView.frame.size
+                      isCompressed:YES];
     return pbDraw;
 }
 

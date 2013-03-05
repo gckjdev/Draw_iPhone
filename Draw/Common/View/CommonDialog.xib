@@ -157,7 +157,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{163, 118}, {83, 30}}</string>
 								<reference key="NSSuperview" ref="398737041"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -305,6 +304,14 @@
 					<int key="connectionID">35</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">closeButton</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="167182492"/>
+					</object>
+					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBack:</string>
 						<reference key="source" ref="489598899"/>
@@ -448,7 +455,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">38</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -456,10 +463,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_dialog_bg@2x.png">{16, 16}</string>
-			<string key="common_dialog_btn_bg@2x.png">{16, 16}</string>
-			<string key="common_dialog_close_btn@2x.png">{16, 16}</string>
-			<string key="common_dialog_head_bg@2x.png">{16, 16}</string>
+			<string key="common_dialog_bg@2x.png">{531, 330}</string>
+			<string key="common_dialog_btn_bg@2x.png">{166, 59}</string>
+			<string key="common_dialog_close_btn@2x.png">{28, 29}</string>
+			<string key="common_dialog_head_bg@2x.png">{531, 66}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

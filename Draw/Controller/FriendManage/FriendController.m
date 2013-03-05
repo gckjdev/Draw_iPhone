@@ -238,6 +238,28 @@ typedef enum{
     // e.g. self.myOutlet = nil;
 }
 
+
+- (IBAction)clickTabButton:(id)sender
+{
+    [super clickTabButton:sender];
+    UIButton *button = (UIButton *)sender;
+    NSInteger tag = button.tag;
+    TableTab *tab = [_tabManager tabForID:tag];
+    if (tab.status != TableTabStatusLoading) {
+        [self reloadTableViewDataSource];
+    }
+    
+    
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+//    UIButton *currentButton = self.currentTabButton;
+//    [currentButton setSelected:NO];
+//    [button setSelected:YES];
+//    [self clickTab:button.tag];
+}
+
+
 #pragma mark - Get Friend Method
 - (BOOL)isFanTab
 {
@@ -427,7 +449,6 @@ typedef enum{
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self isFanTab] ? NSLS(@"kRemoveFan") : NSLS(@"kUnfollow");
     switch (self.currentTab.tabID) {
         case TabTypeFan:
             return NSLS(@"kRemoveFan");

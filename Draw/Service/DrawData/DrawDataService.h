@@ -59,7 +59,8 @@
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
-- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction;
+- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
+                       isCompressed:(BOOL)isCompressed;
 
 - (PBDraw*)buildPBDraw:(NSString*)userId 
                   nick:(NSString *)nick
@@ -68,7 +69,8 @@
               drawWord:(Word*)drawWord
               language:(LanguageType)language
                 drawBg:(PBDrawBg *)drawBg
-                  size:(CGSize)size;
+                  size:(CGSize)size
+          isCompressed:(BOOL)isCompressed;
 
 // save draw data locally
 //- (void)saveActionList:(NSArray *)actionList 

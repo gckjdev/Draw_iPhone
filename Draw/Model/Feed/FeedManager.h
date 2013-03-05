@@ -53,6 +53,7 @@ typedef enum{
 + (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList;
 
 - (void)cachePBFeed:(PBFeed *)feed;
+//- (void)cachePBFeed:(PBFeed *)feed fileName:(NSString*)fileName;
 - (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId;
 
 - (void)removeOldCache;
@@ -66,6 +67,6 @@ typedef enum{
 - (void)saveFeed:(NSString *)feedId thumbImage:(UIImage *)image;
 - (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image;
 
-
++ (NSString*)getFeedCacheDir;
 
 @end

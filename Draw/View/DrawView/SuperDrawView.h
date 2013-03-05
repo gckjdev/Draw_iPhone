@@ -29,7 +29,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
-
+@property (nonatomic, retain) UIImage *drawBgImage;
 
 //public method
 #pragma mark - util methods

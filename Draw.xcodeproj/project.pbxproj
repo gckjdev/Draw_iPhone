@@ -4965,6 +4965,8 @@
 		CA89748316087BE2003A95F7 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		CA8A27EF166CE57500D1A2D6 /* ZJHGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */; };
+		CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
+		CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
 		CA8D602A1531C98400E016ED /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -9570,6 +9572,8 @@
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
 		CA8A27ED166CE57500D1A2D6 /* ZJHGameApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameApp.h; sourceTree = "<group>"; };
 		CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameApp.m; sourceTree = "<group>"; };
+		CA8A6ACA16E5AE0C0052BFFA /* FeedDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDownloadService.h; sourceTree = "<group>"; };
+		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -14122,6 +14126,8 @@
 			children = (
 				CA7C7E09158721B200406BFB /* FeedService.h */,
 				CA7C7E0A158721B200406BFB /* FeedService.m */,
+				CA8A6ACA16E5AE0C0052BFFA /* FeedDownloadService.h */,
+				CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -23556,6 +23562,7 @@
 				CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */,
 				A491415A16E47ECF00106265 /* StoreCell.m in Sources */,
 				A491416216E47ECF00106265 /* StoreController.m in Sources */,
+				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24289,6 +24296,7 @@
 				CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */,
 				A491415B16E47ECF00106265 /* StoreCell.m in Sources */,
 				A491416316E47ECF00106265 /* StoreController.m in Sources */,
+				CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

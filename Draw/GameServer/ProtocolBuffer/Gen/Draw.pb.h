@@ -85,6 +85,7 @@
 @interface PBDraw : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
+  BOOL hasIsCompressed_:1;
   BOOL hasLevel_:1;
   BOOL hasLanguage_:1;
   BOOL hasCreateDate_:1;
@@ -98,6 +99,7 @@
   BOOL hasDrawBg_:1;
   BOOL hasSize_:1;
   BOOL gender_:1;
+  BOOL isCompressed_:1;
   int32_t level;
   int32_t language;
   int32_t createDate;
@@ -123,6 +125,7 @@
 - (BOOL) hasVersion;
 - (BOOL) hasOpusId;
 - (BOOL) hasScore;
+- (BOOL) hasIsCompressed;
 - (BOOL) hasDrawBg;
 - (BOOL) hasSize;
 @property (readonly, retain) NSString* userId;
@@ -136,6 +139,7 @@
 @property (readonly) int32_t version;
 @property (readonly, retain) NSString* opusId;
 @property (readonly) int32_t score;
+- (BOOL) isCompressed;
 @property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* size;
 - (NSArray*) drawDataList;
@@ -236,6 +240,11 @@
 - (int32_t) score;
 - (PBDraw_Builder*) setScore:(int32_t) value;
 - (PBDraw_Builder*) clearScore;
+
+- (BOOL) hasIsCompressed;
+- (BOOL) isCompressed;
+- (PBDraw_Builder*) setIsCompressed:(BOOL) value;
+- (PBDraw_Builder*) clearIsCompressed;
 
 - (BOOL) hasDrawBg;
 - (PBDrawBg*) drawBg;

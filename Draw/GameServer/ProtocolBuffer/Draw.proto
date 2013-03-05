@@ -12,20 +12,21 @@ message PBDraw {
   required string userId = 1;    
   required string word = 2;
   required int32 level = 3;
-  required int32 language = 4;                 // 1 Chinese, 2 English
+  required int32 language = 4;                      // 1 Chinese, 2 English
   optional int32 createDate = 5;
   optional string nickName = 6;
   optional string avatar = 7;
   optional bool   gender = 8;
   
-  optional int32 version = 9 [default=0];      // draw data version
+  optional int32 version = 9 [default=0];           // draw data version
 
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
-  optional int32 score = 12;                  // draw word score
+  optional int32 score = 12;                        // draw word score
 
-  optional PBDrawBg drawBg = 20;              // draw background info
-  optional PBSize size = 21;                  // draw rect size
+  optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
+  optional PBDrawBg drawBg = 20;                    // draw background info
+  optional PBSize size = 21;                        // draw rect size
 }
 
 message PBFeedTimes{

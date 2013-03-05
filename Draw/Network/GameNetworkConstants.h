@@ -241,6 +241,10 @@
 #define PARA_EMAIL @"em"
 #define PARA_NEW_APPID  @"napp"
 
+#define PARA_IS_DATA_ZIP            @"idz"
+#define PARA_IS_DATA_COMPRESSED     @"idc"
+#define PARA_RETURN_DATA_METHOD     @"rdm"
+
 #define PARA_TO_USERID @"tuid"
 #define PARA_MESSAGE_ID @"mid"
 #define PARA_TARGET_MESSAGE_ID @"tmd"
