@@ -504,6 +504,7 @@
 {
     PPDebug(@"<startPlay>");
     [self.showView play];
+    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)updateDrawInfo
@@ -583,7 +584,6 @@
     [self initPickToolView];
     
     [self checkDrawDataVersion];
-    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
