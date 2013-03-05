@@ -125,16 +125,23 @@
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
+                  drawBg:(PBDrawBg *)drawBg
+                    size:(CGSize)size
 {
+    //TODO set the draw view content size
+    
     self.superController = controller;
     UIView *view = controller.view;
     [self updateMaskViewWithFrame:view.bounds];
     [view addSubview:_maskView];
     [view addSubview:self];
     self.center = view.center;
-
+    
     self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:actionList delegate:self];
+    [self.showView setDrawBg:drawBg];
+    
     [self.showView setPressEnable:YES];
+
     
     [self insertSubview:self.showView aboveSubview:self.holderView];
     [self.holderView removeFromSuperview];
@@ -145,6 +152,14 @@
     
     [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
 }
+
+- (void)showInController:(PPViewController *)controller
+          withActionList:(NSMutableArray *)actionList
+            isNewVersion:(BOOL)isNewVersion
+{
+    [self showInController:controller withActionList:actionList isNewVersion:isNewVersion drawBg:nil size:self.holderView.frame.size];
+}
+
 - (void)dealloc {
     PPDebug(@"dealloc %@", [self description]);
     PPRelease(_holderView);
