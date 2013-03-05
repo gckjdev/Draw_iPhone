@@ -36,6 +36,7 @@
     _currentAction = nil;
     PPRelease(osManager);
     PPRelease(_drawBg);
+    PPRelease(_drawBgImage);
     [super dealloc];
 }
 
@@ -89,6 +90,20 @@
 {
     [self.drawActionList addObject:drawAction];
 }
+
+- (UIImage *)drawBGImage
+{
+    if (self.drawBg) {
+        return [self.drawBg localImage];
+    }
+    return nil;
+}
+
+#define CTMContext(context,rect) \
+CGContextScaleCTM(context, 1.0, -1.0);\
+CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -97,32 +112,18 @@
 }
 
 
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 - (CGContextRef)createBitmapContext
 {
-    CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];//[self createNewBitmapContext];
-
-    UIColor *color = nil;
-    color = [UIColor whiteColor];
-
-    /*
-    if (self.drawBg) {
-        UIImage *image = [self.drawBg localImage];
-        if (image) {
-            color = [UIColor colorWithPatternImage:image];
-        }
+    CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];    
+    if (self.drawBgImage) {
+        CGRect rect = CGRectZero;
+        rect.size = self.drawBgImage.size;
+        CGContextDrawTiledImage(context, rect, _drawBgImage.CGImage);
     }
-
-*/
     CTMContext(context, self.bounds);
-    
-    CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, self.bounds);
-    
     [osManager showAllLayersInContext:context];
+    
     return context;
 }
 
@@ -148,8 +149,8 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     if (_drawBg != drawBg) {
         PPRelease(_drawBg);
         _drawBg = [drawBg retain];
-        UIImage *image = [drawBg localImage];
-        self.backgroundColor = [UIColor colorWithPatternImage:image];
+        self.drawBgImage = [drawBg localImage];
+        self.backgroundColor = [UIColor colorWithPatternImage:self.drawBgImage];
     }
 }
 - (PBDrawBg *)drawBg

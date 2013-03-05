@@ -50,6 +50,10 @@ FeedManager *_staticFeedManager = nil;
     return _staticFeedManager;
 }
 
++ (NSString*)getFeedCacheDir
+{
+    return FEED_DIR;
+}
 
 + (Feed *)parsePbFeed:(PBFeed *)pbFeed
 {
@@ -119,6 +123,23 @@ FeedManager *_staticFeedManager = nil;
         
     }
 }
+
+//- (void)cachePBFeed:(PBFeed *)feed fileName:(NSString*)fileName
+//{
+//    @try {
+//        [feed retain];
+//        PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
+//        [_storeManager saveData:[feed data] forKey:feed.feedId];
+//        PPRelease(feed);
+//    }
+//    @catch (NSException *exception) {
+//        PPDebug(@"<cachePBFeed> exception : %@",exception);
+//    }
+//    @finally {
+//        
+//    }
+//}
+
 - (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId
 {
     NSData *data = [_storeManager dataForKey:feedId];
