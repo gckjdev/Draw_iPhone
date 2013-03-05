@@ -422,11 +422,11 @@
     tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
     flower.tag = TOOLVIEW_TAG_FLOWER;
-    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
-    tomato.tag = TOOLVIEW_TAG_TOMATO;
+//    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+//    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
-    [array addObject:tomato];
+//    [array addObject:tomato];
     _pickToolView = [[PickToolView alloc] initWithTools:array];
     _pickToolView.hidden = YES;
     _pickToolView.delegate = self;

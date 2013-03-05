@@ -588,7 +588,10 @@ enum{
     [self hideActivity];
     ReplayView *replay = [ReplayView createReplayView];
     [self.feed parseDrawData];
-    [replay showInController:self withActionList:self.feed.drawData.drawActionList isNewVersion:[self.feed.drawData isNewVersion]];
+    [replay showInController:self withActionList:self.feed.drawData.drawActionList
+                isNewVersion:[self.feed.drawData isNewVersion]
+                      drawBg:self.feed.pbDraw.drawBg
+                        size:DRAW_VIEW_FRAME.size];
 }
 
 - (IBAction)clickActionButton:(id)sender {

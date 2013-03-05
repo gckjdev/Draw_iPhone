@@ -10,6 +10,7 @@
 #import "ShowDrawView.h"
 #import "PPViewController.h"
 #import "CommonItemInfoView.h"
+#import "DrawBgManager.h"
 
 @interface ReplayView : UIView<ShowDrawViewDelegate, CommonItemInfoViewDelegate>
 {
@@ -21,4 +22,12 @@
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion;
+
+- (void)showInController:(PPViewController *)controller
+          withActionList:(NSMutableArray *)actionList
+            isNewVersion:(BOOL)isNewVersion
+                  drawBg:(PBDrawBg *)drawBg
+                    size:(CGSize)size;
+
+
 @end
