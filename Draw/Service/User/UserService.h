@@ -103,9 +103,6 @@ typedef enum {
 - (void)superUnblackUser:(NSString*)targetUserId
                     type:(BlackUserType)type
             successBlock:(void (^)(void))successBlock;
-- (void)blackFriend:(NSString*)targetUserId
-       successBlock:(void (^)(void))successBlock;
-- (void)unblackFriend:(NSString*)targetUserId
-         successBlock:(void (^)(void))successBlock;
+
 
 @end

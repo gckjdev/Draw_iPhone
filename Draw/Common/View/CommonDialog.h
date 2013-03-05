@@ -13,7 +13,8 @@
 
 typedef enum {
     CommonDialogStyleSingleButton = 0,
-    CommonDialogStyleDoubleButton
+    CommonDialogStyleDoubleButton,
+    CommonDialogStyleDoubleButtonWithCross,
 }CommonDialogStyle;
 
 typedef enum {
@@ -37,6 +38,7 @@ typedef void (^DialogSelectionBlock)(void);
     DialogSelectionBlock _clickBackBlock;
     BOOL    _shouldResize;
 }
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *oKButton;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;

@@ -1,3 +1,4 @@
 /build/
 build_game_protocol.sh
 .gitnore
+.DS_Store

@@ -10,6 +10,7 @@
 #import "CommonService.h"
 #import "PPViewController.h"
 
+
 @class MyFriend;
 
 @protocol FriendServiceDelegate <NSObject>
@@ -26,15 +27,18 @@
 - (void)didFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode;
 - (void)didUnFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode;
 - (void)didRemoveFan:(MyFriend *)fan resultCode:(NSInteger)resultCode;
-- (void)didGetFanCount:(NSInteger)fanCount followCount:(NSInteger)followCount resultCode:(NSInteger)resultCode;;
+- (void)didGetFanCount:(NSInteger)fanCount
+           followCount:(NSInteger)followCount
+            blackCount:(NSInteger)blackCount
+            resultCode:(NSInteger)resultCode;
 
 @end
 
 typedef enum{
     FriendTypeFan = 2,
     FriendTypeFollow = 1,
-    FriendTypeFriend = 3,
-    FriendTypeBlack = 4,
+//    FriendTypeFriend = 3,
+    FriendTypeBlack = 3,
 }FriendType;
 
 
@@ -76,4 +80,8 @@ typedef enum{
       withDelegate:(id<FriendServiceDelegate>)aDelegate;
 
 - (void)getRelationCount:(id<FriendServiceDelegate>)delegate;
+- (void)blackFriend:(NSString*)targetUserId
+       successBlock:(void (^)(void))successBlock;
+- (void)unblackFriend:(NSString*)targetUserId
+         successBlock:(void (^)(void))successBlock;
 @end

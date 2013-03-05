@@ -1057,6 +1057,12 @@
 "kAskSureRefuse" = "确定要拒绝这幅作品吗?";
 "kRefuseOpusSuccess" = "成功拒绝了这幅作品!";
 "kRefuseOpusFail" = "拒绝失败，可能网络不给力，晚点再试试？";
+"kBlackFriend" = "拉入黑名单";
+"kUnblackFriend" = "解除黑名单";
+"kBlackUserSuccess" = "成功加入黑名单!";
+"kUnblackUserSuccess" = "解除黑名单成功!";
+"kBlackList" = "黑名单";
+"kBlackListNumber" = "黑名单(%d)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

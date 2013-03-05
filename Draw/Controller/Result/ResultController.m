@@ -46,6 +46,7 @@
 #import "DrawSoundManager.h"
 #import "ShareAction.h"
 #import "Item.h"
+#import "DrawUtils.h"
 
 #define CONTINUE_TIME 10
 
@@ -640,8 +641,12 @@
                       nick:_drawUserNickName
                       avatar:nil
                       drawActionList:self.drawActionList
-                      drawWord:[Word wordWithText:self.wordText level:WordLevelLow score:[ConfigManager offlineDrawMyWordScore]]
-                      language:1];
+                      drawWord:[Word wordWithText:self.wordText
+                                            level:WordLevelLow
+                                            score:[ConfigManager offlineDrawMyWordScore]]
+                      language:1
+                      drawBg:nil
+                      size:DRAW_VIEW_FRAME.size];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
                                                      image:_image

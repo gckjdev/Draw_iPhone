@@ -1049,46 +1049,6 @@ static UserService* _defaultUserService;
     });
 }
 
-- (void)blackFriend:(NSString*)targetUserId
-       successBlock:(void (^)(void))successBlock
-{
-    dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
-        NSString *userId = [[UserManager defaultManager] userId];
-        
-        CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL
-                                                                appId:appId
-                                                         targetUserId:targetUserId
-                                                               userId:userId
-                                                           actionType:BLACK_ACTION_TYPE_BLACK];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                successBlock();
-            }
-        });
-    });
-}
-- (void)unblackFriend:(NSString*)targetUserId
-       successBlock:(void (^)(void))successBlock
-{
-    dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
-        NSString *userId = [[UserManager defaultManager] userId];
-        
-        CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL
-                                                                appId:appId
-                                                         targetUserId:targetUserId
-                                                               userId:userId
-                                                           actionType:BLACK_ACTION_TYPE_UNBLACK];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                successBlock();
-            }
-        });
-    });
-}
+
 
 @end
