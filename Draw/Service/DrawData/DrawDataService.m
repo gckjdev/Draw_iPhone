@@ -145,7 +145,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 
-- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
+- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction isCompressed:(BOOL)isCompressed
 {
     PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
     
@@ -166,7 +166,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 
         
     }else{
-        NSArray *pointList = drawAction.paint.numberPointList;
+        NSArray *pointList = [drawAction.paint compressToNumberPointList];
         
         [dataBuilder addAllPoints:pointList];
         
@@ -194,6 +194,7 @@ static DrawDataService* _defaultDrawDataService = nil;
               language:(LanguageType)language
                 drawBg:(PBDrawBg *)drawBg
                   size:(CGSize)size
+          isCompressed:(BOOL)isCompressed
 {
     PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
     [builder setUserId:userId];
@@ -210,10 +211,12 @@ static DrawDataService* _defaultDrawDataService = nil;
     //TODO save size
     
     for (DrawAction* drawAction in drawActionList){
-        PBDrawAction *action = [self buildPBDrawAction:drawAction];
+        PBDrawAction *action = [self buildPBDrawAction:drawAction isCompressed:isCompressed];
         [builder addDrawData:action];
     }
     [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    [builder setIsCompressed:isCompressed];
+    
     PBDraw* draw = [builder build];        
     [builder release];
     
@@ -244,7 +247,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                             drawWord:drawWord 
                             language:language
                               drawBg:drawBg
-                                size:size];
+                                size:size
+                        isCompressed:YES];
     
     NSData *imageData = nil;
     if (image) {
@@ -269,6 +273,7 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                            targetUid:targetUid 
                                                            contestId:contestId
                                                                 desc:desc
+                                                        isCompressed:[draw isCompressed]
                                                     progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{
