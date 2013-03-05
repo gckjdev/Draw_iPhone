@@ -368,12 +368,10 @@ static FeedService *_staticFeedService = nil;
             feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
         }
         else{
-        //if local data is nil, load data from remote service
-
+            //if local data is nil, load data from remote service
             PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
             NSString* userId = [[UserManager defaultManager] userId];
-            
-            
+                        
             CommonNetworkOutput* output = [GameNetworkRequest
                                            getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
                                            userId:userId feedId:feedId];
@@ -390,10 +388,12 @@ static FeedService *_staticFeedService = nil;
                         NSArray *list = [response feedList];
                         pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                         
-                        // add download feed data file here
+                        // new support in server
+                        // add download feed draw data by data URL
                         if ([[pbFeed drawDataUrl] length] > 0){
-                            NSData* data = [[FeedDownloadService defaultService] downloadDrawDataFile:[pbFeed drawDataUrl]
-                                                                  fileName:[pbFeed feedId]];
+                            NSData* data = [[FeedDownloadService defaultService]
+                                            downloadDrawDataFile:[pbFeed drawDataUrl]
+                                            fileName:[pbFeed feedId]];
                             
                             if (data != nil){
                                 // create PBDraw from data and rewrite pbFeed
