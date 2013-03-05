@@ -1375,6 +1375,7 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
+                      isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 {
 //    BOOL isZipData = YES;   // for Benson test
@@ -1402,6 +1403,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
         
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
@@ -1469,7 +1471,7 @@
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     if (userId == nil || opusId == nil){
-        PPDebug(@"<updateOpus> but userId nil or opusId nil");
+        PPDebug(@"<rejectOpusDrawToMe> but userId nil or opusId nil");
         return nil;
     }
     
@@ -1512,6 +1514,7 @@
                             opusId:(NSString*)opusId
                               data:(NSData*)data
                          imageData:(NSData *)imageData
+                      isCompressed:(BOOL)isCompressed
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1537,6 +1540,7 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
         
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];        
         
         return str;
     };

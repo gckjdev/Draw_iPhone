@@ -659,7 +659,8 @@
                                             score:[ConfigManager offlineDrawMyWordScore]]
                       language:1
                       drawBg:nil
-                      size:DRAW_VIEW_FRAME.size];
+                      size:DRAW_VIEW_FRAME.size
+                      isCompressed:YES];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
                                                      image:_image

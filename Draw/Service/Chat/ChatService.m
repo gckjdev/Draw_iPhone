@@ -168,7 +168,8 @@ static ChatService *_chatService = nil;
                                                                 drawWord:nil 
                                                                 language:ChineseType
                                                                   drawBg:nil
-                                                                    size:DRAW_VIEW_FRAME.size];
+                                                                    size:DRAW_VIEW_FRAME.size
+                                                                    isCompressed:YES];
                     data = [draw data];
                 }
                 break;

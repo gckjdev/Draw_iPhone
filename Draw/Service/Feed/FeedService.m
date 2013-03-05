@@ -622,7 +622,13 @@ static FeedService *_staticFeedService = nil;
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     
     dispatch_async(updateOpusQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId data:nil imageData:[image data]];
+        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL
+                                                               appId:appId
+                                                              userId:userId
+                                                              opusId:opusId
+                                                                data:nil
+                                                           imageData:[image data]
+                                                        isCompressed:YES];
         if (output.resultCode == 0) {
             PPDebug(@"<updateOpus> succ!");
         }else{

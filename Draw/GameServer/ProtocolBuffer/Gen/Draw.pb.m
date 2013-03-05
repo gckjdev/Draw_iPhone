@@ -34,6 +34,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSString* opusId;
 @property int32_t score;
+@property BOOL isCompressed;
 @property (retain) PBDrawBg* drawBg;
 @property (retain) PBSize* size;
 @end
@@ -123,6 +124,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasScore_ = !!value;
 }
 @synthesize score;
+- (BOOL) hasIsCompressed {
+  return !!hasIsCompressed_;
+}
+- (void) setHasIsCompressed:(BOOL) value {
+  hasIsCompressed_ = !!value;
+}
+- (BOOL) isCompressed {
+  return !!isCompressed_;
+}
+- (void) setIsCompressed:(BOOL) value {
+  isCompressed_ = !!value;
+}
 - (BOOL) hasDrawBg {
   return !!hasDrawBg_;
 }
@@ -161,6 +174,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.version = 0;
     self.opusId = @"";
     self.score = 0;
+    self.isCompressed = YES;
     self.drawBg = [PBDrawBg defaultInstance];
     self.size = [PBSize defaultInstance];
   }
@@ -247,6 +261,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasScore) {
     [output writeInt32:12 value:self.score];
   }
+  if (self.hasIsCompressed) {
+    [output writeBool:13 value:self.isCompressed];
+  }
   if (self.hasDrawBg) {
     [output writeMessage:20 value:self.drawBg];
   }
@@ -297,6 +314,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasScore) {
     size += computeInt32Size(12, self.score);
+  }
+  if (self.hasIsCompressed) {
+    size += computeBoolSize(13, self.isCompressed);
   }
   if (self.hasDrawBg) {
     size += computeMessageSize(20, self.drawBg);
@@ -418,6 +438,9 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasScore) {
     [self setScore:other.score];
   }
+  if (other.hasIsCompressed) {
+    [self setIsCompressed:other.isCompressed];
+  }
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
   }
@@ -493,6 +516,10 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 96: {
         [self setScore:[input readInt32]];
+        break;
+      }
+      case 104: {
+        [self setIsCompressed:[input readBool]];
         break;
       }
       case 162: {
@@ -719,6 +746,22 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearScore {
   result.hasScore = NO;
   result.score = 0;
+  return self;
+}
+- (BOOL) hasIsCompressed {
+  return result.hasIsCompressed;
+}
+- (BOOL) isCompressed {
+  return result.isCompressed;
+}
+- (PBDraw_Builder*) setIsCompressed:(BOOL) value {
+  result.hasIsCompressed = YES;
+  result.isCompressed = value;
+  return self;
+}
+- (PBDraw_Builder*) clearIsCompressed {
+  result.hasIsCompressed = NO;
+  result.isCompressed = YES;
   return self;
 }
 - (BOOL) hasDrawBg {
