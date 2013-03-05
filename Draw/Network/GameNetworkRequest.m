@@ -1280,6 +1280,8 @@
                                              userId:(NSString *)userId 
                                              feedId:(NSString *)feedId
 {
+    BOOL isReturnDataURL = YES;
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -1292,6 +1294,11 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        if (isReturnDataURL){
+            str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
+        }
+        
         return str;
     };
     
@@ -1369,6 +1376,8 @@
                               desc:(NSString *)desc
                   progressDelegate:(id)progressDelegate;
 {
+//    BOOL isZipData = YES;   // for Benson test
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     NSString *method = METHOD_CREATE_OPUS_IMAGE;
@@ -1404,6 +1413,10 @@
         // add device model
         NSString* deviceModel = [DeviceDetection platform];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
+//        if (isZipData){
+//            str = [str stringByAddQueryParameter:PARA_IS_DATA_ZIP intValue:1];
+//        }
         
         return str;
     };

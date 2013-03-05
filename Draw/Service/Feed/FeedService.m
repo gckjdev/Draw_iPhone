@@ -17,6 +17,9 @@
 #import "ConfigManager.h"
 #import "ItemType.h"
 #import "UIImageExt.h"
+#import "ASIHTTPRequest.h"
+#import "FileUtil.h"
+#import "SSZipArchive.h"
 
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
@@ -24,6 +27,7 @@ static FeedService *_staticFeedService = nil;
 + (FeedService *)defaultService
 {
     if (_staticFeedService == nil) {
+        [FeedService initPaths];
         _staticFeedService = [[FeedService alloc] init];
     }
     return _staticFeedService;
@@ -338,6 +342,156 @@ static FeedService *_staticFeedService = nil;
     });
 }
 
+#define FEED_DATA_NAME_IN_ZIP   @"data"          // IMPORTANT, YOU MUST ALIGN THIS WITH SERVER
+
++ (void)initPaths
+{
+    [FileUtil createDir:[FeedService getDownloadTopPath]];
+    [FileUtil createDir:[FeedService getDownloadTempTopPath]];
+    [FileUtil createDir:[FeedService getDownloadZipTopPath]];
+}
+
++ (NSString*)getDownloadTopPath
+{
+    NSString* dir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:[FeedManager getFeedCacheDir]];
+    return dir;
+}
+
++ (NSString*)getDownloadTempTopPath
+{
+    NSString* dir = [[[FileUtil getAppCacheDir]
+                     stringByAppendingPathComponent:[FeedManager getFeedCacheDir]]
+                     stringByAppendingPathComponent:@"/download_temp/"];
+    return dir;
+}
+
++ (NSString*)getDownloadZipTopPath
+{
+    NSString* dir = [[[FileUtil getAppCacheDir]
+                      stringByAppendingPathComponent:[FeedManager getFeedCacheDir]]
+                     stringByAppendingPathComponent:@"/zip/"];
+    return dir;
+}
+
++ (NSString*)getFileUpdateDownloadZipPath:(NSString*)name
+{
+    return [[FeedService getDownloadZipTopPath] stringByAppendingPathComponent:name];
+}
+
++ (NSString*)getFileUpdateDownloadPath:(NSString*)name
+{
+    return [[FeedService getDownloadTopPath]
+            stringByAppendingPathComponent:[name stringByAppendingString:@"_zip"]];
+}
+
++ (NSString*)getFileFinalPath:(NSString*)name
+{
+    return [[FeedService getDownloadTopPath]
+            stringByAppendingPathComponent:name];
+}
+
++ (NSString*)getFileUpdateDownloadTempPath:(NSString*)name
+{
+    return [[FeedService getDownloadTempTopPath] stringByAppendingPathComponent:name];
+}
+
+- (NSData*)unzipFile:(NSString *)zipFilePath unzipFilePath:(NSString*)unzipFilePath // moveToFilePath:(NSString*)moveToFilePath
+{    
+    PPDebug(@"<unzipFile> start unzip %@", zipFilePath);
+    if ([SSZipArchive unzipFileAtPath:zipFilePath
+                        toDestination:unzipFilePath
+                            overwrite:YES
+                             password:nil
+                                error:nil]) {
+        PPDebug(@"<unzipFile> unzip %@ successfully", [zipFilePath lastPathComponent]);
+    } else {
+        PPDebug(@"<unzipFile> unzip %@ fail", [zipFilePath lastPathComponent]);
+        return nil;
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // delete files after it's unzip
+        [FileUtil removeFile:zipFilePath];
+    });
+    
+    NSString* dataFile = [unzipFilePath stringByAppendingPathComponent:FEED_DATA_NAME_IN_ZIP];
+    NSData* data = [NSData dataWithContentsOfFile:dataFile];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // delete file after it's read
+        [FileUtil removeFile:dataFile];
+        
+        // delete unzip file folder
+        [FileUtil removeFile:unzipFilePath];
+    });
+    
+    return data;
+    
+    /*
+    NSFileManager* fileManager = [[NSFileManager alloc] init];
+    
+    // remove file before move
+    if ([fileManager fileExistsAtPath:moveToFilePath]){
+        [fileManager removeItemAtPath:moveToFilePath error:nil];
+    }
+    
+    // move file
+    NSString* fileToBeMoved = [unzipFilePath stringByAppendingPathComponent:FEED_DATA_NAME_IN_ZIP];    
+    NSError* error = nil;
+    BOOL result = [fileManager moveItemAtPath:fileToBeMoved toPath:moveToFilePath error:&error];
+    if (result){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // delete files after it's unzip
+            [FileUtil removeFile:unzipFilePath];
+        });
+    }
+    
+    [fileManager release];
+    */
+}
+
+// call this method to download data
+- (NSData*)downloadDrawDataFile:(NSString*)fileURL fileName:(NSString*)fileName
+{
+    if (fileURL == nil)
+        return nil;
+
+    NSURL* url = [NSURL URLWithString:fileURL];
+    if (url == nil)
+        return nil;
+    
+    NSString* zipFileName = [fileName stringByAppendingPathExtension:@"zip"];
+    
+    ASIHTTPRequest* downloadHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    
+    downloadHttpRequest.delegate = self;
+    [downloadHttpRequest setAllowCompressedResponse:YES];
+//    [downloadHttpRequest setUsername:DEFAULT_HTTP_USER_NAME];
+//    [downloadHttpRequest setPassword:DEFAULT_HTTP_PASSWORD];
+    
+    NSString* destPath = [FeedService getFileUpdateDownloadZipPath:zipFileName];
+    [downloadHttpRequest setDownloadDestinationPath:destPath];
+    
+    NSString* tempPath = [FeedService getFileUpdateDownloadTempPath:zipFileName];
+    [downloadHttpRequest setTemporaryFileDownloadPath:tempPath];
+    
+    [downloadHttpRequest setDownloadProgressDelegate:nil];
+    [downloadHttpRequest setAllowResumeForFileDownloads:YES];
+    
+    PPDebug(@"<downloadDrawDataFile> URL=%@, Local Temp=%@, Store At=%@",
+            url.absoluteString, tempPath, destPath);
+    
+    [downloadHttpRequest startSynchronous];
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:destPath] == NO){
+        PPDebug(@"<downloadDrawDataFile> failure, file not downloaded");
+        return nil;
+    }
+    
+    // unzip file
+    NSString* unzipFilePath = [FeedService getFileUpdateDownloadPath:fileName];
+    return [self unzipFile:destPath unzipFilePath:unzipFilePath]; //moveToFilePath:finalFilePath];
+}
 
 #define GET_FEED_DETAIL_QUEUE @"GET_FEED_DETAIL_QUEUE"
 - (void)getFeedByFeedId:(NSString *)feedId
@@ -357,6 +511,7 @@ static FeedService *_staticFeedService = nil;
         PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
         DrawFeed *feed = nil;
         BOOL fromCache = NO;
+        BOOL downloadFileResult = NO;
 
         NSInteger resultCode = 0;
         
@@ -387,6 +542,18 @@ static FeedService *_staticFeedService = nil;
                     if (resultCode == ERROR_SUCCESS) {
                         NSArray *list = [response feedList];
                         pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                        
+                        // add download feed data file here
+                        if ([[pbFeed drawDataUrl] length] > 0){
+                            NSData* data = [self downloadDrawDataFile:[pbFeed drawDataUrl]
+                                                                  fileName:[pbFeed feedId]];
+                            
+                            if (data != nil){
+                                // create PBDraw from data and rewrite pbFeed
+                                PBDraw* pbDraw = [PBDraw parseFromData:data];
+                                pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
+                            }
+                        }
                         
                         feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
                         if ([feed isKindOfClass:[DrawFeed class]]) {
