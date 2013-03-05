@@ -50,6 +50,7 @@
 typedef enum{
     TabTypeFan = 2,
     TabTypeFollow = 1,
+    TabTypeBlackList = 3,
 }TabType;
 
 @implementation FriendController
@@ -127,10 +128,12 @@ typedef enum{
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
     UIButton *myFollowButton = [self tabButtonWithTabID:TabTypeFollow];
-    UIButton *myFanButton = [self tabButtonWithTabID:TabTypeFan];    
+    UIButton *myFanButton = [self tabButtonWithTabID:TabTypeFan];
+    UIButton *blackListButton = [self tabButtonWithTabID:TabTypeBlackList];
     
     [myFollowButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
     [myFanButton setTitle:NSLS(@"kFans") forState:UIControlStateNormal];
+    [blackListButton setTitle:NSLS(@"kBlackList") forState:UIControlStateNormal];
     
     [myFollowButton setBackgroundImage:[imageManager myFoucsImage] 
                               forState:UIControlStateNormal];
@@ -138,12 +141,18 @@ typedef enum{
     [myFollowButton setBackgroundImage:[imageManager myFoucsSelectedImage]
                               forState:UIControlStateSelected];
     
-    [myFanButton setBackgroundImage:[imageManager focusMeImage] 
+    [myFanButton setBackgroundImage:[imageManager middleTabImage]
                            forState:UIControlStateNormal];
     
-    [myFanButton setBackgroundImage:[imageManager focusMeSelectedImage] 
+    [myFanButton setBackgroundImage:[imageManager middleTabSelectedImage]
                            forState:UIControlStateSelected];
     
+    [blackListButton setBackgroundImage:[imageManager focusMeImage]
+                           forState:UIControlStateNormal];
+    
+    [blackListButton setBackgroundImage:[imageManager focusMeSelectedImage]
+                           forState:UIControlStateSelected];
+
     
     
     
@@ -349,10 +358,14 @@ typedef enum{
 {
     MyFriend *friend = (MyFriend *)[self friendForIndexPath:indexPath];
     if (friend) {
-        if ([self isFanTab]) {
+        if (self.currentTab.tabID == TabTypeFan) {
             [[FriendService defaultService] removeFan:friend delegate:self];
-        }else{
+        }else if (self.currentTab.tabID == TabTypeFollow){
             [[FriendService defaultService] unFollowUser:friend delegate:self];
+        } else if (self.currentTab.tabID == TabTypeBlackList) {
+            [[FriendService defaultService] unblackFriend:friend.friendUserId successBlock:^{
+                [self reloadTableViewDataSource];
+            }];
         }
     }
 }
@@ -415,6 +428,17 @@ typedef enum{
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self isFanTab] ? NSLS(@"kRemoveFan") : NSLS(@"kUnfollow");
+    switch (self.currentTab.tabID) {
+        case TabTypeFan:
+            return NSLS(@"kRemoveFan");
+        case TabTypeFollow:
+            return NSLS(@"kUnfollow");
+        case TabTypeBlackList:
+            return NSLS(@"kUnblackFriend");
+        default:
+            break;
+    }
+    return nil;
 }
 
 
@@ -562,7 +586,10 @@ typedef enum{
     }
 }
 
-- (void)didGetFanCount:(NSInteger)fanCount followCount:(NSInteger)followCount resultCode:(NSInteger)resultCode
+- (void)didGetFanCount:(NSInteger)fanCount
+           followCount:(NSInteger)followCount
+            blackCount:(NSInteger)blackCount
+            resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
         //update fan Count and follow count
@@ -573,6 +600,10 @@ typedef enum{
         
         fButton = (UIButton *)[self.view viewWithTag:TabTypeFollow];
         fTitle = [NSString stringWithFormat:NSLS(@"kFollowNumber"), followCount];
+        [fButton setTitle:fTitle forState:UIControlStateNormal];
+        
+        fButton = (UIButton *)[self.view viewWithTag:TabTypeBlackList];
+        fTitle = [NSString stringWithFormat:NSLS(@"kBlackListNumber"), blackCount];
         [fButton setTitle:fTitle forState:UIControlStateNormal];
     }
 }
@@ -624,7 +655,7 @@ enum {
 
 - (NSInteger)tabCount
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
@@ -633,12 +664,12 @@ enum {
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    int indexs[] = {TabTypeFollow,TabTypeFan};
+    int indexs[] = {TabTypeFollow,TabTypeFan,TabTypeBlackList};
     return indexs[index];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFan")};
+    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFan"),NSLS(@"kBlackList")};
     return titles[index];
     
 }

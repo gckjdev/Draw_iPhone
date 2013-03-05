@@ -464,12 +464,14 @@
 - (IBAction)clickBlackFriend:(id)sender
 {
     if ([self.targetFriend hasBlack]) {
-        [[UserService defaultService] unblackFriend:self.targetFriend.friendUserId successBlock:^{
+        [[FriendService defaultService] unblackFriend:self.targetFriend.friendUserId successBlock:^{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
+            [self clickMask:nil];
         }];
     } else {
-        [[UserService defaultService] blackFriend:self.targetFriend.friendUserId successBlock:^{
+        [[FriendService defaultService] blackFriend:self.targetFriend.friendUserId successBlock:^{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
+            [self clickMask:nil];
         }];
     }
     
