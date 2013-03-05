@@ -376,32 +376,34 @@
 
 - (void)initToolViews
 {
-    ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
     ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
-    tomato.tag = TOMATO_TOOLVIEW_TAG;
     flower.tag = FLOWER_TOOLVIEW_TAG;
-    [tomato setCenter:downButton.center];
-    [flower setCenter:upButton.center];
-    [self.view addSubview:tomato];
     [self.view addSubview:flower];
-
-    [tomato addTarget:self action:@selector(clickDownButton:)];
     [flower addTarget:self action:@selector(clickUpButton:)];
-    [flower setFrame:upButton.frame];
-    [tomato setFrame:downButton.frame];
+    [flower setFrame:downButton.frame];
+    
     flower.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
     | !UIViewAutoresizingFlexibleBottomMargin
     | UIViewAutoresizingFlexibleLeftMargin
     | UIViewAutoresizingFlexibleRightMargin
     | !UIViewAutoresizingFlexibleWidth
     | !UIViewAutoresizingFlexibleHeight;
-    tomato.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
-    | !UIViewAutoresizingFlexibleBottomMargin
-    | UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleRightMargin
-    | !UIViewAutoresizingFlexibleWidth
-    | !UIViewAutoresizingFlexibleHeight;
     
+    if (![self isOffline]) {
+        [flower setCenter:upButton.center];
+        ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
+        tomato.tag = TOMATO_TOOLVIEW_TAG;
+        [tomato setCenter:downButton.center];
+        [self.view addSubview:tomato];
+        [tomato addTarget:self action:@selector(clickDownButton:)];
+        [tomato setFrame:downButton.frame];
+        tomato.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
+        | !UIViewAutoresizingFlexibleBottomMargin
+        | UIViewAutoresizingFlexibleLeftMargin
+        | UIViewAutoresizingFlexibleRightMargin
+        | !UIViewAutoresizingFlexibleWidth
+        | !UIViewAutoresizingFlexibleHeight;
+    }
 }
 - (void)initActionButton
 {
@@ -410,8 +412,10 @@
         [self initToolViews];
         [upLabel setText:NSLS(@"kThrowFlower")];
         [downLabel setText:NSLS(@"kThrowTomato")];
+        [upLabel setFrame:downLabel.frame];
         upButton.hidden = YES;
         downButton.hidden = YES;
+        downLabel.hidden = YES;
     }else{
         upButton.hidden = downButton.hidden = YES;
         upLabel.hidden = downLabel.hidden = YES;
@@ -420,17 +424,22 @@
     
     //init the continue button
     if (_resultType == OnlineDraw || _resultType == OnlineGuess) {
+        //在线猜画结果
         [self startTimer];        
         [self updateContinueButton:retainCount];     
     }else if(_resultType == OfflineGuess)
     {
+        //离线，从“我要猜进入猜画结果”
         [self.continueButton setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
+        [self.continueButton setCenter:CGPointMake(self.view.frame.size.width/2, self.continueButton.center.y)];
     }else{
+        //离线，从猜画详情进入猜画结果
         continueButton.hidden = YES;
-        upButton.center = CGPointMake(self.view.frame.size.width/2, downButton.center.y);
+        upButton.center = CGPointMake(self.view.frame.size.width*0.75, downButton.center.y);
         ToolView* flowerToolView = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
-        [flowerToolView setCenter:CGPointMake(self.view.center.x, flowerToolView.center.y)];
-        [upLabel setCenter:CGPointMake(self.view.center.x, downLabel.center.y)];
+        [flowerToolView setCenter:CGPointMake(upButton.center.x, flowerToolView.center.y)];
+        [upLabel setCenter:CGPointMake(upButton.center.x, downLabel.center.y)];
+        [self.saveButton setCenter:CGPointMake(self.view.frame.size.width/4, self.saveButton.center.y)];
     }
     
     //init the share button
