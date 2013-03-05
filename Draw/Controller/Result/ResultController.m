@@ -413,10 +413,14 @@
         [self initToolViews];
         [upLabel setText:NSLS(@"kThrowFlower")];
         [downLabel setText:NSLS(@"kThrowTomato")];
-        [upLabel setFrame:downLabel.frame];
         upButton.hidden = YES;
         downButton.hidden = YES;
-        downLabel.hidden = YES;
+        
+        if (_resultType != OnlineGuess) {
+            [upLabel setFrame:downLabel.frame];
+            [downLabel setHidden:YES];
+        }
+        
     }else{
         upButton.hidden = downButton.hidden = YES;
         upLabel.hidden = downLabel.hidden = YES;
