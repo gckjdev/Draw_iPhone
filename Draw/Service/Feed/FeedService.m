@@ -415,11 +415,14 @@ static FeedService *_staticFeedService = nil;
                 }
                 @finally {
                 }            
+
+                if (pbFeed != nil){
+                    [manager cachePBFeed:pbFeed];
+                }            
             }
         }
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
-            [manager cachePBFeed:pbFeed];
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
                 [delegate didGetFeed:feed
                           resultCode:resultCode

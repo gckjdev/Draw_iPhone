@@ -22,6 +22,7 @@
 #import "MyPaintManager.h"
 #import "ConfigManager.h"
 #import "UIImageExt.h"
+#import "FeedDownloadService.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -76,7 +77,10 @@ static DrawDataService* _defaultDrawDataService = nil;
     [queue cancelAllOperations];
     
     [queue addOperationWithBlock: ^{
-            
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
         NSString *uid = [[UserManager defaultManager] userId];
         NSString *gender = [[UserManager defaultManager] gender];
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
@@ -88,24 +92,55 @@ static DrawDataService* _defaultDrawDataService = nil;
                                        lang:lang 
                                        type:1];;
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            DrawFeed *feed = nil;
-            NSInteger resultCode = [output resultCode];            
+        DrawFeed *feed = nil;
+        NSInteger resultCode = [output resultCode];
+        @try {
+
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response feedList];
                 PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                 if (pbFeed && (pbFeed.actionType == FeedTypeDraw || pbFeed.actionType == FeedTypeDrawToUser)) {
+                    
+                    // new support in server
+                    // add download feed draw data by data URL
+                    if ([[pbFeed drawDataUrl] length] > 0){
+                        NSData* data = [[FeedDownloadService defaultService]
+                                        downloadDrawDataFile:[pbFeed drawDataUrl]
+                                        fileName:[pbFeed feedId]];
+                        
+                        if (data != nil){
+                            // create PBDraw from data and rewrite pbFeed
+                            PBDraw* pbDraw = [PBDraw parseFromData:data];
+                            pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
+                        }
+                        
+                    }
+                    if (pbFeed != nil){
+                        [[FeedManager defaultManager] cachePBFeed:pbFeed];
+                    }
+                    
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
-//                    [feed parseDrawData:pbFeed];
                 }
                 resultCode = [response resultCode];
             }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<matchDraw> catch exception =%@", [exception description]);
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{            
             if (viewController && [viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
                 [viewController didMatchDraw:feed result:resultCode];
             }  
         });
-        //TODO store feed draw data.
+        
+        [subPool drain];
     }];
 }
 

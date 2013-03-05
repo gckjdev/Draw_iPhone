@@ -1259,8 +1259,9 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
-        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
+                
         return str;
     };
     
