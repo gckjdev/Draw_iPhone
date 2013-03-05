@@ -583,7 +583,7 @@
     [self initPickToolView];
     
     [self checkDrawDataVersion];
-
+    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -858,6 +858,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
+
 //    self.showView.speed = PlaySpeedTypeNormal;
 }
 

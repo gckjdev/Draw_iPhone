@@ -150,7 +150,22 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
         PPRelease(_drawBg);
         _drawBg = [drawBg retain];
         self.drawBgImage = [drawBg localImage];
-        self.backgroundColor = [UIColor colorWithPatternImage:self.drawBgImage];
+        if (self.drawBgImage) {
+            self.backgroundColor = [UIColor colorWithPatternImage:self.drawBgImage];
+        }else{
+            //load remote image
+            self.backgroundColor = [UIColor whiteColor];
+            if ([drawBg.remoteUrl length] != 0) {
+                __block SuperDrawView *sv = self;
+                [DrawBgManager imageForRemoteURL:drawBg.remoteUrl success:^(UIImage *image, BOOL cached) {
+                    sv.drawBgImage = image;
+                    sv.backgroundColor = [UIColor colorWithPatternImage:image];
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+            }
+        }
     }
 }
 - (PBDrawBg *)drawBg
