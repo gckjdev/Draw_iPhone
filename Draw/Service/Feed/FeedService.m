@@ -648,13 +648,15 @@ static FeedService *_staticFeedService = nil;
     
     dispatch_async(updateOpusQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest rejectOpusDrawToMe:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId type:FeedTypeDraw];
-        if (output.resultCode == 0) {
-            PPDebug(@"<updateOpus> succ!");
-            successBlock();
-        }else{
-            PPDebug(@"<updateOpus> fail!");
-            failBlock();
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                PPDebug(@"<updateOpus> succ!");
+                successBlock();
+            }else{
+                PPDebug(@"<updateOpus> fail!");
+                failBlock();
+            }
+        });
     });
     
 }

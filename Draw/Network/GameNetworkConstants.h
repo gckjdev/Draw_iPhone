@@ -244,6 +244,7 @@
 #define PARA_IS_DATA_ZIP            @"idz"
 #define PARA_IS_DATA_COMPRESSED     @"idc"
 #define PARA_RETURN_DATA_METHOD     @"rdm"
+#define PARA_RETURN_COMPRESSED_DATA @"rcd"
 
 #define PARA_TO_USERID @"tuid"
 #define PARA_MESSAGE_ID @"mid"
