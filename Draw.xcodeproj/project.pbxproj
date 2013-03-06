@@ -225,6 +225,7 @@
 		A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423A16E6E27500106265 /* PBGameItemUtils.m */; };
 		A491423F16E6E2E300106265 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
 		A491424016E6E2E300106265 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		A491424316E6E54B00106265 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -7156,6 +7157,8 @@
 		A491423C16E6E2E300106265 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
 		A491423D16E6E2E300106265 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
 		A491423E16E6E2E300106265 /* PriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriceView.xib; sourceTree = "<group>"; };
+		A491424116E6E54B00106265 /* CustomInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoView.h; sourceTree = "<group>"; };
+		A491424216E6E54B00106265 /* CustomInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoView.m; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
@@ -12878,6 +12881,8 @@
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				A491424116E6E54B00106265 /* CustomInfoView.h */,
+				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				A491423C16E6E2E300106265 /* PriceView.h */,
 				A491423D16E6E2E300106265 /* PriceView.m */,
 				A491423E16E6E2E300106265 /* PriceView.xib */,
@@ -23591,6 +23596,7 @@
 				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 				A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */,
 				A491423F16E6E2E300106265 /* PriceView.m in Sources */,
+				A491424316E6E54B00106265 /* CustomInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
