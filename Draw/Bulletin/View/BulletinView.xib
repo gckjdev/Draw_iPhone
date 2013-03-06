@@ -56,7 +56,7 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="521620670">
+							<object class="IBUIImageView" id="899870192">
 								<reference key="NSNextResponder" ref="746381475"/>
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0, 29}, {285, 300}}</string>
@@ -165,7 +165,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{97, 8}, {90, 21}}</string>
 								<reference key="NSSuperview" ref="746381475"/>
-								<reference key="NSNextKeyView" ref="521620670"/>
+								<reference key="NSNextKeyView" ref="899870192"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="496121002"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -332,7 +332,7 @@
 							<reference ref="1041601153"/>
 							<reference ref="919328039"/>
 							<reference ref="269149731"/>
-							<reference ref="521620670"/>
+							<reference ref="899870192"/>
 							<reference ref="959111634"/>
 							<reference ref="551812207"/>
 						</array>
@@ -370,7 +370,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="521620670"/>
+						<reference key="object" ref="899870192"/>
 						<reference key="parent" ref="746381475"/>
 					</object>
 				</array>
@@ -402,10 +402,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bulletin_bg@2x.jpg">{570, 560}</string>
-			<string key="bulletin_buttom@2x.png">{570, 98}</string>
-			<string key="bulletin_top@2x.png">{570, 97}</string>
-			<string key="common_dialog_close_btn@2x.png">{28, 29}</string>
+			<string key="bulletin_bg@2x.jpg">{16, 16}</string>
+			<string key="bulletin_buttom@2x.png">{16, 16}</string>
+			<string key="bulletin_top@2x.png">{16, 16}</string>
+			<string key="common_dialog_close_btn@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
