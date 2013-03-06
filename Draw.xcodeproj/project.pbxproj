@@ -511,6 +511,10 @@
 		C223396C164E3CA100D2C123 /* CMOpenALSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233966164E3CA100D2C123 /* CMOpenALSoundManager.m */; };
 		C223396D164E3CA100D2C123 /* DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = C2233968164E3CA100D2C123 /* DebugOutput.m */; };
 		C223397F164E41C900D2C123 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C223397E164E41C800D2C123 /* OpenAL.framework */; };
+		C223B01A16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
+		C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
+		C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
+		C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
@@ -7442,6 +7446,7 @@
 		C2233968164E3CA100D2C123 /* DebugOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugOutput.m; sourceTree = "<group>"; };
 		C2233969164E3CA100D2C123 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C223397E164E41C800D2C123 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bulletin_bg@2x.jpg"; sourceTree = "<group>"; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "result_paint_name_bg@2x.png"; sourceTree = "<group>"; };
@@ -11749,6 +11754,7 @@
 		C2974D52168302DE00E012FC /* Bulletin */ = {
 			isa = PBXGroup;
 			children = (
+				C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */,
 				C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */,
 				C2974D54168302DE00E012FC /* bulletin_bg@2x.png */,
 				C2974D55168302DE00E012FC /* bulletin_buttom@2x.png */,
@@ -18933,6 +18939,7 @@
 				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
 				EA97E93716E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
+				C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19798,6 +19805,7 @@
 				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
 				EA97E93816E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
+				C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20707,6 +20715,7 @@
 				A491427916E6EDB200106265 /* zhifubao@2x.png in Resources */,
 				EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */,
 				EA97E93516E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
+				C223B01A16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21553,6 +21562,7 @@
 				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
 				EA97E93616E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
+				C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

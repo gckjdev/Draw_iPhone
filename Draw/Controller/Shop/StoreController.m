@@ -57,9 +57,10 @@
     self.selectedButton = (UIButton *)sender;
     self.selectedButton.selected = YES;
     
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
     [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
-        self.dataList = itemsList;
-        [self.dataTableView reloadData];
+        bself.dataList = itemsList;
+        [bself.dataTableView reloadData];
     }];
 }
 
@@ -68,9 +69,10 @@
     self.selectedButton = (UIButton *)sender;
     self.selectedButton.selected = YES;
     
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
     [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeTool resultHandler:^(BOOL success, NSArray *itemsList) {
-        self.dataList = itemsList;
-        [self.dataTableView reloadData];
+        bself.dataList = itemsList;
+        [bself.dataTableView reloadData];
     }];
 }
 

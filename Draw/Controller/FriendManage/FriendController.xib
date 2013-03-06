@@ -224,7 +224,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="977230230"/>
 						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">3</int>
+						<int key="IBUITag">4</int>
 						<string key="IBUIContentStretch">{{0.5, 0.5}, {1, 1}}</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -718,17 +718,17 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="draw_button_highlight@2x.png">{91, 56}</string>
-			<string key="draw_button_normal@2x.png">{91, 56}</string>
-			<string key="draw_tab_left_selected@2x.png">{138, 61}</string>
-			<string key="draw_tab_left_unselected@2x.png">{138, 61}</string>
-			<string key="draw_tab_mid_unselected@2x.png">{116, 61}</string>
-			<string key="draw_tab_right_unselected@2x.png">{138, 61}</string>
-			<string key="number@2x.png">{50, 45}</string>
-			<string key="paper@2x.png">{622, 649}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
-			<string key="wood_bg@2x.jpg">{640, 960}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="draw_button_highlight@2x.png">{16, 16}</string>
+			<string key="draw_button_normal@2x.png">{16, 16}</string>
+			<string key="draw_tab_left_selected@2x.png">{16, 16}</string>
+			<string key="draw_tab_left_unselected@2x.png">{16, 16}</string>
+			<string key="draw_tab_mid_unselected@2x.png">{16, 16}</string>
+			<string key="draw_tab_right_unselected@2x.png">{16, 16}</string>
+			<string key="number@2x.png">{16, 16}</string>
+			<string key="paper@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="wood_bg@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

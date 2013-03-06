@@ -50,7 +50,7 @@
 typedef enum{
     TabTypeFan = 2,
     TabTypeFollow = 1,
-    TabTypeBlackList = 3,
+    TabTypeBlackList = 4,
 }TabType;
 
 @implementation FriendController
