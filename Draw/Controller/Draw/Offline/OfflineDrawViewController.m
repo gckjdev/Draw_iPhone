@@ -348,8 +348,6 @@
 
 - (BOOL)supportRecovery
 {
-    return NO;
-    
     if (targetType == TypeGraffiti){
         return NO;
     }
@@ -1239,6 +1237,8 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectDrawBg:(PBDrawBg *)drawBg
 {
     [drawView setDrawBg:drawBg];
+    [[DrawRecoveryService defaultService] handleChangeDrawBg:drawBg];
+    
 }
 #pragma mark - Recent Color
 

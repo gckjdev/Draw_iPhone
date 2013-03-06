@@ -14,7 +14,24 @@
 #import "ConfigManager.h"
 #import "DrawAction.h"
 
+
+@interface DrawRecoveryService()
+{
+    
+}
+@property(nonatomic, assign)CGSize size;
+@property(nonatomic, retain)PBDrawBg *drawBg;
+
+@end
+
 @implementation DrawRecoveryService
+
+
+- (void)dealloc
+{
+    PPRelease(_drawBg);
+    [super dealloc];
+}
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
@@ -89,11 +106,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         [arrayList removeLastObject];
     }
     
+    __block DrawRecoveryService *cp = self;
+    
     dispatch_async(workingQueue, ^{
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        PBNoCompressDrawData* drawData = [DrawAction drawActionListToPBNoCompressDrawData:arrayList];
+        PBNoCompressDrawData* drawData = [DrawAction drawActionListToPBNoCompressDrawData:arrayList
+                                                                                 pbdrawBg:cp.drawBg
+                                                                                     size:CGSizeZero];
         NSData* data = [drawData data];
 
         PPDebug(@"<backup> file path=%@", dataPath);
@@ -184,6 +205,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     if ([self needBackup]){
         [self backup:drawActionList];
     }
+}
+
+- (void)handleChangeDrawBg:(PBDrawBg *)drawBg
+{
+    self.drawBg = drawBg;
 }
 
 @end
