@@ -168,7 +168,6 @@ static DrawDataService* _defaultDrawDataService = nil;
         
         // set pen type
         [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
-
         
     }else{
         
@@ -194,7 +193,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         [dataBuilder setWidth:width];
         
         // set color
-        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];
+        NSInteger intColor = [DrawUtils compressDrawColor:drawAction.paint.color];
         [dataBuilder setColor:intColor];
         
         // set pen type

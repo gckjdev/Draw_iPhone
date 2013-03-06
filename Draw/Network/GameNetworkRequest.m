@@ -1260,8 +1260,10 @@
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
-                
+
+        str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];           // if return URL, it's 1 else 0
+        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:1];       // TODO, change to 0
+        
         return str;
     };
     
@@ -1300,6 +1302,7 @@
             str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
         }
         
+        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:1];       // TODO, change to 0                
         return str;
     };
     

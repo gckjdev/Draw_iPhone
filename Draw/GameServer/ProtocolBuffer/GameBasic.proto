@@ -93,13 +93,15 @@ message PBGameSessionChanged {
 
 // internal usage, to store draw data
 message PBDrawAction {
-  required int32 type = 1;                      // 0 : draw, 1 : clean draw
-  repeated int32 points = 2 [packed=true];
+  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape
+  repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
   optional float width = 3;
   optional int32 color = 4;
   optional int32 penType = 5;
+  
+  // shape information
   optional int32 shapeType = 6;
-  repeated float rectComponent = 7;             //startX, startY, endX, endY ??????
+  repeated float rectComponent = 7;             //startX, startY, endX, endY 
   
   // for no compressed points, add 2012-03-04
   repeated float pointsX = 11;
