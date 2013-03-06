@@ -13,6 +13,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (retain, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemDescLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *promotionImageView;
 
 - (void)setCellInfo:(PBGameItem *)item;
 

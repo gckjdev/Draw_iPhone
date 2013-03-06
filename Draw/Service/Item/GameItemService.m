@@ -10,19 +10,16 @@
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
 #import "NSDate+TKCategory.h"
+#import "PBGameItemUtils.h"
 
-#define ITEMS_FILE @"items.pb"
-#define BUNDLE_PATH @"items.pb"
+#define ITEMS_FILE @"shop_item.pb"
+#define BUNDLE_PATH @"shop_item.pb"
 #define ITEMS_FILE_VERSION @"1.0"
+
 
 @implementation GameItemService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
-
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)getItemsList:(GetItemsListResultHandler)handler
 {
@@ -61,14 +58,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)getPromotingItemsList:(GetItemsListResultHandler)handler
 {
-    //load data
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
     PPSmartUpdateData *smartData = [[[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION] autorelease];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        handler(YES, [self promotingItemListFrom:itemsList]);
+        handler(YES, [bself promotingItemListFrom:itemsList]);
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         handler(NO, nil);
@@ -79,32 +76,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {
     NSMutableArray *arr = [NSMutableArray array];
     for (PBGameItem *item in itemList) {
-        if ([self isItemPromoting:item]) {
+        if ([item isPromoting]) {
             [arr addObject:item];
         }
     }
     
     return arr;
 }
-
-- (BOOL)isItemPromoting:(PBGameItem *)item
-{
-    if (![item hasPromotionInfo]) {
-        return NO;
-    }
-    
-    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:item.promotionInfo.startDate];
-    NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:item.promotionInfo.expireDate];
-    
-    NSDate *earlierDate = [startDate earlierDate:[NSDate date]];
-    NSDate *laterDate = [expireDate earlierDate:[NSDate date]];
-    
-    if ([earlierDate isEqualToDate:startDate] && [laterDate isEqualToDate:expireDate]) {
-        return YES;
-    }
-    
-    return NO;
-}
-
 
 @end
