@@ -228,7 +228,8 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DrawBgManager createTestData:20];
+    [DrawBgManager defaultManager];
+//    [DrawBgManager createTestData:5];
     srand(time(0));
     
     application.applicationIconBadgeNumber = 0;

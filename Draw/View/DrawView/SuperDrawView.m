@@ -161,7 +161,7 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
                     sv.drawBgImage = image;
                     sv.backgroundColor = [UIColor colorWithPatternImage:image];
                 } failure:^(NSError *error) {
-                    
+                    PPDebug(@"error!!");
                 }];
                 
             }
