@@ -44,7 +44,8 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     
     GameItemPriceView *priceView = [GameItemPriceView createWithItem:item];
     [priceView updateOriginX:view.discountLabel.frame.origin.x];
-    [priceView updateOriginY:view.priceNoteLabel.frame.origin.y];
+    [priceView updateCenterY:view.priceNoteLabel.center.y];
+    
     [view addSubview:priceView];
     
     UILabel *label = [[[UILabel alloc] init] autorelease];

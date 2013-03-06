@@ -24,16 +24,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 - (void)getItemsList:(GetItemsListResultHandler)handler
 {
     //load data
-    PPSmartUpdateData *smartData = [[[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION] autorelease];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
         handler(YES, itemsList);
+        [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         handler(NO, nil);
+        [smartData release];
     }];
 }
 
@@ -41,7 +43,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                resultHandler:(GetItemsListResultHandler)handler
 {
     //load data
-    PPSmartUpdateData *smartData = [[[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION] autorelease];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
@@ -50,25 +52,29 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
         NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
         handler(YES, array);
+        [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         handler(NO, nil);
+        [smartData release];
     }];
 }
 
 - (void)getPromotingItemsList:(GetItemsListResultHandler)handler
 {
     __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    PPSmartUpdateData *smartData = [[[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION] autorelease];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
         handler(YES, [bself promotingItemListFrom:itemsList]);
+        [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         handler(NO, nil);
+        [smartData release];
     }];
 }
 
