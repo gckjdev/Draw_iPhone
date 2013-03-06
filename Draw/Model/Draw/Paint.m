@@ -254,22 +254,33 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 
-- (NSMutableArray *)compressToNumberPointList
+- (NSMutableArray *)createNumberPointList:(BOOL)isCompressed pointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList
 {
     if (self.pointCount == 0) {
         return nil;
     }
     NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *retPointXList = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *retPointYList = [[[NSMutableArray alloc] init] autorelease];
     for (PointNode *point in self.pointNodeList) {
-        NSInteger value = 0;
-        if (ISIPAD) {
-            value = [point toCompressPointWithXScale:1/IPAD_WIDTH_SCALE yScale:1/IPAD_HEIGHT_SCALE];
-        }else{
-            value = [point toCompressPoint];
+        if (isCompressed){
+            NSInteger value = 0;
+            if (ISIPAD) {
+                value = [point toCompressPointWithXScale:1/IPAD_WIDTH_SCALE yScale:1/IPAD_HEIGHT_SCALE];
+            }else{
+                value = [point toCompressPoint];
+            }
+            NSNumber *number = [NSNumber numberWithInt:value];
+            [pointList addObject:number];
         }
-        NSNumber *number = [NSNumber numberWithInt:value];
-        [pointList addObject:number];
+        else{
+            [retPointXList addObject:@(point.point.x)];
+            [retPointYList addObject:@(point.point.y)];
+        }
     }
+    
+    *pointXList = retPointXList;
+    *pointYList = retPointYList;
     return pointList;
 }
 

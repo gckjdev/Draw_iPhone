@@ -78,7 +78,7 @@
 
 //- (void)clearPath;
 //- (void)releasePathToShow;
-- (NSMutableArray *)compressToNumberPointList;
+- (NSMutableArray *)createNumberPointList:(BOOL)isCompressed pointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList;
 
 
 

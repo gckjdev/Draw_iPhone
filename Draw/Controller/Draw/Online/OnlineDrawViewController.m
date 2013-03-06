@@ -288,7 +288,7 @@
     if ([action isDrawAction]) {
         Paint *paint = action.paint;
         NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
-        NSMutableArray *pointList = [paint compressToNumberPointList];
+        NSMutableArray *pointList = [paint createNumberPointList:YES pointXList:nil pointYList:nil];
         CGFloat width = paint.width;
         if ([DeviceDetection isIPAD]) {
             width /= 2;

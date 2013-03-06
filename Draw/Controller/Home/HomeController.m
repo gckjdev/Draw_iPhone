@@ -56,7 +56,6 @@
 
 
 
-
 #import "ContestController.h"
 #import "HotController.h"
 #import "MyFeedController.h"
@@ -84,6 +83,8 @@
 #import "OpusSelectController.h"
 #import "Wall.h"
 #import "OpusWallController.h"
+
+#import "StoreController.h"
 
 @interface HomeController()
 {
@@ -608,10 +609,13 @@
         case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
+//
+//            VendingController* vc = [[VendingController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            [vc release];
             
-            VendingController* vc = [[VendingController alloc] init];
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
-            [vc release];
         }
             break;
         case HomeMenuTypeDrawContest:
