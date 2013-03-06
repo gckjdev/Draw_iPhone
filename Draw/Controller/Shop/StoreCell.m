@@ -7,7 +7,7 @@
 //
 
 #import "StoreCell.h"
-#import "PriceView.h"
+#import "GameItemPriceView.h"
 #import "PBGameItemUtils.h"
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
@@ -37,16 +37,8 @@
 {
     [[self viewWithTag:TAG_PRICE_VIEW] removeFromSuperview];
     
-    PriceView *priceView;
-    if ([_item isPromoting]) {
-        self.promotionImageView.hidden = NO;
-        int promotionPrice = _item.priceInfo.price * _item.promotionInfo.discount / 100;
-        priceView = [PriceView createWithPrice:_item.priceInfo.price promotionPrice:promotionPrice currency:_item.priceInfo.currency];
-    }else{
-        self.promotionImageView.hidden = YES;
-        priceView = [PriceView createWithPrice:_item.priceInfo.price currency:_item.priceInfo.currency];
-    }
-    
+    GameItemPriceView *priceView = [GameItemPriceView createWithItem:_item];
+
     priceView.tag = TAG_PRICE_VIEW;
     
     [priceView updateOriginY:13];
@@ -59,9 +51,17 @@
 {
     self.item = item;
     
+    if ([_item isPromoting]) {
+        self.promotionImageView.hidden = NO;
+    }else{
+        self.promotionImageView.hidden = YES;
+        
+    }
+    
     [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
     self.itemNameLabel.text = NSLS(item.name);
     self.itemDescLabel.text = NSLS(item.desc);
+    
     [self addPriceView];
 }
 

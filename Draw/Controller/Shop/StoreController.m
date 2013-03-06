@@ -9,6 +9,7 @@
 #import "StoreController.h"
 #import "GameItemService.h"
 #import "StoreCell.h"
+#import "GameItemDetailView.h"
 
 @interface StoreController ()
 
@@ -111,7 +112,8 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    GameItemDetailView *view = [GameItemDetailView createWithItem:[dataList objectAtIndex:indexPath.row]];
+    [view showInView:self.view];
 }
 
 

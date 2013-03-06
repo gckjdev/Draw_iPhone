@@ -93,13 +93,15 @@ message PBGameSessionChanged {
 
 // internal usage, to store draw data
 message PBDrawAction {
-  required int32 type = 1;                      // 0 : draw, 1 : clean draw
-  repeated int32 points = 2 [packed=true];
+  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape
+  repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
   optional float width = 3;
   optional int32 color = 4;
   optional int32 penType = 5;
+  
+  // shape information
   optional int32 shapeType = 6;
-  repeated float rectComponent = 7;             //startX, startY, endX, endY ??????
+  repeated float rectComponent = 7;             //startX, startY, endX, endY 
   
   // for no compressed points, add 2012-03-04
   repeated float pointsX = 11;
@@ -160,8 +162,8 @@ message PBUserResult {
 }
 
 enum PBGameCurrency{
-  COIN = 0;             // 金币
-  INGOT = 1;            // 元宝
+  Coin = 0;             // 金币
+  Ingot = 1;            // 元宝
 }
 
 enum PBDrawItemType{
@@ -180,10 +182,17 @@ message PBPromotionInfo{
   optional int32 expireDate = 3;                  // 截止日期
 }
 
+enum PBGameItemSalesType{
+  OneOff = 1;                                   // 一次
+  Multiple = 2;                                  // 多次
+}
+
 message PBGameItem {
   required int32  itemId = 1;                     // 道具ID
   required string name = 2;                       // 道具名称，英文，用于国际化，比如Flower，代码需要使用本地的国际化字符串对其处理
   optional string desc = 3;                       // 道具描述，英文，用于国际化，代码需要使用本地的国际化字符串对其处理
+  
+  optional PBGameItemSalesType salesType = 5;     // 销售类型
 
   optional string image = 11;                     // 道具图片地址，远程URL
   optional string demoImage = 12;                 // 道具效果演示图片URL
