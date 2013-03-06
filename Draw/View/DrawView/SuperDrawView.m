@@ -49,6 +49,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        _scale = 1;
     }
     return self;
 }
@@ -89,6 +90,13 @@
 - (void)addDrawAction:(DrawAction *)drawAction
 {
     [self.drawActionList addObject:drawAction];
+}
+
+
+- (void)setScale:(CGFloat)scale
+{
+    _scale = scale;
+    [self.layer setTransform:CATransform3DMakeScale(scale, scale, 1)];
 }
 
 - (UIImage *)drawBGImage

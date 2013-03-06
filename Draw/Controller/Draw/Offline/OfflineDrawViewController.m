@@ -1219,6 +1219,10 @@
         color.alpha = alpha;
         drawView.lineColor = color;
     }
+    
+    //chage scale... will be removed __By Gamy
+//    drawView.scale = alpha * 5;
+    
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
