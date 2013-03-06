@@ -150,36 +150,58 @@ static DrawDataService* _defaultDrawDataService = nil;
     PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
     
     [dataBuilder setType:[drawAction type]];
-
+    
     if ([drawAction isShapeAction]) {
         [dataBuilder setShapeType:drawAction.shapeInfo.type];
         [dataBuilder addAllRectComponent:[drawAction.shapeInfo rectComponent]];
 
+        // set width
         CGFloat width = [[drawAction shapeInfo] width];
         if ([DeviceDetection isIPAD]) {
             width /= 2;
         }
         [dataBuilder setWidth:width];
+        
+        // set color
         NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.shapeInfo.color];
         [dataBuilder setColor:intColor];
+        
+        // set pen type
         [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
 
         
     }else{
-        NSArray *pointList = [drawAction.paint compressToNumberPointList];
         
-        [dataBuilder addAllPoints:pointList];
+        // add points
+        NSArray* pointXList;
+        NSArray* pointYList;
         
+        NSArray *pointList = [drawAction.paint createNumberPointList:isCompressed pointXList:&pointXList pointYList:&pointYList];
+        
+        if (isCompressed){
+            [dataBuilder addAllPoints:pointList];
+        }
+        else{
+            [dataBuilder addAllPointsX:pointXList];
+            [dataBuilder addAllPointsY:pointYList];
+        }
+        
+        // set width
         CGFloat width = [[drawAction paint] width];
         if ([DeviceDetection isIPAD]) {
             width /= 2;
         }
         [dataBuilder setWidth:width];
+        
+        // set color
         NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.paint.color];
         [dataBuilder setColor:intColor];
         
+        // set pen type
         [dataBuilder setPenType:[[drawAction paint] penType]];
+        
     }
+    
     PBDrawAction *action = [dataBuilder build];
     [dataBuilder release];    
     return action;

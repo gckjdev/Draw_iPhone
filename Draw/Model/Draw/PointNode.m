@@ -71,16 +71,17 @@
     node.y = point.y;
     return node ;
 }
+
 - (NSInteger)toCompressPoint
 {
-    NSInteger ret = ([DrawUtils roundFloatValue:self.x] * (1 << 15)) + [DrawUtils roundFloatValue:self.y];
-    return ret;
+    return [DrawUtils compressPointWithX:self.x y:self.y];
 }
 
 - (NSInteger)toCompressPointWithXScale:(CGFloat)xScale yScale:(CGFloat)yScale
 {
-    NSInteger ret = ([DrawUtils roundFloatValue:self.x * xScale] * (1 << 15)) + [DrawUtils roundFloatValue:self.y * yScale];
-    return ret;
+    return [DrawUtils compressPointWithX:self.x * xScale y:self.y * yScale];
+//    NSInteger ret = ([DrawUtils roundFloatValue:self.x * xScale] * (1 << 15)) + [DrawUtils roundFloatValue:self.y * yScale];
+//    return ret;
 }
 
 - (PBPoint *)toPBPoint

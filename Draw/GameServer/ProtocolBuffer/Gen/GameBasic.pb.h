@@ -809,11 +809,13 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
   BOOL hasColor_:1;
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
+  BOOL hasBetterColor_:1;
   Float32 width;
   int32_t type;
   int32_t color;
   int32_t penType;
   int32_t shapeType;
+  int32_t betterColor;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointsXList;
   NSMutableArray* mutablePointsYList;
@@ -825,11 +827,13 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
 - (BOOL) hasShapeType;
+- (BOOL) hasBetterColor;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
 @property (readonly) int32_t shapeType;
+@property (readonly) int32_t betterColor;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -925,6 +929,11 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (PBDrawAction_Builder*) addPointsY:(Float32) value;
 - (PBDrawAction_Builder*) addAllPointsY:(NSArray*) values;
 - (PBDrawAction_Builder*) clearPointsYList;
+
+- (BOOL) hasBetterColor;
+- (int32_t) betterColor;
+- (PBDrawAction_Builder*) setBetterColor:(int32_t) value;
+- (PBDrawAction_Builder*) clearBetterColor;
 @end
 
 @interface PBMessage : PBGeneratedMessage {
