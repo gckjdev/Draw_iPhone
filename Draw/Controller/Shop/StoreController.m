@@ -10,6 +10,7 @@
 #import "GameItemService.h"
 #import "StoreCell.h"
 #import "GameItemDetailView.h"
+#import "CustomInfoView.h"
 
 @interface StoreController ()
 
@@ -114,8 +115,10 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GameItemDetailView *view = [GameItemDetailView createWithItem:[dataList objectAtIndex:indexPath.row]];
-    [view showInView:self.view];
+    PBGameItem *item = [dataList objectAtIndex:indexPath.row];
+    GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
+    CustomInfoView *infoView = [CustomInfoView createWithTitle:item.name infoView:detailView];
+    [infoView showInView:self.view];
 }
 
 
