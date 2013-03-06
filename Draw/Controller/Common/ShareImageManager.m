@@ -1016,5 +1016,10 @@ static UIImage* _whitePaperImage;
     }
 }
 
+- (UIImage *)dialogButtonBackgroundImage
+{
+    return [UIImage strectchableImageName:@"common_dialog_btn_bg.png"];
+}
+
 @end
 

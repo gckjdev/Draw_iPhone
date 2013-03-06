@@ -70,7 +70,7 @@
 								<string key="IBUIText">猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMDU4ODIzNTI5IDAuMTI5NDExNzY0NyAwAA</bytes>
+									<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMTc2NDcwNTg4MiAwLjAyNzQ1MDk4MDM5AA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="494068276">
 									<int key="NSColorSpace">3</int>
@@ -120,7 +120,7 @@
 								<reference key="IBUIHighlightedTitleColor" ref="494068276"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjg4NjI3NDUwOTggMC43Mjk0MTE3NjQ3AA</bytes>
+									<bytes key="NSRGB">MC45MTc2NDcwNTg4IDAuODY2NjY2NjY2NyAwLjgwMzkyMTU2ODYAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>

@@ -23,6 +23,12 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
        hasCloseButton:(BOOL)hasCloseButton
          buttonTitles:(NSString *)firstTitle, ...;
 
+- (void)showInView:(UIView *)view;
+
 @property (nonatomic, assign) ButtonActionBlock actionBlock;
+@property (retain, nonatomic) IBOutlet UIView *mainView;
+@property (retain, nonatomic) IBOutlet UILabel *infoLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 @end
