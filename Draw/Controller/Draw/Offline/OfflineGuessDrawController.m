@@ -504,6 +504,7 @@
 {
     PPDebug(@"<startPlay>");
     [self.showView play];
+    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)updateDrawInfo
@@ -583,7 +584,6 @@
     [self initPickToolView];
     
     [self checkDrawDataVersion];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -858,6 +858,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
+
 //    self.showView.speed = PlaySpeedTypeNormal;
 }
 

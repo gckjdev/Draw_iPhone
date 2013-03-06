@@ -13,6 +13,8 @@
 @class DrawAction;
 @class Word;
 @class PBDraw;
+@class PBDrawBg;
+
 //@class pbcom
 //@class LanguageType;
 
@@ -35,6 +37,7 @@
 @property (retain, nonatomic) NSString *avatar;
 @property (assign, nonatomic) LanguageType languageType;
 @property (assign, nonatomic) NSInteger version;
+@property (retain, nonatomic) PBDrawBg *drawBg;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
