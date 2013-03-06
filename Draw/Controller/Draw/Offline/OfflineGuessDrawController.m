@@ -422,11 +422,11 @@
     tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
     flower.tag = TOOLVIEW_TAG_FLOWER;
-    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
-    tomato.tag = TOOLVIEW_TAG_TOMATO;
+//    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+//    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
-    [array addObject:tomato];
+//    [array addObject:tomato];
     _pickToolView = [[PickToolView alloc] initWithTools:array];
     _pickToolView.hidden = YES;
     _pickToolView.delegate = self;
@@ -504,6 +504,7 @@
 {
     PPDebug(@"<startPlay>");
     [self.showView play];
+    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)updateDrawInfo
@@ -583,7 +584,6 @@
     [self initPickToolView];
     
     [self checkDrawDataVersion];
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -858,6 +858,7 @@
 {
     showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
     [self.view insertSubview:showView aboveSubview:drawBackground];
+
 //    self.showView.speed = PlaySpeedTypeNormal;
 }
 

@@ -20,6 +20,7 @@
     NSMutableDictionary *_boardDict;
     StorageManager *_storageManager;
     NSMutableArray *_tempPostList;
+    NSTimeInterval _lastCreationDate;
 }
 
 @property(nonatomic, retain) NSArray *boardList;

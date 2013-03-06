@@ -1023,6 +1023,12 @@
 "kAskSureRefuse" = "Are you sure to reject this paint?";
 "kRefuseOpusSuccess" = "Refuse this opus successfully!";
 "kRefuseOpusFail" = "Fail to refuse this opus, try later.";
+"kBlackFriend" = "Black friend";
+"kUnblackFriend" = "Unblack friend";
+"kBlackUserSuccess" = "Add friend to black list successfully!";
+"kUnblackUserSuccess" = "Remove friend from black list successfully!";
+"kBlackList" = "Black";
+"kBlackListNumber" = "Black(%d)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

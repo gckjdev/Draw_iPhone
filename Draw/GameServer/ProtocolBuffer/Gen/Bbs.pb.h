@@ -25,6 +25,8 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
 @class PBGameItem_Builder;
 @class PBGameSession;
 @class PBGameSessionChanged;
@@ -40,6 +42,8 @@
 @class PBMessage_Builder;
 @class PBPriceInfo;
 @class PBPriceInfo_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBUserItem;

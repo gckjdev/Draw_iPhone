@@ -65,11 +65,11 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="220130543">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="868004655">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -361,7 +361,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{340, 329}, {240, 56}}</string>
 								<reference key="NSSuperview" ref="853774378"/>
-								<reference key="NSNextKeyView" ref="542359742"/>
+								<reference key="NSNextKeyView" ref="931471586"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -445,6 +445,28 @@
 								<reference key="IBUINormalTitleShadowColor" ref="655269349"/>
 								<reference key="IBUIFontDescription" ref="615726183"/>
 								<reference key="IBUIFont" ref="580530187"/>
+							</object>
+							<object class="IBUIButton" id="931471586">
+								<reference key="NSNextResponder" ref="853774378"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{9, 404}, {143, 44}}</string>
+								<reference key="NSSuperview" ref="853774378"/>
+								<reference key="NSNextKeyView" ref="542359742"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">拉黑</string>
+								<reference key="IBUIHighlightedTitleColor" ref="80806260"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="655269349"/>
+								<reference key="IBUIFontDescription" ref="220130543"/>
+								<reference key="IBUIFont" ref="868004655"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{72, 198}, {624, 628}}</string>
@@ -597,6 +619,14 @@
 					<int key="connectionID">45</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">blackFriendButton</string>
+						<reference key="source" ref="25198382"/>
+						<reference key="destination" ref="931471586"/>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickMask:</string>
 						<reference key="source" ref="161604265"/>
@@ -649,6 +679,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickBlackFriend:</string>
+						<reference key="source" ref="931471586"/>
+						<reference key="destination" ref="25198382"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">50</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -705,6 +744,7 @@
 							<reference ref="609329412"/>
 							<reference ref="642315409"/>
 							<reference ref="973540934"/>
+							<reference ref="931471586"/>
 						</array>
 						<reference key="parent" ref="25198382"/>
 					</object>
@@ -793,6 +833,11 @@
 						<reference key="object" ref="973540934"/>
 						<reference key="parent" ref="853774378"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">47</int>
+						<reference key="object" ref="931471586"/>
+						<reference key="parent" ref="853774378"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -814,6 +859,7 @@
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.CustomClassName">DrawUserInfoView</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -825,9 +871,109 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">50</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">DrawUserInfoView</string>
+					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="backgroundImageView">UIImageView</string>
+						<string key="blackFriendButton">UIButton</string>
+						<string key="chatToUserButton">UIButton</string>
+						<string key="chatToUserLabel">UILabel</string>
+						<string key="contentView">UIView</string>
+						<string key="drawToUserButton">UIButton</string>
+						<string key="exploreUserFeedButton">UIButton</string>
+						<string key="followUserButton">UIButton</string>
+						<string key="genderLabel">UILabel</string>
+						<string key="levelLabel">UILabel</string>
+						<string key="locationLabel">UILabel</string>
+						<string key="mask">UIButton</string>
+						<string key="playWithUserLabel">UILabel</string>
+						<string key="snsTagImageView">UIImageView</string>
+						<string key="statusLabel">UILabel</string>
+						<string key="superUserManageButton">UIButton</string>
+						<string key="userName">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="backgroundImageView">
+							<string key="name">backgroundImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="blackFriendButton">
+							<string key="name">blackFriendButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="chatToUserButton">
+							<string key="name">chatToUserButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="chatToUserLabel">
+							<string key="name">chatToUserLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contentView">
+							<string key="name">contentView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawToUserButton">
+							<string key="name">drawToUserButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="exploreUserFeedButton">
+							<string key="name">exploreUserFeedButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="followUserButton">
+							<string key="name">followUserButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="genderLabel">
+							<string key="name">genderLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="levelLabel">
+							<string key="name">levelLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="locationLabel">
+							<string key="name">locationLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mask">
+							<string key="name">mask</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playWithUserLabel">
+							<string key="name">playWithUserLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="snsTagImageView">
+							<string key="name">snsTagImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusLabel">
+							<string key="name">statusLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="superUserManageButton">
+							<string key="name">superUserManageButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="userName">
+							<string key="name">userName</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DrawUserInfoView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">

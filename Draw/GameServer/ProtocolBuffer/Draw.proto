@@ -12,19 +12,21 @@ message PBDraw {
   required string userId = 1;    
   required string word = 2;
   required int32 level = 3;
-  required int32 language = 4;                 // 1 Chinese, 2 English
+  required int32 language = 4;                      // 1 Chinese, 2 English
   optional int32 createDate = 5;
   optional string nickName = 6;
   optional string avatar = 7;
   optional bool   gender = 8;
   
-  optional int32 version = 9 [default=0];      // draw data version
+  optional int32 version = 9 [default=0];           // draw data version
 
   repeated PBDrawAction drawData = 10;  
   optional string opusId = 11;
-  optional int32 score = 12;                  // draw word score
+  optional int32 score = 12;                        // draw word score
 
-  optional PBDrawBg drawBg = 20;
+  optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
+  optional PBDrawBg drawBg = 20;                    // draw background info
+  optional PBSize size = 21;                        // draw rect size
 }
 
 message PBFeedTimes{
@@ -63,6 +65,7 @@ message PBFeed {
   optional string targetUserNickName = 33;
   optional double historyScore = 34;    // 指示该作品的历史总得分
   optional string opusDesc = 35;
+  optional string drawDataUrl = 36;     // 新增，用于返回数据文件的URL
 
   // for user guess
   optional string opusId = 41;          // 猜作品的ID
@@ -158,6 +161,12 @@ message PBDrawBg
     required string bgId = 1;
     optional string localUrl  = 2;
     optional string remoteUrl  = 3;
+}
+
+message PBSize
+{
+    optional float width = 1 [default=304.0];
+    optional float height = 2 [default=320.0];
 }
 
 message PBDrawBgList

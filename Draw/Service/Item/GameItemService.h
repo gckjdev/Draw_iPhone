@@ -22,4 +22,5 @@ typedef void (^GetItemsListResultHandler)(BOOL success, NSArray *itemsList);
 
 - (void)getPromotingItemsList:(GetItemsListResultHandler)handler;
 
++ (void)createTestDataFile;
 @end

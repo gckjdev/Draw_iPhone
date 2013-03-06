@@ -34,7 +34,9 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSString* opusId;
 @property int32_t score;
+@property BOOL isCompressed;
 @property (retain) PBDrawBg* drawBg;
+@property (retain) PBSize* size;
 @end
 
 @implementation PBDraw
@@ -122,6 +124,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasScore_ = !!value;
 }
 @synthesize score;
+- (BOOL) hasIsCompressed {
+  return !!hasIsCompressed_;
+}
+- (void) setHasIsCompressed:(BOOL) value {
+  hasIsCompressed_ = !!value;
+}
+- (BOOL) isCompressed {
+  return !!isCompressed_;
+}
+- (void) setIsCompressed:(BOOL) value {
+  isCompressed_ = !!value;
+}
 - (BOOL) hasDrawBg {
   return !!hasDrawBg_;
 }
@@ -129,6 +143,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasDrawBg_ = !!value;
 }
 @synthesize drawBg;
+- (BOOL) hasSize {
+  return !!hasSize_;
+}
+- (void) setHasSize:(BOOL) value {
+  hasSize_ = !!value;
+}
+@synthesize size;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -137,6 +158,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.mutableDrawDataList = nil;
   self.opusId = nil;
   self.drawBg = nil;
+  self.size = nil;
   [super dealloc];
 }
 - (id) init {
@@ -152,7 +174,9 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.version = 0;
     self.opusId = @"";
     self.score = 0;
+    self.isCompressed = YES;
     self.drawBg = [PBDrawBg defaultInstance];
+    self.size = [PBSize defaultInstance];
   }
   return self;
 }
@@ -237,8 +261,14 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasScore) {
     [output writeInt32:12 value:self.score];
   }
+  if (self.hasIsCompressed) {
+    [output writeBool:13 value:self.isCompressed];
+  }
   if (self.hasDrawBg) {
     [output writeMessage:20 value:self.drawBg];
+  }
+  if (self.hasSize) {
+    [output writeMessage:21 value:self.size];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -285,8 +315,14 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasScore) {
     size += computeInt32Size(12, self.score);
   }
+  if (self.hasIsCompressed) {
+    size += computeBoolSize(13, self.isCompressed);
+  }
   if (self.hasDrawBg) {
     size += computeMessageSize(20, self.drawBg);
+  }
+  if (self.hasSize) {
+    size += computeMessageSize(21, self.size);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -402,8 +438,14 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasScore) {
     [self setScore:other.score];
   }
+  if (other.hasIsCompressed) {
+    [self setIsCompressed:other.isCompressed];
+  }
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
+  }
+  if (other.hasSize) {
+    [self mergeSize:other.size];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -476,6 +518,10 @@ static PBDraw* defaultPBDrawInstance = nil;
         [self setScore:[input readInt32]];
         break;
       }
+      case 104: {
+        [self setIsCompressed:[input readBool]];
+        break;
+      }
       case 162: {
         PBDrawBg_Builder* subBuilder = [PBDrawBg builder];
         if (self.hasDrawBg) {
@@ -483,6 +529,15 @@ static PBDraw* defaultPBDrawInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawBg:[subBuilder buildPartial]];
+        break;
+      }
+      case 170: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasSize) {
+          [subBuilder mergeFrom:self.size];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -693,6 +748,22 @@ static PBDraw* defaultPBDrawInstance = nil;
   result.score = 0;
   return self;
 }
+- (BOOL) hasIsCompressed {
+  return result.hasIsCompressed;
+}
+- (BOOL) isCompressed {
+  return result.isCompressed;
+}
+- (PBDraw_Builder*) setIsCompressed:(BOOL) value {
+  result.hasIsCompressed = YES;
+  result.isCompressed = value;
+  return self;
+}
+- (PBDraw_Builder*) clearIsCompressed {
+  result.hasIsCompressed = NO;
+  result.isCompressed = YES;
+  return self;
+}
 - (BOOL) hasDrawBg {
   return result.hasDrawBg;
 }
@@ -721,6 +792,36 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearDrawBg {
   result.hasDrawBg = NO;
   result.drawBg = [PBDrawBg defaultInstance];
+  return self;
+}
+- (BOOL) hasSize {
+  return result.hasSize;
+}
+- (PBSize*) size {
+  return result.size;
+}
+- (PBDraw_Builder*) setSize:(PBSize*) value {
+  result.hasSize = YES;
+  result.size = value;
+  return self;
+}
+- (PBDraw_Builder*) setSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setSize:[builderForValue build]];
+}
+- (PBDraw_Builder*) mergeSize:(PBSize*) value {
+  if (result.hasSize &&
+      result.size != [PBSize defaultInstance]) {
+    result.size =
+      [[[PBSize builderWithPrototype:result.size] mergeFrom:value] buildPartial];
+  } else {
+    result.size = value;
+  }
+  result.hasSize = YES;
+  return self;
+}
+- (PBDraw_Builder*) clearSize {
+  result.hasSize = NO;
+  result.size = [PBSize defaultInstance];
   return self;
 }
 @end
@@ -1343,6 +1444,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* targetUserNickName;
 @property Float64 historyScore;
 @property (retain) NSString* opusDesc;
+@property (retain) NSString* drawDataUrl;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
@@ -1477,6 +1579,13 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   hasOpusDesc_ = !!value;
 }
 @synthesize opusDesc;
+- (BOOL) hasDrawDataUrl {
+  return !!hasDrawDataUrl_;
+}
+- (void) setHasDrawDataUrl:(BOOL) value {
+  hasDrawDataUrl_ = !!value;
+}
+@synthesize drawDataUrl;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -1626,6 +1735,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   self.targetUserId = nil;
   self.targetUserNickName = nil;
   self.opusDesc = nil;
+  self.drawDataUrl = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
@@ -1656,6 +1766,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.targetUserNickName = @"";
     self.historyScore = 0;
     self.opusDesc = @"";
+    self.drawDataUrl = @"";
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
@@ -1779,6 +1890,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasOpusDesc) {
     [output writeString:35 value:self.opusDesc];
   }
+  if (self.hasDrawDataUrl) {
+    [output writeString:36 value:self.drawDataUrl];
+  }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
   }
@@ -1892,6 +2006,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasOpusDesc) {
     size += computeStringSize(35, self.opusDesc);
+  }
+  if (self.hasDrawDataUrl) {
+    size += computeStringSize(36, self.drawDataUrl);
   }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
@@ -2078,6 +2195,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasOpusDesc) {
     [self setOpusDesc:other.opusDesc];
   }
+  if (other.hasDrawDataUrl) {
+    [self setDrawDataUrl:other.drawDataUrl];
+  }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
@@ -2228,6 +2348,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 282: {
         [self setOpusDesc:[input readString]];
+        break;
+      }
+      case 290: {
+        [self setDrawDataUrl:[input readString]];
         break;
       }
       case 330: {
@@ -2572,6 +2696,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearOpusDesc {
   result.hasOpusDesc = NO;
   result.opusDesc = @"";
+  return self;
+}
+- (BOOL) hasDrawDataUrl {
+  return result.hasDrawDataUrl;
+}
+- (NSString*) drawDataUrl {
+  return result.drawDataUrl;
+}
+- (PBFeed_Builder*) setDrawDataUrl:(NSString*) value {
+  result.hasDrawDataUrl = YES;
+  result.drawDataUrl = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDrawDataUrl {
+  result.hasDrawDataUrl = NO;
+  result.drawDataUrl = @"";
   return self;
 }
 - (BOOL) hasOpusId {
@@ -4808,6 +4948,221 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 - (PBDrawBg_Builder*) clearRemoteUrl {
   result.hasRemoteUrl = NO;
   result.remoteUrl = @"";
+  return self;
+}
+@end
+
+@interface PBSize ()
+@property Float32 width;
+@property Float32 height;
+@end
+
+@implementation PBSize
+
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasHeight {
+  return !!hasHeight_;
+}
+- (void) setHasHeight:(BOOL) value {
+  hasHeight_ = !!value;
+}
+@synthesize height;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.width = 304;
+    self.height = 320;
+  }
+  return self;
+}
+static PBSize* defaultPBSizeInstance = nil;
++ (void) initialize {
+  if (self == [PBSize class]) {
+    defaultPBSizeInstance = [[PBSize alloc] init];
+  }
+}
++ (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasWidth) {
+    [output writeFloat:1 value:self.width];
+  }
+  if (self.hasHeight) {
+    [output writeFloat:2 value:self.height];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasWidth) {
+    size += computeFloatSize(1, self.width);
+  }
+  if (self.hasHeight) {
+    size += computeFloatSize(2, self.height);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSize*) parseFromData:(NSData*) data {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data] build];
+}
++ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize_Builder*) builder {
+  return [[[PBSize_Builder alloc] init] autorelease];
+}
++ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype {
+  return [[PBSize builder] mergeFrom:prototype];
+}
+- (PBSize_Builder*) builder {
+  return [PBSize builder];
+}
+@end
+
+@interface PBSize_Builder()
+@property (retain) PBSize* result;
+@end
+
+@implementation PBSize_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSize alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSize_Builder*) clear {
+  self.result = [[[PBSize alloc] init] autorelease];
+  return self;
+}
+- (PBSize_Builder*) clone {
+  return [PBSize builderWithPrototype:result];
+}
+- (PBSize*) defaultInstance {
+  return [PBSize defaultInstance];
+}
+- (PBSize*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSize*) buildPartial {
+  PBSize* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSize_Builder*) mergeFrom:(PBSize*) other {
+  if (other == [PBSize defaultInstance]) {
+    return self;
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasHeight) {
+    [self setHeight:other.height];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setHeight:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (PBSize_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (PBSize_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 304;
+  return self;
+}
+- (BOOL) hasHeight {
+  return result.hasHeight;
+}
+- (Float32) height {
+  return result.height;
+}
+- (PBSize_Builder*) setHeight:(Float32) value {
+  result.hasHeight = YES;
+  result.height = value;
+  return self;
+}
+- (PBSize_Builder*) clearHeight {
+  result.hasHeight = NO;
+  result.height = 320;
   return self;
 }
 @end

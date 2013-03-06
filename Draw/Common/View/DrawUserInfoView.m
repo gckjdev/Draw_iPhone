@@ -72,6 +72,7 @@
     PPRelease(levelLabel);
     PPRelease(_superUserManageAction);
     PPRelease(_superUserManageButton);
+    [_blackFriendButton release];
     [super dealloc];
 }
 
@@ -205,6 +206,23 @@
     }
 }
 
+- (void)initBlackStatus
+{
+    BOOL isMe = [[[UserManager defaultManager] userId]
+                 isEqualToString:targetFriend.friendUserId];
+    
+    if (isMe) {
+        [self.blackFriendButton setHidden:YES];
+    }else if([targetFriend hasBlack]){
+        [self.blackFriendButton setHidden:NO];
+        [self.blackFriendButton setTitle:NSLS(@"kUnblackFriend") forState:UIControlStateNormal];
+    }else{
+        [self.blackFriendButton setHidden:NO];
+        [self.blackFriendButton setTitle:NSLS(@"kBlackFriend") forState:UIControlStateNormal];
+    }
+    
+}
+
 - (void)updateCommonView
 {
     //common info
@@ -222,7 +240,8 @@
     [self initGender];
     [self initSNSInfo];
     [self initAvatar];
-    [self initFollowStatus]; 
+    [self initFollowStatus];
+    [self initBlackStatus];
 }
 - (void)initView
 {
@@ -440,6 +459,22 @@
 {
     self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
     [self.superUserManageAction showInController:_superViewController];
+}
+
+- (IBAction)clickBlackFriend:(id)sender
+{
+    if ([self.targetFriend hasBlack]) {
+        [[FriendService defaultService] unblackFriend:self.targetFriend.friendUserId successBlock:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
+            [self clickMask:nil];
+        }];
+    } else {
+        [[FriendService defaultService] blackFriend:self.targetFriend.friendUserId successBlock:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
+            [self clickMask:nil];
+        }];
+    }
+    
 }
 
 @end

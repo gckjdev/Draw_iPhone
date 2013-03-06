@@ -1259,8 +1259,9 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
-        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
+                
         return str;
     };
     
@@ -1280,6 +1281,8 @@
                                              userId:(NSString *)userId 
                                              feedId:(NSString *)feedId
 {
+    BOOL isReturnDataURL = YES;
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -1292,6 +1295,11 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        if (isReturnDataURL){
+            str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
+        }
+        
         return str;
     };
     
@@ -1367,8 +1375,11 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
+                      isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 {
+//    BOOL isZipData = YES;   // for Benson test
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     NSString *method = METHOD_CREATE_OPUS_IMAGE;
@@ -1392,6 +1403,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_DESC value:desc];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];
         
         if ([targetUid length] != 0) {
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];            
@@ -1404,6 +1416,10 @@
         // add device model
         NSString* deviceModel = [DeviceDetection platform];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
+        
+//        if (isZipData){
+//            str = [str stringByAddQueryParameter:PARA_IS_DATA_ZIP intValue:1];
+//        }
         
         return str;
     };
@@ -1455,7 +1471,7 @@
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     if (userId == nil || opusId == nil){
-        PPDebug(@"<updateOpus> but userId nil or opusId nil");
+        PPDebug(@"<rejectOpusDrawToMe> but userId nil or opusId nil");
         return nil;
     }
     
@@ -1498,6 +1514,7 @@
                             opusId:(NSString*)opusId
                               data:(NSData*)data
                          imageData:(NSData *)imageData
+                      isCompressed:(BOOL)isCompressed
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1523,6 +1540,7 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
         
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];        
         
         return str;
     };
@@ -2810,6 +2828,38 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:targetDeviceId];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)blackFriend:(NSString*)baseURL
+                              appId:(NSString* )appId
+                       targetUserId:(NSString*)targetUserId
+                             userId:(NSString*)userId
+                         actionType:(int)actionType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_BLACK_FRIEND];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:actionType];
         return str;
     };
     

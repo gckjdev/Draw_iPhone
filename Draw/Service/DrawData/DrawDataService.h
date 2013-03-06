@@ -18,6 +18,7 @@
 @class Feed;
 @class DrawFeed;
 @class PBDraw;
+@class PBDrawBg;
 
 @protocol  DrawDataServiceDelegate<NSObject>
 
@@ -45,6 +46,8 @@
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
+                   drawBg:(PBDrawBg *)drawBg //new attributes By Gamy
+                     size:(CGSize)size
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
@@ -56,14 +59,18 @@
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
-- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction;
+- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
+                       isCompressed:(BOOL)isCompressed;
 
 - (PBDraw*)buildPBDraw:(NSString*)userId 
-                  nick:(NSString *)nick 
+                  nick:(NSString *)nick
                 avatar:(NSString *)avatar
         drawActionList:(NSArray*)drawActionList
               drawWord:(Word*)drawWord
-              language:(LanguageType)language;
+              language:(LanguageType)language
+                drawBg:(PBDrawBg *)drawBg
+                  size:(CGSize)size
+          isCompressed:(BOOL)isCompressed;
 
 // save draw data locally
 //- (void)saveActionList:(NSArray *)actionList 

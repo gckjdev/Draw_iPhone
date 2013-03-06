@@ -17,6 +17,7 @@
 #import "ConfigManager.h"
 #import "ItemType.h"
 #import "UIImageExt.h"
+#import "FeedDownloadService.h"
 
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
@@ -357,6 +358,7 @@ static FeedService *_staticFeedService = nil;
         PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
         DrawFeed *feed = nil;
         BOOL fromCache = NO;
+//        BOOL downloadFileResult = NO;
 
         NSInteger resultCode = 0;
         
@@ -366,12 +368,10 @@ static FeedService *_staticFeedService = nil;
             feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
         }
         else{
-        //if local data is nil, load data from remote service
-
+            //if local data is nil, load data from remote service
             PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
             NSString* userId = [[UserManager defaultManager] userId];
-            
-            
+                        
             CommonNetworkOutput* output = [GameNetworkRequest
                                            getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
                                            userId:userId feedId:feedId];
@@ -388,6 +388,20 @@ static FeedService *_staticFeedService = nil;
                         NSArray *list = [response feedList];
                         pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                         
+                        // new support in server
+                        // add download feed draw data by data URL
+                        if ([[pbFeed drawDataUrl] length] > 0){
+                            NSData* data = [[FeedDownloadService defaultService]
+                                            downloadDrawDataFile:[pbFeed drawDataUrl]
+                                            fileName:[pbFeed feedId]];
+                            
+                            if (data != nil){
+                                // create PBDraw from data and rewrite pbFeed
+                                PBDraw* pbDraw = [PBDraw parseFromData:data];
+                                pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
+                            }
+                        }
+                        
                         feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
                         if ([feed isKindOfClass:[DrawFeed class]]) {
                         }else{
@@ -401,11 +415,14 @@ static FeedService *_staticFeedService = nil;
                 }
                 @finally {
                 }            
+
+                if (pbFeed != nil){
+                    [manager cachePBFeed:pbFeed];
+                }            
             }
         }
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
-            [manager cachePBFeed:pbFeed];
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
                 [delegate didGetFeed:feed
                           resultCode:resultCode
@@ -605,7 +622,13 @@ static FeedService *_staticFeedService = nil;
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     
     dispatch_async(updateOpusQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL appId:appId userId:userId opusId:opusId data:nil imageData:[image data]];
+        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL
+                                                               appId:appId
+                                                              userId:userId
+                                                              opusId:opusId
+                                                                data:nil
+                                                           imageData:[image data]
+                                                        isCompressed:YES];
         if (output.resultCode == 0) {
             PPDebug(@"<updateOpus> succ!");
         }else{

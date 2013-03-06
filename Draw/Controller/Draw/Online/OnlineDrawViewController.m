@@ -288,7 +288,7 @@
     if ([action isDrawAction]) {
         Paint *paint = action.paint;
         NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
-        NSMutableArray *pointList = paint.numberPointList;
+        NSMutableArray *pointList = [paint compressToNumberPointList];
         CGFloat width = paint.width;
         if ([DeviceDetection isIPAD]) {
             width /= 2;
@@ -408,7 +408,8 @@
     drawView.touchActionType = TouchActionTypeDraw;
     self.penColor.alpha = 1.0;
     [drawView changeBackWithColor:self.penColor];
-    [self didDrawedPaint:[DrawAction changeBackgroundActionWithColor:self.penColor].paint];
+    [self drawView:drawView didFinishDrawAction:[DrawAction changeBackgroundActionWithColor:self.penColor]];
+
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
     [drawView.lineColor setAlpha:_alpha];

@@ -38,7 +38,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="229791302">
+					<object class="IBUIImageView" id="764169153">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 460}</string>
@@ -194,11 +194,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_normal@2x.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="809064229">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1028846749">
 							<int key="type">2</int>
 							<double key="pointSize">16</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="403381007">
+						<object class="NSFont" key="IBUIFont" id="729382766">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
@@ -235,8 +235,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_tool@2x.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="809064229"/>
-						<reference key="IBUIFont" ref="403381007"/>
+						<reference key="IBUIFontDescription" ref="1028846749"/>
+						<reference key="IBUIFont" ref="729382766"/>
 					</object>
 					<object class="IBUIButton" id="58332215">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -273,8 +273,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion@2x.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="809064229"/>
-						<reference key="IBUIFont" ref="403381007"/>
+						<reference key="IBUIFontDescription" ref="1028846749"/>
+						<reference key="IBUIFont" ref="729382766"/>
 					</object>
 					<object class="IBUIButton" id="933539521">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -460,7 +460,7 @@
 							<reference ref="111477067"/>
 							<reference ref="933539521"/>
 							<reference ref="21135945"/>
-							<reference ref="229791302"/>
+							<reference ref="764169153"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -526,7 +526,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">46</int>
-						<reference key="object" ref="229791302"/>
+						<reference key="object" ref="764169153"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -563,17 +563,17 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="balance_bg@2x.png">{640, 68}</string>
-			<string key="charge_bg@2x.png">{88, 51}</string>
-			<string key="item_normal@2x.png">{133, 62}</string>
-			<string key="item_normal_selected@2x.png">{133, 62}</string>
-			<string key="item_promotion@2x.png">{133, 62}</string>
-			<string key="item_promotion_selected@2x.png">{133, 62}</string>
-			<string key="item_tool@2x.png">{133, 62}</string>
-			<string key="item_tool_selected@2x.png">{133, 62}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
-			<string key="wood_bg@2x.jpg">{640, 960}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="balance_bg@2x.png">{16, 16}</string>
+			<string key="charge_bg@2x.png">{16, 16}</string>
+			<string key="item_normal@2x.png">{16, 16}</string>
+			<string key="item_normal_selected@2x.png">{16, 16}</string>
+			<string key="item_promotion@2x.png">{16, 16}</string>
+			<string key="item_promotion_selected@2x.png">{16, 16}</string>
+			<string key="item_tool@2x.png">{16, 16}</string>
+			<string key="item_tool_selected@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="wood_bg@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

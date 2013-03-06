@@ -269,6 +269,7 @@
                          targetUid:(NSString *)targetUid
                          contestId:(NSString *)contestId
                               desc:(NSString *)desc
+                      isCompressed:(BOOL)isCompressed
                   progressDelegate:(id)progressDelegate;
 
 
@@ -278,7 +279,8 @@
                             userId:(NSString*)userId
                             opusId:(NSString*)opusId
                               data:(NSData*)data
-                         imageData:(NSData *)imageData;
+                         imageData:(NSData *)imageData
+                      isCompressed:(BOOL)isCompressed;
 
 + (CommonNetworkOutput*)rejectOpusDrawToMe:(NSString*)baseURL
                                      appId:(NSString*)appId
@@ -522,6 +524,13 @@
                    targetDeviceId:(NSString*)targetDeviceId
                              type:(int)type
                        actionType:(int)actionType;
+
+//black friend
++ (CommonNetworkOutput*)blackFriend:(NSString*)baseURL
+                              appId:(NSString* )appId
+                       targetUserId:(NSString*)targetUserId
+                             userId:(NSString*)userId
+                         actionType:(int)actionType;
 
 
 // for item

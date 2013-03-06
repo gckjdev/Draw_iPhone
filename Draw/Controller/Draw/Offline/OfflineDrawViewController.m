@@ -747,14 +747,17 @@
                       avatar:[userManager avatarURL]
                       drawActionList:drawView.drawActionList
                       drawWord:self.word
-                      language:languageType];
+                      language:languageType
+                      drawBg:drawView.drawBg
+                      size:drawView.frame.size
+                      isCompressed:YES];
     return pbDraw;
 }
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
 //    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList];
+    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList pbdrawBg:drawView.drawBg size:drawView.frame.size];
 //    PPRelease(temp);
     return data;
 }
@@ -973,6 +976,8 @@
                                               targetUid:self.targetUid
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
+                                                 drawBg:drawView.drawBg
+                                                   size:drawView.frame.size
                                                delegate:self];
 
     
@@ -1227,6 +1232,10 @@
     drawView.shapeType = type;
 }
 
+- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectDrawBg:(PBDrawBg *)drawBg
+{
+    [drawView setDrawBg:drawBg];
+}
 #pragma mark - Recent Color
 
 - (void)updateRecentColors

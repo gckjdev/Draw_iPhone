@@ -254,7 +254,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 
-- (NSMutableArray *)numberPointList
+- (NSMutableArray *)compressToNumberPointList
 {
     if (self.pointCount == 0) {
         return nil;

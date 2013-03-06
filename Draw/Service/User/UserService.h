@@ -104,4 +104,5 @@ typedef enum {
                     type:(BlackUserType)type
             successBlock:(void (^)(void))successBlock;
 
+
 @end

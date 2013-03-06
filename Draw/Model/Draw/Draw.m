@@ -30,6 +30,7 @@
     PPRelease(_word);
     PPRelease(_date);
     PPRelease(_avatar);
+    PPRelease(_drawBg);
     [super dealloc];
 }
 
@@ -60,6 +61,7 @@
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];
         self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
         self.version = pbDraw.version;
+        self.drawBg = pbDraw.drawBg;
     }
     return self;
 }

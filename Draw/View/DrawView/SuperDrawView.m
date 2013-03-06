@@ -11,7 +11,9 @@
 
 
 @interface SuperDrawView()
-
+{
+    PBDrawBg *_drawBg;
+}
 
 
 @end
@@ -33,6 +35,8 @@
     PPRelease(_drawActionList);
     _currentAction = nil;
     PPRelease(osManager);
+    PPRelease(_drawBg);
+    PPRelease(_drawBgImage);
     [super dealloc];
 }
 
@@ -86,6 +90,20 @@
 {
     [self.drawActionList addObject:drawAction];
 }
+
+- (UIImage *)drawBGImage
+{
+    if (self.drawBg) {
+        return [self.drawBg localImage];
+    }
+    return nil;
+}
+
+#define CTMContext(context,rect) \
+CGContextScaleCTM(context, 1.0, -1.0);\
+CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
+
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -94,17 +112,18 @@
 }
 
 
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 - (CGContextRef)createBitmapContext
 {
-    CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];//[self createNewBitmapContext];
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+    CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];    
+    if (self.drawBgImage) {
+        CGRect rect = CGRectZero;
+        rect.size = self.drawBgImage.size;
+        CGContextDrawTiledImage(context, rect, _drawBgImage.CGImage);
+    }
     CTMContext(context, self.bounds);
     [osManager showAllLayersInContext:context];
+    
     return context;
 }
 
@@ -124,6 +143,36 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     }
 
 }
+
+- (void)setDrawBg:(PBDrawBg *)drawBg
+{
+    if (_drawBg != drawBg) {
+        PPRelease(_drawBg);
+        _drawBg = [drawBg retain];
+        self.drawBgImage = [drawBg localImage];
+        if (self.drawBgImage) {
+            self.backgroundColor = [UIColor colorWithPatternImage:self.drawBgImage];
+        }else{
+            //load remote image
+            self.backgroundColor = [UIColor whiteColor];
+            if ([drawBg.remoteUrl length] != 0) {
+                __block SuperDrawView *sv = self;
+                [DrawBgManager imageForRemoteURL:drawBg.remoteUrl success:^(UIImage *image, BOOL cached) {
+                    sv.drawBgImage = image;
+                    sv.backgroundColor = [UIColor colorWithPatternImage:image];
+                } failure:^(NSError *error) {
+                    
+                }];
+                
+            }
+        }
+    }
+}
+- (PBDrawBg *)drawBg
+{
+    return _drawBg;
+}
+
 
 - (void)showImage:(UIImage *)image
 {

@@ -130,6 +130,7 @@
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
 #define METHOD_BLACK_USER   @"blu"
+#define METHOD_BLACK_FRIEND @"blf"
 
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
@@ -239,6 +240,10 @@
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"
 #define PARA_NEW_APPID  @"napp"
+
+#define PARA_IS_DATA_ZIP            @"idz"
+#define PARA_IS_DATA_COMPRESSED     @"idc"
+#define PARA_RETURN_DATA_METHOD     @"rdm"
 
 #define PARA_TO_USERID @"tuid"
 #define PARA_MESSAGE_ID @"mid"
@@ -458,6 +463,7 @@
 #define PARA_LASTMODIFIEDDATE @"lsmd"
 #define PARA_RELATION_FAN_COUNT @"rfac"
 #define PARA_RELATION_FOLLOW_COUNT @"rflc"
+#define PARA_RELATION_BLACK_COUNT @"rbc"
 
 #define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0

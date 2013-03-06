@@ -25,6 +25,7 @@
 #import "PPMessage.h"
 #import "PPMessageManager.h"
 #import "MessageStat.h"
+#import "DrawUtils.h"
 
 static ChatService *_chatService = nil;
 
@@ -165,7 +166,10 @@ static ChatService *_chatService = nil;
                                                                   avatar:nil
                                                           drawActionList:drawActionList
                                                                 drawWord:nil 
-                                                                language:ChineseType];
+                                                                language:ChineseType
+                                                                  drawBg:nil
+                                                                    size:DRAW_VIEW_FRAME.size
+                                                                    isCompressed:YES];
                     data = [draw data];
                 }
                 break;

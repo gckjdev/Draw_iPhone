@@ -3259,6 +3259,8 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 @property int32_t penType;
 @property int32_t shapeType;
 @property (retain) NSMutableArray* mutableRectComponentList;
+@property (retain) NSMutableArray* mutablePointsXList;
+@property (retain) NSMutableArray* mutablePointsYList;
 @end
 
 @implementation PBDrawAction
@@ -3300,9 +3302,13 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 }
 @synthesize shapeType;
 @synthesize mutableRectComponentList;
+@synthesize mutablePointsXList;
+@synthesize mutablePointsYList;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
+  self.mutablePointsXList = nil;
+  self.mutablePointsYList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -3341,6 +3347,20 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   id value = [mutableRectComponentList objectAtIndex:index];
   return [value floatValue];
 }
+- (NSArray*) pointsXList {
+  return mutablePointsXList;
+}
+- (Float32) pointsXAtIndex:(int32_t) index {
+  id value = [mutablePointsXList objectAtIndex:index];
+  return [value floatValue];
+}
+- (NSArray*) pointsYList {
+  return mutablePointsYList;
+}
+- (Float32) pointsYAtIndex:(int32_t) index {
+  id value = [mutablePointsYList objectAtIndex:index];
+  return [value floatValue];
+}
 - (BOOL) isInitialized {
   if (!self.hasType) {
     return NO;
@@ -3372,6 +3392,12 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   for (NSNumber* value in self.mutableRectComponentList) {
     [output writeFloat:7 value:[value floatValue]];
+  }
+  for (NSNumber* value in self.mutablePointsXList) {
+    [output writeFloat:11 value:[value floatValue]];
+  }
+  for (NSNumber* value in self.mutablePointsYList) {
+    [output writeFloat:12 value:[value floatValue]];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3414,6 +3440,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     dataSize = 4 * self.mutableRectComponentList.count;
     size += dataSize;
     size += 1 * self.mutableRectComponentList.count;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePointsXList.count;
+    size += dataSize;
+    size += 1 * self.mutablePointsXList.count;
+  }
+  {
+    int32_t dataSize = 0;
+    dataSize = 4 * self.mutablePointsYList.count;
+    size += dataSize;
+    size += 1 * self.mutablePointsYList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3517,6 +3555,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     }
     [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
   }
+  if (other.mutablePointsXList.count > 0) {
+    if (result.mutablePointsXList == nil) {
+      result.mutablePointsXList = [NSMutableArray array];
+    }
+    [result.mutablePointsXList addObjectsFromArray:other.mutablePointsXList];
+  }
+  if (other.mutablePointsYList.count > 0) {
+    if (result.mutablePointsYList == nil) {
+      result.mutablePointsYList = [NSMutableArray array];
+    }
+    [result.mutablePointsYList addObjectsFromArray:other.mutablePointsYList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3569,6 +3619,14 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 61: {
         [self addRectComponent:[input readFloat]];
+        break;
+      }
+      case 93: {
+        [self addPointsX:[input readFloat]];
+        break;
+      }
+      case 101: {
+        [self addPointsY:[input readFloat]];
         break;
       }
     }
@@ -3714,6 +3772,68 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 }
 - (PBDrawAction_Builder*) clearRectComponentList {
   result.mutableRectComponentList = nil;
+  return self;
+}
+- (NSArray*) pointsXList {
+  if (result.mutablePointsXList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointsXList;
+}
+- (Float32) pointsXAtIndex:(int32_t) index {
+  return [result pointsXAtIndex:index];
+}
+- (PBDrawAction_Builder*) replacePointsXAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePointsXList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addPointsX:(Float32) value {
+  if (result.mutablePointsXList == nil) {
+    result.mutablePointsXList = [NSMutableArray array];
+  }
+  [result.mutablePointsXList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addAllPointsX:(NSArray*) values {
+  if (result.mutablePointsXList == nil) {
+    result.mutablePointsXList = [NSMutableArray array];
+  }
+  [result.mutablePointsXList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawAction_Builder*) clearPointsXList {
+  result.mutablePointsXList = nil;
+  return self;
+}
+- (NSArray*) pointsYList {
+  if (result.mutablePointsYList == nil) {
+    return [NSArray array];
+  }
+  return result.mutablePointsYList;
+}
+- (Float32) pointsYAtIndex:(int32_t) index {
+  return [result pointsYAtIndex:index];
+}
+- (PBDrawAction_Builder*) replacePointsYAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePointsYList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addPointsY:(Float32) value {
+  if (result.mutablePointsYList == nil) {
+    result.mutablePointsYList = [NSMutableArray array];
+  }
+  [result.mutablePointsYList addObject:[NSNumber numberWithFloat:value]];
+  return self;
+}
+- (PBDrawAction_Builder*) addAllPointsY:(NSArray*) values {
+  if (result.mutablePointsYList == nil) {
+    result.mutablePointsYList = [NSMutableArray array];
+  }
+  [result.mutablePointsYList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawAction_Builder*) clearPointsYList {
+  result.mutablePointsYList = nil;
   return self;
 }
 @end

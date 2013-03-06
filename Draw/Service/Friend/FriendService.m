@@ -16,6 +16,8 @@
 #import "TimeUtils.h"
 #import "ConfigManager.h"
 #import "MyFriend.h"
+#import "UserService.h"
+
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
 {
@@ -333,15 +335,20 @@ FriendService* globalGetFriendService()
         NSInteger resultCode = output.resultCode;
         NSInteger fanCount = 0;
         NSInteger followCount = 0;
+        NSInteger blackCount = 0;
         if (resultCode == ERROR_SUCCESS) {
             fanCount = [[output.jsonDataDict objectForKey:PARA_RELATION_FAN_COUNT] integerValue];
             followCount = [[output.jsonDataDict objectForKey:PARA_RELATION_FOLLOW_COUNT] integerValue];
+            blackCount = [[output.jsonDataDict objectForKey:PARA_RELATION_BLACK_COUNT] integerValue];
         }else{
             PPDebug(@"warning:<getFriendList> error code = %d", resultCode);
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFanCount:followCount:resultCode:)]) {
-                [delegate didGetFanCount:fanCount followCount:followCount resultCode:resultCode];
+            if (delegate && [delegate respondsToSelector:@selector(didGetFanCount:followCount:blackCount:resultCode:)]) {
+                [delegate didGetFanCount:fanCount
+                             followCount:followCount
+                              blackCount:blackCount
+                              resultCode:resultCode];
             }
         });
     });
@@ -380,5 +387,47 @@ FriendService* globalGetFriendService()
         }); 
     });
     
+}
+
+- (void)blackFriend:(NSString*)targetUserId
+       successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        NSString *appId = [ConfigManager appId];
+        //        NSString *gameId = [ConfigManager gameId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL
+                                                                appId:appId
+                                                         targetUserId:targetUserId
+                                                               userId:userId
+                                                           actionType:BLACK_ACTION_TYPE_BLACK];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                successBlock();
+            }
+        });
+    });
+}
+- (void)unblackFriend:(NSString*)targetUserId
+         successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        NSString *appId = [ConfigManager appId];
+        //        NSString *gameId = [ConfigManager gameId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL
+                                                                appId:appId
+                                                         targetUserId:targetUserId
+                                                               userId:userId
+                                                           actionType:BLACK_ACTION_TYPE_UNBLACK];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                successBlock();
+            }
+        });
+    });
 }
 @end
