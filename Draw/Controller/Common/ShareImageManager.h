@@ -10,6 +10,7 @@
 #import "LocaleUtils.h"
 #import "UserManager.h"
 #import "ImageManagerProtocol.h"
+#import "GameBasic.pb.h"
 
 //#define DEFAULT_AVATAR_BUNDLE   ([[UserManager defaultManager] defaultAvatar])
 
@@ -224,4 +225,8 @@
 
 
 - (UIImage *)badgeImage;
+
+- (UIImage *)currencyImageWithType:(PBGameCurrency)currency;
+- (UIImage *)grayCurrencyImageWithType:(PBGameCurrency)currency;
+
 @end

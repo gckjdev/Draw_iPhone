@@ -3261,6 +3261,7 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 @property (retain) NSMutableArray* mutableRectComponentList;
 @property (retain) NSMutableArray* mutablePointsXList;
 @property (retain) NSMutableArray* mutablePointsYList;
+@property int32_t betterColor;
 @end
 
 @implementation PBDrawAction
@@ -3304,6 +3305,13 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
 @synthesize mutableRectComponentList;
 @synthesize mutablePointsXList;
 @synthesize mutablePointsYList;
+- (BOOL) hasBetterColor {
+  return !!hasBetterColor_;
+}
+- (void) setHasBetterColor:(BOOL) value {
+  hasBetterColor_ = !!value;
+}
+@synthesize betterColor;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
@@ -3318,6 +3326,7 @@ static PBGameSessionChanged* defaultPBGameSessionChangedInstance = nil;
     self.color = 0;
     self.penType = 0;
     self.shapeType = 0;
+    self.betterColor = 0;
   }
   return self;
 }
@@ -3399,6 +3408,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   for (NSNumber* value in self.mutablePointsYList) {
     [output writeFloat:12 value:[value floatValue]];
   }
+  if (self.hasBetterColor) {
+    [output writeInt32:13 value:self.betterColor];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3452,6 +3464,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     dataSize = 4 * self.mutablePointsYList.count;
     size += dataSize;
     size += 1 * self.mutablePointsYList.count;
+  }
+  if (self.hasBetterColor) {
+    size += computeInt32Size(13, self.betterColor);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3567,6 +3582,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     }
     [result.mutablePointsYList addObjectsFromArray:other.mutablePointsYList];
   }
+  if (other.hasBetterColor) {
+    [self setBetterColor:other.betterColor];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3627,6 +3645,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 101: {
         [self addPointsY:[input readFloat]];
+        break;
+      }
+      case 104: {
+        [self setBetterColor:[input readInt32]];
         break;
       }
     }
@@ -3834,6 +3856,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 }
 - (PBDrawAction_Builder*) clearPointsYList {
   result.mutablePointsYList = nil;
+  return self;
+}
+- (BOOL) hasBetterColor {
+  return result.hasBetterColor;
+}
+- (int32_t) betterColor {
+  return result.betterColor;
+}
+- (PBDrawAction_Builder*) setBetterColor:(int32_t) value {
+  result.hasBetterColor = YES;
+  result.betterColor = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearBetterColor {
+  result.hasBetterColor = NO;
+  result.betterColor = 0;
   return self;
 }
 @end
