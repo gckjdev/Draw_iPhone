@@ -24,6 +24,7 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
          buttonTitles:(NSString *)firstTitle, ...;
 
 - (void)showInView:(UIView *)view;
+- (void)dismiss;
 
 @property (nonatomic, assign) ButtonActionBlock actionBlock;
 @property (retain, nonatomic) IBOutlet UIView *mainView;

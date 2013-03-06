@@ -15,7 +15,7 @@
 @end
 
 
-#define HEIGHT_TOP                  28
+#define HEIGHT_TOP                  30
 #define SPACE_INFOVIEW_AND_TOP      10
 #define SPACE_INFOVIEW_AND_BORDER   20
 
@@ -23,8 +23,8 @@
 #define WIDTH_BUTTON                100
 #define SPACE_BUTTON_AND_BUTTON     20
 
-#define WIDTH_MIN_INFO_LABEL        210
-#define HEIGHT_MIN_INFO_LABEL       140
+#define WIDTH_INFO_LABEL            210
+#define HEIGHT_MIN_INFO_LABEL       100
 
 @implementation CustomInfoView
 
@@ -37,6 +37,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_infoLabel release];
     [_titleLabel release];
     [_closeButton release];
+    Block_release(_actionBlock);
     [super dealloc];
 }
 
@@ -48,9 +49,12 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     view.infoLabel.text = info;
     
     // set info label height
-    CGSize maxSize = CGSizeMake(WIDTH_MIN_INFO_LABEL, 400);
+    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, 400);
     CGSize size = [view.infoLabel.text sizeWithFont:view.infoLabel.font constrainedToSize:maxSize];
-    view.infoLabel.frame = CGRectMake(view.infoLabel.frame.origin.x, view.infoLabel.frame.origin.y, WIDTH_MIN_INFO_LABEL, size.height);
+    if (size.height < HEIGHT_MIN_INFO_LABEL) {
+        size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
+    }
+    view.infoLabel.frame = CGRectMake(view.infoLabel.frame.origin.x, view.infoLabel.frame.origin.y, WIDTH_INFO_LABEL, size.height);
     
     // set mainView height
     view.mainView.frame = CGRectMake(view.mainView.frame.origin.x, view.mainView.frame.origin.y, view.mainView.frame.size.width, view.infoLabel.frame.origin.y + view.infoLabel.frame.size.height + SPACE_INFOVIEW_AND_BORDER);
@@ -74,28 +78,31 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [view.mainView addSubview:infoView];
     
     
+    view.infoLabel.hidden = YES;
+    
+    
     // set close button
     view.closeButton.hidden = !hasCloseButton;
     
     
     // add buttons
     NSMutableArray *titleList = [[[NSMutableArray alloc] init] autorelease];
-    
-    NSString *oneTitle;
-    va_list args;
-    va_start(args, firstTitle);
-    
-    [titleList addObject:firstTitle];
-    
-    while ((oneTitle = va_arg(args, NSString *))) {
-        [titleList addObject:oneTitle];
+    id arg;
+    va_list argList;
+    if (firstTitle)
+    {
+        [titleList addObject:firstTitle];
+        va_start(argList, firstTitle);
+        while ((arg = va_arg(argList,id)))
+        {
+            [titleList addObject:arg];
+        }
+        va_end(argList);
     }
-    
-    va_end(args);
-    
+
     if ([titleList count] > 0) {
         CGFloat y = HEIGHT_TOP + SPACE_INFOVIEW_AND_TOP + infoView.frame.size.height + SPACE_INFOVIEW_AND_TOP;
-        CGFloat x = SPACE_INFOVIEW_AND_BORDER;
+        CGFloat x;
         CGFloat buttonWidth = (infoView.frame.size.width - ([titleList count] - 1) * SPACE_BUTTON_AND_BUTTON ) / [titleList count];
         
         int index = 0;
@@ -105,6 +112,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
             
             x = SPACE_INFOVIEW_AND_BORDER + index * (buttonWidth + SPACE_BUTTON_AND_BUTTON);
             button.frame = CGRectMake(x, y, buttonWidth, button.frame.size.height);
+            [button addTarget:view action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
             [view.mainView addSubview:button];
             
             index ++;
@@ -113,7 +123,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     
     
     // set mainView size
-    CGFloat height = HEIGHT_TOP + SPACE_INFOVIEW_AND_TOP + infoView.frame.size.height + SPACE_INFOVIEW_AND_BORDER;
+    CGFloat height = HEIGHT_TOP + SPACE_INFOVIEW_AND_TOP + infoView.frame.size.height + 0.7 * SPACE_INFOVIEW_AND_BORDER;
     if ([titleList count] > 0) {
         height += SPACE_INFOVIEW_AND_TOP + HEIGHT_BUTTON;
     }
@@ -141,8 +151,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [button setTitleColor:COLOR_BUTTON_TITLE forState:UIControlStateNormal];
     [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1];
     
-    [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     return button;
 }
 
@@ -151,14 +159,21 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [view addSubview:self];
 }
 
+- (void)dismiss
+{
+    [self removeFromSuperview];
+}
+
 - (void)clickButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    _actionBlock(button, _infoView);
+    if (_actionBlock) {
+        _actionBlock(button, _infoView);
+    }
 }
 
 - (IBAction)clickCloseButton:(id)sender {
-    [self removeFromSuperview];
+    [self dismiss];
 }
 
 @end
