@@ -46,6 +46,13 @@ typedef enum {
 
 BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 
+typedef enum {
+  PBGameItemSalesTypeOneOff = 1,
+  PBGameItemSalesTypeMultiple = 2,
+} PBGameItemSalesType;
+
+BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
+
 
 @interface GameBasicRoot : NSObject {
 }
@@ -1468,6 +1475,7 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
   BOOL hasAppleProductId_:1;
   BOOL hasPriceInfo_:1;
   BOOL hasPromotionInfo_:1;
+  BOOL hasSalesType_:1;
   int32_t itemId;
   int32_t type;
   NSString* name;
@@ -1477,10 +1485,12 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
   NSString* appleProductId;
   PBPriceInfo* priceInfo;
   PBPromotionInfo* promotionInfo;
+  PBGameItemSalesType salesType;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
+- (BOOL) hasSalesType;
 - (BOOL) hasImage;
 - (BOOL) hasDemoImage;
 - (BOOL) hasType;
@@ -1490,6 +1500,7 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 @property (readonly) int32_t itemId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
+@property (readonly) PBGameItemSalesType salesType;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* demoImage;
 @property (readonly) int32_t type;
@@ -1545,6 +1556,11 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 - (NSString*) desc;
 - (PBGameItem_Builder*) setDesc:(NSString*) value;
 - (PBGameItem_Builder*) clearDesc;
+
+- (BOOL) hasSalesType;
+- (PBGameItemSalesType) salesType;
+- (PBGameItem_Builder*) setSalesType:(PBGameItemSalesType) value;
+- (PBGameItem_Builder*) clearSalesType;
 
 - (BOOL) hasImage;
 - (NSString*) image;
