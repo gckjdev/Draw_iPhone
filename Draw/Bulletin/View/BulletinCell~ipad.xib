@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
-		<string key="IBDocument.AppKitVersion">1187</string>
-		<string key="IBDocument.HIToolboxVersion">624.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -46,7 +46,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{0, 20}, {486, 88}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="337853606"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -57,7 +56,6 @@
 								<int key="NSvFlags">277</int>
 								<string key="NSFrame">{{114, 48}, {330, 32}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="543646980"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="512178695">
@@ -72,7 +70,7 @@
 								<string key="IBUIText">猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画猜猜画画</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMDU4ODIzNTI5IDAuMTI5NDExNzY0NyAwAA</bytes>
+									<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMTc2NDcwNTg4MiAwLjAyNzQ1MDk4MDM5AA</bytes>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="7141617">
 									<int key="NSColorSpace">3</int>
@@ -97,7 +95,6 @@
 								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{168, 4}, {152, 40}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="891022825"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -112,7 +109,6 @@
 								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{24, 50}, {74, 28}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="386692798"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="512178695"/>
@@ -124,7 +120,7 @@
 								<reference key="IBUIHighlightedTitleColor" ref="7141617"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjg4NjI3NDUwOTggMC43Mjk0MTE3NjQ3AA</bytes>
+									<bytes key="NSRGB">MC45MTc2NDcwNTg4IDAuODY2NjY2NjY2NyAwLjgwMzkyMTU2ODYAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
@@ -149,7 +145,6 @@
 								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{170, 4}, {148, 28}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="829639489"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="81754317">
@@ -184,7 +179,6 @@
 								<int key="NSvFlags">293</int>
 								<string key="NSFrame">{{430, 16}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="47280834"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -199,7 +193,6 @@
 								<int key="NSvFlags">297</int>
 								<string key="NSFrame">{{453, 51}, {16, 25}}</string>
 								<reference key="NSSuperview" ref="759644104"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -211,7 +204,6 @@
 						</array>
 						<string key="NSFrameSize">{490, 121}</string>
 						<reference key="NSSuperview" ref="67796230"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="356404420"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="512178695"/>
@@ -224,7 +216,6 @@
 				</array>
 				<string key="NSFrameSize">{490, 122}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="759644104"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="512178695"/>
@@ -390,70 +381,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">19</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">BulletinCell</string>
-					<string key="superclassName">PPTableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="backgroundImageView">UIImageView</string>
-						<string key="contentLabel">UILabel</string>
-						<string key="customAccessoryImageView">UIImageView</string>
-						<string key="dateBgView">UIImageView</string>
-						<string key="dateLabel">UILabel</string>
-						<string key="messageLabel">UILabel</string>
-						<string key="newBulletinFlag">UIImageView</string>
-						<string key="timeButton">UIButton</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="backgroundImageView">
-							<string key="name">backgroundImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="contentLabel">
-							<string key="name">contentLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="customAccessoryImageView">
-							<string key="name">customAccessoryImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dateBgView">
-							<string key="name">dateBgView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dateLabel">
-							<string key="name">dateLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="messageLabel">
-							<string key="name">messageLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="newBulletinFlag">
-							<string key="name">newBulletinFlag</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timeButton">
-							<string key="name">timeButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/BulletinCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PPTableViewCell</string>
-					<string key="superclassName">UITableViewCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PPTableViewCell.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
@@ -464,6 +392,6 @@
 			<string key="bulletin_time_bg@2x.png">{73, 27}</string>
 			<string key="new_bulletin@2x.png">{63, 60}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

@@ -857,6 +857,10 @@
 		C2F310C616AE70030076064D /* zjh_tabright_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43FB168DBDB1009F43F7 /* zjh_tabright_unselect@2x.png */; };
 		C2F310C716AE701A0076064D /* zjh_room_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F2168DBDB1009F43F7 /* zjh_room_item@2x.png */; };
 		C2F310C816AE701B0076064D /* zjh_room_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43F2168DBDB1009F43F7 /* zjh_room_item@2x.png */; };
+		C2F5367E16E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */; };
+		C2F5367F16E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */; };
+		C2F5368016E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */; };
+		C2F5368116E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */; };
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -7692,6 +7696,7 @@
 		C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRoomListCell.m; sourceTree = "<group>"; };
 		C2F310B416AE2D090076064D /* DrawRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawRoomListCell.xib; sourceTree = "<group>"; };
 		C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bulletin_bg@2x.jpg"; sourceTree = "<group>"; };
 		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
 		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
 		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
@@ -11640,6 +11645,7 @@
 		C2974D52168302DE00E012FC /* Bulletin */ = {
 			isa = PBXGroup;
 			children = (
+				C2F5367D16E73C000008B2F7 /* bulletin_bg@2x.jpg */,
 				C2974D53168302DE00E012FC /* bulletin_accessory@2x.png */,
 				C2974D54168302DE00E012FC /* bulletin_bg@2x.png */,
 				C2974D55168302DE00E012FC /* bulletin_buttom@2x.png */,
@@ -18812,6 +18818,7 @@
 				A454207516E060AB0073A431 /* Dice-Info.plist in Resources */,
 				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
+				C2F5368016E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19676,6 +19683,7 @@
 				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
 				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
+				C2F5368116E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20558,6 +20566,7 @@
 				A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */,
 				A491423816E6E13500106265 /* ingot@2x.png in Resources */,
 				A491424016E6E2E300106265 /* PriceView.xib in Resources */,
+				C2F5367E16E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21403,6 +21412,7 @@
 				CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
+				C2F5367F16E73C000008B2F7 /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
