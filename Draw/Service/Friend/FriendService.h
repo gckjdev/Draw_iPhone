@@ -37,8 +37,8 @@
 typedef enum{
     FriendTypeFan = 2,
     FriendTypeFollow = 1,
-//    FriendTypeFriend = 3,
-    FriendTypeBlack = 3,
+    FriendTypeFriend = 3,
+    FriendTypeBlack = 4,
 }FriendType;
 
 
