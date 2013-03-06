@@ -248,15 +248,7 @@ typedef enum{
     if (tab.status != TableTabStatusLoading) {
         [self reloadTableViewDataSource];
     }
-    
-    
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
-//    UIButton *currentButton = self.currentTabButton;
-//    [currentButton setSelected:NO];
-//    [button setSelected:YES];
-//    [self clickTab:button.tag];
+
 }
 
 

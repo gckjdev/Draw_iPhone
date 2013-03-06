@@ -219,6 +219,13 @@
 		A491416716E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
 		A491416816E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
 		A491416916E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
+		A491423616E6E13500106265 /* gray_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423316E6E13500106265 /* gray_coin@2x.png */; };
+		A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423416E6E13500106265 /* gray_ingot@2x.png */; };
+		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
+		A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423A16E6E27500106265 /* PBGameItemUtils.m */; };
+		A491423F16E6E2E300106265 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
+		A491424016E6E2E300106265 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		A491424316E6E54B00106265 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -7142,6 +7149,16 @@
 		A491415716E47ECF00106265 /* StoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreController.h; sourceTree = "<group>"; };
 		A491415816E47ECF00106265 /* StoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreController.m; sourceTree = "<group>"; };
 		A491415916E47ECF00106265 /* StoreController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreController.xib; sourceTree = "<group>"; };
+		A491423316E6E13500106265 /* gray_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_coin@2x.png"; sourceTree = "<group>"; };
+		A491423416E6E13500106265 /* gray_ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_ingot@2x.png"; sourceTree = "<group>"; };
+		A491423516E6E13500106265 /* ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingot@2x.png"; sourceTree = "<group>"; };
+		A491423916E6E27500106265 /* PBGameItemUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGameItemUtils.h; sourceTree = "<group>"; };
+		A491423A16E6E27500106265 /* PBGameItemUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGameItemUtils.m; sourceTree = "<group>"; };
+		A491423C16E6E2E300106265 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
+		A491423D16E6E2E300106265 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
+		A491423E16E6E2E300106265 /* PriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriceView.xib; sourceTree = "<group>"; };
+		A491424116E6E54B00106265 /* CustomInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInfoView.h; sourceTree = "<group>"; };
+		A491424216E6E54B00106265 /* CustomInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInfoView.m; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
@@ -12864,6 +12881,11 @@
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				A491424116E6E54B00106265 /* CustomInfoView.h */,
+				A491424216E6E54B00106265 /* CustomInfoView.m */,
+				A491423C16E6E2E300106265 /* PriceView.h */,
+				A491423D16E6E2E300106265 /* PriceView.m */,
+				A491423E16E6E2E300106265 /* PriceView.xib */,
 				A491415416E47ECF00106265 /* StoreCell.h */,
 				A491415516E47ECF00106265 /* StoreCell.m */,
 				A491415616E47ECF00106265 /* StoreCell.xib */,
@@ -13259,6 +13281,8 @@
 		CA16411E16D724B5001C615F /* GameItem */ = {
 			isa = PBXGroup;
 			children = (
+				A491423916E6E27500106265 /* PBGameItemUtils.h */,
+				A491423A16E6E27500106265 /* PBGameItemUtils.m */,
 				CA16411F16D724CA001C615F /* GameItem.h */,
 				CA16412016D724CA001C615F /* GameItem.m */,
 				CA16412516D724DF001C615F /* GameItemManager.h */,
@@ -17236,6 +17260,9 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A491423316E6E13500106265 /* gray_coin@2x.png */,
+				A491423416E6E13500106265 /* gray_ingot@2x.png */,
+				A491423516E6E13500106265 /* ingot@2x.png */,
 				C28BD0D516D4B03B00E974A6 /* common_dialog */,
 				C24E621716BF6575003132E6 /* common_round_avatar_waiting_user@2x.png */,
 				CABEDD2C16B64CAA00BB9060 /* Player */,
@@ -20527,6 +20554,10 @@
 				CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 				A491415E16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416616E47ECF00106265 /* StoreController.xib in Resources */,
+				A491423616E6E13500106265 /* gray_coin@2x.png in Resources */,
+				A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */,
+				A491423816E6E13500106265 /* ingot@2x.png in Resources */,
+				A491424016E6E2E300106265 /* PriceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23563,6 +23594,9 @@
 				A491415A16E47ECF00106265 /* StoreCell.m in Sources */,
 				A491416216E47ECF00106265 /* StoreController.m in Sources */,
 				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
+				A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */,
+				A491423F16E6E2E300106265 /* PriceView.m in Sources */,
+				A491424316E6E54B00106265 /* CustomInfoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

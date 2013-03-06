@@ -108,7 +108,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 + (void )imageForRemoteURL:(NSString *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure
 {
     NSURL *URL = [NSURL URLWithString:url];
-    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:nil options:SDWebImageProgressiveDownload success:success failure:failure];
+    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:success failure:failure];
 }
 
 

@@ -984,5 +984,37 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"common_home_badge@2x.png"];
 }
 
+- (UIImage *)currencyImageWithType:(PBGameCurrency)currency
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            return [UIImage imageNamed:@"coin@2x.png"];
+            break;
+            
+        case PBGameCurrencyIngot:
+            return [UIImage imageNamed:@"ingot@2x.png"];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (UIImage *)grayCurrencyImageWithType:(PBGameCurrency)currency
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            return [UIImage imageNamed:@"gray_coin@2x.png"];
+            break;
+            
+        case PBGameCurrencyIngot:
+            return [UIImage imageNamed:@"gray_ingot@2x.png"];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 @end
 
