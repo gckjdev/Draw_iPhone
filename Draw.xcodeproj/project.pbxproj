@@ -6867,6 +6867,11 @@
 		EA856CA215F0A65700178323 /* volume_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6915F0A65700178323 /* volume_on@2x.png */; };
 		EA856CA315F0A65700178323 /* wood_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6A15F0A65700178323 /* wood_bg2@2x.png */; };
 		EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6C15F0A65700178323 /* wood_button@2x.png */; };
+		EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
+		EA97E93516E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
+		EA97E93616E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
+		EA97E93716E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
+		EA97E93816E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -10243,6 +10248,8 @@
 		EA856C6915F0A65700178323 /* volume_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_on@2x.png"; sourceTree = "<group>"; };
 		EA856C6A15F0A65700178323 /* wood_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_bg2@2x.png"; sourceTree = "<group>"; };
 		EA856C6C15F0A65700178323 /* wood_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_button@2x.png"; sourceTree = "<group>"; };
+		EA97E92D16E735A600817647 /* CustomInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
+		EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
@@ -12986,6 +12993,8 @@
 			children = (
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
+				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
+				EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */,
 				A491423C16E6E2E300106265 /* PriceView.h */,
 				A491423D16E6E2E300106265 /* PriceView.m */,
 				A491423E16E6E2E300106265 /* PriceView.xib */,
@@ -18923,6 +18932,7 @@
 				A454207516E060AB0073A431 /* Dice-Info.plist in Resources */,
 				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
+				EA97E93716E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19787,6 +19797,7 @@
 				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
 				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
+				EA97E93816E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20694,6 +20705,8 @@
 				A491427716E6EDB200106265 /* item_tool_selected@2x.png in Resources */,
 				A491427816E6EDB200106265 /* store_cell@2x.png in Resources */,
 				A491427916E6EDB200106265 /* zhifubao@2x.png in Resources */,
+				EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */,
+				EA97E93516E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21539,6 +21552,7 @@
 				CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
+				EA97E93616E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
