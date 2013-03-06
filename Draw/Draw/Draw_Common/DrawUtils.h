@@ -60,6 +60,7 @@
 + (UIColor *)decompressIntColor:(NSInteger)intColor;
 
 + (NSInteger)compressPoint:(CGPoint)point;
++ (NSInteger)compressPointWithX:(float)x y:(float)y;
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint;
 + (NSArray *)compressCGPointList:(NSArray *)pointList;
 + (NSArray *)decompressNumberPointList:(NSArray *)numberPointList;

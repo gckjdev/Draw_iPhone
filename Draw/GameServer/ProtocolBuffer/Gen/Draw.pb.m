@@ -262,7 +262,7 @@ static PBDraw* defaultPBDrawInstance = nil;
     [output writeInt32:12 value:self.score];
   }
   if (self.hasIsCompressed) {
-    [output writeBool:13 value:self.isCompressed];
+    [output writeBool:19 value:self.isCompressed];
   }
   if (self.hasDrawBg) {
     [output writeMessage:20 value:self.drawBg];
@@ -316,7 +316,7 @@ static PBDraw* defaultPBDrawInstance = nil;
     size += computeInt32Size(12, self.score);
   }
   if (self.hasIsCompressed) {
-    size += computeBoolSize(13, self.isCompressed);
+    size += computeBoolSize(19, self.isCompressed);
   }
   if (self.hasDrawBg) {
     size += computeMessageSize(20, self.drawBg);
@@ -518,7 +518,7 @@ static PBDraw* defaultPBDrawInstance = nil;
         [self setScore:[input readInt32]];
         break;
       }
-      case 104: {
+      case 152: {
         [self setIsCompressed:[input readBool]];
         break;
       }

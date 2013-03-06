@@ -90,15 +90,6 @@ message PBGameSessionChanged {
   repeated string userIdsDeleted = 6;
   repeated PBGameUser usersUpdated = 7;
 }
-/*
-message PBShapeInfo {
-    required int32 type = 1;
-    optional float width = 2;
-    optional int32 penType = 3;
-    repeated float rectComponent = 4; //startX, startY, endX, endY
-    repeated float colorComponent = 5; //R G B A
-}
-*/
 
 // internal usage, to store draw data
 message PBDrawAction {
@@ -108,12 +99,14 @@ message PBDrawAction {
   optional int32 color = 4;
   optional int32 penType = 5;
   optional int32 shapeType = 6;
-  repeated float rectComponent = 7; //startX, startY, endX, endY
+  repeated float rectComponent = 7;             //startX, startY, endX, endY ??????
   
   // for no compressed points, add 2012-03-04
   repeated float pointsX = 11;
   repeated float pointsY = 12;
-
+  
+  // for new compressed algorithm color
+  optional int32 betterColor = 13;
 }
 
 message PBMessage {

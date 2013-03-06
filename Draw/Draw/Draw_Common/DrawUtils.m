@@ -187,10 +187,18 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return round;
 }
 
++ (NSInteger)compressPointWithX:(float)x y:(float)y
+{
+    NSInteger ret = ([DrawUtils roundFloatValue:x] * (1 << 15)) + [DrawUtils roundFloatValue:y];
+    return ret;
+}
+
 + (NSInteger)compressPoint:(CGPoint)point
 {
-    NSInteger ret = ([DrawUtils roundFloatValue:point.x] * (1 << 15)) + [DrawUtils roundFloatValue:point.y];
-    return ret;
+    return [DrawUtils compressPointWithX:point.x y:point.y];
+    
+//    NSInteger ret = ([DrawUtils roundFloatValue:point.x] * (1 << 15)) + [DrawUtils roundFloatValue:point.y];
+//    return ret;
 }
 
 + (CGPoint)decompressIntPoint:(NSInteger)intPoint
