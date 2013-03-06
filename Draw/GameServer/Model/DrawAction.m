@@ -377,7 +377,10 @@
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         [builder addAllDrawActionList:array];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setDrawBg:drawBg];
+        if (drawBg) {
+            [builder setDrawBg:drawBg];
+        }
+
         //TODO save size
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);

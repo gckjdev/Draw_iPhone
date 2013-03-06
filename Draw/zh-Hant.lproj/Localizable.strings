@@ -1347,6 +1347,13 @@
 "kClearImageData" = "之前選擇的圖像將被清除，妳要繼續嗎？";
 "kClearDrawData" = "之前的畫畫數據將被清除，妳要繼續嗎？";
 "kSaveImageSuccess" = "保存成功";
+
+"kPromotion:" = "促銷:";
+"kPrice:" = "價格:";
+"kDesc:" = "描述:";
+"kDiscountIs" = "%d%%折扣";
+"kNoDiscount" = "無折扣";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

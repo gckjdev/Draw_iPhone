@@ -348,8 +348,6 @@
 
 - (BOOL)supportRecovery
 {
-    return NO;
-    
     if (targetType == TypeGraffiti){
         return NO;
     }
@@ -1219,6 +1217,10 @@
         color.alpha = alpha;
         drawView.lineColor = color;
     }
+    
+    //chage scale... will be removed __By Gamy
+//    drawView.scale = alpha * 5;
+    
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
@@ -1235,6 +1237,8 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectDrawBg:(PBDrawBg *)drawBg
 {
     [drawView setDrawBg:drawBg];
+    [[DrawRecoveryService defaultService] handleChangeDrawBg:drawBg];
+    
 }
 #pragma mark - Recent Color
 

@@ -37,6 +37,15 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value) {
       return NO;
   }
 }
+BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value) {
+  switch (value) {
+    case PBGameItemSalesTypeOneOff:
+    case PBGameItemSalesTypeMultiple:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBKeyValue ()
 @property (retain) NSString* name;
 @property (retain) NSString* value;
@@ -6059,6 +6068,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property int32_t itemId;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
+@property PBGameItemSalesType salesType;
 @property (retain) NSString* image;
 @property (retain) NSString* demoImage;
 @property int32_t type;
@@ -6090,6 +6100,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasDesc_ = !!value;
 }
 @synthesize desc;
+- (BOOL) hasSalesType {
+  return !!hasSalesType_;
+}
+- (void) setHasSalesType:(BOOL) value {
+  hasSalesType_ = !!value;
+}
+@synthesize salesType;
 - (BOOL) hasImage {
   return !!hasImage_;
 }
@@ -6147,6 +6164,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.itemId = 0;
     self.name = @"";
     self.desc = @"";
+    self.salesType = PBGameItemSalesTypeOneOff;
     self.image = @"";
     self.demoImage = @"";
     self.type = 0;
@@ -6197,6 +6215,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDesc) {
     [output writeString:3 value:self.desc];
   }
+  if (self.hasSalesType) {
+    [output writeEnum:5 value:self.salesType];
+  }
   if (self.hasImage) {
     [output writeString:11 value:self.image];
   }
@@ -6232,6 +6253,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   }
   if (self.hasDesc) {
     size += computeStringSize(3, self.desc);
+  }
+  if (self.hasSalesType) {
+    size += computeEnumSize(5, self.salesType);
   }
   if (self.hasImage) {
     size += computeStringSize(11, self.image);
@@ -6335,6 +6359,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasDesc) {
     [self setDesc:other.desc];
   }
+  if (other.hasSalesType) {
+    [self setSalesType:other.salesType];
+  }
   if (other.hasImage) {
     [self setImage:other.image];
   }
@@ -6384,6 +6411,15 @@ static PBGameItem* defaultPBGameItemInstance = nil;
       }
       case 26: {
         [self setDesc:[input readString]];
+        break;
+      }
+      case 40: {
+        int32_t value = [input readEnum];
+        if (PBGameItemSalesTypeIsValidValue(value)) {
+          [self setSalesType:value];
+        } else {
+          [unknownFields mergeVarintField:5 value:value];
+        }
         break;
       }
       case 90: {
@@ -6469,6 +6505,22 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 - (PBGameItem_Builder*) clearDesc {
   result.hasDesc = NO;
   result.desc = @"";
+  return self;
+}
+- (BOOL) hasSalesType {
+  return result.hasSalesType;
+}
+- (PBGameItemSalesType) salesType {
+  return result.salesType;
+}
+- (PBGameItem_Builder*) setSalesType:(PBGameItemSalesType) value {
+  result.hasSalesType = YES;
+  result.salesType = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearSalesType {
+  result.hasSalesType = NO;
+  result.salesType = PBGameItemSalesTypeOneOff;
   return self;
 }
 - (BOOL) hasImage {

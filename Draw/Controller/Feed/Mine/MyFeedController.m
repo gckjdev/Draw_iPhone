@@ -723,8 +723,10 @@ typedef enum{
             {
                 _seletedFeed = feed;
                 CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kAskSureRefuse") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                    __block MyFeedController* cp = self;
                     [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId successBlock:^{
                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusSuccess") delayTime:1.5];
+                        [cp clickRefreshButton:nil];
                         
                     } failBlock:^{
                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusFail") delayTime:1.5];

@@ -1029,6 +1029,13 @@
 "kUnblackUserSuccess" = "Remove friend from black list successfully!";
 "kBlackList" = "Black";
 "kBlackListNumber" = "Black(%d)";
+
+"kPromotion:" = "DCT:";
+"kPrice:" = "Price:";
+"kDesc:" = "Desc:";
+
+"kDiscountIs" = "%d%%off";
+"kNoDiscount" = "None";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -12,6 +12,7 @@
 @class MyPaint;
 @class Word;
 @class PBNoCompressDrawData;
+@class PBDrawBg;
 
 @interface DrawRecoveryService : CommonService
 {
@@ -20,6 +21,8 @@
 }
 
 @property (nonatomic, retain) MyPaint* currentPaint;
+//@property (nonatomic, retain) MyPaint* currentPaint;
+//@property (nonatomic, retain) MyPaint* currentPaint;
 
 + (DrawRecoveryService*)defaultService;
 
@@ -40,5 +43,6 @@
 
 - (void)handleTimer:(NSArray*)drawActionList;
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList;
+- (void)handleChangeDrawBg:(PBDrawBg *)drawBg;
 
 @end

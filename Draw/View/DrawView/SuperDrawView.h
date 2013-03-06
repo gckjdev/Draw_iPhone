@@ -30,6 +30,7 @@
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
 @property (nonatomic, retain) UIImage *drawBgImage;
+@property (nonatomic, assign) CGFloat scale;
 
 //public method
 #pragma mark - util methods
@@ -48,6 +49,7 @@
 
 - (void)setDrawBg:(PBDrawBg *)drawBg;
 - (PBDrawBg *)drawBg;
+
 
 
 @end
