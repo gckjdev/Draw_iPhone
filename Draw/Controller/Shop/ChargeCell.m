@@ -7,8 +7,25 @@
 //
 
 #import "ChargeCell.h"
+#import "GameBasic.pb.h"
+
+@interface ChargeCell()
+@property (retain, nonatomic) PBSaleIngot *mySaleIngot;
+
+@end
+
 
 @implementation ChargeCell
+
+- (void)dealloc
+{
+    [_mySaleIngot release];
+    [_countLabel release];
+    [_priceLabel release];
+    [_discountLabel release];
+    [_buyButton release];
+    [super dealloc];
+}
 
 + (NSString*)getCellIdentifier
 {
@@ -21,6 +38,22 @@
     return 70;
 }
 
+- (void)setCellWith:(PBSaleIngot *)saleIngot indexPath:(NSIndexPath *)oneIndexPath
+{
+    self.mySaleIngot = saleIngot;
+    self.indexPath = oneIndexPath;
+    
+    self.countLabel.text = [NSString stringWithFormat:@"x %d", _mySaleIngot.count];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _mySaleIngot.currency, _mySaleIngot.totalPrice];
+    
+    // TO DO
+    self.discountLabel.hidden = YES;
+}
 
+- (IBAction)clickBuyButton:(id)sender {
+    if ([delegate respondsToSelector:@selector(didClickBuyButton:)]) {
+        [delegate didClickBuyButton:indexPath];
+    }
+}
 
 @end
