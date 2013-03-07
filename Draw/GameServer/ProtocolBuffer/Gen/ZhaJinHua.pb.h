@@ -16,6 +16,10 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBIngotPriceInfo;
+@class PBIngotPriceInfo_Builder;
+@class PBItemPriceInfo;
+@class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBMessage;
@@ -24,12 +28,14 @@
 @class PBMessage_Builder;
 @class PBPoker;
 @class PBPoker_Builder;
-@class PBPriceInfo;
-@class PBPriceInfo_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSaleIngot;
+@class PBSaleIngotList;
+@class PBSaleIngotList_Builder;
+@class PBSaleIngot_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;

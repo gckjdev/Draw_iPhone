@@ -171,7 +171,7 @@ enum PBDrawItemType{
   Tool = 1;             // 画画工具
 }
 
-message PBPriceInfo {
+message PBItemPriceInfo {
   required int32 price = 1;                       // 单个售价，如 6
   optional PBGameCurrency currency = 2;           // 游戏货币
 }
@@ -201,10 +201,30 @@ message PBGameItem {
 
   optional string appleProductId = 22;            // Apple IAP购买ID
   
-  optional PBPriceInfo priceInfo = 23;            // 价格信息
+  optional PBItemPriceInfo priceInfo = 23;            // 价格信息
   optional PBPromotionInfo promotionInfo = 24;    // 促销信息
 }
 
 message PBGameItemList {
   repeated PBGameItem items = 1;
 }
+
+
+message PBIngotPriceInfo {
+  required string price = 1;        // 单个售价，如 6
+  optional string currency = 2;     // 游戏货币
+}
+
+message PBSaleIngot{
+  required int32 count = 1;                 // 个数
+  optional string totalPrice = 2;           // 总价格
+  optional string currency = 3;             // 货币符号
+  optional string country = 5;              // 适应国家，中国"CN"
+}
+
+message PBSaleIngotList{
+  repeated PBSaleIngot ingots = 1;
+}
+
+
+

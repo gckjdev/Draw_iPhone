@@ -72,6 +72,10 @@
 		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
+		A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
+		A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80E16E83A33007AD01E /* ChargeService.m */; };
+		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -6872,10 +6876,6 @@
 		EA856CA315F0A65700178323 /* wood_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6A15F0A65700178323 /* wood_bg2@2x.png */; };
 		EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6C15F0A65700178323 /* wood_button@2x.png */; };
 		EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
-		EA97E93516E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
-		EA97E93616E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
-		EA97E93716E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
-		EA97E93816E735DF00817647 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -7022,6 +7022,13 @@
 		A41D2B5516B910E30094BA7C /* WallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallService.m; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
+		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
+		A42AB80816E8364B007AD01E /* ChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeController.m; sourceTree = "<group>"; };
+		A42AB80916E8364C007AD01E /* ChargeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeController.xib; sourceTree = "<group>"; };
+		A42AB80D16E83A33007AD01E /* ChargeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeService.h; sourceTree = "<group>"; };
+		A42AB80E16E83A33007AD01E /* ChargeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeService.m; sourceTree = "<group>"; };
+		A42AB81116E83A65007AD01E /* IngotService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngotService.h; sourceTree = "<group>"; };
+		A42AB81216E83A65007AD01E /* IngotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngotService.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -10254,7 +10261,6 @@
 		EA856C6A15F0A65700178323 /* wood_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_bg2@2x.png"; sourceTree = "<group>"; };
 		EA856C6C15F0A65700178323 /* wood_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_button@2x.png"; sourceTree = "<group>"; };
 		EA97E92D16E735A600817647 /* CustomInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
-		EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHelpView~ipad.xib"; sourceTree = "<group>"; };
 		EAA6A12E15CA23550094B122 /* DicesResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicesResultView.h; sourceTree = "<group>"; };
 		EAA6A12F15CA23550094B122 /* DicesResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicesResultView.m; sourceTree = "<group>"; };
@@ -10579,6 +10585,24 @@
 				A41D2B5516B910E30094BA7C /* WallService.m */,
 			);
 			path = Wall;
+			sourceTree = "<group>";
+		};
+		A42AB80C16E83A06007AD01E /* Charge */ = {
+			isa = PBXGroup;
+			children = (
+				A42AB80D16E83A33007AD01E /* ChargeService.h */,
+				A42AB80E16E83A33007AD01E /* ChargeService.m */,
+			);
+			path = Charge;
+			sourceTree = "<group>";
+		};
+		A42AB81016E83A4C007AD01E /* Ingot */ = {
+			isa = PBXGroup;
+			children = (
+				A42AB81116E83A65007AD01E /* IngotService.h */,
+				A42AB81216E83A65007AD01E /* IngotService.m */,
+			);
+			path = Ingot;
 			sourceTree = "<group>";
 		};
 		A42C520115E614D2001D8208 /* DiceChatMsgManager */ = {
@@ -12049,6 +12073,8 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A42AB81016E83A4C007AD01E /* Ingot */,
+				A42AB80C16E83A06007AD01E /* Charge */,
 				A41D2B5316B910E30094BA7C /* Wall */,
 				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
 				CAEE45E2165F5590001E02F1 /* SNS */,
@@ -13000,7 +13026,6 @@
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
-				EA97E93416E735DF00817647 /* CustomInfoView~ipad.xib */,
 				A491423C16E6E2E300106265 /* PriceView.h */,
 				A491423D16E6E2E300106265 /* PriceView.m */,
 				A491423E16E6E2E300106265 /* PriceView.xib */,
@@ -13041,6 +13066,9 @@
 				A4A2E7B116E7223F00445888 /* LocalizableLabel.m */,
 				A4A2E7B316E72B7700445888 /* GameItemPriceView.h */,
 				A4A2E7B416E72B7800445888 /* GameItemPriceView.m */,
+				A42AB80716E8364B007AD01E /* ChargeController.h */,
+				A42AB80816E8364B007AD01E /* ChargeController.m */,
+				A42AB80916E8364C007AD01E /* ChargeController.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -18938,7 +18966,6 @@
 				A454207516E060AB0073A431 /* Dice-Info.plist in Resources */,
 				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
-				EA97E93716E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 				C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -19804,7 +19831,6 @@
 				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
 				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
-				EA97E93816E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 				C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -20714,8 +20740,8 @@
 				A491427816E6EDB200106265 /* store_cell@2x.png in Resources */,
 				A491427916E6EDB200106265 /* zhifubao@2x.png in Resources */,
 				EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */,
-				EA97E93516E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 				C223B01A16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
+				A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21561,7 +21587,6 @@
 				CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
 				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
-				EA97E93616E735DF00817647 /* CustomInfoView~ipad.xib in Resources */,
 				C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23761,6 +23786,9 @@
 				A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */,
 				A4A2E7B216E7223F00445888 /* LocalizableLabel.m in Sources */,
 				A4A2E7B516E72B7800445888 /* GameItemPriceView.m in Sources */,
+				A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */,
+				A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */,
+				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
