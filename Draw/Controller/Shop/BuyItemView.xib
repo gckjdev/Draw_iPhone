@@ -107,7 +107,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{21, 3}, {52, 18}}</string>
 								<reference key="NSSuperview" ref="96598442"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="414031541"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -116,11 +116,12 @@
 									<string key="NSResourceName">item_count_bg@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIButton" id="119689915">
+							<object class="IBUIButton" id="414031541">
 								<reference key="NSNextResponder" ref="96598442"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{25, 3}, {42, 18}}</string>
 								<reference key="NSSuperview" ref="96598442"/>
+								<reference key="NSNextKeyView" ref="838112720"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -148,7 +149,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="788683712"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="765619231">
+						<object class="NSColor" key="IBUIBackgroundColor" id="990641440">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -237,14 +238,14 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="152970724"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="765619231"/>
+						<reference key="IBUIBackgroundColor" ref="990641440"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{214, 140}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="96598442"/>
-				<reference key="IBUIBackgroundColor" ref="765619231"/>
+				<reference key="IBUIBackgroundColor" ref="990641440"/>
 				<string key="IBUIRestorationIdentifier">BuyItemView</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -271,7 +272,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">countButton</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="119689915"/>
+						<reference key="destination" ref="414031541"/>
 					</object>
 					<int key="connectionID">34</int>
 				</object>
@@ -296,7 +297,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickCountButton:</string>
-						<reference key="source" ref="119689915"/>
+						<reference key="source" ref="414031541"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -338,7 +339,7 @@
 							<reference ref="788683712"/>
 							<reference ref="413126314"/>
 							<reference ref="838112720"/>
-							<reference ref="119689915"/>
+							<reference ref="414031541"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -384,7 +385,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="119689915"/>
+						<reference key="object" ref="414031541"/>
 						<reference key="parent" ref="96598442"/>
 					</object>
 				</array>
@@ -418,10 +419,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
-			<string key="item_add@2x.png">{36, 36}</string>
-			<string key="item_count_bg@2x.png">{104, 37}</string>
-			<string key="item_delete@2x.png">{36, 36}</string>
+			<string key="coin@2x.png">{16, 16}</string>
+			<string key="item_add@2x.png">{16, 16}</string>
+			<string key="item_count_bg@2x.png">{16, 16}</string>
+			<string key="item_delete@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
