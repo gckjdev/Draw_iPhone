@@ -77,6 +77,7 @@
 		A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80E16E83A33007AD01E /* ChargeService.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
+		A42AB83216E87255007AD01E /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB83116E87255007AD01E /* BuyItemView.xib */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -7040,6 +7041,7 @@
 		A42AB81216E83A65007AD01E /* IngotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngotService.m; sourceTree = "<group>"; };
 		A42AB81416E87119007AD01E /* BuyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemView.h; sourceTree = "<group>"; };
 		A42AB81516E8711A007AD01E /* BuyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyItemView.m; sourceTree = "<group>"; };
+		A42AB83116E87255007AD01E /* BuyItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyItemView.xib; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -13086,6 +13088,7 @@
 				A42AB80916E8364C007AD01E /* ChargeController.xib */,
 				A42AB81416E87119007AD01E /* BuyItemView.h */,
 				A42AB81516E8711A007AD01E /* BuyItemView.m */,
+				A42AB83116E87255007AD01E /* BuyItemView.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -20765,6 +20768,7 @@
 				A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */,
 				C223B02816E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
 				C223B02C16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
+				A42AB83216E87255007AD01E /* BuyItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
