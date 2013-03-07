@@ -38,6 +38,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_titleLabel release];
     [_closeButton release];
     Block_release(_actionBlock);
+    [_scrollView release];
     [super dealloc];
 }
 
@@ -76,6 +77,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     CustomInfoView *view = [self createView];
     infoView.frame = CGRectMake(SPACE_INFOVIEW_AND_BORDER, HEIGHT_TOP + SPACE_INFOVIEW_AND_TOP, infoView.frame.size.width, infoView.frame.size.height);
     [view.mainView addSubview:infoView];
+    
+    view.scrollView.contentSize = CGSizeMake(320, 481);
     
     
     view.infoLabel.hidden = YES;
