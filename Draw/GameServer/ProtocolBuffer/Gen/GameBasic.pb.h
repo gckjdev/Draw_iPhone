@@ -355,10 +355,11 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
   BOOL hasExperience_:1;
+  BOOL hasIngotBalance_:1;
   BOOL hasDiamondBalance_:1;
   BOOL hasCoinBalance_:1;
-  BOOL hasLevel_:1;
   BOOL hasUserLevel_:1;
+  BOOL hasLevel_:1;
   BOOL hasSeatId_:1;
   BOOL hasSignature_:1;
   BOOL hasPassword_:1;
@@ -372,10 +373,11 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
   int64_t experience;
+  int32_t ingotBalance;
   int32_t diamondBalance;
   int32_t coinBalance;
-  int32_t level;
   int32_t userLevel;
+  int32_t level;
   int32_t seatId;
   NSString* signature;
   NSString* password;
@@ -385,9 +387,9 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   NSString* avatar;
   NSString* nickName;
   NSString* userId;
+  NSMutableArray* mutableAttributesList;
   NSMutableArray* mutableSnsUsersList;
   NSMutableArray* mutableItemsList;
-  NSMutableArray* mutableAttributesList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
@@ -405,6 +407,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (BOOL) hasExperience;
 - (BOOL) hasCoinBalance;
 - (BOOL) hasDiamondBalance;
+- (BOOL) hasIngotBalance;
 - (BOOL) hasSignature;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
@@ -422,13 +425,14 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @property (readonly) int64_t experience;
 @property (readonly) int32_t coinBalance;
 @property (readonly) int32_t diamondBalance;
+@property (readonly) int32_t ingotBalance;
 @property (readonly, retain) NSString* signature;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
 - (NSArray*) attributesList;
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
+- (NSArray*) itemsList;
+- (PBUserItem*) itemsAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -521,6 +525,13 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameUser_Builder*) setIsTakenOver:(BOOL) value;
 - (PBGameUser_Builder*) clearIsTakenOver;
 
+- (NSArray*) attributesList;
+- (PBKeyValue*) attributesAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value;
+- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value;
+- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values;
+- (PBGameUser_Builder*) clearAttributesList;
+
 - (BOOL) hasEmail;
 - (NSString*) email;
 - (PBGameUser_Builder*) setEmail:(NSString*) value;
@@ -551,19 +562,17 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameUser_Builder*) setDiamondBalance:(int32_t) value;
 - (PBGameUser_Builder*) clearDiamondBalance;
 
+- (BOOL) hasIngotBalance;
+- (int32_t) ingotBalance;
+- (PBGameUser_Builder*) setIngotBalance:(int32_t) value;
+- (PBGameUser_Builder*) clearIngotBalance;
+
 - (NSArray*) itemsList;
 - (PBUserItem*) itemsAtIndex:(int32_t) index;
 - (PBGameUser_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
 - (PBGameUser_Builder*) addItems:(PBUserItem*) value;
 - (PBGameUser_Builder*) addAllItems:(NSArray*) values;
 - (PBGameUser_Builder*) clearItemsList;
-
-- (NSArray*) attributesList;
-- (PBKeyValue*) attributesAtIndex:(int32_t) index;
-- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value;
-- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value;
-- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values;
-- (PBGameUser_Builder*) clearAttributesList;
 
 - (BOOL) hasSignature;
 - (NSString*) signature;
@@ -1714,16 +1723,24 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasCount_:1;
   BOOL hasTotalPrice_:1;
   BOOL hasCurrency_:1;
+  BOOL hasCountry_:1;
+  BOOL hasSaving_:1;
   int32_t count;
   NSString* totalPrice;
   NSString* currency;
+  NSString* country;
+  NSString* saving;
 }
 - (BOOL) hasCount;
 - (BOOL) hasTotalPrice;
 - (BOOL) hasCurrency;
+- (BOOL) hasCountry;
+- (BOOL) hasSaving;
 @property (readonly) int32_t count;
 @property (readonly, retain) NSString* totalPrice;
 @property (readonly, retain) NSString* currency;
+@property (readonly, retain) NSString* country;
+@property (readonly, retain) NSString* saving;
 
 + (PBSaleIngot*) defaultInstance;
 - (PBSaleIngot*) defaultInstance;
@@ -1773,6 +1790,16 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (NSString*) currency;
 - (PBSaleIngot_Builder*) setCurrency:(NSString*) value;
 - (PBSaleIngot_Builder*) clearCurrency;
+
+- (BOOL) hasCountry;
+- (NSString*) country;
+- (PBSaleIngot_Builder*) setCountry:(NSString*) value;
+- (PBSaleIngot_Builder*) clearCountry;
+
+- (BOOL) hasSaving;
+- (NSString*) saving;
+- (PBSaleIngot_Builder*) setSaving:(NSString*) value;
+- (PBSaleIngot_Builder*) clearSaving;
 @end
 
 @interface PBSaleIngotList : PBGeneratedMessage {

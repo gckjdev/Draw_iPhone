@@ -17,5 +17,6 @@ typedef void (^GetIngotsListResultHandler)(BOOL success, NSArray *ingotsList);
 
 - (void)getIngotsList:(GetIngotsListResultHandler)handler;
 
++ (void)createTestDataFile;
 
 @end

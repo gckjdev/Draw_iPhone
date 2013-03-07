@@ -9,7 +9,7 @@
 #import "StoreController.h"
 #import "GameItemService.h"
 #import "StoreCell.h"
-#import "GameItemDetailView.h"
+#import "BuyItemView.h"
 #import "CustomInfoView.h"
 #import "ChargeController.h"
 
@@ -121,9 +121,9 @@
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [dataList objectAtIndex:indexPath.row];
-    GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
+    BuyItemView *buyItemView = [BuyItemView createWithItem:item];
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                                      infoView:detailView 
+                                                      infoView:buyItemView 
                                                 hasCloseButton:YES
                                                   buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
     [infoView showInView:self.view];
