@@ -1,14 +1,14 @@
 //
-//  BuyItemDetail.m
+//  BuyItemView.m
 //  Draw
 //
 //  Created by 王 小涛 on 13-3-7.
 //
 //
 
-#import "BuyItemDetail.h"
+#import "BuyItemView.h"
 
-@implementation BuyItemDetail
+@implementation BuyItemView
 
 - (id)initWithFrame:(CGRect)frame
 {
