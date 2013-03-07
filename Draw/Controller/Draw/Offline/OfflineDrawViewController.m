@@ -167,6 +167,8 @@
     [self stopRecovery];
 
     self.delegate = nil;
+    _draft.drawActionList = nil;
+    _draft.drawBg = nil;
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
     PPRelease(_progressView);
