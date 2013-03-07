@@ -41,7 +41,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 42}, {456, 240}}</string>
 						<reference key="NSSuperview" ref="811338546"/>
-						<reference key="NSNextKeyView" ref="771674770"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -105,7 +105,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{456, 57}</string>
 						<reference key="NSSuperview" ref="811338546"/>
-						<reference key="NSNextKeyView" ref="238160986"/>
+						<reference key="NSNextKeyView" ref="288598344"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -115,9 +115,9 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{456, 282}</string>
+				<string key="NSFrameSize">{456, 375}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="288598344"/>
+				<reference key="NSNextKeyView" ref="771674770"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>
@@ -219,7 +219,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

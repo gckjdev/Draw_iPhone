@@ -563,17 +563,17 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="balance_bg@2x.png">{640, 68}</string>
-			<string key="charge_bg@2x.png">{88, 51}</string>
-			<string key="item_normal@2x.png">{133, 62}</string>
-			<string key="item_normal_selected@2x.png">{133, 62}</string>
-			<string key="item_promotion@2x.png">{133, 62}</string>
-			<string key="item_promotion_selected@2x.png">{133, 62}</string>
-			<string key="item_tool@2x.png">{133, 62}</string>
-			<string key="item_tool_selected@2x.png">{133, 62}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
-			<string key="wood_bg@2x.jpg">{640, 960}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="balance_bg@2x.png">{16, 16}</string>
+			<string key="charge_bg@2x.png">{16, 16}</string>
+			<string key="item_normal@2x.png">{16, 16}</string>
+			<string key="item_normal_selected@2x.png">{16, 16}</string>
+			<string key="item_promotion@2x.png">{16, 16}</string>
+			<string key="item_promotion_selected@2x.png">{16, 16}</string>
+			<string key="item_tool@2x.png">{16, 16}</string>
+			<string key="item_tool_selected@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="wood_bg@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

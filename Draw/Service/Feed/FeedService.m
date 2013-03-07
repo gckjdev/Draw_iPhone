@@ -651,10 +651,10 @@ static FeedService *_staticFeedService = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 PPDebug(@"<updateOpus> succ!");
-                successBlock();
+                if (successBlock != NULL) successBlock();
             }else{
                 PPDebug(@"<updateOpus> fail!");
-                failBlock();
+                if (failBlock != NULL) failBlock();
             }
         });
     });
