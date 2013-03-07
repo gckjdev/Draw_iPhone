@@ -152,7 +152,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, WIDTH_BUTTON, HEIGHT_BUTTON)] autorelease];
     [button setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [button setTitleColor:COLOR_BUTTON_TITLE forState:UIControlStateNormal];
-    [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1];
     
     return button;
 }
