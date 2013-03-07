@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPTableViewController.h"
+#import "ChargeCell.h"
 
-@interface ChargeController : UIViewController
+@interface ChargeController : PPTableViewController
 
 @end
