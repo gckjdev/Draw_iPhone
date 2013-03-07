@@ -61,6 +61,7 @@ typedef enum{
                   fromController:(UIViewController *)controller 
                         animated:(BOOL)animated;
 
+- (void)initTabButtons;
 
 //used by the sub class.
 - (NSMutableArray *)tabDataList;

@@ -70,26 +70,6 @@ typedef enum{
 }
 
 
-
-- (void)initTabButtons
-{
-    NSArray* tabList = [_tabManager tabList];
-    for(TableTab *tab in tabList){
-        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [button setTitle:tab.title forState:UIControlStateNormal];
-        if (tab.tabID == UserTypeOpus) {
-            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-        }else if(tab.tabID == UserTypeFeed){
-            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
-        }
-    }
-
-    [self clickTabButton:self.currentTabButton];
-}
-
 #pragma mark - View lifecycle
 
 
