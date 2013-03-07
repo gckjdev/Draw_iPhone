@@ -653,7 +653,7 @@ enum {
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFan"),NSLS(@"kBlackList")};
+    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFans"),NSLS(@"kBlackList")};
     return titles[index];
     
 }
