@@ -17,7 +17,6 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
 @property (retain, nonatomic) IBOutlet UILabel *infoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 + (id)createWithTitle:(NSString *)title
                  info:(NSString *)info;

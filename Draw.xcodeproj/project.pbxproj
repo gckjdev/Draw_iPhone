@@ -74,6 +74,9 @@
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
 		A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80E16E83A33007AD01E /* ChargeService.m */; };
+		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
+		A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -517,6 +520,14 @@
 		C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
 		C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
 		C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */; };
+		C223B02816E85EF3006F7CDF /* super_face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */; };
+		C223B02916E85EF3006F7CDF /* super_face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */; };
+		C223B02A16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */; };
+		C223B02B16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */; };
+		C223B02C16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */; };
+		C223B02D16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */; };
+		C223B02E16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */; };
+		C223B02F16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */; };
 		C225866E15EF5AA4009D686D /* GCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C225866D15EF5AA4009D686D /* GCServer.m */; };
 		C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */; };
 		C22E21871608664F00DE3035 /* DiceRobotItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C22E21861608664F00DE3035 /* DiceRobotItemAction.m */; };
@@ -7023,6 +7034,12 @@
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
 		A42AB80816E8364B007AD01E /* ChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeController.m; sourceTree = "<group>"; };
 		A42AB80916E8364C007AD01E /* ChargeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeController.xib; sourceTree = "<group>"; };
+		A42AB80D16E83A33007AD01E /* ChargeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeService.h; sourceTree = "<group>"; };
+		A42AB80E16E83A33007AD01E /* ChargeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeService.m; sourceTree = "<group>"; };
+		A42AB81116E83A65007AD01E /* IngotService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngotService.h; sourceTree = "<group>"; };
+		A42AB81216E83A65007AD01E /* IngotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngotService.m; sourceTree = "<group>"; };
+		A42AB81416E87119007AD01E /* BuyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemView.h; sourceTree = "<group>"; };
+		A42AB81516E8711A007AD01E /* BuyItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyItemView.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -7448,6 +7465,8 @@
 		C2233969164E3CA100D2C123 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C223397E164E41C800D2C123 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		C223B01916E74453006F7CDF /* bulletin_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bulletin_bg@2x.jpg"; sourceTree = "<group>"; };
+		C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "super_face_cry@2x.png"; sourceTree = "<group>"; };
+		C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "super_face_smile@2x.png"; sourceTree = "<group>"; };
 		C225866C15EF5AA4009D686D /* GCServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCServer.h; sourceTree = "<group>"; };
 		C225866D15EF5AA4009D686D /* GCServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCServer.m; sourceTree = "<group>"; };
 		C22DDEE216E43F31006224C1 /* result_paint_name_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "result_paint_name_bg@2x.png"; sourceTree = "<group>"; };
@@ -10581,6 +10600,24 @@
 			path = Wall;
 			sourceTree = "<group>";
 		};
+		A42AB80C16E83A06007AD01E /* Charge */ = {
+			isa = PBXGroup;
+			children = (
+				A42AB80D16E83A33007AD01E /* ChargeService.h */,
+				A42AB80E16E83A33007AD01E /* ChargeService.m */,
+			);
+			path = Charge;
+			sourceTree = "<group>";
+		};
+		A42AB81016E83A4C007AD01E /* Ingot */ = {
+			isa = PBXGroup;
+			children = (
+				A42AB81116E83A65007AD01E /* IngotService.h */,
+				A42AB81216E83A65007AD01E /* IngotService.m */,
+			);
+			path = Ingot;
+			sourceTree = "<group>";
+		};
 		A42C520115E614D2001D8208 /* DiceChatMsgManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -11131,6 +11168,8 @@
 		A4CCE72D16771A6D00F90726 /* exps */ = {
 			isa = PBXGroup;
 			children = (
+				C223B02616E85EF3006F7CDF /* super_face_cry@2x.png */,
+				C223B02716E85EF3006F7CDF /* super_face_smile@2x.png */,
 				A4CCE72E16771A6D00F90726 /* face_anger@2x.png */,
 				A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */,
 				A4CCE73016771A6D00F90726 /* face_cry@2x.png */,
@@ -12049,6 +12088,8 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A42AB81016E83A4C007AD01E /* Ingot */,
+				A42AB80C16E83A06007AD01E /* Charge */,
 				A41D2B5316B910E30094BA7C /* Wall */,
 				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
 				CAEE45E2165F5590001E02F1 /* SNS */,
@@ -13043,6 +13084,8 @@
 				A42AB80716E8364B007AD01E /* ChargeController.h */,
 				A42AB80816E8364B007AD01E /* ChargeController.m */,
 				A42AB80916E8364C007AD01E /* ChargeController.xib */,
+				A42AB81416E87119007AD01E /* BuyItemView.h */,
+				A42AB81516E8711A007AD01E /* BuyItemView.m */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -18941,6 +18984,8 @@
 				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
+				C223B02A16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
+				C223B02E16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19806,6 +19851,8 @@
 				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
+				C223B02B16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
+				C223B02F16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20716,6 +20763,8 @@
 				EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */,
 				C223B01A16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 				A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */,
+				C223B02816E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
+				C223B02C16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21562,6 +21611,8 @@
 				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
 				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
+				C223B02916E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
+				C223B02D16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23761,6 +23812,9 @@
 				A4A2E7B216E7223F00445888 /* LocalizableLabel.m in Sources */,
 				A4A2E7B516E72B7800445888 /* GameItemPriceView.m in Sources */,
 				A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */,
+				A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */,
+				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
+				A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
