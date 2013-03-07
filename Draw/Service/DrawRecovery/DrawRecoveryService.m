@@ -64,6 +64,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
          word:(Word *)word
      language:(NSInteger)language
 {
+    
+    self.drawBg = nil;
+    self.size = CGSizeZero;
+    
     if (_currentPaint != nil){
         [self stop];
     }
@@ -135,6 +139,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
 - (void)stop
 {
+
+
     @try {
         
         if (_currentPaint == nil)
@@ -149,7 +155,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         
         // clear current paint
         self.currentPaint = nil;
-                        
+        self.drawBg = nil;
+        self.size = CGSizeZero;
+        
         // delete file
         dispatch_async(workingQueue, ^{
             [FileUtil removeFile:dataPath];

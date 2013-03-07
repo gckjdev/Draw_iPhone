@@ -14,18 +14,24 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBIngotPriceInfo;
+@class PBIngotPriceInfo_Builder;
+@class PBItemPriceInfo;
+@class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
-@class PBPriceInfo;
-@class PBPriceInfo_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSaleIngot;
+@class PBSaleIngotList;
+@class PBSaleIngotList_Builder;
+@class PBSaleIngot_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -1350,7 +1356,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBUserResult_Builder*) clearGainCoins;
 @end
 
-@interface PBPriceInfo : PBGeneratedMessage {
+@interface PBItemPriceInfo : PBGeneratedMessage {
 @private
   BOOL hasPrice_:1;
   BOOL hasCurrency_:1;
@@ -1362,49 +1368,49 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @property (readonly) int32_t price;
 @property (readonly) PBGameCurrency currency;
 
-+ (PBPriceInfo*) defaultInstance;
-- (PBPriceInfo*) defaultInstance;
++ (PBItemPriceInfo*) defaultInstance;
+- (PBItemPriceInfo*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBPriceInfo_Builder*) builder;
-+ (PBPriceInfo_Builder*) builder;
-+ (PBPriceInfo_Builder*) builderWithPrototype:(PBPriceInfo*) prototype;
+- (PBItemPriceInfo_Builder*) builder;
++ (PBItemPriceInfo_Builder*) builder;
++ (PBItemPriceInfo_Builder*) builderWithPrototype:(PBItemPriceInfo*) prototype;
 
-+ (PBPriceInfo*) parseFromData:(NSData*) data;
-+ (PBPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBPriceInfo*) parseFromInputStream:(NSInputStream*) input;
-+ (PBPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBItemPriceInfo*) parseFromData:(NSData*) data;
++ (PBItemPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBItemPriceInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBItemPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBItemPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBItemPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBPriceInfo_Builder : PBGeneratedMessage_Builder {
+@interface PBItemPriceInfo_Builder : PBGeneratedMessage_Builder {
 @private
-  PBPriceInfo* result;
+  PBItemPriceInfo* result;
 }
 
-- (PBPriceInfo*) defaultInstance;
+- (PBItemPriceInfo*) defaultInstance;
 
-- (PBPriceInfo_Builder*) clear;
-- (PBPriceInfo_Builder*) clone;
+- (PBItemPriceInfo_Builder*) clear;
+- (PBItemPriceInfo_Builder*) clone;
 
-- (PBPriceInfo*) build;
-- (PBPriceInfo*) buildPartial;
+- (PBItemPriceInfo*) build;
+- (PBItemPriceInfo*) buildPartial;
 
-- (PBPriceInfo_Builder*) mergeFrom:(PBPriceInfo*) other;
-- (PBPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBItemPriceInfo_Builder*) mergeFrom:(PBItemPriceInfo*) other;
+- (PBItemPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBItemPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasPrice;
 - (int32_t) price;
-- (PBPriceInfo_Builder*) setPrice:(int32_t) value;
-- (PBPriceInfo_Builder*) clearPrice;
+- (PBItemPriceInfo_Builder*) setPrice:(int32_t) value;
+- (PBItemPriceInfo_Builder*) clearPrice;
 
 - (BOOL) hasCurrency;
 - (PBGameCurrency) currency;
-- (PBPriceInfo_Builder*) setCurrency:(PBGameCurrency) value;
-- (PBPriceInfo_Builder*) clearCurrency;
+- (PBItemPriceInfo_Builder*) setCurrency:(PBGameCurrency) value;
+- (PBItemPriceInfo_Builder*) clearCurrency;
 @end
 
 @interface PBPromotionInfo : PBGeneratedMessage {
@@ -1492,7 +1498,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   NSString* image;
   NSString* demoImage;
   NSString* appleProductId;
-  PBPriceInfo* priceInfo;
+  PBItemPriceInfo* priceInfo;
   PBPromotionInfo* promotionInfo;
   PBGameItemSalesType salesType;
 }
@@ -1514,7 +1520,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @property (readonly, retain) NSString* demoImage;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* appleProductId;
-@property (readonly, retain) PBPriceInfo* priceInfo;
+@property (readonly, retain) PBItemPriceInfo* priceInfo;
 @property (readonly, retain) PBPromotionInfo* promotionInfo;
 
 + (PBGameItem*) defaultInstance;
@@ -1592,10 +1598,10 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItem_Builder*) clearAppleProductId;
 
 - (BOOL) hasPriceInfo;
-- (PBPriceInfo*) priceInfo;
-- (PBGameItem_Builder*) setPriceInfo:(PBPriceInfo*) value;
-- (PBGameItem_Builder*) setPriceInfoBuilder:(PBPriceInfo_Builder*) builderForValue;
-- (PBGameItem_Builder*) mergePriceInfo:(PBPriceInfo*) value;
+- (PBItemPriceInfo*) priceInfo;
+- (PBGameItem_Builder*) setPriceInfo:(PBItemPriceInfo*) value;
+- (PBGameItem_Builder*) setPriceInfoBuilder:(PBItemPriceInfo_Builder*) builderForValue;
+- (PBGameItem_Builder*) mergePriceInfo:(PBItemPriceInfo*) value;
 - (PBGameItem_Builder*) clearPriceInfo;
 
 - (BOOL) hasPromotionInfo;
@@ -1653,5 +1659,177 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItemList_Builder*) addItems:(PBGameItem*) value;
 - (PBGameItemList_Builder*) addAllItems:(NSArray*) values;
 - (PBGameItemList_Builder*) clearItemsList;
+@end
+
+@interface PBIngotPriceInfo : PBGeneratedMessage {
+@private
+  BOOL hasPrice_:1;
+  BOOL hasCurrency_:1;
+  NSString* price;
+  NSString* currency;
+}
+- (BOOL) hasPrice;
+- (BOOL) hasCurrency;
+@property (readonly, retain) NSString* price;
+@property (readonly, retain) NSString* currency;
+
++ (PBIngotPriceInfo*) defaultInstance;
+- (PBIngotPriceInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBIngotPriceInfo_Builder*) builder;
++ (PBIngotPriceInfo_Builder*) builder;
++ (PBIngotPriceInfo_Builder*) builderWithPrototype:(PBIngotPriceInfo*) prototype;
+
++ (PBIngotPriceInfo*) parseFromData:(NSData*) data;
++ (PBIngotPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBIngotPriceInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBIngotPriceInfo* result;
+}
+
+- (PBIngotPriceInfo*) defaultInstance;
+
+- (PBIngotPriceInfo_Builder*) clear;
+- (PBIngotPriceInfo_Builder*) clone;
+
+- (PBIngotPriceInfo*) build;
+- (PBIngotPriceInfo*) buildPartial;
+
+- (PBIngotPriceInfo_Builder*) mergeFrom:(PBIngotPriceInfo*) other;
+- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasPrice;
+- (NSString*) price;
+- (PBIngotPriceInfo_Builder*) setPrice:(NSString*) value;
+- (PBIngotPriceInfo_Builder*) clearPrice;
+
+- (BOOL) hasCurrency;
+- (NSString*) currency;
+- (PBIngotPriceInfo_Builder*) setCurrency:(NSString*) value;
+- (PBIngotPriceInfo_Builder*) clearCurrency;
+@end
+
+@interface PBSaleIngot : PBGeneratedMessage {
+@private
+  BOOL hasCount_:1;
+  BOOL hasTotalPrice_:1;
+  BOOL hasCurrency_:1;
+  int32_t count;
+  NSString* totalPrice;
+  NSString* currency;
+}
+- (BOOL) hasCount;
+- (BOOL) hasTotalPrice;
+- (BOOL) hasCurrency;
+@property (readonly) int32_t count;
+@property (readonly, retain) NSString* totalPrice;
+@property (readonly, retain) NSString* currency;
+
++ (PBSaleIngot*) defaultInstance;
+- (PBSaleIngot*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSaleIngot_Builder*) builder;
++ (PBSaleIngot_Builder*) builder;
++ (PBSaleIngot_Builder*) builderWithPrototype:(PBSaleIngot*) prototype;
+
++ (PBSaleIngot*) parseFromData:(NSData*) data;
++ (PBSaleIngot*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSaleIngot*) parseFromInputStream:(NSInputStream*) input;
++ (PBSaleIngot*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSaleIngot*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSaleIngot*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSaleIngot_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSaleIngot* result;
+}
+
+- (PBSaleIngot*) defaultInstance;
+
+- (PBSaleIngot_Builder*) clear;
+- (PBSaleIngot_Builder*) clone;
+
+- (PBSaleIngot*) build;
+- (PBSaleIngot*) buildPartial;
+
+- (PBSaleIngot_Builder*) mergeFrom:(PBSaleIngot*) other;
+- (PBSaleIngot_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSaleIngot_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasCount;
+- (int32_t) count;
+- (PBSaleIngot_Builder*) setCount:(int32_t) value;
+- (PBSaleIngot_Builder*) clearCount;
+
+- (BOOL) hasTotalPrice;
+- (NSString*) totalPrice;
+- (PBSaleIngot_Builder*) setTotalPrice:(NSString*) value;
+- (PBSaleIngot_Builder*) clearTotalPrice;
+
+- (BOOL) hasCurrency;
+- (NSString*) currency;
+- (PBSaleIngot_Builder*) setCurrency:(NSString*) value;
+- (PBSaleIngot_Builder*) clearCurrency;
+@end
+
+@interface PBSaleIngotList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableIngotsList;
+}
+- (NSArray*) ingotsList;
+- (PBSaleIngot*) ingotsAtIndex:(int32_t) index;
+
++ (PBSaleIngotList*) defaultInstance;
+- (PBSaleIngotList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSaleIngotList_Builder*) builder;
++ (PBSaleIngotList_Builder*) builder;
++ (PBSaleIngotList_Builder*) builderWithPrototype:(PBSaleIngotList*) prototype;
+
++ (PBSaleIngotList*) parseFromData:(NSData*) data;
++ (PBSaleIngotList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSaleIngotList*) parseFromInputStream:(NSInputStream*) input;
++ (PBSaleIngotList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSaleIngotList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSaleIngotList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSaleIngotList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSaleIngotList* result;
+}
+
+- (PBSaleIngotList*) defaultInstance;
+
+- (PBSaleIngotList_Builder*) clear;
+- (PBSaleIngotList_Builder*) clone;
+
+- (PBSaleIngotList*) build;
+- (PBSaleIngotList*) buildPartial;
+
+- (PBSaleIngotList_Builder*) mergeFrom:(PBSaleIngotList*) other;
+- (PBSaleIngotList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSaleIngotList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) ingotsList;
+- (PBSaleIngot*) ingotsAtIndex:(int32_t) index;
+- (PBSaleIngotList_Builder*) replaceIngotsAtIndex:(int32_t) index with:(PBSaleIngot*) value;
+- (PBSaleIngotList_Builder*) addIngots:(PBSaleIngot*) value;
+- (PBSaleIngotList_Builder*) addAllIngots:(NSArray*) values;
+- (PBSaleIngotList_Builder*) clearIngotsList;
 @end
 

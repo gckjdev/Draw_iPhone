@@ -12,6 +12,12 @@
 
 typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
 
+@property (nonatomic, assign) ButtonActionBlock actionBlock;
+@property (retain, nonatomic) IBOutlet UIView *mainView;
+@property (retain, nonatomic) IBOutlet UILabel *infoLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
+
 + (id)createWithTitle:(NSString *)title
                  info:(NSString *)info;
 
@@ -24,11 +30,8 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
          buttonTitles:(NSString *)firstTitle, ...;
 
 - (void)showInView:(UIView *)view;
+- (void)dismiss;
 
-@property (nonatomic, assign) ButtonActionBlock actionBlock;
-@property (retain, nonatomic) IBOutlet UIView *mainView;
-@property (retain, nonatomic) IBOutlet UILabel *infoLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *closeButton;
+
 
 @end

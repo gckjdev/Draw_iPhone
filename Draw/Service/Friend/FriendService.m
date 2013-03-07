@@ -404,7 +404,7 @@ FriendService* globalGetFriendService()
                                                            actionType:BLACK_ACTION_TYPE_BLACK];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && successBlock != NULL) {
                 successBlock();
             }
         });
@@ -424,7 +424,7 @@ FriendService* globalGetFriendService()
                                                                userId:userId
                                                            actionType:BLACK_ACTION_TYPE_UNBLACK];
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS && successBlock != NULL) {
                 successBlock();
             }
         });

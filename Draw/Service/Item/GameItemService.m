@@ -93,13 +93,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 
 //************************************************************
-+ (PBPriceInfo *)currency:(PBGameCurrency)currency
++ (PBItemPriceInfo *)currency:(PBGameCurrency)currency
                     price:(int)price
 {
-    PBPriceInfo_Builder *priceInfoBuilder = [[PBPriceInfo_Builder alloc] init];
+    PBItemPriceInfo_Builder *priceInfoBuilder = [[PBItemPriceInfo_Builder alloc] init];
     [priceInfoBuilder setCurrency:currency];
     [priceInfoBuilder setPrice:price];
-    PBPriceInfo *priceInfo = [priceInfoBuilder build];
+    PBItemPriceInfo *priceInfo = [priceInfoBuilder build];
     [priceInfoBuilder release];
     return priceInfo;
 }
@@ -136,7 +136,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_000"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:400];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:400];
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
@@ -153,7 +153,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_001"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
@@ -170,7 +170,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_002"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
             [itemBuilder setPriceInfo:priceInfo];
         }
         
@@ -183,7 +183,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_003"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:5];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:5];
             [itemBuilder setPriceInfo:priceInfo];
         }
         
@@ -196,7 +196,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_004"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
         
@@ -209,7 +209,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_005"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
         
@@ -222,7 +222,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_006"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
         
@@ -235,7 +235,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_007"];
             
-            PBPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
         

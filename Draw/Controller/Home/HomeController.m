@@ -86,6 +86,8 @@
 
 #import "StoreController.h"
 
+#import "CustomInfoView.h"
+
 @interface HomeController()
 {
 
@@ -829,7 +831,20 @@
 - (IBAction)clickWallButton:(id)sender {
 //    OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
 //    [self.navigationController pushViewController:vc animated:YES];
-    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"512adcf603640c23106a8479" delegate:self];
+//    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"512adcf603640c23106a8479" delegate:self];
+    
+    
+    
+//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" info:@"test"];
+    UIView *infoView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 140)] autorelease];
+    infoView.backgroundColor = [UIColor blueColor];
+    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView];
+//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView hasCloseButton:YES buttonTitles:@"购买", @"赠送",  nil];
+    [customInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        PPDebug(@"%@", [button titleForState:UIControlStateNormal]);
+        
+    }];
+    [customInfoView showInView:self.view];
 }
 
 - (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall

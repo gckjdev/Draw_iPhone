@@ -464,7 +464,7 @@
 #define PARA_LASTMODIFIEDDATE @"lsmd"
 #define PARA_RELATION_FAN_COUNT @"rfac"
 #define PARA_RELATION_FOLLOW_COUNT @"rflc"
-#define PARA_RELATION_BLACK_COUNT @"rbc"
+#define PARA_RELATION_BLACK_COUNT @"rfbc"
 
 #define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0

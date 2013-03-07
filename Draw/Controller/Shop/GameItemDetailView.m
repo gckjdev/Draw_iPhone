@@ -53,11 +53,12 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.font = view.discountLabel.font;
     label.textColor = view.discountLabel.textColor;
     label.numberOfLines = 0;
-    
+    NSString *desc = [@"         " stringByAppendingString:NSLS(item.desc)];
+
     CGSize withinSize = CGSizeMake(128, 68);
-    CGSize size = [item.desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     label.frame = CGRectMake(view.descNoteLabel.frame.origin.x, view.descNoteLabel.frame.origin.y, size.width, MAX(view.descNoteLabel.frame.size.height, size.height) );
-    label.text = NSLS(item.desc);
+    label.text = desc;
     [view addSubview:label];
     
     return view;

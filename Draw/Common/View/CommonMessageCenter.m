@@ -10,7 +10,17 @@
 #import "DiceImageManager.h"
 #import "LocaleUtils.h"
 
+typedef enum {
+    MessageViewTypeTextOnly = 0,
+    MessageViewTypeWithSmallImage,
+    MessageViewTypeWithHappyFace,
+    MessageViewTypeWithUnhappyFace,
+}MessageViewType;
+
 #define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD]?24:12)
+#define HAPPY_FACE_FRAME   ([DeviceDetection isIPAD]?CGRectMake(4, 5, 158, 280):CGRectMake(0, 3, 79, 140))
+#define UNHAPPY_FACE_FRAME   ([DeviceDetection isIPAD]?CGRectMake(0, 49, 158, 280):CGRectMake(4, 95, 79, 140))
+#define SMALL_IMAGE_FRAME   ([DeviceDetection isIPAD]?CGRectMake(0, 49, 158, 280):CGRectMake(11, 64, 40, 140))
 
 typedef enum {
     CommonMessageViewThemeDraw = 0,
@@ -44,6 +54,9 @@ CommonMessageViewTheme globalGetTheme() {
 - (void) setImage:(UIImage*)image;
 - (BOOL) isIPAD;
 + (CommonMessageView*)createMessageViewByTheme:(CommonMessageViewTheme)theme;
+- (void)initWithType:(MessageViewType)type
+               image:(UIImage*)image
+                text:(NSString*)text;
 @end
 
 
@@ -117,9 +130,11 @@ CommonMessageViewTheme globalGetTheme() {
     CommonMessageView* view = [CommonMessageView createMessageViewByTheme:globalGetTheme()];
     [view.messageLabel setText:text];
     if (isHappy) {
-        [view.faceImageView setImage:[UIImage imageNamed:@"face_smile.png"]];
+        [view.faceImageView setImage:[UIImage imageNamed:@"super_face_smile.png"]];
+        [view.faceImageView setFrame:HAPPY_FACE_FRAME];
     } else {
-        [view.faceImageView setImage:[UIImage imageNamed:@"face_wry.png"]];
+        [view.faceImageView setImage:[UIImage imageNamed:@"super_face_wry.png"]];
+        [view.faceImageView setFrame:UNHAPPY_FACE_FRAME];
     }
     return view;
 }
@@ -165,6 +180,44 @@ CommonMessageViewTheme globalGetTheme() {
 }
 - (void) setImage:(UIImage*)img{
 	[self.faceImageView setImage:img];
+}
+
+- (void)initWithType:(MessageViewType)type
+               image:(UIImage *)image
+                text:(NSString *)text
+{
+    [self setImage:image];
+    self.faceImageView.hidden = NO;
+    [self.messageBackgroundView setImage:[UIImage imageNamed:[GameApp popupMessageDialogBackgroundImage]]];
+    [self.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
+    
+    
+    
+	if (!image) {
+        [self.messageLabel setCenter:CGPointMake(self.bounds.size.width/2, self.messageLabel.center.y)];
+        
+    } else {
+        float x = (self.bounds.size.width/2 + self.faceImageView.frame.origin.x/2 + self.faceImageView.frame.size.width/2);
+        [self.messageLabel setCenter:CGPointMake(x, self.messageLabel.center.y)];
+    }
+    [self.messageLabel setTextAlignment:UITextAlignmentCenter];
+    
+    switch (type) {
+        case MessageViewTypeTextOnly: {
+            
+        } break;
+        case MessageViewTypeWithHappyFace: {
+            
+        } break;
+        case MessageViewTypeWithSmallImage: {
+            
+        } break;
+        case MessageViewTypeWithUnhappyFace: {
+            
+        }
+        default:
+            break;
+    }
 }
 
 @end
@@ -221,6 +274,7 @@ CommonMessageViewTheme globalGetTheme() {
 #define INDEX_OF_WORDS 0
 #define INDEX_OF_DELAY_TIME 1
 #define INDEX_OF_IMAGE 2
+#define INDEX_OF_MESSAGE_VIEW_TYPE 3
 - (void) showAlertsAtHorizon:(int)horizon{
 	
 	if([_messages count] < 1) {
@@ -233,24 +287,17 @@ CommonMessageViewTheme globalGetTheme() {
 	NSArray *ar = [_messages objectAtIndex:0];
 	
 	UIImage *img = nil;
-	if([ar count] > INDEX_OF_IMAGE) img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
-    [_messageView setImage:img];
-    _messageView.faceImageView.hidden = NO;
-    [_messageView.messageBackgroundView setImage:[UIImage imageNamed:[GameApp popupMessageDialogBackgroundImage]]];
-    [_messageView.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
-	if (!img) {
-        [_messageView.messageLabel setCenter:CGPointMake(_messageView.bounds.size.width/2, _messageView.messageLabel.center.y)];
-        
-    } else {
-        float x = (_messageView.bounds.size.width/2 + _messageView.faceImageView.frame.origin.x/2 + _messageView.faceImageView.frame.size.width/2);
-        [_messageView.messageLabel setCenter:CGPointMake(x, _messageView.messageLabel.center.y)];
+    int type = 0;
+    NSString* text = @"";
+	if([ar count] > INDEX_OF_IMAGE)
+    {
+        img = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_IMAGE];
+        type = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_MESSAGE_VIEW_TYPE];
+        text = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS];
     }
-    [_messageView.messageLabel setTextAlignment:UITextAlignmentCenter];
-    
-	   
-	if([ar count] > 0) [_messageView setMessageText:[[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_WORDS]];
     
     
+    [_messageView initWithType:type image:img text:text];
 	
 	if (_dismissTimer) {
         if ([_dismissTimer isValid]) {
@@ -342,29 +389,32 @@ CommonMessageViewTheme globalGetTheme() {
 	
 }
 - (void)postMessageWithText:(NSString *)text 
-                      image:(UIImage *)image 
+                      image:(UIImage *)image
+            messageViewType:(MessageViewType)type
                   delayTime:(float)delayTime{
-	[_messages setObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, nil] atIndexedSubscript:0];
+	[_messages setObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], image, [NSNumber numberWithFloat:type], nil] atIndexedSubscript:0];
 	[self showAlertsAtHorizon:0];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime{
 	[self postMessageWithText:text 
-                        image:nil 
+                        image:nil
+              messageViewType:MessageViewTypeTextOnly
                     delayTime:delayTime];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                     isHappy:(BOOL)isHappy
 {
-    UIImage* face;
+    int type;
     if (isHappy) {
-        face = [UIImage imageNamed:@"face_smile.png"];
+        type = MessageViewTypeWithHappyFace;
     } else {
-        face = [UIImage imageNamed:@"face_wry.png"];
+        type = MessageViewTypeWithUnhappyFace;
     }
 	[self postMessageWithText:text 
-                        image:face 
+                        image:nil
+              messageViewType:type
                     delayTime:delayTime];
 }
 - (void)postMessageWithText:(NSString *)text 
@@ -377,8 +427,9 @@ CommonMessageViewTheme globalGetTheme() {
     } else {
         face = [UIImage imageNamed:@"wrong.png"];
     }
-	[self postMessageWithText:text 
-                        image:face 
+	[self postMessageWithText:text
+                        image:face
+              messageViewType:MessageViewTypeWithSmallImage
                     delayTime:delayTime];
 }
 

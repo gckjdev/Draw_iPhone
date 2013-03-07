@@ -60,28 +60,6 @@ typedef enum{
     [super dealloc];
 }
 
-- (void)initTabButtons
-{
-    NSArray* tabList = [_tabManager tabList];
-    for(TableTab *tab in tabList){
-        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [button setTitle:tab.title forState:UIControlStateNormal];
-        if (tab.tabID == RankTypePlayer) {
-            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-        }else if(tab.tabID == RankTypeNew){
-            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
-        }else{
-            [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
-            [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
-        }
-    }
-//    UIButton *tabButton = [self tabButtonWithTabID:RankTypeHot];
-    [self clickTabButton:self.currentTabButton];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
