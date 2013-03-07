@@ -115,6 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [dataList objectAtIndex:indexPath.row];
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
     CustomInfoView *infoView = [CustomInfoView createWithTitle:item.name infoView:detailView];
