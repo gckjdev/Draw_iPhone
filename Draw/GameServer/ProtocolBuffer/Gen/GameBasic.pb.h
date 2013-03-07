@@ -1723,16 +1723,24 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasCount_:1;
   BOOL hasTotalPrice_:1;
   BOOL hasCurrency_:1;
+  BOOL hasCountry_:1;
+  BOOL hasSaving_:1;
   int32_t count;
   NSString* totalPrice;
   NSString* currency;
+  NSString* country;
+  NSString* saving;
 }
 - (BOOL) hasCount;
 - (BOOL) hasTotalPrice;
 - (BOOL) hasCurrency;
+- (BOOL) hasCountry;
+- (BOOL) hasSaving;
 @property (readonly) int32_t count;
 @property (readonly, retain) NSString* totalPrice;
 @property (readonly, retain) NSString* currency;
+@property (readonly, retain) NSString* country;
+@property (readonly, retain) NSString* saving;
 
 + (PBSaleIngot*) defaultInstance;
 - (PBSaleIngot*) defaultInstance;
@@ -1782,6 +1790,16 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (NSString*) currency;
 - (PBSaleIngot_Builder*) setCurrency:(NSString*) value;
 - (PBSaleIngot_Builder*) clearCurrency;
+
+- (BOOL) hasCountry;
+- (NSString*) country;
+- (PBSaleIngot_Builder*) setCountry:(NSString*) value;
+- (PBSaleIngot_Builder*) clearCountry;
+
+- (BOOL) hasSaving;
+- (NSString*) saving;
+- (PBSaleIngot_Builder*) setSaving:(NSString*) value;
+- (PBSaleIngot_Builder*) clearSaving;
 @end
 
 @interface PBSaleIngotList : PBGeneratedMessage {

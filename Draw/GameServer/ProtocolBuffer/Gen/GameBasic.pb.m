@@ -7112,6 +7112,8 @@ static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
 @property int32_t count;
 @property (retain) NSString* totalPrice;
 @property (retain) NSString* currency;
+@property (retain) NSString* country;
+@property (retain) NSString* saving;
 @end
 
 @implementation PBSaleIngot
@@ -7137,9 +7139,25 @@ static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
   hasCurrency_ = !!value;
 }
 @synthesize currency;
+- (BOOL) hasCountry {
+  return !!hasCountry_;
+}
+- (void) setHasCountry:(BOOL) value {
+  hasCountry_ = !!value;
+}
+@synthesize country;
+- (BOOL) hasSaving {
+  return !!hasSaving_;
+}
+- (void) setHasSaving:(BOOL) value {
+  hasSaving_ = !!value;
+}
+@synthesize saving;
 - (void) dealloc {
   self.totalPrice = nil;
   self.currency = nil;
+  self.country = nil;
+  self.saving = nil;
   [super dealloc];
 }
 - (id) init {
@@ -7147,6 +7165,8 @@ static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
     self.count = 0;
     self.totalPrice = @"";
     self.currency = @"";
+    self.country = @"";
+    self.saving = @"";
   }
   return self;
 }
@@ -7178,6 +7198,12 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   if (self.hasCurrency) {
     [output writeString:3 value:self.currency];
   }
+  if (self.hasCountry) {
+    [output writeString:5 value:self.country];
+  }
+  if (self.hasSaving) {
+    [output writeString:10 value:self.saving];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -7195,6 +7221,12 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   }
   if (self.hasCurrency) {
     size += computeStringSize(3, self.currency);
+  }
+  if (self.hasCountry) {
+    size += computeStringSize(5, self.country);
+  }
+  if (self.hasSaving) {
+    size += computeStringSize(10, self.saving);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7280,6 +7312,12 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   if (other.hasCurrency) {
     [self setCurrency:other.currency];
   }
+  if (other.hasCountry) {
+    [self setCountry:other.country];
+  }
+  if (other.hasSaving) {
+    [self setSaving:other.saving];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7311,6 +7349,14 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
       }
       case 26: {
         [self setCurrency:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setCountry:[input readString]];
+        break;
+      }
+      case 82: {
+        [self setSaving:[input readString]];
         break;
       }
     }
@@ -7362,6 +7408,38 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
 - (PBSaleIngot_Builder*) clearCurrency {
   result.hasCurrency = NO;
   result.currency = @"";
+  return self;
+}
+- (BOOL) hasCountry {
+  return result.hasCountry;
+}
+- (NSString*) country {
+  return result.country;
+}
+- (PBSaleIngot_Builder*) setCountry:(NSString*) value {
+  result.hasCountry = YES;
+  result.country = value;
+  return self;
+}
+- (PBSaleIngot_Builder*) clearCountry {
+  result.hasCountry = NO;
+  result.country = @"";
+  return self;
+}
+- (BOOL) hasSaving {
+  return result.hasSaving;
+}
+- (NSString*) saving {
+  return result.saving;
+}
+- (PBSaleIngot_Builder*) setSaving:(NSString*) value {
+  result.hasSaving = YES;
+  result.saving = value;
+  return self;
+}
+- (PBSaleIngot_Builder*) clearSaving {
+  result.hasSaving = NO;
+  result.saving = @"";
   return self;
 }
 @end
