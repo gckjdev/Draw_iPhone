@@ -219,6 +219,7 @@ message PBSaleIngot{
   required int32 count = 1;                 // 个数
   optional string totalPrice = 2;           // 总价格
   optional string currency = 3;             // 货币符号
+  optional string country = 5;              // 适应国家，中国"CN"
 }
 
 message PBSaleIngotList{
