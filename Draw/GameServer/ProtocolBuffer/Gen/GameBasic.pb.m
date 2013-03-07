@@ -1200,14 +1200,15 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 @property int32_t seatId;
 @property BOOL isPlaying;
 @property BOOL isTakenOver;
+@property (retain) NSMutableArray* mutableAttributesList;
 @property (retain) NSString* email;
 @property (retain) NSString* password;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
 @property int32_t diamondBalance;
+@property int32_t ingotBalance;
 @property (retain) NSMutableArray* mutableItemsList;
-@property (retain) NSMutableArray* mutableAttributesList;
 @property (retain) NSString* signature;
 @end
 
@@ -1299,6 +1300,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 - (void) setIsTakenOver:(BOOL) value {
   isTakenOver_ = !!value;
 }
+@synthesize mutableAttributesList;
 - (BOOL) hasEmail {
   return !!hasEmail_;
 }
@@ -1341,8 +1343,14 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   hasDiamondBalance_ = !!value;
 }
 @synthesize diamondBalance;
+- (BOOL) hasIngotBalance {
+  return !!hasIngotBalance_;
+}
+- (void) setHasIngotBalance:(BOOL) value {
+  hasIngotBalance_ = !!value;
+}
+@synthesize ingotBalance;
 @synthesize mutableItemsList;
-@synthesize mutableAttributesList;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -1357,10 +1365,10 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
   self.facetimeId = nil;
+  self.mutableAttributesList = nil;
   self.email = nil;
   self.password = nil;
   self.mutableItemsList = nil;
-  self.mutableAttributesList = nil;
   self.signature = nil;
   [super dealloc];
 }
@@ -1382,6 +1390,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
     self.experience = 0L;
     self.coinBalance = 0;
     self.diamondBalance = 0;
+    self.ingotBalance = 0;
     self.signature = @"";
   }
   return self;
@@ -1405,18 +1414,18 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   id value = [mutableSnsUsersList objectAtIndex:index];
   return value;
 }
-- (NSArray*) itemsList {
-  return mutableItemsList;
-}
-- (PBUserItem*) itemsAtIndex:(int32_t) index {
-  id value = [mutableItemsList objectAtIndex:index];
-  return value;
-}
 - (NSArray*) attributesList {
   return mutableAttributesList;
 }
 - (PBKeyValue*) attributesAtIndex:(int32_t) index {
   id value = [mutableAttributesList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) itemsList {
+  return mutableItemsList;
+}
+- (PBUserItem*) itemsAtIndex:(int32_t) index {
+  id value = [mutableItemsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -1431,12 +1440,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       return NO;
     }
   }
-  for (PBUserItem* element in self.itemsList) {
+  for (PBKeyValue* element in self.attributesList) {
     if (!element.isInitialized) {
       return NO;
     }
   }
-  for (PBKeyValue* element in self.attributesList) {
+  for (PBUserItem* element in self.itemsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -1497,6 +1506,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDiamondBalance) {
     [output writeInt32:52 value:self.diamondBalance];
+  }
+  if (self.hasIngotBalance) {
+    [output writeInt32:53 value:self.ingotBalance];
   }
   for (PBUserItem* element in self.itemsList) {
     [output writeMessage:61 value:element];
@@ -1566,6 +1578,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDiamondBalance) {
     size += computeInt32Size(52, self.diamondBalance);
+  }
+  if (self.hasIngotBalance) {
+    size += computeInt32Size(53, self.ingotBalance);
   }
   for (PBUserItem* element in self.itemsList) {
     size += computeMessageSize(61, element);
@@ -1684,6 +1699,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasIsTakenOver) {
     [self setIsTakenOver:other.isTakenOver];
   }
+  if (other.mutableAttributesList.count > 0) {
+    if (result.mutableAttributesList == nil) {
+      result.mutableAttributesList = [NSMutableArray array];
+    }
+    [result.mutableAttributesList addObjectsFromArray:other.mutableAttributesList];
+  }
   if (other.hasEmail) {
     [self setEmail:other.email];
   }
@@ -1702,17 +1723,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDiamondBalance) {
     [self setDiamondBalance:other.diamondBalance];
   }
+  if (other.hasIngotBalance) {
+    [self setIngotBalance:other.ingotBalance];
+  }
   if (other.mutableItemsList.count > 0) {
     if (result.mutableItemsList == nil) {
       result.mutableItemsList = [NSMutableArray array];
     }
     [result.mutableItemsList addObjectsFromArray:other.mutableItemsList];
-  }
-  if (other.mutableAttributesList.count > 0) {
-    if (result.mutableAttributesList == nil) {
-      result.mutableAttributesList = [NSMutableArray array];
-    }
-    [result.mutableAttributesList addObjectsFromArray:other.mutableAttributesList];
   }
   if (other.hasSignature) {
     [self setSignature:other.signature];
@@ -1812,6 +1830,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 416: {
         [self setDiamondBalance:[input readInt32]];
+        break;
+      }
+      case 424: {
+        [self setIngotBalance:[input readInt32]];
         break;
       }
       case 490: {
@@ -2016,6 +2038,35 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.isTakenOver = NO;
   return self;
 }
+- (NSArray*) attributesList {
+  if (result.mutableAttributesList == nil) { return [NSArray array]; }
+  return result.mutableAttributesList;
+}
+- (PBKeyValue*) attributesAtIndex:(int32_t) index {
+  return [result attributesAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value {
+  [result.mutableAttributesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values {
+  if (result.mutableAttributesList == nil) {
+    result.mutableAttributesList = [NSMutableArray array];
+  }
+  [result.mutableAttributesList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearAttributesList {
+  result.mutableAttributesList = nil;
+  return self;
+}
+- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value {
+  if (result.mutableAttributesList == nil) {
+    result.mutableAttributesList = [NSMutableArray array];
+  }
+  [result.mutableAttributesList addObject:value];
+  return self;
+}
 - (BOOL) hasEmail {
   return result.hasEmail;
 }
@@ -2112,6 +2163,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.diamondBalance = 0;
   return self;
 }
+- (BOOL) hasIngotBalance {
+  return result.hasIngotBalance;
+}
+- (int32_t) ingotBalance {
+  return result.ingotBalance;
+}
+- (PBGameUser_Builder*) setIngotBalance:(int32_t) value {
+  result.hasIngotBalance = YES;
+  result.ingotBalance = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearIngotBalance {
+  result.hasIngotBalance = NO;
+  result.ingotBalance = 0;
+  return self;
+}
 - (NSArray*) itemsList {
   if (result.mutableItemsList == nil) { return [NSArray array]; }
   return result.mutableItemsList;
@@ -2139,35 +2206,6 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     result.mutableItemsList = [NSMutableArray array];
   }
   [result.mutableItemsList addObject:value];
-  return self;
-}
-- (NSArray*) attributesList {
-  if (result.mutableAttributesList == nil) { return [NSArray array]; }
-  return result.mutableAttributesList;
-}
-- (PBKeyValue*) attributesAtIndex:(int32_t) index {
-  return [result attributesAtIndex:index];
-}
-- (PBGameUser_Builder*) replaceAttributesAtIndex:(int32_t) index with:(PBKeyValue*) value {
-  [result.mutableAttributesList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBGameUser_Builder*) addAllAttributes:(NSArray*) values {
-  if (result.mutableAttributesList == nil) {
-    result.mutableAttributesList = [NSMutableArray array];
-  }
-  [result.mutableAttributesList addObjectsFromArray:values];
-  return self;
-}
-- (PBGameUser_Builder*) clearAttributesList {
-  result.mutableAttributesList = nil;
-  return self;
-}
-- (PBGameUser_Builder*) addAttributes:(PBKeyValue*) value {
-  if (result.mutableAttributesList == nil) {
-    result.mutableAttributesList = [NSMutableArray array];
-  }
-  [result.mutableAttributesList addObject:value];
   return self;
 }
 - (BOOL) hasSignature {

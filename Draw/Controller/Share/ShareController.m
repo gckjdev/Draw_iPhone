@@ -608,27 +608,6 @@ typedef enum{
     return self;
 }
 
-- (void)initTabButtons
-{
-    NSArray* tabList = [_tabManager tabList];
-    for(TableTab *tab in tabList){
-        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        [button setTitle:tab.title forState:UIControlStateNormal];
-        if (tab.tabID == TabTypeMine) {
-            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-        }else if(tab.tabID == TabTypeDraft){
-            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
-            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];            
-        }else{
-            [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
-            [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
-        }
-    }
-    [self clickTabButton:self.currentTabButton];
-}
-
 - (void)showChooseWeixinOptionActionSheet
 {
     UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle:NSLS(@"kChoseWeixinOption")

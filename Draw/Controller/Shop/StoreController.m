@@ -11,6 +11,7 @@
 #import "StoreCell.h"
 #import "BuyItemView.h"
 #import "CustomInfoView.h"
+#import "ChargeController.h"
 
 @interface StoreController ()
 
@@ -51,6 +52,9 @@
 }
 
 - (IBAction)clickChargeButton:(id)sender {
+    ChargeController *controller = [[ChargeController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)clickNormalItemsButton:(id)sender {

@@ -8,6 +8,7 @@
 
 #import "CommonTabController.h"
 #import "CommonMessageCenter.h"
+#import "ShareImageManager.h"
 
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
@@ -82,6 +83,51 @@
         [_tabManager addTab:tab];
     }
     [[_tabManager tabAtIndex:currentTabIndex] setCurrentTab:YES];
+}
+
+#define BUTTON_DEFAULT_COLOR [UIColor colorWithRed:62/255. green:42/255. blue:23/255. alpha:1]
+#define BUTTON_SELETED_COLOR [UIColor whiteColor]
+#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:30] : [UIFont boldSystemFontOfSize:14])
+
+
+- (void)initTabButtons
+{
+    
+    
+    
+    NSArray* tabList = [_tabManager tabList];
+    NSInteger index = 0;
+    NSInteger start = 0;
+    NSInteger end = [tabList count] - 1;
+    for(TableTab *tab in tabList){
+        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+        
+        //title
+        [button setTitle:tab.title forState:UIControlStateNormal];
+        
+        //font
+        [button.titleLabel setFont:BUTTON_FONT];
+        
+        //text color
+        [button setTitleColor:BUTTON_DEFAULT_COLOR forState:UIControlStateNormal];
+        [button setTitleColor:BUTTON_SELETED_COLOR forState:UIControlStateSelected];
+        
+        //bg image
+        if (index == start) {
+            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
+        }else if(index == end){
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];
+        }else{
+            [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
+            [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
+        }
+        
+        index++;
+    }
+    [self clickTabButton:self.currentTabButton];
 }
 
 #pragma mark - View lifecycle

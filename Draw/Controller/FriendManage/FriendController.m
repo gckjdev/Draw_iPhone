@@ -124,38 +124,9 @@ typedef enum{
 
 - (void)initTabButton
 {
-
+    [super initTabButtons];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    
-    UIButton *myFollowButton = [self tabButtonWithTabID:TabTypeFollow];
-    UIButton *myFanButton = [self tabButtonWithTabID:TabTypeFan];
-    UIButton *blackListButton = [self tabButtonWithTabID:TabTypeBlackList];
-    
-    [myFollowButton setTitle:NSLS(@"kFollow") forState:UIControlStateNormal];
-    [myFanButton setTitle:NSLS(@"kFans") forState:UIControlStateNormal];
-    [blackListButton setTitle:NSLS(@"kBlackList") forState:UIControlStateNormal];
-    
-    [myFollowButton setBackgroundImage:[imageManager myFoucsImage] 
-                              forState:UIControlStateNormal];
-    
-    [myFollowButton setBackgroundImage:[imageManager myFoucsSelectedImage]
-                              forState:UIControlStateSelected];
-    
-    [myFanButton setBackgroundImage:[imageManager middleTabImage]
-                           forState:UIControlStateNormal];
-    
-    [myFanButton setBackgroundImage:[imageManager middleTabSelectedImage]
-                           forState:UIControlStateSelected];
-    
-    [blackListButton setBackgroundImage:[imageManager focusMeImage]
-                           forState:UIControlStateNormal];
-    
-    [blackListButton setBackgroundImage:[imageManager focusMeSelectedImage]
-                           forState:UIControlStateSelected];
 
-    
-    
-    
     switch (_type) {
         case ControllerTypeInviteFriend:
             [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
@@ -682,7 +653,7 @@ enum {
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFan"),NSLS(@"kBlackList")};
+    NSString *titles[] = {NSLS(@"kFollow"),NSLS(@"kFans"),NSLS(@"kBlackList")};
     return titles[index];
     
 }
