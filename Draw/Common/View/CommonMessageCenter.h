@@ -29,9 +29,6 @@
 
 + (CommonMessageCenter*) defaultCenter;
 - (void)clearMessages;
-- (void)postMessageWithText:(NSString*)text 
-                        image:(UIImage*)image 
-                    delayTime:(float)delayTime;
 - (void)postMessageWithText:(NSString *)text 
                     delayTime:(float)delayTime;
 - (void)postMessageWithText:(NSString *)text 
@@ -40,10 +37,6 @@
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
                isSuccessful:(BOOL)isSuccessful;
-- (void)postMessageWithText:(NSString*)text 
-                      image:(UIImage*)image 
-                  delayTime:(float)delayTime 
-                  atHorizon:(int)horizon;
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                   atHorizon:(int)horizon;
