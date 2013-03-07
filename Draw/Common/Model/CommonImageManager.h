@@ -40,4 +40,7 @@
 - (UIImage *)wechatImage;
 - (UIImage *)wechatFriendsImage;
 
+- (UIImage*)commonMessageCenterHappyFace;
+- (UIImage*)commonMessageCenterUnhappyFace;
+
 @end

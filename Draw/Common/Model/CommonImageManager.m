@@ -111,4 +111,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
     return [_resService imageByName:@"wechat_friend" inResourcePackage:RESOURCE_PACKAGE_COMMON];
 }
 
+- (UIImage*)commonMessageCenterHappyFace
+{
+    return [UIImage imageNamed:@"super_face_smile.png"];
+}
+- (UIImage*)commonMessageCenterUnhappyFace
+{
+    return [UIImage imageNamed:@"super_face_cry.png"];
+}
+
 @end
