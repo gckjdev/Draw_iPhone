@@ -30,11 +30,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         PPDebug(@"checkUpdateAndDownload successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        handler(YES, itemsList);
+        if (handler) {
+            handler(YES, itemsList);
+        }
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        handler(NO, nil);
+        if (handler) {
+            handler(NO, nil);
+        }
         [smartData release];
     }];
 }
@@ -51,11 +55,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
         NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
-        handler(YES, array);
+        if (handler) {
+            handler(YES, array);
+        }
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        handler(NO, nil);
+        if (handler) {
+            handler(NO, nil);
+        }
         [smartData release];
     }];
 }
@@ -69,11 +77,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         PPDebug(@"checkUpdateAndDownload successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        handler(YES, [bself promotingItemListFrom:itemsList]);
+        if (handler) {
+            handler(YES, [bself promotingItemListFrom:itemsList]);
+        }
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        handler(NO, nil);
+        if (handler) {
+            handler(NO, nil);
+        }
         [smartData release];
     }];
 }

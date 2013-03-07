@@ -220,6 +220,8 @@ message PBSaleIngot{
   optional string totalPrice = 2;           // 总价格
   optional string currency = 3;             // 货币符号
   optional string country = 5;              // 适应国家，中国"CN"
+  
+  optional string saving = 10;              // 节省百分比，如"50%"
 }
 
 message PBSaleIngotList{

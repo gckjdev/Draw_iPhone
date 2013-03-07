@@ -54,7 +54,7 @@
 					</object>
 					<object class="IBUIView" id="172183334">
 						<reference key="NSNextResponder" ref="393554190"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="1039742586">
 								<reference key="NSNextResponder" ref="172183334"/>
