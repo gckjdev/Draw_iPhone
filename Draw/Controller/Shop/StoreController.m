@@ -11,6 +11,7 @@
 #import "StoreCell.h"
 #import "GameItemDetailView.h"
 #import "CustomInfoView.h"
+#import "ChargeController.h"
 
 @interface StoreController ()
 
@@ -51,6 +52,9 @@
 }
 
 - (IBAction)clickChargeButton:(id)sender {
+    ChargeController *controller = [[ChargeController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (IBAction)clickNormalItemsButton:(id)sender {
@@ -113,15 +117,20 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [dataList objectAtIndex:indexPath.row];
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:item.name infoView:detailView];
+    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(item.name)
+                                                      infoView:detailView 
+                                                hasCloseButton:YES
+                                                  buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
     [infoView showInView:self.view];
+    [infoView setActionBlock:^(UIButton *button, UIView *infoView){
+        
+    }];
 }
-
 
 
 @end
