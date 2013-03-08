@@ -22,7 +22,8 @@
     CGContextRef _tempBitmapContext;
     DrawColor *_bgColor;
     
-    NSMutableSet *toucheSet;
+
+    BOOL drawFailed;
 
 }
 #pragma mark Private Helper function
@@ -149,18 +150,6 @@ typedef enum {
 
 - (void)handleDrawTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
-    for (UITouch *touche in touches) {
-        [toucheSet addObject:touche];
-    }
-    NSInteger count = [toucheSet count];
-    if (type == TouchTypeEnd) {
-        [toucheSet removeAllObjects];
-    }
-    if (count != 1) {
-        PPDebug(@"<handleDrawTouches> touch tapCount = %d, type = %d", count, type);
-        return;
-        
-    }
     UITouch *touch  = [touches anyObject];
     CGPoint point = [touch locationInView:self];
 
@@ -174,6 +163,8 @@ typedef enum {
         [osManager updateDrawPenWithPaint:paint];
         [osManager updateLastPaint:paint];
         [self setNeedsDisplay];
+        PPDebug(@"touch began");
+        [osManager printOSInfo];
 
     }else if(type == TouchTypeMove){
         [self drawPaint:paint show:YES];
@@ -185,18 +176,6 @@ typedef enum {
 
 - (void)handleShapeTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
-    for (UITouch *touche in touches) {
-        [toucheSet addObject:touche];
-    }
-    NSInteger count = [toucheSet count];
-    if (type == TouchTypeEnd) {
-        [toucheSet removeAllObjects];
-    }
-    if (count != 1) {
-        PPDebug(@"<handleShapeTouches> touch tapCount = %d, type = %d", count, type);
-        return;
-        
-    }
     UITouch *touch  = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     
@@ -242,23 +221,8 @@ typedef enum {
 
 - (void)handleGetColorTouches:(NSSet *)touches withEvent:(UIEvent *)event type:(TouchType)type
 {
-    
-    for (UITouch *touche in touches) {
-        [toucheSet addObject:touche];
-    }
-    NSInteger count = [toucheSet count];
-    if (type == TouchTypeEnd) {
-        [toucheSet removeAllObjects];
-    }
-    if (count != 1) {
-        PPDebug(@"<handleShapeTouches> touch tapCount = %d, type = %d", count, type);
-        return;
-        
-    }
-    
     UITouch *touch  = [touches anyObject];
 
-    
     CGPoint point = [touch locationInView:self];
 
     switch (type) {
@@ -301,7 +265,16 @@ typedef enum {
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
+    drawFailed = NO;
+    _currentAction = nil;
+    [super touchesBegan:touches withEvent:event];
+    
+    if ([touches count] != 1) {
+        drawFailed = YES;
+        return;
+    }
+    
     if (self.touchActionType == TouchActionTypeGetColor) {
         [self handleGetColorTouches:touches withEvent:event type:TouchTypeBegin];
     }else{
@@ -317,8 +290,29 @@ typedef enum {
         [self clearRedoStack];
     }
 }
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+    if (drawFailed) {
+        return;
+    }
+    if (self.touchActionType == TouchActionTypeGetColor) {
+        [self handleGetColorTouches:touches withEvent:event type:TouchTypeMove];
+    }else{
+        if(self.touchActionType == TouchActionTypeShape){
+            [self handleShapeTouches:touches withEvent:event type:TouchTypeMove];
+        }else if(self.touchActionType == TouchActionTypeDraw){
+            [self handleDrawTouches:touches withEvent:event type:TouchTypeMove];
+        }
+    }
+}
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+
+    [super touchesEnded:touches withEvent:event];
+
+    if (drawFailed) {
+        return;
+    }
 
     if (self.touchActionType == TouchActionTypeGetColor) {
         [self handleGetColorTouches:touches withEvent:event type:TouchTypeEnd];
@@ -331,24 +325,9 @@ typedef enum {
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
             [self.delegate drawView:self didFinishDrawAction:_currentAction];
         }
-//        [self printOSInfoWithTag:@"<TouchesEnded>"];
-//        PPDebug(@"<touchesEnded>");
-//        [osManager printOSInfo];
-//        osManager
     }
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.touchActionType == TouchActionTypeGetColor) {
-        [self handleGetColorTouches:touches withEvent:event type:TouchTypeMove];
-    }else{
-        if(self.touchActionType == TouchActionTypeShape){
-            [self handleShapeTouches:touches withEvent:event type:TouchTypeMove];
-        }else if(self.touchActionType == TouchActionTypeDraw){
-            [self handleDrawTouches:touches withEvent:event type:TouchTypeMove];
-        }
-    }
-}
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -377,8 +356,8 @@ typedef enum {
         _redoStack = [[PPStack alloc] init];
         
         osManager = [[OffscreenManager drawViewOffscreenManager] retain];
-        toucheSet = [[NSMutableSet setWithCapacity:4] retain];
         [self setMultipleTouchEnabled:YES];
+        _gestureRecognizerManager.delegate = self;
     }
     
     return self;
@@ -390,7 +369,6 @@ typedef enum {
     PPRelease(_lineColor);
     PPRelease(_redoStack);
     PPRelease(_bgColor);
-    PPRelease(toucheSet);
     [super dealloc];
 }
 
@@ -499,5 +477,20 @@ typedef enum {
 //        [self setNeedsDisplay];
 //    }
 //}
+- (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
+                 didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
+{
 
+    drawFailed = YES;
+    if (_currentAction) {
+        [_drawActionList removeObject:_currentAction];
+        _currentAction = nil;
+        [osManager cancelLastAction];        
+    }
+
+    PPDebug(@"<didGestureBegan> draw failed!!");
+    [osManager printOSInfo];
+
+    [self setNeedsDisplay];
+}
 @end

@@ -164,6 +164,11 @@
     return  rect;
 }
 
+- (void)cancelLastAction
+{
+    [[self enteryScreen] clear];
+}
+
 - (void)updateOS:(Offscreen*)os WithDrawActionList:(NSArray *)drawActionList
                              start:(NSInteger)start
                                end:(NSInteger)end

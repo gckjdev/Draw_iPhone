@@ -39,7 +39,7 @@ typedef enum{
     
 }TouchActionType;
 
-@interface DrawView : SuperDrawView
+@interface DrawView : SuperDrawView<GestureRecognizerManagerDelegate>
 {
     CGMutablePathRef tempPath;
     
