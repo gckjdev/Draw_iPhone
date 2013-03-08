@@ -706,7 +706,7 @@ static AccountService* _defaultAccountService;
 
                     // sync ingot balance from server
                     int ingotBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-                    [_accountManager setIngotBalance:ingotBalance];
+                    [_accountManager updateBalance:ingotBalance currency:PBGameCurrencyIngot];
                     
                     if (forceServer){
                         [_accountManager updateBalance:balance];
@@ -744,7 +744,7 @@ static AccountService* _defaultAccountService;
                         int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
                         
                         // TODO write item into new user item structure
-                        [userGameItemService addItem:itemType amount:itemAmount];
+//                        [userGameItemService addItem:itemType amount:itemAmount];
                         
                         // update DB
                         UserItem* item = [_itemManager findUserItemByType:itemType];
@@ -897,7 +897,8 @@ static AccountService* _defaultAccountService;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-                [[AccountManager defaultManager] setIngotBalance:balance];
+                [[AccountManager defaultManager] updateBalance:balance currency:PBGameCurrencyIngot];
+                
             }
             else{
                 PPDebug(@"<chargeIngot> failure, result=%d", output.resultCode);
