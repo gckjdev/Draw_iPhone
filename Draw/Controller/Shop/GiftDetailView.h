@@ -11,6 +11,12 @@
 #import "MyFriend.h"
 
 @interface GiftDetailView : UIView
+@property (retain, nonatomic) IBOutlet UILabel *itemTypeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *itemNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *friendNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *countLable;
+@property (retain, nonatomic) IBOutlet UILabel *priceLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *currencyImageView;
 
 + (id)createWithItem:(PBGameItem *)item
             myFriend:(MyFriend *)myFriend
