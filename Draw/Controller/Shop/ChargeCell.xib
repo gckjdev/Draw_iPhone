@@ -44,7 +44,7 @@
 							<object class="IBUIImageView" id="955709485">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{19, 7}, {282, 55}}</string>
+								<string key="NSFrame">{{19, 13}, {282, 55}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="563873004"/>
@@ -59,7 +59,7 @@
 							<object class="IBUIImageView" id="563873004">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{31, 18}, {32, 32}}</string>
+								<string key="NSFrame">{{31, 24}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="791529855"/>
@@ -74,7 +74,7 @@
 							<object class="IBUILabel" id="791529855">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{68, 23}, {65, 21}}</string>
+								<string key="NSFrame">{{68, 29}, {65, 21}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="243298934"/>
@@ -99,11 +99,11 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
+									<int key="type">2</int>
 									<double key="pointSize">16</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -112,7 +112,7 @@
 							<object class="IBUILabel" id="243298934">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{132, 23}, {50, 21}}</string>
+								<string key="NSFrame">{{130, 30}, {40, 21}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="76260091"/>
@@ -132,11 +132,11 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
+									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -145,9 +145,10 @@
 							<object class="IBUIButton" id="109221860">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{244, 21}, {44, 25}}</string>
+								<string key="NSFrame">{{245, 27}, {44, 25}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="336187169"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -185,7 +186,7 @@
 							<object class="IBUIButton" id="76260091">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{186, 24}, {42, 19}}</string>
+								<string key="NSFrame">{{173, 32}, {49, 17}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="109221860"/>
@@ -264,19 +265,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">discountLabel</string>
-						<reference key="source" ref="1058692735"/>
-						<reference key="destination" ref="76260091"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">buyButton</string>
 						<reference key="source" ref="1058692735"/>
 						<reference key="destination" ref="109221860"/>
 					</object>
 					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">discountButton</string>
+						<reference key="source" ref="1058692735"/>
+						<reference key="destination" ref="76260091"/>
+					</object>
+					<int key="connectionID">19</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -370,28 +371,17 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">ChargeCell</string>
 					<string key="superclassName">PPTableViewCell</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickBuyButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickBuyButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickBuyButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="buyButton">UIButton</string>
 						<string key="countLabel">UILabel</string>
-						<string key="discountLabel">UIButton</string>
+						<string key="discountButton">UIButton</string>
 						<string key="priceLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -403,8 +393,8 @@
 							<string key="name">countLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="discountLabel">
-							<string key="name">discountLabel</string>
+						<object class="IBToOneOutletInfo" key="discountButton">
+							<string key="name">discountButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="priceLabel">
@@ -432,7 +422,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="charge_bg@2x.png">{88, 51}</string>
+			<string key="charge_bg@2x.png">{99, 50}</string>
 			<string key="charge_cell_bg@2x.png">{565, 111}</string>
 			<string key="green_bg@2x.png">{75, 31}</string>
 			<string key="ingot@2x.png">{64, 64}</string>
