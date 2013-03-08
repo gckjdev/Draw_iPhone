@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="748535968">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 43}, {728, 916}}</string>
+						<string key="NSFrame">{{20, 59}, {728, 916}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="54689904"/>
@@ -49,16 +49,31 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_rule_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="449437769">
+						<reference key="NSNextResponder" ref="421994044"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{17, 24}, {734, 71}}</string>
+						<reference key="NSSuperview" ref="421994044"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="167940551"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">common_dialog_head_bg@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIWebView" id="54689904">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{39, 73}, {690, 874}}</string>
+						<string key="NSFrame">{{39, 93}, {690, 874}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="167940551"/>
+						<reference key="NSNextKeyView" ref="449437769"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -71,9 +86,10 @@
 					<object class="IBUIButton" id="167940551">
 						<reference key="NSNextResponder" ref="421994044"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{688, 30}, {84, 76}}</string>
+						<string key="NSFrame">{{664, 24}, {84, 76}}</string>
 						<reference key="NSSuperview" ref="421994044"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -92,7 +108,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_statement_close@2x.png</string>
+							<string key="NSResourceName">common_dialog_close_btn@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -162,6 +178,7 @@
 							<reference ref="54689904"/>
 							<reference ref="748535968"/>
 							<reference ref="167940551"/>
+							<reference ref="449437769"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -180,6 +197,11 @@
 						<reference key="object" ref="54689904"/>
 						<reference key="parent" ref="421994044"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">10</int>
+						<reference key="object" ref="449437769"/>
+						<reference key="parent" ref="421994044"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -187,6 +209,7 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">StatementView</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -197,7 +220,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">9</int>
+			<int key="maxID">10</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -241,8 +264,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="contest_rule_bg@2x.png">{137, 83}</string>
-			<string key="contest_statement_close@2x.png">{73, 76}</string>
+			<string key="common_dialog_close_btn@2x.png">{28, 29}</string>
+			<string key="common_dialog_head_bg@2x.png">{531, 66}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
