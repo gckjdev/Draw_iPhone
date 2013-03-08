@@ -1039,6 +1039,10 @@
 
 "kMyBalance" = "My Balance:";
 "kSaveMoney" = "Save";
+"kProps" = "Props";
+"kTool" = "Tool";
+"kHandsel" = "Handsel";
+"kCount" = "Count";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

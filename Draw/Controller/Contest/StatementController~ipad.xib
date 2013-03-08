@@ -49,7 +49,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">contest_bg@2x.png</string>
+							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="775444664">
@@ -515,11 +515,11 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="contest_agree@2x.png">{77, 71}</string>
-			<string key="contest_bg@2x.png">{640, 960}</string>
 			<string key="contest_disagree@2x.png">{77, 71}</string>
 			<string key="contest_line@2x.png">{1, 96}</string>
 			<string key="contest_statement_bg@2x.png">{608, 679}</string>
 			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

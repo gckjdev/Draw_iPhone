@@ -73,6 +73,13 @@
     [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
     [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
     
+    [self.leftTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.centerTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+    [self.centerTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    [self.rightTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    
 }
 
 - (void)viewDidLoad
