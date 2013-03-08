@@ -45,6 +45,8 @@
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     
     [self clickNormalItemsButton:nil];
+    
+    [GameItemService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {

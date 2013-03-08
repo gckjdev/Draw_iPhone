@@ -147,6 +147,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"flower@2x.png")];
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_000"];
+            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:400];
             [itemBuilder setPriceInfo:priceInfo];
@@ -164,7 +165,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tomato@2x.png")];
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_001"];
-            
+            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
             [itemBuilder setPriceInfo:priceInfo];
             
@@ -181,6 +183,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"clean_ad@2x.png")];
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_002"];
+            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:200];
             [itemBuilder setPriceInfo:priceInfo];
@@ -194,7 +197,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"testIapId_003"];
-            
+            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:5];
             [itemBuilder setPriceInfo:priceInfo];
         }
@@ -207,7 +211,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"brush_pen@2x.png")];
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_004"];
-            
+            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
@@ -220,6 +225,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"cones_pen@2x.png")];
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_005"];
+            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
@@ -233,7 +239,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"quill_pen@2x.png")];
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_006"];
-            
+            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
@@ -246,7 +253,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setImage:URL_ITEM_IMAGE(@"mike_pen@2x.png")];
             [itemBuilder setType:PBDrawItemTypeTool];
             [itemBuilder setAppleProductId:@"testIapId_007"];
-            
+            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
             [itemBuilder setPriceInfo:priceInfo];
         }
@@ -262,7 +270,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = @"/Users/gckj/shopItem/shop_item.pb";
+    NSString *filePath = @"/Users/Linruin/gitdata/shop_item.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
