@@ -18,6 +18,11 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 
+- (PBSaleIngot*)findSaleIngoWithAppleProductId:(NSString*)appleProductId
+{
+    return nil;
+}
+
 - (void)getIngotsList:(GetIngotsListResultHandler)handler
 {
     //load data

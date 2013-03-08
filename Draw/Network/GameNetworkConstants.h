@@ -162,6 +162,8 @@
 
 #define METHOD_GET_TRAFFIC_SERVER_LIST @"gt"
 #define METHOD_CHARGE_ACCOUNT @"ca"
+#define METHOD_CHARGE_INGOT @"ci"
+
 #define METHOD_DEDUCT_ACCOUNT @"da"
 #define METHOD_UPDATE_ITEM_AMOUNT @"uia"
 #define METHOD_UPDATE_ACCOUNT_BALANCE @"uab"
@@ -182,7 +184,10 @@
 #define PARA_SHOPPING_AMOUNT @"pa"
 #define PARA_SHOPPING_VALUE @"val"
 #define PARA_APPLE_IAP_PRODUCT_ID @"ipi"
+
 #define PARA_ACCOUNT_BALANCE @"ab"
+#define PARA_ACCOUNT_INGOT_BALANCE @"aib"
+
 #define PARA_SAVE_PERCENT @"sp"
 #define PARA_RESCUE_DATA_TAG @"rdt"
 
@@ -404,6 +409,7 @@
 #define PARA_END_DATE @"ed"
 #define PARA_CAN_SUBMIT_COUNT @"csc"
 #define PARA_PRICE @"pr"
+#define PARA_CURRENCY @"crr"
 #define PARA_VALUE @"val"
 #define PARA_REBATE @"rb"
 #define PARA_BOUGHT @"bo"

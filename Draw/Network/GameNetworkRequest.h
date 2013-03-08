@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameConstants.pb.h"
+#import "GameBasic.pb.h"
 
 @class CommonNetworkOutput;
 
@@ -110,6 +111,14 @@
                    transactionReceipt:(NSString*)transactionRecepit
                                byUser:(NSString*)byUserId;
 
++ (CommonNetworkOutput*)chargeIngot:(NSString*)baseURL
+                             userId:(NSString*)userId
+                             amount:(int)amount
+                             source:(int)source
+                      transactionId:(NSString*)transactionId
+                 transactionReceipt:(NSString*)transactionRecepit
+                             byUser:(NSString*)byUserId;
+
 + (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
@@ -124,7 +133,7 @@
                                 awardExp:(int)awardExp;
 
 + (CommonNetworkOutput*)updateBalance:(NSString*)baseURL
-                                  userId:(NSString*)userId
+                               userId:(NSString*)userId
                               balance:(int)balance;
 
 
@@ -539,6 +548,8 @@
                           userId:(NSString *)userId
                           itemId:(int)itemId
                            count:(int)count
+                           price:(int)price
+                        currency:(PBGameCurrency)currency
                           toUser:(NSString *)toUser;
 
 + (CommonNetworkOutput *)useItem:(NSString *)baseURL

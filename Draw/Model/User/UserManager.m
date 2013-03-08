@@ -591,7 +591,7 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     }
     
     if (balance != nil) {
-        [[AccountManager defaultManager] updateBalanceFromServer:balance.intValue];
+        [[AccountManager defaultManager] updateBalance:balance.intValue];
     }
     
     if (items != nil) {

@@ -74,7 +74,6 @@
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
 		A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
-		A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80E16E83A33007AD01E /* ChargeService.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
 		A42AB86816E98073007AD01E /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
@@ -7045,8 +7044,6 @@
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
 		A42AB80816E8364B007AD01E /* ChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeController.m; sourceTree = "<group>"; };
 		A42AB80916E8364C007AD01E /* ChargeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeController.xib; sourceTree = "<group>"; };
-		A42AB80D16E83A33007AD01E /* ChargeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeService.h; sourceTree = "<group>"; };
-		A42AB80E16E83A33007AD01E /* ChargeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeService.m; sourceTree = "<group>"; };
 		A42AB81116E83A65007AD01E /* IngotService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngotService.h; sourceTree = "<group>"; };
 		A42AB81216E83A65007AD01E /* IngotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngotService.m; sourceTree = "<group>"; };
 		A42AB81416E87119007AD01E /* BuyItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemView.h; sourceTree = "<group>"; };
@@ -10622,15 +10619,6 @@
 			path = Wall;
 			sourceTree = "<group>";
 		};
-		A42AB80C16E83A06007AD01E /* Charge */ = {
-			isa = PBXGroup;
-			children = (
-				A42AB80D16E83A33007AD01E /* ChargeService.h */,
-				A42AB80E16E83A33007AD01E /* ChargeService.m */,
-			);
-			path = Charge;
-			sourceTree = "<group>";
-		};
 		A42AB81016E83A4C007AD01E /* Ingot */ = {
 			isa = PBXGroup;
 			children = (
@@ -12116,7 +12104,6 @@
 			isa = PBXGroup;
 			children = (
 				A42AB81016E83A4C007AD01E /* Ingot */,
-				A42AB80C16E83A06007AD01E /* Charge */,
 				A41D2B5316B910E30094BA7C /* Wall */,
 				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
 				CAEE45E2165F5590001E02F1 /* SNS */,
@@ -23852,7 +23839,6 @@
 				A4A2E7B216E7223F00445888 /* LocalizableLabel.m in Sources */,
 				A4A2E7B516E72B7800445888 /* GameItemPriceView.m in Sources */,
 				A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */,
-				A42AB80F16E83A33007AD01E /* ChargeService.m in Sources */,
 				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
 				A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */,
 				EA23F5FD16E878070018786B /* ChargeCell.m in Sources */,

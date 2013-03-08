@@ -494,6 +494,45 @@
     
 }
 
++ (CommonNetworkOutput*)chargeIngot:(NSString*)baseURL
+                               userId:(NSString*)userId
+                               amount:(int)amount
+                               source:(int)source
+                        transactionId:(NSString*)transactionId
+                   transactionReceipt:(NSString*)transactionRecepit
+                               byUser:(NSString*)byUserId
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CHARGE_INGOT];
+        str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
+        str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
+        str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+}
+
+
 + (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
@@ -2884,6 +2923,8 @@
                           userId:(NSString *)userId
                           itemId:(int)itemId
                            count:(int)count
+                           price:(int)price
+                        currency:(PBGameCurrency)currency
                           toUser:(NSString *)toUser
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -2898,6 +2939,8 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_ITEMID intValue:itemId];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:count];
+        str = [str stringByAddQueryParameter:PARA_PRICE intValue:price];
+        str = [str stringByAddQueryParameter:PARA_CURRENCY intValue:currency];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:toUser];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
@@ -2906,13 +2949,13 @@
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
         return;
     };
     
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
-                            outputFormat:FORMAT_PB
                                   output:output];
 }
 
