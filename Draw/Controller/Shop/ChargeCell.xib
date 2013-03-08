@@ -155,20 +155,18 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">0.0</double>
-								<double key="IBUIContentEdgeInsets.bottom">2</double>
+								<double key="IBUIContentEdgeInsets.top">-1</double>
+								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 								<double key="IBUIContentEdgeInsets.left">0.0</double>
 								<double key="IBUIContentEdgeInsets.right">0.0</double>
+								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">购买</string>
 								<reference key="IBUIHighlightedTitleColor" ref="499465647"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yOTAxOTYwNzg0IDAuMjIzNTI5NDExOCAwLjE0MTE3NjQ3MDYAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="705487685">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="499465647"/>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">charge_bg@2x.png</string>
@@ -207,7 +205,10 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="705487685"/>
+								<object class="NSColor" key="IBUINormalTitleShadowColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">green_bg@2x.png</string>
