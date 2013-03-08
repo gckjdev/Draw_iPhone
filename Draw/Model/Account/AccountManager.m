@@ -10,6 +10,7 @@
 #import "Account.h"
 #import "UserManager.h"
 #import "PPDebug.h"
+#import "SFHFKeychainUtils.h"
 
 AccountManager* staticAccountManager = nil;
 AccountManager* GlobalGetAccountManager()
@@ -24,8 +25,9 @@ AccountManager* GlobalGetAccountManager()
 @synthesize account = _account;
 
 
-#define ACCOUNT_DICT @"ACCOUNT_DICT"
-#define KEY_BALANCE @"KEY_BALANCE"
+#define ACCOUNT_DICT        @"ACCOUNT_DICT"
+#define KEY_BALANCE         @"KEY_BALANCE"
+#define KEY_INGOT_BALANCE   @"KEY_INGOT_BALANCE"
 
 - (id)init
 {
@@ -46,54 +48,45 @@ AccountManager* GlobalGetAccountManager()
     return GlobalGetAccountManager();
 }
 
-//- (void)saveAccount:(UserAccount *)account forUserId:(NSString *)userId
-//{
-//    if (account == nil || userId == nil) {
-//        return;
-//    }
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *ad = [defaults dictionaryForKey:ACCOUNT_DICT];
-//    if (ad == nil) {
-//        ad = [NSDictionary dictionaryWithObject:account.balance forKey:userId];
-//        [defaults setObject:ad forKey:ACCOUNT_DICT];
-//    }else{
-//        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:ad];
-//        [dict setObject:account forKey:userId];
-//    }
-//    [defaults synchronize];
-//}
-//
-//- (UserAccount *)accountForUserId:(NSString *)userId
-//{
-//    if (userId == nil) {
-//        return nil;
-//    }
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *ad = [defaults dictionaryForKey:ACCOUNT_DICT];
-//    if (ad == nil) {
-//        return nil;
-//    }
-//    NSNumber *balance = [ad objectForKey:userId];
-//    if (balance == nil) {
-//        return nil;
-//    }
-//    return [UserAccount accountWithBalance:[balance intValue]];
-//}
-//
-//- (UserAccount *)getUserAccount
-//{
-//    if (self.account == nil) {
-//        NSString *userId = [[UserManager defaultManager] userId];
-//        self.account = [self accountForUserId:userId];
-//    }
-//    return self.account;
-//}
+- (NSInteger)getBalanceWithCurrency:(PBGameCurrency)currency
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            return [self getBalance];
+            break;
+            
+        case PBGameCurrencyIngot:
+            return [self getIngotBalance];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (NSInteger)getIngotBalance
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* balance = [defaults objectForKey:KEY_INGOT_BALANCE];
+    return [balance intValue];
+}
+
+- (void)setIngotBalance:(int)balance
+{
+    PPDebug(@"<setIngotBalance> set balance to %d", balance);
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if (balance < 0){
+        PPDebug(@"<setIngotBalance> but balance < 0, set to 0");
+        balance = 0;
+    }
+    [defaults setObject:[NSNumber numberWithInt:balance] forKey:KEY_INGOT_BALANCE];
+    [defaults synchronize];
+}
+
 
 - (NSInteger)getBalance
 {
-//    UserAccount* account = [self getUserAccount];
-//    return [account intBalanceValue];
-    
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSNumber* balance = [defaults objectForKey:KEY_BALANCE];
     return [balance intValue];
@@ -109,21 +102,43 @@ AccountManager* GlobalGetAccountManager()
     }
     [defaults setObject:[NSNumber numberWithInt:balance] forKey:KEY_BALANCE];
     [defaults synchronize];
-        
-//    NSString *userId = [[UserManager defaultManager] userId];
-//    self.account = [UserAccount accountWithBalance:balance];
-//    [self saveAccount:self.account forUserId:userId];
-    
 }
 
-- (void)updateBalanceFromServer:(int)balance
+
+- (void)updateBalance:(int)balance
 {
-//    NSString *userId = [[UserManager defaultManager] userId];
-//    [[PriceService defaultService] fetchAccountBalanceWithUserId:userId viewController:self];
-    
-    PPDebug(@"<updateBalanceFromServer> balance=%d", balance);
+    PPDebug(@"<updateBalance> balance=%d", balance);
     [self updateAccount:balance];    
 }
+
+- (void)updateIngotBalance:(int)balance
+{
+    PPDebug(@"<updateIngotBalance> set balance to %d", balance);
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if (balance < 0){
+        PPDebug(@"<updateIngotBalance> but balance < 0, set to 0");
+        balance = 0;
+    }
+    [defaults setObject:[NSNumber numberWithInt:balance] forKey:KEY_INGOT_BALANCE];
+    [defaults synchronize];
+}
+
+- (void)updateBalance:(int)balance currency:(PBGameCurrency)currency
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            [self updateBalance:balance];
+            break;
+
+        case PBGameCurrencyIngot:
+            [self updateIngotBalance:balance];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 - (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
 {
@@ -152,6 +167,31 @@ AccountManager* GlobalGetAccountManager()
         return YES;
     }
 }
+
+//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+//{
+//    switch (currency) {
+//        case PBGameCurrencyCoin:
+//            return [self hasEnoughBalance:amount];
+//            break;
+//            
+//        case PBGameCurrencyIngot:
+//            return [self hasEnoughIngots:amount];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
+
+//- (BOOL)hasEnoughIngots:(int)amount
+//{
+//    if ([self getIngotBalance] < amount) {
+//        return NO;
+//    }else{
+//        return YES;
+//    }
+//}
 
 #pragma mark - Price Delegate
 

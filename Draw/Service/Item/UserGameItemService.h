@@ -16,9 +16,11 @@ typedef void* (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOp
 
 @interface UserGameItemService : CommonService
 
-- (void)buyItem:(int)itemId
-           count:(int)count
-         handler:(BuyItemResultHandler)handler;
++ (id)defaultService;
+
+- (void)buyItem:(PBGameItem*)item
+          count:(int)count
+        handler:(BuyItemResultHandler)handler;
 
 - (void)giveItem:(int)itemId
          toUser:(NSString *)userId
@@ -28,5 +30,9 @@ typedef void* (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOp
 - (void)useItem:(int)itemId
          toOpus:(NSString *)opusId
         handler:(UseItemResultHandler)handler;
+
+- (void)clearAllUserItems;
+- (void)addItem:(int)itemId count:(int)count;
+
 
 @end

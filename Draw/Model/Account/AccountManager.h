@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PriceService.h"
 #import "Account.h"
-
-//#define REWARD_COINS  3
+#import "GameBasic.pb.h"
 
 @class UserAccount;
 @interface AccountManager : NSObject<PriceServiceDelegate>
@@ -20,13 +19,20 @@
 
 
 @property(retain, nonatomic) UserAccount *account;
-- (NSInteger)getBalance;
-- (void)updateBalanceFromServer:(int)balance;
-- (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
-- (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;
-//- (NSInteger)getBalance;
+
 + (AccountManager *)defaultManager;
+
+- (NSInteger)getBalance;            // for old, coins.
+- (NSInteger)getBalanceWithCurrency:(PBGameCurrency)currency;
+
+- (void)updateBalance:(int)balance;         // for old, coins.
+- (void)updateBalance:(int)balance currency:(PBGameCurrency)currency;
+
+- (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;  // for old, coins.
+- (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;  // for old, coins.
+
 - (BOOL)hasEnoughBalance:(int)amount;
+//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
 
 @end
 

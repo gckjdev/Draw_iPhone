@@ -77,10 +77,10 @@ static UserService* _defaultUserService;
                                                avatarURL:nil];
 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                [[AccountManager defaultManager] updateBalance:balance];
                   
                 if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
-                    [viewController didUserRegistered:output.resultCode];                    
+                    [viewController didUserRegistered:output.resultCode];
                 }
             }
             else if (output.resultCode == ERROR_NETWORK) {
@@ -365,7 +365,7 @@ static UserService* _defaultUserService;
                 [[UserManager defaultManager] setLocation:[userInfo objectForKey:SNS_LOCATION]];                
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                [[AccountManager defaultManager] updateBalance:balance];
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
@@ -594,7 +594,7 @@ static UserService* _defaultUserService;
                 [[UserManager defaultManager] setLocation:location];
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                [[AccountManager defaultManager] updateBalanceFromServer:balance];
+                [[AccountManager defaultManager] updateBalance:balance];
                 
                 if ([viewController respondsToSelector:@selector(didUserLogined:)]){
                     [viewController didUserLogined:output.resultCode];                    

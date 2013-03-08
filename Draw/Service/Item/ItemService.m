@@ -38,9 +38,7 @@ ItemService *_staticItemService = nil;
 
     // update account
     [[AccountService defaultService] chargeAccount:awardAmount 
-                                            source:DirectAwardCoinType 
-                                     transactionId:nil 
-                                transactionRecepit:nil];
+                                            source:DirectAwardCoinType];
     
     // update experience
     if (awardExp > 0){

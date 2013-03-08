@@ -165,6 +165,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [button setBackgroundImage:[[ShareImageManager defaultManager] dialogButtonBackgroundImage] forState:UIControlStateNormal];
     [button setTitleColor:COLOR_BUTTON_TITLE forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    button.titleLabel.shadowOffset = CGSizeMake(0, 1);
     
     return button;
 }

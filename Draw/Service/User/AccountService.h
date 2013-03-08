@@ -9,6 +9,7 @@
 #import "CommonService.h"
 #import <StoreKit/StoreKit.h>
 #import "Account.h"
+#import "GameBasic.pb.h"
 
 #define PAYMENT_SUCCESS 0
 #define PAYMENT_FAILURE 1
@@ -42,19 +43,13 @@
 + (AccountService *)defaultService;
 
 - (int)getBalance;
+- (int)getBalanceWithCurrency:(PBGameCurrency)currency;
 
 - (void)syncAccountAndItem;
-
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer;
 
-- (void)buyCoin:(PriceModel*)price;
-
+- (void)buyCoin:(PriceModel*)price;  
 - (void)buyRemoveAd;
-
-- (void)chargeAccount:(int)amount 
-               source:(BalanceSourceType)source 
-        transactionId:(NSString*)transactionId
-   transactionRecepit:(NSString*)transactionRecepit;
 
 - (void)chargeAccount:(int)amount 
                source:(BalanceSourceType)source;
@@ -80,6 +75,8 @@
           awardExp:(int)awardAmount;
 
 - (BOOL)hasEnoughCoins:(int)amount;
+//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
+
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
 - (int)checkIn;
@@ -91,7 +88,15 @@
 - (void)awardAccount:(int)amount 
             source:(BalanceSourceType)source;
 
+#pragma mark - Charge Ingot
 
+- (void)buyIngot:(PriceModel*)price;
 
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source;
+
+- (void)chargeIngot:(int)amount
+             toUser:(NSString*)userId
+             source:(BalanceSourceType)source;
 
 @end
