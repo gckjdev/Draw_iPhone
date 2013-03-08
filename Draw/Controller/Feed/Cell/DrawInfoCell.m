@@ -16,6 +16,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
 #import "DrawUserInfoView.h"
+#import "UIViewUtils.h"
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
 #define DESC_WIDTH (ISIPAD ? 481 : 220)
@@ -228,6 +229,7 @@
         _isLoading = YES;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     }
+    [self.drawImage setShadowOffset:CGSizeMake(0, 3) blur:0.6 shadowColor:[UIColor blackColor]];
 }
 
 
