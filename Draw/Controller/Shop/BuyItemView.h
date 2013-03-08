@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *countButton;
 @property (retain, nonatomic) IBOutlet UIImageView *currencyImageView;
 @property (retain, nonatomic) IBOutlet UILabel *priceLabel;
+@property (retain, nonatomic) IBOutlet UIView *buyInfoView;
 
 + (id)createWithItem:(PBGameItem *)item;
 

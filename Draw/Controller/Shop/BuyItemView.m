@@ -12,6 +12,10 @@
 #import "PBGameItemUtils.h"
 #import "ShareImageManager.h"
 #import "InputDialog.h"
+#import "UIViewUtils.h"
+
+#define MAX_COUNT 9999
+#define MIN_COUNT 0
 
 @interface BuyItemView()
 @property (assign, nonatomic) int count;
@@ -28,6 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     [_priceLabel release];
     [_currencyImageView release];
     [_countButton release];
+    [_buyInfoView release];
     [super dealloc];
 }
 
@@ -43,7 +48,14 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:item.priceInfo.currency];
     
-    view.count = 10;
+    
+    if (item.salesType == PBGameItemSalesTypeMultiple) {
+        view.count = 10;
+    }else if (item.salesType == PBGameItemSalesTypeOneOff){
+        view.count = 1;
+        [view updateHeight:(view.frame.size.height - view.buyInfoView.frame.size.height)];
+        [view.buyInfoView removeFromSuperview];
+    }
     
     [view update];
     
@@ -60,7 +72,7 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
 
 - (IBAction)clickIncreaseButton:(id)sender {
     
-    if (self.count >= 9999) {
+    if (self.count >= MAX_COUNT) {
         return;
     }
     
@@ -71,7 +83,7 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
 
 - (IBAction)clickDecreaseButton:(id)sender {
     
-    if (self.count <= 0) {
+    if (self.count <= MIN_COUNT) {
         return;
     }
     
@@ -80,17 +92,20 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     [self update];
 }
 
+
+
 - (IBAction)clickCountButton:(id)sender {
     InputDialog *dialog = [InputDialog dialogWith:@"kInputCount" clickOK:^(NSString *inputStr) {
-        
+        self.count = [inputStr intValue];
+        if (self.count >= MAX_COUNT) {
+            self.count = MAX_COUNT;
+        }
+        [self update];
     } clickCancel:^(NSString *inputStr) {
         
     }];
     dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
-    
-    UIView* view = [[[[UIApplication sharedApplication].delegate window] rootViewController] topViewController].view;
-    
-    [dialog showInView:view];
+    [dialog showInView:[self rootView]];
 }
 
 
