@@ -16,8 +16,7 @@
 {
     PriceView *priceView;
     if ([item isPromoting]) {
-        int price = item.priceInfo.price * item.promotionInfo.discount / 100;
-        priceView = [PriceView createWithPrice:item.priceInfo.price promotionPrice:price currency:item.priceInfo.currency];
+        priceView = [PriceView createWithPrice:item.priceInfo.price promotionPrice:[item promotionPrice] currency:item.priceInfo.currency];
     }else{
         priceView = [PriceView createWithPrice:item.priceInfo.price currency:item.priceInfo.currency];
     }

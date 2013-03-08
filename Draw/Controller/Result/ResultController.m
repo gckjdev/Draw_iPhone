@@ -47,6 +47,7 @@
 #import "ShareAction.h"
 #import "Item.h"
 #import "DrawUtils.h"
+#import "UIViewUtils.h"
 
 #define CONTINUE_TIME 10
 
@@ -308,9 +309,10 @@
     [self.whitePaper setImage:[shareImageManager whitePaperImage]];
     [self.drawImage setImage:_image];
     
-    self.drawImage.layer.shadowOffset = CGSizeMake(0, 3);
-    self.drawImage.layer.shadowOpacity = 0.6;
-    self.drawImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    [self.drawImage setShadowOffset:CGSizeMake(0, 3)
+                               blur:0.6
+                        shadowColor:[UIColor blackColor]];
+
 }
 
 - (int)calExp

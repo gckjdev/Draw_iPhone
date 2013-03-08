@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
+#import "FriendController.h"
 
-@interface StoreController : PPTableViewController
+@interface StoreController : PPTableViewController <FriendControllerDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;

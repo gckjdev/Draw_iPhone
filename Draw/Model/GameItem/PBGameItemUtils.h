@@ -12,6 +12,6 @@
 @interface PBGameItem (Utils)
 
 - (BOOL)isPromoting;
-
+- (int)promotionPrice;
 
 @end
