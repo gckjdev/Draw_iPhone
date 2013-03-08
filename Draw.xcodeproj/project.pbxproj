@@ -6832,6 +6832,7 @@
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
+		EA1FF1FF16E9ECC10031B68F /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
 		EA23F5FD16E878070018786B /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
 		EA23F5FE16E878070018786B /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
 		EA23F60616E878390018786B /* charge_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA23F60416E878390018786B /* charge_cell_bg@2x.png */; };
@@ -10227,6 +10228,7 @@
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GiftDetailView.xib; sourceTree = "<group>"; };
 		EA23F5FA16E878070018786B /* ChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeCell.h; sourceTree = "<group>"; };
 		EA23F5FB16E878070018786B /* ChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeCell.m; sourceTree = "<group>"; };
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
@@ -13106,6 +13108,7 @@
 				A42AB86716E98072007AD01E /* BuyItemView.xib */,
 				A42AB86916E98F90007AD01E /* GiftDetailView.h */,
 				A42AB86A16E98F92007AD01E /* GiftDetailView.m */,
+				EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -20790,6 +20793,7 @@
 				A42AB86816E98073007AD01E /* BuyItemView.xib in Resources */,
 				A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */,
 				A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */,
+				EA1FF1FF16E9ECC10031B68F /* GiftDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
