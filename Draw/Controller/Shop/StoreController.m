@@ -12,10 +12,13 @@
 #import "BuyItemView.h"
 #import "CustomInfoView.h"
 #import "ChargeController.h"
+#import "GiftDetailView.h"
 
 @interface StoreController ()
 
 @property (retain, nonatomic) UIButton *selectedButton;
+@property (retain, nonatomic) PBGameItem *selectedItem;
+@property (assign, nonatomic) int selectedCount;
 
 @end
 
@@ -26,6 +29,7 @@
     [_titleLabel release];
     [_backButton release];
     [_chargeButton release];
+    [_selectedItem release];
     [super dealloc];
 }
 
@@ -129,6 +133,8 @@
                                                 hasCloseButton:YES
                                                   buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
     [cusInfoView showInView:self.view];
+    
+    __block typeof (self) bself = self;
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         int count = ((BuyItemView *)infoView).count;
@@ -136,8 +142,12 @@
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
         }else{
             PPDebug(@"you give %d %@", count, NSLS(item.name));
-            FriendController *vc = [[[FriendController alloc] initWithDelegate:self] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            bself.selectedCount = count;
+            bself.selectedItem = item;
+            
+            FriendController *vc = [[[FriendController alloc] initWithDelegate:bself] autorelease];
+            [bself.navigationController pushViewController:vc animated:YES];
         }
     }];
 }
@@ -146,7 +156,17 @@
          didSelectFriend:(MyFriend *)aFriend
 {
     [controller.navigationController popViewControllerAnimated:YES];
+    GiftDetailView *giftDetailView = [GiftDetailView createWithItem:_selectedItem myFriend:aFriend count:_selectedCount];
     
+    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kGive")
+                                                         infoView:giftDetailView
+                                                   hasCloseButton:YES
+                                                     buttonTitles:NSLS(@"kCancel"), NSLS(@"kOK"), nil];
+    [cusInfoView showInView:self.view];
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        [cusInfoView dismiss];
+        // TO DO
+    }];
 }
 
 @end

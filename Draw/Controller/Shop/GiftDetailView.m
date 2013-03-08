@@ -9,7 +9,8 @@
 #import "GiftDetailView.h"
 #import "AutoCreateViewByXib.h"
 #import "PBGameItemUtils.h"
-
+#import "UIImageView+WebCache.h"
+#import "ShareImageManager.h"
 
 @implementation GiftDetailView
 
@@ -22,6 +23,8 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     [_priceLabel release];
     [_currencyImageView release];
     [_itemTypeLabel release];
+    [_itemImageView release];
+    [_avatarImageView release];
     [super dealloc];
 }
 
@@ -38,17 +41,23 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
         view.itemTypeLabel.text = NSLS(@"kProps");
     }
     
-    view.itemNameLabel.text = item.name;
+    view.itemNameLabel.text = NSLS(item.name);
     view.friendNameLabel.text = myFriend.nickName;
-    view.countLable.text = count;
+    view.countLable.text = [NSString stringWithFormat:@"%d", count];
     
     if (item.priceInfo.currency == PBGameCurrencyIngot) {
-        view.currencyImageView.image = [UIImage imageNamed:@"coin.png"];
-    } else {
         view.currencyImageView.image = [UIImage imageNamed:@"ingot.png"];
+    } else {
+        view.currencyImageView.image = [UIImage imageNamed:@"coin.png"];
     }
     
-    view.priceLabel.text = [NSString stringWithFormat:@"%d", item.priceInfo.price * count];
+    view.priceLabel.text = [NSString stringWithFormat:@"%d", [item promotionPrice] * count];
+    
+    [view.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
+//    [view.avatarImageView setImageWithURL:[NSURL URLWithString:myFriend.avatar]];
+    UIImage *placeHolderImage = [myFriend isMale] ? [[ShareImageManager defaultManager] maleDefaultAvatarImage] : [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    
+    [view.avatarImageView setImageWithURL:[NSURL URLWithString:myFriend.avatar] placeholderImage:placeHolderImage];
     
     return view;
 }
