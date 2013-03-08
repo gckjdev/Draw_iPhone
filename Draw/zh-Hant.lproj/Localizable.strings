@@ -1354,6 +1354,9 @@
 "kDiscountIs" = "%d%%折扣";
 "kNoDiscount" = "無折扣";
 
+"kMyBalance" = "我的餘額:";
+"kSaveMoney" = "省";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

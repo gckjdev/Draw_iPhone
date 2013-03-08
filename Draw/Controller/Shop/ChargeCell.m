@@ -22,7 +22,7 @@
     [_mySaleIngot release];
     [_countLabel release];
     [_priceLabel release];
-    [_discountLabel release];
+    [_discountButton release];
     [_buyButton release];
     [super dealloc];
 }
@@ -46,8 +46,12 @@
     self.countLabel.text = [NSString stringWithFormat:@"x %d", _mySaleIngot.count];
     self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _mySaleIngot.currency, _mySaleIngot.totalPrice];
     
-    // TO DO
-    self.discountLabel.hidden = YES;
+    if ([_mySaleIngot hasSaving] && [_mySaleIngot.saving length] != 0) {
+        self.discountButton.hidden = NO;
+        [self.discountButton setTitle:[NSString stringWithFormat:@"%@%@", NSLS(@"kSaveMoney"), _mySaleIngot.saving] forState:UIControlStateNormal];
+    } else {
+        self.discountButton.hidden = YES;
+    }
 }
 
 - (IBAction)clickBuyButton:(id)sender {

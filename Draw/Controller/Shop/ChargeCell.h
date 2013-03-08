@@ -20,7 +20,7 @@
 @interface ChargeCell : PPTableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UILabel *priceLabel;
-@property (retain, nonatomic) IBOutlet UIButton *discountLabel;
+@property (retain, nonatomic) IBOutlet UIButton *discountButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
 
 - (void)setCellWith:(PBSaleIngot *)saleIngot indexPath:(NSIndexPath *)oneIndexPath;

@@ -11,5 +11,6 @@
 #import "ChargeCell.h"
 
 @interface ChargeController : PPTableViewController
+@property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
 
 @end
