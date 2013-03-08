@@ -7,6 +7,7 @@
 //
 
 #import "ChargeController.h"
+#import "IngotService.h"
 
 @interface ChargeController ()
 
@@ -17,7 +18,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    __block typeof(self) bself = self;
+    [[IngotService sharedIngotService] getIngotsList:^(BOOL success, NSArray *ingotsList){
+        bself.dataList = ingotsList;
+        [bself.dataTableView reloadData];
+    }];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -28,7 +34,7 @@
 #pragma UITableViewDataSource 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [dataList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -37,6 +43,9 @@
     if (cell == nil) {
         cell = [ChargeCell createCell:self];
     }
+    
+    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
+    [cell setCellWith:saleIngot indexPath:indexPath];
     
     return cell;
 }
