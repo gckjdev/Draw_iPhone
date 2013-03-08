@@ -29,4 +29,13 @@
     return NO;
 }
 
+- (int)promotionPrice
+{
+    if ([self isPromoting]) {
+        return self.priceInfo.price * self.promotionInfo.discount / 100;
+    }else{
+        return self.priceInfo.price;
+    }
+}
+
 @end
