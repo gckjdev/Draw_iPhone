@@ -143,12 +143,12 @@
 					<object class="IBUITableView" id="111477067">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 90}, {320, 339}}</string>
+						<string key="NSFrame">{{0, 90}, {320, 338}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="631124532"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="801283331">
+						<object class="NSColor" key="IBUIBackgroundColor" id="675241068">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -167,7 +167,7 @@
 						<string key="NSFrame">{{0, 425}, {320, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1061630578"/>
+						<reference key="NSNextKeyView" ref="920216619"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -297,11 +297,11 @@
 					<object class="IBUIButton" id="933539521">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{264, 432}, {50, 25}}</string>
+						<string key="NSFrame">{{264, 431}, {50, 25}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="801283331"/>
+						<reference key="IBUIBackgroundColor" ref="675241068"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -325,15 +325,15 @@
 						<reference key="IBUIFontDescription" ref="436209204"/>
 						<reference key="IBUIFont" ref="100757053"/>
 					</object>
-					<object class="IBUILabel" id="1061630578">
+					<object class="IBUILabel" id="920216619">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{17, 433}, {45, 23}}</string>
+						<string key="NSFrame">{{17, 432}, {45, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="339780694"/>
+						<reference key="NSNextKeyView" ref="950151797"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="801283331"/>
+						<reference key="IBUIBackgroundColor" ref="675241068"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -359,13 +359,13 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIImageView" id="339780694">
+					<object class="IBUIImageView" id="950151797">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{65, 433}, {23, 23}}</string>
+						<string key="NSFrame">{{65, 432}, {23, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="893568740"/>
+						<reference key="NSNextKeyView" ref="953676249"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -374,13 +374,13 @@
 							<string key="NSResourceName">coin@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="893568740">
+					<object class="IBUIImageView" id="953676249">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{91, 436}, {73, 17}}</string>
+						<string key="NSFrame">{{91, 435}, {64, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="268983570"/>
+						<reference key="NSNextKeyView" ref="507548682"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -389,43 +389,43 @@
 							<string key="NSResourceName">coin_count_bg@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="268983570">
+					<object class="IBUILabel" id="507548682">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{91, 436}, {73, 17}}</string>
+						<string key="NSFrame">{{93, 435}, {60, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="665903959"/>
+						<reference key="NSNextKeyView" ref="897268238"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="801283331"/>
+						<reference key="IBUIBackgroundColor" ref="675241068"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">50000000</string>
+						<string key="IBUIText">500000</string>
 						<reference key="IBUITextColor" ref="985244317"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumScaleFactor">0.80000001192092896</float>
+						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="938400716">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="166028195">
 							<int key="type">1</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="452630014">
+						<object class="NSFont" key="IBUIFont" id="59532168">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="665903959">
+					<object class="IBUIImageView" id="897268238">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{170, 433}, {23, 23}}</string>
+						<string key="NSFrame">{{162, 432}, {23, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="234257899"/>
+						<reference key="NSNextKeyView" ref="495583386"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -434,13 +434,13 @@
 							<string key="NSResourceName">ingot@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="234257899">
+					<object class="IBUIImageView" id="495583386">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{193, 436}, {51, 17}}</string>
+						<string key="NSFrame">{{189, 435}, {51, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="565703730"/>
+						<reference key="NSNextKeyView" ref="761252777"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -449,15 +449,15 @@
 							<string key="NSResourceName">ingot_count_bg@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="565703730">
+					<object class="IBUILabel" id="761252777">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{193, 436}, {51, 17}}</string>
+						<string key="NSFrame">{{192, 435}, {45, 17}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="933539521"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="801283331"/>
+						<reference key="IBUIBackgroundColor" ref="675241068"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -467,10 +467,10 @@
 						<reference key="IBUITextColor" ref="985244317"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumScaleFactor">0.80000001192092896</float>
+						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="938400716"/>
-						<reference key="IBUIFont" ref="452630014"/>
+						<reference key="IBUIFontDescription" ref="166028195"/>
+						<reference key="IBUIFont" ref="59532168"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -631,13 +631,13 @@
 							<reference ref="933539521"/>
 							<reference ref="21135945"/>
 							<reference ref="764169153"/>
-							<reference ref="339780694"/>
-							<reference ref="1061630578"/>
-							<reference ref="893568740"/>
-							<reference ref="268983570"/>
-							<reference ref="665903959"/>
-							<reference ref="234257899"/>
-							<reference ref="565703730"/>
+							<reference ref="950151797"/>
+							<reference ref="920216619"/>
+							<reference ref="953676249"/>
+							<reference ref="507548682"/>
+							<reference ref="897268238"/>
+							<reference ref="495583386"/>
+							<reference ref="761252777"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -708,37 +708,37 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="1061630578"/>
+						<reference key="object" ref="920216619"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="339780694"/>
+						<reference key="object" ref="950151797"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="893568740"/>
+						<reference key="object" ref="953676249"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">52</int>
-						<reference key="object" ref="268983570"/>
+						<reference key="object" ref="507548682"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">53</int>
-						<reference key="object" ref="665903959"/>
+						<reference key="object" ref="897268238"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">54</int>
-						<reference key="object" ref="234257899"/>
+						<reference key="object" ref="495583386"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
-						<reference key="object" ref="565703730"/>
+						<reference key="object" ref="761252777"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -843,7 +843,7 @@
 			<string key="balance_bg@2x.png">{640, 73}</string>
 			<string key="charge_bg@2x.png">{99, 50}</string>
 			<string key="coin@2x.png">{64, 64}</string>
-			<string key="coin_count_bg@2x.png">{16, 16}</string>
+			<string key="coin_count_bg@2x.png">{128, 34}</string>
 			<string key="ingot@2x.png">{64, 64}</string>
 			<string key="ingot_count_bg@2x.png">{102, 34}</string>
 			<string key="item_normal@2x.png">{133, 62}</string>
