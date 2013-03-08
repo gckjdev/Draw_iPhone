@@ -45,6 +45,8 @@
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     
     [self clickNormalItemsButton:nil];
+    
+    [GameItemService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -128,7 +130,12 @@
                                                   buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
     [infoView showInView:self.view];
     [infoView setActionBlock:^(UIButton *button, UIView *infoView){
-        
+        int count = ((BuyItemView *)infoView).count;
+        if (button.tag == 0) {
+            PPDebug(@"you buy %d %@", count, NSLS(item.name));
+        }else{
+            PPDebug(@"you give %d %@", count, NSLS(item.name));
+        }
     }];
 }
 
