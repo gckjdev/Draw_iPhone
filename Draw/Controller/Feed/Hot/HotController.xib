@@ -159,6 +159,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">达人</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
@@ -166,17 +167,14 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="857487715">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="303299717">
+						<reference key="IBUINormalTitleShadowColor" ref="75250085"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="474823663">
 							<int key="type">2</int>
-							<double key="pointSize">14</double>
+							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="577528585">
+						<object class="NSFont" key="IBUIFont" id="661530666">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">14</double>
+							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -191,13 +189,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">总榜</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleColor" ref="957069169"/>
-						<reference key="IBUINormalTitleShadowColor" ref="857487715"/>
-						<reference key="IBUIFontDescription" ref="303299717"/>
-						<reference key="IBUIFont" ref="577528585"/>
+						<reference key="IBUINormalTitleShadowColor" ref="75250085"/>
+						<reference key="IBUIFontDescription" ref="474823663"/>
+						<reference key="IBUIFont" ref="661530666"/>
 					</object>
 					<object class="IBUIButton" id="351911279">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -210,13 +209,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">最新</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleColor" ref="957069169"/>
-						<reference key="IBUINormalTitleShadowColor" ref="857487715"/>
-						<reference key="IBUIFontDescription" ref="303299717"/>
-						<reference key="IBUIFont" ref="577528585"/>
+						<reference key="IBUINormalTitleShadowColor" ref="75250085"/>
+						<reference key="IBUIFontDescription" ref="474823663"/>
+						<reference key="IBUIFont" ref="661530666"/>
 					</object>
 					<object class="IBUIButton" id="664520852">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -229,13 +229,14 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">热榜</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
 						<reference key="IBUINormalTitleColor" ref="957069169"/>
-						<reference key="IBUINormalTitleShadowColor" ref="857487715"/>
-						<reference key="IBUIFontDescription" ref="303299717"/>
-						<reference key="IBUIFont" ref="577528585"/>
+						<reference key="IBUINormalTitleShadowColor" ref="75250085"/>
+						<reference key="IBUIFontDescription" ref="474823663"/>
+						<reference key="IBUIFont" ref="661530666"/>
 					</object>
 					<object class="IBUITableView" id="977230230">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -508,17 +509,17 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="15.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="15.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="45.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="45.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="56.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="56.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -534,9 +535,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{16, 16}</string>
-			<string key="refresh@2x.png">{16, 16}</string>
-			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="back@2x.png">{67, 53}</string>
+			<string key="refresh@2x.png">{60, 60}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
