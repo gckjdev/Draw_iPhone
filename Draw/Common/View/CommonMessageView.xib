@@ -39,9 +39,9 @@
 					<object class="IBUIImageView" id="368008694">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{0, 19}, {232, 124}}</string>
+						<string key="NSFrame">{{0, 19}, {280, 124}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="217473603"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -52,14 +52,15 @@
 					<object class="IBUILabel" id="167121227">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{60, 37}, {152, 100}}</string>
+						<string key="NSFrame">{{60, 37}, {211, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">啦听中中中中中中中叶中中中中中中 中啦听中中中中中中中叶中中中中中中 中啦听中中中中中中中叶中中中中中中 中</string>
+						<string key="IBUIText">你刚刚花费了四十块钱买了一朵鲜花送给作者，作者扣了一点经验，两个金币</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -73,7 +74,7 @@
 						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">9</float>
-						<int key="IBUINumberOfLines">7</int>
+						<int key="IBUINumberOfLines">3</int>
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -85,14 +86,14 @@
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<double key="preferredMaxLayoutWidth">152</double>
+						<double key="preferredMaxLayoutWidth">211</double>
 					</object>
 					<object class="IBUIImageView" id="217473603">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrameSize">{232, 29}</string>
+						<string key="NSFrameSize">{280, 29}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="368008694"/>
+						<reference key="NSNextKeyView" ref="130143915"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -115,9 +116,9 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{232, 189}</string>
+				<string key="NSFrameSize">{280, 189}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="217473603"/>
+				<reference key="NSNextKeyView" ref="368008694"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>

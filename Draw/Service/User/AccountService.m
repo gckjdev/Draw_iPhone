@@ -26,6 +26,9 @@
 #import "UserService.h"
 #import "LevelService.h"
 #import "AdService.h"
+#import "GameBasic.pb.h"
+#import "IngotService.h"
+#import "UserGameItemService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -99,14 +102,28 @@ static AccountService* _defaultAccountService;
 
 #pragma mark - IAP transaction handling
 
+- (void)makeChargeIngotRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
+{
+    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+    [self chargeIngot:amount
+                 source:PurchaseType
+          transactionId:transaction.transactionIdentifier
+     transactionRecepit:base64receipt];
+}
+
+- (void)makeChargeRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
+{
+    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+    [self chargeAccount:amount
+                 source:PurchaseType
+          transactionId:transaction.transactionIdentifier
+     transactionRecepit:base64receipt];
+}
+
 - (void)makeBuyCoinsRequest:(PriceModel*)price transaction:(SKPaymentTransaction*)transaction
 {
     int amount = [[price count] intValue];
-    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
-    [self chargeAccount:amount 
-                 source:PurchaseType 
-          transactionId:transaction.transactionIdentifier
-     transactionRecepit:base64receipt];
+    [self makeChargeRequest:amount transaction:transaction];
 }
 
 - (void)recordTransaction:(SKPaymentTransaction*)transaction
@@ -115,16 +132,23 @@ static AccountService* _defaultAccountService;
             transaction.transactionIdentifier,
             [transaction.transactionReceipt description]);
     
-    // TODO Must Record transactionIdentifier & transactionReceipt in server
-    
     NSString* productId  = transaction.payment.productIdentifier;
-    PriceModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
-    if (price == nil){
-        PPDebug(@"<recordTransaction> but coin price is nil");
-        return;
-    }
+    PBSaleIngot* saleIngot = [[IngotService sharedIngotService] findSaleIngoWithAppleProductId:productId];
+    if (saleIngot == nil){        
+        // use old, for compatibility
+        PriceModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
+        if (price == nil){
+            PPDebug(@"<recordTransaction> but coin price is nil");
+            return;
+        }
         
-    [self makeBuyCoinsRequest:price transaction:transaction];
+        [self makeBuyCoinsRequest:price transaction:transaction];        
+    }
+    else{
+        // new ingot price IAP
+        [self makeChargeIngotRequest:saleIngot.count transaction:transaction];
+    }
+
 }
 
 - (void)provideContent:(NSString*)productId
@@ -504,13 +528,7 @@ static AccountService* _defaultAccountService;
                                          targetUserId:targetUserId
                                           awardAmount:awardAmount 
                                              awardExp:awardExp];
-        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (output.resultCode == ERROR_SUCCESS) {
-//            }
-//            else{
-//            }
-//        });      
+            
     });
 }
 
@@ -545,6 +563,8 @@ static AccountService* _defaultAccountService;
     
     return 0;
 }
+
+
 
 - (int)consumeItem:(int)itemType
              amount:(int)amount
@@ -591,6 +611,11 @@ static AccountService* _defaultAccountService;
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount];
 }
+
+//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+//{
+//    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
+//}
 
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount
 {
@@ -650,6 +675,11 @@ static AccountService* _defaultAccountService;
     return [_accountManager getBalance];
 }
 
+- (int)getBalanceWithCurrency:(PBGameCurrency)currency
+{
+    return [_accountManager getBalanceWithCurrency:currency];
+}
+
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -673,15 +703,19 @@ static AccountService* _defaultAccountService;
                     if (balance <= 0){
                         balance = 0;
                     }
+
+                    // sync ingot balance from server
+                    int ingotBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
+                    [_accountManager setIngotBalance:ingotBalance];
                     
                     if (forceServer){
-                        [_accountManager updateBalanceFromServer:balance];
+                        [_accountManager updateBalance:balance];
                     }
                     else{
                         int localBalance = [_accountManager getBalance];
                         if (localBalance < balance){
                             // use server balance
-                            [_accountManager updateBalanceFromServer:balance];
+                            [_accountManager updateBalance:balance];
                             PPDebug(@"<syncAccountAndItem> use server balance = %d", balance);                        
                         }
                         else if (localBalance > balance){
@@ -692,7 +726,7 @@ static AccountService* _defaultAccountService;
                             }
                             else{
                                 // maybe client is cheating, use server data
-                                [_accountManager updateBalanceFromServer:balance];
+                                [_accountManager updateBalance:balance];
                                 PPDebug(@"<syncAccountAndItem> client cheating (%d)??? use server balance = %d",
                                         localBalance, balance);                        
                             }
@@ -702,10 +736,15 @@ static AccountService* _defaultAccountService;
                         }
                     }
                     
+                    UserGameItemService* userGameItemService = [UserGameItemService defaultService];
+                    [userGameItemService clearAllUserItems];
                     NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
                     for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
                         int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
                         int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+                        
+                        // TODO write item into new user item structure
+                        [userGameItemService addItem:itemType amount:itemAmount];
                         
                         // update DB
                         UserItem* item = [_itemManager findUserItemByType:itemType];
@@ -799,6 +838,98 @@ static AccountService* _defaultAccountService;
     [self chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_APP_REWARD_COUNTER];
+}
+
+#pragma mark - Charge Ingot
+
+- (void)buyIngot:(PBSaleIngot*)ingotPrice
+{
+    // send request to Apple IAP Server and wait for result
+    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:ingotPrice.appleProductId];
+
+    PPDebug(@"<buyIngot> on product %@ price productId=%@",
+            selectedProduct == nil ? ingotPrice.appleProductId : [selectedProduct productIdentifier],
+            ingotPrice.appleProductId);
+    
+    SKPayment *payment = nil;
+    if (selectedProduct == nil){
+        payment = [SKPayment paymentWithProductIdentifier:ingotPrice.appleProductId];
+    }
+    else{
+        payment = [SKPayment paymentWithProduct:selectedProduct];
+    }
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
+}
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+      transactionId:(NSString*)transactionId
+ transactionRecepit:(NSString*)transactionRecepit
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    [self chargeIngot:amount
+               source:source
+        transactionId:transactionId
+   transactionRecepit:transactionRecepit
+             toUserId:userId
+             byUserId:userId];
+}
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+      transactionId:(NSString*)transactionId
+ transactionRecepit:(NSString*)transactionRecepit
+           toUserId:(NSString*)toUserId
+           byUserId:(NSString*)byUserId
+{
+
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest chargeIngot:SERVER_URL
+                                            userId:toUserId
+                                            amount:amount
+                                            source:source
+                                     transactionId:transactionId
+                                transactionReceipt:transactionRecepit
+                                            byUser:byUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
+                [[AccountManager defaultManager] setIngotBalance:balance];
+            }
+            else{
+                PPDebug(@"<chargeIngot> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP");
+                }
+            }
+            
+            // TODO move verification earlier
+            if (source == PurchaseType){
+                [self verifyReceiptWithAmount:amount
+                                transactionId:transactionId
+                           transactionRecepit:transactionRecepit];
+            }
+        });
+    });
+    
+}
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+{
+    NSString* myUserId = [[UserManager defaultManager] userId];
+    [self chargeIngot:amount toUser:myUserId source:source];
+}
+
+- (void)chargeIngot:(int)amount
+             toUser:(NSString*)userId
+             source:(BalanceSourceType)source
+{
+    NSString* myUserId = [[UserManager defaultManager] userId];
+    [self chargeIngot:amount source:source transactionId:nil transactionRecepit:nil toUserId:userId byUserId:myUserId];
 }
 
 @end

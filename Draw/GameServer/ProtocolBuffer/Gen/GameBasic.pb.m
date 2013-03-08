@@ -6888,232 +6888,13 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 }
 @end
 
-@interface PBIngotPriceInfo ()
-@property (retain) NSString* price;
-@property (retain) NSString* currency;
-@end
-
-@implementation PBIngotPriceInfo
-
-- (BOOL) hasPrice {
-  return !!hasPrice_;
-}
-- (void) setHasPrice:(BOOL) value {
-  hasPrice_ = !!value;
-}
-@synthesize price;
-- (BOOL) hasCurrency {
-  return !!hasCurrency_;
-}
-- (void) setHasCurrency:(BOOL) value {
-  hasCurrency_ = !!value;
-}
-@synthesize currency;
-- (void) dealloc {
-  self.price = nil;
-  self.currency = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.price = @"";
-    self.currency = @"";
-  }
-  return self;
-}
-static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
-+ (void) initialize {
-  if (self == [PBIngotPriceInfo class]) {
-    defaultPBIngotPriceInfoInstance = [[PBIngotPriceInfo alloc] init];
-  }
-}
-+ (PBIngotPriceInfo*) defaultInstance {
-  return defaultPBIngotPriceInfoInstance;
-}
-- (PBIngotPriceInfo*) defaultInstance {
-  return defaultPBIngotPriceInfoInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasPrice) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPrice) {
-    [output writeString:1 value:self.price];
-  }
-  if (self.hasCurrency) {
-    [output writeString:2 value:self.currency];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasPrice) {
-    size += computeStringSize(1, self.price);
-  }
-  if (self.hasCurrency) {
-    size += computeStringSize(2, self.currency);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBIngotPriceInfo*) parseFromData:(NSData*) data {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromData:data] build];
-}
-+ (PBIngotPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromInputStream:input] build];
-}
-+ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBIngotPriceInfo*)[[[PBIngotPriceInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBIngotPriceInfo_Builder*) builder {
-  return [[[PBIngotPriceInfo_Builder alloc] init] autorelease];
-}
-+ (PBIngotPriceInfo_Builder*) builderWithPrototype:(PBIngotPriceInfo*) prototype {
-  return [[PBIngotPriceInfo builder] mergeFrom:prototype];
-}
-- (PBIngotPriceInfo_Builder*) builder {
-  return [PBIngotPriceInfo builder];
-}
-@end
-
-@interface PBIngotPriceInfo_Builder()
-@property (retain) PBIngotPriceInfo* result;
-@end
-
-@implementation PBIngotPriceInfo_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBIngotPriceInfo alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBIngotPriceInfo_Builder*) clear {
-  self.result = [[[PBIngotPriceInfo alloc] init] autorelease];
-  return self;
-}
-- (PBIngotPriceInfo_Builder*) clone {
-  return [PBIngotPriceInfo builderWithPrototype:result];
-}
-- (PBIngotPriceInfo*) defaultInstance {
-  return [PBIngotPriceInfo defaultInstance];
-}
-- (PBIngotPriceInfo*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBIngotPriceInfo*) buildPartial {
-  PBIngotPriceInfo* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBIngotPriceInfo_Builder*) mergeFrom:(PBIngotPriceInfo*) other {
-  if (other == [PBIngotPriceInfo defaultInstance]) {
-    return self;
-  }
-  if (other.hasPrice) {
-    [self setPrice:other.price];
-  }
-  if (other.hasCurrency) {
-    [self setCurrency:other.currency];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        [self setPrice:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setCurrency:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasPrice {
-  return result.hasPrice;
-}
-- (NSString*) price {
-  return result.price;
-}
-- (PBIngotPriceInfo_Builder*) setPrice:(NSString*) value {
-  result.hasPrice = YES;
-  result.price = value;
-  return self;
-}
-- (PBIngotPriceInfo_Builder*) clearPrice {
-  result.hasPrice = NO;
-  result.price = @"";
-  return self;
-}
-- (BOOL) hasCurrency {
-  return result.hasCurrency;
-}
-- (NSString*) currency {
-  return result.currency;
-}
-- (PBIngotPriceInfo_Builder*) setCurrency:(NSString*) value {
-  result.hasCurrency = YES;
-  result.currency = value;
-  return self;
-}
-- (PBIngotPriceInfo_Builder*) clearCurrency {
-  result.hasCurrency = NO;
-  result.currency = @"";
-  return self;
-}
-@end
-
 @interface PBSaleIngot ()
 @property int32_t count;
 @property (retain) NSString* totalPrice;
 @property (retain) NSString* currency;
 @property (retain) NSString* country;
 @property (retain) NSString* saving;
+@property (retain) NSString* appleProductId;
 @end
 
 @implementation PBSaleIngot
@@ -7153,11 +6934,19 @@ static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
   hasSaving_ = !!value;
 }
 @synthesize saving;
+- (BOOL) hasAppleProductId {
+  return !!hasAppleProductId_;
+}
+- (void) setHasAppleProductId:(BOOL) value {
+  hasAppleProductId_ = !!value;
+}
+@synthesize appleProductId;
 - (void) dealloc {
   self.totalPrice = nil;
   self.currency = nil;
   self.country = nil;
   self.saving = nil;
+  self.appleProductId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -7167,6 +6956,7 @@ static PBIngotPriceInfo* defaultPBIngotPriceInfoInstance = nil;
     self.currency = @"";
     self.country = @"";
     self.saving = @"";
+    self.appleProductId = @"";
   }
   return self;
 }
@@ -7204,6 +6994,9 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   if (self.hasSaving) {
     [output writeString:10 value:self.saving];
   }
+  if (self.hasAppleProductId) {
+    [output writeString:20 value:self.appleProductId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -7227,6 +7020,9 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   }
   if (self.hasSaving) {
     size += computeStringSize(10, self.saving);
+  }
+  if (self.hasAppleProductId) {
+    size += computeStringSize(20, self.appleProductId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7318,6 +7114,9 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
   if (other.hasSaving) {
     [self setSaving:other.saving];
   }
+  if (other.hasAppleProductId) {
+    [self setAppleProductId:other.appleProductId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7357,6 +7156,10 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
       }
       case 82: {
         [self setSaving:[input readString]];
+        break;
+      }
+      case 162: {
+        [self setAppleProductId:[input readString]];
         break;
       }
     }
@@ -7440,6 +7243,22 @@ static PBSaleIngot* defaultPBSaleIngotInstance = nil;
 - (PBSaleIngot_Builder*) clearSaving {
   result.hasSaving = NO;
   result.saving = @"";
+  return self;
+}
+- (BOOL) hasAppleProductId {
+  return result.hasAppleProductId;
+}
+- (NSString*) appleProductId {
+  return result.appleProductId;
+}
+- (PBSaleIngot_Builder*) setAppleProductId:(NSString*) value {
+  result.hasAppleProductId = YES;
+  result.appleProductId = value;
+  return self;
+}
+- (PBSaleIngot_Builder*) clearAppleProductId {
+  result.hasAppleProductId = NO;
+  result.appleProductId = @"";
   return self;
 }
 @end

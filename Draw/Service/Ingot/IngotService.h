@@ -10,13 +10,14 @@
 
 typedef void (^GetIngotsListResultHandler)(BOOL success, NSArray *ingotsList);
 
+@class PBSaleIngot;
 
 @interface IngotService : NSObject
 
 + (IngotService *)sharedIngotService;
 
 - (void)getIngotsList:(GetIngotsListResultHandler)handler;
-
+- (PBSaleIngot*)findSaleIngoWithAppleProductId:(NSString*)appleProductId;
 + (void)createTestDataFile;
 
 @end

@@ -211,11 +211,6 @@ message PBGameItemList {
 }
 
 
-message PBIngotPriceInfo {
-  required string price = 1;        // 单个售价，如 6
-  optional string currency = 2;     // 游戏货币
-}
-
 message PBSaleIngot{
   required int32 count = 1;                 // 个数
   optional string totalPrice = 2;           // 总价格
@@ -223,6 +218,8 @@ message PBSaleIngot{
   optional string country = 5;              // 适应国家，中国"CN"
   
   optional string saving = 10;              // 节省百分比，如"50%"
+
+  optional string appleProductId = 20;      // Apple IAP购买ID
 }
 
 message PBSaleIngotList{

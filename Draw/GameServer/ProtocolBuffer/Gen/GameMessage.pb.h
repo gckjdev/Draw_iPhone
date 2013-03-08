@@ -139,8 +139,6 @@
 @class PBHotWordList;
 @class PBHotWordList_Builder;
 @class PBHotWord_Builder;
-@class PBIngotPriceInfo;
-@class PBIngotPriceInfo_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;

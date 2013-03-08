@@ -14,8 +14,6 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
-@class PBIngotPriceInfo;
-@class PBIngotPriceInfo_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -1661,63 +1659,6 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItemList_Builder*) clearItemsList;
 @end
 
-@interface PBIngotPriceInfo : PBGeneratedMessage {
-@private
-  BOOL hasPrice_:1;
-  BOOL hasCurrency_:1;
-  NSString* price;
-  NSString* currency;
-}
-- (BOOL) hasPrice;
-- (BOOL) hasCurrency;
-@property (readonly, retain) NSString* price;
-@property (readonly, retain) NSString* currency;
-
-+ (PBIngotPriceInfo*) defaultInstance;
-- (PBIngotPriceInfo*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBIngotPriceInfo_Builder*) builder;
-+ (PBIngotPriceInfo_Builder*) builder;
-+ (PBIngotPriceInfo_Builder*) builderWithPrototype:(PBIngotPriceInfo*) prototype;
-
-+ (PBIngotPriceInfo*) parseFromData:(NSData*) data;
-+ (PBIngotPriceInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input;
-+ (PBIngotPriceInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBIngotPriceInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBIngotPriceInfo_Builder : PBGeneratedMessage_Builder {
-@private
-  PBIngotPriceInfo* result;
-}
-
-- (PBIngotPriceInfo*) defaultInstance;
-
-- (PBIngotPriceInfo_Builder*) clear;
-- (PBIngotPriceInfo_Builder*) clone;
-
-- (PBIngotPriceInfo*) build;
-- (PBIngotPriceInfo*) buildPartial;
-
-- (PBIngotPriceInfo_Builder*) mergeFrom:(PBIngotPriceInfo*) other;
-- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBIngotPriceInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasPrice;
-- (NSString*) price;
-- (PBIngotPriceInfo_Builder*) setPrice:(NSString*) value;
-- (PBIngotPriceInfo_Builder*) clearPrice;
-
-- (BOOL) hasCurrency;
-- (NSString*) currency;
-- (PBIngotPriceInfo_Builder*) setCurrency:(NSString*) value;
-- (PBIngotPriceInfo_Builder*) clearCurrency;
-@end
-
 @interface PBSaleIngot : PBGeneratedMessage {
 @private
   BOOL hasCount_:1;
@@ -1725,22 +1666,26 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasCurrency_:1;
   BOOL hasCountry_:1;
   BOOL hasSaving_:1;
+  BOOL hasAppleProductId_:1;
   int32_t count;
   NSString* totalPrice;
   NSString* currency;
   NSString* country;
   NSString* saving;
+  NSString* appleProductId;
 }
 - (BOOL) hasCount;
 - (BOOL) hasTotalPrice;
 - (BOOL) hasCurrency;
 - (BOOL) hasCountry;
 - (BOOL) hasSaving;
+- (BOOL) hasAppleProductId;
 @property (readonly) int32_t count;
 @property (readonly, retain) NSString* totalPrice;
 @property (readonly, retain) NSString* currency;
 @property (readonly, retain) NSString* country;
 @property (readonly, retain) NSString* saving;
+@property (readonly, retain) NSString* appleProductId;
 
 + (PBSaleIngot*) defaultInstance;
 - (PBSaleIngot*) defaultInstance;
@@ -1800,6 +1745,11 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (NSString*) saving;
 - (PBSaleIngot_Builder*) setSaving:(NSString*) value;
 - (PBSaleIngot_Builder*) clearSaving;
+
+- (BOOL) hasAppleProductId;
+- (NSString*) appleProductId;
+- (PBSaleIngot_Builder*) setAppleProductId:(NSString*) value;
+- (PBSaleIngot_Builder*) clearAppleProductId;
 @end
 
 @interface PBSaleIngotList : PBGeneratedMessage {
