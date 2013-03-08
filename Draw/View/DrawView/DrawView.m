@@ -163,8 +163,8 @@ typedef enum {
         [osManager updateDrawPenWithPaint:paint];
         [osManager updateLastPaint:paint];
         [self setNeedsDisplay];
-        PPDebug(@"touch began");
-        [osManager printOSInfo];
+//        PPDebug(@"touch began");
+//        [osManager printOSInfo];
 
     }else if(type == TouchTypeMove){
         [self drawPaint:paint show:YES];
@@ -265,6 +265,8 @@ typedef enum {
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    PPDebug(@"=========<touchesBegan>=======");
     
     drawFailed = NO;
     _currentAction = nil;
@@ -488,8 +490,8 @@ typedef enum {
         [osManager cancelLastAction];        
     }
 
-    PPDebug(@"<didGestureBegan> draw failed!!");
-    [osManager printOSInfo];
+//    PPDebug(@"<didGestureBegan> draw failed!!");
+//    [osManager printOSInfo];
 
     [self setNeedsDisplay];
 }
