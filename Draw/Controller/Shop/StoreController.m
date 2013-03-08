@@ -124,20 +124,29 @@
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [dataList objectAtIndex:indexPath.row];
     BuyItemView *buyItemView = [BuyItemView createWithItem:item];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(item.name)
+    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
                                                       infoView:buyItemView 
                                                 hasCloseButton:YES
                                                   buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
-    [infoView showInView:self.view];
-    [infoView setActionBlock:^(UIButton *button, UIView *infoView){
+    [cusInfoView showInView:self.view];
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        [cusInfoView dismiss];
         int count = ((BuyItemView *)infoView).count;
         if (button.tag == 0) {
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
         }else{
             PPDebug(@"you give %d %@", count, NSLS(item.name));
+            FriendController *vc = [[[FriendController alloc] initWithDelegate:self] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }];
 }
 
+- (void)friendController:(FriendController *)controller
+         didSelectFriend:(MyFriend *)aFriend
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+}
 
 @end

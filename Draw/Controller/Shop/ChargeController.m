@@ -57,4 +57,12 @@
     return [ChargeCell getCellHeight];
 }
 
+- (void)dealloc {
+    [_ingotCountLabel release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setIngotCountLabel:nil];
+    [super viewDidUnload];
+}
 @end

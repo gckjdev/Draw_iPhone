@@ -66,8 +66,7 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
 {
     [self.countButton setTitle:[NSString stringWithFormat:@"%d", self.count] forState:UIControlStateNormal];
     
-    int price = self.item.priceInfo.price * ([self.item isPromoting] ? self.item.promotionInfo.discount/100.0f : 1) * self.count;
-    self.priceLabel.text = [NSString stringWithFormat:@"%d", price];
+    self.priceLabel.text = [NSString stringWithFormat:@"%d", [self.item promotionPrice] * self.count];
 }
 
 - (IBAction)clickIncreaseButton:(id)sender {
