@@ -229,7 +229,7 @@
         _isLoading = YES;
         [[FeedService defaultService] getFeedByFeedId:feed.feedId delegate:self];
     }
-    [self.drawImage setShadowOffset:CGSizeMake(0, 3) blur:0.6 shadowColor:[UIColor blackColor]];
+//    [self.drawImage setShadowOffset:CGSizeMake(0, 3) blur:0.6 shadowColor:[UIColor blackColor]];
 }
 
 
