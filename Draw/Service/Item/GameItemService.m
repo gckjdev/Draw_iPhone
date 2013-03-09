@@ -149,46 +149,46 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kRemoveAdDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"clean_ad@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"com.orange.draw.removead"];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:40];
             [itemBuilder setPriceInfo:priceInfo];
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //锦囊
         else if (index == 1){
             [itemBuilder setItemId:ItemTypeTips];
-            [itemBuilder setName:@"kBuyColor"];
+            [itemBuilder setName:@"kTips"];
             [itemBuilder setDesc:@"kTipsDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:40];
             [itemBuilder setPriceInfo:priceInfo];
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //颜色
         else if (index == 2){
             [itemBuilder setItemId:ItemTypeColor];
-            [itemBuilder setName:@"kTips"];
-            [itemBuilder setDesc:@"kTipsDescription"];
+            [itemBuilder setName:@"kBuyColor"];
+            [itemBuilder setDesc:@"kBuyColor"];
             [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
-            [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            [itemBuilder setImage:URL_ITEM_IMAGE(@"print_oil@2x.png")];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:100];
             [itemBuilder setPriceInfo:priceInfo];
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //番茄
@@ -198,9 +198,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kTomatoDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tomato@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:40];
             [itemBuilder setPriceInfo:priceInfo];
@@ -217,9 +217,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kFlowerDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"flower@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:40];
@@ -237,9 +237,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kPaletteItemDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:4000];
@@ -257,9 +257,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:2000];
@@ -277,15 +277,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kStrawDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:600];
             [itemBuilder setPriceInfo:priceInfo];
             
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //透明度
@@ -295,15 +295,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kColorAlphaItemDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:4000];
             [itemBuilder setPriceInfo:priceInfo];
             
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
 
         
@@ -314,14 +314,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kBrushPenDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"brush_pen@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
 
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:6];
             [itemBuilder setPriceInfo:priceInfo];
             
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //雪糕笔
@@ -331,14 +331,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kIcePenDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"cones_pen@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:6];
             [itemBuilder setPriceInfo:priceInfo];
             
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //鹅毛笔
@@ -348,14 +348,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kQuillDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"quill_pen@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
 
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:6];
             [itemBuilder setPriceInfo:priceInfo];
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         //麦克笔
@@ -365,14 +365,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setDesc:@"kWaterPenDescription"];
             [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"mike_pen@2x.png")];
-            [itemBuilder setDemoImage:nil];
+            //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
-            [itemBuilder setAppleProductId:nil];
+            //[itemBuilder setAppleProductId:nil];
             
             
             PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyIngot price:6];
             [itemBuilder setPriceInfo:priceInfo];
-            [itemBuilder setPromotionInfo:nil];
+            //[itemBuilder setPromotionInfo:nil];
         }
         
         
