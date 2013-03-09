@@ -856,10 +856,13 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];  
-    [self.view insertSubview:showView aboveSubview:drawBackground];
-
-//    self.showView.speed = PlaySpeedTypeNormal;
+    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    UIView *paper = [self.view viewWithTag:PAPER_VIEW_TAG];
+    paper.hidden = NO;
+    CGRect frame = showView.frame;
+    frame.origin = CGPointZero;
+    showView.frame = frame;
+    [paper addSubview:showView];
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled

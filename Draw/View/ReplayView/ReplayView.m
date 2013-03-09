@@ -142,9 +142,12 @@
     
     [self.showView setPressEnable:YES];
 
-    
-    [self insertSubview:self.showView aboveSubview:self.holderView];
-    [self.holderView removeFromSuperview];
+    CGRect frame = self.showView.frame;
+    frame.origin = CGPointZero;
+    self.showView.frame = frame;
+    [self.holderView addSubview:self.showView];
+//    [self insertSubview:self.showView aboveSubview:self.holderView];
+//    [self.holderView removeFromSuperview];
     
     if (isNewVersion) {
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
