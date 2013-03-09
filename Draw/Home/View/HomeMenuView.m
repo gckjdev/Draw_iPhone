@@ -381,7 +381,7 @@ int *getZJHMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeZJHCharge,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeZJHShop,
+//        HomeMenuTypeZJHShop,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };
@@ -397,7 +397,7 @@ int *getZJHMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeZJHVSSite,
         HomeMenuTypeZJHCharge,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeZJHShop,
+//        HomeMenuTypeZJHShop,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };

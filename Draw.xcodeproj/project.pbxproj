@@ -72,12 +72,7 @@
 		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
-		A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
-		A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
-		A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
-		A42AB86816E98073007AD01E /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
-		A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
 		A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86C16E99D9D007AD01E /* ingot_count_bg@2x.png */; };
 		A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86E16E99F0A007AD01E /* coin_count_bg@2x.png */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
@@ -87,10 +82,6 @@
 		A42C93C915FF28D60090D6B6 /* CommonDiceItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93C815FF28D60090D6B6 /* CommonDiceItemAction.m */; };
 		A42C93E015FF344D0090D6B6 /* RollAgainItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */; };
 		A42C93E616001FB90090D6B6 /* PeekItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C93E516001FB90090D6B6 /* PeekItemAction.m */; };
-		A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A42EA3341651F0220080BB95 /* ZJHGameController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */; };
 		A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */; };
@@ -211,31 +202,10 @@
 		A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
-		A491415A16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
-		A491415B16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
-		A491415C16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
-		A491415D16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
-		A491415E16E47ECF00106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
-		A491415F16E47ECF00106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
-		A491416016E47ECF00106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
-		A491416116E47ECF00106265 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
-		A491416216E47ECF00106265 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
-		A491416316E47ECF00106265 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
-		A491416416E47ECF00106265 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
-		A491416516E47ECF00106265 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
-		A491416616E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		A491416716E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		A491416816E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		A491416916E47ECF00106265 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
 		A491423616E6E13500106265 /* gray_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423316E6E13500106265 /* gray_coin@2x.png */; };
 		A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423416E6E13500106265 /* gray_ingot@2x.png */; };
 		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
 		A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423A16E6E27500106265 /* PBGameItemUtils.m */; };
-		A491423F16E6E2E300106265 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
-		A491424016E6E2E300106265 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
-		A491424316E6E54B00106265 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
-		A491424616E6EBE100106265 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
-		A491424816E6ED3000106265 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
 		A491426216E6EDB200106265 /* app_store@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491424A16E6EDB200106265 /* app_store@2x.png */; };
 		A491426316E6EDB200106265 /* balance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491424B16E6EDB200106265 /* balance_bg@2x.png */; };
 		A491426416E6EDB200106265 /* charge_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491424C16E6EDB200106265 /* charge_bg@2x.png */; };
@@ -268,8 +238,6 @@
 		A4A0CED016D8A2A6004AC167 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
-		A4A2E7B216E7223F00445888 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
-		A4A2E7B516E72B7800445888 /* GameItemPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B416E72B7800445888 /* GameItemPriceView.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
@@ -551,12 +519,6 @@
 		C242479716798A2B008B4E14 /* DrawSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C242479616798A2B008B4E14 /* DrawSoundManager.m */; };
 		C24247AB1679C1DE008B4E14 /* ZJHUserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AA1679C1DE008B4E14 /* ZJHUserInfoView.xib */; };
 		C24247AD1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24247AC1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib */; };
-		C24339FF15AAB02400325A76 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		C2433A0015AAB02400325A76 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		C2433A2715AC01E000325A76 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
-		C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		C244D9FC16B22842004F0F8C /* room_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4601168DBDCB009F43F7 /* room_search@2x.png */; };
 		C244D9FD16B22842004F0F8C /* room_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4601168DBDCB009F43F7 /* room_search@2x.png */; };
 		C244D9FE16B22843004F0F8C /* room_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4601168DBDCB009F43F7 /* room_search@2x.png */; };
@@ -1362,11 +1324,8 @@
 		CA16BA161682FAD900F81B47 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CA16BA171682FAD900F81B47 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CA16BA181682FAD900F81B47 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
-		CA16BA191682FAD900F81B47 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
 		CA16BA1A1682FAD900F81B47 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CA16BA1B1682FAD900F81B47 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
-		CA16BA1C1682FAD900F81B47 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA16BA1D1682FAD900F81B47 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
 		CA16BA1E1682FAD900F81B47 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA16BA1F1682FAD900F81B47 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA16BA201682FAD900F81B47 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -1385,7 +1344,6 @@
 		CA16BA2D1682FAD900F81B47 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA16BA2E1682FAD900F81B47 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		CA16BA2F1682FAD900F81B47 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
-		CA16BA301682FAD900F81B47 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA16BA311682FAD900F81B47 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA16BA321682FAD900F81B47 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA16BA331682FAD900F81B47 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
@@ -1460,8 +1418,6 @@
 		CA16BA7C1682FAD900F81B47 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CA16BA7D1682FAD900F81B47 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CA16BA7E1682FAD900F81B47 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CA16BA7F1682FAD900F81B47 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA16BA801682FAD900F81B47 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
 		CA16BA811682FAD900F81B47 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA16BA871682FAD900F81B47 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA16BA881682FAD900F81B47 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
@@ -1856,17 +1812,13 @@
 		CA16BC211682FAD900F81B47 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CA16BC221682FAD900F81B47 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CA16BC231682FAD900F81B47 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
-		CA16BC241682FAD900F81B47 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
 		CA16BC251682FAD900F81B47 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA16BC261682FAD900F81B47 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
-		CA16BC271682FAD900F81B47 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA16BC281682FAD900F81B47 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
 		CA16BC291682FAD900F81B47 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
 		CA16BC2A1682FAD900F81B47 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		CA16BC2B1682FAD900F81B47 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		CA16BC2C1682FAD900F81B47 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA16BC2D1682FAD900F81B47 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
-		CA16BC2E1682FAD900F81B47 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA16BC2F1682FAD900F81B47 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA16BC301682FAD900F81B47 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		CA16BC311682FAD900F81B47 /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -1889,10 +1841,6 @@
 		CA16BC421682FAD900F81B47 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		CA16BC431682FAD900F81B47 /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		CA16BC441682FAD900F81B47 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
-		CA16BC451682FAD900F81B47 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA16BC461682FAD900F81B47 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA16BC471682FAD900F81B47 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA16BC481682FAD900F81B47 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA16BC491682FAD900F81B47 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		CA16BC4A1682FAD900F81B47 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		CA16BC4B1682FAD900F81B47 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -1945,10 +1893,6 @@
 		CA16BC7E1682FAD900F81B47 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
 		CA16BC7F1682FAD900F81B47 /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
 		CA16BC801682FAD900F81B47 /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
-		CA16BC831682FAD900F81B47 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA16BC841682FAD900F81B47 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA16BC851682FAD900F81B47 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA16BC861682FAD900F81B47 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA16BC871682FAD900F81B47 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA16BC881682FAD900F81B47 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		CA16BC891682FAD900F81B47 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
@@ -2479,11 +2423,8 @@
 		CA16BF9C1682FAE300F81B47 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CA16BF9D1682FAE300F81B47 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CA16BF9E1682FAE300F81B47 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
-		CA16BF9F1682FAE300F81B47 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
 		CA16BFA01682FAE300F81B47 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CA16BFA11682FAE300F81B47 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
-		CA16BFA21682FAE300F81B47 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA16BFA31682FAE300F81B47 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
 		CA16BFA41682FAE300F81B47 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA16BFA51682FAE300F81B47 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA16BFA61682FAE300F81B47 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -2502,7 +2443,6 @@
 		CA16BFB31682FAE300F81B47 /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CA16BFB41682FAE300F81B47 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		CA16BFB51682FAE300F81B47 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
-		CA16BFB61682FAE300F81B47 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA16BFB71682FAE300F81B47 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA16BFB81682FAE300F81B47 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA16BFB91682FAE300F81B47 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
@@ -2577,8 +2517,6 @@
 		CA16C0021682FAE300F81B47 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CA16C0031682FAE300F81B47 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CA16C0041682FAE300F81B47 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CA16C0051682FAE300F81B47 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA16C0061682FAE300F81B47 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
 		CA16C0071682FAE300F81B47 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA16C00D1682FAE300F81B47 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA16C00E1682FAE300F81B47 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
@@ -2967,17 +2905,13 @@
 		CA16C1A61682FAE300F81B47 /* GameMessage.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA96E34F150DFBFA00292335 /* GameMessage.proto */; };
 		CA16C1A71682FAE300F81B47 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CA16C1A91682FAE300F81B47 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
-		CA16C1AA1682FAE300F81B47 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
 		CA16C1AB1682FAE300F81B47 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA16C1AC1682FAE300F81B47 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
-		CA16C1AD1682FAE300F81B47 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA16C1AE1682FAE300F81B47 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
 		CA16C1AF1682FAE300F81B47 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
 		CA16C1B01682FAE300F81B47 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		CA16C1B11682FAE300F81B47 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		CA16C1B21682FAE300F81B47 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA16C1B31682FAE300F81B47 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
-		CA16C1B41682FAE300F81B47 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA16C1B61682FAE300F81B47 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		CA16C1B71682FAE300F81B47 /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA16C1B81682FAE300F81B47 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
@@ -2997,10 +2931,6 @@
 		CA16C1C81682FAE300F81B47 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		CA16C1C91682FAE300F81B47 /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		CA16C1CA1682FAE300F81B47 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
-		CA16C1CB1682FAE300F81B47 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA16C1CC1682FAE300F81B47 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA16C1CD1682FAE300F81B47 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA16C1CE1682FAE300F81B47 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA16C1CF1682FAE300F81B47 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		CA16C1D01682FAE300F81B47 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		CA16C1D11682FAE300F81B47 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -3048,10 +2978,6 @@
 		CA16C2041682FAE300F81B47 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
 		CA16C2051682FAE300F81B47 /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
 		CA16C2061682FAE300F81B47 /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
-		CA16C2091682FAE300F81B47 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA16C20A1682FAE300F81B47 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA16C20B1682FAE300F81B47 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA16C20C1682FAE300F81B47 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA16C20D1682FAE300F81B47 /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CA16C20E1682FAE300F81B47 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		CA16C20F1682FAE300F81B47 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
@@ -3482,6 +3408,171 @@
 		CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		CA22DCFF157CB3E9009C95CB /* OfflineGuessDrawController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DCF8157CB3E9009C95CB /* OfflineGuessDrawController.xib */; };
 		CA22DD03157CB440009C95CB /* OfflineGuessDrawController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA22DD02157CB440009C95CB /* OfflineGuessDrawController~ipad.xib */; };
+		CA23514716EB0DD200C88082 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
+		CA23514816EB0DD200C88082 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
+		CA23514916EB0DD200C88082 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
+		CA23514A16EB0DD200C88082 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		CA23514B16EB0DD200C88082 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
+		CA23514C16EB0DD200C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
+		CA23514D16EB0DD200C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
+		CA23514E16EB0DD200C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
+		CA23514F16EB0DD200C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
+		CA23515016EB0DD200C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
+		CA23515116EB0DD200C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
+		CA23515216EB0DD200C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
+		CA23515316EB0DD200C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
+		CA23515416EB0DD200C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
+		CA23515516EB0DD200C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
+		CA23515616EB0DD200C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
+		CA23515716EB0DD200C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
+		CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
+		CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
+		CA23515B16EB0DD200C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
+		CA23515C16EB0DD200C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
+		CA23515D16EB0DD200C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
+		CA23515E16EB0DD200C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
+		CA23515F16EB0DD200C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
+		CA23516016EB0DD200C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
+		CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
+		CA23516216EB0DD200C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
+		CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
+		CA23516416EB0DD200C88082 /* GameItemPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B416E72B7800445888 /* GameItemPriceView.m */; };
+		CA23516516EB0DD200C88082 /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
+		CA23516616EB0DD200C88082 /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		CA23516716EB0DD200C88082 /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
+		CA23516816EB0DD200C88082 /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
+		CA23516916EB0DD200C88082 /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
+		CA23516A16EB0DD200C88082 /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
+		CA23516B16EB0DD200C88082 /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
+		CA23516C16EB0DD200C88082 /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
+		CA23518D16EB0DD800C88082 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
+		CA23518E16EB0DD800C88082 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
+		CA23518F16EB0DD800C88082 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
+		CA23519016EB0DD800C88082 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		CA23519116EB0DD800C88082 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
+		CA23519216EB0DD800C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
+		CA23519316EB0DD800C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
+		CA23519416EB0DD800C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
+		CA23519516EB0DD800C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
+		CA23519616EB0DD800C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
+		CA23519716EB0DD800C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
+		CA23519816EB0DD800C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
+		CA23519916EB0DD800C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
+		CA23519A16EB0DD800C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
+		CA23519B16EB0DD800C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
+		CA23519C16EB0DD800C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
+		CA23519D16EB0DD800C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
+		CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
+		CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
+		CA2351A116EB0DD800C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
+		CA2351A216EB0DD800C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
+		CA2351A316EB0DD800C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
+		CA2351A416EB0DD800C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
+		CA2351A516EB0DD800C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
+		CA2351A616EB0DD800C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
+		CA2351A716EB0DD800C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
+		CA2351A816EB0DD800C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
+		CA2351A916EB0DD800C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
+		CA2351AA16EB0DD800C88082 /* GameItemPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B416E72B7800445888 /* GameItemPriceView.m */; };
+		CA2351AB16EB0DD800C88082 /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
+		CA2351AC16EB0DD800C88082 /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		CA2351AD16EB0DD800C88082 /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
+		CA2351AE16EB0DD800C88082 /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
+		CA2351AF16EB0DD800C88082 /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
+		CA2351B016EB0DD800C88082 /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
+		CA2351B116EB0DD800C88082 /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
+		CA2351B216EB0DD800C88082 /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
+		CA2351D916EB0DDB00C88082 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
+		CA2351DA16EB0DDB00C88082 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
+		CA2351DB16EB0DDB00C88082 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
+		CA2351DC16EB0DDB00C88082 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		CA2351DD16EB0DDB00C88082 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
+		CA2351DE16EB0DDB00C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
+		CA2351DF16EB0DDB00C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
+		CA2351E016EB0DDB00C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
+		CA2351E116EB0DDB00C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
+		CA2351E216EB0DDB00C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
+		CA2351E316EB0DDB00C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
+		CA2351E416EB0DDB00C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
+		CA2351E516EB0DDB00C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
+		CA2351E616EB0DDB00C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
+		CA2351E716EB0DDB00C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
+		CA2351E816EB0DDB00C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
+		CA2351E916EB0DDB00C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
+		CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
+		CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
+		CA2351ED16EB0DDB00C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
+		CA2351EE16EB0DDB00C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
+		CA2351EF16EB0DDB00C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
+		CA2351F016EB0DDB00C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
+		CA2351F116EB0DDB00C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
+		CA2351F216EB0DDB00C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
+		CA2351F316EB0DDB00C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
+		CA2351F416EB0DDB00C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
+		CA2351F516EB0DDB00C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
+		CA2351F616EB0DDB00C88082 /* GameItemPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B416E72B7800445888 /* GameItemPriceView.m */; };
+		CA2351F716EB0DDB00C88082 /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
+		CA2351F816EB0DDB00C88082 /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		CA2351F916EB0DDB00C88082 /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
+		CA2351FA16EB0DDB00C88082 /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
+		CA2351FB16EB0DDB00C88082 /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
+		CA2351FC16EB0DDB00C88082 /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
+		CA2351FD16EB0DDB00C88082 /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
+		CA2351FE16EB0DDB00C88082 /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
+		CA23520F16EB0DDF00C88082 /* CustomInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424216E6E54B00106265 /* CustomInfoView.m */; };
+		CA23521016EB0DDF00C88082 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
+		CA23521116EB0DDF00C88082 /* PriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423D16E6E2E300106265 /* PriceView.m */; };
+		CA23521216EB0DDF00C88082 /* PriceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491423E16E6E2E300106265 /* PriceView.xib */; };
+		CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
+		CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
+		CA23521516EB0DDF00C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
+		CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
+		CA23521716EB0DDF00C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
+		CA23521816EB0DDF00C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
+		CA23521916EB0DDF00C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
+		CA23521A16EB0DDF00C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
+		CA23521B16EB0DDF00C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
+		CA23521C16EB0DDF00C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
+		CA23521D16EB0DDF00C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
+		CA23521E16EB0DDF00C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
+		CA23521F16EB0DDF00C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
+		CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
+		CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
+		CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
+		CA23522316EB0DDF00C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
+		CA23522416EB0DDF00C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
+		CA23522516EB0DDF00C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
+		CA23522616EB0DDF00C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
+		CA23522716EB0DDF00C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
+		CA23522816EB0DDF00C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
+		CA23522916EB0DDF00C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
+		CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
+		CA23522B16EB0DDF00C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
+		CA23522C16EB0DDF00C88082 /* GameItemPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B416E72B7800445888 /* GameItemPriceView.m */; };
+		CA23522D16EB0DDF00C88082 /* ChargeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB80816E8364B007AD01E /* ChargeController.m */; };
+		CA23522E16EB0DDF00C88082 /* ChargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB80916E8364C007AD01E /* ChargeController.xib */; };
+		CA23522F16EB0DDF00C88082 /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
+		CA23523016EB0DDF00C88082 /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
+		CA23523116EB0DDF00C88082 /* BuyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81516E8711A007AD01E /* BuyItemView.m */; };
+		CA23523216EB0DDF00C88082 /* BuyItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86716E98072007AD01E /* BuyItemView.xib */; };
+		CA23523316EB0DDF00C88082 /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
+		CA23523416EB0DDF00C88082 /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
+		CA23523516EB0E0300C88082 /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
+		CA23523716EB0E0500C88082 /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
+		CA23523816EB0E0600C88082 /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
+		CA23523916EB0E1B00C88082 /* DrawBgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA48588F16E19D8500AEE725 /* DrawBgManager.m */; };
+		CA23523A16EB0E1C00C88082 /* DrawBgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA48588F16E19D8500AEE725 /* DrawBgManager.m */; };
+		CA23523B16EB0E3300C88082 /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
+		CA23523D16EB0E3600C88082 /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
+		CA23523E16EB0E7100C88082 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
+		CA23523F16EB0E7200C88082 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
+		CA23524016EB0E9E00C88082 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
+		CA23524116EB0E9E00C88082 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA23524216EB0EA300C88082 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
+		CA23524316EB0EA300C88082 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
@@ -3509,8 +3600,6 @@
 		CA322109151B6C6F0039A384 /* CompleteUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322107151B6C6F0039A384 /* CompleteUserInfoController.m */; };
 		CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
 		CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
-		CA322185151F62C00039A384 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
-		CA322186151F62C00039A384 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
 		CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
@@ -3577,10 +3666,6 @@
 		CA4151B2165502640062A638 /* BBSBoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151AD165502640062A638 /* BBSBoardCell.xib */; };
 		CA4151B3165502640062A638 /* BBSBoardSection.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4151AF165502640062A638 /* BBSBoardSection.m */; };
 		CA4151B4165502640062A638 /* BBSBoardSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151B0165502640062A638 /* BBSBoardSection.xib */; };
-		CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
-		CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
 		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
@@ -3616,8 +3701,6 @@
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
-		CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
-		CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
 		CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
 		CA507F4716AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
@@ -4990,22 +5073,6 @@
 		CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
 		CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
 		CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
-		CA881A1F16EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
-		CA881A2016EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
-		CA881A2116EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
-		CA881A2216EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
-		CA881A2516EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
-		CA881A2616EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
-		CA881A2716EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
-		CA881A2816EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
-		CA881A2B16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
-		CA881A2C16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
-		CA881A2D16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
-		CA881A2E16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
-		CA881A3116EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
-		CA881A3216EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
-		CA881A3316EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
-		CA881A3416EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
 		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
 		CA8974291607230E003A95F7 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973F81607230E003A95F7 /* CommentCell.m */; };
@@ -5325,11 +5392,8 @@
 		CAB5C7AF16994F0200A4CE3B /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAB5C7B016994F0200A4CE3B /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CAB5C7B116994F0200A4CE3B /* ChangeAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA32213C151DEDE10039A384 /* ChangeAvatar.m */; };
-		CAB5C7B216994F0200A4CE3B /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
 		CAB5C7B316994F0200A4CE3B /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A2151F657F0039A384 /* FeedbackController.m */; };
 		CAB5C7B416994F0200A4CE3B /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
-		CAB5C7B516994F0200A4CE3B /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CAB5C7B616994F0200A4CE3B /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
 		CAB5C7B716994F0200A4CE3B /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CAB5C7B816994F0200A4CE3B /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
 		CAB5C7B916994F0200A4CE3B /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E5241815218E21008913CC /* AnimationManager.m */; };
@@ -5348,7 +5412,6 @@
 		CAB5C7C616994F0200A4CE3B /* Reward.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51BD751525DEDE00C77E50 /* Reward.m */; };
 		CAB5C7C716994F0200A4CE3B /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		CAB5C7C816994F0200A4CE3B /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
-		CAB5C7C916994F0200A4CE3B /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CAB5C7CA16994F0200A4CE3B /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CAB5C7CB16994F0200A4CE3B /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CAB5C7CC16994F0200A4CE3B /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
@@ -5423,8 +5486,6 @@
 		CAB5C81516994F0200A4CE3B /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CAB5C81616994F0200A4CE3B /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CAB5C81716994F0200A4CE3B /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CAB5C81816994F0200A4CE3B /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CAB5C81916994F0200A4CE3B /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
 		CAB5C81A16994F0200A4CE3B /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CAB5C81B16994F0200A4CE3B /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CAB5C81C16994F0200A4CE3B /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
@@ -5837,17 +5898,13 @@
 		CAB5C9CC16994F0200A4CE3B /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
 		CAB5C9CD16994F0200A4CE3B /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
 		CAB5C9CE16994F0200A4CE3B /* CompleteUserInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322108151B6C6F0039A384 /* CompleteUserInfoController.xib */; };
-		CAB5C9CF16994F0200A4CE3B /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
 		CAB5C9D016994F0200A4CE3B /* FeedbackController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A3151F657F0039A384 /* FeedbackController.xib */; };
 		CAB5C9D116994F0200A4CE3B /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
-		CAB5C9D216994F0200A4CE3B /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CAB5C9D316994F0200A4CE3B /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
 		CAB5C9D416994F0200A4CE3B /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
 		CAB5C9D516994F0200A4CE3B /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		CAB5C9D616994F0200A4CE3B /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
 		CAB5C9D716994F0200A4CE3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CAB5C9D816994F0200A4CE3B /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
-		CAB5C9D916994F0200A4CE3B /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CAB5C9DA16994F0200A4CE3B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CAB5C9DB16994F0200A4CE3B /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		CAB5C9DC16994F0200A4CE3B /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
@@ -5870,10 +5927,6 @@
 		CAB5C9ED16994F0200A4CE3B /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
 		CAB5C9EE16994F0200A4CE3B /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		CAB5C9EF16994F0200A4CE3B /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
-		CAB5C9F016994F0200A4CE3B /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CAB5C9F116994F0200A4CE3B /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CAB5C9F216994F0200A4CE3B /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CAB5C9F316994F0200A4CE3B /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CAB5C9F416994F0200A4CE3B /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		CAB5C9F516994F0200A4CE3B /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		CAB5C9F616994F0200A4CE3B /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -5926,10 +5979,6 @@
 		CAB5CA2916994F0200A4CE3B /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
 		CAB5CA2A16994F0200A4CE3B /* SelectChatFriendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F095158853EF00DC7C5D /* SelectChatFriendController.xib */; };
 		CAB5CA2B16994F0200A4CE3B /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
-		CAB5CA2E16994F0200A4CE3B /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CAB5CA2F16994F0200A4CE3B /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CAB5CA3016994F0200A4CE3B /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CAB5CA3116994F0200A4CE3B /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CAB5CA3216994F0200A4CE3B /* ResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA50A01615BA5BF300CAB603 /* ResultController~ipad.xib */; };
 		CAB5CA3316994F0200A4CE3B /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		CAB5CA3416994F0200A4CE3B /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
@@ -6848,9 +6897,6 @@
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
-		EA1FF1FF16E9ECC10031B68F /* GiftDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */; };
-		EA23F5FD16E878070018786B /* ChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA23F5FB16E878070018786B /* ChargeCell.m */; };
-		EA23F5FE16E878070018786B /* ChargeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA23F5FC16E878070018786B /* ChargeCell.xib */; };
 		EA23F60616E878390018786B /* charge_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA23F60416E878390018786B /* charge_cell_bg@2x.png */; };
 		EA23F60716E878390018786B /* green_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA23F60516E878390018786B /* green_bg@2x.png */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
@@ -6911,7 +6957,6 @@
 		EA856CA215F0A65700178323 /* volume_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6915F0A65700178323 /* volume_on@2x.png */; };
 		EA856CA315F0A65700178323 /* wood_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6A15F0A65700178323 /* wood_bg2@2x.png */; };
 		EA856CA515F0A65700178323 /* wood_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA856C6C15F0A65700178323 /* wood_button@2x.png */; };
-		EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
 		EA9A315315E9D5CE0059288A /* DiceHelpView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA9A315215E9D5CE0059288A /* DiceHelpView~ipad.xib */; };
 		EAA6A13115CA23550094B122 /* DicesResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA6A12F15CA23550094B122 /* DicesResultView.m */; };
 		EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
@@ -9663,14 +9708,6 @@
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
 		CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
-		CA881A1D16EAE1F90085F57B /* TouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchHandler.h; sourceTree = "<group>"; };
-		CA881A1E16EAE1F90085F57B /* TouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchHandler.m; sourceTree = "<group>"; };
-		CA881A2316EAE21F0085F57B /* DrawTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTouchHandler.h; sourceTree = "<group>"; };
-		CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTouchHandler.m; sourceTree = "<group>"; };
-		CA881A2916EAE2350085F57B /* ShapeTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeTouchHandler.h; sourceTree = "<group>"; };
-		CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTouchHandler.m; sourceTree = "<group>"; };
-		CA881A2F16EAE24E0085F57B /* StrawTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrawTouchHandler.h; sourceTree = "<group>"; };
-		CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawTouchHandler.m; sourceTree = "<group>"; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
 		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
 		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
@@ -12055,7 +12092,6 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
-				CA881A1716EAE1730085F57B /* TouchHandler */,
 				CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */,
 				CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */,
 				CA051DAF1546802D00D0A00A /* DrawView.h */,
@@ -15771,21 +15807,6 @@
 			path = voice;
 			sourceTree = "<group>";
 		};
-		CA881A1716EAE1730085F57B /* TouchHandler */ = {
-			isa = PBXGroup;
-			children = (
-				CA881A1D16EAE1F90085F57B /* TouchHandler.h */,
-				CA881A1E16EAE1F90085F57B /* TouchHandler.m */,
-				CA881A2316EAE21F0085F57B /* DrawTouchHandler.h */,
-				CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */,
-				CA881A2916EAE2350085F57B /* ShapeTouchHandler.h */,
-				CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */,
-				CA881A2F16EAE24E0085F57B /* StrawTouchHandler.h */,
-				CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */,
-			);
-			name = TouchHandler;
-			sourceTree = "<group>";
-		};
 		CA8973721607131B003A95F7 /* Contest */ = {
 			isa = PBXGroup;
 			children = (
@@ -17822,17 +17843,13 @@
 				CA16BC211682FAD900F81B47 /* GameConstants.proto in Resources */,
 				CA16BC221682FAD900F81B47 /* SelectWordCell.xib in Resources */,
 				CA16BC231682FAD900F81B47 /* CompleteUserInfoController.xib in Resources */,
-				CA16BC241682FAD900F81B47 /* CoinShopController.xib in Resources */,
 				CA16BC251682FAD900F81B47 /* FeedbackController.xib in Resources */,
 				CA16BC261682FAD900F81B47 /* UserSettingController.xib in Resources */,
-				CA16BC271682FAD900F81B47 /* ItemShopController.xib in Resources */,
-				CA16BC281682FAD900F81B47 /* ShoppingCell.xib in Resources */,
 				CA16BC291682FAD900F81B47 /* ReportController.xib in Resources */,
 				CA16BC2A1682FAD900F81B47 /* ShareController.xib in Resources */,
 				CA16BC2B1682FAD900F81B47 /* ShareEditController.xib in Resources */,
 				CA16BC2C1682FAD900F81B47 /* Localizable.strings in Resources */,
 				CA16BC2D1682FAD900F81B47 /* ShareCell.xib in Resources */,
-				CA16BC2E1682FAD900F81B47 /* ColorShopCell.xib in Resources */,
 				CA16BC2F1682FAD900F81B47 /* Default@2x.png in Resources */,
 				CA16BC301682FAD900F81B47 /* AboutUsController.xib in Resources */,
 				CA16BC311682FAD900F81B47 /* ReplayController.xib in Resources */,
@@ -17855,10 +17872,6 @@
 				CA16BC421682FAD900F81B47 /* ShareCell~ipad.xib in Resources */,
 				CA16BC431682FAD900F81B47 /* ReplayController~ipad.xib in Resources */,
 				CA16BC441682FAD900F81B47 /* MyPaintButton~ipad.xib in Resources */,
-				CA16BC451682FAD900F81B47 /* CoinShopController~ipad.xib in Resources */,
-				CA16BC461682FAD900F81B47 /* ColorShopCell~ipad.xib in Resources */,
-				CA16BC471682FAD900F81B47 /* ItemShopController~ipad.xib in Resources */,
-				CA16BC481682FAD900F81B47 /* ShoppingCell~ipad.xib in Resources */,
 				CA16BC491682FAD900F81B47 /* ColorShopView~ipad.xib in Resources */,
 				CA16BC4A1682FAD900F81B47 /* ChatController.xib in Resources */,
 				CA16BC4B1682FAD900F81B47 /* SearchUserController.xib in Resources */,
@@ -17911,10 +17924,6 @@
 				CA16BC7E1682FAD900F81B47 /* whiteArrow@2x.png in Resources */,
 				CA16BC7F1682FAD900F81B47 /* SelectChatFriendController.xib in Resources */,
 				CA16BC801682FAD900F81B47 /* SelectChatFriendController~ipad.xib in Resources */,
-				CA16BC831682FAD900F81B47 /* VendingController.xib in Resources */,
-				CA16BC841682FAD900F81B47 /* VendingController~ipad.xib in Resources */,
-				CA16BC851682FAD900F81B47 /* CommonItemInfoView.xib in Resources */,
-				CA16BC861682FAD900F81B47 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA16BC871682FAD900F81B47 /* ResultController~ipad.xib in Resources */,
 				CA16BC881682FAD900F81B47 /* Draw.proto in Resources */,
 				CA16BC891682FAD900F81B47 /* Dice.proto in Resources */,
@@ -19044,11 +19053,32 @@
 				A406DF0E16DF34FE00852E59 /* TimeoutSettingView.xib in Resources */,
 				A406DF0F16DF34FE00852E59 /* TimeoutSettingView~ipad.xib in Resources */,
 				A454207516E060AB0073A431 /* Dice-Info.plist in Resources */,
-				A491416016E47ECF00106265 /* StoreCell.xib in Resources */,
-				A491416816E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01C16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 				C223B02A16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
 				C223B02E16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
+				CA23518E16EB0DD800C88082 /* CustomInfoView.xib in Resources */,
+				CA23519016EB0DD800C88082 /* PriceView.xib in Resources */,
+				CA23519216EB0DD800C88082 /* StoreCell.xib in Resources */,
+				CA23519416EB0DD800C88082 /* StoreController.xib in Resources */,
+				CA23519616EB0DD800C88082 /* CoinShopController.xib in Resources */,
+				CA23519716EB0DD800C88082 /* CoinShopController~ipad.xib in Resources */,
+				CA23519916EB0DD800C88082 /* ItemShopController.xib in Resources */,
+				CA23519A16EB0DD800C88082 /* ItemShopController~ipad.xib in Resources */,
+				CA23519C16EB0DD800C88082 /* ShoppingCell.xib in Resources */,
+				CA23519D16EB0DD800C88082 /* ShoppingCell~ipad.xib in Resources */,
+				CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */,
+				CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */,
+				CA2351A216EB0DD800C88082 /* VendingController.xib in Resources */,
+				CA2351A316EB0DD800C88082 /* VendingController~ipad.xib in Resources */,
+				CA2351A516EB0DD800C88082 /* CommonItemInfoView.xib in Resources */,
+				CA2351A616EB0DD800C88082 /* CommonItemInfoView~ipad.xib in Resources */,
+				CA2351A816EB0DD800C88082 /* GameItemDetailView.xib in Resources */,
+				CA2351AC16EB0DD800C88082 /* ChargeController.xib in Resources */,
+				CA2351AE16EB0DD800C88082 /* ChargeCell.xib in Resources */,
+				CA2351B016EB0DD800C88082 /* BuyItemView.xib in Resources */,
+				CA2351B216EB0DD800C88082 /* GiftDetailView.xib in Resources */,
+				CA23524016EB0E9E00C88082 /* DrawBgBox.xib in Resources */,
+				CA23524116EB0E9E00C88082 /* DrawBgBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19070,17 +19100,13 @@
 				CA16C1A61682FAE300F81B47 /* GameMessage.proto in Resources */,
 				CA16C1A71682FAE300F81B47 /* GameConstants.proto in Resources */,
 				CA16C1A91682FAE300F81B47 /* CompleteUserInfoController.xib in Resources */,
-				CA16C1AA1682FAE300F81B47 /* CoinShopController.xib in Resources */,
 				CA16C1AB1682FAE300F81B47 /* FeedbackController.xib in Resources */,
 				CA16C1AC1682FAE300F81B47 /* UserSettingController.xib in Resources */,
-				CA16C1AD1682FAE300F81B47 /* ItemShopController.xib in Resources */,
-				CA16C1AE1682FAE300F81B47 /* ShoppingCell.xib in Resources */,
 				CA16C1AF1682FAE300F81B47 /* ReportController.xib in Resources */,
 				CA16C1B01682FAE300F81B47 /* ShareController.xib in Resources */,
 				CA16C1B11682FAE300F81B47 /* ShareEditController.xib in Resources */,
 				CA16C1B21682FAE300F81B47 /* Localizable.strings in Resources */,
 				CA16C1B31682FAE300F81B47 /* ShareCell.xib in Resources */,
-				CA16C1B41682FAE300F81B47 /* ColorShopCell.xib in Resources */,
 				CA16C1B61682FAE300F81B47 /* AboutUsController.xib in Resources */,
 				CA16C1B71682FAE300F81B47 /* ReplayController.xib in Resources */,
 				CA16C1B81682FAE300F81B47 /* UFPController.xib in Resources */,
@@ -19100,10 +19126,6 @@
 				CA16C1C81682FAE300F81B47 /* ShareCell~ipad.xib in Resources */,
 				CA16C1C91682FAE300F81B47 /* ReplayController~ipad.xib in Resources */,
 				CA16C1CA1682FAE300F81B47 /* MyPaintButton~ipad.xib in Resources */,
-				CA16C1CB1682FAE300F81B47 /* CoinShopController~ipad.xib in Resources */,
-				CA16C1CC1682FAE300F81B47 /* ColorShopCell~ipad.xib in Resources */,
-				CA16C1CD1682FAE300F81B47 /* ItemShopController~ipad.xib in Resources */,
-				CA16C1CE1682FAE300F81B47 /* ShoppingCell~ipad.xib in Resources */,
 				CA16C1CF1682FAE300F81B47 /* ColorShopView~ipad.xib in Resources */,
 				CA16C1D01682FAE300F81B47 /* ChatController.xib in Resources */,
 				CA16C1D11682FAE300F81B47 /* SearchUserController.xib in Resources */,
@@ -19151,10 +19173,6 @@
 				CA16C2041682FAE300F81B47 /* whiteArrow@2x.png in Resources */,
 				CA16C2051682FAE300F81B47 /* SelectChatFriendController.xib in Resources */,
 				CA16C2061682FAE300F81B47 /* SelectChatFriendController~ipad.xib in Resources */,
-				CA16C2091682FAE300F81B47 /* VendingController.xib in Resources */,
-				CA16C20A1682FAE300F81B47 /* VendingController~ipad.xib in Resources */,
-				CA16C20B1682FAE300F81B47 /* CommonItemInfoView.xib in Resources */,
-				CA16C20C1682FAE300F81B47 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA16C20D1682FAE300F81B47 /* ResultController~ipad.xib in Resources */,
 				CA16C20E1682FAE300F81B47 /* Draw.proto in Resources */,
 				CA16C20F1682FAE300F81B47 /* Dice.proto in Resources */,
@@ -19911,11 +19929,32 @@
 				A454207316E058BE0073A431 /* CommonMessageView.xib in Resources */,
 				A454207416E060A10073A431 /* Zhajinhua-Info.plist in Resources */,
 				A454209816E0AC8A0073A431 /* CommonMessageView~ipad.xib in Resources */,
-				A491416116E47ECF00106265 /* StoreCell.xib in Resources */,
-				A491416916E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01D16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 				C223B02B16E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
 				C223B02F16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
+				CA23521016EB0DDF00C88082 /* CustomInfoView.xib in Resources */,
+				CA23521216EB0DDF00C88082 /* PriceView.xib in Resources */,
+				CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */,
+				CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */,
+				CA23521816EB0DDF00C88082 /* CoinShopController.xib in Resources */,
+				CA23521916EB0DDF00C88082 /* CoinShopController~ipad.xib in Resources */,
+				CA23521B16EB0DDF00C88082 /* ItemShopController.xib in Resources */,
+				CA23521C16EB0DDF00C88082 /* ItemShopController~ipad.xib in Resources */,
+				CA23521E16EB0DDF00C88082 /* ShoppingCell.xib in Resources */,
+				CA23521F16EB0DDF00C88082 /* ShoppingCell~ipad.xib in Resources */,
+				CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */,
+				CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */,
+				CA23522416EB0DDF00C88082 /* VendingController.xib in Resources */,
+				CA23522516EB0DDF00C88082 /* VendingController~ipad.xib in Resources */,
+				CA23522716EB0DDF00C88082 /* CommonItemInfoView.xib in Resources */,
+				CA23522816EB0DDF00C88082 /* CommonItemInfoView~ipad.xib in Resources */,
+				CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */,
+				CA23522E16EB0DDF00C88082 /* ChargeController.xib in Resources */,
+				CA23523016EB0DDF00C88082 /* ChargeCell.xib in Resources */,
+				CA23523216EB0DDF00C88082 /* BuyItemView.xib in Resources */,
+				CA23523416EB0DDF00C88082 /* GiftDetailView.xib in Resources */,
+				CA23524216EB0EA300C88082 /* DrawBgBox.xib in Resources */,
+				CA23524316EB0EA300C88082 /* DrawBgBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19943,17 +19982,13 @@
 				CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */,
 				CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */,
 				CA32210A151B6C6F0039A384 /* CompleteUserInfoController.xib in Resources */,
-				CA322186151F62C00039A384 /* CoinShopController.xib in Resources */,
 				CA3221A5151F657F0039A384 /* FeedbackController.xib in Resources */,
 				CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */,
-				CA41C945152010FF00013DC8 /* ItemShopController.xib in Resources */,
-				CA41C94A1520179100013DC8 /* ShoppingCell.xib in Resources */,
 				C2E662621521B91900487601 /* ReportController.xib in Resources */,
 				C2E6628315230B3F00487601 /* ShareController.xib in Resources */,
 				C2E662A0152463B900487601 /* ShareEditController.xib in Resources */,
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
-				CA4FF00B152AF21900F0AC88 /* ColorShopCell.xib in Resources */,
 				CA8D602A1531C98400E016ED /* Default@2x.png in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
 				CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */,
@@ -19976,10 +20011,6 @@
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
 				C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */,
 				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
-				A42D90431553803D0023AF32 /* CoinShopController~ipad.xib in Resources */,
-				A42D90441553803D0023AF32 /* ColorShopCell~ipad.xib in Resources */,
-				A42D90451553803D0023AF32 /* ItemShopController~ipad.xib in Resources */,
-				A42D90461553803D0023AF32 /* ShoppingCell~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
 				A329333215591D4D00621789 /* SearchUserController.xib in Resources */,
@@ -20032,10 +20063,6 @@
 				A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */,
 				A387F098158853EF00DC7C5D /* SelectChatFriendController.xib in Resources */,
 				A387F099158853EF00DC7C5D /* SelectChatFriendController~ipad.xib in Resources */,
-				C2433A0015AAB02400325A76 /* VendingController.xib in Resources */,
-				C2433A0215AAB06D00325A76 /* VendingController~ipad.xib in Resources */,
-				C2433A2915AC025A00325A76 /* CommonItemInfoView.xib in Resources */,
-				C2433A2B15AC028400325A76 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
 				A4B763A215C25208003B4E72 /* Draw.proto in Resources */,
 				A4B763A315C25208003B4E72 /* Dice.proto in Resources */,
@@ -20792,13 +20819,9 @@
 				C22DDEE316E43F31006224C1 /* result_paint_name_bg@2x.png in Resources */,
 				CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */,
 				CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
-				A491415E16E47ECF00106265 /* StoreCell.xib in Resources */,
-				A491416616E47ECF00106265 /* StoreController.xib in Resources */,
 				A491423616E6E13500106265 /* gray_coin@2x.png in Resources */,
 				A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */,
 				A491423816E6E13500106265 /* ingot@2x.png in Resources */,
-				A491424016E6E2E300106265 /* PriceView.xib in Resources */,
-				A491424816E6ED3000106265 /* GameItemDetailView.xib in Resources */,
 				A491426216E6EDB200106265 /* app_store@2x.png in Resources */,
 				A491426316E6EDB200106265 /* balance_bg@2x.png in Resources */,
 				A491426416E6EDB200106265 /* charge_bg@2x.png in Resources */,
@@ -20822,18 +20845,34 @@
 				A491427716E6EDB200106265 /* item_tool_selected@2x.png in Resources */,
 				A491427816E6EDB200106265 /* store_cell@2x.png in Resources */,
 				A491427916E6EDB200106265 /* zhifubao@2x.png in Resources */,
-				EA97E92E16E735A600817647 /* CustomInfoView.xib in Resources */,
 				C223B01A16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
-				A42AB80B16E8364C007AD01E /* ChargeController.xib in Resources */,
 				C223B02816E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
 				C223B02C16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
-				EA23F5FE16E878070018786B /* ChargeCell.xib in Resources */,
 				EA23F60616E878390018786B /* charge_cell_bg@2x.png in Resources */,
 				EA23F60716E878390018786B /* green_bg@2x.png in Resources */,
-				A42AB86816E98073007AD01E /* BuyItemView.xib in Resources */,
 				A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */,
 				A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */,
-				EA1FF1FF16E9ECC10031B68F /* GiftDetailView.xib in Resources */,
+				CA23514816EB0DD200C88082 /* CustomInfoView.xib in Resources */,
+				CA23514A16EB0DD200C88082 /* PriceView.xib in Resources */,
+				CA23514C16EB0DD200C88082 /* StoreCell.xib in Resources */,
+				CA23514E16EB0DD200C88082 /* StoreController.xib in Resources */,
+				CA23515016EB0DD200C88082 /* CoinShopController.xib in Resources */,
+				CA23515116EB0DD200C88082 /* CoinShopController~ipad.xib in Resources */,
+				CA23515316EB0DD200C88082 /* ItemShopController.xib in Resources */,
+				CA23515416EB0DD200C88082 /* ItemShopController~ipad.xib in Resources */,
+				CA23515616EB0DD200C88082 /* ShoppingCell.xib in Resources */,
+				CA23515716EB0DD200C88082 /* ShoppingCell~ipad.xib in Resources */,
+				CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */,
+				CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */,
+				CA23515C16EB0DD200C88082 /* VendingController.xib in Resources */,
+				CA23515D16EB0DD200C88082 /* VendingController~ipad.xib in Resources */,
+				CA23515F16EB0DD200C88082 /* CommonItemInfoView.xib in Resources */,
+				CA23516016EB0DD200C88082 /* CommonItemInfoView~ipad.xib in Resources */,
+				CA23516216EB0DD200C88082 /* GameItemDetailView.xib in Resources */,
+				CA23516616EB0DD200C88082 /* ChargeController.xib in Resources */,
+				CA23516816EB0DD200C88082 /* ChargeCell.xib in Resources */,
+				CA23516A16EB0DD200C88082 /* BuyItemView.xib in Resources */,
+				CA23516C16EB0DD200C88082 /* GiftDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20870,17 +20909,13 @@
 				CAB5C9CC16994F0200A4CE3B /* GameConstants.proto in Resources */,
 				CAB5C9CD16994F0200A4CE3B /* SelectWordCell.xib in Resources */,
 				CAB5C9CE16994F0200A4CE3B /* CompleteUserInfoController.xib in Resources */,
-				CAB5C9CF16994F0200A4CE3B /* CoinShopController.xib in Resources */,
 				CAB5C9D016994F0200A4CE3B /* FeedbackController.xib in Resources */,
 				CAB5C9D116994F0200A4CE3B /* UserSettingController.xib in Resources */,
-				CAB5C9D216994F0200A4CE3B /* ItemShopController.xib in Resources */,
-				CAB5C9D316994F0200A4CE3B /* ShoppingCell.xib in Resources */,
 				CAB5C9D416994F0200A4CE3B /* ReportController.xib in Resources */,
 				CAB5C9D516994F0200A4CE3B /* ShareController.xib in Resources */,
 				CAB5C9D616994F0200A4CE3B /* ShareEditController.xib in Resources */,
 				CAB5C9D716994F0200A4CE3B /* Localizable.strings in Resources */,
 				CAB5C9D816994F0200A4CE3B /* ShareCell.xib in Resources */,
-				CAB5C9D916994F0200A4CE3B /* ColorShopCell.xib in Resources */,
 				CAB5C9DA16994F0200A4CE3B /* Default@2x.png in Resources */,
 				CAB5C9DB16994F0200A4CE3B /* AboutUsController.xib in Resources */,
 				CAB5C9DC16994F0200A4CE3B /* ReplayController.xib in Resources */,
@@ -20903,10 +20938,6 @@
 				CAB5C9ED16994F0200A4CE3B /* ShareCell~ipad.xib in Resources */,
 				CAB5C9EE16994F0200A4CE3B /* ReplayController~ipad.xib in Resources */,
 				CAB5C9EF16994F0200A4CE3B /* MyPaintButton~ipad.xib in Resources */,
-				CAB5C9F016994F0200A4CE3B /* CoinShopController~ipad.xib in Resources */,
-				CAB5C9F116994F0200A4CE3B /* ColorShopCell~ipad.xib in Resources */,
-				CAB5C9F216994F0200A4CE3B /* ItemShopController~ipad.xib in Resources */,
-				CAB5C9F316994F0200A4CE3B /* ShoppingCell~ipad.xib in Resources */,
 				CAB5C9F416994F0200A4CE3B /* ColorShopView~ipad.xib in Resources */,
 				CAB5C9F516994F0200A4CE3B /* ChatController.xib in Resources */,
 				CAB5C9F616994F0200A4CE3B /* SearchUserController.xib in Resources */,
@@ -20959,10 +20990,6 @@
 				CAB5CA2916994F0200A4CE3B /* whiteArrow@2x.png in Resources */,
 				CAB5CA2A16994F0200A4CE3B /* SelectChatFriendController.xib in Resources */,
 				CAB5CA2B16994F0200A4CE3B /* SelectChatFriendController~ipad.xib in Resources */,
-				CAB5CA2E16994F0200A4CE3B /* VendingController.xib in Resources */,
-				CAB5CA2F16994F0200A4CE3B /* VendingController~ipad.xib in Resources */,
-				CAB5CA3016994F0200A4CE3B /* CommonItemInfoView.xib in Resources */,
-				CAB5CA3116994F0200A4CE3B /* CommonItemInfoView~ipad.xib in Resources */,
 				CAB5CA3216994F0200A4CE3B /* ResultController~ipad.xib in Resources */,
 				CAB5CA3316994F0200A4CE3B /* Draw.proto in Resources */,
 				CAB5CA3416994F0200A4CE3B /* Dice.proto in Resources */,
@@ -21677,11 +21704,30 @@
 				CA485B2B16E1F02C00AEE725 /* draw_bg.zip in Resources */,
 				CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */,
 				CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */,
-				A491415F16E47ECF00106265 /* StoreCell.xib in Resources */,
-				A491416716E47ECF00106265 /* StoreController.xib in Resources */,
 				C223B01B16E74453006F7CDF /* bulletin_bg@2x.jpg in Resources */,
 				C223B02916E85EF3006F7CDF /* super_face_cry@2x.png in Resources */,
 				C223B02D16E85EF3006F7CDF /* super_face_smile@2x.png in Resources */,
+				CA2351DA16EB0DDB00C88082 /* CustomInfoView.xib in Resources */,
+				CA2351DC16EB0DDB00C88082 /* PriceView.xib in Resources */,
+				CA2351DE16EB0DDB00C88082 /* StoreCell.xib in Resources */,
+				CA2351E016EB0DDB00C88082 /* StoreController.xib in Resources */,
+				CA2351E216EB0DDB00C88082 /* CoinShopController.xib in Resources */,
+				CA2351E316EB0DDB00C88082 /* CoinShopController~ipad.xib in Resources */,
+				CA2351E516EB0DDB00C88082 /* ItemShopController.xib in Resources */,
+				CA2351E616EB0DDB00C88082 /* ItemShopController~ipad.xib in Resources */,
+				CA2351E816EB0DDB00C88082 /* ShoppingCell.xib in Resources */,
+				CA2351E916EB0DDB00C88082 /* ShoppingCell~ipad.xib in Resources */,
+				CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */,
+				CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */,
+				CA2351EE16EB0DDB00C88082 /* VendingController.xib in Resources */,
+				CA2351EF16EB0DDB00C88082 /* VendingController~ipad.xib in Resources */,
+				CA2351F116EB0DDB00C88082 /* CommonItemInfoView.xib in Resources */,
+				CA2351F216EB0DDB00C88082 /* CommonItemInfoView~ipad.xib in Resources */,
+				CA2351F416EB0DDB00C88082 /* GameItemDetailView.xib in Resources */,
+				CA2351F816EB0DDB00C88082 /* ChargeController.xib in Resources */,
+				CA2351FA16EB0DDB00C88082 /* ChargeCell.xib in Resources */,
+				CA2351FC16EB0DDB00C88082 /* BuyItemView.xib in Resources */,
+				CA2351FE16EB0DDB00C88082 /* GiftDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21888,11 +21934,8 @@
 				CA16BA161682FAD900F81B47 /* AccountManager.m in Sources */,
 				CA16BA171682FAD900F81B47 /* ItemManager.m in Sources */,
 				CA16BA181682FAD900F81B47 /* ChangeAvatar.m in Sources */,
-				CA16BA191682FAD900F81B47 /* CoinShopController.m in Sources */,
 				CA16BA1A1682FAD900F81B47 /* FeedbackController.m in Sources */,
 				CA16BA1B1682FAD900F81B47 /* UserSettingController.m in Sources */,
-				CA16BA1C1682FAD900F81B47 /* ItemShopController.m in Sources */,
-				CA16BA1D1682FAD900F81B47 /* ShoppingCell.m in Sources */,
 				CA16BA1E1682FAD900F81B47 /* PriceService.m in Sources */,
 				CA16BA1F1682FAD900F81B47 /* ShoppingManager.m in Sources */,
 				CA16BA201682FAD900F81B47 /* AnimationManager.m in Sources */,
@@ -21911,7 +21954,6 @@
 				CA16BA2D1682FAD900F81B47 /* Reward.m in Sources */,
 				CA16BA2E1682FAD900F81B47 /* ShareCell.m in Sources */,
 				CA16BA2F1682FAD900F81B47 /* ColorGroup.m in Sources */,
-				CA16BA301682FAD900F81B47 /* ColorShopCell.m in Sources */,
 				CA16BA311682FAD900F81B47 /* UserItem.m in Sources */,
 				CA16BA321682FAD900F81B47 /* RouterTrafficServer.m in Sources */,
 				CA16BA331682FAD900F81B47 /* PriceModel.m in Sources */,
@@ -21986,8 +22028,6 @@
 				CA16BA7C1682FAD900F81B47 /* AdService.m in Sources */,
 				CA16BA7D1682FAD900F81B47 /* UIManager.m in Sources */,
 				CA16BA7E1682FAD900F81B47 /* CustomStatueBar.m in Sources */,
-				CA16BA7F1682FAD900F81B47 /* VendingController.m in Sources */,
-				CA16BA801682FAD900F81B47 /* CommonItemInfoView.m in Sources */,
 				CA16BA811682FAD900F81B47 /* ItemService.m in Sources */,
 				CA16BA871682FAD900F81B47 /* UserStatusService.m in Sources */,
 				CA16BA881682FAD900F81B47 /* RecommendApp.m in Sources */,
@@ -22422,13 +22462,28 @@
 				CA683A5416DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A6016DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */,
-				A491415C16E47ECF00106265 /* StoreCell.m in Sources */,
-				A491416416E47ECF00106265 /* StoreController.m in Sources */,
 				CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
-				CA881A2116EAE1F90085F57B /* TouchHandler.m in Sources */,
-				CA881A2716EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
-				CA881A2D16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
-				CA881A3316EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
+				CA23518D16EB0DD800C88082 /* CustomInfoView.m in Sources */,
+				CA23518F16EB0DD800C88082 /* PriceView.m in Sources */,
+				CA23519116EB0DD800C88082 /* StoreCell.m in Sources */,
+				CA23519316EB0DD800C88082 /* StoreController.m in Sources */,
+				CA23519516EB0DD800C88082 /* CoinShopController.m in Sources */,
+				CA23519816EB0DD800C88082 /* ItemShopController.m in Sources */,
+				CA23519B16EB0DD800C88082 /* ShoppingCell.m in Sources */,
+				CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */,
+				CA2351A116EB0DD800C88082 /* VendingController.m in Sources */,
+				CA2351A416EB0DD800C88082 /* CommonItemInfoView.m in Sources */,
+				CA2351A716EB0DD800C88082 /* GameItemDetailView.m in Sources */,
+				CA2351A916EB0DD800C88082 /* LocalizableLabel.m in Sources */,
+				CA2351AA16EB0DD800C88082 /* GameItemPriceView.m in Sources */,
+				CA2351AB16EB0DD800C88082 /* ChargeController.m in Sources */,
+				CA2351AD16EB0DD800C88082 /* ChargeCell.m in Sources */,
+				CA2351AF16EB0DD800C88082 /* BuyItemView.m in Sources */,
+				CA2351B116EB0DD800C88082 /* GiftDetailView.m in Sources */,
+				CA23523816EB0E0600C88082 /* IngotService.m in Sources */,
+				CA23523916EB0E1B00C88082 /* DrawBgManager.m in Sources */,
+				CA23523B16EB0E3300C88082 /* FeedDownloadService.m in Sources */,
+				CA23523E16EB0E7100C88082 /* DrawBgBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22616,11 +22671,8 @@
 				CA16BF9C1682FAE300F81B47 /* AccountManager.m in Sources */,
 				CA16BF9D1682FAE300F81B47 /* ItemManager.m in Sources */,
 				CA16BF9E1682FAE300F81B47 /* ChangeAvatar.m in Sources */,
-				CA16BF9F1682FAE300F81B47 /* CoinShopController.m in Sources */,
 				CA16BFA01682FAE300F81B47 /* FeedbackController.m in Sources */,
 				CA16BFA11682FAE300F81B47 /* UserSettingController.m in Sources */,
-				CA16BFA21682FAE300F81B47 /* ItemShopController.m in Sources */,
-				CA16BFA31682FAE300F81B47 /* ShoppingCell.m in Sources */,
 				CA16BFA41682FAE300F81B47 /* PriceService.m in Sources */,
 				CA16BFA51682FAE300F81B47 /* ShoppingManager.m in Sources */,
 				CA16BFA61682FAE300F81B47 /* AnimationManager.m in Sources */,
@@ -22639,7 +22691,6 @@
 				CA16BFB31682FAE300F81B47 /* Reward.m in Sources */,
 				CA16BFB41682FAE300F81B47 /* ShareCell.m in Sources */,
 				CA16BFB51682FAE300F81B47 /* ColorGroup.m in Sources */,
-				CA16BFB61682FAE300F81B47 /* ColorShopCell.m in Sources */,
 				CA16BFB71682FAE300F81B47 /* UserItem.m in Sources */,
 				CA16BFB81682FAE300F81B47 /* RouterTrafficServer.m in Sources */,
 				CA16BFB91682FAE300F81B47 /* PriceModel.m in Sources */,
@@ -22714,8 +22765,6 @@
 				CA16C0021682FAE300F81B47 /* AdService.m in Sources */,
 				CA16C0031682FAE300F81B47 /* UIManager.m in Sources */,
 				CA16C0041682FAE300F81B47 /* CustomStatueBar.m in Sources */,
-				CA16C0051682FAE300F81B47 /* VendingController.m in Sources */,
-				CA16C0061682FAE300F81B47 /* CommonItemInfoView.m in Sources */,
 				CA16C0071682FAE300F81B47 /* ItemService.m in Sources */,
 				CA16C00D1682FAE300F81B47 /* UserStatusService.m in Sources */,
 				CA16C00E1682FAE300F81B47 /* RecommendApp.m in Sources */,
@@ -23150,13 +23199,28 @@
 				CA683A5516DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A6116DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */,
-				A491415D16E47ECF00106265 /* StoreCell.m in Sources */,
-				A491416516E47ECF00106265 /* StoreController.m in Sources */,
 				CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
-				CA881A2216EAE1F90085F57B /* TouchHandler.m in Sources */,
-				CA881A2816EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
-				CA881A2E16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
-				CA881A3416EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
+				CA23520F16EB0DDF00C88082 /* CustomInfoView.m in Sources */,
+				CA23521116EB0DDF00C88082 /* PriceView.m in Sources */,
+				CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */,
+				CA23521516EB0DDF00C88082 /* StoreController.m in Sources */,
+				CA23521716EB0DDF00C88082 /* CoinShopController.m in Sources */,
+				CA23521A16EB0DDF00C88082 /* ItemShopController.m in Sources */,
+				CA23521D16EB0DDF00C88082 /* ShoppingCell.m in Sources */,
+				CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */,
+				CA23522316EB0DDF00C88082 /* VendingController.m in Sources */,
+				CA23522616EB0DDF00C88082 /* CommonItemInfoView.m in Sources */,
+				CA23522916EB0DDF00C88082 /* GameItemDetailView.m in Sources */,
+				CA23522B16EB0DDF00C88082 /* LocalizableLabel.m in Sources */,
+				CA23522C16EB0DDF00C88082 /* GameItemPriceView.m in Sources */,
+				CA23522D16EB0DDF00C88082 /* ChargeController.m in Sources */,
+				CA23522F16EB0DDF00C88082 /* ChargeCell.m in Sources */,
+				CA23523116EB0DDF00C88082 /* BuyItemView.m in Sources */,
+				CA23523316EB0DDF00C88082 /* GiftDetailView.m in Sources */,
+				CA23523716EB0E0500C88082 /* IngotService.m in Sources */,
+				CA23523A16EB0E1C00C88082 /* DrawBgManager.m in Sources */,
+				CA23523D16EB0E3600C88082 /* FeedDownloadService.m in Sources */,
+				CA23523F16EB0E7200C88082 /* DrawBgBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23341,11 +23405,8 @@
 				CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */,
 				CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */,
 				CA32213D151DEDE10039A384 /* ChangeAvatar.m in Sources */,
-				CA322185151F62C00039A384 /* CoinShopController.m in Sources */,
 				CA3221A4151F657F0039A384 /* FeedbackController.m in Sources */,
 				CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */,
-				CA41C944152010FF00013DC8 /* ItemShopController.m in Sources */,
-				CA41C9491520179100013DC8 /* ShoppingCell.m in Sources */,
 				CA41C9501520608D00013DC8 /* PriceService.m in Sources */,
 				CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */,
 				C2E5241915218E21008913CC /* AnimationManager.m in Sources */,
@@ -23364,7 +23425,6 @@
 				CA51BD761525DEDE00C77E50 /* Reward.m in Sources */,
 				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
-				CA4FF00A152AF21900F0AC88 /* ColorShopCell.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
 				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
@@ -23439,8 +23499,6 @@
 				CAA1AA3F159D78C200504C98 /* AdService.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
-				C24339FF15AAB02400325A76 /* VendingController.m in Sources */,
-				C2433A2715AC01E000325A76 /* CommonItemInfoView.m in Sources */,
 				CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
 				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
@@ -23880,26 +23938,28 @@
 				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */,
-				A491415A16E47ECF00106265 /* StoreCell.m in Sources */,
-				A491416216E47ECF00106265 /* StoreController.m in Sources */,
 				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 				A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */,
-				A491423F16E6E2E300106265 /* PriceView.m in Sources */,
-				A491424316E6E54B00106265 /* CustomInfoView.m in Sources */,
-				A491424616E6EBE100106265 /* GameItemDetailView.m in Sources */,
 				A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */,
-				A4A2E7B216E7223F00445888 /* LocalizableLabel.m in Sources */,
-				A4A2E7B516E72B7800445888 /* GameItemPriceView.m in Sources */,
-				A42AB80A16E8364C007AD01E /* ChargeController.m in Sources */,
 				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
-				A42AB81616E8711A007AD01E /* BuyItemView.m in Sources */,
-				EA23F5FD16E878070018786B /* ChargeCell.m in Sources */,
-				A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */,
 				CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
-				CA881A1F16EAE1F90085F57B /* TouchHandler.m in Sources */,
-				CA881A2516EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
-				CA881A2B16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
-				CA881A3116EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
+				CA23514716EB0DD200C88082 /* CustomInfoView.m in Sources */,
+				CA23514916EB0DD200C88082 /* PriceView.m in Sources */,
+				CA23514B16EB0DD200C88082 /* StoreCell.m in Sources */,
+				CA23514D16EB0DD200C88082 /* StoreController.m in Sources */,
+				CA23514F16EB0DD200C88082 /* CoinShopController.m in Sources */,
+				CA23515216EB0DD200C88082 /* ItemShopController.m in Sources */,
+				CA23515516EB0DD200C88082 /* ShoppingCell.m in Sources */,
+				CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */,
+				CA23515B16EB0DD200C88082 /* VendingController.m in Sources */,
+				CA23515E16EB0DD200C88082 /* CommonItemInfoView.m in Sources */,
+				CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */,
+				CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */,
+				CA23516416EB0DD200C88082 /* GameItemPriceView.m in Sources */,
+				CA23516516EB0DD200C88082 /* ChargeController.m in Sources */,
+				CA23516716EB0DD200C88082 /* ChargeCell.m in Sources */,
+				CA23516916EB0DD200C88082 /* BuyItemView.m in Sources */,
+				CA23516B16EB0DD200C88082 /* GiftDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24092,11 +24152,8 @@
 				CAB5C7AF16994F0200A4CE3B /* AccountManager.m in Sources */,
 				CAB5C7B016994F0200A4CE3B /* ItemManager.m in Sources */,
 				CAB5C7B116994F0200A4CE3B /* ChangeAvatar.m in Sources */,
-				CAB5C7B216994F0200A4CE3B /* CoinShopController.m in Sources */,
 				CAB5C7B316994F0200A4CE3B /* FeedbackController.m in Sources */,
 				CAB5C7B416994F0200A4CE3B /* UserSettingController.m in Sources */,
-				CAB5C7B516994F0200A4CE3B /* ItemShopController.m in Sources */,
-				CAB5C7B616994F0200A4CE3B /* ShoppingCell.m in Sources */,
 				CAB5C7B716994F0200A4CE3B /* PriceService.m in Sources */,
 				CAB5C7B816994F0200A4CE3B /* ShoppingManager.m in Sources */,
 				CAB5C7B916994F0200A4CE3B /* AnimationManager.m in Sources */,
@@ -24115,7 +24172,6 @@
 				CAB5C7C616994F0200A4CE3B /* Reward.m in Sources */,
 				CAB5C7C716994F0200A4CE3B /* ShareCell.m in Sources */,
 				CAB5C7C816994F0200A4CE3B /* ColorGroup.m in Sources */,
-				CAB5C7C916994F0200A4CE3B /* ColorShopCell.m in Sources */,
 				CAB5C7CA16994F0200A4CE3B /* UserItem.m in Sources */,
 				CAB5C7CB16994F0200A4CE3B /* RouterTrafficServer.m in Sources */,
 				CAB5C7CC16994F0200A4CE3B /* PriceModel.m in Sources */,
@@ -24190,8 +24246,6 @@
 				CAB5C81516994F0200A4CE3B /* AdService.m in Sources */,
 				CAB5C81616994F0200A4CE3B /* UIManager.m in Sources */,
 				CAB5C81716994F0200A4CE3B /* CustomStatueBar.m in Sources */,
-				CAB5C81816994F0200A4CE3B /* VendingController.m in Sources */,
-				CAB5C81916994F0200A4CE3B /* CommonItemInfoView.m in Sources */,
 				CAB5C81A16994F0200A4CE3B /* ItemService.m in Sources */,
 				CAB5C81B16994F0200A4CE3B /* UserStatusService.m in Sources */,
 				CAB5C81C16994F0200A4CE3B /* RecommendApp.m in Sources */,
@@ -24631,14 +24685,26 @@
 				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */,
-				A491415B16E47ECF00106265 /* StoreCell.m in Sources */,
-				A491416316E47ECF00106265 /* StoreController.m in Sources */,
 				CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 				CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
-				CA881A2016EAE1F90085F57B /* TouchHandler.m in Sources */,
-				CA881A2616EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
-				CA881A2C16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
-				CA881A3216EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
+				CA2351D916EB0DDB00C88082 /* CustomInfoView.m in Sources */,
+				CA2351DB16EB0DDB00C88082 /* PriceView.m in Sources */,
+				CA2351DD16EB0DDB00C88082 /* StoreCell.m in Sources */,
+				CA2351DF16EB0DDB00C88082 /* StoreController.m in Sources */,
+				CA2351E116EB0DDB00C88082 /* CoinShopController.m in Sources */,
+				CA2351E416EB0DDB00C88082 /* ItemShopController.m in Sources */,
+				CA2351E716EB0DDB00C88082 /* ShoppingCell.m in Sources */,
+				CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */,
+				CA2351ED16EB0DDB00C88082 /* VendingController.m in Sources */,
+				CA2351F016EB0DDB00C88082 /* CommonItemInfoView.m in Sources */,
+				CA2351F316EB0DDB00C88082 /* GameItemDetailView.m in Sources */,
+				CA2351F516EB0DDB00C88082 /* LocalizableLabel.m in Sources */,
+				CA2351F616EB0DDB00C88082 /* GameItemPriceView.m in Sources */,
+				CA2351F716EB0DDB00C88082 /* ChargeController.m in Sources */,
+				CA2351F916EB0DDB00C88082 /* ChargeCell.m in Sources */,
+				CA2351FB16EB0DDB00C88082 /* BuyItemView.m in Sources */,
+				CA2351FD16EB0DDB00C88082 /* GiftDetailView.m in Sources */,
+				CA23523516EB0E0300C88082 /* IngotService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
