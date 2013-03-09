@@ -13,6 +13,7 @@
 #import "CustomInfoView.h"
 #import "ChargeController.h"
 #import "GiftDetailView.h"
+#import "UserGameItemService.h"
 
 @interface StoreController ()
 
@@ -133,13 +134,22 @@
                                                 hasCloseButton:YES
                                                   buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
     [cusInfoView showInView:self.view];
-    
+
     __block typeof (self) bself = self;
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        [cusInfoView dismiss];
         int count = ((BuyItemView *)infoView).count;
         if (button.tag == 0) {
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
+
+            [cusInfoView enableButtons:NO];
+            [button setTitle:@"kBuying..." forState:UIControlStateNormal];
+            [cusInfoView showActivity];
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, PBGameItem *item, int count, NSString *toUserId) {
+                [cusInfoView dismiss];
+                if (resultCode == 0) {
+                    [bself popupHappyMessage:@"kYouBuy" title:nil];
+                }
+            }];
         }else{
             PPDebug(@"you give %d %@", count, NSLS(item.name));
             
@@ -163,9 +173,18 @@
                                                    hasCloseButton:YES
                                                      buttonTitles:NSLS(@"kCancel"), NSLS(@"kOK"), nil];
     [cusInfoView showInView:self.view];
+    
+    __block typeof (self) bself = self;
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         // TO DO
+        if (button.tag == 1) {
+            [[UserGameItemService defaultService] buyItem:_selectedItem count:_selectedCount handler:^(int resultCode, PBGameItem *item, int count, NSString *toUserId) {
+                if (resultCode == 0) {
+                    [bself popupHappyMessage:@"kYouGive" title:nil];
+                }
+            }];
+        }
     }];
 }
 

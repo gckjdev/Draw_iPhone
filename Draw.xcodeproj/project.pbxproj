@@ -243,6 +243,9 @@
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
+		A4B3B38516EB28E000EBF8DA /* sale_ingot.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */; };
+		A4B3B38616EB28E000EBF8DA /* shop_item.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item.pb */; };
+		A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
 		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
@@ -7354,6 +7357,10 @@
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
+		A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = sale_ingot.pb; sourceTree = "<group>"; };
+		A4B3B38416EB28E000EBF8DA /* shop_item.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item.pb; sourceTree = "<group>"; };
+		A4B3B38716EB28FD00EBF8DA /* UserItemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItemInfo.h; sourceTree = "<group>"; };
+		A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItemInfo.m; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
 		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
@@ -12103,6 +12110,8 @@
 		CA02B52515AC240700B2A3E2 /* Item */ = {
 			isa = PBXGroup;
 			children = (
+				A4B3B38716EB28FD00EBF8DA /* UserItemInfo.h */,
+				A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */,
 				CA02B52615AC241800B2A3E2 /* ItemService.h */,
 				CA02B52715AC241800B2A3E2 /* ItemService.m */,
 				CA16410D16D72452001C615F /* GameItemService.h */,
@@ -14449,6 +14458,8 @@
 		CA7D41DE168D7588009F43F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */,
+				A4B3B38416EB28E000EBF8DA /* shop_item.pb */,
 				CA485B2916E1F02C00AEE725 /* draw_bg.zip */,
 				A4A0CECF16D8A2A6004AC167 /* frames.pb */,
 				A4DE140E1697DB7B00841940 /* hot_word.pb */,
@@ -20921,6 +20932,8 @@
 				CA23516816EB0DD200C88082 /* ChargeCell.xib in Resources */,
 				CA23516A16EB0DD200C88082 /* BuyItemView.xib in Resources */,
 				CA23516C16EB0DD200C88082 /* GiftDetailView.xib in Resources */,
+				A4B3B38516EB28E000EBF8DA /* sale_ingot.pb in Resources */,
+				A4B3B38616EB28E000EBF8DA /* shop_item.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24020,6 +24033,7 @@
 				CA881A5A16EB278A0085F57B /* ShapeTouchHandler.m in Sources */,
 				CA881A5E16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6216EB278A0085F57B /* TouchHandler.m in Sources */,
+				A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

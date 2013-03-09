@@ -14,6 +14,7 @@
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIView *infoView;
+@property (retain, nonatomic) UIActivityIndicatorView *indicator;
 @end
 
 
@@ -34,6 +35,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (void)dealloc
 {
+    [_indicator release];
     [_infoView release];
     [_mainView release];
     [_infoLabel release];
@@ -76,7 +78,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
          buttonTitles:(NSString *)firstTitle, ...
 {
     CustomInfoView *view = [self createView];
-    
+        
     view.infoView = infoView;
     
     // set mainView size
@@ -151,6 +153,15 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     return view;
 }
 
+- (void)enableButtons:(BOOL)enabled
+{
+    for (UIView *view in [self.mainView subviews]) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            ((UIButton *)view).enabled = enabled;
+        }
+    }
+}
+
 - (void) setActionBlock:(ButtonActionBlock)actionBlock {
     if (_actionBlock != actionBlock) {
         Block_release(_actionBlock);
@@ -181,6 +192,25 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 - (void)dismiss
 {
     [self removeFromSuperview];
+}
+
+- (void)showActivity
+{
+    if (self.indicator == nil) {
+        self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        [self.indicator updateCenterX:(self.mainView.frame.size.width/2)];
+        [self.indicator updateCenterY:(self.mainView.frame.size.height/2)];
+        [self.mainView addSubview:self.indicator];
+    }
+    
+    self.indicator.hidden = NO;
+    [self.indicator startAnimating];
+}
+
+- (void)hideActivity
+{
+    [self.indicator stopAnimating];
+    self.indicator.hidden = YES;
 }
 
 - (void)clickButton:(id)sender

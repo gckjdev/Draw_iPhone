@@ -139,6 +139,7 @@
 
 + (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL
                                        userId:(NSString*)userId;
+
 + (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL 
                                        userId:(NSString*)userId 
                                      deviceId:(NSString*)deviceId;
