@@ -31,5 +31,6 @@
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view;
 - (UIPinchGestureRecognizer *)addPinchGestureReconizerToView:(UIView *)view;
+- (UIPanGestureRecognizer *)addDoubleTapGestureReconizerToView:(UIView *)view;
 
 @end

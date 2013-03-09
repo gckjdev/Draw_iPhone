@@ -54,6 +54,7 @@
         _gestureRecognizerManager = [[GestureRecognizerManager alloc] init];
         [_gestureRecognizerManager addPanGestureReconizerToView:self];
         [_gestureRecognizerManager addPinchGestureReconizerToView:self];
+        [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
     }
     return self;
 }
