@@ -15,12 +15,63 @@
 #import "ConfigManager.h"
 #import "AccountManager.h"
 #import "PBGameItemUtils.h"
+#import "UserItem.h"
+
+#define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
+
+@interface UserGameItemService()
+
+@property (retain, nonatomic) NSMutableArray *itemArr;
+
+@end
 
 @implementation UserGameItemService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
+- (void)dealloc
+{
+    [_itemArr release];
+    [super dealloc];
+}
 
+- (id)init{
+    if (self = [super init]) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_ITEM_INFO];
+        PBUserItemList *userItemList = [PBUserItemList parseFromData:data];
+        for (PBUserItem *item in [userItemList itemsList]) {
+            UserItem *userItem = [UserItem userItemFromPBUserItem:item];
+        }
+    }
+    
+    return self;
+}
+
+- (void)save
+{
+    PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
+    [builder addAllItems:_itemArr];
+    PBUserItemList *itemList = [builder build];
+    [[NSUserDefaults standardUserDefaults] setObject:[itemList data] forKey:KEY_USER_ITEM_INFO];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (int)countOfItem:(int)itemId
+{
+//    return [[_itemDic objectForKey:@(itemId)] ];
+}
+
+- (void)increaseItem:(int)itemId count:(int)count
+{
+    int oldCount = [self countOfItem:itemId];
+//    [_itemDic setObject:@(oldCount + count) forKey:@(itemId)];
+}
+
+- (void)decreaseItem:(int)itemId count:(int)count
+{
+    int oldCount = [self countOfItem:itemId];
+//    [_itemDic setObject:@(MAX(oldCount-count, 0)) forKey:@(itemId)];
+}
 
 - (void)buyItem:(PBGameItem*)item
           count:(int)count
@@ -49,7 +100,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             // if success, add user item locally
-            [self addItem:item.itemId count:count];
+            [self increaseItem:item.itemId count:count];
             
             // if success update user ingot balance locally
             [[AccountManager defaultManager] updateBalance:balance currency:item.priceInfo.currency];
@@ -80,9 +131,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
 }
 
-- (void)addItem:(int)itemId count:(int)count
-{
-    
-}
+
 
 @end

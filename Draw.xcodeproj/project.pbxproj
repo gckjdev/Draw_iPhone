@@ -80,6 +80,7 @@
 		A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
 		A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86C16E99D9D007AD01E /* ingot_count_bg@2x.png */; };
 		A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86E16E99F0A007AD01E /* coin_count_bg@2x.png */; };
+		A42AB8AA16EAE219007AD01E /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB8A916EAE216007AD01E /* UserItem.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -7054,6 +7055,8 @@
 		A42AB86A16E98F92007AD01E /* GiftDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftDetailView.m; sourceTree = "<group>"; };
 		A42AB86C16E99D9D007AD01E /* ingot_count_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingot_count_bg@2x.png"; sourceTree = "<group>"; };
 		A42AB86E16E99F0A007AD01E /* coin_count_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin_count_bg@2x.png"; sourceTree = "<group>"; };
+		A42AB8A816EAE215007AD01E /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
+		A42AB8A916EAE216007AD01E /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -12024,6 +12027,8 @@
 				CA16410E16D72452001C615F /* GameItemService.m */,
 				CA16413716D7255D001C615F /* UserGameItemService.h */,
 				CA16413816D7255D001C615F /* UserGameItemService.m */,
+				A42AB8A816EAE215007AD01E /* UserItem.h */,
+				A42AB8A916EAE216007AD01E /* UserItem.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -23848,6 +23853,7 @@
 				EA23F5FD16E878070018786B /* ChargeCell.m in Sources */,
 				A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */,
 				CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
+				A42AB8AA16EAE219007AD01E /* UserItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

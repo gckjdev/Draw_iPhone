@@ -18,6 +18,10 @@ typedef void* (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOp
 
 + (id)defaultService;
 
+
+
+
+
 - (void)buyItem:(PBGameItem*)item
           count:(int)count
         handler:(BuyItemResultHandler)handler;
