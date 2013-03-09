@@ -140,14 +140,14 @@
         int count = ((BuyItemView *)infoView).count;
         if (button.tag == 0) {
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
-
-            [cusInfoView enableButtons:NO];
-            [button setTitle:@"kBuying..." forState:UIControlStateNormal];
+            [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, PBGameItem *item, int count, NSString *toUserId) {
                 [cusInfoView dismiss];
                 if (resultCode == 0) {
-                    [bself popupHappyMessage:@"kYouBuy" title:nil];
+                    [bself popupHappyMessage:NSLS(@"kYouBuy") title:nil];
+                }else{
+                    [bself popupUnhappyMessage:NSLS(@"kBuyItemFail") title:nil];
                 }
             }];
         }else{

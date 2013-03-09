@@ -138,9 +138,7 @@ typedef enum{
             }
             
             [searchUserButton setTitle:NSLS(@"kSMSInvite") forState:UIControlStateNormal];
-//            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [inviteButton setTitle:NSLS(@"kWeixinInvite") forState:UIControlStateNormal];
-//            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             break;
         case ControllerTypeSelectFriend:
             [self.titleLabel setText:NSLS(@"kSelectContacts")];    
@@ -151,9 +149,7 @@ typedef enum{
         default:
             [self.titleLabel setText:NSLS(@"kMyFriends")];    
             [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
-//            [searchUserButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             [inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
-//            [inviteButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
             editButton.hidden = YES;
             break;
     }

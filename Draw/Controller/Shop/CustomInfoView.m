@@ -205,12 +205,16 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
+    self.mainView.userInteractionEnabled = NO;
+    [self enableButtons:NO];
 }
 
 - (void)hideActivity
 {
     [self.indicator stopAnimating];
     self.indicator.hidden = YES;
+    self.mainView.userInteractionEnabled = YES;
+    [self enableButtons:YES];
 }
 
 - (void)clickButton:(id)sender

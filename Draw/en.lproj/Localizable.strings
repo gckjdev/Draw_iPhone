@@ -88,6 +88,7 @@
 "kAllUserQuit" = "All users quit! Game Over!";
 
 "kBuying" = "Sending request...";
+"kBuying..." = "Buying";
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
 "kLoadMore" = "Loading...";
@@ -216,6 +217,7 @@
 "kShare_to_friends" = "Share to friends";
 "kReport_problems" = "Report problems";
 "kGive_some_advice" = "Give advice";
+"kGive" = "Gift";
 "kAbout_us" = "About us";
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
@@ -1043,7 +1045,7 @@
 "kTool" = "Tool";
 "kHandsel" = "Handsel";
 "kCount" = "Count";
-
+"kAlreadyBought" = "Bought";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -29,7 +29,6 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
        hasCloseButton:(BOOL)hasCloseButton
          buttonTitles:(NSString *)firstTitle, ...;
 
-- (void)enableButtons:(BOOL)enabled;
 - (void)showInView:(UIView *)view;
 - (void)dismiss;
 

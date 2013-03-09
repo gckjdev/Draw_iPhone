@@ -92,6 +92,7 @@
 
 
 "kBuying" = "发送购买请求中...";
+"kBuying..." = "购买中...";
 "kSendingRequest" = "发送消息中...";
 "kLoading" = "加载数据中...";
 "kLoadMore" = "加载中...";
@@ -218,6 +219,7 @@
 "kShare_to_friends" = "分享给好友";
 "kReport_problems" = "报告问题";
 "kGive_some_advice" = "反馈意见";
+"kGive" = "赠送";
 "kAbout_us" = "关于我们";
 "kMore_apps" = "应用推荐";
 "kGive_a_5-star_review" = "给个好评";
@@ -1371,5 +1373,7 @@
 "kTool" = "工具";
 "kHandsel" = "赠与";
 "kCount" = "数量";
+
+"kAlreadyBought" = "已购";
 
 /*********************** BBS国际化字符串结束 *************************/
