@@ -10,8 +10,8 @@
 #import "CommonService.h"
 #import "GameBasic.pb.h"
 
-typedef void (^BuyItemResultHandler)(int resultCode, PBGameItem *item, int count, NSString *toUserId);
-typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString *toOpusId);
+typedef void (^BuyItemResultHandler)(int resultCode, int itemId, int count, NSString *toUserId);
+typedef void (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOpusId);
 
 
 @interface UserGameItemService : CommonService
@@ -23,6 +23,12 @@ typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString 
 - (void)decreaseItem:(int)itemId count:(int)count;
 
 - (int)countOfItem:(int)itemId;
+
+- (void)buyItem:(int)itemId
+          count:(int)count
+     totalPrice:(int)totalPrice
+       currency:(PBGameCurrency)currency
+        handler:(BuyItemResultHandler)handler;
 
 - (void)buyItem:(PBGameItem*)item
           count:(int)count

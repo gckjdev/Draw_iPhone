@@ -268,7 +268,19 @@
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
 {
     PPDebug(@"<didGestureBegan>");
-    [self.touchHandler handleFailTouch];
-    
+    if (![gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        [self.touchHandler handleFailTouch];
+    }
+}
+
+- (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
+                   didGestureEnd:(UIGestureRecognizer *)gestureRecognizer
+{
+    PPDebug(@"<didGestureEnd>");
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        [self.touchHandler handleFailTouch];
+//        PPDebug(@"Double tap Began, undo a paint");
+//        [self revoke:NULL];
+    }
 }
 @end

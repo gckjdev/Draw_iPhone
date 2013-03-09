@@ -14,6 +14,7 @@
 #import "ChargeController.h"
 #import "GiftDetailView.h"
 #import "UserGameItemService.h"
+#import "ItemType.h"
 
 @interface StoreController ()
 
@@ -128,6 +129,15 @@
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [dataList objectAtIndex:indexPath.row];
+    
+    
+    if (item.itemId == ItemTypeColor) {
+        ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+        colorShop.delegate = self;
+        [colorShop showInView:self.view animated:YES];
+        return;
+    }
+    
     BuyItemView *buyItemView = [BuyItemView createWithItem:item];
     CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
                                                       infoView:buyItemView 
@@ -142,7 +152,7 @@
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, PBGameItem *item, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 [cusInfoView dismiss];
                 if (resultCode == 0) {
                     [bself popupHappyMessage:NSLS(@"kYouBuy") title:nil];
@@ -179,7 +189,7 @@
         [cusInfoView dismiss];
         // TO DO
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] buyItem:_selectedItem count:_selectedCount handler:^(int resultCode, PBGameItem *item, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] buyItem:_selectedItem count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == 0) {
                     [bself popupHappyMessage:@"kYouGive" title:nil];
                 }

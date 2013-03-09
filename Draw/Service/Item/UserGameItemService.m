@@ -116,27 +116,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     [self setItem:itemId count:MAX([self countOfItem:itemId]-count, 0)];
 }
 
-- (void)buyItem:(PBGameItem*)item
+- (void)buyItem:(int)itemId
           count:(int)count
+     totalPrice:(int)totalPrice
+       currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
     if (count <= 0) {
         return;
     }
     
-    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:item.priceInfo.currency];
-    int totalPrice = [item promotionPrice] * count;
+    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
         return;
     }
-
+    
     __block typeof (self) bself = self;
-
+    
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:item.itemId count:count price:totalPrice currency:item.priceInfo.currency toUser:[[UserManager defaultManager] userId]];
+        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:[[UserManager defaultManager] userId]];
         
         if (output.resultCode == 0) {
             int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
@@ -144,15 +145,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
             [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
             
-            [bself increaseItem:item.itemId count:count];
+            [bself increaseItem:itemId count:count];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (handler) {
-                handler(output.resultCode, item, count, [[UserManager defaultManager] userId]);
+                handler(output.resultCode, itemId, count, [[UserManager defaultManager] userId]);
             }
         });
     });
+}
+
+- (void)buyItem:(PBGameItem*)item
+          count:(int)count
+        handler:(BuyItemResultHandler)handler
+{
+    int totalPrice = [item promotionPrice] * count;
+    [self buyItem:item.itemId count:count totalPrice:totalPrice currency:item.priceInfo.currency handler:handler];
 }
 
 - (void)giveItem:(PBGameItem *)item

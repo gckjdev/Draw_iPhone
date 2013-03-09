@@ -41,6 +41,19 @@
     return [pinchGesture autorelease];
 }
 
+
+- (UITapGestureRecognizer *)addDoubleTapGestureReconizerToView:(UIView *)view
+{
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    view.multipleTouchEnabled = YES;
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    [doubleTap setNumberOfTapsRequired:2];
+    [view addGestureRecognizer:doubleTap];
+    return [doubleTap autorelease];
+
+}
+
 - (void)stateCallBack:(UIGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateFailed) {
@@ -133,6 +146,15 @@
     [UIView commitAnimations];
 }
 
+
+
+- (void)handleDoubleTap:(UITapGestureRecognizer *)doubleTap {
+    [self stateCallBack:doubleTap];
+    if (doubleTap.state == UIGestureRecognizerStateRecognized) {
+        [doubleTap.view setTransform:CGAffineTransformIdentity];
+        [self adjustView:doubleTap.view];
+    }
+}
 
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
