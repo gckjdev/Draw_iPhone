@@ -93,7 +93,10 @@
 
 - (void)addDrawAction:(DrawAction *)drawAction
 {
-    [self.drawActionList addObject:drawAction];
+    if (drawAction) {
+        [self.drawActionList addObject:drawAction];        
+    }
+
 }
 
 
