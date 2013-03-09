@@ -14,7 +14,7 @@
 #import "ItemType.h"
 #import "OffscreenManager.h"
 #import "DrawBgManager.h"
-
+#import "GestureRecognizerManager.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface SuperDrawView : UIControl
@@ -25,7 +25,7 @@
     DrawAction *_currentAction;
     
     OffscreenManager *osManager;
-
+    GestureRecognizerManager *_gestureRecognizerManager;
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;

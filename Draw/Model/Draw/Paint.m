@@ -279,8 +279,8 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         }
     }
     
-    *pointXList = retPointXList;
-    *pointYList = retPointYList;
+//    *pointXList = retPointXList;
+//    *pointYList = retPointYList;
     return pointList;
 }
 
