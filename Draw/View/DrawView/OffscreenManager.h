@@ -29,6 +29,8 @@
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action;
 
+- (void)cancelLastAction;
+
 - (void)updateWithDrawActionList:(NSArray *)drawActionList;
 
 //show all the action render in the layer list

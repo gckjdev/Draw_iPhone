@@ -232,121 +232,6 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBSNSUser_Builder*) clearQqOpenId;
 @end
 
-@interface PBUserItem : PBGeneratedMessage {
-@private
-  BOOL hasItemId_:1;
-  BOOL hasCount_:1;
-  int32_t itemId;
-  int32_t count;
-}
-- (BOOL) hasItemId;
-- (BOOL) hasCount;
-@property (readonly) int32_t itemId;
-@property (readonly) int32_t count;
-
-+ (PBUserItem*) defaultInstance;
-- (PBUserItem*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserItem_Builder*) builder;
-+ (PBUserItem_Builder*) builder;
-+ (PBUserItem_Builder*) builderWithPrototype:(PBUserItem*) prototype;
-
-+ (PBUserItem*) parseFromData:(NSData*) data;
-+ (PBUserItem*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItem*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserItem*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserItem_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserItem* result;
-}
-
-- (PBUserItem*) defaultInstance;
-
-- (PBUserItem_Builder*) clear;
-- (PBUserItem_Builder*) clone;
-
-- (PBUserItem*) build;
-- (PBUserItem*) buildPartial;
-
-- (PBUserItem_Builder*) mergeFrom:(PBUserItem*) other;
-- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasItemId;
-- (int32_t) itemId;
-- (PBUserItem_Builder*) setItemId:(int32_t) value;
-- (PBUserItem_Builder*) clearItemId;
-
-- (BOOL) hasCount;
-- (int32_t) count;
-- (PBUserItem_Builder*) setCount:(int32_t) value;
-- (PBUserItem_Builder*) clearCount;
-@end
-
-@interface PBUserItemList : PBGeneratedMessage {
-@private
-  BOOL hasUserId_:1;
-  NSString* userId;
-  NSMutableArray* mutableItemsList;
-}
-- (BOOL) hasUserId;
-@property (readonly, retain) NSString* userId;
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-
-+ (PBUserItemList*) defaultInstance;
-- (PBUserItemList*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserItemList_Builder*) builder;
-+ (PBUserItemList_Builder*) builder;
-+ (PBUserItemList_Builder*) builderWithPrototype:(PBUserItemList*) prototype;
-
-+ (PBUserItemList*) parseFromData:(NSData*) data;
-+ (PBUserItemList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserItemList_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserItemList* result;
-}
-
-- (PBUserItemList*) defaultInstance;
-
-- (PBUserItemList_Builder*) clear;
-- (PBUserItemList_Builder*) clone;
-
-- (PBUserItemList*) build;
-- (PBUserItemList*) buildPartial;
-
-- (PBUserItemList_Builder*) mergeFrom:(PBUserItemList*) other;
-- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBUserItemList_Builder*) setUserId:(NSString*) value;
-- (PBUserItemList_Builder*) clearUserId;
-
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-- (PBUserItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addItems:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addAllItems:(NSArray*) values;
-- (PBUserItemList_Builder*) clearItemsList;
-@end
-
 @interface PBGameUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
@@ -1799,5 +1684,120 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBSaleIngotList_Builder*) addIngots:(PBSaleIngot*) value;
 - (PBSaleIngotList_Builder*) addAllIngots:(NSArray*) values;
 - (PBSaleIngotList_Builder*) clearIngotsList;
+@end
+
+@interface PBUserItem : PBGeneratedMessage {
+@private
+  BOOL hasItemId_:1;
+  BOOL hasCount_:1;
+  int32_t itemId;
+  int32_t count;
+}
+- (BOOL) hasItemId;
+- (BOOL) hasCount;
+@property (readonly) int32_t itemId;
+@property (readonly) int32_t count;
+
++ (PBUserItem*) defaultInstance;
+- (PBUserItem*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserItem_Builder*) builder;
++ (PBUserItem_Builder*) builder;
++ (PBUserItem_Builder*) builderWithPrototype:(PBUserItem*) prototype;
+
++ (PBUserItem*) parseFromData:(NSData*) data;
++ (PBUserItem*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserItem*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserItem*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserItem*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserItem_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserItem* result;
+}
+
+- (PBUserItem*) defaultInstance;
+
+- (PBUserItem_Builder*) clear;
+- (PBUserItem_Builder*) clone;
+
+- (PBUserItem*) build;
+- (PBUserItem*) buildPartial;
+
+- (PBUserItem_Builder*) mergeFrom:(PBUserItem*) other;
+- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserItem_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasItemId;
+- (int32_t) itemId;
+- (PBUserItem_Builder*) setItemId:(int32_t) value;
+- (PBUserItem_Builder*) clearItemId;
+
+- (BOOL) hasCount;
+- (int32_t) count;
+- (PBUserItem_Builder*) setCount:(int32_t) value;
+- (PBUserItem_Builder*) clearCount;
+@end
+
+@interface PBUserItemList : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  NSString* userId;
+  NSMutableArray* mutableItemsList;
+}
+- (BOOL) hasUserId;
+@property (readonly, retain) NSString* userId;
+- (NSArray*) itemsList;
+- (PBUserItem*) itemsAtIndex:(int32_t) index;
+
++ (PBUserItemList*) defaultInstance;
+- (PBUserItemList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserItemList_Builder*) builder;
++ (PBUserItemList_Builder*) builder;
++ (PBUserItemList_Builder*) builderWithPrototype:(PBUserItemList*) prototype;
+
++ (PBUserItemList*) parseFromData:(NSData*) data;
++ (PBUserItemList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserItemList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserItemList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserItemList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserItemList* result;
+}
+
+- (PBUserItemList*) defaultInstance;
+
+- (PBUserItemList_Builder*) clear;
+- (PBUserItemList_Builder*) clone;
+
+- (PBUserItemList*) build;
+- (PBUserItemList*) buildPartial;
+
+- (PBUserItemList_Builder*) mergeFrom:(PBUserItemList*) other;
+- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBUserItemList_Builder*) setUserId:(NSString*) value;
+- (PBUserItemList_Builder*) clearUserId;
+
+- (NSArray*) itemsList;
+- (PBUserItem*) itemsAtIndex:(int32_t) index;
+- (PBUserItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
+- (PBUserItemList_Builder*) addItems:(PBUserItem*) value;
+- (PBUserItemList_Builder*) addAllItems:(NSArray*) values;
+- (PBUserItemList_Builder*) clearItemsList;
 @end
 

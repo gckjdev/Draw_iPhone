@@ -182,7 +182,7 @@
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<reference key="IBUIHighlightedTitleColor" ref="892336532"/>
 						<reference key="IBUINormalTitleColor" ref="892336532"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="982591614">
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
@@ -308,7 +308,7 @@
 					<object class="IBUIImageView" id="703982244">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{130, 118}, {64, 68}}</string>
+						<string key="NSFrame">{{136, 126}, {52, 52}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="1064578816"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -348,8 +348,8 @@
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="982591614"/>
-						<string key="IBUIShadowOffset">{0, 0}</string>
+						<reference key="IBUIShadowColor" ref="892336532"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -762,7 +762,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{82, 86}</string>
+			<string key="coin@2x.png">{64, 64}</string>
 			<string key="draw_share@2x.png">{82, 86}</string>
 			<string key="experience@2x.png">{82, 86}</string>
 			<string key="flower_result@2x.png">{82, 86}</string>

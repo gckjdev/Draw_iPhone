@@ -61,13 +61,14 @@
 						<string key="NSFrame">{{19, 100}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<int key="IBUITag">20120403</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_paper@2x.png</string>
+						<reference key="NSNextKeyView"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUITag">20120403</int>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIImageView" id="400329107">
 						<reference key="NSNextResponder" ref="774585933"/>
@@ -1482,7 +1483,6 @@
 				<string>draw_button_highlight@2x.png</string>
 				<string>draw_button_normal@2x.png</string>
 				<string>draw_main_bg@2x.jpg</string>
-				<string>draw_paper@2x.png</string>
 				<string>draw_title_bg@2x.jpg</string>
 			</object>
 			<object class="NSArray" key="dict.values">
@@ -1491,7 +1491,6 @@
 				<string>{91, 56}</string>
 				<string>{91, 56}</string>
 				<string>{640, 960}</string>
-				<string>{622, 649}</string>
 				<string>{640, 79}</string>
 			</object>
 		</object>

@@ -299,7 +299,11 @@
         self.draft.thumbImage = nil;
         [self synEraserColor];
     }
-    [self.view insertSubview:drawView aboveSubview:paperView];
+    [paperView addSubview:drawView];
+    paperView.hidden = NO;
+    drawView.frame = paperView.bounds;
+//    drawView.center = paperView.center;
+//    [self.view insertSubview:drawView aboveSubview:paperView];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
 }
