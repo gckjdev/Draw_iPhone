@@ -21,15 +21,6 @@ message PBSNSUser {
   optional string qqOpenId  = 8;                // QQ Weibo Only
 }
 
-message PBUserItem {
-  required int32 itemId = 1;
-  required int32 count = 2[default=0];
-}
-
-message PBUserItemList {
-  required string userId = 1;
-  repeated PBUserItem items = 2;
-}
 
 message PBGameUser {
   required string userId = 1;                   // 用户ID
@@ -224,6 +215,17 @@ message PBSaleIngot{
 
 message PBSaleIngotList{
   repeated PBSaleIngot ingots = 1;
+}
+
+
+message PBUserItem {
+  required int32 itemId = 1;
+  required int32 count = 2[default=0];
+}
+
+message PBUserItemList {
+  required string userId = 1;
+  repeated PBUserItem items = 2;
 }
 
 
