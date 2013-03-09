@@ -682,6 +682,7 @@ static AccountService* _defaultAccountService;
 
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer
 {
+    return;
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     if (userId == nil){

@@ -4990,6 +4990,22 @@
 		CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
 		CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
 		CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
+		CA881A1F16EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
+		CA881A2016EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
+		CA881A2116EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
+		CA881A2216EAE1F90085F57B /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A1E16EAE1F90085F57B /* TouchHandler.m */; };
+		CA881A2516EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
+		CA881A2616EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
+		CA881A2716EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
+		CA881A2816EAE21F0085F57B /* DrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */; };
+		CA881A2B16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
+		CA881A2C16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
+		CA881A2D16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
+		CA881A2E16EAE2360085F57B /* ShapeTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */; };
+		CA881A3116EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
+		CA881A3216EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
+		CA881A3316EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
+		CA881A3416EAE24E0085F57B /* StrawTouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */; };
 		CA89737516071335003A95F7 /* Contest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737416071335003A95F7 /* Contest.m */; };
 		CA89737816071345003A95F7 /* ContestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89737716071345003A95F7 /* ContestManager.m */; };
 		CA8974291607230E003A95F7 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973F81607230E003A95F7 /* CommentCell.m */; };
@@ -9646,6 +9662,14 @@
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
 		CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
+		CA881A1D16EAE1F90085F57B /* TouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchHandler.h; sourceTree = "<group>"; };
+		CA881A1E16EAE1F90085F57B /* TouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchHandler.m; sourceTree = "<group>"; };
+		CA881A2316EAE21F0085F57B /* DrawTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTouchHandler.h; sourceTree = "<group>"; };
+		CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTouchHandler.m; sourceTree = "<group>"; };
+		CA881A2916EAE2350085F57B /* ShapeTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeTouchHandler.h; sourceTree = "<group>"; };
+		CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeTouchHandler.m; sourceTree = "<group>"; };
+		CA881A2F16EAE24E0085F57B /* StrawTouchHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrawTouchHandler.h; sourceTree = "<group>"; };
+		CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawTouchHandler.m; sourceTree = "<group>"; };
 		CA89737316071335003A95F7 /* Contest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contest.h; sourceTree = "<group>"; };
 		CA89737416071335003A95F7 /* Contest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contest.m; sourceTree = "<group>"; };
 		CA89737616071345003A95F7 /* ContestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestManager.h; sourceTree = "<group>"; };
@@ -12029,6 +12053,7 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CA881A1716EAE1730085F57B /* TouchHandler */,
 				CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */,
 				CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */,
 				CA051DAF1546802D00D0A00A /* DrawView.h */,
@@ -15741,6 +15766,21 @@
 				CA7D480E168DBDCD009F43F7 /* scrambleToOpenDice_M.m4a */,
 			);
 			path = voice;
+			sourceTree = "<group>";
+		};
+		CA881A1716EAE1730085F57B /* TouchHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CA881A1D16EAE1F90085F57B /* TouchHandler.h */,
+				CA881A1E16EAE1F90085F57B /* TouchHandler.m */,
+				CA881A2316EAE21F0085F57B /* DrawTouchHandler.h */,
+				CA881A2416EAE21F0085F57B /* DrawTouchHandler.m */,
+				CA881A2916EAE2350085F57B /* ShapeTouchHandler.h */,
+				CA881A2A16EAE2360085F57B /* ShapeTouchHandler.m */,
+				CA881A2F16EAE24E0085F57B /* StrawTouchHandler.h */,
+				CA881A3016EAE24E0085F57B /* StrawTouchHandler.m */,
+			);
+			name = TouchHandler;
 			sourceTree = "<group>";
 		};
 		CA8973721607131B003A95F7 /* Contest */ = {
@@ -22381,6 +22421,10 @@
 				A491415C16E47ECF00106265 /* StoreCell.m in Sources */,
 				A491416416E47ECF00106265 /* StoreController.m in Sources */,
 				CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
+				CA881A2116EAE1F90085F57B /* TouchHandler.m in Sources */,
+				CA881A2716EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
+				CA881A2D16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
+				CA881A3316EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23105,6 +23149,10 @@
 				A491415D16E47ECF00106265 /* StoreCell.m in Sources */,
 				A491416516E47ECF00106265 /* StoreController.m in Sources */,
 				CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
+				CA881A2216EAE1F90085F57B /* TouchHandler.m in Sources */,
+				CA881A2816EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
+				CA881A2E16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
+				CA881A3416EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23844,6 +23892,10 @@
 				EA23F5FD16E878070018786B /* ChargeCell.m in Sources */,
 				A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */,
 				CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
+				CA881A1F16EAE1F90085F57B /* TouchHandler.m in Sources */,
+				CA881A2516EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
+				CA881A2B16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
+				CA881A3116EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24579,6 +24631,10 @@
 				A491416316E47ECF00106265 /* StoreController.m in Sources */,
 				CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
 				CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
+				CA881A2016EAE1F90085F57B /* TouchHandler.m in Sources */,
+				CA881A2616EAE21F0085F57B /* DrawTouchHandler.m in Sources */,
+				CA881A2C16EAE2360085F57B /* ShapeTouchHandler.m in Sources */,
+				CA881A3216EAE24E0085F57B /* StrawTouchHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

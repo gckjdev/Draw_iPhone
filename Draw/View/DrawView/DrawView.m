@@ -266,7 +266,7 @@ typedef enum {
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    PPDebug(@"=========<touchesBegan>=======");
+    PPDebug(@"=========<touchesBegan>======= touch count = %d",[touches count]);
     
     drawFailed = NO;
     _currentAction = nil;
@@ -309,7 +309,7 @@ typedef enum {
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    PPDebug(@"*********<touchesEnd>********* touch count = %d",[touches count]);
     [super touchesEnded:touches withEvent:event];
 
     if (drawFailed) {
