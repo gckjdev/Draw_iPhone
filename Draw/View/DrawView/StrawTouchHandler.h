@@ -8,6 +8,11 @@
 
 #import "TouchHandler.h"
 
+
+@protocol DrawViewStrawDelegate;
+
 @interface StrawTouchHandler : TouchHandler
+
+@property(nonatomic, assign)id<DrawViewStrawDelegate> strawDelegate;
 
 @end
