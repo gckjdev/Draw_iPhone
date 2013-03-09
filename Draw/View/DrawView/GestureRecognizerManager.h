@@ -12,6 +12,7 @@
 @class GestureRecognizerManager;
 @protocol GestureRecognizerManagerDelegate <NSObject>
 
+@optional
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer;
 

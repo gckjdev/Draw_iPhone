@@ -725,7 +725,7 @@ static AccountService* _defaultAccountService;
                         int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
                         
                         // TODO write item into new user item structure
-//                        [userGameItemService addItem:itemType amount:itemAmount];
+                        [userGameItemService setItem:itemType count:itemAmount];
                         
                         // update DB
                         UserItem* item = [_itemManager findUserItemByType:itemType];

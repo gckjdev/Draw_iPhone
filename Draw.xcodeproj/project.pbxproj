@@ -80,7 +80,7 @@
 		A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB86A16E98F92007AD01E /* GiftDetailView.m */; };
 		A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86C16E99D9D007AD01E /* ingot_count_bg@2x.png */; };
 		A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42AB86E16E99F0A007AD01E /* coin_count_bg@2x.png */; };
-		A42AB8AA16EAE219007AD01E /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB8A916EAE216007AD01E /* UserItem.m */; };
+		A42AB8C616EAED27007AD01E /* UserItemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB8C516EAED27007AD01E /* UserItemInfo.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
 		A42C520B15E614E5001D8208 /* DiceSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520A15E614E5001D8208 /* DiceSoundManager.m */; };
@@ -211,6 +211,8 @@
 		A48B0A0F16A1331C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48B0A1016A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A48B0A1116A1331D00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
+		A48DF92F16EB269300C498CB /* sale_ingot.pb in Resources */ = {isa = PBXBuildFile; fileRef = A48DF92D16EB269300C498CB /* sale_ingot.pb */; };
+		A48DF93016EB269300C498CB /* shop_item.pb in Resources */ = {isa = PBXBuildFile; fileRef = A48DF92E16EB269300C498CB /* shop_item.pb */; };
 		A48E827615E8AB1B002DB480 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48E827515E8AB1A002DB480 /* ChatView.xib */; };
 		A491415A16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
 		A491415B16E47ECF00106265 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
@@ -7055,8 +7057,8 @@
 		A42AB86A16E98F92007AD01E /* GiftDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftDetailView.m; sourceTree = "<group>"; };
 		A42AB86C16E99D9D007AD01E /* ingot_count_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingot_count_bg@2x.png"; sourceTree = "<group>"; };
 		A42AB86E16E99F0A007AD01E /* coin_count_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin_count_bg@2x.png"; sourceTree = "<group>"; };
-		A42AB8A816EAE215007AD01E /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
-		A42AB8A916EAE216007AD01E /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
+		A42AB8A816EAE215007AD01E /* UserItemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItemInfo.h; sourceTree = "<group>"; };
+		A42AB8C516EAED27007AD01E /* UserItemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItemInfo.m; sourceTree = "<group>"; };
 		A42C520215E614D2001D8208 /* CommonChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonChatMessage.h; sourceTree = "<group>"; };
 		A42C520315E614D2001D8208 /* CommonChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonChatMessage.m; sourceTree = "<group>"; };
 		A42C520415E614D2001D8208 /* DiceChatMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceChatMsgManager.h; sourceTree = "<group>"; };
@@ -7215,6 +7217,8 @@
 		A48B09CB169FAAC500B56975 /* UMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewController.m; sourceTree = "<group>"; };
 		A48B09CD169FAAC500B56975 /* UMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMWebViewController.h; sourceTree = "<group>"; };
 		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
+		A48DF92D16EB269300C498CB /* sale_ingot.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = sale_ingot.pb; sourceTree = "<group>"; };
+		A48DF92E16EB269300C498CB /* shop_item.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item.pb; sourceTree = "<group>"; };
 		A48E827515E8AB1A002DB480 /* ChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		A491415416E47ECF00106265 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
 		A491415516E47ECF00106265 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
@@ -12027,8 +12031,8 @@
 				CA16410E16D72452001C615F /* GameItemService.m */,
 				CA16413716D7255D001C615F /* UserGameItemService.h */,
 				CA16413816D7255D001C615F /* UserGameItemService.m */,
-				A42AB8A816EAE215007AD01E /* UserItem.h */,
-				A42AB8A916EAE216007AD01E /* UserItem.m */,
+				A42AB8A816EAE215007AD01E /* UserItemInfo.h */,
+				A42AB8C516EAED27007AD01E /* UserItemInfo.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -14371,6 +14375,8 @@
 		CA7D41DE168D7588009F43F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A48DF92D16EB269300C498CB /* sale_ingot.pb */,
+				A48DF92E16EB269300C498CB /* shop_item.pb */,
 				CA485B2916E1F02C00AEE725 /* draw_bg.zip */,
 				A4A0CECF16D8A2A6004AC167 /* frames.pb */,
 				A4DE140E1697DB7B00841940 /* hot_word.pb */,
@@ -20799,6 +20805,8 @@
 				A42AB86D16E99D9D007AD01E /* ingot_count_bg@2x.png in Resources */,
 				A42AB86F16E99F0B007AD01E /* coin_count_bg@2x.png in Resources */,
 				EA1FF1FF16E9ECC10031B68F /* GiftDetailView.xib in Resources */,
+				A48DF92F16EB269300C498CB /* sale_ingot.pb in Resources */,
+				A48DF93016EB269300C498CB /* shop_item.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23853,7 +23861,7 @@
 				EA23F5FD16E878070018786B /* ChargeCell.m in Sources */,
 				A42AB86B16E98F94007AD01E /* GiftDetailView.m in Sources */,
 				CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
-				A42AB8AA16EAE219007AD01E /* UserItem.m in Sources */,
+				A42AB8C616EAED27007AD01E /* UserItemInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

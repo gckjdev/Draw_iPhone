@@ -1747,12 +1747,12 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @private
   BOOL hasUserId_:1;
   NSString* userId;
-  NSMutableArray* mutableItemsList;
+  NSMutableArray* mutableUserItemsList;
 }
 - (BOOL) hasUserId;
 @property (readonly, retain) NSString* userId;
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
+- (NSArray*) userItemsList;
+- (PBUserItem*) userItemsAtIndex:(int32_t) index;
 
 + (PBUserItemList*) defaultInstance;
 - (PBUserItemList*) defaultInstance;
@@ -1793,11 +1793,11 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBUserItemList_Builder*) setUserId:(NSString*) value;
 - (PBUserItemList_Builder*) clearUserId;
 
-- (NSArray*) itemsList;
-- (PBUserItem*) itemsAtIndex:(int32_t) index;
-- (PBUserItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addItems:(PBUserItem*) value;
-- (PBUserItemList_Builder*) addAllItems:(NSArray*) values;
-- (PBUserItemList_Builder*) clearItemsList;
+- (NSArray*) userItemsList;
+- (PBUserItem*) userItemsAtIndex:(int32_t) index;
+- (PBUserItemList_Builder*) replaceUserItemsAtIndex:(int32_t) index with:(PBUserItem*) value;
+- (PBUserItemList_Builder*) addUserItems:(PBUserItem*) value;
+- (PBUserItemList_Builder*) addAllUserItems:(NSArray*) values;
+- (PBUserItemList_Builder*) clearUserItemsList;
 @end
 

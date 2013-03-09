@@ -37,6 +37,7 @@
     PPRelease(osManager);
     PPRelease(_drawBg);
     PPRelease(_drawBgImage);
+    PPRelease(_gestureRecognizerManager);
     [super dealloc];
 }
 
@@ -50,6 +51,9 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         _scale = 1;
+        _gestureRecognizerManager = [[GestureRecognizerManager alloc] init];
+        [_gestureRecognizerManager addPanGestureReconizerToView:self];
+        [_gestureRecognizerManager addPinchGestureReconizerToView:self];
     }
     return self;
 }

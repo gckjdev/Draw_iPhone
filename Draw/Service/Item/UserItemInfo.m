@@ -1,14 +1,14 @@
 //
-//  UserItem.m
+//  UserItemInfo.m
 //  Draw
 //
 //  Created by 王 小涛 on 13-3-9.
 //
 //
 
-#import "UserItem.h"
+#import "UserItemInfo.h"
 
-@implementation UserItem
+@implementation UserItemInfo
 
 - (void)dealloc
 {
@@ -25,7 +25,7 @@
     return self;
 }
 
-+ (id)userItemFromPBUserItem:(PBUserItem *)pbUserItem
++ (id)userItemInfoFromPBUserItem:(PBUserItem *)pbUserItem
 {
     return [[[self alloc] initWithPBUserItem:pbUserItem] autorelease];
 }
