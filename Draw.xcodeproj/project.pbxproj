@@ -640,6 +640,14 @@
 		C28BD0DD16D4B03B00E974A6 /* common_dialog_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */; };
 		C28BD0DE16D4B03B00E974A6 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
 		C28BD0DF16D4B03B00E974A6 /* common_dialog_input_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */; };
+		C28C0A7316EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
+		C28C0A7416EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
+		C28C0A7516EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
+		C28C0A7616EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
+		C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
+		C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
+		C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
+		C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -7662,6 +7670,10 @@
 		C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_close_btn@2x.png"; sourceTree = "<group>"; };
 		C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_head_bg@2x.png"; sourceTree = "<group>"; };
 		C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_input_bg@2x.png"; sourceTree = "<group>"; };
+		C28C0A7116EB324500A29B6C /* CacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheService.h; sourceTree = "<group>"; };
+		C28C0A7216EB324500A29B6C /* CacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheService.m; sourceTree = "<group>"; };
+		C28C0A7716EB326E00A29B6C /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		C28C0A7816EB326E00A29B6C /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -11786,6 +11798,15 @@
 			path = common_dialog;
 			sourceTree = "<group>";
 		};
+		C28C0A6B16EB31F800A29B6C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C28C0A7116EB324500A29B6C /* CacheService.h */,
+				C28C0A7216EB324500A29B6C /* CacheService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		C2916CBD1606B9C300B0996E /* DiceRobotManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -11949,6 +11970,7 @@
 		C2B537E31677712300725802 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C28C0A6B16EB31F800A29B6C /* Service */,
 				C2B537E41677712300725802 /* Controller */,
 				C2B537E91677712300725802 /* Model */,
 				C2B537EC1677712300725802 /* View */,
@@ -11976,6 +11998,8 @@
 				C2B537EB1677712300725802 /* CommonImageManager.m */,
 				C260DDDD16D1D2CD0008A243 /* SuperUserManageAction.h */,
 				C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */,
+				C28C0A7716EB326E00A29B6C /* CacheManager.h */,
+				C28C0A7816EB326E00A29B6C /* CacheManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -22549,6 +22573,8 @@
 				CA881A5C16EB278A0085F57B /* ShapeTouchHandler.m in Sources */,
 				CA881A6016EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6416EB278A0085F57B /* TouchHandler.m in Sources */,
+				C28C0A7516EB324500A29B6C /* CacheService.m in Sources */,
+				C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23290,6 +23316,8 @@
 				CA881A5D16EB278A0085F57B /* ShapeTouchHandler.m in Sources */,
 				CA881A6116EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6516EB278A0085F57B /* TouchHandler.m in Sources */,
+				C28C0A7616EB324500A29B6C /* CacheService.m in Sources */,
+				C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24034,6 +24062,8 @@
 				CA881A5E16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6216EB278A0085F57B /* TouchHandler.m in Sources */,
 				A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */,
+				C28C0A7316EB324500A29B6C /* CacheService.m in Sources */,
+				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24783,6 +24813,8 @@
 				CA881A5B16EB278A0085F57B /* ShapeTouchHandler.m in Sources */,
 				CA881A5F16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6316EB278A0085F57B /* TouchHandler.m in Sources */,
+				C28C0A7416EB324500A29B6C /* CacheService.m in Sources */,
+				C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
