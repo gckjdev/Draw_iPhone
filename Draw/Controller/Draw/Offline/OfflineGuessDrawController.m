@@ -862,6 +862,7 @@
     CGRect frame = showView.frame;
     frame.origin = CGPointZero;
     showView.frame = frame;
+    paper.userInteractionEnabled = YES;
     [paper addSubview:showView];
 }
 
