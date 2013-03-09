@@ -41,6 +41,7 @@
 @property (assign, nonatomic) int rowOfAppUpdate;
 @property (assign, nonatomic) int numberOfRows;
 @property (assign, nonatomic) int rowOfFollow;
+@property (assign, nonatomic) int rowOfCleanCache;
 
 @end
 
@@ -60,6 +61,7 @@
 @synthesize rowOfAbout;
 @synthesize rowOfAppUpdate;
 @synthesize numberOfRows;
+@synthesize rowOfCleanCache;
 @synthesize qqGroupLabel = _qqGroupLabel;
 
 #pragma mark - Table dataSource ,table view delegate
@@ -78,6 +80,7 @@
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
+        
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -85,6 +88,7 @@
             rowOfGiveReview = -1;
         }
         rowOfAbout = count++;
+        rowOfCleanCache = count++;
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
@@ -105,6 +109,7 @@
         numberOfRows = count;
         
         rowOfAddWords = -1;
+        rowOfCleanCache = -1;
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DICE_TABLE_HEIGHT);
     }
 }
@@ -143,6 +148,8 @@
         }else{
             aCell.accessoryView = nil;
         }
+    } else if (anIndex == rowOfCleanCache) {
+        [aCell.textLabel setText:NSLS(@"kCleanCach")];
     }
     
     if ([DeviceDetection isIPAD]) {
@@ -349,6 +356,11 @@ enum {
         }else{
             [self popupMessage:NSLS(@"kAlreadLastVersion") title:nil];
         }
+    }
+    
+    else if (indexPath.row == rowOfCleanCache) {
+        //TODO: clean cache 
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCleanCacheSucc") delayTime:2];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
