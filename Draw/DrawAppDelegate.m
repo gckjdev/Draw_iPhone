@@ -239,6 +239,9 @@ NSString* GlobalGetBoardServerURL()
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
     
+    [GameConfigDataManager createTestConfigData];
+    [GameConfigDataManager defaultManager];
+    
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
     
@@ -346,8 +349,6 @@ NSString* GlobalGetBoardServerURL()
     //sync level details
     [[LevelService defaultService] syncExpAndLevel:SYNC];
     
-//    [GameConfigDataManager createTestConfigData];  
-//    [GameConfigDataManager defaultInstance];
 
     [[BBSService defaultService] getBBSPrivilegeList];//kira:get bbs permission first, for super user manage
 
