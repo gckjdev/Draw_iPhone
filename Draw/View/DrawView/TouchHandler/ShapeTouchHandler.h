@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TouchHandler.h"
 
 @interface ShapeTouchHandler : TouchHandler
+
+- (DrawAction *)drawAction;
 
 @end

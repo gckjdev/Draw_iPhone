@@ -23,6 +23,8 @@
 #import "UMGridViewController.h"
 #import "UIUtils.h"
 #import "ShareImageManager.h"
+#import "CacheManager.h"
+#import "CommonDialog.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -41,6 +43,7 @@
 @property (assign, nonatomic) int rowOfAppUpdate;
 @property (assign, nonatomic) int numberOfRows;
 @property (assign, nonatomic) int rowOfFollow;
+@property (assign, nonatomic) int rowOfCleanCache;
 
 @end
 
@@ -60,6 +63,7 @@
 @synthesize rowOfAbout;
 @synthesize rowOfAppUpdate;
 @synthesize numberOfRows;
+@synthesize rowOfCleanCache;
 @synthesize qqGroupLabel = _qqGroupLabel;
 
 #pragma mark - Table dataSource ,table view delegate
@@ -78,6 +82,7 @@
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
+        
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
@@ -85,6 +90,7 @@
             rowOfGiveReview = -1;
         }
         rowOfAbout = count++;
+        rowOfCleanCache = count++;
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
@@ -105,6 +111,7 @@
         numberOfRows = count;
         
         rowOfAddWords = -1;
+        rowOfCleanCache = -1;
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DICE_TABLE_HEIGHT);
     }
 }
@@ -143,6 +150,8 @@
         }else{
             aCell.accessoryView = nil;
         }
+    } else if (anIndex == rowOfCleanCache) {
+        [aCell.textLabel setText:NSLS(@"kCleanCache")];
     }
     
     if ([DeviceDetection isIPAD]) {
@@ -349,6 +358,24 @@ enum {
         }else{
             [self popupMessage:NSLS(@"kAlreadLastVersion") title:nil];
         }
+    }
+    
+    else if (indexPath.row == rowOfCleanCache) {
+        //TODO: clean cache
+        [[CacheManager defaultManager] removeCachePathsArray:[GameApp cacheArray] succBlock:^(long long fileSize) {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
+                                                               message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]
+                                                                 style:CommonDialogStyleSingleButton
+                                                              delegate:nil
+                                                          clickOkBlock:^{
+                exit(0);
+            }
+                                                      clickCancelBlock:^{
+                //
+            }];
+            [dialog showInView:self.view];
+        }];
+        
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -159,8 +159,6 @@
     }
     //Draw the action in the entry screen.
     CGRect rect = [entery drawAction:action clear:full];
-//    PPDebug(@"<addDrawAction>");
-//    [self printOSInfo];
     return  rect;
 }
 
@@ -239,8 +237,8 @@
 
 - (Offscreen *)offScreenForActionIndex:(NSInteger)index
 {
-    PPDebug(@"<offScreenForActionIndex>");
-    [self printOSInfo];
+//    PPDebug(@"<offScreenForActionIndex>");
+//    [self printOSInfo];
     
     NSInteger count = 0;
     for (NSInteger i = _level - 1; i >= 0; -- i) {

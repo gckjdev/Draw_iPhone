@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawAction.h"
+#import "DrawView.h"
+#import "OffscreenManager.h"
+
 
 typedef enum {
     TouchStateBegin = 0,
     TouchStateMove = 1,
     TouchStateEnd = 2,
-    TouchStateFail = 3,
+    TouchStateCancel = 3,
 }TouchState;
 
 
@@ -21,12 +25,17 @@ typedef enum {
 @class OffscreenManager;
 
 @interface TouchHandler : NSObject
-
+{
+    TouchState currentState;
+    BOOL handleFailed;
+}
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)OffscreenManager *osManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;
 - (void)handleFailTouch;
++ (id)touchHandlerWithTouchActionType:(TouchActionType)type;
+- (void)reset;
 
 @end

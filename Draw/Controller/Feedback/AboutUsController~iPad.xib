@@ -157,7 +157,7 @@ Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvA</s
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="69109528">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="221703173">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -200,7 +200,7 @@ Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvA</s
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="69109528"/>
+						<reference key="IBUIShadowColor" ref="221703173"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>

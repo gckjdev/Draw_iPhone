@@ -20,6 +20,7 @@
 #import "AccountManager.h"
 #import "DeviceDetection.h"
 #import "DrawColorManager.h"
+#import "UserGameItemService.h"
 
 @implementation ColorShopView
 @synthesize titleLabel;
@@ -27,8 +28,6 @@
 @synthesize dataTableView;
 @synthesize colorGroups;
 @synthesize delegate = _delegate;
-
-
 
 + (ColorShopView *)colorShopViewWithFrame:(CGRect)frame 
 {
@@ -193,36 +192,56 @@
 {
     if (dialog.tag == BUY_CONFIRM_TAG && willBuyGroup) {
         
-        [[AccountService defaultService] buyItem:willBuyGroup.groupId itemCount:1 itemCoins:willBuyGroup.price];
-        willBuyGroup.hasBought = YES;
-        [self updateBalanceLabel];
+//        [[AccountService defaultService] buyItem:willBuyGroup.groupId itemCount:1 itemCoins:willBuyGroup.price];
+    
+        __block typeof (self) bself = self;
         
-        NSInteger index = [colorGroups indexOfObject:willBuyGroup];
-        [willBuyGroup retain];
-        [colorGroups removeObject:willBuyGroup];    
-        [colorGroups insertObject:willBuyGroup atIndex:0];
-        [willBuyGroup release];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        
-        [dataTableView beginUpdates];
-        [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-                         withRowAnimation:UITableViewRowAnimationFade];
-        [dataTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:
-                                           [NSIndexPath indexPathForRow:0 inSection:0]] 
-                         withRowAnimation:UITableViewRowAnimationRight + rand() % 2];
-        [dataTableView endUpdates];
-        
-        [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        NSInteger groupId = willBuyGroup.groupId;
-        NSArray * colorList = [ColorGroup colorListForGroupId:willBuyGroup.groupId];
-        [[DrawColorManager sharedDrawColorManager] addBoughtColorList:colorList];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didBuyColorList:groupId:)]) {
-            [self.delegate didBuyColorList:colorList groupId:groupId];
-        }
-        willBuyGroup = nil;
+       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+           if (resultCode == 0) {
+               [bself buyColorSuccess];
+           } else {
+               [bself  buyColorFailed];
+           }
+       }];
     }
 }
 
+
+- (void)buyColorSuccess
+{
+    willBuyGroup.hasBought = YES;
+    [self updateBalanceLabel];
+    
+    NSInteger index = [colorGroups indexOfObject:willBuyGroup];
+    [willBuyGroup retain];
+    [colorGroups removeObject:willBuyGroup];
+    [colorGroups insertObject:willBuyGroup atIndex:0];
+    [willBuyGroup release];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    [dataTableView beginUpdates];
+    [dataTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    [dataTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:
+                                           [NSIndexPath indexPathForRow:0 inSection:0]]
+                         withRowAnimation:UITableViewRowAnimationRight + rand() % 2];
+    [dataTableView endUpdates];
+    
+    [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    NSInteger groupId = willBuyGroup.groupId;
+    NSArray * colorList = [ColorGroup colorListForGroupId:willBuyGroup.groupId];
+    [[DrawColorManager sharedDrawColorManager] addBoughtColorList:colorList];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didBuyColorList:groupId:)]) {
+        [self.delegate didBuyColorList:colorList groupId:groupId];
+    }
+    willBuyGroup = nil;
+}
+
+- (void)buyColorFailed
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kBuyColorFailed") style:CommonDialogStyleSingleButton delegate:nil];
+    [dialog showInView:self];
+}
 
 
 - (void)dealloc {

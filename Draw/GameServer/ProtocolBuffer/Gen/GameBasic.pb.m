@@ -7223,7 +7223,7 @@ static PBUserItem* defaultPBUserItemInstance = nil;
 
 @interface PBUserItemList ()
 @property (retain) NSString* userId;
-@property (retain) NSMutableArray* mutableItemsList;
+@property (retain) NSMutableArray* mutableUserItemsList;
 @end
 
 @implementation PBUserItemList
@@ -7235,10 +7235,10 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   hasUserId_ = !!value;
 }
 @synthesize userId;
-@synthesize mutableItemsList;
+@synthesize mutableUserItemsList;
 - (void) dealloc {
   self.userId = nil;
-  self.mutableItemsList = nil;
+  self.mutableUserItemsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -7259,18 +7259,18 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 - (PBUserItemList*) defaultInstance {
   return defaultPBUserItemListInstance;
 }
-- (NSArray*) itemsList {
-  return mutableItemsList;
+- (NSArray*) userItemsList {
+  return mutableUserItemsList;
 }
-- (PBUserItem*) itemsAtIndex:(int32_t) index {
-  id value = [mutableItemsList objectAtIndex:index];
+- (PBUserItem*) userItemsAtIndex:(int32_t) index {
+  id value = [mutableUserItemsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
   if (!self.hasUserId) {
     return NO;
   }
-  for (PBUserItem* element in self.itemsList) {
+  for (PBUserItem* element in self.userItemsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -7281,7 +7281,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   if (self.hasUserId) {
     [output writeString:1 value:self.userId];
   }
-  for (PBUserItem* element in self.itemsList) {
+  for (PBUserItem* element in self.userItemsList) {
     [output writeMessage:2 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -7296,7 +7296,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   if (self.hasUserId) {
     size += computeStringSize(1, self.userId);
   }
-  for (PBUserItem* element in self.itemsList) {
+  for (PBUserItem* element in self.userItemsList) {
     size += computeMessageSize(2, element);
   }
   size += self.unknownFields.serializedSize;
@@ -7377,11 +7377,11 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   if (other.hasUserId) {
     [self setUserId:other.userId];
   }
-  if (other.mutableItemsList.count > 0) {
-    if (result.mutableItemsList == nil) {
-      result.mutableItemsList = [NSMutableArray array];
+  if (other.mutableUserItemsList.count > 0) {
+    if (result.mutableUserItemsList == nil) {
+      result.mutableUserItemsList = [NSMutableArray array];
     }
-    [result.mutableItemsList addObjectsFromArray:other.mutableItemsList];
+    [result.mutableUserItemsList addObjectsFromArray:other.mutableUserItemsList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -7411,7 +7411,7 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
       case 18: {
         PBUserItem_Builder* subBuilder = [PBUserItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addItems:[subBuilder buildPartial]];
+        [self addUserItems:[subBuilder buildPartial]];
         break;
       }
     }
@@ -7433,33 +7433,33 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   result.userId = @"";
   return self;
 }
-- (NSArray*) itemsList {
-  if (result.mutableItemsList == nil) { return [NSArray array]; }
-  return result.mutableItemsList;
+- (NSArray*) userItemsList {
+  if (result.mutableUserItemsList == nil) { return [NSArray array]; }
+  return result.mutableUserItemsList;
 }
-- (PBUserItem*) itemsAtIndex:(int32_t) index {
-  return [result itemsAtIndex:index];
+- (PBUserItem*) userItemsAtIndex:(int32_t) index {
+  return [result userItemsAtIndex:index];
 }
-- (PBUserItemList_Builder*) replaceItemsAtIndex:(int32_t) index with:(PBUserItem*) value {
-  [result.mutableItemsList replaceObjectAtIndex:index withObject:value];
+- (PBUserItemList_Builder*) replaceUserItemsAtIndex:(int32_t) index with:(PBUserItem*) value {
+  [result.mutableUserItemsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBUserItemList_Builder*) addAllItems:(NSArray*) values {
-  if (result.mutableItemsList == nil) {
-    result.mutableItemsList = [NSMutableArray array];
+- (PBUserItemList_Builder*) addAllUserItems:(NSArray*) values {
+  if (result.mutableUserItemsList == nil) {
+    result.mutableUserItemsList = [NSMutableArray array];
   }
-  [result.mutableItemsList addObjectsFromArray:values];
+  [result.mutableUserItemsList addObjectsFromArray:values];
   return self;
 }
-- (PBUserItemList_Builder*) clearItemsList {
-  result.mutableItemsList = nil;
+- (PBUserItemList_Builder*) clearUserItemsList {
+  result.mutableUserItemsList = nil;
   return self;
 }
-- (PBUserItemList_Builder*) addItems:(PBUserItem*) value {
-  if (result.mutableItemsList == nil) {
-    result.mutableItemsList = [NSMutableArray array];
+- (PBUserItemList_Builder*) addUserItems:(PBUserItem*) value {
+  if (result.mutableUserItemsList == nil) {
+    result.mutableUserItemsList = [NSMutableArray array];
   }
-  [result.mutableItemsList addObject:value];
+  [result.mutableUserItemsList addObject:value];
   return self;
 }
 @end

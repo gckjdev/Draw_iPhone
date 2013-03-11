@@ -75,7 +75,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<string key="IBUINormalTitle">Back</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="154130992">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="586908377">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -118,7 +118,7 @@
 							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
-						<reference key="IBUIShadowColor" ref="154130992"/>
+						<reference key="IBUIShadowColor" ref="586908377"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -161,7 +161,7 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="154130992"/>
+						<reference key="IBUINormalTitleShadowColor" ref="586908377"/>
 						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_button_highlight@2x.png</string>
