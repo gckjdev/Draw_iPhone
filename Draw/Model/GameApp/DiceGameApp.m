@@ -329,4 +329,9 @@
     return NSLS(@"kDiceShop");
 }
 
+- (NSArray*)cacheArray
+{
+    return nil;
+}
+
 @end

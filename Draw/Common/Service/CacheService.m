@@ -10,4 +10,10 @@
 
 @implementation CacheService
 
+- (void)cleanDrawCacheSuccBlock:(void (^)(void))succBlock
+                      failBlock:(void (^)(void))failBlock
+{
+    
+}
+
 @end

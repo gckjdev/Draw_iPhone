@@ -12,6 +12,8 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [ConfigRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
+    [GameBasicRoot registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -2183,6 +2185,577 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
 }
 @end
 
+@interface PBAppReward ()
+@property (retain) PBApp* app;
+@property int32_t rewardAmount;
+@property PBGameCurrency rewardCurrency;
+@end
+
+@implementation PBAppReward
+
+- (BOOL) hasApp {
+  return !!hasApp_;
+}
+- (void) setHasApp:(BOOL) value {
+  hasApp_ = !!value;
+}
+@synthesize app;
+- (BOOL) hasRewardAmount {
+  return !!hasRewardAmount_;
+}
+- (void) setHasRewardAmount:(BOOL) value {
+  hasRewardAmount_ = !!value;
+}
+@synthesize rewardAmount;
+- (BOOL) hasRewardCurrency {
+  return !!hasRewardCurrency_;
+}
+- (void) setHasRewardCurrency:(BOOL) value {
+  hasRewardCurrency_ = !!value;
+}
+@synthesize rewardCurrency;
+- (void) dealloc {
+  self.app = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.app = [PBApp defaultInstance];
+    self.rewardAmount = 0;
+    self.rewardCurrency = PBGameCurrencyCoin;
+  }
+  return self;
+}
+static PBAppReward* defaultPBAppRewardInstance = nil;
++ (void) initialize {
+  if (self == [PBAppReward class]) {
+    defaultPBAppRewardInstance = [[PBAppReward alloc] init];
+  }
+}
++ (PBAppReward*) defaultInstance {
+  return defaultPBAppRewardInstance;
+}
+- (PBAppReward*) defaultInstance {
+  return defaultPBAppRewardInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasApp) {
+    return NO;
+  }
+  if (!self.hasRewardAmount) {
+    return NO;
+  }
+  if (!self.hasRewardCurrency) {
+    return NO;
+  }
+  if (!self.app.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasApp) {
+    [output writeMessage:1 value:self.app];
+  }
+  if (self.hasRewardAmount) {
+    [output writeInt32:2 value:self.rewardAmount];
+  }
+  if (self.hasRewardCurrency) {
+    [output writeEnum:3 value:self.rewardCurrency];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasApp) {
+    size += computeMessageSize(1, self.app);
+  }
+  if (self.hasRewardAmount) {
+    size += computeInt32Size(2, self.rewardAmount);
+  }
+  if (self.hasRewardCurrency) {
+    size += computeEnumSize(3, self.rewardCurrency);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBAppReward*) parseFromData:(NSData*) data {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromData:data] build];
+}
++ (PBAppReward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBAppReward*) parseFromInputStream:(NSInputStream*) input {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromInputStream:input] build];
+}
++ (PBAppReward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAppReward*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromCodedInputStream:input] build];
+}
++ (PBAppReward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAppReward*)[[[PBAppReward builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAppReward_Builder*) builder {
+  return [[[PBAppReward_Builder alloc] init] autorelease];
+}
++ (PBAppReward_Builder*) builderWithPrototype:(PBAppReward*) prototype {
+  return [[PBAppReward builder] mergeFrom:prototype];
+}
+- (PBAppReward_Builder*) builder {
+  return [PBAppReward builder];
+}
+@end
+
+@interface PBAppReward_Builder()
+@property (retain) PBAppReward* result;
+@end
+
+@implementation PBAppReward_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBAppReward alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBAppReward_Builder*) clear {
+  self.result = [[[PBAppReward alloc] init] autorelease];
+  return self;
+}
+- (PBAppReward_Builder*) clone {
+  return [PBAppReward builderWithPrototype:result];
+}
+- (PBAppReward*) defaultInstance {
+  return [PBAppReward defaultInstance];
+}
+- (PBAppReward*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBAppReward*) buildPartial {
+  PBAppReward* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBAppReward_Builder*) mergeFrom:(PBAppReward*) other {
+  if (other == [PBAppReward defaultInstance]) {
+    return self;
+  }
+  if (other.hasApp) {
+    [self mergeApp:other.app];
+  }
+  if (other.hasRewardAmount) {
+    [self setRewardAmount:other.rewardAmount];
+  }
+  if (other.hasRewardCurrency) {
+    [self setRewardCurrency:other.rewardCurrency];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBApp_Builder* subBuilder = [PBApp builder];
+        if (self.hasApp) {
+          [subBuilder mergeFrom:self.app];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setApp:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setRewardAmount:[input readInt32]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBGameCurrencyIsValidValue(value)) {
+          [self setRewardCurrency:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasApp {
+  return result.hasApp;
+}
+- (PBApp*) app {
+  return result.app;
+}
+- (PBAppReward_Builder*) setApp:(PBApp*) value {
+  result.hasApp = YES;
+  result.app = value;
+  return self;
+}
+- (PBAppReward_Builder*) setAppBuilder:(PBApp_Builder*) builderForValue {
+  return [self setApp:[builderForValue build]];
+}
+- (PBAppReward_Builder*) mergeApp:(PBApp*) value {
+  if (result.hasApp &&
+      result.app != [PBApp defaultInstance]) {
+    result.app =
+      [[[PBApp builderWithPrototype:result.app] mergeFrom:value] buildPartial];
+  } else {
+    result.app = value;
+  }
+  result.hasApp = YES;
+  return self;
+}
+- (PBAppReward_Builder*) clearApp {
+  result.hasApp = NO;
+  result.app = [PBApp defaultInstance];
+  return self;
+}
+- (BOOL) hasRewardAmount {
+  return result.hasRewardAmount;
+}
+- (int32_t) rewardAmount {
+  return result.rewardAmount;
+}
+- (PBAppReward_Builder*) setRewardAmount:(int32_t) value {
+  result.hasRewardAmount = YES;
+  result.rewardAmount = value;
+  return self;
+}
+- (PBAppReward_Builder*) clearRewardAmount {
+  result.hasRewardAmount = NO;
+  result.rewardAmount = 0;
+  return self;
+}
+- (BOOL) hasRewardCurrency {
+  return result.hasRewardCurrency;
+}
+- (PBGameCurrency) rewardCurrency {
+  return result.rewardCurrency;
+}
+- (PBAppReward_Builder*) setRewardCurrency:(PBGameCurrency) value {
+  result.hasRewardCurrency = YES;
+  result.rewardCurrency = value;
+  return self;
+}
+- (PBAppReward_Builder*) clearRewardCurrency {
+  result.hasRewardCurrency = NO;
+  result.rewardCurrency = PBGameCurrencyCoin;
+  return self;
+}
+@end
+
+@interface PBRewardWall ()
+@property int32_t type;
+@property (retain) NSString* logo;
+@property (retain) NSMutableArray* mutableNameList;
+@end
+
+@implementation PBRewardWall
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasLogo {
+  return !!hasLogo_;
+}
+- (void) setHasLogo:(BOOL) value {
+  hasLogo_ = !!value;
+}
+@synthesize logo;
+@synthesize mutableNameList;
+- (void) dealloc {
+  self.logo = nil;
+  self.mutableNameList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.logo = @"";
+  }
+  return self;
+}
+static PBRewardWall* defaultPBRewardWallInstance = nil;
++ (void) initialize {
+  if (self == [PBRewardWall class]) {
+    defaultPBRewardWallInstance = [[PBRewardWall alloc] init];
+  }
+}
++ (PBRewardWall*) defaultInstance {
+  return defaultPBRewardWallInstance;
+}
+- (PBRewardWall*) defaultInstance {
+  return defaultPBRewardWallInstance;
+}
+- (NSArray*) nameList {
+  return mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  id value = [mutableNameList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasLogo) {
+    [output writeString:2 value:self.logo];
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    [output writeMessage:3 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasLogo) {
+    size += computeStringSize(2, self.logo);
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    size += computeMessageSize(3, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBRewardWall*) parseFromData:(NSData*) data {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromData:data] build];
+}
++ (PBRewardWall*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBRewardWall*) parseFromInputStream:(NSInputStream*) input {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromInputStream:input] build];
+}
++ (PBRewardWall*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBRewardWall*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromCodedInputStream:input] build];
+}
++ (PBRewardWall*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRewardWall*)[[[PBRewardWall builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBRewardWall_Builder*) builder {
+  return [[[PBRewardWall_Builder alloc] init] autorelease];
+}
++ (PBRewardWall_Builder*) builderWithPrototype:(PBRewardWall*) prototype {
+  return [[PBRewardWall builder] mergeFrom:prototype];
+}
+- (PBRewardWall_Builder*) builder {
+  return [PBRewardWall builder];
+}
+@end
+
+@interface PBRewardWall_Builder()
+@property (retain) PBRewardWall* result;
+@end
+
+@implementation PBRewardWall_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBRewardWall alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBRewardWall_Builder*) clear {
+  self.result = [[[PBRewardWall alloc] init] autorelease];
+  return self;
+}
+- (PBRewardWall_Builder*) clone {
+  return [PBRewardWall builderWithPrototype:result];
+}
+- (PBRewardWall*) defaultInstance {
+  return [PBRewardWall defaultInstance];
+}
+- (PBRewardWall*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBRewardWall*) buildPartial {
+  PBRewardWall* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBRewardWall_Builder*) mergeFrom:(PBRewardWall*) other {
+  if (other == [PBRewardWall defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasLogo) {
+    [self setLogo:other.logo];
+  }
+  if (other.mutableNameList.count > 0) {
+    if (result.mutableNameList == nil) {
+      result.mutableNameList = [NSMutableArray array];
+    }
+    [result.mutableNameList addObjectsFromArray:other.mutableNameList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setLogo:[input readString]];
+        break;
+      }
+      case 26: {
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addName:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBRewardWall_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBRewardWall_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasLogo {
+  return result.hasLogo;
+}
+- (NSString*) logo {
+  return result.logo;
+}
+- (PBRewardWall_Builder*) setLogo:(NSString*) value {
+  result.hasLogo = YES;
+  result.logo = value;
+  return self;
+}
+- (PBRewardWall_Builder*) clearLogo {
+  result.hasLogo = NO;
+  result.logo = @"";
+  return self;
+}
+- (NSArray*) nameList {
+  if (result.mutableNameList == nil) { return [NSArray array]; }
+  return result.mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  return [result nameAtIndex:index];
+}
+- (PBRewardWall_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableNameList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBRewardWall_Builder*) addAllName:(NSArray*) values {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObjectsFromArray:values];
+  return self;
+}
+- (PBRewardWall_Builder*) clearNameList {
+  result.mutableNameList = nil;
+  return self;
+}
+- (PBRewardWall_Builder*) addName:(PBLocalizeString*) value {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObject:value];
+  return self;
+}
+@end
+
 @interface PBConfig ()
 @property (retain) NSMutableArray* mutableCoinPricesList;
 @property int32_t balanceDeviation;
@@ -2198,6 +2771,8 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
 @property BOOL enableAd;
 @property BOOL enableWall;
 @property int32_t wallType;
+@property (retain) NSMutableArray* mutableRewardWallsList;
+@property (retain) NSMutableArray* mutableAppRewardsList;
 @property (retain) PBDrawConfig* drawConfig;
 @property (retain) PBDiceConfig* diceConfig;
 @property (retain) PBZJHConfig* zjhConfig;
@@ -2317,6 +2892,8 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
   hasWallType_ = !!value;
 }
 @synthesize wallType;
+@synthesize mutableRewardWallsList;
+@synthesize mutableAppRewardsList;
 - (BOOL) hasDrawConfig {
   return !!hasDrawConfig_;
 }
@@ -2345,6 +2922,8 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
   self.musicHomeCnUrl = nil;
   self.musicHomeEnUrl = nil;
   self.inReviewVersion = nil;
+  self.mutableRewardWallsList = nil;
+  self.mutableAppRewardsList = nil;
   self.drawConfig = nil;
   self.diceConfig = nil;
   self.zjhConfig = nil;
@@ -2390,8 +2969,32 @@ static PBConfig* defaultPBConfigInstance = nil;
   id value = [mutableCoinPricesList objectAtIndex:index];
   return value;
 }
+- (NSArray*) rewardWallsList {
+  return mutableRewardWallsList;
+}
+- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index {
+  id value = [mutableRewardWallsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) appRewardsList {
+  return mutableAppRewardsList;
+}
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
+  id value = [mutableAppRewardsList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBPrice* element in self.coinPricesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBRewardWall* element in self.rewardWallsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBAppReward* element in self.appRewardsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -2440,6 +3043,12 @@ static PBConfig* defaultPBConfigInstance = nil;
   }
   if (self.hasWallType) {
     [output writeInt32:72 value:self.wallType];
+  }
+  for (PBRewardWall* element in self.rewardWallsList) {
+    [output writeMessage:81 value:element];
+  }
+  for (PBAppReward* element in self.appRewardsList) {
+    [output writeMessage:82 value:element];
   }
   if (self.hasDrawConfig) {
     [output writeMessage:100 value:self.drawConfig];
@@ -2500,6 +3109,12 @@ static PBConfig* defaultPBConfigInstance = nil;
   }
   if (self.hasWallType) {
     size += computeInt32Size(72, self.wallType);
+  }
+  for (PBRewardWall* element in self.rewardWallsList) {
+    size += computeMessageSize(81, element);
+  }
+  for (PBAppReward* element in self.appRewardsList) {
+    size += computeMessageSize(82, element);
   }
   if (self.hasDrawConfig) {
     size += computeMessageSize(100, self.drawConfig);
@@ -2630,6 +3245,18 @@ static PBConfig* defaultPBConfigInstance = nil;
   if (other.hasWallType) {
     [self setWallType:other.wallType];
   }
+  if (other.mutableRewardWallsList.count > 0) {
+    if (result.mutableRewardWallsList == nil) {
+      result.mutableRewardWallsList = [NSMutableArray array];
+    }
+    [result.mutableRewardWallsList addObjectsFromArray:other.mutableRewardWallsList];
+  }
+  if (other.mutableAppRewardsList.count > 0) {
+    if (result.mutableAppRewardsList == nil) {
+      result.mutableAppRewardsList = [NSMutableArray array];
+    }
+    [result.mutableAppRewardsList addObjectsFromArray:other.mutableAppRewardsList];
+  }
   if (other.hasDrawConfig) {
     [self mergeDrawConfig:other.drawConfig];
   }
@@ -2716,6 +3343,18 @@ static PBConfig* defaultPBConfigInstance = nil;
       }
       case 576: {
         [self setWallType:[input readInt32]];
+        break;
+      }
+      case 650: {
+        PBRewardWall_Builder* subBuilder = [PBRewardWall builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addRewardWalls:[subBuilder buildPartial]];
+        break;
+      }
+      case 658: {
+        PBAppReward_Builder* subBuilder = [PBAppReward builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAppRewards:[subBuilder buildPartial]];
         break;
       }
       case 802: {
@@ -2983,6 +3622,64 @@ static PBConfig* defaultPBConfigInstance = nil;
 - (PBConfig_Builder*) clearWallType {
   result.hasWallType = NO;
   result.wallType = 1;
+  return self;
+}
+- (NSArray*) rewardWallsList {
+  if (result.mutableRewardWallsList == nil) { return [NSArray array]; }
+  return result.mutableRewardWallsList;
+}
+- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index {
+  return [result rewardWallsAtIndex:index];
+}
+- (PBConfig_Builder*) replaceRewardWallsAtIndex:(int32_t) index with:(PBRewardWall*) value {
+  [result.mutableRewardWallsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBConfig_Builder*) addAllRewardWalls:(NSArray*) values {
+  if (result.mutableRewardWallsList == nil) {
+    result.mutableRewardWallsList = [NSMutableArray array];
+  }
+  [result.mutableRewardWallsList addObjectsFromArray:values];
+  return self;
+}
+- (PBConfig_Builder*) clearRewardWallsList {
+  result.mutableRewardWallsList = nil;
+  return self;
+}
+- (PBConfig_Builder*) addRewardWalls:(PBRewardWall*) value {
+  if (result.mutableRewardWallsList == nil) {
+    result.mutableRewardWallsList = [NSMutableArray array];
+  }
+  [result.mutableRewardWallsList addObject:value];
+  return self;
+}
+- (NSArray*) appRewardsList {
+  if (result.mutableAppRewardsList == nil) { return [NSArray array]; }
+  return result.mutableAppRewardsList;
+}
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
+  return [result appRewardsAtIndex:index];
+}
+- (PBConfig_Builder*) replaceAppRewardsAtIndex:(int32_t) index with:(PBAppReward*) value {
+  [result.mutableAppRewardsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBConfig_Builder*) addAllAppRewards:(NSArray*) values {
+  if (result.mutableAppRewardsList == nil) {
+    result.mutableAppRewardsList = [NSMutableArray array];
+  }
+  [result.mutableAppRewardsList addObjectsFromArray:values];
+  return self;
+}
+- (PBConfig_Builder*) clearAppRewardsList {
+  result.mutableAppRewardsList = nil;
+  return self;
+}
+- (PBConfig_Builder*) addAppRewards:(PBAppReward*) value {
+  if (result.mutableAppRewardsList == nil) {
+    result.mutableAppRewardsList = [NSMutableArray array];
+  }
+  [result.mutableAppRewardsList addObject:value];
   return self;
 }
 - (BOOL) hasDrawConfig {

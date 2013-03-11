@@ -79,6 +79,8 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
+@class PBApp;
+@class PBApp_Builder;
 @class PBBBSAction;
 @class PBBBSActionSource;
 @class PBBBSActionSource_Builder;
@@ -147,6 +149,8 @@
 @class PBLayoutList;
 @class PBLayoutList_Builder;
 @class PBLayout_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;

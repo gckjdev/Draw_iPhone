@@ -35,6 +35,11 @@ static dispatch_once_t onceToken;
     return _defaultConfigInstance;
 }
 
++ (GameConfigDataManager*)defaultManager
+{
+    return [GameConfigDataManager defaultInstance];
+}
+
 - (id)init
 {
     self = [super init];    
@@ -93,5 +98,16 @@ static dispatch_once_t onceToken;
     NSString* version = @"1.00001";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
+- (NSArray*)appRewardList
+{
+    return [self.defaultConfig appRewardsList];
+}
+
+- (NSArray*)rewardWallList
+{
+    return [self.defaultConfig rewardWallsList];
+}
+
 
 @end

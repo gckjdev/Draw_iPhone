@@ -13,9 +13,13 @@
 @interface GameConfigDataManager : NSObject
 
 + (GameConfigDataManager*)defaultInstance;
++ (GameConfigDataManager*)defaultManager;
 
 @property (nonatomic, readonly) PBConfig* defaultConfig;
 
 + (void)createTestConfigData;
+
+- (NSArray*)appRewardList;
+- (NSArray*)rewardWallList;
 
 @end
