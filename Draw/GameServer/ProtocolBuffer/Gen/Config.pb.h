@@ -2,14 +2,63 @@
 
 #import "ProtocolBuffers.h"
 
+#import "GameBasic.pb.h"
+#import "GameConstants.pb.h"
+
+@class PBApp;
+@class PBAppReward;
+@class PBAppRewardConfig;
+@class PBAppRewardConfig_Builder;
+@class PBAppReward_Builder;
+@class PBApp_Builder;
 @class PBConfig;
 @class PBConfig_Builder;
 @class PBDiceConfig;
 @class PBDiceConfig_Builder;
+@class PBDrawAction;
+@class PBDrawAction_Builder;
 @class PBDrawConfig;
 @class PBDrawConfig_Builder;
+@class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
+@class PBGameItem_Builder;
+@class PBGameSession;
+@class PBGameSessionChanged;
+@class PBGameSessionChanged_Builder;
+@class PBGameSession_Builder;
+@class PBGameUser;
+@class PBGameUser_Builder;
+@class PBItemPriceInfo;
+@class PBItemPriceInfo_Builder;
+@class PBKeyValue;
+@class PBKeyValue_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
+@class PBMessage;
+@class PBMessageStat;
+@class PBMessageStat_Builder;
+@class PBMessage_Builder;
 @class PBPrice;
 @class PBPrice_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
+@class PBRewardWall;
+@class PBRewardWallConfig;
+@class PBRewardWallConfig_Builder;
+@class PBRewardWall_Builder;
+@class PBSNSUser;
+@class PBSNSUser_Builder;
+@class PBSaleIngot;
+@class PBSaleIngotList;
+@class PBSaleIngotList_Builder;
+@class PBSaleIngot_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
+@class PBUserResult;
+@class PBUserResult_Builder;
 @class PBZJHConfig;
 @class PBZJHConfig_Builder;
 
@@ -750,5 +799,390 @@
 - (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue;
 - (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value;
 - (PBConfig_Builder*) clearZjhConfig;
+@end
+
+@interface PBLocalizeString : PBGeneratedMessage {
+@private
+  BOOL hasLanguageCode_:1;
+  BOOL hasText_:1;
+  BOOL hasLocalizedText_:1;
+  NSString* languageCode;
+  NSString* text;
+  NSString* localizedText;
+}
+- (BOOL) hasLanguageCode;
+- (BOOL) hasText;
+- (BOOL) hasLocalizedText;
+@property (readonly, retain) NSString* languageCode;
+@property (readonly, retain) NSString* text;
+@property (readonly, retain) NSString* localizedText;
+
++ (PBLocalizeString*) defaultInstance;
+- (PBLocalizeString*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLocalizeString_Builder*) builder;
++ (PBLocalizeString_Builder*) builder;
++ (PBLocalizeString_Builder*) builderWithPrototype:(PBLocalizeString*) prototype;
+
++ (PBLocalizeString*) parseFromData:(NSData*) data;
++ (PBLocalizeString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input;
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLocalizeString_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLocalizeString* result;
+}
+
+- (PBLocalizeString*) defaultInstance;
+
+- (PBLocalizeString_Builder*) clear;
+- (PBLocalizeString_Builder*) clone;
+
+- (PBLocalizeString*) build;
+- (PBLocalizeString*) buildPartial;
+
+- (PBLocalizeString_Builder*) mergeFrom:(PBLocalizeString*) other;
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasLanguageCode;
+- (NSString*) languageCode;
+- (PBLocalizeString_Builder*) setLanguageCode:(NSString*) value;
+- (PBLocalizeString_Builder*) clearLanguageCode;
+
+- (BOOL) hasText;
+- (NSString*) text;
+- (PBLocalizeString_Builder*) setText:(NSString*) value;
+- (PBLocalizeString_Builder*) clearText;
+
+- (BOOL) hasLocalizedText;
+- (NSString*) localizedText;
+- (PBLocalizeString_Builder*) setLocalizedText:(NSString*) value;
+- (PBLocalizeString_Builder*) clearLocalizedText;
+@end
+
+@interface PBApp : PBGeneratedMessage {
+@private
+  BOOL hasAppId_:1;
+  BOOL hasDownloadUrl_:1;
+  BOOL hasLogo_:1;
+  NSString* appId;
+  NSString* downloadUrl;
+  NSString* logo;
+  NSMutableArray* mutableNameList;
+  NSMutableArray* mutableDescList;
+}
+- (BOOL) hasAppId;
+- (BOOL) hasDownloadUrl;
+- (BOOL) hasLogo;
+@property (readonly, retain) NSString* appId;
+@property (readonly, retain) NSString* downloadUrl;
+@property (readonly, retain) NSString* logo;
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (NSArray*) descList;
+- (PBLocalizeString*) descAtIndex:(int32_t) index;
+
++ (PBApp*) defaultInstance;
+- (PBApp*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBApp_Builder*) builder;
++ (PBApp_Builder*) builder;
++ (PBApp_Builder*) builderWithPrototype:(PBApp*) prototype;
+
++ (PBApp*) parseFromData:(NSData*) data;
++ (PBApp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBApp*) parseFromInputStream:(NSInputStream*) input;
++ (PBApp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBApp_Builder : PBGeneratedMessage_Builder {
+@private
+  PBApp* result;
+}
+
+- (PBApp*) defaultInstance;
+
+- (PBApp_Builder*) clear;
+- (PBApp_Builder*) clone;
+
+- (PBApp*) build;
+- (PBApp*) buildPartial;
+
+- (PBApp_Builder*) mergeFrom:(PBApp*) other;
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (PBApp_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBApp_Builder*) addName:(PBLocalizeString*) value;
+- (PBApp_Builder*) addAllName:(NSArray*) values;
+- (PBApp_Builder*) clearNameList;
+
+- (BOOL) hasAppId;
+- (NSString*) appId;
+- (PBApp_Builder*) setAppId:(NSString*) value;
+- (PBApp_Builder*) clearAppId;
+
+- (NSArray*) descList;
+- (PBLocalizeString*) descAtIndex:(int32_t) index;
+- (PBApp_Builder*) replaceDescAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBApp_Builder*) addDesc:(PBLocalizeString*) value;
+- (PBApp_Builder*) addAllDesc:(NSArray*) values;
+- (PBApp_Builder*) clearDescList;
+
+- (BOOL) hasDownloadUrl;
+- (NSString*) downloadUrl;
+- (PBApp_Builder*) setDownloadUrl:(NSString*) value;
+- (PBApp_Builder*) clearDownloadUrl;
+
+- (BOOL) hasLogo;
+- (NSString*) logo;
+- (PBApp_Builder*) setLogo:(NSString*) value;
+- (PBApp_Builder*) clearLogo;
+@end
+
+@interface PBAppReward : PBGeneratedMessage {
+@private
+  BOOL hasRewardAmount_:1;
+  BOOL hasApp_:1;
+  BOOL hasRewardCurrency_:1;
+  int32_t rewardAmount;
+  PBApp* app;
+  PBGameCurrency rewardCurrency;
+}
+- (BOOL) hasApp;
+- (BOOL) hasRewardAmount;
+- (BOOL) hasRewardCurrency;
+@property (readonly, retain) PBApp* app;
+@property (readonly) int32_t rewardAmount;
+@property (readonly) PBGameCurrency rewardCurrency;
+
++ (PBAppReward*) defaultInstance;
+- (PBAppReward*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBAppReward_Builder*) builder;
++ (PBAppReward_Builder*) builder;
++ (PBAppReward_Builder*) builderWithPrototype:(PBAppReward*) prototype;
+
++ (PBAppReward*) parseFromData:(NSData*) data;
++ (PBAppReward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAppReward*) parseFromInputStream:(NSInputStream*) input;
++ (PBAppReward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAppReward*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBAppReward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBAppReward_Builder : PBGeneratedMessage_Builder {
+@private
+  PBAppReward* result;
+}
+
+- (PBAppReward*) defaultInstance;
+
+- (PBAppReward_Builder*) clear;
+- (PBAppReward_Builder*) clone;
+
+- (PBAppReward*) build;
+- (PBAppReward*) buildPartial;
+
+- (PBAppReward_Builder*) mergeFrom:(PBAppReward*) other;
+- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBAppReward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasApp;
+- (PBApp*) app;
+- (PBAppReward_Builder*) setApp:(PBApp*) value;
+- (PBAppReward_Builder*) setAppBuilder:(PBApp_Builder*) builderForValue;
+- (PBAppReward_Builder*) mergeApp:(PBApp*) value;
+- (PBAppReward_Builder*) clearApp;
+
+- (BOOL) hasRewardAmount;
+- (int32_t) rewardAmount;
+- (PBAppReward_Builder*) setRewardAmount:(int32_t) value;
+- (PBAppReward_Builder*) clearRewardAmount;
+
+- (BOOL) hasRewardCurrency;
+- (PBGameCurrency) rewardCurrency;
+- (PBAppReward_Builder*) setRewardCurrency:(PBGameCurrency) value;
+- (PBAppReward_Builder*) clearRewardCurrency;
+@end
+
+@interface PBAppRewardConfig : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableAppRewardsList;
+}
+- (NSArray*) appRewardsList;
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index;
+
++ (PBAppRewardConfig*) defaultInstance;
+- (PBAppRewardConfig*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBAppRewardConfig_Builder*) builder;
++ (PBAppRewardConfig_Builder*) builder;
++ (PBAppRewardConfig_Builder*) builderWithPrototype:(PBAppRewardConfig*) prototype;
+
++ (PBAppRewardConfig*) parseFromData:(NSData*) data;
++ (PBAppRewardConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAppRewardConfig*) parseFromInputStream:(NSInputStream*) input;
++ (PBAppRewardConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAppRewardConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBAppRewardConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBAppRewardConfig_Builder : PBGeneratedMessage_Builder {
+@private
+  PBAppRewardConfig* result;
+}
+
+- (PBAppRewardConfig*) defaultInstance;
+
+- (PBAppRewardConfig_Builder*) clear;
+- (PBAppRewardConfig_Builder*) clone;
+
+- (PBAppRewardConfig*) build;
+- (PBAppRewardConfig*) buildPartial;
+
+- (PBAppRewardConfig_Builder*) mergeFrom:(PBAppRewardConfig*) other;
+- (PBAppRewardConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBAppRewardConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) appRewardsList;
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index;
+- (PBAppRewardConfig_Builder*) replaceAppRewardsAtIndex:(int32_t) index with:(PBAppReward*) value;
+- (PBAppRewardConfig_Builder*) addAppRewards:(PBAppReward*) value;
+- (PBAppRewardConfig_Builder*) addAllAppRewards:(NSArray*) values;
+- (PBAppRewardConfig_Builder*) clearAppRewardsList;
+@end
+
+@interface PBRewardWall : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasLogo_:1;
+  int32_t type;
+  NSString* logo;
+  NSMutableArray* mutableNameList;
+}
+- (BOOL) hasType;
+- (BOOL) hasLogo;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* logo;
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+
++ (PBRewardWall*) defaultInstance;
+- (PBRewardWall*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBRewardWall_Builder*) builder;
++ (PBRewardWall_Builder*) builder;
++ (PBRewardWall_Builder*) builderWithPrototype:(PBRewardWall*) prototype;
+
++ (PBRewardWall*) parseFromData:(NSData*) data;
++ (PBRewardWall*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRewardWall*) parseFromInputStream:(NSInputStream*) input;
++ (PBRewardWall*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRewardWall*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBRewardWall*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBRewardWall_Builder : PBGeneratedMessage_Builder {
+@private
+  PBRewardWall* result;
+}
+
+- (PBRewardWall*) defaultInstance;
+
+- (PBRewardWall_Builder*) clear;
+- (PBRewardWall_Builder*) clone;
+
+- (PBRewardWall*) build;
+- (PBRewardWall*) buildPartial;
+
+- (PBRewardWall_Builder*) mergeFrom:(PBRewardWall*) other;
+- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRewardWall_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBRewardWall_Builder*) setType:(int32_t) value;
+- (PBRewardWall_Builder*) clearType;
+
+- (BOOL) hasLogo;
+- (NSString*) logo;
+- (PBRewardWall_Builder*) setLogo:(NSString*) value;
+- (PBRewardWall_Builder*) clearLogo;
+
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (PBRewardWall_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBRewardWall_Builder*) addName:(PBLocalizeString*) value;
+- (PBRewardWall_Builder*) addAllName:(NSArray*) values;
+- (PBRewardWall_Builder*) clearNameList;
+@end
+
+@interface PBRewardWallConfig : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableRewardWallsList;
+}
+- (NSArray*) rewardWallsList;
+- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index;
+
++ (PBRewardWallConfig*) defaultInstance;
+- (PBRewardWallConfig*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBRewardWallConfig_Builder*) builder;
++ (PBRewardWallConfig_Builder*) builder;
++ (PBRewardWallConfig_Builder*) builderWithPrototype:(PBRewardWallConfig*) prototype;
+
++ (PBRewardWallConfig*) parseFromData:(NSData*) data;
++ (PBRewardWallConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRewardWallConfig*) parseFromInputStream:(NSInputStream*) input;
++ (PBRewardWallConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRewardWallConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBRewardWallConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBRewardWallConfig_Builder : PBGeneratedMessage_Builder {
+@private
+  PBRewardWallConfig* result;
+}
+
+- (PBRewardWallConfig*) defaultInstance;
+
+- (PBRewardWallConfig_Builder*) clear;
+- (PBRewardWallConfig_Builder*) clone;
+
+- (PBRewardWallConfig*) build;
+- (PBRewardWallConfig*) buildPartial;
+
+- (PBRewardWallConfig_Builder*) mergeFrom:(PBRewardWallConfig*) other;
+- (PBRewardWallConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRewardWallConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) rewardWallsList;
+- (PBRewardWall*) rewardWallsAtIndex:(int32_t) index;
+- (PBRewardWallConfig_Builder*) replaceRewardWallsAtIndex:(int32_t) index with:(PBRewardWall*) value;
+- (PBRewardWallConfig_Builder*) addRewardWalls:(PBRewardWall*) value;
+- (PBRewardWallConfig_Builder*) addAllRewardWalls:(NSArray*) values;
+- (PBRewardWallConfig_Builder*) clearRewardWallsList;
 @end
 
