@@ -90,6 +90,17 @@ message PBDrawConfig{
     optional int32 maxItemTimesOnContestOpus = 42 [default=3];
 }
 
+message PBAppReward{
+    required PBApp app = 1;
+    required int32 rewardAmount = 2;
+    required PBGameCurrency rewardCurrency = 3;
+}
+
+message PBRewardWall {
+    required int32 type = 1;
+    optional string logo = 2;
+    repeated PBLocalizeString name = 3;
+}
 
 message PBConfig {
 
@@ -118,45 +129,15 @@ message PBConfig {
     optional bool enableWall = 71 [default=true];
     optional int32 wallType = 72 [default=1];
     
+    // reward wall config
+    repeated PBRewardWall rewardWalls = 81;         // 积分墙列表
+    repeated PBAppReward appRewards = 82;           // 兄弟App下载列表
+
     // for game config
     optional PBDrawConfig drawConfig = 100;
     optional PBDiceConfig diceConfig = 101;
     optional PBZJHConfig zjhConfig   = 102;
 }
 
-message PBLocalizeString{
-    required string languageCode = 1;           // 语言代码，如 "en", "zh_Hans"，同iOS语言命名规范
-    required string text = 2;                   // 通用语言
-    required string localizedText = 3;          // 本地化语言
-}
 
-message PBApp{
-    repeated PBLocalizeString name = 1;
-    required string appId = 2;
-    repeated PBLocalizeString desc = 3;
-    optional string downloadURL = 4;
-    optional string logo = 5;                   // app logo remote URL
-}
-
-message PBAppReward{
-    required PBApp app = 1;
-    required int32 rewardAmount = 2;
-    required PBGameCurrency rewardCurrency = 3;
-}
-
-message PBAppRewardConfig {
-
-    repeated PBAppReward appRewards = 1;
-
-}
-
-message PBRewardWall {
-    required int32 type = 1;
-    optional string logo = 2;
-    repeated PBLocalizeString name = 3;
-}
-
-message PBRewardWallConfig {
-    repeated PBRewardWall rewardWalls = 1;
-}
 

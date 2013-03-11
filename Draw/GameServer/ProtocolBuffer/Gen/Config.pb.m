@@ -2185,1548 +2185,6 @@ static PBDrawConfig* defaultPBDrawConfigInstance = nil;
 }
 @end
 
-@interface PBConfig ()
-@property (retain) NSMutableArray* mutableCoinPricesList;
-@property int32_t balanceDeviation;
-@property (retain) NSString* trafficApiserverUrl;
-@property (retain) NSString* userApiserverUrl;
-@property (retain) NSString* musicHomeCnUrl;
-@property (retain) NSString* musicHomeEnUrl;
-@property BOOL enableReview;
-@property BOOL inReview;
-@property (retain) NSString* inReviewVersion;
-@property int32_t postponeTime;
-@property int32_t urgeTime;
-@property BOOL enableAd;
-@property BOOL enableWall;
-@property int32_t wallType;
-@property (retain) PBDrawConfig* drawConfig;
-@property (retain) PBDiceConfig* diceConfig;
-@property (retain) PBZJHConfig* zjhConfig;
-@end
-
-@implementation PBConfig
-
-@synthesize mutableCoinPricesList;
-- (BOOL) hasBalanceDeviation {
-  return !!hasBalanceDeviation_;
-}
-- (void) setHasBalanceDeviation:(BOOL) value {
-  hasBalanceDeviation_ = !!value;
-}
-@synthesize balanceDeviation;
-- (BOOL) hasTrafficApiserverUrl {
-  return !!hasTrafficApiserverUrl_;
-}
-- (void) setHasTrafficApiserverUrl:(BOOL) value {
-  hasTrafficApiserverUrl_ = !!value;
-}
-@synthesize trafficApiserverUrl;
-- (BOOL) hasUserApiserverUrl {
-  return !!hasUserApiserverUrl_;
-}
-- (void) setHasUserApiserverUrl:(BOOL) value {
-  hasUserApiserverUrl_ = !!value;
-}
-@synthesize userApiserverUrl;
-- (BOOL) hasMusicHomeCnUrl {
-  return !!hasMusicHomeCnUrl_;
-}
-- (void) setHasMusicHomeCnUrl:(BOOL) value {
-  hasMusicHomeCnUrl_ = !!value;
-}
-@synthesize musicHomeCnUrl;
-- (BOOL) hasMusicHomeEnUrl {
-  return !!hasMusicHomeEnUrl_;
-}
-- (void) setHasMusicHomeEnUrl:(BOOL) value {
-  hasMusicHomeEnUrl_ = !!value;
-}
-@synthesize musicHomeEnUrl;
-- (BOOL) hasEnableReview {
-  return !!hasEnableReview_;
-}
-- (void) setHasEnableReview:(BOOL) value {
-  hasEnableReview_ = !!value;
-}
-- (BOOL) enableReview {
-  return !!enableReview_;
-}
-- (void) setEnableReview:(BOOL) value {
-  enableReview_ = !!value;
-}
-- (BOOL) hasInReview {
-  return !!hasInReview_;
-}
-- (void) setHasInReview:(BOOL) value {
-  hasInReview_ = !!value;
-}
-- (BOOL) inReview {
-  return !!inReview_;
-}
-- (void) setInReview:(BOOL) value {
-  inReview_ = !!value;
-}
-- (BOOL) hasInReviewVersion {
-  return !!hasInReviewVersion_;
-}
-- (void) setHasInReviewVersion:(BOOL) value {
-  hasInReviewVersion_ = !!value;
-}
-@synthesize inReviewVersion;
-- (BOOL) hasPostponeTime {
-  return !!hasPostponeTime_;
-}
-- (void) setHasPostponeTime:(BOOL) value {
-  hasPostponeTime_ = !!value;
-}
-@synthesize postponeTime;
-- (BOOL) hasUrgeTime {
-  return !!hasUrgeTime_;
-}
-- (void) setHasUrgeTime:(BOOL) value {
-  hasUrgeTime_ = !!value;
-}
-@synthesize urgeTime;
-- (BOOL) hasEnableAd {
-  return !!hasEnableAd_;
-}
-- (void) setHasEnableAd:(BOOL) value {
-  hasEnableAd_ = !!value;
-}
-- (BOOL) enableAd {
-  return !!enableAd_;
-}
-- (void) setEnableAd:(BOOL) value {
-  enableAd_ = !!value;
-}
-- (BOOL) hasEnableWall {
-  return !!hasEnableWall_;
-}
-- (void) setHasEnableWall:(BOOL) value {
-  hasEnableWall_ = !!value;
-}
-- (BOOL) enableWall {
-  return !!enableWall_;
-}
-- (void) setEnableWall:(BOOL) value {
-  enableWall_ = !!value;
-}
-- (BOOL) hasWallType {
-  return !!hasWallType_;
-}
-- (void) setHasWallType:(BOOL) value {
-  hasWallType_ = !!value;
-}
-@synthesize wallType;
-- (BOOL) hasDrawConfig {
-  return !!hasDrawConfig_;
-}
-- (void) setHasDrawConfig:(BOOL) value {
-  hasDrawConfig_ = !!value;
-}
-@synthesize drawConfig;
-- (BOOL) hasDiceConfig {
-  return !!hasDiceConfig_;
-}
-- (void) setHasDiceConfig:(BOOL) value {
-  hasDiceConfig_ = !!value;
-}
-@synthesize diceConfig;
-- (BOOL) hasZjhConfig {
-  return !!hasZjhConfig_;
-}
-- (void) setHasZjhConfig:(BOOL) value {
-  hasZjhConfig_ = !!value;
-}
-@synthesize zjhConfig;
-- (void) dealloc {
-  self.mutableCoinPricesList = nil;
-  self.trafficApiserverUrl = nil;
-  self.userApiserverUrl = nil;
-  self.musicHomeCnUrl = nil;
-  self.musicHomeEnUrl = nil;
-  self.inReviewVersion = nil;
-  self.drawConfig = nil;
-  self.diceConfig = nil;
-  self.zjhConfig = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.balanceDeviation = 4000;
-    self.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
-    self.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
-    self.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
-    self.musicHomeEnUrl = @"http://mp3skull.com/";
-    self.enableReview = YES;
-    self.inReview = NO;
-    self.inReviewVersion = @"";
-    self.postponeTime = 10;
-    self.urgeTime = 5;
-    self.enableAd = YES;
-    self.enableWall = YES;
-    self.wallType = 1;
-    self.drawConfig = [PBDrawConfig defaultInstance];
-    self.diceConfig = [PBDiceConfig defaultInstance];
-    self.zjhConfig = [PBZJHConfig defaultInstance];
-  }
-  return self;
-}
-static PBConfig* defaultPBConfigInstance = nil;
-+ (void) initialize {
-  if (self == [PBConfig class]) {
-    defaultPBConfigInstance = [[PBConfig alloc] init];
-  }
-}
-+ (PBConfig*) defaultInstance {
-  return defaultPBConfigInstance;
-}
-- (PBConfig*) defaultInstance {
-  return defaultPBConfigInstance;
-}
-- (NSArray*) coinPricesList {
-  return mutableCoinPricesList;
-}
-- (PBPrice*) coinPricesAtIndex:(int32_t) index {
-  id value = [mutableCoinPricesList objectAtIndex:index];
-  return value;
-}
-- (BOOL) isInitialized {
-  for (PBPrice* element in self.coinPricesList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBPrice* element in self.coinPricesList) {
-    [output writeMessage:1 value:element];
-  }
-  if (self.hasBalanceDeviation) {
-    [output writeInt32:2 value:self.balanceDeviation];
-  }
-  if (self.hasTrafficApiserverUrl) {
-    [output writeString:30 value:self.trafficApiserverUrl];
-  }
-  if (self.hasUserApiserverUrl) {
-    [output writeString:31 value:self.userApiserverUrl];
-  }
-  if (self.hasMusicHomeCnUrl) {
-    [output writeString:41 value:self.musicHomeCnUrl];
-  }
-  if (self.hasMusicHomeEnUrl) {
-    [output writeString:42 value:self.musicHomeEnUrl];
-  }
-  if (self.hasEnableReview) {
-    [output writeBool:61 value:self.enableReview];
-  }
-  if (self.hasInReview) {
-    [output writeBool:62 value:self.inReview];
-  }
-  if (self.hasInReviewVersion) {
-    [output writeString:63 value:self.inReviewVersion];
-  }
-  if (self.hasPostponeTime) {
-    [output writeInt32:64 value:self.postponeTime];
-  }
-  if (self.hasUrgeTime) {
-    [output writeInt32:65 value:self.urgeTime];
-  }
-  if (self.hasEnableAd) {
-    [output writeBool:70 value:self.enableAd];
-  }
-  if (self.hasEnableWall) {
-    [output writeBool:71 value:self.enableWall];
-  }
-  if (self.hasWallType) {
-    [output writeInt32:72 value:self.wallType];
-  }
-  if (self.hasDrawConfig) {
-    [output writeMessage:100 value:self.drawConfig];
-  }
-  if (self.hasDiceConfig) {
-    [output writeMessage:101 value:self.diceConfig];
-  }
-  if (self.hasZjhConfig) {
-    [output writeMessage:102 value:self.zjhConfig];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  for (PBPrice* element in self.coinPricesList) {
-    size += computeMessageSize(1, element);
-  }
-  if (self.hasBalanceDeviation) {
-    size += computeInt32Size(2, self.balanceDeviation);
-  }
-  if (self.hasTrafficApiserverUrl) {
-    size += computeStringSize(30, self.trafficApiserverUrl);
-  }
-  if (self.hasUserApiserverUrl) {
-    size += computeStringSize(31, self.userApiserverUrl);
-  }
-  if (self.hasMusicHomeCnUrl) {
-    size += computeStringSize(41, self.musicHomeCnUrl);
-  }
-  if (self.hasMusicHomeEnUrl) {
-    size += computeStringSize(42, self.musicHomeEnUrl);
-  }
-  if (self.hasEnableReview) {
-    size += computeBoolSize(61, self.enableReview);
-  }
-  if (self.hasInReview) {
-    size += computeBoolSize(62, self.inReview);
-  }
-  if (self.hasInReviewVersion) {
-    size += computeStringSize(63, self.inReviewVersion);
-  }
-  if (self.hasPostponeTime) {
-    size += computeInt32Size(64, self.postponeTime);
-  }
-  if (self.hasUrgeTime) {
-    size += computeInt32Size(65, self.urgeTime);
-  }
-  if (self.hasEnableAd) {
-    size += computeBoolSize(70, self.enableAd);
-  }
-  if (self.hasEnableWall) {
-    size += computeBoolSize(71, self.enableWall);
-  }
-  if (self.hasWallType) {
-    size += computeInt32Size(72, self.wallType);
-  }
-  if (self.hasDrawConfig) {
-    size += computeMessageSize(100, self.drawConfig);
-  }
-  if (self.hasDiceConfig) {
-    size += computeMessageSize(101, self.diceConfig);
-  }
-  if (self.hasZjhConfig) {
-    size += computeMessageSize(102, self.zjhConfig);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBConfig*) parseFromData:(NSData*) data {
-  return (PBConfig*)[[[PBConfig builder] mergeFromData:data] build];
-}
-+ (PBConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBConfig*)[[[PBConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBConfig*) parseFromInputStream:(NSInputStream*) input {
-  return (PBConfig*)[[[PBConfig builder] mergeFromInputStream:input] build];
-}
-+ (PBConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBConfig*)[[[PBConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBConfig*)[[[PBConfig builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBConfig*)[[[PBConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBConfig_Builder*) builder {
-  return [[[PBConfig_Builder alloc] init] autorelease];
-}
-+ (PBConfig_Builder*) builderWithPrototype:(PBConfig*) prototype {
-  return [[PBConfig builder] mergeFrom:prototype];
-}
-- (PBConfig_Builder*) builder {
-  return [PBConfig builder];
-}
-@end
-
-@interface PBConfig_Builder()
-@property (retain) PBConfig* result;
-@end
-
-@implementation PBConfig_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBConfig alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBConfig_Builder*) clear {
-  self.result = [[[PBConfig alloc] init] autorelease];
-  return self;
-}
-- (PBConfig_Builder*) clone {
-  return [PBConfig builderWithPrototype:result];
-}
-- (PBConfig*) defaultInstance {
-  return [PBConfig defaultInstance];
-}
-- (PBConfig*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBConfig*) buildPartial {
-  PBConfig* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBConfig_Builder*) mergeFrom:(PBConfig*) other {
-  if (other == [PBConfig defaultInstance]) {
-    return self;
-  }
-  if (other.mutableCoinPricesList.count > 0) {
-    if (result.mutableCoinPricesList == nil) {
-      result.mutableCoinPricesList = [NSMutableArray array];
-    }
-    [result.mutableCoinPricesList addObjectsFromArray:other.mutableCoinPricesList];
-  }
-  if (other.hasBalanceDeviation) {
-    [self setBalanceDeviation:other.balanceDeviation];
-  }
-  if (other.hasTrafficApiserverUrl) {
-    [self setTrafficApiserverUrl:other.trafficApiserverUrl];
-  }
-  if (other.hasUserApiserverUrl) {
-    [self setUserApiserverUrl:other.userApiserverUrl];
-  }
-  if (other.hasMusicHomeCnUrl) {
-    [self setMusicHomeCnUrl:other.musicHomeCnUrl];
-  }
-  if (other.hasMusicHomeEnUrl) {
-    [self setMusicHomeEnUrl:other.musicHomeEnUrl];
-  }
-  if (other.hasEnableReview) {
-    [self setEnableReview:other.enableReview];
-  }
-  if (other.hasInReview) {
-    [self setInReview:other.inReview];
-  }
-  if (other.hasInReviewVersion) {
-    [self setInReviewVersion:other.inReviewVersion];
-  }
-  if (other.hasPostponeTime) {
-    [self setPostponeTime:other.postponeTime];
-  }
-  if (other.hasUrgeTime) {
-    [self setUrgeTime:other.urgeTime];
-  }
-  if (other.hasEnableAd) {
-    [self setEnableAd:other.enableAd];
-  }
-  if (other.hasEnableWall) {
-    [self setEnableWall:other.enableWall];
-  }
-  if (other.hasWallType) {
-    [self setWallType:other.wallType];
-  }
-  if (other.hasDrawConfig) {
-    [self mergeDrawConfig:other.drawConfig];
-  }
-  if (other.hasDiceConfig) {
-    [self mergeDiceConfig:other.diceConfig];
-  }
-  if (other.hasZjhConfig) {
-    [self mergeZjhConfig:other.zjhConfig];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        PBPrice_Builder* subBuilder = [PBPrice builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addCoinPrices:[subBuilder buildPartial]];
-        break;
-      }
-      case 16: {
-        [self setBalanceDeviation:[input readInt32]];
-        break;
-      }
-      case 242: {
-        [self setTrafficApiserverUrl:[input readString]];
-        break;
-      }
-      case 250: {
-        [self setUserApiserverUrl:[input readString]];
-        break;
-      }
-      case 330: {
-        [self setMusicHomeCnUrl:[input readString]];
-        break;
-      }
-      case 338: {
-        [self setMusicHomeEnUrl:[input readString]];
-        break;
-      }
-      case 488: {
-        [self setEnableReview:[input readBool]];
-        break;
-      }
-      case 496: {
-        [self setInReview:[input readBool]];
-        break;
-      }
-      case 506: {
-        [self setInReviewVersion:[input readString]];
-        break;
-      }
-      case 512: {
-        [self setPostponeTime:[input readInt32]];
-        break;
-      }
-      case 520: {
-        [self setUrgeTime:[input readInt32]];
-        break;
-      }
-      case 560: {
-        [self setEnableAd:[input readBool]];
-        break;
-      }
-      case 568: {
-        [self setEnableWall:[input readBool]];
-        break;
-      }
-      case 576: {
-        [self setWallType:[input readInt32]];
-        break;
-      }
-      case 802: {
-        PBDrawConfig_Builder* subBuilder = [PBDrawConfig builder];
-        if (self.hasDrawConfig) {
-          [subBuilder mergeFrom:self.drawConfig];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setDrawConfig:[subBuilder buildPartial]];
-        break;
-      }
-      case 810: {
-        PBDiceConfig_Builder* subBuilder = [PBDiceConfig builder];
-        if (self.hasDiceConfig) {
-          [subBuilder mergeFrom:self.diceConfig];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setDiceConfig:[subBuilder buildPartial]];
-        break;
-      }
-      case 818: {
-        PBZJHConfig_Builder* subBuilder = [PBZJHConfig builder];
-        if (self.hasZjhConfig) {
-          [subBuilder mergeFrom:self.zjhConfig];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setZjhConfig:[subBuilder buildPartial]];
-        break;
-      }
-    }
-  }
-}
-- (NSArray*) coinPricesList {
-  if (result.mutableCoinPricesList == nil) { return [NSArray array]; }
-  return result.mutableCoinPricesList;
-}
-- (PBPrice*) coinPricesAtIndex:(int32_t) index {
-  return [result coinPricesAtIndex:index];
-}
-- (PBConfig_Builder*) replaceCoinPricesAtIndex:(int32_t) index with:(PBPrice*) value {
-  [result.mutableCoinPricesList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBConfig_Builder*) addAllCoinPrices:(NSArray*) values {
-  if (result.mutableCoinPricesList == nil) {
-    result.mutableCoinPricesList = [NSMutableArray array];
-  }
-  [result.mutableCoinPricesList addObjectsFromArray:values];
-  return self;
-}
-- (PBConfig_Builder*) clearCoinPricesList {
-  result.mutableCoinPricesList = nil;
-  return self;
-}
-- (PBConfig_Builder*) addCoinPrices:(PBPrice*) value {
-  if (result.mutableCoinPricesList == nil) {
-    result.mutableCoinPricesList = [NSMutableArray array];
-  }
-  [result.mutableCoinPricesList addObject:value];
-  return self;
-}
-- (BOOL) hasBalanceDeviation {
-  return result.hasBalanceDeviation;
-}
-- (int32_t) balanceDeviation {
-  return result.balanceDeviation;
-}
-- (PBConfig_Builder*) setBalanceDeviation:(int32_t) value {
-  result.hasBalanceDeviation = YES;
-  result.balanceDeviation = value;
-  return self;
-}
-- (PBConfig_Builder*) clearBalanceDeviation {
-  result.hasBalanceDeviation = NO;
-  result.balanceDeviation = 4000;
-  return self;
-}
-- (BOOL) hasTrafficApiserverUrl {
-  return result.hasTrafficApiserverUrl;
-}
-- (NSString*) trafficApiserverUrl {
-  return result.trafficApiserverUrl;
-}
-- (PBConfig_Builder*) setTrafficApiserverUrl:(NSString*) value {
-  result.hasTrafficApiserverUrl = YES;
-  result.trafficApiserverUrl = value;
-  return self;
-}
-- (PBConfig_Builder*) clearTrafficApiserverUrl {
-  result.hasTrafficApiserverUrl = NO;
-  result.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
-  return self;
-}
-- (BOOL) hasUserApiserverUrl {
-  return result.hasUserApiserverUrl;
-}
-- (NSString*) userApiserverUrl {
-  return result.userApiserverUrl;
-}
-- (PBConfig_Builder*) setUserApiserverUrl:(NSString*) value {
-  result.hasUserApiserverUrl = YES;
-  result.userApiserverUrl = value;
-  return self;
-}
-- (PBConfig_Builder*) clearUserApiserverUrl {
-  result.hasUserApiserverUrl = NO;
-  result.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
-  return self;
-}
-- (BOOL) hasMusicHomeCnUrl {
-  return result.hasMusicHomeCnUrl;
-}
-- (NSString*) musicHomeCnUrl {
-  return result.musicHomeCnUrl;
-}
-- (PBConfig_Builder*) setMusicHomeCnUrl:(NSString*) value {
-  result.hasMusicHomeCnUrl = YES;
-  result.musicHomeCnUrl = value;
-  return self;
-}
-- (PBConfig_Builder*) clearMusicHomeCnUrl {
-  result.hasMusicHomeCnUrl = NO;
-  result.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
-  return self;
-}
-- (BOOL) hasMusicHomeEnUrl {
-  return result.hasMusicHomeEnUrl;
-}
-- (NSString*) musicHomeEnUrl {
-  return result.musicHomeEnUrl;
-}
-- (PBConfig_Builder*) setMusicHomeEnUrl:(NSString*) value {
-  result.hasMusicHomeEnUrl = YES;
-  result.musicHomeEnUrl = value;
-  return self;
-}
-- (PBConfig_Builder*) clearMusicHomeEnUrl {
-  result.hasMusicHomeEnUrl = NO;
-  result.musicHomeEnUrl = @"http://mp3skull.com/";
-  return self;
-}
-- (BOOL) hasEnableReview {
-  return result.hasEnableReview;
-}
-- (BOOL) enableReview {
-  return result.enableReview;
-}
-- (PBConfig_Builder*) setEnableReview:(BOOL) value {
-  result.hasEnableReview = YES;
-  result.enableReview = value;
-  return self;
-}
-- (PBConfig_Builder*) clearEnableReview {
-  result.hasEnableReview = NO;
-  result.enableReview = YES;
-  return self;
-}
-- (BOOL) hasInReview {
-  return result.hasInReview;
-}
-- (BOOL) inReview {
-  return result.inReview;
-}
-- (PBConfig_Builder*) setInReview:(BOOL) value {
-  result.hasInReview = YES;
-  result.inReview = value;
-  return self;
-}
-- (PBConfig_Builder*) clearInReview {
-  result.hasInReview = NO;
-  result.inReview = NO;
-  return self;
-}
-- (BOOL) hasInReviewVersion {
-  return result.hasInReviewVersion;
-}
-- (NSString*) inReviewVersion {
-  return result.inReviewVersion;
-}
-- (PBConfig_Builder*) setInReviewVersion:(NSString*) value {
-  result.hasInReviewVersion = YES;
-  result.inReviewVersion = value;
-  return self;
-}
-- (PBConfig_Builder*) clearInReviewVersion {
-  result.hasInReviewVersion = NO;
-  result.inReviewVersion = @"";
-  return self;
-}
-- (BOOL) hasPostponeTime {
-  return result.hasPostponeTime;
-}
-- (int32_t) postponeTime {
-  return result.postponeTime;
-}
-- (PBConfig_Builder*) setPostponeTime:(int32_t) value {
-  result.hasPostponeTime = YES;
-  result.postponeTime = value;
-  return self;
-}
-- (PBConfig_Builder*) clearPostponeTime {
-  result.hasPostponeTime = NO;
-  result.postponeTime = 10;
-  return self;
-}
-- (BOOL) hasUrgeTime {
-  return result.hasUrgeTime;
-}
-- (int32_t) urgeTime {
-  return result.urgeTime;
-}
-- (PBConfig_Builder*) setUrgeTime:(int32_t) value {
-  result.hasUrgeTime = YES;
-  result.urgeTime = value;
-  return self;
-}
-- (PBConfig_Builder*) clearUrgeTime {
-  result.hasUrgeTime = NO;
-  result.urgeTime = 5;
-  return self;
-}
-- (BOOL) hasEnableAd {
-  return result.hasEnableAd;
-}
-- (BOOL) enableAd {
-  return result.enableAd;
-}
-- (PBConfig_Builder*) setEnableAd:(BOOL) value {
-  result.hasEnableAd = YES;
-  result.enableAd = value;
-  return self;
-}
-- (PBConfig_Builder*) clearEnableAd {
-  result.hasEnableAd = NO;
-  result.enableAd = YES;
-  return self;
-}
-- (BOOL) hasEnableWall {
-  return result.hasEnableWall;
-}
-- (BOOL) enableWall {
-  return result.enableWall;
-}
-- (PBConfig_Builder*) setEnableWall:(BOOL) value {
-  result.hasEnableWall = YES;
-  result.enableWall = value;
-  return self;
-}
-- (PBConfig_Builder*) clearEnableWall {
-  result.hasEnableWall = NO;
-  result.enableWall = YES;
-  return self;
-}
-- (BOOL) hasWallType {
-  return result.hasWallType;
-}
-- (int32_t) wallType {
-  return result.wallType;
-}
-- (PBConfig_Builder*) setWallType:(int32_t) value {
-  result.hasWallType = YES;
-  result.wallType = value;
-  return self;
-}
-- (PBConfig_Builder*) clearWallType {
-  result.hasWallType = NO;
-  result.wallType = 1;
-  return self;
-}
-- (BOOL) hasDrawConfig {
-  return result.hasDrawConfig;
-}
-- (PBDrawConfig*) drawConfig {
-  return result.drawConfig;
-}
-- (PBConfig_Builder*) setDrawConfig:(PBDrawConfig*) value {
-  result.hasDrawConfig = YES;
-  result.drawConfig = value;
-  return self;
-}
-- (PBConfig_Builder*) setDrawConfigBuilder:(PBDrawConfig_Builder*) builderForValue {
-  return [self setDrawConfig:[builderForValue build]];
-}
-- (PBConfig_Builder*) mergeDrawConfig:(PBDrawConfig*) value {
-  if (result.hasDrawConfig &&
-      result.drawConfig != [PBDrawConfig defaultInstance]) {
-    result.drawConfig =
-      [[[PBDrawConfig builderWithPrototype:result.drawConfig] mergeFrom:value] buildPartial];
-  } else {
-    result.drawConfig = value;
-  }
-  result.hasDrawConfig = YES;
-  return self;
-}
-- (PBConfig_Builder*) clearDrawConfig {
-  result.hasDrawConfig = NO;
-  result.drawConfig = [PBDrawConfig defaultInstance];
-  return self;
-}
-- (BOOL) hasDiceConfig {
-  return result.hasDiceConfig;
-}
-- (PBDiceConfig*) diceConfig {
-  return result.diceConfig;
-}
-- (PBConfig_Builder*) setDiceConfig:(PBDiceConfig*) value {
-  result.hasDiceConfig = YES;
-  result.diceConfig = value;
-  return self;
-}
-- (PBConfig_Builder*) setDiceConfigBuilder:(PBDiceConfig_Builder*) builderForValue {
-  return [self setDiceConfig:[builderForValue build]];
-}
-- (PBConfig_Builder*) mergeDiceConfig:(PBDiceConfig*) value {
-  if (result.hasDiceConfig &&
-      result.diceConfig != [PBDiceConfig defaultInstance]) {
-    result.diceConfig =
-      [[[PBDiceConfig builderWithPrototype:result.diceConfig] mergeFrom:value] buildPartial];
-  } else {
-    result.diceConfig = value;
-  }
-  result.hasDiceConfig = YES;
-  return self;
-}
-- (PBConfig_Builder*) clearDiceConfig {
-  result.hasDiceConfig = NO;
-  result.diceConfig = [PBDiceConfig defaultInstance];
-  return self;
-}
-- (BOOL) hasZjhConfig {
-  return result.hasZjhConfig;
-}
-- (PBZJHConfig*) zjhConfig {
-  return result.zjhConfig;
-}
-- (PBConfig_Builder*) setZjhConfig:(PBZJHConfig*) value {
-  result.hasZjhConfig = YES;
-  result.zjhConfig = value;
-  return self;
-}
-- (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue {
-  return [self setZjhConfig:[builderForValue build]];
-}
-- (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value {
-  if (result.hasZjhConfig &&
-      result.zjhConfig != [PBZJHConfig defaultInstance]) {
-    result.zjhConfig =
-      [[[PBZJHConfig builderWithPrototype:result.zjhConfig] mergeFrom:value] buildPartial];
-  } else {
-    result.zjhConfig = value;
-  }
-  result.hasZjhConfig = YES;
-  return self;
-}
-- (PBConfig_Builder*) clearZjhConfig {
-  result.hasZjhConfig = NO;
-  result.zjhConfig = [PBZJHConfig defaultInstance];
-  return self;
-}
-@end
-
-@interface PBLocalizeString ()
-@property (retain) NSString* languageCode;
-@property (retain) NSString* text;
-@property (retain) NSString* localizedText;
-@end
-
-@implementation PBLocalizeString
-
-- (BOOL) hasLanguageCode {
-  return !!hasLanguageCode_;
-}
-- (void) setHasLanguageCode:(BOOL) value {
-  hasLanguageCode_ = !!value;
-}
-@synthesize languageCode;
-- (BOOL) hasText {
-  return !!hasText_;
-}
-- (void) setHasText:(BOOL) value {
-  hasText_ = !!value;
-}
-@synthesize text;
-- (BOOL) hasLocalizedText {
-  return !!hasLocalizedText_;
-}
-- (void) setHasLocalizedText:(BOOL) value {
-  hasLocalizedText_ = !!value;
-}
-@synthesize localizedText;
-- (void) dealloc {
-  self.languageCode = nil;
-  self.text = nil;
-  self.localizedText = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.languageCode = @"";
-    self.text = @"";
-    self.localizedText = @"";
-  }
-  return self;
-}
-static PBLocalizeString* defaultPBLocalizeStringInstance = nil;
-+ (void) initialize {
-  if (self == [PBLocalizeString class]) {
-    defaultPBLocalizeStringInstance = [[PBLocalizeString alloc] init];
-  }
-}
-+ (PBLocalizeString*) defaultInstance {
-  return defaultPBLocalizeStringInstance;
-}
-- (PBLocalizeString*) defaultInstance {
-  return defaultPBLocalizeStringInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasLanguageCode) {
-    return NO;
-  }
-  if (!self.hasText) {
-    return NO;
-  }
-  if (!self.hasLocalizedText) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasLanguageCode) {
-    [output writeString:1 value:self.languageCode];
-  }
-  if (self.hasText) {
-    [output writeString:2 value:self.text];
-  }
-  if (self.hasLocalizedText) {
-    [output writeString:3 value:self.localizedText];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasLanguageCode) {
-    size += computeStringSize(1, self.languageCode);
-  }
-  if (self.hasText) {
-    size += computeStringSize(2, self.text);
-  }
-  if (self.hasLocalizedText) {
-    size += computeStringSize(3, self.localizedText);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBLocalizeString*) parseFromData:(NSData*) data {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromData:data] build];
-}
-+ (PBLocalizeString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromInputStream:input] build];
-}
-+ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBLocalizeString_Builder*) builder {
-  return [[[PBLocalizeString_Builder alloc] init] autorelease];
-}
-+ (PBLocalizeString_Builder*) builderWithPrototype:(PBLocalizeString*) prototype {
-  return [[PBLocalizeString builder] mergeFrom:prototype];
-}
-- (PBLocalizeString_Builder*) builder {
-  return [PBLocalizeString builder];
-}
-@end
-
-@interface PBLocalizeString_Builder()
-@property (retain) PBLocalizeString* result;
-@end
-
-@implementation PBLocalizeString_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBLocalizeString alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBLocalizeString_Builder*) clear {
-  self.result = [[[PBLocalizeString alloc] init] autorelease];
-  return self;
-}
-- (PBLocalizeString_Builder*) clone {
-  return [PBLocalizeString builderWithPrototype:result];
-}
-- (PBLocalizeString*) defaultInstance {
-  return [PBLocalizeString defaultInstance];
-}
-- (PBLocalizeString*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBLocalizeString*) buildPartial {
-  PBLocalizeString* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBLocalizeString_Builder*) mergeFrom:(PBLocalizeString*) other {
-  if (other == [PBLocalizeString defaultInstance]) {
-    return self;
-  }
-  if (other.hasLanguageCode) {
-    [self setLanguageCode:other.languageCode];
-  }
-  if (other.hasText) {
-    [self setText:other.text];
-  }
-  if (other.hasLocalizedText) {
-    [self setLocalizedText:other.localizedText];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        [self setLanguageCode:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setText:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setLocalizedText:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasLanguageCode {
-  return result.hasLanguageCode;
-}
-- (NSString*) languageCode {
-  return result.languageCode;
-}
-- (PBLocalizeString_Builder*) setLanguageCode:(NSString*) value {
-  result.hasLanguageCode = YES;
-  result.languageCode = value;
-  return self;
-}
-- (PBLocalizeString_Builder*) clearLanguageCode {
-  result.hasLanguageCode = NO;
-  result.languageCode = @"";
-  return self;
-}
-- (BOOL) hasText {
-  return result.hasText;
-}
-- (NSString*) text {
-  return result.text;
-}
-- (PBLocalizeString_Builder*) setText:(NSString*) value {
-  result.hasText = YES;
-  result.text = value;
-  return self;
-}
-- (PBLocalizeString_Builder*) clearText {
-  result.hasText = NO;
-  result.text = @"";
-  return self;
-}
-- (BOOL) hasLocalizedText {
-  return result.hasLocalizedText;
-}
-- (NSString*) localizedText {
-  return result.localizedText;
-}
-- (PBLocalizeString_Builder*) setLocalizedText:(NSString*) value {
-  result.hasLocalizedText = YES;
-  result.localizedText = value;
-  return self;
-}
-- (PBLocalizeString_Builder*) clearLocalizedText {
-  result.hasLocalizedText = NO;
-  result.localizedText = @"";
-  return self;
-}
-@end
-
-@interface PBApp ()
-@property (retain) NSMutableArray* mutableNameList;
-@property (retain) NSString* appId;
-@property (retain) NSMutableArray* mutableDescList;
-@property (retain) NSString* downloadUrl;
-@property (retain) NSString* logo;
-@end
-
-@implementation PBApp
-
-@synthesize mutableNameList;
-- (BOOL) hasAppId {
-  return !!hasAppId_;
-}
-- (void) setHasAppId:(BOOL) value {
-  hasAppId_ = !!value;
-}
-@synthesize appId;
-@synthesize mutableDescList;
-- (BOOL) hasDownloadUrl {
-  return !!hasDownloadUrl_;
-}
-- (void) setHasDownloadUrl:(BOOL) value {
-  hasDownloadUrl_ = !!value;
-}
-@synthesize downloadUrl;
-- (BOOL) hasLogo {
-  return !!hasLogo_;
-}
-- (void) setHasLogo:(BOOL) value {
-  hasLogo_ = !!value;
-}
-@synthesize logo;
-- (void) dealloc {
-  self.mutableNameList = nil;
-  self.appId = nil;
-  self.mutableDescList = nil;
-  self.downloadUrl = nil;
-  self.logo = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.appId = @"";
-    self.downloadUrl = @"";
-    self.logo = @"";
-  }
-  return self;
-}
-static PBApp* defaultPBAppInstance = nil;
-+ (void) initialize {
-  if (self == [PBApp class]) {
-    defaultPBAppInstance = [[PBApp alloc] init];
-  }
-}
-+ (PBApp*) defaultInstance {
-  return defaultPBAppInstance;
-}
-- (PBApp*) defaultInstance {
-  return defaultPBAppInstance;
-}
-- (NSArray*) nameList {
-  return mutableNameList;
-}
-- (PBLocalizeString*) nameAtIndex:(int32_t) index {
-  id value = [mutableNameList objectAtIndex:index];
-  return value;
-}
-- (NSArray*) descList {
-  return mutableDescList;
-}
-- (PBLocalizeString*) descAtIndex:(int32_t) index {
-  id value = [mutableDescList objectAtIndex:index];
-  return value;
-}
-- (BOOL) isInitialized {
-  if (!self.hasAppId) {
-    return NO;
-  }
-  for (PBLocalizeString* element in self.nameList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
-  }
-  for (PBLocalizeString* element in self.descList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBLocalizeString* element in self.nameList) {
-    [output writeMessage:1 value:element];
-  }
-  if (self.hasAppId) {
-    [output writeString:2 value:self.appId];
-  }
-  for (PBLocalizeString* element in self.descList) {
-    [output writeMessage:3 value:element];
-  }
-  if (self.hasDownloadUrl) {
-    [output writeString:4 value:self.downloadUrl];
-  }
-  if (self.hasLogo) {
-    [output writeString:5 value:self.logo];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  for (PBLocalizeString* element in self.nameList) {
-    size += computeMessageSize(1, element);
-  }
-  if (self.hasAppId) {
-    size += computeStringSize(2, self.appId);
-  }
-  for (PBLocalizeString* element in self.descList) {
-    size += computeMessageSize(3, element);
-  }
-  if (self.hasDownloadUrl) {
-    size += computeStringSize(4, self.downloadUrl);
-  }
-  if (self.hasLogo) {
-    size += computeStringSize(5, self.logo);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBApp*) parseFromData:(NSData*) data {
-  return (PBApp*)[[[PBApp builder] mergeFromData:data] build];
-}
-+ (PBApp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBApp*)[[[PBApp builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBApp*) parseFromInputStream:(NSInputStream*) input {
-  return (PBApp*)[[[PBApp builder] mergeFromInputStream:input] build];
-}
-+ (PBApp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBApp*)[[[PBApp builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBApp*)[[[PBApp builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBApp*)[[[PBApp builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBApp_Builder*) builder {
-  return [[[PBApp_Builder alloc] init] autorelease];
-}
-+ (PBApp_Builder*) builderWithPrototype:(PBApp*) prototype {
-  return [[PBApp builder] mergeFrom:prototype];
-}
-- (PBApp_Builder*) builder {
-  return [PBApp builder];
-}
-@end
-
-@interface PBApp_Builder()
-@property (retain) PBApp* result;
-@end
-
-@implementation PBApp_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBApp alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBApp_Builder*) clear {
-  self.result = [[[PBApp alloc] init] autorelease];
-  return self;
-}
-- (PBApp_Builder*) clone {
-  return [PBApp builderWithPrototype:result];
-}
-- (PBApp*) defaultInstance {
-  return [PBApp defaultInstance];
-}
-- (PBApp*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBApp*) buildPartial {
-  PBApp* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBApp_Builder*) mergeFrom:(PBApp*) other {
-  if (other == [PBApp defaultInstance]) {
-    return self;
-  }
-  if (other.mutableNameList.count > 0) {
-    if (result.mutableNameList == nil) {
-      result.mutableNameList = [NSMutableArray array];
-    }
-    [result.mutableNameList addObjectsFromArray:other.mutableNameList];
-  }
-  if (other.hasAppId) {
-    [self setAppId:other.appId];
-  }
-  if (other.mutableDescList.count > 0) {
-    if (result.mutableDescList == nil) {
-      result.mutableDescList = [NSMutableArray array];
-    }
-    [result.mutableDescList addObjectsFromArray:other.mutableDescList];
-  }
-  if (other.hasDownloadUrl) {
-    [self setDownloadUrl:other.downloadUrl];
-  }
-  if (other.hasLogo) {
-    [self setLogo:other.logo];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addName:[subBuilder buildPartial]];
-        break;
-      }
-      case 18: {
-        [self setAppId:[input readString]];
-        break;
-      }
-      case 26: {
-        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addDesc:[subBuilder buildPartial]];
-        break;
-      }
-      case 34: {
-        [self setDownloadUrl:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setLogo:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (NSArray*) nameList {
-  if (result.mutableNameList == nil) { return [NSArray array]; }
-  return result.mutableNameList;
-}
-- (PBLocalizeString*) nameAtIndex:(int32_t) index {
-  return [result nameAtIndex:index];
-}
-- (PBApp_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value {
-  [result.mutableNameList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBApp_Builder*) addAllName:(NSArray*) values {
-  if (result.mutableNameList == nil) {
-    result.mutableNameList = [NSMutableArray array];
-  }
-  [result.mutableNameList addObjectsFromArray:values];
-  return self;
-}
-- (PBApp_Builder*) clearNameList {
-  result.mutableNameList = nil;
-  return self;
-}
-- (PBApp_Builder*) addName:(PBLocalizeString*) value {
-  if (result.mutableNameList == nil) {
-    result.mutableNameList = [NSMutableArray array];
-  }
-  [result.mutableNameList addObject:value];
-  return self;
-}
-- (BOOL) hasAppId {
-  return result.hasAppId;
-}
-- (NSString*) appId {
-  return result.appId;
-}
-- (PBApp_Builder*) setAppId:(NSString*) value {
-  result.hasAppId = YES;
-  result.appId = value;
-  return self;
-}
-- (PBApp_Builder*) clearAppId {
-  result.hasAppId = NO;
-  result.appId = @"";
-  return self;
-}
-- (NSArray*) descList {
-  if (result.mutableDescList == nil) { return [NSArray array]; }
-  return result.mutableDescList;
-}
-- (PBLocalizeString*) descAtIndex:(int32_t) index {
-  return [result descAtIndex:index];
-}
-- (PBApp_Builder*) replaceDescAtIndex:(int32_t) index with:(PBLocalizeString*) value {
-  [result.mutableDescList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBApp_Builder*) addAllDesc:(NSArray*) values {
-  if (result.mutableDescList == nil) {
-    result.mutableDescList = [NSMutableArray array];
-  }
-  [result.mutableDescList addObjectsFromArray:values];
-  return self;
-}
-- (PBApp_Builder*) clearDescList {
-  result.mutableDescList = nil;
-  return self;
-}
-- (PBApp_Builder*) addDesc:(PBLocalizeString*) value {
-  if (result.mutableDescList == nil) {
-    result.mutableDescList = [NSMutableArray array];
-  }
-  [result.mutableDescList addObject:value];
-  return self;
-}
-- (BOOL) hasDownloadUrl {
-  return result.hasDownloadUrl;
-}
-- (NSString*) downloadUrl {
-  return result.downloadUrl;
-}
-- (PBApp_Builder*) setDownloadUrl:(NSString*) value {
-  result.hasDownloadUrl = YES;
-  result.downloadUrl = value;
-  return self;
-}
-- (PBApp_Builder*) clearDownloadUrl {
-  result.hasDownloadUrl = NO;
-  result.downloadUrl = @"";
-  return self;
-}
-- (BOOL) hasLogo {
-  return result.hasLogo;
-}
-- (NSString*) logo {
-  return result.logo;
-}
-- (PBApp_Builder*) setLogo:(NSString*) value {
-  result.hasLogo = YES;
-  result.logo = value;
-  return self;
-}
-- (PBApp_Builder*) clearLogo {
-  result.hasLogo = NO;
-  result.logo = @"";
-  return self;
-}
-@end
-
 @interface PBAppReward ()
 @property (retain) PBApp* app;
 @property int32_t rewardAmount;
@@ -4017,207 +2475,6 @@ static PBAppReward* defaultPBAppRewardInstance = nil;
 }
 @end
 
-@interface PBAppRewardConfig ()
-@property (retain) NSMutableArray* mutableAppRewardsList;
-@end
-
-@implementation PBAppRewardConfig
-
-@synthesize mutableAppRewardsList;
-- (void) dealloc {
-  self.mutableAppRewardsList = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-  }
-  return self;
-}
-static PBAppRewardConfig* defaultPBAppRewardConfigInstance = nil;
-+ (void) initialize {
-  if (self == [PBAppRewardConfig class]) {
-    defaultPBAppRewardConfigInstance = [[PBAppRewardConfig alloc] init];
-  }
-}
-+ (PBAppRewardConfig*) defaultInstance {
-  return defaultPBAppRewardConfigInstance;
-}
-- (PBAppRewardConfig*) defaultInstance {
-  return defaultPBAppRewardConfigInstance;
-}
-- (NSArray*) appRewardsList {
-  return mutableAppRewardsList;
-}
-- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
-  id value = [mutableAppRewardsList objectAtIndex:index];
-  return value;
-}
-- (BOOL) isInitialized {
-  for (PBAppReward* element in self.appRewardsList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBAppReward* element in self.appRewardsList) {
-    [output writeMessage:1 value:element];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  for (PBAppReward* element in self.appRewardsList) {
-    size += computeMessageSize(1, element);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBAppRewardConfig*) parseFromData:(NSData*) data {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromData:data] build];
-}
-+ (PBAppRewardConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBAppRewardConfig*) parseFromInputStream:(NSInputStream*) input {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromInputStream:input] build];
-}
-+ (PBAppRewardConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBAppRewardConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBAppRewardConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBAppRewardConfig*)[[[PBAppRewardConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBAppRewardConfig_Builder*) builder {
-  return [[[PBAppRewardConfig_Builder alloc] init] autorelease];
-}
-+ (PBAppRewardConfig_Builder*) builderWithPrototype:(PBAppRewardConfig*) prototype {
-  return [[PBAppRewardConfig builder] mergeFrom:prototype];
-}
-- (PBAppRewardConfig_Builder*) builder {
-  return [PBAppRewardConfig builder];
-}
-@end
-
-@interface PBAppRewardConfig_Builder()
-@property (retain) PBAppRewardConfig* result;
-@end
-
-@implementation PBAppRewardConfig_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBAppRewardConfig alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBAppRewardConfig_Builder*) clear {
-  self.result = [[[PBAppRewardConfig alloc] init] autorelease];
-  return self;
-}
-- (PBAppRewardConfig_Builder*) clone {
-  return [PBAppRewardConfig builderWithPrototype:result];
-}
-- (PBAppRewardConfig*) defaultInstance {
-  return [PBAppRewardConfig defaultInstance];
-}
-- (PBAppRewardConfig*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBAppRewardConfig*) buildPartial {
-  PBAppRewardConfig* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBAppRewardConfig_Builder*) mergeFrom:(PBAppRewardConfig*) other {
-  if (other == [PBAppRewardConfig defaultInstance]) {
-    return self;
-  }
-  if (other.mutableAppRewardsList.count > 0) {
-    if (result.mutableAppRewardsList == nil) {
-      result.mutableAppRewardsList = [NSMutableArray array];
-    }
-    [result.mutableAppRewardsList addObjectsFromArray:other.mutableAppRewardsList];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBAppRewardConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBAppRewardConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        PBAppReward_Builder* subBuilder = [PBAppReward builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addAppRewards:[subBuilder buildPartial]];
-        break;
-      }
-    }
-  }
-}
-- (NSArray*) appRewardsList {
-  if (result.mutableAppRewardsList == nil) { return [NSArray array]; }
-  return result.mutableAppRewardsList;
-}
-- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
-  return [result appRewardsAtIndex:index];
-}
-- (PBAppRewardConfig_Builder*) replaceAppRewardsAtIndex:(int32_t) index with:(PBAppReward*) value {
-  [result.mutableAppRewardsList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBAppRewardConfig_Builder*) addAllAppRewards:(NSArray*) values {
-  if (result.mutableAppRewardsList == nil) {
-    result.mutableAppRewardsList = [NSMutableArray array];
-  }
-  [result.mutableAppRewardsList addObjectsFromArray:values];
-  return self;
-}
-- (PBAppRewardConfig_Builder*) clearAppRewardsList {
-  result.mutableAppRewardsList = nil;
-  return self;
-}
-- (PBAppRewardConfig_Builder*) addAppRewards:(PBAppReward*) value {
-  if (result.mutableAppRewardsList == nil) {
-    result.mutableAppRewardsList = [NSMutableArray array];
-  }
-  [result.mutableAppRewardsList addObject:value];
-  return self;
-}
-@end
-
 @interface PBRewardWall ()
 @property int32_t type;
 @property (retain) NSString* logo;
@@ -4499,33 +2756,218 @@ static PBRewardWall* defaultPBRewardWallInstance = nil;
 }
 @end
 
-@interface PBRewardWallConfig ()
+@interface PBConfig ()
+@property (retain) NSMutableArray* mutableCoinPricesList;
+@property int32_t balanceDeviation;
+@property (retain) NSString* trafficApiserverUrl;
+@property (retain) NSString* userApiserverUrl;
+@property (retain) NSString* musicHomeCnUrl;
+@property (retain) NSString* musicHomeEnUrl;
+@property BOOL enableReview;
+@property BOOL inReview;
+@property (retain) NSString* inReviewVersion;
+@property int32_t postponeTime;
+@property int32_t urgeTime;
+@property BOOL enableAd;
+@property BOOL enableWall;
+@property int32_t wallType;
 @property (retain) NSMutableArray* mutableRewardWallsList;
+@property (retain) NSMutableArray* mutableAppRewardsList;
+@property (retain) PBDrawConfig* drawConfig;
+@property (retain) PBDiceConfig* diceConfig;
+@property (retain) PBZJHConfig* zjhConfig;
 @end
 
-@implementation PBRewardWallConfig
+@implementation PBConfig
 
+@synthesize mutableCoinPricesList;
+- (BOOL) hasBalanceDeviation {
+  return !!hasBalanceDeviation_;
+}
+- (void) setHasBalanceDeviation:(BOOL) value {
+  hasBalanceDeviation_ = !!value;
+}
+@synthesize balanceDeviation;
+- (BOOL) hasTrafficApiserverUrl {
+  return !!hasTrafficApiserverUrl_;
+}
+- (void) setHasTrafficApiserverUrl:(BOOL) value {
+  hasTrafficApiserverUrl_ = !!value;
+}
+@synthesize trafficApiserverUrl;
+- (BOOL) hasUserApiserverUrl {
+  return !!hasUserApiserverUrl_;
+}
+- (void) setHasUserApiserverUrl:(BOOL) value {
+  hasUserApiserverUrl_ = !!value;
+}
+@synthesize userApiserverUrl;
+- (BOOL) hasMusicHomeCnUrl {
+  return !!hasMusicHomeCnUrl_;
+}
+- (void) setHasMusicHomeCnUrl:(BOOL) value {
+  hasMusicHomeCnUrl_ = !!value;
+}
+@synthesize musicHomeCnUrl;
+- (BOOL) hasMusicHomeEnUrl {
+  return !!hasMusicHomeEnUrl_;
+}
+- (void) setHasMusicHomeEnUrl:(BOOL) value {
+  hasMusicHomeEnUrl_ = !!value;
+}
+@synthesize musicHomeEnUrl;
+- (BOOL) hasEnableReview {
+  return !!hasEnableReview_;
+}
+- (void) setHasEnableReview:(BOOL) value {
+  hasEnableReview_ = !!value;
+}
+- (BOOL) enableReview {
+  return !!enableReview_;
+}
+- (void) setEnableReview:(BOOL) value {
+  enableReview_ = !!value;
+}
+- (BOOL) hasInReview {
+  return !!hasInReview_;
+}
+- (void) setHasInReview:(BOOL) value {
+  hasInReview_ = !!value;
+}
+- (BOOL) inReview {
+  return !!inReview_;
+}
+- (void) setInReview:(BOOL) value {
+  inReview_ = !!value;
+}
+- (BOOL) hasInReviewVersion {
+  return !!hasInReviewVersion_;
+}
+- (void) setHasInReviewVersion:(BOOL) value {
+  hasInReviewVersion_ = !!value;
+}
+@synthesize inReviewVersion;
+- (BOOL) hasPostponeTime {
+  return !!hasPostponeTime_;
+}
+- (void) setHasPostponeTime:(BOOL) value {
+  hasPostponeTime_ = !!value;
+}
+@synthesize postponeTime;
+- (BOOL) hasUrgeTime {
+  return !!hasUrgeTime_;
+}
+- (void) setHasUrgeTime:(BOOL) value {
+  hasUrgeTime_ = !!value;
+}
+@synthesize urgeTime;
+- (BOOL) hasEnableAd {
+  return !!hasEnableAd_;
+}
+- (void) setHasEnableAd:(BOOL) value {
+  hasEnableAd_ = !!value;
+}
+- (BOOL) enableAd {
+  return !!enableAd_;
+}
+- (void) setEnableAd:(BOOL) value {
+  enableAd_ = !!value;
+}
+- (BOOL) hasEnableWall {
+  return !!hasEnableWall_;
+}
+- (void) setHasEnableWall:(BOOL) value {
+  hasEnableWall_ = !!value;
+}
+- (BOOL) enableWall {
+  return !!enableWall_;
+}
+- (void) setEnableWall:(BOOL) value {
+  enableWall_ = !!value;
+}
+- (BOOL) hasWallType {
+  return !!hasWallType_;
+}
+- (void) setHasWallType:(BOOL) value {
+  hasWallType_ = !!value;
+}
+@synthesize wallType;
 @synthesize mutableRewardWallsList;
+@synthesize mutableAppRewardsList;
+- (BOOL) hasDrawConfig {
+  return !!hasDrawConfig_;
+}
+- (void) setHasDrawConfig:(BOOL) value {
+  hasDrawConfig_ = !!value;
+}
+@synthesize drawConfig;
+- (BOOL) hasDiceConfig {
+  return !!hasDiceConfig_;
+}
+- (void) setHasDiceConfig:(BOOL) value {
+  hasDiceConfig_ = !!value;
+}
+@synthesize diceConfig;
+- (BOOL) hasZjhConfig {
+  return !!hasZjhConfig_;
+}
+- (void) setHasZjhConfig:(BOOL) value {
+  hasZjhConfig_ = !!value;
+}
+@synthesize zjhConfig;
 - (void) dealloc {
+  self.mutableCoinPricesList = nil;
+  self.trafficApiserverUrl = nil;
+  self.userApiserverUrl = nil;
+  self.musicHomeCnUrl = nil;
+  self.musicHomeEnUrl = nil;
+  self.inReviewVersion = nil;
   self.mutableRewardWallsList = nil;
+  self.mutableAppRewardsList = nil;
+  self.drawConfig = nil;
+  self.diceConfig = nil;
+  self.zjhConfig = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.balanceDeviation = 4000;
+    self.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
+    self.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
+    self.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
+    self.musicHomeEnUrl = @"http://mp3skull.com/";
+    self.enableReview = YES;
+    self.inReview = NO;
+    self.inReviewVersion = @"";
+    self.postponeTime = 10;
+    self.urgeTime = 5;
+    self.enableAd = YES;
+    self.enableWall = YES;
+    self.wallType = 1;
+    self.drawConfig = [PBDrawConfig defaultInstance];
+    self.diceConfig = [PBDiceConfig defaultInstance];
+    self.zjhConfig = [PBZJHConfig defaultInstance];
   }
   return self;
 }
-static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
+static PBConfig* defaultPBConfigInstance = nil;
 + (void) initialize {
-  if (self == [PBRewardWallConfig class]) {
-    defaultPBRewardWallConfigInstance = [[PBRewardWallConfig alloc] init];
+  if (self == [PBConfig class]) {
+    defaultPBConfigInstance = [[PBConfig alloc] init];
   }
 }
-+ (PBRewardWallConfig*) defaultInstance {
-  return defaultPBRewardWallConfigInstance;
++ (PBConfig*) defaultInstance {
+  return defaultPBConfigInstance;
 }
-- (PBRewardWallConfig*) defaultInstance {
-  return defaultPBRewardWallConfigInstance;
+- (PBConfig*) defaultInstance {
+  return defaultPBConfigInstance;
+}
+- (NSArray*) coinPricesList {
+  return mutableCoinPricesList;
+}
+- (PBPrice*) coinPricesAtIndex:(int32_t) index {
+  id value = [mutableCoinPricesList objectAtIndex:index];
+  return value;
 }
 - (NSArray*) rewardWallsList {
   return mutableRewardWallsList;
@@ -4534,8 +2976,25 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
   id value = [mutableRewardWallsList objectAtIndex:index];
   return value;
 }
+- (NSArray*) appRewardsList {
+  return mutableAppRewardsList;
+}
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
+  id value = [mutableAppRewardsList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
+  for (PBPrice* element in self.coinPricesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   for (PBRewardWall* element in self.rewardWallsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBAppReward* element in self.appRewardsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -4543,8 +3002,62 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBRewardWall* element in self.rewardWallsList) {
+  for (PBPrice* element in self.coinPricesList) {
     [output writeMessage:1 value:element];
+  }
+  if (self.hasBalanceDeviation) {
+    [output writeInt32:2 value:self.balanceDeviation];
+  }
+  if (self.hasTrafficApiserverUrl) {
+    [output writeString:30 value:self.trafficApiserverUrl];
+  }
+  if (self.hasUserApiserverUrl) {
+    [output writeString:31 value:self.userApiserverUrl];
+  }
+  if (self.hasMusicHomeCnUrl) {
+    [output writeString:41 value:self.musicHomeCnUrl];
+  }
+  if (self.hasMusicHomeEnUrl) {
+    [output writeString:42 value:self.musicHomeEnUrl];
+  }
+  if (self.hasEnableReview) {
+    [output writeBool:61 value:self.enableReview];
+  }
+  if (self.hasInReview) {
+    [output writeBool:62 value:self.inReview];
+  }
+  if (self.hasInReviewVersion) {
+    [output writeString:63 value:self.inReviewVersion];
+  }
+  if (self.hasPostponeTime) {
+    [output writeInt32:64 value:self.postponeTime];
+  }
+  if (self.hasUrgeTime) {
+    [output writeInt32:65 value:self.urgeTime];
+  }
+  if (self.hasEnableAd) {
+    [output writeBool:70 value:self.enableAd];
+  }
+  if (self.hasEnableWall) {
+    [output writeBool:71 value:self.enableWall];
+  }
+  if (self.hasWallType) {
+    [output writeInt32:72 value:self.wallType];
+  }
+  for (PBRewardWall* element in self.rewardWallsList) {
+    [output writeMessage:81 value:element];
+  }
+  for (PBAppReward* element in self.appRewardsList) {
+    [output writeMessage:82 value:element];
+  }
+  if (self.hasDrawConfig) {
+    [output writeMessage:100 value:self.drawConfig];
+  }
+  if (self.hasDiceConfig) {
+    [output writeMessage:101 value:self.diceConfig];
+  }
+  if (self.hasZjhConfig) {
+    [output writeMessage:102 value:self.zjhConfig];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4555,47 +3068,101 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
   }
 
   size = 0;
-  for (PBRewardWall* element in self.rewardWallsList) {
+  for (PBPrice* element in self.coinPricesList) {
     size += computeMessageSize(1, element);
+  }
+  if (self.hasBalanceDeviation) {
+    size += computeInt32Size(2, self.balanceDeviation);
+  }
+  if (self.hasTrafficApiserverUrl) {
+    size += computeStringSize(30, self.trafficApiserverUrl);
+  }
+  if (self.hasUserApiserverUrl) {
+    size += computeStringSize(31, self.userApiserverUrl);
+  }
+  if (self.hasMusicHomeCnUrl) {
+    size += computeStringSize(41, self.musicHomeCnUrl);
+  }
+  if (self.hasMusicHomeEnUrl) {
+    size += computeStringSize(42, self.musicHomeEnUrl);
+  }
+  if (self.hasEnableReview) {
+    size += computeBoolSize(61, self.enableReview);
+  }
+  if (self.hasInReview) {
+    size += computeBoolSize(62, self.inReview);
+  }
+  if (self.hasInReviewVersion) {
+    size += computeStringSize(63, self.inReviewVersion);
+  }
+  if (self.hasPostponeTime) {
+    size += computeInt32Size(64, self.postponeTime);
+  }
+  if (self.hasUrgeTime) {
+    size += computeInt32Size(65, self.urgeTime);
+  }
+  if (self.hasEnableAd) {
+    size += computeBoolSize(70, self.enableAd);
+  }
+  if (self.hasEnableWall) {
+    size += computeBoolSize(71, self.enableWall);
+  }
+  if (self.hasWallType) {
+    size += computeInt32Size(72, self.wallType);
+  }
+  for (PBRewardWall* element in self.rewardWallsList) {
+    size += computeMessageSize(81, element);
+  }
+  for (PBAppReward* element in self.appRewardsList) {
+    size += computeMessageSize(82, element);
+  }
+  if (self.hasDrawConfig) {
+    size += computeMessageSize(100, self.drawConfig);
+  }
+  if (self.hasDiceConfig) {
+    size += computeMessageSize(101, self.diceConfig);
+  }
+  if (self.hasZjhConfig) {
+    size += computeMessageSize(102, self.zjhConfig);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBRewardWallConfig*) parseFromData:(NSData*) data {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromData:data] build];
++ (PBConfig*) parseFromData:(NSData*) data {
+  return (PBConfig*)[[[PBConfig builder] mergeFromData:data] build];
 }
-+ (PBRewardWallConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBConfig*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBConfig*)[[[PBConfig builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBRewardWallConfig*) parseFromInputStream:(NSInputStream*) input {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromInputStream:input] build];
++ (PBConfig*) parseFromInputStream:(NSInputStream*) input {
+  return (PBConfig*)[[[PBConfig builder] mergeFromInputStream:input] build];
 }
-+ (PBRewardWallConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBConfig*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBConfig*)[[[PBConfig builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBRewardWallConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromCodedInputStream:input] build];
++ (PBConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBConfig*)[[[PBConfig builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBRewardWallConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBRewardWallConfig*)[[[PBRewardWallConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBConfig*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBConfig*)[[[PBConfig builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBRewardWallConfig_Builder*) builder {
-  return [[[PBRewardWallConfig_Builder alloc] init] autorelease];
++ (PBConfig_Builder*) builder {
+  return [[[PBConfig_Builder alloc] init] autorelease];
 }
-+ (PBRewardWallConfig_Builder*) builderWithPrototype:(PBRewardWallConfig*) prototype {
-  return [[PBRewardWallConfig builder] mergeFrom:prototype];
++ (PBConfig_Builder*) builderWithPrototype:(PBConfig*) prototype {
+  return [[PBConfig builder] mergeFrom:prototype];
 }
-- (PBRewardWallConfig_Builder*) builder {
-  return [PBRewardWallConfig builder];
+- (PBConfig_Builder*) builder {
+  return [PBConfig builder];
 }
 @end
 
-@interface PBRewardWallConfig_Builder()
-@property (retain) PBRewardWallConfig* result;
+@interface PBConfig_Builder()
+@property (retain) PBConfig* result;
 @end
 
-@implementation PBRewardWallConfig_Builder
+@implementation PBConfig_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -4603,35 +3170,80 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBRewardWallConfig alloc] init] autorelease];
+    self.result = [[[PBConfig alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBRewardWallConfig_Builder*) clear {
-  self.result = [[[PBRewardWallConfig alloc] init] autorelease];
+- (PBConfig_Builder*) clear {
+  self.result = [[[PBConfig alloc] init] autorelease];
   return self;
 }
-- (PBRewardWallConfig_Builder*) clone {
-  return [PBRewardWallConfig builderWithPrototype:result];
+- (PBConfig_Builder*) clone {
+  return [PBConfig builderWithPrototype:result];
 }
-- (PBRewardWallConfig*) defaultInstance {
-  return [PBRewardWallConfig defaultInstance];
+- (PBConfig*) defaultInstance {
+  return [PBConfig defaultInstance];
 }
-- (PBRewardWallConfig*) build {
+- (PBConfig*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBRewardWallConfig*) buildPartial {
-  PBRewardWallConfig* returnMe = [[result retain] autorelease];
+- (PBConfig*) buildPartial {
+  PBConfig* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBRewardWallConfig_Builder*) mergeFrom:(PBRewardWallConfig*) other {
-  if (other == [PBRewardWallConfig defaultInstance]) {
+- (PBConfig_Builder*) mergeFrom:(PBConfig*) other {
+  if (other == [PBConfig defaultInstance]) {
     return self;
+  }
+  if (other.mutableCoinPricesList.count > 0) {
+    if (result.mutableCoinPricesList == nil) {
+      result.mutableCoinPricesList = [NSMutableArray array];
+    }
+    [result.mutableCoinPricesList addObjectsFromArray:other.mutableCoinPricesList];
+  }
+  if (other.hasBalanceDeviation) {
+    [self setBalanceDeviation:other.balanceDeviation];
+  }
+  if (other.hasTrafficApiserverUrl) {
+    [self setTrafficApiserverUrl:other.trafficApiserverUrl];
+  }
+  if (other.hasUserApiserverUrl) {
+    [self setUserApiserverUrl:other.userApiserverUrl];
+  }
+  if (other.hasMusicHomeCnUrl) {
+    [self setMusicHomeCnUrl:other.musicHomeCnUrl];
+  }
+  if (other.hasMusicHomeEnUrl) {
+    [self setMusicHomeEnUrl:other.musicHomeEnUrl];
+  }
+  if (other.hasEnableReview) {
+    [self setEnableReview:other.enableReview];
+  }
+  if (other.hasInReview) {
+    [self setInReview:other.inReview];
+  }
+  if (other.hasInReviewVersion) {
+    [self setInReviewVersion:other.inReviewVersion];
+  }
+  if (other.hasPostponeTime) {
+    [self setPostponeTime:other.postponeTime];
+  }
+  if (other.hasUrgeTime) {
+    [self setUrgeTime:other.urgeTime];
+  }
+  if (other.hasEnableAd) {
+    [self setEnableAd:other.enableAd];
+  }
+  if (other.hasEnableWall) {
+    [self setEnableWall:other.enableWall];
+  }
+  if (other.hasWallType) {
+    [self setWallType:other.wallType];
   }
   if (other.mutableRewardWallsList.count > 0) {
     if (result.mutableRewardWallsList == nil) {
@@ -4639,13 +3251,28 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
     }
     [result.mutableRewardWallsList addObjectsFromArray:other.mutableRewardWallsList];
   }
+  if (other.mutableAppRewardsList.count > 0) {
+    if (result.mutableAppRewardsList == nil) {
+      result.mutableAppRewardsList = [NSMutableArray array];
+    }
+    [result.mutableAppRewardsList addObjectsFromArray:other.mutableAppRewardsList];
+  }
+  if (other.hasDrawConfig) {
+    [self mergeDrawConfig:other.drawConfig];
+  }
+  if (other.hasDiceConfig) {
+    [self mergeDiceConfig:other.diceConfig];
+  }
+  if (other.hasZjhConfig) {
+    [self mergeZjhConfig:other.zjhConfig];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBRewardWallConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBRewardWallConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBConfig_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -4661,13 +3288,341 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
         break;
       }
       case 10: {
+        PBPrice_Builder* subBuilder = [PBPrice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addCoinPrices:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setBalanceDeviation:[input readInt32]];
+        break;
+      }
+      case 242: {
+        [self setTrafficApiserverUrl:[input readString]];
+        break;
+      }
+      case 250: {
+        [self setUserApiserverUrl:[input readString]];
+        break;
+      }
+      case 330: {
+        [self setMusicHomeCnUrl:[input readString]];
+        break;
+      }
+      case 338: {
+        [self setMusicHomeEnUrl:[input readString]];
+        break;
+      }
+      case 488: {
+        [self setEnableReview:[input readBool]];
+        break;
+      }
+      case 496: {
+        [self setInReview:[input readBool]];
+        break;
+      }
+      case 506: {
+        [self setInReviewVersion:[input readString]];
+        break;
+      }
+      case 512: {
+        [self setPostponeTime:[input readInt32]];
+        break;
+      }
+      case 520: {
+        [self setUrgeTime:[input readInt32]];
+        break;
+      }
+      case 560: {
+        [self setEnableAd:[input readBool]];
+        break;
+      }
+      case 568: {
+        [self setEnableWall:[input readBool]];
+        break;
+      }
+      case 576: {
+        [self setWallType:[input readInt32]];
+        break;
+      }
+      case 650: {
         PBRewardWall_Builder* subBuilder = [PBRewardWall builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRewardWalls:[subBuilder buildPartial]];
         break;
       }
+      case 658: {
+        PBAppReward_Builder* subBuilder = [PBAppReward builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAppRewards:[subBuilder buildPartial]];
+        break;
+      }
+      case 802: {
+        PBDrawConfig_Builder* subBuilder = [PBDrawConfig builder];
+        if (self.hasDrawConfig) {
+          [subBuilder mergeFrom:self.drawConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDrawConfig:[subBuilder buildPartial]];
+        break;
+      }
+      case 810: {
+        PBDiceConfig_Builder* subBuilder = [PBDiceConfig builder];
+        if (self.hasDiceConfig) {
+          [subBuilder mergeFrom:self.diceConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDiceConfig:[subBuilder buildPartial]];
+        break;
+      }
+      case 818: {
+        PBZJHConfig_Builder* subBuilder = [PBZJHConfig builder];
+        if (self.hasZjhConfig) {
+          [subBuilder mergeFrom:self.zjhConfig];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setZjhConfig:[subBuilder buildPartial]];
+        break;
+      }
     }
   }
+}
+- (NSArray*) coinPricesList {
+  if (result.mutableCoinPricesList == nil) { return [NSArray array]; }
+  return result.mutableCoinPricesList;
+}
+- (PBPrice*) coinPricesAtIndex:(int32_t) index {
+  return [result coinPricesAtIndex:index];
+}
+- (PBConfig_Builder*) replaceCoinPricesAtIndex:(int32_t) index with:(PBPrice*) value {
+  [result.mutableCoinPricesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBConfig_Builder*) addAllCoinPrices:(NSArray*) values {
+  if (result.mutableCoinPricesList == nil) {
+    result.mutableCoinPricesList = [NSMutableArray array];
+  }
+  [result.mutableCoinPricesList addObjectsFromArray:values];
+  return self;
+}
+- (PBConfig_Builder*) clearCoinPricesList {
+  result.mutableCoinPricesList = nil;
+  return self;
+}
+- (PBConfig_Builder*) addCoinPrices:(PBPrice*) value {
+  if (result.mutableCoinPricesList == nil) {
+    result.mutableCoinPricesList = [NSMutableArray array];
+  }
+  [result.mutableCoinPricesList addObject:value];
+  return self;
+}
+- (BOOL) hasBalanceDeviation {
+  return result.hasBalanceDeviation;
+}
+- (int32_t) balanceDeviation {
+  return result.balanceDeviation;
+}
+- (PBConfig_Builder*) setBalanceDeviation:(int32_t) value {
+  result.hasBalanceDeviation = YES;
+  result.balanceDeviation = value;
+  return self;
+}
+- (PBConfig_Builder*) clearBalanceDeviation {
+  result.hasBalanceDeviation = NO;
+  result.balanceDeviation = 4000;
+  return self;
+}
+- (BOOL) hasTrafficApiserverUrl {
+  return result.hasTrafficApiserverUrl;
+}
+- (NSString*) trafficApiserverUrl {
+  return result.trafficApiserverUrl;
+}
+- (PBConfig_Builder*) setTrafficApiserverUrl:(NSString*) value {
+  result.hasTrafficApiserverUrl = YES;
+  result.trafficApiserverUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearTrafficApiserverUrl {
+  result.hasTrafficApiserverUrl = NO;
+  result.trafficApiserverUrl = @"http://www.place100.com:8100/api/i?";
+  return self;
+}
+- (BOOL) hasUserApiserverUrl {
+  return result.hasUserApiserverUrl;
+}
+- (NSString*) userApiserverUrl {
+  return result.userApiserverUrl;
+}
+- (PBConfig_Builder*) setUserApiserverUrl:(NSString*) value {
+  result.hasUserApiserverUrl = YES;
+  result.userApiserverUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearUserApiserverUrl {
+  result.hasUserApiserverUrl = NO;
+  result.userApiserverUrl = @"http://www.you100.me:8001/api/i?";
+  return self;
+}
+- (BOOL) hasMusicHomeCnUrl {
+  return result.hasMusicHomeCnUrl;
+}
+- (NSString*) musicHomeCnUrl {
+  return result.musicHomeCnUrl;
+}
+- (PBConfig_Builder*) setMusicHomeCnUrl:(NSString*) value {
+  result.hasMusicHomeCnUrl = YES;
+  result.musicHomeCnUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearMusicHomeCnUrl {
+  result.hasMusicHomeCnUrl = NO;
+  result.musicHomeCnUrl = @"http://m.easou.com/col.e?id=112";
+  return self;
+}
+- (BOOL) hasMusicHomeEnUrl {
+  return result.hasMusicHomeEnUrl;
+}
+- (NSString*) musicHomeEnUrl {
+  return result.musicHomeEnUrl;
+}
+- (PBConfig_Builder*) setMusicHomeEnUrl:(NSString*) value {
+  result.hasMusicHomeEnUrl = YES;
+  result.musicHomeEnUrl = value;
+  return self;
+}
+- (PBConfig_Builder*) clearMusicHomeEnUrl {
+  result.hasMusicHomeEnUrl = NO;
+  result.musicHomeEnUrl = @"http://mp3skull.com/";
+  return self;
+}
+- (BOOL) hasEnableReview {
+  return result.hasEnableReview;
+}
+- (BOOL) enableReview {
+  return result.enableReview;
+}
+- (PBConfig_Builder*) setEnableReview:(BOOL) value {
+  result.hasEnableReview = YES;
+  result.enableReview = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableReview {
+  result.hasEnableReview = NO;
+  result.enableReview = YES;
+  return self;
+}
+- (BOOL) hasInReview {
+  return result.hasInReview;
+}
+- (BOOL) inReview {
+  return result.inReview;
+}
+- (PBConfig_Builder*) setInReview:(BOOL) value {
+  result.hasInReview = YES;
+  result.inReview = value;
+  return self;
+}
+- (PBConfig_Builder*) clearInReview {
+  result.hasInReview = NO;
+  result.inReview = NO;
+  return self;
+}
+- (BOOL) hasInReviewVersion {
+  return result.hasInReviewVersion;
+}
+- (NSString*) inReviewVersion {
+  return result.inReviewVersion;
+}
+- (PBConfig_Builder*) setInReviewVersion:(NSString*) value {
+  result.hasInReviewVersion = YES;
+  result.inReviewVersion = value;
+  return self;
+}
+- (PBConfig_Builder*) clearInReviewVersion {
+  result.hasInReviewVersion = NO;
+  result.inReviewVersion = @"";
+  return self;
+}
+- (BOOL) hasPostponeTime {
+  return result.hasPostponeTime;
+}
+- (int32_t) postponeTime {
+  return result.postponeTime;
+}
+- (PBConfig_Builder*) setPostponeTime:(int32_t) value {
+  result.hasPostponeTime = YES;
+  result.postponeTime = value;
+  return self;
+}
+- (PBConfig_Builder*) clearPostponeTime {
+  result.hasPostponeTime = NO;
+  result.postponeTime = 10;
+  return self;
+}
+- (BOOL) hasUrgeTime {
+  return result.hasUrgeTime;
+}
+- (int32_t) urgeTime {
+  return result.urgeTime;
+}
+- (PBConfig_Builder*) setUrgeTime:(int32_t) value {
+  result.hasUrgeTime = YES;
+  result.urgeTime = value;
+  return self;
+}
+- (PBConfig_Builder*) clearUrgeTime {
+  result.hasUrgeTime = NO;
+  result.urgeTime = 5;
+  return self;
+}
+- (BOOL) hasEnableAd {
+  return result.hasEnableAd;
+}
+- (BOOL) enableAd {
+  return result.enableAd;
+}
+- (PBConfig_Builder*) setEnableAd:(BOOL) value {
+  result.hasEnableAd = YES;
+  result.enableAd = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableAd {
+  result.hasEnableAd = NO;
+  result.enableAd = YES;
+  return self;
+}
+- (BOOL) hasEnableWall {
+  return result.hasEnableWall;
+}
+- (BOOL) enableWall {
+  return result.enableWall;
+}
+- (PBConfig_Builder*) setEnableWall:(BOOL) value {
+  result.hasEnableWall = YES;
+  result.enableWall = value;
+  return self;
+}
+- (PBConfig_Builder*) clearEnableWall {
+  result.hasEnableWall = NO;
+  result.enableWall = YES;
+  return self;
+}
+- (BOOL) hasWallType {
+  return result.hasWallType;
+}
+- (int32_t) wallType {
+  return result.wallType;
+}
+- (PBConfig_Builder*) setWallType:(int32_t) value {
+  result.hasWallType = YES;
+  result.wallType = value;
+  return self;
+}
+- (PBConfig_Builder*) clearWallType {
+  result.hasWallType = NO;
+  result.wallType = 1;
+  return self;
 }
 - (NSArray*) rewardWallsList {
   if (result.mutableRewardWallsList == nil) { return [NSArray array]; }
@@ -4676,26 +3631,145 @@ static PBRewardWallConfig* defaultPBRewardWallConfigInstance = nil;
 - (PBRewardWall*) rewardWallsAtIndex:(int32_t) index {
   return [result rewardWallsAtIndex:index];
 }
-- (PBRewardWallConfig_Builder*) replaceRewardWallsAtIndex:(int32_t) index with:(PBRewardWall*) value {
+- (PBConfig_Builder*) replaceRewardWallsAtIndex:(int32_t) index with:(PBRewardWall*) value {
   [result.mutableRewardWallsList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBRewardWallConfig_Builder*) addAllRewardWalls:(NSArray*) values {
+- (PBConfig_Builder*) addAllRewardWalls:(NSArray*) values {
   if (result.mutableRewardWallsList == nil) {
     result.mutableRewardWallsList = [NSMutableArray array];
   }
   [result.mutableRewardWallsList addObjectsFromArray:values];
   return self;
 }
-- (PBRewardWallConfig_Builder*) clearRewardWallsList {
+- (PBConfig_Builder*) clearRewardWallsList {
   result.mutableRewardWallsList = nil;
   return self;
 }
-- (PBRewardWallConfig_Builder*) addRewardWalls:(PBRewardWall*) value {
+- (PBConfig_Builder*) addRewardWalls:(PBRewardWall*) value {
   if (result.mutableRewardWallsList == nil) {
     result.mutableRewardWallsList = [NSMutableArray array];
   }
   [result.mutableRewardWallsList addObject:value];
+  return self;
+}
+- (NSArray*) appRewardsList {
+  if (result.mutableAppRewardsList == nil) { return [NSArray array]; }
+  return result.mutableAppRewardsList;
+}
+- (PBAppReward*) appRewardsAtIndex:(int32_t) index {
+  return [result appRewardsAtIndex:index];
+}
+- (PBConfig_Builder*) replaceAppRewardsAtIndex:(int32_t) index with:(PBAppReward*) value {
+  [result.mutableAppRewardsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBConfig_Builder*) addAllAppRewards:(NSArray*) values {
+  if (result.mutableAppRewardsList == nil) {
+    result.mutableAppRewardsList = [NSMutableArray array];
+  }
+  [result.mutableAppRewardsList addObjectsFromArray:values];
+  return self;
+}
+- (PBConfig_Builder*) clearAppRewardsList {
+  result.mutableAppRewardsList = nil;
+  return self;
+}
+- (PBConfig_Builder*) addAppRewards:(PBAppReward*) value {
+  if (result.mutableAppRewardsList == nil) {
+    result.mutableAppRewardsList = [NSMutableArray array];
+  }
+  [result.mutableAppRewardsList addObject:value];
+  return self;
+}
+- (BOOL) hasDrawConfig {
+  return result.hasDrawConfig;
+}
+- (PBDrawConfig*) drawConfig {
+  return result.drawConfig;
+}
+- (PBConfig_Builder*) setDrawConfig:(PBDrawConfig*) value {
+  result.hasDrawConfig = YES;
+  result.drawConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setDrawConfigBuilder:(PBDrawConfig_Builder*) builderForValue {
+  return [self setDrawConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeDrawConfig:(PBDrawConfig*) value {
+  if (result.hasDrawConfig &&
+      result.drawConfig != [PBDrawConfig defaultInstance]) {
+    result.drawConfig =
+      [[[PBDrawConfig builderWithPrototype:result.drawConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.drawConfig = value;
+  }
+  result.hasDrawConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearDrawConfig {
+  result.hasDrawConfig = NO;
+  result.drawConfig = [PBDrawConfig defaultInstance];
+  return self;
+}
+- (BOOL) hasDiceConfig {
+  return result.hasDiceConfig;
+}
+- (PBDiceConfig*) diceConfig {
+  return result.diceConfig;
+}
+- (PBConfig_Builder*) setDiceConfig:(PBDiceConfig*) value {
+  result.hasDiceConfig = YES;
+  result.diceConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setDiceConfigBuilder:(PBDiceConfig_Builder*) builderForValue {
+  return [self setDiceConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeDiceConfig:(PBDiceConfig*) value {
+  if (result.hasDiceConfig &&
+      result.diceConfig != [PBDiceConfig defaultInstance]) {
+    result.diceConfig =
+      [[[PBDiceConfig builderWithPrototype:result.diceConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.diceConfig = value;
+  }
+  result.hasDiceConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearDiceConfig {
+  result.hasDiceConfig = NO;
+  result.diceConfig = [PBDiceConfig defaultInstance];
+  return self;
+}
+- (BOOL) hasZjhConfig {
+  return result.hasZjhConfig;
+}
+- (PBZJHConfig*) zjhConfig {
+  return result.zjhConfig;
+}
+- (PBConfig_Builder*) setZjhConfig:(PBZJHConfig*) value {
+  result.hasZjhConfig = YES;
+  result.zjhConfig = value;
+  return self;
+}
+- (PBConfig_Builder*) setZjhConfigBuilder:(PBZJHConfig_Builder*) builderForValue {
+  return [self setZjhConfig:[builderForValue build]];
+}
+- (PBConfig_Builder*) mergeZjhConfig:(PBZJHConfig*) value {
+  if (result.hasZjhConfig &&
+      result.zjhConfig != [PBZJHConfig defaultInstance]) {
+    result.zjhConfig =
+      [[[PBZJHConfig builderWithPrototype:result.zjhConfig] mergeFrom:value] buildPartial];
+  } else {
+    result.zjhConfig = value;
+  }
+  result.hasZjhConfig = YES;
+  return self;
+}
+- (PBConfig_Builder*) clearZjhConfig {
+  result.hasZjhConfig = NO;
+  result.zjhConfig = [PBZJHConfig defaultInstance];
   return self;
 }
 @end

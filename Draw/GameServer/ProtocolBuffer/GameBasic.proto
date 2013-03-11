@@ -228,5 +228,17 @@ message PBUserItemList {
   repeated PBUserItem userItems = 2;
 }
 
+message PBLocalizeString{
+    required string languageCode = 1;           // 语言代码，如 "en", "zh_Hans"，同iOS语言命名规范
+    required string text = 2;                   // 通用语言
+    required string localizedText = 3;          // 本地化语言
+}
 
+message PBApp{
+    repeated PBLocalizeString name = 1;
+    required string appId = 2;
+    repeated PBLocalizeString desc = 3;
+    optional string downloadURL = 4;
+    optional string logo = 5;                   // app logo remote URL
+}
 
