@@ -3592,6 +3592,9 @@
 		CA23524116EB0E9E00C88082 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA23524216EB0EA300C88082 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA23524316EB0EA300C88082 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA23524716EB296300C88082 /* common_dialog_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */; };
+		CA23524D16EB296400C88082 /* common_dialog_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */; };
+		CA23524E16EB296500C88082 /* common_dialog_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D816D4B03B00E974A6 /* common_dialog_close_btn@2x.png */; };
 		CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		CA25C42716899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		CA25C42816899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
@@ -19181,6 +19184,7 @@
 				CA2351B216EB0DD800C88082 /* GiftDetailView.xib in Resources */,
 				CA23524016EB0E9E00C88082 /* DrawBgBox.xib in Resources */,
 				CA23524116EB0E9E00C88082 /* DrawBgBox~ipad.xib in Resources */,
+				CA23524D16EB296400C88082 /* common_dialog_close_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20057,6 +20061,7 @@
 				CA23523416EB0DDF00C88082 /* GiftDetailView.xib in Resources */,
 				CA23524216EB0EA300C88082 /* DrawBgBox.xib in Resources */,
 				CA23524316EB0EA300C88082 /* DrawBgBox~ipad.xib in Resources */,
+				CA23524E16EB296500C88082 /* common_dialog_close_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21838,6 +21843,7 @@
 				CA2351FA16EB0DDB00C88082 /* ChargeCell.xib in Resources */,
 				CA2351FC16EB0DDB00C88082 /* BuyItemView.xib in Resources */,
 				CA2351FE16EB0DDB00C88082 /* GiftDetailView.xib in Resources */,
+				CA23524716EB296300C88082 /* common_dialog_close_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,7 @@
 
+import "GameBasic.proto";
+import "GameConstants.proto";
+
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
@@ -87,11 +90,22 @@ message PBDrawConfig{
     optional int32 maxItemTimesOnContestOpus = 42 [default=3];
 }
 
+message PBAppReward{
+    required PBApp app = 1;
+    required int32 rewardAmount = 2;
+    required PBGameCurrency rewardCurrency = 3;
+}
+
+message PBRewardWall {
+    required int32 type = 1;
+    optional string logo = 2;
+    repeated PBLocalizeString name = 3;
+}
 
 message PBConfig {
 
     // price related
-    repeated PBPrice coinPrices = 1; 
+    repeated PBPrice coinPrices = 1;
     optional int32 balanceDeviation = 2 [default=4000];
 
     // servers
@@ -115,9 +129,15 @@ message PBConfig {
     optional bool enableWall = 71 [default=true];
     optional int32 wallType = 72 [default=1];
     
+    // reward wall config
+    repeated PBRewardWall rewardWalls = 81;         // 积分墙列表
+    repeated PBAppReward appRewards = 82;           // 兄弟App下载列表
+
     // for game config
     optional PBDrawConfig drawConfig = 100;
     optional PBDiceConfig diceConfig = 101;
     optional PBZJHConfig zjhConfig   = 102;
 }
+
+
 

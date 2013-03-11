@@ -4,6 +4,8 @@
 
 #import "GameBasic.pb.h"
 
+@class PBApp;
+@class PBApp_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBGameItem;
@@ -20,6 +22,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
