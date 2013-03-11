@@ -15,7 +15,7 @@
 #import "UIViewUtils.h"
 
 #define MAX_COUNT 9999
-#define MIN_COUNT 0
+#define MIN_COUNT 1
 
 @interface BuyItemView()
 @property (assign, nonatomic) int count;

@@ -1048,6 +1048,13 @@
 "kAlreadyBought" = "Bought";
 "kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
 "kCleanCache" = "Clear Cache";
+
+"kBuyColorFailed"= "Buy color failed";
+
+"kItemNormal" = "Normal";
+"kItemTool" = "Tool";
+"kItemPromotion" = "Promotion";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

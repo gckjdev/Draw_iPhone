@@ -1055,6 +1055,14 @@
 "kBlackListNumber" = "黑名單(%d)";
 "kCleanCacheSucc" = "奮力為你清理了%.2f MB 緩存, 應用即將重啓!";
 "kCleanCache" = "清理緩存";
+
+
+
+"kItemNormal" = "道具";
+"kItemTool" = "工具";
+"kItemPromotion" = "促銷";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1365,6 +1373,7 @@
 "kHandsel" = "贈與";
 "kCount" = "數量";
 "kAlreadyBought" = "已購";
+"kBuyColorFailed"= "購買顏色失敗";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

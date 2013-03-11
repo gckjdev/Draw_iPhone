@@ -823,6 +823,8 @@ static AccountService* _defaultAccountService;
 
 #pragma mark - Charge Ingot
 
+
+// TODO: need delegate.
 - (void)buyIngot:(PBSaleIngot*)ingotPrice
 {
     // send request to Apple IAP Server and wait for result

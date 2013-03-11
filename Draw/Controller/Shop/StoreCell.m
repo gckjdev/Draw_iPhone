@@ -12,6 +12,7 @@
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
 #import "UserGameItemService.h"
+#import "ItemType.h"
 
 #define TAG_PRICE_VIEW 209
 #define ORIGINY_PRICE_VIEW 13;
@@ -66,7 +67,27 @@
     CGSize size = [self.itemNameLabel.text sizeWithFont:self.itemNameLabel.font constrainedToSize:withinSize lineBreakMode:self.itemNameLabel.lineBreakMode];
     [self.itemNameLabel updateWidth:size.width];
     
-    int count = [[UserGameItemService defaultService] countOfItem:item.itemId];
+    [self setItem:item count:[[UserGameItemService defaultService] countOfItem:item.itemId]];
+
+    [self.countButton updateOriginX:(self.itemNameLabel.frame.origin.x + self.itemNameLabel.frame.size.width + 3)];
+    
+    self.itemDescLabel.text = NSLS(item.desc);
+
+    [self addPriceView];
+}
+
+- (void)setItem:(PBGameItem *)item
+          count:(int)count
+{
+    if (item.itemId == ItemTypeColor) {
+        self.countButton.hidden = YES;
+        return;
+    }
+    
+    if (count == 0) {
+        self.countButton.hidden = YES;
+    }
+    
     if (item.salesType == PBGameItemSalesTypeMultiple) {
         [self.countButton setTitle:[NSString stringWithFormat:@"%d", count] forState:UIControlStateNormal];
     }
@@ -80,11 +101,6 @@
         }
     }
 
-    [self.countButton updateOriginX:(self.itemNameLabel.frame.origin.x + self.itemNameLabel.frame.size.width + 3)];
-    
-    self.itemDescLabel.text = NSLS(item.desc);
-
-    [self addPriceView];
 }
 
 

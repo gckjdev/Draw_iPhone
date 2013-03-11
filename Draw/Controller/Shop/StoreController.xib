@@ -178,24 +178,38 @@
 						<reference key="NSNextKeyView" ref="21135945"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">100</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-						<double key="IBUIContentEdgeInsets.left">20</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">道具</string>
-						<reference key="IBUIHighlightedTitleColor" ref="985244317"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
+						</object>
+						<object class="NSColor" key="IBUISelectedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
 						</object>
+						<reference key="IBUIHighlightedTitleShadowColor" ref="985244317"/>
+						<reference key="IBUISelectedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUINormalTitleShadowColor" ref="985244317"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_normal_select_icon.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_normal_icon.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">item_normal_selected@2x.png</string>
+							<string key="NSResourceName">item_normal_select@2x.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
@@ -219,25 +233,39 @@
 						<reference key="NSNextKeyView" ref="58332215"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">101</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-						<double key="IBUIContentEdgeInsets.left">20</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUISelectedTitle">工具</string>
 						<string key="IBUINormalTitle">工具</string>
-						<reference key="IBUIHighlightedTitleColor" ref="985244317"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
+						</object>
+						<object class="NSColor" key="IBUISelectedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
 						</object>
+						<reference key="IBUIHighlightedTitleShadowColor" ref="985244317"/>
+						<reference key="IBUISelectedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUINormalTitleShadowColor" ref="985244317"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_tool_select_icon.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_tool_icon.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">item_tool_selected@2x.png</string>
+							<string key="NSResourceName">item_tool_select@2x.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
@@ -254,16 +282,16 @@
 						<reference key="NSNextKeyView" ref="111477067"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">102</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">0.0</double>
-						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-						<double key="IBUIContentEdgeInsets.left">20</double>
-						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">促销</string>
-						<reference key="IBUIHighlightedTitleColor" ref="985244317"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
+						</object>
 						<object class="NSColor" key="IBUISelectedTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
@@ -272,11 +300,20 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
 						</object>
+						<reference key="IBUIHighlightedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUINormalTitleShadowColor" ref="985244317"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_promotion_select_icon.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_promotion_icon.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">item_promotion_selected@2x.png</string>
+							<string key="NSResourceName">item_promotion_select@2x.png</string>
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
@@ -530,6 +567,22 @@
 					<int key="connectionID">38</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coinBalanceLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="875528539"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ingotBalanceLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="115969120"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBackButton:</string>
 						<reference key="source" ref="268529431"/>
@@ -565,30 +618,30 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickNormalItemsButton:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="443042889"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">42</int>
+					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickToolItemsButton:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="21135945"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">44</int>
+					<int key="connectionID">57</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickPromotionItemsButton:</string>
+						<string key="label">clickTabButton:</string>
 						<reference key="source" ref="58332215"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">45</int>
+					<int key="connectionID">58</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -611,7 +664,6 @@
 							<reference ref="58332215"/>
 							<reference ref="111477067"/>
 							<reference ref="933539521"/>
-							<reference ref="21135945"/>
 							<reference ref="764169153"/>
 							<reference ref="811583846"/>
 							<reference ref="924605457"/>
@@ -620,6 +672,7 @@
 							<reference ref="368120566"/>
 							<reference ref="967553851"/>
 							<reference ref="115969120"/>
+							<reference ref="21135945"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -737,12 +790,15 @@
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="39.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="39.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="39.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="39.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="40.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="40.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="41.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="41.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="41.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -756,7 +812,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -764,21 +820,27 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{16, 16}</string>
-			<string key="balance_bg@2x.png">{16, 16}</string>
-			<string key="charge_bg@2x.png">{16, 16}</string>
-			<string key="coin@2x.png">{16, 16}</string>
-			<string key="coin_count_bg@2x.png">{16, 16}</string>
-			<string key="ingot@2x.png">{16, 16}</string>
-			<string key="ingot_count_bg@2x.png">{16, 16}</string>
-			<string key="item_normal@2x.png">{16, 16}</string>
-			<string key="item_normal_selected@2x.png">{16, 16}</string>
-			<string key="item_promotion@2x.png">{16, 16}</string>
-			<string key="item_promotion_selected@2x.png">{16, 16}</string>
-			<string key="item_tool@2x.png">{16, 16}</string>
-			<string key="item_tool_selected@2x.png">{16, 16}</string>
-			<string key="topwood@2x.jpg">{16, 16}</string>
-			<string key="wood_bg@2x.jpg">{16, 16}</string>
+			<string key="back@2x.png">{67, 53}</string>
+			<string key="balance_bg@2x.png">{640, 73}</string>
+			<string key="charge_bg@2x.png">{99, 50}</string>
+			<string key="coin@2x.png">{64, 64}</string>
+			<string key="coin_count_bg@2x.png">{128, 34}</string>
+			<string key="ingot@2x.png">{64, 64}</string>
+			<string key="ingot_count_bg@2x.png">{102, 34}</string>
+			<string key="item_normal@2x.png">{133, 62}</string>
+			<string key="item_normal_icon.png">{16, 16}</string>
+			<string key="item_normal_select@2x.png">{133, 62}</string>
+			<string key="item_normal_select_icon.png">{16, 16}</string>
+			<string key="item_promotion@2x.png">{133, 62}</string>
+			<string key="item_promotion_icon.png">{16, 16}</string>
+			<string key="item_promotion_select@2x.png">{133, 62}</string>
+			<string key="item_promotion_select_icon.png">{16, 16}</string>
+			<string key="item_tool@2x.png">{133, 62}</string>
+			<string key="item_tool_icon.png">{16, 16}</string>
+			<string key="item_tool_select@2x.png">{133, 62}</string>
+			<string key="item_tool_select_icon.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

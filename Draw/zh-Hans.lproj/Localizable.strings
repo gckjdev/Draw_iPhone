@@ -1067,6 +1067,14 @@
 "kBlackListNumber" = "黑名单(%d)";
 "kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存, 应用即将重启！";
 "kCleanCache" = "清理缓存";
+
+
+
+"kItemNormal" = "道具";
+"kItemTool" = "工具";
+"kItemPromotion" = "促销";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1377,5 +1385,5 @@
 "kCount" = "数量";
 
 "kAlreadyBought" = "已购";
-
+"kBuyColorFailed"= "购买颜色失败";
 /*********************** BBS国际化字符串结束 *************************/
