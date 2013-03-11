@@ -714,6 +714,18 @@
 		C29B5FBB1644CB9C00EF4AB4 /* ZJHMyAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29B5FBA1644CB9C00EF4AB4 /* ZJHMyAvatarView.m */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
+		C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D1A4316EDD62B0095328D /* FreeIngotController.m */; };
+		C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D1A4316EDD62B0095328D /* FreeIngotController.m */; };
+		C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D1A4316EDD62B0095328D /* FreeIngotController.m */; };
+		C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D1A4316EDD62B0095328D /* FreeIngotController.m */; };
+		C29D1A4916EDD62B0095328D /* FreeIngotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A4416EDD62B0095328D /* FreeIngotController.xib */; };
+		C29D1A4A16EDD62B0095328D /* FreeIngotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A4416EDD62B0095328D /* FreeIngotController.xib */; };
+		C29D1A4B16EDD62B0095328D /* FreeIngotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A4416EDD62B0095328D /* FreeIngotController.xib */; };
+		C29D1A4C16EDD62B0095328D /* FreeIngotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A4416EDD62B0095328D /* FreeIngotController.xib */; };
+		C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */; };
+		C29D1A5416EDD6630095328D /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */; };
+		C29D1A5516EDD6630095328D /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */; };
+		C29D1A5616EDD6630095328D /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */; };
 		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
 		C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		C2ACA16516A7FCEB00125936 /* zjh_money_tree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43EA168DBDB1009F43F7 /* zjh_money_tree@2x.png */; };
@@ -7767,6 +7779,10 @@
 		C29C12DD152AE23D009B9E5F /* ShareCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCell.xib; sourceTree = "<group>"; };
 		C29C12DF152AE2A6009B9E5F /* ShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCell.h; sourceTree = "<group>"; };
 		C29C12E0152AE2A7009B9E5F /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
+		C29D1A4216EDD62B0095328D /* FreeIngotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeIngotController.h; sourceTree = "<group>"; };
+		C29D1A4316EDD62B0095328D /* FreeIngotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotController.m; sourceTree = "<group>"; };
+		C29D1A4416EDD62B0095328D /* FreeIngotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotController.xib; sourceTree = "<group>"; };
+		C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotController~ipad.xib"; sourceTree = "<group>"; };
 		C2A09761152ECDEA006535F7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C2A3CC1116159AD700663271 /* AnimationPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationPlayer.h; sourceTree = "<group>"; };
 		C2A3CC1216159AD700663271 /* AnimationPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationPlayer.m; sourceTree = "<group>"; };
@@ -11022,6 +11038,10 @@
 				A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */,
 				A4F5BFC616A55CA1000A503F /* FreeCoinsControllerViewController.xib */,
 				A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */,
+				C29D1A4216EDD62B0095328D /* FreeIngotController.h */,
+				C29D1A4316EDD62B0095328D /* FreeIngotController.m */,
+				C29D1A4416EDD62B0095328D /* FreeIngotController.xib */,
+				C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */,
 			);
 			path = FreeCoins;
 			sourceTree = "<group>";
@@ -19185,6 +19205,8 @@
 				CA23524016EB0E9E00C88082 /* DrawBgBox.xib in Resources */,
 				CA23524116EB0E9E00C88082 /* DrawBgBox~ipad.xib in Resources */,
 				CA23524D16EB296400C88082 /* common_dialog_close_btn@2x.png in Resources */,
+				C29D1A4B16EDD62B0095328D /* FreeIngotController.xib in Resources */,
+				C29D1A5516EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20062,6 +20084,8 @@
 				CA23524216EB0EA300C88082 /* DrawBgBox.xib in Resources */,
 				CA23524316EB0EA300C88082 /* DrawBgBox~ipad.xib in Resources */,
 				CA23524E16EB296500C88082 /* common_dialog_close_btn@2x.png in Resources */,
+				C29D1A4C16EDD62B0095328D /* FreeIngotController.xib in Resources */,
+				C29D1A5616EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20988,6 +21012,8 @@
 				A4B3B3F616ED7CA400EBF8DA /* item_tool_select_icon@2x.png in Resources */,
 				A4B3B3F716ED7CA400EBF8DA /* store_cell@2x.png in Resources */,
 				A4B3B3F816ED7CA400EBF8DA /* zhifubao@2x.png in Resources */,
+				C29D1A4916EDD62B0095328D /* FreeIngotController.xib in Resources */,
+				C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21844,6 +21870,8 @@
 				CA2351FC16EB0DDB00C88082 /* BuyItemView.xib in Resources */,
 				CA2351FE16EB0DDB00C88082 /* GiftDetailView.xib in Resources */,
 				CA23524716EB296300C88082 /* common_dialog_close_btn@2x.png in Resources */,
+				C29D1A4A16EDD62B0095328D /* FreeIngotController.xib in Resources */,
+				C29D1A5416EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22606,6 +22634,7 @@
 				CA881A6416EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7516EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */,
+				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23349,6 +23378,7 @@
 				CA881A6516EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7616EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */,
+				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24095,6 +24125,7 @@
 				A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */,
 				C28C0A7316EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
+				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24846,6 +24877,7 @@
 				CA881A6316EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7416EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */,
+				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
