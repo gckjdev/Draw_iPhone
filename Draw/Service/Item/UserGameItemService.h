@@ -10,8 +10,16 @@
 #import "CommonService.h"
 #import "GameBasic.pb.h"
 
-typedef void (^BuyItemResultHandler)(int resultCode, int itemId, int count, NSString *toUserId);
-typedef void (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOpusId);
+typedef enum {
+    UIS_SUCCESS = 0,
+    UIS_ERROR_NETWORK = 1,
+    UIS_BALANCE_NOT_ENOUGH = 2,
+    UIS_BAD_PARAMETER = 3,
+}UserGameItemServiceResultCode;
+
+typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  PBGameItem *item, int count, NSString *toUserId);
+
+typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString *toOpusId);
 
 
 @interface UserGameItemService : CommonService

@@ -36,6 +36,6 @@ typedef enum {
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;
 - (void)handleFailTouch;
 + (id)touchHandlerWithTouchActionType:(TouchActionType)type;
-
+- (void)reset;
 
 @end

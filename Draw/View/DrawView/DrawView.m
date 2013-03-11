@@ -123,7 +123,17 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 //    PPDebug(@"*********<touchesEnd>********* touch count = %d",[touches count]);
+
+    DrawAction *drawAction = nil;
+    if ([self.touchHandler respondsToSelector:@selector(drawAction)]){
+        drawAction = [self.touchHandler performSelector:@selector(drawAction)];
+    }
+    
     [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:TouchStateEnd];
+
+    if (drawAction && self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
+        [self.delegate drawView:self didFinishDrawAction:drawAction];
+    }
 
 }
 
@@ -279,8 +289,6 @@
     PPDebug(@"<didGestureEnd>");
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         [self.touchHandler handleFailTouch];
-//        PPDebug(@"Double tap Began, undo a paint");
-//        [self revoke:NULL];
     }
 }
 @end

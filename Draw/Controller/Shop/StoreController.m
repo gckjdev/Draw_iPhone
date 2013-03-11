@@ -15,6 +15,8 @@
 #import "GiftDetailView.h"
 #import "UserGameItemService.h"
 #import "ItemType.h"
+#import "AccountService.h"
+#import "UserManager.h"
 
 @interface StoreController ()
 
@@ -32,6 +34,8 @@
     [_backButton release];
     [_chargeButton release];
     [_selectedItem release];
+    [_coinBalanceLabel release];
+    [_ingotBalanceLabel release];
     [super dealloc];
 }
 
@@ -40,6 +44,8 @@
     [self setTitleLabel:nil];
     [self setBackButton:nil];
     [self setChargeButton:nil];
+    [self setCoinBalanceLabel:nil];
+    [self setIngotBalanceLabel:nil];
     [super viewDidUnload];
 }
 
@@ -51,10 +57,14 @@
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [self updateBalance];
+}
+
+- (void)updateBalance
+{
+    self.coinBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyCoin]];
     
-//    [self clickNormalItemsButton:nil];
-    
-    [GameItemService createTestDataFile];
+    self.ingotBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -66,43 +76,12 @@
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
-//
-//- (IBAction)clickNormalItemsButton:(id)sender {
-//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-//    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
-//        bself.dataList = itemsList;
-//        [bself.dataTableView reloadData];
-//    }];
-//}
-//
-//- (IBAction)clickToolItemsButton:(id)sender {
-//    self.selectedButton.selected = NO;
-//    self.selectedButton = (UIButton *)sender;
-//    self.selectedButton.selected = YES;
-//    
-//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-//    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeTool resultHandler:^(BOOL success, NSArray *itemsList) {
-//        bself.dataList = itemsList;
-//        [bself.dataTableView reloadData];
-//    }];
-//}
-//
-//- (IBAction)clickPromotionItemsButton:(id)sender {
-//    self.selectedButton.selected = NO;
-//    self.selectedButton = (UIButton *)sender;
-//    self.selectedButton.selected = YES;
-//    
-//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-//    [[GameItemService sharedGameItemService] getPromotingItemsList:^(BOOL success, NSArray *itemsList) {
-//        bself.dataList = itemsList;
-//        [bself.dataTableView reloadData];
-//    }];
-//}
 
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //{
-//    PPDebug(@"dataList : %@", dataList);
-//    return [self.dataList count];
+//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+//    //TODO
+//    return count;
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,26 +116,44 @@
     }
     
     BuyItemView *buyItemView = [BuyItemView createWithItem:item];
-    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                                      infoView:buyItemView 
-                                                hasCloseButton:YES
-                                                  buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
+    
+    CustomInfoView *cusInfoView;
+    
+    if (item.salesType == PBGameItemSalesTypeOneOff && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
+                                             infoView:buyItemView
+                                       hasCloseButton:YES
+                                         buttonTitles:NSLS(@"kGive"), nil];
+    }else{
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
+                                             infoView:buyItemView
+                                       hasCloseButton:YES
+                                         buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
+    }
+    
+
+
     [cusInfoView showInView:self.view];
 
     __block typeof (self) bself = self;
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         int count = ((BuyItemView *)infoView).count;
-        if (button.tag == 0) {
+        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                [cusInfoView dismiss];
-                if (resultCode == 0) {
-                    [bself popupHappyMessage:NSLS(@"kYouBuy") title:nil];
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+                if (resultCode == UIS_SUCCESS) {
+                    [cusInfoView dismiss];
                 }else{
-                    [bself popupUnhappyMessage:NSLS(@"kBuyItemFail") title:nil];
+                    [cusInfoView hideActivity];
+                    [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
                 }
+                
+                [self showUserGameItemServiceResult:resultCode
+                                               item:item
+                                              count:count
+                                           toUserId:toUserId];
             }];
         }else{
             PPDebug(@"you give %d %@", count, NSLS(item.name));
@@ -170,6 +167,44 @@
     }];
 }
 
+- (void)showUserGameItemServiceResult:(UserGameItemServiceResultCode)resultCode
+                                 item:(PBGameItem *)item
+                                count:(int)count
+                             toUserId:(NSString *)toUserId
+{
+    switch (resultCode) {
+        case UIS_SUCCESS:
+            if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
+                [self popupHappyMessage:NSLS(@"kYouBuy") title:nil];
+                [self.dataTableView reloadData];
+            }else{
+                [self popupHappyMessage:@"kYouGive" title:nil];
+            }
+            [self updateBalance];
+            break;
+            
+        case UIS_ERROR_NETWORK:
+            if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
+                [self popupHappyMessage:NSLS(@"kBuyItemFail") title:nil];
+                [self.dataTableView reloadData];
+            }else{
+                [self popupHappyMessage:@"kGiveItemFail" title:nil];
+            }
+            break;
+            
+        case UIS_BALANCE_NOT_ENOUGH:
+            [self popupHappyMessage:NSLS(@"kBalanceNotEnough") title:nil];
+            break;
+            
+            case UIS_BAD_PARAMETER:
+            [self popupHappyMessage:NSLS(@"kBadParaMeter") title:nil];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)friendController:(FriendController *)controller
          didSelectFriend:(MyFriend *)aFriend
 {
@@ -180,25 +215,27 @@
                                                          infoView:giftDetailView
                                                    hasCloseButton:YES
                                                      buttonTitles:NSLS(@"kCancel"), NSLS(@"kOK"), nil];
+    
+    
+    
     [cusInfoView showInView:self.view];
     
     __block typeof (self) bself = self;
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
-        // TO DO
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] buyItem:_selectedItem count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == 0) {
-                    [bself popupHappyMessage:@"kYouGive" title:nil];
+            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+                if (resultCode == UIS_SUCCESS) {
+                    [cusInfoView dismiss];
                 }
+                [bself showUserGameItemServiceResult:resultCode
+                                               item:item
+                                              count:count
+                                           toUserId:toUserId];
             }];
         }
     }];
 }
-
-
-
-
 
 
 typedef enum{
@@ -226,7 +263,7 @@ typedef enum{
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitles[] = {@"normal", @"TabIDTool", @"TabIDPromotion"};
+    NSString *tabTitles[] = {NSLS(@"kItemNormal"), NSLS(@"kItemTool"), NSLS(@"kItemPromotion")};
     return tabTitles[index];
 
 }
@@ -258,15 +295,6 @@ typedef enum{
         default:
             break;
     }
-    
-    
-    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
-        if (success) {
-            [bself finishLoadDataForTabID:tabID resultList:itemsList];
-        }else{
-            [bself failLoadDataForTabID:tabID];
-        }
-    }];
 }
 
 @end

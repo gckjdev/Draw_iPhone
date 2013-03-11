@@ -49,6 +49,7 @@
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
+    [doubleTap setNumberOfTouchesRequired:2];
     [view addGestureRecognizer:doubleTap];
     return [doubleTap autorelease];
 

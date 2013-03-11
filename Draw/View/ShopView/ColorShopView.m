@@ -196,7 +196,7 @@
     
         __block typeof (self) bself = self;
         
-       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
            if (resultCode == 0) {
                [bself buyColorSuccess];
            } else {

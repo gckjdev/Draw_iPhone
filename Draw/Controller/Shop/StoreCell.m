@@ -12,6 +12,7 @@
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
 #import "UserGameItemService.h"
+#import "ItemType.h"
 
 #define TAG_PRICE_VIEW 209
 #define ORIGINY_PRICE_VIEW 13;
@@ -66,8 +67,24 @@
     CGSize size = [self.itemNameLabel.text sizeWithFont:self.itemNameLabel.font constrainedToSize:withinSize lineBreakMode:self.itemNameLabel.lineBreakMode];
     [self.itemNameLabel updateWidth:size.width];
     
-    int count = [[UserGameItemService defaultService] countOfItem:item.itemId];
-    if (count <= 0) {
+    [self setItem:item count:[[UserGameItemService defaultService] countOfItem:item.itemId]];
+
+    [self.countButton updateOriginX:(self.itemNameLabel.frame.origin.x + self.itemNameLabel.frame.size.width + 3)];
+    
+    self.itemDescLabel.text = NSLS(item.desc);
+
+    [self addPriceView];
+}
+
+- (void)setItem:(PBGameItem *)item
+          count:(int)count
+{
+    if (item.itemId == ItemTypeColor) {
+        self.countButton.hidden = YES;
+        return;
+    }
+    
+    if (count == 0) {
         self.countButton.hidden = YES;
     }
     
@@ -76,15 +93,14 @@
     }
     
     if (item.salesType == PBGameItemSalesTypeOneOff) {
-        self.countButton.hidden = NO;
-        [self.countButton setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
+        if (count >= 1) {
+            self.countButton.hidden = NO;
+            [self.countButton setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
+        }else{
+            self.countButton.hidden = YES;
+        }
     }
 
-    [self.countButton updateOriginX:(self.itemNameLabel.frame.origin.x + self.itemNameLabel.frame.size.width + 3)];
-    
-    self.itemDescLabel.text = NSLS(item.desc);
-
-    [self addPriceView];
 }
 
 

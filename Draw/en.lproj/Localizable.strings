@@ -1048,6 +1048,11 @@
 "kAlreadyBought" = "Bought";
 
 "kBuyColorFailed"= "Buy color failed";
+
+"kItemNormal" = "Normal";
+"kItemTool" = "Tool";
+"kItemPromotion" = "Promotion";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
