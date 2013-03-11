@@ -1053,6 +1053,12 @@
 "kUnblackUserSuccess" = "解除黑名單成功!";
 "kBlackList" = "黑名單";
 "kBlackListNumber" = "黑名單(%d)";
+
+
+"kItemNormal" = "道具";
+"kItemTool" = "工具";
+"kItemPromotion" = "促銷";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

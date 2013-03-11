@@ -1046,6 +1046,10 @@
 "kHandsel" = "Handsel";
 "kCount" = "Count";
 "kAlreadyBought" = "Bought";
+
+"kItemNormal" = "Normal";
+"kItemTool" = "Tool";
+"kItemPromotion" = "Promotion";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

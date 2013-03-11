@@ -173,7 +173,7 @@
 							<string key="NSResourceName">item_promotion_bg@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIButton" id="73215383">
+					<object class="IBUIButton" id="626491456">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{129, 18}, {28, 13}}</string>
@@ -189,11 +189,11 @@
 						<double key="IBUIContentEdgeInsets.left">1</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<string key="IBUINormalTitle">21</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="137932836">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="715436594">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<reference key="IBUINormalTitleColor" ref="137932836"/>
+						<reference key="IBUINormalTitleColor" ref="715436594"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
@@ -259,7 +259,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">countButton</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="73215383"/>
+						<reference key="destination" ref="626491456"/>
 					</object>
 					<int key="connectionID">40</int>
 				</object>
@@ -283,7 +283,7 @@
 							<reference ref="301052721"/>
 							<reference ref="193276001"/>
 							<reference ref="507686714"/>
-							<reference ref="73215383"/>
+							<reference ref="626491456"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -337,7 +337,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">39</int>
-						<reference key="object" ref="73215383"/>
+						<reference key="object" ref="626491456"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

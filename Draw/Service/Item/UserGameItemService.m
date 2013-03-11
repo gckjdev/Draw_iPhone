@@ -123,6 +123,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         handler:(BuyItemResultHandler)handler
 {
     if (count <= 0) {
+        handler(UIS_BAD_PARAMETER, nil, count, [[UserManager defaultManager] userId]);
         return;
     }
     
@@ -130,6 +131,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
+        handler(UIS_BALANCE_NOT_ENOUGH, nil, count, [[UserManager defaultManager] userId]);
         return;
     }
     
@@ -149,8 +151,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            UserGameItemServiceResultCode resultCode = 0;
+            if (output.resultCode != 0) {
+                resultCode = ERROR_NETWORK;
+            }
+            
             if (handler) {
-                handler(output.resultCode, itemId, count, [[UserManager defaultManager] userId]);
+                handler(output.resultCode, nil, count, [[UserManager defaultManager] userId]);
             }
         });
     });
@@ -160,8 +167,47 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           count:(int)count
         handler:(BuyItemResultHandler)handler
 {
+    
+    if (count <= 0) {
+        handler(UIS_BAD_PARAMETER, item, count, [[UserManager defaultManager] userId]);
+        return;
+    }
+    
+    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:item.priceInfo.currency];
     int totalPrice = [item promotionPrice] * count;
-    [self buyItem:item.itemId count:count totalPrice:totalPrice currency:item.priceInfo.currency handler:handler];
+
+    if (balance < totalPrice) {
+        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
+        handler(UIS_BALANCE_NOT_ENOUGH, item, count, [[UserManager defaultManager] userId]);
+        return;
+    }
+    
+    __block typeof (self) bself = self;
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:item.itemId count:count price:totalPrice currency:item.priceInfo.currency toUser:[[UserManager defaultManager] userId]];
+        
+        if (output.resultCode == 0) {
+            int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+            int ingotsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
+            [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
+            [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
+            
+            [bself increaseItem:item.itemId count:count];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UserGameItemServiceResultCode resultCode = 0;
+            if (output.resultCode != 0) {
+                resultCode = ERROR_NETWORK;
+            }
+            
+            if (handler) {
+                handler(output.resultCode, item, count, [[UserManager defaultManager] userId]);
+            }
+        });
+    });
 }
 
 - (void)giveItem:(PBGameItem *)item
@@ -170,6 +216,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
          handler:(BuyItemResultHandler)handler
 {
     if (count <= 0) {
+        if (handler) {
+            handler(UIS_BAD_PARAMETER, item, count, toUserId);
+        }
         return;
     }
     
@@ -178,6 +227,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
+        if (handler) {
+            handler(UIS_BALANCE_NOT_ENOUGH, item, count, toUserId);
+        }
         return;
     }
     
@@ -193,6 +245,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            UserGameItemServiceResultCode resultCode = 0;
+            if (output.resultCode != 0) {
+                resultCode = ERROR_NETWORK;
+            }
             if (handler) {
                 handler(output.resultCode, item, count, toUserId);
             }
