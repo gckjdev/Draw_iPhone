@@ -1046,6 +1046,8 @@
 "kHandsel" = "Handsel";
 "kCount" = "Count";
 "kAlreadyBought" = "Bought";
+
+"kBuyColorFailed"= "Buy color failed";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

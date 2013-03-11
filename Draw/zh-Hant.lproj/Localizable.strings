@@ -1363,6 +1363,7 @@
 "kHandsel" = "贈與";
 "kCount" = "數量";
 "kAlreadyBought" = "已購";
+"kBuyColorFailed"= "購買顏色失敗";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";
