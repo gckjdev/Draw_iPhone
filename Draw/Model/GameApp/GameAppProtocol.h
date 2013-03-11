@@ -97,5 +97,6 @@
 - (UIColor*)buttonTitleColor;
 
 - (NSString*)shopTitle;
+- (NSArray*)cacheArray;
 
 @end

@@ -312,4 +312,9 @@
 {
     return NSLS(@"kZJHShopTitle");
 }
+
+- (NSArray*)cacheArray
+{
+    return nil;
+}
 @end

@@ -10,4 +10,8 @@
 
 @interface CacheManager : NSObject
 
++ (CacheManager*)defaultManager;
+- (void)removeCachePathsArray:(NSArray*)pathsArray
+                    succBlock:(void (^)(long long fileSize))succBlock;
+
 @end

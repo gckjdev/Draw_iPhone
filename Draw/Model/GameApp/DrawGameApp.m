@@ -312,4 +312,9 @@
     return nil;
 }
 
+- (NSArray*)cacheArray
+{
+    return [NSArray arrayWithObjects:@"feed_image", @"feedCache", @"ImageCache", @"imgcache", @"bbs/drawData", @"message", nil];
+}
+
 @end

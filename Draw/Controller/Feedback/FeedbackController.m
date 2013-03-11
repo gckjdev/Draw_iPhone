@@ -23,6 +23,8 @@
 #import "UMGridViewController.h"
 #import "UIUtils.h"
 #import "ShareImageManager.h"
+#import "CacheManager.h"
+#import "CommonDialog.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -149,7 +151,7 @@
             aCell.accessoryView = nil;
         }
     } else if (anIndex == rowOfCleanCache) {
-        [aCell.textLabel setText:NSLS(@"kCleanCach")];
+        [aCell.textLabel setText:NSLS(@"kCleanCache")];
     }
     
     if ([DeviceDetection isIPAD]) {
@@ -359,8 +361,21 @@ enum {
     }
     
     else if (indexPath.row == rowOfCleanCache) {
-        //TODO: clean cache 
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCleanCacheSucc") delayTime:2];
+        //TODO: clean cache
+        [[CacheManager defaultManager] removeCachePathsArray:[GameApp cacheArray] succBlock:^(long long fileSize) {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
+                                                               message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]
+                                                                 style:CommonDialogStyleSingleButton
+                                                              delegate:nil
+                                                          clickOkBlock:^{
+                exit(0);
+            }
+                                                      clickCancelBlock:^{
+                //
+            }];
+            [dialog showInView:self.view];
+        }];
+        
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
