@@ -191,14 +191,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         return YES;
     }
     else{
-        PPDebug(@"<needBackup> no need to backup");
+//        PPDebug(@"<needBackup> no need to backup");
         return NO;
     }
 }
 
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList
 {
-    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
+//    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
     if ([self needBackup]){
         [self backup:drawActionList];
     }
@@ -209,7 +209,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
 - (void)handleTimer:(NSArray*)drawActionList
 {
-    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
+//    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
     if ([self needBackup]){
         [self backup:drawActionList];
     }

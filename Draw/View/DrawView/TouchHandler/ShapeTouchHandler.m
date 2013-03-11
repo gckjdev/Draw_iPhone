@@ -91,5 +91,9 @@
     [self.drawView setNeedsDisplay];
 }
 
+- (DrawAction *)drawAction
+{
+    return action;
+}
 
 @end

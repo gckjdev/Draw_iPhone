@@ -11,4 +11,6 @@
 
 @interface ShapeTouchHandler : TouchHandler
 
+- (DrawAction *)drawAction;
+
 @end
