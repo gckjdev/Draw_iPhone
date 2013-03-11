@@ -203,7 +203,6 @@
     return (UIButton *)[self.view viewWithTag:tabID];        
 }
 
-
 - (UIButton *)currentTabButton
 {
     TableTab *tab = [self currentTab];

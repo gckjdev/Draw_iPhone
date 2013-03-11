@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PPTableViewController.h"
+#import "CommonTabController.h"
 #import "FriendController.h"
 #import "ColorShopView.h"
 
-@interface StoreController : PPTableViewController <FriendControllerDelegate, ColorShopViewDelegate>
+@interface StoreController : CommonTabController <FriendControllerDelegate, ColorShopViewDelegate>
 
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 

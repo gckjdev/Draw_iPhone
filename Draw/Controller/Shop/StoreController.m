@@ -28,7 +28,7 @@
 
 - (void)dealloc {
     [_selectedButton release];
-    [_titleLabel release];
+//    [_tipsLabel release];
     [_backButton release];
     [_chargeButton release];
     [_selectedItem release];
@@ -45,12 +45,14 @@
 
 - (void)viewDidLoad
 {
+    [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad];
+    [self initTabButtons];
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     
-    [self clickNormalItemsButton:nil];
+//    [self clickNormalItemsButton:nil];
     
     [GameItemService createTestDataFile];
 }
@@ -64,48 +66,44 @@
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
+//
+//- (IBAction)clickNormalItemsButton:(id)sender {
+//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+//    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
+//        bself.dataList = itemsList;
+//        [bself.dataTableView reloadData];
+//    }];
+//}
+//
+//- (IBAction)clickToolItemsButton:(id)sender {
+//    self.selectedButton.selected = NO;
+//    self.selectedButton = (UIButton *)sender;
+//    self.selectedButton.selected = YES;
+//    
+//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+//    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeTool resultHandler:^(BOOL success, NSArray *itemsList) {
+//        bself.dataList = itemsList;
+//        [bself.dataTableView reloadData];
+//    }];
+//}
+//
+//- (IBAction)clickPromotionItemsButton:(id)sender {
+//    self.selectedButton.selected = NO;
+//    self.selectedButton = (UIButton *)sender;
+//    self.selectedButton.selected = YES;
+//    
+//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+//    [[GameItemService sharedGameItemService] getPromotingItemsList:^(BOOL success, NSArray *itemsList) {
+//        bself.dataList = itemsList;
+//        [bself.dataTableView reloadData];
+//    }];
+//}
 
-- (IBAction)clickNormalItemsButton:(id)sender {
-    self.selectedButton.selected = NO;
-    self.selectedButton = (UIButton *)sender;
-    self.selectedButton.selected = YES;
-    
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
-        bself.dataList = itemsList;
-        [bself.dataTableView reloadData];
-    }];
-}
-
-- (IBAction)clickToolItemsButton:(id)sender {
-    self.selectedButton.selected = NO;
-    self.selectedButton = (UIButton *)sender;
-    self.selectedButton.selected = YES;
-    
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeTool resultHandler:^(BOOL success, NSArray *itemsList) {
-        bself.dataList = itemsList;
-        [bself.dataTableView reloadData];
-    }];
-}
-
-- (IBAction)clickPromotionItemsButton:(id)sender {
-    self.selectedButton.selected = NO;
-    self.selectedButton = (UIButton *)sender;
-    self.selectedButton.selected = YES;
-    
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    [[GameItemService sharedGameItemService] getPromotingItemsList:^(BOOL success, NSArray *itemsList) {
-        bself.dataList = itemsList;
-        [bself.dataTableView reloadData];
-    }];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    PPDebug(@"dataList : %@", dataList);
-    return [self.dataList count];
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    PPDebug(@"dataList : %@", dataList);
+//    return [self.dataList count];
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -120,7 +118,7 @@
         cell = [StoreCell createCell:self];
     }
     
-    [cell setCellInfo:[self.dataList objectAtIndex:indexPath.row]];
+    [cell setCellInfo:[self.tabDataList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -128,7 +126,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPDebug(@"select row: %d", indexPath.row);
-    PBGameItem *item = [dataList objectAtIndex:indexPath.row];
+    PBGameItem *item = [self.tabDataList objectAtIndex:indexPath.row];
     
     
     if (item.itemId == ItemTypeColor) {
@@ -198,4 +196,79 @@
     }];
 }
 
+
+
+
+
+
+typedef enum{
+    TabIDNormal = 100,
+    TabIDTool = 101,
+    TabIDPromotion = 102,
+}TabID;
+
+
+- (NSInteger)tabCount //default 1
+{
+    return 3;
+}
+- (NSInteger)currentTabIndex
+{
+    return 0;
+}
+
+
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    NSInteger tabIDs[] = {TabIDNormal, TabIDTool, TabIDPromotion};
+    return tabIDs[index];
+}
+
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    NSString *tabTitles[] = {@"normal", @"TabIDTool", @"TabIDPromotion"};
+    return tabTitles[index];
+
+}
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    GameItemService *service = [GameItemService sharedGameItemService];
+    GetItemsListResultHandler handler = ^(BOOL success, NSArray *itemsList) {
+        if (success) {
+            [bself finishLoadDataForTabID:tabID resultList:itemsList];
+        }else{
+            [bself failLoadDataForTabID:tabID];
+        }
+    };
+
+    
+    switch (tabID) {
+        case TabIDNormal:
+            [service getItemsListWithType:PBDrawItemTypeNomal resultHandler:handler];
+            break;
+        case TabIDTool:
+            [service getItemsListWithType:PBDrawItemTypeTool resultHandler:handler];
+            break;
+            
+        case TabIDPromotion:
+            [service getPromotingItemsList:handler];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    [[GameItemService sharedGameItemService] getItemsListWithType:PBDrawItemTypeNomal resultHandler:^(BOOL success, NSArray *itemsList) {
+        if (success) {
+            [bself finishLoadDataForTabID:tabID resultList:itemsList];
+        }else{
+            [bself failLoadDataForTabID:tabID];
+        }
+    }];
+}
+
 @end
+
+

@@ -67,17 +67,17 @@
     [self.itemNameLabel updateWidth:size.width];
     
     int count = [[UserGameItemService defaultService] countOfItem:item.itemId];
+    if (count <= 0) {
+        self.countButton.hidden = YES;
+    }
+    
     if (item.salesType == PBGameItemSalesTypeMultiple) {
         [self.countButton setTitle:[NSString stringWithFormat:@"%d", count] forState:UIControlStateNormal];
     }
     
     if (item.salesType == PBGameItemSalesTypeOneOff) {
-        if (count >= 1) {
-            self.countButton.hidden = NO;
-            [self.countButton setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
-        }else{
-            self.countButton.hidden = YES;
-        }
+        self.countButton.hidden = NO;
+        [self.countButton setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
     }
 
     [self.countButton updateOriginX:(self.itemNameLabel.frame.origin.x + self.itemNameLabel.frame.size.width + 3)];
