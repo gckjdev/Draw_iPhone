@@ -32,6 +32,7 @@
 
 - (BOOL)hasShownItemTips:(ItemType)type;
 - (void)didShowItemTips:(ItemType)type;
+- (void)clearAllItems;
 
 @end
 

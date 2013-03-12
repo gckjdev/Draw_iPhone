@@ -17,6 +17,7 @@
 #import "AccountService.h"
 #import "ItemType.h"
 #import "Item.h"
+#import "UserGameItemService.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
@@ -78,7 +79,8 @@
 
 - (BOOL)hasBounghtPlayer
 {
-    return [[AccountService defaultService] hasEnoughItemAmount:PaintPlayerItem amount:1];
+//    return [[AccountService defaultService] hasEnoughItemAmount:PaintPlayerItem amount:1];
+    return [[UserGameItemService defaultService] hasEnoughItemAmount:PaintPlayerItem amount:1];
 }
 
 - (void)updateView

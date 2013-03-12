@@ -506,7 +506,6 @@ enum{
 
 - (void)throwItem:(Item *)item
 {
-    
     if ([self.feed isMyOpus]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
         return;

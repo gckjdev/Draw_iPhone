@@ -11,6 +11,7 @@
 #import "PPDebug.h"
 #import "AccountService.h"
 #import "ShoppingManager.h"
+#import "UserGameItemService.h"
 
 #define COLOR_VALUE_COUNT 15
 #define RGB_COUNT 3
@@ -216,25 +217,6 @@
             colorValues = values;
             break;            
         }  
-//        case GROUP_GRAY_GREEN:
-//        {
-//            NSInteger values[] =   {0,100,0, 0,128,0, 85,107,47, 128,128,0, 127,255,170};
-//            colorValues = values;
-//            break;            
-//        }
-//        case GROUP_BRIGHT_GREEN:
-//        {
-//            NSInteger values[] =   {34,139,34,50,205,50,0,255,0,124,252,0,173,255,47};
-//            colorValues = values;
-//            break;            
-//        }
-//        case GROUP_BROWN:
-////        default:
-//        {
-//            NSInteger values[] = {139,0,0,165,42,42,160,82,45,205,133,63,210,180,140};
-//            colorValues = values;
-//            break;
-//        }
             
         case GRADUAL_GRAY:
         {
@@ -317,7 +299,8 @@
     NSArray *array = [ColorGroup colorViewListWithColorValues:colorArray];
     ColorGroup *group = [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
 
-    if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
+//    if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
+    if ([[UserGameItemService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
         group.hasBought = YES;
     }else{
         group.hasBought = NO;

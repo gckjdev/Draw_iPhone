@@ -12,7 +12,6 @@
 #import "LocaleUtils.h"
 #import "ShoppingManager.h"
 #import "PPViewController.h"
-#import "AccountService.h"
 #import "ItemType.h"
 #import "DeviceDetection.h"
 #import "LmWallService.h"
@@ -20,6 +19,8 @@
 #import "UserManager.h"
 #import "HomeController.h"
 #import "GADBannerView.h"
+
+#import "UserGameItemService.h"
 
 //#import "YoumiWallService.h"
 //#import "YoumiWallController.h"
@@ -62,8 +63,11 @@ static AdService* _defaultService;
 
     [self initWappuAdSDK];
     
-    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd                                                             
-                                                               amount:1] == NO);    
+//    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd                                                             
+//                                                               amount:1] == NO);
+    
+     _isShowAd = ([[UserGameItemService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd amount:1] == NO);
+    
     return self;
 }
 
@@ -127,6 +131,12 @@ static AdService* _defaultService;
 //    return [self isShowAdByPercentage:percentage];        
 }
 
+- (void)disableAd
+{
+    _isShowAd = NO;
+}
+
+// old, will be deleted after new item implementation is fully done and tested
 - (void)setAdDisable
 {
     PPDebug(@"<setAdDisable> Ad Is Disabled Now");
@@ -190,6 +200,8 @@ static AdService* _defaultService;
 {
     [MobClick event:@"BUY_REMOVE_AD"];
     [[AccountService defaultService] buyRemoveAd];
+    
+    
 }
 
 - (void)buyCoins

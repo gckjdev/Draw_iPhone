@@ -15,7 +15,11 @@ typedef void (^GetItemsListResultHandler)(BOOL success, NSArray *itemsList);
 
 + (GameItemService *)sharedGameItemService;
 
-- (void)getItemsList:(GetItemsListResultHandler)handler;
+
+- (void)updateItemListWithType:(int)type
+                       handler:(GetItemsListResultHandler)handler;
+
+- (void)updatePromotingItemsList:(GetItemsListResultHandler)handler;
 
 - (void)getItemsListWithType:(int)type
                resultHandler:(GetItemsListResultHandler)handler;

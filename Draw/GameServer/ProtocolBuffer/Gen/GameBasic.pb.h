@@ -46,6 +46,7 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 typedef enum {
   PBDrawItemTypeNomal = 0,
   PBDrawItemTypeTool = 1,
+  PBDrawItemTypePackage = 2,
 } PBDrawItemType;
 
 BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
@@ -1366,6 +1367,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @private
   BOOL hasItemId_:1;
   BOOL hasType_:1;
+  BOOL hasDefaultSaleCount_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasImage_:1;
@@ -1376,6 +1378,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasSalesType_:1;
   int32_t itemId;
   int32_t type;
+  int32_t defaultSaleCount;
   NSString* name;
   NSString* desc;
   NSString* image;
@@ -1384,6 +1387,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   PBItemPriceInfo* priceInfo;
   PBPromotionInfo* promotionInfo;
   PBGameItemSalesType salesType;
+  NSMutableArray* mutableSubItemIdsList;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasName;
@@ -1395,6 +1399,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (BOOL) hasAppleProductId;
 - (BOOL) hasPriceInfo;
 - (BOOL) hasPromotionInfo;
+- (BOOL) hasDefaultSaleCount;
 @property (readonly) int32_t itemId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
@@ -1405,6 +1410,9 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @property (readonly, retain) NSString* appleProductId;
 @property (readonly, retain) PBItemPriceInfo* priceInfo;
 @property (readonly, retain) PBPromotionInfo* promotionInfo;
+@property (readonly) int32_t defaultSaleCount;
+- (NSArray*) subItemIdsList;
+- (int32_t) subItemIdsAtIndex:(int32_t) index;
 
 + (PBGameItem*) defaultInstance;
 - (PBGameItem*) defaultInstance;
@@ -1493,6 +1501,18 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItem_Builder*) setPromotionInfoBuilder:(PBPromotionInfo_Builder*) builderForValue;
 - (PBGameItem_Builder*) mergePromotionInfo:(PBPromotionInfo*) value;
 - (PBGameItem_Builder*) clearPromotionInfo;
+
+- (BOOL) hasDefaultSaleCount;
+- (int32_t) defaultSaleCount;
+- (PBGameItem_Builder*) setDefaultSaleCount:(int32_t) value;
+- (PBGameItem_Builder*) clearDefaultSaleCount;
+
+- (NSArray*) subItemIdsList;
+- (int32_t) subItemIdsAtIndex:(int32_t) index;
+- (PBGameItem_Builder*) replaceSubItemIdsAtIndex:(int32_t) index with:(int32_t) value;
+- (PBGameItem_Builder*) addSubItemIds:(int32_t) value;
+- (PBGameItem_Builder*) addAllSubItemIds:(NSArray*) values;
+- (PBGameItem_Builder*) clearSubItemIdsList;
 @end
 
 @interface PBGameItemList : PBGeneratedMessage {

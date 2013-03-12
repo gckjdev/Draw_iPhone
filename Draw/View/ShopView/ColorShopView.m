@@ -191,15 +191,13 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == BUY_CONFIRM_TAG && willBuyGroup) {
-        
-//        [[AccountService defaultService] buyItem:willBuyGroup.groupId itemCount:1 itemCoins:willBuyGroup.price];
-    
+            
         __block typeof (self) bself = self;
         
-       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
-           if (resultCode == 0) {
+       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+           if (resultCode == UIS_SUCCESS) {
                [bself buyColorSuccess];
-           } 
+           }
        }];
     }
 }

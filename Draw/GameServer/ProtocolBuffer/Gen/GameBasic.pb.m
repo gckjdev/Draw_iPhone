@@ -32,6 +32,7 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value) {
   switch (value) {
     case PBDrawItemTypeNomal:
     case PBDrawItemTypeTool:
+    case PBDrawItemTypePackage:
       return YES;
     default:
       return NO;
@@ -5649,6 +5650,8 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property (retain) NSString* appleProductId;
 @property (retain) PBItemPriceInfo* priceInfo;
 @property (retain) PBPromotionInfo* promotionInfo;
+@property int32_t defaultSaleCount;
+@property (retain) NSMutableArray* mutableSubItemIdsList;
 @end
 
 @implementation PBGameItem
@@ -5723,6 +5726,14 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasPromotionInfo_ = !!value;
 }
 @synthesize promotionInfo;
+- (BOOL) hasDefaultSaleCount {
+  return !!hasDefaultSaleCount_;
+}
+- (void) setHasDefaultSaleCount:(BOOL) value {
+  hasDefaultSaleCount_ = !!value;
+}
+@synthesize defaultSaleCount;
+@synthesize mutableSubItemIdsList;
 - (void) dealloc {
   self.name = nil;
   self.desc = nil;
@@ -5731,6 +5742,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   self.appleProductId = nil;
   self.priceInfo = nil;
   self.promotionInfo = nil;
+  self.mutableSubItemIdsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5745,6 +5757,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.appleProductId = @"";
     self.priceInfo = [PBItemPriceInfo defaultInstance];
     self.promotionInfo = [PBPromotionInfo defaultInstance];
+    self.defaultSaleCount = 0;
   }
   return self;
 }
@@ -5759,6 +5772,13 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 }
 - (PBGameItem*) defaultInstance {
   return defaultPBGameItemInstance;
+}
+- (NSArray*) subItemIdsList {
+  return mutableSubItemIdsList;
+}
+- (int32_t) subItemIdsAtIndex:(int32_t) index {
+  id value = [mutableSubItemIdsList objectAtIndex:index];
+  return [value intValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasItemId) {
@@ -5810,6 +5830,12 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasPromotionInfo) {
     [output writeMessage:24 value:self.promotionInfo];
   }
+  if (self.hasDefaultSaleCount) {
+    [output writeInt32:30 value:self.defaultSaleCount];
+  }
+  for (NSNumber* value in self.mutableSubItemIdsList) {
+    [output writeInt32:50 value:[value intValue]];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5848,6 +5874,17 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   }
   if (self.hasPromotionInfo) {
     size += computeMessageSize(24, self.promotionInfo);
+  }
+  if (self.hasDefaultSaleCount) {
+    size += computeInt32Size(30, self.defaultSaleCount);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableSubItemIdsList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 2 * self.mutableSubItemIdsList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5954,6 +5991,15 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasPromotionInfo) {
     [self mergePromotionInfo:other.promotionInfo];
   }
+  if (other.hasDefaultSaleCount) {
+    [self setDefaultSaleCount:other.defaultSaleCount];
+  }
+  if (other.mutableSubItemIdsList.count > 0) {
+    if (result.mutableSubItemIdsList == nil) {
+      result.mutableSubItemIdsList = [NSMutableArray array];
+    }
+    [result.mutableSubItemIdsList addObjectsFromArray:other.mutableSubItemIdsList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6028,6 +6074,14 @@ static PBGameItem* defaultPBGameItemInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setPromotionInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 240: {
+        [self setDefaultSaleCount:[input readInt32]];
+        break;
+      }
+      case 400: {
+        [self addSubItemIds:[input readInt32]];
         break;
       }
     }
@@ -6219,6 +6273,53 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 - (PBGameItem_Builder*) clearPromotionInfo {
   result.hasPromotionInfo = NO;
   result.promotionInfo = [PBPromotionInfo defaultInstance];
+  return self;
+}
+- (BOOL) hasDefaultSaleCount {
+  return result.hasDefaultSaleCount;
+}
+- (int32_t) defaultSaleCount {
+  return result.defaultSaleCount;
+}
+- (PBGameItem_Builder*) setDefaultSaleCount:(int32_t) value {
+  result.hasDefaultSaleCount = YES;
+  result.defaultSaleCount = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearDefaultSaleCount {
+  result.hasDefaultSaleCount = NO;
+  result.defaultSaleCount = 0;
+  return self;
+}
+- (NSArray*) subItemIdsList {
+  if (result.mutableSubItemIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableSubItemIdsList;
+}
+- (int32_t) subItemIdsAtIndex:(int32_t) index {
+  return [result subItemIdsAtIndex:index];
+}
+- (PBGameItem_Builder*) replaceSubItemIdsAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableSubItemIdsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBGameItem_Builder*) addSubItemIds:(int32_t) value {
+  if (result.mutableSubItemIdsList == nil) {
+    result.mutableSubItemIdsList = [NSMutableArray array];
+  }
+  [result.mutableSubItemIdsList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBGameItem_Builder*) addAllSubItemIds:(NSArray*) values {
+  if (result.mutableSubItemIdsList == nil) {
+    result.mutableSubItemIdsList = [NSMutableArray array];
+  }
+  [result.mutableSubItemIdsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameItem_Builder*) clearSubItemIdsList {
+  result.mutableSubItemIdsList = nil;
   return self;
 }
 @end

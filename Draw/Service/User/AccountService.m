@@ -720,6 +720,8 @@ static AccountService* _defaultAccountService;
                     UserGameItemService* userGameItemService = [UserGameItemService defaultService];
                     [userGameItemService clearAllUserItems];
                     NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+
+                    [_itemManager clearAllItems];
                     for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
                         int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
                         int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
@@ -783,7 +785,7 @@ static AccountService* _defaultAccountService;
 
 - (void)syncAccountAndItem
 {    
-    [self syncAccount:nil forceServer:NO];
+    [self syncAccount:nil forceServer:YES];
 }
 
 #define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"

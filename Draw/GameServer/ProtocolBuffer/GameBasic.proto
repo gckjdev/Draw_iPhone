@@ -175,8 +175,8 @@ message PBPromotionInfo{
 }
 
 enum PBGameItemSalesType{
-  OneOff = 1;                                   // 一次
-  Multiple = 2;                                  // 多次
+  OneOff = 1;                                       // 一次
+  Multiple = 2;                                     // 多次
 }
 
 message PBGameItem {
@@ -193,8 +193,12 @@ message PBGameItem {
 
   optional string appleProductId = 22;            // Apple IAP购买ID
   
-  optional PBItemPriceInfo priceInfo = 23;            // 价格信息
+  optional PBItemPriceInfo priceInfo = 23;        // 价格信息
   optional PBPromotionInfo promotionInfo = 24;    // 促销信息
+  
+  optional int32 defaultSaleCount = 30;           // 默认购买数量
+  
+  repeated int32 subItemIds = 50;                 // 复合道具
 }
 
 message PBGameItemList {
@@ -227,6 +231,5 @@ message PBUserItemList {
   required string userId = 1;
   repeated PBUserItem userItems = 2;
 }
-
 
 

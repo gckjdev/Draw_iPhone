@@ -19,77 +19,138 @@
 #define ITEMS_FILE_VERSION @"1.0"
 
 
+@interface GameItemService()
+@property (retain, nonatomic) NSArray *itemList;
+
+@end
+
 @implementation GameItemService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
+- (void)dealloc
+{
+    [_itemList release];
+    [super dealloc];
+}
+
 - (void)getItemsList:(GetItemsListResultHandler)handler
 {
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+
     //load data
     PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        if (handler) {
-            handler(YES, itemsList);
+        if (handler != NULL) {
+            handler(YES, [bself itemsListFromFile:smartData.dataFilePath]);
         }
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
+        if (handler != NULL) {
+            handler(YES, [bself itemsListFromFile:smartData.dataFilePath]);
         }
         [smartData release];
     }];
 }
+
+- (NSArray *)itemsListFromFile:(NSString *)filePath
+{
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+    
+    return itemsList;
+}
+
+- (void)updateItemListWithType:(int)type
+                       handler:(GetItemsListResultHandler)handler
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    [self getItemsList:^(BOOL success, NSArray *itemsList) {
+        bself.itemList = itemsList;
+        [bself getItemsListWithType:type resultHandler:^(BOOL success, NSArray *itemsList) {
+            if (handler != NULL) {
+                handler(success, itemsList);
+            }
+        }];
+    }];
+}
+
+- (void)updatePromotingItemsList:(GetItemsListResultHandler)handler
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    [self getItemsList:^(BOOL success, NSArray *itemsList) {
+        bself.itemList = itemsList;
+        [bself getPromotingItemsList:^(BOOL success, NSArray *itemsList) {
+            if (handler != NULL) {
+                handler(success, itemsList);
+            }
+        }];
+    }];
+}
+
 
 - (void)getItemsListWithType:(int)type
                resultHandler:(GetItemsListResultHandler)handler
 {
-    //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    //load data
+//    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        PPDebug(@"checkUpdateAndDownload successfully");
+//        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+//        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
+//        NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
+//        if (handler != NULL) {
+//            handler(YES, array);
+//        }
+//        [smartData release];
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+//        if (handler != NULL) {
+//            handler(NO, nil);
+//        }
+//        [smartData release];
+//    }];
     
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-        PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
-        NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
-        if (handler) {
-            handler(YES, array);
+    NSMutableArray *array = [NSMutableArray array];
+    for (PBGameItem *item in _itemList) {
+        if (item.type == type) {
+            [array addObject:item];
         }
-        [smartData release];
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
-        }
-        [smartData release];
-    }];
+    }
+    
+    if (handler != NULL) {
+        handler(YES, array);
+    }
 }
 
 - (void)getPromotingItemsList:(GetItemsListResultHandler)handler
 {
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
-    
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-        PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        if (handler) {
-            handler(YES, [bself promotingItemListFrom:itemsList]);
-        }
-        [smartData release];
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
-        }
-        [smartData release];
-    }];
+//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+//    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        PPDebug(@"checkUpdateAndDownload successfully");
+//        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+//        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+//        if (handler != NULL) {
+//            handler(YES, [bself promotingItemListFrom:itemsList]);
+//        }
+//        [smartData release];
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+//        if (handler != NULL) {
+//            handler(NO, nil);
+//        }
+//        [smartData release];
+//    }];    
+    if (handler != NULL) {
+        handler(YES, [self promotingItemListFrom:_itemList]);
+    }
 }
 
 - (NSArray *)promotingItemListFrom:(NSArray *)itemList
