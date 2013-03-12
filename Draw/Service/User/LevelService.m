@@ -16,6 +16,7 @@
 #import "AccountService.h"
 #import "ItemType.h"
 #import "CommonMessageCenter.h"
+#import "UserGameItemService.h"
 
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
@@ -162,9 +163,10 @@ static LevelService* _defaultLevelService;
 
 - (void)awardForLevelUp
 {
-    [[AccountService defaultService] buyItem:ItemTypeFlower 
-                                   itemCount:[ConfigManager flowerAwardFordLevelUp] 
-                                   itemCoins:0];
+//    [[AccountService defaultService] buyItem:ItemTypeFlower
+//                                   itemCount:[ConfigManager flowerAwardFordLevelUp]
+//                                   itemCoins:0];
+    [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:[ConfigManager flowerAwardFordLevelUp] handler:NULL];
 }
 
 

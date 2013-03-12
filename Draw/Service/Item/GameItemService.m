@@ -19,77 +19,138 @@
 #define ITEMS_FILE_VERSION @"1.0"
 
 
+@interface GameItemService()
+@property (retain, nonatomic) NSArray *itemList;
+
+@end
+
 @implementation GameItemService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
+- (void)dealloc
+{
+    [_itemList release];
+    [super dealloc];
+}
+
 - (void)getItemsList:(GetItemsListResultHandler)handler
 {
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+
     //load data
     PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        if (handler) {
-            handler(YES, itemsList);
+        if (handler != NULL) {
+            handler(YES, [bself itemsListFromFile:smartData.dataFilePath]);
         }
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
+        if (handler != NULL) {
+            handler(YES, [bself itemsListFromFile:smartData.dataFilePath]);
         }
         [smartData release];
     }];
 }
+
+- (NSArray *)itemsListFromFile:(NSString *)filePath
+{
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+    
+    return itemsList;
+}
+
+- (void)updateItemListWithType:(int)type
+                       handler:(GetItemsListResultHandler)handler
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    [self getItemsList:^(BOOL success, NSArray *itemsList) {
+        bself.itemList = itemsList;
+        [bself getItemsListWithType:type resultHandler:^(BOOL success, NSArray *itemsList) {
+            if (handler != NULL) {
+                handler(success, itemsList);
+            }
+        }];
+    }];
+}
+
+- (void)updatePromotingItemsList:(GetItemsListResultHandler)handler
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    [self getItemsList:^(BOOL success, NSArray *itemsList) {
+        bself.itemList = itemsList;
+        [bself getPromotingItemsList:^(BOOL success, NSArray *itemsList) {
+            if (handler != NULL) {
+                handler(success, itemsList);
+            }
+        }];
+    }];
+}
+
 
 - (void)getItemsListWithType:(int)type
                resultHandler:(GetItemsListResultHandler)handler
 {
-    //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    //load data
+//    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        PPDebug(@"checkUpdateAndDownload successfully");
+//        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+//        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
+//        NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
+//        if (handler != NULL) {
+//            handler(YES, array);
+//        }
+//        [smartData release];
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+//        if (handler != NULL) {
+//            handler(NO, nil);
+//        }
+//        [smartData release];
+//    }];
     
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-        PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.type = %d",type];
-        NSArray *array = [itemsList filteredArrayUsingPredicate:predicate];
-        if (handler) {
-            handler(YES, array);
+    NSMutableArray *array = [NSMutableArray array];
+    for (PBGameItem *item in _itemList) {
+        if (item.type == type) {
+            [array addObject:item];
         }
-        [smartData release];
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
-        }
-        [smartData release];
-    }];
+    }
+    
+    if (handler != NULL) {
+        handler(YES, array);
+    }
 }
 
 - (void)getPromotingItemsList:(GetItemsListResultHandler)handler
 {
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
-    
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
-        PPDebug(@"checkUpdateAndDownload successfully");
-        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-        if (handler) {
-            handler(YES, [bself promotingItemListFrom:itemsList]);
-        }
-        [smartData release];
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        if (handler) {
-            handler(NO, nil);
-        }
-        [smartData release];
-    }];
+//    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+//    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+//    
+//    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+//        PPDebug(@"checkUpdateAndDownload successfully");
+//        NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
+//        NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+//        if (handler != NULL) {
+//            handler(YES, [bself promotingItemListFrom:itemsList]);
+//        }
+//        [smartData release];
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+//        if (handler != NULL) {
+//            handler(NO, nil);
+//        }
+//        [smartData release];
+//    }];    
+    if (handler != NULL) {
+        handler(YES, [self promotingItemListFrom:_itemList]);
+    }
 }
 
 - (NSArray *)promotingItemListFrom:(NSArray *)itemList
@@ -118,12 +179,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     return priceInfo;
 }
 
-+ (PBPromotionInfo *)discount:(int)discount
-                    startDate:(int)startDate
-                   expireDate:(int)expireDate
++ (PBPromotionInfo *)price:(int)price
+                 startDate:(int)startDate
+                expireDate:(int)expireDate
 {
     PBPromotionInfo_Builder *promotionInfoBuilder = [[PBPromotionInfo_Builder alloc] init];
-    [promotionInfoBuilder setDiscount:discount];
+    [promotionInfoBuilder setPrice:price];
     [promotionInfoBuilder setStartDate:startDate];
     [promotionInfoBuilder setExpireDate:expireDate];
     PBPromotionInfo *promotionInfo = [promotionInfoBuilder build];
@@ -147,7 +208,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeRemoveAd];
             [itemBuilder setName:@"kRemoveAd"];
             [itemBuilder setDesc:@"kRemoveAdDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
+
             [itemBuilder setImage:URL_ITEM_IMAGE(@"clean_ad@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -163,7 +225,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeTips];
             [itemBuilder setName:@"kTips"];
             [itemBuilder setDesc:@"kTipsDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
+
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -179,7 +242,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeColor];
             [itemBuilder setName:@"kBuyColor"];
             [itemBuilder setDesc:@"kBuyColor"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"print_oil@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -196,7 +259,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeTomato];
             [itemBuilder setName:@"kTomato"];
             [itemBuilder setDesc:@"kTomatoDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tomato@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -206,7 +269,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 7 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 7 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -215,7 +278,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeFlower];
             [itemBuilder setName:@"kFlower"];
             [itemBuilder setDesc:@"kFlowerDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"flower@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -226,7 +289,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -235,7 +298,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:PaletteItem];
             [itemBuilder setName:@"kPaletteItem"];
             [itemBuilder setDesc:@"kPaletteItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -246,7 +309,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -255,7 +318,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:PaintPlayerItem];
             [itemBuilder setName:@"kPaintPlayerItem"];
             [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -266,7 +329,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
 
@@ -275,7 +338,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ColorStrawItem];
             [itemBuilder setName:@"kStraw"];
             [itemBuilder setDesc:@"kStrawDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -293,7 +356,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ColorAlphaItem];
             [itemBuilder setName:@"kColorAlphaItem"];
             [itemBuilder setDesc:@"kColorAlphaItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -312,7 +375,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:Pen];
             [itemBuilder setName:@"kPen"];
             [itemBuilder setDesc:@"kBrushPenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"brush_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -329,7 +392,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:IcePen];
             [itemBuilder setName:@"kIcePen"];
             [itemBuilder setDesc:@"kIcePenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"cones_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -346,7 +409,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:Quill];
             [itemBuilder setName:@"kQuill"];
             [itemBuilder setDesc:@"kQuillDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"quill_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -363,7 +426,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:WaterPen];
             [itemBuilder setName:@"kWaterPen"];
             [itemBuilder setDesc:@"kWaterPenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"mike_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];

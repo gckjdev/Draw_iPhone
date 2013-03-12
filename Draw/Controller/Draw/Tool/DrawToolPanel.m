@@ -31,6 +31,7 @@
 #import "ColorBox.h"
 #import "Draw.pb.h"
 #import "DrawBgManager.h"
+#import "UserGameItemService.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -208,23 +209,21 @@
 
 - (void)updateNeedBuyToolViews
 {
-    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+//    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+
         [self.palette setSelected:YES];
     }else{
         [self.palette setSelected:NO];
     }
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+
         [self.alphaSlider setSelected:YES];
     }else{
         [self.alphaSlider setSelected:NO];
     }
     [self.straw setSelected:NO];
-//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
-//        //TODO set straw unbuy image
-//    }else{
-//        //TODO set straw bought image
-//    }
-    
 }
 
 - (void)updateView
@@ -396,7 +395,8 @@
 }
 
 - (IBAction)clickStraw:(id)sender {
-    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
         if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
             [_delegate drawToolPanel:self startToBuyItem:ColorStrawItem];
         }
@@ -610,7 +610,9 @@
 {
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1] ;
+//    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1] ;
+    BOOL hasBought = penType == Pencil || [[UserGameItemService defaultService] hasEnoughItemAmount:penType amount:1] ;
+
     if (hasBought) {
         [self setPenType:penType];
     }

@@ -474,7 +474,7 @@
 
 
 #define NO_COIN_TAG 201204271
-#define BUY_CONFIRM_TAG 201204272
+
 
 
 #pragma mark - Common Dialog Delegate
@@ -530,12 +530,7 @@
         [self saveDraft:NO];
         [self quit];
     }
-    else if(dialog.tag == BUY_CONFIRM_TAG){
-        [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
-        [_willBuyPen setAlpha:1];
-        [drawView setPenType:_willBuyPen.penType];   
-        [PenView savePenType:_willBuyPen.penType];
-    }else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
+    else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
         [self showInputAlertView];
         //TODO click input Alert ok button

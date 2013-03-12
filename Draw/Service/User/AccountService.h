@@ -86,7 +86,7 @@
 - (int)rewardForShareWeibo;
 
 - (void)awardAccount:(int)amount 
-            source:(BalanceSourceType)source;
+              source:(BalanceSourceType)source;
 
 #pragma mark - Charge Ingot
 

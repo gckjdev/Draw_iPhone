@@ -174,5 +174,10 @@ ItemManager *GlobalGetItemManager()
     [userdefault synchronize];
 }
 
+- (void)clearAllItems
+{
+    //TODO: clear all items here.
+}
+
 
 @end

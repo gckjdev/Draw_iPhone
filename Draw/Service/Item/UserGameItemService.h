@@ -17,9 +17,9 @@ typedef enum {
     UIS_BAD_PARAMETER = 3,
 }UserGameItemServiceResultCode;
 
-typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  PBGameItem *item, int count, NSString *toUserId);
+typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  int itemId, int count, NSString *toUserId);
 
-typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString *toOpusId);
+typedef void (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOpusId);
 
 
 @interface UserGameItemService : CommonService
@@ -31,6 +31,7 @@ typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString 
 - (void)decreaseItem:(int)itemId count:(int)count;
 
 - (int)countOfItem:(int)itemId;
+- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount;
 
 - (void)buyItem:(int)itemId
           count:(int)count
@@ -52,5 +53,9 @@ typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString 
         handler:(UseItemResultHandler)handler;
 
 - (void)clearAllUserItems;
+
+- (void)awardItem:(int)itemId
+            count:(int)count
+          handler:(BuyItemResultHandler)handler;
 
 @end

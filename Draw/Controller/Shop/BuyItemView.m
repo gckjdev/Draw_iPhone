@@ -49,12 +49,18 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:item.priceInfo.currency];
     
     
-    if (item.salesType == PBGameItemSalesTypeMultiple) {
+    if (item.consumeType == PBGameItemConsumeTypeAmountConsumable) {
         view.count = 10;
-    }else if (item.salesType == PBGameItemSalesTypeOneOff){
+    }
+    
+    if (item.consumeType == PBGameItemConsumeTypeNonConsumable){
         view.count = 1;
         [view updateHeight:(view.frame.size.height - view.buyInfoView.frame.size.height)];
         [view.buyInfoView removeFromSuperview];
+    }
+    
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        // TODO:
     }
     
     [view update];
