@@ -22,6 +22,11 @@
 #import "DrawColorManager.h"
 #import "UserGameItemService.h"
 
+@interface ColorShopView()
+@property (retain, nonatomic) UIActivityIndicatorView *indicator;
+
+@end
+
 @implementation ColorShopView
 @synthesize titleLabel;
 @synthesize coinCountLabel;
@@ -188,18 +193,43 @@
     }
 }
 
+- (void)showActivity
+{
+    if (self.indicator == nil) {
+        self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        self.indicator.center = self.center;
+        [self addSubview:self.indicator];
+    }
+    
+    self.indicator.hidden = NO;
+    [self.indicator startAnimating];
+    self.dataTableView.userInteractionEnabled = NO;
+    self.backButton.enabled = NO;
+}
+
+- (void)hideActivity
+{
+    [self.indicator stopAnimating];
+    self.indicator.hidden = YES;
+    self.dataTableView.userInteractionEnabled = YES;
+    self.backButton.enabled = YES;
+}
+
 - (void)clickOk:(CommonDialog *)dialog
 {
     if (dialog.tag == BUY_CONFIRM_TAG && willBuyGroup) {
             
         __block typeof (self) bself = self;
+        [self showActivity];
         
        [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+           
            if (resultCode == UIS_SUCCESS) {
                [bself buyColorSuccess];
            } else {
                [bself  buyColorFailed];
            }
+           [self hideActivity];
        }];
     }
 }
@@ -244,10 +274,12 @@
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    PPRelease(_indicator);
     PPRelease(titleLabel);
     PPRelease(coinCountLabel);
     PPRelease(dataTableView);
     PPRelease(colorGroups);
+    [_backButton release];
     [super dealloc];
 }
 @end
