@@ -169,32 +169,45 @@ message PBItemPriceInfo {
 }
 
 message PBPromotionInfo{
-  required int32 discount = 1;                    // 折扣，90表示九折，85表示85折
+  required int32 price = 1;                       // 折后价格
   optional int32 startDate = 2;                   // 起始日期
   optional int32 expireDate = 3;                  // 截止日期
 }
 
-enum PBGameItemSalesType{
-  OneOff = 1;                                   // 一次
-  Multiple = 2;                                  // 多次
+enum PBGameItemConsumeType{
+  NonConsumable = 1;                            // 非消耗品
+  AmountConsumable = 2;                         // 数量消耗品
+  TimeConsumable = 3;                           // 时间消耗品
+}
+
+enum PBGameTimeUnit{
+  Hour = 1;
+  Day = 2;                           
+  Month = 3;                         
+  Year = 4;                           
 }
 
 message PBGameItem {
-  required int32  itemId = 1;                     // 道具ID
-  required string name = 2;                       // 道具名称，英文，用于国际化，比如Flower，代码需要使用本地的国际化字符串对其处理
-  optional string desc = 3;                       // 道具描述，英文，用于国际化，代码需要使用本地的国际化字符串对其处理
+  required int32  itemId = 1;                           // 道具ID
+  required string name = 2;                             // 道具名称，英文，用于国际化，比如Flower，代码需要使用本地的国际化字符串对其处理
+  optional string desc = 3;                             // 道具描述，英文，用于国际化，代码需要使用本地的国际化字符串对其处理
   
-  optional PBGameItemSalesType salesType = 5;     // 销售类型
+  optional PBGameItemConsumeType consumeType = 5;       // 消耗类型
 
-  optional string image = 11;                     // 道具图片地址，远程URL
-  optional string demoImage = 12;                 // 道具效果演示图片URL
+  optional string image = 11;                           // 道具图片地址，远程URL
+  optional string demoImage = 12;                       // 道具效果演示图片URL
   
-  optional int32 type = 15;                       // 类型
+  optional int32 type = 15;                             // 类型
 
-  optional string appleProductId = 22;            // Apple IAP购买ID
+  optional string appleProductId = 22;                  // Apple IAP购买ID
   
-  optional PBItemPriceInfo priceInfo = 23;            // 价格信息
-  optional PBPromotionInfo promotionInfo = 24;    // 促销信息
+  optional PBItemPriceInfo priceInfo = 23;              // 价格信息
+  optional PBPromotionInfo promotionInfo = 24;          // 促销信息
+  
+  optional int32 defaultSaleCount = 30;                 // 默认购买数量
+  
+  optional PBGameTimeUnit usageLifeUnit = 50;           // 单位:小时
+  optional int32 usageLife = 51;                        // 使用寿命
 }
 
 message PBGameItemList {
@@ -220,7 +233,8 @@ message PBSaleIngotList{
 
 message PBUserItem {
   required int32 itemId = 1;
-  required int32 count = 2[default=0];
+  optional int32 count = 2[default=0];          // 个数
+  optional int32 createDate = 51;               // 购买时间
 }
 
 message PBUserItemList {

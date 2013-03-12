@@ -17,6 +17,13 @@
 #import "ItemType.h"
 #import "AccountService.h"
 #import "UserManager.h"
+#import "AdService.h"
+
+typedef enum{
+    TabIDNormal = 100,
+    TabIDTool = 101,
+    TabIDPromotion = 102,
+}TabID;
 
 @interface StoreController ()
 
@@ -49,15 +56,32 @@
     [super viewDidUnload];
 }
 
+- (void)updateItemData
+{
+    __block typeof(self) bself = self;    // when use "self" in block, must done like this
+    [[GameItemService sharedGameItemService] updateItemListWithType:PBDrawItemTypeNomal handler:^(BOOL success, NSArray *itemsList) {
+        if (success) {
+            [bself reloadTableViewDataSource];
+        }else{
+            
+        }
+    }];
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
+
     [super viewDidLoad];
     [self initTabButtons];
+    
+    
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
+    
+    [self  updateItemData];
 }
 
 - (void)updateBalance
@@ -119,7 +143,7 @@
     
     CustomInfoView *cusInfoView;
     
-    if (item.salesType == PBGameItemSalesTypeOneOff && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
+    if (item.consumeType==PBGameItemConsumeTypeNonConsumable && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
         cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
                                              infoView:buyItemView
                                        hasCloseButton:YES
@@ -142,9 +166,12 @@
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == UIS_SUCCESS) {
                     [cusInfoView dismiss];
+                    if (item.itemId == ItemTypeRemoveAd) {
+                        [[AdService defaultService] disableAd];
+                    }
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
@@ -224,12 +251,12 @@
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == UIS_SUCCESS) {
                     [cusInfoView dismiss];
                 }
                 [bself showUserGameItemServiceResult:resultCode
-                                               item:item
+                                               item:nil
                                               count:count
                                            toUserId:toUserId];
             }];
@@ -238,11 +265,7 @@
 }
 
 
-typedef enum{
-    TabIDNormal = 100,
-    TabIDTool = 101,
-    TabIDPromotion = 102,
-}TabID;
+
 
 
 - (NSInteger)tabCount //default 1

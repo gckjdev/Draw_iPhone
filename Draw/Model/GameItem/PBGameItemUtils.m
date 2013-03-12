@@ -7,6 +7,8 @@
 //
 
 #import "PBGameItemUtils.h"
+#import "NSDate+TKCategory.h"
+
 
 @implementation PBGameItem (Utils)
 
@@ -19,22 +21,34 @@
     NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.startDate];
     NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.expireDate];
     
-    NSDate *earlierDate = [startDate earlierDate:[NSDate date]];
-    NSDate *laterDate = [expireDate laterDate:[NSDate date]];
-    
-    if ([earlierDate isEqualToDate:startDate] && [laterDate isEqualToDate:expireDate]) {
-        return YES;
-    }
-    
-    return NO;
+    return [[NSDate date] isBetweenDate:startDate anotherDate:expireDate];
 }
 
 - (int)promotionPrice
 {
     if ([self isPromoting]) {
-        return self.priceInfo.price * self.promotionInfo.discount / 100;
+        return self.promotionInfo.price;
     }else{
         return self.priceInfo.price;
+    }
+}
+
+- (int)discount
+{
+    if ([self isPromoting]) {
+        return (self.promotionInfo.price * 100 / self.priceInfo.price);
+    }else{
+        return 100;
+    }
+}
+
+- (BOOL)isExpire
+{
+    if (self.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.startDate];
+        NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.expireDate];
+        
+        return [[NSDate date] isBetweenDate:startDate anotherDate:expireDate];
     }
 }
 

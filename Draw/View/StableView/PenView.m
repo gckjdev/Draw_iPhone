@@ -21,6 +21,12 @@
 @implementation PenView
 @synthesize penType = _penType;
 @synthesize price = _price;
+
+- (void)setPrice:(NSInteger)price
+{
+    _price = price;
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -82,12 +88,6 @@
     }
     UIImage *image = [self penImageForType:penType];
     [self setBackgroundImage:image forState:UIControlStateNormal];
-    
-//    BOOL hasBought = _penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:_penType amount:1];
-//    if (!hasBought) {
-//        [self setAlpha:1.0];
-//    }
-    
 }
 
 

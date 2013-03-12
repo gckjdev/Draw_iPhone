@@ -12,6 +12,7 @@
 #import "GameItemPriceView.h"
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
+#import "PBGameItemUtils.h"
 
 @implementation GameItemDetailView
 
@@ -37,7 +38,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     view.descNoteLabel.text = NSLS(@"kDesc:");
 
     if ([item isPromoting]) {
-        view.discountLabel.text = [NSString stringWithFormat:NSLS(@"kDiscountIs"), item.promotionInfo.discount];
+        view.discountLabel.text = [NSString stringWithFormat:NSLS(@"kDiscountIs"), [item discount]];
     }else{
         view.discountLabel.text = NSLS(@"kNoDiscount");
     }

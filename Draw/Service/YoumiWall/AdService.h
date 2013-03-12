@@ -45,6 +45,7 @@ typedef enum
 - (BOOL)isShowAd;
 - (void)requestRemoveAd:(PPViewController*)viewController;
 - (void)setAdDisable;
+- (void)disableAd;
 - (void)removeAdByIAP;
 //- (void)hideAdViewInView:(UIView*)superView;
 //- (void)showAdInView:(UIViewController*)superViewContoller
