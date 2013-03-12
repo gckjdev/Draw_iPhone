@@ -418,6 +418,18 @@
 		A4FA552516A919A7001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
 		A4FA552616A919A7001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
 		A4FA552716A919A7001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
+		C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C44C16EEC7790028A065 /* FreeIngotCell.m */; };
+		C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C44C16EEC7790028A065 /* FreeIngotCell.m */; };
+		C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C44C16EEC7790028A065 /* FreeIngotCell.m */; };
+		C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C44C16EEC7790028A065 /* FreeIngotCell.m */; };
+		C203C45716EEC7970028A065 /* FreeIngotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45616EEC7970028A065 /* FreeIngotCell.xib */; };
+		C203C45816EEC7970028A065 /* FreeIngotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45616EEC7970028A065 /* FreeIngotCell.xib */; };
+		C203C45916EEC7970028A065 /* FreeIngotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45616EEC7970028A065 /* FreeIngotCell.xib */; };
+		C203C45A16EEC7970028A065 /* FreeIngotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45616EEC7970028A065 /* FreeIngotCell.xib */; };
+		C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
+		C203C45D16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
+		C203C45E16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
+		C203C45F16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -7560,6 +7572,10 @@
 		A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_coins_remain_time_bg@2x.png"; sourceTree = "<group>"; };
 		A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_coins_title_bg@2x.png"; sourceTree = "<group>"; };
 		A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money_tree_note_bg@2x.png"; sourceTree = "<group>"; };
+		C203C44B16EEC7790028A065 /* FreeIngotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeIngotCell.h; sourceTree = "<group>"; };
+		C203C44C16EEC7790028A065 /* FreeIngotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotCell.m; sourceTree = "<group>"; };
+		C203C45616EEC7970028A065 /* FreeIngotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotCell.xib; sourceTree = "<group>"; };
+		C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotCell~ipad.xib"; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -11042,6 +11058,10 @@
 				C29D1A4316EDD62B0095328D /* FreeIngotController.m */,
 				C29D1A4416EDD62B0095328D /* FreeIngotController.xib */,
 				C29D1A5216EDD6630095328D /* FreeIngotController~ipad.xib */,
+				C203C44B16EEC7790028A065 /* FreeIngotCell.h */,
+				C203C44C16EEC7790028A065 /* FreeIngotCell.m */,
+				C203C45616EEC7970028A065 /* FreeIngotCell.xib */,
+				C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */,
 			);
 			path = FreeCoins;
 			sourceTree = "<group>";
@@ -19207,6 +19227,8 @@
 				CA23524D16EB296400C88082 /* common_dialog_close_btn@2x.png in Resources */,
 				C29D1A4B16EDD62B0095328D /* FreeIngotController.xib in Resources */,
 				C29D1A5516EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
+				C203C45916EEC7970028A065 /* FreeIngotCell.xib in Resources */,
+				C203C45E16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20086,6 +20108,8 @@
 				CA23524E16EB296500C88082 /* common_dialog_close_btn@2x.png in Resources */,
 				C29D1A4C16EDD62B0095328D /* FreeIngotController.xib in Resources */,
 				C29D1A5616EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
+				C203C45A16EEC7970028A065 /* FreeIngotCell.xib in Resources */,
+				C203C45F16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21014,6 +21038,8 @@
 				A4B3B3F816ED7CA400EBF8DA /* zhifubao@2x.png in Resources */,
 				C29D1A4916EDD62B0095328D /* FreeIngotController.xib in Resources */,
 				C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
+				C203C45716EEC7970028A065 /* FreeIngotCell.xib in Resources */,
+				C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21872,6 +21898,8 @@
 				CA23524716EB296300C88082 /* common_dialog_close_btn@2x.png in Resources */,
 				C29D1A4A16EDD62B0095328D /* FreeIngotController.xib in Resources */,
 				C29D1A5416EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
+				C203C45816EEC7970028A065 /* FreeIngotCell.xib in Resources */,
+				C203C45D16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22635,6 +22663,7 @@
 				C28C0A7516EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
+				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23379,6 +23408,7 @@
 				C28C0A7616EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
+				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24126,6 +24156,7 @@
 				C28C0A7316EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
+				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24878,6 +24909,7 @@
 				C28C0A7416EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
+				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

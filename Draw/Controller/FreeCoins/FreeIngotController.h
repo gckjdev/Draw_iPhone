@@ -6,8 +6,8 @@
 //
 //
 
-#import "PPViewController.h"
+#import "PPTableViewController.h"
 
-@interface FreeIngotController : PPViewController
+@interface FreeIngotController : PPTableViewController
 
 @end

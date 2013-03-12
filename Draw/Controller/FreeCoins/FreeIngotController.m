@@ -7,6 +7,7 @@
 //
 
 #import "FreeIngotController.h"
+#import "GameBasic.pb.h"
 
 @interface FreeIngotController ()
 
