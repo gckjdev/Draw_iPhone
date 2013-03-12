@@ -6960,6 +6960,8 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
+		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
+		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
@@ -10387,6 +10389,8 @@
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
+		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
+		EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreCell~ipad.xib"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
@@ -13241,9 +13245,11 @@
 				A491415416E47ECF00106265 /* StoreCell.h */,
 				A491415516E47ECF00106265 /* StoreCell.m */,
 				A491415616E47ECF00106265 /* StoreCell.xib */,
+				EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */,
 				A491415716E47ECF00106265 /* StoreController.h */,
 				A491415816E47ECF00106265 /* StoreController.m */,
 				A491415916E47ECF00106265 /* StoreController.xib */,
+				EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */,
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
@@ -21040,6 +21046,8 @@
 				C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45716EEC7970028A065 /* FreeIngotCell.xib in Resources */,
 				C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
+				EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */,
+				EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
