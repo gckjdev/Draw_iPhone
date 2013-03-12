@@ -33,7 +33,6 @@ typedef void (^UseItemResultHandler)(int resultCode, int itemId, NSString *toOpu
 - (int)countOfItem:(int)itemId;
 - (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount;
 
-
 - (void)buyItem:(int)itemId
           count:(int)count
      totalPrice:(int)totalPrice

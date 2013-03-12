@@ -50,17 +50,26 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 typedef enum {
   PBDrawItemTypeNomal = 0,
   PBDrawItemTypeTool = 1,
-  PBDrawItemTypePackage = 2,
 } PBDrawItemType;
 
 BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
 
 typedef enum {
-  PBGameItemSalesTypeOneOff = 1,
-  PBGameItemSalesTypeMultiple = 2,
-} PBGameItemSalesType;
+  PBGameItemConsumeTypeNonConsumable = 1,
+  PBGameItemConsumeTypeAmountConsumable = 2,
+  PBGameItemConsumeTypeTimeConsumable = 3,
+} PBGameItemConsumeType;
 
-BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
+BOOL PBGameItemConsumeTypeIsValidValue(PBGameItemConsumeType value);
+
+typedef enum {
+  PBGameTimeUnitHour = 1,
+  PBGameTimeUnitDay = 2,
+  PBGameTimeUnitMonth = 3,
+  PBGameTimeUnitYear = 4,
+} PBGameTimeUnit;
+
+BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 
 
 @interface GameBasicRoot : NSObject {
@@ -1303,17 +1312,17 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 
 @interface PBPromotionInfo : PBGeneratedMessage {
 @private
-  BOOL hasDiscount_:1;
+  BOOL hasPrice_:1;
   BOOL hasStartDate_:1;
   BOOL hasExpireDate_:1;
-  int32_t discount;
+  int32_t price;
   int32_t startDate;
   int32_t expireDate;
 }
-- (BOOL) hasDiscount;
+- (BOOL) hasPrice;
 - (BOOL) hasStartDate;
 - (BOOL) hasExpireDate;
-@property (readonly) int32_t discount;
+@property (readonly) int32_t price;
 @property (readonly) int32_t startDate;
 @property (readonly) int32_t expireDate;
 
@@ -1351,10 +1360,10 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBPromotionInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBPromotionInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasDiscount;
-- (int32_t) discount;
-- (PBPromotionInfo_Builder*) setDiscount:(int32_t) value;
-- (PBPromotionInfo_Builder*) clearDiscount;
+- (BOOL) hasPrice;
+- (int32_t) price;
+- (PBPromotionInfo_Builder*) setPrice:(int32_t) value;
+- (PBPromotionInfo_Builder*) clearPrice;
 
 - (BOOL) hasStartDate;
 - (int32_t) startDate;
@@ -1372,6 +1381,7 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasItemId_:1;
   BOOL hasType_:1;
   BOOL hasDefaultSaleCount_:1;
+  BOOL hasUsageLife_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasImage_:1;
@@ -1379,10 +1389,12 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   BOOL hasAppleProductId_:1;
   BOOL hasPriceInfo_:1;
   BOOL hasPromotionInfo_:1;
-  BOOL hasSalesType_:1;
+  BOOL hasConsumeType_:1;
+  BOOL hasUsageLifeUnit_:1;
   int32_t itemId;
   int32_t type;
   int32_t defaultSaleCount;
+  int32_t usageLife;
   NSString* name;
   NSString* desc;
   NSString* image;
@@ -1390,13 +1402,13 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
   NSString* appleProductId;
   PBItemPriceInfo* priceInfo;
   PBPromotionInfo* promotionInfo;
-  PBGameItemSalesType salesType;
-  NSMutableArray* mutableSubItemIdsList;
+  PBGameItemConsumeType consumeType;
+  PBGameTimeUnit usageLifeUnit;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
-- (BOOL) hasSalesType;
+- (BOOL) hasConsumeType;
 - (BOOL) hasImage;
 - (BOOL) hasDemoImage;
 - (BOOL) hasType;
@@ -1404,10 +1416,12 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (BOOL) hasPriceInfo;
 - (BOOL) hasPromotionInfo;
 - (BOOL) hasDefaultSaleCount;
+- (BOOL) hasUsageLifeUnit;
+- (BOOL) hasUsageLife;
 @property (readonly) int32_t itemId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
-@property (readonly) PBGameItemSalesType salesType;
+@property (readonly) PBGameItemConsumeType consumeType;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* demoImage;
 @property (readonly) int32_t type;
@@ -1415,8 +1429,8 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @property (readonly, retain) PBItemPriceInfo* priceInfo;
 @property (readonly, retain) PBPromotionInfo* promotionInfo;
 @property (readonly) int32_t defaultSaleCount;
-- (NSArray*) subItemIdsList;
-- (int32_t) subItemIdsAtIndex:(int32_t) index;
+@property (readonly) PBGameTimeUnit usageLifeUnit;
+@property (readonly) int32_t usageLife;
 
 + (PBGameItem*) defaultInstance;
 - (PBGameItem*) defaultInstance;
@@ -1467,10 +1481,10 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItem_Builder*) setDesc:(NSString*) value;
 - (PBGameItem_Builder*) clearDesc;
 
-- (BOOL) hasSalesType;
-- (PBGameItemSalesType) salesType;
-- (PBGameItem_Builder*) setSalesType:(PBGameItemSalesType) value;
-- (PBGameItem_Builder*) clearSalesType;
+- (BOOL) hasConsumeType;
+- (PBGameItemConsumeType) consumeType;
+- (PBGameItem_Builder*) setConsumeType:(PBGameItemConsumeType) value;
+- (PBGameItem_Builder*) clearConsumeType;
 
 - (BOOL) hasImage;
 - (NSString*) image;
@@ -1511,12 +1525,15 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBGameItem_Builder*) setDefaultSaleCount:(int32_t) value;
 - (PBGameItem_Builder*) clearDefaultSaleCount;
 
-- (NSArray*) subItemIdsList;
-- (int32_t) subItemIdsAtIndex:(int32_t) index;
-- (PBGameItem_Builder*) replaceSubItemIdsAtIndex:(int32_t) index with:(int32_t) value;
-- (PBGameItem_Builder*) addSubItemIds:(int32_t) value;
-- (PBGameItem_Builder*) addAllSubItemIds:(NSArray*) values;
-- (PBGameItem_Builder*) clearSubItemIdsList;
+- (BOOL) hasUsageLifeUnit;
+- (PBGameTimeUnit) usageLifeUnit;
+- (PBGameItem_Builder*) setUsageLifeUnit:(PBGameTimeUnit) value;
+- (PBGameItem_Builder*) clearUsageLifeUnit;
+
+- (BOOL) hasUsageLife;
+- (int32_t) usageLife;
+- (PBGameItem_Builder*) setUsageLife:(int32_t) value;
+- (PBGameItem_Builder*) clearUsageLife;
 @end
 
 @interface PBGameItemList : PBGeneratedMessage {
@@ -1714,13 +1731,17 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 @private
   BOOL hasItemId_:1;
   BOOL hasCount_:1;
+  BOOL hasCreateDate_:1;
   int32_t itemId;
   int32_t count;
+  int32_t createDate;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasCount;
+- (BOOL) hasCreateDate;
 @property (readonly) int32_t itemId;
 @property (readonly) int32_t count;
+@property (readonly) int32_t createDate;
 
 + (PBUserItem*) defaultInstance;
 - (PBUserItem*) defaultInstance;
@@ -1765,6 +1786,11 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (int32_t) count;
 - (PBUserItem_Builder*) setCount:(int32_t) value;
 - (PBUserItem_Builder*) clearCount;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBUserItem_Builder*) setCreateDate:(int32_t) value;
+- (PBUserItem_Builder*) clearCreateDate;
 @end
 
 @interface PBUserItemList : PBGeneratedMessage {

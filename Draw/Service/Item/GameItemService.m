@@ -179,12 +179,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     return priceInfo;
 }
 
-+ (PBPromotionInfo *)discount:(int)discount
-                    startDate:(int)startDate
-                   expireDate:(int)expireDate
++ (PBPromotionInfo *)price:(int)price
+                 startDate:(int)startDate
+                expireDate:(int)expireDate
 {
     PBPromotionInfo_Builder *promotionInfoBuilder = [[PBPromotionInfo_Builder alloc] init];
-    [promotionInfoBuilder setDiscount:discount];
+    [promotionInfoBuilder setPrice:price];
     [promotionInfoBuilder setStartDate:startDate];
     [promotionInfoBuilder setExpireDate:expireDate];
     PBPromotionInfo *promotionInfo = [promotionInfoBuilder build];
@@ -208,7 +208,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeRemoveAd];
             [itemBuilder setName:@"kRemoveAd"];
             [itemBuilder setDesc:@"kRemoveAdDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
+
             [itemBuilder setImage:URL_ITEM_IMAGE(@"clean_ad@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -224,7 +225,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeTips];
             [itemBuilder setName:@"kTips"];
             [itemBuilder setDesc:@"kTipsDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
+
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -240,7 +242,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeColor];
             [itemBuilder setName:@"kBuyColor"];
             [itemBuilder setDesc:@"kBuyColor"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"print_oil@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -257,7 +259,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeTomato];
             [itemBuilder setName:@"kTomato"];
             [itemBuilder setDesc:@"kTomatoDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"tomato@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -267,7 +269,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 7 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 7 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -276,7 +278,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ItemTypeFlower];
             [itemBuilder setName:@"kFlower"];
             [itemBuilder setDesc:@"kFlowerDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeMultiple];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"flower@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeNomal];
@@ -287,7 +289,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -296,7 +298,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:PaletteItem];
             [itemBuilder setName:@"kPaletteItem"];
             [itemBuilder setDesc:@"kPaletteItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -307,7 +309,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
         
@@ -316,7 +318,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:PaintPlayerItem];
             [itemBuilder setName:@"kPaintPlayerItem"];
             [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -327,7 +329,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self discount:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
         }
 
@@ -336,7 +338,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ColorStrawItem];
             [itemBuilder setName:@"kStraw"];
             [itemBuilder setDesc:@"kStrawDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -354,7 +356,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:ColorAlphaItem];
             [itemBuilder setName:@"kColorAlphaItem"];
             [itemBuilder setDesc:@"kColorAlphaItemDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -373,7 +375,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:Pen];
             [itemBuilder setName:@"kPen"];
             [itemBuilder setDesc:@"kBrushPenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"brush_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -390,7 +392,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:IcePen];
             [itemBuilder setName:@"kIcePen"];
             [itemBuilder setDesc:@"kIcePenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"cones_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -407,7 +409,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:Quill];
             [itemBuilder setName:@"kQuill"];
             [itemBuilder setDesc:@"kQuillDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"quill_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];
@@ -424,7 +426,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setItemId:WaterPen];
             [itemBuilder setName:@"kWaterPen"];
             [itemBuilder setDesc:@"kWaterPenDescription"];
-            [itemBuilder setSalesType:PBGameItemSalesTypeOneOff];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
             [itemBuilder setImage:URL_ITEM_IMAGE(@"mike_pen@2x.png")];
             //[itemBuilder setDemoImage:nil];
             [itemBuilder setType:PBDrawItemTypeTool];

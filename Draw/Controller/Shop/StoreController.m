@@ -143,7 +143,7 @@ typedef enum{
     
     CustomInfoView *cusInfoView;
     
-    if (item.salesType == PBGameItemSalesTypeOneOff && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
+    if (item.consumeType==PBGameItemConsumeTypeNonConsumable && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
         cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
                                              infoView:buyItemView
                                        hasCloseButton:YES

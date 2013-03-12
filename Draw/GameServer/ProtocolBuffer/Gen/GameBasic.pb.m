@@ -32,16 +32,27 @@ BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value) {
   switch (value) {
     case PBDrawItemTypeNomal:
     case PBDrawItemTypeTool:
-    case PBDrawItemTypePackage:
       return YES;
     default:
       return NO;
   }
 }
-BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value) {
+BOOL PBGameItemConsumeTypeIsValidValue(PBGameItemConsumeType value) {
   switch (value) {
-    case PBGameItemSalesTypeOneOff:
-    case PBGameItemSalesTypeMultiple:
+    case PBGameItemConsumeTypeNonConsumable:
+    case PBGameItemConsumeTypeAmountConsumable:
+    case PBGameItemConsumeTypeTimeConsumable:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value) {
+  switch (value) {
+    case PBGameTimeUnitHour:
+    case PBGameTimeUnitDay:
+    case PBGameTimeUnitMonth:
+    case PBGameTimeUnitYear:
       return YES;
     default:
       return NO;
@@ -5384,20 +5395,20 @@ static PBItemPriceInfo* defaultPBItemPriceInfoInstance = nil;
 @end
 
 @interface PBPromotionInfo ()
-@property int32_t discount;
+@property int32_t price;
 @property int32_t startDate;
 @property int32_t expireDate;
 @end
 
 @implementation PBPromotionInfo
 
-- (BOOL) hasDiscount {
-  return !!hasDiscount_;
+- (BOOL) hasPrice {
+  return !!hasPrice_;
 }
-- (void) setHasDiscount:(BOOL) value {
-  hasDiscount_ = !!value;
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
 }
-@synthesize discount;
+@synthesize price;
 - (BOOL) hasStartDate {
   return !!hasStartDate_;
 }
@@ -5417,7 +5428,7 @@ static PBItemPriceInfo* defaultPBItemPriceInfoInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.discount = 0;
+    self.price = 0;
     self.startDate = 0;
     self.expireDate = 0;
   }
@@ -5436,14 +5447,14 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   return defaultPBPromotionInfoInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasDiscount) {
+  if (!self.hasPrice) {
     return NO;
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasDiscount) {
-    [output writeInt32:1 value:self.discount];
+  if (self.hasPrice) {
+    [output writeInt32:1 value:self.price];
   }
   if (self.hasStartDate) {
     [output writeInt32:2 value:self.startDate];
@@ -5460,8 +5471,8 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   }
 
   size = 0;
-  if (self.hasDiscount) {
-    size += computeInt32Size(1, self.discount);
+  if (self.hasPrice) {
+    size += computeInt32Size(1, self.price);
   }
   if (self.hasStartDate) {
     size += computeInt32Size(2, self.startDate);
@@ -5544,8 +5555,8 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   if (other == [PBPromotionInfo defaultInstance]) {
     return self;
   }
-  if (other.hasDiscount) {
-    [self setDiscount:other.discount];
+  if (other.hasPrice) {
+    [self setPrice:other.price];
   }
   if (other.hasStartDate) {
     [self setStartDate:other.startDate];
@@ -5575,7 +5586,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
         break;
       }
       case 8: {
-        [self setDiscount:[input readInt32]];
+        [self setPrice:[input readInt32]];
         break;
       }
       case 16: {
@@ -5589,20 +5600,20 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     }
   }
 }
-- (BOOL) hasDiscount {
-  return result.hasDiscount;
+- (BOOL) hasPrice {
+  return result.hasPrice;
 }
-- (int32_t) discount {
-  return result.discount;
+- (int32_t) price {
+  return result.price;
 }
-- (PBPromotionInfo_Builder*) setDiscount:(int32_t) value {
-  result.hasDiscount = YES;
-  result.discount = value;
+- (PBPromotionInfo_Builder*) setPrice:(int32_t) value {
+  result.hasPrice = YES;
+  result.price = value;
   return self;
 }
-- (PBPromotionInfo_Builder*) clearDiscount {
-  result.hasDiscount = NO;
-  result.discount = 0;
+- (PBPromotionInfo_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = 0;
   return self;
 }
 - (BOOL) hasStartDate {
@@ -5643,7 +5654,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property int32_t itemId;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
-@property PBGameItemSalesType salesType;
+@property PBGameItemConsumeType consumeType;
 @property (retain) NSString* image;
 @property (retain) NSString* demoImage;
 @property int32_t type;
@@ -5651,7 +5662,8 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property (retain) PBItemPriceInfo* priceInfo;
 @property (retain) PBPromotionInfo* promotionInfo;
 @property int32_t defaultSaleCount;
-@property (retain) NSMutableArray* mutableSubItemIdsList;
+@property PBGameTimeUnit usageLifeUnit;
+@property int32_t usageLife;
 @end
 
 @implementation PBGameItem
@@ -5677,13 +5689,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasDesc_ = !!value;
 }
 @synthesize desc;
-- (BOOL) hasSalesType {
-  return !!hasSalesType_;
+- (BOOL) hasConsumeType {
+  return !!hasConsumeType_;
 }
-- (void) setHasSalesType:(BOOL) value {
-  hasSalesType_ = !!value;
+- (void) setHasConsumeType:(BOOL) value {
+  hasConsumeType_ = !!value;
 }
-@synthesize salesType;
+@synthesize consumeType;
 - (BOOL) hasImage {
   return !!hasImage_;
 }
@@ -5733,7 +5745,20 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasDefaultSaleCount_ = !!value;
 }
 @synthesize defaultSaleCount;
-@synthesize mutableSubItemIdsList;
+- (BOOL) hasUsageLifeUnit {
+  return !!hasUsageLifeUnit_;
+}
+- (void) setHasUsageLifeUnit:(BOOL) value {
+  hasUsageLifeUnit_ = !!value;
+}
+@synthesize usageLifeUnit;
+- (BOOL) hasUsageLife {
+  return !!hasUsageLife_;
+}
+- (void) setHasUsageLife:(BOOL) value {
+  hasUsageLife_ = !!value;
+}
+@synthesize usageLife;
 - (void) dealloc {
   self.name = nil;
   self.desc = nil;
@@ -5742,7 +5767,6 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   self.appleProductId = nil;
   self.priceInfo = nil;
   self.promotionInfo = nil;
-  self.mutableSubItemIdsList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5750,7 +5774,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.itemId = 0;
     self.name = @"";
     self.desc = @"";
-    self.salesType = PBGameItemSalesTypeOneOff;
+    self.consumeType = PBGameItemConsumeTypeNonConsumable;
     self.image = @"";
     self.demoImage = @"";
     self.type = 0;
@@ -5758,6 +5782,8 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.priceInfo = [PBItemPriceInfo defaultInstance];
     self.promotionInfo = [PBPromotionInfo defaultInstance];
     self.defaultSaleCount = 0;
+    self.usageLifeUnit = PBGameTimeUnitHour;
+    self.usageLife = 0;
   }
   return self;
 }
@@ -5772,13 +5798,6 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 }
 - (PBGameItem*) defaultInstance {
   return defaultPBGameItemInstance;
-}
-- (NSArray*) subItemIdsList {
-  return mutableSubItemIdsList;
-}
-- (int32_t) subItemIdsAtIndex:(int32_t) index {
-  id value = [mutableSubItemIdsList objectAtIndex:index];
-  return [value intValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasItemId) {
@@ -5809,8 +5828,8 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDesc) {
     [output writeString:3 value:self.desc];
   }
-  if (self.hasSalesType) {
-    [output writeEnum:5 value:self.salesType];
+  if (self.hasConsumeType) {
+    [output writeEnum:5 value:self.consumeType];
   }
   if (self.hasImage) {
     [output writeString:11 value:self.image];
@@ -5833,8 +5852,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDefaultSaleCount) {
     [output writeInt32:30 value:self.defaultSaleCount];
   }
-  for (NSNumber* value in self.mutableSubItemIdsList) {
-    [output writeInt32:50 value:[value intValue]];
+  if (self.hasUsageLifeUnit) {
+    [output writeEnum:50 value:self.usageLifeUnit];
+  }
+  if (self.hasUsageLife) {
+    [output writeInt32:51 value:self.usageLife];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5854,8 +5876,8 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDesc) {
     size += computeStringSize(3, self.desc);
   }
-  if (self.hasSalesType) {
-    size += computeEnumSize(5, self.salesType);
+  if (self.hasConsumeType) {
+    size += computeEnumSize(5, self.consumeType);
   }
   if (self.hasImage) {
     size += computeStringSize(11, self.image);
@@ -5878,13 +5900,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDefaultSaleCount) {
     size += computeInt32Size(30, self.defaultSaleCount);
   }
-  {
-    int32_t dataSize = 0;
-    for (NSNumber* value in self.mutableSubItemIdsList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
-    }
-    size += dataSize;
-    size += 2 * self.mutableSubItemIdsList.count;
+  if (self.hasUsageLifeUnit) {
+    size += computeEnumSize(50, self.usageLifeUnit);
+  }
+  if (self.hasUsageLife) {
+    size += computeInt32Size(51, self.usageLife);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5970,8 +5990,8 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasDesc) {
     [self setDesc:other.desc];
   }
-  if (other.hasSalesType) {
-    [self setSalesType:other.salesType];
+  if (other.hasConsumeType) {
+    [self setConsumeType:other.consumeType];
   }
   if (other.hasImage) {
     [self setImage:other.image];
@@ -5994,11 +6014,11 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasDefaultSaleCount) {
     [self setDefaultSaleCount:other.defaultSaleCount];
   }
-  if (other.mutableSubItemIdsList.count > 0) {
-    if (result.mutableSubItemIdsList == nil) {
-      result.mutableSubItemIdsList = [NSMutableArray array];
-    }
-    [result.mutableSubItemIdsList addObjectsFromArray:other.mutableSubItemIdsList];
+  if (other.hasUsageLifeUnit) {
+    [self setUsageLifeUnit:other.usageLifeUnit];
+  }
+  if (other.hasUsageLife) {
+    [self setUsageLife:other.usageLife];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -6035,8 +6055,8 @@ static PBGameItem* defaultPBGameItemInstance = nil;
       }
       case 40: {
         int32_t value = [input readEnum];
-        if (PBGameItemSalesTypeIsValidValue(value)) {
-          [self setSalesType:value];
+        if (PBGameItemConsumeTypeIsValidValue(value)) {
+          [self setConsumeType:value];
         } else {
           [unknownFields mergeVarintField:5 value:value];
         }
@@ -6081,7 +6101,16 @@ static PBGameItem* defaultPBGameItemInstance = nil;
         break;
       }
       case 400: {
-        [self addSubItemIds:[input readInt32]];
+        int32_t value = [input readEnum];
+        if (PBGameTimeUnitIsValidValue(value)) {
+          [self setUsageLifeUnit:value];
+        } else {
+          [unknownFields mergeVarintField:50 value:value];
+        }
+        break;
+      }
+      case 408: {
+        [self setUsageLife:[input readInt32]];
         break;
       }
     }
@@ -6135,20 +6164,20 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   result.desc = @"";
   return self;
 }
-- (BOOL) hasSalesType {
-  return result.hasSalesType;
+- (BOOL) hasConsumeType {
+  return result.hasConsumeType;
 }
-- (PBGameItemSalesType) salesType {
-  return result.salesType;
+- (PBGameItemConsumeType) consumeType {
+  return result.consumeType;
 }
-- (PBGameItem_Builder*) setSalesType:(PBGameItemSalesType) value {
-  result.hasSalesType = YES;
-  result.salesType = value;
+- (PBGameItem_Builder*) setConsumeType:(PBGameItemConsumeType) value {
+  result.hasConsumeType = YES;
+  result.consumeType = value;
   return self;
 }
-- (PBGameItem_Builder*) clearSalesType {
-  result.hasSalesType = NO;
-  result.salesType = PBGameItemSalesTypeOneOff;
+- (PBGameItem_Builder*) clearConsumeType {
+  result.hasConsumeType = NO;
+  result.consumeType = PBGameItemConsumeTypeNonConsumable;
   return self;
 }
 - (BOOL) hasImage {
@@ -6291,35 +6320,36 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   result.defaultSaleCount = 0;
   return self;
 }
-- (NSArray*) subItemIdsList {
-  if (result.mutableSubItemIdsList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableSubItemIdsList;
+- (BOOL) hasUsageLifeUnit {
+  return result.hasUsageLifeUnit;
 }
-- (int32_t) subItemIdsAtIndex:(int32_t) index {
-  return [result subItemIdsAtIndex:index];
+- (PBGameTimeUnit) usageLifeUnit {
+  return result.usageLifeUnit;
 }
-- (PBGameItem_Builder*) replaceSubItemIdsAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutableSubItemIdsList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+- (PBGameItem_Builder*) setUsageLifeUnit:(PBGameTimeUnit) value {
+  result.hasUsageLifeUnit = YES;
+  result.usageLifeUnit = value;
   return self;
 }
-- (PBGameItem_Builder*) addSubItemIds:(int32_t) value {
-  if (result.mutableSubItemIdsList == nil) {
-    result.mutableSubItemIdsList = [NSMutableArray array];
-  }
-  [result.mutableSubItemIdsList addObject:[NSNumber numberWithInt:value]];
+- (PBGameItem_Builder*) clearUsageLifeUnit {
+  result.hasUsageLifeUnit = NO;
+  result.usageLifeUnit = PBGameTimeUnitHour;
   return self;
 }
-- (PBGameItem_Builder*) addAllSubItemIds:(NSArray*) values {
-  if (result.mutableSubItemIdsList == nil) {
-    result.mutableSubItemIdsList = [NSMutableArray array];
-  }
-  [result.mutableSubItemIdsList addObjectsFromArray:values];
+- (BOOL) hasUsageLife {
+  return result.hasUsageLife;
+}
+- (int32_t) usageLife {
+  return result.usageLife;
+}
+- (PBGameItem_Builder*) setUsageLife:(int32_t) value {
+  result.hasUsageLife = YES;
+  result.usageLife = value;
   return self;
 }
-- (PBGameItem_Builder*) clearSubItemIdsList {
-  result.mutableSubItemIdsList = nil;
+- (PBGameItem_Builder*) clearUsageLife {
+  result.hasUsageLife = NO;
+  result.usageLife = 0;
   return self;
 }
 @end
@@ -7104,6 +7134,7 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
 @interface PBUserItem ()
 @property int32_t itemId;
 @property int32_t count;
+@property int32_t createDate;
 @end
 
 @implementation PBUserItem
@@ -7122,6 +7153,13 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
   hasCount_ = !!value;
 }
 @synthesize count;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
 - (void) dealloc {
   [super dealloc];
 }
@@ -7129,6 +7167,7 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
   if ((self = [super init])) {
     self.itemId = 0;
     self.count = 0;
+    self.createDate = 0;
   }
   return self;
 }
@@ -7148,9 +7187,6 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   if (!self.hasItemId) {
     return NO;
   }
-  if (!self.hasCount) {
-    return NO;
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -7159,6 +7195,9 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   }
   if (self.hasCount) {
     [output writeInt32:2 value:self.count];
+  }
+  if (self.hasCreateDate) {
+    [output writeInt32:51 value:self.createDate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -7174,6 +7213,9 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   }
   if (self.hasCount) {
     size += computeInt32Size(2, self.count);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(51, self.createDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7256,6 +7298,9 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   if (other.hasCount) {
     [self setCount:other.count];
   }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7283,6 +7328,10 @@ static PBUserItem* defaultPBUserItemInstance = nil;
       }
       case 16: {
         [self setCount:[input readInt32]];
+        break;
+      }
+      case 408: {
+        [self setCreateDate:[input readInt32]];
         break;
       }
     }
@@ -7318,6 +7367,22 @@ static PBUserItem* defaultPBUserItemInstance = nil;
 - (PBUserItem_Builder*) clearCount {
   result.hasCount = NO;
   result.count = 0;
+  return self;
+}
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBUserItem_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBUserItem_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
   return self;
 }
 @end
@@ -7622,9 +7687,6 @@ static PBLocalizeString* defaultPBLocalizeStringInstance = nil;
 }
 - (BOOL) isInitialized {
   if (!self.hasLanguageCode) {
-    return NO;
-  }
-  if (!self.hasText) {
     return NO;
   }
   if (!self.hasLocalizedText) {
