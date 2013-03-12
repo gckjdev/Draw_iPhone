@@ -2,6 +2,8 @@
 
 #import "ProtocolBuffers.h"
 
+@class PBApp;
+@class PBApp_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBGameItem;
@@ -18,6 +20,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
@@ -1819,5 +1823,157 @@ BOOL PBGameItemSalesTypeIsValidValue(PBGameItemSalesType value);
 - (PBUserItemList_Builder*) addUserItems:(PBUserItem*) value;
 - (PBUserItemList_Builder*) addAllUserItems:(NSArray*) values;
 - (PBUserItemList_Builder*) clearUserItemsList;
+@end
+
+@interface PBLocalizeString : PBGeneratedMessage {
+@private
+  BOOL hasLanguageCode_:1;
+  BOOL hasText_:1;
+  BOOL hasLocalizedText_:1;
+  NSString* languageCode;
+  NSString* text;
+  NSString* localizedText;
+}
+- (BOOL) hasLanguageCode;
+- (BOOL) hasText;
+- (BOOL) hasLocalizedText;
+@property (readonly, retain) NSString* languageCode;
+@property (readonly, retain) NSString* text;
+@property (readonly, retain) NSString* localizedText;
+
++ (PBLocalizeString*) defaultInstance;
+- (PBLocalizeString*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLocalizeString_Builder*) builder;
++ (PBLocalizeString_Builder*) builder;
++ (PBLocalizeString_Builder*) builderWithPrototype:(PBLocalizeString*) prototype;
+
++ (PBLocalizeString*) parseFromData:(NSData*) data;
++ (PBLocalizeString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input;
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLocalizeString_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLocalizeString* result;
+}
+
+- (PBLocalizeString*) defaultInstance;
+
+- (PBLocalizeString_Builder*) clear;
+- (PBLocalizeString_Builder*) clone;
+
+- (PBLocalizeString*) build;
+- (PBLocalizeString*) buildPartial;
+
+- (PBLocalizeString_Builder*) mergeFrom:(PBLocalizeString*) other;
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasLanguageCode;
+- (NSString*) languageCode;
+- (PBLocalizeString_Builder*) setLanguageCode:(NSString*) value;
+- (PBLocalizeString_Builder*) clearLanguageCode;
+
+- (BOOL) hasText;
+- (NSString*) text;
+- (PBLocalizeString_Builder*) setText:(NSString*) value;
+- (PBLocalizeString_Builder*) clearText;
+
+- (BOOL) hasLocalizedText;
+- (NSString*) localizedText;
+- (PBLocalizeString_Builder*) setLocalizedText:(NSString*) value;
+- (PBLocalizeString_Builder*) clearLocalizedText;
+@end
+
+@interface PBApp : PBGeneratedMessage {
+@private
+  BOOL hasAppId_:1;
+  BOOL hasDownloadUrl_:1;
+  BOOL hasLogo_:1;
+  NSString* appId;
+  NSString* downloadUrl;
+  NSString* logo;
+  NSMutableArray* mutableNameList;
+  NSMutableArray* mutableDescList;
+}
+- (BOOL) hasAppId;
+- (BOOL) hasDownloadUrl;
+- (BOOL) hasLogo;
+@property (readonly, retain) NSString* appId;
+@property (readonly, retain) NSString* downloadUrl;
+@property (readonly, retain) NSString* logo;
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (NSArray*) descList;
+- (PBLocalizeString*) descAtIndex:(int32_t) index;
+
++ (PBApp*) defaultInstance;
+- (PBApp*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBApp_Builder*) builder;
++ (PBApp_Builder*) builder;
++ (PBApp_Builder*) builderWithPrototype:(PBApp*) prototype;
+
++ (PBApp*) parseFromData:(NSData*) data;
++ (PBApp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBApp*) parseFromInputStream:(NSInputStream*) input;
++ (PBApp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBApp_Builder : PBGeneratedMessage_Builder {
+@private
+  PBApp* result;
+}
+
+- (PBApp*) defaultInstance;
+
+- (PBApp_Builder*) clear;
+- (PBApp_Builder*) clone;
+
+- (PBApp*) build;
+- (PBApp*) buildPartial;
+
+- (PBApp_Builder*) mergeFrom:(PBApp*) other;
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (PBApp_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBApp_Builder*) addName:(PBLocalizeString*) value;
+- (PBApp_Builder*) addAllName:(NSArray*) values;
+- (PBApp_Builder*) clearNameList;
+
+- (BOOL) hasAppId;
+- (NSString*) appId;
+- (PBApp_Builder*) setAppId:(NSString*) value;
+- (PBApp_Builder*) clearAppId;
+
+- (NSArray*) descList;
+- (PBLocalizeString*) descAtIndex:(int32_t) index;
+- (PBApp_Builder*) replaceDescAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBApp_Builder*) addDesc:(PBLocalizeString*) value;
+- (PBApp_Builder*) addAllDesc:(NSArray*) values;
+- (PBApp_Builder*) clearDescList;
+
+- (BOOL) hasDownloadUrl;
+- (NSString*) downloadUrl;
+- (PBApp_Builder*) setDownloadUrl:(NSString*) value;
+- (PBApp_Builder*) clearDownloadUrl;
+
+- (BOOL) hasLogo;
+- (NSString*) logo;
+- (PBApp_Builder*) setLogo:(NSString*) value;
+- (PBApp_Builder*) clearLogo;
 @end
 

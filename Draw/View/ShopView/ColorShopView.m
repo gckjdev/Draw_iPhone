@@ -197,10 +197,13 @@
        [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
            if (resultCode == UIS_SUCCESS) {
                [bself buyColorSuccess];
+           } else {
+               [bself  buyColorFailed];
            }
        }];
     }
 }
+
 
 - (void)buyColorSuccess
 {
@@ -232,6 +235,11 @@
     willBuyGroup = nil;
 }
 
+- (void)buyColorFailed
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kBuyColorFailed") style:CommonDialogStyleSingleButton delegate:nil];
+    [dialog showInView:self];
+}
 
 
 - (void)dealloc {

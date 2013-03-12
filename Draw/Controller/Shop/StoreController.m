@@ -320,6 +320,13 @@ typedef enum{
     }
 }
 
+#pragma mark -
+#pragma ColorShopViewDelegate method
+- (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
+{
+    [self updateBalance];
+}
+
 @end
 
 

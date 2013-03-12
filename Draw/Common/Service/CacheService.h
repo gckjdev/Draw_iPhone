@@ -10,4 +10,7 @@
 
 @interface CacheService : CommonService
 
+- (void)cleanDrawCacheSuccBlock:(void (^)(void))succBlock
+                      failBlock:(void (^)(void))failBlock;
+
 @end

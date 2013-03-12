@@ -68,7 +68,7 @@
 
 #define DRAW_BACKGROUND         @"draw_main_bg@2x.jpg" //@"wood_bg@2x.png"
 #define DICE_BACKGROUND         @"draw_main_bg@2x.jpg"
-#define ZJH_BACKGROUND          @"zjh_bg@2x.jpg"
+#define ZJH_BACKGROUND          @"draw_main_bg@2x.jpg"
 #define CANDY_BACKGROUND        @""
 
 

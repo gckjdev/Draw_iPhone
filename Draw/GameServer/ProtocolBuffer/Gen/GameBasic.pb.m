@@ -7565,3 +7565,651 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
 }
 @end
 
+@interface PBLocalizeString ()
+@property (retain) NSString* languageCode;
+@property (retain) NSString* text;
+@property (retain) NSString* localizedText;
+@end
+
+@implementation PBLocalizeString
+
+- (BOOL) hasLanguageCode {
+  return !!hasLanguageCode_;
+}
+- (void) setHasLanguageCode:(BOOL) value {
+  hasLanguageCode_ = !!value;
+}
+@synthesize languageCode;
+- (BOOL) hasText {
+  return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+  hasText_ = !!value;
+}
+@synthesize text;
+- (BOOL) hasLocalizedText {
+  return !!hasLocalizedText_;
+}
+- (void) setHasLocalizedText:(BOOL) value {
+  hasLocalizedText_ = !!value;
+}
+@synthesize localizedText;
+- (void) dealloc {
+  self.languageCode = nil;
+  self.text = nil;
+  self.localizedText = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.languageCode = @"";
+    self.text = @"";
+    self.localizedText = @"";
+  }
+  return self;
+}
+static PBLocalizeString* defaultPBLocalizeStringInstance = nil;
++ (void) initialize {
+  if (self == [PBLocalizeString class]) {
+    defaultPBLocalizeStringInstance = [[PBLocalizeString alloc] init];
+  }
+}
++ (PBLocalizeString*) defaultInstance {
+  return defaultPBLocalizeStringInstance;
+}
+- (PBLocalizeString*) defaultInstance {
+  return defaultPBLocalizeStringInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasLanguageCode) {
+    return NO;
+  }
+  if (!self.hasText) {
+    return NO;
+  }
+  if (!self.hasLocalizedText) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasLanguageCode) {
+    [output writeString:1 value:self.languageCode];
+  }
+  if (self.hasText) {
+    [output writeString:2 value:self.text];
+  }
+  if (self.hasLocalizedText) {
+    [output writeString:3 value:self.localizedText];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasLanguageCode) {
+    size += computeStringSize(1, self.languageCode);
+  }
+  if (self.hasText) {
+    size += computeStringSize(2, self.text);
+  }
+  if (self.hasLocalizedText) {
+    size += computeStringSize(3, self.localizedText);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBLocalizeString*) parseFromData:(NSData*) data {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromData:data] build];
+}
++ (PBLocalizeString*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromInputStream:input] build];
+}
++ (PBLocalizeString*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromCodedInputStream:input] build];
+}
++ (PBLocalizeString*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLocalizeString*)[[[PBLocalizeString builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLocalizeString_Builder*) builder {
+  return [[[PBLocalizeString_Builder alloc] init] autorelease];
+}
++ (PBLocalizeString_Builder*) builderWithPrototype:(PBLocalizeString*) prototype {
+  return [[PBLocalizeString builder] mergeFrom:prototype];
+}
+- (PBLocalizeString_Builder*) builder {
+  return [PBLocalizeString builder];
+}
+@end
+
+@interface PBLocalizeString_Builder()
+@property (retain) PBLocalizeString* result;
+@end
+
+@implementation PBLocalizeString_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBLocalizeString alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBLocalizeString_Builder*) clear {
+  self.result = [[[PBLocalizeString alloc] init] autorelease];
+  return self;
+}
+- (PBLocalizeString_Builder*) clone {
+  return [PBLocalizeString builderWithPrototype:result];
+}
+- (PBLocalizeString*) defaultInstance {
+  return [PBLocalizeString defaultInstance];
+}
+- (PBLocalizeString*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBLocalizeString*) buildPartial {
+  PBLocalizeString* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBLocalizeString_Builder*) mergeFrom:(PBLocalizeString*) other {
+  if (other == [PBLocalizeString defaultInstance]) {
+    return self;
+  }
+  if (other.hasLanguageCode) {
+    [self setLanguageCode:other.languageCode];
+  }
+  if (other.hasText) {
+    [self setText:other.text];
+  }
+  if (other.hasLocalizedText) {
+    [self setLocalizedText:other.localizedText];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBLocalizeString_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setLanguageCode:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setText:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setLocalizedText:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasLanguageCode {
+  return result.hasLanguageCode;
+}
+- (NSString*) languageCode {
+  return result.languageCode;
+}
+- (PBLocalizeString_Builder*) setLanguageCode:(NSString*) value {
+  result.hasLanguageCode = YES;
+  result.languageCode = value;
+  return self;
+}
+- (PBLocalizeString_Builder*) clearLanguageCode {
+  result.hasLanguageCode = NO;
+  result.languageCode = @"";
+  return self;
+}
+- (BOOL) hasText {
+  return result.hasText;
+}
+- (NSString*) text {
+  return result.text;
+}
+- (PBLocalizeString_Builder*) setText:(NSString*) value {
+  result.hasText = YES;
+  result.text = value;
+  return self;
+}
+- (PBLocalizeString_Builder*) clearText {
+  result.hasText = NO;
+  result.text = @"";
+  return self;
+}
+- (BOOL) hasLocalizedText {
+  return result.hasLocalizedText;
+}
+- (NSString*) localizedText {
+  return result.localizedText;
+}
+- (PBLocalizeString_Builder*) setLocalizedText:(NSString*) value {
+  result.hasLocalizedText = YES;
+  result.localizedText = value;
+  return self;
+}
+- (PBLocalizeString_Builder*) clearLocalizedText {
+  result.hasLocalizedText = NO;
+  result.localizedText = @"";
+  return self;
+}
+@end
+
+@interface PBApp ()
+@property (retain) NSMutableArray* mutableNameList;
+@property (retain) NSString* appId;
+@property (retain) NSMutableArray* mutableDescList;
+@property (retain) NSString* downloadUrl;
+@property (retain) NSString* logo;
+@end
+
+@implementation PBApp
+
+@synthesize mutableNameList;
+- (BOOL) hasAppId {
+  return !!hasAppId_;
+}
+- (void) setHasAppId:(BOOL) value {
+  hasAppId_ = !!value;
+}
+@synthesize appId;
+@synthesize mutableDescList;
+- (BOOL) hasDownloadUrl {
+  return !!hasDownloadUrl_;
+}
+- (void) setHasDownloadUrl:(BOOL) value {
+  hasDownloadUrl_ = !!value;
+}
+@synthesize downloadUrl;
+- (BOOL) hasLogo {
+  return !!hasLogo_;
+}
+- (void) setHasLogo:(BOOL) value {
+  hasLogo_ = !!value;
+}
+@synthesize logo;
+- (void) dealloc {
+  self.mutableNameList = nil;
+  self.appId = nil;
+  self.mutableDescList = nil;
+  self.downloadUrl = nil;
+  self.logo = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.appId = @"";
+    self.downloadUrl = @"";
+    self.logo = @"";
+  }
+  return self;
+}
+static PBApp* defaultPBAppInstance = nil;
++ (void) initialize {
+  if (self == [PBApp class]) {
+    defaultPBAppInstance = [[PBApp alloc] init];
+  }
+}
++ (PBApp*) defaultInstance {
+  return defaultPBAppInstance;
+}
+- (PBApp*) defaultInstance {
+  return defaultPBAppInstance;
+}
+- (NSArray*) nameList {
+  return mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  id value = [mutableNameList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) descList {
+  return mutableDescList;
+}
+- (PBLocalizeString*) descAtIndex:(int32_t) index {
+  id value = [mutableDescList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasAppId) {
+    return NO;
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBLocalizeString* element in self.descList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBLocalizeString* element in self.nameList) {
+    [output writeMessage:1 value:element];
+  }
+  if (self.hasAppId) {
+    [output writeString:2 value:self.appId];
+  }
+  for (PBLocalizeString* element in self.descList) {
+    [output writeMessage:3 value:element];
+  }
+  if (self.hasDownloadUrl) {
+    [output writeString:4 value:self.downloadUrl];
+  }
+  if (self.hasLogo) {
+    [output writeString:5 value:self.logo];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBLocalizeString* element in self.nameList) {
+    size += computeMessageSize(1, element);
+  }
+  if (self.hasAppId) {
+    size += computeStringSize(2, self.appId);
+  }
+  for (PBLocalizeString* element in self.descList) {
+    size += computeMessageSize(3, element);
+  }
+  if (self.hasDownloadUrl) {
+    size += computeStringSize(4, self.downloadUrl);
+  }
+  if (self.hasLogo) {
+    size += computeStringSize(5, self.logo);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBApp*) parseFromData:(NSData*) data {
+  return (PBApp*)[[[PBApp builder] mergeFromData:data] build];
+}
++ (PBApp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBApp*)[[[PBApp builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBApp*) parseFromInputStream:(NSInputStream*) input {
+  return (PBApp*)[[[PBApp builder] mergeFromInputStream:input] build];
+}
++ (PBApp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBApp*)[[[PBApp builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBApp*)[[[PBApp builder] mergeFromCodedInputStream:input] build];
+}
++ (PBApp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBApp*)[[[PBApp builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBApp_Builder*) builder {
+  return [[[PBApp_Builder alloc] init] autorelease];
+}
++ (PBApp_Builder*) builderWithPrototype:(PBApp*) prototype {
+  return [[PBApp builder] mergeFrom:prototype];
+}
+- (PBApp_Builder*) builder {
+  return [PBApp builder];
+}
+@end
+
+@interface PBApp_Builder()
+@property (retain) PBApp* result;
+@end
+
+@implementation PBApp_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBApp alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBApp_Builder*) clear {
+  self.result = [[[PBApp alloc] init] autorelease];
+  return self;
+}
+- (PBApp_Builder*) clone {
+  return [PBApp builderWithPrototype:result];
+}
+- (PBApp*) defaultInstance {
+  return [PBApp defaultInstance];
+}
+- (PBApp*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBApp*) buildPartial {
+  PBApp* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBApp_Builder*) mergeFrom:(PBApp*) other {
+  if (other == [PBApp defaultInstance]) {
+    return self;
+  }
+  if (other.mutableNameList.count > 0) {
+    if (result.mutableNameList == nil) {
+      result.mutableNameList = [NSMutableArray array];
+    }
+    [result.mutableNameList addObjectsFromArray:other.mutableNameList];
+  }
+  if (other.hasAppId) {
+    [self setAppId:other.appId];
+  }
+  if (other.mutableDescList.count > 0) {
+    if (result.mutableDescList == nil) {
+      result.mutableDescList = [NSMutableArray array];
+    }
+    [result.mutableDescList addObjectsFromArray:other.mutableDescList];
+  }
+  if (other.hasDownloadUrl) {
+    [self setDownloadUrl:other.downloadUrl];
+  }
+  if (other.hasLogo) {
+    [self setLogo:other.logo];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBApp_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addName:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        [self setAppId:[input readString]];
+        break;
+      }
+      case 26: {
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDesc:[subBuilder buildPartial]];
+        break;
+      }
+      case 34: {
+        [self setDownloadUrl:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setLogo:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) nameList {
+  if (result.mutableNameList == nil) { return [NSArray array]; }
+  return result.mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  return [result nameAtIndex:index];
+}
+- (PBApp_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableNameList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBApp_Builder*) addAllName:(NSArray*) values {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObjectsFromArray:values];
+  return self;
+}
+- (PBApp_Builder*) clearNameList {
+  result.mutableNameList = nil;
+  return self;
+}
+- (PBApp_Builder*) addName:(PBLocalizeString*) value {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObject:value];
+  return self;
+}
+- (BOOL) hasAppId {
+  return result.hasAppId;
+}
+- (NSString*) appId {
+  return result.appId;
+}
+- (PBApp_Builder*) setAppId:(NSString*) value {
+  result.hasAppId = YES;
+  result.appId = value;
+  return self;
+}
+- (PBApp_Builder*) clearAppId {
+  result.hasAppId = NO;
+  result.appId = @"";
+  return self;
+}
+- (NSArray*) descList {
+  if (result.mutableDescList == nil) { return [NSArray array]; }
+  return result.mutableDescList;
+}
+- (PBLocalizeString*) descAtIndex:(int32_t) index {
+  return [result descAtIndex:index];
+}
+- (PBApp_Builder*) replaceDescAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableDescList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBApp_Builder*) addAllDesc:(NSArray*) values {
+  if (result.mutableDescList == nil) {
+    result.mutableDescList = [NSMutableArray array];
+  }
+  [result.mutableDescList addObjectsFromArray:values];
+  return self;
+}
+- (PBApp_Builder*) clearDescList {
+  result.mutableDescList = nil;
+  return self;
+}
+- (PBApp_Builder*) addDesc:(PBLocalizeString*) value {
+  if (result.mutableDescList == nil) {
+    result.mutableDescList = [NSMutableArray array];
+  }
+  [result.mutableDescList addObject:value];
+  return self;
+}
+- (BOOL) hasDownloadUrl {
+  return result.hasDownloadUrl;
+}
+- (NSString*) downloadUrl {
+  return result.downloadUrl;
+}
+- (PBApp_Builder*) setDownloadUrl:(NSString*) value {
+  result.hasDownloadUrl = YES;
+  result.downloadUrl = value;
+  return self;
+}
+- (PBApp_Builder*) clearDownloadUrl {
+  result.hasDownloadUrl = NO;
+  result.downloadUrl = @"";
+  return self;
+}
+- (BOOL) hasLogo {
+  return result.hasLogo;
+}
+- (NSString*) logo {
+  return result.logo;
+}
+- (PBApp_Builder*) setLogo:(NSString*) value {
+  result.hasLogo = YES;
+  result.logo = value;
+  return self;
+}
+- (PBApp_Builder*) clearLogo {
+  result.hasLogo = NO;
+  result.logo = @"";
+  return self;
+}
+@end
+

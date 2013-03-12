@@ -90,7 +90,7 @@
 
 #pragma mark - Charge Ingot
 
-- (void)buyIngot:(PriceModel*)price;
+- (void)buyIngot:(PBSaleIngot*)price;
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source;

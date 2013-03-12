@@ -5,6 +5,8 @@
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
 
+@class PBApp;
+@class PBApp_Builder;
 @class PBColor;
 @class PBColor_Builder;
 @class PBCommentInfo;
@@ -47,6 +49,8 @@
 @class PBLayoutList;
 @class PBLayoutList_Builder;
 @class PBLayout_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;

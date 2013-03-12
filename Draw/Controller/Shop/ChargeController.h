@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "ChargeCell.h"
+#import "AccountService.h"
 
-@interface ChargeController : PPTableViewController
+@interface ChargeController : PPTableViewController<ChargeCellDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
 
 @end
