@@ -58,13 +58,9 @@ typedef enum{
 
 - (void)updateItemData
 {
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    [[GameItemService sharedGameItemService] updateItemListWithType:PBDrawItemTypeNomal handler:^(BOOL success, NSArray *itemsList) {
-        if (success) {
-            [bself reloadTableViewDataSource];
-        }else{
-            
-        }
+    __block typeof(self) bself = self;
+    [[GameItemService defaultService] syncData:^(BOOL success, NSArray *itemsList) {
+        [bself reloadTableViewDataSource];
     }];
 }
 
@@ -143,7 +139,7 @@ typedef enum{
     
     CustomInfoView *cusInfoView;
     
-    if (item.consumeType==PBGameItemConsumeTypeNonConsumable && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
+    if ([[UserGameItemService defaultService] canBuyItemAgain:item]) {
         cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
                                              infoView:buyItemView
                                        hasCloseButton:YES
@@ -291,29 +287,17 @@ typedef enum{
 
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
-{
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    GameItemService *service = [GameItemService sharedGameItemService];
-    GetItemsListResultHandler handler = ^(BOOL success, NSArray *itemsList) {
-        if (success) {
-            [bself finishLoadDataForTabID:tabID resultList:itemsList];
-        }else{
-            [bself failLoadDataForTabID:tabID];
-        }
-    };
-
-    
+{    
     switch (tabID) {
         case TabIDNormal:
-            [service getItemsListWithType:PBDrawItemTypeNomal resultHandler:handler];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeNomal]];
             break;
         case TabIDTool:
-            [service getItemsListWithType:PBDrawItemTypeTool resultHandler:handler];
-            break;
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeTool]];            break;
             
         case TabIDPromotion:
-            [service getPromotingItemsList:handler];
-            break;
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getPromotingItemsList]];
+             break;
             
         default:
             break;
