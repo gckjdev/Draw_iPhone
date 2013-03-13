@@ -6963,6 +6963,10 @@
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
+		EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
+		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
+		EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
@@ -10389,6 +10393,10 @@
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
+		EA1F283516F093F700066E37 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
+		EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
+		EA1F283916F0941E00066E37 /* PriceView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PriceView~ipad.xib"; sourceTree = "<group>"; };
 		EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GiftDetailView.xib; sourceTree = "<group>"; };
 		EA23F5FA16E878070018786B /* ChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeCell.h; sourceTree = "<group>"; };
 		EA23F5FB16E878070018786B /* ChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeCell.m; sourceTree = "<group>"; };
@@ -13244,9 +13252,11 @@
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
+				EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */,
 				A491423C16E6E2E300106265 /* PriceView.h */,
 				A491423D16E6E2E300106265 /* PriceView.m */,
 				A491423E16E6E2E300106265 /* PriceView.xib */,
+				EA1F283916F0941E00066E37 /* PriceView~ipad.xib */,
 				A491415416E47ECF00106265 /* StoreCell.h */,
 				A491415516E47ECF00106265 /* StoreCell.m */,
 				A491415616E47ECF00106265 /* StoreCell.xib */,
@@ -13289,9 +13299,11 @@
 				A42AB80716E8364B007AD01E /* ChargeController.h */,
 				A42AB80816E8364B007AD01E /* ChargeController.m */,
 				A42AB80916E8364C007AD01E /* ChargeController.xib */,
+				EA1F283516F093F700066E37 /* ChargeController~ipad.xib */,
 				EA23F5FA16E878070018786B /* ChargeCell.h */,
 				EA23F5FB16E878070018786B /* ChargeCell.m */,
 				EA23F5FC16E878070018786B /* ChargeCell.xib */,
+				EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */,
 				A42AB81416E87119007AD01E /* BuyItemView.h */,
 				A42AB81516E8711A007AD01E /* BuyItemView.m */,
 				A42AB86716E98072007AD01E /* BuyItemView.xib */,
@@ -21064,6 +21076,10 @@
 				C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 				EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */,
 				EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */,
+				EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */,
+				EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */,
+				EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */,
+				EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
