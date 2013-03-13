@@ -31,9 +31,10 @@
     return @"StoreCell";
 }
 
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (166) : (83))
 + (CGFloat)getCellHeight
 {
-    return 82;
+    return CELL_HEIHT;
 }
 
 - (void)addPriceView

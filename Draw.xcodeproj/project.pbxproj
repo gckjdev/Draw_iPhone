@@ -5111,10 +5111,6 @@
 		CA853C0E16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
 		CA853C0F16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
 		CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8815CE1657447800E29BB1 /* libicucore.dylib */; };
-		CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
-		CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
-		CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
-		CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */; };
 		CA881A4E16EB278A0085F57B /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A4216EB278A0085F57B /* Offscreen.m */; };
 		CA881A4F16EB278A0085F57B /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A4216EB278A0085F57B /* Offscreen.m */; };
 		CA881A5016EB278A0085F57B /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A4216EB278A0085F57B /* Offscreen.m */; };
@@ -5277,6 +5273,14 @@
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
 		CAB3DBDE1516DACD00E7DBC4 /* SelectWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */; };
+		CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
+		CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
+		CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
+		CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
+		CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
+		CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
+		CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
+		CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
 		CAB5C70116994F0200A4CE3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CAB5C70216994F0200A4CE3B /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CAB5C70316994F0200A4CE3B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
@@ -6960,6 +6964,8 @@
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
+		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
+		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
@@ -9788,8 +9794,6 @@
 		CA853C0616B3A472006FC155 /* BoardAdminListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardAdminListView.xib; sourceTree = "<group>"; };
 		CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BoardAdminListView~ipad.xib"; sourceTree = "<group>"; };
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
-		CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
 		CA881A4116EB278A0085F57B /* Offscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offscreen.h; sourceTree = "<group>"; };
 		CA881A4216EB278A0085F57B /* Offscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offscreen.m; sourceTree = "<group>"; };
 		CA881A4316EB278A0085F57B /* OffscreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffscreenManager.h; sourceTree = "<group>"; };
@@ -9962,6 +9966,10 @@
 		CAB3DBDA1516DACD00E7DBC4 /* SelectWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordCell.h; sourceTree = "<group>"; };
 		CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordCell.m; sourceTree = "<group>"; };
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
+		CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
+		CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
+		CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcGestureRecognizer.h; sourceTree = "<group>"; };
+		CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcGestureRecognizer.m; sourceTree = "<group>"; };
 		CAB5CC9916994F0200A4CE3B /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
@@ -10387,6 +10395,8 @@
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
+		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
+		EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreCell~ipad.xib"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
@@ -12211,10 +12221,9 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CAB5325C16F0232B008FD307 /* GestureRecognizer */,
 				CA881A4016EB278A0085F57B /* OffScreen */,
 				CA881A4516EB278A0085F57B /* TouchHandler */,
-				CA881A0916E9DA010085F57B /* GestureRecognizerManager.h */,
-				CA881A0A16E9DA010085F57B /* GestureRecognizerManager.m */,
 				CA051DAF1546802D00D0A00A /* DrawView.h */,
 				CA051DB01546802D00D0A00A /* DrawView.m */,
 				CA051DB11546802D00D0A00A /* ShowDrawView.h */,
@@ -13241,9 +13250,11 @@
 				A491415416E47ECF00106265 /* StoreCell.h */,
 				A491415516E47ECF00106265 /* StoreCell.m */,
 				A491415616E47ECF00106265 /* StoreCell.xib */,
+				EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */,
 				A491415716E47ECF00106265 /* StoreController.h */,
 				A491415816E47ECF00106265 /* StoreController.m */,
 				A491415916E47ECF00106265 /* StoreController.xib */,
+				EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */,
 				CA322182151F62C00039A384 /* CoinShopController.h */,
 				CA322183151F62C00039A384 /* CoinShopController.m */,
 				CA322184151F62C00039A384 /* CoinShopController.xib */,
@@ -16415,6 +16426,17 @@
 			);
 			name = Ad;
 			path = YoumiWall;
+			sourceTree = "<group>";
+		};
+		CAB5325C16F0232B008FD307 /* GestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */,
+				CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */,
+				CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */,
+				CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */,
+			);
+			path = GestureRecognizer;
 			sourceTree = "<group>";
 		};
 		CAB5DE4A1669FF7600A23011 /* Creation */ = {
@@ -21040,6 +21062,8 @@
 				C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45716EEC7970028A065 /* FreeIngotCell.xib in Resources */,
 				C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
+				EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */,
+				EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22632,7 +22656,6 @@
 				CA683A5416DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A6016DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */,
-				CA881A0D16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
 				CA23518D16EB0DD800C88082 /* CustomInfoView.m in Sources */,
 				CA23518F16EB0DD800C88082 /* PriceView.m in Sources */,
 				CA23519116EB0DD800C88082 /* StoreCell.m in Sources */,
@@ -22664,6 +22687,8 @@
 				C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
+				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
+				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23377,7 +23402,6 @@
 				CA683A5516DF403D002178FC /* EllipseShape.m in Sources */,
 				CA683A6116DF4074002178FC /* StarShape.m in Sources */,
 				CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */,
-				CA881A0E16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
 				CA23520F16EB0DDF00C88082 /* CustomInfoView.m in Sources */,
 				CA23521116EB0DDF00C88082 /* PriceView.m in Sources */,
 				CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */,
@@ -23409,6 +23433,8 @@
 				C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
+				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
+				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24128,7 +24154,6 @@
 				A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */,
 				A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */,
 				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
-				CA881A0B16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
 				CA23514716EB0DD200C88082 /* CustomInfoView.m in Sources */,
 				CA23514916EB0DD200C88082 /* PriceView.m in Sources */,
 				CA23514B16EB0DD200C88082 /* StoreCell.m in Sources */,
@@ -24157,6 +24182,8 @@
 				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
+				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
+				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24881,7 +24908,6 @@
 				CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */,
 				CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
-				CA881A0C16E9DA010085F57B /* GestureRecognizerManager.m in Sources */,
 				CA2351D916EB0DDB00C88082 /* CustomInfoView.m in Sources */,
 				CA2351DB16EB0DDB00C88082 /* PriceView.m in Sources */,
 				CA2351DD16EB0DDB00C88082 /* StoreCell.m in Sources */,
@@ -24910,6 +24936,8 @@
 				C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
+				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
+				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

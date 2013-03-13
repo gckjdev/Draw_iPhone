@@ -9,5 +9,7 @@
 #import "PPTableViewCell.h"
 
 @interface FreeIngotCell : PPTableViewCell
+@property (retain, nonatomic) IBOutlet UIImageView *appImageView;
+
 
 @end
