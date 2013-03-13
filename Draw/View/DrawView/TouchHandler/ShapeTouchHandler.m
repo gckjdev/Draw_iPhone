@@ -78,6 +78,10 @@
     [self.drawView setNeedsDisplay];
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
+        if (action) {
+            [self.drawView clearRedoStack];
+        }
+
         [self reset];
     }
 }

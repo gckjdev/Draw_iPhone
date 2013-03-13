@@ -32,8 +32,10 @@ static inline CGPoint CGPointVector(CGPoint p1, CGPoint p2)
 }
 
 
-#define DETECT_POINT_NUMBER 3
-#define DETECT_RADIAN 0.2
+#define DETECT_POINT_NUMBER 4
+#define DETECT_RADIAN 0.08
+#define SUM_RADIAN 1.5
+#define MIN_RADIAN 0.05
 
 @interface TouchTrace : NSObject
 {
@@ -127,7 +129,7 @@ static inline CGPoint CGPointVector(CGPoint p1, CGPoint p2)
 
 - (BOOL)isCircle
 {
-//    NSLog(@"<isCircle> %d TT count = %d, radian = %f",_index, count, self.radian);
+    NSLog(@"<isCircle> %d TT count = %d, radian = %f",_index, count, self.radian);
     return (count >= DETECT_POINT_NUMBER) && (self.radian >= DETECT_RADIAN);
 }
 
@@ -253,6 +255,19 @@ static inline CGPoint CGPointVector(CGPoint p1, CGPoint p2)
     }
 }
 
+- (BOOL)isCircle
+{
+    BOOL flag = [tTrace1 isCircle] && [tTrace2 isCircle];
+    if (!flag && [tTrace1 pointCount] == DETECT_POINT_NUMBER && [tTrace2 pointCount] == DETECT_POINT_NUMBER) {
+        CGFloat sum = [tTrace1 radian] + [tTrace2 radian];
+        PPDebug(@"[tTrace1 radian] = %f, [tTrace2 radian] = %f, sum = %f",[tTrace1 radian], [tTrace2 radian], sum);
+//        if (sum >= SUM_RADIAN) {
+//            
+//        }
+        flag = (sum >=  SUM_RADIAN) && (MIN(tTrace1.radian, tTrace2.radian) >= MIN_RADIAN);
+    }
+    return flag;
+}
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesMoved:touches withEvent:event];
@@ -267,7 +282,7 @@ static inline CGPoint CGPointVector(CGPoint p1, CGPoint p2)
             [self startWith:touches];
             _isTwoFingers = YES;
         }else if(_isTwoFingers){
-            if ([tTrace1 isCircle] || [tTrace2 isCircle]) {
+            if ([self isCircle]) {
                 self.state = UIGestureRecognizerStateBegan;
 //                NSLog(@"========BEGAN=========");
             }else if([tTrace1 pointCount] >= DETECT_POINT_NUMBER || [tTrace2 pointCount] >= DETECT_POINT_NUMBER){
