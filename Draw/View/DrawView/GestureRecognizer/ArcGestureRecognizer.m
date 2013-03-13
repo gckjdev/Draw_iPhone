@@ -7,29 +7,7 @@
 //
 
 #import "ArcGestureRecognizer.h"
-static inline CGFloat CGPointDistance(CGPoint p1, CGPoint p2)
-{
-    return sqrtf(powf(p1.x - p2.x, 2) + powf(p1.y - p2.y, 2));
-}
-
-static inline CGFloat CGPointRadian(CGPoint p1, CGPoint p2)
-{
-    CGFloat d = (CGPointDistance(p1, CGPointZero) * CGPointDistance(p2, CGPointZero));
-    if (d == 0) {
-        return 0;
-    }
-    CGFloat cosx = (p1.x * p2.x + p1.y * p2.y) / d;
-    CGFloat ret = acosf(cosx);
-    if (isnan(ret)) {
-        return 0;
-    }
-    return ret;
-}
-
-static inline CGPoint CGPointVector(CGPoint p1, CGPoint p2)
-{
-    return CGPointMake(p2.x - p1.x, p2.y - p1.y);
-}
+#import "DrawUtils.h"
 
 
 #define DETECT_POINT_NUMBER 4
