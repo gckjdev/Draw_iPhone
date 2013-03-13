@@ -1054,6 +1054,10 @@
 "kItemNormal" = "Normal";
 "kItemTool" = "Tool";
 "kItemPromotion" = "Promotion";
+"kDownloadRewardAppTips" = "Download these apps to earn some ingots";
+"kRewardWallTips" = "Enter and download apps to earn some ingots";
+"kFreeIngot" = "Free Ingot";
+"kGoToBBS4Help" = "For help? Go to BBS";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

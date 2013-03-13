@@ -94,7 +94,7 @@ enum {
 - (NSString*)titleForSection:(int)section
 {
     if (section == SECTION_FRIEND_APP) {
-        return NSLS(@"kDownLoadRewardAppTips");
+        return NSLS(@"kDownloadRewardAppTips");
     }
     if (section == SECTION_WALL) {
         return NSLS(@"kRewardWallTips");
