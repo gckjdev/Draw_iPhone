@@ -66,6 +66,8 @@ typedef enum{
 - (void)revoke:(dispatch_block_t)finishBlock; //undo
 - (BOOL)canRedo;
 - (void)redo;
+- (void)undo;
 - (void)showDraft:(MyPaint *)draft;
+- (void)clearRedoStack;
 
 @end

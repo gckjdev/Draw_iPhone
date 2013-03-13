@@ -7,10 +7,13 @@
 //
 
 #import "GestureRecognizerManager.h"
+#import "ArcGestureRecognizer.h"
 
 @interface GestureRecognizerManager()
 {
     CGFloat lastScale;
+    CGFloat lastRadian;
+    BOOL lastDirection;
 }
 
 @end
@@ -53,6 +56,59 @@
     [view addGestureRecognizer:doubleTap];
     return [doubleTap autorelease];
 
+}
+
+- (ArcGestureRecognizer *)addArcGestureRecognizerToView:(UIView *)view
+{
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    view.multipleTouchEnabled = YES;
+    ArcGestureRecognizer *arcGesture = [[ArcGestureRecognizer alloc] initWithTarget:self action:@selector(handleArcGesture:)];
+    [view addGestureRecognizer:arcGesture];
+    return [arcGesture autorelease];
+}
+
+#define REDO_UNDO_RADIAN 1
+
+- (void)handleArcGesture:(ArcGestureRecognizer *)gestureRecognizer
+{
+    [self stateCallBack:gestureRecognizer];
+    if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+        PPDebug(@"=======================<handleArcGesture> began!!!=======================");
+        lastRadian = 0;
+    }
+    if ([gestureRecognizer state] == UIGestureRecognizerStateChanged) {
+        BOOL direction = [gestureRecognizer direction];
+//        PPDebug(@"<DIRECTION> %@", direction ? @">>>>>>>>>" : @"<<<<<<<<<<<");
+        if (direction != lastDirection) {
+            lastDirection = direction;
+            lastRadian = 0;
+        }else{
+            if (gestureRecognizer.radian - lastRadian >= REDO_UNDO_RADIAN) {
+                lastRadian = gestureRecognizer.radian;
+                PPDebug(@"Radian = %f",gestureRecognizer.radian);
+                SEL selector = NULL;
+                if (direction) {
+                    PPDebug(@">>>>> clock wise redo >>>>>");
+                    selector = @selector(redo);
+                }else{
+                    selector = @selector(undo);
+                    PPDebug(@"<<<<<< anti clock wise undo <<<<<");
+                }
+                if ([gestureRecognizer.view respondsToSelector:selector]) {
+                    [gestureRecognizer.view performSelector:selector];
+                }
+            }
+        }
+        
+//        NSString *dir = [gestureRecognizer direction] ? @">>>>>>>>>>>>>>" : @"<<<<<<<<<<<<<";
+//        PPDebug(@"direction = %@, radian = %f", dir, gestureRecognizer.radian);
+    }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
+             [gestureRecognizer state] == UIGestureRecognizerStateCancelled){
+        
+    }else if(gestureRecognizer.state == UIGestureRecognizerStateFailed){
+        PPDebug(@"=======================<handleArcGesture> failed!!!=======================");
+    }
+    
 }
 
 - (void)stateCallBack:(UIGestureRecognizer *)gesture

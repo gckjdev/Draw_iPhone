@@ -227,10 +227,18 @@
     }
 }
 
+
+- (void)undo
+{
+    [self revoke:NULL];
+}
+
 - (BOOL)canRedo
 {
     return ![_redoStack isEmpty];
 }
+
+
 - (void)redo
 {
     if ([self canRedo]) {
@@ -277,7 +285,7 @@
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
 {
-    PPDebug(@"<didGestureBegan>");
+    PPDebug(@"gestureRecognizer = %@ <didGestureBegan>", [gestureRecognizer class]);
     if (![gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         [self.touchHandler handleFailTouch];
     }

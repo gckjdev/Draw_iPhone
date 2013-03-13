@@ -8,7 +8,8 @@
 
 #import "SuperDrawView.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "DrawView.h"
+#import "ArcGestureRecognizer.h"
 
 @interface SuperDrawView()
 {
@@ -52,9 +53,15 @@
         self.backgroundColor = [UIColor whiteColor];
         _scale = 1;
         _gestureRecognizerManager = [[GestureRecognizerManager alloc] init];
-        [_gestureRecognizerManager addPanGestureReconizerToView:self];
-        [_gestureRecognizerManager addPinchGestureReconizerToView:self];
-        [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
+        UIGestureRecognizer *pan = [_gestureRecognizerManager addPanGestureReconizerToView:self];
+        UIGestureRecognizer *pinch = [_gestureRecognizerManager addPinchGestureReconizerToView:self];
+        UIGestureRecognizer *doubleTap = [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
+        if ([self isKindOfClass:[DrawView class]]) {
+            UIGestureRecognizer *arc = [_gestureRecognizerManager addArcGestureRecognizerToView:self];
+            [pan requireGestureRecognizerToFail:arc];
+            
+        }
+
     }
     return self;
 }

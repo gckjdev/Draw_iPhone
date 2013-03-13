@@ -85,6 +85,9 @@
             [self addPoint:point];
             [action.paint finishAddPoint];
             [self addAction:action];
+            if (action) {
+                [self.drawView clearRedoStack];
+            }
             [self reset];
             break;
         }

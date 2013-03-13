@@ -25,7 +25,7 @@
 
 @implementation BuyItemView
 
-AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
+AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 - (void)dealloc {
     [_item release];
@@ -38,30 +38,34 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
 
 + (id)createWithItem:(PBGameItem *)item
 {
-    BuyItemView *view  = [self createView];
+    BuyItemView *view;
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+            view = [self createViewWithIndex:0];
+            view.count = 1;
+            break;
+            
+        case PBGameItemConsumeTypeAmountConsumable:
+            view = [self createViewWithIndex:1];
+            view.count = item.defaultSaleCount;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            view = [self createViewWithIndex:2];
+            view.count = 1;
+            break;
+            
+        default:
+            break;
+    }
+    
     
     view.item = item;
     
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
-    detailView.userInteractionEnabled = NO;
     [view addSubview:detailView];
     
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:item.priceInfo.currency];
-    
-    
-    if (item.consumeType == PBGameItemConsumeTypeAmountConsumable) {
-        view.count = 10;
-    }
-    
-    if (item.consumeType == PBGameItemConsumeTypeNonConsumable){
-        view.count = 1;
-        [view updateHeight:(view.frame.size.height - view.buyInfoView.frame.size.height)];
-        [view.buyInfoView removeFromSuperview];
-    }
-    
-    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
-        // TODO:
-    }
     
     [view update];
     
@@ -112,7 +116,5 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
     [dialog showInView:[self rootView]];
 }
-
-
 
 @end
