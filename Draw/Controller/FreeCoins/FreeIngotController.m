@@ -11,6 +11,8 @@
 #import "FreeIngotCell.h"
 #import "GameConfigDataManager.h"
 #import "ShareImageManager.h"
+#import "Config.pb.h"
+#import "LmWallService.h"
 
 #define SECTION_COUNT 2
 
@@ -124,6 +126,19 @@ enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return SECTION_COUNT;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
+        PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
+        [UIUtils openURL:appReward.app.downloadUrl];
+    } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
+        PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
+        if (rewardWall.type == 0) {
+            [[LmWallService defaultService] show:self];
+        }
+    }
 }
 
 - (IBAction)clickBackButton:(id)sender
