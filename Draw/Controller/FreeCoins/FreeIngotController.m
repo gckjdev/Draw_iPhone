@@ -103,12 +103,15 @@ enum {
 }
 
 #define HEADER_FRAME ([DeviceDetection isIPAD]?CGRectMake(0,0,768,61):CGRectMake(0,0,320,36))
+#define HEADER_FONT ([DeviceDetection isIPAD]?30:15)
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIButton* btn = [[UIButton alloc] initWithFrame:HEADER_FRAME];
     [btn setBackgroundImage:[[ShareImageManager defaultManager] freeIngotHeaderBg] forState:UIControlStateNormal];
     [btn setTitle:[self titleForSection:section] forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:HEADER_FONT]];
+    [btn setTitleColor:[UIColor colorWithRed:81/255.0 green:45/255.0 blue:7/255.0 alpha:1] forState:UIControlStateNormal];
     return btn;
     
 }
