@@ -556,7 +556,5 @@
 + (CommonNetworkOutput *)useItem:(NSString *)baseURL
                            appId:(NSString *)appId
                           userId:(NSString *)userId
-                          itemId:(int)itemId
-                        toOpusId:(NSString *)toOpusId;
-
+                          itemId:(int)itemId;
 @end

@@ -75,9 +75,6 @@
           awardExp:(int)awardAmount;
 
 - (BOOL)hasEnoughCoins:(int)amount;
-//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
-
-- (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
 - (int)checkIn;
 
@@ -86,11 +83,11 @@
 - (int)rewardForShareWeibo;
 
 - (void)awardAccount:(int)amount 
-            source:(BalanceSourceType)source;
+              source:(BalanceSourceType)source;
 
 #pragma mark - Charge Ingot
 
-- (void)buyIngot:(PriceModel*)price;
+- (void)buyIngot:(PBSaleIngot*)price;
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source;

@@ -17,6 +17,8 @@
 #import "PBGameItemUtils.h"
 #import "UserItemInfo.h"
 #import "UserManager.h"
+#import "BlockUtils.h"
+#import "GameItemService.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -86,6 +88,42 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     return [[[self userItemWithItemId:itemId] pbUserItem] count];
 }
 
+- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount
+{
+    return [self countOfItem:itemId] >= amount;
+}
+
+- (BOOL)hasItem:(int)itemId
+{
+    return [self hasEnoughItemAmount:itemId amount:1];
+}
+
+- (BOOL)canBuyItemNow:(PBGameItem *)item
+{
+    if (![self hasEnoughItemAmount:item.itemId amount:1]) {
+        return YES;
+    }
+    
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+            return NO;
+            break;
+            
+        case PBGameItemConsumeTypeAmountConsumable:
+            return YES;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            return [item isExpire];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return NO;
+}
+
 - (PBUserItem *)pbUserItemWithItemId:(int)itemId
 {
     PBUserItem_Builder *builder = [[[PBUserItem_Builder alloc] init] autorelease];
@@ -116,22 +154,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     [self setItem:itemId count:MAX([self countOfItem:itemId]-count, 0)];
 }
 
+
 - (void)buyItem:(int)itemId
+         toUser:(NSString *)toUserId
           count:(int)count
      totalPrice:(int)totalPrice
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
     if (count <= 0) {
-        handler(UIS_BAD_PARAMETER, nil, count, [[UserManager defaultManager] userId]);
+        if (handler != NULL) {
+            handler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+        }
         return;
     }
     
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
-    
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        handler(UIS_BALANCE_NOT_ENOUGH, nil, count, [[UserManager defaultManager] userId]);
+        if (handler != NULL) {
+            handler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        }
         return;
     }
     
@@ -139,128 +182,144 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:[[UserManager defaultManager] userId]];
+        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
-        if (output.resultCode == 0) {
-            int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-            int ingotsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-            [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
-            [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
+        if (output.resultCode == ERROR_SUCCESS) {
+
+            NSNumber *coinsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
+            NSNumber *ingotsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE];
+            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+
+            if (coinsCount !=nil) {
+                [[AccountManager defaultManager] updateBalance:[coinsCount intValue] currency:PBGameCurrencyCoin];
+            }
             
-            [bself increaseItem:itemId count:count];
+            if (ingotsCount != nil) {
+                [[AccountManager defaultManager] updateBalance:[ingotsCount intValue] currency:PBGameCurrencyIngot];
+            }
+            
+            if (toUserId == nil || [toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
+                for (NSDictionary* dic in itemsCountArray){
+                    int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
+                    int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
+                    
+                    [bself setItem:itemId count:itemCount];
+                }
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            UserGameItemServiceResultCode resultCode = 0;
-            if (output.resultCode != 0) {
-                resultCode = ERROR_NETWORK;
-            }
-            
-            if (handler) {
-                handler(output.resultCode, nil, count, [[UserManager defaultManager] userId]);
+            if (handler != NULL) {
+                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
             }
         });
     });
 }
 
+
+// for buy color.
+- (void)buyItem:(int)itemId
+          count:(int)count
+     totalPrice:(int)totalPrice
+       currency:(PBGameCurrency)currency
+        handler:(BuyItemResultHandler)handler
+{
+    [self buyItem:itemId
+           toUser:[[UserManager defaultManager] userId]
+            count:count
+       totalPrice:totalPrice
+         currency:currency
+          handler:handler];
+}
+
+
+// new interface for buy item.
 - (void)buyItem:(PBGameItem*)item
           count:(int)count
         handler:(BuyItemResultHandler)handler
 {
-    
-    if (count <= 0) {
-        handler(UIS_BAD_PARAMETER, item, count, [[UserManager defaultManager] userId]);
-        return;
-    }
-    
-    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:item.priceInfo.currency];
-    int totalPrice = [item promotionPrice] * count;
-
-    if (balance < totalPrice) {
-        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        handler(UIS_BALANCE_NOT_ENOUGH, item, count, [[UserManager defaultManager] userId]);
-        return;
-    }
-    
-    __block typeof (self) bself = self;
-    
-    dispatch_async(workingQueue, ^{
-        
-        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:item.itemId count:count price:totalPrice currency:item.priceInfo.currency toUser:[[UserManager defaultManager] userId]];
-        
-        if (output.resultCode == 0) {
-            int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-            int ingotsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-            [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
-            [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
-            
-            [bself increaseItem:item.itemId count:count];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UserGameItemServiceResultCode resultCode = 0;
-            if (output.resultCode != 0) {
-                resultCode = ERROR_NETWORK;
-            }
-            
-            if (handler) {
-                handler(output.resultCode, item, count, [[UserManager defaultManager] userId]);
-            }
-        });
-    });
+    [self buyItem:item.itemId
+            count:count
+       totalPrice:([item promotionPrice] * count)
+         currency:item.priceInfo.currency
+          handler:handler];
 }
+
 
 - (void)giveItem:(PBGameItem *)item
           toUser:(NSString *)toUserId
            count:(int)count
          handler:(BuyItemResultHandler)handler
 {
-    if (count <= 0) {
-        if (handler) {
-            handler(UIS_BAD_PARAMETER, item, count, toUserId);
+    [self buyItem:item.itemId
+           toUser:toUserId
+            count:count
+       totalPrice:([item promotionPrice] * count)
+         currency:item.priceInfo.currency
+          handler:handler];
+}
+
+- (void)consumeItem:(int)itemId
+            handler:(UseItemResultHandler)handler;
+{
+    [self consumeItem:itemId count:1 handler:handler];
+}
+
+- (void)consumeItem:(int)itemId
+              count:(int)count
+            handler:(UseItemResultHandler)handler
+{
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+    if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
+        if (handler != NULL) {
+            handler(UIS_BAD_PARAMETER, itemId);
         }
         return;
     }
     
-    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:item.priceInfo.currency];
-    int totalPrice = [item promotionPrice] * count;
-    
-    if (balance < totalPrice) {
-        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        if (handler) {
-            handler(UIS_BALANCE_NOT_ENOUGH, item, count, toUserId);
+    if (![self hasEnoughItemAmount:itemId amount:count]) {
+        if (handler != NULL) {
+            handler(UIS_ITEM_NOT_ENOUGH, itemId);
         }
         return;
     }
+    
+    __block typeof (self) bself = self;
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest buyItem:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:item.itemId count:count price:totalPrice currency:item.priceInfo.currency toUser:toUserId];
+        CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId];
         
         if (output.resultCode == 0) {
-            int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-            int ingotsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-            [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
-            [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
+            
+            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+            for (NSDictionary* dic in itemsCountArray){
+                int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
+                int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
+                
+                [bself setItem:itemId count:itemCount];
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            UserGameItemServiceResultCode resultCode = 0;
-            if (output.resultCode != 0) {
-                resultCode = ERROR_NETWORK;
-            }
-            if (handler) {
-                handler(output.resultCode, item, count, toUserId);
+            if (handler != NULL) {
+                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId);
             }
         });
     });
 }
 
-- (void)useItem:(PBGameItem *)item
-         toOpus:(NSString *)toOpusId
-        handler:(UseItemResultHandler)handler
+
+- (void)awardItem:(int)itemId
+            count:(int)count
+          handler:(BuyItemResultHandler)handler
 {
-    return;
+    [self buyItem:itemId
+           toUser:[[UserManager defaultManager] userId]
+            count:count
+       totalPrice:0
+         currency:PBGameCurrencyCoin
+          handler:handler];
 }
 
 

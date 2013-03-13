@@ -1073,6 +1073,10 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
+"kDownloadRewardAppTips" = "下载兄弟免费应用可直接赚取元宝";
+"kRewardWallTips" = "其他第三方免费应用，赚取1~10元宝";
+"kFreeIngot" = "免费元宝";
+"kGoToBBS4Help" = "逛逛论坛寻求帮助";
 
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
@@ -1386,4 +1390,28 @@
 
 "kAlreadyBought" = "已购";
 "kBuyColorFailed"= "购买颜色失败";
+
+"kDottedLinePen" = "虚线笔";
+"kDottedLinePenDescription" = "一种可以轻易画出虚线的笔";
+"kSmoothPen" = "平滑笔";
+"kSmoothPenDescription" = "可以画出平滑的线，如秀发般柔顺";
+
+"kTransverseCanvas" = "横版画布";
+"kTransverseCanvasDescription" = "一种横向的画布";
+"kVerticalCanvas" = "竖版画布";
+"kVerticalCanvasDescription" = "一种竖向的画布";
+"kSquareCanvasLarge" = "正方形画布(大)";
+"kSquareCanvasLargeDescription" = "一种正方形的大画布";
+"kTransverseCanvasLarge" = "横版画布(大)";
+"kTransverseCanvasLargeDescription" = "一种横向的大画布";
+"kVerticalCanvasLarge" = "竖版画布(大)";
+"kVerticalCanvasLargeDescription" = "一种竖向的大画布";
+
+"kVeinsBackground" = "纹理背景";
+"kVeinsBackgroundDescription" = "可以为你的画添加纹理背景";
+"kBasicShape" = "基本形状";
+"kBasicShapeDescription" = "可以轻易画出各种基本的形状";
+"kPurseItem" = "钱袋";
+"kPurseItemDescription" = "可以用元宝购买金币";
+
 /*********************** BBS国际化字符串结束 *************************/

@@ -17,6 +17,13 @@
 #import "ItemType.h"
 #import "AccountService.h"
 #import "UserManager.h"
+#import "AdService.h"
+
+typedef enum{
+    TabIDNormal = 100,
+    TabIDTool = 101,
+    TabIDPromotion = 102,
+}TabID;
 
 @interface StoreController ()
 
@@ -49,15 +56,28 @@
     [super viewDidUnload];
 }
 
+- (void)updateItemData
+{
+    __block typeof(self) bself = self;
+    [[GameItemService defaultService] syncData:^(BOOL success, NSArray *itemsList) {
+        [bself reloadTableViewDataSource];
+    }];
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
+
     [super viewDidLoad];
     [self initTabButtons];
+    
+    
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
+    
+    [self  updateItemData];
 }
 
 - (void)updateBalance
@@ -102,69 +122,37 @@
     return cell;
 }
 
+- (void)showColorShopView{
+    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+    colorShop.delegate = self;
+    [colorShop showInView:self.view animated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [self.tabDataList objectAtIndex:indexPath.row];
-    
-    
+    self.selectedItem = item;
+
     if (item.itemId == ItemTypeColor) {
-        ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
-        colorShop.delegate = self;
-        [colorShop showInView:self.view animated:YES];
-        return;
-    }
-    
-    BuyItemView *buyItemView = [BuyItemView createWithItem:item];
-    
-    CustomInfoView *cusInfoView;
-    
-    if (item.salesType == PBGameItemSalesTypeOneOff && [[UserGameItemService defaultService] countOfItem:item.itemId] >=1) {
-        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                             infoView:buyItemView
-                                       hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kGive"), nil];
+        [self showColorShopView];
     }else{
-        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                             infoView:buyItemView
-                                       hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
-    }
-    
-
-
-    [cusInfoView showInView:self.view];
-
-    __block typeof (self) bself = self;
-    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        int count = ((BuyItemView *)infoView).count;
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
-            PPDebug(@"you buy %d %@", count, NSLS(item.name));
-            [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
-            [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
-                if (resultCode == UIS_SUCCESS) {
-                    [cusInfoView dismiss];
-                }else{
-                    [cusInfoView hideActivity];
-                    [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
-                }
-                
-                [self showUserGameItemServiceResult:resultCode
-                                               item:item
-                                              count:count
-                                           toUserId:toUserId];
-            }];
-        }else{
+        __block typeof (self) bself = self;
+        
+        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            if (itemId == ItemTypeRemoveAd) {
+                [[AdService defaultService] disableAd];
+            }
+            [bself updateBalance];
+            [bself showUserGameItemServiceResult:resultCode item:[[GameItemService defaultService] itemWithItemId:itemId] count:count toUserId:toUserId];
+        } giveHandler:^(PBGameItem *item, int count) {
             PPDebug(@"you give %d %@", count, NSLS(item.name));
-            
-            bself.selectedCount = count;
             bself.selectedItem = item;
-            
+            bself.selectedCount = count;
             FriendController *vc = [[[FriendController alloc] initWithDelegate:bself] autorelease];
             [bself.navigationController pushViewController:vc animated:YES];
-        }
-    }];
+        }];
+    }
 }
 
 - (void)showUserGameItemServiceResult:(UserGameItemServiceResultCode)resultCode
@@ -224,26 +212,18 @@
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, PBGameItem *item, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == UIS_SUCCESS) {
                     [cusInfoView dismiss];
                 }
                 [bself showUserGameItemServiceResult:resultCode
-                                               item:item
+                                               item:nil
                                               count:count
                                            toUserId:toUserId];
             }];
         }
     }];
 }
-
-
-typedef enum{
-    TabIDNormal = 100,
-    TabIDTool = 101,
-    TabIDPromotion = 102,
-}TabID;
-
 
 - (NSInteger)tabCount //default 1
 {
@@ -268,33 +248,28 @@ typedef enum{
 
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
-{
-    __block typeof(self) bself = self;    // when use "self" in block, must done like this
-    GameItemService *service = [GameItemService sharedGameItemService];
-    GetItemsListResultHandler handler = ^(BOOL success, NSArray *itemsList) {
-        if (success) {
-            [bself finishLoadDataForTabID:tabID resultList:itemsList];
-        }else{
-            [bself failLoadDataForTabID:tabID];
-        }
-    };
-
-    
+{    
     switch (tabID) {
         case TabIDNormal:
-            [service getItemsListWithType:PBDrawItemTypeNomal resultHandler:handler];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeNomal]];
             break;
         case TabIDTool:
-            [service getItemsListWithType:PBDrawItemTypeTool resultHandler:handler];
-            break;
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeTool]];            break;
             
         case TabIDPromotion:
-            [service getPromotingItemsList:handler];
-            break;
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getPromotingItemsList]];
+             break;
             
         default:
             break;
     }
+}
+
+#pragma mark -
+#pragma ColorShopViewDelegate method
+- (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
+{
+    [self updateBalance];
 }
 
 @end

@@ -53,6 +53,10 @@
 #import "PPSNSIntegerationService.h"
 #import "ShareService.h"
 #import "FileUtil.h"
+#import "BuyItemView.h"
+#import "CustomInfoView.h"
+#import "UserGameItemService.h"
+#import "GameItemService.h"
 
 @interface OfflineDrawViewController()
 {
@@ -474,7 +478,7 @@
 
 
 #define NO_COIN_TAG 201204271
-#define BUY_CONFIRM_TAG 201204272
+
 
 
 #pragma mark - Common Dialog Delegate
@@ -530,12 +534,7 @@
         [self saveDraft:NO];
         [self quit];
     }
-    else if(dialog.tag == BUY_CONFIRM_TAG){
-        [[AccountService defaultService] buyItem:_willBuyPen.penType itemCount:1 itemCoins:_willBuyPen.price];
-        [_willBuyPen setAlpha:1];
-        [drawView setPenType:_willBuyPen.penType];   
-        [PenView savePenType:_willBuyPen.penType];
-    }else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
+    else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
         [self showInputAlertView];
         //TODO click input Alert ok button
@@ -1188,9 +1187,15 @@
         drawView.lineColor = [DrawColor colorWithColor:self.penColor];
         [drawView.lineColor setAlpha:_alpha];
     }else{
-        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
+//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
+        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            
+        }];
     }
+    
 }
+
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
     if (drawView.touchActionType == TouchActionTypeGetColor) {
@@ -1231,7 +1236,11 @@
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
+    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        
+    }];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectShapeType:(ShapeType)type
@@ -1267,21 +1276,6 @@
         [self.inputAlert adjustWithKeyBoardRect:keyboardRect];        
     }
 }
-
-//- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
-//{
-//    PPDebug(@"keyboardWillHideWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-//    [self.inputAlert adjustWithKeyBoardRect:CGRectZero];
-//}
-
-//- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
-//{
-//}
-//
-//- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
-//{
-//}
-
 
 
 @end

@@ -17479,6 +17479,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsUserListList;
 @property (retain) NSMutableArray* mutableWallListList;
 @property (retain) PBWall* wall;
+@property (retain) PBGameUser* user;
 @end
 
 @implementation DataQueryResponse
@@ -17521,6 +17522,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasWall_ = !!value;
 }
 @synthesize wall;
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17534,6 +17542,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsUserListList = nil;
   self.mutableWallListList = nil;
   self.wall = nil;
+  self.user = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17542,6 +17551,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.totalCount = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
+    self.user = [PBGameUser defaultInstance];
   }
   return self;
 }
@@ -17691,6 +17701,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasUser) {
+    if (!self.user.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -17735,6 +17750,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasWall) {
     [output writeMessage:81 value:self.wall];
+  }
+  if (self.hasUser) {
+    [output writeMessage:85 value:self.user];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -17786,6 +17804,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasWall) {
     size += computeMessageSize(81, self.wall);
+  }
+  if (self.hasUser) {
+    size += computeMessageSize(85, self.user);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -17934,6 +17955,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasWall) {
     [self mergeWall:other.wall];
   }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18039,6 +18063,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setWall:[subBuilder buildPartial]];
+        break;
+      }
+      case 682: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
         break;
       }
     }
@@ -18424,6 +18457,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearWall {
   result.hasWall = NO;
   result.wall = [PBWall defaultInstance];
+  return self;
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (DataQueryResponse_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
   return self;
 }
 @end

@@ -32,10 +32,10 @@
     return @"ChargeCell";
 }
 
-
+#define CHARGE_CELL_HEIHT ([DeviceDetection isIPAD] ? (140) : (70))
 + (CGFloat)getCellHeight
 {
-    return 70;
+    return CHARGE_CELL_HEIHT;
 }
 
 - (void)setCellWith:(PBSaleIngot *)saleIngot indexPath:(NSIndexPath *)oneIndexPath

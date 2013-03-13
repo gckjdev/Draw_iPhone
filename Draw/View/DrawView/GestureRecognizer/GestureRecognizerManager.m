@@ -7,15 +7,54 @@
 //
 
 #import "GestureRecognizerManager.h"
+#import "ArcGestureRecognizer.h"
 
 @interface GestureRecognizerManager()
 {
     CGFloat lastScale;
+    CGFloat lastRadian;
+    BOOL lastDirection;
+    NSMutableSet *grSet;
+//    BOOL notScale;
 }
 
 @end
 
 @implementation GestureRecognizerManager
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.capture = YES;
+        grSet = [[NSMutableSet alloc] initWithCapacity:5];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(grSet);
+    [super dealloc];
+}
+
+- (void)setCapture:(BOOL)capture
+{
+    _capture = capture;
+    UIGestureRecognizerState state = UIGestureRecognizerStatePossible;
+    if (!capture) {
+        state = UIGestureRecognizerStateFailed;
+    }
+    for (UIGestureRecognizer *gr in grSet) {
+        gr.state = state;
+    }
+
+}
+
+- (BOOL)canMoveView:(UIView *)view
+{
+    return !CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity);
+}
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view
 {
@@ -28,6 +67,7 @@
     [panGesture setMinimumNumberOfTouches:2];
     [panGesture setDelegate:self];
     [view addGestureRecognizer:panGesture];
+    [grSet addObject:panGesture];
     return [panGesture autorelease];
 }
 
@@ -38,6 +78,7 @@
 
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     [view addGestureRecognizer:pinchGesture];
+    [grSet addObject:pinchGesture];
     return [pinchGesture autorelease];
 }
 
@@ -51,8 +92,63 @@
     [doubleTap setNumberOfTapsRequired:2];
     [doubleTap setNumberOfTouchesRequired:2];
     [view addGestureRecognizer:doubleTap];
+    [grSet addObject:doubleTap];
     return [doubleTap autorelease];
 
+}
+
+- (ArcGestureRecognizer *)addArcGestureRecognizerToView:(UIView *)view
+{
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    view.multipleTouchEnabled = YES;
+    ArcGestureRecognizer *arcGesture = [[ArcGestureRecognizer alloc] initWithTarget:self action:@selector(handleArcGesture:)];
+    [view addGestureRecognizer:arcGesture];
+    [grSet addObject:arcGesture];
+    return [arcGesture autorelease];
+}
+
+#define REDO_UNDO_RADIAN 1
+
+- (void)handleArcGesture:(ArcGestureRecognizer *)gestureRecognizer
+{
+    [self stateCallBack:gestureRecognizer];
+    if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+        PPDebug(@"=======================<handleArcGesture> began!!!=======================");
+        lastRadian = 0;
+    }
+    if ([gestureRecognizer state] == UIGestureRecognizerStateChanged) {
+        BOOL direction = [gestureRecognizer direction];
+//        PPDebug(@"<DIRECTION> %@", direction ? @">>>>>>>>>" : @"<<<<<<<<<<<");
+        if (direction != lastDirection) {
+            lastDirection = direction;
+            lastRadian = 0;
+        }else{
+            if (gestureRecognizer.radian - lastRadian >= REDO_UNDO_RADIAN) {
+                lastRadian = gestureRecognizer.radian;
+                PPDebug(@"Radian = %f",gestureRecognizer.radian);
+                SEL selector = NULL;
+                if (direction) {
+                    PPDebug(@">>>>> clock wise redo >>>>>");
+                    selector = @selector(redo);
+                }else{
+                    selector = @selector(undo);
+                    PPDebug(@"<<<<<< anti clock wise undo <<<<<");
+                }
+                if ([gestureRecognizer.view respondsToSelector:selector]) {
+                    [gestureRecognizer.view performSelector:selector];
+                }
+            }
+        }
+        
+//        NSString *dir = [gestureRecognizer direction] ? @">>>>>>>>>>>>>>" : @"<<<<<<<<<<<<<";
+//        PPDebug(@"direction = %@, radian = %f", dir, gestureRecognizer.radian);
+    }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
+             [gestureRecognizer state] == UIGestureRecognizerStateCancelled){
+        
+    }else if(gestureRecognizer.state == UIGestureRecognizerStateFailed){
+        PPDebug(@"=======================<handleArcGesture> failed!!!=======================");
+    }
+    
 }
 
 - (void)stateCallBack:(UIGestureRecognizer *)gesture
@@ -88,7 +184,7 @@
         
         // Constants to adjust the max/min values of zoom
         const CGFloat kMaxScale = 10;
-        const CGFloat kMinScale = 0.6;
+        const CGFloat kMinScale = 1;
         const CGFloat kSpeed = 0.75;
         
         CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
@@ -160,7 +256,19 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+        return NO;
+    }
     return YES;
 }
-
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (!self.capture) {
+        return NO;
+    }
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+        return NO;
+    }
+    return YES;
+}
 @end

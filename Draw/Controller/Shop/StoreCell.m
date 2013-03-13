@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "UserGameItemService.h"
 #import "ItemType.h"
+#import "PBGameItemUtils.h"
 
 #define TAG_PRICE_VIEW 209
 #define ORIGINY_PRICE_VIEW 13;
@@ -30,9 +31,10 @@
     return @"StoreCell";
 }
 
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (166) : (83))
 + (CGFloat)getCellHeight
 {
-    return 82;
+    return CELL_HEIHT;
 }
 
 - (void)addPriceView
@@ -88,17 +90,22 @@
         self.countButton.hidden = YES;
     }
     
-    if (item.salesType == PBGameItemSalesTypeMultiple) {
+    if (item.consumeType == PBGameItemConsumeTypeAmountConsumable) {
         [self.countButton setTitle:[NSString stringWithFormat:@"%d", count] forState:UIControlStateNormal];
     }
     
-    if (item.salesType == PBGameItemSalesTypeOneOff) {
+    if (item.consumeType == PBGameItemConsumeTypeNonConsumable) {
         if (count >= 1) {
             self.countButton.hidden = NO;
             [self.countButton setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
         }else{
             self.countButton.hidden = YES;
         }
+    }
+    
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        // TODO:
+        
     }
 
 }

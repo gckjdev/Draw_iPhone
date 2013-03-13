@@ -1054,6 +1054,33 @@
 "kItemNormal" = "Normal";
 "kItemTool" = "Tool";
 "kItemPromotion" = "Promotion";
+"kDownloadRewardAppTips" = "Download these apps to earn some ingots";
+"kRewardWallTips" = "Enter and download apps to earn some ingots";
+"kFreeIngot" = "Free Ingot";
+"kGoToBBS4Help" = "For help? Go to BBS";
+
+"kDottedLinePen" = "dotted line pen";
+"kDottedLinePenDescription" = "A can easily draw dotted pen";
+"kSmoothPen" = "smooth pen";
+"kSmoothPenDescription" = "can draw a smooth line, such as hair supple";
+
+"kTransverseCanvas" = "horizontal version of Canvas";
+"kTransverseCanvasDescription" = "a horizontal canvas";
+"kVerticalCanvas" = "vertical version Canvas";
+"kVerticalCanvasDescription" = "a Vertical Canvas";
+"kSquareCanvasLarge" = "square canvas (large)";
+"kSquareCanvasLargeDescription" = "a square canvas";
+"kTransverseCanvasLarge" = "horizontal version of the canvas (large)";
+"kTransverseCanvasLargeDescription" = "a horizontal large canvas";
+"kVerticalCanvasLarge" = "vertical version of the canvas (large)";
+"kVerticalCanvasLargeDescription" = "a Vertical Canvas";
+
+"kVeinsBackground" = "texture background";
+"kVeinsBackgroundDescription" = "can add texture background for your painting";
+"kBasicShape" = "basic shape";
+"kBasicShapeDescription" = "can easily draw the basic shapes";
+"kPurseItem" = "pockets";
+"kPurseItemDescription" = "can buy gold bullions";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

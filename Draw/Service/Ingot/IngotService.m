@@ -43,6 +43,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 
 
 //************************************************************
+//"com.orange.draw.coins20000",
+//"com.orange.draw.coins400",
+//"com.orange.draw.coins2400",
+//"com.orange.draw.coins6000"
+
 + (void)createTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
@@ -54,18 +59,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
         if (index == 0) {
             [saleIngot_Builder setCount:8];
             [saleIngot_Builder setTotalPrice:@"8"];
+            //[saleIngot_Builder setSaving:nil];
+            [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins400"];
         } else if (index == 1){
             [saleIngot_Builder setCount:20];
             [saleIngot_Builder setTotalPrice:@"18"];
             [saleIngot_Builder setSaving:@"10%"];
+            [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins2400"];
         } else if (index == 2){
             [saleIngot_Builder setCount:50];
             [saleIngot_Builder setTotalPrice:@"45"];
             [saleIngot_Builder setSaving:@"10%"];
+            [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins6000"];
         } else if (index == 3){
             [saleIngot_Builder setCount:100];
             [saleIngot_Builder setTotalPrice:@"80"];
             [saleIngot_Builder setSaving:@"20%"];
+            [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins20000"];
         }
         
         [saleIngot_Builder setCurrency:@"￥"];

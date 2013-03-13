@@ -134,35 +134,6 @@ NSString* GlobalGetBoardServerURL()
                                                     }];
     
     
-//    [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-////     [sinaWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
-//        PPDebug(@"sina weibo publish ok");
-//     } failureBlock:^(NSError *error) {
-//         PPDebug(@"sina weibo publish failure");
-//     }];
-
-    
-    /*
-    [sinaWeiboService followUser:@"欢乐大话骰" successBlock:^(NSDictionary *userInfo) {
-        PPDebug(@"sina follow user ok");
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"sina follow user failure");
-    }];
-    
-    [qqWeiboService followUser:@"liardice" successBlock:^(NSDictionary *userInfo) {
-        PPDebug(@"qq follow user ok");
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"qq follow user failure");
-    }];
-    */
-    
-    
-    //    [qqWeiboService publishWeibo:@"人生" imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-    //    [qqWeiboService publishWeibo:@"人生就是这样子" imageFilePath:nil successBlock:^(NSDictionary *userInfo) {
-    //        PPDebug(@"qq weibo publish ok");
-    //    } failureBlock:^(NSError *error) {
-    //        PPDebug(@"qq weibo publish failure");
-    //    }];
 }
 
 - (void)testResourcePackage
@@ -239,11 +210,13 @@ NSString* GlobalGetBoardServerURL()
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
     
-    [GameConfigDataManager createTestConfigData];
-    [GameConfigDataManager defaultManager];
     
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
+
+    [GameConfigDataManager createTestConfigData];
+    [GameConfigDataManager defaultManager];
+    
     
     if (isDrawApp()) {
         [WordManager defaultManager];

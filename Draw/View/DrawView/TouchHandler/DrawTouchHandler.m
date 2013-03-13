@@ -82,9 +82,12 @@
         case TouchStateEnd:
         case TouchStateCancel:
         {
-            [self addPoint:point];
+//            [self addPoint:point];
             [action.paint finishAddPoint];
             [self addAction:action];
+            if (action) {
+                [self.drawView clearRedoStack];
+            }
             [self reset];
             break;
         }

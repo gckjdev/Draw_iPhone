@@ -37,5 +37,6 @@ typedef enum {
 - (void)handleFailTouch;
 + (id)touchHandlerWithTouchActionType:(TouchActionType)type;
 - (void)reset;
+- (BOOL)handleFailed;
 
 @end

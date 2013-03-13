@@ -15,6 +15,16 @@
 
 @implementation ChargeController
 
+- (void)dealloc {
+    [_ingotCountLabel release];
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    [self setIngotCountLabel:nil];
+    [super viewDidUnload];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,12 +67,14 @@
     return [ChargeCell getCellHeight];
 }
 
-- (void)dealloc {
-    [_ingotCountLabel release];
-    [super dealloc];
+#pragma mark -
+#pragma ChargeCellDelegate method
+- (void)didClickBuyButton:(NSIndexPath *)indexPath
+{
+    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
+    
+    //[self showActivityWithText:NSLS(@"kBuying")];
+    [[AccountService defaultService] buyIngot:saleIngot];
 }
-- (void)viewDidUnload {
-    [self setIngotCountLabel:nil];
-    [super viewDidUnload];
-}
+
 @end

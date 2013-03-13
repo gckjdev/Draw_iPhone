@@ -15,12 +15,12 @@ typedef enum {
     UIS_ERROR_NETWORK = 1,
     UIS_BALANCE_NOT_ENOUGH = 2,
     UIS_BAD_PARAMETER = 3,
+    UIS_ITEM_NOT_ENOUGH = 4,
 }UserGameItemServiceResultCode;
 
-typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  PBGameItem *item, int count, NSString *toUserId);
+typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  int itemId, int count, NSString *toUserId);
 
-typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString *toOpusId);
-
+typedef void (^UseItemResultHandler)(int resultCode, int itemId);
 
 @interface UserGameItemService : CommonService
 
@@ -31,6 +31,10 @@ typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString 
 - (void)decreaseItem:(int)itemId count:(int)count;
 
 - (int)countOfItem:(int)itemId;
+- (BOOL)hasItem:(int)itemId;
+
+
+- (BOOL)canBuyItemNow:(PBGameItem *)item;
 
 - (void)buyItem:(int)itemId
           count:(int)count
@@ -47,10 +51,13 @@ typedef void (^UseItemResultHandler)(int resultCode, PBGameItem *item, NSString 
           count:(int)count
         handler:(BuyItemResultHandler)handler;
 
-- (void)useItem:(PBGameItem*)itemId
-         toOpus:(NSString *)opusId
-        handler:(UseItemResultHandler)handler;
-
 - (void)clearAllUserItems;
+
+- (void)awardItem:(int)itemId
+            count:(int)count
+          handler:(BuyItemResultHandler)handler;
+
+- (void)consumeItem:(int)itemId
+            handler:(UseItemResultHandler)handler;
 
 @end

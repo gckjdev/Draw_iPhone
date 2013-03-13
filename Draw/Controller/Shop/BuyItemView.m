@@ -13,6 +13,9 @@
 #import "ShareImageManager.h"
 #import "InputDialog.h"
 #import "UIViewUtils.h"
+#import "CustomInfoView.h"
+#import "AdService.h"
+#import "FriendController.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -25,7 +28,7 @@
 
 @implementation BuyItemView
 
-AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
+AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 - (void)dealloc {
     [_item release];
@@ -38,24 +41,34 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
 
 + (id)createWithItem:(PBGameItem *)item
 {
-    BuyItemView *view  = [self createView];
+    BuyItemView *view;
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+            view = [self createViewWithIndex:0];
+            view.count = 1;
+            break;
+            
+        case PBGameItemConsumeTypeAmountConsumable:
+            view = [self createViewWithIndex:1];
+            view.count = item.defaultSaleCount;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            view = [self createViewWithIndex:2];
+            view.count = 1;
+            break;
+            
+        default:
+            break;
+    }
+    
     
     view.item = item;
     
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
-    detailView.userInteractionEnabled = NO;
     [view addSubview:detailView];
     
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:item.priceInfo.currency];
-    
-    
-    if (item.salesType == PBGameItemSalesTypeMultiple) {
-        view.count = 10;
-    }else if (item.salesType == PBGameItemSalesTypeOneOff){
-        view.count = 1;
-        [view updateHeight:(view.frame.size.height - view.buyInfoView.frame.size.height)];
-        [view.buyInfoView removeFromSuperview];
-    }
     
     [view update];
     
@@ -107,6 +120,111 @@ AUTO_CREATE_VIEW_BY_XIB(BuyItemView);
     [dialog showInView:[self rootView]];
 }
 
++ (void)showOnlyBuyItemView:(PBGameItem *)item
+                     inView:(UIView *)inView
+              resultHandler:(BuyItemResultHandler)resultHandler
+{
+    if (item == nil || inView == nil) {
+        return;
+    }
+    
+    BuyItemView *infoView = [self createWithItem:item];
+    
+    CustomInfoView *cusInfoView;
+    
+    cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
+                                         infoView:infoView
+                                   hasCloseButton:YES
+                                     buttonTitles:NSLS(@"kBuy"), nil];
+    
+    
+    [cusInfoView showInView:inView];
+    
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        
+        int count = ((BuyItemView *)infoView).count;
+        PBGameItem *item = ((BuyItemView *)infoView).item;
+        
+        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
+            PPDebug(@"you buy %d %@", count, NSLS(item.name));
+            [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
+            [cusInfoView showActivity];
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+                if (resultCode == UIS_SUCCESS) {
+                    [cusInfoView dismiss];
+                }else{
+                    [cusInfoView hideActivity];
+                    [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+                }
+                
+                if (resultHandler != NULL) {
+                    resultHandler(resultCode, itemId, count, toUserId);
+                }
+            }];
+        }
+    }];
+}
+
+
++ (void)showBuyItemView:(PBGameItem *)item
+                 inView:(UIView *)inView
+       buyResultHandler:(BuyItemResultHandler)buyResultHandler
+            giveHandler:(GiveHandler)giveHandler
+{
+    if (item == nil || inView == nil) {
+        return;
+    }
+    
+    BuyItemView *infoView = [self createWithItem:item];
+    
+    CustomInfoView *cusInfoView;
+    
+    if ([[UserGameItemService defaultService] canBuyItemNow:infoView.item]) {
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
+                                             infoView:infoView
+                                       hasCloseButton:YES
+                                         buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
+        
+    }else{
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
+                                             infoView:infoView
+                                       hasCloseButton:YES
+                                         buttonTitles:NSLS(@"kGive"), nil];
+    }
+    
+    [cusInfoView showInView:inView];
+    
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        
+        int count = ((BuyItemView *)infoView).count;
+        PBGameItem *item = ((BuyItemView *)infoView).item;
+        
+        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
+            
+            PPDebug(@"you buy %d %@", count, NSLS(item.name));
+            [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
+            [cusInfoView showActivity];
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+                if (resultCode == UIS_SUCCESS) {
+                    [cusInfoView dismiss];
+                }else{
+                    [cusInfoView hideActivity];
+                    [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+                }
+                
+                if (buyResultHandler != NULL) {
+                    buyResultHandler(resultCode, itemId, count, toUserId);
+                }
+            }];
+        }else{
+            PPDebug(@"you give %d %@", count, NSLS(item.name));
+            if (giveHandler != NULL) {
+                giveHandler(item, count);
+            }
+            [cusInfoView dismiss];
+        }
+    }];
+}
 
 
 @end

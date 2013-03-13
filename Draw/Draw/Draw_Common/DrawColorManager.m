@@ -11,6 +11,7 @@
 #import "ColorGroup.h"
 //#import "ItemManager.h"
 #import "AccountService.h"
+#import "UserGameItemService.h"
 
 @interface DrawColorManager()
 {
@@ -94,7 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     self.ownColorList = [NSMutableArray array];
     
     for (NSInteger i = GRADUAL_START; i < GRADUAL_END; ++ i) {
-        if ([[AccountService defaultService] hasEnoughItemAmount:i amount:1]) {
+        if ([[UserGameItemService defaultService] hasItem:i]) {
             NSArray *list = [ColorGroup colorListForGroupId:i];
             if([list count] != 0){
                 [self.ownColorList addObjectsFromArray:list];
@@ -103,7 +104,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     }
 
     for (NSInteger i = PACKAGE_START; i < PACKAGE_END; ++ i) {
-        if ([[AccountService defaultService] hasEnoughItemAmount:i amount:1]) {
+        if ([[UserGameItemService defaultService] hasItem:i]) {
             NSArray *list = [ColorGroup colorListForGroupId:i];
             if([list count] != 0){
                 [self.ownColorList addObjectsFromArray:list];

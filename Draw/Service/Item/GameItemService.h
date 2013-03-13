@@ -13,14 +13,14 @@ typedef void (^GetItemsListResultHandler)(BOOL success, NSArray *itemsList);
 
 @interface GameItemService : NSObject
 
-+ (GameItemService *)sharedGameItemService;
++ (GameItemService *)defaultService;
 
-- (void)getItemsList:(GetItemsListResultHandler)handler;
+- (void)syncData:(GetItemsListResultHandler)handler;
 
-- (void)getItemsListWithType:(int)type
-               resultHandler:(GetItemsListResultHandler)handler;
-
-- (void)getPromotingItemsList:(GetItemsListResultHandler)handler;
+- (NSArray *)getItemsList;
+- (NSArray *)getItemsListWithType:(int)type;
+- (NSArray *)getPromotingItemsList;
+- (PBGameItem *)itemWithItemId:(int)itemId;
 
 + (void)createTestDataFile;
 
