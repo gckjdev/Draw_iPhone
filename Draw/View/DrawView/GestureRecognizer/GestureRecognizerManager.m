@@ -14,11 +14,47 @@
     CGFloat lastScale;
     CGFloat lastRadian;
     BOOL lastDirection;
+    NSMutableSet *grSet;
+//    BOOL notScale;
 }
 
 @end
 
 @implementation GestureRecognizerManager
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.capture = YES;
+        grSet = [[NSMutableSet alloc] initWithCapacity:5];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(grSet);
+    [super dealloc];
+}
+
+- (void)setCapture:(BOOL)capture
+{
+    _capture = capture;
+    UIGestureRecognizerState state = UIGestureRecognizerStatePossible;
+    if (!capture) {
+        state = UIGestureRecognizerStateFailed;
+    }
+    for (UIGestureRecognizer *gr in grSet) {
+        gr.state = state;
+    }
+
+}
+
+- (BOOL)canMoveView:(UIView *)view
+{
+    return !CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity);
+}
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view
 {
@@ -31,6 +67,7 @@
     [panGesture setMinimumNumberOfTouches:2];
     [panGesture setDelegate:self];
     [view addGestureRecognizer:panGesture];
+    [grSet addObject:panGesture];
     return [panGesture autorelease];
 }
 
@@ -41,6 +78,7 @@
 
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     [view addGestureRecognizer:pinchGesture];
+    [grSet addObject:pinchGesture];
     return [pinchGesture autorelease];
 }
 
@@ -54,6 +92,7 @@
     [doubleTap setNumberOfTapsRequired:2];
     [doubleTap setNumberOfTouchesRequired:2];
     [view addGestureRecognizer:doubleTap];
+    [grSet addObject:doubleTap];
     return [doubleTap autorelease];
 
 }
@@ -64,6 +103,7 @@
     view.multipleTouchEnabled = YES;
     ArcGestureRecognizer *arcGesture = [[ArcGestureRecognizer alloc] initWithTarget:self action:@selector(handleArcGesture:)];
     [view addGestureRecognizer:arcGesture];
+    [grSet addObject:arcGesture];
     return [arcGesture autorelease];
 }
 
@@ -144,7 +184,7 @@
         
         // Constants to adjust the max/min values of zoom
         const CGFloat kMaxScale = 10;
-        const CGFloat kMinScale = 0.6;
+        const CGFloat kMinScale = 1;
         const CGFloat kSpeed = 0.75;
         
         CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
@@ -216,7 +256,19 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+        return NO;
+    }
     return YES;
 }
-
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (!self.capture) {
+        return NO;
+    }
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+        return NO;
+    }
+    return YES;
+}
 @end

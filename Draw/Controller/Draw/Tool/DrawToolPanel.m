@@ -16,7 +16,6 @@
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-//#import "CommonItemInfoView.h"
 #import "Item.h"
 #import "ConfigManager.h"
 #import "AnalyticsManager.h"
@@ -209,15 +208,13 @@
 
 - (void)updateNeedBuyToolViews
 {
-//    if (![[AccountService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
-    if (![[UserGameItemService defaultService] hasEnoughItemAmount:PaletteItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasItem:PaletteItem]) {
 
         [self.palette setSelected:YES];
     }else{
         [self.palette setSelected:NO];
     }
-//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
-    if (![[UserGameItemService defaultService] hasEnoughItemAmount:ColorAlphaItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasItem:ColorAlphaItem]) {
 
         [self.alphaSlider setSelected:YES];
     }else{
@@ -395,8 +392,7 @@
 }
 
 - (IBAction)clickStraw:(id)sender {
-//    if (![[AccountService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
-    if (![[UserGameItemService defaultService] hasEnoughItemAmount:ColorStrawItem amount:1]) {
+    if (![[UserGameItemService defaultService] hasItem:ColorStrawItem]) {
         if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
             [_delegate drawToolPanel:self startToBuyItem:ColorStrawItem];
         }
@@ -610,8 +606,7 @@
 {
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-//    BOOL hasBought = penType == Pencil || [[AccountService defaultService] hasEnoughItemAmount:penType amount:1] ;
-    BOOL hasBought = penType == Pencil || [[UserGameItemService defaultService] hasEnoughItemAmount:penType amount:1] ;
+    BOOL hasBought = penType == Pencil || [[UserGameItemService defaultService] hasItem:penType] ;
 
     if (hasBought) {
         [self setPenType:penType];

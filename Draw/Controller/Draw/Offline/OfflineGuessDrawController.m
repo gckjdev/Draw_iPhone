@@ -625,15 +625,15 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     switch (dialog.tag) {
-        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
-            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
-        } break;
-        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
-            [CommonItemInfoView showItem:[Item flower] infoInView:self];
-        } break;
-        case (ItemTypeTips + ITEM_TAG_OFFSET): {
-            [CommonItemInfoView showItem:[Item tips] infoInView:self];
-        } break;
+//        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
+//            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
+//        } break;
+//        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
+//            [CommonItemInfoView showItem:[Item flower] infoInView:self];
+//        } break;
+//        case (ItemTypeTips + ITEM_TAG_OFFSET): {
+//            [CommonItemInfoView showItem:[Item tips] infoInView:self];
+//        } break;
         case QUIT_DIALOG_TAG:
         default:
             //if have no words, don't send the action.

@@ -29,6 +29,7 @@
 @interface GestureRecognizerManager : NSObject<UIGestureRecognizerDelegate>
 
 @property(nonatomic, assign)id<GestureRecognizerManagerDelegate>delegate;
+@property(nonatomic, assign)BOOL capture;
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view;
 - (UIPinchGestureRecognizer *)addPinchGestureReconizerToView:(UIView *)view;

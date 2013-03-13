@@ -63,10 +63,7 @@ static AdService* _defaultService;
 
     [self initWappuAdSDK];
     
-//    _isShowAd = ([[AccountService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd                                                             
-//                                                               amount:1] == NO);
-    
-     _isShowAd = ([[UserGameItemService defaultService] hasEnoughItemAmount:ItemTypeRemoveAd amount:1] == NO);
+     _isShowAd = ([[UserGameItemService defaultService] hasItem:ItemTypeRemoveAd] == NO);
     
     return self;
 }

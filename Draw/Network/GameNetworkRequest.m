@@ -2963,7 +2963,7 @@
                            appId:(NSString *)appId
                           userId:(NSString *)userId
                           itemId:(int)itemId
-                        toOpusId:(NSString *)toOpusId
+                           count:(int)count
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2976,7 +2976,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_ITEMID intValue:itemId];
-        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:toOpusId];
+        str = [str stringByAddQueryParameter:PARA_COUNT intValue:count];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
         return str;

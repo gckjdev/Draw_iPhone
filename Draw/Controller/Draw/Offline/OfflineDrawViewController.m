@@ -53,6 +53,10 @@
 #import "PPSNSIntegerationService.h"
 #import "ShareService.h"
 #import "FileUtil.h"
+#import "BuyItemView.h"
+#import "CustomInfoView.h"
+#import "UserGameItemService.h"
+#import "GameItemService.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1183,9 +1187,15 @@
         drawView.lineColor = [DrawColor colorWithColor:self.penColor];
         [drawView.lineColor setAlpha:_alpha];
     }else{
-        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
+//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
+        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            
+        }];
     }
+    
 }
+
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
 {
     if (drawView.touchActionType == TouchActionTypeGetColor) {
@@ -1226,7 +1236,11 @@
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
+    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        
+    }];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectShapeType:(ShapeType)type
@@ -1262,21 +1276,6 @@
         [self.inputAlert adjustWithKeyBoardRect:keyboardRect];        
     }
 }
-
-//- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
-//{
-//    PPDebug(@"keyboardWillHideWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-//    [self.inputAlert adjustWithKeyBoardRect:CGRectZero];
-//}
-
-//- (void)keyboardDidShowWithRect:(CGRect)keyboardRect
-//{
-//}
-//
-//- (void)keyboardDidHideWithRect:(CGRect)keyboardRect
-//{
-//}
-
 
 
 @end

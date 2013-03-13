@@ -1732,16 +1732,24 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasItemId_:1;
   BOOL hasCount_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasModifyDate_:1;
+  BOOL hasExpireDate_:1;
   int32_t itemId;
   int32_t count;
   int32_t createDate;
+  int32_t modifyDate;
+  int32_t expireDate;
 }
 - (BOOL) hasItemId;
 - (BOOL) hasCount;
 - (BOOL) hasCreateDate;
+- (BOOL) hasModifyDate;
+- (BOOL) hasExpireDate;
 @property (readonly) int32_t itemId;
 @property (readonly) int32_t count;
 @property (readonly) int32_t createDate;
+@property (readonly) int32_t modifyDate;
+@property (readonly) int32_t expireDate;
 
 + (PBUserItem*) defaultInstance;
 - (PBUserItem*) defaultInstance;
@@ -1791,6 +1799,16 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) createDate;
 - (PBUserItem_Builder*) setCreateDate:(int32_t) value;
 - (PBUserItem_Builder*) clearCreateDate;
+
+- (BOOL) hasModifyDate;
+- (int32_t) modifyDate;
+- (PBUserItem_Builder*) setModifyDate:(int32_t) value;
+- (PBUserItem_Builder*) clearModifyDate;
+
+- (BOOL) hasExpireDate;
+- (int32_t) expireDate;
+- (PBUserItem_Builder*) setExpireDate:(int32_t) value;
+- (PBUserItem_Builder*) clearExpireDate;
 @end
 
 @interface PBUserItemList : PBGeneratedMessage {

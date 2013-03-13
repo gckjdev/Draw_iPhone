@@ -64,7 +64,8 @@
             break;
         }
             
-        default:
+        case TouchStateEnd:
+        case TouchStateMove:
         {
             if (handleFailed) {
                 return;

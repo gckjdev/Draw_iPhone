@@ -38,6 +38,8 @@
 #import "ItemService.h"
 #import "DrawColorManager.h"
 #import "PointNode.h"
+#import "BuyItemView.h"
+#import "GameItemService.h"
 
 @interface OnlineDrawViewController ()
 {
@@ -426,7 +428,11 @@
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
     }else{
-        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
+//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
+        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            
+        }];
     }
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
@@ -463,7 +469,12 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
+    
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
+    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        
+    }];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button

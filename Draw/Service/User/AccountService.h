@@ -75,9 +75,6 @@
           awardExp:(int)awardAmount;
 
 - (BOOL)hasEnoughCoins:(int)amount;
-//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
-
-- (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount;
 
 - (int)checkIn;
 
