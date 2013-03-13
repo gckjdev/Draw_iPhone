@@ -92,6 +92,32 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     return [self countOfItem:itemId] >= amount;
 }
 
+- (BOOL)canBuyItemAgain:(PBGameItem *)item
+{
+    if (![self hasEnoughItemAmount:item.itemId amount:1]) {
+        return YES;
+    }
+    
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+            return NO;
+            break;
+            
+        case PBGameItemConsumeTypeAmountConsumable:
+            return YES;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            return [item isExpire];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return NO;
+}
+
 - (PBUserItem *)pbUserItemWithItemId:(int)itemId
 {
     PBUserItem_Builder *builder = [[[PBUserItem_Builder alloc] init] autorelease];

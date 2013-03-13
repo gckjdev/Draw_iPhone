@@ -16,7 +16,7 @@
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 #import "Item.h"
 #import "ConfigManager.h"
 #import "AnalyticsManager.h"
