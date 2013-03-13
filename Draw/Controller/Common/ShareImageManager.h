@@ -230,5 +230,6 @@
 - (UIImage *)grayCurrencyImageWithType:(PBGameCurrency)currency;
 
 - (UIImage *)dialogButtonBackgroundImage;
-
+- (UIImage *)bulletinAccessoryImage;
+- (UIImage*)freeIngotHeaderBg;
 @end
