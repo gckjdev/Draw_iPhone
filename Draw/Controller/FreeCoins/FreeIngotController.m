@@ -9,6 +9,7 @@
 #import "FreeIngotController.h"
 #import "GameBasic.pb.h"
 #import "FreeIngotCell.h"
+#import "GameConfigDataManager.h"
 
 #define SECTION_COUNT 2
 
@@ -19,8 +20,8 @@ enum {
 
 @interface FreeIngotController ()
 
-@property (retain, nonatomic) NSMutableArray* friendAppArray;
-@property (retain, nonatomic) NSMutableArray* wallArray;
+@property (retain, nonatomic) NSArray* friendAppArray;
+@property (retain, nonatomic) NSArray* wallArray;
 
 @end
 
@@ -45,6 +46,8 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
+    self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
     // Do any additional setup after loading the view from its nib.
 }
 
