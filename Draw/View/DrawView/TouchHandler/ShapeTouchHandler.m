@@ -64,7 +64,8 @@
             break;
         }
             
-        default:
+        case TouchStateEnd:
+        case TouchStateMove:
         {
             if (handleFailed) {
                 return;
@@ -78,6 +79,10 @@
     [self.drawView setNeedsDisplay];
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
+        if (action) {
+            [self.drawView clearRedoStack];
+        }
+
         [self reset];
     }
 }

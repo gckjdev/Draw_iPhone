@@ -42,4 +42,11 @@
 {
     
 }
+
+
+- (BOOL)handleFailed
+{
+    return handleFailed;
+}
+
 @end

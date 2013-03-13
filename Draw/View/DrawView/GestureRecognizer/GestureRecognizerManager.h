@@ -10,6 +10,8 @@
 
 
 @class GestureRecognizerManager;
+@class ArcGestureRecognizer;
+
 @protocol GestureRecognizerManagerDelegate <NSObject>
 
 @optional
@@ -22,15 +24,15 @@
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                    didGestureFailed:(UIGestureRecognizer *)gestureRecognizer;
 
-
 @end
 
 @interface GestureRecognizerManager : NSObject<UIGestureRecognizerDelegate>
 
 @property(nonatomic, assign)id<GestureRecognizerManagerDelegate>delegate;
+@property(nonatomic, assign)BOOL capture;
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view;
 - (UIPinchGestureRecognizer *)addPinchGestureReconizerToView:(UIView *)view;
 - (UIPanGestureRecognizer *)addDoubleTapGestureReconizerToView:(UIView *)view;
-
+- (ArcGestureRecognizer *)addArcGestureRecognizerToView:(UIView *)view;
 @end

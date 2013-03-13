@@ -14,7 +14,6 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
 
 @property (nonatomic, assign) ButtonActionBlock actionBlock;
 @property (retain, nonatomic) IBOutlet UIView *mainView;
-@property (retain, nonatomic) IBOutlet UILabel *infoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 

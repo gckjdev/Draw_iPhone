@@ -11,6 +11,7 @@
 #import "Config.pb.h"
 #import "AutoCreateViewByXib.h"
 #import "UIImageView+WebCache.h"
+#import "ShareImageManager.h"
 
 @implementation FreeIngotCell
 
@@ -32,7 +33,7 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 
 + (float)getCellHeight
 {
-    return 62.0;
+    return [DeviceDetection isIPAD]?182.0:91.0;
 }
 
 + (id)createCell:(id)delegate
@@ -40,27 +41,67 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
     return [self createView];
 }
 
-- (void)setCellWithPBAppReward:(PBAppReward*)pbAppReward
+- (void)setAppImageWithURLStr:(NSString*)urlStr
 {
     self.appImageView.alpha = 0;
-    [self.appImageView setImageWithURL:[NSURL URLWithString:pbAppReward.app.logo]
+    [self.appImageView setImageWithURL:[NSURL URLWithString:urlStr]
                       placeholderImage:nil
                                success:^(UIImage *image, BOOL cached) {
-        if (!cached) {
-            [UIView animateWithDuration:1 animations:^{
-                self.appImageView.alpha = 1.0;
-            }];
-        }else{
-            self.appImageView.alpha = 1.0;
+                                   if (!cached) {
+                                       [UIView animateWithDuration:1 animations:^{
+                                           self.appImageView.alpha = 1.0;
+                                       }];
+                                   }else{
+                                       self.appImageView.alpha = 1.0;
+                                   }
+                               }
+                               failure:^(NSError *error) {
+                                   self.appImageView.alpha = 1;
+                               }];
+}
+
+- (NSString*)getCurrentLolalizeStringFromPbLocalizeStringList:(NSArray*)list
+{
+    NSString* currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSString* defaultText = nil;
+    for (PBLocalizeString* ls in list) {
+        if ([ls.languageCode isEqualToString:currentLanguage]) {
+            defaultText = ls.localizedText;
+        }
+        if ([ls.languageCode isEqualToString:@"en"] && defaultText == nil) {
+            defaultText = ls.localizedText;
         }
     }
-                               failure:^(NSError *error) {
-        self.appImageView.alpha = 1;
-    }];
+    return defaultText;
+}
+
+- (void)setCellWithPBAppReward:(PBAppReward*)pbAppReward
+{
+    [self setAppImageWithURLStr:pbAppReward.app.logo];
+    [self.rewardCurrencyImageView setImage:[[ShareImageManager defaultManager] currencyImageWithType:pbAppReward.rewardCurrency]];
+    
+    
+    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.nameList]];
+    [self.appDescriptionLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbAppReward.app.descList]];
+    [self.rewardCurrencyCountLabel setText:[NSString stringWithFormat:@"+%d", pbAppReward.rewardAmount]];
+    
+    [self.appDescriptionLabel setHidden:NO];
+    [self.rewardCurrencyCountLabel setHidden:NO];
+    [self.customAccessoryImageView setHidden:YES];
+
 }
 
 - (void)setCellWithPBRewardWall:(PBRewardWall*)pbRewardWall
 {
+    [self setAppImageWithURLStr:pbRewardWall.logo];
+    [self.appNameLabel setText:[self getCurrentLolalizeStringFromPbLocalizeStringList:pbRewardWall.nameList]];
+    [self.appNameLabel setCenter:CGPointMake(self.appNameLabel.center.x, [FreeIngotCell getCellHeight]/2)];
+    
+    [self.appDescriptionLabel setHidden:YES];
+    [self.rewardCurrencyCountLabel setHidden:YES];
+    [self.customAccessoryImageView setHidden:NO];
+    
+
     
 }
 
@@ -75,6 +116,11 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 
 - (void)dealloc {
     [_appImageView release];
+    [_appNameLabel release];
+    [_appDescriptionLabel release];
+    [_rewardCurrencyCountLabel release];
+    [_rewardCurrencyImageView release];
+    [_customAccessoryImageView release];
     [super dealloc];
 }
 @end
