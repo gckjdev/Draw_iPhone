@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GameBasic.pb.h"
+#import "UserGameItemService.h"
+
+typedef void (^GiveHandler)(PBGameItem *item, int count);
 
 @interface BuyItemView : UIView
 @property (assign, nonatomic, readonly) int count;
@@ -17,6 +20,13 @@
 @property (retain, nonatomic) IBOutlet UILabel *priceLabel;
 @property (retain, nonatomic) IBOutlet UIView *buyInfoView;
 
-+ (id)createWithItem:(PBGameItem *)item;
 
++ (void)showOnlyBuyItemView:(PBGameItem *)item
+                     inView:(UIView *)inView
+              resultHandler:(BuyItemResultHandler)resultHandler;
+
++ (void)showBuyItemView:(PBGameItem *)item
+                 inView:(UIView *)inView
+       buyResultHandler:(BuyItemResultHandler)buyResultHandler
+            giveHandler:(GiveHandler)giveHandler;
 @end

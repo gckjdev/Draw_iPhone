@@ -299,8 +299,7 @@
     NSArray *array = [ColorGroup colorViewListWithColorValues:colorArray];
     ColorGroup *group = [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
 
-//    if ([[AccountService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
-    if ([[UserGameItemService defaultService] hasEnoughItemAmount:group.groupId amount:1]) {
+    if ([[UserGameItemService defaultService] hasItem:group.groupId]) {
         group.hasBought = YES;
     }else{
         group.hasBought = NO;
