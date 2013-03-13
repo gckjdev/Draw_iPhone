@@ -481,8 +481,10 @@ message DataQueryResponse {
   repeated PBBBSPrivilege bbsPrivilegeList = 55;
   repeated PBBBSUser bbsUserList = 56;
   
-  
   // for wall
   repeated PBWall wallList = 80;
   optional PBWall wall = 81;
+  
+  
+  optional PBGameUser user = 85;
 }

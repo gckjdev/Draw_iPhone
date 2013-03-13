@@ -363,4 +363,31 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return layer;
 }
 
+
+
 @end
+
+
+CGFloat CGPointDistance(CGPoint p1, CGPoint p2)
+{
+    return sqrtf(powf(p1.x - p2.x, 2) + powf(p1.y - p2.y, 2));
+}
+
+CGFloat CGPointRadian(CGPoint p1, CGPoint p2)
+{
+    CGFloat d = (CGPointDistance(p1, CGPointZero) * CGPointDistance(p2, CGPointZero));
+    if (d == 0) {
+        return 0;
+    }
+    CGFloat cosx = (p1.x * p2.x + p1.y * p2.y) / d;
+    CGFloat ret = acosf(cosx);
+    if (isnan(ret)) {
+        return 0;
+    }
+    return ret;
+}
+
+CGPoint CGPointVector(CGPoint p1, CGPoint p2)
+{
+    return CGPointMake(p2.x - p1.x, p2.y - p1.y);
+}

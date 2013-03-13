@@ -17,4 +17,7 @@
 
 @property(nonatomic, assign, readonly) CGFloat radian;
 @property(nonatomic, assign, readonly) BOOL direction;
+
 @end
+
+extern CGFloat CGPointDistance(CGPoint p1, CGPoint p2);

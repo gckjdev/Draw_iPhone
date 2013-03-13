@@ -18,6 +18,7 @@
 #import "UserItemInfo.h"
 #import "UserManager.h"
 #import "BlockUtils.h"
+#import "GameItemService.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -92,7 +93,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     return [self countOfItem:itemId] >= amount;
 }
 
-- (BOOL)canBuyItemAgain:(PBGameItem *)item
+- (BOOL)hasItem:(int)itemId
+{
+    return [self hasEnoughItemAmount:itemId amount:1];
+}
+
+- (BOOL)canBuyItemNow:(PBGameItem *)item
 {
     if (![self hasEnoughItemAmount:item.itemId amount:1]) {
         return YES;
@@ -149,7 +155,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 }
 
 
-//static BuyItemResultHandler _handler = NULL;
 - (void)buyItem:(int)itemId
          toUser:(NSString *)toUserId
           count:(int)count
@@ -157,17 +162,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
-//    RELEASE_BLOCK(_handler);
-//    COPY_BLOCK(_handler, handler);
     if (count <= 0) {
-        handler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+        if (handler != NULL) {
+            handler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+        }
         return;
     }
     
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        handler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        if (handler != NULL) {
+            handler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        }
         return;
     }
     
@@ -177,22 +184,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
-        if (output.resultCode == 0) {
-            int coinsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-            int ingotsCount = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-            [[AccountManager defaultManager] updateBalance:coinsCount currency:PBGameCurrencyCoin];
-            [[AccountManager defaultManager] updateBalance:ingotsCount currency:PBGameCurrencyIngot];
+        if (output.resultCode == ERROR_SUCCESS) {
+
+            NSNumber *coinsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
+            NSNumber *ingotsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE];
+            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+
+            if (coinsCount !=nil) {
+                [[AccountManager defaultManager] updateBalance:[coinsCount intValue] currency:PBGameCurrencyCoin];
+            }
+            
+            if (ingotsCount != nil) {
+                [[AccountManager defaultManager] updateBalance:[ingotsCount intValue] currency:PBGameCurrencyIngot];
+            }
             
             if (toUserId == nil || [toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-                [bself increaseItem:itemId count:count];
+                for (NSDictionary* dic in itemsCountArray){
+                    int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
+                    int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
+                    
+                    [bself setItem:itemId count:itemCount];
+                }
             }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (handler != NULL) {
-                handler((output.resultCode == 0) ? 0 : ERROR_NETWORK, itemId, count, toUserId);
+                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
             }
-//            RELEASE_BLOCK(_handler);
         });
     });
 }
@@ -226,6 +245,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           handler:handler];
 }
 
+
 - (void)giveItem:(PBGameItem *)item
           toUser:(NSString *)toUserId
            count:(int)count
@@ -239,15 +259,54 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           handler:handler];
 }
 
-
-- (void)useItem:(PBGameItem *)item
-         toOpus:(NSString *)toOpusId
-        handler:(UseItemResultHandler)handler
+- (void)consumeItem:(int)itemId
+            handler:(UseItemResultHandler)handler;
 {
+    [self consumeItem:itemId count:1 handler:handler];
+}
+
+- (void)consumeItem:(int)itemId
+              count:(int)count
+            handler:(UseItemResultHandler)handler
+{
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+    if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
+        if (handler != NULL) {
+            handler(UIS_BAD_PARAMETER, itemId);
+        }
+        return;
+    }
     
+    if (![self hasEnoughItemAmount:itemId amount:count]) {
+        if (handler != NULL) {
+            handler(UIS_ITEM_NOT_ENOUGH, itemId);
+        }
+        return;
+    }
     
+    __block typeof (self) bself = self;
     
-    return;
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId];
+        
+        if (output.resultCode == 0) {
+            
+            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+            for (NSDictionary* dic in itemsCountArray){
+                int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
+                int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
+                
+                [bself setItem:itemId count:itemCount];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (handler != NULL) {
+                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId);
+            }
+        });
+    });
 }
 
 

@@ -1061,7 +1061,10 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促銷";
-
+"kDownloadRewardAppTips" = "下載兄弟免費應用可直接賺取元寶";
+"kRewardWallTips" = "其他第三方免費應用，賺取1~10元寶";
+"kFreeIngot" = "免費元寶";
+"kGoToBBS4Help" = "逛逛論壇尋求幫助";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

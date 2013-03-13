@@ -4379,10 +4379,12 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasTotalCount_:1;
   BOOL hasBbsDrawData_:1;
   BOOL hasWall_:1;
+  BOOL hasUser_:1;
   int32_t resultCode;
   int32_t totalCount;
   PBBBSDraw* bbsDrawData;
   PBWall* wall;
+  PBGameUser* user;
   NSMutableArray* mutableDrawDataList;
   NSMutableArray* mutableMessageList;
   NSMutableArray* mutableMessageStatList;
@@ -4398,10 +4400,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasTotalCount;
 - (BOOL) hasBbsDrawData;
 - (BOOL) hasWall;
+- (BOOL) hasUser;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
 @property (readonly, retain) PBWall* wall;
+@property (readonly, retain) PBGameUser* user;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4550,5 +4554,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setWallBuilder:(PBWall_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeWall:(PBWall*) value;
 - (DataQueryResponse_Builder*) clearWall;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (DataQueryResponse_Builder*) setUser:(PBGameUser*) value;
+- (DataQueryResponse_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeUser:(PBGameUser*) value;
+- (DataQueryResponse_Builder*) clearUser;
 @end
 

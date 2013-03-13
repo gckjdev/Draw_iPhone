@@ -122,72 +122,37 @@ typedef enum{
     return cell;
 }
 
+- (void)showColorShopView{
+    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
+    colorShop.delegate = self;
+    [colorShop showInView:self.view animated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [self.tabDataList objectAtIndex:indexPath.row];
-    
-    
+    self.selectedItem = item;
+
     if (item.itemId == ItemTypeColor) {
-        ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:self.view.bounds];
-        colorShop.delegate = self;
-        [colorShop showInView:self.view animated:YES];
-        return;
-    }
-    
-    BuyItemView *buyItemView = [BuyItemView createWithItem:item];
-    
-    CustomInfoView *cusInfoView;
-    
-    if ([[UserGameItemService defaultService] canBuyItemAgain:item]) {
-        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                             infoView:buyItemView
-                                       hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kGive"), nil];
+        [self showColorShopView];
     }else{
-        cusInfoView = [CustomInfoView createWithTitle:NSLS(item.name)
-                                             infoView:buyItemView
-                                       hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
-    }
-    
-
-
-    [cusInfoView showInView:self.view];
-
-    __block typeof (self) bself = self;
-    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        int count = ((BuyItemView *)infoView).count;
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
-            PPDebug(@"you buy %d %@", count, NSLS(item.name));
-            [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
-            [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == UIS_SUCCESS) {
-                    [cusInfoView dismiss];
-                    if (item.itemId == ItemTypeRemoveAd) {
-                        [[AdService defaultService] disableAd];
-                    }
-                }else{
-                    [cusInfoView hideActivity];
-                    [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
-                }
-                
-                [self showUserGameItemServiceResult:resultCode
-                                               item:item
-                                              count:count
-                                           toUserId:toUserId];
-            }];
-        }else{
+        __block typeof (self) bself = self;
+        
+        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            if (itemId == ItemTypeRemoveAd) {
+                [[AdService defaultService] disableAd];
+            }
+            [bself updateBalance];
+            [bself showUserGameItemServiceResult:resultCode item:[[GameItemService defaultService] itemWithItemId:itemId] count:count toUserId:toUserId];
+        } giveHandler:^(PBGameItem *item, int count) {
             PPDebug(@"you give %d %@", count, NSLS(item.name));
-            
-            bself.selectedCount = count;
             bself.selectedItem = item;
-            
+            bself.selectedCount = count;
             FriendController *vc = [[[FriendController alloc] initWithDelegate:bself] autorelease];
             [bself.navigationController pushViewController:vc animated:YES];
-        }
-    }];
+        }];
+    }
 }
 
 - (void)showUserGameItemServiceResult:(UserGameItemServiceResultCode)resultCode
@@ -259,10 +224,6 @@ typedef enum{
         }
     }];
 }
-
-
-
-
 
 - (NSInteger)tabCount //default 1
 {

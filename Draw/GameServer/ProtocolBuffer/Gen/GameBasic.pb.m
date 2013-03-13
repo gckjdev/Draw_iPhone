@@ -7135,6 +7135,8 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
 @property int32_t itemId;
 @property int32_t count;
 @property int32_t createDate;
+@property int32_t modifyDate;
+@property int32_t expireDate;
 @end
 
 @implementation PBUserItem
@@ -7160,6 +7162,20 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
   hasCreateDate_ = !!value;
 }
 @synthesize createDate;
+- (BOOL) hasModifyDate {
+  return !!hasModifyDate_;
+}
+- (void) setHasModifyDate:(BOOL) value {
+  hasModifyDate_ = !!value;
+}
+@synthesize modifyDate;
+- (BOOL) hasExpireDate {
+  return !!hasExpireDate_;
+}
+- (void) setHasExpireDate:(BOOL) value {
+  hasExpireDate_ = !!value;
+}
+@synthesize expireDate;
 - (void) dealloc {
   [super dealloc];
 }
@@ -7168,6 +7184,8 @@ static PBSaleIngotList* defaultPBSaleIngotListInstance = nil;
     self.itemId = 0;
     self.count = 0;
     self.createDate = 0;
+    self.modifyDate = 0;
+    self.expireDate = 0;
   }
   return self;
 }
@@ -7197,7 +7215,13 @@ static PBUserItem* defaultPBUserItemInstance = nil;
     [output writeInt32:2 value:self.count];
   }
   if (self.hasCreateDate) {
-    [output writeInt32:51 value:self.createDate];
+    [output writeInt32:5 value:self.createDate];
+  }
+  if (self.hasModifyDate) {
+    [output writeInt32:6 value:self.modifyDate];
+  }
+  if (self.hasExpireDate) {
+    [output writeInt32:7 value:self.expireDate];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -7215,7 +7239,13 @@ static PBUserItem* defaultPBUserItemInstance = nil;
     size += computeInt32Size(2, self.count);
   }
   if (self.hasCreateDate) {
-    size += computeInt32Size(51, self.createDate);
+    size += computeInt32Size(5, self.createDate);
+  }
+  if (self.hasModifyDate) {
+    size += computeInt32Size(6, self.modifyDate);
+  }
+  if (self.hasExpireDate) {
+    size += computeInt32Size(7, self.expireDate);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -7301,6 +7331,12 @@ static PBUserItem* defaultPBUserItemInstance = nil;
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
+  if (other.hasModifyDate) {
+    [self setModifyDate:other.modifyDate];
+  }
+  if (other.hasExpireDate) {
+    [self setExpireDate:other.expireDate];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7330,8 +7366,16 @@ static PBUserItem* defaultPBUserItemInstance = nil;
         [self setCount:[input readInt32]];
         break;
       }
-      case 408: {
+      case 40: {
         [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setModifyDate:[input readInt32]];
+        break;
+      }
+      case 56: {
+        [self setExpireDate:[input readInt32]];
         break;
       }
     }
@@ -7383,6 +7427,38 @@ static PBUserItem* defaultPBUserItemInstance = nil;
 - (PBUserItem_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
+  return self;
+}
+- (BOOL) hasModifyDate {
+  return result.hasModifyDate;
+}
+- (int32_t) modifyDate {
+  return result.modifyDate;
+}
+- (PBUserItem_Builder*) setModifyDate:(int32_t) value {
+  result.hasModifyDate = YES;
+  result.modifyDate = value;
+  return self;
+}
+- (PBUserItem_Builder*) clearModifyDate {
+  result.hasModifyDate = NO;
+  result.modifyDate = 0;
+  return self;
+}
+- (BOOL) hasExpireDate {
+  return result.hasExpireDate;
+}
+- (int32_t) expireDate {
+  return result.expireDate;
+}
+- (PBUserItem_Builder*) setExpireDate:(int32_t) value {
+  result.hasExpireDate = YES;
+  result.expireDate = value;
+  return self;
+}
+- (PBUserItem_Builder*) clearExpireDate {
+  result.hasExpireDate = NO;
+  result.expireDate = 0;
   return self;
 }
 @end

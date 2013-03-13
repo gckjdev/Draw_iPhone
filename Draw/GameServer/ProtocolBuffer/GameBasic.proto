@@ -204,10 +204,10 @@ message PBGameItem {
   optional PBItemPriceInfo priceInfo = 23;              // 价格信息
   optional PBPromotionInfo promotionInfo = 24;          // 促销信息
   
-  optional int32 defaultSaleCount = 30;                 // 默认购买数量
+  optional int32 defaultSaleCount = 30;                 // 默认购买数量,数量消耗品特有字段
   
-  optional PBGameTimeUnit usageLifeUnit = 50;           // 单位:小时
-  optional int32 usageLife = 51;                        // 使用寿命
+  optional PBGameTimeUnit usageLifeUnit = 50;           // 单位:小时,时间消耗品特有字段
+  optional int32 usageLife = 51;                        // 使用寿命,时间消耗品特有字段
 }
 
 message PBGameItemList {
@@ -234,7 +234,10 @@ message PBSaleIngotList{
 message PBUserItem {
   required int32 itemId = 1;
   optional int32 count = 2[default=0];          // 个数
-  optional int32 createDate = 51;               // 购买时间
+
+  optional int32 createDate = 5;                // 第一次购买日期
+  optional int32 modifyDate = 6;                // 最近一次修改时间
+  optional int32 expireDate = 7;                // 过期时间
 }
 
 message PBUserItemList {
