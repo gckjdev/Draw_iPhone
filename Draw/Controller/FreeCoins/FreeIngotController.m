@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "FreeIngotCell.h"
 #import "GameConfigDataManager.h"
+#import "ShareImageManager.h"
 
 #define SECTION_COUNT 2
 
@@ -77,9 +78,44 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FreeIngotCell getCellIdentifier]];
+    FreeIngotCell *cell = [tableView dequeueReusableCellWithIdentifier:[FreeIngotCell getCellIdentifier]];
     cell = [FreeIngotCell createCell:self];
+    if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
+        PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
+        [cell setCellWithPBAppReward:appReward];
+    } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
+        PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
+        [cell setCellWithPBRewardWall:rewardWall];
+    }
+    
     return cell;
+}
+
+- (NSString*)titleForSection:(int)section
+{
+    if (section == SECTION_FRIEND_APP) {
+        return NSLS(@"kDownLoadRewardAppTips");
+    }
+    if (section == SECTION_WALL) {
+        return NSLS(@"kRewardWallTips");
+    }
+    return nil;
+}
+
+#define HEADER_FRAME ([DeviceDetection isIPAD]?CGRectMake(0,0,768,61):CGRectMake(0,0,320,36))
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIButton* btn = [[UIButton alloc] initWithFrame:HEADER_FRAME];
+    [btn setBackgroundImage:[[ShareImageManager defaultManager] freeIngotHeaderBg] forState:UIControlStateNormal];
+    [btn setTitle:[self titleForSection:section] forState:UIControlStateNormal];
+    return btn;
+    
+}
+
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HEADER_FRAME.size.height;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

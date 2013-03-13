@@ -1021,5 +1021,10 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"common_dialog_btn_bg.png"];
 }
 
+- (UIImage*)freeIngotHeaderBg
+{
+    return [UIImage imageNamed:@"balance_bg.png"];
+}
+
 @end
 
