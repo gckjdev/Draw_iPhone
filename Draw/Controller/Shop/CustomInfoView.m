@@ -28,6 +28,9 @@
 
 #define WIDTH_INFO_LABEL            210
 #define HEIGHT_MIN_INFO_LABEL       100
+#define HEIGHT_MAX_INFO_LABEL       400
+
+#define FONT_SIZE_INFO_LABEL        14
 
 @implementation CustomInfoView
 
@@ -38,7 +41,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_indicator release];
     [_infoView release];
     [_mainView release];
-    [_infoLabel release];
     [_titleLabel release];
     [_closeButton release];
     Block_release(_actionBlock);
@@ -48,22 +50,22 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 + (id)createWithTitle:(NSString *)title
                  info:(NSString *)info
 {
-    CustomInfoView *view = [self createView];
-    view.titleLabel.text = title;
-    view.infoLabel.text = info;
+    UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
+    infoLabel.font = [UIFont systemFontOfSize:FONT_SIZE_INFO_LABEL];
+    infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
+    [infoLabel setBackgroundColor:[UIColor clearColor]];
+    [infoLabel setTextAlignment:NSTextAlignmentCenter];
+    infoLabel.text = info;
     
     // set info label height
-    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, 400);
-    CGSize size = [view.infoLabel.text sizeWithFont:view.infoLabel.font constrainedToSize:maxSize];
+    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
+    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
     if (size.height < HEIGHT_MIN_INFO_LABEL) {
         size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
     }
-    view.infoLabel.frame = CGRectMake(view.infoLabel.frame.origin.x, view.infoLabel.frame.origin.y, WIDTH_INFO_LABEL, size.height);
+    infoLabel.frame = CGRectMake(0, 0, WIDTH_INFO_LABEL, size.height);
     
-    // set mainView height
-    view.mainView.frame = CGRectMake(view.mainView.frame.origin.x, view.mainView.frame.origin.y, view.mainView.frame.size.width, view.infoLabel.frame.origin.y + view.infoLabel.frame.size.height + SPACE_HORIZONTAL);
-    
-    return view;
+    return [self createWithTitle:title infoView:infoLabel];
 }
 
 + (id)createWithTitle:(NSString *)title
@@ -94,8 +96,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [infoView updateOriginX:SPACE_HORIZONTAL];
     [infoView updateOriginY:(TITLE_HEIGHT + SPACE_VERTICAL)];
     [view.mainView addSubview:infoView];
-    
-    view.infoLabel.hidden = YES;
     
     // set close button
     view.closeButton.hidden = !hasCloseButton;
