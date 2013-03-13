@@ -239,11 +239,13 @@ NSString* GlobalGetBoardServerURL()
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
     
-    [GameConfigDataManager createTestConfigData];
-    [GameConfigDataManager defaultManager];
     
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
+
+    [GameConfigDataManager createTestConfigData];
+    [GameConfigDataManager defaultManager];
+    
     
     if (isDrawApp()) {
         [WordManager defaultManager];
