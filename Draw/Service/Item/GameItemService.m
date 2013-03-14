@@ -155,7 +155,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setType:PBDrawItemTypeNomal];
             [itemBuilder setAppleProductId:@"com.orange.draw.removead"];
             
-            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:40];
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:400];
             [itemBuilder setPriceInfo:priceInfo];
             //[itemBuilder setPromotionInfo:nil];
             
@@ -511,7 +511,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             [itemBuilder setPriceInfo:priceInfo];
             
             int startDate = (int)[[NSDate date] timeIntervalSince1970];
-            PBPromotionInfo *promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+            PBPromotionInfo *promotionInfo = [self price:10 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
             [itemBuilder setPromotionInfo:promotionInfo];
             
             [itemBuilder setDefaultSaleCount:10];
