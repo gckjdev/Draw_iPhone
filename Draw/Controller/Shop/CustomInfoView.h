@@ -21,12 +21,17 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
                  info:(NSString *)info;
 
 + (id)createWithTitle:(NSString *)title
+                 info:(NSString *)info
+       hasCloseButton:(BOOL)hasCloseButton
+         buttonTitles:(NSArray *)buttonTitles;
+
++ (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView;
 
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView
        hasCloseButton:(BOOL)hasCloseButton
-         buttonTitles:(NSString *)firstTitle, ...;
+         buttonTitles:(NSArray *)buttonTitles;
 
 - (void)showInView:(UIView *)view;
 - (void)dismiss;

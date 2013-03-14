@@ -7,16 +7,28 @@
 //
 
 #import "VersionUpdateView.h"
+#import "CustomInfoView.h"
+#import "UIUtils.h"
 
 @implementation VersionUpdateView
 
 + (id)createView
 {
-    return nil;
-//    UILabel *label = [super creat ]
-//    
-//    VersionUpdateView *view = [super crea];
-//    [super];
+    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kUpdateTips") info:NSLS(@"kVersionIsOld") hasCloseButton:NO buttonTitles:[NSArray arrayWithObjects:NSLS(@"kCancel"), NSLS(@"kOK"), nil]];
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kOK")]) {
+            [UIUtils openApp:[GameApp appId]];
+        }
+        [cusInfoView dismiss];
+    }];
+    
+    return cusInfoView;
 }
+
++ (void)showInView:(UIView *)view
+{
+    [view addSubview:[self createView]];
+}
+
 
 @end

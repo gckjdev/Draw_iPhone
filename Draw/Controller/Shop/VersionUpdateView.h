@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomInfoView.h"
 
-@interface VersionUpdateView : CustomInfoView
+@interface VersionUpdateView : UIView
 
-+ (id)createView;
++ (void)showInView:(UIView *)view;
 
 @end
