@@ -601,7 +601,7 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
             
             // update DB
             [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
-            PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
+            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
         }
     }
     

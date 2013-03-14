@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ShowDrawView.h"
 #import "PPViewController.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 #import "DrawBgManager.h"
 
-@interface ReplayView : UIView<ShowDrawViewDelegate, CommonItemInfoViewDelegate>
+@interface ReplayView : UIView<ShowDrawViewDelegate>
 {
 
 }

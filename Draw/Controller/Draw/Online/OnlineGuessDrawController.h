@@ -13,20 +13,20 @@
 #import "SuperGameViewController.h"
 #import "LevelService.h"
 #import "PickToolView.h"
-#import "CommonItemInfoView.h"
-
+//#import "CommonItemInfoView.h"
+#import "StoreController.h"
 
 
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
-@class VendingController;
 @class UseItemScene;
-@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate,CommonItemInfoViewDelegate>
+
+@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;
-    VendingController *_shopController;
+//    VendingController *_shopController;
     BOOL _guessCorrect;
     UIButton *moveButton;
     UIButton *lastScaleTarget;

@@ -1377,6 +1377,30 @@
 "kCount" = "數量";
 "kAlreadyBought" = "已購";
 "kBuyColorFailed"= "購買顏色失敗";
+
+"kDottedLinePen" = "虛線筆";
+"kDottedLinePenDescription" = "一種可以輕易畫出虛線的筆";
+"kSmoothPen" = "平滑筆";
+"kSmoothPenDescription" = "可以畫出平滑的線，如秀發般柔順";
+
+"kTransverseCanvas" = "橫版畫布";
+"kTransverseCanvasDescription" = "一種橫向的畫布";
+"kVerticalCanvas" = "豎版畫布";
+"kVerticalCanvasDescription" = "一種豎向的畫布";
+"kSquareCanvasLarge" = "正方形畫布(大)";
+"kSquareCanvasLargeDescription" = "一種正方形的大畫布";
+"kTransverseCanvasLarge" = "橫版畫布(大)";
+"kTransverseCanvasLargeDescription" = "一種橫向的大畫布";
+"kVerticalCanvasLarge" = "豎版畫布(大)";
+"kVerticalCanvasLargeDescription" = "一種豎向的大畫布";
+
+"kVeinsBackground" = "紋理背景";
+"kVeinsBackgroundDescription" = "可以為你的畫添加紋理背景";
+"kBasicShape" = "基本形狀";
+"kBasicShapeDescription" = "可以輕易畫出各種基本的形狀";
+"kPurseItem" = "錢袋";
+"kPurseItemDescription" = "可以用元寶購買金幣";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

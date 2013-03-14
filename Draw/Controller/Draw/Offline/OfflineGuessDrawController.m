@@ -40,7 +40,7 @@
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
 #import "ItemService.h"
-#import "VendingController.h"
+//#import "VendingController.h"
 #import "UIImageExt.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
@@ -789,10 +789,6 @@
     NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
     BOOL itemEnough = YES;
     if(amout <= 0){
-        //        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-        //        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-        //        [dialog showInView:self.view];
-        //        return;
         Item* item = [Item itemWithType:toolView.itemType amount:1];
         int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
         itemEnough = NO;

@@ -36,7 +36,7 @@
 #import "GameConstants.h"
 #import "AccountManager.h"
 #import "ItemService.h"
-#import "VendingController.h"
+//#import "VendingController.h"
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "AccountService.h"
@@ -63,7 +63,7 @@
     [drawGameService setShowDelegate:nil];
     
     moveButton = nil;
-    _shopController = nil;
+//    _shopController = nil;
     lastScaleTarget = nil;
     [showView stop];
     PPRelease(_candidateString);
@@ -467,7 +467,7 @@
     [self initWithCachData];
     [self initPickToolView];
     _guessCorrect = NO;
-    _shopController = nil;
+//    _shopController = nil;
     
 }
 
@@ -482,7 +482,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    _shopController = nil;
+//    _shopController = nil;
 }
 
 - (void)viewDidUnload
@@ -574,14 +574,13 @@
                                                          isMyPaint:NO 
                                                     drawActionList:showView.drawActionList
                                                              scene:[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil]];
-    if (_shopController) {
-        [_shopController.topNavigationController popToViewController:self animated:NO];
-        [self.navigationController pushViewController:rc animated:NO];
-    }else{
+//    if (_shopController) {
+//        [_shopController.topNavigationController popToViewController:self animated:NO];
+//        [self.navigationController pushViewController:rc animated:NO];
+//    }else{
         [self.navigationController pushViewController:rc animated:YES];
-    }
-    [rc release]; 
-//    [showView stop];
+//    }
+//    [rc release]; 
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId

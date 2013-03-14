@@ -1813,12 +1813,8 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 
 @interface PBUserItemList : PBGeneratedMessage {
 @private
-  BOOL hasUserId_:1;
-  NSString* userId;
   NSMutableArray* mutableUserItemsList;
 }
-- (BOOL) hasUserId;
-@property (readonly, retain) NSString* userId;
 - (NSArray*) userItemsList;
 - (PBUserItem*) userItemsAtIndex:(int32_t) index;
 
@@ -1855,11 +1851,6 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (PBUserItemList_Builder*) mergeFrom:(PBUserItemList*) other;
 - (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBUserItemList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserId;
-- (NSString*) userId;
-- (PBUserItemList_Builder*) setUserId:(NSString*) value;
-- (PBUserItemList_Builder*) clearUserId;
 
 - (NSArray*) userItemsList;
 - (PBUserItem*) userItemsAtIndex:(int32_t) index;

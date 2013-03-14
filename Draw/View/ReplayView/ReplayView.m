@@ -396,7 +396,7 @@
 //                            delegate:self];
         
         PBGameItem *item = [[GameItemService defaultService] itemWithItemId:PaintPlayerItem];
-        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == UIS_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;

@@ -498,10 +498,10 @@
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
     
-        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_NORMAL" defaultValue:@"58.215.164.153:8028"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_NORMAL" defaultValue:@"58.215.184.18:8028"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_NORMAL" defaultValue:@"58.215.164.153:8028"];
     }
 }
 + (NSString *)getZJHServerListStringWithRich
@@ -509,10 +509,10 @@
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
         
-        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_RICH" defaultValue:@"58.215.164.153:8029"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_RICH" defaultValue:@"58.215.184.18:8029"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_RICH" defaultValue:@"58.215.164.153:8029"];
     }
 }
 + (NSString *)getZJHServerListStringWithDual
@@ -520,10 +520,10 @@
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
         
-        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_SERVER_LIST_DUAL" defaultValue:@"58.215.164.153:8030"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_DUAL" defaultValue:@"58.215.184.18:8030"];
+        return [MobClickUtils getStringValueByKey:@"ZJH_EN_SERVER_LIST_DUAL" defaultValue:@"58.215.164.153:8030"];
     }
 }
 
@@ -777,8 +777,8 @@
     return [MobClickUtils getStringValueByKey:@"ADMOB_ID" defaultValue:@"a14fed16c562e5d"];
 }
 
-// http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c79e4b0d9b30df33cb9&uid=50b4596fe4b03dc20a9e7e51
-// http://58.215.184.18:8100/api/i?&m=delf&app=513819630&fid=51087c32e4b0d9b30df33c94&uid=50b4596fe4b03dc20a9e7e51
+// http://58.215.164.153:8100/api/i?&m=delf&app=513819630&fid=51087c79e4b0d9b30df33cb9&uid=50b4596fe4b03dc20a9e7e51
+// http://58.215.164.153:8100/api/i?&m=delf&app=513819630&fid=51087c32e4b0d9b30df33c94&uid=50b4596fe4b03dc20a9e7e51
 
 
 

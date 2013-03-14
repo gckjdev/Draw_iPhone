@@ -680,7 +680,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        str = [str stringByAddQueryParameter:PARA_VERSION value:[UIUtils getAppVersion]];        
+        str = [str stringByAddQueryParameter:PARA_VERSION value:[UIUtils getAppVersion]];
         return str;
     };
     
@@ -690,9 +690,15 @@
         return;
     }; 
     
+//    return [PPNetworkRequest sendRequest:baseURL
+//                     constructURLHandler:constructURLHandler
+//                         responseHandler:responseHandler
+//                                  output:output];
+    
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
                                   output:output];
 }
 
@@ -2798,7 +2804,6 @@
         str = [str stringByAddQueryParameter:PARA_WALL_ID value:wallId];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
-//        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };
     
@@ -2832,7 +2837,6 @@
         str = [str stringByAddQueryParameter:PARA_WALL_TYPE intValue:wallType];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
-//        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };
     
@@ -2944,18 +2948,19 @@
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:toUser];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];
         return;
     };
     
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
                                   output:output];
 }
 
@@ -2979,6 +2984,8 @@
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:count];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        return str;
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };
     

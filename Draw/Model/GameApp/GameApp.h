@@ -40,8 +40,9 @@
 #define ZJH_UMENG_ID            @"50c1883752701537100000af" 
 
 // Lm Ad Wall ID
-#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
-#define DICE_LM_WALL_ID         @"e1533257a9cd82ab88fe853d71bd11c5"
+//#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
+#define DRAW_LM_WALL_ID         @"f86cc23b710f1e4d9603dcde84474588" // New, Add By Benson 2013-03-13
+#define DICE_LM_WALL_ID         @"c07a27f181b8554afc43aefaf214765e" // New, Add By Benson 2013-03-13
 #define CANDY_LM_WALL_ID        @"ed21340370b99ad5bd2a5e304e3ea6c4" // TO BE CHANGED
 #define ZJH_LM_WALL_ID          @"e1533257a9cd82ab88fe853d71bd11c5"
 

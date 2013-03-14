@@ -316,7 +316,7 @@
     PPDebug(@"<didUserRegistered> result code = %d", resultCode);
     if (resultCode == 0){
         
-        [[AccountService defaultService] syncAccountAndItem];
+        [[AccountService defaultService] syncAccount];
         
         if (_currentLoginType == REGISTER_TYPE_EMAIL){
             CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
@@ -363,7 +363,7 @@
     PPDebug(@"<didUserRegistered> result code = %d", resultCode);
     if (resultCode == 0){
         
-        [[AccountService defaultService] syncAccountAndItem];
+        [[AccountService defaultService] syncAccount];
         
         [self.navigationController popToRootViewControllerAnimated:YES]; 
     }
