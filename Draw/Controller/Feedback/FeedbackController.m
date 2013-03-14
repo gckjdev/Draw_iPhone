@@ -362,23 +362,33 @@ enum {
     
     else if (indexPath.row == rowOfCleanCache) {
         //TODO: clean cache
-        [[CacheManager defaultManager] removeCachePathsArray:[GameApp cacheArray] succBlock:^(long long fileSize) {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
-                                                               message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]
-                                                                 style:CommonDialogStyleSingleButton
-                                                              delegate:nil
-                                                          clickOkBlock:^{
-                exit(0);
-            }
-                                                      clickCancelBlock:^{
-                //
-            }];
-            [dialog showInView:self.view];
-        }];
-        
+        [self showActivityWithText:@"kCleaning"];
+       
+        [self performSelector:@selector(cleanCache) withObject:nil afterDelay:0.1];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)cleanCache
+{
+    __block FeedbackController* fc = self;
+    
+    
+    [[CacheManager defaultManager] removeCachePathsArray:[GameApp cacheArray] succBlock:^(long long fileSize) {
+        [fc hideActivity];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
+                                                           message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]
+                                                             style:CommonDialogStyleSingleButton
+                                                          delegate:nil
+                                                      clickOkBlock:^{
+                                                          exit(0);
+                                                      }
+                                                  clickCancelBlock:^{
+                                                      //
+                                                  }];
+        [dialog showInView:self.view];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
