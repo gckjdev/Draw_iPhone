@@ -361,8 +361,7 @@ enum {
     }
     
     else if (indexPath.row == rowOfCleanCache) {
-        //TODO: clean cache
-        [self showActivityWithText:@"kCleaning"];
+        [self showActivityWithText:NSLS(@"kCleaning")];
        
         [self performSelector:@selector(cleanCache) withObject:nil afterDelay:0.1];
     }
