@@ -1085,6 +1085,9 @@
 "kPurseItem" = "pockets";
 "kPurseItemDescription" = "can buy gold bullions";
 
+"kUpdateTips" = "Update Tips";
+"kVersionIsOld" = "version is too low, you can not use this function to determine the Update?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

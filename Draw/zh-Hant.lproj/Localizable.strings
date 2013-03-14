@@ -1401,6 +1401,9 @@
 "kPurseItem" = "錢袋";
 "kPurseItemDescription" = "可以用元寶購買金幣";
 
+"kUpdateTips" = "更新提示";
+"kVersionIsOld" = "版本過低，不能使用該功能，確定立即更新？";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

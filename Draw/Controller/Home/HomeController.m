@@ -89,6 +89,8 @@
 #import "CustomInfoView.h"
 #import "FreeIngotController.h"
 
+#import "VersionUpdateView.h"
+
 @interface HomeController()
 {
 
@@ -838,15 +840,17 @@
     
     
 //    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" info:@"test"];
-    UIView *infoView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 140)] autorelease];
-    infoView.backgroundColor = [UIColor blueColor];
-    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView];
+//    UIView *infoView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 140)] autorelease];
+//    infoView.backgroundColor = [UIColor blueColor];
+//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView];
 //    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView hasCloseButton:YES buttonTitles:@"购买", @"赠送",  nil];
-    [customInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        PPDebug(@"%@", [button titleForState:UIControlStateNormal]);
-        
-    }];
-    [customInfoView showInView:self.view];
+//    [customInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+//        PPDebug(@"%@", [button titleForState:UIControlStateNormal]);
+//        
+//    }];
+//    [customInfoView showInView:self.view];
+    
+    [VersionUpdateView showInView:self.view];
 }
 
 - (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall

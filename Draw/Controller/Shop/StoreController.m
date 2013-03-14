@@ -202,7 +202,7 @@ typedef enum{
     CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kGive")
                                                          infoView:giftDetailView
                                                    hasCloseButton:YES
-                                                     buttonTitles:NSLS(@"kCancel"), NSLS(@"kOK"), nil];
+                                                     buttonTitles:[NSArray arrayWithObjects:NSLS(@"kCancel"), NSLS(@"kOK"), nil]];
     
     
     
