@@ -130,6 +130,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     }
     
     if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        [VersionUpdateView showInView:inView];
         return;
     }
     
@@ -177,6 +178,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             giveHandler:(GiveHandler)giveHandler
 {
     if (item == nil || inView == nil) {
+        return;
+    }
+    
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        [VersionUpdateView showInView:inView];
         return;
     }
     
