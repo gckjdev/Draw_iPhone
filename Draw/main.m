@@ -47,9 +47,6 @@ int main(int argc, char *argv[])
  房间进入
  帮助
  商店购买
- 
- 
- 
 */
 
 

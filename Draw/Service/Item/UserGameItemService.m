@@ -27,6 +27,9 @@
 
 @property (retain, nonatomic) NSArray *itemsList;
 
+@property (copy, nonatomic) BuyItemResultHandler buyItemResultHandler;
+@property (copy, nonatomic) ConsumeItemResultHandler consumeItemResultHandler;
+
 @end
 
 @implementation UserGameItemService
@@ -151,9 +154,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
 {
     if (count <= 0) {
-        if (_buyItemResultHandler != NULL) {
-            _buyItemResultHandler(UIS_BAD_PARAMETER, itemId, count, toUserId);
-            _buyItemResultHandler = NULL;
+        if (self.buyItemResultHandler != NULL) {
+            self.buyItemResultHandler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+            self.buyItemResultHandler = NULL;
         }
         return;
     }
@@ -161,9 +164,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        if (_buyItemResultHandler != NULL) {
-            _buyItemResultHandler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
-            _buyItemResultHandler = NULL;
+        if (self.buyItemResultHandler != NULL) {
+            self.buyItemResultHandler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+            self.buyItemResultHandler = NULL;
         }
         return;
     }
@@ -188,9 +191,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (_buyItemResultHandler != NULL) {
-                _buyItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
-                _buyItemResultHandler = NULL;
+            if (bself.buyItemResultHandler != NULL) {
+                bself.buyItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
+                bself.buyItemResultHandler = NULL;
             }
         });
     });

@@ -86,6 +86,7 @@
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     cell.content.font = CONTENT_FONT;
     [cell updateViews];
+    [cell setUseContentLabel:YES];
     return cell;
 }
 
