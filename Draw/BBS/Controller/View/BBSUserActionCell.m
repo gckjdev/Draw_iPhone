@@ -83,6 +83,7 @@
     BBSUserActionCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
     [cell initViews];
+    [cell setUseContentLabel:YES];
     return cell;
 }
 

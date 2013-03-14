@@ -46,11 +46,14 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *content;
 @property (retain, nonatomic) IBOutlet UILabel *timestamp;
+@property (retain, nonatomic) IBOutlet UITextView *contentTextView;
 @property (retain, nonatomic) IBOutlet UIImageView *image;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *imageMask;
 @property (retain, nonatomic) UIButton *avatarMask;
 @property (retain, nonatomic) PPTableViewController *superController;
+
+@property (assign, nonatomic) BOOL useContentLabel; //set once when init;
 
 + (id )createCellWithIdentifier:(NSString *)identifier
                                       delegate:(id)delegate;
