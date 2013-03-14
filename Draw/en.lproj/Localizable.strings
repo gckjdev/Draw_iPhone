@@ -1059,6 +1059,9 @@
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
+"kCleaning" = "Cleaning Cache...";
+
+
 "kDottedLinePen" = "dotted line pen";
 "kDottedLinePenDescription" = "A can easily draw dotted pen";
 "kSmoothPen" = "smooth pen";
@@ -1082,6 +1085,7 @@
 "kPurseItem" = "pockets";
 "kPurseItemDescription" = "can buy gold bullions";
 
+>>>>>>> 843fa8ad10dfa444272e8f2083e14c14d4b18733
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
