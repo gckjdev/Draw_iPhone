@@ -73,19 +73,19 @@
 
 NSString* GlobalGetServerURL()
 {    
-    return [ConfigManager getAPIServerURL];
+//    return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.172.169:8000/api/i?";
 //    return @"http://192.168.1.123:8000/api/i?";
-//    return @"http://192.168.1.198:8000/api/i?";
+    return @"http://192.168.1.198:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-    return [ConfigManager getTrafficAPIServerURL];
+//    return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
-//    return @"http://192.168.1.198:8100/api/i?";
+    return @"http://192.168.1.198:8100/api/i?";
 }
 
 NSString* GlobalGetBoardServerURL()
@@ -234,7 +234,7 @@ NSString* GlobalGetBoardServerURL()
     }
             
     // Init Account Service and Sync Balance and Item
-    [[AccountService defaultService] syncAccount:nil];
+//    [[AccountService defaultService] syncAccount:nil];
     
     /* remove this due to online draw server changed
     if (isDrawApp()){

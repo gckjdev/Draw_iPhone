@@ -28,10 +28,6 @@
 + (void)showReceiveTomato:(UIImageView*)tomatoImageView  
     animaitonInController:(UIViewController*)viewController;
 
-+ (void)showBuyItem:(UIImageView*)itemImageView  
-
-   animInController:(UIViewController*)viewController;
-
 + (void)animation:(CAAnimation*)anim didStopWithFlag:(BOOL)flag;
 
 + (CAAnimationGroup*)createThrowItemAnimation:(UIImageView*)ItemImageView inViewController:(UIViewController*)viewController;

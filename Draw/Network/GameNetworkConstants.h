@@ -168,6 +168,8 @@
 #define METHOD_UPDATE_ITEM_AMOUNT @"uia"
 #define METHOD_UPDATE_ACCOUNT_BALANCE @"uab"
 #define METHOD_SYNC_USER_ACCOUNT_ITEM @"sai"
+#define METHOD_SYNC_ACCOUNT @"syncAccount"
+
 #define METHOD_FEEDBACK @"fb"
 #define METHOD_COMMIT_WORDS @"cw"
 

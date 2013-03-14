@@ -15,7 +15,6 @@
 #import "ConfigManager.h"
 #import "AccountManager.h"
 #import "PBGameItemUtils.h"
-//#import "UserItemInfo.h"
 #import "UserManager.h"
 #import "BlockUtils.h"
 #import "GameItemService.h"
@@ -150,11 +149,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           count:(int)count
      totalPrice:(int)totalPrice
        currency:(PBGameCurrency)currency
-        handler:(BuyItemResultHandler)handler
 {
     if (count <= 0) {
-        if (handler != NULL) {
-            handler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+        if (_buyItemResultHandler != NULL) {
+            _buyItemResultHandler(UIS_BAD_PARAMETER, itemId, count, toUserId);
+            _buyItemResultHandler = NULL;
         }
         return;
     }
@@ -162,8 +161,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        if (handler != NULL) {
-            handler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        if (_buyItemResultHandler != NULL) {
+            _buyItemResultHandler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+            _buyItemResultHandler = NULL;
         }
         return;
     }
@@ -188,8 +188,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (handler != NULL) {
-                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
+            if (_buyItemResultHandler != NULL) {
+                _buyItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
+                _buyItemResultHandler = NULL;
             }
         });
     });
@@ -203,12 +204,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
+    self.buyItemResultHandler = handler;
+    
     [self buyItem:itemId
            toUser:[[UserManager defaultManager] userId]
             count:count
        totalPrice:totalPrice
-         currency:currency
-          handler:handler];
+         currency:currency];
 }
 
 
@@ -234,31 +236,32 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
            toUser:toUserId
             count:count
        totalPrice:([item promotionPrice] * count)
-         currency:item.priceInfo.currency
-          handler:handler];
+         currency:item.priceInfo.currency];
 }
 
 - (void)consumeItem:(int)itemId
-            handler:(UseItemResultHandler)handler;
+            handler:(ConsumeItemResultHandler)handler;
 {
-    [self consumeItem:itemId count:1 handler:handler];
+    self.consumeItemResultHandler = handler;
+    [self consumeItem:itemId count:1];
 }
 
 - (void)consumeItem:(int)itemId
               count:(int)count
-            handler:(UseItemResultHandler)handler
 {
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
-        if (handler != NULL) {
-            handler(UIS_BAD_PARAMETER, itemId);
+        if (_consumeItemResultHandler != NULL) {
+            _consumeItemResultHandler(UIS_BAD_PARAMETER, itemId);
+            _consumeItemResultHandler = NULL;
         }
         return;
     }
     
     if (![self hasEnoughItemAmount:itemId amount:count]) {
-        if (handler != NULL) {
-            handler(UIS_ITEM_NOT_ENOUGH, itemId);
+        if (_consumeItemResultHandler != NULL) {
+            _consumeItemResultHandler(UIS_ITEM_NOT_ENOUGH, itemId);
+            _consumeItemResultHandler = NULL;
         }
         return;
     }
@@ -277,8 +280,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (handler != NULL) {
-                handler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId);
+            if (_consumeItemResultHandler != NULL) {
+                _consumeItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId);
+                _consumeItemResultHandler = NULL;
             }
         });
     });
@@ -292,12 +296,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
            toUser:[[UserManager defaultManager] userId]
             count:count
        totalPrice:0
-         currency:PBGameCurrencyCoin
-          handler:handler];
+         currency:PBGameCurrencyCoin];
 }
-
-
-
-
 
 @end
