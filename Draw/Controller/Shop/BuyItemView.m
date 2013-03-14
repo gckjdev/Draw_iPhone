@@ -16,6 +16,7 @@
 #import "CustomInfoView.h"
 #import "AdService.h"
 #import "FriendController.h"
+#import "VersionUpdateView.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -128,6 +129,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         return;
     }
     
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        [VersionUpdateView showInView:inView];
+        return;
+    }
+    
     BuyItemView *infoView = [self createWithItem:item];
     
     CustomInfoView *cusInfoView;
@@ -172,6 +178,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             giveHandler:(GiveHandler)giveHandler
 {
     if (item == nil || inView == nil) {
+        return;
+    }
+    
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        [VersionUpdateView showInView:inView];
         return;
     }
     
