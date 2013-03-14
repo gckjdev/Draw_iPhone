@@ -32,7 +32,14 @@
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
+
+//use text view to show post info
++ (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
+                         inTextView:(UITextView *)textView;
+
+// deprecated method: use label to show post.
 + (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post;
+
 - (void)updateCellWithBBSPost:(PBBBSPost *)post;
 
 @end

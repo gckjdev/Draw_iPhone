@@ -458,15 +458,15 @@
     self.drawActionList = nil;
     self.drawImage = nil;
 
-    if ([[image data] length] > IMAGE_SIZE_MAX) {
-        NSData *data = UIImageJPEGRepresentation(image, 0.3);
-        if (data) {
-            self.image = [UIImage imageWithData:data];
-            [self updateToolButtons];
-            return;
-        }
-    }
-    self.image = image;
+//    if ([[image data] length] > IMAGE_SIZE_MAX) {
+//        NSData *data = UIImageJPEGRepresentation(image, 0.3);
+//        if (data) {
+//            self.image = [UIImage imageWithData:data];
+//            [self updateToolButtons];
+//            return;
+//        }
+//    }
+//    self.image = [UIImage imageWithContentsOfFile:@"/Library/WebServer/Documents/post.jpg"];
     [self updateToolButtons];
     [self.textView becomeFirstResponder];
 }

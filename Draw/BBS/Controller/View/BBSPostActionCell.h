@@ -36,7 +36,11 @@
 - (IBAction)clickRepyButton:(id)sender;
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;
+
++ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action inTextView:(UITextView *)textView;
+// deprecated method
 + (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action;
+
 - (void)updateCellWithBBSAction:(PBBBSAction *)action post:(PBBBSPost *)post;
 - (void)showOption:(BOOL)show;
 
