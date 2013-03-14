@@ -21,6 +21,7 @@
 #import "GADBannerView.h"
 
 #import "UserGameItemService.h"
+#import "GameItemService.h"
 
 //#import "YoumiWallService.h"
 //#import "YoumiWallController.h"
@@ -138,10 +139,11 @@ static AdService* _defaultService;
 {
     PPDebug(@"<setAdDisable> Ad Is Disabled Now");
     
-    [[AccountService defaultService] buyItem:ItemTypeRemoveAd 
-                                   itemCount:1
-                                   itemCoins:[self getRemoveAdPrice]];
- 
+//    [[AccountService defaultService] buyItem:ItemTypeRemoveAd 
+//                                   itemCount:1
+//                                   itemCoins:[self getRemoveAdPrice]];
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:ItemTypeRemoveAd];
+    [[UserGameItemService defaultService] buyItem:item count:1 handler:NULL];
     _isShowAd = NO;
 }
 

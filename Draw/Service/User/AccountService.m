@@ -832,21 +832,23 @@ static AccountService* _defaultAccountService;
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
-                                                    userId:userId
-                                                  deviceId:deviceId];
+                                                                         userId:userId
+                                                                       deviceId:deviceId];
+            
+        if (output.resultCode == ERROR_SUCCESS) {
+            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+            PBGameUser *user = res.user;
+            
+            // sync balance from server
+            [_accountManager updateBalance:user.coinBalance];
+            [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+            
+            // sync user item from server
+            [[UserGameItemService defaultService] setUserItemList:user.itemsList];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
-                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-                PBGameUser *user = res.user;
-                
-                // sync balance from server
-                [_accountManager updateBalance:user.coinBalance];
-                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                
-                // sync user item from server
-                [[UserGameItemService defaultService] setUserItemList:user.itemsList];
-                
                 if ([delegate respondsToSelector:@selector(didSyncFinish)]){
                     [delegate didSyncFinish];
                 }

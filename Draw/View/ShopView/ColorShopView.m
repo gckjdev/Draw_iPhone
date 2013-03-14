@@ -274,6 +274,7 @@
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    [[UserGameItemService defaultService] setBuyItemResultHandler:NULL];
     PPRelease(_indicator);
     PPRelease(titleLabel);
     PPRelease(coinCountLabel);

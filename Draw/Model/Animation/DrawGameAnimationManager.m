@@ -198,11 +198,6 @@
     [tomatoImageView.layer addAnimation:disMiss forKey:@"disMiss"];
     [tomatoImageView.layer addAnimation:zoom forKey:@"zoom"];
 }
-+ (void)showBuyItem:(UIImageView*)itemImageView  
-   animInController:(UIViewController*)viewController
-{
-    
-}
 
 + (void)animation:(CAAnimation *)anim didStopWithFlag:(BOOL)flag
 {
