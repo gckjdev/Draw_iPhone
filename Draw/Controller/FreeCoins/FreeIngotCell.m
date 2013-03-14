@@ -33,7 +33,7 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 
 + (float)getCellHeight
 {
-    return [DeviceDetection isIPAD]?182.0:91.0;
+    return [DeviceDetection isIPAD]?160.0:74.0;
 }
 
 + (id)createCell:(id)delegate

@@ -22,6 +22,8 @@ typedef enum
     Pen,
     IcePen,
     Quill,
+    DottedLinePen,
+    SmoothPen,
     PenCount,
     
     Eraser = 1100,
@@ -29,7 +31,18 @@ typedef enum
     ColorAlphaItem = 1102,
     PaintPlayerItem = 1103,
     ColorStrawItem = 1104,
+    PurseItem = 1105,               //钱袋
 
+    
+    TransverseCanvas = 1150,        //横版画布
+    VerticalCanvas = 1151,          //竖版画布
+    SquareCanvasLarge = 1152,       //正方形画布(大)
+    TransverseCanvasLarge = 1153,   //横版画布(大)
+    VerticalCanvasLarge = 1154,     //竖版画布(大)
+    
+    VeinsBackground = 1200,         //纹理背景
+    
+    BasicShape = 1300,              //基本形状
     
     //Liar dice.
 //    ItemTypeChangeDice = 2000,
