@@ -12,7 +12,7 @@
 #import "LevelService.h"
 #import "DrawDataService.h"
 #import "CommonDialog.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 #import "UserService.h"
 
 @class DrawFeed;
@@ -25,7 +25,7 @@ typedef enum {
     FeedGuess = 0x1 << 3
 } ResultType;
 
-@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate, CommonDialogDelegate, CommonItemInfoViewDelegate, UserServiceDelegate>
+@interface ResultController : PPViewController<DrawGameServiceDelegate, LevelServiceDelegate,DrawDataServiceDelegate, CommonDialogDelegate, UserServiceDelegate>
 {
     UIImage * _image;
     NSArray * _paintList;

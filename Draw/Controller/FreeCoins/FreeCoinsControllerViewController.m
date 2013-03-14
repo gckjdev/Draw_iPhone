@@ -20,6 +20,7 @@
 #import "ConfigManager.h"
 #import "TimeUtils.h"
 #import "FreeIngotController.h"
+#import "UserGameItemService.h"
 
 //#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
 //#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
@@ -229,9 +230,11 @@
     int flowersAward = [ConfigManager getFreeFlowersAward];
     
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-    [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
-    [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
-    
+//    [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
+//    [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
+    [[UserGameItemService defaultService] awardItem:ItemTypeTips count:tipsAward handler:NULL];
+    [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:flowersAward handler:NULL];
+
     int remainTimes = [self remainTimes];
     
     NSString *note = NSLS(@"kUnknowGame");

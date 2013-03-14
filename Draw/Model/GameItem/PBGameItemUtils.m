@@ -42,14 +42,4 @@
     }
 }
 
-- (BOOL)isExpire
-{
-    if (self.consumeType == PBGameItemConsumeTypeTimeConsumable) {
-        NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.startDate];
-        NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:self.promotionInfo.expireDate];
-        
-        return [[NSDate date] isBetweenDate:startDate anotherDate:expireDate];
-    }
-}
-
 @end

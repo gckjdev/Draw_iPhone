@@ -490,8 +490,13 @@
         DiceAvatarView *avatar = [self avatarViewOfUser:userId];
         [avatar rewardCoins:result.gainCoins duration:DURATION_SHOW_GAIN_COINS];
         self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];
-        if ([_userManager isMe:userId]) { 
-            [_accountService syncAccount:self forceServer:YES];
+        if ([_userManager isMe:userId]) {
+            [_accountService syncAccount:self];
+//            [_accountService syncAccount:^(int resultCode) {
+//                if (resultCode == 0) {
+//                    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+//                }
+//            }];
         }
     }
 }
@@ -1040,13 +1045,6 @@
 - (void)didSyncFinish
 {
     self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-    
-//    if (![DiceConfigManager meetJoinGameCondictionWithRuleType:_diceService.ruleType]) {
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinToContinue") delayTime:1.5 isHappy:NO];
-//        [self quitDiceGame];
-//    }
-//    
-//    [self updateWaittingForNextTurnNotLabel];
 }
 
 #pragma mark- Buttons action

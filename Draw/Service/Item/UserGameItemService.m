@@ -15,16 +15,18 @@
 #import "ConfigManager.h"
 #import "AccountManager.h"
 #import "PBGameItemUtils.h"
-#import "UserItemInfo.h"
+//#import "UserItemInfo.h"
 #import "UserManager.h"
 #import "BlockUtils.h"
 #import "GameItemService.h"
+#import "GameMessage.pb.h"
+#import "NSDate+TKCategory.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
 @interface UserGameItemService()
 
-@property (retain, nonatomic) NSMutableArray *itemArr;
+@property (retain, nonatomic) NSArray *itemsList;
 
 @end
 
@@ -34,48 +36,39 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (void)dealloc
 {
-    [_itemArr release];
+    [_itemsList release];
     [super dealloc];
 }
 
 - (id)init{
     if (self = [super init]) {
-        self.itemArr = [NSMutableArray array];
-
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_ITEM_INFO];
         if (data != nil) {
-            for (PBUserItem *item in [[PBUserItemList parseFromData:data] userItemsList]) {
-                [self.itemArr addObject:[UserItemInfo userItemInfoFromPBUserItem:item]];
-            }
+            self.itemsList = [[PBUserItemList parseFromData:data] userItemsList];
         }
     }
     
     return self;
 }
 
-- (void)clearAllUserItems
+- (void)setUserItemList:(NSArray *)itemsList
 {
-    [self.itemArr removeAllObjects];
+    self.itemsList = itemsList;
 }
 
 - (void)save
 {
     PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
-    [builder setUserId:[[UserManager defaultManager] userId]];
-    NSMutableArray *arr = [NSMutableArray array];
-    for (UserItemInfo *userItem in self.itemArr) {
-        [arr addObject:userItem.pbUserItem];
-    }
-    [builder addAllUserItems:arr];
+    [builder addAllUserItems:self.itemsList];
     PBUserItemList *itemList = [builder build];
     [[NSUserDefaults standardUserDefaults] setObject:[itemList data] forKey:KEY_USER_ITEM_INFO];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (UserItemInfo *)userItemWithItemId:(int)itemId
+- (PBUserItem *)userItemWithItemId:(int)itemId
 {
-    for (UserItemInfo *userItem in self.itemArr) {
-        if (userItem.pbUserItem.itemId == itemId) {
+    for (PBUserItem *userItem in self.itemsList) {
+        if (userItem.itemId == itemId) {
             return userItem;
         }
     }
@@ -85,7 +78,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (int)countOfItem:(int)itemId
 {
-    return [[[self userItemWithItemId:itemId] pbUserItem] count];
+    return [[self userItemWithItemId:itemId] count];
 }
 
 - (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount
@@ -93,9 +86,40 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     return [self countOfItem:itemId] >= amount;
 }
 
+- (BOOL)isItemExpire:(PBUserItem *)userItem
+{
+    NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:userItem.expireDate];
+
+    if ([[NSDate date] isBeforeDay:expireDate]) {
+            return YES;
+    }
+    
+    return NO;
+}
+
 - (BOOL)hasItem:(int)itemId
 {
-    return [self hasEnoughItemAmount:itemId amount:1];
+    if (![self hasEnoughItemAmount:itemId amount:1]) {
+        return NO;
+    }
+    
+    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+    
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+        case PBGameItemConsumeTypeAmountConsumable:
+            return YES;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            return ![self isItemExpire:[self userItemWithItemId:itemId]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return NO;
 }
 
 - (BOOL)canBuyItemNow:(PBGameItem *)item
@@ -110,11 +134,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             break;
             
         case PBGameItemConsumeTypeAmountConsumable:
-            return YES;
-            break;
-            
         case PBGameItemConsumeTypeTimeConsumable:
-            return [item isExpire];
+            return YES;
             break;
             
         default:
@@ -123,37 +144,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     return NO;
 }
-
-- (PBUserItem *)pbUserItemWithItemId:(int)itemId
-{
-    PBUserItem_Builder *builder = [[[PBUserItem_Builder alloc] init] autorelease];
-    [builder setItemId:itemId];
-    [builder setCount:0];
-    return [builder build];
-}
-
-- (void)setItem:(int)itemId count:(int)count
-{
-    UserItemInfo *userItem = [self userItemWithItemId:itemId];
-    if (userItem == nil) {
-        userItem = [UserItemInfo userItemInfoFromPBUserItem:[self pbUserItemWithItemId:itemId]];
-        [self.itemArr addObject:userItem];
-    }
-    
-    [userItem setCount:count];
-    [self save];
-}
-
-- (void)increaseItem:(int)itemId count:(int)count
-{
-    [self setItem:itemId count:([self countOfItem:itemId] + count)];
-}
-
-- (void)decreaseItem:(int)itemId count:(int)count
-{
-    [self setItem:itemId count:MAX([self countOfItem:itemId]-count, 0)];
-}
-
 
 - (void)buyItem:(int)itemId
          toUser:(NSString *)toUserId
@@ -185,27 +175,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
         if (output.resultCode == ERROR_SUCCESS) {
-
-            NSNumber *coinsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
-            NSNumber *ingotsCount = [output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE];
-            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
-
-            if (coinsCount !=nil) {
-                [[AccountManager defaultManager] updateBalance:[coinsCount intValue] currency:PBGameCurrencyCoin];
-            }
+            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+            PBGameUser *user = res.user;
             
-            if (ingotsCount != nil) {
-                [[AccountManager defaultManager] updateBalance:[ingotsCount intValue] currency:PBGameCurrencyIngot];
+            if (user != nil) {
+                [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                
+                [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
             }
-            
-            if (toUserId == nil || [toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-                for (NSDictionary* dic in itemsCountArray){
-                    int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
-                    int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
-                    
-                    [bself setItem:itemId count:itemCount];
-                }
-            }
+
+            bself.itemsList = user.itemsList;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -288,17 +267,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId];
+        CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count];
         
         if (output.resultCode == 0) {
             
-            NSArray *itemsCountArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
-            for (NSDictionary* dic in itemsCountArray){
-                int itemId = [[dic objectForKey:PARA_ITEM_TYPE] intValue];
-                int itemCount = [[dic objectForKey:PARA_ITEM_AMOUNT] intValue];
-                
-                [bself setItem:itemId count:itemCount];
-            }
+            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+            PBGameUser *user = res.user;
+            bself.itemsList = user.itemsList;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -308,7 +283,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         });
     });
 }
-
 
 - (void)awardItem:(int)itemId
             count:(int)count

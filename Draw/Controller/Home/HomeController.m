@@ -45,7 +45,7 @@
 #import "LevelService.h"
 #import "LmWallService.h"
 #import "AdService.h"
-#import "VendingController.h"
+//#import "VendingController.h"
 #import "ShowFeedController.h"
 #import "BulletinService.h"
 #import "AnalyticsManager.h"

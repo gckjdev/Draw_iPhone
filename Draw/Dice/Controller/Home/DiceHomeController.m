@@ -29,7 +29,8 @@
 
 #import "RegisterUserController.h"
 
-#import "VendingController.h"
+//#import "VendingController.h"
+#import "StoreController.h"
 #import "DiceRoomListController.h"
 #import "UserSettingController.h"
 #import "FriendController.h"
@@ -453,7 +454,7 @@
 
         case HomeMenuTypeDiceShop:
         {
-            VendingController* vc = [[VendingController alloc] init];
+            StoreController* vc = [[StoreController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }

@@ -17,7 +17,8 @@
 #import "FriendController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
-#import "VendingController.h"
+//#import "VendingController.h"
+#import "StoreController.h"
 
 #import "HelpView.h"
 #import "ZJHRoomListController.h"
@@ -236,8 +237,9 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 [self toRegister];
                 return;
             }
-            
-            VendingController* controller = [[[VendingController alloc] init] autorelease];
+//            VendingController* controller = [[[VendingController alloc] init] autorelease];
+
+            StoreController *controller = [[[StoreController alloc] init] autorelease];            
             [self.navigationController pushViewController:controller animated:YES];
         }
             break;
