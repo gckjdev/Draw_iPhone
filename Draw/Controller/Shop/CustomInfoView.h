@@ -34,6 +34,4 @@ typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
 - (void)showActivity;
 - (void)hideActivity;
 
-
-
 @end
