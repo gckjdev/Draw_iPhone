@@ -23,6 +23,9 @@
 @class ItemManager;
 @class AccountManager;
 
+typedef void (^SyncAccountResultHandler)(int resultCode);
+
+
 @protocol AccountServiceDelegate <NSObject>
 
 @optional
@@ -45,10 +48,13 @@
 - (int)getBalance;
 - (int)getBalanceWithCurrency:(PBGameCurrency)currency;
 
-- (void)syncAccountAndItem;
-- (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer;
+- (void)syncAccount;
+- (void)syncAccount:(id<AccountServiceDelegate>)delegate;
+//- (void)syncAccount:(SyncAccountResultHandler)handler;
 
-- (void)buyCoin:(PriceModel*)price;  
+- (void)buyCoin:(PriceModel*)price;
+
+// remove?
 - (void)buyRemoveAd;
 
 - (void)chargeAccount:(int)amount 

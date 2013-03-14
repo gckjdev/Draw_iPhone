@@ -39,7 +39,7 @@
 #import "AccountManager.h"
 #import "ConfigManager.h"
 #import "ItemService.h"
-#import "VendingController.h"
+//#import "VendingController.h"
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"

@@ -14,12 +14,12 @@
 #import "SuperGameViewController.h"
 #import "LevelService.h"
 #import "DrawToolPanel.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 
 @class Word;
 @class ShareImageManager;
 
-@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,CommonDialogDelegate,LevelServiceDelegate, DrawToolPanelDelegate, CommonItemInfoViewDelegate> {
+@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,CommonDialogDelegate,LevelServiceDelegate, DrawToolPanelDelegate> {
     DrawView *drawView;
 }
 

@@ -16,9 +16,9 @@ typedef enum {
     UIS_BALANCE_NOT_ENOUGH = 2,
     UIS_BAD_PARAMETER = 3,
     UIS_ITEM_NOT_ENOUGH = 4,
-}UserGameItemServiceResultCode;
+}BuyItemResultCode;
 
-typedef void (^BuyItemResultHandler)(UserGameItemServiceResultCode resultCode,  int itemId, int count, NSString *toUserId);
+typedef void (^BuyItemResultHandler)(BuyItemResultCode resultCode,  int itemId, int count, NSString *toUserId);
 
 typedef void (^UseItemResultHandler)(int resultCode, int itemId);
 
@@ -26,14 +26,10 @@ typedef void (^UseItemResultHandler)(int resultCode, int itemId);
 
 + (id)defaultService;
 
-- (void)setItem:(int)itemId count:(int)count;
-- (void)increaseItem:(int)itemId count:(int)count;
-- (void)decreaseItem:(int)itemId count:(int)count;
+- (void)setUserItemList:(NSArray *)itemsList;
 
 - (int)countOfItem:(int)itemId;
 - (BOOL)hasItem:(int)itemId;
-
-
 - (BOOL)canBuyItemNow:(PBGameItem *)item;
 
 - (void)buyItem:(int)itemId
@@ -51,7 +47,6 @@ typedef void (^UseItemResultHandler)(int resultCode, int itemId);
           count:(int)count
         handler:(BuyItemResultHandler)handler;
 
-- (void)clearAllUserItems;
 
 - (void)awardItem:(int)itemId
             count:(int)count

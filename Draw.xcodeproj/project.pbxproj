@@ -212,6 +212,10 @@
 		A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CED016D8A2A6004AC167 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
+		A4A1597516F1695A0019B964 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A1596D16F1694A0019B964 /* ChargeCell~ipad.xib */; };
+		A4A1597616F1695A0019B964 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A1596E16F1694A0019B964 /* ChargeController~ipad.xib */; };
+		A4A1597A16F1695A0019B964 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A1597316F169520019B964 /* CustomInfoView~ipad.xib */; };
+		A4A1597B16F1695A0019B964 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A1597416F169550019B964 /* PriceView~ipad.xib */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
@@ -3471,12 +3475,6 @@
 		CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA23515B16EB0DD200C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA23515C16EB0DD200C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA23515D16EB0DD200C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA23515E16EB0DD200C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
-		CA23515F16EB0DD200C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA23516016EB0DD200C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
 		CA23516216EB0DD200C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
 		CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
@@ -3509,12 +3507,6 @@
 		CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA2351A116EB0DD800C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA2351A216EB0DD800C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA2351A316EB0DD800C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA2351A416EB0DD800C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
-		CA2351A516EB0DD800C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA2351A616EB0DD800C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA2351A716EB0DD800C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
 		CA2351A816EB0DD800C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
 		CA2351A916EB0DD800C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
@@ -3547,12 +3539,6 @@
 		CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA2351ED16EB0DDB00C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA2351EE16EB0DDB00C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA2351EF16EB0DDB00C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA2351F016EB0DDB00C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
-		CA2351F116EB0DDB00C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA2351F216EB0DDB00C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA2351F316EB0DDB00C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
 		CA2351F416EB0DDB00C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
 		CA2351F516EB0DDB00C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
@@ -3585,12 +3571,6 @@
 		CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
-		CA23522316EB0DDF00C88082 /* VendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24339FD15AAB01D00325A76 /* VendingController.m */; };
-		CA23522416EB0DDF00C88082 /* VendingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24339FE15AAB02000325A76 /* VendingController.xib */; };
-		CA23522516EB0DDF00C88082 /* VendingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */; };
-		CA23522616EB0DDF00C88082 /* CommonItemInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */; };
-		CA23522716EB0DDF00C88082 /* CommonItemInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2815AC025900325A76 /* CommonItemInfoView.xib */; };
-		CA23522816EB0DDF00C88082 /* CommonItemInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */; };
 		CA23522916EB0DDF00C88082 /* GameItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = A491424516E6EBE100106265 /* GameItemDetailView.m */; };
 		CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491424716E6ED3000106265 /* GameItemDetailView.xib */; };
 		CA23522B16EB0DDF00C88082 /* LocalizableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7B116E7223F00445888 /* LocalizableLabel.m */; };
@@ -7365,6 +7345,10 @@
 		A4A0CECF16D8A2A6004AC167 /* frames.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = frames.pb; sourceTree = "<group>"; };
 		A4A132631650E86900665109 /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A4A132641650E86900665109 /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
+		A4A1596D16F1694A0019B964 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
+		A4A1596E16F1694A0019B964 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
+		A4A1597316F169520019B964 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
+		A4A1597416F169550019B964 /* PriceView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PriceView~ipad.xib"; sourceTree = "<group>"; };
 		A4A2E7A316E71DE900445888 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		A4A2E7A416E71DE900445888 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
 		A4A2E7B016E7223F00445888 /* LocalizableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizableLabel.h; sourceTree = "<group>"; };
@@ -7638,14 +7622,6 @@
 		C242479616798A2B008B4E14 /* DrawSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSoundManager.m; sourceTree = "<group>"; };
 		C24247AA1679C1DE008B4E14 /* ZJHUserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHUserInfoView.xib; sourceTree = "<group>"; };
 		C24247AC1679C1FF008B4E14 /* ZJHUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHUserInfoView~ipad.xib"; sourceTree = "<group>"; };
-		C24339FC15AAB01C00325A76 /* VendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendingController.h; sourceTree = "<group>"; };
-		C24339FD15AAB01D00325A76 /* VendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VendingController.m; sourceTree = "<group>"; };
-		C24339FE15AAB02000325A76 /* VendingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VendingController.xib; sourceTree = "<group>"; };
-		C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VendingController~ipad.xib"; sourceTree = "<group>"; };
-		C2433A2515AC01DA00325A76 /* CommonItemInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonItemInfoView.h; sourceTree = "<group>"; };
-		C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItemInfoView.m; sourceTree = "<group>"; };
-		C2433A2815AC025900325A76 /* CommonItemInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonItemInfoView.xib; sourceTree = "<group>"; };
-		C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonItemInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C244DA0A16B25304004F0F8C /* draw_room_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_room_back@2x.png"; sourceTree = "<group>"; };
 		C244DA0B16B25304004F0F8C /* draw_room_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_room_bg@2x.png"; sourceTree = "<group>"; };
 		C244DA0C16B25304004F0F8C /* draw_room_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_room_button@2x.png"; sourceTree = "<group>"; };
@@ -13241,6 +13217,10 @@
 		CA1041DD1509B6E700F60C03 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
+				A4A1596D16F1694A0019B964 /* ChargeCell~ipad.xib */,
+				A4A1596E16F1694A0019B964 /* ChargeController~ipad.xib */,
+				A4A1597316F169520019B964 /* CustomInfoView~ipad.xib */,
+				A4A1597416F169550019B964 /* PriceView~ipad.xib */,
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
@@ -13271,14 +13251,6 @@
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
 				A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */,
-				C24339FC15AAB01C00325A76 /* VendingController.h */,
-				C24339FD15AAB01D00325A76 /* VendingController.m */,
-				C24339FE15AAB02000325A76 /* VendingController.xib */,
-				C2433A0115AAB06C00325A76 /* VendingController~ipad.xib */,
-				C2433A2515AC01DA00325A76 /* CommonItemInfoView.h */,
-				C2433A2615AC01DC00325A76 /* CommonItemInfoView.m */,
-				C2433A2815AC025900325A76 /* CommonItemInfoView.xib */,
-				C2433A2A15AC028300325A76 /* CommonItemInfoView~ipad.xib */,
 				A491424416E6EBE100106265 /* GameItemDetailView.h */,
 				A491424516E6EBE100106265 /* GameItemDetailView.m */,
 				A491424716E6ED3000106265 /* GameItemDetailView.xib */,
@@ -19235,10 +19207,6 @@
 				CA23519D16EB0DD800C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */,
 				CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */,
-				CA2351A216EB0DD800C88082 /* VendingController.xib in Resources */,
-				CA2351A316EB0DD800C88082 /* VendingController~ipad.xib in Resources */,
-				CA2351A516EB0DD800C88082 /* CommonItemInfoView.xib in Resources */,
-				CA2351A616EB0DD800C88082 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA2351A816EB0DD800C88082 /* GameItemDetailView.xib in Resources */,
 				CA2351AC16EB0DD800C88082 /* ChargeController.xib in Resources */,
 				CA2351AE16EB0DD800C88082 /* ChargeCell.xib in Resources */,
@@ -20116,10 +20084,6 @@
 				CA23521F16EB0DDF00C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */,
 				CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */,
-				CA23522416EB0DDF00C88082 /* VendingController.xib in Resources */,
-				CA23522516EB0DDF00C88082 /* VendingController~ipad.xib in Resources */,
-				CA23522716EB0DDF00C88082 /* CommonItemInfoView.xib in Resources */,
-				CA23522816EB0DDF00C88082 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */,
 				CA23522E16EB0DDF00C88082 /* ChargeController.xib in Resources */,
 				CA23523016EB0DDF00C88082 /* ChargeCell.xib in Resources */,
@@ -21014,10 +20978,6 @@
 				CA23515716EB0DD200C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */,
 				CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */,
-				CA23515C16EB0DD200C88082 /* VendingController.xib in Resources */,
-				CA23515D16EB0DD200C88082 /* VendingController~ipad.xib in Resources */,
-				CA23515F16EB0DD200C88082 /* CommonItemInfoView.xib in Resources */,
-				CA23516016EB0DD200C88082 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA23516216EB0DD200C88082 /* GameItemDetailView.xib in Resources */,
 				CA23516616EB0DD200C88082 /* ChargeController.xib in Resources */,
 				CA23516816EB0DD200C88082 /* ChargeCell.xib in Resources */,
@@ -21064,6 +21024,10 @@
 				C203C45C16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
 				EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */,
 				EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */,
+				A4A1597516F1695A0019B964 /* ChargeCell~ipad.xib in Resources */,
+				A4A1597616F1695A0019B964 /* ChargeController~ipad.xib in Resources */,
+				A4A1597A16F1695A0019B964 /* CustomInfoView~ipad.xib in Resources */,
+				A4A1597B16F1695A0019B964 /* PriceView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21910,10 +21874,6 @@
 				CA2351E916EB0DDB00C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */,
 				CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */,
-				CA2351EE16EB0DDB00C88082 /* VendingController.xib in Resources */,
-				CA2351EF16EB0DDB00C88082 /* VendingController~ipad.xib in Resources */,
-				CA2351F116EB0DDB00C88082 /* CommonItemInfoView.xib in Resources */,
-				CA2351F216EB0DDB00C88082 /* CommonItemInfoView~ipad.xib in Resources */,
 				CA2351F416EB0DDB00C88082 /* GameItemDetailView.xib in Resources */,
 				CA2351F816EB0DDB00C88082 /* ChargeController.xib in Resources */,
 				CA2351FA16EB0DDB00C88082 /* ChargeCell.xib in Resources */,
@@ -22664,8 +22624,6 @@
 				CA23519816EB0DD800C88082 /* ItemShopController.m in Sources */,
 				CA23519B16EB0DD800C88082 /* ShoppingCell.m in Sources */,
 				CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */,
-				CA2351A116EB0DD800C88082 /* VendingController.m in Sources */,
-				CA2351A416EB0DD800C88082 /* CommonItemInfoView.m in Sources */,
 				CA2351A716EB0DD800C88082 /* GameItemDetailView.m in Sources */,
 				CA2351A916EB0DD800C88082 /* LocalizableLabel.m in Sources */,
 				CA2351AA16EB0DD800C88082 /* GameItemPriceView.m in Sources */,
@@ -23410,8 +23368,6 @@
 				CA23521A16EB0DDF00C88082 /* ItemShopController.m in Sources */,
 				CA23521D16EB0DDF00C88082 /* ShoppingCell.m in Sources */,
 				CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */,
-				CA23522316EB0DDF00C88082 /* VendingController.m in Sources */,
-				CA23522616EB0DDF00C88082 /* CommonItemInfoView.m in Sources */,
 				CA23522916EB0DDF00C88082 /* GameItemDetailView.m in Sources */,
 				CA23522B16EB0DDF00C88082 /* LocalizableLabel.m in Sources */,
 				CA23522C16EB0DDF00C88082 /* GameItemPriceView.m in Sources */,
@@ -24162,8 +24118,6 @@
 				CA23515216EB0DD200C88082 /* ItemShopController.m in Sources */,
 				CA23515516EB0DD200C88082 /* ShoppingCell.m in Sources */,
 				CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */,
-				CA23515B16EB0DD200C88082 /* VendingController.m in Sources */,
-				CA23515E16EB0DD200C88082 /* CommonItemInfoView.m in Sources */,
 				CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */,
 				CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */,
 				CA23516416EB0DD200C88082 /* GameItemPriceView.m in Sources */,
@@ -24916,8 +24870,6 @@
 				CA2351E416EB0DDB00C88082 /* ItemShopController.m in Sources */,
 				CA2351E716EB0DDB00C88082 /* ShoppingCell.m in Sources */,
 				CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */,
-				CA2351ED16EB0DDB00C88082 /* VendingController.m in Sources */,
-				CA2351F016EB0DDB00C88082 /* CommonItemInfoView.m in Sources */,
 				CA2351F316EB0DDB00C88082 /* GameItemDetailView.m in Sources */,
 				CA2351F516EB0DDB00C88082 /* LocalizableLabel.m in Sources */,
 				CA2351F616EB0DDB00C88082 /* GameItemPriceView.m in Sources */,

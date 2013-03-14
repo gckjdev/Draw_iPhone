@@ -139,7 +139,7 @@ typedef enum{
     }else{
         __block typeof (self) bself = self;
         
-        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
             if (itemId == ItemTypeRemoveAd) {
                 [[AdService defaultService] disableAd];
             }
@@ -155,7 +155,7 @@ typedef enum{
     }
 }
 
-- (void)showUserGameItemServiceResult:(UserGameItemServiceResultCode)resultCode
+- (void)showUserGameItemServiceResult:(BuyItemResultCode)resultCode
                                  item:(PBGameItem *)item
                                 count:(int)count
                              toUserId:(NSString *)toUserId
@@ -212,7 +212,7 @@ typedef enum{
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == UIS_SUCCESS) {
                     [cusInfoView dismiss];
                 }

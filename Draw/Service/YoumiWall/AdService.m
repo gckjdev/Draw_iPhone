@@ -197,8 +197,6 @@ static AdService* _defaultService;
 {
     [MobClick event:@"BUY_REMOVE_AD"];
     [[AccountService defaultService] buyRemoveAd];
-    
-    
 }
 
 - (void)buyCoins

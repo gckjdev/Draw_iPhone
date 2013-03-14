@@ -7464,28 +7464,18 @@ static PBUserItem* defaultPBUserItemInstance = nil;
 @end
 
 @interface PBUserItemList ()
-@property (retain) NSString* userId;
 @property (retain) NSMutableArray* mutableUserItemsList;
 @end
 
 @implementation PBUserItemList
 
-- (BOOL) hasUserId {
-  return !!hasUserId_;
-}
-- (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
-}
-@synthesize userId;
 @synthesize mutableUserItemsList;
 - (void) dealloc {
-  self.userId = nil;
   self.mutableUserItemsList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userId = @"";
   }
   return self;
 }
@@ -7509,9 +7499,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
   for (PBUserItem* element in self.userItemsList) {
     if (!element.isInitialized) {
       return NO;
@@ -7520,9 +7507,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
   for (PBUserItem* element in self.userItemsList) {
     [output writeMessage:2 value:element];
   }
@@ -7535,9 +7519,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   }
 
   size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
   for (PBUserItem* element in self.userItemsList) {
     size += computeMessageSize(2, element);
   }
@@ -7616,9 +7597,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
   if (other == [PBUserItemList defaultInstance]) {
     return self;
   }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
   if (other.mutableUserItemsList.count > 0) {
     if (result.mutableUserItemsList == nil) {
       result.mutableUserItemsList = [NSMutableArray array];
@@ -7646,10 +7624,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
         }
         break;
       }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
       case 18: {
         PBUserItem_Builder* subBuilder = [PBUserItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
@@ -7658,22 +7632,6 @@ static PBUserItemList* defaultPBUserItemListInstance = nil;
       }
     }
   }
-}
-- (BOOL) hasUserId {
-  return result.hasUserId;
-}
-- (NSString*) userId {
-  return result.userId;
-}
-- (PBUserItemList_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
-}
-- (PBUserItemList_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
 }
 - (NSArray*) userItemsList {
   if (result.mutableUserItemsList == nil) { return [NSArray array]; }

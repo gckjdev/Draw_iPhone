@@ -234,7 +234,7 @@ NSString* GlobalGetBoardServerURL()
     }
             
     // Init Account Service and Sync Balance and Item
-    [[AccountService defaultService] syncAccount:nil forceServer:YES];
+    [[AccountService defaultService] syncAccount:nil];
     
     /* remove this due to online draw server changed
     if (isDrawApp()){

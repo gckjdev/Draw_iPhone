@@ -43,7 +43,7 @@
 #import "ConfigManager.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
-#import "VendingController.h"
+//#import "VendingController.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
@@ -632,33 +632,7 @@
     
     [[DrawRecoveryService defaultService] handleNewPaintDrawed:drawView.drawActionList];
 
-    /*
-    time_t nowTime = time(0);
-    if (_unDraftPaintCount >= DRAFT_PAINT_COUNT ||
-        (_unDraftPaintCount > 0 && ((nowTime - _lastSaveTime) >= DRAFT_PAINT_TIME_INTERVAL) )) {
-        [[DrawRecoveryService defaultService] backup:drawView.drawActionList];
-        _unDraftPaintCount = 0;
-        _lastSaveTime = nowTime;
-    }
-    else{
-        _unDraftPaintCount ++;
-    }
-    */
     return;
-    
-    // old implementation, reserved, to be deleted
-    
-    /*
-    if (targetType == TypeGraffiti || !_isAutoSave) {
-        return;
-    }
-    
-    ++ _unDraftPaintCount;
-    if (_unDraftPaintCount >= DRAFT_PAINT_COUNT) {
-        PPDebug(@"<didDrawedPaint> start to auto save...");
-        [self saveDraft:NO];
-    }
-    */
 }
 
 - (void)alertCommitContestOpusAsNormalOpus:(NSString *)message
@@ -1080,7 +1054,44 @@
 //    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
 }
 
+
+
+- (void)buyItemSuccess:(int)itemId
+                result:(int)result
+{
+    if (result == 0) {
+        switch (itemId) {
+            case PaletteItem:
+            case ColorAlphaItem:
+            case ColorStrawItem:
+                [self.drawToolPanel updateNeedBuyToolViews];
+                [self.drawToolPanel userItem:itemId];
+                break;
+            case Pen:
+            case Pencil:
+            case IcePen:
+            case Quill:
+            case WaterPen:
+            {
+                drawView.touchActionType = TouchActionTypeDraw;
+                [self.drawToolPanel setPenType:itemId];
+                [drawView setPenType:itemId];
+                break;
+            }
+            default:
+                break;
+                
+        }
+    }else
+    {
+        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
+    }
+}
+
 #pragma mark - CommonItemInfoView Delegate
+
+
+
 
 - (void)didBuyItem:(Item*)anItem
             result:(int)result
@@ -1189,7 +1200,7 @@
     }else{
 //        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
         PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
             
         }];
     }
@@ -1238,8 +1249,8 @@
 {
 //    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
-    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
-        
+    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [self buyItemSuccess:itemId result:resultCode];
     }];
 }
 

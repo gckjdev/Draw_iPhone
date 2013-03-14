@@ -17,7 +17,7 @@
 #import "DrawConstants.h"
 #import "LevelService.h"
 #import "DrawToolPanel.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 
 @class Word;
 @class ShareImageManager;
@@ -36,7 +36,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, DrawToolPanelDelegate, CommonItemInfoViewDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, DrawToolPanelDelegate> {
     
 }
 
