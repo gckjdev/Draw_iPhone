@@ -466,7 +466,7 @@
 //            return;
 //        }
 //    }
-//    self.image = [UIImage imageWithContentsOfFile:@"/Library/WebServer/Documents/post.jpg"];
+
     [self updateToolButtons];
     [self.textView becomeFirstResponder];
 }
