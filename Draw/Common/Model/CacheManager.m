@@ -30,7 +30,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CacheManager)
         
     }
     Block_excute(succBlock, fileSize);
-    
 }
 
 @end
