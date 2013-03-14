@@ -140,7 +140,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {    
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
-    for (int index = 0 ; index < 18; index ++) {
+    for (int index = 0 ; index < 19; index ++) {
         PBGameItem_Builder *itemBuilder = [[PBGameItem_Builder alloc] init];
         
         //移除广告
@@ -558,6 +558,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
             //[itemBuilder setDefaultSaleCount:1];
             //[itemBuilder setUsageLifeUnit:nil];
             //[itemBuilder setUsageLife:0];
+        }
+        
+        //时间消耗品
+        else if (index == 18){
+            [itemBuilder setItemId:1800];
+            [itemBuilder setName:@"时间消耗品"];
+            [itemBuilder setDesc:@"时间消耗品的描述"];
+            [itemBuilder setConsumeType:PBGameItemConsumeTypeTimeConsumable];
+            
+            [itemBuilder setImage:URL_ITEM_IMAGE(@"时间消耗品@2x.png")];
+            //[itemBuilder setDemoImage:nil];
+            [itemBuilder setType:PBDrawItemTypeNomal];
+            //[itemBuilder setAppleProductId:nil];
+            
+            PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:20];
+            [itemBuilder setPriceInfo:priceInfo];
+            //[itemBuilder setPromotionInfo:nil];
+            
+            //[itemBuilder setDefaultSaleCount:0];
+            [itemBuilder setUsageLifeUnit:PBGameTimeUnitDay];
+            [itemBuilder setUsageLife:1];
         }
 
         PBGameItem *item = [itemBuilder build];
