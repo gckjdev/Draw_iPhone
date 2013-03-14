@@ -50,22 +50,17 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 + (id)createWithTitle:(NSString *)title
                  info:(NSString *)info
 {
-    UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
-    infoLabel.font = [UIFont systemFontOfSize:FONT_SIZE_INFO_LABEL];
-    infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
-    [infoLabel setBackgroundColor:[UIColor clearColor]];
-    [infoLabel setTextAlignment:NSTextAlignmentCenter];
-    infoLabel.text = info;
-    
-    // set info label height
-    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
-    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
-    if (size.height < HEIGHT_MIN_INFO_LABEL) {
-        size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
-    }
-    infoLabel.frame = CGRectMake(0, 0, WIDTH_INFO_LABEL, size.height);
-    
+    UILabel *infoLabel = [self createInfoLabel:info];
     return [self createWithTitle:title infoView:infoLabel];
+}
+
++ (id)createWithTitle:(NSString *)title
+                 info:(NSString *)info
+       hasCloseButton:(BOOL)hasCloseButton
+         buttonTitles:(NSArray *)buttonTitles
+{
+    UILabel *infoLabel = [self createInfoLabel:info];
+    return [self createWithTitle:title infoView:infoLabel hasCloseButton:hasCloseButton buttonTitles:buttonTitles];
 }
 
 + (id)createWithTitle:(NSString *)title
@@ -77,7 +72,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView
        hasCloseButton:(BOOL)hasCloseButton
-         buttonTitles:(NSString *)firstTitle, ...
+         buttonTitles:(NSArray *)buttonTitles
 {
     CustomInfoView *view = [self createView];
         
@@ -100,29 +95,15 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     // set close button
     view.closeButton.hidden = !hasCloseButton;
     
-    // add buttons
-    NSMutableArray *titleList = [NSMutableArray array];
-    id arg;
-    va_list argList;
-    if (firstTitle)
-    {
-        [titleList addObject:firstTitle];
-        va_start(argList, firstTitle);
-        while ((arg = va_arg(argList,id)))
-        {
-            [titleList addObject:arg];
-        }
-        va_end(argList);
-    }
     
     CGFloat originY = TITLE_HEIGHT + SPACE_VERTICAL + infoView.frame.size.height + SPACE_VERTICAL;
 
-    if ([titleList count] != 0) {
+    if ([buttonTitles count] != 0) {
         [view.mainView updateHeight:(view.mainView.frame.size.height + SPACE_VERTICAL + BUTTON_HEIGHT)];
     }
     
-    if ([titleList count] == 1) {
-        UIButton *button = [self createButtonWithTitle:[titleList objectAtIndex:0]];
+    if ([buttonTitles count] == 1) {
+        UIButton *button = [self createButtonWithTitle:[buttonTitles objectAtIndex:0]];
         [button updateCenterX:infoView.center.x];
         [button updateOriginY:originY];
         [button addTarget:view action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,9 +112,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [view.mainView addSubview:button];
     }
     
-    if ([titleList count] >= 2) {
-        UIButton *button1 = [self createButtonWithTitle:[titleList objectAtIndex:0]];
-        UIButton *button2 = [self createButtonWithTitle:[titleList objectAtIndex:1]];
+    if ([buttonTitles count] >= 2) {
+        UIButton *button1 = [self createButtonWithTitle:[buttonTitles objectAtIndex:0]];
+        UIButton *button2 = [self createButtonWithTitle:[buttonTitles objectAtIndex:1]];
         [button1 updateOriginX:infoView.frame.origin.x];
         [button1 updateOriginY:originY];
         [button1 addTarget:view action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -167,6 +148,27 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         Block_release(_actionBlock);
         _actionBlock = Block_copy(actionBlock);
     }
+}
+
++ (UILabel *)createInfoLabel:(NSString *)text
+{
+    UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
+    infoLabel.font = [UIFont systemFontOfSize:FONT_SIZE_INFO_LABEL];
+    infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
+    [infoLabel setBackgroundColor:[UIColor clearColor]];
+    [infoLabel setTextAlignment:NSTextAlignmentCenter];
+    [infoLabel setNumberOfLines:0];
+    infoLabel.text = text;
+    
+    // set info label height
+    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
+    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
+    if (size.height < HEIGHT_MIN_INFO_LABEL) {
+        size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
+    }
+    infoLabel.frame = CGRectMake(0, 0, WIDTH_INFO_LABEL, size.height);
+    
+    return infoLabel;
 }
 
 #define COLOR_BUTTON_TITLE  [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1]

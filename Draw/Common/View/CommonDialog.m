@@ -180,6 +180,7 @@
             [self.oKButton setFrame:CGRectMake(self.oKButton.frame.origin.x, self.oKButton.frame.origin.y, self.oKButton.frame.size.width*2, self.oKButton.frame.size.height)];
             [self.oKButton setCenter:CGPointMake(self.contentView.frame.size.width/2, self.oKButton.frame.origin.y)];
             [self.backButton setHidden:YES];
+            self.closeButton.hidden = YES;
         }
             break;
         case CommonDialogStyleDoubleButton: {

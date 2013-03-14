@@ -10,6 +10,7 @@
 #import "FileUtil.h"
 #import "SynthesizeSingleton.h"
 
+
 @implementation CacheManager
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(CacheManager)
@@ -28,7 +29,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CacheManager)
         fileSize += [FileUtil clearOnlyFilesAtPath:cachePath];
         
     }
-    succBlock(fileSize);
+    EXCUTE_BLOCK(succBlock, fileSize);
 }
 
 @end

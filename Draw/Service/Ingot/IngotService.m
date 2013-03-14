@@ -57,24 +57,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
         PBSaleIngot_Builder *saleIngot_Builder = [[PBSaleIngot_Builder alloc] init];
         
         if (index == 0) {
-            [saleIngot_Builder setCount:8];
-            [saleIngot_Builder setTotalPrice:@"8"];
+            [saleIngot_Builder setCount:18];
+            [saleIngot_Builder setTotalPrice:@"18"];
             //[saleIngot_Builder setSaving:nil];
             [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins400"];
         } else if (index == 1){
-            [saleIngot_Builder setCount:20];
-            [saleIngot_Builder setTotalPrice:@"18"];
-            [saleIngot_Builder setSaving:@"10%"];
+            [saleIngot_Builder setCount:32];
+            [saleIngot_Builder setTotalPrice:@"30"];
+            [saleIngot_Builder setSaving:@"6%"];
             [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins2400"];
         } else if (index == 2){
-            [saleIngot_Builder setCount:50];
-            [saleIngot_Builder setTotalPrice:@"45"];
-            [saleIngot_Builder setSaving:@"10%"];
+            [saleIngot_Builder setCount:90];
+            [saleIngot_Builder setTotalPrice:@"68"];
+            [saleIngot_Builder setSaving:@"24%"];
             [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins6000"];
         } else if (index == 3){
-            [saleIngot_Builder setCount:100];
-            [saleIngot_Builder setTotalPrice:@"80"];
-            [saleIngot_Builder setSaving:@"20%"];
+            [saleIngot_Builder setCount:250];
+            [saleIngot_Builder setTotalPrice:@"163"];
+            [saleIngot_Builder setSaving:@"35%"];
             [saleIngot_Builder setAppleProductId:@"com.orange.draw.coins20000"];
         }
         

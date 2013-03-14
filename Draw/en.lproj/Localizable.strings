@@ -1059,6 +1059,9 @@
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
+"kCleaning" = "Cleaning Cache...";
+
+
 "kDottedLinePen" = "dotted line pen";
 "kDottedLinePenDescription" = "A can easily draw dotted pen";
 "kSmoothPen" = "smooth pen";
@@ -1081,6 +1084,9 @@
 "kBasicShapeDescription" = "can easily draw the basic shapes";
 "kPurseItem" = "pockets";
 "kPurseItemDescription" = "can buy gold bullions";
+
+"kUpdateTips" = "Update Tips";
+"kVersionIsOld" = "version is too low, you can not use this function to determine the Update?";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

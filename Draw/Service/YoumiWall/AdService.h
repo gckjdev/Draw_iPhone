@@ -35,11 +35,9 @@ typedef enum
 
 @interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal, GADBannerViewDelegate>
 {
-//    LmmobAdBannerView   *_adView;
-//    NSMutableDictionary *_allAdViews;
-    
     BOOL _isShowAd;
 }
+
 + (AdService*)defaultService;
 
 - (BOOL)isShowAd;
@@ -47,14 +45,8 @@ typedef enum
 - (void)setAdDisable;
 - (void)disableAd;
 - (void)removeAdByIAP;
-//- (void)hideAdViewInView:(UIView*)superView;
-//- (void)showAdInView:(UIViewController*)superViewContoller
-//               frame:(CGRect)frame 
-//           iPadFrame:(CGRect)iPadFrame;
 
 - (void)clearAdView:(UIView*)adView;
-//- (void)pauseAdView:(UIView*)adView;
-//- (void)resumeAdView:(UIView*)adView;
 - (UIView*)createAdInView:(PPViewController*)superViewContoller
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame

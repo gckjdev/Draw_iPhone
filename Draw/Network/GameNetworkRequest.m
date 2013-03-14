@@ -646,25 +646,28 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_USER_ACCOUNT_ITEM];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_ACCOUNT];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+
         return str;
     };
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                
         return;
     }; 
     
+//    return [PPNetworkRequest sendRequest:baseURL
+//                     constructURLHandler:constructURLHandler
+//                         responseHandler:responseHandler
+//                                  output:output];
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
                                   output:output];
-    
-    
 }
 
 + (CommonNetworkOutput*)syncUserAccontAndItem:(NSString*)baseURL 
@@ -676,17 +679,17 @@
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_USER_ACCOUNT_ITEM];   
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_ACCOUNT];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_VERSION value:[UIUtils getAppVersion]];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };
     
     
     PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
-        output.jsonDataDict = [dict objectForKey:RET_DATA];                
         return;
     }; 
     

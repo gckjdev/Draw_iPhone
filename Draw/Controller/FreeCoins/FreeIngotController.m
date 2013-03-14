@@ -13,6 +13,7 @@
 #import "ShareImageManager.h"
 #import "Config.pb.h"
 #import "LmWallService.h"
+#import "BBSBoardController.h"
 
 #define SECTION_COUNT 2
 
@@ -144,6 +145,13 @@ enum {
 - (IBAction)clickBackButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickToBBS:(id)sender
+{
+    BBSBoardController *bbs = [[BBSBoardController alloc] init];
+    [self.navigationController pushViewController:bbs animated:YES];
+    [bbs release];
 }
 
 @end

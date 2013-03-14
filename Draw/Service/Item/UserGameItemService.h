@@ -20,7 +20,7 @@ typedef enum {
 
 typedef void (^BuyItemResultHandler)(BuyItemResultCode resultCode,  int itemId, int count, NSString *toUserId);
 
-typedef void (^UseItemResultHandler)(int resultCode, int itemId);
+typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 
 @interface UserGameItemService : CommonService
 
@@ -47,12 +47,13 @@ typedef void (^UseItemResultHandler)(int resultCode, int itemId);
           count:(int)count
         handler:(BuyItemResultHandler)handler;
 
-
 - (void)awardItem:(int)itemId
             count:(int)count
           handler:(BuyItemResultHandler)handler;
 
+
+        
 - (void)consumeItem:(int)itemId
-            handler:(UseItemResultHandler)handler;
+            handler:(ConsumeItemResultHandler)handler;
 
 @end

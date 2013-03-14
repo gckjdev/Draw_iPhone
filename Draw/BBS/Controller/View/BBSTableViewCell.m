@@ -19,6 +19,7 @@
 @synthesize imageMask = _imageMask;
 @synthesize avatarMask = _avatarMask;
 @synthesize superController = _superController;
+@synthesize contentTextView = _contentTextView;
 
 #define BORDER_WIDTH ISIPAD ? 5 : 2.5
 #define IMAGE_CORNER_RADIUS ISIPAD ? 10 : 5
@@ -75,6 +76,17 @@
                       textColor:[UIColor blackColor]
                            text:nil];
     
+    [self.contentTextView setBackgroundColor:[UIColor clearColor]];
+    [self.contentTextView setFont:[_bbsFontManager postContentFont]];
+    [self.contentTextView setTextColor:[UIColor blackColor]];
+    [self.contentTextView setText:nil];
+    [self.contentTextView setScrollEnabled:NO];
+    [self.contentTextView setEditable:NO];
+    [self.contentTextView setDataDetectorTypes:UIDataDetectorTypeAll];
+//    if ([DeviceDetection isOS6]) {
+//        [self.contentTextView setAllowsEditingTextAttributes:YES];
+//    }
+    
     [BBSViewManager updateLable:self.timestamp
                         bgColor:[UIColor clearColor]
                            font:[_bbsFontManager postDateFont]
@@ -100,14 +112,27 @@
 
 }
 
+- (void)setUseContentLabel:(BOOL)useContentLabel
+{
+    if (useContentLabel) {
+        [self.contentTextView removeFromSuperview];
+        self.contentTextView = nil;
+    }else{
+        [self.content removeFromSuperview];
+        self.content = nil;
+    }
+    _useContentLabel = useContentLabel;
+}
+
 - (void)updateImageViewFrameWithImage:(UIImage *)image
 {
     if (image) {
+        CGRect frame = (self.useContentLabel ? self.content.frame : self.contentTextView.frame);
         CGSize size = [[BBSImageManager defaultManager]
                        image:image
                        sizeWithConstHeight:IMAGE_HEIGHT
-                       maxWidth:CGRectGetWidth(self.content.frame)];
-        CGRect frame = self.image.frame;
+                       maxWidth:CGRectGetWidth(frame)];
+        frame = self.image.frame;
         frame.size = size;
         self.image.frame = frame;
     }
@@ -124,6 +149,7 @@
     PPRelease(_avatarMask);
     PPRelease(_superController);
     PPRelease(_bgImageView);
+    PPRelease(_contentTextView);
     [super dealloc];
 }
 

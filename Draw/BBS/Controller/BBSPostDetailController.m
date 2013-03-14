@@ -23,6 +23,8 @@
     BBSFontManager *_bbsFontManager;
     BBSPostActionHeaderView *_header;
     PBBBSAction *_selectedAction;
+    
+    UITextView *_helpTextView;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
@@ -88,7 +90,6 @@ typedef enum{
         _bbsImageManager = [BBSImageManager defaultManager];
         _bbsFontManager = [BBSFontManager defaultManager];
         _bbsColorManager = [BBSColorManager defaultManager];
-
     }
     return self;
 }
@@ -145,6 +146,13 @@ typedef enum{
     [self.toolBarBG setImage:[_bbsImageManager bbsDetailToolbar]];
 
     [self updateFooterView];
+    
+    _helpTextView = [[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)] autorelease];
+    UIFont * font = [[BBSFontManager defaultManager] postContentFont];
+    [_helpTextView setFont:font];
+    _helpTextView.hidden = YES;
+    [self.view addSubview:_helpTextView];
+    
 }
 
 - (NSInteger)defaultTabID
@@ -271,12 +279,12 @@ typedef enum{
     switch (indexPath.section) {
         case SectionDetail:
         {
-            return  [BBSPostDetailCell getCellHeightWithBBSPost:self.post];
+            return  [BBSPostDetailCell getCellHeightWithBBSPost:self.post inTextView:_helpTextView];
         }
         case SectionActionList:
         {
             PBBBSAction *action = [self.tabDataList objectAtIndex:indexPath.row];
-            return [BBSPostActionCell getCellHeightWithBBSAction:action];
+            return [BBSPostActionCell getCellHeightWithBBSAction:action inTextView:_helpTextView];
         }
         case SectionAction:
             return [BBSPostActionHeaderView getViewHeight];
