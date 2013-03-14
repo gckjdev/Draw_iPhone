@@ -241,7 +241,6 @@ message PBUserItem {
 }
 
 message PBUserItemList {
-  required string userId = 1;
   repeated PBUserItem userItems = 2;
 }
 

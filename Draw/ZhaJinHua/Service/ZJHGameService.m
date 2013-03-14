@@ -614,15 +614,6 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] alreadFoldCard] || [[self myPlayInfo] alreadCompareLose];
 }
 
-//- (NSString *)getRoomName
-//{
-//    if ([self.session.roomName length] > 0) {
-//        return self.session.roomName;
-//    }
-//    
-//    return [NSString stringWithFormat:NSLS(@"kZJHRoomTitle"), self.session.sessionId];
-//}
-
 - (void)chargeAccount:(int)amount
                source:(BalanceSourceType)source
 {
@@ -631,7 +622,7 @@ static ZJHGameService *_defaultService;
 
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate
 {
-    [_accountService syncAccount:delegate forceServer:YES];
+    [_accountService syncAccount:delegate];
 }
 
 - (NSArray *)myReplacedCards

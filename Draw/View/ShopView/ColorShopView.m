@@ -222,7 +222,7 @@
         __block typeof (self) bself = self;
         [self showActivity];
         
-       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(UserGameItemServiceResultCode resultCode, int itemId, int count, NSString *toUserId) {
+       [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
            
            if (resultCode == UIS_SUCCESS) {
                [bself buyColorSuccess];
@@ -274,6 +274,7 @@
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    [[UserGameItemService defaultService] setBuyItemResultHandler:NULL];
     PPRelease(_indicator);
     PPRelease(titleLabel);
     PPRelease(coinCountLabel);

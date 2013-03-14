@@ -15,7 +15,7 @@
 #import "CommonMessageCenter.h"
 #import "StableView.h"
 #import "PickToolView.h"
-#import "CommonItemInfoView.h"
+//#import "CommonItemInfoView.h"
 
 
 
@@ -31,12 +31,12 @@
 @class Word;
 @class ShowDrawView;
 @class ShareImageManager;
-//@class ToolView;
 @class VendingController;
 @class Draw;
 @class DrawFeed;
 @class UseItemScene;
-@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate, CommonItemInfoViewDelegate>
+
+@interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate,UIScrollViewDelegate,DrawDataServiceDelegate, AvatarViewDelegate,PickViewDelegate>
 {
     ShowDrawView *showView;
     NSString *_candidateString;

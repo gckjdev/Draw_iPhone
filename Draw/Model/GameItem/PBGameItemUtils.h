@@ -15,6 +15,4 @@
 - (int)promotionPrice;
 - (int)discount;
 
-- (BOOL)isExpire;
-
 @end
