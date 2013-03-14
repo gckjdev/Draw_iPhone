@@ -1059,6 +1059,9 @@
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
+"kCleaning" = "Cleaning Cache...";
+
+
 "kDottedLinePen" = "dotted line pen";
 "kDottedLinePenDescription" = "A can easily draw dotted pen";
 "kSmoothPen" = "smooth pen";

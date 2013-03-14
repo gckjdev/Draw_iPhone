@@ -50,21 +50,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 + (id)createWithTitle:(NSString *)title
                  info:(NSString *)info
 {
-    UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
-    infoLabel.font = [UIFont systemFontOfSize:FONT_SIZE_INFO_LABEL];
-    infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
-    [infoLabel setBackgroundColor:[UIColor clearColor]];
-    [infoLabel setTextAlignment:NSTextAlignmentCenter];
-    infoLabel.text = info;
-    
-    // set info label height
-    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
-    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
-    if (size.height < HEIGHT_MIN_INFO_LABEL) {
-        size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
-    }
-    infoLabel.frame = CGRectMake(0, 0, WIDTH_INFO_LABEL, size.height);
-    
+    UILabel *infoLabel = [self createInfoLabel:info];
     return [self createWithTitle:title infoView:infoLabel];
 }
 
@@ -167,6 +153,26 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         Block_release(_actionBlock);
         _actionBlock = Block_copy(actionBlock);
     }
+}
+
++ (UILabel *)createInfoLabel:(NSString *)text
+{
+    UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
+    infoLabel.font = [UIFont systemFontOfSize:FONT_SIZE_INFO_LABEL];
+    infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
+    [infoLabel setBackgroundColor:[UIColor clearColor]];
+    [infoLabel setTextAlignment:NSTextAlignmentCenter];
+    infoLabel.text = text;
+    
+    // set info label height
+    CGSize maxSize = CGSizeMake(WIDTH_INFO_LABEL, HEIGHT_MAX_INFO_LABEL);
+    CGSize size = [infoLabel.text sizeWithFont:infoLabel.font constrainedToSize:maxSize];
+    if (size.height < HEIGHT_MIN_INFO_LABEL) {
+        size = CGSizeMake(size.width, HEIGHT_MIN_INFO_LABEL);
+    }
+    infoLabel.frame = CGRectMake(0, 0, WIDTH_INFO_LABEL, size.height);
+    
+    return infoLabel;
 }
 
 #define COLOR_BUTTON_TITLE  [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1]
