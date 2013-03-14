@@ -24,9 +24,6 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 
 @interface UserGameItemService : CommonService
 
-@property (assign, nonatomic) BuyItemResultHandler buyItemResultHandler;
-@property (assign, nonatomic) ConsumeItemResultHandler consumeItemResultHandler;
-
 + (id)defaultService;
 
 - (void)setUserItemList:(NSArray *)itemsList;

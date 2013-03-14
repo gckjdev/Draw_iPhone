@@ -76,6 +76,7 @@
     cell.content.font = CONTENT_FONT;
     [cell updateViews];
     cell.delegate = delegate;
+    [cell setUseContentLabel:NO];
     return cell;
 }
 
@@ -95,6 +96,33 @@
 //}
 
 
+
+
++ (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
+{
+    CGRect rect = textView.frame;
+    rect.size = CGSizeMake(CONTENT_WIDTH, 10);
+    textView.frame = rect;
+    [textView setText:text];
+    return textView.contentSize.height;
+}
+
+
++ (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
+                         inTextView:(UITextView *)textView
+{
+    PBBBSContent * content = post.content;
+    CGFloat height = [BBSPostDetailCell heightForContentText:content.text inTextView:textView];
+    height += SPACE_CONTENT_TOP;
+    if (post.content.hasThumbImage) {
+        height += SPACE_CONTENT_BOTTOM_IMAGE;
+    }else{
+        height += SPACE_CONTENT_BOTTOM_TEXT;
+    }
+    return height;
+}
+
+// deprecated method
 + (CGFloat)heightForContentText:(NSString *)text
 {
     CGSize size = [text sizeWithFont:CONTENT_FONT constrainedToSize:CGSizeMake(CONTENT_WIDTH, CONTENT_MAX_HEIGHT) lineBreakMode:NSLineBreakByCharWrapping];
@@ -102,23 +130,16 @@
     return size.height;
 }
 
+// deprecated method
 + (CGFloat)getCellHeightWithBBSPost:(PBBBSPost *)post
 {
     PBBBSContent * content = post.content;
     CGFloat height = [BBSPostDetailCell heightForContentText:content.text];
     height += SPACE_CONTENT_TOP;
     if (post.content.hasThumbImage) {
-//        if (post.hasReward) {
-//            height += SPACE_CONTENT_BOTTOM_IMAGE_REWARD;
-//        }else{
-            height += SPACE_CONTENT_BOTTOM_IMAGE;
-//        }
+        height += SPACE_CONTENT_BOTTOM_IMAGE;
     }else{
-//        if (post.hasReward) {
-//            height += SPACE_CONTENT_BOTTOM_TEXT_REWARD;
-//        }else{
-            height += SPACE_CONTENT_BOTTOM_TEXT;
-//        }
+        height += SPACE_CONTENT_BOTTOM_TEXT;
     }
     return height;
 }
@@ -131,13 +152,20 @@
 
 - (void)updateContent:(PBBBSContent *)content
 {
-    
-    [self.content setText:content.text];
+    if (self.useContentLabel) {
+        [self.content setText:content.text];
+        CGRect frame = self.content.frame;
+        frame.size.height = [BBSPostDetailCell heightForContentText:content.text];
+        self.content.frame = frame;
+    }else{
+        [self.contentTextView setText:content.text];
+        CGRect frame = self.contentTextView.frame;
+        frame.size.height = [BBSPostDetailCell heightForContentText:content.text inTextView:self.contentTextView];
+        self.contentTextView.frame = frame;
+    }
+
     
     //reset the size
-    CGRect frame = self.content.frame;
-    frame.size.height = [BBSPostDetailCell heightForContentText:content.text];
-    self.content.frame = frame;
   
     if (content.hasThumbImage) {
         [self.image setImageWithURL:content.thumbImageURL

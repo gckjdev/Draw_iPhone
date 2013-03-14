@@ -19,7 +19,7 @@
 //#define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 #define CONTENT_TEXT_LINE (1000)
 
-#define CONTENT_WIDTH (ISIPAD ?  170 * 2.33 : 170)
+#define CONTENT_WIDTH (ISIPAD ?  420 : 190)
 #define CONTENT_MAX_HEIGHT (99999999)
 
 #define Y_CONTENT_TEXT (ISIPAD ? 5 * 2.33 : 5)
@@ -58,6 +58,7 @@
 {    
     BBSPostActionCell  *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     [cell initViews];
+    [cell setUseContentLabel:NO];
     return cell;
 }
 
@@ -66,6 +67,32 @@
     return @"BBSPostActionCell";
 }
 
++ (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
+{
+    CGRect rect = textView.frame;
+    rect.size = CGSizeMake(CONTENT_WIDTH, 10);
+    textView.frame = rect;
+    [textView setText:text];
+    return textView.contentSize.height;
+}
+
+
+
++ (CGFloat)getCellHeightWithBBSAction:(PBBBSAction *)action inTextView:(UITextView *)textView
+{
+    if ([action isSupport]) {
+        return HEIGHT_SUPPORT;
+    }
+    NSString *text = action.showText;
+    CGFloat height = [BBSPostActionCell heightForContentText:text inTextView:textView];
+    
+    if (action.content.hasThumbImage) {
+        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_IMAGE);
+    }else{
+        height += (SPACE_CONTENT_TOP + SPACE_CONTENT_BOTTOM_TEXT);
+    }
+    return height;
+}
 
 + (CGFloat)heightForContentText:(NSString *)text
 {
@@ -104,44 +131,63 @@
     [self.option setHidden:!flag];
 }
 
+- (void)updateContetWithText:(NSString *)text
+{
+    if (self.useContentLabel) {
+        [self.content setText:text];
+    }else{
+        [self.contentTextView setText:text];
+    }
+}
+
 - (void)updateContentWithAction:(PBBBSAction *)action
 {
-    
+
     NSString *text = [action showText];
+    
+    //reset the size
+    if ([self useContentLabel]) {
+        CGRect frame = self.content.frame;
+        frame.size.height = [BBSPostActionCell heightForContentText:text];
+        self.content.frame = frame;
+    }else{
+        CGRect frame = self.contentTextView.frame;
+        frame.size.height = [BBSPostActionCell heightForContentText:text inTextView:self.contentTextView];
+        self.contentTextView.frame = frame;
+    }
+    
+    if (action.content.hasThumbImage) {
+        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+            [self updateImageViewFrameWithImage:image];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        self.image.hidden = NO;
+    }else{
+        self.image.hidden = YES;
+    }
+    
     if ([DeviceDetection isOS6] && [action isReply]) {
         NSInteger length = [text length];
         NSInteger contentLength = [[action.content text] length];
         NSInteger loc = length - contentLength;
         if (loc > 0) {
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text];
-            [attr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(0, loc)];
-            [self.content setAttributedText:attr];
+            [attr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(0, loc)];            
+            if (self.useContentLabel) {
+                [self.content setAttributedText:attr];
+            }else{
+                [self.contentTextView setAttributedText:attr];
+            }
             [attr release];
         }else{
-            [self.content setText:text];            
+            [self updateContetWithText:text];
         }
     }else{
-        [self.content setText:text];
+        [self updateContetWithText:text];
     }
-    
-    //reset the size
-    CGRect frame = self.content.frame;
-    frame.size.height = [BBSPostActionCell heightForContentText:text];
-    self.content.frame = frame;
-        
-    if (action.content.hasThumbImage) {
-//        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil];
-        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-            [self updateImageViewFrameWithImage:image];
-        } failure:^(NSError *error) {
-            
-        }];
-
-        self.image.hidden = NO;
-    }else{
-        self.image.hidden = YES;
-    }
-
+//    [self.contentTextView setBackgroundColor:[UIColor redColor]];
 }
 
 
@@ -151,6 +197,7 @@
     self.action = action;
     self.post = post;
     
+    
     [self updateUserInfo:action.createUser];
     [self.timestamp setText:action.createDateString];
     [self updateReplyAction];
@@ -158,9 +205,11 @@
     if ([action isSupport]) {
         [self.supportImage setHidden:NO];
         self.content.hidden = YES;
+        self.contentTextView.hidden = YES;
         self.image.hidden = YES;
     }else{
         [self.supportImage setHidden:YES];
+        self.contentTextView.hidden = NO;
         self.content.hidden = NO;
         [self updateContentWithAction:action];        
     }

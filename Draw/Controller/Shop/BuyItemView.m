@@ -16,6 +16,7 @@
 #import "CustomInfoView.h"
 #import "AdService.h"
 #import "FriendController.h"
+#import "VersionUpdateView.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -128,6 +129,10 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         return;
     }
     
+    if (item.consumeType == PBGameItemConsumeTypeTimeConsumable) {
+        return;
+    }
+    
     BuyItemView *infoView = [self createWithItem:item];
     
     CustomInfoView *cusInfoView;
@@ -135,7 +140,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
                                          infoView:infoView
                                    hasCloseButton:YES
-                                     buttonTitles:NSLS(@"kBuy"), nil];
+                                     buttonTitles:[NSArray arrayWithObjects:NSLS(@"kBuy"), nil]];
     
     
     [cusInfoView showInView:inView];
@@ -183,13 +188,13 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
                                              infoView:infoView
                                        hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kBuy"), NSLS(@"kGive"), nil];
+                                         buttonTitles:[NSArray arrayWithObjects:NSLS(@"kBuy"), NSLS(@"kGive"), nil]];
         
     }else{
         cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
                                              infoView:infoView
                                        hasCloseButton:YES
-                                         buttonTitles:NSLS(@"kGive"), nil];
+                                         buttonTitles:[NSArray arrayWithObjects:NSLS(@"kGive"), nil]];
     }
     
     [cusInfoView showInView:inView];
