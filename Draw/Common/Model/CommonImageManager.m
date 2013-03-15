@@ -16,11 +16,6 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
 
-+(CommonImageManager*)defaultManager
-{
-    return [CommonImageManager sharedCommonImageManager];
-}
-
 - (id)init
 {
     if (self = [super init]) {

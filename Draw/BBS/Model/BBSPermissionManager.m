@@ -28,11 +28,6 @@
     [super dealloc];
 }
 
-+ (BBSPermissionManager *)defaultManager
-{
-    return [BBSPermissionManager sharedBBSPermissionManager];
-}
-
 SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 

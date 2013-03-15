@@ -13,11 +13,6 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(DrawSoundManager)
 
-+ (DrawSoundManager*)defaultManager
-{
-    return [DrawSoundManager sharedDrawSoundManager];
-}
-
 - (NSString*)clickWordSound
 {
     return @"ding.m4a";

@@ -2,12 +2,22 @@
 //  UserGameItemManager.h
 //  Draw
 //
-//  Created by qqn_pipi on 13-2-22.
+//  Created by 王 小涛 on 13-3-15.
 //
 //
 
 #import <Foundation/Foundation.h>
+#import "GameBasic.pb.h"
 
 @interface UserGameItemManager : NSObject
+
++ (UserGameItemManager *)defaultManager;
+
+- (void)setUserItemList:(NSArray *)itemsList;
+
+- (int)countOfItem:(int)itemId;
+- (BOOL)hasItem:(int)itemId;
+- (BOOL)canBuyItemNow:(PBGameItem *)item;
+- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount;
 
 @end

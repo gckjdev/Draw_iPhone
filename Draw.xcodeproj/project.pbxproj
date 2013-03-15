@@ -72,6 +72,7 @@
 		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
+		A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
@@ -204,7 +205,6 @@
 		A491423616E6E13500106265 /* gray_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423316E6E13500106265 /* gray_coin@2x.png */; };
 		A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423416E6E13500106265 /* gray_ingot@2x.png */; };
 		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
-		A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A491423A16E6E27500106265 /* PBGameItemUtils.m */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -431,6 +431,10 @@
 		C203C45D16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
 		C203C45E16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
 		C203C45F16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
+		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -3435,6 +3439,10 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
+		CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		CA220A3E168EC56D0054FA91 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -7150,6 +7158,8 @@
 		A41D2B5516B910E30094BA7C /* WallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallService.m; sourceTree = "<group>"; };
 		A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionUpdateView.h; sourceTree = "<group>"; };
 		A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionUpdateView.m; sourceTree = "<group>"; };
+		A41ECB8216F2CD4200248AEA /* PBGameItem+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBGameItem+Extend.h"; sourceTree = "<group>"; };
+		A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGameItem+Extend.m"; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
@@ -7330,8 +7340,6 @@
 		A491423316E6E13500106265 /* gray_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_coin@2x.png"; sourceTree = "<group>"; };
 		A491423416E6E13500106265 /* gray_ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_ingot@2x.png"; sourceTree = "<group>"; };
 		A491423516E6E13500106265 /* ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingot@2x.png"; sourceTree = "<group>"; };
-		A491423916E6E27500106265 /* PBGameItemUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGameItemUtils.h; sourceTree = "<group>"; };
-		A491423A16E6E27500106265 /* PBGameItemUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGameItemUtils.m; sourceTree = "<group>"; };
 		A491423C16E6E2E300106265 /* PriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceView.h; sourceTree = "<group>"; };
 		A491423D16E6E2E300106265 /* PriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceView.m; sourceTree = "<group>"; };
 		A491423E16E6E2E300106265 /* PriceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriceView.xib; sourceTree = "<group>"; };
@@ -7565,6 +7573,8 @@
 		C203C44C16EEC7790028A065 /* FreeIngotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotCell.m; sourceTree = "<group>"; };
 		C203C45616EEC7970028A065 /* FreeIngotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotCell.xib; sourceTree = "<group>"; };
 		C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotCell~ipad.xib"; sourceTree = "<group>"; };
+		C203C47516F309A50028A065 /* RoundPercentageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundPercentageView.h; sourceTree = "<group>"; };
+		C203C47616F309A50028A065 /* RoundPercentageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundPercentageView.m; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -8464,6 +8474,8 @@
 		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
 		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA21FD2B16F2FC49002975C8 /* DrawHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHolderView.h; sourceTree = "<group>"; };
+		CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHolderView.m; sourceTree = "<group>"; };
 		CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawPro-Info.plist"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
@@ -11640,6 +11652,15 @@
 			path = freeCoins;
 			sourceTree = "<group>";
 		};
+		C203C46F16F309380028A065 /* RoundPercentageView */ = {
+			isa = PBXGroup;
+			children = (
+				C203C47516F309A50028A065 /* RoundPercentageView.h */,
+				C203C47616F309A50028A065 /* RoundPercentageView.m */,
+			);
+			path = RoundPercentageView;
+			sourceTree = "<group>";
+		};
 		C20D4B2215E1D77100074885 /* CommonInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -12209,6 +12230,8 @@
 				CA051DB21546802D00D0A00A /* ShowDrawView.m */,
 				CAACE19715F499E6002EB53A /* SuperDrawView.h */,
 				CAACE19815F499E6002EB53A /* SuperDrawView.m */,
+				CA21FD2B16F2FC49002975C8 /* DrawHolderView.h */,
+				CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */,
 			);
 			path = DrawView;
 			sourceTree = "<group>";
@@ -12458,6 +12481,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C203C46F16F309380028A065 /* RoundPercentageView */,
 				A46E704616BBAA2D00F0E68C /* iCarousel */,
 				C297004B16A1363500A61521 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
@@ -13640,8 +13664,8 @@
 		CA16411E16D724B5001C615F /* GameItem */ = {
 			isa = PBXGroup;
 			children = (
-				A491423916E6E27500106265 /* PBGameItemUtils.h */,
-				A491423A16E6E27500106265 /* PBGameItemUtils.m */,
+				A41ECB8216F2CD4200248AEA /* PBGameItem+Extend.h */,
+				A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */,
 				CA16411F16D724CA001C615F /* GameItem.h */,
 				CA16412016D724CA001C615F /* GameItem.m */,
 				CA16412516D724DF001C615F /* GameItemManager.h */,
@@ -22652,6 +22676,8 @@
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23396,6 +23422,8 @@
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24112,7 +24140,6 @@
 				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */,
 				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
-				A491423B16E6E27500106265 /* PBGameItemUtils.m in Sources */,
 				A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */,
 				A42AB81316E83A65007AD01E /* IngotService.m in Sources */,
 				CA23514716EB0DD200C88082 /* CustomInfoView.m in Sources */,
@@ -24144,6 +24171,9 @@
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
+				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
+				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24896,6 +24926,8 @@
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,7 +30,7 @@
 #import "ColorBox.h"
 #import "Draw.pb.h"
 #import "DrawBgManager.h"
-#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -208,13 +208,13 @@
 
 - (void)updateNeedBuyToolViews
 {
-    if (![[UserGameItemService defaultService] hasItem:PaletteItem]) {
+    if (![[UserGameItemManager defaultManager] hasItem:PaletteItem]) {
 
         [self.palette setSelected:YES];
     }else{
         [self.palette setSelected:NO];
     }
-    if (![[UserGameItemService defaultService] hasItem:ColorAlphaItem]) {
+    if (![[UserGameItemManager defaultManager] hasItem:ColorAlphaItem]) {
 
         [self.alphaSlider setSelected:YES];
     }else{
@@ -392,7 +392,7 @@
 }
 
 - (IBAction)clickStraw:(id)sender {
-    if (![[UserGameItemService defaultService] hasItem:ColorStrawItem]) {
+    if (![[UserGameItemManager defaultManager] hasItem:ColorStrawItem]) {
         if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
             [_delegate drawToolPanel:self startToBuyItem:ColorStrawItem];
         }
@@ -606,7 +606,7 @@
 {
     [self.penPopTipView dismissAnimated:NO];
     self.penPopTipView = nil;
-    BOOL hasBought = penType == Pencil || [[UserGameItemService defaultService] hasItem:penType] ;
+    BOOL hasBought = penType == Pencil || [[UserGameItemManager defaultManager] hasItem:penType] ;
 
     if (hasBought) {
         [self setPenType:penType];

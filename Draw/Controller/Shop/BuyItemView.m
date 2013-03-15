@@ -9,7 +9,7 @@
 #import "BuyItemView.h"
 #import "AutoCreateViewByXib.h"
 #import "GameItemDetailView.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "ShareImageManager.h"
 #import "InputDialog.h"
 #import "UIViewUtils.h"
@@ -17,6 +17,7 @@
 #import "AdService.h"
 #import "FriendController.h"
 #import "VersionUpdateView.h"
+#import "UserGameItemManager.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -190,7 +191,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     
     CustomInfoView *cusInfoView;
     
-    if ([[UserGameItemService defaultService] canBuyItemNow:infoView.item]) {
+    if ([[UserGameItemManager defaultManager] canBuyItemNow:infoView.item]) {
         cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
                                              infoView:infoView
                                        hasCloseButton:YES

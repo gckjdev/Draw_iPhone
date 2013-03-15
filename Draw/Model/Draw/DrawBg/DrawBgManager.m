@@ -85,11 +85,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return self;
 }
 
-+ (id)defaultManager
-{
-    return [DrawBgManager defaultService];
-}
-
 - (NSString *)baseDir
 {
     return [_smartData currentDataPath];
