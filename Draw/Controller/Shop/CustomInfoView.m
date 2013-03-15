@@ -18,19 +18,19 @@
 @end
 
 
-#define TITLE_HEIGHT                30
-#define SPACE_VERTICAL              10
-#define SPACE_HORIZONTAL            20
+#define TITLE_HEIGHT         ([DeviceDetection isIPAD] ? (60) : (30))
+#define SPACE_VERTICAL       ([DeviceDetection isIPAD] ? (20) : (10)) 
+#define SPACE_HORIZONTAL     ([DeviceDetection isIPAD] ? (40) : (20))
 
-#define BUTTON_HEIGHT               30
-#define BUTTON_WIDTH                100
-#define SPACE_BUTTON_AND_BUTTON     20
+#define BUTTON_HEIGHT             ([DeviceDetection isIPAD] ? (60) : (30))
+#define BUTTON_WIDTH              ([DeviceDetection isIPAD] ? (200) : (100))
+#define SPACE_BUTTON_AND_BUTTON   ([DeviceDetection isIPAD] ? (40) : (20))
 
-#define WIDTH_INFO_LABEL            210
-#define HEIGHT_MIN_INFO_LABEL       100
-#define HEIGHT_MAX_INFO_LABEL       400
+#define WIDTH_INFO_LABEL          ([DeviceDetection isIPAD] ? (420) : (210))
+#define HEIGHT_MIN_INFO_LABEL     ([DeviceDetection isIPAD] ? (200) : (100))
+#define HEIGHT_MAX_INFO_LABEL     ([DeviceDetection isIPAD] ? (800) : (400))
 
-#define FONT_SIZE_INFO_LABEL        14
+#define FONT_SIZE_INFO_LABEL      ([DeviceDetection isIPAD] ? (28) : (14)) 
 
 @implementation CustomInfoView
 
@@ -83,7 +83,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     CGFloat height = TITLE_HEIGHT + SPACE_VERTICAL + infoView.frame.size.height + SPACE_VERTICAL;
     [view.mainView updateWidth:width];
     [view.mainView updateHeight:height];
-        
+    
     // set title
     view.titleLabel.text = title;
     
