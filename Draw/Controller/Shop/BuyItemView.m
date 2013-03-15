@@ -9,7 +9,7 @@
 #import "BuyItemView.h"
 #import "AutoCreateViewByXib.h"
 #import "GameItemDetailView.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "ShareImageManager.h"
 #import "InputDialog.h"
 #import "UIViewUtils.h"

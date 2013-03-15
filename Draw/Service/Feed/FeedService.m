@@ -528,9 +528,10 @@ static FeedService *_staticFeedService = nil;
 
 }
 
-- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
-                   author:(NSString *)author   
-                 delegate:(id<FeedServiceDelegate>)delegate
+- (void)throwItem:(ItemType)itemType
+           toOpus:(NSString *)opusId
+           author:(NSString *)author
+         delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* nick = [[UserManager defaultManager] nickName];

@@ -8,7 +8,7 @@
 
 #import "GiftDetailView.h"
 #import "AutoCreateViewByXib.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "UIImageView+WebCache.h"
 #import "ShareImageManager.h"
 

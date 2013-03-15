@@ -43,6 +43,7 @@
             isOffline:(BOOL)isOffline
            feedOpusId:(NSString*)feedOpusId
            feedAuthor:(NSString*)feedAuthor;
+
 - (void)sendItemAward:(ItemType)itemType 
          targetUserId:(NSString*)toUserId 
             isOffline:(BOOL)isOffline

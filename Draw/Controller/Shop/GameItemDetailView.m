@@ -8,11 +8,10 @@
 
 #import "GameItemDetailView.h"
 #import "AutoCreateViewByXib.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "GameItemPriceView.h"
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
-#import "PBGameItemUtils.h"
 
 @implementation GameItemDetailView
 

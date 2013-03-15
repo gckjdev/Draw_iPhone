@@ -8,7 +8,7 @@
 
 #import "GameItemPriceView.h"
 #import "PriceView.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 
 @implementation GameItemPriceView
 

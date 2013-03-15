@@ -27,7 +27,8 @@
 
 + (void)showInView:(UIView *)view
 {
-    [view addSubview:[self createView]];
+    CustomInfoView *cusInfoView = [self createView];
+    [cusInfoView showInView:view];
 }
 
 

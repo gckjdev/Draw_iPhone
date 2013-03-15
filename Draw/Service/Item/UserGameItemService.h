@@ -50,10 +50,11 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 - (void)awardItem:(int)itemId
             count:(int)count
           handler:(BuyItemResultHandler)handler;
-
-
         
 - (void)consumeItem:(int)itemId
             handler:(ConsumeItemResultHandler)handler;
+
+
+- (void)useItem:(int)itemId;
 
 @end
