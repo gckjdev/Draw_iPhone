@@ -57,16 +57,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     return self;
 }
 
-- (void)setUserItemList:(NSArray *)itemsList
-{
-    [_userItemManager setUserItemList:itemsList];
-}
-
-- (PBUserItem *)userItemWithItemId:(int)itemId
-{
-    return [_userItemManager userItemWithItemId:itemId];
-}
-
 - (void)buyItem:(int)itemId
          toUser:(NSString *)toUserId
           count:(int)count

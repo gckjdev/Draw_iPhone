@@ -15,7 +15,6 @@
 
 - (void)setUserItemList:(NSArray *)itemsList;
 
-- (PBUserItem *)userItemWithItemId:(int)itemId;
 - (int)countOfItem:(int)itemId;
 - (BOOL)hasItem:(int)itemId;
 - (BOOL)canBuyItemNow:(PBGameItem *)item;

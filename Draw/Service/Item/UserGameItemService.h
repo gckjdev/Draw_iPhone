@@ -26,8 +26,6 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 
 + (id)defaultService;
 
-- (void)setUserItemList:(NSArray *)itemsList;
-
 - (void)buyItem:(int)itemId
           count:(int)count
      totalPrice:(int)totalPrice
