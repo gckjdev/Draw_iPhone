@@ -73,7 +73,6 @@
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
 		A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
-		A41ECB8716F2CDB400248AEA /* PBUserItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8616F2CDB000248AEA /* PBUserItem+Extend.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
@@ -7153,8 +7152,6 @@
 		A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionUpdateView.m; sourceTree = "<group>"; };
 		A41ECB8216F2CD4200248AEA /* PBGameItem+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBGameItem+Extend.h"; sourceTree = "<group>"; };
 		A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGameItem+Extend.m"; sourceTree = "<group>"; };
-		A41ECB8516F2CDAE00248AEA /* PBUserItem+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBUserItem+Extend.h"; sourceTree = "<group>"; };
-		A41ECB8616F2CDB000248AEA /* PBUserItem+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBUserItem+Extend.m"; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
@@ -13645,8 +13642,6 @@
 			children = (
 				A41ECB8216F2CD4200248AEA /* PBGameItem+Extend.h */,
 				A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */,
-				A41ECB8516F2CDAE00248AEA /* PBUserItem+Extend.h */,
-				A41ECB8616F2CDB000248AEA /* PBUserItem+Extend.m */,
 				CA16411F16D724CA001C615F /* GameItem.h */,
 				CA16412016D724CA001C615F /* GameItem.m */,
 				CA16412516D724DF001C615F /* GameItemManager.h */,
@@ -24149,7 +24144,6 @@
 				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
 				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
-				A41ECB8716F2CDB400248AEA /* PBUserItem+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
