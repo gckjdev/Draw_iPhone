@@ -11,7 +11,7 @@
 #import "PPDebug.h"
 #import "AccountService.h"
 #import "ShoppingManager.h"
-#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
 
 #define COLOR_VALUE_COUNT 15
 #define RGB_COUNT 3
@@ -299,7 +299,7 @@
     NSArray *array = [ColorGroup colorViewListWithColorValues:colorArray];
     ColorGroup *group = [[[ColorGroup alloc] initWithGroupId:groupId colorViewList:array] autorelease];
 
-    if ([[UserGameItemService defaultService] hasItem:group.groupId]) {
+    if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
         group.hasBought = YES;
     }else{
         group.hasBought = NO;

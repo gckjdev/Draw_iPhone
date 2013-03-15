@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
 
-typedef void (^GetItemsListResultHandler)(BOOL success, NSArray *itemsList);
+typedef void (^SyncItemsDataResultHandler)(BOOL success);
 
 @interface GameItemService : NSObject
 
 + (GameItemService *)defaultService;
 
-- (void)syncData:(GetItemsListResultHandler)handler;
+- (void)syncData:(SyncItemsDataResultHandler)handler;
 
 - (NSArray *)getItemsList;
 - (NSArray *)getItemsListWithType:(int)type;

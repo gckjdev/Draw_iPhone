@@ -19,7 +19,8 @@
 #import "Item.h"
 #import "UserGameItemService.h"
 #import "BuyItemView.h"
-#import "GameItemService.h"
+#import "UserGameItemManager.h"
+#import "GameItemManager.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
@@ -81,7 +82,7 @@
 
 - (BOOL)hasBounghtPlayer
 {
-    return [[UserGameItemService defaultService] hasItem:PaintPlayerItem];
+    return [[UserGameItemManager defaultManager] hasItem:PaintPlayerItem];
 }
 
 - (void)updateView
@@ -390,12 +391,8 @@
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
     if (![self hasBounghtPlayer]) {
-//        [CommonItemInfoView showItem:[Item itemWithType:PaintPlayerItem amount:1]
-//                          infoInView:self
-//                         canBuyAgain:YES
-//                            delegate:self];
         
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:PaintPlayerItem];
+        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:PaintPlayerItem];
         [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == UIS_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
