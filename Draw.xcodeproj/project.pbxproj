@@ -3435,6 +3435,10 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
+		CA21FD1F16F2FAE0002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */; };
+		CA21FD2016F2FAE0002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */; };
+		CA21FD2116F2FAE0002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */; };
+		CA21FD2216F2FAE0002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */; };
 		CA220A3E168EC56D0054FA91 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -8464,6 +8468,8 @@
 		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
 		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA21FD1D16F2FAE0002975C8 /* DrawHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHolderView.h; sourceTree = "<group>"; };
+		CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHolderView.m; sourceTree = "<group>"; };
 		CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawPro-Info.plist"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
@@ -12209,6 +12215,8 @@
 				CA051DB21546802D00D0A00A /* ShowDrawView.m */,
 				CAACE19715F499E6002EB53A /* SuperDrawView.h */,
 				CAACE19815F499E6002EB53A /* SuperDrawView.m */,
+				CA21FD1D16F2FAE0002975C8 /* DrawHolderView.h */,
+				CA21FD1E16F2FAE0002975C8 /* DrawHolderView.m */,
 			);
 			path = DrawView;
 			sourceTree = "<group>";
@@ -22652,6 +22660,7 @@
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD2116F2FAE0002975C8 /* DrawHolderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23396,6 +23405,7 @@
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD2216F2FAE0002975C8 /* DrawHolderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24144,6 +24154,7 @@
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
+				CA21FD1F16F2FAE0002975C8 /* DrawHolderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24896,6 +24907,7 @@
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
+				CA21FD2016F2FAE0002975C8 /* DrawHolderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
