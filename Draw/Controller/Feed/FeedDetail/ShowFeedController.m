@@ -565,33 +565,44 @@ enum{
             }
             
             if (resultCode == UIS_SUCCESS) {
-                [[ItemService defaultService] sendItemAward:item.type
-                                               targetUserId:_feed.author.userId
-                                                  isOffline:YES
-                                                 feedOpusId:_feed.feedId
-                                                 feedAuthor:_feed.author.userId
-                                                    forFree:isFree];
-                
-                ShareImageManager *imageManager = [ShareImageManager defaultManager];
-                if (item.type == ItemTypeFlower) {
-                    UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:bself.flowerButton.frame] autorelease];
-                    [throwItem setImage:[imageManager flower]];
-                    [DrawGameAnimationManager showThrowFlower:throwItem animInController:bself rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType] completion:^(BOOL finished) {
-                        [bself clickRefresh:nil];
-                    }];
-                    [_commentHeader setSeletType:CommentTypeFlower];
-                    [bself.feed increaseLocalFlowerTimes];
-                }else{
-                    UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:bself.tomatoButton.frame] autorelease];
-                    [throwItem setImage:[imageManager tomato]];
-                    [DrawGameAnimationManager showThrowTomato:throwItem animInController:bself rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType] completion:^(BOOL finished) {
-                        [bself clickRefresh:nil];
-                    }];
-                    [_commentHeader setSeletType:CommentTypeTomato];
-                    [bself.feed increaseLocalTomatoTimes];
-                }
+                [bself showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
             }
         }];
+    }else{
+        [self showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
+
+    }
+}
+
+
+- (void)showItemAnimation:(int)itemId
+                   isFree:(BOOL)isFree
+               itemEnough:(BOOL)itemEnough
+{
+    [[ItemService defaultService] sendItemAward:itemId
+                                   targetUserId:_feed.author.userId
+                                      isOffline:YES
+                                     feedOpusId:_feed.feedId
+                                     feedAuthor:_feed.author.userId
+                                        forFree:isFree];
+    
+    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    if (itemId == ItemTypeFlower) {
+        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+        [throwItem setImage:[imageManager flower]];
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+            [self clickRefresh:nil];
+        }];
+        [_commentHeader setSeletType:CommentTypeFlower];
+        [self.feed increaseLocalFlowerTimes];
+    }else{
+        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
+        [throwItem setImage:[imageManager tomato]];
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+            [self clickRefresh:nil];
+        }];
+        [_commentHeader setSeletType:CommentTypeTomato];
+        [self.feed increaseLocalTomatoTimes];
     }
 }
 

@@ -15,11 +15,6 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(CacheManager)
 
-+ (CacheManager*)defaultManager
-{
-    return [CacheManager sharedCacheManager];
-}
-
 - (void)removeCachePathsArray:(NSArray*)pathsArray
                     succBlock:(void (^)(long long fileSize))succBlock
 {

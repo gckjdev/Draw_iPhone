@@ -20,15 +20,19 @@
 #import "GameItemService.h"
 #import "GameMessage.pb.h"
 #import "NSDate+TKCategory.h"
+#import "FeedService.h"
+#import "GameConstants.h"
+#import "DrawGameService.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
 @interface UserGameItemService()
+{
+    BuyItemResultHandler _buyItemResultHandler;
+    ConsumeItemResultHandler _consumeItemResultHandler;
+}
 
 @property (retain, nonatomic) NSArray *itemsList;
-
-@property (copy, nonatomic) BuyItemResultHandler buyItemResultHandler;
-@property (copy, nonatomic) ConsumeItemResultHandler consumeItemResultHandler;
 
 @end
 
@@ -154,20 +158,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
 {
     if (count <= 0) {
-        if (self.buyItemResultHandler != NULL) {
-            self.buyItemResultHandler(UIS_BAD_PARAMETER, itemId, count, toUserId);
-            self.buyItemResultHandler = NULL;
-        }
+        EXCUTE_BLOCK(_buyItemResultHandler, UIS_BAD_PARAMETER, itemId, count, toUserId);
+        RELEASE_BLOCK(_buyItemResultHandler);
         return;
     }
     
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        if (self.buyItemResultHandler != NULL) {
-            self.buyItemResultHandler(UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
-            self.buyItemResultHandler = NULL;
-        }
+        EXCUTE_BLOCK(_buyItemResultHandler, UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        RELEASE_BLOCK(_buyItemResultHandler);
+
         return;
     }
     
@@ -177,24 +178,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
-        if (output.resultCode == ERROR_SUCCESS) {
-            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-            PBGameUser *user = res.user;
-            
-            if (user != nil) {
-                [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
-                
-                [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-            }
-
-            bself.itemsList = user.itemsList;
-        }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (bself.buyItemResultHandler != NULL) {
-                bself.buyItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId, count, toUserId);
-                bself.buyItemResultHandler = NULL;
+            if (output.resultCode == ERROR_SUCCESS) {
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                
+                if (user != nil) {
+                    [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                    
+                    [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                }
+                
+                bself.itemsList = user.itemsList;
             }
+            
+            int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;
+            EXCUTE_BLOCK(_buyItemResultHandler, result, itemId, count, toUserId);
+            RELEASE_BLOCK(_buyItemResultHandler);
         });
     });
 }
@@ -207,7 +207,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
-    self.buyItemResultHandler = handler;
+    COPY_BLOCK(_buyItemResultHandler, handler);
     
     [self buyItem:itemId
            toUser:[[UserManager defaultManager] userId]
@@ -222,6 +222,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           count:(int)count
         handler:(BuyItemResultHandler)handler
 {
+    COPY_BLOCK(_buyItemResultHandler, handler);
+
     [self buyItem:item.itemId
             count:count
        totalPrice:([item promotionPrice] * count)
@@ -235,6 +237,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
            count:(int)count
          handler:(BuyItemResultHandler)handler
 {
+    COPY_BLOCK(_buyItemResultHandler, handler);
+    
     [self buyItem:item.itemId
            toUser:toUserId
             count:count
@@ -245,7 +249,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 - (void)consumeItem:(int)itemId
             handler:(ConsumeItemResultHandler)handler;
 {
-    self.consumeItemResultHandler = handler;
+    COPY_BLOCK(_consumeItemResultHandler, handler);
     [self consumeItem:itemId count:1];
 }
 
@@ -254,18 +258,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 {
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
-        if (_consumeItemResultHandler != NULL) {
-            _consumeItemResultHandler(UIS_BAD_PARAMETER, itemId);
-            _consumeItemResultHandler = NULL;
-        }
+        EXCUTE_BLOCK(_consumeItemResultHandler, UIS_BAD_PARAMETER, itemId);
+        RELEASE_BLOCK(_consumeItemResultHandler);
         return;
     }
     
     if (![self hasEnoughItemAmount:itemId amount:count]) {
-        if (_consumeItemResultHandler != NULL) {
-            _consumeItemResultHandler(UIS_ITEM_NOT_ENOUGH, itemId);
-            _consumeItemResultHandler = NULL;
-        }
+        EXCUTE_BLOCK(_consumeItemResultHandler, UIS_ITEM_NOT_ENOUGH, itemId);
+        RELEASE_BLOCK(_consumeItemResultHandler);
         return;
     }
     
@@ -275,18 +275,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         
         CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count];
         
-        if (output.resultCode == 0) {
-            
-            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-            PBGameUser *user = res.user;
-            bself.itemsList = user.itemsList;
-        }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (_consumeItemResultHandler != NULL) {
-                _consumeItemResultHandler((output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK, itemId);
-                _consumeItemResultHandler = NULL;
+            if (output.resultCode == 0) {
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                bself.itemsList = user.itemsList;
             }
+            
+            int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;
+            EXCUTE_BLOCK(_consumeItemResultHandler, result, itemId);
+            RELEASE_BLOCK(_consumeItemResultHandler);
         });
     });
 }
@@ -295,11 +293,52 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             count:(int)count
           handler:(BuyItemResultHandler)handler
 {
+    COPY_BLOCK(_buyItemResultHandler, handler);
+    
     [self buyItem:itemId
            toUser:[[UserManager defaultManager] userId]
             count:count
        totalPrice:0
          currency:PBGameCurrencyCoin];
 }
+
+
+//- (void)sendItemAward:(int)itemId
+//             toUserId:(NSString*)toUserId
+//           feedOpusId:(NSString*)feedOpusId
+//            isOffline:(BOOL)isOffline
+//              forFree:(BOOL)isFree
+//{
+//    int awardAmount = 0;
+//    int awardExp = 0;
+//    NSString* targetUserId = nil;
+//    
+//    if (isOffline) {
+//        
+//        // prepare data for consumeItem request
+//        targetUserId = toUserId;
+//        awardAmount = [ItemManager awardAmountByItem:itemType];
+//        awardExp = [ItemManager awardExpByItem:itemType];
+//        
+//        // send feed action
+//        [[FeedService defaultService] throwItem:itemId
+//                                         toOpus:feedOpusId
+//                                         author:toUserId
+//                                       delegate:nil];
+//        
+//    }else{
+//        // send online request for online realtime play
+//        int rankResult = (itemId == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
+//        [[DrawGameService defaultService] rankGameResult:rankResult];
+//    }
+//    
+//    [[AccountService defaultService] consumeItem:itemId
+//                                          amount:isFree?0:1
+//                                    targetUserId:targetUserId
+//                                     awardAmount:isFree?0:awardAmount
+//                                        awardExp:isFree?0:awardExp];
+//    
+//}
+
 
 @end

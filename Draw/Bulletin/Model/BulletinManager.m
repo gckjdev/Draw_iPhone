@@ -33,11 +33,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinManager)
     return self;
 }
 
-+ (BulletinManager*)defaultManager
-{
-    return [BulletinManager sharedBulletinManager];
-}
-
 - (NSString*)latestBulletinId
 {
     return [(Bulletin*)[_bulletinStack peek] bulletinId];
