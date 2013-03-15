@@ -30,7 +30,11 @@
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
 @property (nonatomic, retain) UIImage *drawBgImage;
-@property (nonatomic, assign) CGFloat scale;
+
+@property (nonatomic, assign) CGFloat scale; //current scale
+
+@property (nonatomic, assign) CGFloat minScale; //default is 1
+@property (nonatomic, assign) CGFloat maxScale; //default is 10
 
 //public method
 #pragma mark - util methods
