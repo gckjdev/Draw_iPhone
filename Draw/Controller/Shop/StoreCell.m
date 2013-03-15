@@ -8,12 +8,11 @@
 
 #import "StoreCell.h"
 #import "GameItemPriceView.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
 #import "UserGameItemService.h"
 #import "ItemType.h"
-#import "PBGameItemUtils.h"
 
 #define TAG_PRICE_VIEW 209
 #define ORIGINY_PRICE_VIEW 13;

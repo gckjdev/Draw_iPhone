@@ -10,7 +10,7 @@
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
 #import "NSDate+TKCategory.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 
 #import "ItemType.h"
 

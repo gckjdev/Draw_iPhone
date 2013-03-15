@@ -14,7 +14,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "AccountManager.h"
-#import "PBGameItemUtils.h"
+#import "PBGameItem+Extend.h"
 #import "UserManager.h"
 #import "BlockUtils.h"
 #import "GameItemService.h"
