@@ -28,7 +28,7 @@
 #import "AdService.h"
 #import "GameBasic.pb.h"
 #import "IngotService.h"
-#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
@@ -844,7 +844,7 @@ static AccountService* _defaultAccountService;
             [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
             
             // sync user item from server
-            [[UserGameItemService defaultService] setUserItemList:user.itemsList];
+            [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -9,18 +9,13 @@
 #import "GameItemService.h"
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
-#import "NSDate+TKCategory.h"
-#import "PBGameItem+Extend.h"
-
+#import "GameItemManager.h"
 #import "ItemType.h"
-
-#define ITEMS_FILE @"shop_item.pb"
-#define BUNDLE_PATH @"shop_item.pb"
-#define ITEMS_FILE_VERSION @"1.0"
 
 
 @interface GameItemService()
-@property (retain, nonatomic) NSArray *itemsList;
+
+@property (retain, nonatomic) GameItemManager *itemManager;
 
 @end
 
@@ -30,62 +25,70 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)dealloc
 {
-    [_itemsList release];
+    [_itemManager release];
     [super dealloc];
 }
 
-- (void)syncData:(GetItemsListResultHandler)handler
+- (id)init
+{
+    if (self = [super init]) {
+        self.itemManager = [GameItemManager defaultManager];
+    }
+    
+    return self;
+}
+
+- (void)syncData:(SyncItemsDataResultHandler)handler
 {
     __block typeof(self) bself = self;
     
     //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:ITEMS_FILE_VERSION];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:SHOP_ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:SHOP_ITEMS_FILE_BUNDLE_PATH initDataVersion:SHOP_ITEMS_FILE_VERSION];
     
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
-        bself.itemsList = [bself itemsListFromFile:smartData.dataFilePath];
-        if (handler != NULL) {
-            handler(YES, bself.itemsList);
-        }
+        [bself updateItemsWithFile:dataFilePath];
+        EXCUTE_BLOCK(handler, YES);
         [smartData release];
+        
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        bself.itemsList = [bself itemsListFromFile:smartData.dataFilePath];
-        if (handler != NULL) {
-            handler(NO, bself.itemsList);
-        }
+        NSArray *itemsList = [bself itemsListFromFile:smartData.dataFilePath];
+        [bself.itemManager setItemsList:itemsList];
+
+        EXCUTE_BLOCK(handler, NO);
         [smartData release];
     }];
 }
 
+- (void)updateItemsWithFile:(NSString *)path
+{
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
+    [_itemManager setItemsList:itemsList];
+}
+
 - (NSArray *)getItemsList
 {
-    return self.itemsList;
+    return [_itemManager itemsList];
 }
 
 - (NSArray *)getItemsListWithType:(int)type
 {
-    NSMutableArray *array = [NSMutableArray array];
-    for (PBGameItem *item in _itemsList) {
-        if (item.type == type) {
-            [array addObject:item];
-        }
-    }
-    
-    return array;
+    return [_itemManager itemsListWithType:type];
 }
 
 - (NSArray *)getPromotingItemsList
 {
-    NSMutableArray *array = [NSMutableArray array];
-    for (PBGameItem *item in _itemsList) {
-        if ([item isPromoting]) {
-            [array addObject:item];
-        }
-    }
-    
-    return array;
+    return [_itemManager promotingItemsList];
 }
+
+
+- (PBGameItem *)itemWithItemId:(int)itemId
+{
+    return [_itemManager itemWithItemId:itemId];
+}
+
 
 - (NSArray *)itemsListFromFile:(NSString *)filePath
 {
@@ -93,17 +96,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
     
     return itemsList;
-}
-
-- (PBGameItem *)itemWithItemId:(int)itemId
-{
-    for (PBGameItem *item in _itemsList) {
-        if (item.itemId == itemId) {
-            return item;
-        }
-    }
-    
-    return nil;
 }
 
 

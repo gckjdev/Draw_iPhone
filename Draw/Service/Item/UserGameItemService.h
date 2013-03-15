@@ -26,12 +26,6 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 
 + (id)defaultService;
 
-- (void)setUserItemList:(NSArray *)itemsList;
-
-- (int)countOfItem:(int)itemId;
-- (BOOL)hasItem:(int)itemId;
-- (BOOL)canBuyItemNow:(PBGameItem *)item;
-
 - (void)buyItem:(int)itemId
           count:(int)count
      totalPrice:(int)totalPrice
@@ -55,6 +49,5 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
             handler:(ConsumeItemResultHandler)handler;
 
 
-- (void)useItem:(int)itemId;
 
 @end

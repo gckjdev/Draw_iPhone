@@ -59,7 +59,7 @@ typedef enum{
 - (void)updateItemData
 {
     __block typeof(self) bself = self;
-    [[GameItemService defaultService] syncData:^(BOOL success, NSArray *itemsList) {
+    [[GameItemService defaultService] syncData:^(BOOL success) {
         [bself reloadTableViewDataSource];
     }];
 }
