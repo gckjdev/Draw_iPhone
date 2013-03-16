@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DrawView.h"
 #import "ArcGestureRecognizer.h"
+#import "UIViewUtils.h"
 
 #define DEFALT_MIN_SCALE 1
 #define DEFALT_MAX_SCALE 10
@@ -77,9 +78,19 @@
 - (void)setScale:(CGFloat)scale
 {
     _scale = scale;
-    CGAffineTransform transform = CGAffineTransformScale(self.transform, scale, scale);
+    CGAffineTransform transform = self.transform; //CGAffineTransformScale(self.transform, scale, scale);
+    transform.a = transform.d = scale;
     self.transform = transform;
+    
+    PPDebug(@"<setScale>scale = %f, transform = %@", scale, NSStringFromCGAffineTransform(transform));
 }
+
+- (void)resetTransform
+{
+    [self setScale:self.minScale];
+    self.center = CGRectGetCenter(self.superview.bounds);
+}
+
 
 - (BOOL)isViewBlank
 {

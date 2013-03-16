@@ -74,9 +74,10 @@
             [self.osManager updateLastAction:action];
             break;
         }
-
+        default:
+            break;
     }
-    [self.drawView setNeedsDisplay];
+    [self.drawView setNeedsDisplayInRect:action.shapeInfo.redrawRect];
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
         if (action) {

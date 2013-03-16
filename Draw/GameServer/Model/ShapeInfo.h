@@ -41,6 +41,6 @@ typedef enum{
 - (CGRect)rect;
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent;
 - (NSArray *)rectComponent;
-
+- (CGRect)redrawRect;
 
 @end

@@ -391,3 +391,13 @@ CGPoint CGPointVector(CGPoint p1, CGPoint p2)
 {
     return CGPointMake(p2.x - p1.x, p2.y - p1.y);
 }
+
+CGRect CGRectWithPoints(CGPoint p1, CGPoint p2)
+{
+    
+    CGFloat x = MIN(p1.x, p2.x);
+    CGFloat y = MIN(p1.y, p2.y);
+    CGFloat width = ABS(p1.x - p2.x);
+    CGFloat height = ABS(p1.y - p2.y);
+    return CGRectMake(x, y, width, height);
+}
