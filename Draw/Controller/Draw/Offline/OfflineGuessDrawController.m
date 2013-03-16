@@ -756,16 +756,13 @@
 //                                     feedOpusId:_opusId
 //                                     feedAuthor:_authorId];
     
-    FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
-    NSMutableDictionary *para = [NSMutableDictionary dictionary];
-    [para setObject:_draw.userId forKey:PARA_KEY_USER_ID];
-    [para setObject:_opusId forKey:PARA_KEY_OPUS_ID];
-    [item setParameters:para];
-    
-    [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
-    
-    [toolView decreaseNumber];
-    [_scene throwAFlower];
+    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId) {
+        if (resultCode == 0) {
+            [toolView decreaseNumber];
+            [_scene throwAFlower];
+        }
+    }];
+
     return NO;
 }
 
@@ -775,18 +772,11 @@
     [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId 
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];
-    FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
-    NSMutableDictionary *para = [NSMutableDictionary dictionary];
-    [para setObject:_draw.userId forKey:PARA_KEY_USER_ID];
-    [para setObject:_opusId forKey:PARA_KEY_OPUS_ID];
-    [item setParameters:para];
-    
-    [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
+    [[ItemService defaultService] sendItemAward:toolView.itemType 
+                                   targetUserId:_draw.userId 
+                                      isOffline:YES
+                                     feedOpusId:_opusId
+                                     feedAuthor:_authorId];
     
     [toolView decreaseNumber];
     [_scene throwATomato];

@@ -44,7 +44,4 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
             handler:(ConsumeItemResultHandler)handler;
 
 
-//- (void)useItem:(int)itemId
-//     itemAction:(id<ItemActionProtocol>)itemAction;
-
 @end

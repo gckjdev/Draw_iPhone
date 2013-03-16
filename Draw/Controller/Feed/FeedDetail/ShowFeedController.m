@@ -39,6 +39,7 @@
 #import "UserGameItemService.h"
 #import "GameItemService.h"
 #import "FlowerItem.h"
+#import "UserGameItemManager.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -507,18 +508,18 @@ enum{
     [dialog showInView:self.view];
 }
 
-- (void)throwItem:(Item *)item
+- (void)throwItem:(int)itemId
 {
     if ([self.feed isMyOpus]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
         return;
     }
-    if ((item.type == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (item.type == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
+    if ((itemId == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (itemId == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[self.useItemScene unavailableItemMessage] delayTime:1.5 isHappy:YES];
         return;
     }
 
-    BOOL isFree = [_useItemScene isItemFree:item.type];
+    BOOL isFree = [_useItemScene isItemFree:itemId];
     BOOL itemEnough = YES;
     
 //    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
@@ -555,21 +556,21 @@ enum{
 //        [self.feed increaseLocalTomatoTimes];
 //    }
     
-    
-    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
+    int itemAmount = [[UserGameItemManager defaultManager] countOfItem:itemId];
+    if (!_feed.isContestFeed && itemAmount <= 0 && !isFree) {
 
         __block typeof (self) bself = self;
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:item.type];
+        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
         [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                 [bself showCoinsNotEnoughView];
             }            
             else if (resultCode == 0) {
-                [bself showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
+                [bself showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
             }
         }];
     }else{
-        [self showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
+        [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
 
     }
 }
@@ -579,12 +580,6 @@ enum{
                    isFree:(BOOL)isFree
                itemEnough:(BOOL)itemEnough
 {
-
-    
-    
-
-    
-    
     if (itemId == ItemTypeFlower) {
 
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
@@ -684,13 +679,15 @@ enum{
         [_shareAction displayWithViewController:self onView:self.saveButton];
         
     }else if(button == self.flowerButton){
-        Item *item = [Item flower];
-        [self throwItem:item];
+//        Item *item = [Item flower];
+//        [self throwItem:item];
+        [self throwItem:ItemTypeFlower];
         //send a flower
     }else if(button == self.tomatoButton){
         //send a tomato
-        Item *item = [Item tomato];
-        [self throwItem:item];
+//        Item *item = [Item tomato];
+//        [self throwItem:item];
+        [self throwItem:ItemTypeTomato];
     }else if(button == self.replayButton){
         [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
