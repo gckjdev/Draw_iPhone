@@ -38,6 +38,8 @@
 #import "LmWallService.h"
 #import "UserGameItemService.h"
 #import "GameItemService.h"
+#import "FlowerItem.h"
+#import "UserGameItemManager.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -506,18 +508,18 @@ enum{
     [dialog showInView:self.view];
 }
 
-- (void)throwItem:(Item *)item
+- (void)throwItem:(int)itemId
 {
     if ([self.feed isMyOpus]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
         return;
     }
-    if ((item.type == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (item.type == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
+    if ((itemId == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (itemId == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[self.useItemScene unavailableItemMessage] delayTime:1.5 isHappy:YES];
         return;
     }
 
-    BOOL isFree = [_useItemScene isItemFree:item.type];
+    BOOL isFree = [_useItemScene isItemFree:itemId];
     BOOL itemEnough = YES;
     
 //    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
@@ -554,22 +556,21 @@ enum{
 //        [self.feed increaseLocalTomatoTimes];
 //    }
     
-    
-    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
+    int itemAmount = [[UserGameItemManager defaultManager] countOfItem:itemId];
+    if (!_feed.isContestFeed && itemAmount <= 0 && !isFree) {
 
         __block typeof (self) bself = self;
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:item.type];
-        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == UIS_BALANCE_NOT_ENOUGH) {
+        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                 [bself showCoinsNotEnoughView];
-            }
-            
-            if (resultCode == UIS_SUCCESS) {
-                [bself showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
+            }            
+            else if (resultCode == 0) {
+                [bself showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
             }
         }];
     }else{
-        [self showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
+        [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
 
     }
 }
@@ -579,23 +580,31 @@ enum{
                    isFree:(BOOL)isFree
                itemEnough:(BOOL)itemEnough
 {
-    [[ItemService defaultService] sendItemAward:itemId
-                                   targetUserId:_feed.author.userId
-                                      isOffline:YES
-                                     feedOpusId:_feed.feedId
-                                     feedAuthor:_feed.author.userId
-                                        forFree:isFree];
-    
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     if (itemId == ItemTypeFlower) {
-        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-        [throwItem setImage:[imageManager flower]];
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-            [self clickRefresh:nil];
+
+        [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
+                               isOffline:YES
+                              feedOpusId:_feed.feedId
+                              feedAuthor:_feed.author.userId
+                                 forFree:isFree
+                           resultHandler:^(int resultCode, int itemId)
+        {
+            if (resultCode == 0){
+                ShareImageManager *imageManager = [ShareImageManager defaultManager];
+                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+                [throwItem setImage:[imageManager flower]];
+                [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+                    [self clickRefresh:nil];
+                }];
+                [_commentHeader setSeletType:CommentTypeFlower];
+                [self.feed increaseLocalFlowerTimes];
+            }
         }];
-        [_commentHeader setSeletType:CommentTypeFlower];
-        [self.feed increaseLocalFlowerTimes];
+        
     }else{
+        
+        
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
         UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
         [throwItem setImage:[imageManager tomato]];
         [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
@@ -670,13 +679,15 @@ enum{
         [_shareAction displayWithViewController:self onView:self.saveButton];
         
     }else if(button == self.flowerButton){
-        Item *item = [Item flower];
-        [self throwItem:item];
+//        Item *item = [Item flower];
+//        [self throwItem:item];
+        [self throwItem:ItemTypeFlower];
         //send a flower
     }else if(button == self.tomatoButton){
         //send a tomato
-        Item *item = [Item tomato];
-        [self throwItem:item];
+//        Item *item = [Item tomato];
+//        [self throwItem:item];
+        [self throwItem:ItemTypeTomato];
     }else if(button == self.replayButton){
         [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];

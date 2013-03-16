@@ -41,7 +41,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
 - (void)updateLabelWidth:(UILabel *)label
                 withText:(NSString *)text
 {
-    CGSize withinSize = CGSizeMake(50, label.frame.size.height);
+    CGSize withinSize = CGSizeMake(100, label.frame.size.height);
     
     CGSize size = [text sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     

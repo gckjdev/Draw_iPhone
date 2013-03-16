@@ -6,6 +6,7 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
+#import "PPNetworkRequest.h"
 
 #define SERVER_URL                  (GlobalGetServerURL())
 #define TRAFFIC_SERVER_URL                  (GlobalGetTrafficServerURL())
@@ -607,6 +608,10 @@
 
 //contest
 #define ERROR_CONTEST_END               110004
+
+#define ERROR_BALANCE_NOT_ENOUGH        200002
+#define ERROR_BAD_PARAMETER             200003
+#define ERROR_ITEM_NOT_ENOUGH           200004
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

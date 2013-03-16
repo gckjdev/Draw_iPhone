@@ -52,7 +52,8 @@
 
 - (id)initWithCapacity:(NSUInteger)capacity
 {
-    return [self initWithCapacity:capacity rect:DRAW_VIEW_RECT];
+    CGRect rect = CGRectMake(0, 0, 1132, 700);
+    return [self initWithCapacity:capacity rect:rect];
 }
 
 - (id)init
@@ -167,7 +168,7 @@
         CGContextClearRect(cacheContext, _rect);
     }
     [shape drawInContext:cacheContext];
-    return _rect;//[shape rect];
+    return [shape redrawRect];//_rect;//[shape rect];
 }
 
 - (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width

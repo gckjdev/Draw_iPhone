@@ -2987,7 +2987,6 @@
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:count];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
-        return str;
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
     };

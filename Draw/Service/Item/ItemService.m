@@ -93,14 +93,15 @@ ItemService *_staticItemService = nil;
     }else{
         // send online request for online realtime play
         int rankResult = (itemType == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
-        [[DrawGameService defaultService] rankGameResult:rankResult];             
+        [[DrawGameService defaultService] rankGameResult:rankResult];
+        [[AccountService defaultService] consumeItem:itemType
+                                              amount:isFree?0:1
+                                        targetUserId:targetUserId
+                                         awardAmount:isFree?0:awardAmount
+                                            awardExp:isFree?0:awardExp];
     }
     
-    [[AccountService defaultService] consumeItem:itemType 
-                                          amount:isFree?0:1 
-                                    targetUserId:targetUserId 
-                                     awardAmount:isFree?0:awardAmount
-                                        awardExp:isFree?0:awardExp];    
+  
     
 }
 

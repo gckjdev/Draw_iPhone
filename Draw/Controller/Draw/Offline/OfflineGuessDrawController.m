@@ -45,6 +45,8 @@
 #import "UseItemScene.h"
 #import "MyFriend.h"
 #import "DrawSoundManager.h"
+#import "UserGameItemService.h"
+#import "FlowerItem.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -748,14 +750,19 @@
     [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];
     
-    [toolView decreaseNumber];
-    [_scene throwAFlower];
+    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId) {
+        if (resultCode == 0) {
+            [toolView decreaseNumber];
+            [_scene throwAFlower];
+        }
+    }];
+
     return NO;
 }
 
@@ -769,7 +776,7 @@
                                    targetUserId:_draw.userId 
                                       isOffline:YES
                                      feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+                                     feedAuthor:_authorId];
     
     [toolView decreaseNumber];
     [_scene throwATomato];

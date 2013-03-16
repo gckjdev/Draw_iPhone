@@ -11,7 +11,6 @@
 #import "GameNetworkRequest.h"
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "UserManager.h"
 #import "ConfigManager.h"
 #import "AccountManager.h"
 #import "PBGameItem+Extend.h"
@@ -19,20 +18,16 @@
 #import "BlockUtils.h"
 #import "GameItemService.h"
 #import "GameMessage.pb.h"
-#import "NSDate+TKCategory.h"
-#import "FeedService.h"
 #import "GameConstants.h"
-#import "DrawGameService.h"
 #import "UserGameItemManager.h"
+#import "FlowerItem.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
 @interface UserGameItemService()
-{
-    BuyItemResultHandler _buyItemResultHandler;
-    ConsumeItemResultHandler _consumeItemResultHandler;
-}
-@property (retain, nonatomic) UserGameItemManager *userItemManager;
+
+@property (assign, nonatomic) BuyItemResultHandler buyItemResultHandler;
+@property (assign, nonatomic) ConsumeItemResultHandler consumeItemResultHandler;
 
 @end
 
@@ -44,17 +39,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 {
     RELEASE_BLOCK(_buyItemResultHandler);
     RELEASE_BLOCK(_consumeItemResultHandler);
-    [_userItemManager release];
     [super dealloc];
-}
-
-- (id)init
-{
-    if (self = [super init]) {
-        self.userItemManager = [UserGameItemManager defaultManager];
-    }
-    
-    return self;
 }
 
 - (void)buyItem:(int)itemId
@@ -62,9 +47,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           count:(int)count
      totalPrice:(int)totalPrice
        currency:(PBGameCurrency)currency
+        handler:(BuyItemResultHandler)handler
 {
+    RELEASE_BLOCK(_buyItemResultHandler);
+    COPY_BLOCK(_buyItemResultHandler, handler);
+    
     if (count <= 0) {
-        EXCUTE_BLOCK(_buyItemResultHandler, UIS_BAD_PARAMETER, itemId, count, toUserId);
+        EXCUTE_BLOCK(_buyItemResultHandler, ERROR_BAD_PARAMETER, itemId, count, toUserId);
         RELEASE_BLOCK(_buyItemResultHandler);
         return;
     }
@@ -72,7 +61,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     int balance = [[AccountManager defaultManager] getBalanceWithCurrency:currency];
     if (balance < totalPrice) {
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", balance, totalPrice);
-        EXCUTE_BLOCK(_buyItemResultHandler, UIS_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        EXCUTE_BLOCK(_buyItemResultHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
         RELEASE_BLOCK(_buyItemResultHandler);
 
         return;
@@ -95,12 +84,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                 }
                 
-                [bself.userItemManager setUserItemList:user.itemsList];
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
-            int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;
-            EXCUTE_BLOCK(_buyItemResultHandler, result, itemId, count, toUserId);
-            RELEASE_BLOCK(_buyItemResultHandler);
+            int result = output.resultCode;
+            EXCUTE_BLOCK(bself.buyItemResultHandler, result, itemId, count, toUserId);
+            RELEASE_BLOCK(bself.buyItemResultHandler);
         });
     });
 }
@@ -113,13 +102,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler
 {
-    COPY_BLOCK(_buyItemResultHandler, handler);
-    
     [self buyItem:itemId
            toUser:[[UserManager defaultManager] userId]
             count:count
        totalPrice:totalPrice
-         currency:currency];
+         currency:currency
+          handler:handler];
 }
 
 
@@ -128,8 +116,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           count:(int)count
         handler:(BuyItemResultHandler)handler
 {
-    COPY_BLOCK(_buyItemResultHandler, handler);
-
     [self buyItem:item.itemId
             count:count
        totalPrice:([item promotionPrice] * count)
@@ -143,40 +129,43 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
            count:(int)count
          handler:(BuyItemResultHandler)handler
 {
-    COPY_BLOCK(_buyItemResultHandler, handler);
-    
     [self buyItem:item.itemId
            toUser:toUserId
             count:count
        totalPrice:([item promotionPrice] * count)
-         currency:item.priceInfo.currency];
+         currency:item.priceInfo.currency
+          handler:handler];
 }
 
 - (void)consumeItem:(int)itemId
             handler:(ConsumeItemResultHandler)handler;
 {
-    COPY_BLOCK(_consumeItemResultHandler, handler);
-    [self consumeItem:itemId count:1];
+    [self consumeItem:itemId count:1 handler:handler];
 }
 
 - (void)consumeItem:(int)itemId
               count:(int)count
+            handler:(ConsumeItemResultHandler)handler;
+
 {
+    RELEASE_BLOCK(_consumeItemResultHandler);
+    COPY_BLOCK(_consumeItemResultHandler, handler);
+    
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
-        EXCUTE_BLOCK(_consumeItemResultHandler, UIS_BAD_PARAMETER, itemId);
+        EXCUTE_BLOCK(_consumeItemResultHandler, ERROR_BAD_PARAMETER, itemId);
         RELEASE_BLOCK(_consumeItemResultHandler);
         return;
     }
     
-    if (![_userItemManager hasEnoughItemAmount:itemId amount:count]) {
-        EXCUTE_BLOCK(_consumeItemResultHandler, UIS_ITEM_NOT_ENOUGH, itemId);
+    if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:itemId amount:count]) {
+        EXCUTE_BLOCK(_consumeItemResultHandler, ERROR_ITEM_NOT_ENOUGH, itemId);
         RELEASE_BLOCK(_consumeItemResultHandler);
         return;
     }
     
     __block typeof (self) bself = self;
-    
+
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count];
@@ -185,12 +174,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             if (output.resultCode == 0) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 PBGameUser *user = res.user;
-                [bself.userItemManager setUserItemList:user.itemsList];
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
-            int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;
-            EXCUTE_BLOCK(_consumeItemResultHandler, result, itemId);
-            RELEASE_BLOCK(_consumeItemResultHandler);
+            int result = output.resultCode;
+            EXCUTE_BLOCK(bself.consumeItemResultHandler, result, itemId);
+            RELEASE_BLOCK(bself.consumeItemResultHandler);
         });
     });
 }
@@ -199,13 +188,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             count:(int)count
           handler:(BuyItemResultHandler)handler
 {
+    RELEASE_BLOCK(_buyItemResultHandler);
     COPY_BLOCK(_buyItemResultHandler, handler);
     
     [self buyItem:itemId
            toUser:[[UserManager defaultManager] userId]
             count:count
        totalPrice:0
-         currency:PBGameCurrencyCoin];
+         currency:PBGameCurrencyCoin
+          handler:handler];
 }
 
 
@@ -236,15 +227,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 //        // send online request for online realtime play
 //        int rankResult = (itemId == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
 //        [[DrawGameService defaultService] rankGameResult:rankResult];
+//        
+//
 //    }
 //    
+//
 //    [[AccountService defaultService] consumeItem:itemId
 //                                          amount:isFree?0:1
 //                                    targetUserId:targetUserId
 //                                     awardAmount:isFree?0:awardAmount
 //                                        awardExp:isFree?0:awardExp];
 //    
+//    FlowerItem *flower = [[[FlowerItem alloc] init] autorelease];
+//    [flower acionWithParameters:parameters]
+//    [self userItem:itemId itemAction:flower];
 //}
 
+
+//- (void)useItem:(int)itemId
+//     itemAction:(id<ItemActionProtocol>)itemAction
+//{
+//    [self consumeItem:itemId handler:NULL];
+//    if ([itemAction respondsToSelector:@selector(excuteAction)]) {
+//        [itemAction excuteAction];
+//    }
+//}
 
 @end

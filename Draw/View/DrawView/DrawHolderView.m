@@ -39,6 +39,7 @@
     CGFloat scale = MIN(xScale, yScale);
     _contentView.scale = scale;
     _contentView.center = CGRectGetCenter(self.bounds);
+    _contentView.minScale = _contentView.scale;
 }
 - (void)setContentView:(SuperDrawView *)contentView{
     if (_contentView != contentView) {

@@ -10,6 +10,7 @@
 #import <StoreKit/StoreKit.h>
 #import "Account.h"
 #import "GameBasic.pb.h"
+#import "GameNetworkConstants.h"
 
 #define PAYMENT_SUCCESS 0
 #define PAYMENT_FAILURE 1
@@ -17,7 +18,7 @@
 
 #define ERROR_NO_PRODUCT            1000
 #define ERROR_COINS_NOT_ENOUGH      1001
-#define ERROR_ITEM_NOT_ENOUGH       1002
+//#define ERROR_ITEM_NOT_ENOUGH       1002
 
 @class PriceModel;
 @class ItemManager;
