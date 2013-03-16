@@ -9,16 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 #import "GameBasic.pb.h"
+#import "CommonItem.h"
+#import "GameNetworkConstants.h"
 
-typedef enum {
-    UIS_SUCCESS = 0,
-    UIS_ERROR_NETWORK = 1,
-    UIS_BALANCE_NOT_ENOUGH = 2,
-    UIS_BAD_PARAMETER = 3,
-    UIS_ITEM_NOT_ENOUGH = 4,
-}BuyItemResultCode;
 
-typedef void (^BuyItemResultHandler)(BuyItemResultCode resultCode,  int itemId, int count, NSString *toUserId);
+typedef void (^BuyItemResultHandler)(int resultCode,  int itemId, int count, NSString *toUserId);
 
 typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 
@@ -44,10 +39,12 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
 - (void)awardItem:(int)itemId
             count:(int)count
           handler:(BuyItemResultHandler)handler;
-        
+
 - (void)consumeItem:(int)itemId
             handler:(ConsumeItemResultHandler)handler;
 
 
+//- (void)useItem:(int)itemId
+//     itemAction:(id<ItemActionProtocol>)itemAction;
 
 @end

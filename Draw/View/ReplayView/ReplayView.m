@@ -393,8 +393,8 @@
     if (![self hasBounghtPlayer]) {
         
         PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:PaintPlayerItem];
-        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == UIS_SUCCESS) {
+        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            if (resultCode == 0) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }else{

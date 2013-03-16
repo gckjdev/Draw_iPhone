@@ -1200,7 +1200,7 @@
     }else{
 //        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
         PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             
         }];
     }
@@ -1249,7 +1249,7 @@
 {
 //    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
-    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
+    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         [self buyItemSuccess:itemId result:resultCode];
     }];
 }

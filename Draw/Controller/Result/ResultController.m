@@ -48,6 +48,8 @@
 #import "Item.h"
 #import "DrawUtils.h"
 #import "UIViewUtils.h"
+#import "UserGameItemService.h"
+#import "FlowerItem.h"
 
 #define CONTINUE_TIME 10
 
@@ -793,14 +795,32 @@
     }
     
     
+
     
-    [[ItemService defaultService] sendItemAward:item.type
-                                   targetUserId:_feed.author.userId
-                                      isOffline:[self isOffline]
-                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
-                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
-                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-     
+//    [[ItemService defaultService] sendItemAward:item.type
+//                                   targetUserId:_feed.author.userId
+//                                      isOffline:[self isOffline]
+//                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
+//                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
+//                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
+    if ([self isOffline]) {
+        
+        FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
+        NSMutableDictionary *para = [NSMutableDictionary dictionary];
+        [para setObject:_feed.author.userId forKey:PARA_KEY_USER_ID];
+        [para setObject:_feed.feedId forKey:PARA_KEY_OPUS_ID];
+        [item setParameters:para];
+        
+        [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
+    }else{
+        [[ItemService defaultService] sendItemAward:item.type
+                                       targetUserId:_feed.author.userId
+                                          isOffline:[self isOffline]
+                                         feedOpusId:((_feed != nil)?_feed.feedId:nil)
+                                         feedAuthor:((_feed != nil)?_feed.author.userId:nil)
+                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
+    }
+    
     return YES;
 }
 

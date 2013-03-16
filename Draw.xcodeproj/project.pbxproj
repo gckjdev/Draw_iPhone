@@ -144,6 +144,8 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A4673D0516F30825001ACDFB /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4673D0416F30825001ACDFB /* CommonItem.m */; };
+		A4673D0816F30D7C001ACDFB /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4673D0716F30D7C001ACDFB /* FlowerItem.m */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
@@ -7286,6 +7288,10 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A4673D0316F30825001ACDFB /* CommonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonItem.h; sourceTree = "<group>"; };
+		A4673D0416F30825001ACDFB /* CommonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItem.m; sourceTree = "<group>"; };
+		A4673D0616F30D7C001ACDFB /* FlowerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerItem.h; sourceTree = "<group>"; };
+		A4673D0716F30D7C001ACDFB /* FlowerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerItem.m; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		A46E704816BBAA2D00F0E68C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		A47FF99C15DB9ADB00EE8125 /* DiceItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceItemService.h; sourceTree = "<group>"; };
@@ -12199,6 +12205,10 @@
 				CA16410E16D72452001C615F /* GameItemService.m */,
 				CA16413716D7255D001C615F /* UserGameItemService.h */,
 				CA16413816D7255D001C615F /* UserGameItemService.m */,
+				A4673D0316F30825001ACDFB /* CommonItem.h */,
+				A4673D0416F30825001ACDFB /* CommonItem.m */,
+				A4673D0616F30D7C001ACDFB /* FlowerItem.h */,
+				A4673D0716F30D7C001ACDFB /* FlowerItem.m */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -24155,6 +24165,8 @@
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
 				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
 				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				A4673D0516F30825001ACDFB /* CommonItem.m in Sources */,
+				A4673D0816F30D7C001ACDFB /* FlowerItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

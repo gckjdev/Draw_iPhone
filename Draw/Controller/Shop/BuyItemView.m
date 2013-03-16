@@ -156,8 +156,8 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == UIS_SUCCESS) {
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+                if (resultCode == 0) {
                     [cusInfoView dismiss];
                 }else{
                     [cusInfoView hideActivity];
@@ -205,7 +205,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     }
     
     [cusInfoView showInView:inView];
-    
+        
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         
         int count = ((BuyItemView *)infoView).count;
@@ -216,8 +216,8 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == UIS_SUCCESS) {
+            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+                if (resultCode == 0) {
                     [cusInfoView dismiss];
                 }else{
                     [cusInfoView hideActivity];
