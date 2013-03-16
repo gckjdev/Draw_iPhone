@@ -50,6 +50,7 @@
     [self addSubview:priceView];
 }
 
+#define MAX_WITH_ITEM_NAME ([DeviceDetection isIPAD] ? (400) : (200))
 - (void)setCellInfo:(PBGameItem *)item
 {
     self.item = item;
@@ -64,7 +65,7 @@
     [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
     self.itemNameLabel.text = NSLS(item.name);
     
-    CGSize withinSize = CGSizeMake(200, 19);
+    CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
     CGSize size = [self.itemNameLabel.text sizeWithFont:self.itemNameLabel.font constrainedToSize:withinSize lineBreakMode:self.itemNameLabel.lineBreakMode];
     [self.itemNameLabel updateWidth:size.width];
     

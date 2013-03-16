@@ -8,6 +8,7 @@
 
 #import "ChargeController.h"
 #import "IngotService.h"
+#import "AccountService.h"
 
 @interface ChargeController ()
 
@@ -25,9 +26,16 @@
     [super viewDidUnload];
 }
 
+- (void)updateIngot
+{
+    self.ingotCountLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyIngot]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self updateIngot];
     
     __block typeof(self) bself = self;
     [[IngotService sharedIngotService] getIngotsList:^(BOOL success, NSArray *ingotsList){
