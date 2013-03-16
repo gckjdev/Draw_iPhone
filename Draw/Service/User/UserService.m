@@ -756,6 +756,8 @@ static UserService* _defaultUserService;
                     // update new appId of user
                     [self updateNewAppId:appId];
                 }
+                
+                [[AccountService defaultService] syncAccount];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {
