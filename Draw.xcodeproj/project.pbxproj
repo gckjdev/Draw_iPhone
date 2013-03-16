@@ -6962,6 +6962,18 @@
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
+		EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
+		EA18EE7016F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
+		EA18EE7116F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
+		EA18EE7216F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
+		EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
+		EA18EE7A16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
+		EA18EE7B16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
+		EA18EE7C16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
+		EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
+		EA18EE7F16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
+		EA18EE8016F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
+		EA18EE8116F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
 		EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
@@ -10400,6 +10412,9 @@
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
+		EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GameItemDetailView~ipad.xib"; sourceTree = "<group>"; };
+		EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BuyItemView~ipad.xib"; sourceTree = "<group>"; };
+		EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GiftDetailView~ipad.xib"; sourceTree = "<group>"; };
 		EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283516F093F700066E37 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
@@ -13309,6 +13324,7 @@
 				A491424416E6EBE100106265 /* GameItemDetailView.h */,
 				A491424516E6EBE100106265 /* GameItemDetailView.m */,
 				A491424716E6ED3000106265 /* GameItemDetailView.xib */,
+				EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */,
 				A4A2E7B016E7223F00445888 /* LocalizableLabel.h */,
 				A4A2E7B116E7223F00445888 /* LocalizableLabel.m */,
 				A4A2E7B316E72B7700445888 /* GameItemPriceView.h */,
@@ -13324,9 +13340,11 @@
 				A42AB81416E87119007AD01E /* BuyItemView.h */,
 				A42AB81516E8711A007AD01E /* BuyItemView.m */,
 				A42AB86716E98072007AD01E /* BuyItemView.xib */,
+				EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */,
 				A42AB86916E98F90007AD01E /* GiftDetailView.h */,
 				A42AB86A16E98F92007AD01E /* GiftDetailView.m */,
 				EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */,
+				EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -16507,8 +16525,8 @@
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
 				CAADF62316F444D10097CFA1 /* GameAdWallService.h */,
+				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
 				CAA9C433159CA97100398EC5 /* LmWallService.h */,
 				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
@@ -19338,6 +19356,9 @@
 				C29D1A5516EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45916EEC7970028A065 /* FreeIngotCell.xib in Resources */,
 				C203C45E16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
+				EA18EE7116F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
+				EA18EE7B16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
+				EA18EE8016F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20215,6 +20236,9 @@
 				C29D1A5616EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45A16EEC7970028A065 /* FreeIngotCell.xib in Resources */,
 				C203C45F16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
+				EA18EE7216F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
+				EA18EE7C16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
+				EA18EE8116F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21147,6 +21171,9 @@
 				EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */,
 				EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */,
 				EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */,
+				EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
+				EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
+				EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22003,6 +22030,9 @@
 				C29D1A5416EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45816EEC7970028A065 /* FreeIngotCell.xib in Resources */,
 				C203C45D16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */,
+				EA18EE7016F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
+				EA18EE7A16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
+				EA18EE7F16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

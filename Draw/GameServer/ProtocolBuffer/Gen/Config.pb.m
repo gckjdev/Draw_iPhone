@@ -21,6 +21,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value) {
+  switch (value) {
+    case PBRewardWallTypeLimei:
+    case PBRewardWallTypeWanpu:
+    case PBRewardWallTypeAder:
+    case PBRewardWallTypeYoumi:
+    case PBRewardWallTypeTapjoy:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBPrice ()
 @property (retain) NSString* amount;
 @property (retain) NSString* price;
