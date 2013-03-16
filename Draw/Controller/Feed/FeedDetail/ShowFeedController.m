@@ -38,6 +38,7 @@
 #import "LmWallService.h"
 #import "UserGameItemService.h"
 #import "GameItemService.h"
+#import "FlowerItem.h"
 
 @interface ShowFeedController () {
     ShareAction* _shareAction;
@@ -559,12 +560,11 @@ enum{
 
         __block typeof (self) bself = self;
         PBGameItem *item = [[GameItemService defaultService] itemWithItemId:item.type];
-        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == UIS_BALANCE_NOT_ENOUGH) {
+        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                 [bself showCoinsNotEnoughView];
-            }
-            
-            if (resultCode == UIS_SUCCESS) {
+            }            
+            else if (resultCode == 0) {
                 [bself showItemAnimation:item.type isFree:isFree itemEnough:itemEnough];
             }
         }];
@@ -579,23 +579,37 @@ enum{
                    isFree:(BOOL)isFree
                itemEnough:(BOOL)itemEnough
 {
-    [[ItemService defaultService] sendItemAward:itemId
-                                   targetUserId:_feed.author.userId
-                                      isOffline:YES
-                                     feedOpusId:_feed.feedId
-                                     feedAuthor:_feed.author.userId
-                                        forFree:isFree];
+
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+    
+
+    
+    
     if (itemId == ItemTypeFlower) {
-        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-        [throwItem setImage:[imageManager flower]];
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-            [self clickRefresh:nil];
+
+        [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
+                               isOffline:YES
+                              feedOpusId:_feed.feedId
+                              feedAuthor:_feed.author.userId
+                                 forFree:isFree
+                           resultHandler:^(int resultCode, int itemId)
+        {
+            if (resultCode == 0){
+                ShareImageManager *imageManager = [ShareImageManager defaultManager];
+                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+                [throwItem setImage:[imageManager flower]];
+                [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+                    [self clickRefresh:nil];
+                }];
+                [_commentHeader setSeletType:CommentTypeFlower];
+                [self.feed increaseLocalFlowerTimes];
+            }
         }];
-        [_commentHeader setSeletType:CommentTypeFlower];
-        [self.feed increaseLocalFlowerTimes];
+        
     }else{
+        
+        
+        ShareImageManager *imageManager = [ShareImageManager defaultManager];
         UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
         [throwItem setImage:[imageManager tomato]];
         [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {

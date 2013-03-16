@@ -18,6 +18,7 @@
 #import "AccountService.h"
 #import "UserManager.h"
 #import "AdService.h"
+#import "GameNetworkConstants.h"
 
 typedef enum{
     TabIDNormal = 100,
@@ -139,7 +140,7 @@ typedef enum{
     }else{
         __block typeof (self) bself = self;
         
-        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (itemId == ItemTypeRemoveAd) {
                 [[AdService defaultService] disableAd];
             }
@@ -155,13 +156,13 @@ typedef enum{
     }
 }
 
-- (void)showUserGameItemServiceResult:(BuyItemResultCode)resultCode
+- (void)showUserGameItemServiceResult:(int)resultCode
                                  item:(PBGameItem *)item
                                 count:(int)count
                              toUserId:(NSString *)toUserId
 {
     switch (resultCode) {
-        case UIS_SUCCESS:
+        case ERROR_SUCCESS:
             if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
                 [self popupHappyMessage:NSLS(@"kYouBuy") title:nil];
                 [self.dataTableView reloadData];
@@ -171,7 +172,7 @@ typedef enum{
             [self updateBalance];
             break;
             
-        case UIS_ERROR_NETWORK:
+        case ERROR_NETWORK:
             if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
                 [self popupHappyMessage:NSLS(@"kBuyItemFail") title:nil];
                 [self.dataTableView reloadData];
@@ -180,11 +181,11 @@ typedef enum{
             }
             break;
             
-        case UIS_BALANCE_NOT_ENOUGH:
+        case ERROR_BALANCE_NOT_ENOUGH:
             [self popupHappyMessage:NSLS(@"kBalanceNotEnough") title:nil];
             break;
             
-            case UIS_BAD_PARAMETER:
+        case ERROR_BAD_PARAMETER:
             [self popupHappyMessage:NSLS(@"kBadParaMeter") title:nil];
             break;
             
@@ -212,8 +213,8 @@ typedef enum{
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(BuyItemResultCode resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == UIS_SUCCESS) {
+            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+                if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
                 }
                 [bself showUserGameItemServiceResult:resultCode

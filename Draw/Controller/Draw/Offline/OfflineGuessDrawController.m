@@ -45,6 +45,8 @@
 #import "UseItemScene.h"
 #import "MyFriend.h"
 #import "DrawSoundManager.h"
+#import "UserGameItemService.h"
+#import "FlowerItem.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -748,11 +750,19 @@
     [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];
+    
+    FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setObject:_draw.userId forKey:PARA_KEY_USER_ID];
+    [para setObject:_opusId forKey:PARA_KEY_OPUS_ID];
+    [item setParameters:para];
+    
+    [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
     
     [toolView decreaseNumber];
     [_scene throwAFlower];
@@ -765,11 +775,18 @@
     [self showAnimationThrowTool:toolView isItemEnough:itemEnough];
     
     // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];    
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId 
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];
+    FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setObject:_draw.userId forKey:PARA_KEY_USER_ID];
+    [para setObject:_opusId forKey:PARA_KEY_OPUS_ID];
+    [item setParameters:para];
+    
+    [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
     
     [toolView decreaseNumber];
     [_scene throwATomato];

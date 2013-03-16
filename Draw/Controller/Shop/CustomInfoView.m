@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "UIViewUtils.h"
 #import "AnimationManager.h"
+#import "BlockUtils.h"
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIView *infoView;
@@ -43,7 +44,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_mainView release];
     [_titleLabel release];
     [_closeButton release];
-    Block_release(_actionBlock);
+    RELEASE_BLOCK(_actionBlock);
     [super dealloc];
 }
 
@@ -145,8 +146,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (void) setActionBlock:(ButtonActionBlock)actionBlock {
     if (_actionBlock != actionBlock) {
-        Block_release(_actionBlock);
-        _actionBlock = Block_copy(actionBlock);
+        RELEASE_BLOCK(_actionBlock);
+        COPY_BLOCK(_actionBlock, actionBlock);
     }
 }
 
