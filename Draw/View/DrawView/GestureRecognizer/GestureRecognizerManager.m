@@ -8,6 +8,8 @@
 
 #import "GestureRecognizerManager.h"
 #import "ArcGestureRecognizer.h"
+#import "SuperDrawView.h"
+
 
 @interface GestureRecognizerManager()
 {
@@ -171,6 +173,7 @@
 
 - (void)handlePinchGesture:(UIPinchGestureRecognizer *)gestureRecognizer {
     
+    UIView *view = [gestureRecognizer view];
     [self stateCallBack:gestureRecognizer];
     if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
         // Reset the last scale, necessary if there are multiple objects with different scales
@@ -180,17 +183,23 @@
     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
         [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
         
-        CGFloat currentScale = [[[gestureRecognizer view].layer valueForKeyPath:@"transform.scale"] floatValue];
+        CGFloat currentScale = [[view.layer valueForKeyPath:@"transform.scale"] floatValue];
         
         // Constants to adjust the max/min values of zoom
-        const CGFloat kMaxScale = 10;
-        const CGFloat kMinScale = 1;
-        const CGFloat kSpeed = 0.75;
+        CGFloat kMaxScale = 10;
+        CGFloat kMinScale = 1;
+        CGFloat kSpeed = 0.75;
+        
+        if ([view isKindOfClass:[SuperDrawView class]]) {
+            kMaxScale = [(SuperDrawView *)view maxScale];
+            kMinScale = [(SuperDrawView *)view minScale];
+        }
         
         CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
         newScale = MIN(newScale, kMaxScale / currentScale);
         newScale = MAX(newScale, kMinScale / currentScale);
-        CGAffineTransform transform = CGAffineTransformScale([[gestureRecognizer view] transform], newScale, newScale);
+        CGAffineTransform transform = CGAffineTransformScale([view transform], newScale, newScale);
+
         [gestureRecognizer view].transform = transform;
         lastScale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
     }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||

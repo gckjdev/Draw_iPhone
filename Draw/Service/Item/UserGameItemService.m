@@ -23,6 +23,7 @@
 #import "FeedService.h"
 #import "GameConstants.h"
 #import "DrawGameService.h"
+#import "UserGameItemManager.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -31,8 +32,7 @@
     BuyItemResultHandler _buyItemResultHandler;
     ConsumeItemResultHandler _consumeItemResultHandler;
 }
-
-@property (retain, nonatomic) NSArray *itemsList;
+@property (retain, nonatomic) UserGameItemManager *userItemManager;
 
 @end
 
@@ -42,113 +42,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (void)dealloc
 {
-    [_itemsList release];
+    RELEASE_BLOCK(_buyItemResultHandler);
+    RELEASE_BLOCK(_consumeItemResultHandler);
+    [_userItemManager release];
     [super dealloc];
 }
 
-- (id)init{
+- (id)init
+{
     if (self = [super init]) {
-        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_ITEM_INFO];
-        if (data != nil) {
-            self.itemsList = [[PBUserItemList parseFromData:data] userItemsList];
-        }
+        self.userItemManager = [UserGameItemManager defaultManager];
     }
     
     return self;
-}
-
-- (void)setUserItemList:(NSArray *)itemsList
-{
-    self.itemsList = itemsList;
-}
-
-- (void)save
-{
-    PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
-    [builder addAllUserItems:self.itemsList];
-    PBUserItemList *itemList = [builder build];
-    [[NSUserDefaults standardUserDefaults] setObject:[itemList data] forKey:KEY_USER_ITEM_INFO];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (PBUserItem *)userItemWithItemId:(int)itemId
-{
-    for (PBUserItem *userItem in self.itemsList) {
-        if (userItem.itemId == itemId) {
-            return userItem;
-        }
-    }
-    
-    return nil;
-}
-
-- (int)countOfItem:(int)itemId
-{
-    return [[self userItemWithItemId:itemId] count];
-}
-
-- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount
-{
-    return [self countOfItem:itemId] >= amount;
-}
-
-- (BOOL)isItemExpire:(PBUserItem *)userItem
-{
-    NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:userItem.expireDate];
-
-    if ([[NSDate date] isBeforeDay:expireDate]) {
-            return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL)hasItem:(int)itemId
-{
-    if (![self hasEnoughItemAmount:itemId amount:1]) {
-        return NO;
-    }
-    
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
-    
-    switch (item.consumeType) {
-        case PBGameItemConsumeTypeNonConsumable:
-        case PBGameItemConsumeTypeAmountConsumable:
-            return YES;
-            break;
-            
-        case PBGameItemConsumeTypeTimeConsumable:
-            return ![self isItemExpire:[self userItemWithItemId:itemId]];
-            break;
-            
-        default:
-            break;
-    }
-    
-    return NO;
-}
-
-- (BOOL)canBuyItemNow:(PBGameItem *)item
-{
-    if (![self hasEnoughItemAmount:item.itemId amount:1]) {
-        return YES;
-    }
-    
-    switch (item.consumeType) {
-        case PBGameItemConsumeTypeNonConsumable:
-            return NO;
-            break;
-            
-        case PBGameItemConsumeTypeAmountConsumable:
-        case PBGameItemConsumeTypeTimeConsumable:
-            return YES;
-            break;
-            
-        default:
-            break;
-    }
-    
-    return NO;
 }
 
 - (void)buyItem:(int)itemId
@@ -189,7 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                 }
                 
-                bself.itemsList = user.itemsList;
+                [bself.userItemManager setUserItemList:user.itemsList];
             }
             
             int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;
@@ -263,7 +169,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         return;
     }
     
-    if (![self hasEnoughItemAmount:itemId amount:count]) {
+    if (![_userItemManager hasEnoughItemAmount:itemId amount:count]) {
         EXCUTE_BLOCK(_consumeItemResultHandler, UIS_ITEM_NOT_ENOUGH, itemId);
         RELEASE_BLOCK(_consumeItemResultHandler);
         return;
@@ -279,7 +185,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             if (output.resultCode == 0) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 PBGameUser *user = res.user;
-                bself.itemsList = user.itemsList;
+                [bself.userItemManager setUserItemList:user.itemsList];
             }
             
             int result = (output.resultCode == ERROR_SUCCESS) ? UIS_SUCCESS : ERROR_NETWORK;

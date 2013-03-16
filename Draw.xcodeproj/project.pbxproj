@@ -431,6 +431,10 @@
 		C203C45D16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
 		C203C45E16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
 		C203C45F16EEC7AF0028A065 /* FreeIngotCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */; };
+		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
+		C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -3435,6 +3439,10 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
+		CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
+		CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		CA220A3E168EC56D0054FA91 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22B7B0169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -5246,18 +5254,18 @@
 		CAA9C427159BF41B00398EC5 /* ShareService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C426159BF41B00398EC5 /* ShareService.m */; };
 		CAA9C435159CA97100398EC5 /* LmWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA9C434159CA97100398EC5 /* LmWallService.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
-		CAADF5F716F443920097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5F616F443920097CFA1 /* CommonAdWallService.m */; };
-		CAADF5F816F443920097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5F616F443920097CFA1 /* CommonAdWallService.m */; };
-		CAADF5F916F443920097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5F616F443920097CFA1 /* CommonAdWallService.m */; };
-		CAADF5FA16F443920097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5F616F443920097CFA1 /* CommonAdWallService.m */; };
-		CAADF5FD16F444190097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */; };
-		CAADF5FE16F444190097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */; };
-		CAADF5FF16F444190097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */; };
-		CAADF60016F444190097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */; };
-		CAADF60316F444390097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60216F444390097CFA1 /* GameAdWallService.m */; };
-		CAADF60416F444390097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60216F444390097CFA1 /* GameAdWallService.m */; };
-		CAADF60516F444390097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60216F444390097CFA1 /* GameAdWallService.m */; };
-		CAADF60616F444390097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60216F444390097CFA1 /* GameAdWallService.m */; };
+		CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
+		CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
+		CAADF61716F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
+		CAADF61816F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
+		CAADF61916F444C20097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
+		CAADF61A16F444C20097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
+		CAADF61B16F444C20097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
+		CAADF61C16F444C20097CFA1 /* LimeiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */; };
+		CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
+		CAADF62516F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
+		CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
+		CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -7577,6 +7585,8 @@
 		C203C44C16EEC7790028A065 /* FreeIngotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotCell.m; sourceTree = "<group>"; };
 		C203C45616EEC7970028A065 /* FreeIngotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotCell.xib; sourceTree = "<group>"; };
 		C203C45B16EEC7AF0028A065 /* FreeIngotCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotCell~ipad.xib"; sourceTree = "<group>"; };
+		C203C47516F309A50028A065 /* RoundPercentageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundPercentageView.h; sourceTree = "<group>"; };
+		C203C47616F309A50028A065 /* RoundPercentageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundPercentageView.m; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -8476,6 +8486,8 @@
 		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
 		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA21FD2B16F2FC49002975C8 /* DrawHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHolderView.h; sourceTree = "<group>"; };
+		CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHolderView.m; sourceTree = "<group>"; };
 		CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawPro-Info.plist"; sourceTree = "<group>"; };
 		CA22DCCE157CAFFD009C95CB /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA22DCCF157CAFFD009C95CB /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
@@ -9947,12 +9959,12 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
-		CAADF5F516F443920097CFA1 /* CommonAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAdWallService.h; sourceTree = "<group>"; };
-		CAADF5F616F443920097CFA1 /* CommonAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAdWallService.m; sourceTree = "<group>"; };
-		CAADF5FB16F444190097CFA1 /* LimeiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimeiAdWallService.h; sourceTree = "<group>"; };
-		CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimeiAdWallService.m; sourceTree = "<group>"; };
-		CAADF60116F444390097CFA1 /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
-		CAADF60216F444390097CFA1 /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
+		CAADF60D16F444C20097CFA1 /* CommonAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAdWallService.h; sourceTree = "<group>"; };
+		CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAdWallService.m; sourceTree = "<group>"; };
+		CAADF61016F444C20097CFA1 /* LimeiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimeiAdWallService.h; sourceTree = "<group>"; };
+		CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimeiAdWallService.m; sourceTree = "<group>"; };
+		CAADF62216F444D10097CFA1 /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
+		CAADF62316F444D10097CFA1 /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -11658,6 +11670,15 @@
 			path = freeCoins;
 			sourceTree = "<group>";
 		};
+		C203C46F16F309380028A065 /* RoundPercentageView */ = {
+			isa = PBXGroup;
+			children = (
+				C203C47516F309A50028A065 /* RoundPercentageView.h */,
+				C203C47616F309A50028A065 /* RoundPercentageView.m */,
+			);
+			path = RoundPercentageView;
+			sourceTree = "<group>";
+		};
 		C20D4B2215E1D77100074885 /* CommonInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -12227,6 +12248,8 @@
 				CA051DB21546802D00D0A00A /* ShowDrawView.m */,
 				CAACE19715F499E6002EB53A /* SuperDrawView.h */,
 				CAACE19815F499E6002EB53A /* SuperDrawView.m */,
+				CA21FD2B16F2FC49002975C8 /* DrawHolderView.h */,
+				CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */,
 			);
 			path = DrawView;
 			sourceTree = "<group>";
@@ -12476,6 +12499,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C203C46F16F309380028A065 /* RoundPercentageView */,
 				A46E704616BBAA2D00F0E68C /* iCarousel */,
 				C297004B16A1363500A61521 /* RoundLineLabel */,
 				A41CF588165790380011AE45 /* RRSGlowLabel */,
@@ -16411,59 +16435,59 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
-		CAADF5E916F443600097CFA1 /* AdWallService */ = {
+		CAADF60A16F444C20097CFA1 /* AdWallService */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF5EA16F443600097CFA1 /* Ader */,
-				CAADF5EB16F443600097CFA1 /* Common */,
-				CAADF5EC16F443600097CFA1 /* Limei */,
-				CAADF5ED16F443600097CFA1 /* Tapjoy */,
-				CAADF5EE16F443600097CFA1 /* Wanpu */,
-				CAADF5EF16F443600097CFA1 /* Youmi */,
+				CAADF60B16F444C20097CFA1 /* Ader */,
+				CAADF60C16F444C20097CFA1 /* Common */,
+				CAADF60F16F444C20097CFA1 /* Limei */,
+				CAADF61216F444C20097CFA1 /* Tapjoy */,
+				CAADF61316F444C20097CFA1 /* Wanpu */,
+				CAADF61416F444C20097CFA1 /* Youmi */,
 			);
 			path = AdWallService;
 			sourceTree = "<group>";
 		};
-		CAADF5EA16F443600097CFA1 /* Ader */ = {
+		CAADF60B16F444C20097CFA1 /* Ader */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Ader;
 			sourceTree = "<group>";
 		};
-		CAADF5EB16F443600097CFA1 /* Common */ = {
+		CAADF60C16F444C20097CFA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF5F516F443920097CFA1 /* CommonAdWallService.h */,
-				CAADF5F616F443920097CFA1 /* CommonAdWallService.m */,
+				CAADF60D16F444C20097CFA1 /* CommonAdWallService.h */,
+				CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		CAADF5EC16F443600097CFA1 /* Limei */ = {
+		CAADF60F16F444C20097CFA1 /* Limei */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF5FB16F444190097CFA1 /* LimeiAdWallService.h */,
-				CAADF5FC16F444190097CFA1 /* LimeiAdWallService.m */,
+				CAADF61016F444C20097CFA1 /* LimeiAdWallService.h */,
+				CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */,
 			);
 			path = Limei;
 			sourceTree = "<group>";
 		};
-		CAADF5ED16F443600097CFA1 /* Tapjoy */ = {
+		CAADF61216F444C20097CFA1 /* Tapjoy */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Tapjoy;
 			sourceTree = "<group>";
 		};
-		CAADF5EE16F443600097CFA1 /* Wanpu */ = {
+		CAADF61316F444C20097CFA1 /* Wanpu */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Wanpu;
 			sourceTree = "<group>";
 		};
-		CAADF5EF16F443600097CFA1 /* Youmi */ = {
+		CAADF61416F444C20097CFA1 /* Youmi */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -16473,12 +16497,12 @@
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
+				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
+				CAADF62316F444D10097CFA1 /* GameAdWallService.h */,
 				CAA9C433159CA97100398EC5 /* LmWallService.h */,
 				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
 				CAA1AA3E159D78C200504C98 /* AdService.m */,
-				CAADF60116F444390097CFA1 /* GameAdWallService.h */,
-				CAADF60216F444390097CFA1 /* GameAdWallService.m */,
 			);
 			name = Ad;
 			path = YoumiWall;
@@ -17575,7 +17599,7 @@
 		CAFEFCE416606FC100441D77 /* Component-Service */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF5E916F443600097CFA1 /* AdWallService */,
+				CAADF60A16F444C20097CFA1 /* AdWallService */,
 				CAFEFD0016606FC100441D77 /* PPSNSService */,
 				CAFEFD1B16606FC100441D77 /* ssziparchive */,
 			);
@@ -22732,9 +22756,11 @@
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
-				CAADF5F916F443920097CFA1 /* CommonAdWallService.m in Sources */,
-				CAADF5FF16F444190097CFA1 /* LimeiAdWallService.m in Sources */,
-				CAADF60516F444390097CFA1 /* GameAdWallService.m in Sources */,
+				CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */,
+				CAADF61716F444C20097CFA1 /* CommonAdWallService.m in Sources */,
+				CAADF61B16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
+				CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23479,9 +23505,11 @@
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
-				CAADF5FA16F443920097CFA1 /* CommonAdWallService.m in Sources */,
-				CAADF60016F444190097CFA1 /* LimeiAdWallService.m in Sources */,
-				CAADF60616F444390097CFA1 /* GameAdWallService.m in Sources */,
+				CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */,
+				CAADF61816F444C20097CFA1 /* CommonAdWallService.m in Sources */,
+				CAADF61C16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
+				CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24230,9 +24258,11 @@
 				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
 				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
-				CAADF5F716F443920097CFA1 /* CommonAdWallService.m in Sources */,
-				CAADF5FD16F444190097CFA1 /* LimeiAdWallService.m in Sources */,
-				CAADF60316F444390097CFA1 /* GameAdWallService.m in Sources */,
+				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */,
+				CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */,
+				CAADF61916F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
+				CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24985,9 +25015,11 @@
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
-				CAADF5F816F443920097CFA1 /* CommonAdWallService.m in Sources */,
-				CAADF5FE16F444190097CFA1 /* LimeiAdWallService.m in Sources */,
-				CAADF60416F444390097CFA1 /* GameAdWallService.m in Sources */,
+				CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */,
+				C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */,
+				CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */,
+				CAADF61A16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
+				CAADF62516F444D10097CFA1 /* GameAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

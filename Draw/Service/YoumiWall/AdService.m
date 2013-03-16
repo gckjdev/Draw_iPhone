@@ -20,8 +20,9 @@
 #import "HomeController.h"
 #import "GADBannerView.h"
 
-#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
 #import "GameItemService.h"
+#import "UserGameItemService.h"
 
 //#import "YoumiWallService.h"
 //#import "YoumiWallController.h"
@@ -64,7 +65,7 @@ static AdService* _defaultService;
 
     [self initWappuAdSDK];
     
-     _isShowAd = ([[UserGameItemService defaultService] hasItem:ItemTypeRemoveAd] == NO);
+     _isShowAd = ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
     
     return self;
 }
