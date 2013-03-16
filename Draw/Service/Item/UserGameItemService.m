@@ -140,14 +140,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 - (void)consumeItem:(int)itemId
             handler:(ConsumeItemResultHandler)handler;
 {
-    RELEASE_BLOCK(_consumeItemResultHandler);
-    COPY_BLOCK(_consumeItemResultHandler, handler);
-    [self consumeItem:itemId count:1];
+    [self consumeItem:itemId count:1 handler:handler];
 }
 
 - (void)consumeItem:(int)itemId
               count:(int)count
+            handler:(ConsumeItemResultHandler)handler;
+
 {
+    RELEASE_BLOCK(_consumeItemResultHandler);
+    COPY_BLOCK(_consumeItemResultHandler, handler);
+    
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
         EXCUTE_BLOCK(_consumeItemResultHandler, ERROR_BAD_PARAMETER, itemId);
@@ -160,7 +163,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         RELEASE_BLOCK(_consumeItemResultHandler);
         return;
     }
-        
+    
+    __block typeof (self) bself = self;
+
     dispatch_async(workingQueue, ^{
         
         CommonNetworkOutput* output = [GameNetworkRequest useItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count];
@@ -173,8 +178,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             }
             
             int result = output.resultCode;
-            EXCUTE_BLOCK(_consumeItemResultHandler, result, itemId);
-            RELEASE_BLOCK(_consumeItemResultHandler);
+            EXCUTE_BLOCK(bself.consumeItemResultHandler, result, itemId);
+            RELEASE_BLOCK(bself.consumeItemResultHandler);
         });
     });
 }

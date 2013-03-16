@@ -16,13 +16,9 @@
 @end
 
 
-
-//typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
-
 @interface CommonItem : NSObject
-{
-    
-}
-//@property (assign, nonatomic) ConsumeItemResultHandler handler;
+
+
+
 
 @end

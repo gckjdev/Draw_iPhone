@@ -24,7 +24,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
 
 - (void)dealloc
 {
-//    RELEASE_BLOCK(_resultHandler);
+    RELEASE_BLOCK(_handler);
     [super dealloc];
 }
 
@@ -58,29 +58,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     int awardExp = 0;
     NSString* targetUserId = nil;
     
+    RELEASE_BLOCK(_handler);
+    COPY_BLOCK(_handler, handler);
+    
+
     if (isOffline) {
-        
+        __block typeof (self) bself = self;
+
         // prepare data for consumeItem request
         targetUserId = toUserId;
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
-//        RELEASE_BLOCK(_resultHandler);
-//        COPY_BLOCK(_resultHandler, handler);
         
         [[UserGameItemService defaultService] consumeItem:[self itemId] handler:^(int resultCode, int itemId) {
             
             if (resultCode == ERROR_SUCCESS){            
                 // send feed action
-                [[FeedService defaultService] throwItem:[self itemId]
+                [[FeedService defaultService] throwItem:[bself itemId]
                                                  toOpus:feedOpusId
                                                  author:feedAuthor
                                                delegate:nil];
             }
             
-//            EXCUTE_BLOCK(_resultHandler, resultCode, itemId);
-//            RELEASE_BLOCK(_resultHandler);
-            EXCUTE_BLOCK(handler, resultCode, itemId);
+            EXCUTE_BLOCK(bself.handler, resultCode, itemId);
+            RELEASE_BLOCK(bself.handler);
          
         }];
         
@@ -95,7 +97,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                          awardAmount:isFree?0:awardAmount
                                             awardExp:isFree?0:awardExp];
         
-        EXCUTE_BLOCK(handler, 0, [self itemId]);
+        EXCUTE_BLOCK(self.handler, 0, [self itemId]);
+        RELEASE_BLOCK(self.handler);
     }
     
     

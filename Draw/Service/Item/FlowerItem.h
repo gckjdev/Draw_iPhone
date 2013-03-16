@@ -14,6 +14,7 @@
 #define PARA_KEY_OPUS_ID @"PARA_KEY_OPUS_ID"
 
 @interface FlowerItem : CommonItem <ItemActionProtocol>
+@property (assign, nonatomic) ConsumeItemResultHandler handler;
 
 + (FlowerItem*)sharedFlowerItem;
 
