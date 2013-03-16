@@ -508,10 +508,10 @@
                               data:(NSData *)data
                          imageData:(NSData *)imageData;
 
-+ (CommonNetworkOutput *)deleteWall:(NSString *)baseURL
-                             appId:(NSString *)appId
-                            userId:(NSString *)userId
-                            wallId:(int)wallId;
+//+ (CommonNetworkOutput *)deleteWall:(NSString *)baseURL
+//                             appId:(NSString *)appId
+//                            userId:(NSString *)userId
+//                            wallId:(int)wallId;
 
 
 + (CommonNetworkOutput *)getWall:(NSString *)baseURL

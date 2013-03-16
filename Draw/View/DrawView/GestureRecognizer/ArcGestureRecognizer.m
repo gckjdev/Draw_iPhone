@@ -11,9 +11,9 @@
 
 
 #define DETECT_POINT_NUMBER 4
-#define DETECT_RADIAN 0.08
-#define SUM_RADIAN 1.5
-#define MIN_RADIAN 0.05
+#define DETECT_RADIAN 0.12
+#define SUM_RADIAN 2
+#define MIN_RADIAN 0.08
 
 @interface TouchTrace : NSObject
 {

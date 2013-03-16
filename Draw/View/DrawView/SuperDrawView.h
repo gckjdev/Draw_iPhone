@@ -54,6 +54,6 @@
 - (void)setDrawBg:(PBDrawBg *)drawBg;
 - (PBDrawBg *)drawBg;
 
-
+- (void)resetTransform;
 
 @end

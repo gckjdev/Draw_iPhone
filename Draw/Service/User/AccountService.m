@@ -835,19 +835,22 @@ static AccountService* _defaultAccountService;
                                                                          userId:userId
                                                                        deviceId:deviceId];
             
-        if (output.resultCode == ERROR_SUCCESS) {
-            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-            PBGameUser *user = res.user;
-            
-            // sync balance from server
-            [_accountManager updateBalance:user.coinBalance];
-            [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-            
-            // sync user item from server
-            [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-        }
+
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+            
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                
+                // sync balance from server
+                [_accountManager updateBalance:user.coinBalance];
+                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                
+                // sync user item from server
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+            }
+            
             if (output.resultCode == ERROR_SUCCESS) {
                 if ([delegate respondsToSelector:@selector(didSyncFinish)]){
                     [delegate didSyncFinish];
