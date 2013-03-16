@@ -16,6 +16,14 @@
 #import "EllipseShape.h"
 #import "StarShape.h"
 
+@interface ShapeInfo()
+{
+//    CGPoint _lastEndPoint;
+    CGRect _redrawRect;
+}
+
+@end
+
 @implementation ShapeInfo
 
 - (void)dealloc
@@ -93,6 +101,7 @@
 
 - (void)setEndPoint:(CGPoint)endPoint
 {
+//    _lastEndPoint = _endPoint;
     _endPoint = endPoint;
 }
 
@@ -104,22 +113,54 @@
     return flag;
 }
 
+
+
 - (CGRect)rect
 {
+    CGRect rect= CGRectZero;
     if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
         self.endPoint = self.startPoint;
         CGFloat x = self.startPoint.x;
         CGFloat y = self.startPoint.y;
-        return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
+        rect = CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
     }else{
-        CGFloat x = MIN(self.startPoint.x, self.endPoint.x);
-        CGFloat y = MIN(self.startPoint.y, self.endPoint.y);
-        CGFloat width = ABS(self.startPoint.x - self.endPoint.x);
-        CGFloat height = ABS(self.startPoint.y - self.endPoint.y);
-        return CGRectMake(x, y, width, height);        
+        rect = CGRectWithPoints(self.startPoint, self.endPoint);
     }
+    if(CGRectEqualToRect(CGRectZero, _redrawRect)){
+        _redrawRect = rect;
+    }else{
+        _redrawRect = CGRectUnion(_redrawRect, rect);
+    }
+    return rect;
 }
 
+//- (CGRect)lastRect
+//{
+//    if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
+//        self.endPoint = self.startPoint;
+//        CGFloat x = self.startPoint.x;
+//        CGFloat y = self.startPoint.y;
+//        return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
+//    }else{
+//        return CGRectWithPoints(self.startPoint, _lastEndPoint);
+//    }
+//    
+//}
+
+- (CGRect)redrawRect
+{
+//    CGRect lastRect = CGRectWithPoints(self.startPoint, _lastEndPoint);
+//    CGRect rect = [self rect];
+//    CGPoint origin = rect.origin;
+//    CGSize size = rect.size;
+//    origin.x = MIN(CGRectGetMinX(lastRect), origin.x);
+//    origin.y = MIN(CGRectGetMinX(lastRect), origin.y);
+//    size.width = MAX(CGRectGetWidth(lastRect), size.width);
+//    size.height = MAX(CGRectGetHeight(lastRect), size.height);
+//    rect.origin = origin;
+//    rect.size = size;
+    return _redrawRect;
+}
 
 - (void)drawInContext:(CGContextRef)context
 {

@@ -9,7 +9,7 @@
 #import "GestureRecognizerManager.h"
 #import "ArcGestureRecognizer.h"
 #import "SuperDrawView.h"
-
+//#import "UIViewUtils.h"
 
 @interface GestureRecognizerManager()
 {
@@ -173,35 +173,55 @@
 
 - (void)handlePinchGesture:(UIPinchGestureRecognizer *)gestureRecognizer {
     
+    
     UIView *view = [gestureRecognizer view];
+    if (![view isKindOfClass:[SuperDrawView class]]) {
+        return;
+    }
+
     [self stateCallBack:gestureRecognizer];
+    
+    SuperDrawView *sDrawView = (SuperDrawView *)view;
+    
+    CGFloat kMaxScale = sDrawView.maxScale;
+    CGFloat kMinScale = sDrawView.minScale;
+    CGFloat kSpeed = 0.75;
+
+    
+    
+    
     if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
-        // Reset the last scale, necessary if there are multiple objects with different scales
-        lastScale = [gestureRecognizer scale];
+        lastScale = sDrawView.scale;
     }
     
     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
         [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
         
-        CGFloat currentScale = [[view.layer valueForKeyPath:@"transform.scale"] floatValue];
+//        CGFloat currentScale = [[view.layer valueForKeyPath:@"transform.scale"] floatValue];
         
         // Constants to adjust the max/min values of zoom
-        CGFloat kMaxScale = 10;
-        CGFloat kMinScale = 1;
-        CGFloat kSpeed = 0.75;
+        CGFloat guestureScale = [gestureRecognizer scale];
+        CGFloat currentScale = guestureScale * lastScale;
         
-        if ([view isKindOfClass:[SuperDrawView class]]) {
-            kMaxScale = [(SuperDrawView *)view maxScale];
-            kMinScale = [(SuperDrawView *)view minScale];
-        }
-        
-        CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
-        newScale = MIN(newScale, kMaxScale / currentScale);
-        newScale = MAX(newScale, kMinScale / currentScale);
-        CGAffineTransform transform = CGAffineTransformScale([view transform], newScale, newScale);
+//        CGFloat newScale = guestureScale * lastScale;
+        currentScale = MIN(currentScale, kMaxScale);
+        currentScale = MAX(currentScale, kMinScale);
 
-        [gestureRecognizer view].transform = transform;
-        lastScale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
+        [sDrawView setScale:currentScale];
+        PPDebug(@"Guesture Scale = %f, currentScale = %f, lastScale = %f",guestureScale, currentScale, lastScale);
+        
+//        CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
+//        newScale = MIN(newScale, kMaxScale / currentScale);
+//        newScale = MAX(newScale, kMinScale / currentScale);
+        
+//        PPDebug(@"lastScale = %f, guestureScale =%f, newScale = %f", lastScale, guestureScale, newScale);
+        
+//        CGAffineTransform transform = CGAffineTransformScale([view transform], newScale, newScale);
+
+//        PPDebug(@"<Pinch>scale = %f, transform = %@", newScale, NSStringFromCGAffineTransform(transform));
+        
+//        [gestureRecognizer view].transform = transform;
+//        lastScale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
     }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
              [gestureRecognizer state] == UIGestureRecognizerStateCancelled){
         [self adjustView:[gestureRecognizer view]];
@@ -235,20 +255,41 @@
     if(view.superview)
     {
         CGRect bounds = view.superview.bounds;
-        if (CGRectGetWidth(frame) <= CGRectGetWidth(bounds) &&
-            CGRectGetHeight(frame) <= CGRectGetHeight(bounds)) {
-            view.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-        }else{
-            CGPoint origin = frame.origin;
-            CGSize size = frame.size;
-            origin.x = MIN(0, origin.x);
-            origin.y = MIN(0, origin.y);
-            origin.x = MAX(origin.x, CGRectGetWidth(view.superview.bounds) - size.width);
-            origin.y = MAX(origin.y, CGRectGetHeight(view.superview.bounds) - size.height);
-            frame.origin = origin;
-            view.frame = frame;
+
+        BOOL aX = NO, aY = NO;
+        
+        if (CGRectGetWidth(frame) <= CGRectGetWidth(bounds)+1) {
+            frame.origin.x = (CGRectGetWidth(bounds) - CGRectGetWidth(frame)) / 2.0;
+            aX = YES;
         }
+        if(CGRectGetHeight(frame) <= CGRectGetHeight(bounds)+1){
+            frame.origin.y = (CGRectGetHeight(bounds) - CGRectGetHeight(frame)) / 2.0;
+            aY = YES;
+        }
+        CGPoint origin = frame.origin;
+        
+        const CGFloat R = 2.0;
+    
+        if (!aX) {
+            if (CGRectGetMaxX(frame) < CGRectGetWidth(bounds) / R ) {
+                origin.x = - CGRectGetWidth(frame)  +  CGRectGetWidth(bounds) / R ;
+            }else if(CGRectGetMaxX(bounds) - CGRectGetMinX(frame) < CGRectGetWidth(bounds) / R ){
+                origin.x = CGRectGetWidth(bounds) / R ;
+            }
+        }
+        if (!aY) {
+            if (CGRectGetMaxY(frame) < CGRectGetHeight(bounds) / R) {
+                origin.y = - CGRectGetHeight(frame) +  CGRectGetHeight(bounds) / R;
+            }else if(CGRectGetMaxY(bounds) - CGRectGetMinY(frame) < CGRectGetHeight(bounds) / R ){
+                origin.y = CGRectGetHeight(bounds) / R ;
+            }
+        }
+
+        frame.origin = origin;
+        view.frame = frame;
+
     }
+    PPDebug(@"<adjustView> frame = %@",NSStringFromCGRect(view.frame));
     [UIView commitAnimations];
 }
 
@@ -257,8 +298,16 @@
 - (void)handleDoubleTap:(UITapGestureRecognizer *)doubleTap {
     [self stateCallBack:doubleTap];
     if (doubleTap.state == UIGestureRecognizerStateRecognized) {
-        [doubleTap.view setTransform:CGAffineTransformIdentity];
-        [self adjustView:doubleTap.view];
+        if ([doubleTap.view respondsToSelector:@selector(resetTransform)]) {
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.5];
+            [doubleTap.view performSelector:@selector(resetTransform)];
+//            [doubleTap.view setCenter:CGRectGetCenter(doubleTap.view.superview.bounds)];
+            PPDebug(@"<handleDoubleTap> frame = %@",NSStringFromCGRect(doubleTap.view.frame));
+            [UIView commitAnimations];
+        }
+//        [doubleTap.view setTransform:CGAffineTransformIdentity];
+//        [self adjustView:doubleTap.view];
     }
 }
 

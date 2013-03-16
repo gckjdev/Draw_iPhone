@@ -205,6 +205,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 - (void)addPoint:(CGPoint)point
 {
+    /*
     CGRect rect = DRAW_VIEW_RECT;
     if (!CGRectContainsPoint(rect, point) && ![self isChangeBGPaint]){
         //add By Gamy
@@ -219,7 +220,7 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         point.x = MIN(point.x, DRAW_VIEW_WIDTH);
         point.y = MIN(point.y, DRAW_VIEW_HEIGHT);
     }
-    
+    */
     [[self getPen] addPointIntoPath:point];    
     [self.pointNodeList addObject:[PointNode pointWithCGPoint:point]];
 }

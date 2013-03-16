@@ -291,7 +291,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 700, 1132)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 1132, 700)];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -306,6 +306,7 @@
     _alpha = 1.0;
     DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:CGRectMake(10, 40, 300, 300) contentView:drawView];
     [self.view addSubview:holder];
+    PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
 }
 
 - (void)initWordLabel
