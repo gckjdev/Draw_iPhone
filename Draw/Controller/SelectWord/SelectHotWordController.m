@@ -16,6 +16,11 @@
 #import "Item.h"
 #import "CommonMessageCenter.h"
 #import "AnalyticsManager.h"
+#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
+#import "GameItemManager.h"
+#import "PBGameItem+Extend.h"
+#import "BuyItemView.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -144,16 +149,45 @@
     [DraftsView showInView:self.view delegate:self];
 }
 
-- (void)payForHotWord
+- (void)payForHotWord:(Word *)word
 {
-    if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
-        if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-            return;
-        }else {
-            [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
-        }
+//    if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
+//        if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+//            return;
+//        }else {
+//            [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
+//        }
+//    }
+
+    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:ItemTypeTips amount:1]) {
+        __block typeof (self) bself = self;
+        [[UserGameItemService defaultService] consumeItem:ItemTypeTips handler:^(int resultCode, int itemId) {
+            if (resultCode == 0) {
+                [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
+            }else{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
+                
+            }
+        }];
+    }else{
+        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTips];
+
+        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:NULL];
     }
+
+//    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTips];
+//
+//    if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:ItemTypeTips amount:1]) {
+//        if ([[AccountService defaultService] hasEnoughBalance:[item promotionPrice] currency:item.priceInfo.currency]) {
+//            [[UserGameItemService defaultService] buyItem:item count:1 handler:NULL];
+//        }else{
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+//            return;
+//        }
+//    }
+    
+
 }
 
 - (void)didSelectWord:(Word *)word
@@ -168,14 +202,20 @@
         if (word.wordType == PBWordTypeHot) {
             PPDebug(@"Hot Word Selected!");
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_HOT];
-            [self payForHotWord];
 
         }else if (word.wordType == PBWordTypeSystem){
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_SYSTEM];
         }else if (word.wordType == PBWordTypeCustom){
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
         }
-        [OfflineDrawViewController startDraw:word fromController:self startController:self.superController targetUid:_targetUid];
+        
+        
+        if (word.wordType == PBWordTypeHot) {
+            [self payForHotWord:word];
+        }else{
+            [OfflineDrawViewController startDraw:word fromController:self startController:self.superController targetUid:_targetUid];
+        }
+        
     }
 }
 

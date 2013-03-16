@@ -30,6 +30,7 @@
 #import "IngotService.h"
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
+#import "UserGameItemService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -576,14 +577,19 @@ static AccountService* _defaultAccountService;
        awardAmount:(int)awardAmount
           awardExp:(int)awardExp
 {
-    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
-        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
-                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
+//        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
+//                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//        return ERROR_ITEM_NOT_ENOUGH;
+//    }
+    
+    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:itemType amount:amount] == NO){
         return ERROR_ITEM_NOT_ENOUGH;
     }
     
     // save item locally and synchronize remotely
-    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+//    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
     
     UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
     [self syncItemRequest:userItem
@@ -597,6 +603,11 @@ static AccountService* _defaultAccountService;
 - (BOOL)hasEnoughCoins:(int)amount
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount];
+}
+
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+{
+    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
 }
 
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount

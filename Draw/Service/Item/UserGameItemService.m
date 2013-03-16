@@ -84,6 +84,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                 }
                 
+                for (PBUserItem *userItem in user.itemsList) {
+                    PPDebug(@"itemId = %d, count = %d", userItem.itemId, userItem.count);
+                }
                 [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
@@ -252,5 +255,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 //        [itemAction excuteAction];
 //    }
 //}
+
+
 
 @end

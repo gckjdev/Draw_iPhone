@@ -168,30 +168,30 @@ AccountManager* GlobalGetAccountManager()
     }
 }
 
-//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
-//{
-//    switch (currency) {
-//        case PBGameCurrencyCoin:
-//            return [self hasEnoughBalance:amount];
-//            break;
-//            
-//        case PBGameCurrencyIngot:
-//            return [self hasEnoughIngots:amount];
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            return [self hasEnoughBalance:amount];
+            break;
+            
+        case PBGameCurrencyIngot:
+            return [self hasEnoughIngots:amount];
+            break;
+            
+        default:
+            break;
+    }
+}
 
-//- (BOOL)hasEnoughIngots:(int)amount
-//{
-//    if ([self getIngotBalance] < amount) {
-//        return NO;
-//    }else{
-//        return YES;
-//    }
-//}
+- (BOOL)hasEnoughIngots:(int)amount
+{
+    if ([self getIngotBalance] < amount) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
 
 #pragma mark - Price Delegate
 

@@ -82,6 +82,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
           awardExp:(int)awardAmount;
 
 - (BOOL)hasEnoughCoins:(int)amount;
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
 
 - (int)checkIn;
 
