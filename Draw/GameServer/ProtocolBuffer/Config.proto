@@ -96,6 +96,14 @@ message PBAppReward{
     required PBGameCurrency rewardCurrency = 3;
 }
 
+enum PBRewardWallType{
+    LIMEI = 1;
+    WANPU = 2;
+    ADER  = 3;
+    YOUMI = 4;
+    TAPJOY = 5;
+}
+
 message PBRewardWall {
     required int32 type = 1;
     optional string logo = 2;

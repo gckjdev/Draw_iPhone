@@ -57,6 +57,16 @@
 @class PBUserResult_Builder;
 @class PBZJHConfig;
 @class PBZJHConfig_Builder;
+typedef enum {
+  PBRewardWallTypeLimei = 1,
+  PBRewardWallTypeWanpu = 2,
+  PBRewardWallTypeAder = 3,
+  PBRewardWallTypeYoumi = 4,
+  PBRewardWallTypeTapjoy = 5,
+} PBRewardWallType;
+
+BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);
+
 
 @interface ConfigRoot : NSObject {
 }

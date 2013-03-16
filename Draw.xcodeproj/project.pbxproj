@@ -16525,8 +16525,8 @@
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
-				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
 				CAADF62316F444D10097CFA1 /* GameAdWallService.h */,
+				CAADF62216F444D10097CFA1 /* GameAdWallService.m */,
 				CAA9C433159CA97100398EC5 /* LmWallService.h */,
 				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
