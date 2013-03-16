@@ -23,6 +23,6 @@
 {
     
 }
-@property (assign, nonatomic) ConsumeItemResultHandler handler;
+//@property (assign, nonatomic) ConsumeItemResultHandler handler;
 
 @end

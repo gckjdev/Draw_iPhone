@@ -7,7 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SuperDrawView.h"
 
-@interface DrawHolderView : NSObject
+@class DrawView;
+@class ShowDrawView;
+
+@interface DrawHolderView : UIView
+{
+    SuperDrawView *_contentView;
+}
+
+- (DrawView *)drawView;
+
+- (ShowDrawView *)showView;
+
+- (void)setContentView:(SuperDrawView *)contentView;
+
++ (id)drawHolderViewWithFrame:(CGRect)frame
+                    contentView:(SuperDrawView *)contentView;
+
+
 
 @end

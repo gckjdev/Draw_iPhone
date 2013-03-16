@@ -11,6 +11,9 @@
 #import "DrawView.h"
 #import "ArcGestureRecognizer.h"
 
+#define DEFALT_MIN_SCALE 1
+#define DEFALT_MAX_SCALE 10
+
 @interface SuperDrawView()
 {
     PBDrawBg *_drawBg;
@@ -51,7 +54,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        _scale = 1;
+//        _scale = 1;
+        self.minScale = DEFALT_MIN_SCALE;
+        self.maxScale = DEFALT_MAX_SCALE;
+        self.scale = self.minScale;
         _gestureRecognizerManager = [[GestureRecognizerManager alloc] init];
         UIGestureRecognizer *pan = [_gestureRecognizerManager addPanGestureReconizerToView:self];
         UIGestureRecognizer *pinch = [_gestureRecognizerManager addPinchGestureReconizerToView:self];
@@ -68,7 +74,12 @@
 
 #pragma mark public method
 
-
+- (void)setScale:(CGFloat)scale
+{
+    _scale = scale;
+    CGAffineTransform transform = CGAffineTransformScale(self.transform, scale, scale);
+    self.transform = transform;
+}
 
 - (BOOL)isViewBlank
 {
@@ -108,11 +119,11 @@
 }
 
 
-- (void)setScale:(CGFloat)scale
-{
-    _scale = scale;
-    [self.layer setTransform:CATransform3DMakeScale(scale, scale, 1)];
-}
+//- (void)setScale:(CGFloat)scale
+//{
+//    _scale = scale;
+//    [self.layer setTransform:CATransform3DMakeScale(scale, scale, 1)];
+//}
 
 - (UIImage *)drawBGImage
 {

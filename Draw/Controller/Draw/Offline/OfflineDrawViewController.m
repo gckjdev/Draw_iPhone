@@ -57,6 +57,8 @@
 #import "CustomInfoView.h"
 #import "UserGameItemService.h"
 #import "GameItemService.h"
+#import "DrawHolderView.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -135,7 +137,7 @@
 @synthesize penColor = _penColor;
 @synthesize startController = _startController;
 
-#define PAPER_VIEW_TAG 20120403 
+//#define PAPER_VIEW_TAG 20120403 
 
 
 #pragma mark - Static Method
@@ -288,28 +290,22 @@
 
 - (void)initDrawView
 {
-    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:frame];
+//    CGRect frame = DRAW_VIEW_FRAME;
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 700, 1132)];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
-//    [drawView setRevocationSupported:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
-//    _userSaved = NO;
     self.eraserColor = [DrawColor whiteColor];
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
         [self synEraserColor];
     }
-    [paperView addSubview:drawView];
-    paperView.hidden = NO;
-    drawView.frame = paperView.bounds;
-//    drawView.center = paperView.center;
-//    [self.view insertSubview:drawView aboveSubview:paperView];
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
+    DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:CGRectMake(10, 40, 300, 300) contentView:drawView];
+    [self.view addSubview:holder];
 }
 
 - (void)initWordLabel
