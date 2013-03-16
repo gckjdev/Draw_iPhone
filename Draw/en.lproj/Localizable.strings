@@ -1088,6 +1088,9 @@
 "kUpdateTips" = "Update Tips";
 "kVersionIsOld" = "version is too low, you can not use this function to determine the Update?";
 
+"kStore" = "Store";
+"kBalance" = "Balance:";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -52,6 +52,8 @@
     } else {
         self.discountButton.hidden = YES;
     }
+    
+    [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
 }
 
 - (IBAction)clickBuyButton:(id)sender {
