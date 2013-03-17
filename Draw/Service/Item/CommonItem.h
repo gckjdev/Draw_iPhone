@@ -15,10 +15,12 @@
 
 @end
 
+@class BlockArray;
 
 @interface CommonItem : NSObject
 
 
+@property (retain, nonatomic) BlockArray *blockArray;
 
 
 @end

@@ -80,7 +80,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 {
     for (PBGameItem *item in _items) {
         if (item.itemId == itemId) {
-            return item;
+            return [[PBGameItem builderWithPrototype:item] build];
         }
     }
     

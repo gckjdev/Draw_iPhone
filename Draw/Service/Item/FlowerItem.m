@@ -17,16 +17,12 @@
 #import "PPNetworkRequest.h"
 #import "BlockUtils.h"
 #import "SynthesizeSingleton.h"
+#import "BlockArray.h"
 
 @implementation FlowerItem
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
 
-- (void)dealloc
-{
-    RELEASE_BLOCK(_handler);
-    [super dealloc];
-}
 
 - (int)itemId
 {
@@ -58,10 +54,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     int awardExp = 0;
     NSString* targetUserId = nil;
     
-    RELEASE_BLOCK(_handler);
-    COPY_BLOCK(_handler, handler);
+    ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[self.blockArray copyBlock:handler];
     
-
     if (isOffline) {
         __block typeof (self) bself = self;
 
@@ -71,22 +65,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         awardExp = [ConfigManager getFlowerAwardExp];
         
         
-        [[UserGameItemService defaultService] consumeItem:[self itemId] handler:^(int resultCode, int itemId) {
+        [[UserGameItemService defaultService] consumeItem:[self itemId] handler://NULL];
+         ^(int resultCode, int itemId) {
             
             if (resultCode == ERROR_SUCCESS){            
-                // send feed action
-                [[FeedService defaultService] throwItem:[bself itemId]
-                                                 toOpus:feedOpusId
-                                                 author:feedAuthor
-                                               delegate:nil];
             }
             
-            EXCUTE_BLOCK(bself.handler, resultCode, itemId);
-            RELEASE_BLOCK(bself.handler);
-         
+             [bself itemId];
         }];
-        
-        
+                
+        // send feed action
+        [[FeedService defaultService] throwItem:[bself itemId]
+                                         toOpus:feedOpusId
+                                         author:feedAuthor
+                                       delegate:nil];
+
+        EXCUTE_BLOCK(tempHandler, 0, [bself itemId]);
+        [bself.blockArray releaseBlock:tempHandler];
+
     }else{
         // send online request for online realtime play
         int rankResult = RANK_FLOWER;
@@ -96,9 +92,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                         targetUserId:targetUserId
                                          awardAmount:isFree?0:awardAmount
                                             awardExp:isFree?0:awardExp];
-        
-        EXCUTE_BLOCK(self.handler, 0, [self itemId]);
-        RELEASE_BLOCK(self.handler);
+
+        EXCUTE_BLOCK(tempHandler, 0, [self itemId]);
+        [self.blockArray releaseBlock:tempHandler];                
     }
     
     
