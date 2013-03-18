@@ -642,6 +642,14 @@
 		C25078AE16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
 		C25078AF16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
 		C25078B016F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
+		C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
+		C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
+		C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
+		C25078B716F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
+		C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
+		C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
+		C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
+		C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
 		C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */; };
 		C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */; };
 		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
@@ -7703,6 +7711,11 @@
 		C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailBasicCell.xib; sourceTree = "<group>"; };
 		C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailOpusGalleryCell.xib; sourceTree = "<group>"; };
 		C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailSNSInfoCell.xib; sourceTree = "<group>"; };
+		C25078B116F71E2D009B7ED2 /* UserDetailProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailProtocol.h; sourceTree = "<group>"; };
+		C25078B216F71EB6009B7ED2 /* ViewUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUserDetail.h; sourceTree = "<group>"; };
+		C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUserDetail.m; sourceTree = "<group>"; };
+		C25078B816F71ECA009B7ED2 /* SelfUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfUserDetail.h; sourceTree = "<group>"; };
+		C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfUserDetail.m; sourceTree = "<group>"; };
 		C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListController.xib; sourceTree = "<group>"; };
 		C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell.xib; sourceTree = "<group>"; };
 		C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListCell.h; sourceTree = "<group>"; };
@@ -13521,6 +13534,11 @@
 				CA9B4EBF16103726008C6A97 /* TopPlayer.m */,
 				EA72B4BF162026480022D82D /* UserAnnotation.h */,
 				EA72B4C0162026480022D82D /* UserAnnotation.m */,
+				C25078B116F71E2D009B7ED2 /* UserDetailProtocol.h */,
+				C25078B216F71EB6009B7ED2 /* ViewUserDetail.h */,
+				C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */,
+				C25078B816F71ECA009B7ED2 /* SelfUserDetail.h */,
+				C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -22821,6 +22839,8 @@
 				C250789416F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
 				C250789A16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
 				C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
+				C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
+				C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23571,6 +23591,8 @@
 				C250789516F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
 				C250789B16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
 				C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
+				C25078B716F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
+				C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24330,6 +24352,8 @@
 				C250789216F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
 				C250789816F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
 				C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
+				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
+				C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25088,6 +25112,8 @@
 				C250789316F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
 				C250789916F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
 				C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
+				C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
+				C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
