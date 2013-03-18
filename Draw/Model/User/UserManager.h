@@ -37,6 +37,7 @@ typedef enum {
 + (UserManager*)defaultManager;
 
 @property (nonatomic, retain) UIImage *avatarImage;
+@property (nonatomic, retain) PBGameUser *pbUser;
 
 - (NSString*)userId;
 - (NSString*)nickName;
@@ -47,15 +48,15 @@ typedef enum {
 - (NSString*)gender;
 - (NSString*)location;
 - (NSArray*)snsUserData;
-- (NSString*)sinaId;
-- (NSString*)sinaNickName;
-- (NSString*)sinaToken;
-- (NSString*)sinaTokenSecret;
-- (NSString*)qqId;
-- (NSString*)qqNickName;
-- (NSString*)qqToken;
-- (NSString*)qqTokenSecret;
-- (NSString*)facebookId;
+//- (NSString*)sinaId;
+//- (NSString*)sinaNickName;
+//- (NSString*)sinaToken;
+//- (NSString*)sinaTokenSecret;
+//- (NSString*)qqId;
+//- (NSString*)qqNickName;
+//- (NSString*)qqToken;
+//- (NSString*)qqTokenSecret;
+//- (NSString*)facebookId;
 - (NSString*)email;
 - (NSString*)facetimeId;
 

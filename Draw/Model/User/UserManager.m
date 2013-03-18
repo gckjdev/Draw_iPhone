@@ -22,19 +22,20 @@
 #import "PPSNSConstants.h"
 #import "BBSPermissionManager.h"
 
-#define KEY_USERID          @"USER_KEY_USERID"
-#define KEY_NICKNAME        @"USER_KEY_NICKNAME"
-#define KEY_AVATAR_URL      @"USER_KEY_AVATAR_URL"
-#define KEY_DEVICE_TOKEN    @"USER_KEY_DEVICE_TOKEN"
-#define KEY_EMAIL           @"USER_KEY_EMAIL"
-#define KEY_PASSWORD        @"USER_KEY_PASSWORD"
-#define KEY_LANGUAGE        @"USER_KEY_LANGUAGE"
-#define KEY_GENDER          @"USER_KEY_GENDER"
-#define KEY_SNS_USER_DATA   @"USER_KEY_SNS_USER_DATA"
-#define KEY_LOCATION        @"USER_KEY_LOCATION"
+#define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
+#define KEY_USERID                      @"USER_KEY_USERID"
+#define KEY_NICKNAME                    @"USER_KEY_NICKNAME"
+#define KEY_AVATAR_URL                  @"USER_KEY_AVATAR_URL"
+#define KEY_DEVICE_TOKEN                @"USER_KEY_DEVICE_TOKEN"
+#define KEY_EMAIL                       @"USER_KEY_EMAIL"
+#define KEY_PASSWORD                    @"USER_KEY_PASSWORD"
+#define KEY_LANGUAGE                    @"USER_KEY_LANGUAGE"
+#define KEY_GENDER                      @"USER_KEY_GENDER"
+#define KEY_SNS_USER_DATA               @"USER_KEY_SNS_USER_DATA"
+#define KEY_LOCATION                    @"USER_KEY_LOCATION"
 
 #define KEY_SINA_LOGINID                @"USER_KEY_SINA_LOGINID"
-#define KEY_QQ_LOGINID                @"USER_KEY_QQ_LOGINID"
+#define KEY_QQ_LOGINID                  @"USER_KEY_QQ_LOGINID"
 #define KEY_FACEBOOK_LOGINID            @"USER_KEY_FACEBOOK_LOGINID"
 #define KEY_FACETIME_ID                 @"USER_KEY_FACETIME_ID"
 
@@ -52,6 +53,7 @@
 @implementation UserManager
 
 @synthesize avatarImage = _avatarImage;
+
 static UserManager* _defaultManager;
 
 + (UserManager*)defaultManager
@@ -68,17 +70,97 @@ static UserManager* _defaultManager;
     self = [super init];
 //    _userDefaults = [NSUserDefaults standardUserDefaults];
     [FileUtil createDir:[FileUtil getFileFullPath:TEMP_AVATAR_LOCAL_PATH]];
+    [self loadUserData];
     [self avatarImage];
     return self;
 }
 
 - (void)dealloc
 {
+    PPRelease(_pbUser);
     [_avatarImage release];
     [super dealloc];
 }
 
+- (void)loadUserDataFromOldStorage
+{
+    if ([[self userIdFromOldStorage] length] == 0)
+        return;        
+    
+    // return a PBGame User structure here
+    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+    [builder setUserId:[self userIdFromOldStorage]];
+    [builder setNickName:[self nickNameFromOldStorage]];
+    
+    NSString* avatar = [self avatarURLFromOldStorage];
+    if (avatar != nil)
+        [builder setAvatar:avatar];
+    
+    NSString* location = [self locationFromOldStorage];
+    if (location != nil)
+        [builder setLocation:location];
+    
+    BOOL gender = [[self genderFromOldStorage] isEqualToString:@"m"];
+    [builder setGender:gender];
+    
+    NSString* email = [self emailFromOldStorage];
+    if (email != nil)
+        [builder setEmail:email];
+    
+    NSString* password = [self passwordFromOldStorage];
+    if (password != nil)
+        [builder setPassword:password];
+    
+    NSArray* snsArray = [self snsUserDataFromOldStorage];
+    if (snsArray != nil)
+        [builder addAllSnsUsers:snsArray];
+    
+    self.pbUser = [builder build];
+    return;    
+}
+
+- (void)loadUserData
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSData* data = [userDefaults objectForKey:KEY_ALL_USER_PB_DATA];
+    if (data == nil || [data length] == 0){
+        // load pb user from old data
+        [self loadUserDataFromOldStorage];
+        return;
+    }
+
+    self.pbUser = [PBGameUser parseFromData:data];
+    if (self.pbUser == nil){
+        PPDebug(@"<loadUserData> cannot load user data");
+    }
+    else{
+        PPDebug(@"<loadUserData> success, userId=%@, nickName=%@", [_pbUser userId], [_pbUser nickName]);
+    }
+}
+
+- (void)storeUserData
+{
+    if (self.pbUser == nil)
+        return;
+    
+    NSData* data = [self.pbUser data];
+    if (data == nil)
+        return;
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:data forKey:KEY_ALL_USER_PB_DATA];
+    PPDebug(@"<storeUserData> store user data success!");
+}
+
 - (NSString*)userId
+{
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    return [userDefaults objectForKey:KEY_USERID];
+
+    return [_pbUser userId];
+}
+
+- (NSString*)userIdFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults objectForKey:KEY_USERID];
@@ -86,11 +168,30 @@ static UserManager* _defaultManager;
 
 - (NSString*)nickName
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    return [userDefaults objectForKey:KEY_NICKNAME];
+
+    return [_pbUser nickName];
+
+}
+
+- (NSString*)nickNameFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults objectForKey:KEY_NICKNAME];
 }
 
 - (NSString*)avatarURL
+{
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_AVATAR_URL];
+//    return value;
+
+    return [_pbUser avatar];
+
+}
+
+- (NSString*)avatarURLFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_AVATAR_URL];
@@ -99,40 +200,109 @@ static UserManager* _defaultManager;
 
 - (NSString*)deviceToken
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_DEVICE_TOKEN];
+//    return value;    
+
+    return [_pbUser deviceToken];
+
+}
+
+- (NSString*)deviceTokenFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_DEVICE_TOKEN];
-    return value;    
+    return value;
 }
 
 - (NSString*)password
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_PASSWORD];
+//    return value;    
+
+    return [_pbUser password];
+
+}
+
+- (NSString*)passwordFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_PASSWORD];
-    return value;    
+    return value;
 }
 
 - (NSString*)email
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_EMAIL];
+//    return value; 
+
+    return [_pbUser email];
+
+}
+
+- (NSString*)emailFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_EMAIL];
-    return value; 
+    return value;
 }
 
 - (NSString*)facetimeId
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_FACETIME_ID];
+//    return value; 
+    return [_pbUser facetimeId];
+}
+
+- (NSString*)facetimeIdFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_FACETIME_ID];
-    return value; 
+    return value;
 }
 
 - (NSString*)location
 {
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString* value = [userDefaults objectForKey:KEY_LOCATION];
+//    return value;        
+
+    return [_pbUser location];
+
+}
+
+- (NSString*)locationFromOldStorage
+{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSString* value = [userDefaults objectForKey:KEY_LOCATION];
-    return value;        
+    return value;
 }
 
 - (NSArray*)snsUserData
+{
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSArray* dataArray = [userDefaults objectForKey:KEY_SNS_USER_DATA];
+//    if (dataArray == nil)
+//        return nil;
+//    
+//    NSMutableArray* snsUserArray = [NSMutableArray arrayWithCapacity:[dataArray count]];
+//    for (NSData* data in dataArray){
+//        PBSNSUser* user = [PBSNSUser parseFromData:data];
+//        if (user != nil){
+//            [snsUserArray addObject:user];
+//        }
+//    }
+//    
+//    return snsUserArray;            
+
+    return [_pbUser snsUsersList];
+
+}
+
+- (NSArray*)snsUserDataFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray* dataArray = [userDefaults objectForKey:KEY_SNS_USER_DATA];
@@ -147,7 +317,7 @@ static UserManager* _defaultManager;
         }
     }
     
-    return snsUserArray;            
+    return snsUserArray;
 }
 
 - (BOOL)isMe:(NSString *)userId
@@ -178,6 +348,15 @@ static UserManager* _defaultManager;
 }
 
 - (NSString*)gender
+{
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    return [userDefaults objectForKey:KEY_GENDER];
+
+    return [_pbUser gender] ? @"m" : @"f";
+
+}
+
+- (NSString*)genderFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults objectForKey:KEY_GENDER];
@@ -363,39 +542,6 @@ static UserManager* _defaultManager;
                          self.avatarImage = image;
                      }
                      failure:nil];
-    
-    return _avatarImage;
-    
-    /* old implementation
-    if (_avatarImage == nil){
-        // local file
-        UIImage* localImage = [self readAvatarImageLocally];        
-        if (localImage != nil){
-            self.avatarImage = localImage;
-            return _avatarImage;
-        }                            
-
-        NSString* url = [self avatarURL];
-        if ([url length] == 0){
-            // use default avatar in application bundle
-            self.avatarImage = [UIImage imageNamed:[self defaultAvatar]];
-        }
-        else{
-            // read from server and save it locally
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-                [request setDownloadDestinationPath:[FileUtil getFileFullPath:AVATAR_LOCAL_FILENAME]];
-                [request setTemporaryFileDownloadPath:NSTemporaryDirectory()];
-                [request setAllowResumeForFileDownloads:YES];
-                [request startSynchronous];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.avatarImage = [self readAvatarImageLocally];
-                });
-            });
-        }
-    }
-     */
     
     return _avatarImage;
 }
@@ -753,7 +899,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [user userId];
 }
 
+- (NSString*)sinaIdFromOldStorage
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_SINA];
+    return [user userId];
+}
+
 - (NSString*)sinaNickName
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_SINA];
+    return [user nickName];
+}
+
+- (NSString*)sinaNickNameFromOldStorage
 {
     PBSNSUser* user = [self snsUserByType:TYPE_SINA];
     return [user nickName];
@@ -775,7 +933,19 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [user userId];
 }
 
+- (NSString*)qqIdFromOldStorage
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    return [user userId];
+}
+
 - (NSString*)qqNickName
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    return [user nickName];
+}
+
+- (NSString*)qqNickNameFromOldStorage
 {
     PBSNSUser* user = [self snsUserByType:TYPE_QQ];
     return [user nickName];
@@ -787,13 +957,31 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return [user accessToken];
 }
 
+- (NSString*)qqTokenFromOldStorage
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    return [user accessToken];
+}
+
 - (NSString*)qqTokenSecret
 {
     PBSNSUser* user = [self snsUserByType:TYPE_QQ];
     return [user accessTokenSecret];
 }
 
+- (NSString*)qqTokenSecretFromOldStorage
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_QQ];
+    return [user accessTokenSecret];
+}
+
 - (NSString*)facebookId
+{
+    PBSNSUser* user = [self snsUserByType:TYPE_FACEBOOK];
+    return [user userId];
+}
+
+- (NSString*)facebookIdFromOldStorage
 {
     PBSNSUser* user = [self snsUserByType:TYPE_FACEBOOK];
     return [user userId];
