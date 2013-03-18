@@ -317,4 +317,9 @@
     return [NSArray arrayWithObjects:@"feed_image", @"feedCache", @"ImageCache", @"imgcache", @"bbs/drawData", @"message", nil];
 }
 
+- (NSString*)getBackgroundMusicName
+{
+    return @"cannon.mp3";
+}
+
 @end

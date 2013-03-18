@@ -76,12 +76,6 @@
     [super dealloc];
     
 }
-
-- (void)playBGM
-{
-    [[AudioManager defaultManager] setBackGroundMusicWithName:@"dice.m4a"];
-    [[AudioManager defaultManager] backgroundMusicStart];
-}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -90,10 +84,6 @@
     _resService = [PPResourceService defaultService];
 
     [super viewDidLoad];
-    [self playBGM];
-
-
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
