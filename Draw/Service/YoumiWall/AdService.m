@@ -12,7 +12,6 @@
 #import "LocaleUtils.h"
 #import "ShoppingManager.h"
 #import "PPViewController.h"
-#import "ItemType.h"
 #import "DeviceDetection.h"
 #import "LmWallService.h"
 #import "AdMoGoView.h"

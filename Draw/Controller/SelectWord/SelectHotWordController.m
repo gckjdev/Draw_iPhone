@@ -13,7 +13,6 @@
 #import "OfflineDrawViewController.h"
 #import "UserService.h"
 #import "AccountService.h"
-#import "Item.h"
 #import "CommonMessageCenter.h"
 #import "AnalyticsManager.h"
 #import "UserGameItemService.h"

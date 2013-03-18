@@ -43,7 +43,6 @@
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "ShareAction.h"
-#import "Item.h"
 #import "DrawUtils.h"
 #import "UIViewUtils.h"
 #import "UserGameItemService.h"
@@ -815,13 +814,13 @@
 }
 
 #pragma mark - commonItemInfoView delegate
-- (void)didBuyItem:(Item *)anItem 
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
         ToolView* toolview = nil;
-        switch (anItem.type) {
+        switch (itemId) {
             case ItemTypeFlower: {
                 toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
             } break;

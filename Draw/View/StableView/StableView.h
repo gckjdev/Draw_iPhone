@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemType.h"
-#import "Item.h"
 
 
 //@class HJManagedImageV;

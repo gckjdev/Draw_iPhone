@@ -38,9 +38,9 @@
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "AccountService.h"
-#import "Item.h"
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
+#import "GameItemManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -651,6 +651,8 @@
         return;
     }
     
+    int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
+    
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:toolView.itemType count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
         if (resultCode == ERROR_SUCCESS) {
@@ -658,7 +660,7 @@
             NSString *result  = [WordManager bombCandidateString:bself.candidateString word:bself.word];
             [bself updateCandidateViewsWithText:result];
             [toolView setEnabled:NO];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), [Item tips].price/[Item tips].buyAmountForOnce] delayTime:2];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
         }else{
@@ -815,13 +817,13 @@
 }
 
 #pragma mark - commonItemInfoView delegate
-- (void)didBuyItem:(Item *)anItem 
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
         ToolView* toolview = nil;
-        switch (anItem.type) {
+        switch (itemId) {
             case ItemTypeTips: {
                 toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
             } break;

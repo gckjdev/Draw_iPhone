@@ -337,16 +337,16 @@
 }
 #pragma mark - CommonItemInfoView Delegate
 
-- (void)didBuyItem:(Item*)anItem
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
-        switch (anItem.type) {
+        switch (itemId) {
             case PaletteItem:
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
-                [self.drawToolPanel userItem:anItem.type];
+                [self.drawToolPanel userItem:itemId];
                 break;
             case Pen:
             case Pencil:
@@ -354,8 +354,8 @@
             case Quill:
             case WaterPen:
             {
-                [self.drawToolPanel setPenType:anItem.type];
-                [drawView setPenType:anItem.type];
+                [self.drawToolPanel setPenType:itemId];
+                [drawView setPenType:itemId];
                 break;
             }
             default:
