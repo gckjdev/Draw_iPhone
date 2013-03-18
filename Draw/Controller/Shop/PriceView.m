@@ -64,6 +64,10 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
                             price]];
     [view.promotionPriceLabel updateOriginX:originX];
     
+    CGFloat width = view.promotionPriceLabel.frame.origin.x + view.promotionPriceLabel.frame.size.width - view.promotionCurrencyImageView.frame.origin.x;
+    [view.grayLineImageView updateOriginX:view.promotionCurrencyImageView.frame.origin.x];
+    [view.grayLineImageView updateWidth:width];
+    
     originX = view.promotionPriceLabel.frame.origin.x + view.promotionPriceLabel.frame.size.width + distance1;
     [view.currencyImageView updateOriginX:originX];
     

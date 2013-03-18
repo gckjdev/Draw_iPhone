@@ -29,20 +29,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     return ItemTypeFlower;
 }
 
-//- (void)excuteAction//WithParameters//:(NSDictionary *)parameters
-//{
-//    NSString *toUserId = [_parameters objectForKey:PARA_KEY_USER_ID];
-//    NSString *opusId = [_parameters objectForKey:PARA_KEY_OPUS_ID];
-//
-//    // send feed action
-//    [[FeedService defaultService] throwItem:[self itemId]
-//                                     toOpus:opusId
-//                                     author:toUserId
-//                                   delegate:nil];
-//}
-
-
-
 - (void)useItem:(NSString*)toUserId
       isOffline:(BOOL)isOffline
      feedOpusId:(NSString*)feedOpusId
@@ -64,19 +50,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
-        
-        [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
-            
-        }];
+        if (!isFree) {
+            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+                if (resultCode == ERROR_SUCCESS) {
+                    // send feed action
+                    [[FeedService defaultService] throwItem:[bself itemId]
+                                                     toOpus:feedOpusId
+                                                     author:feedAuthor
+                                                   delegate:nil];
+                }
                 
-        // send feed action
-        [[FeedService defaultService] throwItem:[bself itemId]
-                                         toOpus:feedOpusId
-                                         author:feedAuthor
-                                       delegate:nil];
-
-        EXCUTE_BLOCK(tempHandler, 0, [bself itemId]);
-        [bself.blockArray releaseBlock:tempHandler];
+                EXCUTE_BLOCK(tempHandler, 0, [bself itemId]);
+                [bself.blockArray releaseBlock:tempHandler];
+            }];
+        }
 
     }else{
         // send online request for online realtime play
@@ -91,9 +78,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         EXCUTE_BLOCK(tempHandler, 0, [self itemId]);
         [self.blockArray releaseBlock:tempHandler];                
     }
-    
-    
-    
 }
 
 @end

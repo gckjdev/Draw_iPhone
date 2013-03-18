@@ -11,7 +11,6 @@
 #import "ItemManager.h"
 #import "ShareImageManager.h"
 #import "UIButtonExt.h"
-#import "Item.h"
 
 #define PICK_TOOL_VIEW_WIDTH ([DeviceDetection isIPAD] ? 138  : 69)
 

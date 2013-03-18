@@ -356,9 +356,9 @@ static AccountService* _defaultAccountService;
             if (output.resultCode == ERROR_SUCCESS) {
                 // update balance from server
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalance]){
+                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
                     PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d",
-                            [[AccountManager defaultManager] getBalance], balance);
+                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
                 }
                 
             }
@@ -457,21 +457,21 @@ static AccountService* _defaultAccountService;
             if (output.resultCode == ERROR_SUCCESS) {
                 // update balance from server
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalance]){
+                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
                     PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
-                            [[AccountManager defaultManager] getBalance], balance);
+                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
                 }
             }
             else{
                 PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
             }
-        });        
+        });
     });    
 }
 
 - (void)syncAccountBalanceToServer
 {
-    int balance = [_accountManager getBalance];
+    int balance = [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
     PPDebug(@"<syncAccountBalanceToServer> balance=%d", balance);
     NSString* userId = [[UserManager defaultManager] userId];
     
@@ -531,7 +531,7 @@ static AccountService* _defaultAccountService;
     
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
-                [[AccountManager defaultManager] getBalance], itemCoins);
+                [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], itemCoins);
         return ERROR_BALANCE_NOT_ENOUGH;
     }
     
@@ -583,7 +583,7 @@ static AccountService* _defaultAccountService;
     
     // save item locally and synchronize remotely
 //    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
-    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
+//    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
     
     UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
     [self syncItemRequest:userItem
@@ -659,7 +659,7 @@ static AccountService* _defaultAccountService;
 
 - (int)getBalance
 {
-    return [_accountManager getBalance];
+    return [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
 }
 
 - (int)getBalanceWithCurrency:(PBGameCurrency)currency
@@ -866,12 +866,6 @@ static AccountService* _defaultAccountService;
             }
         });      
     });    
-}
-
-
-- (void)syncAccount
-{    
-    [self syncAccount:nil];
 }
 
 #define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"

@@ -13,7 +13,6 @@
 #import "OfflineDrawViewController.h"
 #import "UserService.h"
 #import "AccountService.h"
-#import "Item.h"
 #import "CommonMessageCenter.h"
 #import "AnalyticsManager.h"
 #import "UserGameItemService.h"
@@ -150,16 +149,7 @@
 }
 
 - (void)payForHotWord:(Word *)word
-{
-//    if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
-//        if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-//            return;
-//        }else {
-//            [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
-//        }
-//    }
-    
+{    
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
         if (resultCode == ERROR_SUCCESS) {

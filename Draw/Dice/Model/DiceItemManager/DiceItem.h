@@ -16,7 +16,6 @@
 + (Item *)peek;
 + (Item*)postpone;
 + (Item*)urge;
-//+ (Item*)doubleKill;
 + (Item*)turtle;
 + (Item*)diceRobot;
 + (Item*)patriotDice;

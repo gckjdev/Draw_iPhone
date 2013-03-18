@@ -30,6 +30,7 @@
 #import "CustomDiceManager.h"
 #import "NotificationName.h"
 #import "RoomTitleView.h"
+#import "AccountManager.h"
 
 
 #define AVATAR_TAG_OFFSET   8000
@@ -249,7 +250,7 @@
     self.gameBeginNoteLabel.textColor = [UIColor yellowColor];
 
     self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];;
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
     
     self.anteNoteLabel.text = NSLS(@"kAnte");
     
@@ -492,11 +493,6 @@
         self.myLevelLabel.text = [NSString stringWithFormat:@"LV:%d",_levelService.level];
         if ([_userManager isMe:userId]) {
             [_accountService syncAccount:self];
-//            [_accountService syncAccount:^(int resultCode) {
-//                if (resultCode == 0) {
-//                    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
-//                }
-//            }];
         }
     }
 }
@@ -1044,7 +1040,7 @@
 // Sync Account Delegate
 - (void)didSyncFinish
 {
-    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[_accountService getBalance]];
+    self.myCoinsLabel.text = [NSString stringWithFormat:@"x%d",[[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
 }
 
 #pragma mark- Buttons action

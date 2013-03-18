@@ -9,7 +9,6 @@
 #import "GameItemManager.h"
 #import "SynthesizeSingleton.h"
 #import "GameBasic.pb.h"
-#import "PBGameItem+Extend.h"
 #import "PPSmartUpdateDataUtils.h"
 
 #define SHOP_ITEM_FILE_TYPE @"pb"
@@ -87,5 +86,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
     return nil;
 }
 
+- (int)priceWithItemId:(int)itemId
+{
+    return [[self itemWithItemId:itemId] promotionPrice];
+}
+
+- (PBGameCurrency)currencyWithItemId:(int)itemId
+{
+    return [[[self itemWithItemId:itemId] priceInfo] currency];
+}
 
 @end

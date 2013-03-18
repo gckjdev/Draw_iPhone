@@ -678,7 +678,7 @@ static UserService* _defaultUserService;
                 }
 
                 // TODO : combine them?
-                [[AccountService defaultService] syncAccount];
+                [[AccountService defaultService] syncAccount:nil];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {

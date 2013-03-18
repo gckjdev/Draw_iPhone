@@ -230,8 +230,6 @@
     int flowersAward = [ConfigManager getFreeFlowersAward];
     
     [[AccountService defaultService] chargeAccount:money source:MoneyTreeAward];
-//    [[AccountService defaultService] buyItem:ItemTypeTips itemCount:tipsAward itemCoins:0];
-//    [[AccountService defaultService] buyItem:ItemTypeFlower itemCount:flowersAward itemCoins:0];
     [[UserGameItemService defaultService] awardItem:ItemTypeTips count:tipsAward handler:NULL];
     [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:flowersAward handler:NULL];
 

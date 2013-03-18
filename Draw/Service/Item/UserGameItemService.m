@@ -67,7 +67,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         return;
     }
     
-    if ([[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:currency]) {
+    if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:currency]) {
         EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
         [_blockArray releaseBlock:tempHandler];
         return;
@@ -165,7 +165,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         int totalPrice = [item promotionPrice] * count;
-        if ([[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
+        if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
             EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId);
             [_blockArray releaseBlock:tempHandler];
             return;
@@ -229,61 +229,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
          currency:PBGameCurrencyCoin
           handler:handler];
 }
-
-
-//- (void)sendItemAward:(int)itemId
-//             toUserId:(NSString*)toUserId
-//           feedOpusId:(NSString*)feedOpusId
-//            isOffline:(BOOL)isOffline
-//              forFree:(BOOL)isFree
-//{
-//    int awardAmount = 0;
-//    int awardExp = 0;
-//    NSString* targetUserId = nil;
-//    
-//    if (isOffline) {
-//        
-//        // prepare data for consumeItem request
-//        targetUserId = toUserId;
-//        awardAmount = [ItemManager awardAmountByItem:itemType];
-//        awardExp = [ItemManager awardExpByItem:itemType];
-//        
-//        // send feed action
-//        [[FeedService defaultService] throwItem:itemId
-//                                         toOpus:feedOpusId
-//                                         author:toUserId
-//                                       delegate:nil];
-//        
-//    }else{
-//        // send online request for online realtime play
-//        int rankResult = (itemId == ItemTypeFlower) ? RANK_FLOWER : RANK_TOMATO;
-//        [[DrawGameService defaultService] rankGameResult:rankResult];
-//        
-//
-//    }
-//    
-//
-//    [[AccountService defaultService] consumeItem:itemId
-//                                          amount:isFree?0:1
-//                                    targetUserId:targetUserId
-//                                     awardAmount:isFree?0:awardAmount
-//                                        awardExp:isFree?0:awardExp];
-//    
-//    FlowerItem *flower = [[[FlowerItem alloc] init] autorelease];
-//    [flower acionWithParameters:parameters]
-//    [self userItem:itemId itemAction:flower];
-//}
-
-
-//- (void)useItem:(int)itemId
-//     itemAction:(id<ItemActionProtocol>)itemAction
-//{
-//    [self consumeItem:itemId handler:NULL];
-//    if ([itemAction respondsToSelector:@selector(excuteAction)]) {
-//        [itemAction excuteAction];
-//    }
-//}
-
 
 
 @end

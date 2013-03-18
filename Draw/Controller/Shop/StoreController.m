@@ -15,7 +15,7 @@
 #import "GiftDetailView.h"
 #import "UserGameItemService.h"
 #import "ItemType.h"
-#import "AccountService.h"
+#import "AccountManager.h"
 #import "UserManager.h"
 #import "AdService.h"
 #import "GameNetworkConstants.h"
@@ -84,9 +84,9 @@ typedef enum{
 
 - (void)updateBalance
 {
-    self.coinBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyCoin]];
+    self.coinBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
     
-    self.ingotBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyIngot]];
+    self.ingotBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
 
 - (IBAction)clickBackButton:(id)sender {

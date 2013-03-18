@@ -207,6 +207,12 @@
 		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
 		A491A1CD16F44D02003B638F /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
+		A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
+		A491A20C16F6EE65003B638F /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
+		A491A20D16F6EE65003B638F /* CoinShopController~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~iPad.xib */; };
+		A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
+		A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20916F6EE65003B638F /* ShoppingCell.xib */; };
+		A491A21016F6EE65003B638F /* ShoppingCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -3470,15 +3476,6 @@
 		CA23514C16EB0DD200C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
 		CA23514D16EB0DD200C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
 		CA23514E16EB0DD200C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		CA23514F16EB0DD200C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
-		CA23515016EB0DD200C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA23515116EB0DD200C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA23515216EB0DD200C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA23515316EB0DD200C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA23515416EB0DD200C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA23515516EB0DD200C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
-		CA23515616EB0DD200C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
-		CA23515716EB0DD200C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -3502,15 +3499,6 @@
 		CA23519216EB0DD800C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
 		CA23519316EB0DD800C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
 		CA23519416EB0DD800C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		CA23519516EB0DD800C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
-		CA23519616EB0DD800C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA23519716EB0DD800C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA23519816EB0DD800C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA23519916EB0DD800C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA23519A16EB0DD800C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA23519B16EB0DD800C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
-		CA23519C16EB0DD800C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
-		CA23519D16EB0DD800C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -3534,15 +3522,6 @@
 		CA2351DE16EB0DDB00C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
 		CA2351DF16EB0DDB00C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
 		CA2351E016EB0DDB00C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		CA2351E116EB0DDB00C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
-		CA2351E216EB0DDB00C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA2351E316EB0DDB00C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA2351E416EB0DDB00C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA2351E516EB0DDB00C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA2351E616EB0DDB00C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA2351E716EB0DDB00C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
-		CA2351E816EB0DDB00C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
-		CA2351E916EB0DDB00C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -3566,15 +3545,6 @@
 		CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
 		CA23521516EB0DDF00C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
 		CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
-		CA23521716EB0DDF00C88082 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322183151F62C00039A384 /* CoinShopController.m */; };
-		CA23521816EB0DDF00C88082 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA322184151F62C00039A384 /* CoinShopController.xib */; };
-		CA23521916EB0DDF00C88082 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */; };
-		CA23521A16EB0DDF00C88082 /* ItemShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C942152010FF00013DC8 /* ItemShopController.m */; };
-		CA23521B16EB0DDF00C88082 /* ItemShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C943152010FF00013DC8 /* ItemShopController.xib */; };
-		CA23521C16EB0DDF00C88082 /* ItemShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */; };
-		CA23521D16EB0DDF00C88082 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C9471520179000013DC8 /* ShoppingCell.m */; };
-		CA23521E16EB0DDF00C88082 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA41C9481520179100013DC8 /* ShoppingCell.xib */; };
-		CA23521F16EB0DDF00C88082 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */; };
 		CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -7212,10 +7182,7 @@
 		A42C93DF15FF344D0090D6B6 /* RollAgainItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollAgainItemAction.m; sourceTree = "<group>"; };
 		A42C93E416001FB80090D6B6 /* PeekItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekItemAction.h; sourceTree = "<group>"; };
 		A42C93E516001FB90090D6B6 /* PeekItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekItemAction.m; sourceTree = "<group>"; };
-		A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
-		A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemShopController~ipad.xib"; sourceTree = "<group>"; };
-		A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController~ipad.xib"; sourceTree = "<group>"; };
 		A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHGameController~ip5.xib"; sourceTree = "<group>"; };
@@ -7379,6 +7346,14 @@
 		A491A1CA16F44D02003B638F /* CommonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItem.m; sourceTree = "<group>"; };
 		A491A1CB16F44D02003B638F /* FlowerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerItem.h; sourceTree = "<group>"; };
 		A491A1CC16F44D02003B638F /* FlowerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerItem.m; sourceTree = "<group>"; };
+		A491A20316F6EE61003B638F /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
+		A491A20416F6EE62003B638F /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
+		A491A20516F6EE62003B638F /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
+		A491A20616F6EE63003B638F /* CoinShopController~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~iPad.xib"; sourceTree = "<group>"; };
+		A491A20716F6EE64003B638F /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
+		A491A20816F6EE64003B638F /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
+		A491A20916F6EE65003B638F /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
+		A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
@@ -8543,9 +8518,6 @@
 		CA32210B151B6DA40039A384 /* GameNetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNetworkConstants.h; sourceTree = "<group>"; };
 		CA32213B151DEDE10039A384 /* ChangeAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatar.h; sourceTree = "<group>"; };
 		CA32213C151DEDE10039A384 /* ChangeAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatar.m; sourceTree = "<group>"; };
-		CA322182151F62C00039A384 /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
-		CA322183151F62C00039A384 /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
-		CA322184151F62C00039A384 /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
 		CA3221A1151F657F0039A384 /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		CA3221A2151F657F0039A384 /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		CA3221A3151F657F0039A384 /* FeedbackController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackController.xib; sourceTree = "<group>"; };
@@ -8601,12 +8573,6 @@
 		CA4151AE165502640062A638 /* BBSBoardSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSBoardSection.h; sourceTree = "<group>"; };
 		CA4151AF165502640062A638 /* BBSBoardSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSBoardSection.m; sourceTree = "<group>"; };
 		CA4151B0165502640062A638 /* BBSBoardSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSBoardSection.xib; sourceTree = "<group>"; };
-		CA41C941152010FF00013DC8 /* ItemShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemShopController.h; sourceTree = "<group>"; };
-		CA41C942152010FF00013DC8 /* ItemShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemShopController.m; sourceTree = "<group>"; };
-		CA41C943152010FF00013DC8 /* ItemShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemShopController.xib; sourceTree = "<group>"; };
-		CA41C9461520179000013DC8 /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
-		CA41C9471520179000013DC8 /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
-		CA41C9481520179100013DC8 /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
 		CA41C94E1520608D00013DC8 /* PriceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceService.h; sourceTree = "<group>"; };
 		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
 		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
@@ -13291,6 +13257,14 @@
 			isa = PBXGroup;
 			children = (
 				A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */,
+				A491A20316F6EE61003B638F /* CoinShopController.h */,
+				A491A20416F6EE62003B638F /* CoinShopController.m */,
+				A491A20516F6EE62003B638F /* CoinShopController.xib */,
+				A491A20616F6EE63003B638F /* CoinShopController~iPad.xib */,
+				A491A20716F6EE64003B638F /* ShoppingCell.h */,
+				A491A20816F6EE64003B638F /* ShoppingCell.m */,
+				A491A20916F6EE65003B638F /* ShoppingCell.xib */,
+				A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */,
 				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
@@ -13308,18 +13282,6 @@
 				A491415816E47ECF00106265 /* StoreController.m */,
 				A491415916E47ECF00106265 /* StoreController.xib */,
 				EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */,
-				CA322182151F62C00039A384 /* CoinShopController.h */,
-				CA322183151F62C00039A384 /* CoinShopController.m */,
-				CA322184151F62C00039A384 /* CoinShopController.xib */,
-				A42D903F1553803D0023AF32 /* CoinShopController~ipad.xib */,
-				CA41C941152010FF00013DC8 /* ItemShopController.h */,
-				CA41C942152010FF00013DC8 /* ItemShopController.m */,
-				CA41C943152010FF00013DC8 /* ItemShopController.xib */,
-				A42D90411553803D0023AF32 /* ItemShopController~ipad.xib */,
-				CA41C9461520179000013DC8 /* ShoppingCell.h */,
-				CA41C9471520179000013DC8 /* ShoppingCell.m */,
-				CA41C9481520179100013DC8 /* ShoppingCell.xib */,
-				A42D90421553803D0023AF32 /* ShoppingCell~ipad.xib */,
 				CA4FF007152AF21900F0AC88 /* ColorShopCell.h */,
 				CA4FF008152AF21900F0AC88 /* ColorShopCell.m */,
 				CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */,
@@ -19341,12 +19303,6 @@
 				CA23519016EB0DD800C88082 /* PriceView.xib in Resources */,
 				CA23519216EB0DD800C88082 /* StoreCell.xib in Resources */,
 				CA23519416EB0DD800C88082 /* StoreController.xib in Resources */,
-				CA23519616EB0DD800C88082 /* CoinShopController.xib in Resources */,
-				CA23519716EB0DD800C88082 /* CoinShopController~ipad.xib in Resources */,
-				CA23519916EB0DD800C88082 /* ItemShopController.xib in Resources */,
-				CA23519A16EB0DD800C88082 /* ItemShopController~ipad.xib in Resources */,
-				CA23519C16EB0DD800C88082 /* ShoppingCell.xib in Resources */,
-				CA23519D16EB0DD800C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23519F16EB0DD800C88082 /* ColorShopCell.xib in Resources */,
 				CA2351A016EB0DD800C88082 /* ColorShopCell~ipad.xib in Resources */,
 				CA2351A816EB0DD800C88082 /* GameItemDetailView.xib in Resources */,
@@ -20221,12 +20177,6 @@
 				CA23521216EB0DDF00C88082 /* PriceView.xib in Resources */,
 				CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */,
 				CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */,
-				CA23521816EB0DDF00C88082 /* CoinShopController.xib in Resources */,
-				CA23521916EB0DDF00C88082 /* CoinShopController~ipad.xib in Resources */,
-				CA23521B16EB0DDF00C88082 /* ItemShopController.xib in Resources */,
-				CA23521C16EB0DDF00C88082 /* ItemShopController~ipad.xib in Resources */,
-				CA23521E16EB0DDF00C88082 /* ShoppingCell.xib in Resources */,
-				CA23521F16EB0DDF00C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */,
 				CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */,
 				CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */,
@@ -21118,12 +21068,6 @@
 				CA23514A16EB0DD200C88082 /* PriceView.xib in Resources */,
 				CA23514C16EB0DD200C88082 /* StoreCell.xib in Resources */,
 				CA23514E16EB0DD200C88082 /* StoreController.xib in Resources */,
-				CA23515016EB0DD200C88082 /* CoinShopController.xib in Resources */,
-				CA23515116EB0DD200C88082 /* CoinShopController~ipad.xib in Resources */,
-				CA23515316EB0DD200C88082 /* ItemShopController.xib in Resources */,
-				CA23515416EB0DD200C88082 /* ItemShopController~ipad.xib in Resources */,
-				CA23515616EB0DD200C88082 /* ShoppingCell.xib in Resources */,
-				CA23515716EB0DD200C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA23515916EB0DD200C88082 /* ColorShopCell.xib in Resources */,
 				CA23515A16EB0DD200C88082 /* ColorShopCell~ipad.xib in Resources */,
 				CA23516216EB0DD200C88082 /* GameItemDetailView.xib in Resources */,
@@ -21179,6 +21123,10 @@
 				EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
 				EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
+				A491A20C16F6EE65003B638F /* CoinShopController.xib in Resources */,
+				A491A20D16F6EE65003B638F /* CoinShopController~iPad.xib in Resources */,
+				A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */,
+				A491A21016F6EE65003B638F /* ShoppingCell~iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22017,12 +21965,6 @@
 				CA2351DC16EB0DDB00C88082 /* PriceView.xib in Resources */,
 				CA2351DE16EB0DDB00C88082 /* StoreCell.xib in Resources */,
 				CA2351E016EB0DDB00C88082 /* StoreController.xib in Resources */,
-				CA2351E216EB0DDB00C88082 /* CoinShopController.xib in Resources */,
-				CA2351E316EB0DDB00C88082 /* CoinShopController~ipad.xib in Resources */,
-				CA2351E516EB0DDB00C88082 /* ItemShopController.xib in Resources */,
-				CA2351E616EB0DDB00C88082 /* ItemShopController~ipad.xib in Resources */,
-				CA2351E816EB0DDB00C88082 /* ShoppingCell.xib in Resources */,
-				CA2351E916EB0DDB00C88082 /* ShoppingCell~ipad.xib in Resources */,
 				CA2351EB16EB0DDB00C88082 /* ColorShopCell.xib in Resources */,
 				CA2351EC16EB0DDB00C88082 /* ColorShopCell~ipad.xib in Resources */,
 				CA2351F416EB0DDB00C88082 /* GameItemDetailView.xib in Resources */,
@@ -22774,9 +22716,6 @@
 				CA23518F16EB0DD800C88082 /* PriceView.m in Sources */,
 				CA23519116EB0DD800C88082 /* StoreCell.m in Sources */,
 				CA23519316EB0DD800C88082 /* StoreController.m in Sources */,
-				CA23519516EB0DD800C88082 /* CoinShopController.m in Sources */,
-				CA23519816EB0DD800C88082 /* ItemShopController.m in Sources */,
-				CA23519B16EB0DD800C88082 /* ShoppingCell.m in Sources */,
 				CA23519E16EB0DD800C88082 /* ColorShopCell.m in Sources */,
 				CA2351A716EB0DD800C88082 /* GameItemDetailView.m in Sources */,
 				CA2351A916EB0DD800C88082 /* LocalizableLabel.m in Sources */,
@@ -23523,9 +23462,6 @@
 				CA23521116EB0DDF00C88082 /* PriceView.m in Sources */,
 				CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */,
 				CA23521516EB0DDF00C88082 /* StoreController.m in Sources */,
-				CA23521716EB0DDF00C88082 /* CoinShopController.m in Sources */,
-				CA23521A16EB0DDF00C88082 /* ItemShopController.m in Sources */,
-				CA23521D16EB0DDF00C88082 /* ShoppingCell.m in Sources */,
 				CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */,
 				CA23522916EB0DDF00C88082 /* GameItemDetailView.m in Sources */,
 				CA23522B16EB0DDF00C88082 /* LocalizableLabel.m in Sources */,
@@ -24277,9 +24213,6 @@
 				CA23514916EB0DD200C88082 /* PriceView.m in Sources */,
 				CA23514B16EB0DD200C88082 /* StoreCell.m in Sources */,
 				CA23514D16EB0DD200C88082 /* StoreController.m in Sources */,
-				CA23514F16EB0DD200C88082 /* CoinShopController.m in Sources */,
-				CA23515216EB0DD200C88082 /* ItemShopController.m in Sources */,
-				CA23515516EB0DD200C88082 /* ShoppingCell.m in Sources */,
 				CA23515816EB0DD200C88082 /* ColorShopCell.m in Sources */,
 				CA23516116EB0DD200C88082 /* GameItemDetailView.m in Sources */,
 				CA23516316EB0DD200C88082 /* LocalizableLabel.m in Sources */,
@@ -24311,6 +24244,8 @@
 				A491A1CD16F44D02003B638F /* CommonItem.m in Sources */,
 				A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */,
 				CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */,
+				A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */,
+				A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25039,9 +24974,6 @@
 				CA2351DB16EB0DDB00C88082 /* PriceView.m in Sources */,
 				CA2351DD16EB0DDB00C88082 /* StoreCell.m in Sources */,
 				CA2351DF16EB0DDB00C88082 /* StoreController.m in Sources */,
-				CA2351E116EB0DDB00C88082 /* CoinShopController.m in Sources */,
-				CA2351E416EB0DDB00C88082 /* ItemShopController.m in Sources */,
-				CA2351E716EB0DDB00C88082 /* ShoppingCell.m in Sources */,
 				CA2351EA16EB0DDB00C88082 /* ColorShopCell.m in Sources */,
 				CA2351F316EB0DDB00C88082 /* GameItemDetailView.m in Sources */,
 				CA2351F516EB0DDB00C88082 /* LocalizableLabel.m in Sources */,
