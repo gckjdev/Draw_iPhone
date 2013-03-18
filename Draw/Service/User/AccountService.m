@@ -30,6 +30,7 @@
 #import "IngotService.h"
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
+#import "UserGameItemService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -79,13 +80,7 @@ static AccountService* _defaultAccountService;
 {
     // send request to Apple IAP Server and wait for result
     SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
-//    if (selectedProduct == nil){
-//        PPDebug(@"<buyCoin> but SKProduct of price is null");
-//        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-//            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
-//        }
-//        return;
-//    }
+
     PPDebug(@"<buyCoin> on product %@ price productId=%@", 
             selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
             price.productId);    
@@ -537,7 +532,7 @@ static AccountService* _defaultAccountService;
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
                 [[AccountManager defaultManager] getBalance], itemCoins);
-        return ERROR_COINS_NOT_ENOUGH;
+        return ERROR_BALANCE_NOT_ENOUGH;
     }
     
     // save item locally and synchronize remotely
@@ -576,14 +571,19 @@ static AccountService* _defaultAccountService;
        awardAmount:(int)awardAmount
           awardExp:(int)awardExp
 {
-    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
-        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
-                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
+//        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
+//                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//        return ERROR_ITEM_NOT_ENOUGH;
+//    }
+    
+    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:itemType amount:amount] == NO){
         return ERROR_ITEM_NOT_ENOUGH;
     }
     
     // save item locally and synchronize remotely
-    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+//    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
     
     UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
     [self syncItemRequest:userItem
@@ -597,6 +597,11 @@ static AccountService* _defaultAccountService;
 - (BOOL)hasEnoughCoins:(int)amount
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount];
+}
+
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+{
+    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
 }
 
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount

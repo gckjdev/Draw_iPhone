@@ -718,7 +718,7 @@
         Item* item = [Item itemWithType:toolView.itemType amount:1];
         int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
         itemEnough = NO;
-        if (result == ERROR_COINS_NOT_ENOUGH) {
+        if (result == ERROR_BALANCE_NOT_ENOUGH) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
             return;
         }
@@ -853,7 +853,7 @@
         }
         [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
-    if (result == ERROR_COINS_NOT_ENOUGH)
+    if (result == ERROR_BALANCE_NOT_ENOUGH)
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }

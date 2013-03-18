@@ -111,6 +111,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             break;
             
         default:
+            return YES;
             break;
     }
     

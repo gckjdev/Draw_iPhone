@@ -381,9 +381,6 @@ NSString* GlobalGetBoardServerURL()
 //        sleep(60);
     });     
     
-//    [[AudioManager defaultManager] backgroundMusicStop];
-    [[MusicItemManager defaultManager] saveMusicItems];
-    
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
     
@@ -434,7 +431,6 @@ NSString* GlobalGetBoardServerURL()
      See also applicationDidEnterBackground:.
      */
     
-    [[MusicItemManager defaultManager] saveMusicItems];
     [[MyPaintManager defaultManager] removeAlldeletedPaints];
     [[FeedManager defaultManager] removeOldCache];
 

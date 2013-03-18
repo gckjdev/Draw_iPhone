@@ -317,4 +317,9 @@
 {
     return nil;
 }
+
+- (NSString*)getBackgroundMusicName
+{
+    return @"game_bg.mp3";
+}
 @end

@@ -32,7 +32,7 @@
 - (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type;  // for old, coins.
 
 - (BOOL)hasEnoughBalance:(int)amount;
-//- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
 
 @end
 
