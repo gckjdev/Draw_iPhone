@@ -514,7 +514,7 @@
 
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
-
+#define FORMAT_PROTOCOLBUFFER @"pb"
 
 
 #pragma mark BBS Constant

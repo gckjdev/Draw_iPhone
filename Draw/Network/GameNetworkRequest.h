@@ -157,6 +157,12 @@
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken;
 
++ (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              gameId:(NSString*)gameId
+                            deviceId:(NSString*)deviceId
+                         deviceToken:(NSString*)deviceToken;
+
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL
                              appId:(NSString*)appId 
                             userId:(NSString*)userId

@@ -138,10 +138,12 @@ static UserManager* _defaultManager;
     }
 }
 
-- (void)storeUserData
+- (void)storeUserData:(PBGameUser*)user
 {
-    if (self.pbUser == nil)
+    if (user == nil)
         return;
+    
+    self.pbUser = user;
     
     NSData* data = [self.pbUser data];
     if (data == nil)

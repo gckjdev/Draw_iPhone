@@ -153,4 +153,6 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (NSString*)defaultUserRoomName;
 - (BOOL)isSuperUser;
+
+- (void)storeUserData:(PBGameUser*)user;
 @end

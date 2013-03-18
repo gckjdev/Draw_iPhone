@@ -30,6 +30,7 @@
 #import "PPNetworkRequest.h"
 #import "MyFriend.h"
 #import "StatisticManager.h"
+#import "GameMessage.pb.h"
 
 @implementation UserService
 
@@ -645,118 +646,38 @@ static UserService* _defaultUserService;
     NSString* gameId = [ConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-    
-    [homeController showActivityWithText:NSLS(@"kConnectingServer")];    
-    dispatch_async(workingQueue, ^{            
-        
-        CommonNetworkOutput* output = 
-        [GameNetworkRequest loginUser:SERVER_URL 
-                                appId:appId 
+
+    [homeController showActivityWithText:NSLS(@"kConnectingServer")];
+    dispatch_async(workingQueue, ^{
+
+        CommonNetworkOutput* output =
+        [GameNetworkRequest newLoginUser:SERVER_URL
+                                appId:appId
                                gameId:gameId
                              deviceId:deviceId
-                          deviceToken:deviceToken];                
-        
+                          deviceToken:deviceToken];
+
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+
             [homeController hideActivity];
-            if (output.resultCode == ERROR_SUCCESS){
-                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
-                NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
-                NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
-                NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
-                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
-                NSString* qqAccessToken = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN];
-                NSString* qqAccessSecret = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN_SECRET];
-                NSString* qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
-                NSString* sinaAccessToken = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN];
-                NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
-                NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
-                NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
-                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];
-                NSString* gender = [output.jsonDataDict objectForKey:PARA_GENDER];
-                NSString* levelSring = [output.jsonDataDict objectForKey:PARA_LEVEL];
-                NSString* expSring = [output.jsonDataDict objectForKey:PARA_EXP];
-                
-                NSString* sinaRefreshToken = [output.jsonDataDict objectForKey:PARA_SINA_REFRESH_TOKEN];
-                int       sinaExpireTime = [[output.jsonDataDict objectForKey:PARA_SINA_EXPIRE_DATE] intValue];
-                NSDate*   sinaExpireDate = nil;
-                if (sinaExpireTime)
-                    sinaExpireDate = [NSDate dateWithTimeIntervalSince1970:sinaExpireTime];
-                
-                NSString* qqRefreshToken = [output.jsonDataDict objectForKey:PARA_QQ_REFRESH_TOKEN];
-                int       qqExpireTime = [[output.jsonDataDict objectForKey:PARA_QQ_EXPIRE_DATE] intValue];
-                NSDate*   qqExpireDate = nil;
-                if (qqExpireTime)
-                    qqExpireDate = [NSDate dateWithTimeIntervalSince1970:qqExpireTime];
-                NSString* qqOpenId = [output.jsonDataDict objectForKey:PARA_QQ_OPEN_ID];
+            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
 
-                NSString* facebookToken = [output.jsonDataDict objectForKey:PARA_FACEBOOK_ACCESS_TOKEN];
-                int       facebookExpireTime = [[output.jsonDataDict objectForKey:PARA_FACEBOOK_EXPIRE_DATE] intValue];
-                NSDate*   facebookExpireDate = nil;
-                if (facebookExpireTime)
-                    facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
-                
-                
-                if (nickName == nil || [nickName length] == 0) {
-                    nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
-                    if (nickName == nil || [nickName length] == 0) {
-                        nickName = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
-                    }
-                } 
-                NSNumber* balance = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
-                NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
-                [[UserManager defaultManager] saveUserId:userId 
-                                                   email:email 
-                                                password:password 
-                                                nickName:nickName 
-                                                    qqId:qqId 
-                                           qqAccessToken:qqAccessToken 
-                                     qqAccessTokenSecret:qqAccessSecret 
-                                                  sinaId:sinaId 
-                                         sinaAccessToken:sinaAccessToken
-                                   sinaAccessTokenSecret:sinaAccessSecret 
-                                              facebookId:facebookId 
-                                               avatarURL:avatar 
-                                                 balance:balance 
-                                                   items:itemTypeBalanceArray 
-                                                  gender:gender];
-            
-                [[UserManager defaultManager] setLocation:location];
+                DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser* user = response.user;
 
-                PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
-                [sinaSNSService saveAccessToken:sinaAccessToken
-                                   refreshToken:sinaRefreshToken
-                                     expireDate:sinaExpireDate
-                                         userId:sinaId
-                                       qqOpenId:nil];
+                if (user != nil){
+                    [[UserManager defaultManager] storeUserData:user];
+                }
 
-                PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
-                [qqSNSService saveAccessToken:qqAccessToken
-                                   refreshToken:qqRefreshToken
-                                     expireDate:qqExpireDate
-                                         userId:qqId
-                                       qqOpenId:qqOpenId];
+                [[LevelService defaultService] setLevel:user.level];
+                [[LevelService defaultService] setExperience:user.experience];
 
-                PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
-                [facebookSNSService saveAccessToken:facebookToken
-                                   refreshToken:nil
-                                     expireDate:facebookExpireDate
-                                         userId:facebookId
-                                       qqOpenId:nil];
-                
-                
-                // TODO:SNS
-//                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
-                
-                
-                [[LevelService defaultService] setLevel:levelSring.integerValue];
-                [[LevelService defaultService] setExperience:expSring.intValue];
-                
                 if ([ConfigManager isProVersion]){
                     // update new appId of user
                     [self updateNewAppId:appId];
                 }
-                
+
+                // TODO : combine them?
                 [[AccountService defaultService] syncAccount];
 
             }
@@ -772,10 +693,149 @@ static UserService* _defaultUserService;
                 // @"登录失败，稍后尝试"
                 [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
             }
-        }); 
+        });
     });
-    
+
 }
+
+
+//- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+//{
+//    NSString* appId = [ConfigManager appId];
+//    NSString* gameId = [ConfigManager gameId];
+//    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+//    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+//    
+//    [homeController showActivityWithText:NSLS(@"kConnectingServer")];    
+//    dispatch_async(workingQueue, ^{            
+//        
+//        CommonNetworkOutput* output = 
+//        [GameNetworkRequest loginUser:SERVER_URL 
+//                                appId:appId 
+//                               gameId:gameId
+//                             deviceId:deviceId
+//                          deviceToken:deviceToken];                
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [homeController hideActivity];
+//            if (output.resultCode == ERROR_SUCCESS){
+//                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
+//                NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
+//                NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+//                NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
+//                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+//                NSString* qqAccessToken = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN];
+//                NSString* qqAccessSecret = [output.jsonDataDict objectForKey:PARA_QQ_ACCESS_TOKEN_SECRET];
+//                NSString* qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+//                NSString* sinaAccessToken = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN];
+//                NSString* sinaAccessSecret = [output.jsonDataDict objectForKey:PARA_SINA_ACCESS_TOKEN_SECRET];
+//                NSString* sinaId = [output.jsonDataDict objectForKey:PARA_SINA_ID];
+//                NSString* facebookId = [output.jsonDataDict objectForKey:PARA_FACEBOOKID]; 
+//                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];
+//                NSString* gender = [output.jsonDataDict objectForKey:PARA_GENDER];
+//                NSString* levelSring = [output.jsonDataDict objectForKey:PARA_LEVEL];
+//                NSString* expSring = [output.jsonDataDict objectForKey:PARA_EXP];
+//                
+//                NSString* sinaRefreshToken = [output.jsonDataDict objectForKey:PARA_SINA_REFRESH_TOKEN];
+//                int       sinaExpireTime = [[output.jsonDataDict objectForKey:PARA_SINA_EXPIRE_DATE] intValue];
+//                NSDate*   sinaExpireDate = nil;
+//                if (sinaExpireTime)
+//                    sinaExpireDate = [NSDate dateWithTimeIntervalSince1970:sinaExpireTime];
+//                
+//                NSString* qqRefreshToken = [output.jsonDataDict objectForKey:PARA_QQ_REFRESH_TOKEN];
+//                int       qqExpireTime = [[output.jsonDataDict objectForKey:PARA_QQ_EXPIRE_DATE] intValue];
+//                NSDate*   qqExpireDate = nil;
+//                if (qqExpireTime)
+//                    qqExpireDate = [NSDate dateWithTimeIntervalSince1970:qqExpireTime];
+//                NSString* qqOpenId = [output.jsonDataDict objectForKey:PARA_QQ_OPEN_ID];
+//
+//                NSString* facebookToken = [output.jsonDataDict objectForKey:PARA_FACEBOOK_ACCESS_TOKEN];
+//                int       facebookExpireTime = [[output.jsonDataDict objectForKey:PARA_FACEBOOK_EXPIRE_DATE] intValue];
+//                NSDate*   facebookExpireDate = nil;
+//                if (facebookExpireTime)
+//                    facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
+//                
+//                
+//                if (nickName == nil || [nickName length] == 0) {
+//                    nickName = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
+//                    if (nickName == nil || [nickName length] == 0) {
+//                        nickName = [output.jsonDataDict objectForKey:PARA_QQ_NICKNAME];
+//                    }
+//                } 
+//                NSNumber* balance = [output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE];
+//                NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
+//                [[UserManager defaultManager] saveUserId:userId 
+//                                                   email:email 
+//                                                password:password 
+//                                                nickName:nickName 
+//                                                    qqId:qqId 
+//                                           qqAccessToken:qqAccessToken 
+//                                     qqAccessTokenSecret:qqAccessSecret 
+//                                                  sinaId:sinaId 
+//                                         sinaAccessToken:sinaAccessToken
+//                                   sinaAccessTokenSecret:sinaAccessSecret 
+//                                              facebookId:facebookId 
+//                                               avatarURL:avatar 
+//                                                 balance:balance 
+//                                                   items:itemTypeBalanceArray 
+//                                                  gender:gender];
+//            
+//                [[UserManager defaultManager] setLocation:location];
+//
+//                PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+//                [sinaSNSService saveAccessToken:sinaAccessToken
+//                                   refreshToken:sinaRefreshToken
+//                                     expireDate:sinaExpireDate
+//                                         userId:sinaId
+//                                       qqOpenId:nil];
+//
+//                PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+//                [qqSNSService saveAccessToken:qqAccessToken
+//                                   refreshToken:qqRefreshToken
+//                                     expireDate:qqExpireDate
+//                                         userId:qqId
+//                                       qqOpenId:qqOpenId];
+//
+//                PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+//                [facebookSNSService saveAccessToken:facebookToken
+//                                   refreshToken:nil
+//                                     expireDate:facebookExpireDate
+//                                         userId:facebookId
+//                                       qqOpenId:nil];
+//                
+//                
+//                // TODO:SNS
+////                [[QQWeiboService defaultService] saveToken:qqAccessToken secret:qqAccessSecret];
+//                
+//                
+//                [[LevelService defaultService] setLevel:levelSring.integerValue];
+//                [[LevelService defaultService] setExperience:expSring.intValue];
+//                
+//                if ([ConfigManager isProVersion]){
+//                    // update new appId of user
+//                    [self updateNewAppId:appId];
+//                }
+//                
+//                [[AccountService defaultService] syncAccount];
+//
+//            }
+//            else if (output.resultCode == ERROR_NETWORK) {
+//                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+//            }
+//            else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
+//                // @"设备未绑定任何用户"
+//                // rem by Benson
+//                // [RegisterUserController showAt:homeController];
+//            }
+//            else {
+//                // @"登录失败，稍后尝试"
+//                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+//            }
+//        }); 
+//    });
+//    
+//}
 
 /*
 - (void)updateAllUserInfo

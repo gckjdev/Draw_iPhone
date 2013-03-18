@@ -57,9 +57,7 @@ message PBGameUser {
   
   // user items
   repeated PBUserItem items = 61;
-
-
-
+  
   optional string signature = 100;
 }
 
