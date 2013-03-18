@@ -5268,6 +5268,7 @@
 		CAADF62516F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
+		CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -9983,6 +9984,8 @@
 		CAADF61116F444C20097CFA1 /* LimeiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LimeiAdWallService.m; sourceTree = "<group>"; };
 		CAADF62216F444D10097CFA1 /* GameAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAdWallService.m; sourceTree = "<group>"; };
 		CAADF62316F444D10097CFA1 /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
+		CAADF62B16F55E340097CFA1 /* BlockArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockArray.h; sourceTree = "<group>"; };
+		CAADF62C16F55E340097CFA1 /* BlockArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockArray.m; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -13581,6 +13584,8 @@
 			children = (
 				CA1250A81668654900AFCC04 /* BlockUtils.h */,
 				CA1250A91668654900AFCC04 /* BlockUtils.m */,
+				CAADF62B16F55E340097CFA1 /* BlockArray.h */,
+				CAADF62C16F55E340097CFA1 /* BlockArray.m */,
 			);
 			path = Block;
 			sourceTree = "<group>";
@@ -24305,6 +24310,7 @@
 				CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				A491A1CD16F44D02003B638F /* CommonItem.m in Sources */,
 				A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */,
+				CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

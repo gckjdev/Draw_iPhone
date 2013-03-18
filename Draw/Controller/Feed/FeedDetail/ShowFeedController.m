@@ -581,6 +581,8 @@ enum{
                itemEnough:(BOOL)itemEnough
 {
     if (itemId == ItemTypeFlower) {
+        
+        __block typeof (self) bself = self;
 
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                isOffline:YES
@@ -591,13 +593,20 @@ enum{
         {
             if (resultCode == 0){
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
-                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
+                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:bself.flowerButton.frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
-                [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-                    [self clickRefresh:nil];
+                PPDebug(@"<test2> complete 1");                
+                [DrawGameAnimationManager showThrowFlower:throwItem
+                                         animInController:bself
+                                                  rolling:YES
+                                               itemEnough:itemEnough
+                                           shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType] completion:^(BOOL finished) {
+                    [bself clickRefresh:nil];
+                   PPDebug(@"<test2> complete 10");
                 }];
-                [_commentHeader setSeletType:CommentTypeFlower];
-                [self.feed increaseLocalFlowerTimes];
+                [bself.commentHeader setSeletType:CommentTypeFlower];
+                [bself.feed increaseLocalFlowerTimes];
+                PPDebug(@"<test2> complete 2");
             }
         }];
         
