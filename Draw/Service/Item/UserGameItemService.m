@@ -67,7 +67,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         return;
     }
     
-    if ([[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:currency]) {
+    if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:currency]) {
         EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
         [_blockArray releaseBlock:tempHandler];
         return;
@@ -165,7 +165,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         }
         
         int totalPrice = [item promotionPrice] * count;
-        if ([[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
+        if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
             EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId);
             [_blockArray releaseBlock:tempHandler];
             return;

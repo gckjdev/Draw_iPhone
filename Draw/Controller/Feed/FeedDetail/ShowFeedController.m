@@ -556,23 +556,25 @@ enum{
 //        [self.feed increaseLocalTomatoTimes];
 //    }
     
-    int itemAmount = [[UserGameItemManager defaultManager] countOfItem:itemId];
-    if (!_feed.isContestFeed && itemAmount <= 0 && !isFree) {
+//    int itemAmount = [[UserGameItemManager defaultManager] countOfItem:itemId];
+//    if (!_feed.isContestFeed && itemAmount <= 0 && !isFree) {
+//
+//        __block typeof (self) bself = self;
+//        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+//        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+//            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+//                [bself showCoinsNotEnoughView];
+//            }            
+//            else if (resultCode == 0) {
+//                [bself showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
+//            }
+//        }];
+//    }else{
+//        [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
+//    }
+    
+    [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
 
-        __block typeof (self) bself = self;
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
-        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [bself showCoinsNotEnoughView];
-            }            
-            else if (resultCode == 0) {
-                [bself showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
-            }
-        }];
-    }else{
-        [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
-
-    }
 }
 
 

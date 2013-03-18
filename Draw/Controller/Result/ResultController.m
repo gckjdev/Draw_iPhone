@@ -50,6 +50,7 @@
 #import "UIViewUtils.h"
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
+#import "UserGameItemManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -764,21 +765,65 @@
         return NO;
     }
     
-    BOOL itemEnough = YES;
+//    BOOL itemEnough = YES;
+//    
+//    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
+//
+//        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
+//        itemEnough = NO;
+//        if (result == ERROR_BALANCE_NOT_ENOUGH) {
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
+//            return NO;
+//        }
+//    }
+//    UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
+//    [throwingItem setImage:toolView.imageView.image];
+//    if (toolView.itemType == ItemTypeTomato) {
+//        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+//            //
+//        }];
+//        [_useItemScene throwATomato];
+//    }
+//    if (toolView.itemType == ItemTypeFlower) {
+//        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+//            //
+//        }];
+//        [_useItemScene throwAFlower];
+//    }
     
-    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-//        [dialog showInView:self.view];
-//        return NO;
-
-        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
-        itemEnough = NO;
-        if (result == ERROR_BALANCE_NOT_ENOUGH) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
-            return NO;
-        }
+    
+//    [[ItemService defaultService] sendItemAward:item.type
+//                                   targetUserId:_feed.author.userId
+//                                      isOffline:[self isOffline]
+//                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
+//                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
+//                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
+    
+    
+    __block typeof (self) bself = self;
+    if ([self isOffline]) {
+        [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId isOffline:[self isOffline] feedOpusId:_feed.feedId feedAuthor:_feed.author.userId forFree:NO resultHandler:^(int resultCode, int itemId) {
+            if (resultCode == ERROR_SUCCESS) {
+                [bself throwItemAnimation:toolView];
+            }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            }
+        }];
+    }else{
+        [[ItemService defaultService] sendItemAward:item.type
+                                       targetUserId:_feed.author.userId
+                                          isOffline:[self isOffline]
+                                         feedOpusId:((_feed != nil)?_feed.feedId:nil)
+                                         feedAuthor:((_feed != nil)?_feed.author.userId:nil)
+                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
     }
+    
+    return YES;
+}
+
+- (void)throwItemAnimation:(ToolView*)toolView
+{
+    BOOL itemEnough = [[UserGameItemManager defaultManager] hasEnoughItemAmount:toolView.itemType amount:1];
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
@@ -795,29 +840,6 @@
     }
     
     
-
-    
-//    [[ItemService defaultService] sendItemAward:item.type
-//                                   targetUserId:_feed.author.userId
-//                                      isOffline:[self isOffline]
-//                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
-//                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
-//                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-    if ([self isOffline]) {
-        
-        [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId isOffline:[self isOffline] feedOpusId:_feed.feedId feedAuthor:_feed.author.userId forFree:NO resultHandler:^(int resultCode, int itemId) {
-            
-        }];
-    }else{
-        [[ItemService defaultService] sendItemAward:item.type
-                                       targetUserId:_feed.author.userId
-                                          isOffline:[self isOffline]
-                                         feedOpusId:((_feed != nil)?_feed.feedId:nil)
-                                         feedAuthor:((_feed != nil)?_feed.author.userId:nil)
-                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-    }
-    
-    return YES;
 }
 
 
