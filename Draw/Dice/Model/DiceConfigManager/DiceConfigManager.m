@@ -7,7 +7,7 @@
 //
 
 #import "DiceConfigManager.h"
-#import "AccountService.h"
+#import "AccountManager.h"
 #import "CommonDialog.h"
 #import "ConfigManager.h"
 #import "GameConstants.pb.h"
@@ -40,7 +40,7 @@
 {
     int thresholdCoins = [self getThresholdCoins:ruleType];
     
-    if ([[AccountService defaultService] getBalance] < thresholdCoins) {
+    if ([[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin] < thresholdCoins) {
         return NO;
     }else {
         return YES;

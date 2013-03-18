@@ -163,9 +163,6 @@ static LevelService* _defaultLevelService;
 
 - (void)awardForLevelUp
 {
-//    [[AccountService defaultService] buyItem:ItemTypeFlower
-//                                   itemCount:[ConfigManager flowerAwardFordLevelUp]
-//                                   itemCoins:0];
     [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:[ConfigManager flowerAwardFordLevelUp] handler:NULL];
 }
 

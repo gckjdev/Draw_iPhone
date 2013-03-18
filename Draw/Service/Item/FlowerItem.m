@@ -29,20 +29,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     return ItemTypeFlower;
 }
 
-//- (void)excuteAction//WithParameters//:(NSDictionary *)parameters
-//{
-//    NSString *toUserId = [_parameters objectForKey:PARA_KEY_USER_ID];
-//    NSString *opusId = [_parameters objectForKey:PARA_KEY_OPUS_ID];
-//
-//    // send feed action
-//    [[FeedService defaultService] throwItem:[self itemId]
-//                                     toOpus:opusId
-//                                     author:toUserId
-//                                   delegate:nil];
-//}
-
-
-
 - (void)useItem:(NSString*)toUserId
       isOffline:(BOOL)isOffline
      feedOpusId:(NSString*)feedOpusId

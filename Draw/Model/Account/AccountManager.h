@@ -22,7 +22,6 @@
 
 + (AccountManager *)defaultManager;
 
-- (NSInteger)getBalance;            // for old, coins.
 - (NSInteger)getBalanceWithCurrency:(PBGameCurrency)currency;
 
 - (void)updateBalance:(int)balance;         // for old, coins.

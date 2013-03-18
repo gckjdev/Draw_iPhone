@@ -468,9 +468,7 @@
     
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
-{
-//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
-    
+{    
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
     [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         

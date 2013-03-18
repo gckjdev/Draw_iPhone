@@ -42,12 +42,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 + (AccountService *)defaultService;
 
-- (int)getBalance;
-- (int)getBalanceWithCurrency:(PBGameCurrency)currency;
-
-- (void)syncAccount;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
-//- (void)syncAccount:(SyncAccountResultHandler)handler;
 
 - (void)buyCoin:(PriceModel*)price;
 

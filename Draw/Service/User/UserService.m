@@ -757,7 +757,7 @@ static UserService* _defaultUserService;
                     [self updateNewAppId:appId];
                 }
                 
-                [[AccountService defaultService] syncAccount];
+                [[AccountService defaultService] syncAccount:nil];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {

@@ -15,7 +15,7 @@
 #import "AnimationManager.h"
 #import "PPDebug.h"
 #import "CommonDialog.h"
-#import "AccountService.h"
+#import "AccountManager.h"
 #import "ShoppingManager.h"
 #import "AccountManager.h"
 #import "DeviceDetection.h"
@@ -77,7 +77,7 @@
 
 - (void)updateBalanceLabel
 {
-    NSString *accountString = [NSString stringWithFormat:@"x%d",[[AccountManager defaultManager] getBalance]];
+    NSString *accountString = [NSString stringWithFormat:@"x%d",[[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
     [self.coinCountLabel setText:accountString];    
 }
 
@@ -120,8 +120,8 @@
     if (group.hasBought) {
         return;
     }
-    AccountService *service = [AccountService defaultService];
-    if (![service hasEnoughCoins:group.price]) {
+    if (![[AccountManager defaultManager] hasEnoughBalance:group.price currency:PBGameCurrencyCoin]) {
+
         NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), group.price];
         CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
         noMoneyDialog.tag = NO_COIN_TAG;

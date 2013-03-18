@@ -27,7 +27,6 @@
 #import "PPDebug.h"
 #import "ItemManager.h"
 #import "AccountService.h"
-#import "ItemShopController.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
 #import "ConfigManager.h"
@@ -729,10 +728,10 @@
 
 
 
-- (BOOL)bomb:(ToolView *)toolView
+- (void)bomb:(ToolView *)toolView
 {
     if ([self.candidateString length] == 0) {
-        return NO;
+        return;
     }
     
 //    [self updateTargetViews:self.word];
@@ -750,12 +749,14 @@
             [bself updateTargetViews:bself.word];
             NSString *result  = [WordManager bombCandidateString:bself.candidateString word:bself.word];
             [bself updateCandidateViewsWithText:result];
-            [toolView setEnabled:NO];
-            [toolView decreaseNumber];
+            [toolView setEnabled:NO];            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), [Item tips].price/[Item tips].buyAmountForOnce] delayTime:2];
+        }else if (ERROR_BALANCE_NOT_ENOUGH){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        }else{
+            
         }
     }];
-    
-    return YES;
 }
 
 
@@ -773,7 +774,6 @@
     
     [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId) {
         if (resultCode == ERROR_SUCCESS) {
-            [toolView decreaseNumber];
             [_scene throwAFlower];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
@@ -781,22 +781,20 @@
     }];
 }
 
-- (BOOL)throwTomato:(ToolView *)toolView
-{
-    // throw animation
-    [self showAnimationThrowTool:toolView];
-    
-    // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:_draw.userId 
-                                      isOffline:YES
-                                     feedOpusId:_opusId
-                                     feedAuthor:_authorId];
-    
-    [toolView decreaseNumber];
-    [_scene throwATomato];
-    return NO;
-}
+//- (void)throwTomato:(ToolView *)toolView
+//{
+//    // throw animation
+//    [self showAnimationThrowTool:toolView];
+//    
+//    // send request for item usage and award
+//    [[ItemService defaultService] sendItemAward:toolView.itemType 
+//                                   targetUserId:_draw.userId 
+//                                      isOffline:YES
+//                                     feedOpusId:_opusId
+//                                     feedAuthor:_authorId];
+//    
+//    [_scene throwATomato];
+//}
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
@@ -808,17 +806,6 @@
             return;
         }
     
-//    NSInteger amout = [[ItemManager defaultManager] amountForItem:toolView.itemType];
-//    BOOL itemEnough = YES;
-//    if(amout <= 0){
-//        Item* item = [Item itemWithType:toolView.itemType amount:1];
-//        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
-//        itemEnough = NO;
-//        if (result == ERROR_BALANCE_NOT_ENOUGH) {
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
-//            return;
-//        }
-//    }
     if (toolView.itemType == ItemTypeTips) {
         [self bomb:toolView];
     }else if(toolView.itemType == ItemTypeFlower)
@@ -826,8 +813,10 @@
         [self throwFlower:toolView];
     }else if(toolView.itemType == ItemTypeTomato)
     {
-        [self throwTomato:toolView];
+//        [self throwTomato:toolView];
     }
+    
+    [toolView decreaseNumber];
 }
 
 

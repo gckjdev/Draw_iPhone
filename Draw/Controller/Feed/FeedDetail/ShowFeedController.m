@@ -690,14 +690,8 @@ enum{
         [_shareAction displayWithViewController:self onView:self.saveButton];
         
     }else if(button == self.flowerButton){
-//        Item *item = [Item flower];
-//        [self throwItem:item];
         [self throwItem:ItemTypeFlower];
-        //send a flower
     }else if(button == self.tomatoButton){
-        //send a tomato
-//        Item *item = [Item tomato];
-//        [self throwItem:item];
         [self throwItem:ItemTypeTomato];
     }else if(button == self.replayButton){
         [self showActivityWithText:NSLS(@"kLoading")];
