@@ -20,6 +20,7 @@
 #import "BulletinService.h"
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
+#import "AudioManager.h"
 
 @interface SuperHomeController ()
 {
@@ -114,6 +115,12 @@
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
     }];
+    
+    [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+    if ([[AudioManager defaultManager] isMusicOn]) {
+        [[AudioManager defaultManager] backgroundMusicPlay];
+    }
+    
     [self registerNetworkDisconnectedNotification];
     
     

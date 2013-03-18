@@ -95,7 +95,6 @@
 {
 
 }
-- (void)playBackgroundMusic;
 - (void)enterNextControllerWityType:(NotificationType) type;
 @end
 
@@ -284,22 +283,22 @@
     }
 }
 
-- (void)playBackgroundMusic
-{
-    MusicItemManager* musicManager = [MusicItemManager defaultManager];
-    NSString* musicURL = musicManager.currentMusicItem.localPath;
-    if (musicURL == nil){
-        PPDebug(@"<playBackgroundMusic> but music url is nil");
-        return;
-    }
-    
-    NSURL *url = [NSURL fileURLWithPath:musicURL];
-    AudioManager *audioManager = [AudioManager defaultManager];
-    
-    [audioManager setBackGroundMusicWithURL:url];
-//    [audioManager backgroundMusicStart];
-
-}
+//- (void)playBackgroundMusic
+//{
+//    MusicItemManager* musicManager = [MusicItemManager defaultManager];
+//    NSString* musicURL = musicManager.currentMusicItem.localPath;
+//    if (musicURL == nil){
+//        PPDebug(@"<playBackgroundMusic> but music url is nil");
+//        return;
+//    }
+//    
+//    NSURL *url = [NSURL fileURLWithPath:musicURL];
+//    AudioManager *audioManager = [AudioManager defaultManager];
+//    
+//    [audioManager setBackGroundMusicWithURL:url];
+////    [audioManager backgroundMusicStart];
+//
+//}
 
 
 - (void)didJoinGame:(GameMessage *)message
