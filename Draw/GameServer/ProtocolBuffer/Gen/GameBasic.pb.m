@@ -755,6 +755,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property int32_t zodiac;
 @property int32_t guessWordLanguage;
 @property (retain) NSString* backgroundUrl;
+@property (retain) NSString* deviceToken;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
@@ -895,6 +896,13 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasBackgroundUrl_ = !!value;
 }
 @synthesize backgroundUrl;
+- (BOOL) hasDeviceToken {
+  return !!hasDeviceToken_;
+}
+- (void) setHasDeviceToken:(BOOL) value {
+  hasDeviceToken_ = !!value;
+}
+@synthesize deviceToken;
 - (BOOL) hasLevel {
   return !!hasLevel_;
 }
@@ -950,6 +958,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.password = nil;
   self.birthday = nil;
   self.backgroundUrl = nil;
+  self.deviceToken = nil;
   self.mutableItemsList = nil;
   self.signature = nil;
   [super dealloc];
@@ -972,6 +981,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.zodiac = 0;
     self.guessWordLanguage = 0;
     self.backgroundUrl = @"";
+    self.deviceToken = @"";
     self.level = 0;
     self.experience = 0L;
     self.coinBalance = 0;
@@ -1093,6 +1103,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasBackgroundUrl) {
     [output writeString:36 value:self.backgroundUrl];
   }
+  if (self.hasDeviceToken) {
+    [output writeString:37 value:self.deviceToken];
+  }
   if (self.hasLevel) {
     [output writeInt32:41 value:self.level];
   }
@@ -1176,6 +1189,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasBackgroundUrl) {
     size += computeStringSize(36, self.backgroundUrl);
+  }
+  if (self.hasDeviceToken) {
+    size += computeStringSize(37, self.deviceToken);
   }
   if (self.hasLevel) {
     size += computeInt32Size(41, self.level);
@@ -1333,6 +1349,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasBackgroundUrl) {
     [self setBackgroundUrl:other.backgroundUrl];
   }
+  if (other.hasDeviceToken) {
+    [self setDeviceToken:other.deviceToken];
+  }
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
@@ -1452,6 +1471,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 290: {
         [self setBackgroundUrl:[input readString]];
+        break;
+      }
+      case 298: {
+        [self setDeviceToken:[input readString]];
         break;
       }
       case 328: {
@@ -1799,6 +1822,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearBackgroundUrl {
   result.hasBackgroundUrl = NO;
   result.backgroundUrl = @"";
+  return self;
+}
+- (BOOL) hasDeviceToken {
+  return result.hasDeviceToken;
+}
+- (NSString*) deviceToken {
+  return result.deviceToken;
+}
+- (PBGameUser_Builder*) setDeviceToken:(NSString*) value {
+  result.hasDeviceToken = YES;
+  result.deviceToken = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceToken {
+  result.hasDeviceToken = NO;
+  result.deviceToken = @"";
   return self;
 }
 - (BOOL) hasLevel {

@@ -26,6 +26,8 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     [super dealloc];
 }
 
+#define MAX_WITH_DESC_LABEL ([DeviceDetection isIPAD] ? (256) : (128))
+#define MAX_HEIGHT_DESC_LABEL ([DeviceDetection isIPAD] ? (136) : (68))
 + (id)createWithItem:(PBGameItem *)item
 {
     GameItemDetailView *view = [self createView];
@@ -55,7 +57,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.numberOfLines = 0;
     NSString *desc = [@"         " stringByAppendingString:NSLS(item.desc)];
 
-    CGSize withinSize = CGSizeMake(128, 68);
+    CGSize withinSize = CGSizeMake(MAX_WITH_DESC_LABEL, MAX_HEIGHT_DESC_LABEL);
     CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     label.frame = CGRectMake(view.descNoteLabel.frame.origin.x, view.descNoteLabel.frame.origin.y, size.width, MAX(view.descNoteLabel.frame.size.height, size.height) );
     label.text = desc;
