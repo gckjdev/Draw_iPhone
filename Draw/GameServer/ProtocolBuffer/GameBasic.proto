@@ -29,7 +29,7 @@ message PBGameUser {
   optional bool gender = 4 [default=false];     // 用户性别，TRUE：男；FALSE：女
   repeated PBSNSUser snsUsers = 5;              // 用户社交网络信息
   optional string location = 6;
-  optional int32 userLevel = 7;                 // 用户等级
+  optional int32  userLevel = 7;                // 用户等级
   optional string facetimeId = 8;
      
   optional int32 seatId = 9;                        // 座位号，从1开始
@@ -39,6 +39,10 @@ message PBGameUser {
 
   optional string email = 31;
   optional string password = 32;
+  
+  optional string birthday = 33;                    // 格式：19800102
+  optional int32  zodiac = 34;                      // 星座：1-12
+  optional int32  guessWordLanguage = 35;           // 猜词语言
 
   // level & experience
   optional int32  level = 41;

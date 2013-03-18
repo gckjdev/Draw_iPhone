@@ -751,6 +751,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSMutableArray* mutableAttributesList;
 @property (retain) NSString* email;
 @property (retain) NSString* password;
+@property (retain) NSString* birthday;
+@property int32_t zodiac;
+@property int32_t guessWordLanguage;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
@@ -863,6 +866,27 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasPassword_ = !!value;
 }
 @synthesize password;
+- (BOOL) hasBirthday {
+  return !!hasBirthday_;
+}
+- (void) setHasBirthday:(BOOL) value {
+  hasBirthday_ = !!value;
+}
+@synthesize birthday;
+- (BOOL) hasZodiac {
+  return !!hasZodiac_;
+}
+- (void) setHasZodiac:(BOOL) value {
+  hasZodiac_ = !!value;
+}
+@synthesize zodiac;
+- (BOOL) hasGuessWordLanguage {
+  return !!hasGuessWordLanguage_;
+}
+- (void) setHasGuessWordLanguage:(BOOL) value {
+  hasGuessWordLanguage_ = !!value;
+}
+@synthesize guessWordLanguage;
 - (BOOL) hasLevel {
   return !!hasLevel_;
 }
@@ -916,6 +940,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.mutableAttributesList = nil;
   self.email = nil;
   self.password = nil;
+  self.birthday = nil;
   self.mutableItemsList = nil;
   self.signature = nil;
   [super dealloc];
@@ -934,6 +959,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.isTakenOver = NO;
     self.email = @"";
     self.password = @"";
+    self.birthday = @"";
+    self.zodiac = 0;
+    self.guessWordLanguage = 0;
     self.level = 0;
     self.experience = 0L;
     self.coinBalance = 0;
@@ -1043,6 +1071,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasPassword) {
     [output writeString:32 value:self.password];
   }
+  if (self.hasBirthday) {
+    [output writeString:33 value:self.birthday];
+  }
+  if (self.hasZodiac) {
+    [output writeInt32:34 value:self.zodiac];
+  }
+  if (self.hasGuessWordLanguage) {
+    [output writeInt32:35 value:self.guessWordLanguage];
+  }
   if (self.hasLevel) {
     [output writeInt32:41 value:self.level];
   }
@@ -1114,6 +1151,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasPassword) {
     size += computeStringSize(32, self.password);
+  }
+  if (self.hasBirthday) {
+    size += computeStringSize(33, self.birthday);
+  }
+  if (self.hasZodiac) {
+    size += computeInt32Size(34, self.zodiac);
+  }
+  if (self.hasGuessWordLanguage) {
+    size += computeInt32Size(35, self.guessWordLanguage);
   }
   if (self.hasLevel) {
     size += computeInt32Size(41, self.level);
@@ -1259,6 +1305,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasPassword) {
     [self setPassword:other.password];
   }
+  if (other.hasBirthday) {
+    [self setBirthday:other.birthday];
+  }
+  if (other.hasZodiac) {
+    [self setZodiac:other.zodiac];
+  }
+  if (other.hasGuessWordLanguage) {
+    [self setGuessWordLanguage:other.guessWordLanguage];
+  }
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
@@ -1362,6 +1417,18 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 258: {
         [self setPassword:[input readString]];
+        break;
+      }
+      case 266: {
+        [self setBirthday:[input readString]];
+        break;
+      }
+      case 272: {
+        [self setZodiac:[input readInt32]];
+        break;
+      }
+      case 280: {
+        [self setGuessWordLanguage:[input readInt32]];
         break;
       }
       case 328: {
@@ -1645,6 +1712,54 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearPassword {
   result.hasPassword = NO;
   result.password = @"";
+  return self;
+}
+- (BOOL) hasBirthday {
+  return result.hasBirthday;
+}
+- (NSString*) birthday {
+  return result.birthday;
+}
+- (PBGameUser_Builder*) setBirthday:(NSString*) value {
+  result.hasBirthday = YES;
+  result.birthday = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearBirthday {
+  result.hasBirthday = NO;
+  result.birthday = @"";
+  return self;
+}
+- (BOOL) hasZodiac {
+  return result.hasZodiac;
+}
+- (int32_t) zodiac {
+  return result.zodiac;
+}
+- (PBGameUser_Builder*) setZodiac:(int32_t) value {
+  result.hasZodiac = YES;
+  result.zodiac = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearZodiac {
+  result.hasZodiac = NO;
+  result.zodiac = 0;
+  return self;
+}
+- (BOOL) hasGuessWordLanguage {
+  return result.hasGuessWordLanguage;
+}
+- (int32_t) guessWordLanguage {
+  return result.guessWordLanguage;
+}
+- (PBGameUser_Builder*) setGuessWordLanguage:(int32_t) value {
+  result.hasGuessWordLanguage = YES;
+  result.guessWordLanguage = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearGuessWordLanguage {
+  result.hasGuessWordLanguage = NO;
+  result.guessWordLanguage = 0;
   return self;
 }
 - (BOOL) hasLevel {
