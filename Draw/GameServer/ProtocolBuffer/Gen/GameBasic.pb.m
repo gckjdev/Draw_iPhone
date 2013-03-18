@@ -754,6 +754,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSString* birthday;
 @property int32_t zodiac;
 @property int32_t guessWordLanguage;
+@property (retain) NSString* backgroundUrl;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
@@ -887,6 +888,13 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasGuessWordLanguage_ = !!value;
 }
 @synthesize guessWordLanguage;
+- (BOOL) hasBackgroundUrl {
+  return !!hasBackgroundUrl_;
+}
+- (void) setHasBackgroundUrl:(BOOL) value {
+  hasBackgroundUrl_ = !!value;
+}
+@synthesize backgroundUrl;
 - (BOOL) hasLevel {
   return !!hasLevel_;
 }
@@ -941,6 +949,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.email = nil;
   self.password = nil;
   self.birthday = nil;
+  self.backgroundUrl = nil;
   self.mutableItemsList = nil;
   self.signature = nil;
   [super dealloc];
@@ -962,6 +971,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.birthday = @"";
     self.zodiac = 0;
     self.guessWordLanguage = 0;
+    self.backgroundUrl = @"";
     self.level = 0;
     self.experience = 0L;
     self.coinBalance = 0;
@@ -1080,6 +1090,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasGuessWordLanguage) {
     [output writeInt32:35 value:self.guessWordLanguage];
   }
+  if (self.hasBackgroundUrl) {
+    [output writeString:36 value:self.backgroundUrl];
+  }
   if (self.hasLevel) {
     [output writeInt32:41 value:self.level];
   }
@@ -1160,6 +1173,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasGuessWordLanguage) {
     size += computeInt32Size(35, self.guessWordLanguage);
+  }
+  if (self.hasBackgroundUrl) {
+    size += computeStringSize(36, self.backgroundUrl);
   }
   if (self.hasLevel) {
     size += computeInt32Size(41, self.level);
@@ -1314,6 +1330,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasGuessWordLanguage) {
     [self setGuessWordLanguage:other.guessWordLanguage];
   }
+  if (other.hasBackgroundUrl) {
+    [self setBackgroundUrl:other.backgroundUrl];
+  }
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
@@ -1429,6 +1448,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 280: {
         [self setGuessWordLanguage:[input readInt32]];
+        break;
+      }
+      case 290: {
+        [self setBackgroundUrl:[input readString]];
         break;
       }
       case 328: {
@@ -1760,6 +1783,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearGuessWordLanguage {
   result.hasGuessWordLanguage = NO;
   result.guessWordLanguage = 0;
+  return self;
+}
+- (BOOL) hasBackgroundUrl {
+  return result.hasBackgroundUrl;
+}
+- (NSString*) backgroundUrl {
+  return result.backgroundUrl;
+}
+- (PBGameUser_Builder*) setBackgroundUrl:(NSString*) value {
+  result.hasBackgroundUrl = YES;
+  result.backgroundUrl = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearBackgroundUrl {
+  result.hasBackgroundUrl = NO;
+  result.backgroundUrl = @"";
   return self;
 }
 - (BOOL) hasLevel {

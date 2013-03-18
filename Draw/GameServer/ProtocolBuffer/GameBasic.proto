@@ -43,6 +43,7 @@ message PBGameUser {
   optional string birthday = 33;                    // 格式：19800102
   optional int32  zodiac = 34;                      // 星座：1-12
   optional int32  guessWordLanguage = 35;           // 猜词语言
+  optional string backgroundURL = 36;               // 用户背景Remote URL
 
   // level & experience
   optional int32  level = 41;
