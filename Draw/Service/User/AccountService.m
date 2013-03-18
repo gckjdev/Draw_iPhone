@@ -80,13 +80,7 @@ static AccountService* _defaultAccountService;
 {
     // send request to Apple IAP Server and wait for result
     SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
-//    if (selectedProduct == nil){
-//        PPDebug(@"<buyCoin> but SKProduct of price is null");
-//        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-//            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
-//        }
-//        return;
-//    }
+
     PPDebug(@"<buyCoin> on product %@ price productId=%@", 
             selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
             price.productId);    
@@ -538,7 +532,7 @@ static AccountService* _defaultAccountService;
     if ([self hasEnoughCoins:itemCoins] == NO){
         PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
                 [[AccountManager defaultManager] getBalance], itemCoins);
-        return ERROR_COINS_NOT_ENOUGH;
+        return ERROR_BALANCE_NOT_ENOUGH;
     }
     
     // save item locally and synchronize remotely

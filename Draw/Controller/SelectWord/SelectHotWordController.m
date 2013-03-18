@@ -159,35 +159,18 @@
 //            [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
 //        }
 //    }
-
-    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:ItemTypeTips amount:1]) {
-        __block typeof (self) bself = self;
-        [[UserGameItemService defaultService] consumeItem:ItemTypeTips handler:^(int resultCode, int itemId) {
-            if (resultCode == 0) {
-                [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
-            }else{
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
-                
-            }
-        }];
-    }else{
-        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTips];
-
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:NULL];
-    }
-
-//    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTips];
-//
-//    if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:ItemTypeTips amount:1]) {
-//        if ([[AccountService defaultService] hasEnoughBalance:[item promotionPrice] currency:item.priceInfo.currency]) {
-//            [[UserGameItemService defaultService] buyItem:item count:1 handler:NULL];
-//        }else{
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-//            return;
-//        }
-//    }
     
-
+    __block typeof (self) bself = self;
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+        if (resultCode == ERROR_SUCCESS) {
+            [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
+        }
+        if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        }else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
+        }
+    }];
 }
 
 - (void)didSelectWord:(Word *)word

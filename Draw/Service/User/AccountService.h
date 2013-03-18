@@ -16,10 +16,6 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
-#define ERROR_NO_PRODUCT            1000
-#define ERROR_COINS_NOT_ENOUGH      1001
-//#define ERROR_ITEM_NOT_ENOUGH       1002
-
 @class PriceModel;
 @class ItemManager;
 @class AccountManager;

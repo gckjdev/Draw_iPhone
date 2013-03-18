@@ -65,13 +65,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         awardExp = [ConfigManager getFlowerAwardExp];
         
         
-        [[UserGameItemService defaultService] consumeItem:[self itemId] handler://NULL];
-         ^(int resultCode, int itemId) {
+        [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
             
-            if (resultCode == ERROR_SUCCESS){            
-            }
-            
-             [bself itemId];
         }];
                 
         // send feed action

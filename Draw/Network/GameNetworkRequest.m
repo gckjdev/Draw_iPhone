@@ -2967,11 +2967,15 @@
                                   output:output];
 }
 
-+ (CommonNetworkOutput *)useItem:(NSString *)baseURL
-                           appId:(NSString *)appId
-                          userId:(NSString *)userId
-                          itemId:(int)itemId
-                           count:(int)count
+// consume item
++ (CommonNetworkOutput *)consumeItem:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                              itemId:(int)itemId
+                               count:(int)count
+                            forceBuy:(BOOL)forceBuy // 若不够钱是否强制购买后消耗
+                               price:(int)price
+                            currency:(PBGameCurrency)currency
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2980,11 +2984,14 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];
         
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_USE_ITEM];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_CONSUME_ITEM];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_ITEMID intValue:itemId];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:count];
+        str = [str stringByAddQueryParameter:PARA_PRICE intValue:price];
+        str = [str stringByAddQueryParameter:PARA_CURRENCY intValue:currency];
+        str = [str stringByAddQueryParameter:PARA_FORCE_BUY boolValue:forceBuy];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
