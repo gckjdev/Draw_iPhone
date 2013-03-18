@@ -738,7 +738,7 @@
                                 feedOpusId:_feed.feedId
                                 feedAuthor:_feed.author.userId
                                    forFree:NO
-                             resultHandler:^(int resultCode, int itemId) {
+                             resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [bself throwItemAnimation:toolView];
             [toolView decreaseNumber];

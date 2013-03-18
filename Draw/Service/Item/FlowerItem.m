@@ -51,7 +51,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         awardExp = [ConfigManager getFlowerAwardExp];
         
         if (!isFree) {
-            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
                 if (resultCode == ERROR_SUCCESS) {
                     // send feed action
                     [[FeedService defaultService] throwItem:[bself itemId]
@@ -60,7 +60,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                                    delegate:nil];
                 }
                 
-                EXCUTE_BLOCK(tempHandler, 0, [bself itemId]);
+                EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
                 [bself.blockArray releaseBlock:tempHandler];
             }];
         }
@@ -75,7 +75,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                          awardAmount:isFree?0:awardAmount
                                             awardExp:isFree?0:awardExp];
 
-        EXCUTE_BLOCK(tempHandler, 0, [self itemId]);
+        EXCUTE_BLOCK(tempHandler, 0, [self itemId], NO);
         [self.blockArray releaseBlock:tempHandler];                
     }
 }

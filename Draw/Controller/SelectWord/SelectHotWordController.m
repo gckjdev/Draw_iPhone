@@ -151,7 +151,7 @@
 - (void)payForHotWord:(Word *)word
 {    
     __block typeof (self) bself = self;
-    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
         }
