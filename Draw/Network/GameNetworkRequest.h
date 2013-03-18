@@ -543,7 +543,7 @@
                          actionType:(int)actionType;
 
 
-// for item
+// buy item
 + (CommonNetworkOutput *)buyItem:(NSString *)baseURL
                            appId:(NSString *)appId
                           userId:(NSString *)userId
@@ -553,9 +553,13 @@
                         currency:(PBGameCurrency)currency
                           toUser:(NSString *)toUser;
 
-+ (CommonNetworkOutput *)useItem:(NSString *)baseURL
-                           appId:(NSString *)appId
-                          userId:(NSString *)userId
-                          itemId:(int)itemId
-                           count:(int)count;
+// consume item
++ (CommonNetworkOutput *)consumeItem:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                              itemId:(int)itemId
+                               count:(int)count
+                            forceBuy:(BOOL)forceBuy // 若不够钱是否强制购买后消耗
+                               price:(int)price
+                            currency:(PBGameCurrency)currency;
 @end
