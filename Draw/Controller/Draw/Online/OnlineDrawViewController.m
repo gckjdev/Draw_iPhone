@@ -128,7 +128,7 @@
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    CGRect frame = DRAW_VIEW_FRAME;
+    CGRect frame = [CanvasRect defaultRect];
 //    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     drawView = [[DrawView alloc] initWithFrame:frame];
     [drawView setDrawEnabled:YES];
@@ -280,17 +280,16 @@
 
 - (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
-    if ([action isDrawAction]) {
-        Paint *paint = action.paint;
+    //TODO Compress The Point list
+    if ([action isKindOfClass:[PaintAction class]]) {
+        Paint *paint = [(PaintAction *)action paint];
         NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
-        NSMutableArray *pointList = [paint createNumberPointList:YES pointXList:nil pointYList:nil];
+        NSMutableArray *pointList = nil;//[paint createNumberPointList:YES pointXList:nil pointYList:nil];
         CGFloat width = paint.width;
         if ([DeviceDetection isIPAD]) {
             width /= 2;
         }
-        [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];        
-    }else if([action isShapeAction]){
-        //TODO send shape action
+        [[DrawGameService defaultService]sendDrawDataRequestWithPointList:nil color:intColor width:width penType:paint.penType];
     }
 }
 

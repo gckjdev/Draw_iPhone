@@ -20,6 +20,8 @@
 #import "BuyItemView.h"
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
+#import "DrawHolderView.h"
+
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
@@ -37,7 +39,7 @@
     UIView *_maskView;
 }
 
-@property(nonatomic, retain) IBOutlet UIView *holderView;
+@property(nonatomic, retain) IBOutlet DrawHolderView *holderView;
 @property(nonatomic, retain) ShowDrawView *showView;
 @property(nonatomic, assign) PPViewController *superController;
 @property (retain, nonatomic) IBOutlet UIControl *playerToolMask;
@@ -140,17 +142,12 @@
     [view addSubview:self];
     self.center = view.center;
     
-    self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:actionList delegate:self];
-    [self.showView setDrawBg:drawBg];
+    self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(size) drawActionList:actionList delegate:self];
     
+    [self.showView setDrawBg:drawBg];
     [self.showView setPressEnable:YES];
 
-    CGRect frame = self.showView.frame;
-    frame.origin = CGPointZero;
-    self.showView.frame = frame;
-    [self.holderView addSubview:self.showView];
-//    [self insertSubview:self.showView aboveSubview:self.holderView];
-//    [self.holderView removeFromSuperview];
+    [self.holderView setContentView:self.showView];
     
     if (isNewVersion) {
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];

@@ -610,7 +610,7 @@ enum{
     [replay showInController:self withActionList:self.feed.drawData.drawActionList
                 isNewVersion:[self.feed.drawData isNewVersion]
                       drawBg:self.feed.pbDraw.drawBg
-                        size:DRAW_VIEW_FRAME.size];
+                        size:CGSizeFromPBSize(self.feed.pbDraw.size)];
 }
 
 - (IBAction)clickActionButton:(id)sender {

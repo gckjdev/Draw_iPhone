@@ -216,7 +216,7 @@
         NSArray *pbAList = [pbMessage drawDataList];
         _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
         for (PBDrawAction *action in pbAList) {
-            DrawAction *da = [[DrawAction alloc] initWithPBDrawAction:action];
+            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
             [_drawActionList addObject:da];
             [da release];
         }

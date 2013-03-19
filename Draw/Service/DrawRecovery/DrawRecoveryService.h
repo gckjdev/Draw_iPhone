@@ -13,6 +13,7 @@
 @class Word;
 @class PBNoCompressDrawData;
 @class PBDrawBg;
+@class PBUserBasicInfo;
 
 @interface DrawRecoveryService : CommonService
 {
@@ -21,6 +22,8 @@
 }
 
 @property (nonatomic, retain) MyPaint* currentPaint;
+@property (nonatomic, retain) PBUserBasicInfo *drawToUser;
+@property (nonatomic, assign) CGSize canvasSize;
 //@property (nonatomic, retain) MyPaint* currentPaint;
 //@property (nonatomic, retain) MyPaint* currentPaint;
 

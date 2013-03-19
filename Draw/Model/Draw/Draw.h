@@ -18,35 +18,35 @@
 //@class pbcom
 //@class LanguageType;
 
-@interface Draw : NSObject<NSCoding>
+@interface Draw : NSObject
 {
-    NSString *_userId;
-    NSString *_nickName;
-    NSMutableArray *_drawActionList;
-    Word *_word;
-    NSDate *_date;
-    NSString *_avatar;
-    LanguageType _languageType;
+
 
 }
 @property (retain, nonatomic) NSString *userId;
 @property (retain, nonatomic) NSString *nickName;
+@property (retain, nonatomic) NSString *avatar;
+
 @property (retain, nonatomic) NSMutableArray *drawActionList;
 @property (retain, nonatomic) Word *word;
-@property (retain, nonatomic) NSDate *date;
-@property (retain, nonatomic) NSString *avatar;
 @property (assign, nonatomic) LanguageType languageType;
+
+@property (retain, nonatomic) NSDate *date;
 @property (assign, nonatomic) NSInteger version;
 @property (retain, nonatomic) PBDrawBg *drawBg;
+@property (assign, nonatomic) CGSize canvasSize;
+
+- (CGRect)canvasRect;
 
 - (id)initWithUserId:(NSString *)userId 
-            nickName:(NSString *)nickName 
-      drawActionList:(DrawAction *)drawActionList 
-                word:(Word *)word 
-                date:(NSDate *)date 
-              avatar:(NSString *)avatar;
+            nickName:(NSString *)nickName
+              avatar:(NSString *)avatar
+      drawActionList:(NSMutableArray *)drawActionList 
+                word:(Word *)word
+              drawBg:(PBDrawBg *)drawBg
+          canvasSize:(CGSize)size;
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
 - (BOOL)isNewVersion;
-//- (id)initWithPBDraw:(PBDraw *)pbDraw;
+- (PBDraw *)toPBDraw;
 @end

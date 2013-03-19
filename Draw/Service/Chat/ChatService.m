@@ -20,6 +20,7 @@
 //#import "ChatMessageUtil.h"
 //#import "ChatMessage.h"
 
+#import "CanvasRect.h"
 #import "ConfigManager.h"
 
 #import "PPMessage.h"
@@ -168,7 +169,7 @@ static ChatService *_chatService = nil;
                                                                 drawWord:nil 
                                                                 language:ChineseType
                                                                   drawBg:nil
-                                                                    size:DRAW_VIEW_FRAME.size
+                                                                    size:[CanvasRect defaultRect].size
                                                                     isCompressed:YES];
                     data = [draw data];
                 }

@@ -46,6 +46,7 @@
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
 
+
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
@@ -59,6 +60,14 @@
 #define TOOLVIEW_TAG_FLOWER 220120730
 #define TOOLVIEW_TAG_TOMATO 320120730
 
+
+@interface OfflineGuessDrawController()
+{
+    
+}
+@property (nonatomic, assign)CGRect canvasRect;
+
+@end
 
 @implementation OfflineGuessDrawController
 @synthesize showView;
@@ -157,6 +166,7 @@
         }
         self.draw = _feed.drawData;
         _authorId = _feed.author.userId;
+        self.canvasRect = self.draw.canvasRect;
         _scene = [[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed] retain];
     }
     return self;
@@ -820,7 +830,7 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
+    showView = [[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     UIView *paper = [self.view viewWithTag:PAPER_VIEW_TAG];
     paper.hidden = NO;
     CGRect frame = showView.frame;

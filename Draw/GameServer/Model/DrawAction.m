@@ -7,15 +7,18 @@
 //
 
 #import "DrawAction.h"
-#import "Paint.h"
-#import "GameBasic.pb.h"
-#import "DrawUtils.h"
-#import "Draw.pb.h"
+#import "DrawColor.h"
 #import "ConfigManager.h"
-#import "PointNode.h"
+//#import "Paint.h"
+//#import "GameBasic.pb.h"
+//#import "DrawUtils.h"
+//#import "Draw.pb.h"
+
+//#import "PointNode.h"
+//
 
 @implementation DrawAction
-
+/*
 @synthesize type = _type;
 @synthesize paint = _paint;
 
@@ -31,7 +34,7 @@
     self = [ super init];
     if (self) {
         self.type = action.type;
-        if (self.type != DRAW_ACTION_TYPE_CLEAN) {
+        if (self.type != DrawActionTypeClean) {
 
             CGFloat lineWidth = [action width];
             NSInteger penType = [action penType];
@@ -51,7 +54,7 @@
                 color = [[[DrawColor alloc] initWithPBColor:action.color] autorelease];
             }
             
-            if (self.type == DRAW_ACTION_TYPE_DRAW) {
+            if (self.type == DrawActionTypePaint) {
                 
                 NSMutableArray *pointList = nil;
                 if ([DrawUtils isNotVersion1:dataVersion]){
@@ -85,7 +88,7 @@
                 PPRelease(pointList);
                 PPRelease(paint);
             }
-            else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+            else if(self.type == DrawActionTypeShape){
                 self.shapeInfo = [ShapeInfo shapeWithType:action.shapeType penType:penType width:lineWidth color:color];
                 [self.shapeInfo setPointsWithPointComponent:action.rectComponentList];
             }
@@ -105,21 +108,14 @@
     
     // set color, new version
     [builder setRgbColor:[DrawUtils compressDrawColor8:color]];
-    
-    /* to be deleted
-    [builder setAlpha:[color alpha]];
-    [builder setBlue:[color blue]];
-    [builder setRed:[color red]];
-    [builder setGreen:[color green]];
-     */
-
+ 
 }
 
 - (PBNoCompressDrawAction *)toPBNoCompressDrawAction
 {
     PBNoCompressDrawAction_Builder *builder = [[PBNoCompressDrawAction_Builder alloc] init];
     [builder setType:self.type];
-    if (self.type == DRAW_ACTION_TYPE_DRAW) {
+    if (self.type == DrawActionTypePaint) {
         Paint *paint = self.paint;
         [self updateBuilder:builder withColor:paint.color penType:paint.penType width:paint.width];
         
@@ -131,7 +127,7 @@
                 [builder addPointY:[value y]];
             }
         }
-    }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+    }else if(self.type == DrawActionTypeShape){
         ShapeInfo *shape = self.shapeInfo;
         [self updateBuilder:builder withColor:shape.color penType:shape.penType width:shape.width];
         [builder setShapeType:shape.type];
@@ -143,7 +139,7 @@
     [builder release];
     return action;
 }
-- (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
+- (id)initWithType:(DrawActionType)aType paint:(Paint*)aPaint
 {
     self = [super init];
     if (self) {
@@ -162,12 +158,12 @@
         CGFloat lineWidth = [action width];
         NSInteger penType = [action penType];
         
-        if (self.type == DRAW_ACTION_TYPE_DRAW) {
+        if (self.type == DrawActionTypePaint) {
             NSArray *pointList = [action pointsList];
             Paint *paint = [[Paint alloc] initWithWidth:lineWidth intColor:intColor numberPointList:pointList penType:penType];
             self.paint = paint;
             [paint release];
-        }else if(self.type == DRAW_ACTION_TYPE_SHAPE){
+        }else if(self.type == DrawActionTypeShape){
             ShapeInfo *shape = [ShapeInfo shapeWithType:action.shapeType penType:penType width:lineWidth color:[DrawUtils decompressIntDrawColor:intColor]];
             [shape setPointsWithPointComponent:action.rectComponentList];
             self.shapeInfo = shape;
@@ -176,7 +172,7 @@
     return self;
 }
 
-+ (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
++ (DrawAction *)actionWithType:(DrawActionType)aType paint:(Paint*)aPaint
 {
     return [[[DrawAction alloc] initWithType:aType paint:aPaint]autorelease];
 }
@@ -184,7 +180,7 @@
 + (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo
 {
     DrawAction *action = [[DrawAction alloc] init];
-    [action setType:DRAW_ACTION_TYPE_SHAPE];
+    [action setType:DrawActionTypeShape];
     [action setShapeInfo:shapeInfo];
     return [action autorelease];
 }
@@ -194,13 +190,13 @@
     Paint *paint = [Paint paintWithWidth:BACK_GROUND_WIDTH color:color];
     [paint addPoint:CGPointMake(0, 0)];
     [paint addPoint:CGPointMake(0, BACK_GROUND_WIDTH)];
-    return [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+    return [DrawAction actionWithType:DrawActionTypePaint paint:paint];
 }
 
 
 + (DrawAction *)clearScreenAction
 {
-    return [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    return [DrawAction actionWithType:DrawActionTypeClean paint:nil];
 }
 
 - (BOOL)isChangeBackAction
@@ -211,17 +207,17 @@
 
 - (BOOL)isCleanAction
 {
-    return self.type == DRAW_ACTION_TYPE_CLEAN;
+    return self.type == DrawActionTypeClean;
 }
 
 - (BOOL)isDrawAction
 {
-    return self.type == DRAW_ACTION_TYPE_DRAW;
+    return self.type == DrawActionTypePaint;
 }
 
 - (BOOL)isShapeAction
 {
-    return self.type == DRAW_ACTION_TYPE_SHAPE;
+    return self.type == DrawActionTypeShape;
 }
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
@@ -264,7 +260,7 @@
     int i;
     for (i = count - 1; i >= 0; --i) {
         DrawAction *action = [actionList objectAtIndex:i];
-        if (action.type == DRAW_ACTION_TYPE_CLEAN) {
+        if (action.type == DrawActionTypeClean) {
             break;
         }
     }
@@ -289,7 +285,7 @@
                       xScale:(CGFloat)xScale 
                      yScale:(CGFloat)yScale
 {
-    if (action.type == DRAW_ACTION_TYPE_DRAW) {
+    if (action.type == DrawActionTypePaint) {
         Paint *paint = action.paint;
         if (paint.pointCount == 0) {
             return [DrawAction actionWithType:action.type paint:action.paint];
@@ -310,7 +306,7 @@
 //        [newPaint setPointList:list];
         [newPaint setPointNodeList:list];
         [list release];
-        DrawAction *dAction = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:newPaint];
+        DrawAction *dAction = [DrawAction actionWithType:DrawActionTypePaint paint:newPaint];
         return dAction;
     }
     return [DrawAction actionWithType:action.type paint:action.paint];
@@ -356,37 +352,144 @@
     return (double)second / (double)count;
 }
 
+
+*/
+
++ (id)drawActionWithPBDrawAction:(PBDrawAction *)action
+{
+    switch (action.type) {
+        case DrawActionTypeClean:
+            return [[[CleanAction alloc] initWithPBDrawAction:action] autorelease];
+        case DrawActionTypeShape:
+            return [[[CleanAction alloc] initWithPBDrawAction:action] autorelease];
+        case DrawActionTypePaint:
+            if (action.width >= BACK_GROUND_WIDTH / 10) {
+                return [[[ChangeBackAction alloc] initWithPBDrawAction:action] autorelease];
+            }
+            return [[[PaintAction alloc] initWithPBDrawAction:action] autorelease];
+        default:
+            return nil;
+    }
+}
+
+
++ (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
+{
+    switch (action.type) {
+        case DrawActionTypeClean:
+            return [[[CleanAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
+        case DrawActionTypeShape:
+            return [[[CleanAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
+        case DrawActionTypePaint:
+            if (action.width >= BACK_GROUND_WIDTH / 10) {
+                return [[[ChangeBackAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
+            }
+            return [[[PaintAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
+        default:
+            return nil;
+    }
+}
+
+
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    return CGRectZero;
+}
+- (id)initWithPBDrawAction:(PBDrawAction *)action
+{
+    self = [super init];
+    if (self) {
+        self.type = action.type;
+    }
+    return self;
+}
+- (PBDrawAction *)toPBDrawAction
+{
+    return nil;
+}
+
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    
+}
+
+
+
+#pragma mark-- Common Methods
+
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data
 {
     NSMutableArray *drawActionList = [NSMutableArray array];
-    for (PBNoCompressDrawAction *action in [data drawActionListList]) {
-        DrawAction *dAction = [[DrawAction alloc] initWithPBNoCompressDrawAction:action dataVersion:data.version];
-        [drawActionList addObject:dAction];
-        PPRelease(dAction);
-    }
+    if ([[data drawActionList2List] count] != 0) {
+        for (PBDrawAction *action in [data drawActionList2List]) {
+            DrawAction *at = [DrawAction drawActionWithPBDrawAction:action];
+            [drawActionList addObject:at];
+            at = nil;
+        }
+    }else if([[data drawActionListList] count] != 0)
+        for (PBNoCompressDrawAction *action in [data drawActionListList]) {
+            DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawAction:action];
+            [drawActionList addObject:dAction];
+            dAction = nil;
+        }
     return drawActionList;
 }
-+ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList pbdrawBg:(PBDrawBg *)drawBg size:(CGSize)size
++ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
+                                                        pbdrawBg:(PBDrawBg *)drawBg
+                                                            size:(CGSize)size
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser
 {
     if ([drawActionList count] != 0) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:drawActionList.count];
-        for (DrawAction *action in drawActionList) {
-            PBNoCompressDrawAction *nAction = [action toPBNoCompressDrawAction];
-            [array addObject:nAction];
-        }
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
-        [builder addAllDrawActionList:array];
-        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+        
+        for (DrawAction *drawAction in drawActionList) {
+            PBDrawAction *pbd = [drawAction toPBDrawAction];
+            if (pbd) {
+                [builder addDrawActionList2:pbd];
+            }
+        }
+        
+        if (drawToUser) {
+            [builder setDrawToUser:drawToUser];
+        }
         if (drawBg) {
             [builder setDrawBg:drawBg];
         }
+        [builder setCanvasSize:CGSizeToPBSize(size)];
+        [builder setVersion:[ConfigManager currentDrawDataVersion]];
 
-        //TODO save size
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
         return nData;
     }
     return nil;
+}
+
+@end
+
+
+
+@implementation PBNoCompressDrawAction (Ext)
+
+- (DrawColor *)drawColor
+{
+    if ([self hasRgbColor]){
+        return [DrawColor colorWithBetterCompressColor:self.rgbColor];
+    }
+    if ([self hasColor]) {
+        return [[[DrawColor alloc] initWithPBColor:self.color] autorelease];
+    }
+    return [DrawColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 }
 
 @end

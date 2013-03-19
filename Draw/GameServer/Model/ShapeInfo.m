@@ -32,18 +32,6 @@
     [super dealloc];
 }
 
-- (CGPoint)toIPadPoint:(CGPoint)point
-{
-    point.x *= IPAD_WIDTH_SCALE;
-    point.y *= IPAD_HEIGHT_SCALE;
-    return point;
-}
-- (CGPoint)toIPhonePoint:(CGPoint)point
-{
-    point.x /= IPAD_WIDTH_SCALE;
-    point.y /= IPAD_HEIGHT_SCALE;
-    return point;
-}
 
 + (id)shapeWithType:(ShapeType)type
             penType:(ItemType)penType
@@ -91,12 +79,7 @@
     
     CGFloat endX = [[pointComponent objectAtIndex:2] floatValue];
     CGFloat endY = [[pointComponent objectAtIndex:3] floatValue];
-    self.endPoint = CGPointMake(endX, endY);
-    if (ISIPAD) {
-        self.startPoint = [self toIPadPoint:self.startPoint];
-        self.endPoint = [self toIPadPoint:self.endPoint];
-    }
-    
+    self.endPoint = CGPointMake(endX, endY);    
 }
 
 - (void)setEndPoint:(CGPoint)endPoint
@@ -106,7 +89,7 @@
 }
 
 
-#define MIN_DISTANCE (ISIPAD ? 8 : 8/2.)
+#define MIN_DISTANCE 8
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
     BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
@@ -134,31 +117,9 @@
     return rect;
 }
 
-//- (CGRect)lastRect
-//{
-//    if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
-//        self.endPoint = self.startPoint;
-//        CGFloat x = self.startPoint.x;
-//        CGFloat y = self.startPoint.y;
-//        return CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
-//    }else{
-//        return CGRectWithPoints(self.startPoint, _lastEndPoint);
-//    }
-//    
-//}
 
 - (CGRect)redrawRect
 {
-//    CGRect lastRect = CGRectWithPoints(self.startPoint, _lastEndPoint);
-//    CGRect rect = [self rect];
-//    CGPoint origin = rect.origin;
-//    CGSize size = rect.size;
-//    origin.x = MIN(CGRectGetMinX(lastRect), origin.x);
-//    origin.y = MIN(CGRectGetMinX(lastRect), origin.y);
-//    size.width = MAX(CGRectGetWidth(lastRect), size.width);
-//    size.height = MAX(CGRectGetHeight(lastRect), size.height);
-//    rect.origin = origin;
-//    rect.size = size;
     return _redrawRect;
 }
 
@@ -170,10 +131,6 @@
 - (NSArray *)rectComponent
 {
     CGPoint start = self.startPoint, end = self.endPoint;
-    if (ISIPAD) {
-        start = [self toIPhonePoint:self.startPoint];
-        end = [self toIPhonePoint:self.endPoint];
-    }
     return [self rectComponentWithStartPoint:start endPoint:end];
 }
 
@@ -182,5 +139,13 @@
     return [NSArray arrayWithObjects:@(start.x), @(start.y), @(end.x), @(end.y), nil];
 }
 
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+{
+    [builder setBetterColor:[self.color toBetterCompressColor]];
+    [builder setPenType:self.penType];
+    [builder setShapeType:self.type];
+    [builder addAllRectComponent:self.rectComponent];
+    [builder setWidth:self.width];
+}
 
 @end

@@ -119,8 +119,13 @@ message PBColor
 
 message PBNoCompressDrawAction{
     required int32 type = 1;                 // 0 : draw, 1 : clean draw
+
+    //deprecated attribute
     repeated PBPoint point = 2;
+    
+    //deprecated attribute
     optional PBColor color = 3;
+
     optional float width = 4;
     optional int32 penType = 5;
 
@@ -130,6 +135,7 @@ message PBNoCompressDrawAction{
     optional int32 shapeType = 6;
     repeated float rectComponent = 7; //startX, startY, endX, endY
 
+    optional PBSize canvasSize = 8; //canvas size, supported after version 2
 
     // Point X, Y
     repeated float pointX = 11;
@@ -148,11 +154,20 @@ message PBNoCompressDrawAction{
 
 }
 
+
+//only used to store the draft data
+
 message PBNoCompressDrawData
 {
+    //deprecated attribute
     repeated PBNoCompressDrawAction drawActionList = 1;
+
     optional int32 version = 2 [default=0];      // draw data version
     optional PBDrawBg drawBg = 3; //draw bg info
+    optional PBSize canvasSize = 4;
+
+    repeated PBDrawAction drawActionList2 = 5; //use after version 2.0
+    optional PBUserBasicInfo drawToUser = 6;
 }
 
 

@@ -9,6 +9,7 @@
 #import "DrawUtils.h"
 #import "DrawColor.h"
 
+
 @implementation DrawUtils
 
 + (BOOL)isNotVersion1:(int)dataVersion
@@ -400,4 +401,25 @@ CGRect CGRectWithPoints(CGPoint p1, CGPoint p2)
     CGFloat width = ABS(p1.x - p2.x);
     CGFloat height = ABS(p1.y - p2.y);
     return CGRectMake(x, y, width, height);
+}
+
+CGSize CGSizeFromPBSize(PBSize *size)
+{
+    CGSize s = CGSizeZero;
+    s.width = size.width;
+    s.height = size.height;
+    return s;
+}
+
+CGRect CGRectFromCGSize(CGSize size)
+{
+    return CGRectMake(0, 0, size.width, size.height);
+}
+
+PBSize *CGSizeToPBSize(CGSize size)
+{
+    PBSize_Builder *builder = [[[PBSize_Builder alloc] init] autorelease];
+    [builder setWidth:size.width];
+    [builder setHeight:size.height];
+    return [builder build];
 }

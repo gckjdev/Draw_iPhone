@@ -174,6 +174,20 @@
 {
     return [[[DrawColor alloc] initWithRed:color.red green:color.green blue:color.blue alpha:color.alpha] autorelease];
 }
+
++ (DrawColor *)colorWithBetterCompressColor:(NSUInteger)color
+{
+//    DrawColor *drawColor = [[DrawColor alloc] init];
+    CGFloat red, green, blue, alpha;
+    [DrawUtils decompressColor8:color red:&red green:&green blue:&blue alpha:&alpha];
+    return [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
+- (NSUInteger)toBetterCompressColor
+{
+    return [DrawUtils compressDrawColor8:self];
+}
+
 + (DrawColor *)blackColor      // 0.0 white 
 {
     return [DrawColor colorWithRed:0 green:0 blue:0 alpha:1];

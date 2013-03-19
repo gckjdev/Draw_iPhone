@@ -144,107 +144,107 @@ static DrawDataService* _defaultDrawDataService = nil;
     }];
 }
 
+//
+//- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction isCompressed:(BOOL)isCompressed
+//{
+//    PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
+//    
+//    [dataBuilder setType:[drawAction type]];
+//    
+//    if ([drawAction isShapeAction]) {
+//        [dataBuilder setShapeType:drawAction.shapeInfo.type];
+//        [dataBuilder addAllRectComponent:[drawAction.shapeInfo rectComponent]];
+//
+//        // set width
+//        CGFloat width = [[drawAction shapeInfo] width];
+//        if ([DeviceDetection isIPAD]) {
+//            width /= 2;
+//        }
+//        [dataBuilder setWidth:width];
+//        
+//        // set color
+//        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.shapeInfo.color];
+//        [dataBuilder setColor:intColor];
+//        
+//        // set pen type
+//        [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
+//        
+//    }else{
+//        
+//        // add points
+//        NSArray* pointXList;
+//        NSArray* pointYList;
+//        
+//        NSArray *pointList = [drawAction.paint createNumberPointList:isCompressed pointXList:&pointXList pointYList:&pointYList];
+//        
+//        if (isCompressed){
+//            [dataBuilder addAllPoints:pointList];
+//        }
+//        else{
+//            [dataBuilder addAllPointsX:pointXList];
+//            [dataBuilder addAllPointsY:pointYList];
+//        }
+//        
+//        // set width
+//        CGFloat width = [[drawAction paint] width];
+//        if ([DeviceDetection isIPAD]) {
+//            width /= 2;
+//        }
+//        [dataBuilder setWidth:width];
+//        
+//        // set color
+//        NSInteger intColor = [DrawUtils compressDrawColor:drawAction.paint.color];
+//        [dataBuilder setColor:intColor];
+//        
+//        // set pen type
+//        [dataBuilder setPenType:[[drawAction paint] penType]];
+//        
+//    }
+//    
+//    PBDrawAction *action = [dataBuilder build];
+//    [dataBuilder release];    
+//    return action;
+//
+//}
+//
+//- (PBDraw*)buildPBDraw:(NSString*)userId
+//                  nick:(NSString *)nick
+//                avatar:(NSString *)avatar
+//        drawActionList:(NSArray*)drawActionList
+//              drawWord:(Word*)drawWord
+//              language:(LanguageType)language
+//                drawBg:(PBDrawBg *)drawBg
+//                  size:(CGSize)size
+//          isCompressed:(BOOL)isCompressed
+//{
+//    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+//    [builder setUserId:userId];
+//    [builder setNickName:nick];
+//    [builder setAvatar:avatar];
+//    [builder setWord:[drawWord text]];
+//    [builder setLevel:[drawWord level]];
+//    [builder setLanguage:language];
+//    [builder setScore:[drawWord score]];
+//    
+//    if (drawBg != nil){
+//        [builder setDrawBg:drawBg];
+//    }
+//    //TODO save size
+//    
+//    for (DrawAction* drawAction in drawActionList){
+//        PBDrawAction *action = [self buildPBDrawAction:drawAction isCompressed:isCompressed];
+//        [builder addDrawData:action];
+//    }
+//    [builder setVersion:[ConfigManager currentDrawDataVersion]];
+//    [builder setIsCompressed:isCompressed];
+//    
+//    PBDraw* draw = [builder build];        
+//    [builder release];
+//    
+//    return draw;
+//}
 
-- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction isCompressed:(BOOL)isCompressed
-{
-    PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
-    
-    [dataBuilder setType:[drawAction type]];
-    
-    if ([drawAction isShapeAction]) {
-        [dataBuilder setShapeType:drawAction.shapeInfo.type];
-        [dataBuilder addAllRectComponent:[drawAction.shapeInfo rectComponent]];
-
-        // set width
-        CGFloat width = [[drawAction shapeInfo] width];
-        if ([DeviceDetection isIPAD]) {
-            width /= 2;
-        }
-        [dataBuilder setWidth:width];
-        
-        // set color
-        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.shapeInfo.color];
-        [dataBuilder setColor:intColor];
-        
-        // set pen type
-        [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
-        
-    }else{
-        
-        // add points
-        NSArray* pointXList;
-        NSArray* pointYList;
-        
-        NSArray *pointList = [drawAction.paint createNumberPointList:isCompressed pointXList:&pointXList pointYList:&pointYList];
-        
-        if (isCompressed){
-            [dataBuilder addAllPoints:pointList];
-        }
-        else{
-            [dataBuilder addAllPointsX:pointXList];
-            [dataBuilder addAllPointsY:pointYList];
-        }
-        
-        // set width
-        CGFloat width = [[drawAction paint] width];
-        if ([DeviceDetection isIPAD]) {
-            width /= 2;
-        }
-        [dataBuilder setWidth:width];
-        
-        // set color
-        NSInteger intColor = [DrawUtils compressDrawColor:drawAction.paint.color];
-        [dataBuilder setColor:intColor];
-        
-        // set pen type
-        [dataBuilder setPenType:[[drawAction paint] penType]];
-        
-    }
-    
-    PBDrawAction *action = [dataBuilder build];
-    [dataBuilder release];    
-    return action;
-
-}
-
-- (PBDraw*)buildPBDraw:(NSString*)userId
-                  nick:(NSString *)nick
-                avatar:(NSString *)avatar
-        drawActionList:(NSArray*)drawActionList
-              drawWord:(Word*)drawWord
-              language:(LanguageType)language
-                drawBg:(PBDrawBg *)drawBg
-                  size:(CGSize)size
-          isCompressed:(BOOL)isCompressed
-{
-    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
-    [builder setUserId:userId];
-    [builder setNickName:nick];
-    [builder setAvatar:avatar];
-    [builder setWord:[drawWord text]];
-    [builder setLevel:[drawWord level]];
-    [builder setLanguage:language];
-    [builder setScore:[drawWord score]];
-    
-    if (drawBg != nil){
-        [builder setDrawBg:drawBg];
-    }
-    //TODO save size
-    
-    for (DrawAction* drawAction in drawActionList){
-        PBDrawAction *action = [self buildPBDrawAction:drawAction isCompressed:isCompressed];
-        [builder addDrawData:action];
-    }
-    [builder setVersion:[ConfigManager currentDrawDataVersion]];
-    [builder setIsCompressed:isCompressed];
-    
-    PBDraw* draw = [builder build];        
-    [builder release];
-    
-    return draw;
-}
-
-- (void)createOfflineDraw:(NSArray*)drawActionList
+- (void)createOfflineDraw:(NSMutableArray*)drawActionList
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
@@ -261,15 +261,14 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
-    PBDraw* draw = [self buildPBDraw:userId 
-                                nick:nick 
-                              avatar:avatar
-                      drawActionList:drawActionList
-                            drawWord:drawWord 
-                            language:language
-                              drawBg:drawBg
-                                size:size
-                        isCompressed:YES];
+    ;
+    
+    PBDraw* draw = [[[Draw alloc] initWithUserId:userId nickName:nick
+                                          avatar:avatar
+                                  drawActionList:drawActionList
+                                            word:drawWord
+                                          drawBg:drawBg
+                                      canvasSize:size] toPBDraw];
     
     NSData *imageData = nil;
     if (image) {

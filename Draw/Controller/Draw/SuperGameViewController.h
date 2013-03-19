@@ -11,6 +11,7 @@
 #import "DrawGameService.h"
 #import "ShareImageManager.h"
 #import "ChatController.h"
+#import "CanvasRect.h"
 
 #define GAME_TIME 60
 @class AvatarView;

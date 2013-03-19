@@ -16,6 +16,10 @@
 #import "DrawBgManager.h"
 #import "GestureRecognizerManager.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ChangeBackAction.h"
+#import "CleanAction.h"
+#import "PaintAction.h"
+#import "ShapeAction.h"
 
 @interface SuperDrawView : UIControl
 {
@@ -48,8 +52,13 @@
 - (void)cleanAllActions;
 - (void)addDrawAction:(DrawAction *)drawAction;
 
+//add a new draw action
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
-- (void)drawPaint:(Paint *)paint show:(BOOL)show;
+
+//update the last action
+- (void)updateLastAction:(DrawAction *)action show:(BOOL)show;
+
+//- (void)drawPaint:(Paint *)paint show:(BOOL)show;
 
 - (void)setDrawBg:(PBDrawBg *)drawBg;
 - (PBDrawBg *)drawBg;
@@ -57,3 +66,6 @@
 - (void)resetTransform;
 
 @end
+
+
+
