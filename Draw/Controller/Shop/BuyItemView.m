@@ -121,7 +121,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         
     }];
     dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
-    [dialog showInView:[self topRootView]];
+    [dialog showInView:[self PPRootView]];
 }
 
 + (void)showOnlyBuyItemView:(int)itemId
