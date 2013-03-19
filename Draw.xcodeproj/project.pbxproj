@@ -229,7 +229,6 @@
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
 		A4B3B38516EB28E000EBF8DA /* sale_ingot.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */; };
 		A4B3B38616EB28E000EBF8DA /* shop_item.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item.pb */; };
-		A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */; };
 		A4B3B3D816ED7CA400EBF8DA /* app_store@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B3B716ED7CA400EBF8DA /* app_store@2x.png */; };
 		A4B3B3D916ED7CA400EBF8DA /* balance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B3B816ED7CA400EBF8DA /* balance_bg@2x.png */; };
 		A4B3B3DA16ED7CA400EBF8DA /* charge_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B3B916ED7CA400EBF8DA /* charge_bg@2x.png */; };
@@ -967,7 +966,6 @@
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
-		CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
@@ -1514,7 +1512,6 @@
 		CA16BA7C1682FAD900F81B47 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CA16BA7D1682FAD900F81B47 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CA16BA7E1682FAD900F81B47 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CA16BA811682FAD900F81B47 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA16BA871682FAD900F81B47 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA16BA881682FAD900F81B47 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		CA16BA891682FAD900F81B47 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
@@ -2613,7 +2610,6 @@
 		CA16C0021682FAE300F81B47 /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CA16C0031682FAE300F81B47 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CA16C0041682FAE300F81B47 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CA16C0071682FAE300F81B47 /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CA16C00D1682FAE300F81B47 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CA16C00E1682FAE300F81B47 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		CA16C00F1682FAE300F81B47 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
@@ -5562,7 +5558,6 @@
 		CAB5C81516994F0200A4CE3B /* AdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA1AA3E159D78C200504C98 /* AdService.m */; };
 		CAB5C81616994F0200A4CE3B /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		CAB5C81716994F0200A4CE3B /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
-		CAB5C81A16994F0200A4CE3B /* ItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA02B52715AC241800B2A3E2 /* ItemService.m */; };
 		CAB5C81B16994F0200A4CE3B /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
 		CAB5C81C16994F0200A4CE3B /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		CAB5C81D16994F0200A4CE3B /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
@@ -7418,8 +7413,6 @@
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
 		A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = sale_ingot.pb; sourceTree = "<group>"; };
 		A4B3B38416EB28E000EBF8DA /* shop_item.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item.pb; sourceTree = "<group>"; };
-		A4B3B38716EB28FD00EBF8DA /* UserItemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItemInfo.h; sourceTree = "<group>"; };
-		A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItemInfo.m; sourceTree = "<group>"; };
 		A4B3B3B716ED7CA400EBF8DA /* app_store@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_store@2x.png"; sourceTree = "<group>"; };
 		A4B3B3B816ED7CA400EBF8DA /* balance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "balance_bg@2x.png"; sourceTree = "<group>"; };
 		A4B3B3B916ED7CA400EBF8DA /* charge_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "charge_bg@2x.png"; sourceTree = "<group>"; };
@@ -8002,8 +7995,6 @@
 		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
-		CA02B52615AC241800B2A3E2 /* ItemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemService.h; sourceTree = "<group>"; };
-		CA02B52715AC241800B2A3E2 /* ItemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemService.m; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
@@ -12275,10 +12266,6 @@
 				A491A1CA16F44D02003B638F /* CommonItem.m */,
 				A491A1CB16F44D02003B638F /* FlowerItem.h */,
 				A491A1CC16F44D02003B638F /* FlowerItem.m */,
-				A4B3B38716EB28FD00EBF8DA /* UserItemInfo.h */,
-				A4B3B38816EB28FD00EBF8DA /* UserItemInfo.m */,
-				CA02B52615AC241800B2A3E2 /* ItemService.h */,
-				CA02B52715AC241800B2A3E2 /* ItemService.m */,
 				CA16410D16D72452001C615F /* GameItemService.h */,
 				CA16410E16D72452001C615F /* GameItemService.m */,
 				CA16413716D7255D001C615F /* UserGameItemService.h */,
@@ -22370,7 +22357,6 @@
 				CA16BA7C1682FAD900F81B47 /* AdService.m in Sources */,
 				CA16BA7D1682FAD900F81B47 /* UIManager.m in Sources */,
 				CA16BA7E1682FAD900F81B47 /* CustomStatueBar.m in Sources */,
-				CA16BA811682FAD900F81B47 /* ItemService.m in Sources */,
 				CA16BA871682FAD900F81B47 /* UserStatusService.m in Sources */,
 				CA16BA881682FAD900F81B47 /* RecommendApp.m in Sources */,
 				CA16BA891682FAD900F81B47 /* RecommendAppManager.m in Sources */,
@@ -23122,7 +23108,6 @@
 				CA16C0021682FAE300F81B47 /* AdService.m in Sources */,
 				CA16C0031682FAE300F81B47 /* UIManager.m in Sources */,
 				CA16C0041682FAE300F81B47 /* CustomStatueBar.m in Sources */,
-				CA16C0071682FAE300F81B47 /* ItemService.m in Sources */,
 				CA16C00D1682FAE300F81B47 /* UserStatusService.m in Sources */,
 				CA16C00E1682FAE300F81B47 /* RecommendApp.m in Sources */,
 				CA16C00F1682FAE300F81B47 /* RecommendAppManager.m in Sources */,
@@ -23871,7 +23856,6 @@
 				CAA1AA3F159D78C200504C98 /* AdService.m in Sources */,
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
-				CA02B52815AC241800B2A3E2 /* ItemService.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
 				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
 				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
@@ -24329,7 +24313,6 @@
 				CA881A5A16EB278A0085F57B /* ShapeTouchHandler.m in Sources */,
 				CA881A5E16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6216EB278A0085F57B /* TouchHandler.m in Sources */,
-				A4B3B38916EB28FD00EBF8DA /* UserItemInfo.m in Sources */,
 				C28C0A7316EB324500A29B6C /* CacheService.m in Sources */,
 				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
@@ -24640,7 +24623,6 @@
 				CAB5C81516994F0200A4CE3B /* AdService.m in Sources */,
 				CAB5C81616994F0200A4CE3B /* UIManager.m in Sources */,
 				CAB5C81716994F0200A4CE3B /* CustomStatueBar.m in Sources */,
-				CAB5C81A16994F0200A4CE3B /* ItemService.m in Sources */,
 				CAB5C81B16994F0200A4CE3B /* UserStatusService.m in Sources */,
 				CAB5C81C16994F0200A4CE3B /* RecommendApp.m in Sources */,
 				CAB5C81D16994F0200A4CE3B /* RecommendAppManager.m in Sources */,
