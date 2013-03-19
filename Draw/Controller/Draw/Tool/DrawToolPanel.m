@@ -12,7 +12,6 @@
 #import "PenBox.h"
 #import "ColorView.h"
 #import "ShareImageManager.h"
-#import "ItemManager.h"
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"

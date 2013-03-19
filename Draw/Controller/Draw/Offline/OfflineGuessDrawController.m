@@ -25,7 +25,6 @@
 #import "RoomController.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
-#import "ItemManager.h"
 #import "AccountService.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
@@ -38,7 +37,6 @@
 #import "DrawUserInfoView.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
-#import "ItemService.h"
 #import "UIImageExt.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
@@ -421,16 +419,12 @@
 - (void)initPickToolView
 {
     NSMutableArray *array = [NSMutableArray array];
-    ItemManager *itemManager = [ItemManager defaultManager];
-    ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    ToolView *tips = [ToolView tipsViewWithNumber:0];
     tips.tag = TOOLVIEW_TAG_TIPS;
-    ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    ToolView *flower = [ToolView flowerViewWithNumber:0];
     flower.tag = TOOLVIEW_TAG_FLOWER;
-//    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
-//    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
-//    [array addObject:tomato];
     _pickToolView = [[PickToolView alloc] initWithTools:array];
     _pickToolView.hidden = YES;
     _pickToolView.delegate = self;
@@ -462,12 +456,6 @@
     }
 }
 
-
-//- (void)updateBomb
-//{
-//    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
-//}
-//
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang
 {
     self.word = word;
@@ -761,11 +749,6 @@
     [self showAnimationThrowTool:toolView];
     
     // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];
     
     [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
@@ -776,20 +759,6 @@
     }];
 }
 
-//- (void)throwTomato:(ToolView *)toolView
-//{
-//    // throw animation
-//    [self showAnimationThrowTool:toolView];
-//    
-//    // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId 
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];
-//    
-//    [_scene throwATomato];
-//}
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
@@ -909,7 +878,6 @@
             default:
                 break;
         }
-        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

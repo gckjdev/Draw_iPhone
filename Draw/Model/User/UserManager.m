@@ -15,7 +15,6 @@
 #import "ShareImageManager.h"
 #import "StringUtil.h"
 #import "AccountManager.h"
-#import "ItemManager.h"
 #import "GameNetworkConstants.h"
 #import "GameBasic.pb.h"
 #import "SDWebImageManager.h"
@@ -740,16 +739,16 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         [[AccountManager defaultManager] updateBalance:balance.intValue];
     }
     
-    if (items != nil) {
-        for (NSDictionary* itemTypeBalance in items){
-            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
-            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
-            
-            // update DB
-            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
-            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
-        }
-    }
+//    if (items != nil) {
+//        for (NSDictionary* itemTypeBalance in items){
+//            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
+//            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+//            
+//            // update DB
+//            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
+//            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
+//        }
+//    }
     
     [userDefaults synchronize];
 }

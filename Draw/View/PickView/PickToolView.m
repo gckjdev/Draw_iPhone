@@ -8,7 +8,6 @@
 
 #import "PickToolView.h"
 #import "StableView.h"
-#import "ItemManager.h"
 #import "ShareImageManager.h"
 #import "UIButtonExt.h"
 

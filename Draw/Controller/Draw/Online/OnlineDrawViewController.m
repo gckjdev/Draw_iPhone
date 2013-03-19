@@ -35,7 +35,6 @@
 #import "CommonMessageCenter.h"
 #import "FriendRoomController.h"
 #import "GameConstants.h"
-#import "ItemService.h"
 #import "DrawColorManager.h"
 #import "PointNode.h"
 #import "BuyItemView.h"
@@ -245,17 +244,11 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        [self recieveTomato];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeTomato];        
+        [self recieveTomato];     
         
     }else{
         PPDebug(@"%@ give you a flower", userId);
         [self recieveFlower];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeFlower];
     }
     
     

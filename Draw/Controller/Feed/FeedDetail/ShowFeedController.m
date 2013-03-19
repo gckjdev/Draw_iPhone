@@ -18,8 +18,6 @@
 #import "ShareService.h"
 #import "Draw.h"
 #import "StableView.h"
-#import "ItemManager.h"
-#import "ItemService.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 #import "ReplayView.h"
@@ -522,59 +520,8 @@ enum{
     BOOL isFree = [_useItemScene isItemFree:itemId];
     BOOL itemEnough = YES;
     
-//    if (!_feed.isContestFeed && item.amount <= 0 && !isFree) {
-//        itemEnough = NO;
-//        int result = [[AccountService defaultService] buyItem:item.type itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
-//        if (result == ERROR_COINS_NOT_ENOUGH) {
-//            [self showCoinsNotEnoughView];
-//            return;
-//        }
-//    }
-//    [[ItemService defaultService] sendItemAward:item.type
-//                                   targetUserId:_feed.author.userId
-//                                      isOffline:YES
-//                                     feedOpusId:_feed.feedId
-//                                     feedAuthor:_feed.author.userId
-//                                        forFree:isFree];
-//    
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-//    if (item.type == ItemTypeFlower) {
-//        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.flowerButton.frame] autorelease];
-//        [throwItem setImage:[imageManager flower]];
-//        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-//            [self clickRefresh:nil];
-//        }];
-//        [_commentHeader setSeletType:CommentTypeFlower];
-//        [self.feed increaseLocalFlowerTimes];
-//    }else{
-//        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-//        [throwItem setImage:[imageManager tomato]];
-//        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-//            [self clickRefresh:nil];
-//        }];
-//        [_commentHeader setSeletType:CommentTypeTomato];
-//        [self.feed increaseLocalTomatoTimes];
-//    }
-    
-//    int itemAmount = [[UserGameItemManager defaultManager] countOfItem:itemId];
-//    if (!_feed.isContestFeed && itemAmount <= 0 && !isFree) {
-//
-//        __block typeof (self) bself = self;
-//        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
-//        [[UserGameItemService defaultService] buyItem:item count:1 handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-//            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-//                [bself showCoinsNotEnoughView];
-//            }            
-//            else if (resultCode == 0) {
-//                [bself showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
-//            }
-//        }];
-//    }else{
-//        [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
-//    }
     
     [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
-
 }
 
 

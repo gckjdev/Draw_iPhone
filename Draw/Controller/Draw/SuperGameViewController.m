@@ -19,7 +19,6 @@
 #import "ExpressionManager.h"
 #import "GameMessage.pb.h"
 #import "DrawGameAnimationManager.h"
-#import "ItemManager.h"
 #import "LevelService.h"
 #import "AccountManager.h"
 #import "CommonMessageCenter.h"
