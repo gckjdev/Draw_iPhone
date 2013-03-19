@@ -175,6 +175,8 @@
 @class PBSaleIngot_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBUserBasicInfo;
+@class PBUserBasicInfo_Builder;
 @class PBUserDice;
 @class PBUserDice_Builder;
 @class PBUserItem;

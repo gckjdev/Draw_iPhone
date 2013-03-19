@@ -30,6 +30,7 @@
 - (void)dealloc
 {
     PPRelease(_drawBg);
+    PPRelease(_drawToUser);
     [super dealloc];
 }
 
@@ -116,9 +117,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        PBNoCompressDrawData* drawData = [DrawAction drawActionListToPBNoCompressDrawData:arrayList
-                                                                                 pbdrawBg:cp.drawBg
-                                                                                     size:CGSizeZero];
+        PBNoCompressDrawData *drawData = [DrawAction pbNoCompressDrawDataFromDrawActionList:arrayList
+                                                                                   pbdrawBg:cp.drawBg
+                                                                                       size:cp.canvasSize
+                                                                                 drawToUser:cp.drawToUser];
+        
         NSData* data = [drawData data];
 
         PPDebug(@"<backup> file path=%@", dataPath);

@@ -19,6 +19,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Draw.pb.h"
 #import "DrawAction.h"
+#import "CanvasRect.h"
+
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -484,6 +486,11 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             paint.drawDataVersion = nDraw.version;
             if ([nDraw hasDrawBg]) {
                 paint.drawBg = nDraw.drawBg;
+            }
+            if (![nDraw hasCanvasSize]) {
+                paint.canvasSize = [CanvasRect deprecatedRect].size;
+            }else{
+                paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
             }
             return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw];
         }else if ([self saveDataAsPBDraw:paint]) {

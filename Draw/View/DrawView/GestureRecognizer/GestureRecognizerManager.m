@@ -17,6 +17,7 @@
     CGFloat lastRadian;
     BOOL lastDirection;
     NSMutableSet *grSet;
+    BOOL _canMove;
 //    BOOL notScale;
 }
 
@@ -55,7 +56,13 @@
 
 - (BOOL)canMoveView:(UIView *)view
 {
-    return !CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity);
+//    return !CGAffineTransformEqualToTransform(view.transform, CGAffineTransformIdentity);
+    CGRect bounds = view.superview.bounds;
+    CGRect frame = view.frame;
+    if (CGRectGetWidth(frame) <= CGRectGetWidth(bounds)+1 && CGRectGetHeight(frame) <= CGRectGetHeight(bounds) + 1) {
+        return NO;
+    }
+    return YES;
 }
 
 - (UIPanGestureRecognizer *)addPanGestureReconizerToView:(UIView *)view
@@ -185,9 +192,7 @@
     
     CGFloat kMaxScale = sDrawView.maxScale;
     CGFloat kMinScale = sDrawView.minScale;
-    CGFloat kSpeed = 0.75;
 
-    
     
     
     if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
@@ -231,6 +236,10 @@
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gestureRecognizer {
     
     [self stateCallBack:gestureRecognizer];
+    
+    if (!_canMove) {
+        return;
+    }
     
     UIView *myView = [gestureRecognizer view];
     
@@ -287,7 +296,7 @@
 
         frame.origin = origin;
         view.frame = frame;
-
+        _canMove = [self canMoveView:view];
     }
     PPDebug(@"<adjustView> frame = %@",NSStringFromCGRect(view.frame));
     [UIView commitAnimations];
@@ -314,9 +323,9 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
-        return NO;
-    }
+//    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+//        return NO;
+//    }
     return YES;
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -324,9 +333,9 @@
     if (!self.capture) {
         return NO;
     }
-    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
-        return NO;
-    }
+//    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
+//        return NO;
+//    }
     return YES;
 }
 @end

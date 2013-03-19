@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "Draw.pb.h"
 #import "DrawUtils.h"
-#import "ShapeAction.h"
-#import "CleanAction.h"
-#import "PaintAction.h"
-#import "ChangeBackAction.h"
+//#import "ShapeAction.h"
+//#import "CleanAction.h"
+//#import "PaintAction.h"
+//#import "ChangeBackAction.h"
 
 //#import "ItemType.h"
 //#import "ShapeInfo.h"
@@ -41,6 +41,7 @@ typedef enum {
 
 
 @property(nonatomic, assign)DrawActionType type;
+@property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
 /*
 @property (nonatomic, assign) DrawActionType type;
 @property (nonatomic, retain) Paint *paint;
@@ -91,6 +92,12 @@ typedef enum {
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
 
++ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
+
++ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
+                                                        pbdrawBg:(PBDrawBg *)drawBg
+                                                            size:(CGSize)size
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser;
 
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
@@ -101,6 +108,8 @@ typedef enum {
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
 
+- (NSUInteger)pointCount;
+- (void)finishAddPoint;
 @end
 
 

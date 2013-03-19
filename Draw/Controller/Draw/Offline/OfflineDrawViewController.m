@@ -112,6 +112,8 @@
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
+@property (assign, nonatomic) CGRect canvasRect;
+
 - (void)initDrawView;
 
 - (void)saveDraft:(BOOL)showResult;
@@ -291,7 +293,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 1132, 700)];
+    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -481,26 +483,6 @@
 #pragma mark - Common Dialog Delegate
 
 
-- (ShowFeedController *)superShowFeedController
-{
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[ShowFeedController class]]) {
-            return (ShowFeedController *)controller;
-        }
-    }
-    return nil;
-}
-
-
-- (ShareController *)superShareController
-{
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[ShareController class]]) {
-            return (ShareController *)controller;
-        }
-    }
-    return nil;
-}
 
 - (ContestController *)superContestController
 {
@@ -730,9 +712,11 @@
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-//    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList pbdrawBg:drawView.drawBg size:drawView.frame.size];
-//    PPRelease(temp);
+    //TODO Edith the draw to User
+    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
+                                                                           pbdrawBg:drawView.drawBg
+                                                                               size:drawView.frame.size
+                                                                         drawToUser:nil];
     return data;
 }
 
@@ -823,12 +807,12 @@
 }
 
 
-- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
-{
-    return  [DrawAction scaleActionList:drawActionList
-                                 xScale:1.0 / IPAD_WIDTH_SCALE
-                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
-}
+//- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
+//{
+//    return  [DrawAction scaleActionList:drawActionList
+//                                 xScale:1.0 / IPAD_WIDTH_SCALE
+//                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
+//}
 
 // TODO move to common
 - (void)showProgressView
@@ -970,7 +954,7 @@
 
     [self stopRecovery];
 
-    BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
+    BOOL isBlank = ([drawView.drawActionList count] == 0);
     
     if (isBlank) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];

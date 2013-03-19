@@ -180,30 +180,21 @@
             drawFeed.drawImage = nil;
         }else if(image){
             [self.drawImageView setImage:image];
-        }else {//if(drawFeed.drawData){
-//            [drawFeed ]
-            [self cleanShowView];
-            [drawFeed parseDrawData];
-            Draw *draw = drawFeed.drawData;
-            CGRect normalFrame = DRAW_VIEW_FRAME;
-            CGRect currentFrame = self.drawImageView.frame;
-
-            CGFloat xScale = currentFrame.size.width / normalFrame.size.width;
-            CGFloat yScale = currentFrame.size.height / normalFrame.size.height;        
-            self.showView = [[[ShowDrawView alloc] initWithFrame:self.drawImageView.frame] autorelease];
-            self.showView.drawActionList = [DrawAction scaleActionList:draw.drawActionList xScale:xScale yScale:yScale];
-            [self addSubview:self.showView];
-            [self.showView show];
-            drawFeed.drawImage = [self.showView createImage];
-
-            [self.drawImageView setImage:drawFeed.drawImage];
+        }else {
             
-            [self cleanShowView];
-
-            drawFeed.drawData = nil;
-
-            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] largeImage:drawFeed.drawImage];
-
+            //TODO Show View with Data
+//            [self cleanShowView];
+//            [self addSubview:self.showView];
+//            [self.showView show];
+//            drawFeed.drawImage = [self.showView createImage];
+//
+//            [self.drawImageView setImage:drawFeed.drawImage];
+//            
+//            [self cleanShowView];
+//
+//            drawFeed.drawData = nil;
+//
+//            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] largeImage:drawFeed.drawImage];
         }
     }
 }

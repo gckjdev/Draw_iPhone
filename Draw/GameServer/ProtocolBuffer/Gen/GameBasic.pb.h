@@ -34,6 +34,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBUserBasicInfo;
+@class PBUserBasicInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -1185,6 +1187,81 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) newMessageCount;
 - (PBMessageStat_Builder*) setNewMessageCount:(int32_t) value;
 - (PBMessageStat_Builder*) clearNewMessageCount;
+@end
+
+@interface PBUserBasicInfo : PBGeneratedMessage {
+@private
+  BOOL hasUserId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasGender_:1;
+  NSString* userId;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* gender;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasNickName;
+- (BOOL) hasAvatar;
+- (BOOL) hasGender;
+@property (readonly, retain) NSString* userId;
+@property (readonly, retain) NSString* nickName;
+@property (readonly, retain) NSString* avatar;
+@property (readonly, retain) NSString* gender;
+
++ (PBUserBasicInfo*) defaultInstance;
+- (PBUserBasicInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserBasicInfo_Builder*) builder;
++ (PBUserBasicInfo_Builder*) builder;
++ (PBUserBasicInfo_Builder*) builderWithPrototype:(PBUserBasicInfo*) prototype;
+
++ (PBUserBasicInfo*) parseFromData:(NSData*) data;
++ (PBUserBasicInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserBasicInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserBasicInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserBasicInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserBasicInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserBasicInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserBasicInfo* result;
+}
+
+- (PBUserBasicInfo*) defaultInstance;
+
+- (PBUserBasicInfo_Builder*) clear;
+- (PBUserBasicInfo_Builder*) clone;
+
+- (PBUserBasicInfo*) build;
+- (PBUserBasicInfo*) buildPartial;
+
+- (PBUserBasicInfo_Builder*) mergeFrom:(PBUserBasicInfo*) other;
+- (PBUserBasicInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserBasicInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBUserBasicInfo_Builder*) setUserId:(NSString*) value;
+- (PBUserBasicInfo_Builder*) clearUserId;
+
+- (BOOL) hasNickName;
+- (NSString*) nickName;
+- (PBUserBasicInfo_Builder*) setNickName:(NSString*) value;
+- (PBUserBasicInfo_Builder*) clearNickName;
+
+- (BOOL) hasAvatar;
+- (NSString*) avatar;
+- (PBUserBasicInfo_Builder*) setAvatar:(NSString*) value;
+- (PBUserBasicInfo_Builder*) clearAvatar;
+
+- (BOOL) hasGender;
+- (NSString*) gender;
+- (PBUserBasicInfo_Builder*) setGender:(NSString*) value;
+- (PBUserBasicInfo_Builder*) clearGender;
 @end
 
 @interface PBUserResult : PBGeneratedMessage {

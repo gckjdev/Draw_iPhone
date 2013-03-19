@@ -10,7 +10,7 @@
 
 @interface ShapeTouchHandler()
 {
-    DrawAction *action;
+    ShapeAction *action;
 }
 
 @end
@@ -47,20 +47,20 @@
         case TouchStateBegin:
         {
             handleFailed = NO;
+            ShapeInfo *shape = nil;
             if (!action) {
-                ShapeInfo *shape = [ShapeInfo shapeWithType:self.drawView.shapeType
+                shape = [ShapeInfo shapeWithType:self.drawView.shapeType
                                                     penType:self.drawView.penType
                                                       width:self.drawView.lineWidth
                                                        color:self.drawView.lineColor];
-                action = [[DrawAction actionWithShpapeInfo:shape] retain];
-                action.shapeInfo.startPoint  = point;
-                action.shapeInfo.endPoint = point;
-                [self.osManager addDrawAction:action];
+                action = [[ShapeAction shapeActionWithShape:shape] retain];
+                shape.startPoint = shape.endPoint = point;
+                [self.drawView drawDrawAction:action show:YES];
             }else{
-                action.shapeInfo.startPoint  = point;
-                action.shapeInfo.endPoint = point;
-                [self.osManager updateLastAction:action];
+                shape.startPoint = shape.endPoint = point;
+                [self.drawView updateLastAction:action show:YES];
             }
+            
             break;
         }
             
@@ -70,20 +70,19 @@
             if (handleFailed) {
                 return;
             }
-            action.shapeInfo.endPoint = point;
-            [self.osManager updateLastAction:action];
+            [action addPoint:point inRect:self.drawView.bounds];
+            [self.drawView updateLastAction:action show:YES];
             break;
         }
         default:
             break;
     }
-    [self.drawView setNeedsDisplayInRect:action.shapeInfo.redrawRect];
+
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
         if (action) {
             [self.drawView clearRedoStack];
         }
-
         [self reset];
     }
 }

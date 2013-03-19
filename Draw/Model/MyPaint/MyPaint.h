@@ -40,7 +40,7 @@
 
 @property (nonatomic, assign) NSInteger drawDataVersion;
 @property (nonatomic, retain) PBDrawBg *drawBg;
-
+@property (nonatomic, assign) CGSize canvasSize;
 - (void)updateDrawData;
 
 @end

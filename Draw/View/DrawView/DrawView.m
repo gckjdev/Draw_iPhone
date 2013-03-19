@@ -16,6 +16,7 @@
 #import "DrawTouchHandler.h"
 #import "ShapeTouchHandler.h"
 #import "DrawUtils.h"
+#import "DrawAction.h"
 
 #define MAX_POINT_COUNT 5
 
@@ -53,8 +54,8 @@
     NSInteger count = [self.drawActionList count];
     for (NSInteger i = count - 1; i >= 0; -- i) {
         DrawAction *action = [self.drawActionList objectAtIndex:i];
-        if ([action isChangeBackAction]) {
-            self.bgColor = action.paint.color;
+        if ([action isKindOfClass:[ChangeBackAction class]]) {
+            self.bgColor = [(ChangeBackAction *)action color];
             return;
         }
     }
@@ -75,7 +76,7 @@
 - (void)clearScreen
 {
     [self clearRedoStack];
-    DrawAction *cleanAction = [DrawAction clearScreenAction];
+    DrawAction *cleanAction = [[[CleanAction alloc] init] autorelease];
     [self.drawActionList addObject:cleanAction];
     [osManager addDrawAction:cleanAction];
     [self drawDrawAction:cleanAction show:YES];
@@ -84,7 +85,7 @@
 - (void)changeBackWithColor:(DrawColor *)color
 {
     [self clearRedoStack];
-    DrawAction *changBackAction = [DrawAction changeBackgroundActionWithColor:color];
+    DrawAction *changBackAction = [[ChangeBackAction alloc] initWithColor:color];
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
@@ -294,8 +295,8 @@
             [osManager addDrawAction:action];
             [self setNeedsDisplay];
 //            [self printOSInfoWithTag:@"<Redo> after"];
-            if ([action isChangeBackAction]) {
-                self.bgColor = [action.paint color];
+            if ([action isKindOfClass:[ChangeBackAction class]]) {
+                self.bgColor = [(ChangeBackAction *)action color];
             }
         }        
     }
@@ -313,6 +314,8 @@
     if (draft.drawBg) {
         [self setDrawBg: draft.drawBg];
     }
+    CGSize size = draft.canvasSize;
+    self.frame = CGRectMake(0, 0, size.width, size.height);
     [self synBGColor];
     [self show];
 }

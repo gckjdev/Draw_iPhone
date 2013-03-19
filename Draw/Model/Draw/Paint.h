@@ -16,70 +16,51 @@
 @class DrawColor;
 @class GameMessage;
 @class PointNode;
+@class PBDrawAction_Builder;
 
-//CGPoint midPoint(CGPoint p1, CGPoint p2);
+@protocol DrawPenProtocol;
 
-//#define POINT_COUNT        3
-//#define POINT_COUNT        5
 
 @interface Paint : NSObject <NSCoding>
 {
     CGFloat _width;
     DrawColor *_color;
-//    NSMutableArray *_pointList;
     ItemType _penType;
     
     id<PenEffectProtocol> _pen;
     
-    // to be removed
-//    CGMutablePathRef _path;
-//    CGMutablePathRef _pathToShow;
-//    CGPoint pts[10];
-//    int     ptsCount;
-//    BOOL    ptsComplete;
 }
 @property(nonatomic, assign)CGFloat width;
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, retain)DrawColor* color;
-//@property(nonatomic,retain)NSMutableArray *pointList;
 @property(nonatomic, retain)NSMutableArray *pointNodeList;
-
 @property(nonatomic,retain)id<PenEffectProtocol> pen;
-
+@property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             penType:(ItemType)penType
           pointList:(NSMutableArray *)pointNodeList;
 
-- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color;
-- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList;
-
-- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type;
-- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(ItemType)type;
-
++ (id)paintWithWidth:(CGFloat)width
+               color:(DrawColor *)color
+             penType:(ItemType)penType
+           pointList:(NSMutableArray *)pointNodeList;
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
-- (void)addPoint:(CGPoint)point;
+#pragma mark- get && add point methods
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 - (void)finishAddPoint;
-
 - (CGPoint)pointAtIndex:(NSInteger)index;
 - (NSInteger)pointCount;
 
+#pragma mark- path && draw methods
 - (CGPathRef)path;
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
 
-+ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color;
-+ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type;
-
-//- (CGMutablePathRef)getPath;
-//- (CGMutablePathRef)getPathForShow;
-//- (CGRect)rectForPath;
-
-//- (void)clearPath;
-//- (void)releasePathToShow;
-- (NSMutableArray *)createNumberPointList:(BOOL)isCompressed pointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList;
-
+//- (NSMutableArray *)createPointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList;
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 
 
 @end

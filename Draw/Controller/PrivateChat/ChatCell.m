@@ -16,6 +16,8 @@
 #import "TimeUtils.h"
 #import "MessageStat.h"
 
+#import "CanvasRect.h"
+
 @interface ChatCell()
 
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList 
@@ -84,19 +86,14 @@
 
 - (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
 {
-    ShowDrawView *showDrawView = [[[ShowDrawView alloc] init] autorelease];
-    showDrawView.frame = CGRectMake(0, 0, scale * DRAW_VIEW_FRAME.size.width, scale * DRAW_VIEW_FRAME.size.height);
-    NSMutableArray *scaleActionList = nil;
-    if ([DeviceDetection isIPAD]) {
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:IPAD_WIDTH_SCALE*scale 
-                                               yScale:IPAD_HEIGHT_SCALE*scale];
-    } else {
-        scaleActionList = [DrawAction scaleActionList:drawActionList 
-                                               xScale:scale 
-                                               yScale:scale];
+    ShowDrawView *showDrawView = [[[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]] autorelease];
+    
+    if ([drawActionList isKindOfClass:[NSMutableArray class]]) {
+        [showDrawView setDrawActionList:(NSMutableArray *)drawActionList];
+    }else{
+        [showDrawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
     }
-    [showDrawView setDrawActionList:scaleActionList]; 
+    
     [showDrawView setShowPenHidden:YES];
     
     return showDrawView;

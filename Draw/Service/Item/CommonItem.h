@@ -21,8 +21,10 @@
 
 @interface CommonItem : NSObject
 {
-    
+//    ConsumeItemResultHandler handler;
 }
 //@property (assign, nonatomic) ConsumeItemResultHandler handler;
+
+//- (void)setHandler:(ConsumeItemResultHandler)handler;
 
 @end

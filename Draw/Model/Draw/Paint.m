@@ -9,32 +9,24 @@
 #import "Paint.h"
 #import "DrawUtils.h"
 #import "GameMessage.pb.h"
-#import "DeviceDetection.h"
 #import "PenFactory.h"
 #import "PointNode.h"
-#import "OnlineDrawViewController.h"
+#import "CanvasRect.h"
+#import "DrawPenFactory.h"
+//#import "DrawPenProtocol.h"
 
-CGPoint midPoint(CGPoint p1, CGPoint p2)
+
+@interface Paint()
 {
-//    if (CGPointEqualToPoint(p1, p2)) {
-//        return p1;
-//    }
-//    
-//    double a = atan((p1.y-p2.y)/(p1.x-p2.x));
-//    double L = sqrt(pow((p1.y-p2.y), 2) + pow((p1.x-p2.x), 2));
-//    double x = p2.x + L * cos(a+M_1_PI/6.);
-//    double y = p2.y + L * sin(a+M_1_PI/6.);
-//    CGPoint point = CGPointMake(x, y);
-//    PPDebug(@"P1:%@, P2:%@, => P%@", NSStringFromCGPoint(p1), NSStringFromCGPoint(p2), NSStringFromCGPoint(point));
-//    return point;
     
-    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
 }
+
+
+@end
 
 @implementation Paint
 @synthesize width = _width;
 @synthesize color = _color;
-//@synthesize pointList = _pointList;
 @synthesize penType = _penType;
 @synthesize pointNodeList = _pointNodeList;
 
@@ -107,47 +99,22 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         self.width = width;
         self.color = color;
         self.penType = penType;
-        self.pointNodeList = pointNodeList;
-    }
-    return self;
-}
-
-
-- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList
-{
-    self = [super init];
-    if (self) {
-        if ([DeviceDetection isIPAD]) {
-            self.width = width * 2;            
+        if (pointNodeList == nil) {
+            self.pointNodeList = [NSMutableArray array];
         }else{
-            self.width = width;
-        }
-        self.color = [DrawUtils decompressIntDrawColor:color];
-        _pointNodeList = [[NSMutableArray alloc] init];
-        for (NSNumber *pointNumber in numberPointList) {
-            CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
-            if (ISIPAD) {
-                point.x = point.x * IPAD_WIDTH_SCALE;
-                point.y = point.y * IPAD_HEIGHT_SCALE;
-            }
-            [self addPoint:point];
+            self.pointNodeList = pointNodeList;
         }
     }
     return self;
 }
 
-- (id)initWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type
-{
-    self = [self initWithWidth:width color:color];
-    self.penType = type;
-    return self;
-}
 
-- (id)initWithWidth:(CGFloat)width intColor:(NSInteger)color numberPointList:(NSArray *)numberPointList penType:(ItemType)type
++ (id)paintWithWidth:(CGFloat)width
+               color:(DrawColor *)color
+             penType:(ItemType)penType
+           pointList:(NSMutableArray *)pointNodeList
 {
-    self = [self initWithWidth:width intColor:color numberPointList:numberPointList];
-    self.penType = type;
-    return self;
+    return [[Paint alloc] initWithWidth:width color:color penType:penType pointList:pointNodeList];
 }
 
 
@@ -158,36 +125,22 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         NSInteger intColor = [[gameMessage notification] color];
         CGFloat lineWidth = [[gameMessage notification] width];        
         NSArray *pointList = [[gameMessage notification] pointsList];
-        if ([DeviceDetection isIPAD]) {
-            self.width = lineWidth * 2;
-        }else{
-            self.width = lineWidth;
-        }
+        self.width = lineWidth;
+
         self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
         _pointNodeList = [[NSMutableArray alloc] init];
         for (NSNumber *pointNumber in pointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
-            if ([DeviceDetection isIPAD]) {
-                point.x = point.x * IPAD_WIDTH_SCALE;
-                point.y = point.y * IPAD_HEIGHT_SCALE;
-            }
-            [self addPoint:point];
+
+            //this may be wrong, need test.... By Gamy
+            [self addPoint:point inRect:[CanvasRect defaultRect]];
         }
     }
     return self;
 }
-+ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color
-{
-    return [[[Paint alloc] initWithWidth:width color:color]autorelease];
-}
 
-+ (Paint *)paintWithWidth:(CGFloat)width color:(DrawColor*)color penType:(ItemType)type
-{
-    return [[[Paint alloc] initWithWidth:width color:color penType:type] autorelease];
-}
-
-#define RECT_SPAN_WIDTH 2
+#define RECT_SPAN_WIDTH 10
 - (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
 {
     rect.origin.x -= RECT_SPAN_WIDTH;
@@ -203,10 +156,9 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     return self.width > (BACK_GROUND_WIDTH/10);
 }
 
-- (void)addPoint:(CGPoint)point
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
-    /*
-    CGRect rect = DRAW_VIEW_RECT;
+
     if (!CGRectContainsPoint(rect, point) && ![self isChangeBGPaint]){
         //add By Gamy
         //we can change point(304.1,320.4) to point(304,320)
@@ -217,13 +169,14 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
         }
         point.x = MAX(point.x, 0);
         point.y = MAX(point.y, 0);
-        point.x = MIN(point.x, DRAW_VIEW_WIDTH);
-        point.y = MIN(point.y, DRAW_VIEW_HEIGHT);
+        point.x = MIN(point.x, CGRectGetWidth(rect));
+        point.y = MIN(point.y, CGRectGetHeight(rect));
     }
-    */
-    [[self getPen] addPointIntoPath:point];    
+    
+    [[self getPen] addPointIntoPath:point];
     [self.pointNodeList addObject:[PointNode pointWithCGPoint:point]];
 }
+
 
 - (CGPathRef)path
 {
@@ -233,6 +186,24 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     }
     
     return [pen penPath];
+}
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    if (self.drawPen == nil) {
+        self.drawPen = [DrawPenFactory createDrawPen:self.penType];
+    }
+    CGContextSaveGState(context);
+    
+    [self.drawPen updateCGContext:context paint:self];
+    CGPathRef path = self.path;
+    CGContextAddPath(context, path);
+    CGContextStrokePath(context);
+    
+    CGContextRestoreGState(context);
+    CGRect r = [DrawUtils rectForPath:path withWidth:self.width bounds:rect];
+    return r;
+    
 }
 
 - (void)finishAddPoint
@@ -255,44 +226,38 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 
-- (NSMutableArray *)createNumberPointList:(BOOL)isCompressed pointXList:(NSArray**)pointXList pointYList:(NSArray**)pointYList
+- (void)createPointXList:(NSMutableArray**)pointXList pointYList:(NSMutableArray**)pointYList
 {
-    if (self.pointCount == 0) {
-        return nil;
-    }
-    NSMutableArray *pointList = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableArray *retPointXList = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableArray *retPointYList = [[[NSMutableArray alloc] init] autorelease];
-    for (PointNode *point in self.pointNodeList) {
-        if (isCompressed){
-            NSInteger value = 0;
-            if (ISIPAD) {
-                value = [point toCompressPointWithXScale:1/IPAD_WIDTH_SCALE yScale:1/IPAD_HEIGHT_SCALE];
-            }else{
-                value = [point toCompressPoint];
-            }
-            NSNumber *number = [NSNumber numberWithInt:value];
-            [pointList addObject:number];
-        }
-        else{
-            [retPointXList addObject:@(point.point.x)];
-            [retPointYList addObject:@(point.point.y)];
+    if (self.pointCount != 0) {
+        *pointXList = [[[NSMutableArray alloc] init] autorelease];
+        *pointYList = [[[NSMutableArray alloc] init] autorelease];
+        for (PointNode *point in self.pointNodeList) {
+            [*pointXList addObject:@(point.point.x)];
+            [*pointYList addObject:@(point.point.y)];
         }
     }
-    
-//    *pointXList = retPointXList;
-//    *pointYList = retPointYList;
-    return pointList;
+}
+
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+{
+    if ([self.pointNodeList count] != 0) {
+        NSMutableArray *pointXList = nil;
+        NSMutableArray *pointYList = nil;
+        [self createPointXList:&pointXList pointYList:&pointYList];
+        [builder addAllPointsX:pointXList];
+        [builder addAllPointsY:pointYList];
+    }
+    [builder setBetterColor:[self.color toBetterCompressColor]];
+    [builder setPenType:self.penType];
+    [builder setWidth:self.width];
 }
 
 - (void)dealloc
 {
-//    PPDebug(@"<dealloc> %@", [self description]);
-
-//    PPRelease(_pointList);
     PPRelease(_color);
     PPRelease(_pen);
     PPRelease(_pointNodeList);
+    PPRelease(_drawPen);
     [super dealloc];
 }
 @end

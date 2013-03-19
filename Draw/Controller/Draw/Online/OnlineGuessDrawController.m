@@ -41,6 +41,7 @@
 #import "DrawSoundManager.h"
 #import "AccountService.h"
 #import "Item.h"
+#import "CanvasRect.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -514,14 +515,15 @@
 - (void)didReceiveDrawData:(GameMessage *)message
 {
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+//    DrawAction *action = [DrawAction actionWithType:DrawActionTypePaint paint:paint];
+    PaintAction *action = [PaintAction paintActionWithPaint:paint];
     [showView addDrawAction:action play:YES];
     [paint release];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    DrawAction *action = [[[CleanAction alloc] init] autorelease];
     [showView addDrawAction:action play:YES];
     
 }
@@ -781,7 +783,7 @@
 
 - (void)initShowView
 {
-    CGRect frame = DRAW_VIEW_FRAME;
+    CGRect frame = [CanvasRect defaultRect];
 //    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     showView = [[ShowDrawView alloc] initWithFrame:frame];
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];

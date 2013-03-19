@@ -11,7 +11,7 @@
 #import "FlowerItem.h"
 
 @interface CommonItem()
-//@property (assign, nonatomic) ConsumeItemResultHandler handler;
+@property (assign, nonatomic) ConsumeItemResultHandler handler;
 
 @end
 

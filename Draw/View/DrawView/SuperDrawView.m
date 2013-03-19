@@ -94,7 +94,7 @@
 
 - (BOOL)isViewBlank
 {
-    return [DrawAction isDrawActionListBlank:self.drawActionList];
+    return [self.drawActionList count] == 0;
 }
 
 
@@ -106,13 +106,22 @@
 }
 
 
-- (void)drawPaint:(Paint *)paint show:(BOOL)show
+//- (void)drawPaint:(Paint *)paint show:(BOOL)show
+//{
+//    CGRect rect = [osManager updateLastPaint:paint];
+//    if (show) {
+//        [self setNeedsDisplayInRect:rect];
+//    }
+//}
+
+- (void)updateLastAction:(DrawAction *)action show:(BOOL)show
 {
-    CGRect rect = [osManager updateLastPaint:paint];
+    CGRect rect = [osManager updateLastAction:action];
     if (show) {
         [self setNeedsDisplayInRect:rect];
     }
 }
+
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
 {
     CGRect rect = [osManager addDrawAction:drawAction];

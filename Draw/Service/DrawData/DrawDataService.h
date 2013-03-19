@@ -72,24 +72,9 @@
                   size:(CGSize)size
           isCompressed:(BOOL)isCompressed;
 
-// save draw data locally
-//- (void)saveActionList:(NSArray *)actionList 
-//                userId:(NSString*)userId 
-//              nickName:(NSString*)nickName 
-//             isMyPaint:(BOOL)isMyPaint
-//                  word:(NSString*)word
-//                 image:(UIImage*)image
-//        delegate:(id<DrawDataServiceDelegate>)delegate;
 
 - (void)savePaintWithPBDraw:(PBDraw*)pbDraw
              image:(UIImage*)image
           delegate:(id<DrawDataServiceDelegate>)delegate;
-
-//                userId:(NSString*)userId
-//              nickName:(NSString*)nickName
-//             isMyPaint:(BOOL)isMyPaint
-//                  word:(NSString*)word
-
-
 
 @end

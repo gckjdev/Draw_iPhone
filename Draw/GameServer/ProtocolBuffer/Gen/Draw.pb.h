@@ -73,6 +73,8 @@
 @class PBSaleIngot_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBUserBasicInfo;
+@class PBUserBasicInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;
@@ -931,6 +933,7 @@
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
   BOOL hasColor_:1;
+  BOOL hasCanvasSize_:1;
   BOOL hasRgbColor_:1;
   Float32 width;
   Float32 red;
@@ -941,6 +944,7 @@
   int32_t penType;
   int32_t shapeType;
   PBColor* color;
+  PBSize* canvasSize;
   int32_t rgbColor;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointXList;
@@ -952,6 +956,7 @@
 - (BOOL) hasWidth;
 - (BOOL) hasPenType;
 - (BOOL) hasShapeType;
+- (BOOL) hasCanvasSize;
 - (BOOL) hasRgbColor;
 - (BOOL) hasRed;
 - (BOOL) hasBlue;
@@ -962,6 +967,7 @@
 @property (readonly) Float32 width;
 @property (readonly) int32_t penType;
 @property (readonly) int32_t shapeType;
+@property (readonly, retain) PBSize* canvasSize;
 @property (readonly) int32_t rgbColor;
 @property (readonly) Float32 red;
 @property (readonly) Float32 blue;
@@ -1051,6 +1057,13 @@
 - (PBNoCompressDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
 - (PBNoCompressDrawAction_Builder*) clearRectComponentList;
 
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBNoCompressDrawAction_Builder*) setCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawAction_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBNoCompressDrawAction_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawAction_Builder*) clearCanvasSize;
+
 - (NSArray*) pointXList;
 - (Float32) pointXAtIndex:(int32_t) index;
 - (PBNoCompressDrawAction_Builder*) replacePointXAtIndex:(int32_t) index with:(Float32) value;
@@ -1095,16 +1108,27 @@
 @private
   BOOL hasVersion_:1;
   BOOL hasDrawBg_:1;
+  BOOL hasCanvasSize_:1;
+  BOOL hasDrawToUser_:1;
   int32_t version;
   PBDrawBg* drawBg;
+  PBSize* canvasSize;
+  PBUserBasicInfo* drawToUser;
   NSMutableArray* mutableDrawActionListList;
+  NSMutableArray* mutableDrawActionList2List;
 }
 - (BOOL) hasVersion;
 - (BOOL) hasDrawBg;
+- (BOOL) hasCanvasSize;
+- (BOOL) hasDrawToUser;
 @property (readonly) int32_t version;
 @property (readonly, retain) PBDrawBg* drawBg;
+@property (readonly, retain) PBSize* canvasSize;
+@property (readonly, retain) PBUserBasicInfo* drawToUser;
 - (NSArray*) drawActionListList;
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
+- (NSArray*) drawActionList2List;
+- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
 
 + (PBNoCompressDrawData*) defaultInstance;
 - (PBNoCompressDrawData*) defaultInstance;
@@ -1158,6 +1182,27 @@
 - (PBNoCompressDrawData_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue;
 - (PBNoCompressDrawData_Builder*) mergeDrawBg:(PBDrawBg*) value;
 - (PBNoCompressDrawData_Builder*) clearDrawBg;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBNoCompressDrawData_Builder*) setCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawData_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBNoCompressDrawData_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBNoCompressDrawData_Builder*) clearCanvasSize;
+
+- (NSArray*) drawActionList2List;
+- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
+- (PBNoCompressDrawData_Builder*) replaceDrawActionList2AtIndex:(int32_t) index with:(PBDrawAction*) value;
+- (PBNoCompressDrawData_Builder*) addDrawActionList2:(PBDrawAction*) value;
+- (PBNoCompressDrawData_Builder*) addAllDrawActionList2:(NSArray*) values;
+- (PBNoCompressDrawData_Builder*) clearDrawActionList2List;
+
+- (BOOL) hasDrawToUser;
+- (PBUserBasicInfo*) drawToUser;
+- (PBNoCompressDrawData_Builder*) setDrawToUser:(PBUserBasicInfo*) value;
+- (PBNoCompressDrawData_Builder*) setDrawToUserBuilder:(PBUserBasicInfo_Builder*) builderForValue;
+- (PBNoCompressDrawData_Builder*) mergeDrawToUser:(PBUserBasicInfo*) value;
+- (PBNoCompressDrawData_Builder*) clearDrawToUser;
 @end
 
 @interface PBDrawBg : PBGeneratedMessage {

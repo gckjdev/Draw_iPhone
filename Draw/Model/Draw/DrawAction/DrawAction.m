@@ -9,6 +9,11 @@
 #import "DrawAction.h"
 #import "DrawColor.h"
 #import "ConfigManager.h"
+#import "ShapeAction.h"
+#import "ChangeBackAction.h"
+#import "PaintAction.h"
+#import "CleanAction.h"
+
 //#import "Paint.h"
 //#import "GameBasic.pb.h"
 //#import "DrawUtils.h"
@@ -361,7 +366,7 @@
         case DrawActionTypeClean:
             return [[[CleanAction alloc] initWithPBDrawAction:action] autorelease];
         case DrawActionTypeShape:
-            return [[[CleanAction alloc] initWithPBDrawAction:action] autorelease];
+            return [[[ShapeAction alloc] initWithPBDrawAction:action] autorelease];
         case DrawActionTypePaint:
             if (action.width >= BACK_GROUND_WIDTH / 10) {
                 return [[[ChangeBackAction alloc] initWithPBDrawAction:action] autorelease];
@@ -423,7 +428,15 @@
     
 }
 
+- (NSUInteger)pointCount
+{
+    return 0;
+}
 
+- (void)finishAddPoint
+{
+    _hasFinishAddPoint = YES;
+}
 
 #pragma mark-- Common Methods
 
@@ -474,6 +487,8 @@
     }
     return nil;
 }
+
+
 
 @end
 
