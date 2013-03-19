@@ -114,6 +114,9 @@ static UserManager* _defaultManager;
     NSArray* snsArray = [self snsUserDataFromOldStorage];
     if (snsArray != nil)
         [builder addAllSnsUsers:snsArray];
+
+    // set guess word language type
+    [builder setGuessWordLanguage:[self getLanguageTypeFromOldStorage]];
     
     self.pbUser = [builder build];
     return;    
@@ -138,6 +141,11 @@ static UserManager* _defaultManager;
     }
 }
 
+- (void)storeUserData
+{
+    [self storeUserData:self.pbUser];
+}
+
 - (void)storeUserData:(PBGameUser*)user
 {
     if (user == nil)
@@ -151,6 +159,7 @@ static UserManager* _defaultManager;
     
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:data forKey:KEY_ALL_USER_PB_DATA];
+    [userDefaults synchronize];
     PPDebug(@"<storeUserData> store user data success!");
 }
 
@@ -383,24 +392,42 @@ static UserManager* _defaultManager;
         return [gender isEqualToString:@"m"];
 }
 
+- (BOOL)isMale:(NSString*)gender
+{
+    if (gender == nil)
+        return YES;
+    else
+        return [gender isEqualToString:@"m"];
+}
+
+
 - (void)saveUserId:(NSString*)userId 
              email:(NSString*)email
           password:(NSString*)password
           nickName:(NSString*)nickName
          avatarURL:(NSString*)avatarURL
 {
-    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:userId forKey:KEY_USERID];
-    [userDefaults setObject:nickName forKey:KEY_NICKNAME];
-    [userDefaults setObject:email forKey:KEY_EMAIL];
-    [userDefaults setObject:password forKey:KEY_PASSWORD];
+    PPDebug(@"Save userId(%@), email(%@), nickName(%@), avatar(%@)", userId, email, nickName, avatarURL);
     
-    if ([avatarURL length] > 0){
-        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
-    }
+    [self setUserId:userId];
+    [self setNickName:nickName];
+    [self setEmail:email];
+    [self setPassword:password];
+    [self setAvatar:avatarURL];
     
-    [userDefaults synchronize];
+    [self storeUserData];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:userId forKey:KEY_USERID];
+//    [userDefaults setObject:nickName forKey:KEY_NICKNAME];
+//    [userDefaults setObject:email forKey:KEY_EMAIL];
+//    [userDefaults setObject:password forKey:KEY_PASSWORD];
+//    
+//    if ([avatarURL length] > 0){
+//        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+//    }
+//    
+//    [userDefaults synchronize];
 }
 
 + (NSString*)nickNameByEmail:(NSString*)email
@@ -433,9 +460,13 @@ static UserManager* _defaultManager;
     if (location == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:location forKey:KEY_LOCATION];    
-    [userDefaults synchronize];        
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setLocation:location];
+    self.pbUser = [builder build];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:location forKey:KEY_LOCATION];    
+//    [userDefaults synchronize];        
 }
 
 - (void)setGender:(NSString*)gender
@@ -443,9 +474,13 @@ static UserManager* _defaultManager;
     if (gender == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:gender forKey:KEY_GENDER];    
-    [userDefaults synchronize];    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setGender:[self isMale:gender]];
+    self.pbUser = [builder build];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:gender forKey:KEY_GENDER];    
+//    [userDefaults synchronize];    
 }
 
 - (void)setNickName:(NSString *)nickName
@@ -453,10 +488,15 @@ static UserManager* _defaultManager;
     if (nickName == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:nickName forKey:KEY_NICKNAME];    
-    [userDefaults synchronize];
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setNickName:nickName];
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
     
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:nickName forKey:KEY_NICKNAME];    
+//    [userDefaults synchronize];
+//    
 }
 
 - (void)setEmail:(NSString *)email
@@ -464,16 +504,29 @@ static UserManager* _defaultManager;
     if (email == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:email forKey:KEY_EMAIL];    
-    [userDefaults synchronize];    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setEmail:email];
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
+//
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:email forKey:KEY_EMAIL];    
+//    [userDefaults synchronize];    
 }
 
 - (void)setFacetimeId:(NSString *)facetimeId
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:facetimeId forKey:KEY_FACETIME_ID];    
-    [userDefaults synchronize];
+    if (facetimeId == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setFacetimeId:facetimeId];
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:facetimeId forKey:KEY_FACETIME_ID];    
+//    [userDefaults synchronize];
 }
 
 - (void)setUserId:(NSString *)userId
@@ -481,16 +534,38 @@ static UserManager* _defaultManager;
     if (userId == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:userId forKey:KEY_USERID];    
-    [userDefaults synchronize];    
+    PBGameUser_Builder* builder = nil;
+    
+    if (self.pbUser != nil){
+        builder = [PBGameUser builderWithPrototype:self.pbUser];
+        [builder setUserId:userId];
+    }
+    else{
+        builder = [PBGameUser builder];
+        [builder setUserId:userId];
+        [builder setNickName:@""];
+    }
+    
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:userId forKey:KEY_USERID];    
+//    [userDefaults synchronize];    
 }
+
 
 - (void)setDeviceToken:(NSString*)deviceToken
 {
     if (deviceToken == nil)
         return;
     
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceToken:deviceToken];
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
+    
+    // store in user default also for device token, it's a special hanlding
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:deviceToken forKey:KEY_DEVICE_TOKEN];    
     [userDefaults synchronize];
@@ -502,9 +577,14 @@ static UserManager* _defaultManager;
     if (password == nil)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:password forKey:KEY_PASSWORD];    
-    [userDefaults synchronize];
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setPassword:password];
+    self.pbUser = [builder build];
+//    [self storeUserData:self.pbUser];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:password forKey:KEY_PASSWORD];    
+//    [userDefaults synchronize];
 
 }
 
@@ -513,9 +593,15 @@ static UserManager* _defaultManager;
     if ([avatarURL length] == 0)
         return;
     
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];    
-    [userDefaults synchronize];
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setAvatar:avatarURL];
+    self.pbUser = [builder build];
+    
+//    [self storeUserData:self.pbUser];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];    
+//    [userDefaults synchronize];
     
 }
 
@@ -548,33 +634,47 @@ static UserManager* _defaultManager;
     return _avatarImage;
 }
 
-- (void)setSNSUserData:(int)type 
-                 snsId:(NSString*)snsId 
-              nickName:(NSString*)nickName 
-           accessToken:(NSString*)accessToken 
+- (void)setSNSUserData:(int)type
+                 snsId:(NSString*)snsId
+              nickName:(NSString*)nickName
+           accessToken:(NSString*)accessToken
      accessTokenSecret:(NSString*)accessTokenSecret
 {
-    PPDebug(@"<setSNSUserData> save SNS user, id(%@), nick(%@), token(%@), secret(%@)", 
+    PPDebug(@"<setSNSUserData> save SNS user, id(%@), nick(%@), token(%@), secret(%@)",
             snsId, nickName, accessToken, accessTokenSecret);
     
-    NSArray* currentData = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+    NSArray* currentData = [[[self.pbUser snsUsersList] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
     NSMutableArray* newData = [[NSMutableArray alloc] init];
     if (currentData != nil){
         [newData addObjectsFromArray:currentData];
     }
-
-    BOOL found = NO;
+    
     int index = 0;
+    BOOL found = NO;
     PBSNSUser* userFound = nil;
-    for (NSData* data in newData){
-        userFound = [PBSNSUser parseFromData:data];
-        if ([userFound type] == type){
-            found = YES;            
+    for (PBSNSUser* snsUser in newData){
+        if (snsUser.type == type){
+            found = YES;
+            userFound = snsUser;
             break;
-        }        
+        }
         index ++;
     }
-
+    
+    
+    
+    
+//    int index = 0;
+//    PBSNSUser* userFound = nil;
+//    for (NSData* data in newData){
+//        userFound = [PBSNSUser parseFromData:data];
+//        if ([userFound type] == type){
+//            found = YES;
+//            break;
+//        }
+//        index ++;
+//    }
+    
     // create an new user
     PBSNSUser_Builder* builder = [[PBSNSUser_Builder alloc] init];
     [builder setType:type];
@@ -584,7 +684,7 @@ static UserManager* _defaultManager;
         [builder setNickName:[userFound nickName]];
     }
     else{
-        [builder setNickName:nickName];   
+        [builder setNickName:nickName];
     }
     
     if (accessTokenSecret != nil)
@@ -598,21 +698,94 @@ static UserManager* _defaultManager;
         [builder setAccessToken:[userFound accessToken]];
     
     PBSNSUser* user = [builder build];
-    NSData* data = [user data];
+//    NSData* data = [user data];
     
     if (found){
-        [newData replaceObjectAtIndex:index withObject:data];
+        [newData replaceObjectAtIndex:index withObject:user];
     }
     else{
-        [newData addObject:data];
+        [newData addObject:user];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
+    // update sns user list
+    PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
+    [userBuilder clearSnsUsersList];
+    [userBuilder addAllSnsUsers:newData];
+    self.pbUser = [userBuilder build];
+    [self storeUserData];
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     [builder release];
     [newData release];
 }
+
+//- (void)setSNSUserData:(int)type 
+//                 snsId:(NSString*)snsId 
+//              nickName:(NSString*)nickName 
+//           accessToken:(NSString*)accessToken 
+//     accessTokenSecret:(NSString*)accessTokenSecret
+//{
+//    PPDebug(@"<setSNSUserData> save SNS user, id(%@), nick(%@), token(%@), secret(%@)", 
+//            snsId, nickName, accessToken, accessTokenSecret);
+//    
+//    NSArray* currentData = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+//    NSMutableArray* newData = [[NSMutableArray alloc] init];
+//    if (currentData != nil){
+//        [newData addObjectsFromArray:currentData];
+//    }
+//
+//    BOOL found = NO;
+//    int index = 0;
+//    PBSNSUser* userFound = nil;
+//    for (NSData* data in newData){
+//        userFound = [PBSNSUser parseFromData:data];
+//        if ([userFound type] == type){
+//            found = YES;            
+//            break;
+//        }        
+//        index ++;
+//    }
+//
+//    // create an new user
+//    PBSNSUser_Builder* builder = [[PBSNSUser_Builder alloc] init];
+//    [builder setType:type];
+//    [builder setUserId:snsId];
+//    
+//    if (nickName == nil){
+//        [builder setNickName:[userFound nickName]];
+//    }
+//    else{
+//        [builder setNickName:nickName];   
+//    }
+//    
+//    if (accessTokenSecret != nil)
+//        [builder setAccessTokenSecret:accessTokenSecret];
+//    else
+//        [builder setAccessTokenSecret:[userFound accessTokenSecret]];
+//    
+//    if (accessToken != nil)
+//        [builder setAccessToken:accessToken];
+//    else
+//        [builder setAccessToken:[userFound accessToken]];
+//    
+//    PBSNSUser* user = [builder build];
+//    NSData* data = [user data];
+//    
+//    if (found){
+//        [newData replaceObjectAtIndex:index withObject:data];
+//    }
+//    else{
+//        [newData addObject:data];
+//    }
+//    
+//    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//    [builder release];
+//    [newData release];
+//}
 
 - (void)saveUserId:(NSString*)userId
             sinaId:(NSString*)loginId
@@ -624,7 +797,7 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
             gender:(NSString*)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self setUserId:userId];
     [self setNickName:nickName];
@@ -636,7 +809,9 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
     [self setGender:gender];    
     [self setSinaId:loginId nickName:nickName];
     
-    [userDefaults synchronize];    
+    [self storeUserData];
+    
+//    [userDefaults synchronize];    
 }
 
 - (void)saveUserId:(NSString*)userId
@@ -649,7 +824,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
             gender:(NSString *)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@) accessToken(%@) accessTokenSecret(%@)", userId, loginId, nickName, avatarURL, accessToken, accessTokenSecret);    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self setUserId:userId];
     [self setNickName:nickName];
@@ -659,8 +834,11 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         [self avatarImage];
     }    
     [self setGender:gender];    
-    [self setQQId:loginId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];    
-    [userDefaults synchronize];     
+    [self setQQId:loginId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];
+    
+    [self storeUserData];
+    
+//    [userDefaults synchronize];     
 }
 
 
@@ -672,7 +850,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
             gender:(NSString *)gender
 {
     PPDebug(@"Save userId(%@), loginId(%@), nickName(%@), avatarURL(%@)", userId, loginId, nickName, avatarURL);    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     
     [self setUserId:userId];
     [self setNickName:nickName];
@@ -683,87 +861,106 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }    
     [self setGender:gender];    
     [self setFacebookId:loginId nickName:nickName];
-    [userDefaults synchronize];     
+    
+    [self storeUserData];
+    
+//    [userDefaults synchronize];     
 }
 
-- (void)saveUserId:(NSString*)userId 
-             email:(NSString*)email
-          password:(NSString*)password
-          nickName:(NSString*)nickName 
-              qqId:(NSString*)qqId 
-     qqAccessToken:(NSString*)qqAccessToken 
-qqAccessTokenSecret:(NSString*)qqAccessTokenSecret 
-            sinaId:(NSString*)sinaId 
-   sinaAccessToken:(NSString*)sinaAccessToken 
-sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret 
-        facebookId:(NSString*)facebookId
-         avatarURL:(NSString*)avatarURL 
-           balance:(NSNumber*)balance 
-             items:(NSArray *)items 
-            gender:(NSString *)gender
-{
-    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-
-    //Email用户
-    [self setUserId:userId];
-    [self setNickName:nickName];
-    [self setPassword:password];
-    [self setAvatar:avatarURL];    
-    if ([avatarURL length] > 0){
-        [self avatarImage];
-    }    
-    [self setGender:gender];    
-    [self setEmail:email];
-
-    //facebook用户
-    if (facebookId != nil){
-        [self setFacebookId:facebookId nickName:nickName];
-    }
-    
-    //qq绑定用户
-    if (qqId != nil){
-        [self setQQId:qqId nickName:nickName accessToken:qqAccessToken accessTokenSecret:qqAccessTokenSecret];
-    }
-
-    //新浪绑定用户
-    if (sinaId != nil){
-        [self setSinaId:sinaId nickName:nickName];
-    }
-    
-    if ([avatarURL length] > 0){
-        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
-        if (email == nil) {
-            [self avatarImage];
-        }
-    }
-    
-    if (balance != nil) {
-        [[AccountManager defaultManager] updateBalance:balance.intValue];
-    }
-    
-    if (items != nil) {
-        for (NSDictionary* itemTypeBalance in items){
-            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
-            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
-            
-            // update DB
-            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
-            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
-        }
-    }
-    
-    [userDefaults synchronize];
-}
+//- (void)saveUserId:(NSString*)userId 
+//             email:(NSString*)email
+//          password:(NSString*)password
+//          nickName:(NSString*)nickName 
+//              qqId:(NSString*)qqId 
+//     qqAccessToken:(NSString*)qqAccessToken 
+//qqAccessTokenSecret:(NSString*)qqAccessTokenSecret 
+//            sinaId:(NSString*)sinaId 
+//   sinaAccessToken:(NSString*)sinaAccessToken 
+//sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret 
+//        facebookId:(NSString*)facebookId
+//         avatarURL:(NSString*)avatarURL 
+//           balance:(NSNumber*)balance 
+//             items:(NSArray *)items 
+//            gender:(NSString *)gender
+//{
+//    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//
+//    //Email用户
+//    [self setUserId:userId];
+//    [self setNickName:nickName];
+//    [self setPassword:password];
+//    [self setAvatar:avatarURL];    
+//    if ([avatarURL length] > 0){
+//        [self avatarImage];
+//    }    
+//    [self setGender:gender];    
+//    [self setEmail:email];
+//
+//    //facebook用户
+//    if (facebookId != nil){
+//        [self setFacebookId:facebookId nickName:nickName];
+//    }
+//    
+//    //qq绑定用户
+//    if (qqId != nil){
+//        [self setQQId:qqId nickName:nickName accessToken:qqAccessToken accessTokenSecret:qqAccessTokenSecret];
+//    }
+//
+//    //新浪绑定用户
+//    if (sinaId != nil){
+//        [self setSinaId:sinaId nickName:nickName];
+//    }
+//    
+//    if ([avatarURL length] > 0){
+//        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+//        if (email == nil) {
+//            [self avatarImage];
+//        }
+//    }
+//    
+//    if (balance != nil) {
+//        [[AccountManager defaultManager] updateBalance:balance.intValue];
+//    }
+//    
+//    if (items != nil) {
+//        for (NSDictionary* itemTypeBalance in items){
+//            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
+//            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
+//            
+//            // update DB
+//            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
+//            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
+//        }
+//    }
+//    
+//    [userDefaults synchronize];
+//}
 
 - (void)setLanguageType:(LanguageType)type
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setInteger:type forKey:KEY_LANGUAGE];
-    [userDefaults synchronize];
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setGuessWordLanguage:type];
+    self.pbUser = [builder build];
+    
+    [self storeUserData];
+//    
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setInteger:type forKey:KEY_LANGUAGE];
+//    [userDefaults synchronize];
 }
 
 - (LanguageType)getLanguageType
+{
+    if (self.pbUser == nil || self.pbUser.guessWordLanguage == UnknowType){
+        return ChineseType;
+    }
+    
+    return self.pbUser.guessWordLanguage;    
+}
+
+- (LanguageType)getLanguageTypeFromOldStorage
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageType type = [userDefaults integerForKey:KEY_LANGUAGE];
@@ -784,32 +981,54 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
     return type;
 }
 
+- (BOOL)hasBindSNS:(int)snsType
+{
+    if (self.pbUser.snsUsersList == nil)
+        return NO;
+    
+    for (PBSNSUser* snsUser in self.pbUser.snsUsersList){
+        if (snsUser.type == snsType){
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (BOOL)hasBindSinaWeibo
 {
-    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SINA_LOGINID];
-    if (obj != nil) {
-        return YES;
-    }
-    return NO;
+    return [self hasBindSNS:TYPE_SINA];
+    
+//    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SINA_LOGINID];
+//    if (obj != nil) {
+//        return YES;
+//    }
+//    return NO;
 
 }
 - (BOOL)hasBindQQWeibo
 {
-    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_QQ_LOGINID];
-    NSString* token = [self qqToken];    
-    if (obj != nil && [token length] > 0) {
-        return YES;
-    }
-    return NO;
+    return [self hasBindSNS:TYPE_QQ];
+    
+    
+//    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_QQ_LOGINID];
+//    NSString* token = [self qqToken];    
+//    if (obj != nil && [token length] > 0) {
+//        return YES;
+//    }
+//    return NO;
 
 }
 - (BOOL)hasBindFacebook
 {
-    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FACEBOOK_LOGINID];
-    if (obj != nil) {
-        return YES;
-    }
-    return NO;
+    return [self hasBindSNS:TYPE_FACEBOOK];
+
+    
+//    NSObject *obj = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_FACEBOOK_LOGINID];
+//    if (obj != nil) {
+//        return YES;
+//    }
+//    return NO;
 }
 
 - (NSInteger)roomCount
@@ -876,23 +1095,23 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
 
 - (void)setFacebookId:(NSString*)facebookId nickName:(NSString*)nickName
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:facebookId forKey:KEY_FACEBOOK_LOGINID];
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:facebookId forKey:KEY_FACEBOOK_LOGINID];
     [self setSNSUserData:TYPE_FACEBOOK snsId:facebookId nickName:nickName accessToken:nil accessTokenSecret:nil];
 }
 
 - (void)setSinaId:(NSString*)sinaId nickName:(NSString*)nickName
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];    
-    [userDefaults setObject:sinaId forKey:KEY_SINA_LOGINID];
-    [self setSNSUserData:TYPE_SINA snsId:sinaId nickName:nickName accessToken:nil accessTokenSecret:nil];    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];    
+//    [userDefaults setObject:sinaId forKey:KEY_SINA_LOGINID];
+    [self setSNSUserData:TYPE_SINA snsId:sinaId nickName:nickName accessToken:nil accessTokenSecret:nil];
 }
 
 - (void)setQQId:(NSString*)qqId nickName:(NSString*)nickName accessToken:(NSString*)accessToken accessTokenSecret:(NSString*)accessTokenSecret
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];    
-    [userDefaults setObject:qqId forKey:KEY_QQ_LOGINID];
-    [self setSNSUserData:TYPE_QQ snsId:qqId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];        
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];    
+//    [userDefaults setObject:qqId forKey:KEY_QQ_LOGINID];
+    [self setSNSUserData:TYPE_QQ snsId:qqId nickName:nickName accessToken:accessToken accessTokenSecret:accessTokenSecret];
 }
 
 - (NSString*)sinaId
@@ -991,20 +1210,23 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
 
 - (PBGameUser*)toPBGameUser
 {
-    if ([self hasUser] == NO)
-        return nil;
     
-    // return a PBGame User structure here
-    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
-    [builder setUserId:[self userId]];
-    [builder setNickName:[self nickName]];    
-    [builder setAvatar:[self avatarURL]];
-
-    [builder setLocation:[self location]];
-    [builder setGender:[self.gender isEqualToString:@"m"]];
-    [builder setFacetimeId:[self facetimeId]];
+    return self.pbUser;
     
-    return [builder build];
+//    if ([self hasUser] == NO)
+//        return nil;
+//    
+//    // return a PBGame User structure here
+//    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
+//    [builder setUserId:[self userId]];
+//    [builder setNickName:[self nickName]];    
+//    [builder setAvatar:[self avatarURL]];
+//
+//    [builder setLocation:[self location]];
+//    [builder setGender:[self.gender isEqualToString:@"m"]];
+//    [builder setFacetimeId:[self facetimeId]];
+//    
+//    return [builder build];
 }
 
 - (PBGameUser*)toPBGameUserWithKeyValues:(NSArray*)keyValueArray
@@ -1013,14 +1235,14 @@ sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret
         return nil;
     
     // return a PBGame User structure here
-    PBGameUser_Builder* builder = [[[PBGameUser_Builder alloc] init] autorelease];
-    [builder setUserId:[self userId]];
-    [builder setNickName:[self nickName]];    
-    [builder setAvatar:[self avatarURL]];
-    
-    [builder setLocation:[self location]];
-    [builder setGender:[self.gender isEqualToString:@"m"]];
-    [builder setFacetimeId:[self facetimeId]];
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+//    [builder setUserId:[self userId]];
+//    [builder setNickName:[self nickName]];    
+//    [builder setAvatar:[self avatarURL]];
+//    
+//    [builder setLocation:[self location]];
+//    [builder setGender:[self.gender isEqualToString:@"m"]];
+//    [builder setFacetimeId:[self facetimeId]];
     for (PBKeyValue* kValue in keyValueArray) {
         [builder addAttributes:kValue];
     }

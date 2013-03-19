@@ -20,6 +20,10 @@ typedef enum {
 
 @class PPViewController;
 @class MyFriend;
+@class PBGameUser;
+
+typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user);
+
 @protocol UserServiceDelegate <NSObject>
 
 @optional
@@ -78,6 +82,7 @@ typedef enum {
 - (void)loginUserByEmail:(NSString*)email 
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
 - (void)loginByDeviceWithViewController:(PPViewController*)viewController;
 - (void)commitWords:(NSString*)words 
      viewController:(PPViewController<UserServiceDelegate>*)viewController;
@@ -88,14 +93,19 @@ typedef enum {
                    viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
-- (void)getUserSimpleInfoByUserId:(NSString*)targetUserId 
+
+// this methods is kept for old implementation, new implementation will use getUserInfo
+- (void)getUserSimpleInfoByUserId:(NSString*)targetUserId
                          delegate:(id<UserServiceDelegate>)delegate;
-
-- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
-
 // a network block method to query user basic info
 - (MyFriend*)getUserSimpleInfo:(NSString *)userId;
 - (NSArray *)getUserListSimpleInfo:(NSArray *)userIdList;
+
+// new method, use protocol buffer object for return
+- (void)getUserInfo:(NSString*)userId resultBlock:(GetUserInfoResultBlock)block;
+
+- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
+
 
 - (void)superBlackUser:(NSString*)targetUserId
                   type:(BlackUserType)type

@@ -111,21 +111,24 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
          avatarURL:(NSString*)avatarURL 
             gender:(NSString*)gender;
 
-- (void)saveUserId:(NSString*)userId 
-             email:(NSString*)email
-          password:(NSString*)password
-          nickName:(NSString*)nickName 
-              qqId:(NSString*)qqId 
-     qqAccessToken:(NSString*)accessToken 
-qqAccessTokenSecret:(NSString*)accessTokenSecret 
-            sinaId:(NSString*)loginId 
-   sinaAccessToken:(NSString*)accessToken 
-sinaAccessTokenSecret:(NSString*)accessTokenSecret 
-        facebookId:(NSString*)loginId
-         avatarURL:(NSString*)avatarURL 
-           balance:(NSNumber*)balance 
-             items:(NSArray*)items 
-            gender:(NSString*)gender;
+- (void)storeUserData;
+- (void)storeUserData:(PBGameUser*)user;
+
+//- (void)saveUserId:(NSString*)userId 
+//             email:(NSString*)email
+//          password:(NSString*)password
+//          nickName:(NSString*)nickName 
+//              qqId:(NSString*)qqId 
+//     qqAccessToken:(NSString*)accessToken 
+//qqAccessTokenSecret:(NSString*)accessTokenSecret 
+//            sinaId:(NSString*)loginId 
+//   sinaAccessToken:(NSString*)accessToken 
+//sinaAccessTokenSecret:(NSString*)accessTokenSecret 
+//        facebookId:(NSString*)loginId
+//         avatarURL:(NSString*)avatarURL 
+//           balance:(NSNumber*)balance 
+//             items:(NSArray*)items 
+//            gender:(NSString*)gender;
 
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;

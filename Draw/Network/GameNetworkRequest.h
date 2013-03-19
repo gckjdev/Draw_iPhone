@@ -163,6 +163,13 @@
                             deviceId:(NSString*)deviceId
                          deviceToken:(NSString*)deviceToken;
 
++ (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              gameId:(NSString*)gameId
+                               email:(NSString*)email
+                            password:(NSString*)password
+                         deviceToken:(NSString*)deviceToken;
+
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL
                              appId:(NSString*)appId 
                             userId:(NSString*)userId
@@ -465,7 +472,14 @@
                                    gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId;
 
-+ (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL 
+// return by Protocol Buffer
++ (CommonNetworkOutput*)getUserInfo:(NSString*)baseURL
+                             userId:(NSString *)userId
+                              appId:(NSString*)appId
+                             gameId:(NSString*)gameId
+                           ByUserId:(NSString*)targetUserId;
+
++ (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL
                              appId:(NSString*)appId
                             feedId:(NSString*)feedId 
                             userId:(NSString *)userId;
