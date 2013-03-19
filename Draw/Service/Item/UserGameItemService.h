@@ -21,17 +21,18 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy)
 
 + (id)defaultService;
 
+// for buy color.
 - (void)buyItem:(int)itemId
           count:(int)count
      totalPrice:(int)totalPrice
        currency:(PBGameCurrency)currency
         handler:(BuyItemResultHandler)handler;
 
-- (void)buyItem:(PBGameItem*)item
+- (void)buyItem:(int)itemId
           count:(int)count
         handler:(BuyItemResultHandler)handler;
 
-- (void)giveItem:(PBGameItem*)itemId
+- (void)giveItem:(int)itemId
          toUser:(NSString *)userId
           count:(int)count
         handler:(BuyItemResultHandler)handler;
@@ -44,9 +45,5 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy)
               count:(int)count
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
-
-
-
-
 
 @end

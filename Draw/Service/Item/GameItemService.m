@@ -68,28 +68,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [_itemManager setItemsList:itemsList];
 }
 
-- (NSArray *)getItemsList
-{
-    return [_itemManager itemsList];
-}
-
-- (NSArray *)getItemsListWithType:(int)type
-{
-    return [_itemManager itemsListWithType:type];
-}
-
-- (NSArray *)getPromotingItemsList
-{
-    return [_itemManager promotingItemsList];
-}
-
-
-- (PBGameItem *)itemWithItemId:(int)itemId
-{
-    return [_itemManager itemWithItemId:itemId];
-}
-
-
 - (NSArray *)itemsListFromFile:(NSString *)filePath
 {
     NSData *data = [NSData dataWithContentsOfFile:filePath];

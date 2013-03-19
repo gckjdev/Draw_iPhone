@@ -43,7 +43,6 @@
 #import "ConfigManager.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
-//#import "VendingController.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
@@ -58,6 +57,7 @@
 #import "UserGameItemService.h"
 #import "GameItemService.h"
 #import "DrawHolderView.h"
+#import "GameItemManager.h"
 
 
 @interface OfflineDrawViewController()
@@ -1195,9 +1195,7 @@
         drawView.lineColor = [DrawColor colorWithColor:self.penColor];
         [drawView.lineColor setAlpha:_alpha];
     }else{
-//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             
         }];
     }
@@ -1236,17 +1234,11 @@
         color.alpha = alpha;
         drawView.lineColor = color;
     }
-    
-    //chage scale... will be removed __By Gamy
-//    drawView.scale = alpha * 5;
-    
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
-    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+    [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         [self buyItemSuccess:itemId result:resultCode];
     }];
 }

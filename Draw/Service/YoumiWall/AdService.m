@@ -21,6 +21,7 @@
 
 #import "UserGameItemManager.h"
 #import "GameItemService.h"
+#import "GameItemManager.h"
 #import "UserGameItemService.h"
 
 //#import "YoumiWallService.h"
@@ -139,8 +140,7 @@ static AdService* _defaultService;
 {
     PPDebug(@"<setAdDisable> Ad Is Disabled Now");
     
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:ItemTypeRemoveAd];
-    [[UserGameItemService defaultService] buyItem:item count:1 handler:NULL];
+    [[UserGameItemService defaultService] buyItem:ItemTypeRemoveAd count:1 handler:NULL];
     _isShowAd = NO;
 }
 

@@ -19,6 +19,7 @@
 #import "VersionUpdateView.h"
 #import "UserGameItemManager.h"
 #import "CommonMessageCenter.h"
+#import "GameItemManager.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -120,13 +121,14 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         
     }];
     dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
-    [dialog showInView:[self rootView]];
+    [dialog showInView:[self topRootView]];
 }
 
-+ (void)showOnlyBuyItemView:(PBGameItem *)item
++ (void)showOnlyBuyItemView:(int)itemId
                      inView:(UIView *)inView
               resultHandler:(BuyItemResultHandler)resultHandler
 {
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     if (item == nil || inView == nil) {
         return;
     }
@@ -157,7 +159,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
                     if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
@@ -177,11 +179,12 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 }
 
 
-+ (void)showBuyItemView:(PBGameItem *)item
++ (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
        buyResultHandler:(BuyItemResultHandler)buyResultHandler
             giveHandler:(GiveHandler)giveHandler
 {
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     if (item == nil || inView == nil) {
         return;
     }
@@ -220,7 +223,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
-            [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
                     if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {

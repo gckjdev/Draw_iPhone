@@ -22,6 +22,7 @@
 #import "UserGameItemManager.h"
 #import "FlowerItem.h"
 #import "BlockArray.h"
+#import "GameItemManager.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -117,10 +118,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 
 // new interface for buy item.
-- (void)buyItem:(PBGameItem*)item
+- (void)buyItem:(int)itemId
           count:(int)count
         handler:(BuyItemResultHandler)handler
 {
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     [self buyItem:item.itemId
             count:count
        totalPrice:([item promotionPrice] * count)
@@ -129,11 +131,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 }
 
 
-- (void)giveItem:(PBGameItem *)item
+- (void)giveItem:(int)itemId
           toUser:(NSString *)toUserId
            count:(int)count
          handler:(BuyItemResultHandler)handler
 {
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     [self buyItem:item.itemId
            toUser:toUserId
             count:count
@@ -151,7 +154,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[_blockArray copyBlock:handler];
     
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
         EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, NO);
         [_blockArray releaseBlock:tempHandler];
