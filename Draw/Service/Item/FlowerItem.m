@@ -41,9 +41,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     NSString* targetUserId = nil;
     
     ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[self.blockArray copyBlock:handler];
-    
+    __block typeof (self) bself = self;
+
     if (isOffline) {
-        __block typeof (self) bself = self;
 
         // prepare data for consumeItem request
         targetUserId = toUserId;
@@ -63,20 +63,32 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                 EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
                 [bself.blockArray releaseBlock:tempHandler];
             }];
+        }else{
+            // send feed action
+            [[FeedService defaultService] throwItem:[bself itemId]
+                                             toOpus:feedOpusId
+                                             author:feedAuthor
+                                           delegate:nil];
+            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            [bself.blockArray releaseBlock:tempHandler];
         }
 
     }else{
-        // send online request for online realtime play
         int rankResult = RANK_FLOWER;
-        [[DrawGameService defaultService] rankGameResult:rankResult];
-        [[AccountService defaultService] consumeItem:[self itemId]
-                                              amount:isFree?0:1
-                                        targetUserId:targetUserId
-                                         awardAmount:isFree?0:awardAmount
-                                            awardExp:isFree?0:awardExp];
-
-        EXCUTE_BLOCK(tempHandler, 0, [self itemId], NO);
-        [self.blockArray releaseBlock:tempHandler];                
+        
+        if (!isFree) {
+            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+                if (resultCode == ERROR_SUCCESS) {
+                    [[DrawGameService defaultService] rankGameResult:rankResult];
+                    EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+                    [bself.blockArray releaseBlock:tempHandler];
+                }
+            }];
+        }else{
+            [[DrawGameService defaultService] rankGameResult:rankResult];
+            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            [bself.blockArray releaseBlock:tempHandler];
+        }
     }
 }
 
