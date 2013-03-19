@@ -387,14 +387,12 @@
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
     if (![self hasBounghtPlayer]) {
-        
-        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:PaintPlayerItem];
-        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            [BuyItemView showOnlyBuyItemView:PaintPlayerItem inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == 0) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }else{
-                PPDebug(@"<didBuyItem> item type = %d, failed",item.itemId);
+                PPDebug(@"<didBuyItem> item type = %d, failed", itemId);
             }
         }];
     }

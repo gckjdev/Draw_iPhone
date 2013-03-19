@@ -55,7 +55,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.font = view.discountLabel.font;
     label.textColor = view.discountLabel.textColor;
     label.numberOfLines = 0;
-    NSString *desc = [@"         " stringByAppendingString:NSLS(item.desc)];
+    NSString *desc = [@"          " stringByAppendingString:NSLS(item.desc)];
 
     CGSize withinSize = CGSizeMake(MAX_WITH_DESC_LABEL, MAX_HEIGHT_DESC_LABEL);
     CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];

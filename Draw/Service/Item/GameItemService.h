@@ -17,11 +17,6 @@ typedef void (^SyncItemsDataResultHandler)(BOOL success);
 
 - (void)syncData:(SyncItemsDataResultHandler)handler;
 
-- (NSArray *)getItemsList;
-- (NSArray *)getItemsListWithType:(int)type;
-- (NSArray *)getPromotingItemsList;
-- (PBGameItem *)itemWithItemId:(int)itemId;
-
 + (void)createTestDataFile;
 
 @end
