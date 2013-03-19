@@ -737,13 +737,15 @@
     int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
     
     __block typeof (self) bself = self;
-    [[UserGameItemService defaultService] consumeItem:toolView.itemType count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+    [[UserGameItemService defaultService] consumeItem:toolView.itemType count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [bself updateTargetViews:bself.word];
             NSString *result  = [WordManager bombCandidateString:bself.candidateString word:bself.word];
             [bself updateCandidateViewsWithText:result];
             [toolView setEnabled:NO];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+            if (isBuy) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+            }
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
         }else{
@@ -765,7 +767,7 @@
 //                                     feedOpusId:_opusId
 //                                     feedAuthor:_authorId];
     
-    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId) {
+    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [_scene throwAFlower];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){

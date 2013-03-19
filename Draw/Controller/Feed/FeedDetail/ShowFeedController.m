@@ -591,7 +591,7 @@ enum{
                               feedOpusId:_feed.feedId
                               feedAuthor:_feed.author.userId
                                  forFree:isFree
-                           resultHandler:^(int resultCode, int itemId)
+                           resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
             if (resultCode == 0){
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];

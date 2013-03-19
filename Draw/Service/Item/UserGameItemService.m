@@ -146,30 +146,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
               count:(int)count
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
-
 {
+    BOOL isBuy = NO;
+    
     ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[_blockArray copyBlock:handler];
     
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
-        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId);
+        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, NO);
         [_blockArray releaseBlock:tempHandler];
         return;
     }
     
     if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:itemId amount:count]) {
         if (!forceBuy) {
-            EXCUTE_BLOCK(tempHandler, ERROR_ITEM_NOT_ENOUGH, itemId);
+            EXCUTE_BLOCK(tempHandler, ERROR_ITEM_NOT_ENOUGH, itemId, NO);
             [_blockArray releaseBlock:tempHandler];
             return;
         }
         
         int totalPrice = [item promotionPrice] * count;
         if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
-            EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId);
+            EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, NO);
             [_blockArray releaseBlock:tempHandler];
             return;
         }
+        
+        isBuy = YES;
     }
     
     __block typeof (self) bself = self;
@@ -209,7 +212,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             int result = output.resultCode;
             
             PPDebug(@"<execBlock> block=0x%X", tempHandler);
-            EXCUTE_BLOCK(tempHandler, result, itemId);
+            EXCUTE_BLOCK(tempHandler, result, itemId, isBuy);
             [bself.blockArray releaseBlock:tempHandler];
         });
     });

@@ -151,11 +151,10 @@
 - (void)payForHotWord:(Word *)word
 {    
     __block typeof (self) bself = self;
-    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId) {
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
-        }
-        if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
         }else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];

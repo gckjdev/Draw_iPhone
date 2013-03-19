@@ -15,7 +15,7 @@
 
 typedef void (^BuyItemResultHandler)(int resultCode,  int itemId, int count, NSString *toUserId);
 
-typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
+typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy);
 
 @interface UserGameItemService : CommonService
 
