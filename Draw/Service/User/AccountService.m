@@ -30,6 +30,7 @@
 #import "IngotService.h"
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
+#import "UserGameItemService.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -79,13 +80,7 @@ static AccountService* _defaultAccountService;
 {
     // send request to Apple IAP Server and wait for result
     SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
-//    if (selectedProduct == nil){
-//        PPDebug(@"<buyCoin> but SKProduct of price is null");
-//        if ([self.delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-//            [self.delegate didFinishBuyProduct:ERROR_NO_PRODUCT];
-//        }
-//        return;
-//    }
+
     PPDebug(@"<buyCoin> on product %@ price productId=%@", 
             selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
             price.productId);    
@@ -361,9 +356,9 @@ static AccountService* _defaultAccountService;
             if (output.resultCode == ERROR_SUCCESS) {
                 // update balance from server
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalance]){
+                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
                     PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d",
-                            [[AccountManager defaultManager] getBalance], balance);
+                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
                 }
                 
             }
@@ -462,21 +457,21 @@ static AccountService* _defaultAccountService;
             if (output.resultCode == ERROR_SUCCESS) {
                 // update balance from server
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalance]){
+                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
                     PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
-                            [[AccountManager defaultManager] getBalance], balance);
+                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
                 }
             }
             else{
                 PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
             }
-        });        
+        });
     });    
 }
 
 - (void)syncAccountBalanceToServer
 {
-    int balance = [_accountManager getBalance];
+    int balance = [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
     PPDebug(@"<syncAccountBalanceToServer> balance=%d", balance);
     NSString* userId = [[UserManager defaultManager] userId];
     
@@ -524,34 +519,6 @@ static AccountService* _defaultAccountService;
     [self syncItemRequest:userItem targetUserId:nil awardAmount:0 awardExp:0];
 }
 
-- (int)buyItem:(int)itemType
-      itemCount:(int)itemCount
-      itemCoins:(int)itemCoins
-{
-    PPDebug(@"<buyItem> type=%d, count=%d, cost coins=%d", itemType, itemCount, itemCoins);
-    
-    if (itemCount <= 0) {
-        return 0;
-    }
-    
-    if ([self hasEnoughCoins:itemCoins] == NO){
-        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
-                [[AccountManager defaultManager] getBalance], itemCoins);
-        return ERROR_COINS_NOT_ENOUGH;
-    }
-    
-    // save item locally and synchronize remotely
-    [[ItemManager defaultManager] increaseItem:itemType amount:itemCount];
-    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
-    [self syncItemRequest:userItem];
-
-    // deduct account
-    [self deductAccount:itemCoins source:BuyItemType];    
-    
-    return 0;
-}
-
-
 
 - (int)consumeItem:(int)itemType
              amount:(int)amount
@@ -576,14 +543,19 @@ static AccountService* _defaultAccountService;
        awardAmount:(int)awardAmount
           awardExp:(int)awardExp
 {
-    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
-        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
-                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
+//        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
+//                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
+//        return ERROR_ITEM_NOT_ENOUGH;
+//    }
+    
+    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:itemType amount:amount] == NO){
         return ERROR_ITEM_NOT_ENOUGH;
     }
     
     // save item locally and synchronize remotely
-    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+//    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
+//    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
     
     UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
     [self syncItemRequest:userItem
@@ -597,6 +569,11 @@ static AccountService* _defaultAccountService;
 - (BOOL)hasEnoughCoins:(int)amount
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount];
+}
+
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+{
+    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
 }
 
 - (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount
@@ -654,7 +631,7 @@ static AccountService* _defaultAccountService;
 
 - (int)getBalance
 {
-    return [_accountManager getBalance];
+    return [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
 }
 
 - (int)getBalanceWithCurrency:(PBGameCurrency)currency
@@ -861,12 +838,6 @@ static AccountService* _defaultAccountService;
             }
         });      
     });    
-}
-
-
-- (void)syncAccount
-{    
-    [self syncAccount:nil];
 }
 
 #define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"

@@ -12,8 +12,9 @@
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
-#import "Item.h"
 #import "UIImageView+WebCache.h"
+#import "GameItemManager.h"
+#import "UIButton+WebCache.h"
 
 #define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 2, 61 * 2) : CGRectMake(0, 0, 61, 61))
 
@@ -57,8 +58,8 @@
         self.itemType = type;
         self.userInteractionEnabled = NO;
         
-
-        if ([Item isItemCountable:type]) {
+        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:type];
+        if (item.consumeType == PBGameItemConsumeTypeAmountConsumable) {
             numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [numberButton setFrame:NUMBER_VIEW_FRAME];
             
@@ -99,8 +100,9 @@
 - (void)setItemType:(ItemType)itemType
 {
     _itemType = itemType;
-    UIImage *image = [Item imageForItemType:itemType];
-    [self setImage:image forState:UIControlStateNormal];
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemType];
+    
+    [self setImageWithURL:[NSURL URLWithString:item.image]];
 }
 
 - (id)initWithNumber:(NSInteger)number

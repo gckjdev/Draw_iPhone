@@ -255,6 +255,11 @@ static FeedService *_staticFeedService = nil;
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate
 {
+
+    // TODO use operation queue to cancel pervious request
+//    NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
+//    [queue cancelAllOperations];
+    
     dispatch_async(workingQueue, ^{
         
         // add by Benson
@@ -533,6 +538,9 @@ static FeedService *_staticFeedService = nil;
            author:(NSString *)author
          delegate:(id<FeedServiceDelegate>)delegate
 {
+    
+    PPDebug(@"<throwItem> item=%d, opusId=%@, author=%@", itemType, opusId, author);
+    
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];

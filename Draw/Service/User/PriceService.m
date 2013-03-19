@@ -117,11 +117,10 @@ static PriceService* staticPriceService = nil;
         output = [GameNetworkRequest fetchAccountBalance:SERVER_URL userId:userId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-//            [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS) {
                 NSDecimalNumber *number = (NSDecimalNumber *)output.jsonDataArray;
                 int balance = number.integerValue;
-                //                int balance =[[ShoppingManager defaultManager] getBalanceFromOutputList:output.jsonDataArray];
+
                 if ([priceServiceDelegate respondsToSelector:@selector(didFinishFetchAccountBalance:resultCode:)]) {
                     [priceServiceDelegate didFinishFetchAccountBalance:balance resultCode:output.resultCode];
                 }

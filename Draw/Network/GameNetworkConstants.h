@@ -149,9 +149,7 @@
 
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
-#define METHOD_USE_ITEM @"useItem"
-
-
+#define METHOD_CONSUME_ITEM @"consumeItem"
 
 // for traffic server
 #define PARA_SERVER_ADDRESS @"sa"
@@ -413,6 +411,8 @@
 #define PARA_CAN_SUBMIT_COUNT @"csc"
 #define PARA_PRICE @"pr"
 #define PARA_CURRENCY @"crr"
+#define PARA_FORCE_BUY @"fby"
+
 #define PARA_VALUE @"val"
 #define PARA_REBATE @"rb"
 #define PARA_BOUGHT @"bo"
@@ -514,7 +514,7 @@
 
 
 #define FINDDRAW_FORMAT_PROTOCOLBUFFER @"pb"
-
+#define FORMAT_PROTOCOLBUFFER @"pb"
 
 
 #pragma mark BBS Constant
@@ -612,6 +612,7 @@
 #define ERROR_BALANCE_NOT_ENOUGH        200002
 #define ERROR_BAD_PARAMETER             200003
 #define ERROR_ITEM_NOT_ENOUGH           200004
+
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

@@ -9,13 +9,26 @@
 #import "CommonItem.h"
 #import "ItemType.h"
 #import "FlowerItem.h"
+#import "BlockArray.h"
 
 @interface CommonItem()
-@property (assign, nonatomic) ConsumeItemResultHandler handler;
 
 @end
 
 @implementation CommonItem
+
+- (id)init
+{
+    self = [super init];
+    _blockArray = [[BlockArray alloc] init];
+    return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(_blockArray);
+    [super dealloc];
+}
 
 
 @end

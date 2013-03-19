@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CommonItem.h"
 
+@class BlockArray;
 
 #define PARA_KEY_USER_ID @"PARA_KEY_USER_ID"
 #define PARA_KEY_OPUS_ID @"PARA_KEY_OPUS_ID"

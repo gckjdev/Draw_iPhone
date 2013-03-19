@@ -1062,31 +1062,34 @@
 "kCleaning" = "Cleaning Cache...";
 
 
-"kDottedLinePen" = "dotted line pen";
+"kDottedLinePen" = "Dotted Pen";
 "kDottedLinePenDescription" = "A can easily draw dotted pen";
-"kSmoothPen" = "smooth pen";
-"kSmoothPenDescription" = "can draw a smooth line, such as hair supple";
+"kSmoothPen" = "Smooth Pen";
+"kSmoothPenDescription" = "Can draw a smooth line";
 
-"kTransverseCanvas" = "horizontal version of Canvas";
-"kTransverseCanvasDescription" = "a horizontal canvas";
-"kVerticalCanvas" = "vertical version Canvas";
-"kVerticalCanvasDescription" = "a Vertical Canvas";
-"kSquareCanvasLarge" = "square canvas (large)";
-"kSquareCanvasLargeDescription" = "a square canvas";
-"kTransverseCanvasLarge" = "horizontal version of the canvas (large)";
-"kTransverseCanvasLargeDescription" = "a horizontal large canvas";
-"kVerticalCanvasLarge" = "vertical version of the canvas (large)";
-"kVerticalCanvasLargeDescription" = "a Vertical Canvas";
+"kTransverseCanvas" = "Transverse Canvas";
+"kTransverseCanvasDescription" = "A transverse canvas";
+"kVerticalCanvas" = "Vertical Canvas";
+"kVerticalCanvasDescription" = "A vertical canvas";
+"kSquareCanvasLarge" = "Square Canvas(L)";
+"kSquareCanvasLargeDescription" = "A square canvas";
+"kTransverseCanvasLarge" = "Transverse Canvas(L)";
+"kTransverseCanvasLargeDescription" = "A transverse large canvas";
+"kVerticalCanvasLarge" = "Vertical Canvas(L)";
+"kVerticalCanvasLargeDescription" = "A vertical large canvas";
 
-"kVeinsBackground" = "texture background";
-"kVeinsBackgroundDescription" = "can add texture background for your painting";
-"kBasicShape" = "basic shape";
-"kBasicShapeDescription" = "can easily draw the basic shapes";
-"kPurseItem" = "pockets";
-"kPurseItemDescription" = "can buy gold bullions";
+"kVeinsBackground" = "Veins Background";
+"kVeinsBackgroundDescription" = "Can add texture background for your painting";
+"kBasicShape" = "Basic Shape";
+"kBasicShapeDescription" = "Can easily draw the basic shapes";
+"kPurseItem" = "Pockets";
+"kPurseItemDescription" = "Can buy gold bullions";
 
 "kUpdateTips" = "Update Tips";
 "kVersionIsOld" = "version is too low, you can not use this function to determine the Update?";
+
+"kStore" = "Store";
+"kBalance" = "Balance:";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

@@ -15,10 +15,11 @@
 #import "GiftDetailView.h"
 #import "UserGameItemService.h"
 #import "ItemType.h"
-#import "AccountService.h"
+#import "AccountManager.h"
 #import "UserManager.h"
 #import "AdService.h"
 #import "GameNetworkConstants.h"
+#import "CommonMessageCenter.h"
 
 typedef enum{
     TabIDNormal = 100,
@@ -83,9 +84,9 @@ typedef enum{
 
 - (void)updateBalance
 {
-    self.coinBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyCoin]];
+    self.coinBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
     
-    self.ingotBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountService defaultService] getBalanceWithCurrency:PBGameCurrencyIngot]];
+    self.ingotBalanceLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -173,15 +174,11 @@ typedef enum{
             break;
             
         case ERROR_NETWORK:
-            if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-                [self popupHappyMessage:NSLS(@"kBuyItemFail") title:nil];
-                [self.dataTableView reloadData];
-            }else{
-                [self popupHappyMessage:@"kGiveItemFail" title:nil];
-            }
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
             break;
             
         case ERROR_BALANCE_NOT_ENOUGH:
+                           
             [self popupHappyMessage:NSLS(@"kBalanceNotEnough") title:nil];
             break;
             

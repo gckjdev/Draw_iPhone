@@ -16,10 +16,6 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
-#define ERROR_NO_PRODUCT            1000
-#define ERROR_COINS_NOT_ENOUGH      1001
-//#define ERROR_ITEM_NOT_ENOUGH       1002
-
 @class PriceModel;
 @class ItemManager;
 @class AccountManager;
@@ -46,12 +42,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 + (AccountService *)defaultService;
 
-- (int)getBalance;
-- (int)getBalanceWithCurrency:(PBGameCurrency)currency;
-
-- (void)syncAccount;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
-//- (void)syncAccount:(SyncAccountResultHandler)handler;
 
 - (void)buyCoin:(PriceModel*)price;
 
@@ -68,10 +59,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
 
-- (int)buyItem:(int)itemType
-      itemCount:(int)itemCount
-      itemCoins:(int)itemCoins;
-
 - (int)consumeItem:(int)itemType
             amount:(int)amount;
 
@@ -82,6 +69,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
           awardExp:(int)awardAmount;
 
 - (BOOL)hasEnoughCoins:(int)amount;
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
 
 - (int)checkIn;
 

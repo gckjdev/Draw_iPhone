@@ -112,6 +112,4 @@ typedef enum {
               scene:(UseItemScene*)scene;
 
 
-//- (void)saveActionList:(NSArray *)actionList;
-//- (void)didFinishAPaint:(NSArray *)drawAction;
 @end

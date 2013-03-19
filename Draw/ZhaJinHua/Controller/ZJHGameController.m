@@ -303,7 +303,7 @@
     [self updateZJHButtons];
     
     // background music.
-    [_audioManager setBackGroundMusicWithURL:[_soundManager gameBGM]];
+    [_audioManager setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
     // waitting label
     [self updateWaitGameNoteLabel];
 }

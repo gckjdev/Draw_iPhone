@@ -232,9 +232,6 @@ NSString* GlobalGetBoardServerURL()
         PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
-            
-    // Init Account Service and Sync Balance and Item
-//    [[AccountService defaultService] syncAccount:nil];
     
     /* remove this due to online draw server changed
     if (isDrawApp()){
@@ -384,9 +381,6 @@ NSString* GlobalGetBoardServerURL()
 //        sleep(60);
     });     
     
-//    [[AudioManager defaultManager] backgroundMusicStop];
-    [[MusicItemManager defaultManager] saveMusicItems];
-    
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
     
@@ -416,8 +410,8 @@ NSString* GlobalGetBoardServerURL()
         [[LmWallService defaultService] queryScore];            
     }
     
-
-    
+    // Init Account Service and Sync Balance and Item
+    [[AccountService defaultService] syncAccount:nil];
     
     [[DrawGameService defaultService] clearDisconnectTimer];
     [[DiceGameService defaultService] clearDisconnectTimer];
@@ -437,7 +431,6 @@ NSString* GlobalGetBoardServerURL()
      See also applicationDidEnterBackground:.
      */
     
-    [[MusicItemManager defaultManager] saveMusicItems];
     [[MyPaintManager defaultManager] removeAlldeletedPaints];
     [[FeedManager defaultManager] removeOldCache];
 

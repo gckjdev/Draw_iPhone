@@ -145,7 +145,7 @@ CoinShopController *staticCoinController;
 
 - (void)updateCoinNumberLabel
 {
-    self.coinNumberLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalance]];
+    self.coinNumberLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]];
 }
 
 #pragma mark - Price service delegate

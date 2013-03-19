@@ -12,11 +12,9 @@
 #import "PenBox.h"
 #import "ColorView.h"
 #import "ShareImageManager.h"
-#import "ItemManager.h"
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-#import "Item.h"
 #import "ConfigManager.h"
 #import "AnalyticsManager.h"
 #import "WidthView.h"
@@ -31,6 +29,8 @@
 #import "Draw.pb.h"
 #import "DrawBgManager.h"
 #import "UserGameItemManager.h"
+#import "GameItemManager.h"
+#import "UIButton+WebCache.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -328,9 +328,8 @@
 {
     _penType = penType;
     self.pen.tag = penType;
-    [self.pen setImage:[Item imageForItemType:penType] forState:UIControlStateNormal];
-    [self.pen setImage:[Item seletedPenImageForType:penType] forState:UIControlStateSelected];
-    
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:penType];
+    [self.pen setImageWithURL:[NSURL URLWithString:item.image]];
     [self selectPen];
 }
 

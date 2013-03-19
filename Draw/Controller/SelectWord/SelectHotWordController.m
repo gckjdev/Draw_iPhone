@@ -13,9 +13,13 @@
 #import "OfflineDrawViewController.h"
 #import "UserService.h"
 #import "AccountService.h"
-#import "Item.h"
 #import "CommonMessageCenter.h"
 #import "AnalyticsManager.h"
+#import "UserGameItemService.h"
+#import "UserGameItemManager.h"
+#import "GameItemManager.h"
+#import "PBGameItem+Extend.h"
+#import "BuyItemView.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -144,16 +148,18 @@
     [DraftsView showInView:self.view delegate:self];
 }
 
-- (void)payForHotWord
-{
-    if ([[AccountService defaultService] consumeItem:ItemTypeTips amount:1] ==  ERROR_ITEM_NOT_ENOUGH) {
-        if ([[AccountService defaultService] buyItem:ItemTypeTips itemCount:1 itemCoins:[[Item tips] unitPrice]] == ERROR_COINS_NOT_ENOUGH) {
+- (void)payForHotWord:(Word *)word
+{    
+    __block typeof (self) bself = self;
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+        if (resultCode == ERROR_SUCCESS) {
+            [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-            return;
-        }else {
-            [[AccountService defaultService] consumeItem:ItemTypeTips amount:1];
+        }else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
         }
-    }
+    }];
 }
 
 - (void)didSelectWord:(Word *)word
@@ -168,14 +174,20 @@
         if (word.wordType == PBWordTypeHot) {
             PPDebug(@"Hot Word Selected!");
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_HOT];
-            [self payForHotWord];
 
         }else if (word.wordType == PBWordTypeSystem){
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_SYSTEM];
         }else if (word.wordType == PBWordTypeCustom){
             [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_CUSTOM];
         }
-        [OfflineDrawViewController startDraw:word fromController:self startController:self.superController targetUid:_targetUid];
+        
+        
+        if (word.wordType == PBWordTypeHot) {
+            [self payForHotWord:word];
+        }else{
+            [OfflineDrawViewController startDraw:word fromController:self startController:self.superController targetUid:_targetUid];
+        }
+        
     }
 }
 

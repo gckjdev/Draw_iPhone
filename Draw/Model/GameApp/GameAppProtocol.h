@@ -99,4 +99,5 @@
 - (NSString*)shopTitle;
 - (NSArray*)cacheArray;
 
+- (NSString*)getBackgroundMusicName;
 @end

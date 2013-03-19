@@ -35,20 +35,7 @@
 + (ItemService *)defaultService;
 
 // call this method for online play handling, when receiving items thrown from other users
-- (void)receiveItem:(ItemType)type;
 
-// call this method when send item request
-- (void)sendItemAward:(ItemType)itemType 
-         targetUserId:(NSString*)toUserId 
-            isOffline:(BOOL)isOffline
-           feedOpusId:(NSString*)feedOpusId
-           feedAuthor:(NSString*)feedAuthor;
 
-- (void)sendItemAward:(ItemType)itemType 
-         targetUserId:(NSString*)toUserId 
-            isOffline:(BOOL)isOffline
-           feedOpusId:(NSString*)feedOpusId
-           feedAuthor:(NSString*)feedAuthor 
-              forFree:(BOOL)isFree;
 
 @end

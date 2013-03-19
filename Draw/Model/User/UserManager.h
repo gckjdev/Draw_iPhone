@@ -37,6 +37,7 @@ typedef enum {
 + (UserManager*)defaultManager;
 
 @property (nonatomic, retain) UIImage *avatarImage;
+@property (nonatomic, retain) PBGameUser *pbUser;
 
 - (NSString*)userId;
 - (NSString*)nickName;
@@ -47,15 +48,15 @@ typedef enum {
 - (NSString*)gender;
 - (NSString*)location;
 - (NSArray*)snsUserData;
-- (NSString*)sinaId;
-- (NSString*)sinaNickName;
-- (NSString*)sinaToken;
-- (NSString*)sinaTokenSecret;
-- (NSString*)qqId;
-- (NSString*)qqNickName;
-- (NSString*)qqToken;
-- (NSString*)qqTokenSecret;
-- (NSString*)facebookId;
+//- (NSString*)sinaId;
+//- (NSString*)sinaNickName;
+//- (NSString*)sinaToken;
+//- (NSString*)sinaTokenSecret;
+//- (NSString*)qqId;
+//- (NSString*)qqNickName;
+//- (NSString*)qqToken;
+//- (NSString*)qqTokenSecret;
+//- (NSString*)facebookId;
 - (NSString*)email;
 - (NSString*)facetimeId;
 
@@ -110,21 +111,24 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
          avatarURL:(NSString*)avatarURL 
             gender:(NSString*)gender;
 
-- (void)saveUserId:(NSString*)userId 
-             email:(NSString*)email
-          password:(NSString*)password
-          nickName:(NSString*)nickName 
-              qqId:(NSString*)qqId 
-     qqAccessToken:(NSString*)accessToken 
-qqAccessTokenSecret:(NSString*)accessTokenSecret 
-            sinaId:(NSString*)loginId 
-   sinaAccessToken:(NSString*)accessToken 
-sinaAccessTokenSecret:(NSString*)accessTokenSecret 
-        facebookId:(NSString*)loginId
-         avatarURL:(NSString*)avatarURL 
-           balance:(NSNumber*)balance 
-             items:(NSArray*)items 
-            gender:(NSString*)gender;
+- (void)storeUserData;
+- (void)storeUserData:(PBGameUser*)user;
+
+//- (void)saveUserId:(NSString*)userId 
+//             email:(NSString*)email
+//          password:(NSString*)password
+//          nickName:(NSString*)nickName 
+//              qqId:(NSString*)qqId 
+//     qqAccessToken:(NSString*)accessToken 
+//qqAccessTokenSecret:(NSString*)accessTokenSecret 
+//            sinaId:(NSString*)loginId 
+//   sinaAccessToken:(NSString*)accessToken 
+//sinaAccessTokenSecret:(NSString*)accessTokenSecret 
+//        facebookId:(NSString*)loginId
+//         avatarURL:(NSString*)avatarURL 
+//           balance:(NSNumber*)balance 
+//             items:(NSArray*)items 
+//            gender:(NSString*)gender;
 
 - (void)setLanguageType:(LanguageType)type;
 - (LanguageType)getLanguageType;
@@ -152,4 +156,6 @@ sinaAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (NSString*)defaultUserRoomName;
 - (BOOL)isSuperUser;
+
+- (void)storeUserData:(PBGameUser*)user;
 @end

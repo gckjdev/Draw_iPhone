@@ -151,6 +151,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     }
 }
 
+
 + (UILabel *)createInfoLabel:(NSString *)text
 {
     UILabel *infoLabel = [[[UILabel alloc] init] autorelease];
@@ -173,14 +174,14 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 }
 
 #define COLOR_BUTTON_TITLE  [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1]
-
+#define FONT_SIZE_BUTTON_TITLE ([DeviceDetection isIPAD] ? 32 : 16)
 + (UIButton *)createButtonWithTitle:(NSString *)title{
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
     [button setBackgroundImage:[[ShareImageManager defaultManager] dialogButtonBackgroundImage] forState:UIControlStateNormal];
     [button setTitleColor:COLOR_BUTTON_TITLE forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:16];
+    button.titleLabel.font = [UIFont systemFontOfSize:FONT_SIZE_BUTTON_TITLE];
     button.titleLabel.shadowOffset = CGSizeMake(0, 1);
     
     return button;

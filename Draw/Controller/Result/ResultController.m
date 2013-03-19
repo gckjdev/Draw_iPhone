@@ -34,22 +34,18 @@
 #import "FeedService.h"
 #import "DeviceDetection.h"
 #import "DrawGameAnimationManager.h"
-#import "ItemManager.h"
-#import "ItemShopController.h"
 #import "AccountManager.h"
 #import "ConfigManager.h"
-#import "ItemService.h"
-//#import "VendingController.h"
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "ShareAction.h"
-#import "Item.h"
 #import "DrawUtils.h"
 #import "UIViewUtils.h"
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
+#import "UserGameItemManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -63,8 +59,7 @@
     ShareAction* _shareAction;
 }
 
-//- (BOOL)fromShowFeedController;
-- (BOOL)throwItem:(ToolView*)toolView;
+- (void)throwItem:(ToolView*)toolView;
 - (void)receiveFlower;
 - (void)receiveTomato;
 
@@ -385,7 +380,8 @@
 
 - (void)initToolViews
 {
-    ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
+    ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:0] autorelease];
+    
     flower.tag = FLOWER_TOOLVIEW_TAG;
     [self.view addSubview:flower];
     [flower addTarget:self action:@selector(clickUpButton:)];
@@ -400,7 +396,7 @@
     
     if (![self isOffline]) {
         [flower setCenter:upButton.center];
-        ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
+        ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:0] autorelease];
         tomato.tag = TOMATO_TOOLVIEW_TAG;
         [tomato setCenter:downButton.center];
         [self.view addSubview:tomato];
@@ -573,41 +569,14 @@
     
     ToolView* toolView = (ToolView*)sender;    
     
-    // show animation
-    if (![self throwItem:toolView]) 
-        return;
-        
-    // send request
-    
-//    [[ItemService defaultService] sendItemAward:toolView.itemType
-//                                   targetUserId:_drawUserId
-//                                      isOffline:[self isOffline] 
-//                                     feedOpusId:_feed.feedId
-//                                     feedAuthor:_feed.author.userId];  
-    
-    // update UI
-//    [self setUpAndDownButtonEnabled:NO];
-    [toolView decreaseNumber];
+    [self throwItem:toolView];
 }
 
 - (IBAction)clickDownButton:(id)sender {
 
     ToolView* toolView = (ToolView*)sender;    
     
-    // throw item animation
-    if (![self throwItem:toolView]) 
-        return;
-
-    // send request
-//    [[ItemService defaultService] sendItemAward:toolView.itemType
-//                                   targetUserId:_drawUserId
-//                                      isOffline:[self isOffline]
-//                                     feedOpusId:_feed.feedId
-//                                     feedAuthor:_feed.author.userId];
-    
-    // update UI
-//    [self setUpAndDownButtonEnabled:NO];
-    [toolView decreaseNumber];
+    [self throwItem:toolView];
 }
 
 - (IBAction)clickContinueButton:(id)sender {
@@ -718,11 +687,9 @@
 {        
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        [[ItemService defaultService] receiveItem:ItemTypeTomato];
         [self receiveTomato];
     }else{
         PPDebug(@"%@ give you a flower", userId);
-        [[ItemService defaultService] receiveItem:ItemTypeFlower];
         [self receiveFlower];
     }
     
@@ -751,34 +718,36 @@
 
 #pragma mark - throw item animation
 #define ITEM_TAG_OFFSET 20120728
-- (BOOL)throwItem:(ToolView*)toolView
+- (void)throwItem:(ToolView*)toolView
 {
-    Item* item = [Item itemWithType:toolView.itemType amount:1];
     if ((toolView.itemType == ItemTypeTomato
          && ![_useItemScene canThrowTomato])
         || (toolView.itemType == ItemTypeFlower
             && ![_useItemScene canThrowFlower])) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"),[_useItemScene itemLimitForType:toolView.itemType]] delayTime:1.5 isHappy:YES];
             self.downButton.enabled = NO;
-            
-        return NO;
+        return;
     }
-    
-    BOOL itemEnough = YES;
-    
-    if([[ItemManager defaultManager] hasEnoughItem:toolView.itemType] == NO){
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNoItemTitle") message:NSLS(@"kNoItemMessage") style:CommonDialogStyleDoubleButton delegate:self];
-//        dialog.tag = ITEM_TAG_OFFSET + toolView.itemType;
-//        [dialog showInView:self.view];
-//        return NO;
-
-        int result = [[AccountService defaultService] buyItem:toolView.itemType itemCount:1 itemCoins:(item.price/item.buyAmountForOnce)];
-        itemEnough = NO;
-        if (result == ERROR_COINS_NOT_ENOUGH) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoinOrItem") delayTime:1];
-            return NO;
+        
+    __block typeof (self) bself = self;
+    [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
+                                 isOffline:[self isOffline]
+                                feedOpusId:_feed.feedId
+                                feedAuthor:_feed.author.userId
+                                   forFree:NO
+                             resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+        if (resultCode == ERROR_SUCCESS) {
+            [bself throwItemAnimation:toolView];
+            [toolView decreaseNumber];
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
         }
-    }
+    }];
+}
+
+- (void)throwItemAnimation:(ToolView*)toolView
+{
+    BOOL itemEnough = [[UserGameItemManager defaultManager] hasEnoughItemAmount:toolView.itemType amount:1];
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
     [throwingItem setImage:toolView.imageView.image];
     if (toolView.itemType == ItemTypeTomato) {
@@ -795,33 +764,6 @@
     }
     
     
-
-    
-//    [[ItemService defaultService] sendItemAward:item.type
-//                                   targetUserId:_feed.author.userId
-//                                      isOffline:[self isOffline]
-//                                     feedOpusId:((_feed != nil)?_feed.feedId:nil)
-//                                     feedAuthor:((_feed != nil)?_feed.author.userId:nil)
-//                                        forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-    if ([self isOffline]) {
-        
-        FlowerItem *item = [CommonItem createWithItemId:toolView.itemType];
-        NSMutableDictionary *para = [NSMutableDictionary dictionary];
-        [para setObject:_feed.author.userId forKey:PARA_KEY_USER_ID];
-        [para setObject:_feed.feedId forKey:PARA_KEY_OPUS_ID];
-        [item setParameters:para];
-        
-        [[UserGameItemService defaultService] useItem:toolView.itemType itemAction:item];
-    }else{
-        [[ItemService defaultService] sendItemAward:item.type
-                                       targetUserId:_feed.author.userId
-                                          isOffline:[self isOffline]
-                                         feedOpusId:((_feed != nil)?_feed.feedId:nil)
-                                         feedAuthor:((_feed != nil)?_feed.author.userId:nil)
-                                            forFree:NO];//why NO? because only if guess contest opus cost free item, and contest opus can not be guessed
-    }
-    
-    return YES;
 }
 
 
@@ -831,7 +773,6 @@
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 - (void)receiveTomato
 {
@@ -839,7 +780,6 @@
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
 #pragma mark - Common Dialog Delegate
@@ -869,13 +809,13 @@
 }
 
 #pragma mark - commonItemInfoView delegate
-- (void)didBuyItem:(Item *)anItem 
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
         ToolView* toolview = nil;
-        switch (anItem.type) {
+        switch (itemId) {
             case ItemTypeFlower: {
                 toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
             } break;
@@ -885,9 +825,8 @@
             default:
                 break;
         }
-        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
-    if (result == ERROR_COINS_NOT_ENOUGH)
+    if (result == ERROR_BALANCE_NOT_ENOUGH)
     {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
     }

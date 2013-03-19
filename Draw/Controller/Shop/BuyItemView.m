@@ -18,6 +18,7 @@
 #import "FriendController.h"
 #import "VersionUpdateView.h"
 #import "UserGameItemManager.h"
+#import "CommonMessageCenter.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -157,8 +158,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == 0) {
+                if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
+                    if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+                    }
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
@@ -217,8 +221,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:item count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == 0) {
+                if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
+                    if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+                    }
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];

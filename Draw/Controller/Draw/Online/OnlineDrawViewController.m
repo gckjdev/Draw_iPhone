@@ -35,7 +35,6 @@
 #import "CommonMessageCenter.h"
 #import "FriendRoomController.h"
 #import "GameConstants.h"
-#import "ItemService.h"
 #import "DrawColorManager.h"
 #import "PointNode.h"
 #import "BuyItemView.h"
@@ -245,17 +244,11 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        [self recieveTomato];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeTomato];        
+        [self recieveTomato];     
         
     }else{
         PPDebug(@"%@ give you a flower", userId);
         [self recieveFlower];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeFlower];
     }
     
     
@@ -336,16 +329,16 @@
 }
 #pragma mark - CommonItemInfoView Delegate
 
-- (void)didBuyItem:(Item*)anItem
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
-        switch (anItem.type) {
+        switch (itemId) {
             case PaletteItem:
             case ColorAlphaItem:
             case ColorStrawItem:
                 [self.drawToolPanel updateNeedBuyToolViews];
-                [self.drawToolPanel userItem:anItem.type];
+                [self.drawToolPanel userItem:itemId];
                 break;
             case Pen:
             case Pencil:
@@ -353,8 +346,8 @@
             case Quill:
             case WaterPen:
             {
-                [self.drawToolPanel setPenType:anItem.type];
-                [drawView setPenType:anItem.type];
+                [self.drawToolPanel setPenType:itemId];
+                [drawView setPenType:itemId];
                 break;
             }
             default:
@@ -467,9 +460,7 @@
     
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
-{
-//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
-    
+{    
     PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
     [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         

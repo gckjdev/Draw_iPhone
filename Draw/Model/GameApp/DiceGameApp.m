@@ -334,4 +334,9 @@
     return nil;
 }
 
+- (NSString*)getBackgroundMusicName
+{
+    return @"dice.m4a";
+}
+
 @end

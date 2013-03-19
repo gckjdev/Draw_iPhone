@@ -12,10 +12,10 @@
 #import "CommonItem.h"
 #import "GameNetworkConstants.h"
 
-typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
+
 typedef void (^BuyItemResultHandler)(int resultCode,  int itemId, int count, NSString *toUserId);
 
-
+typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy);
 
 @interface UserGameItemService : CommonService
 
@@ -41,10 +41,12 @@ typedef void (^BuyItemResultHandler)(int resultCode,  int itemId, int count, NSS
           handler:(BuyItemResultHandler)handler;
 
 - (void)consumeItem:(int)itemId
+              count:(int)count
+           forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
 
 
-//- (void)useItem:(int)itemId
-//     itemAction:(id<ItemActionProtocol>)itemAction;
+
+
 
 @end

@@ -15,16 +15,12 @@
 
 @end
 
-
-
-//typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId);
+@class BlockArray;
 
 @interface CommonItem : NSObject
-{
-//    ConsumeItemResultHandler handler;
-}
-//@property (assign, nonatomic) ConsumeItemResultHandler handler;
 
-//- (void)setHandler:(ConsumeItemResultHandler)handler;
+
+@property (retain, nonatomic) BlockArray *blockArray;
+
 
 @end

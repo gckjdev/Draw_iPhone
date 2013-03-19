@@ -157,6 +157,19 @@
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken;
 
++ (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              gameId:(NSString*)gameId
+                            deviceId:(NSString*)deviceId
+                         deviceToken:(NSString*)deviceToken;
+
++ (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
+                               appId:(NSString*)appId
+                              gameId:(NSString*)gameId
+                               email:(NSString*)email
+                            password:(NSString*)password
+                         deviceToken:(NSString*)deviceToken;
+
 + (CommonNetworkOutput*)followUser:(NSString*)baseURL
                              appId:(NSString*)appId 
                             userId:(NSString*)userId
@@ -459,7 +472,14 @@
                                    gameId:(NSString*)gameId
                                  ByUserId:(NSString*)targetUserId;
 
-+ (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL 
+// return by Protocol Buffer
++ (CommonNetworkOutput*)getUserInfo:(NSString*)baseURL
+                             userId:(NSString *)userId
+                              appId:(NSString*)appId
+                             gameId:(NSString*)gameId
+                           ByUserId:(NSString*)targetUserId;
+
++ (CommonNetworkOutput*)deleteFeed:(NSString*)baseURL
                              appId:(NSString*)appId
                             feedId:(NSString*)feedId 
                             userId:(NSString *)userId;
@@ -543,7 +563,7 @@
                          actionType:(int)actionType;
 
 
-// for item
+// buy item
 + (CommonNetworkOutput *)buyItem:(NSString *)baseURL
                            appId:(NSString *)appId
                           userId:(NSString *)userId
@@ -553,9 +573,13 @@
                         currency:(PBGameCurrency)currency
                           toUser:(NSString *)toUser;
 
-+ (CommonNetworkOutput *)useItem:(NSString *)baseURL
-                           appId:(NSString *)appId
-                          userId:(NSString *)userId
-                          itemId:(int)itemId
-                           count:(int)count;
+// consume item
++ (CommonNetworkOutput *)consumeItem:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                              itemId:(int)itemId
+                               count:(int)count
+                            forceBuy:(BOOL)forceBuy // 若不够钱是否强制购买后消耗
+                               price:(int)price
+                            currency:(PBGameCurrency)currency;
 @end

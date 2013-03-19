@@ -41,7 +41,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
 - (void)updateLabelWidth:(UILabel *)label
                 withText:(NSString *)text
 {
-    CGSize withinSize = CGSizeMake(50, label.frame.size.height);
+    CGSize withinSize = CGSizeMake(100, label.frame.size.height);
     
     CGSize size = [text sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
@@ -63,6 +63,10 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
                   withText:[NSString stringWithFormat:@"%d",
                             price]];
     [view.promotionPriceLabel updateOriginX:originX];
+    
+    CGFloat width = view.promotionPriceLabel.frame.origin.x + view.promotionPriceLabel.frame.size.width - view.promotionCurrencyImageView.frame.origin.x;
+    [view.grayLineImageView updateOriginX:view.promotionCurrencyImageView.frame.origin.x];
+    [view.grayLineImageView updateWidth:width];
     
     originX = view.promotionPriceLabel.frame.origin.x + view.promotionPriceLabel.frame.size.width + distance1;
     [view.currencyImageView updateOriginX:originX];

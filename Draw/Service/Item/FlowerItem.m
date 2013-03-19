@@ -17,35 +17,17 @@
 #import "PPNetworkRequest.h"
 #import "BlockUtils.h"
 #import "SynthesizeSingleton.h"
+#import "BlockArray.h"
 
 @implementation FlowerItem
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
 
-- (void)dealloc
-{
-//    RELEASE_BLOCK(_resultHandler);
-    [super dealloc];
-}
 
 - (int)itemId
 {
     return ItemTypeFlower;
 }
-
-//- (void)excuteAction//WithParameters//:(NSDictionary *)parameters
-//{
-//    NSString *toUserId = [_parameters objectForKey:PARA_KEY_USER_ID];
-//    NSString *opusId = [_parameters objectForKey:PARA_KEY_OPUS_ID];
-//
-//    // send feed action
-//    [[FeedService defaultService] throwItem:[self itemId]
-//                                     toOpus:opusId
-//                                     author:toUserId
-//                                   delegate:nil];
-//}
-
-
 
 - (void)useItem:(NSString*)toUserId
       isOffline:(BOOL)isOffline
@@ -58,48 +40,56 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     int awardExp = 0;
     NSString* targetUserId = nil;
     
+    ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[self.blockArray copyBlock:handler];
+    __block typeof (self) bself = self;
+
     if (isOffline) {
-        
+
         // prepare data for consumeItem request
         targetUserId = toUserId;
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
-//        RELEASE_BLOCK(_resultHandler);
-//        COPY_BLOCK(_resultHandler, handler);
-        
-        [[UserGameItemService defaultService] consumeItem:[self itemId] handler:^(int resultCode, int itemId) {
-            
-            if (resultCode == ERROR_SUCCESS){            
-                // send feed action
-                [[FeedService defaultService] throwItem:[self itemId]
-                                                 toOpus:feedOpusId
-                                                 author:feedAuthor
-                                               delegate:nil];
-            }
-            
-//            EXCUTE_BLOCK(_resultHandler, resultCode, itemId);
-//            RELEASE_BLOCK(_resultHandler);
-            EXCUTE_BLOCK(handler, resultCode, itemId);
-         
-        }];
-        
-        
+        if (!isFree) {
+            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+                if (resultCode == ERROR_SUCCESS) {
+                    // send feed action
+                    [[FeedService defaultService] throwItem:[bself itemId]
+                                                     toOpus:feedOpusId
+                                                     author:feedAuthor
+                                                   delegate:nil];
+                }
+                
+                EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+                [bself.blockArray releaseBlock:tempHandler];
+            }];
+        }else{
+            // send feed action
+            [[FeedService defaultService] throwItem:[bself itemId]
+                                             toOpus:feedOpusId
+                                             author:feedAuthor
+                                           delegate:nil];
+            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            [bself.blockArray releaseBlock:tempHandler];
+        }
+
     }else{
-        // send online request for online realtime play
         int rankResult = RANK_FLOWER;
-        [[DrawGameService defaultService] rankGameResult:rankResult];
-        [[AccountService defaultService] consumeItem:[self itemId]
-                                              amount:isFree?0:1
-                                        targetUserId:targetUserId
-                                         awardAmount:isFree?0:awardAmount
-                                            awardExp:isFree?0:awardExp];
         
-        EXCUTE_BLOCK(handler, 0, [self itemId]);
+        if (!isFree) {
+            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+                if (resultCode == ERROR_SUCCESS) {
+                    [[DrawGameService defaultService] rankGameResult:rankResult];
+                    EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+                    [bself.blockArray releaseBlock:tempHandler];
+                }
+            }];
+        }else{
+            [[DrawGameService defaultService] rankGameResult:rankResult];
+            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            [bself.blockArray releaseBlock:tempHandler];
+        }
     }
-    
-    
-    
 }
 
 @end

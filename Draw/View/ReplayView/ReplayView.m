@@ -16,7 +16,6 @@
 #import "ConfigManager.h"
 #import "AccountService.h"
 #import "ItemType.h"
-#import "Item.h"
 #import "UserGameItemService.h"
 #import "BuyItemView.h"
 #import "UserGameItemManager.h"
@@ -401,14 +400,14 @@
     }
 }
 
-- (void)didBuyItem:(Item*)anItem
+- (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
         [self.playerToolMask removeFromSuperview];
         self.playerToolMask = nil;
     }else{
-        PPDebug(@"<didBuyItem> item type = %d, failed",anItem.type);
+        PPDebug(@"<didBuyItem> item type = %d, failed",itemId);
     }
 }
 

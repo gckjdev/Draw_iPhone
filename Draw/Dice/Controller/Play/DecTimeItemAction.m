@@ -12,6 +12,7 @@
 #import "DiceGamePlayController.h"
 #import "UserManager.h"
 #import "DiceAvatarView.h"
+#import "GameMessage.pb.h"
 
 @implementation DecTimeItemAction
 

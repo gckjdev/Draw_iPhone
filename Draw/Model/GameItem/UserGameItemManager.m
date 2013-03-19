@@ -15,7 +15,7 @@
 
 @interface UserGameItemManager()
 
-@property (retain, nonatomic) NSArray *itemsList;
+@property (retain, atomic) NSMutableArray *itemsList;
 
 @end
 
@@ -31,9 +31,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (id)init{
     if (self = [super init]) {
+        _itemsList = [[NSMutableArray alloc] init];
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_ITEM_INFO];
         if (data != nil) {
-            self.itemsList = [[PBUserItemList parseFromData:data] userItemsList];
+            [self.itemsList addObjectsFromArray:[[PBUserItemList parseFromData:data] userItemsList]];
         }
     }
     
@@ -42,7 +43,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (void)setUserItemList:(NSArray *)itemsList
 {
-    self.itemsList = itemsList;
+    PPDebug(@"<setUserItemList>");
+    [_itemsList removeAllObjects];
+    if (itemsList != nil){
+        [_itemsList addObjectsFromArray:itemsList];
+    }
+//    self.itemsList = itemsList;
 }
 
 - (void)save
@@ -105,6 +111,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
             break;
             
         default:
+            return YES;
             break;
     }
     

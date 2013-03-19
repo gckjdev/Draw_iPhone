@@ -268,12 +268,12 @@
     [self.level setText:[NSString stringWithFormat:@"LV: %d",level]];
     
     //coin
-    NSInteger coin = [[AccountService defaultService] getBalance];//[[AccountManager defaultManager] account].balance.intValue;
+    NSInteger coin = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
+
     NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
     [self.coin setText:coinString];
     
 //    //charge button
-//    self.freeCoin.hidden = [ConfigManager wallEnabled] ? NO : YES;
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self.bulletinButton setTitle:NSLS(@"kBulletin") forState:UIControlStateNormal];

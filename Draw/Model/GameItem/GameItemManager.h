@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PBGameItem+Extend.h"
 
 @class PBGameItem;
 
@@ -25,5 +26,8 @@
 - (NSArray *)itemsListWithType:(int)type;
 - (NSArray *)promotingItemsList;
 - (PBGameItem *)itemWithItemId:(int)itemId;
+
+- (int)priceWithItemId:(int)itemId;
+- (PBGameCurrency)currencyWithItemId:(int)itemId;
 
 @end

@@ -30,6 +30,7 @@
 #import "PPNetworkRequest.h"
 #import "MyFriend.h"
 #import "StatisticManager.h"
+#import "GameMessage.pb.h"
 
 @implementation UserService
 
@@ -272,7 +273,8 @@ static UserService* _defaultUserService;
                 }   
                 
                 // set location
-                [[UserManager defaultManager] setLocation:location];                                
+                [[UserManager defaultManager] setLocation:location];
+                [[UserManager defaultManager] storeUserData];
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
@@ -362,7 +364,8 @@ static UserService* _defaultUserService;
                 }   
                 
                 // set location
-                [[UserManager defaultManager] setLocation:[userInfo objectForKey:SNS_LOCATION]];                
+                [[UserManager defaultManager] setLocation:[userInfo objectForKey:SNS_LOCATION]];
+                [[UserManager defaultManager] storeUserData];
                 
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalance:balance];
@@ -408,6 +411,7 @@ static UserService* _defaultUserService;
     [[UserManager defaultManager] setPassword:pwd];
     [[UserManager defaultManager] saveAvatarLocally:avatarImage];
     [[UserManager defaultManager] setEmail:email];
+    [[UserManager defaultManager] storeUserData];
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -435,6 +439,8 @@ static UserService* _defaultUserService;
                 // update avatar
                 NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
                 [[UserManager defaultManager] setAvatar:retURL];
+                [[UserManager defaultManager] storeUserData];
+                
             }
             else{
                 [viewController popupUnhappyMessage:NSLS(@"kUpdateUserFail") title:@""];
@@ -553,6 +559,145 @@ static UserService* _defaultUserService;
     });
 }
 
+- (int)createLocalUserAccount:(NSData*)data appId:(NSString*)appId
+{
+    int resultCode = 0;
+    if (data == nil){
+        return ERROR_CLIENT_PARSE_DATA;
+    }
+    
+    @try {
+        DataQueryResponse* response = [DataQueryResponse parseFromData:data];
+        PBGameUser* user = response.user;
+        
+        if (user != nil){
+            [[UserManager defaultManager] storeUserData:user];
+        }
+        
+        [[LevelService defaultService] setLevel:user.level];
+        [[LevelService defaultService] setExperience:user.experience];
+        
+        if ([ConfigManager isProVersion]){
+            // update new appId of user
+            [self updateNewAppId:appId];
+        }
+        
+        // TODO : combine them?
+        [[AccountService defaultService] syncAccount:nil];
+    }
+    @catch (NSException *exception) {
+        resultCode = ERROR_CLIENT_PARSE_DATA;
+    }
+    @finally {
+        
+    }
+    
+    return resultCode;
+
+}
+
+- (void)loginUserByEmail:(NSString*)email
+                password:(NSString*)password
+          viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
+{
+    NSString* appId = [ConfigManager appId];
+    NSString* gameId = [ConfigManager gameId];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    
+    [viewController showActivityWithText:NSLS(@"kLoginUser")];
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output =
+        [GameNetworkRequest newLoginUser:SERVER_URL
+                                appId:appId
+                               gameId:gameId
+                                email:email
+                             password:password
+                          deviceToken:deviceToken];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                [self createLocalUserAccount:output.responseData appId:appId];
+                
+//                DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
+//                PBGameUser* user = response.user;
+//                
+//                if (user != nil){
+//                    [[UserManager defaultManager] storeUserData:user];
+//                }
+//                
+//                [[LevelService defaultService] setLevel:user.level];
+//                [[LevelService defaultService] setExperience:user.experience];
+//                
+//                if ([ConfigManager isProVersion]){
+//                    // update new appId of user
+//                    [self updateNewAppId:appId];
+//                }
+//                
+//                // TODO : combine them?
+//                [[AccountService defaultService] syncAccount:nil];
+                
+                
+//                // save return User ID locally
+//                NSString* userId = [output.jsonDataDict objectForKey:PARA_USERID];
+//                NSString* email = [output.jsonDataDict objectForKey:PARA_EMAIL];
+//                NSString* nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+//                NSString* password = [output.jsonDataDict objectForKey:PARA_PASSWORD];
+//                NSString* avatar = [output.jsonDataDict objectForKey:PARA_AVATAR];
+//                NSString* location = [output.jsonDataDict objectForKey:PARA_LOCATION];
+//                
+//                // save data
+//                [[UserManager defaultManager] saveUserId:userId
+//                                                   email:email
+//                                                password:password
+//                                                nickName:nickName
+//                                               avatarURL:avatar];
+//                
+//                [[UserManager defaultManager] setLocation:location];
+//                
+//                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+//                [[AccountManager defaultManager] updateBalance:balance];
+//                
+//                if ([viewController respondsToSelector:@selector(didUserLogined:)]){
+//                    [viewController didUserLogined:output.resultCode];
+//                }
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_USER_EMAIL_NOT_FOUND) {
+                // @"该邮箱地址尚未注册"
+                [viewController popupUnhappyMessage:NSLS(@"kEmailNotFound") title:nil];
+            }
+            else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
+                // @"密码错误 "
+                [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
+                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
+                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                [dialog showInView:viewController.view];
+            }
+            else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
+                // @"对不起，该电子邮件格式不正确，请重新输入"
+                [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+            }
+            else {
+                // @"登录失败，稍后尝试"
+                [viewController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                [viewController didUserRegistered:output.resultCode];
+            }
+        });
+    });
+    
+}
+
+
+/*
 - (void)loginUserByEmail:(NSString*)email 
                 password:(NSString*)password 
           viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
@@ -630,7 +775,8 @@ static UserService* _defaultUserService;
     });
     
 }
-
+*/
+ 
 - (void)updateNewAppId:(NSString*)newAppId
 {
     PPDebug(@"<updateNewAppId> to %@", newAppId);
@@ -639,6 +785,67 @@ static UserService* _defaultUserService;
     });
 }
 
+- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+{
+    NSString* appId = [ConfigManager appId];
+    NSString* gameId = [ConfigManager gameId];
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+
+    [homeController showActivityWithText:NSLS(@"kConnectingServer")];
+    dispatch_async(workingQueue, ^{
+
+        CommonNetworkOutput* output =
+        [GameNetworkRequest newLoginUser:SERVER_URL
+                                appId:appId
+                               gameId:gameId
+                             deviceId:deviceId
+                          deviceToken:deviceToken];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            [homeController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                
+                [self createLocalUserAccount:output.responseData appId:appId];
+
+//                DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
+//                PBGameUser* user = response.user;
+//
+//                if (user != nil){
+//                    [[UserManager defaultManager] storeUserData:user];
+//                }
+//
+//                [[LevelService defaultService] setLevel:user.level];
+//                [[LevelService defaultService] setExperience:user.experience];
+//
+//                if ([ConfigManager isProVersion]){
+//                    // update new appId of user
+//                    [self updateNewAppId:appId];
+//                }
+//
+//                // TODO : combine them?
+//                [[AccountService defaultService] syncAccount:nil];
+
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+            }
+            else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
+                // @"设备未绑定任何用户"
+                // rem by Benson
+                // [RegisterUserController showAt:homeController];
+            }
+            else {
+                // @"登录失败，稍后尝试"
+                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+            }
+        });
+    });
+
+}
+
+/*
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
     NSString* appId = [ConfigManager appId];
@@ -756,6 +963,8 @@ static UserService* _defaultUserService;
                     // update new appId of user
                     [self updateNewAppId:appId];
                 }
+                
+                [[AccountService defaultService] syncAccount];
 
             }
             else if (output.resultCode == ERROR_NETWORK) {
@@ -774,7 +983,8 @@ static UserService* _defaultUserService;
     });
     
 }
-
+*/
+ 
 /*
 - (void)updateAllUserInfo
 {
@@ -941,6 +1151,35 @@ static UserService* _defaultUserService;
     return user;
 }
 
+- (void)getUserInfo:(NSString*)targetUserId resultBlock:(GetUserInfoResultBlock)block
+{
+    dispatch_async(workingQueue, ^{
+        NSString *userId = [[UserManager defaultManager] userId];
+        CommonNetworkOutput* output = [GameNetworkRequest       getUserInfo:SERVER_URL
+                                                                     userId:userId
+                                                                      appId:[ConfigManager appId]
+                                                                     gameId:[ConfigManager gameId]
+                                                                   ByUserId:targetUserId];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                @try {
+                    DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
+                    PBGameUser* user = response.user;
+                    EXCUTE_BLOCK(block, 0, user);
+                }
+                @catch (NSException *exception) {
+                    EXCUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil);
+                }
+                @finally {
+                }
+            }
+            else{
+                EXCUTE_BLOCK(block, output.resultCode, nil);
+            }
+        });
+    });
+
+}
 
 - (void)getUserSimpleInfoByUserId:(NSString *)targetUserId
                          delegate:(id<UserServiceDelegate>)delegate{

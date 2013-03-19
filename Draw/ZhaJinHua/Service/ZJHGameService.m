@@ -16,6 +16,7 @@
 #import "ZJHRuleConfigFactory.h"
 #import "MyFriend.h"
 #import "ConfigManager.h"
+#import "AccountManager.h"
 
 static ZJHGameService *_defaultService;
 
@@ -552,7 +553,7 @@ static ZJHGameService *_defaultService;
 
 - (int)myBalance
 {
-    int balance = [_accountService getBalance] - [[self myPlayInfo] totalBet] + [[self myPlayInfo] compareAward] + [[self myPlayInfo] resultAward];
+    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin] - [[self myPlayInfo] totalBet] + [[self myPlayInfo] compareAward] + [[self myPlayInfo] resultAward];
     if (balance < 0) {
         return 0;
     }
