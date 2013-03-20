@@ -199,12 +199,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
         
         [self addSubview:holder];
+        [holder setBackgroundColor:[UIColor redColor]];
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
-        message.thumbImage = [self.showDrawView createImage];
+//        message.thumbImage = [self.showDrawView createImage];
     }
-    [self.showDrawView showImage:message.thumbImage];
+//    [self.showDrawView showImage:message.thumbImage];
 }
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
