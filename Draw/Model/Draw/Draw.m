@@ -55,7 +55,7 @@
         self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
         self.version = pbDraw.version;
         self.drawBg = pbDraw.drawBg;
-        if ([pbDraw hasSize]) {
+        if ([pbDraw hasCanvasSize]) {
             self.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
         }else{
             self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;

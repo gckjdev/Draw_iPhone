@@ -444,7 +444,8 @@
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
     NSInteger bonus = [ConfigManager getBBSRewardBounsList][index];
-    if ([[AccountService defaultService] hasEnoughCoins:bonus]) {
+    if ([[AccountService defaultService] hasEnoughBalance:bonus currency:PBGameCurrencyCoin]) {
+
         self.bonus = bonus;
         [self updateToolButtons];
     }else{

@@ -59,16 +59,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
 
-- (int)consumeItem:(int)itemType
-            amount:(int)amount;
-
-- (int)consumeItem:(int)itemType
-            amount:(int)amount
-      targetUserId:(NSString*)targetUserId
-       awardAmount:(int)awardAmount
-          awardExp:(int)awardAmount;
-
-- (BOOL)hasEnoughCoins:(int)amount;
 - (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
 
 - (int)checkIn;

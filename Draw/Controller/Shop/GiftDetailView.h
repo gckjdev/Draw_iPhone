@@ -11,7 +11,6 @@
 #import "MyFriend.h"
 
 @interface GiftDetailView : UIView
-@property (retain, nonatomic) IBOutlet UILabel *itemTypeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *itemNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *countLable;

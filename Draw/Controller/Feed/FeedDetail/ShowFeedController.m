@@ -31,7 +31,7 @@
 #import "SDWebImageManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 
 #import "LmWallService.h"
 #import "UserGameItemService.h"
@@ -579,7 +579,7 @@ enum{
     if ([ConfigManager wallEnabled]) {
         [LmWallService showWallOnController:self];
     }else {
-        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

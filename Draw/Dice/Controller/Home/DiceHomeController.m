@@ -376,21 +376,6 @@
     }
 }
 
-//- (void)connectFailed
-//{
-//    [self connectBroken];
-//}
-
-//- (void)connectBroken
-//{
-//    _isTryJoinGame = NO;
-//    PPDebug(@"%@ <didBroken>", [self description]);
-//    [self hideActivity];
-//    
-//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
-//    [self.navigationController popToRootViewControllerAnimated:NO];
-//}
-
 #pragma mark - common dialog delegate
 - (void)clickOk:(CommonDialog *)dialog
 {

@@ -497,6 +497,15 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];
             paint.drawDataVersion = pbDraw.version;
+            if ([pbDraw hasDrawBg]) {
+                paint.drawBg = pbDraw.drawBg;
+            }
+            if (![pbDraw hasCanvasSize]) {
+                paint.canvasSize = [CanvasRect deprecatedRect].size;
+            }else{
+                paint.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
+            }
+
             Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];
             return draw.drawActionList;
         }else{

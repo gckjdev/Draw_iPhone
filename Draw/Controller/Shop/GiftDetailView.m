@@ -23,7 +23,6 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     [_countLable release];
     [_priceLabel release];
     [_currencyImageView release];
-    [_itemTypeLabel release];
     [_itemImageView release];
     [_avatarImageView release];
     [super dealloc];
@@ -34,15 +33,7 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
                count:(int)count
 {
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
-    GiftDetailView *view = [self createView];
-    if (item.type == PBDrawItemTypeTool) {
-        //工具
-        view.itemTypeLabel.text = NSLS(@"kTool");
-    } else{
-        //道具
-        view.itemTypeLabel.text = NSLS(@"kProps");
-    }
-    
+    GiftDetailView *view = [self createView];    
     view.itemNameLabel.text = NSLS(item.name);
     view.friendNameLabel.text = myFriend.nickName;
     view.countLable.text = [NSString stringWithFormat:@"%d", count];
@@ -56,7 +47,6 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     view.priceLabel.text = [NSString stringWithFormat:@"%d", [item promotionPrice] * count];
     
     [view.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
-//    [view.avatarImageView setImageWithURL:[NSURL URLWithString:myFriend.avatar]];
     UIImage *placeHolderImage = [myFriend isMale] ? [[ShareImageManager defaultManager] maleDefaultAvatarImage] : [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     
     [view.avatarImageView setImageWithURL:[NSURL URLWithString:myFriend.avatar] placeholderImage:placeHolderImage];

@@ -23,14 +23,13 @@
 @property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 
 
-- (id)initWithCapacity:(NSUInteger)capacity; //default is 50, 0 for no limit
 - (id)initWithCapacity:(NSUInteger)capacity rect:(CGRect)rect; //default is 50, 0 for no limit
 
 - (CGLayerRef)cacheLayer;
 - (CGContextRef)cacheContext;
 
-+ (id)offscreenWithCapacity:(NSUInteger)capacity;
-+ (id)unlimitOffscreen;
++ (id)offscreenWithCapacity:(NSUInteger)capacity rect:(CGRect)rect;
++ (id)unlimitOffscreenWithRect:(CGRect)rect;
 
 
 

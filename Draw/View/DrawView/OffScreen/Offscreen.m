@@ -24,16 +24,15 @@
 
 @implementation Offscreen
 
-+ (id)offscreenWithCapacity:(NSUInteger)capacity
++ (id)unlimitOffscreenWithRect:(CGRect)rect
 {
-    return [[[Offscreen alloc] initWithCapacity:capacity] autorelease];
+    return [[[Offscreen alloc] initWithCapacity:0 rect:rect] autorelease];
 }
 
-+ (id)unlimitOffscreen
++ (id)offscreenWithCapacity:(NSUInteger)capacity rect:(CGRect)rect
 {
-    return [[[Offscreen alloc] initWithCapacity:0] autorelease];
+    return [[[Offscreen alloc] initWithCapacity:capacity rect:rect] autorelease];
 }
-
 - (id)initWithCapacity:(NSUInteger)capacity rect:(CGRect)rect
 {
     self = [super init];
@@ -50,16 +49,11 @@
     return self;    
 }
 
-- (id)initWithCapacity:(NSUInteger)capacity
-{
-    CGRect rect = CGRectMake(0, 0, 1132, 700);
-    return [self initWithCapacity:capacity rect:rect];
-}
 
-- (id)init
-{
-    return [self initWithCapacity:DEFAULT_CAPACITY];
-}
+//- (id)init
+//{
+//    return [self initWithCapacity:DEFAULT_CAPACITY];
+//}
 
 - (void)dealloc
 {
