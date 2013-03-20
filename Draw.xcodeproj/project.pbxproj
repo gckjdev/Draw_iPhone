@@ -617,30 +617,6 @@
 		C250787C16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
 		C250787D16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
 		C250787E16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
-		C250789216F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789316F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789416F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789516F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789816F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789916F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789A16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789B16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A316F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A416F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A516F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A616F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A816F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078A916F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AA16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AB16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AD16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078AE16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078AF16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078B016F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
 		C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
 		C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
 		C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
@@ -649,6 +625,14 @@
 		C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
 		C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
 		C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */; };
+		C25078C316F957CE009B7ED2 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078C216F957CE009B7ED2 /* UserDetailCell.m */; };
+		C25078C416F957CE009B7ED2 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078C216F957CE009B7ED2 /* UserDetailCell.m */; };
+		C25078C516F957CE009B7ED2 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078C216F957CE009B7ED2 /* UserDetailCell.m */; };
+		C25078C616F957CE009B7ED2 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078C216F957CE009B7ED2 /* UserDetailCell.m */; };
+		C25078D216F9580B009B7ED2 /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078D116F9580B009B7ED2 /* UserDetailCell.xib */; };
+		C25078D316F9580B009B7ED2 /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078D116F9580B009B7ED2 /* UserDetailCell.xib */; };
+		C25078D416F9580B009B7ED2 /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078D116F9580B009B7ED2 /* UserDetailCell.xib */; };
+		C25078D516F9580B009B7ED2 /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078D116F9580B009B7ED2 /* UserDetailCell.xib */; };
 		C250AD111653A7F400003E15 /* ZJHRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */; };
 		C250AD121653A7F400003E15 /* ZJHRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */; };
 		C250AD131653A7F400003E15 /* ZJHRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250AD0E1653A7F400003E15 /* ZJHRoomListCell.m */; };
@@ -7715,20 +7699,14 @@
 		C250787416F710B7009B7ED2 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		C250787516F710B7009B7ED2 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		C250787616F710B7009B7ED2 /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
-		C250789016F71BAD009B7ED2 /* UserDetailBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailBasicCell.h; sourceTree = "<group>"; };
-		C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailBasicCell.m; sourceTree = "<group>"; };
-		C250789616F71BCC009B7ED2 /* UserDetailOpusGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailOpusGalleryCell.h; sourceTree = "<group>"; };
-		C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailOpusGalleryCell.m; sourceTree = "<group>"; };
-		C250789C16F71BE5009B7ED2 /* UserDetailSNSInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailSNSInfoCell.h; sourceTree = "<group>"; };
-		C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailSNSInfoCell.m; sourceTree = "<group>"; };
-		C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailBasicCell.xib; sourceTree = "<group>"; };
-		C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailOpusGalleryCell.xib; sourceTree = "<group>"; };
-		C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailSNSInfoCell.xib; sourceTree = "<group>"; };
 		C25078B116F71E2D009B7ED2 /* UserDetailProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailProtocol.h; sourceTree = "<group>"; };
 		C25078B216F71EB6009B7ED2 /* ViewUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUserDetail.h; sourceTree = "<group>"; };
 		C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUserDetail.m; sourceTree = "<group>"; };
 		C25078B816F71ECA009B7ED2 /* SelfUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfUserDetail.h; sourceTree = "<group>"; };
 		C25078B916F71ECA009B7ED2 /* SelfUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfUserDetail.m; sourceTree = "<group>"; };
+		C25078C116F957CE009B7ED2 /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
+		C25078C216F957CE009B7ED2 /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
+		C25078D116F9580B009B7ED2 /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
 		C250AD0B1653A7F400003E15 /* ZJHRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListController.xib; sourceTree = "<group>"; };
 		C250AD0C1653A7F400003E15 /* ZJHRoomListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell.xib; sourceTree = "<group>"; };
 		C250AD0D1653A7F400003E15 /* ZJHRoomListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHRoomListCell.h; sourceTree = "<group>"; };
@@ -13990,15 +13968,9 @@
 				C250787416F710B7009B7ED2 /* UserDetailViewController.h */,
 				C250787516F710B7009B7ED2 /* UserDetailViewController.m */,
 				C250787616F710B7009B7ED2 /* UserDetailViewController.xib */,
-				C250789016F71BAD009B7ED2 /* UserDetailBasicCell.h */,
-				C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */,
-				C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */,
-				C250789616F71BCC009B7ED2 /* UserDetailOpusGalleryCell.h */,
-				C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */,
-				C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */,
-				C250789C16F71BE5009B7ED2 /* UserDetailSNSInfoCell.h */,
-				C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */,
-				C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */,
+				C25078C116F957CE009B7ED2 /* UserDetailCell.h */,
+				C25078C216F957CE009B7ED2 /* UserDetailCell.m */,
+				C25078D116F9580B009B7ED2 /* UserDetailCell.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -19438,9 +19410,7 @@
 				EA18EE7B16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE8016F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787D16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A516F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078AA16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AF16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C25078D416F9580B009B7ED2 /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20316,9 +20286,7 @@
 				EA18EE7C16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE8116F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787E16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A616F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078AB16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078B016F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C25078D516F9580B009B7ED2 /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21253,9 +21221,7 @@
 				A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */,
 				A491A21016F6EE65003B638F /* ShoppingCell~iPad.xib in Resources */,
 				C250787B16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A316F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078A816F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AD16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C25078D216F9580B009B7ED2 /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22110,9 +22076,7 @@
 				EA18EE7A16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE7F16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787C16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A416F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078A916F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AE16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C25078D316F9580B009B7ED2 /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22877,9 +22841,6 @@
 				CAADF61B16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787916F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789416F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789A16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2D16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -22888,6 +22849,7 @@
 				CA35FF3916F8672200D8E05D /* PaintAction.m in Sources */,
 				CA35FF3D16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4916F867AC00D8E05D /* CanvasRect.m in Sources */,
+				C25078C516F957CE009B7ED2 /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23633,9 +23595,6 @@
 				CAADF61C16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787A16F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789516F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789B16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B716F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2E16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -23644,6 +23603,7 @@
 				CA35FF3A16F8672200D8E05D /* PaintAction.m in Sources */,
 				CA35FF3E16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4A16F867AC00D8E05D /* CanvasRect.m in Sources */,
+				C25078C616F957CE009B7ED2 /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24397,9 +24357,6 @@
 				A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */,
 				A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */,
 				C250787716F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789216F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789816F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2B16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -24408,6 +24365,7 @@
 				CA35FF3716F8672200D8E05D /* PaintAction.m in Sources */,
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
+				C25078C316F957CE009B7ED2 /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25161,9 +25119,6 @@
 				CAADF61A16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62516F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787816F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789316F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789916F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2C16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -25172,6 +25127,7 @@
 				CA35FF3816F8672200D8E05D /* PaintAction.m in Sources */,
 				CA35FF3C16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4816F867AC00D8E05D /* CanvasRect.m in Sources */,
+				C25078C416F957CE009B7ED2 /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

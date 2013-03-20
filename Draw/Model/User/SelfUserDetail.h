@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserDetailProtocol.h"
 
-@interface SelfUserDetail : NSObject
+@interface SelfUserDetail : NSObject<UserDetailProtocol>
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserDetailProtocol.h"
 
-@interface ViewUserDetail : NSObject
+@interface ViewUserDetail : NSObject<UserDetailProtocol>
+
+@property (retain, nonatomic) PBGameUser* pbUser;
+
+- (id)initWithUserId:(NSString*)userId
+              avatar:(NSString*)avatar
+            nickName:(NSString*)nickName;
 
 @end
