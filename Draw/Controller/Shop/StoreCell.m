@@ -30,7 +30,7 @@
     return @"StoreCell";
 }
 
-#define CELL_HEIHT ([DeviceDetection isIPAD] ? (166) : (83))
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (148) : (83))
 + (CGFloat)getCellHeight
 {
     return CELL_HEIHT;

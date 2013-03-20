@@ -1376,11 +1376,17 @@
 "kNoDiscount" = "無折扣";
 
 "kMyBalance" = "我的餘額:";
-"kSaveMoney" = "省";
-"kProps" = "道具";
+"kSaveMoney" = "節省";
+"kGift:" = "禮物:";
 "kTool" = "工具";
-"kHandsel" = "贈與";
-"kCount" = "數量";
+"kTo:" = "贈與:";
+"kCNT:" = "數量:";
+"kCost:" = "花費:";
+
+"kNoSaleItemNormal" = "暫無可銷售的道具";
+"kNoSaleItemTool" = "暫無可銷售的工具";
+"kNoSaleItemPromoting" = "暫無促銷的工具或道具";
+
 "kAlreadyBought" = "已購";
 "kBuyColorFailed"= "購買顏色失敗";
 

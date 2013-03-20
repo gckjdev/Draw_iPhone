@@ -532,58 +532,6 @@ static AccountService* _defaultAccountService;
     [self syncItemRequest:userItem targetUserId:nil awardAmount:0 awardExp:0];
 }
 
-
-- (int)consumeItem:(int)itemType
-             amount:(int)amount
-{
-    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
-        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
-                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
-        return ERROR_ITEM_NOT_ENOUGH;
-    }
-
-    // save item locally and synchronize remotely
-    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
-    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
-    [self syncItemRequest:userItem];
-    
-    return 0;
-}
-
-- (int)consumeItem:(int)itemType
-            amount:(int)amount
-      targetUserId:(NSString*)targetUserId
-       awardAmount:(int)awardAmount
-          awardExp:(int)awardExp
-{
-//    if ([self hasEnoughItemAmount:itemType amount:amount] == NO){
-//        PPDebug(@"<consumeItem> but item amount(%d) not enough, consume count(%d)", 
-//                [[[[ItemManager defaultManager] findUserItemByType:itemType] amount] intValue], amount);
-//        return ERROR_ITEM_NOT_ENOUGH;
-//    }
-    
-    if ([[UserGameItemManager defaultManager] hasEnoughItemAmount:itemType amount:amount] == NO){
-        return ERROR_ITEM_NOT_ENOUGH;
-    }
-    
-    // save item locally and synchronize remotely
-//    [[ItemManager defaultManager] decreaseItem:itemType amount:amount];
-//    [[UserGameItemService defaultService] consumeItem:itemType handler:NULL];
-    
-    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
-    [self syncItemRequest:userItem
-             targetUserId:targetUserId
-              awardAmount:awardAmount
-                 awardExp:awardExp];
-    
-    return 0;    
-}
-
-- (BOOL)hasEnoughCoins:(int)amount
-{
-    return [[AccountManager defaultManager] hasEnoughBalance:amount];
-}
-
 - (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
 {
     return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
