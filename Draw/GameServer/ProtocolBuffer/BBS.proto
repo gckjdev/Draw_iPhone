@@ -16,6 +16,7 @@ message PBBBSUser {
 message PBBBSDraw{
     repeated PBDrawAction drawActionList = 1; 
     optional int32 version = 2 [default=0];      // draw data version
+    optional PBSize canvasSize = 3; //used after draw version 2.0
 }
 
 
