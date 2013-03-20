@@ -196,10 +196,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
         [self.showDrawView setPressEnable:YES];
         
-        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
-        
+        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];        
         [self addSubview:holder];
-        [holder setBackgroundColor:[UIColor redColor]];
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
@@ -410,7 +408,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         CGPoint origin = self.contentButton.frame.origin;
         origin.x += BUBBLE_NOT_TIP_WIDTH;
         origin.y += TEXT_VERTICAL_EDGE;
-        [self updateView:self.showDrawView origin:origin];
+        [self updateView:self.showDrawView.superview origin:origin];
         
         [self updateSendingFlag:_message.status];
     }
