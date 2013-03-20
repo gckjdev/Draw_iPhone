@@ -104,4 +104,8 @@
 
 - (PBGameCurrency)wallRewardCoinType;
 
+- (NSString*)youmiWallId;
+- (NSString*)youmiWallSecret;
+- (NSString*)aderWallId;
+
 @end
