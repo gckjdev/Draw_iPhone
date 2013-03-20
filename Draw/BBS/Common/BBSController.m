@@ -8,12 +8,22 @@
 
 #import "BBSController.h"
 #import "CommonUserInfoView.h"
+#import "ConfigManager.h"
+#import "ReplayView.h"
 
 @interface BBSController ()
+
+@property (retain, nonatomic) NSURL *tempURL;
 
 @end
 
 @implementation BBSController
+
+- (void)dealloc
+{
+    PPRelease(_tempURL);
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,9 +57,11 @@
 
 }
 
+
+
 - (void)didClickImageWithURL:(NSURL *)url
 {
-//    self.tempURL = url;
+    self.tempURL = url;
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Modal
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
@@ -61,12 +73,54 @@
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
-    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
+                                                 actionId:nil
+                                                 delegate:self];
 }
 
 - (void)didClickDrawImageWithAction:(PBBBSAction *)action
 {
-    
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
+                                                 actionId:action.actionId
+                                                 delegate:self];
+
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:self.tempURL];
+}
+
+#pragma mark-- BBS Service Delegate
+
+- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
+                drawDataVersion:(NSInteger)version
+                     canvasSize:(CGSize)canvasSize
+                         postId:(NSString *)postId
+                       actionId:(NSString *)actionId
+                     fromRemote:(BOOL)fromRemote
+                     resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        ReplayView *replayView = [ReplayView createReplayView];
+        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
+        
+        [replayView showInController:self
+                      withActionList:drawActionList
+                        isNewVersion:isNewVersion
+                              drawBg:nil
+                                size:canvasSize];
+    }else{
+        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
+    }
 }
 
 @end

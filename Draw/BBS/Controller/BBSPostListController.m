@@ -27,7 +27,6 @@
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
-@property (retain, nonatomic) NSURL *tempURL;
 - (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
 
@@ -171,7 +170,6 @@
     PPRelease(_createPostButton);
     PPRelease(_rankButton);
     PPRelease(_bgImageView);
-    PPRelease(_tempURL);
     [_holderView release];
     [super dealloc];
 }
@@ -281,22 +279,7 @@
     [self updateTempPostListWithTabID:tabID];
 }
 
-- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
-                drawDataVersion:(NSInteger)version
-                         postId:(NSString *)postId
-                       actionId:(NSString *)actionId
-                     fromRemote:(BOOL)fromRemote
-                     resultCode:(NSInteger)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0) {
-        ReplayView *replayView = [ReplayView createReplayView];
-        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
-        [replayView showInController:self withActionList:drawActionList isNewVersion:isNewVersion];
-    }else{
-        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
-    }
-}
+
 - (void)didDeleteBBSPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
@@ -411,44 +394,5 @@
     }
 }
 
-//- (void)didClickUserAvatar:(PBBBSUser *)user
-//{
-//    //TODO show user info
-//    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-//    [CommonUserInfoView showPBBBSUser:user
-//                         inController:self
-//                           needUpdate:YES
-//                              canChat:YES];
-//}
-
-//- (void)didClickImageWithURL:(NSURL *)url
-//{
-//    self.tempURL = url;
-//    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    // Modal
-//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-//    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    [self presentModalViewController:nc animated:YES];
-//    [browser release];
-//    [nc release];
-//}
-
-- (void)didClickDrawImageWithPost:(PBBBSPost *)post
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId actionId:nil delegate:self];
-}
-
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    MWPhoto *photo = [MWPhoto photoWithURL:self.tempURL];
-//    photo.caption = @"test string....";
-    return photo;
-}
 
 @end

@@ -293,7 +293,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:iPadScreenHorizontalRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];

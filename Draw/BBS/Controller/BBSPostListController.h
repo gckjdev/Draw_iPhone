@@ -16,7 +16,7 @@
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : BBSController<BBSServiceDelegate, BBSPostCellDelegate, MWPhotoBrowserDelegate>
+@interface BBSPostListController : BBSController<BBSServiceDelegate, BBSPostCellDelegate, MWPhotoBrowserDelegate, CreatePostControllerDelegate>
 {
     
 }
