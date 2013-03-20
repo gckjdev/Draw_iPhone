@@ -107,7 +107,7 @@
   BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawBg_:1;
-  BOOL hasSize_:1;
+  BOOL hasCanvasSize_:1;
   BOOL gender_:1;
   BOOL isCompressed_:1;
   int32_t level;
@@ -121,7 +121,7 @@
   NSString* avatar;
   NSString* opusId;
   PBDrawBg* drawBg;
-  PBSize* size;
+  PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasUserId;
@@ -137,7 +137,7 @@
 - (BOOL) hasScore;
 - (BOOL) hasIsCompressed;
 - (BOOL) hasDrawBg;
-- (BOOL) hasSize;
+- (BOOL) hasCanvasSize;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -151,7 +151,7 @@
 @property (readonly) int32_t score;
 - (BOOL) isCompressed;
 @property (readonly, retain) PBDrawBg* drawBg;
-@property (readonly, retain) PBSize* size;
+@property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -263,12 +263,12 @@
 - (PBDraw_Builder*) mergeDrawBg:(PBDrawBg*) value;
 - (PBDraw_Builder*) clearDrawBg;
 
-- (BOOL) hasSize;
-- (PBSize*) size;
-- (PBDraw_Builder*) setSize:(PBSize*) value;
-- (PBDraw_Builder*) setSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBDraw_Builder*) mergeSize:(PBSize*) value;
-- (PBDraw_Builder*) clearSize;
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBDraw_Builder*) setCanvasSize:(PBSize*) value;
+- (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBDraw_Builder*) clearCanvasSize;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {

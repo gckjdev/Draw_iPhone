@@ -1066,6 +1066,12 @@
 "kFreeIngot" = "免費元寶";
 "kGoToBBS4Help" = "逛逛論壇尋求幫助";
 "kCleaning" = "清理緩存中...";
+
+"kDetectFakeIAP" = "充值失敗，請勿使用越獄充值插件";
+"kVerifyIAPFail" = "充值失敗，請稍後再試驗，並確保未使用越獄充值插件。";
+"kWallRewardCoinMessage" = "下載免費應用，成功獲取了%d金幣";
+"kWallRewardIngotMessage" = "下載免費應用，成功獲取了%d元寶";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

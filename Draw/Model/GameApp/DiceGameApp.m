@@ -339,4 +339,24 @@
     return @"dice.m4a";
 }
 
+- (PBGameCurrency)wallRewardCoinType
+{
+    return PBGameCurrencyCoin;
+}
+
+- (NSString*)youmiWallId
+{
+    return @""; // TODO
+}
+
+- (NSString*)youmiWallSecret
+{
+    return @""; // TODO
+}
+
+- (NSString*)aderWallId
+{
+    return @"661f38bed5974599abfad68e6ef402a3";
+}
+
 @end

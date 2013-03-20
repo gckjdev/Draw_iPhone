@@ -229,7 +229,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     if (drawBg != nil){
         [builder setDrawBg:drawBg];
     }
-    [builder setSize:CGSizeToPBSize(size)];
+    [builder setCanvasSize:CGSizeToPBSize(size)];
     
     for (DrawAction* drawAction in drawActionList){
         PBDrawAction *action = [drawAction toPBDrawAction];

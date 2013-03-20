@@ -14,7 +14,7 @@
 #import "Paint.h"
 #import "ConfigManager.h"
 #import "CanvasRect.h"
-
+#import "DrawHolderView.h"
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
 
@@ -84,21 +84,20 @@
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
             [pen setPenType:paintAction.paint.penType];
+            PPDebug(@"Update Pen, pen frame = %@, trasform = %@", NSStringFromCGRect(pen.frame), NSStringFromCGAffineTransform(pen.transform));
         }
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
-        
-        CGRect rect = CGRectZero;
+//        CGRect rect = CGRectZero;
+        point= [pen.superview convertPoint:point fromView:self];
         if (pen.penType != Eraser) {
-            rect = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            pen.frame = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }else{
-            rect = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
+            pen.frame = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }
-        pen.frame = [pen.superview convertRect:rect fromView:self];
-        
+    
     }else{
         pen.hidden = YES;
     }
-    
 }
 
 
@@ -153,6 +152,7 @@
         DrawAction *action = [_drawActionList objectAtIndex:i];
 //        [self drawAction1:action inContext:showContext];
         [osManager addDrawAction:action];
+        _currentAction = action;
     }
     [self setNeedsDisplay];
 }
@@ -228,6 +228,9 @@
     CGRect rect = CGRectZero;
     rect.size = size;
     self.frame = rect;
+    if ([self.superview isKindOfClass:[DrawHolderView class]]) {
+        [(DrawHolderView *)self.superview updateContentScale];
+    }
 }
 
 + (ShowDrawView *)showView

@@ -756,12 +756,16 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property int32_t guessWordLanguage;
 @property (retain) NSString* backgroundUrl;
 @property (retain) NSString* deviceToken;
+@property (retain) NSString* countryCode;
+@property (retain) NSString* language;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
 @property int32_t diamondBalance;
 @property int32_t ingotBalance;
 @property (retain) NSMutableArray* mutableItemsList;
+@property (retain) NSString* deviceModel;
+@property (retain) NSString* deviceOs;
 @property (retain) NSString* signature;
 @end
 
@@ -903,6 +907,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasDeviceToken_ = !!value;
 }
 @synthesize deviceToken;
+- (BOOL) hasCountryCode {
+  return !!hasCountryCode_;
+}
+- (void) setHasCountryCode:(BOOL) value {
+  hasCountryCode_ = !!value;
+}
+@synthesize countryCode;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
 - (BOOL) hasLevel {
   return !!hasLevel_;
 }
@@ -939,6 +957,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 }
 @synthesize ingotBalance;
 @synthesize mutableItemsList;
+- (BOOL) hasDeviceModel {
+  return !!hasDeviceModel_;
+}
+- (void) setHasDeviceModel:(BOOL) value {
+  hasDeviceModel_ = !!value;
+}
+@synthesize deviceModel;
+- (BOOL) hasDeviceOs {
+  return !!hasDeviceOs_;
+}
+- (void) setHasDeviceOs:(BOOL) value {
+  hasDeviceOs_ = !!value;
+}
+@synthesize deviceOs;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -959,7 +991,11 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.birthday = nil;
   self.backgroundUrl = nil;
   self.deviceToken = nil;
+  self.countryCode = nil;
+  self.language = nil;
   self.mutableItemsList = nil;
+  self.deviceModel = nil;
+  self.deviceOs = nil;
   self.signature = nil;
   [super dealloc];
 }
@@ -982,11 +1018,15 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.guessWordLanguage = 0;
     self.backgroundUrl = @"";
     self.deviceToken = @"";
+    self.countryCode = @"";
+    self.language = @"";
     self.level = 0;
     self.experience = 0L;
     self.coinBalance = 0;
     self.diamondBalance = 0;
     self.ingotBalance = 0;
+    self.deviceModel = @"";
+    self.deviceOs = @"";
     self.signature = @"";
   }
   return self;
@@ -1106,6 +1146,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceToken) {
     [output writeString:37 value:self.deviceToken];
   }
+  if (self.hasCountryCode) {
+    [output writeString:38 value:self.countryCode];
+  }
+  if (self.hasLanguage) {
+    [output writeString:39 value:self.language];
+  }
   if (self.hasLevel) {
     [output writeInt32:41 value:self.level];
   }
@@ -1123,6 +1169,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     [output writeMessage:61 value:element];
+  }
+  if (self.hasDeviceModel) {
+    [output writeString:71 value:self.deviceModel];
+  }
+  if (self.hasDeviceOs) {
+    [output writeString:72 value:self.deviceOs];
   }
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
@@ -1193,6 +1245,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceToken) {
     size += computeStringSize(37, self.deviceToken);
   }
+  if (self.hasCountryCode) {
+    size += computeStringSize(38, self.countryCode);
+  }
+  if (self.hasLanguage) {
+    size += computeStringSize(39, self.language);
+  }
   if (self.hasLevel) {
     size += computeInt32Size(41, self.level);
   }
@@ -1210,6 +1268,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     size += computeMessageSize(61, element);
+  }
+  if (self.hasDeviceModel) {
+    size += computeStringSize(71, self.deviceModel);
+  }
+  if (self.hasDeviceOs) {
+    size += computeStringSize(72, self.deviceOs);
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
@@ -1352,6 +1416,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDeviceToken) {
     [self setDeviceToken:other.deviceToken];
   }
+  if (other.hasCountryCode) {
+    [self setCountryCode:other.countryCode];
+  }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
@@ -1372,6 +1442,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       result.mutableItemsList = [NSMutableArray array];
     }
     [result.mutableItemsList addObjectsFromArray:other.mutableItemsList];
+  }
+  if (other.hasDeviceModel) {
+    [self setDeviceModel:other.deviceModel];
+  }
+  if (other.hasDeviceOs) {
+    [self setDeviceOs:other.deviceOs];
   }
   if (other.hasSignature) {
     [self setSignature:other.signature];
@@ -1477,6 +1553,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         [self setDeviceToken:[input readString]];
         break;
       }
+      case 306: {
+        [self setCountryCode:[input readString]];
+        break;
+      }
+      case 314: {
+        [self setLanguage:[input readString]];
+        break;
+      }
       case 328: {
         [self setLevel:[input readInt32]];
         break;
@@ -1501,6 +1585,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         PBUserItem_Builder* subBuilder = [PBUserItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addItems:[subBuilder buildPartial]];
+        break;
+      }
+      case 570: {
+        [self setDeviceModel:[input readString]];
+        break;
+      }
+      case 578: {
+        [self setDeviceOs:[input readString]];
         break;
       }
       case 802: {
@@ -1840,6 +1932,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.deviceToken = @"";
   return self;
 }
+- (BOOL) hasCountryCode {
+  return result.hasCountryCode;
+}
+- (NSString*) countryCode {
+  return result.countryCode;
+}
+- (PBGameUser_Builder*) setCountryCode:(NSString*) value {
+  result.hasCountryCode = YES;
+  result.countryCode = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearCountryCode {
+  result.hasCountryCode = NO;
+  result.countryCode = @"";
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (NSString*) language {
+  return result.language;
+}
+- (PBGameUser_Builder*) setLanguage:(NSString*) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = @"";
+  return self;
+}
 - (BOOL) hasLevel {
   return result.hasLevel;
 }
@@ -1947,6 +2071,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     result.mutableItemsList = [NSMutableArray array];
   }
   [result.mutableItemsList addObject:value];
+  return self;
+}
+- (BOOL) hasDeviceModel {
+  return result.hasDeviceModel;
+}
+- (NSString*) deviceModel {
+  return result.deviceModel;
+}
+- (PBGameUser_Builder*) setDeviceModel:(NSString*) value {
+  result.hasDeviceModel = YES;
+  result.deviceModel = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceModel {
+  result.hasDeviceModel = NO;
+  result.deviceModel = @"";
+  return self;
+}
+- (BOOL) hasDeviceOs {
+  return result.hasDeviceOs;
+}
+- (NSString*) deviceOs {
+  return result.deviceOs;
+}
+- (PBGameUser_Builder*) setDeviceOs:(NSString*) value {
+  result.hasDeviceOs = YES;
+  result.deviceOs = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceOs {
+  result.hasDeviceOs = NO;
+  result.deviceOs = @"";
   return self;
 }
 - (BOOL) hasSignature {
