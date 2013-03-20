@@ -150,7 +150,6 @@
     [self resetView];
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
-//        [self drawAction1:action inContext:showContext];
         [osManager addDrawAction:action];
         _currentAction = action;
     }
@@ -174,6 +173,11 @@
     if (self.status == Pause) {
         PPDebug(@"<ShowDrawView> resume");
         self.status = Playing;
+        if (_currentAction == nil) {
+            _playingActionIndex --;
+            [self updateNextPlayIndex];
+        }
+
         [self playCurrentFrame];
     }else{
         PPDebug(@"<ShowDrawView> not pause, resume failed");
@@ -368,25 +372,6 @@
             [self drawDrawAction:_currentAction show:YES];
             [self callDidDrawPaintDelegate];
         }
-//        if (self.tempPaint) {
-//            if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
-//
-//                [self drawPaint:self.tempPaint show:YES];
-//                self.tempPaint = nil;
-//                [self callDidDrawPaintDelegate];
-//                
-//            }else if([self.tempPaint pointCount] == 1){
-//                [self drawDrawAction:_currentAction show:NO];
-//                [osManager updateDrawPenWithPaint:self.tempPaint];
-//                [osManager updateLastPaint:self.tempPaint];
-//                [self setNeedsDisplay];
-//            }else{
-//                [self drawPaint:self.tempPaint show:YES];
-//            }
-//        }else{
-//            [self drawDrawAction:_currentAction show:YES];
-//            [self callDidDrawPaintDelegate];
-//        }
     }
     if(!_showPenHidden){
         [self movePen];
