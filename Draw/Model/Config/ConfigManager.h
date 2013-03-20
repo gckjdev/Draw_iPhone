@@ -220,5 +220,6 @@ typedef enum{
 + (BOOL)isEnableWanpuWall;
 + (BOOL)isEnableAderWall;
 + (BOOL)isEnableTapjoyWall;
++ (BOOL)isEnableYoumiWall;
 
 @end

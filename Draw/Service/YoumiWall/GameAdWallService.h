@@ -12,6 +12,11 @@
 
 @interface GameAdWallService : NSObject
 
+{
+    NSMutableArray* _wallServiceArray;
+}
+
+
 + (GameAdWallService*)defaultService;
 
 @property (nonatomic, retain) CommonAdWallService* limeiWallService ;

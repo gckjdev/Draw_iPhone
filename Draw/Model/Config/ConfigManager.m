@@ -811,6 +811,12 @@
     return [MobClickUtils getBoolValueByKey:@"ENABLE_LIMEI_WALL" defaultValue:YES];
 }
 
++ (BOOL)isEnableYoumiWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_YOUMI_WALL" defaultValue:YES];
+}
+
+
 + (BOOL)isEnableWanpuWall
 {
     return [MobClickUtils getBoolValueByKey:@"ENABLE_WANPU_WALL" defaultValue:YES];
