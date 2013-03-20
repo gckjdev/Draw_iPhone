@@ -5300,6 +5300,22 @@
 		CAADF64A16F974440097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF64716F974440097CFA1 /* WanpuAdWallService.m */; };
 		CAADF64B16F974440097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF64716F974440097CFA1 /* WanpuAdWallService.m */; };
 		CAADF64C16F974440097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF64716F974440097CFA1 /* WanpuAdWallService.m */; };
+		CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
+		CAADF65516F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
+		CAADF65616F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
+		CAADF65716F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
+		CAADF65A16F977970097CFA1 /* AderWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderWallService.m */; };
+		CAADF65B16F977970097CFA1 /* AderWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderWallService.m */; };
+		CAADF65C16F977970097CFA1 /* AderWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderWallService.m */; };
+		CAADF65D16F977970097CFA1 /* AderWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderWallService.m */; };
+		CAADF6D716F977B50097CFA1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF67316F977B40097CFA1 /* libYouMi.a */; };
+		CAADF6D816F977B50097CFA1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF67316F977B40097CFA1 /* libYouMi.a */; };
+		CAADF6D916F977B50097CFA1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF67316F977B40097CFA1 /* libYouMi.a */; };
+		CAADF6DA16F977B50097CFA1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF67316F977B40097CFA1 /* libYouMi.a */; };
+		CAADF7B116F977C10097CFA1 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
+		CAADF7B216F977C10097CFA1 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
+		CAADF7B316F977C10097CFA1 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
+		CAADF7B416F977C10097CFA1 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -10036,6 +10052,21 @@
 		CAADF62C16F55E340097CFA1 /* BlockArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockArray.m; sourceTree = "<group>"; };
 		CAADF64716F974440097CFA1 /* WanpuAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WanpuAdWallService.m; sourceTree = "<group>"; };
 		CAADF64816F974440097CFA1 /* WanpuAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanpuAdWallService.h; sourceTree = "<group>"; };
+		CAADF65216F977870097CFA1 /* YoumiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiAdWallService.h; sourceTree = "<group>"; };
+		CAADF65316F977870097CFA1 /* YoumiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiAdWallService.m; sourceTree = "<group>"; };
+		CAADF65816F977970097CFA1 /* AderWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderWallService.h; sourceTree = "<group>"; };
+		CAADF65916F977970097CFA1 /* AderWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AderWallService.m; sourceTree = "<group>"; };
+		CAADF66C16F977B40097CFA1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
+		CAADF66D16F977B40097CFA1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
+		CAADF66E16F977B40097CFA1 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiView.h; sourceTree = "<group>"; };
+		CAADF66F16F977B40097CFA1 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
+		CAADF67016F977B40097CFA1 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
+		CAADF67116F977B40097CFA1 /* YouMiWallBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallBanner.h; sourceTree = "<group>"; };
+		CAADF67216F977B40097CFA1 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
+		CAADF67316F977B40097CFA1 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
+		CAADF79116F977C00097CFA1 /* AderPointWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderPointWall.h; sourceTree = "<group>"; };
+		CAADF79216F977C00097CFA1 /* AderWallDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderWallDelegate.h; sourceTree = "<group>"; };
+		CAADF79316F977C00097CFA1 /* libAderWallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAderWallSDK.a; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -10606,6 +10637,8 @@
 				CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0984169E674F00B56975 /* libUMAppNetwork.a in Frameworks */,
 				A48B0A0C16A1327E00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
+				CAADF6D916F977B50097CFA1 /* libYouMi.a in Frameworks */,
+				CAADF7B316F977C10097CFA1 /* libAderWallSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10653,6 +10686,8 @@
 				CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0985169E675000B56975 /* libUMAppNetwork.a in Frameworks */,
 				A48B0A0E16A1331800B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
+				CAADF6DA16F977B50097CFA1 /* libYouMi.a in Frameworks */,
+				CAADF7B416F977C10097CFA1 /* libAderWallSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10700,6 +10735,8 @@
 				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */,
 				A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
+				CAADF6D716F977B50097CFA1 /* libYouMi.a in Frameworks */,
+				CAADF7B116F977C10097CFA1 /* libAderWallSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10757,6 +10794,8 @@
 				CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
 				A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */,
 				A48B0A0B16A1327D00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
+				CAADF6D816F977B50097CFA1 /* libYouMi.a in Frameworks */,
+				CAADF7B216F977C10097CFA1 /* libAderWallSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16569,6 +16608,8 @@
 		CAADF60B16F444C20097CFA1 /* Ader */ = {
 			isa = PBXGroup;
 			children = (
+				CAADF65816F977970097CFA1 /* AderWallService.h */,
+				CAADF65916F977970097CFA1 /* AderWallService.m */,
 			);
 			path = Ader;
 			sourceTree = "<group>";
@@ -16610,8 +16651,67 @@
 		CAADF61416F444C20097CFA1 /* Youmi */ = {
 			isa = PBXGroup;
 			children = (
+				CAADF65216F977870097CFA1 /* YoumiAdWallService.h */,
+				CAADF65316F977870097CFA1 /* YoumiAdWallService.m */,
 			);
 			path = Youmi;
+			sourceTree = "<group>";
+		};
+		CAADF65E16F977B40097CFA1 /* YouMiSDK */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF66A16F977B40097CFA1 /* lib */,
+			);
+			path = YouMiSDK;
+			sourceTree = "<group>";
+		};
+		CAADF66A16F977B40097CFA1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF66B16F977B40097CFA1 /* include */,
+				CAADF67316F977B40097CFA1 /* libYouMi.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		CAADF66B16F977B40097CFA1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF66C16F977B40097CFA1 /* YouMiConfig.h */,
+				CAADF66D16F977B40097CFA1 /* YouMiDelegateProtocol.h */,
+				CAADF66E16F977B40097CFA1 /* YouMiView.h */,
+				CAADF66F16F977B40097CFA1 /* YouMiWall.h */,
+				CAADF67016F977B40097CFA1 /* YouMiWallAppModel.h */,
+				CAADF67116F977B40097CFA1 /* YouMiWallBanner.h */,
+				CAADF67216F977B40097CFA1 /* YouMiWallDelegateProtocol.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		CAADF78D16F977C00097CFA1 /* aderwall-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF78E16F977C00097CFA1 /* AderWallSDKPackageRelease */,
+			);
+			path = "aderwall-ios-sdk";
+			sourceTree = "<group>";
+		};
+		CAADF78E16F977C00097CFA1 /* AderWallSDKPackageRelease */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF79016F977C00097CFA1 /* lib */,
+			);
+			path = AderWallSDKPackageRelease;
+			sourceTree = "<group>";
+		};
+		CAADF79016F977C00097CFA1 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CAADF79116F977C00097CFA1 /* AderPointWall.h */,
+				CAADF79216F977C00097CFA1 /* AderWallDelegate.h */,
+				CAADF79316F977C00097CFA1 /* libAderWallSDK.a */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
@@ -17267,6 +17367,8 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
+				CAADF78D16F977C00097CFA1 /* aderwall-ios-sdk */,
+				CAADF65E16F977B40097CFA1 /* YouMiSDK */,
 				A48B0997169EA35C00B56975 /* TapjoyPublisherLibrary */,
 				A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */,
 				A4D4ECCC169C154200079C88 /* shengmeng_iOS_SDK_1.1.0 */,
@@ -22897,6 +22999,8 @@
 				CA35FF3D16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4916F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF64B16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
+				CAADF65616F977870097CFA1 /* YoumiAdWallService.m in Sources */,
+				CAADF65C16F977970097CFA1 /* AderWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23654,6 +23758,8 @@
 				CA35FF3E16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4A16F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF64C16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
+				CAADF65716F977870097CFA1 /* YoumiAdWallService.m in Sources */,
+				CAADF65D16F977970097CFA1 /* AderWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24419,6 +24525,8 @@
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF64916F974440097CFA1 /* WanpuAdWallService.m in Sources */,
+				CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */,
+				CAADF65A16F977970097CFA1 /* AderWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25184,6 +25292,8 @@
 				CA35FF3C16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4816F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF64A16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
+				CAADF65516F977870097CFA1 /* YoumiAdWallService.m in Sources */,
+				CAADF65B16F977970097CFA1 /* AderWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25479,6 +25589,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -25548,6 +25661,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -25618,6 +25734,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -25686,6 +25805,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -25812,6 +25934,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -25880,6 +26005,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -26003,6 +26131,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -26072,6 +26203,9 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/Components/Component-View/MWPhotoBrowser/build/MWPhotoBrowser.build/Debug-iphoneos/MWPhotoBrowser.build/Objects-normal/armv7s\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/YouMiSDK/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/lib\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
