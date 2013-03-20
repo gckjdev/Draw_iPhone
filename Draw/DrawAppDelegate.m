@@ -305,7 +305,11 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    [[PriceService defaultService] syncShoppingListAtBackground];
+    if (isDrawApp() == NO){
+        // no longer used for Draw App
+        [[PriceService defaultService] syncShoppingListAtBackground];
+    }
+    
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
     // Detect Network Availability
