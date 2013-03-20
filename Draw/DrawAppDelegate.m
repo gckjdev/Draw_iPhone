@@ -74,19 +74,19 @@
 
 NSString* GlobalGetServerURL()
 {    
-//    return [ConfigManager getAPIServerURL];
+    return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.172.169:8000/api/i?";
 //    return @"http://192.168.1.123:8000/api/i?";
-    return @"http://192.168.1.198:8000/api/i?";
+//    return @"http://192.168.1.198:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return [ConfigManager getTrafficAPIServerURL];
+    return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
-    return @"http://192.168.1.198:8100/api/i?";
+//    return @"http://192.168.1.198:8100/api/i?";
 }
 
 NSString* GlobalGetBoardServerURL()
@@ -305,7 +305,11 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    [[PriceService defaultService] syncShoppingListAtBackground];
+    if (isDrawApp() == NO){
+        // no longer used for Draw App
+        [[PriceService defaultService] syncShoppingListAtBackground];
+    }
+    
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
     // Detect Network Availability
