@@ -36,7 +36,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t score;
 @property BOOL isCompressed;
 @property (retain) PBDrawBg* drawBg;
-@property (retain) PBSize* size;
+@property (retain) PBSize* canvasSize;
 @end
 
 @implementation PBDraw
@@ -143,13 +143,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasDrawBg_ = !!value;
 }
 @synthesize drawBg;
-- (BOOL) hasSize {
-  return !!hasSize_;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
 }
-- (void) setHasSize:(BOOL) value {
-  hasSize_ = !!value;
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
 }
-@synthesize size;
+@synthesize canvasSize;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -158,7 +158,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.mutableDrawDataList = nil;
   self.opusId = nil;
   self.drawBg = nil;
-  self.size = nil;
+  self.canvasSize = nil;
   [super dealloc];
 }
 - (id) init {
@@ -176,7 +176,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.score = 0;
     self.isCompressed = YES;
     self.drawBg = [PBDrawBg defaultInstance];
-    self.size = [PBSize defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
   }
   return self;
 }
@@ -267,8 +267,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasDrawBg) {
     [output writeMessage:20 value:self.drawBg];
   }
-  if (self.hasSize) {
-    [output writeMessage:21 value:self.size];
+  if (self.hasCanvasSize) {
+    [output writeMessage:21 value:self.canvasSize];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -321,8 +321,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasDrawBg) {
     size += computeMessageSize(20, self.drawBg);
   }
-  if (self.hasSize) {
-    size += computeMessageSize(21, self.size);
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(21, self.canvasSize);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -444,8 +444,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
   }
-  if (other.hasSize) {
-    [self mergeSize:other.size];
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -533,11 +533,11 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 170: {
         PBSize_Builder* subBuilder = [PBSize builder];
-        if (self.hasSize) {
-          [subBuilder mergeFrom:self.size];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSize:[subBuilder buildPartial]];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -794,34 +794,34 @@ static PBDraw* defaultPBDrawInstance = nil;
   result.drawBg = [PBDrawBg defaultInstance];
   return self;
 }
-- (BOOL) hasSize {
-  return result.hasSize;
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
 }
-- (PBSize*) size {
-  return result.size;
+- (PBSize*) canvasSize {
+  return result.canvasSize;
 }
-- (PBDraw_Builder*) setSize:(PBSize*) value {
-  result.hasSize = YES;
-  result.size = value;
+- (PBDraw_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
   return self;
 }
-- (PBDraw_Builder*) setSizeBuilder:(PBSize_Builder*) builderForValue {
-  return [self setSize:[builderForValue build]];
+- (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
 }
-- (PBDraw_Builder*) mergeSize:(PBSize*) value {
-  if (result.hasSize &&
-      result.size != [PBSize defaultInstance]) {
-    result.size =
-      [[[PBSize builderWithPrototype:result.size] mergeFrom:value] buildPartial];
+- (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
   } else {
-    result.size = value;
+    result.canvasSize = value;
   }
-  result.hasSize = YES;
+  result.hasCanvasSize = YES;
   return self;
 }
-- (PBDraw_Builder*) clearSize {
-  result.hasSize = NO;
-  result.size = [PBSize defaultInstance];
+- (PBDraw_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 @end

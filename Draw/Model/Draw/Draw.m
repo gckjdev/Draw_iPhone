@@ -56,7 +56,7 @@
         self.version = pbDraw.version;
         self.drawBg = pbDraw.drawBg;
         if ([pbDraw hasSize]) {
-            self.canvasSize = CGSizeFromPBSize(pbDraw.size);
+            self.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
         }else{
             self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
         }
@@ -117,7 +117,7 @@
         [builder setDrawBg:self.drawBg];
     }
     
-    [builder setSize:CGSizeToPBSize(self.canvasSize)];
+    [builder setCanvasSize:CGSizeToPBSize(self.canvasSize)];
     
     for (DrawAction* drawAction in self.drawActionList){
         PBDrawAction *action = [drawAction toPBDrawAction];
