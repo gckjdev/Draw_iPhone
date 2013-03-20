@@ -110,10 +110,10 @@
 							<object class="IBUIImageView" id="606717654">
 								<reference key="NSNextResponder" ref="355539151"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{7, 1}, {303, 33}}</string>
+								<string key="NSFrame">{{8, 1}, {301, 33}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="294088553"/>
+								<reference key="NSNextKeyView" ref="339467125"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -125,10 +125,10 @@
 							<object class="IBUIImageView" id="294088553">
 								<reference key="NSNextResponder" ref="355539151"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{26, 12}, {2, 10}}</string>
+								<string key="NSFrame">{{23, 12}, {2, 10}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="339467125"/>
+								<reference key="NSNextKeyView" ref="9605191"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIContentStretch">{{0.5, 0.5}, {0, 0}}</string>
@@ -141,10 +141,10 @@
 							<object class="IBUIButton" id="339467125">
 								<reference key="NSNextResponder" ref="355539151"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{116, 6}, {22, 22}}</string>
+								<string key="NSFrame">{{16, 6}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="355539151"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="9605191"/>
+								<reference key="NSNextKeyView" ref="294088553"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

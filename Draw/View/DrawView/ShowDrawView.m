@@ -152,6 +152,7 @@
         DrawAction *action = [_drawActionList objectAtIndex:i];
 //        [self drawAction1:action inContext:showContext];
         [osManager addDrawAction:action];
+        _currentAction = action;
     }
     [self setNeedsDisplay];
 }
