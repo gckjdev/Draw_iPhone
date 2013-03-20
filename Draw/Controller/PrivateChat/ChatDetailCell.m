@@ -201,9 +201,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
-//        message.thumbImage = [self.showDrawView createImage];
+        message.thumbImage = [self.showDrawView createImage];
     }
-//    [self.showDrawView showImage:message.thumbImage];
+    [self.showDrawView showImage:message.thumbImage];
 }
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
