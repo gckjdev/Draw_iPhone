@@ -595,7 +595,6 @@ typedef enum{
 
 - (void)didClickUserAvatar:(PBBBSUser *)user
 {
-    //TODO show user info
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
     [CommonUserInfoView showPBBBSUser:user
                          inController:self
@@ -607,7 +606,6 @@ typedef enum{
 {
     self.tempURL = url;
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    browser.displayActionButton = YES;
     // Modal
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
