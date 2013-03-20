@@ -59,8 +59,8 @@
             score:(NSInteger)score
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
-- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
-                       isCompressed:(BOOL)isCompressed;
+//- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction
+//                       isCompressed:(BOOL)isCompressed;
 
 - (PBDraw*)buildPBDraw:(NSString*)userId 
                   nick:(NSString *)nick
