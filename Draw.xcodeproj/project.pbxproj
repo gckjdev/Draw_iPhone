@@ -617,30 +617,6 @@
 		C250787C16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
 		C250787D16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
 		C250787E16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
-		C250789216F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789316F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789416F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789516F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */; };
-		C250789816F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789916F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789A16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789B16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */; };
-		C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */; };
-		C25078A316F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A416F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A516F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A616F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */; };
-		C25078A816F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078A916F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AA16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AB16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */; };
-		C25078AD16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078AE16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078AF16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
-		C25078B016F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */; };
 		C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
 		C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
 		C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
@@ -868,6 +844,14 @@
 		C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */; };
 		C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */; };
 		C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */; };
+		C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
+		C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
+		C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
+		C2B97A2E16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
+		C2B97A2F16F999200037B15B /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A2916F999200037B15B /* UserDetailCell.xib */; };
+		C2B97A3016F999200037B15B /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A2916F999200037B15B /* UserDetailCell.xib */; };
+		C2B97A3116F999200037B15B /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A2916F999200037B15B /* UserDetailCell.xib */; };
+		C2B97A3216F999200037B15B /* UserDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A2916F999200037B15B /* UserDetailCell.xib */; };
 		C2BB4EBE16A7DCFA008D3004 /* auto_recovery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
@@ -7735,15 +7719,6 @@
 		C250787416F710B7009B7ED2 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		C250787516F710B7009B7ED2 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		C250787616F710B7009B7ED2 /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
-		C250789016F71BAD009B7ED2 /* UserDetailBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailBasicCell.h; sourceTree = "<group>"; };
-		C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailBasicCell.m; sourceTree = "<group>"; };
-		C250789616F71BCC009B7ED2 /* UserDetailOpusGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailOpusGalleryCell.h; sourceTree = "<group>"; };
-		C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailOpusGalleryCell.m; sourceTree = "<group>"; };
-		C250789C16F71BE5009B7ED2 /* UserDetailSNSInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailSNSInfoCell.h; sourceTree = "<group>"; };
-		C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailSNSInfoCell.m; sourceTree = "<group>"; };
-		C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailBasicCell.xib; sourceTree = "<group>"; };
-		C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailOpusGalleryCell.xib; sourceTree = "<group>"; };
-		C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailSNSInfoCell.xib; sourceTree = "<group>"; };
 		C25078B116F71E2D009B7ED2 /* UserDetailProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailProtocol.h; sourceTree = "<group>"; };
 		C25078B216F71EB6009B7ED2 /* ViewUserDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUserDetail.h; sourceTree = "<group>"; };
 		C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUserDetail.m; sourceTree = "<group>"; };
@@ -7967,6 +7942,9 @@
 		C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B97A2816F999200037B15B /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
+		C2B97A2916F999200037B15B /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
+		C2B97A2A16F999200037B15B /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
 		C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_recovery@2x.png"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
@@ -14022,6 +14000,9 @@
 		CA32213A151DEDBF0039A384 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				C2B97A2816F999200037B15B /* UserDetailCell.m */,
+				C2B97A2916F999200037B15B /* UserDetailCell.xib */,
+				C2B97A2A16F999200037B15B /* UserDetailCell.h */,
 				CA32213B151DEDE10039A384 /* ChangeAvatar.h */,
 				CA32213C151DEDE10039A384 /* ChangeAvatar.m */,
 				CA3221A6151F65AD0039A384 /* UserSettingController.h */,
@@ -14035,15 +14016,6 @@
 				C250787416F710B7009B7ED2 /* UserDetailViewController.h */,
 				C250787516F710B7009B7ED2 /* UserDetailViewController.m */,
 				C250787616F710B7009B7ED2 /* UserDetailViewController.xib */,
-				C250789016F71BAD009B7ED2 /* UserDetailBasicCell.h */,
-				C250789116F71BAD009B7ED2 /* UserDetailBasicCell.m */,
-				C25078A216F71C63009B7ED2 /* UserDetailBasicCell.xib */,
-				C250789616F71BCC009B7ED2 /* UserDetailOpusGalleryCell.h */,
-				C250789716F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m */,
-				C25078A716F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib */,
-				C250789C16F71BE5009B7ED2 /* UserDetailSNSInfoCell.h */,
-				C250789D16F71BE5009B7ED2 /* UserDetailSNSInfoCell.m */,
-				C25078AC16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -19548,9 +19520,7 @@
 				EA18EE7B16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE8016F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787D16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A516F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078AA16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AF16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C2B97A3116F999200037B15B /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20426,9 +20396,7 @@
 				EA18EE7C16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE8116F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787E16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A616F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078AB16F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078B016F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C2B97A3216F999200037B15B /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21363,9 +21331,7 @@
 				A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */,
 				A491A21016F6EE65003B638F /* ShoppingCell~iPad.xib in Resources */,
 				C250787B16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A316F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078A816F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AD16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C2B97A2F16F999200037B15B /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22220,9 +22186,7 @@
 				EA18EE7A16F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE7F16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787C16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
-				C25078A416F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
-				C25078A916F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
-				C25078AE16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				C2B97A3016F999200037B15B /* UserDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22987,9 +22951,6 @@
 				CAADF61B16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787916F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789416F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789A16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2D16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -23001,6 +22962,7 @@
 				CAADF64B16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
 				CAADF65616F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				CAADF65C16F977970097CFA1 /* AderAdWallService.m in Sources */,
+				C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23746,9 +23708,6 @@
 				CAADF61C16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787A16F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789516F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789B16F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B716F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2E16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -23760,6 +23719,7 @@
 				CAADF64C16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
 				CAADF65716F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				CAADF65D16F977970097CFA1 /* AderAdWallService.m in Sources */,
+				C2B97A2E16F999200037B15B /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24513,9 +24473,6 @@
 				A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */,
 				A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */,
 				C250787716F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789216F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789816F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2B16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -24527,6 +24484,7 @@
 				CAADF64916F974440097CFA1 /* WanpuAdWallService.m in Sources */,
 				CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				CAADF65A16F977970097CFA1 /* AderAdWallService.m in Sources */,
+				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25280,9 +25238,6 @@
 				CAADF61A16F444C20097CFA1 /* LimeiAdWallService.m in Sources */,
 				CAADF62516F444D10097CFA1 /* GameAdWallService.m in Sources */,
 				C250787816F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
-				C250789316F71BAD009B7ED2 /* UserDetailBasicCell.m in Sources */,
-				C250789916F71BCC009B7ED2 /* UserDetailOpusGalleryCell.m in Sources */,
-				C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
 				CA35FF2C16F8672100D8E05D /* ChangeBackAction.m in Sources */,
@@ -25294,6 +25249,7 @@
 				CAADF64A16F974440097CFA1 /* WanpuAdWallService.m in Sources */,
 				CAADF65516F977870097CFA1 /* YoumiAdWallService.m in Sources */,
 				CAADF65B16F977970097CFA1 /* AderAdWallService.m in Sources */,
+				C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
