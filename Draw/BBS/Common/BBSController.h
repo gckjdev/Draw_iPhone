@@ -7,7 +7,10 @@
 //
 
 #import "CommonTabController.h"
+#import "BBSService.h"
+#import "MWPhotoBrowser.h"
+#import "BBSPostActionCell.h"
 
-@interface BBSController : CommonTabController
+@interface BBSController : CommonTabController<BBSServiceDelegate,MWPhotoBrowserDelegate,BBSPostActionCellDelegate>
 
 @end

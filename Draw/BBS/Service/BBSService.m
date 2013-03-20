@@ -870,12 +870,13 @@ BBSService *_staticBBSService;
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
             NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
-            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:postId:actionId:fromRemote:resultCode:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
                 
                 CGSize size = [draw hasCanvasSize] ? (CGSizeFromPBSize(draw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;
                 
                 [delegate didGetBBSDrawActionList:drawActionList
                                   drawDataVersion:draw.version
+                                       canvasSize:size 
                                            postId:postId
                                          actionId:actionId
                                        fromRemote:NO
@@ -919,9 +920,11 @@ BBSService *_staticBBSService;
                 @finally {
                     
                 }
-                if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:postId:actionId:fromRemote:resultCode:)]) {
+                if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
+                    CGSize size = [remoteDraw hasCanvasSize] ? (CGSizeFromPBSize(remoteDraw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;
                     [delegate didGetBBSDrawActionList:drawActionList
                                       drawDataVersion:remoteDraw.version
+                                           canvasSize:size 
                                                postId:postId
                                              actionId:actionId
                                            fromRemote:YES

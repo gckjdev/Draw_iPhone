@@ -41,6 +41,8 @@
     _contentView.scale = scale;
     _contentView.center = CGRectGetCenter(self.bounds);
     _contentView.minScale = _contentView.scale;
+    PPDebug(@"<updateContentScale> scale = %f",scale);
+    
 }
 - (void)setContentView:(SuperDrawView *)contentView{
     if (_contentView != contentView) {
@@ -57,7 +59,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.clipsToBounds = YES;
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

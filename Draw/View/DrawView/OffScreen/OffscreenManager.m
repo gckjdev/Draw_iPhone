@@ -8,7 +8,7 @@
 
 #import "OffscreenManager.h"
 #import "Offscreen.h"
-
+#import "CanvasRect.h"
 
 @interface OffscreenManager()
 {
@@ -30,13 +30,15 @@
 
 @implementation OffscreenManager
 
-+ (id)drawViewOffscreenManager //default OffscreenManager
+
+
++ (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
-    return [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP] autorelease];
+    return [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
 }
-+ (id)showViewOffscreenManager //default OffscreenManager
++ (id)showViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
-    return [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP] autorelease];
+    return [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
 }
 
 
@@ -48,7 +50,7 @@
 }
 
 //draw view: the level should be >= 4, show view level must be 2
-- (id)initWithLevelNumber:(NSUInteger)level maxUndoStep:(NSUInteger)step
+- (id)initWithLevelNumber:(NSUInteger)level maxUndoStep:(NSUInteger)step rect:(CGRect)rect
 {
     if (level < 2) {
         PPDebug(@"<initWithLevelNumber>warnning: level must >= 2");
@@ -60,17 +62,17 @@
         _step = step;
         _offscreenList = [[NSMutableArray alloc] initWithCapacity:level];
 
-        Offscreen *offScreen = [Offscreen offscreenWithCapacity:1];
+        Offscreen *offScreen = [Offscreen offscreenWithCapacity:1 rect:rect];
         [_offscreenList addObject:offScreen];
 
         NSUInteger capacity = step;
         for (NSInteger i = 1; i < level - 1; ++ i) {
-            Offscreen *offScreen = [Offscreen offscreenWithCapacity:capacity];
+            Offscreen *offScreen = [Offscreen offscreenWithCapacity:capacity rect:rect];
             [_offscreenList addObject:offScreen];
             capacity *= 2;
         }
         
-        Offscreen *leftScreen = [Offscreen unlimitOffscreen];
+        Offscreen *leftScreen = [Offscreen unlimitOffscreenWithRect:rect];
         [_offscreenList addObject:leftScreen];
         
     }
@@ -79,7 +81,7 @@
 
 - (id)init
 {
-    return [self initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP];
+    return [self initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:[CanvasRect defaultRect]];
 }
 
 - (void)adjustOffscreenAtIndex:(NSUInteger)index

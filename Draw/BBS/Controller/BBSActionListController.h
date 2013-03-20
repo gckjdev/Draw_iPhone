@@ -6,12 +6,13 @@
 //
 //
 
-#import "CommonTabController.h"
+//#import "CommonTabController.h"
+#import "BBSController.h"
 #import "BBSService.h"
 #import "BBSActionSheet.h"
 #import "MWPhotoBrowser.h"
 
-@interface BBSActionListController : CommonTabController<BBSServiceDelegate, BBSOptionViewDelegate,MWPhotoBrowserDelegate>
+@interface BBSActionListController : BBSController<BBSOptionViewDelegate>
 {
     
 }

@@ -295,6 +295,7 @@
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
     drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -603,14 +604,14 @@
 #define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
 #define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
 
-- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
+- (void)drawView:(DrawView *)view didFinishDrawAction:(DrawAction *)action
 {
     // add back auto save for future recovery
     if (![self supportRecovery]){
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:drawView.drawActionList];
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
 
     return;
 }

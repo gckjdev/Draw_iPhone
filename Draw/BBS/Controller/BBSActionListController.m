@@ -23,7 +23,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
-@property (retain, nonatomic) NSURL *tempURL;
 //- (IBAction)clickRefreshButton:(id)sender;
 @end
 
@@ -122,22 +121,7 @@
     }
 }
 
-- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
-                drawDataVersion:(NSInteger)version
-                         postId:(NSString *)postId
-                       actionId:(NSString *)actionId
-                     fromRemote:(BOOL)fromRemote
-                     resultCode:(NSInteger)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0) {
-        ReplayView *replayView = [ReplayView createReplayView];
-        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
-        [replayView showInController:self withActionList:drawActionList isNewVersion:isNewVersion];
-    }else{
-        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
-    }
-}
+
 
 - (void)didGetBBSPost:(PBBBSPost *)post postId:(NSString *)postId resultCode:(NSInteger)resultCode
 {
@@ -211,48 +195,6 @@
     [self showActionSheetInPoint:self.view.center];
 }
 
-#pragma mark - cell delegate
-- (void)didClickUserAvatar:(PBBBSUser *)user
-{
-    //TODO show user info
-    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
-}
-
-- (void)didClickImageWithURL:(NSURL *)url
-{
-    self.tempURL = url;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    browser.displayActionButton = YES;
-    // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
-
-- (void)didClickDrawImageWithAction:(PBBBSAction *)action
-{
-    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
-                                                 actionId:action.actionId
-                                                 delegate:self];
-}
-
-
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithURL:self.tempURL];
-}
 
 #pragma mark - action sheet delegate
 
@@ -288,7 +230,6 @@ enum{
 
 
 - (void)dealloc {
-    PPRelease(_tempURL);
     PPRelease(_backButton);
     PPRelease(_bgImageView);
     PPRelease(_refreshButton);

@@ -132,9 +132,7 @@
             isNewVersion:(BOOL)isNewVersion
                   drawBg:(PBDrawBg *)drawBg
                     size:(CGSize)size
-{
-    //TODO set the draw view content size
-    
+{    
     self.superController = controller;
     UIView *view = controller.view;
     [self updateMaskViewWithFrame:view.bounds];

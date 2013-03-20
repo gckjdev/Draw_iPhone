@@ -31,7 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
-@property (retain, nonatomic) NSURL *tempURL;
+
 
 @end
 
@@ -75,7 +75,6 @@ typedef enum{
     PPRelease(_bgImageView);
     PPRelease(_toolBarBG);
     PPRelease(_header);
-    PPRelease(_tempURL);
     PPRelease(_refreshButton);
     [super dealloc];
 }
@@ -510,22 +509,7 @@ typedef enum{
         PPDebug(@"<didPayBBSRewardWithPost>fail to pay, postId = %@, actionId = %@",post.postId, action.actionId);
     }
 }
-- (void)didGetBBSDrawActionList:(NSMutableArray *)drawActionList
-                drawDataVersion:(NSInteger)version
-                         postId:(NSString *)postId
-                       actionId:(NSString *)actionId
-                     fromRemote:(BOOL)fromRemote
-                     resultCode:(NSInteger)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0) {
-        ReplayView *replayView = [ReplayView createReplayView];
-        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
-        [replayView showInController:self withActionList:drawActionList isNewVersion:isNewVersion];
-    }else{
-        PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
-    }
-}
+
 
 - (void)didEditPostPost:(PBBBSPost *)post resultCode:(NSInteger)resultCode
 {
@@ -593,51 +577,6 @@ typedef enum{
     [self clickTab:Comment];
 }
 
-- (void)didClickUserAvatar:(PBBBSUser *)user
-{
-    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
-}
-
-- (void)didClickImageWithURL:(NSURL *)url
-{
-    self.tempURL = url;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
-
-- (void)didClickDrawImageWithAction:(PBBBSAction *)action
-{
-    [[BBSService defaultService] getBBSDrawDataWithPostId:nil
-                                                 actionId:action.actionId
-                                                 delegate:self];
-}
-
-- (void)didClickDrawImageWithPost:(PBBBSPost *)post
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[BBSService defaultService] getBBSDrawDataWithPostId:post.postId
-                                                 actionId:nil
-                                                 delegate:self];    
-}
-
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithURL:self.tempURL];
-}
 
 - (void)viewDidUnload {
     [self setBackButton:nil];

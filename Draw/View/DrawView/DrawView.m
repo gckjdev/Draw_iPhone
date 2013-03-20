@@ -209,7 +209,7 @@
         self.backgroundColor = [UIColor whiteColor];
         _redoStack = [[PPStack alloc] init];
         
-        osManager = [[OffscreenManager drawViewOffscreenManager] retain];
+        osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
         [self setMultipleTouchEnabled:YES];
         _gestureRecognizerManager.delegate = self;
     }
