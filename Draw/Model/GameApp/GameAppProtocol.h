@@ -10,6 +10,7 @@
 #import "ChatMsgManagerProtocol.h"
 #import "ImageManagerProtocol.h"
 #import "GameJumpHandlerProtocol.h"
+#import "GameBasic.pb.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -100,4 +101,11 @@
 - (NSArray*)cacheArray;
 
 - (NSString*)getBackgroundMusicName;
+
+- (PBGameCurrency)wallRewardCoinType;
+
+- (NSString*)youmiWallId;
+- (NSString*)youmiWallSecret;
+- (NSString*)aderWallId;
+
 @end

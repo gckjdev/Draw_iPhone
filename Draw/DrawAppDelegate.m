@@ -69,6 +69,7 @@
 
 #import "BBSService.h"
 #import "DrawBgManager.h"
+#import "GameAdWallService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -91,7 +92,7 @@ NSString* GlobalGetTrafficServerURL()
 NSString* GlobalGetBoardServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.13:8100/api/i?";    
+//    return @"http://192.168.1.13:8100/api/i?";
 }
 
 @implementation DrawAppDelegate
@@ -304,7 +305,11 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    [[PriceService defaultService] syncShoppingListAtBackground];
+    if (isDrawApp() == NO){
+        // no longer used for Draw App
+        [[PriceService defaultService] syncShoppingListAtBackground];
+    }
+    
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
     // Detect Network Availability
@@ -406,9 +411,11 @@ NSString* GlobalGetBoardServerURL()
     
 //    [[BoardService defaultService] syncBoards];
     
-    if ([ConfigManager wallEnabled]){
-        [[LmWallService defaultService] queryScore];            
-    }
+//    if ([ConfigManager wallEnabled]){
+//        [[LmWallService defaultService] queryScore];            
+//    }
+    
+    [[GameAdWallService defaultService] queryWallScore];
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];

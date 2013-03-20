@@ -322,4 +322,24 @@
     return @"cannon.mp3";
 }
 
+- (PBGameCurrency)wallRewardCoinType
+{
+    return PBGameCurrencyIngot;
+}
+
+- (NSString*)youmiWallId
+{
+    return @"c278f8dc80295b18";
+}
+
+- (NSString*)youmiWallSecret
+{
+    return @"30c93a1226f94496";
+}
+
+- (NSString*)aderWallId
+{
+    return @"3b47607e44f94d7c948c83b7e6eb800e";
+}
+
 @end

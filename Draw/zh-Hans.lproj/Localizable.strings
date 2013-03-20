@@ -1079,6 +1079,12 @@
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中...";
 
+"kDetectFakeIAP" = "充值失败，请勿使用越狱充值插件";
+"kVerifyIAPFail" = "充值失败，请稍后再试验，并确保未使用越狱充值插件。";
+"kWallRewardCoinMessage" = "下载免费应用，成功获取了%d金币";
+"kWallRewardIngotMessage" = "下载免费应用，成功获取了%d元宝";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

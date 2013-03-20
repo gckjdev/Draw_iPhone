@@ -21,6 +21,8 @@
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
 #import "AudioManager.h"
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
 
 @interface SuperHomeController ()
 {
@@ -226,8 +228,9 @@
         [self toRegister];
         return;
     }
-
-    UserSettingController *us = [[UserSettingController alloc] init];
+    
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+//    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
 }

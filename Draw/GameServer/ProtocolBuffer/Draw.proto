@@ -26,7 +26,7 @@ message PBDraw {
 
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
   optional PBDrawBg drawBg = 20;                    // draw background info
-  optional PBSize size = 21;                        // draw rect size
+  optional PBSize canvasSize = 21;                        // draw rect size
 }
 
 message PBFeedTimes{
@@ -176,12 +176,6 @@ message PBDrawBg
     required string bgId = 1;
     optional string localUrl  = 2;
     optional string remoteUrl  = 3;
-}
-
-message PBSize
-{
-    optional float width = 1 [default=304.0];
-    optional float height = 2 [default=320.0];
 }
 
 message PBDrawBgList

@@ -34,6 +34,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -254,16 +256,20 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
   BOOL hasExperience_:1;
-  BOOL hasIngotBalance_:1;
-  BOOL hasDiamondBalance_:1;
-  BOOL hasCoinBalance_:1;
-  BOOL hasUserLevel_:1;
-  BOOL hasLevel_:1;
-  BOOL hasSeatId_:1;
   BOOL hasGuessWordLanguage_:1;
   BOOL hasZodiac_:1;
-  BOOL hasSignature_:1;
+  BOOL hasIngotBalance_:1;
+  BOOL hasDiamondBalance_:1;
+  BOOL hasUserLevel_:1;
+  BOOL hasCoinBalance_:1;
+  BOOL hasSeatId_:1;
+  BOOL hasLevel_:1;
   BOOL hasDeviceToken_:1;
+  BOOL hasCountryCode_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasDeviceModel_:1;
+  BOOL hasDeviceOs_:1;
+  BOOL hasSignature_:1;
   BOOL hasBackgroundUrl_:1;
   BOOL hasBirthday_:1;
   BOOL hasPassword_:1;
@@ -277,16 +283,20 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
   int64_t experience;
-  int32_t ingotBalance;
-  int32_t diamondBalance;
-  int32_t coinBalance;
-  int32_t userLevel;
-  int32_t level;
-  int32_t seatId;
   int32_t guessWordLanguage;
   int32_t zodiac;
-  NSString* signature;
+  int32_t ingotBalance;
+  int32_t diamondBalance;
+  int32_t userLevel;
+  int32_t coinBalance;
+  int32_t seatId;
+  int32_t level;
   NSString* deviceToken;
+  NSString* countryCode;
+  NSString* language;
+  NSString* deviceModel;
+  NSString* deviceOs;
+  NSString* signature;
   NSString* backgroundUrl;
   NSString* birthday;
   NSString* password;
@@ -317,11 +327,15 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (BOOL) hasGuessWordLanguage;
 - (BOOL) hasBackgroundUrl;
 - (BOOL) hasDeviceToken;
+- (BOOL) hasCountryCode;
+- (BOOL) hasLanguage;
 - (BOOL) hasLevel;
 - (BOOL) hasExperience;
 - (BOOL) hasCoinBalance;
 - (BOOL) hasDiamondBalance;
 - (BOOL) hasIngotBalance;
+- (BOOL) hasDeviceModel;
+- (BOOL) hasDeviceOs;
 - (BOOL) hasSignature;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
@@ -340,11 +354,15 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 @property (readonly) int32_t guessWordLanguage;
 @property (readonly, retain) NSString* backgroundUrl;
 @property (readonly, retain) NSString* deviceToken;
+@property (readonly, retain) NSString* countryCode;
+@property (readonly, retain) NSString* language;
 @property (readonly) int32_t level;
 @property (readonly) int64_t experience;
 @property (readonly) int32_t coinBalance;
 @property (readonly) int32_t diamondBalance;
 @property (readonly) int32_t ingotBalance;
+@property (readonly, retain) NSString* deviceModel;
+@property (readonly, retain) NSString* deviceOs;
 @property (readonly, retain) NSString* signature;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
@@ -486,6 +504,16 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (PBGameUser_Builder*) setDeviceToken:(NSString*) value;
 - (PBGameUser_Builder*) clearDeviceToken;
 
+- (BOOL) hasCountryCode;
+- (NSString*) countryCode;
+- (PBGameUser_Builder*) setCountryCode:(NSString*) value;
+- (PBGameUser_Builder*) clearCountryCode;
+
+- (BOOL) hasLanguage;
+- (NSString*) language;
+- (PBGameUser_Builder*) setLanguage:(NSString*) value;
+- (PBGameUser_Builder*) clearLanguage;
+
 - (BOOL) hasLevel;
 - (int32_t) level;
 - (PBGameUser_Builder*) setLevel:(int32_t) value;
@@ -517,6 +545,16 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (PBGameUser_Builder*) addItems:(PBUserItem*) value;
 - (PBGameUser_Builder*) addAllItems:(NSArray*) values;
 - (PBGameUser_Builder*) clearItemsList;
+
+- (BOOL) hasDeviceModel;
+- (NSString*) deviceModel;
+- (PBGameUser_Builder*) setDeviceModel:(NSString*) value;
+- (PBGameUser_Builder*) clearDeviceModel;
+
+- (BOOL) hasDeviceOs;
+- (NSString*) deviceOs;
+- (PBGameUser_Builder*) setDeviceOs:(NSString*) value;
+- (PBGameUser_Builder*) clearDeviceOs;
 
 - (BOOL) hasSignature;
 - (NSString*) signature;
@@ -916,6 +954,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasTo_:1;
   BOOL hasText_:1;
   BOOL hasReqMessageId_:1;
+  BOOL hasCanvasSize_:1;
   Float64 longitude;
   Float64 latitude;
   int32_t status;
@@ -928,6 +967,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   NSString* to;
   NSString* text;
   NSString* reqMessageId;
+  PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasMessageId;
@@ -938,6 +978,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
 - (BOOL) hasDrawDataVersion;
+- (BOOL) hasCanvasSize;
 - (BOOL) hasLongitude;
 - (BOOL) hasLatitude;
 - (BOOL) hasReqMessageId;
@@ -950,6 +991,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t drawDataVersion;
+@property (readonly, retain) PBSize* canvasSize;
 @property (readonly) Float64 longitude;
 @property (readonly) Float64 latitude;
 @property (readonly, retain) NSString* reqMessageId;
@@ -1037,6 +1079,13 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) drawDataVersion;
 - (PBMessage_Builder*) setDrawDataVersion:(int32_t) value;
 - (PBMessage_Builder*) clearDrawDataVersion;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBMessage_Builder*) setCanvasSize:(PBSize*) value;
+- (PBMessage_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBMessage_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBMessage_Builder*) clearCanvasSize;
 
 - (BOOL) hasLongitude;
 - (Float64) longitude;
@@ -2132,5 +2181,62 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (NSString*) logo;
 - (PBApp_Builder*) setLogo:(NSString*) value;
 - (PBApp_Builder*) clearLogo;
+@end
+
+@interface PBSize : PBGeneratedMessage {
+@private
+  BOOL hasWidth_:1;
+  BOOL hasHeight_:1;
+  Float32 width;
+  Float32 height;
+}
+- (BOOL) hasWidth;
+- (BOOL) hasHeight;
+@property (readonly) Float32 width;
+@property (readonly) Float32 height;
+
++ (PBSize*) defaultInstance;
+- (PBSize*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSize_Builder*) builder;
++ (PBSize_Builder*) builder;
++ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype;
+
++ (PBSize*) parseFromData:(NSData*) data;
++ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSize*) parseFromInputStream:(NSInputStream*) input;
++ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSize_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSize* result;
+}
+
+- (PBSize*) defaultInstance;
+
+- (PBSize_Builder*) clear;
+- (PBSize_Builder*) clone;
+
+- (PBSize*) build;
+- (PBSize*) buildPartial;
+
+- (PBSize_Builder*) mergeFrom:(PBSize*) other;
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBSize_Builder*) setWidth:(Float32) value;
+- (PBSize_Builder*) clearWidth;
+
+- (BOOL) hasHeight;
+- (Float32) height;
+- (PBSize_Builder*) setHeight:(Float32) value;
+- (PBSize_Builder*) clearHeight;
 @end
 

@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameBasic.pb.h"
 
 @protocol UserDetailProtocol <NSObject>
 
+- (NSString*)getUserId;
+- (PBGameUser*)queryUser;
+- (BOOL)canEdit;
+- (BOOL)needUpdate;
 @end

@@ -58,7 +58,7 @@
 #import "GameItemService.h"
 #import "DrawHolderView.h"
 #import "GameItemManager.h"
-
+#import "CanvasRect.h"
 
 @interface OfflineDrawViewController()
 {
@@ -293,7 +293,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -306,7 +306,7 @@
     }
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
-    DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:CGRectMake(10, 40, 300, 300) contentView:drawView];
+    DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
     [self.view addSubview:holder];
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
 }
@@ -705,7 +705,7 @@
                       drawWord:self.word
                       language:languageType
                       drawBg:drawView.drawBg
-                      size:drawView.frame.size
+                      size:drawView.bounds.size
                       isCompressed:YES];
     return pbDraw;
 }
@@ -715,7 +715,7 @@
     //TODO Edith the draw to User
     PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
                                                                            pbdrawBg:drawView.drawBg
-                                                                               size:drawView.frame.size
+                                                                               size:drawView.bounds.size
                                                                          drawToUser:nil];
     return data;
 }
@@ -935,7 +935,7 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                  drawBg:drawView.drawBg
-                                                   size:drawView.frame.size
+                                                   size:drawView.bounds.size
                                                delegate:self];
 
     

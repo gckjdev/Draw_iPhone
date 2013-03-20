@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawUtils.h"
 
 typedef enum{
     CanvasRectEnd = -1,

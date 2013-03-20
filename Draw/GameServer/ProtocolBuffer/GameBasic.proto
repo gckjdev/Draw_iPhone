@@ -47,21 +47,27 @@ message PBGameUser {
   optional string deviceToken = 37;                 // iPhone Device Token
   optional string countryCode = 38;                 // 国家代码，如 CN
   optional string language = 39;                    // 设备语言，如 zh_Hans
-  optional string deviceModel = 40;                 // 设备型号
-  optional string deviceOS = 41;                    // 设备操作系统
 
   // level & experience
   optional int32  level = 41;
   optional int64  experience = 42;
+
+
   
   // account info
   optional int32  coinBalance = 51;                 // 金币余额
   optional int32  diamondBalance = 52;              // useless
   optional int32  ingotBalance = 53;                // 元宝余额
   
+
+
   // user items
   repeated PBUserItem items = 61;
-  
+
+  // device info
+  optional string deviceModel = 71;                 // 设备型号
+  optional string deviceOS = 72;                    // 设备操作系统
+
   optional string signature = 100;
 }
 
@@ -128,7 +134,8 @@ message PBMessage {
   repeated PBDrawAction drawData = 21;  
   optional int32  createDate = 22;
   optional int32 drawDataVersion = 23 [default=0];      // draw data version
-  
+  optional PBSize canvasSize = 24; //used after draw data version 2.0
+
   // add for ask/reply location
   optional double longitude = 31;
   optional double latitude = 32;
@@ -280,3 +287,8 @@ message PBApp{
     optional string logo = 5;                   // app logo remote URL
 }
 
+message PBSize
+{
+    optional float width = 1 [default=304.0];
+    optional float height = 2 [default=320.0];
+}

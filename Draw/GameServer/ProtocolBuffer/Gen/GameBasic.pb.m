@@ -756,12 +756,16 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property int32_t guessWordLanguage;
 @property (retain) NSString* backgroundUrl;
 @property (retain) NSString* deviceToken;
+@property (retain) NSString* countryCode;
+@property (retain) NSString* language;
 @property int32_t level;
 @property int64_t experience;
 @property int32_t coinBalance;
 @property int32_t diamondBalance;
 @property int32_t ingotBalance;
 @property (retain) NSMutableArray* mutableItemsList;
+@property (retain) NSString* deviceModel;
+@property (retain) NSString* deviceOs;
 @property (retain) NSString* signature;
 @end
 
@@ -903,6 +907,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasDeviceToken_ = !!value;
 }
 @synthesize deviceToken;
+- (BOOL) hasCountryCode {
+  return !!hasCountryCode_;
+}
+- (void) setHasCountryCode:(BOOL) value {
+  hasCountryCode_ = !!value;
+}
+@synthesize countryCode;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
 - (BOOL) hasLevel {
   return !!hasLevel_;
 }
@@ -939,6 +957,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 }
 @synthesize ingotBalance;
 @synthesize mutableItemsList;
+- (BOOL) hasDeviceModel {
+  return !!hasDeviceModel_;
+}
+- (void) setHasDeviceModel:(BOOL) value {
+  hasDeviceModel_ = !!value;
+}
+@synthesize deviceModel;
+- (BOOL) hasDeviceOs {
+  return !!hasDeviceOs_;
+}
+- (void) setHasDeviceOs:(BOOL) value {
+  hasDeviceOs_ = !!value;
+}
+@synthesize deviceOs;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -959,7 +991,11 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.birthday = nil;
   self.backgroundUrl = nil;
   self.deviceToken = nil;
+  self.countryCode = nil;
+  self.language = nil;
   self.mutableItemsList = nil;
+  self.deviceModel = nil;
+  self.deviceOs = nil;
   self.signature = nil;
   [super dealloc];
 }
@@ -982,11 +1018,15 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.guessWordLanguage = 0;
     self.backgroundUrl = @"";
     self.deviceToken = @"";
+    self.countryCode = @"";
+    self.language = @"";
     self.level = 0;
     self.experience = 0L;
     self.coinBalance = 0;
     self.diamondBalance = 0;
     self.ingotBalance = 0;
+    self.deviceModel = @"";
+    self.deviceOs = @"";
     self.signature = @"";
   }
   return self;
@@ -1106,6 +1146,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceToken) {
     [output writeString:37 value:self.deviceToken];
   }
+  if (self.hasCountryCode) {
+    [output writeString:38 value:self.countryCode];
+  }
+  if (self.hasLanguage) {
+    [output writeString:39 value:self.language];
+  }
   if (self.hasLevel) {
     [output writeInt32:41 value:self.level];
   }
@@ -1123,6 +1169,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     [output writeMessage:61 value:element];
+  }
+  if (self.hasDeviceModel) {
+    [output writeString:71 value:self.deviceModel];
+  }
+  if (self.hasDeviceOs) {
+    [output writeString:72 value:self.deviceOs];
   }
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
@@ -1193,6 +1245,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceToken) {
     size += computeStringSize(37, self.deviceToken);
   }
+  if (self.hasCountryCode) {
+    size += computeStringSize(38, self.countryCode);
+  }
+  if (self.hasLanguage) {
+    size += computeStringSize(39, self.language);
+  }
   if (self.hasLevel) {
     size += computeInt32Size(41, self.level);
   }
@@ -1210,6 +1268,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   for (PBUserItem* element in self.itemsList) {
     size += computeMessageSize(61, element);
+  }
+  if (self.hasDeviceModel) {
+    size += computeStringSize(71, self.deviceModel);
+  }
+  if (self.hasDeviceOs) {
+    size += computeStringSize(72, self.deviceOs);
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
@@ -1352,6 +1416,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDeviceToken) {
     [self setDeviceToken:other.deviceToken];
   }
+  if (other.hasCountryCode) {
+    [self setCountryCode:other.countryCode];
+  }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
   if (other.hasLevel) {
     [self setLevel:other.level];
   }
@@ -1372,6 +1442,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       result.mutableItemsList = [NSMutableArray array];
     }
     [result.mutableItemsList addObjectsFromArray:other.mutableItemsList];
+  }
+  if (other.hasDeviceModel) {
+    [self setDeviceModel:other.deviceModel];
+  }
+  if (other.hasDeviceOs) {
+    [self setDeviceOs:other.deviceOs];
   }
   if (other.hasSignature) {
     [self setSignature:other.signature];
@@ -1477,6 +1553,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         [self setDeviceToken:[input readString]];
         break;
       }
+      case 306: {
+        [self setCountryCode:[input readString]];
+        break;
+      }
+      case 314: {
+        [self setLanguage:[input readString]];
+        break;
+      }
       case 328: {
         [self setLevel:[input readInt32]];
         break;
@@ -1501,6 +1585,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         PBUserItem_Builder* subBuilder = [PBUserItem builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addItems:[subBuilder buildPartial]];
+        break;
+      }
+      case 570: {
+        [self setDeviceModel:[input readString]];
+        break;
+      }
+      case 578: {
+        [self setDeviceOs:[input readString]];
         break;
       }
       case 802: {
@@ -1840,6 +1932,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   result.deviceToken = @"";
   return self;
 }
+- (BOOL) hasCountryCode {
+  return result.hasCountryCode;
+}
+- (NSString*) countryCode {
+  return result.countryCode;
+}
+- (PBGameUser_Builder*) setCountryCode:(NSString*) value {
+  result.hasCountryCode = YES;
+  result.countryCode = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearCountryCode {
+  result.hasCountryCode = NO;
+  result.countryCode = @"";
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (NSString*) language {
+  return result.language;
+}
+- (PBGameUser_Builder*) setLanguage:(NSString*) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = @"";
+  return self;
+}
 - (BOOL) hasLevel {
   return result.hasLevel;
 }
@@ -1947,6 +2071,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     result.mutableItemsList = [NSMutableArray array];
   }
   [result.mutableItemsList addObject:value];
+  return self;
+}
+- (BOOL) hasDeviceModel {
+  return result.hasDeviceModel;
+}
+- (NSString*) deviceModel {
+  return result.deviceModel;
+}
+- (PBGameUser_Builder*) setDeviceModel:(NSString*) value {
+  result.hasDeviceModel = YES;
+  result.deviceModel = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceModel {
+  result.hasDeviceModel = NO;
+  result.deviceModel = @"";
+  return self;
+}
+- (BOOL) hasDeviceOs {
+  return result.hasDeviceOs;
+}
+- (NSString*) deviceOs {
+  return result.deviceOs;
+}
+- (PBGameUser_Builder*) setDeviceOs:(NSString*) value {
+  result.hasDeviceOs = YES;
+  result.deviceOs = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceOs {
+  result.hasDeviceOs = NO;
+  result.deviceOs = @"";
   return self;
 }
 - (BOOL) hasSignature {
@@ -3674,6 +3830,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
 @property int32_t drawDataVersion;
+@property (retain) PBSize* canvasSize;
 @property Float64 longitude;
 @property Float64 latitude;
 @property (retain) NSString* reqMessageId;
@@ -3739,6 +3896,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasDrawDataVersion_ = !!value;
 }
 @synthesize drawDataVersion;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (BOOL) hasLongitude {
   return !!hasLongitude_;
 }
@@ -3773,6 +3937,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   self.to = nil;
   self.text = nil;
   self.mutableDrawDataList = nil;
+  self.canvasSize = nil;
   self.reqMessageId = nil;
   [super dealloc];
 }
@@ -3786,6 +3951,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.text = @"";
     self.createDate = 0;
     self.drawDataVersion = 0;
+    self.canvasSize = [PBSize defaultInstance];
     self.longitude = 0;
     self.latitude = 0;
     self.reqMessageId = @"";
@@ -3857,6 +4023,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasDrawDataVersion) {
     [output writeInt32:23 value:self.drawDataVersion];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:24 value:self.canvasSize];
+  }
   if (self.hasLongitude) {
     [output writeDouble:31 value:self.longitude];
   }
@@ -3904,6 +4073,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasDrawDataVersion) {
     size += computeInt32Size(23, self.drawDataVersion);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(24, self.canvasSize);
   }
   if (self.hasLongitude) {
     size += computeDoubleSize(31, self.longitude);
@@ -4022,6 +4194,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasDrawDataVersion) {
     [self setDrawDataVersion:other.drawDataVersion];
   }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
   if (other.hasLongitude) {
     [self setLongitude:other.longitude];
   }
@@ -4091,6 +4266,15 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 184: {
         [self setDrawDataVersion:[input readInt32]];
+        break;
+      }
+      case 194: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
       case 249: {
@@ -4267,6 +4451,36 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearDrawDataVersion {
   result.hasDrawDataVersion = NO;
   result.drawDataVersion = 0;
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBMessage_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBMessage_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBMessage_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBMessage_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 - (BOOL) hasLongitude {
@@ -8805,6 +9019,221 @@ static PBApp* defaultPBAppInstance = nil;
 - (PBApp_Builder*) clearLogo {
   result.hasLogo = NO;
   result.logo = @"";
+  return self;
+}
+@end
+
+@interface PBSize ()
+@property Float32 width;
+@property Float32 height;
+@end
+
+@implementation PBSize
+
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasHeight {
+  return !!hasHeight_;
+}
+- (void) setHasHeight:(BOOL) value {
+  hasHeight_ = !!value;
+}
+@synthesize height;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.width = 304;
+    self.height = 320;
+  }
+  return self;
+}
+static PBSize* defaultPBSizeInstance = nil;
++ (void) initialize {
+  if (self == [PBSize class]) {
+    defaultPBSizeInstance = [[PBSize alloc] init];
+  }
+}
++ (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasWidth) {
+    [output writeFloat:1 value:self.width];
+  }
+  if (self.hasHeight) {
+    [output writeFloat:2 value:self.height];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasWidth) {
+    size += computeFloatSize(1, self.width);
+  }
+  if (self.hasHeight) {
+    size += computeFloatSize(2, self.height);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSize*) parseFromData:(NSData*) data {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data] build];
+}
++ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize_Builder*) builder {
+  return [[[PBSize_Builder alloc] init] autorelease];
+}
++ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype {
+  return [[PBSize builder] mergeFrom:prototype];
+}
+- (PBSize_Builder*) builder {
+  return [PBSize builder];
+}
+@end
+
+@interface PBSize_Builder()
+@property (retain) PBSize* result;
+@end
+
+@implementation PBSize_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSize alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSize_Builder*) clear {
+  self.result = [[[PBSize alloc] init] autorelease];
+  return self;
+}
+- (PBSize_Builder*) clone {
+  return [PBSize builderWithPrototype:result];
+}
+- (PBSize*) defaultInstance {
+  return [PBSize defaultInstance];
+}
+- (PBSize*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSize*) buildPartial {
+  PBSize* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSize_Builder*) mergeFrom:(PBSize*) other {
+  if (other == [PBSize defaultInstance]) {
+    return self;
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasHeight) {
+    [self setHeight:other.height];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setHeight:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (PBSize_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (PBSize_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 304;
+  return self;
+}
+- (BOOL) hasHeight {
+  return result.hasHeight;
+}
+- (Float32) height {
+  return result.height;
+}
+- (PBSize_Builder*) setHeight:(Float32) value {
+  result.hasHeight = YES;
+  result.height = value;
+  return self;
+}
+- (PBSize_Builder*) clearHeight {
+  result.hasHeight = NO;
+  result.height = 320;
   return self;
 }
 @end

@@ -36,7 +36,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property int32_t score;
 @property BOOL isCompressed;
 @property (retain) PBDrawBg* drawBg;
-@property (retain) PBSize* size;
+@property (retain) PBSize* canvasSize;
 @end
 
 @implementation PBDraw
@@ -143,13 +143,13 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasDrawBg_ = !!value;
 }
 @synthesize drawBg;
-- (BOOL) hasSize {
-  return !!hasSize_;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
 }
-- (void) setHasSize:(BOOL) value {
-  hasSize_ = !!value;
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
 }
-@synthesize size;
+@synthesize canvasSize;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -158,7 +158,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.mutableDrawDataList = nil;
   self.opusId = nil;
   self.drawBg = nil;
-  self.size = nil;
+  self.canvasSize = nil;
   [super dealloc];
 }
 - (id) init {
@@ -176,7 +176,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.score = 0;
     self.isCompressed = YES;
     self.drawBg = [PBDrawBg defaultInstance];
-    self.size = [PBSize defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
   }
   return self;
 }
@@ -267,8 +267,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasDrawBg) {
     [output writeMessage:20 value:self.drawBg];
   }
-  if (self.hasSize) {
-    [output writeMessage:21 value:self.size];
+  if (self.hasCanvasSize) {
+    [output writeMessage:21 value:self.canvasSize];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -321,8 +321,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasDrawBg) {
     size += computeMessageSize(20, self.drawBg);
   }
-  if (self.hasSize) {
-    size += computeMessageSize(21, self.size);
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(21, self.canvasSize);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -444,8 +444,8 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
   }
-  if (other.hasSize) {
-    [self mergeSize:other.size];
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -533,11 +533,11 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 170: {
         PBSize_Builder* subBuilder = [PBSize builder];
-        if (self.hasSize) {
-          [subBuilder mergeFrom:self.size];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSize:[subBuilder buildPartial]];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -794,34 +794,34 @@ static PBDraw* defaultPBDrawInstance = nil;
   result.drawBg = [PBDrawBg defaultInstance];
   return self;
 }
-- (BOOL) hasSize {
-  return result.hasSize;
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
 }
-- (PBSize*) size {
-  return result.size;
+- (PBSize*) canvasSize {
+  return result.canvasSize;
 }
-- (PBDraw_Builder*) setSize:(PBSize*) value {
-  result.hasSize = YES;
-  result.size = value;
+- (PBDraw_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
   return self;
 }
-- (PBDraw_Builder*) setSizeBuilder:(PBSize_Builder*) builderForValue {
-  return [self setSize:[builderForValue build]];
+- (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
 }
-- (PBDraw_Builder*) mergeSize:(PBSize*) value {
-  if (result.hasSize &&
-      result.size != [PBSize defaultInstance]) {
-    result.size =
-      [[[PBSize builderWithPrototype:result.size] mergeFrom:value] buildPartial];
+- (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
   } else {
-    result.size = value;
+    result.canvasSize = value;
   }
-  result.hasSize = YES;
+  result.hasCanvasSize = YES;
   return self;
 }
-- (PBDraw_Builder*) clearSize {
-  result.hasSize = NO;
-  result.size = [PBSize defaultInstance];
+- (PBDraw_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 @end
@@ -5189,221 +5189,6 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 - (PBDrawBg_Builder*) clearRemoteUrl {
   result.hasRemoteUrl = NO;
   result.remoteUrl = @"";
-  return self;
-}
-@end
-
-@interface PBSize ()
-@property Float32 width;
-@property Float32 height;
-@end
-
-@implementation PBSize
-
-- (BOOL) hasWidth {
-  return !!hasWidth_;
-}
-- (void) setHasWidth:(BOOL) value {
-  hasWidth_ = !!value;
-}
-@synthesize width;
-- (BOOL) hasHeight {
-  return !!hasHeight_;
-}
-- (void) setHasHeight:(BOOL) value {
-  hasHeight_ = !!value;
-}
-@synthesize height;
-- (void) dealloc {
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.width = 304;
-    self.height = 320;
-  }
-  return self;
-}
-static PBSize* defaultPBSizeInstance = nil;
-+ (void) initialize {
-  if (self == [PBSize class]) {
-    defaultPBSizeInstance = [[PBSize alloc] init];
-  }
-}
-+ (PBSize*) defaultInstance {
-  return defaultPBSizeInstance;
-}
-- (PBSize*) defaultInstance {
-  return defaultPBSizeInstance;
-}
-- (BOOL) isInitialized {
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasWidth) {
-    [output writeFloat:1 value:self.width];
-  }
-  if (self.hasHeight) {
-    [output writeFloat:2 value:self.height];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasWidth) {
-    size += computeFloatSize(1, self.width);
-  }
-  if (self.hasHeight) {
-    size += computeFloatSize(2, self.height);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBSize*) parseFromData:(NSData*) data {
-  return (PBSize*)[[[PBSize builder] mergeFromData:data] build];
-}
-+ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSize*)[[[PBSize builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBSize*) parseFromInputStream:(NSInputStream*) input {
-  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input] build];
-}
-+ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSize_Builder*) builder {
-  return [[[PBSize_Builder alloc] init] autorelease];
-}
-+ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype {
-  return [[PBSize builder] mergeFrom:prototype];
-}
-- (PBSize_Builder*) builder {
-  return [PBSize builder];
-}
-@end
-
-@interface PBSize_Builder()
-@property (retain) PBSize* result;
-@end
-
-@implementation PBSize_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBSize alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBSize_Builder*) clear {
-  self.result = [[[PBSize alloc] init] autorelease];
-  return self;
-}
-- (PBSize_Builder*) clone {
-  return [PBSize builderWithPrototype:result];
-}
-- (PBSize*) defaultInstance {
-  return [PBSize defaultInstance];
-}
-- (PBSize*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBSize*) buildPartial {
-  PBSize* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBSize_Builder*) mergeFrom:(PBSize*) other {
-  if (other == [PBSize defaultInstance]) {
-    return self;
-  }
-  if (other.hasWidth) {
-    [self setWidth:other.width];
-  }
-  if (other.hasHeight) {
-    [self setHeight:other.height];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 13: {
-        [self setWidth:[input readFloat]];
-        break;
-      }
-      case 21: {
-        [self setHeight:[input readFloat]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasWidth {
-  return result.hasWidth;
-}
-- (Float32) width {
-  return result.width;
-}
-- (PBSize_Builder*) setWidth:(Float32) value {
-  result.hasWidth = YES;
-  result.width = value;
-  return self;
-}
-- (PBSize_Builder*) clearWidth {
-  result.hasWidth = NO;
-  result.width = 304;
-  return self;
-}
-- (BOOL) hasHeight {
-  return result.hasHeight;
-}
-- (Float32) height {
-  return result.height;
-}
-- (PBSize_Builder*) setHeight:(Float32) value {
-  result.hasHeight = YES;
-  result.height = value;
-  return self;
-}
-- (PBSize_Builder*) clearHeight {
-  result.hasHeight = NO;
-  result.height = 320;
   return self;
 }
 @end

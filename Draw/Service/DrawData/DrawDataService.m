@@ -207,42 +207,42 @@ static DrawDataService* _defaultDrawDataService = nil;
 //
 //}
 //
-//- (PBDraw*)buildPBDraw:(NSString*)userId
-//                  nick:(NSString *)nick
-//                avatar:(NSString *)avatar
-//        drawActionList:(NSArray*)drawActionList
-//              drawWord:(Word*)drawWord
-//              language:(LanguageType)language
-//                drawBg:(PBDrawBg *)drawBg
-//                  size:(CGSize)size
-//          isCompressed:(BOOL)isCompressed
-//{
-//    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
-//    [builder setUserId:userId];
-//    [builder setNickName:nick];
-//    [builder setAvatar:avatar];
-//    [builder setWord:[drawWord text]];
-//    [builder setLevel:[drawWord level]];
-//    [builder setLanguage:language];
-//    [builder setScore:[drawWord score]];
-//    
-//    if (drawBg != nil){
-//        [builder setDrawBg:drawBg];
-//    }
-//    //TODO save size
-//    
-//    for (DrawAction* drawAction in drawActionList){
-//        PBDrawAction *action = [self buildPBDrawAction:drawAction isCompressed:isCompressed];
-//        [builder addDrawData:action];
-//    }
-//    [builder setVersion:[ConfigManager currentDrawDataVersion]];
-//    [builder setIsCompressed:isCompressed];
-//    
-//    PBDraw* draw = [builder build];        
-//    [builder release];
-//    
-//    return draw;
-//}
+- (PBDraw*)buildPBDraw:(NSString*)userId
+                  nick:(NSString *)nick
+                avatar:(NSString *)avatar
+        drawActionList:(NSArray*)drawActionList
+              drawWord:(Word*)drawWord
+              language:(LanguageType)language
+                drawBg:(PBDrawBg *)drawBg
+                  size:(CGSize)size
+          isCompressed:(BOOL)isCompressed
+{
+    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+    [builder setUserId:userId];
+    [builder setNickName:nick];
+    [builder setAvatar:avatar];
+    [builder setWord:[drawWord text]];
+    [builder setLevel:[drawWord level]];
+    [builder setLanguage:language];
+    [builder setScore:[drawWord score]];
+    
+    if (drawBg != nil){
+        [builder setDrawBg:drawBg];
+    }
+    [builder setCanvasSize:CGSizeToPBSize(size)];
+    
+    for (DrawAction* drawAction in drawActionList){
+        PBDrawAction *action = [drawAction toPBDrawAction];
+        [builder addDrawData:action];
+    }
+    [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    [builder setIsCompressed:isCompressed];
+    
+    PBDraw* draw = [builder build];        
+    [builder release];
+    
+    return draw;
+}
 
 - (void)createOfflineDraw:(NSMutableArray*)drawActionList
                     image:(UIImage *)image
@@ -261,14 +261,16 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
-    ;
     
-    PBDraw* draw = [[[Draw alloc] initWithUserId:userId nickName:nick
-                                          avatar:avatar
-                                  drawActionList:drawActionList
-                                            word:drawWord
-                                          drawBg:drawBg
-                                      canvasSize:size] toPBDraw];
+    PBDraw *draw = [self buildPBDraw:userId
+                                nick:nick
+                              avatar:avatar
+                      drawActionList:drawActionList
+                            drawWord:drawWord
+                            language:language
+                              drawBg:drawBg
+                                size:size
+                        isCompressed:NO];
     
     NSData *imageData = nil;
     if (image) {

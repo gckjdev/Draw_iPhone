@@ -806,4 +806,31 @@
     return @"1.0";
 }
 
++ (BOOL)isEnableLimeiWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_LIMEI_WALL" defaultValue:YES];
+}
+
++ (BOOL)isEnableYoumiWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_YOUMI_WALL" defaultValue:YES];
+}
+
+
++ (BOOL)isEnableWanpuWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_WANPU_WALL" defaultValue:YES];
+}
+
++ (BOOL)isEnableAderWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_ADER_WALL" defaultValue:YES];
+}
+
++ (BOOL)isEnableTapjoyWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_TAPJOY_WALL" defaultValue:YES];
+}
+
+
 @end

@@ -12,10 +12,25 @@
 
 @interface GameAdWallService : NSObject
 
+{
+    NSMutableArray* _wallServiceArray;
+}
+
+
 + (GameAdWallService*)defaultService;
 
-@property (nonatomic, retain) CommonAdWallService* limeiWallService;
+@property (nonatomic, retain) CommonAdWallService* limeiWallService ;
+@property (nonatomic, retain) CommonAdWallService* wanpuWallService ;
 
-- (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type;
+- (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type
+                            forceShowWall:(BOOL)forceShowWall;
+
+- (void)queryWallScore;
+
+- (void)showWall:(UIViewController*)superController
+        wallType:(PBRewardWallType)wallType
+   forceShowWall:(BOOL)forceShowWall;
+
+
 
 @end

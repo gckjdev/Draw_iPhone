@@ -107,7 +107,7 @@ appId:(NSString*)appId
                             logo:(NSString*)logoUrl
 {
     PBRewardWall_Builder* builder1 = [PBRewardWall builder];
-    [builder1 setType:0];
+    [builder1 setType:type];
     [builder1 setLogo:logoUrl];
     
     PBLocalizeString_Builder* lstb = [PBLocalizeString builder];
@@ -166,20 +166,30 @@ appId:(NSString*)appId
     
     PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美"
                                                           enName:@"limei"
-                                                            type:0
+                                                            type:PBRewardWallTypeLimei
                                                             logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普"
+                                                          enName:@"wanpu"
+                                                            type:PBRewardWallTypeWanpu
+                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+    
     PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米"
                                                           enName:@"youmi"
-                                                            type:1
+                                                            type:PBRewardWallTypeYoumi
                                                             logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
     
-    
+    PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人"
+                                                          enName:@"renren"
+                                                            type:PBRewardWallTypeAder
+                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
     
     [builder addAppRewards:diceApp];
     [builder addAppRewards:zjhApp];
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
-     
+    [builder addRewardWalls:ader];
+    [builder addRewardWalls:wanpu];
+    
     PBConfig* config = [builder build];
     NSData* data = [config data];
 

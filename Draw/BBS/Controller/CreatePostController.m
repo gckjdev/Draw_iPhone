@@ -562,7 +562,7 @@
     self.drawActionList = drawActionList;
     [self updateToolButtons];
 }
-
+/*
 #pragma mark textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -574,5 +574,5 @@
     }
     return YES;
 }
-
+*/
 @end

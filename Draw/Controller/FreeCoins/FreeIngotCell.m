@@ -12,6 +12,7 @@
 #import "AutoCreateViewByXib.h"
 #import "UIImageView+WebCache.h"
 #import "ShareImageManager.h"
+#import "AnimationManager.h"
 
 @implementation FreeIngotCell
 
@@ -58,6 +59,8 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
                                failure:^(NSError *error) {
                                    self.appImageView.alpha = 1;
                                }];
+    [self.appImageView.layer setCornerRadius:self.appImageView.frame.size.width*0.1];
+    [self.appImageView.layer setMasksToBounds:YES];
 }
 
 - (NSString*)getCurrentLolalizeStringFromPbLocalizeStringList:(NSArray*)list

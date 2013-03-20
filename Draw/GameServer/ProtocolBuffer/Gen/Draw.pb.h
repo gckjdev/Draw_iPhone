@@ -107,7 +107,7 @@
   BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawBg_:1;
-  BOOL hasSize_:1;
+  BOOL hasCanvasSize_:1;
   BOOL gender_:1;
   BOOL isCompressed_:1;
   int32_t level;
@@ -121,7 +121,7 @@
   NSString* avatar;
   NSString* opusId;
   PBDrawBg* drawBg;
-  PBSize* size;
+  PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasUserId;
@@ -137,7 +137,7 @@
 - (BOOL) hasScore;
 - (BOOL) hasIsCompressed;
 - (BOOL) hasDrawBg;
-- (BOOL) hasSize;
+- (BOOL) hasCanvasSize;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -151,7 +151,7 @@
 @property (readonly) int32_t score;
 - (BOOL) isCompressed;
 @property (readonly, retain) PBDrawBg* drawBg;
-@property (readonly, retain) PBSize* size;
+@property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -263,12 +263,12 @@
 - (PBDraw_Builder*) mergeDrawBg:(PBDrawBg*) value;
 - (PBDraw_Builder*) clearDrawBg;
 
-- (BOOL) hasSize;
-- (PBSize*) size;
-- (PBDraw_Builder*) setSize:(PBSize*) value;
-- (PBDraw_Builder*) setSizeBuilder:(PBSize_Builder*) builderForValue;
-- (PBDraw_Builder*) mergeSize:(PBSize*) value;
-- (PBDraw_Builder*) clearSize;
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBDraw_Builder*) setCanvasSize:(PBSize*) value;
+- (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBDraw_Builder*) clearCanvasSize;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {
@@ -1269,63 +1269,6 @@
 - (NSString*) remoteUrl;
 - (PBDrawBg_Builder*) setRemoteUrl:(NSString*) value;
 - (PBDrawBg_Builder*) clearRemoteUrl;
-@end
-
-@interface PBSize : PBGeneratedMessage {
-@private
-  BOOL hasWidth_:1;
-  BOOL hasHeight_:1;
-  Float32 width;
-  Float32 height;
-}
-- (BOOL) hasWidth;
-- (BOOL) hasHeight;
-@property (readonly) Float32 width;
-@property (readonly) Float32 height;
-
-+ (PBSize*) defaultInstance;
-- (PBSize*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSize_Builder*) builder;
-+ (PBSize_Builder*) builder;
-+ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype;
-
-+ (PBSize*) parseFromData:(NSData*) data;
-+ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBSize*) parseFromInputStream:(NSInputStream*) input;
-+ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBSize_Builder : PBGeneratedMessage_Builder {
-@private
-  PBSize* result;
-}
-
-- (PBSize*) defaultInstance;
-
-- (PBSize_Builder*) clear;
-- (PBSize_Builder*) clone;
-
-- (PBSize*) build;
-- (PBSize*) buildPartial;
-
-- (PBSize_Builder*) mergeFrom:(PBSize*) other;
-- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasWidth;
-- (Float32) width;
-- (PBSize_Builder*) setWidth:(Float32) value;
-- (PBSize_Builder*) clearWidth;
-
-- (BOOL) hasHeight;
-- (Float32) height;
-- (PBSize_Builder*) setHeight:(Float32) value;
-- (PBSize_Builder*) clearHeight;
 @end
 
 @interface PBDrawBgList : PBGeneratedMessage {

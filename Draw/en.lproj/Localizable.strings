@@ -1097,6 +1097,11 @@
 "kStore" = "Store";
 "kBalance" = "Balance:";
 
+"kDetectFakeIAP" = "Fail to complete purchase. You may use jail-broken IAP";
+"kVerifyIAPFail" = "Fail to complete purchase. Please try again later.";
+"kWallRewardCoinMessage" = "Congratulation! you got %d coin(s)";
+"kWallRewardIngotMessage" = "Congratulations! you got %d coin(s)";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
