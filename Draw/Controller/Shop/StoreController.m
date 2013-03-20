@@ -20,6 +20,7 @@
 #import "AdService.h"
 #import "GameNetworkConstants.h"
 #import "CommonMessageCenter.h"
+#import "GameItemManager.h"
 
 typedef enum{
     TabIDNormal = 100,
@@ -30,7 +31,7 @@ typedef enum{
 @interface StoreController ()
 
 @property (retain, nonatomic) UIButton *selectedButton;
-@property (retain, nonatomic) PBGameItem *selectedItem;
+@property (assign, nonatomic) int selectedItemId;
 @property (assign, nonatomic) int selectedCount;
 
 @end
@@ -39,10 +40,8 @@ typedef enum{
 
 - (void)dealloc {
     [_selectedButton release];
-//    [_tipsLabel release];
     [_backButton release];
     [_chargeButton release];
-    [_selectedItem release];
     [_coinBalanceLabel release];
     [_ingotBalanceLabel release];
     [super dealloc];
@@ -134,22 +133,22 @@ typedef enum{
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [self.tabDataList objectAtIndex:indexPath.row];
-    self.selectedItem = item;
+    self.selectedItemId = item.itemId;
 
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
         __block typeof (self) bself = self;
         
-        [BuyItemView showBuyItemView:item inView:self.view buyResultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showBuyItemView:item.itemId inView:self.view buyResultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (itemId == ItemTypeRemoveAd) {
                 [[AdService defaultService] disableAd];
             }
             [bself updateBalance];
-            [bself showUserGameItemServiceResult:resultCode item:[[GameItemService defaultService] itemWithItemId:itemId] count:count toUserId:toUserId];
+            [bself showUserGameItemServiceResult:resultCode item:[[GameItemManager defaultManager] itemWithItemId:itemId] count:count toUserId:toUserId];
         } giveHandler:^(PBGameItem *item, int count) {
             PPDebug(@"you give %d %@", count, NSLS(item.name));
-            bself.selectedItem = item;
+            bself.selectedItemId = item.itemId;
             bself.selectedCount = count;
             FriendController *vc = [[[FriendController alloc] initWithDelegate:bself] autorelease];
             [bself.navigationController pushViewController:vc animated:YES];
@@ -195,7 +194,7 @@ typedef enum{
          didSelectFriend:(MyFriend *)aFriend
 {
     [controller.navigationController popViewControllerAnimated:YES];
-    GiftDetailView *giftDetailView = [GiftDetailView createWithItem:_selectedItem myFriend:aFriend count:_selectedCount];
+    GiftDetailView *giftDetailView = [GiftDetailView createWithItem:_selectedItemId myFriend:aFriend count:_selectedCount];
     
     CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kGive")
                                                          infoView:giftDetailView
@@ -210,7 +209,7 @@ typedef enum{
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
         [cusInfoView dismiss];
         if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItem toUser:[aFriend friendUserId] count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            [[UserGameItemService defaultService] giveItem:_selectedItemId toUser:[aFriend friendUserId] count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
                 }
@@ -249,13 +248,14 @@ typedef enum{
 {    
     switch (tabID) {
         case TabIDNormal:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeNomal]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeNomal]];
             break;
         case TabIDTool:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getItemsListWithType:PBDrawItemTypeTool]];            break;
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeTool]];
+            break;
             
         case TabIDPromotion:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemService defaultService] getPromotingItemsList]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] promotingItemsList]];
              break;
             
         default:

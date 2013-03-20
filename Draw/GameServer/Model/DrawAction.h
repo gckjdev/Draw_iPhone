@@ -7,29 +7,42 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ItemType.h"
-#import "ShapeInfo.h"
+#import "Draw.pb.h"
+#import "DrawUtils.h"
+#import "ShapeAction.h"
+#import "CleanAction.h"
+#import "PaintAction.h"
+#import "ChangeBackAction.h"
 
-@class Paint;
-@class PBDrawAction;
-@class DrawColor;
-@class PBNoCompressDrawAction;
-@class PBNoCompressDrawData;
-@class PBDrawBg;
+//#import "ItemType.h"
+//#import "ShapeInfo.h"
+
+//@class Paint;
+//@class PBDrawAction;
+//@class DrawColor;
+//@class PBNoCompressDrawAction;
+//@class PBNoCompressDrawData;
+//@class PBDrawBg;
 
 
 typedef enum {
     
-    DRAW_ACTION_TYPE_DRAW,
-    DRAW_ACTION_TYPE_CLEAN,
-    DRAW_ACTION_TYPE_SHAPE,
-} DRAW_ACTION_TYPE;
+    DrawActionTypePaint,
+    DrawActionTypeClean,
+    DrawActionTypeShape,
+    DrawActionTypeChangeBack, //use only in the client, should not send it to the server...
+} DrawActionType;
 
-@interface DrawAction : NSObject <NSCoding>{
-    Paint *_paint;
+//#define BACK_GROUND_WIDTH 5000
+
+@interface DrawAction : NSObject {
+//    Paint *_paint;
 }
 
-@property (nonatomic, assign) DRAW_ACTION_TYPE type;
+
+@property(nonatomic, assign)DrawActionType type;
+/*
+@property (nonatomic, assign) DrawActionType type;
 @property (nonatomic, retain) Paint *paint;
 @property (nonatomic, retain) ShapeInfo *shapeInfo;
 
@@ -38,9 +51,9 @@ typedef enum {
 
 - (NSInteger)pointCount;
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
-- (id)initWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
+- (id)initWithType:(DrawActionType)aType paint:(Paint*)aPaint;
 
-+ (DrawAction *)actionWithType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint;
++ (DrawAction *)actionWithType:(DrawActionType)aType paint:(Paint*)aPaint;
 + (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo;
 
 
@@ -71,5 +84,29 @@ typedef enum {
 - (BOOL)isCleanAction;
 - (BOOL)isDrawAction;
 - (BOOL)isShapeAction;
+
+*/
+//new Method should overload by sub classes..
+
++ (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
++ (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+
+
+- (id)initWithPBDrawAction:(PBDrawAction *)action;
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+
+
+- (PBDrawAction *)toPBDrawAction;
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;
+
 @end
 
+
+
+@interface PBNoCompressDrawAction (Ext)
+
+- (DrawColor *)drawColor;
+
+@end

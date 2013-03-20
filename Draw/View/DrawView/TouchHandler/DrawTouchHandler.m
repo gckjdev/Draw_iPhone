@@ -37,19 +37,17 @@
     Paint *currentPaint = nil;
     if (action == nil) {
         currentPaint = [Paint paintWithWidth:self.drawView.lineWidth
-                                              color:self.drawView.lineColor
-                                            penType:self.drawView.penType];
-        action = [[DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:currentPaint] retain];
-        [currentPaint addPoint:point];
-        [self.osManager updateDrawPenWithPaint:currentPaint];
+                                       color:self.drawView.lineColor
+                                     penType:self.drawView.penType
+                                   pointList:nil];
+        
+        action = [[PaintAction paintActionWithPaint:currentPaint] retain];
+        [action addPoint:point inRect:self.drawView.bounds];
         [self.drawView drawDrawAction:action show:YES];
     }else{
-        currentPaint = action.paint;
-        [currentPaint addPoint:point];
-        [self.osManager updateDrawPenWithPaint:currentPaint];
-        [self.drawView drawPaint:action.paint show:YES];
+        [action addPoint:point inRect:self.drawView.bounds];
+        [self.drawView updateLastAction:action show:YES];
     }
-
 }
 
 - (void)addAction:(DrawAction *)drawAction
@@ -83,7 +81,7 @@
         case TouchStateCancel:
         {
 //            [self addPoint:point];
-            [action.paint finishAddPoint];
+            [action finishAddPoint];
             [self addAction:action];
             if (action) {
                 [self.drawView clearRedoStack];

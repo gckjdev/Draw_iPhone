@@ -17,7 +17,7 @@
 #import "CommonMessageCenter.h"
 #import "UserFeedController.h"
 #import "ChatDetailController.h"
-#import "SelectWordController.h"
+//#import "SelectWordController.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
 #import "CommonSnsInfoView.h"

@@ -35,11 +35,10 @@
 #import "CommonMessageCenter.h"
 #import "FriendRoomController.h"
 #import "GameConstants.h"
-#import "ItemService.h"
 #import "DrawColorManager.h"
 #import "PointNode.h"
 #import "BuyItemView.h"
-#import "GameItemService.h"
+#import "GameItemManager.h"
 
 @interface OnlineDrawViewController ()
 {
@@ -129,7 +128,7 @@
 - (void)initDrawView
 {
     UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
-    CGRect frame = DRAW_VIEW_FRAME;
+    CGRect frame = [CanvasRect defaultRect];
 //    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     drawView = [[DrawView alloc] initWithFrame:frame];
     [drawView setDrawEnabled:YES];
@@ -245,17 +244,11 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        [self recieveTomato];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeTomato];        
+        [self recieveTomato];     
         
     }else{
         PPDebug(@"%@ give you a flower", userId);
         [self recieveFlower];
-        
-        // item award handling for online draw/guess
-        [[ItemService defaultService] receiveItem:ItemTypeFlower];
     }
     
     
@@ -287,17 +280,16 @@
 
 - (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
 {
-    if ([action isDrawAction]) {
-        Paint *paint = action.paint;
+    //TODO Compress The Point list
+    if ([action isKindOfClass:[PaintAction class]]) {
+        Paint *paint = [(PaintAction *)action paint];
         NSInteger intColor  = [DrawUtils compressDrawColor:paint.color];
-        NSMutableArray *pointList = [paint createNumberPointList:YES pointXList:nil pointYList:nil];
+        NSMutableArray *pointList = nil;//[paint createNumberPointList:YES pointXList:nil pointYList:nil];
         CGFloat width = paint.width;
         if ([DeviceDetection isIPAD]) {
             width /= 2;
         }
-        [[DrawGameService defaultService]sendDrawDataRequestWithPointList:pointList color:intColor width:width penType:paint.penType];        
-    }else if([action isShapeAction]){
-        //TODO send shape action
+        [[DrawGameService defaultService]sendDrawDataRequestWithPointList:nil color:intColor width:width penType:paint.penType];
     }
 }
 
@@ -428,9 +420,7 @@
         PPDebug(@"<didSelectPen> pen type = %d",penType);
         drawView.penType = penType;
     }else{
-//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:NO];
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             
         }];
     }
@@ -469,8 +459,7 @@
 }
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {    
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
-    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+    [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         
     }];
 }

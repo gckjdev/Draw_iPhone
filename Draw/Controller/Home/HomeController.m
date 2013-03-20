@@ -38,7 +38,7 @@
 #import "RegisterUserController.h"
 
 #import "OfflineGuessDrawController.h"
-#import "SelectWordController.h"
+//#import "SelectWordController.h"
 #import "UseItemScene.h"
 
 #import "ChatListController.h"

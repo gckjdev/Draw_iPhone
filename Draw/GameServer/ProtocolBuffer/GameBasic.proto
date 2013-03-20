@@ -94,9 +94,15 @@ message PBGameSessionChanged {
 // internal usage, to store draw data
 message PBDrawAction {
   required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape
+
+  //deprecated attribute
   repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
+
   optional float width = 3;
+  
+  //deprecated attribute
   optional int32 color = 4;
+
   optional int32 penType = 5;
   
   // shape information
@@ -153,6 +159,14 @@ message PBMessageStat {
   optional int32  totalMessageCount = 32;
   optional int32  newMessageCount = 33;
   
+}
+
+message PBUserBasicInfo
+{
+    required string userId = 1;
+    required string nickName = 2;
+    required string avatar = 3;
+    required string gender = 4;
 }
 
 message PBUserResult {

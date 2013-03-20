@@ -532,34 +532,6 @@ static AccountService* _defaultAccountService;
     [self syncItemRequest:userItem targetUserId:nil awardAmount:0 awardExp:0];
 }
 
-- (int)buyItem:(int)itemType
-      itemCount:(int)itemCount
-      itemCoins:(int)itemCoins
-{
-    PPDebug(@"<buyItem> type=%d, count=%d, cost coins=%d", itemType, itemCount, itemCoins);
-    
-    if (itemCount <= 0) {
-        return 0;
-    }
-    
-    if ([self hasEnoughCoins:itemCoins] == NO){
-        PPDebug(@"<buyItem> but balance(%d) not enough, item cost(%d)", 
-                [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], itemCoins);
-        return ERROR_BALANCE_NOT_ENOUGH;
-    }
-    
-    // save item locally and synchronize remotely
-    [[ItemManager defaultManager] increaseItem:itemType amount:itemCount];
-    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
-    [self syncItemRequest:userItem];
-
-    // deduct account
-    [self deductAccount:itemCoins source:BuyItemType];    
-    
-    return 0;
-}
-
-
 
 - (int)consumeItem:(int)itemType
              amount:(int)amount

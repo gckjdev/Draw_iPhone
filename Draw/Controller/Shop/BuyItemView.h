@@ -21,11 +21,11 @@ typedef void (^GiveHandler)(PBGameItem *item, int count);
 @property (retain, nonatomic) IBOutlet UIView *buyInfoView;
 
 
-+ (void)showOnlyBuyItemView:(PBGameItem *)item
++ (void)showOnlyBuyItemView:(int)itemId
                      inView:(UIView *)inView
               resultHandler:(BuyItemResultHandler)resultHandler;
 
-+ (void)showBuyItemView:(PBGameItem *)item
++ (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
        buyResultHandler:(BuyItemResultHandler)buyResultHandler
             giveHandler:(GiveHandler)giveHandler;

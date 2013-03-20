@@ -21,6 +21,7 @@
 #import "NotificationName.h"
 #import "ConfigManager.h"
 #import "LevelService.h"
+#import "PaintAction.h"
 
 @implementation DrawGameService
 
@@ -210,9 +211,10 @@ static DrawGameService* _defaultService;
     return NO;
 }
 
-- (void)saveDrawActionType:(DRAW_ACTION_TYPE)aType paint:(Paint*)aPaint
+- (void)saveDrawActionType:(DrawActionType)aType paint:(Paint*)aPaint
 {
-    DrawAction* action = [[DrawAction alloc] initWithType:aType paint:aPaint];
+    PaintAction* action = [[[PaintAction alloc] init] autorelease];
+    [action setPaint:aPaint];
     PPDebug(@"<DrawGameService>save an action:%d", aType);
 //    [self.drawActionList addObject:action];
     [self.session addDrawAction:action];
@@ -496,7 +498,7 @@ static DrawGameService* _defaultService;
             int penType = [[message notification] penType];
             float width = [[message notification] width];
             Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
-            [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
+            [self saveDrawActionType:DrawActionTypePaint paint:paint];
             [paint release];
         }
         
@@ -512,7 +514,7 @@ static DrawGameService* _defaultService;
             [_showDelegate didReceiveRedrawResponse:message];
         }
 
-        [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+        [self saveDrawActionType:DrawActionTypeClean paint:nil];
     });
 }
 
@@ -797,7 +799,7 @@ static DrawGameService* _defaultService;
                                   width:width 
                                 penType:penType];
     Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList penType:penType];
-    [self saveDrawActionType:DRAW_ACTION_TYPE_DRAW paint:paint];
+    [self saveDrawActionType:DrawActionTypePaint paint:paint];
     [paint release];
     
     [self scheduleKeepAliveTimer];
@@ -811,7 +813,7 @@ static DrawGameService* _defaultService;
 
     [_networkClient sendCleanDraw:[self userId]
                         sessionId:[_session sessionId]];  
-    [self saveDrawActionType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    [self saveDrawActionType:DrawActionTypeClean paint:nil];
     
     [self scheduleKeepAliveTimer];
     

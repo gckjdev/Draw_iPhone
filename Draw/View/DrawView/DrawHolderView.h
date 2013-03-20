@@ -21,11 +21,13 @@
 
 - (ShowDrawView *)showView;
 
+- (void)updateContentScale;
+
 - (void)setContentView:(SuperDrawView *)contentView;
 
 + (id)drawHolderViewWithFrame:(CGRect)frame
                     contentView:(SuperDrawView *)contentView;
 
-
++ (id)defaultDrawHolderViewWithContentView:(SuperDrawView *)contentView;
 
 @end

@@ -43,7 +43,6 @@
 #import "ConfigManager.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
-//#import "VendingController.h"
 #import "DrawRecoveryService.h"
 #import "InputAlertView.h"
 #import "AnalyticsManager.h"
@@ -58,7 +57,8 @@
 #import "UserGameItemService.h"
 #import "GameItemService.h"
 #import "DrawHolderView.h"
-
+#import "GameItemManager.h"
+#import "CanvasRect.h"
 
 @interface OfflineDrawViewController()
 {
@@ -111,6 +111,8 @@
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
+
+@property (assign, nonatomic) CGRect canvasRect;
 
 - (void)initDrawView;
 
@@ -291,7 +293,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:CGRectMake(0, 0, 1132, 700)];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -304,7 +306,7 @@
     }
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
-    DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:CGRectMake(10, 40, 300, 300) contentView:drawView];
+    DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
     [self.view addSubview:holder];
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
 }
@@ -481,26 +483,6 @@
 #pragma mark - Common Dialog Delegate
 
 
-- (ShowFeedController *)superShowFeedController
-{
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[ShowFeedController class]]) {
-            return (ShowFeedController *)controller;
-        }
-    }
-    return nil;
-}
-
-
-- (ShareController *)superShareController
-{
-    for (UIViewController *controller in self.navigationController.viewControllers) {
-        if ([controller isKindOfClass:[ShareController class]]) {
-            return (ShareController *)controller;
-        }
-    }
-    return nil;
-}
 
 - (ContestController *)superContestController
 {
@@ -723,16 +705,18 @@
                       drawWord:self.word
                       language:languageType
                       drawBg:drawView.drawBg
-                      size:drawView.frame.size
+                      size:drawView.bounds.size
                       isCompressed:YES];
     return pbDraw;
 }
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-//    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:drawView.drawActionList];
-    PBNoCompressDrawData* data = [DrawAction drawActionListToPBNoCompressDrawData:drawView.drawActionList pbdrawBg:drawView.drawBg size:drawView.frame.size];
-//    PPRelease(temp);
+    //TODO Edith the draw to User
+    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
+                                                                           pbdrawBg:drawView.drawBg
+                                                                               size:drawView.bounds.size
+                                                                         drawToUser:nil];
     return data;
 }
 
@@ -823,12 +807,12 @@
 }
 
 
-- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
-{
-    return  [DrawAction scaleActionList:drawActionList
-                                 xScale:1.0 / IPAD_WIDTH_SCALE
-                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
-}
+//- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
+//{
+//    return  [DrawAction scaleActionList:drawActionList
+//                                 xScale:1.0 / IPAD_WIDTH_SCALE
+//                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
+//}
 
 // TODO move to common
 - (void)showProgressView
@@ -951,7 +935,7 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                  drawBg:drawView.drawBg
-                                                   size:drawView.frame.size
+                                                   size:drawView.bounds.size
                                                delegate:self];
 
     
@@ -970,7 +954,7 @@
 
     [self stopRecovery];
 
-    BOOL isBlank = [DrawAction isDrawActionListBlank:drawView.drawActionList];
+    BOOL isBlank = ([drawView.drawActionList count] == 0);
     
     if (isBlank) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];
@@ -1195,9 +1179,7 @@
         drawView.lineColor = [DrawColor colorWithColor:self.penColor];
         [drawView.lineColor setAlpha:_alpha];
     }else{
-//        [CommonItemInfoView showItem:[Item itemWithType:penType amount:1] infoInView:self canBuyAgain:!bought];
-        PBGameItem *item = [[GameItemService defaultService] itemWithItemId:penType];
-        [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+        [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             
         }];
     }
@@ -1236,17 +1218,11 @@
         color.alpha = alpha;
         drawView.lineColor = color;
     }
-    
-    //chage scale... will be removed __By Gamy
-//    drawView.scale = alpha * 5;
-    
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
-//    [CommonItemInfoView showItem:[Item itemWithType:type amount:1] infoInView:self canBuyAgain:YES];
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:type];
-    [BuyItemView showOnlyBuyItemView:item inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+    [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         [self buyItemSuccess:itemId result:resultCode];
     }];
 }

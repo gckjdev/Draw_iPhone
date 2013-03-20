@@ -15,7 +15,6 @@
 #import "ShareImageManager.h"
 #import "StringUtil.h"
 #import "AccountManager.h"
-#import "ItemManager.h"
 #import "GameNetworkConstants.h"
 #import "GameBasic.pb.h"
 #import "SDWebImageManager.h"
@@ -939,16 +938,12 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setLanguageType:(LanguageType)type
 {
-    
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setGuessWordLanguage:type];
     self.pbUser = [builder build];
     
     [self storeUserData];
-//    
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setInteger:type forKey:KEY_LANGUAGE];
-//    [userDefaults synchronize];
+
 }
 
 - (LanguageType)getLanguageType

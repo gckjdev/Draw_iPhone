@@ -13,15 +13,9 @@
 #import "Word.h"
 #import "TimeUtils.h"
 #import "ConfigManager.h"
+#import "CanvasRect.h"
 
 @implementation Draw
-@synthesize userId = _userId;
-@synthesize nickName = _nickName;;
-@synthesize drawActionList = _drawActionList;
-@synthesize word = _word;
-@synthesize date = _date;
-@synthesize avatar = _avatar;
-@synthesize languageType = _languageType;
 
 - (void)dealloc{
     PPRelease(_userId);
@@ -40,9 +34,8 @@
     if (array) {
         NSMutableArray *list = [NSMutableArray array];
         for (PBDrawAction *action in array) {
-            DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:action];
+            DrawAction *drawAction = [DrawAction drawActionWithPBDrawAction:action];
             [list addObject:drawAction];
-            [drawAction release];
         }
         return list;
     }
@@ -62,68 +55,85 @@
         self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
         self.version = pbDraw.version;
         self.drawBg = pbDraw.drawBg;
+        if ([pbDraw hasSize]) {
+            self.canvasSize = CGSizeFromPBSize(pbDraw.size);
+        }else{
+            self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+        }
     }
     return self;
 }
 
-- (id)initWithUserId:(NSString *)userId 
-            nickName:(NSString *)nickName 
-          drawActionList:(NSArray *)drawActionList 
-                word:(Word *)word 
-                date:(NSDate *)date 
+- (id)initWithUserId:(NSString *)userId
+            nickName:(NSString *)nickName
               avatar:(NSString *)avatar
+      drawActionList:(NSMutableArray *)drawActionList
+                word:(Word *)word
+              drawBg:(PBDrawBg *)drawBg
+          canvasSize:(CGSize)size;
 {
     self = [super init];
     if (self) {
         self.userId = userId;
         self.nickName = nickName;
-        self.drawActionList = [NSMutableArray arrayWithArray:drawActionList];
-        self.word = word;
-        self.date = date;
         self.avatar = avatar;
+        self.drawActionList = drawActionList;
+        self.word = word;
+        self.drawBg = drawBg;
+        self.date = [NSDate date];
+        self.languageType = [[UserManager defaultManager] getLanguageType];
         self.version = [ConfigManager currentDrawDataVersion];
+        self.canvasSize = size;
     }
     return self;
 }
 
 
-
-#define USERID @"userId"
-#define NICKNAME @"nick"
-#define WORD @"word"
-#define DATE @"date"
-#define AVATAR @"avatar"
-#define DRAW_ACTION_LIST @"action_list"
-#define LANGUAGE @"language"
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (CGRect)canvasRect
 {
-    [aCoder encodeObject:_userId forKey:USERID];
-    [aCoder encodeObject:_nickName forKey:NICKNAME];
-    [aCoder encodeObject:_avatar forKey:AVATAR];
-    [aCoder encodeObject:_date forKey:DATE];
-    [aCoder encodeInt:_languageType forKey:LANGUAGE];
-    [aCoder encodeObject:_word forKey:WORD];
-    [aCoder encodeObject:_drawActionList forKey:DRAW_ACTION_LIST];
-}
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    if (self) {
-        self.userId = [aDecoder decodeObjectForKey:USERID];
-        self.nickName = [aDecoder decodeObjectForKey:NICKNAME];
-        self.avatar = [aDecoder decodeObjectForKey:AVATAR];
-        self.languageType = [aDecoder decodeIntForKey:LANGUAGE];
-        self.word = [aDecoder decodeObjectForKey:WORD];
-        self.date = [aDecoder decodeObjectForKey:DATE];
-        self.drawActionList = [aDecoder decodeObjectForKey:DRAW_ACTION_LIST];
-    }
-    return self;
+    CGRect rect = CGRectZero;
+    rect.size = self.canvasSize;
+    return rect;
 }
 
 - (BOOL)isNewVersion
 {
     return [ConfigManager currentDrawDataVersion] < self.version;
+}
+
+- (PBDraw *)toPBDraw
+{
+    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+    [builder setUserId:self.userId];
+    [builder setNickName:self.nickName];
+    [builder setAvatar:self.avatar];
+    [builder setWord:[self.word text]];
+    
+    [builder setLevel:[self.word level]];
+    [builder setLanguage:self.languageType];
+    [builder setScore:[self.word score]];
+    
+    if (self.drawBg != nil){
+        [builder setDrawBg:self.drawBg];
+    }
+    
+    [builder setSize:CGSizeToPBSize(self.canvasSize)];
+    
+    for (DrawAction* drawAction in self.drawActionList){
+        PBDrawAction *action = [drawAction toPBDrawAction];
+        if (action) {
+            [builder addDrawData:action];
+        }
+
+    }
+    [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    [builder setIsCompressed:YES];
+    
+    PBDraw* draw = [builder build];
+    [builder release];
+    
+    return draw;
+
 }
 
 @end

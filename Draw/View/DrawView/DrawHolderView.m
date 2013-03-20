@@ -11,6 +11,7 @@
 #import "DrawView.h"
 #import "ShowDrawView.h"
 #import "UIViewUtils.h"
+#import "CanvasRect.h"
 
 @implementation DrawHolderView
 
@@ -34,8 +35,8 @@
 
 - (void)updateContentScale
 {
-    CGFloat xScale = CGRectGetWidth(self.frame) / CGRectGetWidth(_contentView.frame);
-    CGFloat yScale = CGRectGetHeight(self.frame) / CGRectGetHeight(_contentView.frame);
+    CGFloat xScale = CGRectGetWidth(self.bounds) / CGRectGetWidth(_contentView.bounds);
+    CGFloat yScale = CGRectGetHeight(self.bounds) / CGRectGetHeight(_contentView.bounds);
     CGFloat scale = MIN(xScale, yScale);
     _contentView.scale = scale;
     _contentView.center = CGRectGetCenter(self.bounds);
@@ -47,8 +48,8 @@
         PPRelease(_contentView);
         _contentView = [contentView retain];
         [self addSubview:_contentView];
-        [self updateContentScale];
     }
+    [self updateContentScale];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -67,4 +68,18 @@
     [holder setContentView:contentView];
     return [holder autorelease];
 }
+
+
+
++ (id)defaultDrawHolderViewWithContentView:(SuperDrawView *)contentView
+{
+    CGRect frame = [CanvasRect defaultRect];
+    if (ISIPAD) {
+        frame.origin = CGPointMake((768-frame.size.width)/2, 100);
+    }else{
+        frame.origin = CGPointMake((320-frame.size.width)/2, 50);
+    }
+    return [DrawHolderView drawHolderViewWithFrame:frame contentView:contentView];
+}
+
 @end

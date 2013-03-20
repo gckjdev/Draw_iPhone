@@ -128,60 +128,62 @@
 }
 
 
-- (CGRect)drawAction:(DrawAction *)action inContext:(CGContextRef)context
-{
-    if ([action isCleanAction]) {
-        CGContextClearRect(context, _rect);
-        return _rect;
-    }else if([action isChangeBackAction]){
-        CGColorRef color = action.paint.color.CGColor;
-        CGContextSetFillColorWithColor(context, color);
-        CGContextFillRect(context, _rect);
-        return _rect;
-    }else if([action isDrawAction]){
-        [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
-        CGRect rect = [self strokePaint:action.paint inContext:context clear:NO];
-        return rect;
-    }else if([action isShapeAction]){
-        [self setStrokeColor:action.shapeInfo.color lineWidth:action.shapeInfo.width inContext:context];
-        return [self drawShape:action.shapeInfo clear:NO];
-    }
-    
-    return _rect;
-}
+//- (CGRect)drawAction:(DrawAction *)action inContext:(CGContextRef)context
+//{
+//    return [action drawInContext:context inRect:_rect];
+//    if ([action isCleanAction]) {
+//        CGContextClearRect(context, _rect);
+//        return _rect;
+//    }else if([action isChangeBackAction]){
+//        CGColorRef color = action.paint.color.CGColor;
+//        CGContextSetFillColorWithColor(context, color);
+//        CGContextFillRect(context, _rect);
+//        return _rect;
+//    }else if([action isDrawAction]){
+//        [self setStrokeColor:action.paint.color lineWidth:action.paint.width inContext:context];
+//        CGRect rect = [self strokePaint:action.paint inContext:context clear:NO];
+//        return rect;
+//    }else if([action isShapeAction]){
+//        [self setStrokeColor:action.shapeInfo.color lineWidth:action.shapeInfo.width inContext:context];
+//        return [self drawShape:action.shapeInfo clear:NO];
+//    }
+//    
+//    return _rect;
+//}
 
 //- (void)updateDrawPen:()
 
-- (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear
-{
-    if (clear) {
-        [self clear];
-    }
-    _actionCount ++;
-    
-    return [self strokePaint:paint inContext:cacheContext clear:NO];
-}
+//- (CGRect)strokePaint:(Paint *)paint clear:(BOOL)clear
+//{
+//    if (clear) {
+//        [self clear];
+//    }
+//    _actionCount ++;
+//    
+//    return [self strokePaint:paint inContext:cacheContext clear:NO];
+//}
 
-- (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
-{
-    if (clear) {
-        CGContextClearRect(cacheContext, _rect);
-    }
-    [shape drawInContext:cacheContext];
-    return [shape redrawRect];//_rect;//[shape rect];
-}
+//- (CGRect)drawShape:(ShapeInfo *)shape clear:(BOOL)clear
+//{
+//    if (clear) {
+//        CGContextClearRect(cacheContext, _rect);
+//    }
+//    [shape drawInContext:cacheContext];
+//    return [shape redrawRect];//_rect;//[shape rect];
+//}
 
-- (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
-{
+//- (void)setStrokeColor:(DrawColor *)color lineWidth:(CGFloat)width
+//{
 //    [self setStrokeColor:color lineWidth:width inContext:cacheContext];
-}
+//}
+
 - (CGRect)drawAction:(DrawAction *)action clear:(BOOL)clear
 {
     if (clear) {
         [self clear];
     }
     _actionCount ++;
-    return [self drawAction:action inContext:cacheContext];
+    return [action drawInContext:cacheContext inRect:_rect];
 }
 
 - (void)showInContext:(CGContextRef)context

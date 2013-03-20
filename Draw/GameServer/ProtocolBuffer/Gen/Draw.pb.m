@@ -3610,6 +3610,7 @@ static PBColor* defaultPBColorInstance = nil;
 @property int32_t penType;
 @property int32_t shapeType;
 @property (retain) NSMutableArray* mutableRectComponentList;
+@property (retain) PBSize* canvasSize;
 @property (retain) NSMutableArray* mutablePointXList;
 @property (retain) NSMutableArray* mutablePointYList;
 @property int32_t rgbColor;
@@ -3658,6 +3659,13 @@ static PBColor* defaultPBColorInstance = nil;
 }
 @synthesize shapeType;
 @synthesize mutableRectComponentList;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 @synthesize mutablePointXList;
 @synthesize mutablePointYList;
 - (BOOL) hasRgbColor {
@@ -3699,6 +3707,7 @@ static PBColor* defaultPBColorInstance = nil;
   self.mutablePointList = nil;
   self.color = nil;
   self.mutableRectComponentList = nil;
+  self.canvasSize = nil;
   self.mutablePointXList = nil;
   self.mutablePointYList = nil;
   [super dealloc];
@@ -3710,6 +3719,7 @@ static PBColor* defaultPBColorInstance = nil;
     self.width = 0;
     self.penType = 0;
     self.shapeType = 0;
+    self.canvasSize = [PBSize defaultInstance];
     self.rgbColor = 0;
     self.red = 0;
     self.blue = 0;
@@ -3796,6 +3806,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   for (NSNumber* value in self.mutableRectComponentList) {
     [output writeFloat:7 value:[value floatValue]];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:8 value:self.canvasSize];
+  }
   for (NSNumber* value in self.mutablePointXList) {
     [output writeFloat:11 value:[value floatValue]];
   }
@@ -3849,6 +3862,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     dataSize = 4 * self.mutableRectComponentList.count;
     size += dataSize;
     size += 1 * self.mutableRectComponentList.count;
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(8, self.canvasSize);
   }
   {
     int32_t dataSize = 0;
@@ -3979,6 +3995,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     }
     [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
   }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
   if (other.mutablePointXList.count > 0) {
     if (result.mutablePointXList == nil) {
       result.mutablePointXList = [NSMutableArray array];
@@ -4060,6 +4079,15 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
       }
       case 61: {
         [self addRectComponent:[input readFloat]];
+        break;
+      }
+      case 66: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
       case 93: {
@@ -4247,6 +4275,36 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   result.mutableRectComponentList = nil;
   return self;
 }
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBNoCompressDrawAction_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBNoCompressDrawAction_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBNoCompressDrawAction_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
+  return self;
+}
 - (NSArray*) pointXList {
   if (result.mutablePointXList == nil) {
     return [NSArray array];
@@ -4395,6 +4453,9 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) NSMutableArray* mutableDrawActionListList;
 @property int32_t version;
 @property (retain) PBDrawBg* drawBg;
+@property (retain) PBSize* canvasSize;
+@property (retain) NSMutableArray* mutableDrawActionList2List;
+@property (retain) PBUserBasicInfo* drawToUser;
 @end
 
 @implementation PBNoCompressDrawData
@@ -4414,15 +4475,35 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasDrawBg_ = !!value;
 }
 @synthesize drawBg;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
+@synthesize mutableDrawActionList2List;
+- (BOOL) hasDrawToUser {
+  return !!hasDrawToUser_;
+}
+- (void) setHasDrawToUser:(BOOL) value {
+  hasDrawToUser_ = !!value;
+}
+@synthesize drawToUser;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.drawBg = nil;
+  self.canvasSize = nil;
+  self.mutableDrawActionList2List = nil;
+  self.drawToUser = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.version = 0;
     self.drawBg = [PBDrawBg defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
+    self.drawToUser = [PBUserBasicInfo defaultInstance];
   }
   return self;
 }
@@ -4445,6 +4526,13 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   id value = [mutableDrawActionListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) drawActionList2List {
+  return mutableDrawActionList2List;
+}
+- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index {
+  id value = [mutableDrawActionList2List objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBNoCompressDrawAction* element in self.drawActionListList) {
     if (!element.isInitialized) {
@@ -4453,6 +4541,16 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawBg) {
     if (!self.drawBg.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBDrawAction* element in self.drawActionList2List) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasDrawToUser) {
+    if (!self.drawToUser.isInitialized) {
       return NO;
     }
   }
@@ -4467,6 +4565,15 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawBg) {
     [output writeMessage:3 value:self.drawBg];
+  }
+  if (self.hasCanvasSize) {
+    [output writeMessage:4 value:self.canvasSize];
+  }
+  for (PBDrawAction* element in self.drawActionList2List) {
+    [output writeMessage:5 value:element];
+  }
+  if (self.hasDrawToUser) {
+    [output writeMessage:6 value:self.drawToUser];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4485,6 +4592,15 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawBg) {
     size += computeMessageSize(3, self.drawBg);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(4, self.canvasSize);
+  }
+  for (PBDrawAction* element in self.drawActionList2List) {
+    size += computeMessageSize(5, element);
+  }
+  if (self.hasDrawToUser) {
+    size += computeMessageSize(6, self.drawToUser);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4573,6 +4689,18 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
   }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
+  if (other.mutableDrawActionList2List.count > 0) {
+    if (result.mutableDrawActionList2List == nil) {
+      result.mutableDrawActionList2List = [NSMutableArray array];
+    }
+    [result.mutableDrawActionList2List addObjectsFromArray:other.mutableDrawActionList2List];
+  }
+  if (other.hasDrawToUser) {
+    [self mergeDrawToUser:other.drawToUser];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4611,6 +4739,30 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawBg:[subBuilder buildPartial]];
+        break;
+      }
+      case 34: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
+        break;
+      }
+      case 42: {
+        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawActionList2:[subBuilder buildPartial]];
+        break;
+      }
+      case 50: {
+        PBUserBasicInfo_Builder* subBuilder = [PBUserBasicInfo builder];
+        if (self.hasDrawToUser) {
+          [subBuilder mergeFrom:self.drawToUser];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDrawToUser:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4689,6 +4841,95 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 - (PBNoCompressDrawData_Builder*) clearDrawBg {
   result.hasDrawBg = NO;
   result.drawBg = [PBDrawBg defaultInstance];
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBNoCompressDrawData_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBNoCompressDrawData_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
+  return self;
+}
+- (NSArray*) drawActionList2List {
+  if (result.mutableDrawActionList2List == nil) { return [NSArray array]; }
+  return result.mutableDrawActionList2List;
+}
+- (PBDrawAction*) drawActionList2AtIndex:(int32_t) index {
+  return [result drawActionList2AtIndex:index];
+}
+- (PBNoCompressDrawData_Builder*) replaceDrawActionList2AtIndex:(int32_t) index with:(PBDrawAction*) value {
+  [result.mutableDrawActionList2List replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addAllDrawActionList2:(NSArray*) values {
+  if (result.mutableDrawActionList2List == nil) {
+    result.mutableDrawActionList2List = [NSMutableArray array];
+  }
+  [result.mutableDrawActionList2List addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearDrawActionList2List {
+  result.mutableDrawActionList2List = nil;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addDrawActionList2:(PBDrawAction*) value {
+  if (result.mutableDrawActionList2List == nil) {
+    result.mutableDrawActionList2List = [NSMutableArray array];
+  }
+  [result.mutableDrawActionList2List addObject:value];
+  return self;
+}
+- (BOOL) hasDrawToUser {
+  return result.hasDrawToUser;
+}
+- (PBUserBasicInfo*) drawToUser {
+  return result.drawToUser;
+}
+- (PBNoCompressDrawData_Builder*) setDrawToUser:(PBUserBasicInfo*) value {
+  result.hasDrawToUser = YES;
+  result.drawToUser = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) setDrawToUserBuilder:(PBUserBasicInfo_Builder*) builderForValue {
+  return [self setDrawToUser:[builderForValue build]];
+}
+- (PBNoCompressDrawData_Builder*) mergeDrawToUser:(PBUserBasicInfo*) value {
+  if (result.hasDrawToUser &&
+      result.drawToUser != [PBUserBasicInfo defaultInstance]) {
+    result.drawToUser =
+      [[[PBUserBasicInfo builderWithPrototype:result.drawToUser] mergeFrom:value] buildPartial];
+  } else {
+    result.drawToUser = value;
+  }
+  result.hasDrawToUser = YES;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearDrawToUser {
+  result.hasDrawToUser = NO;
+  result.drawToUser = [PBUserBasicInfo defaultInstance];
   return self;
 }
 @end

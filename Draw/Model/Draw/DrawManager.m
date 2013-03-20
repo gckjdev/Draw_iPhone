@@ -21,7 +21,7 @@
     }
     NSMutableArray *retArray = [NSMutableArray array];
     for (PBDrawAction *action in pbDrawActions) {
-        DrawAction *drawAction = [[DrawAction alloc] initWithPBDrawAction:action];
+        DrawAction *drawAction = [DrawAction drawActionWithPBDrawAction:action];
         [retArray addObject:drawAction];
         [drawAction release];
     }

@@ -38,6 +38,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBUserBasicInfo;
+@class PBUserBasicInfo_Builder;
 @class PBUserItem;
 @class PBUserItemList;
 @class PBUserItemList_Builder;

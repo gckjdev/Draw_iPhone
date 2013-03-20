@@ -34,10 +34,8 @@
 #import "FeedService.h"
 #import "DeviceDetection.h"
 #import "DrawGameAnimationManager.h"
-#import "ItemManager.h"
 #import "AccountManager.h"
 #import "ConfigManager.h"
-#import "ItemService.h"
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
@@ -382,7 +380,8 @@
 
 - (void)initToolViews
 {
-    ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:[[ItemManager defaultManager] amountForItem:ItemTypeFlower]] autorelease];
+    ToolView* flower = [[[ToolView alloc] initWithItemType:ItemTypeFlower number:0] autorelease];
+    
     flower.tag = FLOWER_TOOLVIEW_TAG;
     [self.view addSubview:flower];
     [flower addTarget:self action:@selector(clickUpButton:)];
@@ -397,7 +396,7 @@
     
     if (![self isOffline]) {
         [flower setCenter:upButton.center];
-        ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:[[ItemManager defaultManager] amountForItem:ItemTypeTomato]] autorelease];
+        ToolView* tomato = [[[ToolView alloc] initWithItemType:ItemTypeTomato number:0] autorelease];
         tomato.tag = TOMATO_TOOLVIEW_TAG;
         [tomato setCenter:downButton.center];
         [self.view addSubview:tomato];
@@ -638,7 +637,7 @@
                                             score:[ConfigManager offlineDrawMyWordScore]]
                       language:1
                       drawBg:nil
-                      size:DRAW_VIEW_FRAME.size
+                      size:CGSizeMake(300, 300) //TODO should update the real size, here for test
                       isCompressed:YES];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
@@ -688,11 +687,9 @@
 {        
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        [[ItemService defaultService] receiveItem:ItemTypeTomato];
         [self receiveTomato];
     }else{
         PPDebug(@"%@ give you a flower", userId);
-        [[ItemService defaultService] receiveItem:ItemTypeFlower];
         [self receiveFlower];
     }
     
@@ -776,7 +773,6 @@
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].flower];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 - (void)receiveTomato
 {
@@ -784,7 +780,6 @@
     [self.view addSubview:item];
     [item setImage:[ShareImageManager defaultManager].tomato];
     [DrawGameAnimationManager showReceiveFlower:item animationInController:self];
-    //[self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
 }
 
 #pragma mark - Common Dialog Delegate
@@ -830,7 +825,6 @@
             default:
                 break;
         }
-        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

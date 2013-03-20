@@ -20,7 +20,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *avatarImageView;
 
-+ (id)createWithItem:(PBGameItem *)item
++ (id)createWithItem:(int)itemId
             myFriend:(MyFriend *)myFriend
                count:(int)count;
 

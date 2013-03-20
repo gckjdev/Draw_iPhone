@@ -31,7 +31,6 @@
 #import "StableView.h"
 #import "ChatMessageView.h"
 #import "WordManager.h"
-//#import "SpeechService.h"
 #import "DrawSoundManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5

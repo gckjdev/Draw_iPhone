@@ -20,14 +20,16 @@
 #import "BuyItemView.h"
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
+#import "DrawHolderView.h"
 
-#define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
-#define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
+
+#define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 269)
+#define PLAYER_LOADER_MIN_X (ISIPAD ? 83 : 27)
 
 #define SPEED_LOADER_MIN_Y (ISIPAD ? 30 : 14)
 #define SPEED_LOADER_MAX_Y (ISIPAD ? 160 : 79)
 
-#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(64, 15, 648, 60) :CGRectMake(27, 5, 260, 25))
+#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(83, 15, 638, 60) :CGRectMake(27, 5, 260, 25))
 
 
 @interface ReplayView()
@@ -37,7 +39,7 @@
     UIView *_maskView;
 }
 
-@property(nonatomic, retain) IBOutlet UIView *holderView;
+@property(nonatomic, retain) IBOutlet DrawHolderView *holderView;
 @property(nonatomic, retain) ShowDrawView *showView;
 @property(nonatomic, assign) PPViewController *superController;
 @property (retain, nonatomic) IBOutlet UIControl *playerToolMask;
@@ -140,17 +142,12 @@
     [view addSubview:self];
     self.center = view.center;
     
-    self.showView = [ShowDrawView showViewWithFrame:self.holderView.frame drawActionList:actionList delegate:self];
-    [self.showView setDrawBg:drawBg];
+    self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(size) drawActionList:actionList delegate:self];
     
+    [self.showView setDrawBg:drawBg];
     [self.showView setPressEnable:YES];
 
-    CGRect frame = self.showView.frame;
-    frame.origin = CGPointZero;
-    self.showView.frame = frame;
-    [self.holderView addSubview:self.showView];
-//    [self insertSubview:self.showView aboveSubview:self.holderView];
-//    [self.holderView removeFromSuperview];
+    [self.holderView setContentView:self.showView];
     
     if (isNewVersion) {
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
@@ -390,14 +387,12 @@
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
     if (![self hasBounghtPlayer]) {
-        
-        PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:PaintPlayerItem];
-        [BuyItemView showOnlyBuyItemView:item inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            [BuyItemView showOnlyBuyItemView:PaintPlayerItem inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == 0) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }else{
-                PPDebug(@"<didBuyItem> item type = %d, failed",item.itemId);
+                PPDebug(@"<didBuyItem> item type = %d, failed", itemId);
             }
         }];
     }

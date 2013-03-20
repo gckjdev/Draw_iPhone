@@ -9,7 +9,7 @@
 #import "UserGameItemManager.h"
 #import "SynthesizeSingleton.h"
 #import "NSDate+TKCategory.h"
-#import "GameItemService.h"
+#import "GameItemManager.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -98,7 +98,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         return NO;
     }
     
-    PBGameItem *item = [[GameItemService defaultService] itemWithItemId:itemId];
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     
     switch (item.consumeType) {
         case PBGameItemConsumeTypeNonConsumable:

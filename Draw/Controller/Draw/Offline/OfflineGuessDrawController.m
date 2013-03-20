@@ -25,7 +25,6 @@
 #import "RoomController.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
-#import "ItemManager.h"
 #import "AccountService.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
@@ -38,7 +37,6 @@
 #import "DrawUserInfoView.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
-#import "ItemService.h"
 #import "UIImageExt.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
@@ -47,8 +45,8 @@
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
+#import "DrawHolderView.h"
 
-#define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
@@ -61,6 +59,14 @@
 #define TOOLVIEW_TAG_FLOWER 220120730
 #define TOOLVIEW_TAG_TOMATO 320120730
 
+
+@interface OfflineGuessDrawController()
+{
+    
+}
+@property (nonatomic, assign)CGRect canvasRect;
+
+@end
 
 @implementation OfflineGuessDrawController
 @synthesize showView;
@@ -159,6 +165,7 @@
         }
         self.draw = _feed.drawData;
         _authorId = _feed.author.userId;
+        self.canvasRect = self.draw.canvasRect;
         _scene = [[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:feed] retain];
     }
     return self;
@@ -421,16 +428,12 @@
 - (void)initPickToolView
 {
     NSMutableArray *array = [NSMutableArray array];
-    ItemManager *itemManager = [ItemManager defaultManager];
-    ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    ToolView *tips = [ToolView tipsViewWithNumber:0];
     tips.tag = TOOLVIEW_TAG_TIPS;
-    ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    ToolView *flower = [ToolView flowerViewWithNumber:0];
     flower.tag = TOOLVIEW_TAG_FLOWER;
-//    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
-//    tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
-//    [array addObject:tomato];
     _pickToolView = [[PickToolView alloc] initWithTools:array];
     _pickToolView.hidden = YES;
     _pickToolView.delegate = self;
@@ -462,12 +465,6 @@
     }
 }
 
-
-//- (void)updateBomb
-//{
-//    toolView.number = [[ItemManager defaultManager] tipsItemAmount];
-//}
-//
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang
 {
     self.word = word;
@@ -522,7 +519,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-//        self.showView.speed = PlaySpeedTypeNormal;
+        [self.showView resetFrameSize:_draw.canvasSize];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
@@ -761,11 +758,6 @@
     [self showAnimationThrowTool:toolView];
     
     // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];
     
     [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
@@ -776,20 +768,6 @@
     }];
 }
 
-//- (void)throwTomato:(ToolView *)toolView
-//{
-//    // throw animation
-//    [self showAnimationThrowTool:toolView];
-//    
-//    // send request for item usage and award
-//    [[ItemService defaultService] sendItemAward:toolView.itemType 
-//                                   targetUserId:_draw.userId 
-//                                      isOffline:YES
-//                                     feedOpusId:_opusId
-//                                     feedAuthor:_authorId];
-//    
-//    [_scene throwATomato];
-//}
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
 {
@@ -851,14 +829,9 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME];
-    UIView *paper = [self.view viewWithTag:PAPER_VIEW_TAG];
-    paper.hidden = NO;
-    CGRect frame = showView.frame;
-    frame.origin = CGPointZero;
-    showView.frame = frame;
-    paper.userInteractionEnabled = YES;
-    [paper addSubview:showView];
+    showView = [[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
+    [self.view addSubview:holder];
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
@@ -909,7 +882,6 @@
             default:
                 break;
         }
-        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

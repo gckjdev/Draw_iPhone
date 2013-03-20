@@ -26,7 +26,6 @@
 #import "RoomController.h"
 #import "GameMessage.pb.h"
 #import "PPDebug.h"
-#import "ItemManager.h"
 #import "AccountService.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
@@ -34,13 +33,15 @@
 #import "CommonMessageCenter.h"
 #import "GameConstants.h"
 #import "AccountManager.h"
-#import "ItemService.h"
 #import "UseItemScene.h"
 #import "DrawSoundManager.h"
 #import "AccountService.h"
+#import "Item.h"
+#import "CanvasRect.h"
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
 #import "GameItemManager.h"
+#import "UserGameItemManager.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -358,12 +359,11 @@
 - (void)initPickToolView
 {
     NSMutableArray *array = [NSMutableArray array];
-    ItemManager *itemManager = [ItemManager defaultManager];
-    ToolView *tips = [ToolView tipsViewWithNumber:[itemManager amountForItem:ItemTypeTips]];
+    ToolView *tips = [ToolView tipsViewWithNumber:0];
     tips.tag = TOOLVIEW_TAG_TIPS;
-    ToolView *flower = [ToolView flowerViewWithNumber:[itemManager amountForItem:ItemTypeFlower]];
+    ToolView *flower = [ToolView flowerViewWithNumber:0];
     flower.tag = TOOLVIEW_TAG_FLOWER;
-    ToolView *tomato = [ToolView tomatoViewWithNumber:[itemManager amountForItem:ItemTypeTomato]];
+    ToolView *tomato = [ToolView tomatoViewWithNumber:0];
     tomato.tag = TOOLVIEW_TAG_TOMATO;
     [array addObject:tips];
     [array addObject:flower];
@@ -514,14 +514,15 @@
 - (void)didReceiveDrawData:(GameMessage *)message
 {
     Paint *paint = [[Paint alloc] initWithGameMessage:message];
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_DRAW paint:paint];
+//    DrawAction *action = [DrawAction actionWithType:DrawActionTypePaint paint:paint];
+    PaintAction *action = [PaintAction paintActionWithPaint:paint];
     [showView addDrawAction:action play:YES];
     [paint release];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
-    DrawAction *action = [DrawAction actionWithType:DRAW_ACTION_TYPE_CLEAN paint:nil];
+    DrawAction *action = [[[CleanAction alloc] init] autorelease];
     [showView addDrawAction:action play:YES];
     
 }
@@ -587,10 +588,8 @@
 {
     if (rank.integerValue == RANK_TOMATO) {
         PPDebug(@"%@ give you an tomato", userId);
-        //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }else{
         PPDebug(@"%@ give you a flower", userId);
-        //[self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     
 }
@@ -677,13 +676,6 @@
     // add throw animation
     [self showAnimationThrowTool:toolView];
     
-    // send request for item usage and award
-    //    [[ItemService defaultService] sendItemAward:toolView.itemType
-    //                                   targetUserId:_draw.userId
-    //                                      isOffline:YES
-    //                                     feedOpusId:_opusId
-    //                                     feedAuthor:_authorId];
-    
     [[FlowerItem sharedFlowerItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [_scene throwAFlower];
@@ -700,12 +692,8 @@
 {
     [self showAnimationThrowTool:toolView];
     [_scene throwATomato];
-    // send request for item usage and award
-    [[ItemService defaultService] sendItemAward:toolView.itemType 
-                                   targetUserId:[[[drawGameService session] currentTurn] currentPlayUserId]
-                                      isOffline:NO
-                                     feedOpusId:nil
-                                     feedAuthor:nil];
+
+    // TODO: add throw tomato code here
 
     
     if (![_scene canThrowTomato]) {
@@ -769,7 +757,7 @@
 
 - (void)initShowView
 {
-    CGRect frame = DRAW_VIEW_FRAME;
+    CGRect frame = [CanvasRect defaultRect];
 //    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     showView = [[ShowDrawView alloc] initWithFrame:frame];
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
@@ -839,7 +827,6 @@
             default:
                 break;
         }
-        [toolview setNumber:[[ItemManager defaultManager] amountForItem:toolview.itemType]];
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

@@ -34,6 +34,7 @@
 @synthesize imageFilePath = _imageFilePath;
 @synthesize drawDataVersion = _drawDataVersion;
 @synthesize drawBg = _drawBg;
+@synthesize canvasSize = _canvasSize;
 
 - (NSString *)imageFilePath
 {
@@ -69,6 +70,7 @@
 {
     [self drawActionList];
 }
+
 - (void)dealloc
 {
     PPRelease(_thumbImage);

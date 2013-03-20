@@ -104,9 +104,9 @@
     return [_offscreenList objectAtIndex:0];
 }
 
-- (void)updateDrawPenWithPaint:(Paint *)paint
-{
-    [self setStrokeColor:paint.color width:paint.width];
+//- (void)updateDrawPenWithPaint:(Paint *)paint
+//{
+//    [self setStrokeColor:paint.color width:paint.width];
 //    if (paint) {
 //        if (paint.penType != [self.drawPen penType]) {
 //            self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
@@ -116,27 +116,29 @@
 //        [self.drawPen updateCGContext:context paint:paint];
 //        CGContextSaveGState(context);
 //    }
-}
+//}
 
-- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width
-{
-    [[self enteryScreen] setStrokeColor:color lineWidth:width];
-}
+//- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width
+//{
+//    [[self enteryScreen] setStrokeColor:color lineWidth:width];
+//}
 
-- (CGRect)updateLastPaint:(Paint *)paint
-{
-    return [[self enteryScreen] strokePaint:paint clear:YES];
-}
-
+//- (CGRect)updateLastPaint:(Paint *)paint
+//{
+//    return [[self enteryScreen] strokePaint:paint clear:YES];
+//}
+//
 - (CGRect)updateLastAction:(DrawAction *)action
 {
-    if (action.type == DRAW_ACTION_TYPE_DRAW) {
-        return [self updateLastPaint:action.paint];
-    }else if(action.type == DRAW_ACTION_TYPE_SHAPE)
-    {
-        return [[self enteryScreen] drawShape:action.shapeInfo clear:YES];
-    }
-    return [[self enteryScreen] rect];
+    return [[self enteryScreen] drawAction:action clear:YES];
+//    action drawInContext:<#(CGContextRef)#> inRect:<#(CGRect)#>
+//    if (action.type == DrawActionTypePaint) {
+//        return [self updateLastPaint:action.paint];
+//    }else if(action.type == DrawActionTypeShape)
+//    {
+//        return [[self enteryScreen] drawShape:action.shapeInfo clear:YES];
+//    }
+//    return [[self enteryScreen] rect];
 }
 
 - (void)printOSInfo

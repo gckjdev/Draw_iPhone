@@ -13,7 +13,8 @@
 #import "PenView.h"
 #import "Paint.h"
 #import "ConfigManager.h"
-
+#import "CanvasRect.h"
+#import "DrawHolderView.h"
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
 
@@ -26,8 +27,8 @@
     PenView *pen;
 
 }
-@property (nonatomic, retain) Paint *tempPaint;
-
+//@property (nonatomic, retain) Paint *tempPaint;
+@property (nonatomic, retain) PaintAction *tempAction;
 @end
 
 
@@ -46,7 +47,8 @@
 
     _playingActionIndex = 0;
     _playingPointIndex = 0;
-    self.tempPaint = nil;
+//    self.tempPaint = nil;
+    self.tempAction = nil;
     _currentAction = nil;
 
     [super cleanAllActions];
@@ -58,7 +60,8 @@
     [self setStatus:Stop];
     _playingActionIndex = 0;
     _playingPointIndex = 0;
-    self.tempPaint = nil;
+//    self.tempPaint = nil;
+    self.tempAction = nil;
     _currentAction = nil;
     [osManager clean];
 
@@ -74,26 +77,27 @@
     if (pen.superview == nil) {
         [self.superview addSubview:pen];
     }
-        if (_currentAction == nil || [_currentAction isCleanAction] ||
-            [_currentAction isChangeBackAction]) {
-            pen.hidden = YES;
+    
+    if ([_currentAction isKindOfClass:[PaintAction class]]) {
+        pen.hidden = NO;
+        PaintAction *paintAction = (PaintAction *)_currentAction;
+        if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
+            //reset pen type
+            [pen setPenType:paintAction.paint.penType];
+            PPDebug(@"Update Pen, pen frame = %@, trasform = %@", NSStringFromCGRect(pen.frame), NSStringFromCGAffineTransform(pen.transform));
+        }
+        CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
+//        CGRect rect = CGRectZero;
+        point= [pen.superview convertPoint:point fromView:self];
+        if (pen.penType != Eraser) {
+            pen.frame = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }else{
-            pen.hidden = NO;
-            if (_playingPointIndex == 0 && pen.penType != _currentAction.paint.penType) {
-                //reset pen type
-                [pen setPenType:_currentAction.paint.penType];
-            }
-            CGPoint point = [_currentAction.paint pointAtIndex:_playingPointIndex];
-            
-            CGRect rect = CGRectZero;
-            if (pen.penType != Eraser) {
-                rect = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
-            }else{
-                rect = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
-            }
-            pen.frame = [pen.superview convertRect:rect fromView:self];
+            pen.frame = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }
     
+    }else{
+        pen.hidden = YES;
+    }
 }
 
 
@@ -218,9 +222,19 @@
     return self;
 }
 
+- (void)resetFrameSize:(CGSize)size
+{
+    CGRect rect = CGRectZero;
+    rect.size = size;
+    self.frame = rect;
+    if ([self.superview isKindOfClass:[DrawHolderView class]]) {
+        [(DrawHolderView *)self.superview updateContentScale];
+    }
+}
+
 + (ShowDrawView *)showView
 {
-    return [[[ShowDrawView alloc] initWithFrame:DRAW_VIEW_FRAME] autorelease];
+    return [[[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]] autorelease];
 }
 
 + (ShowDrawView *)showViewWithFrame:(CGRect)frame
@@ -234,8 +248,7 @@
         showView.drawActionList = [NSMutableArray arrayWithArray:actionList];
     }
     showView.delegate = delegate;
-    [showView resetFrameSize:frame.size];
-    showView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+    showView.frame = frame;
     return showView;
 }
 
@@ -244,20 +257,14 @@
     return [ConfigManager currentDrawDataVersion] >= version;
 }
 
-- (void)resetFrameSize:(CGSize)size
-{
-    CGFloat xScale = size.width / CGRectGetWidth(self.frame);
-    CGFloat yScele = size.height / CGRectGetHeight(self.frame);
-    [self.layer setTransform:CATransform3DMakeScale(xScale, yScele, 1)];
-}
-
 
 - (void)dealloc
 {
     [self stop];
     PPRelease(_drawActionList);
     PPRelease(pen);
-    PPRelease(_tempPaint);
+//    PPRelease(_tempPaint);
+    PPRelease(_tempAction);
     [super dealloc];
 }
 
@@ -265,7 +272,7 @@
 {
     int i = 0, ans = -1;
     for (DrawAction *action in self.drawActionList) {
-        if (action.type == DRAW_ACTION_TYPE_CLEAN) {
+        if (action.type == DrawActionTypeClean) {
             ans = i;
         }
         ++ i;
@@ -282,7 +289,7 @@
 
 - (void)updateNextPlayIndex
 {
-    if ( ++_playingPointIndex >= [_currentAction.paint pointCount]) {
+    if ( ++_playingPointIndex >= [_currentAction pointCount]) {
         _playingPointIndex = 0;
 
         //next action
@@ -293,7 +300,7 @@
             _status = Stop;
         }
 //        PPDebug(@"<updateNextPlayIndex> index = %d, action Type = %d", _playingActionIndex, _currentAction.type);
-//        if (_currentAction.type == DRAW_ACTION_TYPE_SHAPE) {
+//        if (_currentAction.type == DrawActionTypeShape) {
 //            PPDebug(@"Stop!!!");
 //        }
     }else{
@@ -302,29 +309,30 @@
     
 }
 
-- (void)updateTempPaint
+
+- (void)updateTempAction
 {
-    Paint *cPaint = _currentAction.paint;
-    int currentPaintPointCount = [cPaint pointCount];
-    if (cPaint != nil &&  _playingPointIndex < currentPaintPointCount) {
-        if (cPaint.pointCount > 0) {
-            if (self.tempPaint == nil) {
-                self.tempPaint = [Paint paintWithWidth:cPaint.width color:cPaint.color];
-            }
-            NSInteger i = [self.tempPaint pointCount];
-            for (; i <= _playingPointIndex; ++ i) {
-                CGPoint p = [cPaint pointAtIndex:i];
-                [self.tempPaint addPoint:p];
-            }
-            
-            if (i >= currentPaintPointCount){
-                [self.tempPaint finishAddPoint];
-            }
+    if ([_currentAction isKindOfClass:[PaintAction class]]) {
+//        PaintAction *paintAction = (PaintAction *)_currentAction;
+        Paint *currentPaint = [(PaintAction *)_currentAction paint];
+        if (self.tempAction == nil) {
+            Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
+            self.tempAction = [PaintAction paintActionWithPaint:paint];
+        }
+        NSInteger i = [self.tempAction pointCount];
+        for (; i <= _playingPointIndex; ++ i) {
+            CGPoint p = [currentPaint pointAtIndex:i];
+            [self.tempAction addPoint:p inRect:self.bounds];
+        }
+        
+        if (i >= [currentPaint pointCount]){
+            [self.tempAction finishAddPoint];
         }
     }else{
-        self.tempPaint = nil;
+        self.tempAction = nil;//_currentAction;
     }
 }
+
 
 - (void)callDidDrawPaintDelegate
 {
@@ -337,33 +345,47 @@
         self.status = Stop;
         _playingActionIndex = _playingPointIndex = 0;
         _currentAction =  nil;
-        self.tempPaint = nil;
     }
+    self.tempAction = nil;
 }
 
 - (void)playCurrentFrame
 {
-    [self updateTempPaint];
+//    [self updateTempPaint];
+    [self updateTempAction];
     if (self.status == Playing) {
-        if (self.tempPaint) {
-            if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
-
-                [self drawPaint:self.tempPaint show:YES];
-                self.tempPaint = nil;
+        if (self.tempAction) {
+            if ([self.tempAction hasFinishAddPoint]) {
+                [self updateLastAction:self.tempAction show:YES];
                 [self callDidDrawPaintDelegate];
-                
-            }else if([self.tempPaint pointCount] == 1){
-                [self drawDrawAction:_currentAction show:NO];
-                [osManager updateDrawPenWithPaint:self.tempPaint];
-                [osManager updateLastPaint:self.tempPaint];
-                [self setNeedsDisplay];
+            } else if([self.tempAction pointCount] == 1){
+                [self drawDrawAction:self.tempAction show:YES];
             }else{
-                [self drawPaint:self.tempPaint show:YES];
+                [self updateLastAction:self.tempAction show:YES];
             }
         }else{
             [self drawDrawAction:_currentAction show:YES];
             [self callDidDrawPaintDelegate];
         }
+//        if (self.tempPaint) {
+//            if ([self.tempPaint pointCount] == [_currentAction.paint pointCount]) {
+//
+//                [self drawPaint:self.tempPaint show:YES];
+//                self.tempPaint = nil;
+//                [self callDidDrawPaintDelegate];
+//                
+//            }else if([self.tempPaint pointCount] == 1){
+//                [self drawDrawAction:_currentAction show:NO];
+//                [osManager updateDrawPenWithPaint:self.tempPaint];
+//                [osManager updateLastPaint:self.tempPaint];
+//                [self setNeedsDisplay];
+//            }else{
+//                [self drawPaint:self.tempPaint show:YES];
+//            }
+//        }else{
+//            [self drawDrawAction:_currentAction show:YES];
+//            [self callDidDrawPaintDelegate];
+//        }
     }
     if(!_showPenHidden){
         [self movePen];

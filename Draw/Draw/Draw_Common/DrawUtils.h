@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "DeviceDetection.h"
+#import "Draw.pb.h"
 
-#define PICK_PEN_VIEW_IPHONE_HEIGHT 152
 
 #define ILLEGAL_POINT CGPointMake(-100000, -100000)
 
+/*
 #define IPAD_SCALE 2.4013
 #define IPAD_WIDTH_SCALE 2.4013
 #define IPAD_HEIGHT_SCALE 2.18125
@@ -39,7 +40,7 @@
 #define DRAW_VIEW_HEIGHT ([DeviceDetection isIPAD] ? DRAW_VIEW_HEIGHT_IPAD :DRAW_VIEW_HEIGHT_IPHONE)
 
 #define DRAW_VIEW_RECT  ([DeviceDetection isIPAD] ? DRAW_VIEW_RECT_IPAD : DRAW_VIEW_RECT_IPHONE)
-
+*/
 
 
 @class DrawColor;
@@ -99,3 +100,6 @@ CGFloat CGPointDistance(CGPoint p1, CGPoint p2);
 CGFloat CGPointRadian(CGPoint p1, CGPoint p2);
 CGPoint CGPointVector(CGPoint p1, CGPoint p2);
 CGRect CGRectWithPoints(CGPoint p1, CGPoint p2);
+CGSize CGSizeFromPBSize(PBSize *size);
+PBSize *CGSizeToPBSize(CGSize size);
+CGRect CGRectFromCGSize(CGSize size);

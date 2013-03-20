@@ -59,10 +59,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)deductAccount:(int)amount 
                source:(BalanceSourceType)source;
 
-- (int)buyItem:(int)itemType
-      itemCount:(int)itemCount
-      itemCoins:(int)itemCoins;
-
 - (int)consumeItem:(int)itemType
             amount:(int)amount;
 

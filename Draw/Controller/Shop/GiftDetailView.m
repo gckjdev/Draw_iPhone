@@ -11,6 +11,7 @@
 #import "PBGameItem+Extend.h"
 #import "UIImageView+WebCache.h"
 #import "ShareImageManager.h"
+#import "GameItemManager.h"
 
 @implementation GiftDetailView
 
@@ -28,10 +29,11 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     [super dealloc];
 }
 
-+ (id)createWithItem:(PBGameItem *)item
++ (id)createWithItem:(int)itemId
             myFriend:(MyFriend *)myFriend
                count:(int)count
 {
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     GiftDetailView *view = [self createView];
     if (item.type == PBDrawItemTypeTool) {
         //工具

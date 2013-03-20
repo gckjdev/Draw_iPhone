@@ -56,13 +56,13 @@
 
 - (Offscreen *)enteryScreen;
 
-- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width;
+//- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width;
 
-- (void)updateDrawPenWithPaint:(Paint *)paint;
+//- (void)updateDrawPenWithPaint:(Paint *)paint;
 
 - (CGRect)updateLastAction:(DrawAction *)action;
 
-- (CGRect)updateLastPaint:(Paint *)paint;
+//- (CGRect)updateLastPaint:(Paint *)paint;
 
 
 - (BOOL)canUndo;

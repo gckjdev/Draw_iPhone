@@ -15,6 +15,7 @@
 #import "CommonMessageCenter.h"
 #import "StableView.h"
 #import "PickToolView.h"
+#import "CanvasRect.h"
 //#import "CommonItemInfoView.h"
 
 
