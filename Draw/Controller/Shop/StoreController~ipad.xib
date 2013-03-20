@@ -424,6 +424,7 @@
 						<string key="IBUIText">5000000</string>
 						<reference key="IBUITextColor" ref="764526642"/>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>
@@ -453,6 +454,7 @@
 						<string key="IBUIText">0</string>
 						<reference key="IBUITextColor" ref="764526642"/>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>

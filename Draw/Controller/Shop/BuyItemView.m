@@ -162,9 +162,6 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
-                    if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-                    }
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
@@ -226,9 +223,6 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
-                    if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-                    }
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];

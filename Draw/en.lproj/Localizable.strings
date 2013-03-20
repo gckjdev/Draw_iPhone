@@ -88,7 +88,7 @@
 "kAllUserQuit" = "All users quit! Game Over!";
 
 "kBuying" = "Sending request...";
-"kBuying..." = "Buying";
+"kBuying..." = "Buying...";
 "kSendingRequest" = "Sending Request...";
 "kLoading" = "Loading...";
 "kLoadMore" = "Loading...";
@@ -1092,10 +1092,14 @@
 "kPurseItemDescription" = "Can buy gold bullions";
 
 "kUpdateTips" = "Update Tips";
-"kVersionIsOld" = "version is too low, you can not use this function to determine the Update?";
+"kVersionIsOld" = "Version is too low to use this feature, do you want to update version now?";
 
 "kStore" = "Store";
 "kBalance" = "Balance:";
+
+"kBalanceNotEnoughTitle" = "Balance Not Enough";
+"kBalanceNotEnoughDesc" = "Sorry，your balance is not enough，you can increase your balance via the way below:";
+"kGetFreeIngot" = "Get Free";
 
 "kDetectFakeIAP" = "Fail to complete purchase. You may use jail-broken IAP";
 "kVerifyIAPFail" = "Fail to complete purchase. Please try again later.";

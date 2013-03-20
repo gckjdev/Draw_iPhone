@@ -133,6 +133,10 @@
 "kCoinsNotEnough" = "不好意思，你的金币不够了，是不是要获取免费金币？";
 "kCoinsNotEnoughTips" = "不好意思，你的金币不够%d了，请在游戏结束之后购买些金币。";
 
+"kBalanceNotEnoughTitle" = "余额不足";
+"kBalanceNotEnoughDesc" = "不好意思，你的余额不够了，你可以通过以下途径来增加您的余额。";
+"kGetFreeIngot" = "获取免费元宝";
+
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
 "kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";

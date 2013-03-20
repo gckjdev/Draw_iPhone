@@ -21,7 +21,7 @@
 #import "GameNetworkConstants.h"
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
-
+#import "BalanceNotEnoughAlertView.h"
 
 
 typedef enum{
@@ -173,7 +173,7 @@ typedef enum{
             break;
             
         case ERROR_BALANCE_NOT_ENOUGH:
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBalanceNotEnough") delayTime:1 isHappy:NO];
+            [BalanceNotEnoughAlertView showInView:self];
             break;
             
         case ERROR_BAD_PARAMETER:

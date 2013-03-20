@@ -321,6 +321,7 @@
 		A4CD500C16F9B07F00BE6694 /* store_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD4FEA16F9B07E00BE6694 /* store_cell@2x.png */; };
 		A4CD500D16F9B07F00BE6694 /* store_cell_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD4FEB16F9B07E00BE6694 /* store_cell_ipad@2x.png */; };
 		A4CD500E16F9B07F00BE6694 /* zhifubao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD4FEC16F9B07E00BE6694 /* zhifubao@2x.png */; };
+		A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
 		A4CE58E316324447003DB23A /* point_pic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E116324447003DB23A /* point_pic3@2x.png */; };
 		A4CE58E416324447003DB23A /* point_pic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E216324447003DB23A /* point_pic4@2x.png */; };
 		A4CE58E616324998003DB23A /* ChatView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CE58E516324998003DB23A /* ChatView~ipad.xib */; };
@@ -7552,6 +7553,8 @@
 		A4CD4FEA16F9B07E00BE6694 /* store_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "store_cell@2x.png"; sourceTree = "<group>"; };
 		A4CD4FEB16F9B07E00BE6694 /* store_cell_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "store_cell_ipad@2x.png"; sourceTree = "<group>"; };
 		A4CD4FEC16F9B07E00BE6694 /* zhifubao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhifubao@2x.png"; sourceTree = "<group>"; };
+		A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceNotEnoughAlertView.h; sourceTree = "<group>"; };
+		A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceNotEnoughAlertView.m; sourceTree = "<group>"; };
 		A4CE58E116324447003DB23A /* point_pic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic3@2x.png"; sourceTree = "<group>"; };
 		A4CE58E216324447003DB23A /* point_pic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "point_pic4@2x.png"; sourceTree = "<group>"; };
 		A4CE58E516324998003DB23A /* ChatView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatView~ipad.xib"; sourceTree = "<group>"; };
@@ -13362,6 +13365,7 @@
 			isa = PBXGroup;
 			children = (
 				A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */,
+				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
 				A491A20316F6EE61003B638F /* CoinShopController.h */,
 				A491A20416F6EE62003B638F /* CoinShopController.m */,
 				A491A20516F6EE62003B638F /* CoinShopController.xib */,
@@ -13370,7 +13374,6 @@
 				A491A20816F6EE64003B638F /* ShoppingCell.m */,
 				A491A20916F6EE65003B638F /* ShoppingCell.xib */,
 				A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */,
-				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
@@ -13415,6 +13418,8 @@
 				A42AB86A16E98F92007AD01E /* GiftDetailView.m */,
 				EA1FF1FE16E9ECC10031B68F /* GiftDetailView.xib */,
 				EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */,
+				A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */,
+				A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -24508,6 +24513,7 @@
 				CAADF65A16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
+				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
