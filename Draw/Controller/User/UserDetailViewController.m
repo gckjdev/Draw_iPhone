@@ -7,6 +7,11 @@
 //
 
 #import "UserDetailViewController.h"
+#import "GameBasic.pb.h"
+#import "UserDetailCell.h"
+
+#define    ROW_COUNT 1
+
 
 @interface UserDetailViewController ()
 
@@ -26,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.detail && [self.detail needUpdate]) {
+        //TODO:update detail
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -43,4 +51,35 @@
     [self setBackgroundImageView:nil];
     [super viewDidUnload];
 }
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UserDetailCell* cell = [UserDetailCell createCell:self];
+    
+    if (cell) {
+        [cell setCellWithPBGameUser:[self.detail queryUser]];
+    }
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return ROW_COUNT;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [UserDetailCell getCellHeight];
+}
+
+- (id)initWithUserDetail:(id<UserDetailProtocol>)detail
+{
+    self = [super init];
+    if (self) {
+        self.detail = detail;
+    }
+    return self;
+}
+
+
 @end

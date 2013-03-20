@@ -34,6 +34,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -952,6 +954,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasTo_:1;
   BOOL hasText_:1;
   BOOL hasReqMessageId_:1;
+  BOOL hasCanvasSize_:1;
   Float64 longitude;
   Float64 latitude;
   int32_t status;
@@ -964,6 +967,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   NSString* to;
   NSString* text;
   NSString* reqMessageId;
+  PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasMessageId;
@@ -974,6 +978,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (BOOL) hasText;
 - (BOOL) hasCreateDate;
 - (BOOL) hasDrawDataVersion;
+- (BOOL) hasCanvasSize;
 - (BOOL) hasLongitude;
 - (BOOL) hasLatitude;
 - (BOOL) hasReqMessageId;
@@ -986,6 +991,7 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 @property (readonly, retain) NSString* text;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t drawDataVersion;
+@property (readonly, retain) PBSize* canvasSize;
 @property (readonly) Float64 longitude;
 @property (readonly) Float64 latitude;
 @property (readonly, retain) NSString* reqMessageId;
@@ -1073,6 +1079,13 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) drawDataVersion;
 - (PBMessage_Builder*) setDrawDataVersion:(int32_t) value;
 - (PBMessage_Builder*) clearDrawDataVersion;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBMessage_Builder*) setCanvasSize:(PBSize*) value;
+- (PBMessage_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBMessage_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBMessage_Builder*) clearCanvasSize;
 
 - (BOOL) hasLongitude;
 - (Float64) longitude;
@@ -2168,5 +2181,62 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (NSString*) logo;
 - (PBApp_Builder*) setLogo:(NSString*) value;
 - (PBApp_Builder*) clearLogo;
+@end
+
+@interface PBSize : PBGeneratedMessage {
+@private
+  BOOL hasWidth_:1;
+  BOOL hasHeight_:1;
+  Float32 width;
+  Float32 height;
+}
+- (BOOL) hasWidth;
+- (BOOL) hasHeight;
+@property (readonly) Float32 width;
+@property (readonly) Float32 height;
+
++ (PBSize*) defaultInstance;
+- (PBSize*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSize_Builder*) builder;
++ (PBSize_Builder*) builder;
++ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype;
+
++ (PBSize*) parseFromData:(NSData*) data;
++ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSize*) parseFromInputStream:(NSInputStream*) input;
++ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSize_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSize* result;
+}
+
+- (PBSize*) defaultInstance;
+
+- (PBSize_Builder*) clear;
+- (PBSize_Builder*) clone;
+
+- (PBSize*) build;
+- (PBSize*) buildPartial;
+
+- (PBSize_Builder*) mergeFrom:(PBSize*) other;
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBSize_Builder*) setWidth:(Float32) value;
+- (PBSize_Builder*) clearWidth;
+
+- (BOOL) hasHeight;
+- (Float32) height;
+- (PBSize_Builder*) setHeight:(Float32) value;
+- (PBSize_Builder*) clearHeight;
 @end
 

@@ -178,12 +178,6 @@ message PBDrawBg
     optional string remoteUrl  = 3;
 }
 
-message PBSize
-{
-    optional float width = 1 [default=304.0];
-    optional float height = 2 [default=320.0];
-}
-
 message PBDrawBgList
 {
     repeated PBDrawBg drawBgs = 1;

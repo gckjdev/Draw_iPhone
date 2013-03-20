@@ -44,6 +44,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserDice;

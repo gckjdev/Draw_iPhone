@@ -3830,6 +3830,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
 @property int32_t drawDataVersion;
+@property (retain) PBSize* canvasSize;
 @property Float64 longitude;
 @property Float64 latitude;
 @property (retain) NSString* reqMessageId;
@@ -3895,6 +3896,13 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasDrawDataVersion_ = !!value;
 }
 @synthesize drawDataVersion;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (BOOL) hasLongitude {
   return !!hasLongitude_;
 }
@@ -3929,6 +3937,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   self.to = nil;
   self.text = nil;
   self.mutableDrawDataList = nil;
+  self.canvasSize = nil;
   self.reqMessageId = nil;
   [super dealloc];
 }
@@ -3942,6 +3951,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.text = @"";
     self.createDate = 0;
     self.drawDataVersion = 0;
+    self.canvasSize = [PBSize defaultInstance];
     self.longitude = 0;
     self.latitude = 0;
     self.reqMessageId = @"";
@@ -4013,6 +4023,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasDrawDataVersion) {
     [output writeInt32:23 value:self.drawDataVersion];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:24 value:self.canvasSize];
+  }
   if (self.hasLongitude) {
     [output writeDouble:31 value:self.longitude];
   }
@@ -4060,6 +4073,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasDrawDataVersion) {
     size += computeInt32Size(23, self.drawDataVersion);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(24, self.canvasSize);
   }
   if (self.hasLongitude) {
     size += computeDoubleSize(31, self.longitude);
@@ -4178,6 +4194,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasDrawDataVersion) {
     [self setDrawDataVersion:other.drawDataVersion];
   }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
   if (other.hasLongitude) {
     [self setLongitude:other.longitude];
   }
@@ -4247,6 +4266,15 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 184: {
         [self setDrawDataVersion:[input readInt32]];
+        break;
+      }
+      case 194: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
       case 249: {
@@ -4423,6 +4451,36 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearDrawDataVersion {
   result.hasDrawDataVersion = NO;
   result.drawDataVersion = 0;
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBMessage_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBMessage_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBMessage_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBMessage_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 - (BOOL) hasLongitude {
@@ -8961,6 +9019,221 @@ static PBApp* defaultPBAppInstance = nil;
 - (PBApp_Builder*) clearLogo {
   result.hasLogo = NO;
   result.logo = @"";
+  return self;
+}
+@end
+
+@interface PBSize ()
+@property Float32 width;
+@property Float32 height;
+@end
+
+@implementation PBSize
+
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasHeight {
+  return !!hasHeight_;
+}
+- (void) setHasHeight:(BOOL) value {
+  hasHeight_ = !!value;
+}
+@synthesize height;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.width = 304;
+    self.height = 320;
+  }
+  return self;
+}
+static PBSize* defaultPBSizeInstance = nil;
++ (void) initialize {
+  if (self == [PBSize class]) {
+    defaultPBSizeInstance = [[PBSize alloc] init];
+  }
+}
++ (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (PBSize*) defaultInstance {
+  return defaultPBSizeInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasWidth) {
+    [output writeFloat:1 value:self.width];
+  }
+  if (self.hasHeight) {
+    [output writeFloat:2 value:self.height];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasWidth) {
+    size += computeFloatSize(1, self.width);
+  }
+  if (self.hasHeight) {
+    size += computeFloatSize(2, self.height);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSize*) parseFromData:(NSData*) data {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data] build];
+}
++ (PBSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input] build];
+}
++ (PBSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSize*)[[[PBSize builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSize_Builder*) builder {
+  return [[[PBSize_Builder alloc] init] autorelease];
+}
++ (PBSize_Builder*) builderWithPrototype:(PBSize*) prototype {
+  return [[PBSize builder] mergeFrom:prototype];
+}
+- (PBSize_Builder*) builder {
+  return [PBSize builder];
+}
+@end
+
+@interface PBSize_Builder()
+@property (retain) PBSize* result;
+@end
+
+@implementation PBSize_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSize alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSize_Builder*) clear {
+  self.result = [[[PBSize alloc] init] autorelease];
+  return self;
+}
+- (PBSize_Builder*) clone {
+  return [PBSize builderWithPrototype:result];
+}
+- (PBSize*) defaultInstance {
+  return [PBSize defaultInstance];
+}
+- (PBSize*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSize*) buildPartial {
+  PBSize* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSize_Builder*) mergeFrom:(PBSize*) other {
+  if (other == [PBSize defaultInstance]) {
+    return self;
+  }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasHeight) {
+    [self setHeight:other.height];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setHeight:[input readFloat]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (PBSize_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (PBSize_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 304;
+  return self;
+}
+- (BOOL) hasHeight {
+  return result.hasHeight;
+}
+- (Float32) height {
+  return result.height;
+}
+- (PBSize_Builder*) setHeight:(Float32) value {
+  result.hasHeight = YES;
+  result.height = value;
+  return self;
+}
+- (PBSize_Builder*) clearHeight {
+  result.hasHeight = NO;
+  result.height = 320;
   return self;
 }
 @end
