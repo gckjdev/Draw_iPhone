@@ -54,6 +54,8 @@
 @class PBSaleIngotList;
 @class PBSaleIngotList_Builder;
 @class PBSaleIngot_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -147,11 +149,15 @@
 @interface PBBBSDraw : PBGeneratedMessage {
 @private
   BOOL hasVersion_:1;
+  BOOL hasCanvasSize_:1;
   int32_t version;
+  PBSize* canvasSize;
   NSMutableArray* mutableDrawActionListList;
 }
 - (BOOL) hasVersion;
+- (BOOL) hasCanvasSize;
 @property (readonly) int32_t version;
+@property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) drawActionListList;
 - (PBDrawAction*) drawActionListAtIndex:(int32_t) index;
 
@@ -200,6 +206,13 @@
 - (int32_t) version;
 - (PBBBSDraw_Builder*) setVersion:(int32_t) value;
 - (PBBBSDraw_Builder*) clearVersion;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBBBSDraw_Builder*) setCanvasSize:(PBSize*) value;
+- (PBBBSDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBBBSDraw_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBBBSDraw_Builder*) clearCanvasSize;
 @end
 
 @interface PBBBSContent : PBGeneratedMessage {

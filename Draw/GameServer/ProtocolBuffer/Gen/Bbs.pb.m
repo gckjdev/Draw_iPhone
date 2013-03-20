@@ -325,6 +325,7 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
 @interface PBBBSDraw ()
 @property (retain) NSMutableArray* mutableDrawActionListList;
 @property int32_t version;
+@property (retain) PBSize* canvasSize;
 @end
 
 @implementation PBBBSDraw
@@ -337,13 +338,22 @@ static PBBBSUser* defaultPBBBSUserInstance = nil;
   hasVersion_ = !!value;
 }
 @synthesize version;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
+  self.canvasSize = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.version = 0;
+    self.canvasSize = [PBSize defaultInstance];
   }
   return self;
 }
@@ -381,6 +391,9 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
   if (self.hasVersion) {
     [output writeInt32:2 value:self.version];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:3 value:self.canvasSize];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -395,6 +408,9 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
   }
   if (self.hasVersion) {
     size += computeInt32Size(2, self.version);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(3, self.canvasSize);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -480,6 +496,9 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
   if (other.hasVersion) {
     [self setVersion:other.version];
   }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -509,6 +528,15 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
       }
       case 16: {
         [self setVersion:[input readInt32]];
+        break;
+      }
+      case 26: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -557,6 +585,36 @@ static PBBBSDraw* defaultPBBBSDrawInstance = nil;
 - (PBBBSDraw_Builder*) clearVersion {
   result.hasVersion = NO;
   result.version = 0;
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBBBSDraw_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBBBSDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBBBSDraw_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBBBSDraw_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 @end
