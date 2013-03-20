@@ -23,6 +23,7 @@
 #import "MyFriend.h"
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
+#import "DrawHolderView.h"
 
 CGRect CGRectFrom(CGPoint origin, CGSize size){
     return CGRectMake(origin.x, origin.y, size.width, size.height); 
@@ -83,7 +84,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(30):(14))
 
-#define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(155,150):CGSizeMake(64,67))
+#define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(150,150):CGSizeMake(67,67))
 
 #define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(30):(17)) //尖尖的部分距离文字的距离
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(21):(10))//不尖部分和文字的距离
@@ -191,10 +192,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 //    [self.showDrawView removeFromSuperview];
     [self updateContentButtonFrame];
     if (self.showDrawView == nil) {
-        CGRect frame = [self showViewFrame];
+        CGRect frame = CGRectFromCGSize(message.canvasSize);
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
-        [self addSubview:self.showDrawView];
-        [self.showDrawView setPressEnable:YES];        
+        [self.showDrawView setPressEnable:YES];
+        
+        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
+        
+        [self addSubview:holder];
     }
     if (!message.thumbImage) {
         [self.showDrawView show];

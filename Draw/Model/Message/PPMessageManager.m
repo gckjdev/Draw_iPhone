@@ -7,7 +7,8 @@
 //
 
 #import "PPMessageManager.h"
-#import "GameBasic.pb.h"
+//#import "Draw.pb.h"
+#import "GameMessage.pb.h"
 #import "PPMessage.h"
 #import "MessageStat.h"
 //#import "FileUtil.h"
@@ -75,18 +76,58 @@
 }
 
 #pragma mark message list storage.
+
++ (NSData *)dataFromMessageList:(NSArray *)messageList
+{
+    if ([messageList count] == 0) {
+        return nil;
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    for (PPMessage *message in messageList) {
+        PBMessage *pbm = [message toPBMessage];
+        [array addObject:pbm];
+    }
+    DataQueryResponse_Builder *builder = [[[DataQueryResponse_Builder alloc] init] autorelease];
+    [builder setResultCode:0];
+    [builder addAllMessage:array];
+    return [[builder build] data];
+}
+
++ (NSArray *)messageListFromData:(NSData *)data
+{
+    DataQueryResponse* dqr = nil;
+    @try {
+       dqr = [DataQueryResponse parseFromData:data];
+        NSArray *mList = [dqr messageList];
+        return [PPMessageManager parseMessageList:mList];
+
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+    @finally {
+        dqr = nil;
+    }
+}
+
+#define MESSAGE_KEY1(x) [NSString stringWithFormat:@"%@_v1",x]
+
 + (BOOL)saveFriend:(NSString *)friendId messageList:(NSArray *)messageList
 {
     NSArray *list = [PPMessageManager subArrayWithArray:messageList
                                               maxLength:MESSAGE_MAX_COUNT
                                               isReverse:YES];
     StorageManager *manager = [PPMessageManager messageStorageManager];
-    return [manager saveObject:list forKey:friendId];
+    NSData *data = [PPMessageManager dataFromMessageList:list];
+//    return [manager saveObject:list forKey:MESSAGE_KEY1(friendId)];
+    return [manager saveData:data forKey:MESSAGE_KEY1(friendId)];
 }
 + (NSArray *)messageListForFriendId:(NSString *)friendId
 {
     StorageManager *manager = [PPMessageManager messageStorageManager];
-    return [manager objectForKey:friendId];
+    NSData *data = [manager dataForKey:MESSAGE_KEY1(friendId)];
+    NSArray *list = [PPMessageManager messageListFromData:data];
+    return list;
 }
 
 + (BOOL)deleteLocalFriendMessageList:(NSString *)friendId

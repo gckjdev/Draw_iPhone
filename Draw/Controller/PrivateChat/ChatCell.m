@@ -20,8 +20,6 @@
 
 @interface ChatCell()
 
-- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList 
-                               scale:(CGFloat)scale;
 - (IBAction)clickAvatar:(id)sender;
 
 @end
@@ -81,22 +79,6 @@
     }else {
         return CELL_HEIGHT_IPHONE;
     }
-}
-
-
-- (ShowDrawView *)createShowDrawView:(NSArray *)drawActionList scale:(CGFloat)scale
-{
-    ShowDrawView *showDrawView = [[[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]] autorelease];
-    
-    if ([drawActionList isKindOfClass:[NSMutableArray class]]) {
-        [showDrawView setDrawActionList:(NSMutableArray *)drawActionList];
-    }else{
-        [showDrawView setDrawActionList:[NSMutableArray arrayWithArray:drawActionList]];
-    }
-    
-    [showDrawView setShowPenHidden:YES];
-    
-    return showDrawView;
 }
 
 
