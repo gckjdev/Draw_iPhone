@@ -40,7 +40,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     NSString* limeiAdId = [GameApp lmwallId];
     NSString* userId = [[UserManager defaultManager] userId];
     
-    self.limeiWallService = [[[LimeiAdWallService alloc] initWithUserId:userId adUnitId:limeiAdId] autorelease];
+    self.limeiWallService = [[[LimeiAdWallService alloc] initWithUserId:userId
+                                                               adUnitId:limeiAdId
+                                                           adUnitSecret:nil] autorelease];
 }
 
 
@@ -49,7 +51,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     NSString* adUnitId = [GameApp wanpuAdPublisherId];
     NSString* userId = [[UserManager defaultManager] userId];
     
-    self.wanpuWallService = [[[WanpuAdWallService alloc] initWithUserId:userId adUnitId:adUnitId] autorelease];
+    self.wanpuWallService = [[[WanpuAdWallService alloc] initWithUserId:userId
+                                                               adUnitId:adUnitId
+                                                           adUnitSecret:nil] autorelease];
 }
 
 - (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type forceShowWall:(BOOL)forceShowWall
