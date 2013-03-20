@@ -326,7 +326,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{261, 431}, {50, 25}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="756109651"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -422,6 +421,7 @@
 						<string key="IBUIText">5000000</string>
 						<reference key="IBUITextColor" ref="985244317"/>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>
@@ -479,6 +479,7 @@
 						<string key="IBUIText">0</string>
 						<reference key="IBUITextColor" ref="985244317"/>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">12</float>
 						<int key="IBUITextAlignment">1</int>

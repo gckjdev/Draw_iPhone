@@ -25,18 +25,16 @@
 
     CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kUpdateTips") message:NSLS(@"kVersionIsOld") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
         [UIUtils openApp:[GameApp appId]];
-
     } clickCancelBlock:^{
-        
     }];
     
     return view;
 }
 
-+ (void)showInView:(UIView *)view
++ (void)showInView:(UIView *)inView
 {
-    CustomInfoView *cusInfoView = [self createView];
-    [cusInfoView showInView:view];
+    CommonDialog *view = [self createView];
+    [view showInView:inView];
 }
 
 

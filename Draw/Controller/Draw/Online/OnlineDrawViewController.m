@@ -39,6 +39,7 @@
 #import "PointNode.h"
 #import "BuyItemView.h"
 #import "GameItemManager.h"
+#import "BalanceNotEnoughAlertView.h"
 
 @interface OnlineDrawViewController ()
 {
@@ -421,7 +422,9 @@
         drawView.penType = penType;
     }else{
         [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            
+            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                [BalanceNotEnoughAlertView showInView:self];
+            }
         }];
     }
 }
@@ -460,7 +463,9 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {    
     [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-        
+        if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+            [BalanceNotEnoughAlertView showInView:self];
+        }
     }];
 }
 
