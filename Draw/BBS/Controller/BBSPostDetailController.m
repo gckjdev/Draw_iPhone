@@ -15,6 +15,8 @@
 #import "BBSPostCommand.h"
 #import "BBSPostCommandPanel.h"
 #import "BBSPermissionManager.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 @interface BBSPostDetailController ()
 {
@@ -596,10 +598,11 @@ typedef enum{
 - (void)didClickUserAvatar:(PBBBSUser *)user
 {
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
+    UserDetailViewController* uc = [[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:user.userId
+                                                                                                                          avatar:user.avatar
+                                                                                                                        nickName:user.nickName]];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)didClickImageWithURL:(NSURL *)url

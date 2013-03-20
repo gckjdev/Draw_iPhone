@@ -14,6 +14,8 @@
 #import "ReplayView.h"
 #import "CommonUserInfoView.h"
 #import "BoardAdminListView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 #define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,49))
 
@@ -415,10 +417,11 @@
 {
     //TODO show user info
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
+    UserDetailViewController* uc = [[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:user.userId
+                                                                                                                          avatar:user.avatar
+                                                                                                                        nickName:user.nickName]];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)didClickImageWithURL:(NSURL *)url

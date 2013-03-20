@@ -123,7 +123,6 @@
 								<string key="NSFrame">{{139, 320}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -207,7 +206,7 @@
 								<string key="NSFrame">{{114, 108}, {100, 100}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="886967790"/>
+								<reference key="NSNextKeyView" ref="1034578714"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -218,7 +217,7 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUILabel" id="886967790">
+							<object class="IBUILabel" id="1034578714">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{89, 235}, {42, 106}}</string>
@@ -365,7 +364,7 @@
 							<reference ref="541929261"/>
 							<reference ref="899379520"/>
 							<reference ref="504782501"/>
-							<reference ref="886967790"/>
+							<reference ref="1034578714"/>
 							<reference ref="828864832"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -412,7 +411,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
-						<reference key="object" ref="886967790"/>
+						<reference key="object" ref="1034578714"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
 				</array>

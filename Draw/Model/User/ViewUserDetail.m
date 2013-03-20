@@ -23,7 +23,7 @@
 }
 - (PBGameUser*)queryUser
 {
-    return nil;
+    return self.pbUser;
 }
 - (BOOL)canEdit
 {
@@ -47,6 +47,13 @@
         self.pbUser = [builder build];
     }
     return self;
+}
+
++ (ViewUserDetail*)viewUserDetailWithUserId:(NSString *)userId
+                                     avatar:(NSString *)avatar
+                                   nickName:(NSString *)nickName
+{
+    return [[[ViewUserDetail alloc] initWithUserId:userId avatar:avatar nickName:nickName] autorelease];
 }
 
 @end

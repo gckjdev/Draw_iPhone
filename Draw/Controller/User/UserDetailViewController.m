@@ -9,6 +9,7 @@
 #import "UserDetailViewController.h"
 #import "GameBasic.pb.h"
 #import "UserDetailCell.h"
+#import "UserService.h"
 
 #define    ROW_COUNT 1
 
@@ -32,7 +33,12 @@
 {
     [super viewDidLoad];
     if (self.detail && [self.detail needUpdate]) {
-        //TODO:update detail
+        [[UserService defaultService] getUserInfo:[self.detail getUserId] resultBlock:^(int resultCode, PBGameUser *user) {
+            if (resultCode == 0 && [self.detail respondsToSelector:@selector(setPbUser:)]) {
+                [self.detail setPbUser:user];
+                [self.dataTableView reloadData];
+            }
+        }];
     }
     // Do any additional setup after loading the view from its nib.
 }

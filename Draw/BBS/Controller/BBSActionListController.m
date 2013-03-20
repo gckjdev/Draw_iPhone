@@ -14,6 +14,8 @@
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
 #import "CommonUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 
 @interface BBSActionListController ()
@@ -217,10 +219,11 @@
     //TODO show user info
     PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
 
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
+    UserDetailViewController* uc = [[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:user.userId
+                                                                                                                          avatar:user.avatar
+                                                                                                                        nickName:user.nickName]];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)didClickImageWithURL:(NSURL *)url
