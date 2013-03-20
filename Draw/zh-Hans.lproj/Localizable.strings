@@ -1382,14 +1382,18 @@
 "kNoDiscount" = "无折扣";
 
 "kMyBalance" = "我的余额:";
-"kSaveMoney" = "省";
-"kProps" = "道具";
+"kSaveMoney" = "节省";
+"kGift:" = "礼物:";
 "kTool" = "工具";
-"kHandsel" = "赠与";
-"kCount" = "数量";
-
+"kTo:" = "赠与:";
+"kCNT:" = "数量:";
+"kCost:" = "花费:";
 "kAlreadyBought" = "已购";
 "kBuyColorFailed"= "购买颜色失败";
+
+"kNoSaleItemNormal" = "暂无可销售的道具";
+"kNoSaleItemTool" = "暂无可销售的工具";
+"kNoSaleItemPromoting" = "暂无促销的工具或道具";
 
 "kDottedLinePen" = "虚线笔";
 "kDottedLinePenDescription" = "一种可以轻易画出虚线的笔";

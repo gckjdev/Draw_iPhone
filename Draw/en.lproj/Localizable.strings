@@ -1041,13 +1041,19 @@
 
 "kMyBalance" = "My Balance:";
 "kSaveMoney" = "Save";
-"kProps" = "Props";
+"kGift:" = "GIFT:";
 "kTool" = "Tool";
-"kHandsel" = "Handsel";
-"kCount" = "Count";
+"kTo:" = "TO:";
+"kCNT:" = "CNT:";
+"kCost:" = "COST:";
 "kAlreadyBought" = "Bought";
 "kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
 "kCleanCache" = "Clear Cache";
+
+
+"kNoSaleItemNormal" = "No Normal Items";
+"kNoSaleItemTool" = "No Tool Items";
+"kNoSaleItemPromoting" = "No promoting item now";
 
 "kBuyColorFailed"= "Buy color failed";
 

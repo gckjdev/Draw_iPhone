@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
+		<int key="IBDocument.SystemTarget">1536</int>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -61,7 +61,7 @@
 									<object class="IBUIButton" id="841080806">
 										<reference key="NSNextResponder" ref="848190657"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 6}, {36, 36}}</string>
+										<string key="NSFrame">{{5, 8}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="848190657"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="543668153"/>
@@ -99,7 +99,7 @@
 									<object class="IBUIButton" id="115216144">
 										<reference key="NSNextResponder" ref="848190657"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{152, 6}, {36, 36}}</string>
+										<string key="NSFrame">{{146, 8}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="848190657"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="573508056"/>
@@ -124,7 +124,7 @@
 									<object class="IBUIImageView" id="543668153">
 										<reference key="NSNextResponder" ref="848190657"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{42, 6}, {104, 36}}</string>
+										<string key="NSFrame">{{44, 8}, {96, 32}}</string>
 										<reference key="NSSuperview" ref="848190657"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="810286094"/>
@@ -139,7 +139,7 @@
 									<object class="IBUIButton" id="810286094">
 										<reference key="NSNextResponder" ref="848190657"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{50, 6}, {84, 36}}</string>
+										<string key="NSFrame">{{43, 8}, {96, 32}}</string>
 										<reference key="NSSuperview" ref="848190657"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="115216144"/>
@@ -152,13 +152,13 @@
 										<reference key="IBUIHighlightedTitleColor" ref="814568268"/>
 										<reference key="IBUINormalTitleColor" ref="814568268"/>
 										<reference key="IBUINormalTitleShadowColor" ref="924511256"/>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="504072457">
+										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<int key="type">1</int>
-											<double key="pointSize">32</double>
+											<double key="pointSize">26</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="746995187">
+										<object class="NSFont" key="IBUIFont">
 											<string key="NSName">Helvetica</string>
-											<double key="NSSize">32</double>
+											<double key="NSSize">26</double>
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
@@ -178,7 +178,7 @@
 									<object class="IBUIImageView" id="931532427">
 										<reference key="NSNextResponder" ref="573508056"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 2}, {44, 44}}</string>
+										<string key="NSFrame">{{3, 5}, {38, 38}}</string>
 										<reference key="NSSuperview" ref="573508056"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="493196924"/>
@@ -213,11 +213,11 @@
 										<int key="IBUITextAlignment">1</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<int key="type">1</int>
-											<double key="pointSize">26</double>
+											<double key="pointSize">24</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
 											<string key="NSName">Helvetica</string>
-											<double key="NSSize">26</double>
+											<double key="NSSize">24</double>
 											<int key="NSfFlags">16</int>
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -241,8 +241,15 @@
 										</object>
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
-										<reference key="IBUIFontDescription" ref="504072457"/>
-										<reference key="IBUIFont" ref="746995187"/>
+										<object class="IBUIFontDescription" key="IBUIFontDescription">
+											<int key="type">1</int>
+											<double key="pointSize">28</double>
+										</object>
+										<object class="NSFont" key="IBUIFont">
+											<string key="NSName">Helvetica</string>
+											<double key="NSSize">28</double>
+											<int key="NSfFlags">16</int>
+										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 								</array>
@@ -506,6 +513,6 @@
 			<string key="item_count_bg@2x.png">{104, 37}</string>
 			<string key="item_delete@2x.png">{36, 36}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>

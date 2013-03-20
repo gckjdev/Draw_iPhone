@@ -213,6 +213,7 @@
 		A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
 		A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20916F6EE65003B638F /* ShoppingCell.xib */; };
 		A491A21016F6EE65003B638F /* ShoppingCell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */; };
+		A499A42016F9675F00A76809 /* store_cell_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A499A41F16F9675F00A76809 /* store_cell_ipad@2x.png */; };
 		A49A083F166DA68D003E0F75 /* ReplacedPoker.m in Sources */ = {isa = PBXBuildFile; fileRef = A49A083E166DA68D003E0F75 /* ReplacedPoker.m */; };
 		A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A0CEC816D7631D004AC167 /* WallOpusView.m */; };
 		A4A0CECB16D7631D004AC167 /* WallOpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CEC916D7631D004AC167 /* WallOpusView.xib */; };
@@ -7409,6 +7410,7 @@
 		A491A20816F6EE64003B638F /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
 		A491A20916F6EE65003B638F /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
 		A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~iPad.xib"; sourceTree = "<group>"; };
+		A499A41F16F9675F00A76809 /* store_cell_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "store_cell_ipad@2x.png"; sourceTree = "<group>"; };
 		A49A083D166DA68D003E0F75 /* ReplacedPoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplacedPoker.h; sourceTree = "<group>"; };
 		A49A083E166DA68D003E0F75 /* ReplacedPoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplacedPoker.m; sourceTree = "<group>"; };
 		A4A0CEC716D7631D004AC167 /* WallOpusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallOpusView.h; sourceTree = "<group>"; };
@@ -11251,6 +11253,7 @@
 		A4B3B3B616ED7CA400EBF8DA /* store */ = {
 			isa = PBXGroup;
 			children = (
+				A499A41F16F9675F00A76809 /* store_cell_ipad@2x.png */,
 				A4B3B3B716ED7CA400EBF8DA /* app_store@2x.png */,
 				A4B3B3B816ED7CA400EBF8DA /* balance_bg@2x.png */,
 				A4B3B3B916ED7CA400EBF8DA /* charge_bg@2x.png */,
@@ -13331,6 +13334,7 @@
 			isa = PBXGroup;
 			children = (
 				A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */,
+				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
 				A491A20316F6EE61003B638F /* CoinShopController.h */,
 				A491A20416F6EE62003B638F /* CoinShopController.m */,
 				A491A20516F6EE62003B638F /* CoinShopController.xib */,
@@ -13339,7 +13343,6 @@
 				A491A20816F6EE64003B638F /* ShoppingCell.m */,
 				A491A20916F6EE65003B638F /* ShoppingCell.xib */,
 				A491A20A16F6EE65003B638F /* ShoppingCell~iPad.xib */,
-				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
 				A491424116E6E54B00106265 /* CustomInfoView.h */,
 				A491424216E6E54B00106265 /* CustomInfoView.m */,
 				EA97E92D16E735A600817647 /* CustomInfoView.xib */,
@@ -21256,6 +21259,7 @@
 				C25078A316F71C63009B7ED2 /* UserDetailBasicCell.xib in Resources */,
 				C25078A816F71C87009B7ED2 /* UserDetailOpusGalleryCell.xib in Resources */,
 				C25078AD16F71CA9009B7ED2 /* UserDetailSNSInfoCell.xib in Resources */,
+				A499A42016F9675F00A76809 /* store_cell_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

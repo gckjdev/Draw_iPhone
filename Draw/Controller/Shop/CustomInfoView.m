@@ -12,6 +12,8 @@
 #import "UIViewUtils.h"
 #import "AnimationManager.h"
 #import "BlockUtils.h"
+#import "CommonImageManager.h"
+#import "UIImageUtil.h"
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIView *infoView;
@@ -23,8 +25,8 @@
 #define SPACE_VERTICAL       ([DeviceDetection isIPAD] ? (20) : (10)) 
 #define SPACE_HORIZONTAL     ([DeviceDetection isIPAD] ? (40) : (20))
 
-#define BUTTON_HEIGHT             ([DeviceDetection isIPAD] ? (60) : (30))
-#define BUTTON_WIDTH              ([DeviceDetection isIPAD] ? (200) : (100))
+#define BUTTON_HEIGHT             ([DeviceDetection isIPAD] ? (50) : (30))
+#define BUTTON_WIDTH              ([DeviceDetection isIPAD] ? (166) : (100))
 #define SPACE_BUTTON_AND_BUTTON   ([DeviceDetection isIPAD] ? (40) : (20))
 
 #define WIDTH_INFO_LABEL          ([DeviceDetection isIPAD] ? (420) : (210))
@@ -108,6 +110,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [button updateCenterX:infoView.center.x];
         [button updateOriginY:originY];
         [button addTarget:view action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [button setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+        
         button.tag = 0;
         
         [view.mainView addSubview:button];
@@ -125,6 +130,12 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [button2 updateOriginY:originY];
         [button2 addTarget:view action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         button2.tag = 1;
+        
+        
+        
+        [button1 setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+        [button2 setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+        
 
         [view.mainView addSubview:button1];
         [view.mainView addSubview:button2];
@@ -174,7 +185,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 }
 
 #define COLOR_BUTTON_TITLE  [UIColor colorWithRed:48.0/255.0 green:35.0/255.0 blue:16.0/255.0 alpha:1]
-#define FONT_SIZE_BUTTON_TITLE ([DeviceDetection isIPAD] ? 32 : 16)
+#define FONT_SIZE_BUTTON_TITLE ([DeviceDetection isIPAD] ? 30 : 15)
 + (UIButton *)createButtonWithTitle:(NSString *)title{
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
     [button setBackgroundImage:[[ShareImageManager defaultManager] dialogButtonBackgroundImage] forState:UIControlStateNormal];

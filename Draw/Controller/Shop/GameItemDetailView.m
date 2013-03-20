@@ -34,7 +34,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     
     [view.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
     
-    view.discountLabel.text = NSLS(@"kDicount:");
+    view.discountNoteLabel.text = NSLS(@"kPromotion:");
     view.priceNoteLabel.text = NSLS(@"kPrice:");
     view.descNoteLabel.text = NSLS(@"kDesc:");
 

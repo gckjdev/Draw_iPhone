@@ -48,22 +48,27 @@ typedef void (^DialogSelectionBlock)(void);
 @property (retain, nonatomic) IBOutlet UIImageView *frontBackgroundImageView;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
+
 - (IBAction)clickMask:(id)sender;
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate;
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate 
                                   theme:(CommonDialogTheme)theme;
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
                                   style:(CommonDialogStyle)aStyle
                                delegate:(id<CommonDialogDelegate>)aDelegate
                            clickOkBlock:(DialogSelectionBlock)block1
                        clickCancelBlock:(DialogSelectionBlock)block2;
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
                                   style:(CommonDialogStyle)aStyle
@@ -71,6 +76,8 @@ typedef void (^DialogSelectionBlock)(void);
                                   theme:(CommonDialogTheme)theme
                            clickOkBlock:(DialogSelectionBlock)block1
                        clickCancelBlock:(DialogSelectionBlock)block2;
+
+
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
 - (void)initButtonsWithTheme:(CommonDialogTheme)theme;

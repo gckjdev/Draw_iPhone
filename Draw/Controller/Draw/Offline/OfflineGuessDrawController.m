@@ -32,7 +32,6 @@
 #import "CommonMessageCenter.h"
 #import "Draw.h"
 #import "AccountManager.h"
-#import "CoinShopController.h"
 #import "ShowFeedController.h"
 #import "DrawUserInfoView.h"
 #import "FeedService.h"

@@ -8,7 +8,7 @@
 
 #import "SuperHomeController.h"
 #import "HomeMenuView.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 #import "StatisticManager.h"
 #import "UserManager.h"
 #import "RegisterUserController.h"
@@ -202,7 +202,7 @@
         return;
     }
 
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    ChargeController* controller = [[[ChargeController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
     
 }
