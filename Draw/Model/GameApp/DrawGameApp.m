@@ -322,4 +322,9 @@
     return @"cannon.mp3";
 }
 
+- (PBGameCurrency)wallRewardCoinType
+{
+    return PBGameCurrencyIngot;
+}
+
 @end

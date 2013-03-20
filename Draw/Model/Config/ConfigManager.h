@@ -216,4 +216,9 @@ typedef enum{
 
 + (NSString *)currentDrawBgVersion;
 
++ (BOOL)isEnableLimeiWall;
++ (BOOL)isEnableWanpuWall;
++ (BOOL)isEnableAderWall;
++ (BOOL)isEnableTapjoyWall;
+
 @end

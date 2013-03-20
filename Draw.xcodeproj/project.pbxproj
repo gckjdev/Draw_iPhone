@@ -5279,6 +5279,10 @@
 		CAADF62616F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62716F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
+		CAADF63B16F969330097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */; };
+		CAADF63C16F969330097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */; };
+		CAADF63D16F969330097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */; };
+		CAADF63E16F969330097CFA1 /* WanpuAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -10009,6 +10013,8 @@
 		CAADF62316F444D10097CFA1 /* GameAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAdWallService.h; sourceTree = "<group>"; };
 		CAADF62B16F55E340097CFA1 /* BlockArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockArray.h; sourceTree = "<group>"; };
 		CAADF62C16F55E340097CFA1 /* BlockArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockArray.m; sourceTree = "<group>"; };
+		CAADF63916F969330097CFA1 /* WanpuAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanpuAdWallService.h; sourceTree = "<group>"; };
+		CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WanpuAdWallService.m; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -16552,6 +16558,8 @@
 		CAADF61316F444C20097CFA1 /* Wanpu */ = {
 			isa = PBXGroup;
 			children = (
+				CAADF63916F969330097CFA1 /* WanpuAdWallService.h */,
+				CAADF63A16F969330097CFA1 /* WanpuAdWallService.m */,
 			);
 			path = Wanpu;
 			sourceTree = "<group>";
@@ -22841,6 +22849,7 @@
 				C25078A016F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B616F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BC16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
+				CAADF63D16F969330097CFA1 /* WanpuAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23593,6 +23602,7 @@
 				C25078A116F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B716F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BD16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
+				CAADF63E16F969330097CFA1 /* WanpuAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24354,6 +24364,7 @@
 				C250789E16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BA16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
+				CAADF63B16F969330097CFA1 /* WanpuAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25114,6 +25125,7 @@
 				C250789F16F71BE6009B7ED2 /* UserDetailSNSInfoCell.m in Sources */,
 				C25078B516F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
 				C25078BB16F71ECA009B7ED2 /* SelfUserDetail.m in Sources */,
+				CAADF63C16F969330097CFA1 /* WanpuAdWallService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

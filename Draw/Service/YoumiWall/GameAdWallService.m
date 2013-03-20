@@ -9,54 +9,110 @@
 #import "GameAdWallService.h"
 #import "SynthesizeSingleton.h"
 #import "LimeiAdWallService.h"
+#import "WanpuAdWallService.h"
 #import "UserManager.h"
+#import "ConfigManager.h"
+#import "AccountService.h"
+#import "CommonMessageCenter.h"
 
 @implementation GameAdWallService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
 
+
 - (id)init
 {
     self = [super init];
     
-    
-    NSString* limeiAdId = [GameApp lmwallId];
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    self.limeiWallService = [[[LimeiAdWallService alloc] initWithUserId:userId adUnitId:limeiAdId] autorelease];
+    if ([ConfigManager isEnableLimeiWall]){
+        [self createLimeiWall];
+    }
+
+    if ([ConfigManager isEnableWanpuWall]){
+        [self createWanpuWall];
+    }    
     
     return self;
 }
 
-/*
-小（iPhone） 300*300
-标准（iPad） 700*700
+- (void)createLimeiWall
+{
+    NSString* limeiAdId = [GameApp lmwallId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    self.limeiWallService = [[[LimeiAdWallService alloc] initWithUserId:userId adUnitId:limeiAdId] autorelease];
+}
 
-横版 700*(432)
-竖版 (432)*700
 
-中           1024*1024
- 
-iPad横       1024*768
-iPad竖       768*1024
- 
-iPhone3竖    320*480
-iPhone4竖    640*960
-iPhone5竖    640*1136
- 
-*/
+- (void)createWanpuWall
+{
+    NSString* adUnitId = [GameApp wanpuAdPublisherId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    self.wanpuWallService = [[[WanpuAdWallService alloc] initWithUserId:userId adUnitId:adUnitId] autorelease];
+}
 
-- (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type
+- (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type forceShowWall:(BOOL)forceShowWall
 {
     switch (type) {
+            
+        case PBRewardWallTypeWanpu:
+            if (forceShowWall && self.wanpuWallService == nil){
+                [self createWanpuWall];
+            }
+            
+            return self.wanpuWallService;
+            
+            break;
+            
         case PBRewardWallTypeLimei:
+        default:
+            
+            if (forceShowWall && self.limeiWallService == nil){
+                [self createLimeiWall];
+            }
+            
             return self.limeiWallService;
             
-        default:
-            break;
+
     }
     
     return nil;
+}
+
+- (void)queryWallScore
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if ([userId length] == 0)
+        return;
+    
+    AdWallCompleteHandler handler = ^(int resultCode, int score) {
+        
+        BOOL awardIngot = ([GameApp wallRewardCoinType] == PBGameCurrencyIngot);
+        NSString* message = nil;
+        if (awardIngot){
+            [[AccountService defaultService] chargeAccount:score source:LmAppReward];
+            message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
+        }
+        else{
+            [[AccountService defaultService] chargeIngot:score source:LmAppReward];
+            message = [NSString stringWithFormat:NSLS(@"kWallRewardIngotMessage"), score];
+        }
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:0];
+    };
+    
+    [self.limeiWallService queryScore:userId completeHandler:handler];
+    
+}
+
+- (void)showWall:(UIViewController*)superController wallType:(PBRewardWallType)wallType forceShowWall:(BOOL)forceShowWall
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if ([userId length] == 0)
+        return;
+    
+    [[self wallServiceByType:wallType forceShowWall:forceShowWall] show:superController userId:userId];
 }
 
 @end

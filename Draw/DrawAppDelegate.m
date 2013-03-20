@@ -69,6 +69,7 @@
 
 #import "BBSService.h"
 #import "DrawBgManager.h"
+#import "GameAdWallService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -406,9 +407,11 @@ NSString* GlobalGetBoardServerURL()
     
 //    [[BoardService defaultService] syncBoards];
     
-    if ([ConfigManager wallEnabled]){
-        [[LmWallService defaultService] queryScore];            
-    }
+//    if ([ConfigManager wallEnabled]){
+//        [[LmWallService defaultService] queryScore];            
+//    }
+    
+    [[GameAdWallService defaultService] queryWallScore];
     
     // Init Account Service and Sync Balance and Item
     [[AccountService defaultService] syncAccount:nil];

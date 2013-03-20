@@ -339,4 +339,9 @@
     return @"dice.m4a";
 }
 
+- (PBGameCurrency)wallRewardCoinType
+{
+    return PBGameCurrencyCoin;
+}
+
 @end
