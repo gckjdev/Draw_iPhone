@@ -9,6 +9,7 @@
 #import "UserDetailCell.h"
 #import "GameBasic.pb.h"
 #import "CommonRoundAvatarView.h"
+#import "ShareImageManager.h"
 
 @implementation UserDetailCell
 
@@ -28,6 +29,10 @@
     [self.locationLabel setText:pbUser.location];
     [self.birthLabel setText:pbUser.birthday];
     [self.zodiacLabel setText:pbUser.zodiac];
+
+    [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
+    
+    
 }
 
 + (float)getCellHeight
