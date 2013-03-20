@@ -212,16 +212,16 @@
 }
 
 #pragma mark - cell delegate
-- (void)didClickUserAvatar:(PBBBSUser *)user
-{
-    //TODO show user info
-    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
-}
+//- (void)didClickUserAvatar:(PBBBSUser *)user
+//{
+//    //TODO show user info
+//    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+//
+//    [CommonUserInfoView showPBBBSUser:user
+//                         inController:self
+//                           needUpdate:YES
+//                              canChat:YES];
+//}
 
 - (void)didClickImageWithURL:(NSURL *)url
 {

@@ -218,7 +218,7 @@
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
-        osManager = [[OffscreenManager showViewOffscreenManager] retain];;
+        osManager = [[OffscreenManager showViewOffscreenManagerWithRect:self.bounds] retain];;
     }
     return self;
 }
@@ -242,7 +242,7 @@
                 drawActionList:(NSArray *)actionList
                       delegate:(id<ShowDrawViewDelegate>)delegate
 {
-    ShowDrawView *showView = [ShowDrawView showView];
+    ShowDrawView *showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
     if ([actionList isKindOfClass:[NSMutableArray class]]) {
         showView.drawActionList = (NSMutableArray *)actionList;
     }else{

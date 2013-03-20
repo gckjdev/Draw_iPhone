@@ -20,10 +20,10 @@
 
 //draw view: the level should be >= 4
 //show view: level must be 2 step must be 1
-- (id)initWithLevelNumber:(NSUInteger)level maxUndoStep:(NSUInteger)step;
+- (id)initWithLevelNumber:(NSUInteger)level maxUndoStep:(NSUInteger)step rect:(CGRect)rect;
 
-+ (id)drawViewOffscreenManager; //default OffscreenManager
-+ (id)showViewOffscreenManager; //default OffscreenManager
++ (id)drawViewOffscreenManagerWithRect:(CGRect)rect; //default OffscreenManager
++ (id)showViewOffscreenManagerWithRect:(CGRect)rect; //default OffscreenManager
 
 
 //add draw action and draw it in the last layer.

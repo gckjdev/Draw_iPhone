@@ -411,27 +411,27 @@
     }
 }
 
-- (void)didClickUserAvatar:(PBBBSUser *)user
-{
-    //TODO show user info
-    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
-    [CommonUserInfoView showPBBBSUser:user
-                         inController:self
-                           needUpdate:YES
-                              canChat:YES];
-}
+//- (void)didClickUserAvatar:(PBBBSUser *)user
+//{
+//    //TODO show user info
+//    PPDebug(@"<didClickUserAvatar>, userId = %@",user.userId);
+//    [CommonUserInfoView showPBBBSUser:user
+//                         inController:self
+//                           needUpdate:YES
+//                              canChat:YES];
+//}
 
-- (void)didClickImageWithURL:(NSURL *)url
-{
-    self.tempURL = url;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
+//- (void)didClickImageWithURL:(NSURL *)url
+//{
+//    self.tempURL = url;
+//    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//    // Modal
+//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+//    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentModalViewController:nc animated:YES];
+//    [browser release];
+//    [nc release];
+//}
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
 {
