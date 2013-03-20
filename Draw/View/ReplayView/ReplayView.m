@@ -23,13 +23,13 @@
 #import "DrawHolderView.h"
 
 
-#define PLAYER_LOADER_MAX_X (ISIPAD ? 648 : 269)
-#define PLAYER_LOADER_MIN_X (ISIPAD ? 64 : 27)
+#define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 269)
+#define PLAYER_LOADER_MIN_X (ISIPAD ? 83 : 27)
 
 #define SPEED_LOADER_MIN_Y (ISIPAD ? 30 : 14)
 #define SPEED_LOADER_MAX_Y (ISIPAD ? 160 : 79)
 
-#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(64, 15, 648, 60) :CGRectMake(27, 5, 260, 25))
+#define PLAYER_PROGRESSBAR_FRAME (ISIPAD ? CGRectMake(83, 15, 638, 60) :CGRectMake(27, 5, 260, 25))
 
 
 @interface ReplayView()

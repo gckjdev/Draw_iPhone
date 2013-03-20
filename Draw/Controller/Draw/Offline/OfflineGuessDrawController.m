@@ -45,9 +45,8 @@
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
+#import "DrawHolderView.h"
 
-
-#define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
 
@@ -520,7 +519,7 @@
         
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-//        self.showView.speed = PlaySpeedTypeNormal;
+        [self.showView resetFrameSize:_draw.canvasSize];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
@@ -831,13 +830,8 @@
 - (void)initShowView
 {
     showView = [[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]];
-    UIView *paper = [self.view viewWithTag:PAPER_VIEW_TAG];
-    paper.hidden = NO;
-    CGRect frame = showView.frame;
-    frame.origin = CGPointZero;
-    showView.frame = frame;
-    paper.userInteractionEnabled = YES;
-    [paper addSubview:showView];
+    DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
+    [self.view addSubview:holder];
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
