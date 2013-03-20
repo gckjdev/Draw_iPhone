@@ -31,6 +31,7 @@
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
 #import "UserGameItemService.h"
+#import "CommonMessageCenter.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -264,7 +265,9 @@ static AccountService* _defaultAccountService;
     for (TransactionReceipt* receipt in retryList){
         NSString* receiptString = [NSString stringWithFormat:@"%@",receipt.transactionReceipt];
         dispatch_async(queue, ^{
-            TransactionVerifyResult result = [StoreKitUtils verifyReceipt:receiptString productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
+            TransactionVerifyResult result = [StoreKitUtils verifyReceipt:receipt.transactionId
+                                                       transactionReceipt:receiptString
+                                                          productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (result == VERIFY_UNKNOWN){
@@ -296,13 +299,9 @@ static AccountService* _defaultAccountService;
     dispatch_async(workingQueue, ^{
         
         TransactionVerifyResult result = VERIFY_UNKNOWN;
-        if ([transactionId hasPrefix:@"com.urus.iap."]){
-            result = VERIFY_FAKE_IAP;
-        }
-        else{
-            result = [StoreKitUtils verifyReceipt:transactionRecepit
-                                  productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
-        }
+        result = [StoreKitUtils verifyReceipt:transactionId
+                           transactionReceipt:transactionRecepit
+                              productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result == VERIFY_UNKNOWN){
@@ -343,6 +342,13 @@ static AccountService* _defaultAccountService;
     [[AccountManager defaultManager] increaseBalance:amount sourceType:source];
     
     dispatch_async(workingQueue, ^{
+        
+        if ([self checkIAPReceiptBeforeCharge:transactionId
+                           transactionRecepit:transactionRecepit
+                                       source:source] == NO){
+            return;
+        }
+        
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest chargeAccount:SERVER_URL
                                             userId:userId
@@ -370,11 +376,11 @@ static AccountService* _defaultAccountService;
                 }
             }
             
-            if (source == PurchaseType){
-                [self verifyReceiptWithAmount:amount
-                                transactionId:transactionId
-                           transactionRecepit:transactionRecepit];
-            }
+//            if (source == PurchaseType){
+//                [self verifyReceiptWithAmount:amount
+//                                transactionId:transactionId
+//                           transactionRecepit:transactionRecepit];
+//            }
         });
     });
 }
@@ -389,6 +395,13 @@ static AccountService* _defaultAccountService;
     // update balance locally
     
     dispatch_async(workingQueue, ^{
+        
+        if ([self checkIAPReceiptBeforeCharge:transactionId
+                           transactionRecepit:transactionRecepit
+                                       source:source] == NO){
+            return;
+        }
+        
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest chargeAccount:SERVER_URL
                                             userId:userId
@@ -912,6 +925,37 @@ static AccountService* _defaultAccountService;
              byUserId:userId];
 }
 
+- (BOOL)checkIAPReceiptBeforeCharge:(NSString*)transactionId
+                 transactionRecepit:(NSString*)transactionRecepit
+                             source:(BalanceSourceType)source
+{
+    if (source == PurchaseType){
+        TransactionVerifyResult result = VERIFY_UNKNOWN;
+        result = [StoreKitUtils verifyReceipt:transactionId
+                           transactionReceipt:transactionRecepit
+                              productIdPrefix:DRAW_IAP_PRODUCT_ID_PREFIX];
+        
+        if (result == VERIFY_FAKE_IAP){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDetectFakeIAP") delayTime:0];
+            });
+            return NO;
+        }
+        else if (result != VERIFY_OK){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kVerifyIAPFail") delayTime:0];
+            });
+            return NO;
+        }
+        
+        return YES;
+    }
+    else{
+        return YES;
+    }
+
+}
+
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source
       transactionId:(NSString*)transactionId
@@ -920,8 +964,14 @@ static AccountService* _defaultAccountService;
            byUserId:(NSString*)byUserId
 {
 
+
     
     dispatch_async(workingQueue, ^{
+        
+        if ([self checkIAPReceiptBeforeCharge:transactionId transactionRecepit:transactionRecepit source:source] == NO){
+            return;
+        }
+        
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest chargeIngot:SERVER_URL
                                             userId:toUserId
@@ -944,12 +994,6 @@ static AccountService* _defaultAccountService;
                 }
             }
             
-            // TODO move verification earlier
-            if (source == PurchaseType){
-                [self verifyReceiptWithAmount:amount
-                                transactionId:transactionId
-                           transactionRecepit:transactionRecepit];
-            }
         });
     });
     

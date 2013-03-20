@@ -14,6 +14,7 @@
 #import "Config.pb.h"
 #import "LmWallService.h"
 #import "BBSBoardController.h"
+#import "GameAdWallService.h"
 
 #define SECTION_COUNT 2
 
@@ -136,9 +137,13 @@ enum {
         [UIUtils openURL:appReward.app.downloadUrl];
     } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
-        if (rewardWall.type == 0) {
-            [[LmWallService defaultService] show:self];
-        }
+
+        [[GameAdWallService defaultService] showWall:self wallType:rewardWall.type forceShowWall:YES];
+        
+//        if (rewardWall.type == 0) {
+//            [[LmWallService defaultService] show:self];
+//            
+//        }
     }
 }
 
