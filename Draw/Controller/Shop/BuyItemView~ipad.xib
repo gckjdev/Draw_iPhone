@@ -472,6 +472,25 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">BuyItemView</string>
 					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickCountButton:">id</string>
+						<string key="clickDecreaseButton:">id</string>
+						<string key="clickIncreaseButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickCountButton:">
+							<string key="name">clickCountButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickDecreaseButton:">
+							<string key="name">clickDecreaseButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickIncreaseButton:">
+							<string key="name">clickIncreaseButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="buyInfoView">UIView</string>
 						<string key="countButton">UIButton</string>
