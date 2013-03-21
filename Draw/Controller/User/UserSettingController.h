@@ -24,6 +24,10 @@
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
     NSInteger rowOfNickName;
+    NSInteger rowOfBirthday;
+    NSInteger rowOfBloodGropu;
+    NSInteger rowOfLocation;
+    NSInteger rowOfZodiac;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;
