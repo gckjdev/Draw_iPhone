@@ -27,6 +27,8 @@
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
 #import "ReplayView.h"
+#import "CanvasRect.h"
+
 @interface ChatDetailController ()
 {
     MessageStat *_messageStat;
@@ -488,6 +490,7 @@
     [self constructMessage:message];
     [message setMessageType:MessageTypeDraw];
     [message setDrawActionList:drawActionList];
+    [message setCanvasSize:[CanvasRect defaultRect].size];
     [[ChatService defaultService] sendMessage:message delegate:self];    
     [self.messageList addObject:message];
     [self.dataTableView reloadData];

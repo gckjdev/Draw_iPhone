@@ -51,6 +51,9 @@ typedef enum {
 - (BOOL)isSendMessage;
 - (BOOL)isReceiveMessage;
 - (BOOL)isMessageSentOrReceived;
+- (PBMessage *)toPBMessage;
+- (void)updatePBMessageBuilder:(PBMessage_Builder *)builder;
+
 @property (nonatomic, retain) NSString * messageId;
 @property (nonatomic, retain) NSDate * createDate;
 @property (nonatomic, retain) NSString * friendId;
@@ -59,6 +62,8 @@ typedef enum {
 @property (nonatomic, assign) MessageStatus status; //read or unread //use in the future
 @property (nonatomic, assign) MessageType messageType; //create message by the type
 @property (nonatomic, assign) SourceType sourceType; //send receive or system message
+
+
 
 
 @end
@@ -82,6 +87,7 @@ typedef enum {
 @property (nonatomic, retain) UIImage *thumbImage;
 @property (nonatomic, retain) NSString *thumbFilePath;
 @property (nonatomic, assign) NSInteger drawDataVersion;
+@property (nonatomic, assign) CGSize canvasSize;
 @end
 
 

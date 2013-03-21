@@ -29,6 +29,8 @@
 #import "MyFriend.h"
 #import "CommonUserInfoView.h"
 #import "StatisticManager.h"
+#import "ViewUserDetail.h"
+#import "UserDetailViewController.h"
 
 
 @interface FriendController ()
@@ -355,7 +357,14 @@ typedef enum{
 
 - (void)showUserInfo:(MyFriend *)friend
 {
-    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+//    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+    //TODO show user info
+    
+    UserDetailViewController* uc = [[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:friend.friendUserId
+                                                                                                                          avatar:friend.avatar
+                                                                                                                        nickName:friend.nickName]];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

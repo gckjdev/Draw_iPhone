@@ -15,4 +15,7 @@
 - (PBGameUser*)queryUser;
 - (BOOL)canEdit;
 - (BOOL)needUpdate;
+
+ @optional
+- (void)setPbGameUser:(PBGameUser*)pbUser;
 @end

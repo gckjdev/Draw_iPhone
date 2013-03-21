@@ -488,7 +488,11 @@
     return nil;
 }
 
-
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeInt32:self.type forKey:@"type"];
+}
 
 @end
 

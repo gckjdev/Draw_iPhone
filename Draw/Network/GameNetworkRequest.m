@@ -2644,7 +2644,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
-        str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PB];
+        str = [str stringByAddQueryParameter:PARA_FORMAT intValue:FORMAT_PB];
         return str;
     };
     
