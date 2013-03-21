@@ -314,12 +314,6 @@ static AccountService* _defaultAccountService;
             }
             else if (result == VERIFY_OK){
                 PPDebug(@"<verifyReceiptWithAmount> OK");
-
-                // for test
-//                [[TransactionReceiptManager defaultManager] createReceipt:transactionId 
-//                                                                productId:nil 
-//                                                                   amount:amount 
-//                                                       transactionReceipt:transactionRecepit];
             }
             else{
                 PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                      

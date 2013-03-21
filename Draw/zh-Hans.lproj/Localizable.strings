@@ -960,6 +960,7 @@
 "kHomeMenuTypeDrawShop" = "商店";
 
 "kCharge" = "充值";
+"kChargeTitle" = "充值";
 "kFreeCoin" = "免费金币";
 
 "kHomeMenuTypeZJHHelp" = "帮助";

@@ -938,6 +938,8 @@
 "kHomeMenuTypeDrawShop" = "Shop";
 
 "kCharge" = "Buy";
+"kChargeTitle" = "Charge";
+
 "kFreeCoin" = "Get Free";
 
 "kHomeMenuTypeZJHHelp" = "Help";
