@@ -610,9 +610,9 @@
 {
     // version 0 : old
     // version 1 : support alpha
-    // version 2 : support pens, new data compress
-    
-    return 2;
+    // version 2 : support pens, new data compress //never release
+    // version 3 : support shape, draw bg, scale, new  data compress
+    return 3;
 }
 
 
