@@ -35,7 +35,7 @@ typedef enum {
 
 //#define BACK_GROUND_WIDTH 5000
 
-@interface DrawAction : NSObject {
+@interface DrawAction : NSObject<NSCoding> {
 //    Paint *_paint;
 }
 

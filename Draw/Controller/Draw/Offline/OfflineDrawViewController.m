@@ -59,6 +59,7 @@
 #import "DrawHolderView.h"
 #import "GameItemManager.h"
 #import "CanvasRect.h"
+#import "BalanceNotEnoughAlertView.h"
 
 @interface OfflineDrawViewController()
 {
@@ -294,6 +295,7 @@
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
     drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -602,14 +604,14 @@
 #define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
 #define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
 
-- (void)drawView:(DrawView *)drawView didFinishDrawAction:(DrawAction *)action
+- (void)drawView:(DrawView *)view didFinishDrawAction:(DrawAction *)action
 {
     // add back auto save for future recovery
     if (![self supportRecovery]){
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:drawView.drawActionList];
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
 
     return;
 }
@@ -1180,6 +1182,9 @@
         [drawView.lineColor setAlpha:_alpha];
     }else{
         [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                [BalanceNotEnoughAlertView showInView:self];
+            }
             
         }];
     }
@@ -1223,7 +1228,11 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
 {
     [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-        [self buyItemSuccess:itemId result:resultCode];
+        if (resultCode == ERROR_SUCCESS) {
+            [self buyItemSuccess:itemId result:resultCode];
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+            [BalanceNotEnoughAlertView showInView:self];
+        }
     }];
 }
 

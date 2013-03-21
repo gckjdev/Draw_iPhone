@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "DrawAction.h"
 #import "GameMessage.pb.h"
+#import "CanvasRect.h"
 
 #define KEY_MESSAGEID @"KEY_MESSAGEID"
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
@@ -52,6 +53,7 @@
     return message;
 }
 
+
 + (id)messageWithPBMessage:(PBMessage *)pbMessage
 {
     return [PPMessage oldMessageWithPBMessage:pbMessage];
@@ -79,7 +81,6 @@
             return nil;
     }
 }
-
 
 - (void)dealloc
 {
@@ -113,31 +114,60 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (void)updatePBMessageBuilder:(PBMessage_Builder *)builder
 {
-    [aCoder encodeObject:self.messageId forKey:KEY_MESSAGEID];
-    [aCoder encodeObject:self.createDate forKey:KEY_CREATE_DATE];
-    [aCoder encodeObject:self.friendId forKey:KEY_FRIEND_ID];
-    [aCoder encodeInteger:self.status forKey:KEY_STATUS];
-    [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
-    [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
-    [aCoder encodeObject:self.text forKey:KEY_TEXT];
+    [builder setMessageId:self.messageId];
+    [builder setCreateDate:[self.createDate timeIntervalSince1970]];
+    [builder setStatus:self.status];
+    [builder setType:self.messageType];
+    if (self.text) {
+        [builder setText:self.text];
+    }
+    NSString *from = nil;
+    NSString *to = nil;
+    
+    if (self.sourceType == SourceTypeSend) {
+        from = [[UserManager defaultManager] userId];
+        to = self.friendId;
+    }else{
+        from = self.friendId;
+        to = [[UserManager defaultManager] userId];
+    }
+    if(from) [builder setFrom:from];
+    if(to) [builder setTo:to];
+}
+- (PBMessage *)toPBMessage
+{
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [self updatePBMessageBuilder:builder];
+    return [builder build];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    if (self) {
-        self.messageId = [aDecoder decodeObjectForKey:KEY_MESSAGEID];
-        self.createDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
-        self.friendId = [aDecoder decodeObjectForKey:KEY_FRIEND_ID];
-        self.status = [aDecoder decodeIntegerForKey:KEY_STATUS];
-        self.messageType = [aDecoder decodeIntegerForKey:KEY_MESSAGE_TYPE];
-        self.sourceType = [aDecoder decodeIntegerForKey:KEY_SOURCE_TYPE];
-        self.text = [aDecoder decodeObjectForKey:KEY_TEXT];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [aCoder encodeObject:self.messageId forKey:KEY_MESSAGEID];
+//    [aCoder encodeObject:self.createDate forKey:KEY_CREATE_DATE];
+//    [aCoder encodeObject:self.friendId forKey:KEY_FRIEND_ID];
+//    [aCoder encodeInteger:self.status forKey:KEY_STATUS];
+//    [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
+//    [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
+//    [aCoder encodeObject:self.text forKey:KEY_TEXT];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super init];
+//    if (self) {
+//        self.messageId = [aDecoder decodeObjectForKey:KEY_MESSAGEID];
+//        self.createDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
+//        self.friendId = [aDecoder decodeObjectForKey:KEY_FRIEND_ID];
+//        self.status = [aDecoder decodeIntegerForKey:KEY_STATUS];
+//        self.messageType = [aDecoder decodeIntegerForKey:KEY_MESSAGE_TYPE];
+//        self.sourceType = [aDecoder decodeIntegerForKey:KEY_SOURCE_TYPE];
+//        self.text = [aDecoder decodeObjectForKey:KEY_TEXT];
+//    }
+//    return self;
+//}
 
 - (BOOL)isSendMessage
 {
@@ -174,20 +204,25 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (PBMessage *)toPBMessage
 {
-    [super encodeWithCoder:aCoder];
-
+    return [super toPBMessage];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//
+//    }
+//    return self;
+//}
 
 
 @end
@@ -218,29 +253,47 @@
         for (PBDrawAction *action in pbAList) {
             DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
             [_drawActionList addObject:da];
-            [da release];
         }
         self.drawDataVersion = pbMessage.drawDataVersion;
+        if ([pbMessage hasCanvasSize]) {
+            self.canvasSize = CGSizeFromPBSize(pbMessage.canvasSize);
+        }else{
+            self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+        }
     }
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
+- (PBMessage *)toPBMessage
 {
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:self.drawActionList forKey:KEY_ACTION_LIST];
-    [aCoder encodeObject:self.thumbFilePath forKey:KEY_THUMB_PATH];
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [super updatePBMessageBuilder:builder];
+    [builder setCanvasSize:CGSizeToPBSize(self.canvasSize)];
+    [builder setDrawDataVersion:self.drawDataVersion];
+    if ([self.drawActionList count] != 0) {
+        for (DrawAction *action in self.drawActionList) {
+            [builder addDrawData:[action toPBDrawAction]];
+        }
+    }
+    return [builder build];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.drawActionList = [aDecoder decodeObjectForKey:KEY_ACTION_LIST];
-        self.thumbFilePath = [aDecoder decodeObjectForKey:KEY_THUMB_PATH];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//    [aCoder encodeObject:self.drawActionList forKey:KEY_ACTION_LIST];
+//    [aCoder encodeObject:self.thumbFilePath forKey:KEY_THUMB_PATH];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        self.drawActionList = [aDecoder decodeObjectForKey:KEY_ACTION_LIST];
+//        self.thumbFilePath = [aDecoder decodeObjectForKey:KEY_THUMB_PATH];
+//    }
+//    return self;
+//}
 
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum  {
-    CheckInType = 1, // 
+    CheckInType = 1,
     PurchaseType = 2,
     BuyItemType = 3,
     DrawRewardType = 4,
@@ -47,7 +47,4 @@ typedef enum  {
 }
 @property(nonatomic, assign)NSNumber *balance;
 
-//+ (UserAccount *)defaultAccount;
-//+ (UserAccount *)accountWithBalance:(NSInteger)balance;
-//- (NSInteger)intBalanceValue;
 @end

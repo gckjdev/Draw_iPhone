@@ -110,6 +110,10 @@
 "kDedutCoinQuitGameAlertMessage" = "遊戲進行中，如果這時退出遊戲，系統將會扣除%d個金幣哦。";
 "kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金幣，你的賬戶餘額不足，現在不能退出遊戲哦！";
 
+"kBalanceNotEnoughTitle" = "余額不足";
+"kBalanceNotEnoughDesc" = "不好意思，你的余額不夠了，你可以通過以下途徑來增加您的余額。";
+"kGetFreeIngot" = "獲取免費元寶";
+
 
 "kContinue" = "繼續 [%d]";
 "kExit" = "退出遊戲";
@@ -1376,11 +1380,17 @@
 "kNoDiscount" = "無折扣";
 
 "kMyBalance" = "我的餘額:";
-"kSaveMoney" = "省";
-"kProps" = "道具";
+"kSaveMoney" = "節省";
+"kGift:" = "禮物:";
 "kTool" = "工具";
-"kHandsel" = "贈與";
-"kCount" = "數量";
+"kTo:" = "贈與:";
+"kCNT:" = "數量:";
+"kCost:" = "花費:";
+
+"kNoSaleItemNormal" = "暫無可銷售的道具";
+"kNoSaleItemTool" = "暫無可銷售的工具";
+"kNoSaleItemPromoting" = "暫無促銷的工具或道具";
+
 "kAlreadyBought" = "已購";
 "kBuyColorFailed"= "購買顏色失敗";
 

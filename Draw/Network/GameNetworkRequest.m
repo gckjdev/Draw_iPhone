@@ -1430,7 +1430,7 @@
             str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];
         }
         
-        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:1];       // TODO, change to 0                
+        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:0];       // TODO, change to 0
         return str;
     };
     

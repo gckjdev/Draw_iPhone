@@ -106,8 +106,6 @@
     }
     CGSize titleSize = [self calculateHeightOfTextFromWidth:self.titleLabel.text font:FONT_OF_TITLE width:self.titleLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
     CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-//    [self.messageLabel setBackgroundColor:[UIColor whiteColor]];
-//    [self.titleLabel setBackgroundColor:[UIColor whiteColor]];
     
     [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
     [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
@@ -139,8 +137,6 @@
             [self.oKButton.titleLabel setText:NSLS(@"kOK")];
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-//            [self.oKButton setRoyButtonWithColor:[UIColor colorWithRed:244.0/255.0 green:93.0/255.0 blue:93.0/255.0 alpha:0.95]];
-//            [self.backButton setRoyButtonWithColor:[UIColor colorWithRed:236.0/255.0 green:247.0/255.0 blue:63.0/255.0 alpha:0.95]];
         } break;
         case CommonDialogThemeDraw:
             [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];

@@ -82,7 +82,7 @@
     transform.a = transform.d = scale;
     self.transform = transform;
     
-    PPDebug(@"<setScale>scale = %f, transform = %@", scale, NSStringFromCGAffineTransform(transform));
+    PPDebug(@"<setScale>scale = %f, transform = %@, frame = %@", scale, NSStringFromCGAffineTransform(transform), NSStringFromCGRect(self.frame));
 }
 
 - (void)resetTransform

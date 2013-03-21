@@ -6,7 +6,7 @@
 //
 //
 
-#import "CommonTabController.h"
+#import "BBSController.h"
 #import "BBSService.h"
 #import "BBSPostCell.h"
 #import "CreatePostController.h"
@@ -16,7 +16,7 @@
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : CommonTabController<BBSServiceDelegate, BBSPostCellDelegate, CreatePostControllerDelegate, MWPhotoBrowserDelegate>
+@interface BBSPostListController : BBSController<BBSServiceDelegate, BBSPostCellDelegate, MWPhotoBrowserDelegate, CreatePostControllerDelegate>
 {
     
 }

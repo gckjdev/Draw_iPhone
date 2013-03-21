@@ -14,7 +14,7 @@
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 #import "LmWallService.h"
 #import "CommonRoomListCell.h"
 #import "UserManager.h"
@@ -24,6 +24,7 @@
 #import "CommonDialog.h"
 #import "GameApp.h"
 #import "FXLabel.h"
+
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE    ([ConfigManager onlineRoomCountPerPage])
@@ -501,7 +502,7 @@
     if ([ConfigManager wallEnabled]) {
         [self showWall];
     }else {
-        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

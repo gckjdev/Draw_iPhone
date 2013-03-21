@@ -21,6 +21,8 @@
 #import "GameNetworkConstants.h"
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
+#import "BalanceNotEnoughAlertView.h"
+
 
 typedef enum{
     TabIDNormal = 100,
@@ -163,12 +165,6 @@ typedef enum{
 {
     switch (resultCode) {
         case ERROR_SUCCESS:
-            if ([toUserId isEqualToString:[[UserManager defaultManager] userId]]) {
-                [self popupHappyMessage:NSLS(@"kYouBuy") title:nil];
-                [self.dataTableView reloadData];
-            }else{
-                [self popupHappyMessage:@"kYouGive" title:nil];
-            }
             [self updateBalance];
             break;
             
@@ -177,12 +173,11 @@ typedef enum{
             break;
             
         case ERROR_BALANCE_NOT_ENOUGH:
-                           
-            [self popupHappyMessage:NSLS(@"kBalanceNotEnough") title:nil];
+            [BalanceNotEnoughAlertView showInView:self];
             break;
             
         case ERROR_BAD_PARAMETER:
-            [self popupHappyMessage:NSLS(@"kBadParaMeter") title:nil];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBadParaMeter") delayTime:1 isHappy:NO];
             break;
             
         default:
@@ -244,6 +239,28 @@ typedef enum{
     return tabTitles[index];
 
 }
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    TabID tabID = [self tabIDforIndex:index];
+    switch (tabID) {
+        case TabIDNormal:
+            return NSLS(@"kNoSaleItemNormal");
+            break;
+        case TabIDTool:
+            return NSLS(@"kNoSaleItemTool");
+            break;
+            
+        case TabIDPromotion:
+            return NSLS(@"kNoSaleItemPromoting");
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {    
     switch (tabID) {
