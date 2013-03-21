@@ -42,6 +42,8 @@
     [self.chatButton setHidden:![detail canChat]];
     [self.drawToButton setHidden:![detail canDraw]];
     
+    [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
+    
 }
 
 + (float)getCellHeight

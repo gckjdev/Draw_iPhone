@@ -349,6 +349,8 @@ FriendService* globalGetFriendService()
                              followCount:followCount
                               blackCount:blackCount
                               resultCode:resultCode];
+                [[UserManager defaultManager] setFollowCount:followCount];
+                [[UserManager defaultManager] setFanCount:fanCount];
             }
         });
     });

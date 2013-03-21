@@ -1031,5 +1031,14 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"item_detail_bg@2x.png" topCapHeight:120];
 }
 
+- (UIImage*)userDetailGenderImage:(BOOL)isMale
+{
+    if (isMale) {
+        return [UIImage imageNamed:@"user_detail_gender_male.png"];
+    } else {
+        return [UIImage imageNamed:@"user_detail_gender_female.png"];
+    }
+}
+
 @end
 

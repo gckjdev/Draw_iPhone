@@ -515,11 +515,10 @@
     [self updateTargetViews:_draw.word];
     [self updateCandidateViews:_draw.word lang:_draw.languageType];
 //    toolView.enabled = YES;
+    
     if ([_draw.drawActionList count] != 0) {
-        
         NSMutableArray *list =  [NSMutableArray arrayWithArray:_draw.drawActionList];            
         [self.showView setDrawActionList:list];
-        [self.showView resetFrameSize:_draw.canvasSize];
         [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(startPlay:) userInfo:nil repeats:NO];
     }
     
@@ -829,7 +828,11 @@
 
 - (void)initShowView
 {
-    showView = [[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    CGRect rect = [CanvasRect defaultRect];
+    if (self.feed.drawData) {
+        rect = [self.feed.drawData canvasRect];
+    }
+    showView = [[ShowDrawView alloc] initWithFrame:rect];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
     [self.view addSubview:holder];
 }

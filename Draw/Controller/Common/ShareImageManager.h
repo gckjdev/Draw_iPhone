@@ -235,5 +235,6 @@
 
 
 - (UIImage *)itemDetailBgImage;
+- (UIImage*)userDetailGenderImage:(BOOL)isMale;
 
 @end
