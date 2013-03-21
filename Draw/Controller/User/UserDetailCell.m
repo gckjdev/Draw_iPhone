@@ -34,6 +34,8 @@
 
     [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
     
+    self.basicDetailView.hidden = YES;
+    
     
 }
 
@@ -66,6 +68,13 @@
     [_locationLabel release];
     [_avatarView release];
     [_basicDetailView release];
+    [_genderImageView release];
+    [_backgroundImageView release];
     [super dealloc];
+}
+
+-(IBAction)switchBasicInfoAndAction:(id)sender
+{
+    [self.basicDetailView setHidden:!self.basicDetailView.hidden];
 }
 @end
