@@ -905,9 +905,6 @@ static AccountService* _defaultAccountService;
            toUserId:(NSString*)toUserId
            byUserId:(NSString*)byUserId
 {
-
-
-    
     dispatch_async(workingQueue, ^{
         
         if ([self checkIAPReceiptBeforeCharge:transactionId transactionRecepit:transactionRecepit source:source] == NO){
