@@ -129,7 +129,7 @@
 + (UIImage *)imageForType:(HomeMenuType)type
 {
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
-    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
+//    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     switch (type) {
             //draw main menu
         case HomeMenuTypeDrawDraw :{
