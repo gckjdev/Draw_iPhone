@@ -5322,6 +5322,10 @@
 		CAABB89416F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		CAABB89516F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		CAABB89616F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
+		CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
+		CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
+		CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
+		CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
 		CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
 		CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
@@ -10104,6 +10108,8 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAABB89116F99C41007DCC58 /* BBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSController.h; sourceTree = "<group>"; };
 		CAABB89216F99C41007DCC58 /* BBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSController.m; sourceTree = "<group>"; };
+		CAABB8A316FAF042007DCC58 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
+		CAABB8A416FAF043007DCC58 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
 		CAADF60D16F444C20097CFA1 /* CommonAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAdWallService.h; sourceTree = "<group>"; };
@@ -13463,6 +13469,8 @@
 				CA5328D716A3E1E000E9E96B /* Tool */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
+				CAABB8A316FAF042007DCC58 /* ToolHandler.h */,
+				CAABB8A416FAF043007DCC58 /* ToolHandler.m */,
 				CA22DCD5157CB009009C95CB /* Offline */,
 				CA22DCDE157CB00A009C95CB /* Online */,
 			);
@@ -23148,6 +23156,7 @@
 				CAADF65C16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89516F99C41007DCC58 /* BBSController.m in Sources */,
+				CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23906,6 +23915,7 @@
 				CAADF65D16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2E16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89616F99C41007DCC58 /* BBSController.m in Sources */,
+				CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24673,6 +24683,7 @@
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
 				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
+				CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25439,6 +25450,7 @@
 				CAADF65B16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89416F99C41007DCC58 /* BBSController.m in Sources */,
+				CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
