@@ -174,7 +174,7 @@ typedef enum{
             break;
             
         case ERROR_BALANCE_NOT_ENOUGH:
-            [BalanceNotEnoughAlertView showInView:self];
+            [BalanceNotEnoughAlertView showInController:self];
             break;
             
         case ERROR_BAD_PARAMETER:

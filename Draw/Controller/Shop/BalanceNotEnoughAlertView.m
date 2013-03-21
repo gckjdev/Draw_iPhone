@@ -31,7 +31,7 @@
     return view;
 }
 
-+ (void)showInView:(UIViewController *)controller
++ (void)showInController:(UIViewController *)controller
 {
     CommonDialog *view = [self createView:controller];
     [view showInView:controller.view];

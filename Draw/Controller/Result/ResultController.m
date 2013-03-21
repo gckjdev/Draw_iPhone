@@ -46,6 +46,7 @@
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
+#import "BalanceNotEnoughAlertView.h"
 
 #define CONTINUE_TIME 10
 
@@ -740,7 +741,11 @@
             [bself throwItemAnimation:toolView];
             [toolView decreaseNumber];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            if ([self isOffline]) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            }else{
+                [BalanceNotEnoughAlertView showInController:self];
+            }
         }
     }];
 }
@@ -828,7 +833,11 @@
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {
-        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        if ([self isOffline]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        }else{
+            [BalanceNotEnoughAlertView showInController:self];
+        }
     }
 }
 
