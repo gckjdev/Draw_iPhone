@@ -15,6 +15,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *discountNoteLabel;
 @property (retain, nonatomic) IBOutlet UILabel *priceNoteLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descNoteLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 
 
 + (id)createWithItem:(PBGameItem *)item;

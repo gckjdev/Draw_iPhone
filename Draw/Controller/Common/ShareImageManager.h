@@ -232,4 +232,8 @@
 - (UIImage *)dialogButtonBackgroundImage;
 - (UIImage *)bulletinAccessoryImage;
 - (UIImage*)freeIngotHeaderBg;
+
+
+- (UIImage *)itemDetailBgImage;
+
 @end

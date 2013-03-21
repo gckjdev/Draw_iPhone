@@ -148,6 +148,7 @@ typedef enum{
             }
             [bself updateBalance];
             [bself showUserGameItemServiceResult:resultCode item:[[GameItemManager defaultManager] itemWithItemId:itemId] count:count toUserId:toUserId];
+            [bself.dataTableView reloadData];
         } giveHandler:^(PBGameItem *item, int count) {
             PPDebug(@"you give %d %@", count, NSLS(item.name));
             bself.selectedItemId = item.itemId;
