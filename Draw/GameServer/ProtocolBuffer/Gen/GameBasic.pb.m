@@ -766,6 +766,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSMutableArray* mutableItemsList;
 @property (retain) NSString* deviceModel;
 @property (retain) NSString* deviceOs;
+@property (retain) NSString* bloodGroup;
+@property int32_t fanCount;
+@property int32_t followCount;
 @property (retain) NSString* signature;
 @end
 
@@ -971,6 +974,27 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasDeviceOs_ = !!value;
 }
 @synthesize deviceOs;
+- (BOOL) hasBloodGroup {
+  return !!hasBloodGroup_;
+}
+- (void) setHasBloodGroup:(BOOL) value {
+  hasBloodGroup_ = !!value;
+}
+@synthesize bloodGroup;
+- (BOOL) hasFanCount {
+  return !!hasFanCount_;
+}
+- (void) setHasFanCount:(BOOL) value {
+  hasFanCount_ = !!value;
+}
+@synthesize fanCount;
+- (BOOL) hasFollowCount {
+  return !!hasFollowCount_;
+}
+- (void) setHasFollowCount:(BOOL) value {
+  hasFollowCount_ = !!value;
+}
+@synthesize followCount;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -996,6 +1020,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.mutableItemsList = nil;
   self.deviceModel = nil;
   self.deviceOs = nil;
+  self.bloodGroup = nil;
   self.signature = nil;
   [super dealloc];
 }
@@ -1027,6 +1052,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.ingotBalance = 0;
     self.deviceModel = @"";
     self.deviceOs = @"";
+    self.bloodGroup = @"";
+    self.fanCount = 0;
+    self.followCount = 0;
     self.signature = @"";
   }
   return self;
@@ -1176,6 +1204,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceOs) {
     [output writeString:72 value:self.deviceOs];
   }
+  if (self.hasBloodGroup) {
+    [output writeString:81 value:self.bloodGroup];
+  }
+  if (self.hasFanCount) {
+    [output writeInt32:82 value:self.fanCount];
+  }
+  if (self.hasFollowCount) {
+    [output writeInt32:83 value:self.followCount];
+  }
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
   }
@@ -1274,6 +1311,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDeviceOs) {
     size += computeStringSize(72, self.deviceOs);
+  }
+  if (self.hasBloodGroup) {
+    size += computeStringSize(81, self.bloodGroup);
+  }
+  if (self.hasFanCount) {
+    size += computeInt32Size(82, self.fanCount);
+  }
+  if (self.hasFollowCount) {
+    size += computeInt32Size(83, self.followCount);
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
@@ -1449,6 +1495,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDeviceOs) {
     [self setDeviceOs:other.deviceOs];
   }
+  if (other.hasBloodGroup) {
+    [self setBloodGroup:other.bloodGroup];
+  }
+  if (other.hasFanCount) {
+    [self setFanCount:other.fanCount];
+  }
+  if (other.hasFollowCount) {
+    [self setFollowCount:other.followCount];
+  }
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
@@ -1593,6 +1648,18 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 578: {
         [self setDeviceOs:[input readString]];
+        break;
+      }
+      case 650: {
+        [self setBloodGroup:[input readString]];
+        break;
+      }
+      case 656: {
+        [self setFanCount:[input readInt32]];
+        break;
+      }
+      case 664: {
+        [self setFollowCount:[input readInt32]];
         break;
       }
       case 802: {
@@ -2103,6 +2170,54 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearDeviceOs {
   result.hasDeviceOs = NO;
   result.deviceOs = @"";
+  return self;
+}
+- (BOOL) hasBloodGroup {
+  return result.hasBloodGroup;
+}
+- (NSString*) bloodGroup {
+  return result.bloodGroup;
+}
+- (PBGameUser_Builder*) setBloodGroup:(NSString*) value {
+  result.hasBloodGroup = YES;
+  result.bloodGroup = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearBloodGroup {
+  result.hasBloodGroup = NO;
+  result.bloodGroup = @"";
+  return self;
+}
+- (BOOL) hasFanCount {
+  return result.hasFanCount;
+}
+- (int32_t) fanCount {
+  return result.fanCount;
+}
+- (PBGameUser_Builder*) setFanCount:(int32_t) value {
+  result.hasFanCount = YES;
+  result.fanCount = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearFanCount {
+  result.hasFanCount = NO;
+  result.fanCount = 0;
+  return self;
+}
+- (BOOL) hasFollowCount {
+  return result.hasFollowCount;
+}
+- (int32_t) followCount {
+  return result.followCount;
+}
+- (PBGameUser_Builder*) setFollowCount:(int32_t) value {
+  result.hasFollowCount = YES;
+  result.followCount = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearFollowCount {
+  result.hasFollowCount = NO;
+  result.followCount = 0;
   return self;
 }
 - (BOOL) hasSignature {
