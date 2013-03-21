@@ -74,7 +74,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
     
     [view updateHeight:detailView.frame.size.height];
-    [view.buyInfoView updateOriginX:(detailView.frame.size.height + GAP)];
+    [view.buyInfoView updateOriginY:(detailView.frame.size.height + GAP)];
     
     [view addSubview:detailView];
     
