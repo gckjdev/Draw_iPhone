@@ -65,6 +65,11 @@ typedef enum{
     [[GameItemService defaultService] syncData:^(BOOL success) {
         [bself reloadTableViewDataSource];
     }];
+    
+    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        [bself reloadTableViewDataSource];
+        [bself updateBalance];
+    }];
 }
 
 - (void)viewDidLoad
@@ -73,7 +78,6 @@ typedef enum{
 
     [super viewDidLoad];
     [self initTabButtons];
-    
     
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
@@ -261,6 +265,18 @@ typedef enum{
     
     return nil;
 }
+
+//#define TAB_BUTTON_TITLE_COLOR [UIColor colorWithRed:102/255.0 green:67/255.0 blue:25/255.0 alpha:1]
+//
+//- (UIColor *)tabButtonTitleColorForNormal:(NSInteger)index
+//{
+//    return TAB_BUTTON_TITLE_COLOR;
+//}
+//
+//- (UIColor *)tabButtonTitleColorForSelected:(NSInteger)index
+//{
+//    return TAB_BUTTON_TITLE_COLOR;
+//}
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {    

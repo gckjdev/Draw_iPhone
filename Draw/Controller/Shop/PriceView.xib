@@ -277,7 +277,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="coin@2x.png">{64, 64}</string>
-			<string key="gray_coin@2x.png">{55, 55}</string>
+			<string key="gray_coin@2x.png">{64, 64}</string>
 			<string key="gray_line@2x.png">{51, 2}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>

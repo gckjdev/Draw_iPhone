@@ -23,8 +23,9 @@
 @optional
 - (void)serviceDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index;
+- (UIColor *)tabButtonTitleColorForNormal:(NSInteger)index;
+- (UIColor *)tabButtonTitleColorForSelected:(NSInteger)index;
 
-//- (void)startToLoadDataForTabID:(NSInteger)tabID;
 @end
 
 typedef enum{
