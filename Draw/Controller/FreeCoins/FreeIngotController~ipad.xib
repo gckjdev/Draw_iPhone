@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -41,7 +41,7 @@
 					<object class="IBUIImageView" id="419208346">
 						<reference key="NSNextResponder" ref="878502605"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrameSize">{768, 1068}</string>
+						<string key="NSFrameSize">{768, 1047}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView" ref="924424919"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -54,7 +54,7 @@
 					<object class="IBUIImageView" id="924424919">
 						<reference key="NSNextResponder" ref="878502605"/>
 						<int key="NSvFlags">308</int>
-						<string key="NSFrameSize">{768, 100}</string>
+						<string key="NSFrameSize">{768, 98}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView" ref="74891877"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -135,7 +135,7 @@
 					<object class="IBUITableView" id="204781433">
 						<reference key="NSNextResponder" ref="878502605"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 99}, {768, 857}}</string>
+						<string key="NSFrame">{{0, 99}, {768, 843}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView" ref="95444335"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -153,8 +153,8 @@
 					</object>
 					<object class="IBUIImageView" id="308580054">
 						<reference key="NSNextResponder" ref="878502605"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 963}, {768, 61}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 943}, {768, 61}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView" ref="185143720"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -167,8 +167,8 @@
 					</object>
 					<object class="IBUILabel" id="185143720">
 						<reference key="NSNextResponder" ref="878502605"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 963}, {768, 61}}</string>
+						<int key="NSvFlags">269</int>
+						<string key="NSFrame">{{0, 943}, {768, 61}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView" ref="858424337"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -198,8 +198,8 @@
 					</object>
 					<object class="IBUIButton" id="858424337">
 						<reference key="NSNextResponder" ref="878502605"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{696, 964}, {60, 61}}</string>
+						<int key="NSvFlags">265</int>
+						<string key="NSFrame">{{696, 944}, {60, 61}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -221,7 +221,7 @@
 						<reference key="IBUIFont" ref="222068549"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{768, 1024}</string>
+				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="419208346"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -230,6 +230,9 @@
 					<object class="NSColorSpace" key="NSCustomColorSpace">
 						<int key="NSID">2</int>
 					</object>
+				</object>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">2</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>

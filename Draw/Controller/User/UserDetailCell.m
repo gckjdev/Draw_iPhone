@@ -9,6 +9,9 @@
 #import "UserDetailCell.h"
 #import "GameBasic.pb.h"
 #import "CommonRoundAvatarView.h"
+#import "ShareImageManager.h"
+#import "UserDetailProtocol.h"
+#import "UserSettingController.h"
 
 @implementation UserDetailCell
 
@@ -21,13 +24,24 @@
     return self;
 }
 
-- (void)setCellWithPBGameUser:(PBGameUser *)pbUser
+- (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
+    PBGameUser* pbUser = [detail queryUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",pbUser.level]];
     [self.nickNameLabel setText:pbUser.nickName];
     [self.locationLabel setText:pbUser.location];
     [self.birthLabel setText:pbUser.birthday];
     [self.zodiacLabel setText:pbUser.zodiac];
+
+    [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
+    
+    self.basicDetailView.hidden = YES;
+    
+    [self.editButton setHidden:![detail canEdit]];
+    [self.followButton setHidden:![detail canFollow]];
+    [self.chatButton setHidden:![detail canChat]];
+    [self.drawToButton setHidden:![detail canDraw]];
+    
 }
 
 + (float)getCellHeight
@@ -38,6 +52,11 @@
 + (NSString*)getCellIdentifier
 {
     return @"UserDetailCell";
+}
+
++ (id)createCell:(id)delegate
+{
+    return (UserDetailCell*)[super createCell:delegate];
 }
 
 /*
@@ -58,6 +77,65 @@
     [_bloodTypeLabel release];
     [_locationLabel release];
     [_avatarView release];
+    [_basicDetailView release];
+    [_genderImageView release];
+    [_backgroundImageView release];
+    [_fanCountLabel release];
+    [_followCountLabel release];
+    [_editButton release];
+    [_drawToButton release];
+    [_chatButton release];
+    [_followButton release];
+    [_fanCountButton release];
+    [_followCountButton release];
     [super dealloc];
 }
+
+-(IBAction)switchBasicInfoAndAction:(id)sender
+{
+    [self.basicDetailView setHidden:!self.basicDetailView.hidden];
+}
+
+- (IBAction)clickEdit:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickEdit)]) {
+        [_detailDelegate didClickEdit];
+    }
+}
+
+- (IBAction)clickFollow:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickFollowButton)]) {
+        [_detailDelegate didClickFollowButton];
+    }
+}
+
+- (IBAction)clickFollowCount:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickFollowCountButton)]) {
+        [_detailDelegate didClickFollowCountButton];
+    }
+}
+
+- (IBAction)clickFanCount:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickFanCountButton)]) {
+        [_detailDelegate didClickFanCountButton];
+    }
+}
+
+- (IBAction)clickChatButton:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickChatButton)]) {
+        [_detailDelegate didClickChatButton];
+    }
+}
+
+- (IBAction)clickDrawToButton:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickDrawToButton)]) {
+        [_detailDelegate didClickDrawToButton];
+    }
+}
+
 @end

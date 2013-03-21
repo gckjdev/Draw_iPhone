@@ -267,6 +267,16 @@ static UserManager* _defaultManager;
     return [_pbUser facetimeId];
 }
 
+- (NSString*)birthday
+{
+    return [_pbUser birthday];
+}
+
+- (NSInteger)zodiac
+{
+    return [_pbUser zodiac];
+}
+
 - (NSString*)facetimeIdFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -526,6 +536,25 @@ static UserManager* _defaultManager;
 //    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 //    [userDefaults setObject:facetimeId forKey:KEY_FACETIME_ID];    
 //    [userDefaults synchronize];
+}
+
+- (void)setBirthday:(NSString *)birthdayString
+{
+    if (birthdayString == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setBirthday:birthdayString];
+    self.pbUser = [builder build];
+
+}
+
+- (void)setZodiac:(NSInteger)zodiac
+{
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setZodiac:zodiac];
+    self.pbUser = [builder build];
 }
 
 - (void)setUserId:(NSString *)userId

@@ -9,6 +9,12 @@
 #import "ViewUserDetail.h"
 #import "GameBasic.pb.h"
 
+@interface ViewUserDetail ()
+
+@property (retain, nonatomic) PBGameUser* pbUser;
+
+@end
+
 @implementation ViewUserDetail
 
 - (void)dealloc
@@ -19,11 +25,11 @@
 
 - (NSString*)getUserId
 {
-    return nil;
+    return self.pbUser.userId;
 }
 - (PBGameUser*)queryUser
 {
-    return nil;
+    return self.pbUser;
 }
 - (BOOL)canEdit
 {
@@ -47,6 +53,30 @@
         self.pbUser = [builder build];
     }
     return self;
+}
+
++ (ViewUserDetail*)viewUserDetailWithUserId:(NSString *)userId
+                                     avatar:(NSString *)avatar
+                                   nickName:(NSString *)nickName
+{
+    return [[[ViewUserDetail alloc] initWithUserId:userId avatar:avatar nickName:nickName] autorelease];
+}
+
+- (void)setPbGameUser:(PBGameUser *)pbUser
+{
+    self.pbUser = pbUser;
+}
+- (BOOL)canFollow
+{
+    return YES;
+}
+- (BOOL)canChat
+{
+    return YES;
+}
+- (BOOL)canDraw
+{
+    return YES;
 }
 
 @end

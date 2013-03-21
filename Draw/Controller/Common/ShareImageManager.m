@@ -1026,5 +1026,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"balance_bg.png"];
 }
 
+- (UIImage *)itemDetailBgImage
+{
+    return [UIImage strectchableImageName:@"item_detail_bg@2x.png" topCapHeight:120];
+}
+
 @end
 

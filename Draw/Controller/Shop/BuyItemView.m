@@ -23,6 +23,8 @@
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
+#define GAP ([DeviceDetection isIPAD] ? (6) : (3))
+
 
 @interface BuyItemView()
 @property (assign, nonatomic) int count;
@@ -70,6 +72,10 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     view.item = item;
     
     GameItemDetailView *detailView = [GameItemDetailView createWithItem:item];
+    
+    [view updateHeight:(detailView.frame.size.height + GAP +view.buyInfoView.frame.size.height)];
+    [view.buyInfoView updateOriginY:(detailView.frame.size.height + GAP)];
+    
     [view addSubview:detailView];
     
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:item.priceInfo.currency];

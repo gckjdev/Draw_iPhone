@@ -81,7 +81,6 @@
 {
     PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
     
-    //[self showActivityWithText:NSLS(@"kBuying")];
     [[AccountService defaultService] buyIngot:saleIngot];
 }
 

@@ -9,6 +9,8 @@
 #import "UserDetailViewController.h"
 #import "GameBasic.pb.h"
 #import "UserDetailCell.h"
+#import "UserService.h"
+#import "UserSettingController.h"
 
 #define    ROW_COUNT 1
 
@@ -32,7 +34,13 @@
 {
     [super viewDidLoad];
     if (self.detail && [self.detail needUpdate]) {
-        //TODO:update detail
+        [[UserService defaultService] getUserInfo:[self.detail getUserId] resultBlock:^(int resultCode, PBGameUser *user) {
+            if (resultCode == 0 &&[self.detail respondsToSelector:@selector(setPbGameUser:)]
+                                && user != nil) {
+                [self.detail setPbGameUser:user];
+                [self.dataTableView reloadData];
+            }
+        }];
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -45,6 +53,7 @@
 
 - (void)dealloc {
     [_backgroundImageView release];
+    [_detail release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -57,7 +66,8 @@
     UserDetailCell* cell = [UserDetailCell createCell:self];
     
     if (cell) {
-        [cell setCellWithPBGameUser:[self.detail queryUser]];
+        [cell setCellWithUserDetail:self.detail];
+        cell.detailDelegate = self;
     }
     return cell;
 }
@@ -72,7 +82,7 @@
     return [UserDetailCell getCellHeight];
 }
 
-- (id)initWithUserDetail:(id<UserDetailProtocol>)detail
+- (id)initWithUserDetail:(NSObject<UserDetailProtocol>*)detail
 {
     self = [super init];
     if (self) {
@@ -81,5 +91,11 @@
     return self;
 }
 
+
+#pragma mark - user detail cell delegate
+- (void)didClickEdit
+{
+    [self.navigationController pushViewController:[[[UserSettingController alloc] init] autorelease] animated:YES];
+}
 
 @end

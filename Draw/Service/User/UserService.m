@@ -1155,6 +1155,7 @@ static UserService* _defaultUserService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
+        NSString *tid = targetUserId;
         CommonNetworkOutput* output = [GameNetworkRequest       getUserInfo:SERVER_URL
                                                                      userId:userId
                                                                       appId:[ConfigManager appId]

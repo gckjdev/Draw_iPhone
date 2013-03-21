@@ -938,6 +938,8 @@
 "kHomeMenuTypeDrawShop" = "Shop";
 
 "kCharge" = "Buy";
+"kChargeTitle" = "Charge";
+
 "kFreeCoin" = "Get Free";
 
 "kHomeMenuTypeZJHHelp" = "Help";
@@ -1032,9 +1034,10 @@
 "kBlackList" = "Black";
 "kBlackListNumber" = "Black(%d)";
 
-"kPromotion:" = "DCT:";
+"kPromotion:" = "Disc:";
 "kPrice:" = "Price:";
 "kDesc:" = "Desc:";
+
 
 "kDiscountIs" = "%d%%off";
 "kNoDiscount" = "None";
@@ -1046,7 +1049,7 @@
 "kTo:" = "TO:";
 "kCNT:" = "CNT:";
 "kCost:" = "COST:";
-"kAlreadyBought" = "Bought";
+"kAlreadyBought" = "Had";
 "kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
 "kCleanCache" = "Clear Cache";
 
@@ -1057,9 +1060,9 @@
 
 "kBuyColorFailed"= "Buy color failed";
 
-"kItemNormal" = "Normal";
+"kItemNormal" = "Props";
 "kItemTool" = "Tool";
-"kItemPromotion" = "Promotion";
+"kItemPromotion" = "Disc";
 "kDownloadRewardAppTips" = "Download these apps to earn some ingots";
 "kRewardWallTips" = "Enter and download apps to earn some ingots";
 "kFreeIngot" = "Free Ingot";

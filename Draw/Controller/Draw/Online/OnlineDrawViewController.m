@@ -423,7 +423,7 @@
     }else{
         [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [BalanceNotEnoughAlertView showInView:self];
+                [BalanceNotEnoughAlertView showInController:self];
             }
         }];
     }
@@ -464,7 +464,7 @@
 {    
     [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-            [BalanceNotEnoughAlertView showInView:self];
+            [BalanceNotEnoughAlertView showInController:self];
         }
     }];
 }

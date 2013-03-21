@@ -59,6 +59,8 @@ typedef enum {
 //- (NSString*)facebookId;
 - (NSString*)email;
 - (NSString*)facetimeId;
+- (NSString*)birthday;
+- (NSInteger)zodiac;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
@@ -72,6 +74,8 @@ typedef enum {
 - (void)setLocation:(NSString*)location;
 - (void)setEmail:(NSString *)email;
 - (void)setFacetimeId:(NSString*)facetimeId;
+- (void)setBirthday:(NSString*)birthdayString;
+- (void)setZodiac:(NSInteger)zodiac;
 
 
 - (BOOL)hasUser;

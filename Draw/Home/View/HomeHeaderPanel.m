@@ -34,6 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *displayScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
 @property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
+@property (retain, nonatomic) IBOutlet UILabel *ingotLabel;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
@@ -269,12 +270,14 @@
     
     //coin
     NSInteger coin = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
+    NSInteger ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
 
     NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
     [self.coin setText:coinString];
     
-//    //charge button
-    
+    NSString *ingotString = [NSString stringWithFormat:@"x %d",ingot];
+    [self.ingotLabel setText:ingotString];
+        
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self.bulletinButton setTitle:NSLS(@"kBulletin") forState:UIControlStateNormal];
     [self.freeCoin setTitle:NSLS(@"kFreeCoin") forState:UIControlStateNormal];
@@ -318,6 +321,7 @@
     PPRelease(_displayScrollView);
     PPRelease(_feedList);
     PPRelease(_freeCoin);
+    [_ingotLabel release];
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {

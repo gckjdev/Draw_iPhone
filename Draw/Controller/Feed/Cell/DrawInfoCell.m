@@ -128,7 +128,13 @@
     [self.opusDesc setText:desc];
 }
 
-
+- (void)updateDrawImageView:(UIImage *)image
+{
+    if (image) {
+        [self.drawImage scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
+        [self.drawImage setImage:image];        
+    }
+}
 
 - (void)updateShowView:(DrawFeed *)feed
 {
@@ -136,6 +142,7 @@
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
             self.feed.largeImage = image;
+            [self updateDrawImageView:image];
             [self loadImageFinish];
         } failure:^(NSError *error) {
             [self.loadingActivity stopAnimating];
@@ -143,13 +150,13 @@
         return;
     }
     else if (self.feed.largeImage) {
-        [self.drawImage setImage:self.feed.largeImage];
+        [self updateDrawImageView:self.feed.largeImage];
         [self loadImageFinish];
     }
     else if (feed.largeImage){
         self.feed.largeImage = feed.largeImage;
-        [self.drawImage setImage:feed.largeImage];
-        [self loadImageFinish];        
+        [self updateDrawImageView:self.feed.largeImage];
+        [self loadImageFinish];
     }
     else{
         [self loadImageFinish];

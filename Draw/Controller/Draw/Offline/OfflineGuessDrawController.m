@@ -45,6 +45,7 @@
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
+#import "BalanceNotEnoughAlertView.h"
 
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
@@ -743,7 +744,7 @@
                 [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
             }
         }else if (ERROR_BALANCE_NOT_ENOUGH){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            [BalanceNotEnoughAlertView showInController:self];
         }else{
             
         }
@@ -762,7 +763,7 @@
         if (resultCode == ERROR_SUCCESS) {
             [_scene throwAFlower];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            [BalanceNotEnoughAlertView showInController:self];
         }
     }];
 }
@@ -884,7 +885,7 @@
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {
-        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        [BalanceNotEnoughAlertView showInController:self];
     }
 }
 

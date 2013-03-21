@@ -49,7 +49,6 @@ typedef void (^DialogSelectionBlock)(void);
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 
-- (IBAction)clickMask:(id)sender;
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 

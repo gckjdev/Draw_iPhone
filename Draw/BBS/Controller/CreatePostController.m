@@ -468,6 +468,7 @@
 //        }
 //    }
 
+    self.image = image;
     [self updateToolButtons];
     [self.textView becomeFirstResponder];
 }

@@ -38,7 +38,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="828591629">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{428, 222}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -53,7 +53,7 @@
 					</object>
 					<object class="IBUIImageView" id="354629127">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{14, 56}, {116, 116}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -68,7 +68,7 @@
 					</object>
 					<object class="IBUIImageView" id="485434733">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{14, 54}, {116, 116}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -83,7 +83,7 @@
 					</object>
 					<object class="IBUILabel" id="124807761">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{154, 7}, {65, 30}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -118,7 +118,7 @@
 					</object>
 					<object class="IBUILabel" id="476399939">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{154, 49}, {65, 30}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -143,7 +143,7 @@
 					</object>
 					<object class="IBUILabel" id="16003822">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{154, 93}, {65, 30}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -167,7 +167,7 @@
 					</object>
 					<object class="IBUILabel" id="1067814427">
 						<reference key="NSNextResponder" ref="1052013198"/>
-						<int key="NSvFlags">319</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{227, 7}, {192, 30}}</string>
 						<reference key="NSSuperview" ref="1052013198"/>
 						<reference key="NSWindow"/>
@@ -244,6 +244,14 @@
 						<reference key="destination" ref="16003822"/>
 					</object>
 					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="1052013198"/>
+						<reference key="destination" ref="828591629"/>
+					</object>
+					<int key="connectionID">41</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -338,7 +346,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -346,6 +354,7 @@
 					<string key="className">GameItemDetailView</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="backgroundImageView">UIImageView</string>
 						<string key="descNoteLabel">UILabel</string>
 						<string key="discountLabel">UILabel</string>
 						<string key="discountNoteLabel">UILabel</string>
@@ -353,6 +362,10 @@
 						<string key="priceNoteLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="backgroundImageView">
+							<string key="name">backgroundImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="descNoteLabel">
 							<string key="name">descNoteLabel</string>
 							<string key="candidateClassName">UILabel</string>
