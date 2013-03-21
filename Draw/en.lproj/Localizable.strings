@@ -937,7 +937,9 @@
 "kHomeMenuTypeDrawSetting" = "Setting";
 "kHomeMenuTypeDrawShop" = "Shop";
 
-"kCharge" = "Charge";
+"kCharge" = "Buy";
+"kChargeTitle" = "Charge";
+
 "kFreeCoin" = "Get Free";
 
 "kHomeMenuTypeZJHHelp" = "Help";
