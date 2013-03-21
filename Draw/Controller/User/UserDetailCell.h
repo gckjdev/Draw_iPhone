@@ -14,6 +14,7 @@
 
 @interface UserDetailCell : PPTableViewCell
 
+@property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *signLabel;
 @property (retain, nonatomic) IBOutlet UILabel *levelLabel;
@@ -23,6 +24,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
 @property (retain, nonatomic) IBOutlet CommonRoundAvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIView *basicDetailView;
+@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 
