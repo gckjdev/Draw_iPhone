@@ -32,8 +32,15 @@
 #import "GameMessage.pb.h"
 #import "UserGameItemService.h"
 #import "CommonMessageCenter.h"
+#import "BlockArray.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
+
+@interface AccountService()
+@property (nonatomic, retain) BlockArray *blockArray;
+
+
+@end
 
 @implementation AccountService
 
@@ -44,6 +51,7 @@ static AccountService* _defaultAccountService;
 - (void)dealloc
 {
     [_delegate release];
+    [_blockArray releaseAllBlock];
     [super dealloc];
 }
 
@@ -59,6 +67,7 @@ static AccountService* _defaultAccountService;
 {
     self = [super init];
     
+    self.blockArray = [[[BlockArray alloc] init] autorelease];
     _itemManager = [ItemManager defaultManager];
     _accountManager = [AccountManager defaultManager];
     
@@ -753,12 +762,57 @@ static AccountService* _defaultAccountService;
 //    });
 //}
 
-
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     if (userId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
+                                                                         userId:userId
+                                                                       deviceId:deviceId];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                
+                // sync balance from server
+                [_accountManager updateBalance:user.coinBalance];
+                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                
+                // sync user item from server
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+            }
+            
+            if (output.resultCode == ERROR_SUCCESS) {
+                if ([delegate respondsToSelector:@selector(didSyncFinish)]){
+                    [delegate didSyncFinish];
+                }
+            }
+            else{
+                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
+            }
+        });
+    });
+
+}
+
+- (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler
+{
+    SyncAccountResultHandler tempHandler = (SyncAccountResultHandler)[_blockArray copyBlock:resultHandler];
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    if (userId == nil){
+        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER);
+        [_blockArray releaseBlock:tempHandler];
         return;
     }
     
@@ -783,17 +837,12 @@ static AccountService* _defaultAccountService;
                 [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
-            if (output.resultCode == ERROR_SUCCESS) {
-                if ([delegate respondsToSelector:@selector(didSyncFinish)]){
-                    [delegate didSyncFinish];
-                }
-            }
-            else{
-                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
-            }
+            EXCUTE_BLOCK(tempHandler, output.resultCode);
+            [_blockArray releaseBlock:tempHandler];
         });      
     });    
 }
+
 
 #define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"
 #define MAX_REWARD_FOR_SHARE_WEIBO  10
