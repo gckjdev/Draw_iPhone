@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "CommonRoundAvatarView.h"
 #import "ShareImageManager.h"
+#import "UserDetailProtocol.h"
 
 @implementation UserDetailCell
 
@@ -22,8 +23,9 @@
     return self;
 }
 
-- (void)setCellWithPBGameUser:(PBGameUser *)pbUser
+- (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
+    PBGameUser* pbUser = [detail queryUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",pbUser.level]];
     [self.nickNameLabel setText:pbUser.nickName];
     [self.locationLabel setText:pbUser.location];
@@ -63,6 +65,7 @@
     [_bloodTypeLabel release];
     [_locationLabel release];
     [_avatarView release];
+    [_basicDetailView release];
     [super dealloc];
 }
 @end

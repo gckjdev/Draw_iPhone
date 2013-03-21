@@ -17,5 +17,5 @@
 - (BOOL)needUpdate;
 
  @optional
-- (void)setPbUser:(PBGameUser*)pbUser;
+- (void)setPbGameUser:(PBGameUser*)pbUser;
 @end

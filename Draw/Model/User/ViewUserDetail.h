@@ -11,13 +11,9 @@
 
 @interface ViewUserDetail : NSObject<UserDetailProtocol>
 
-@property (retain, nonatomic) PBGameUser* pbUser;
 
-- (id)initWithUserId:(NSString*)userId
-              avatar:(NSString*)avatar
-            nickName:(NSString*)nickName;
+
 + (ViewUserDetail*)viewUserDetailWithUserId:(NSString*)userId
                                      avatar:(NSString*)avatar
                                    nickName:(NSString*)nickName;
-
 @end
