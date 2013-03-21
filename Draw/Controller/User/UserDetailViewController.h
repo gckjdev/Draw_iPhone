@@ -9,8 +9,9 @@
 #import "PPTableViewController.h"
 #import "UserDetailProtocol.h"
 #import "UserDetailCell.h"
+#import "FriendService.h"
 
-@interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate>
+@interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate, FriendServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;
 

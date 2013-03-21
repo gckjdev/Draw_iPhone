@@ -277,6 +277,21 @@ static UserManager* _defaultManager;
     return [_pbUser zodiac];
 }
 
+- (NSInteger)followCount
+{
+    return 0;
+}
+
+- (NSInteger)fanCount
+{
+    return 0;
+}
+
+- (NSString*)signature
+{
+    return @"test";
+}
+
 - (NSString*)facetimeIdFromOldStorage
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -555,6 +570,21 @@ static UserManager* _defaultManager;
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setZodiac:zodiac];
     self.pbUser = [builder build];
+}
+
+- (void)setFollowCount:(NSInteger)followCount
+{
+    
+}
+
+- (void)setFanCount:(NSInteger)fanCount
+{
+    
+}
+
+- (void)setSignature:(NSString *)signature
+{
+    
 }
 
 - (void)setUserId:(NSString *)userId
