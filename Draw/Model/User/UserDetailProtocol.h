@@ -15,6 +15,9 @@
 - (PBGameUser*)queryUser;
 - (BOOL)canEdit;
 - (BOOL)needUpdate;
+- (BOOL)canFollow;
+- (BOOL)canChat;
+- (BOOL)canDraw;
 
  @optional
 - (void)setPbGameUser:(PBGameUser*)pbUser;

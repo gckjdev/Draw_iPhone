@@ -8,8 +8,9 @@
 
 #import "PPTableViewController.h"
 #import "UserDetailProtocol.h"
+#import "UserDetailCell.h"
 
-@interface UserDetailViewController : PPTableViewController
+@interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate>
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;
 

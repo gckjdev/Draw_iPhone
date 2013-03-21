@@ -37,4 +37,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SelfUserDetail)
     return NO;
 }
 
+- (BOOL)canFollow
+{
+    return NO;
+}
+- (BOOL)canChat
+{
+    return NO;
+}
+- (BOOL)canDraw
+{
+    return NO;
+}
+
 @end

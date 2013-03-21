@@ -66,5 +66,17 @@
 {
     self.pbUser = pbUser;
 }
+- (BOOL)canFollow
+{
+    return YES;
+}
+- (BOOL)canChat
+{
+    return YES;
+}
+- (BOOL)canDraw
+{
+    return YES;
+}
 
 @end
