@@ -79,8 +79,8 @@
     
     NSString*_targetUid;
     
-    DrawColor *_penColor;
-    DrawColor *_eraserColor;
+//    DrawColor *_penColor;
+//    DrawColor *_eraserColor;
 
     CGFloat _alpha;
     
@@ -1108,8 +1108,16 @@
     }
 }
 
-#pragma mark - Draw Tool Panel Delegate
+- (void)performRevoke
+{
+    [drawView revoke:^{
+        [self hideActivity];
+    }];
+    [self synEraserColor];
+}
 
+
+#pragma mark - Draw Tool Panel Delegate
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 {
     BOOL canRedo = [drawView canRedo];
@@ -1122,14 +1130,6 @@
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
 {
     drawView.touchActionType = TouchActionTypeGetColor;
-}
-
-- (void)performRevoke
-{
-    [drawView revoke:^{
-        [self hideActivity];
-    }];
-    [self synEraserColor];
 }
 
 - (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
