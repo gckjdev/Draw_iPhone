@@ -10,6 +10,6 @@
 
 @interface BalanceNotEnoughAlertView : UIView
 
-+ (void)showInView:(UIViewController *)controller;
++ (void)showInController:(UIViewController *)controller;
 
 @end

@@ -20,6 +20,7 @@
 #import "GameItemManager.h"
 #import "PBGameItem+Extend.h"
 #import "BuyItemView.h"
+#import "BalanceNotEnoughAlertView.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 
@@ -155,7 +156,7 @@
         if (resultCode == ERROR_SUCCESS) {
             [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+            [BalanceNotEnoughAlertView showInController:self];
         }else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
         }

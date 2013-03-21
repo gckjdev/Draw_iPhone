@@ -12,6 +12,7 @@
 #import "GameItemPriceView.h"
 #import "UIViewUtils.h"
 #import "UIImageView+WebCache.h"
+#import "ShareImageManager.h"
 
 @implementation GameItemDetailView
 
@@ -23,11 +24,18 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     [_discountNoteLabel release];
     [_priceNoteLabel release];
     [_descNoteLabel release];
+    [_backgroundImageView release];
     [super dealloc];
 }
 
 #define MAX_WITH_DESC_LABEL ([DeviceDetection isIPAD] ? (256) : (128))
-#define MAX_HEIGHT_DESC_LABEL ([DeviceDetection isIPAD] ? (136) : (68))
+#define MAX_HEIGHT_DESC_LABEL CGFLOAT_MAX
+
+#define HEIGHT_OF_DESC_LABEL ([DeviceDetection isIPAD] ? 130 : 65)
+
+#define HEIGHT_ADDTION_TO_DESC_LABEL ([DeviceDetection isIPAD] ? 10 : 5)
+
+
 + (id)createWithItem:(PBGameItem *)item
 {
     GameItemDetailView *view = [self createView];
@@ -44,6 +52,8 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
         view.discountLabel.text = NSLS(@"kNoDiscount");
     }
     
+    
+    
     GameItemPriceView *priceView = [GameItemPriceView createWithItem:item];
     [priceView updateOriginX:view.discountLabel.frame.origin.x];
     [priceView updateCenterY:view.priceNoteLabel.center.y];
@@ -57,11 +67,22 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.numberOfLines = 0;
     NSString *desc = [@"          " stringByAppendingString:NSLS(item.desc)];
 
+
     CGSize withinSize = CGSizeMake(MAX_WITH_DESC_LABEL, MAX_HEIGHT_DESC_LABEL);
     CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
+    
+    if(size.height > HEIGHT_OF_DESC_LABEL){
+        CGFloat height = (size.height - HEIGHT_OF_DESC_LABEL + view.frame.size.height + HEIGHT_ADDTION_TO_DESC_LABEL);
+        [view updateHeight:height];
+        [view.backgroundImageView setImage:[[ShareImageManager defaultManager] itemDetailBgImage]];
+    }
+    
     label.frame = CGRectMake(view.descNoteLabel.frame.origin.x, view.descNoteLabel.frame.origin.y, size.width, MAX(view.descNoteLabel.frame.size.height, size.height) );
     label.text = desc;
     [view addSubview:label];
+    
+    
+
     
     return view;
 }

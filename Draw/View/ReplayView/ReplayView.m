@@ -390,7 +390,7 @@
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [BalanceNotEnoughAlertView showInView:self];
+                [BalanceNotEnoughAlertView showInController:self];
             }
         }];
     }
