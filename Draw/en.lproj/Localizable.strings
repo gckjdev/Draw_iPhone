@@ -1034,9 +1034,10 @@
 "kBlackList" = "Black";
 "kBlackListNumber" = "Black(%d)";
 
-"kPromotion:" = "DCT:";
+"kPromotion:" = "Disc:";
 "kPrice:" = "Price:";
 "kDesc:" = "Desc:";
+
 
 "kDiscountIs" = "%d%%off";
 "kNoDiscount" = "None";
@@ -1059,9 +1060,9 @@
 
 "kBuyColorFailed"= "Buy color failed";
 
-"kItemNormal" = "Normal";
+"kItemNormal" = "Props";
 "kItemTool" = "Tool";
-"kItemPromotion" = "Promotion";
+"kItemPromotion" = "Disc";
 "kDownloadRewardAppTips" = "Download these apps to earn some ingots";
 "kRewardWallTips" = "Enter and download apps to earn some ingots";
 "kFreeIngot" = "Free Ingot";

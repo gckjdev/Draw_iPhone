@@ -92,9 +92,6 @@
 
 - (void)initTabButtons
 {
-    
-    
-    
     NSArray* tabList = [_tabManager tabList];
     NSInteger index = 0;
     NSInteger start = 0;
@@ -110,15 +107,28 @@
         [button.titleLabel setFont:BUTTON_FONT];
         
         //text color
-        [button setTitleColor:BUTTON_DEFAULT_COLOR forState:UIControlStateNormal];
-        [button setTitleColor:BUTTON_SELETED_COLOR forState:UIControlStateSelected];
+        UIColor *nomalTextColor = [self tabButtonTitleColorForNormal:index];
+        UIColor *selectedTextColor = [self tabButtonTitleColorForSelected:index];
+        if (nomalTextColor == nil) {
+            [button setTitleColor:BUTTON_DEFAULT_COLOR forState:UIControlStateNormal];
+        }else{
+            [button setTitleColor:nomalTextColor forState:UIControlStateNormal];
+        }
+        
+        if (selectedTextColor == nil) {
+            [button setTitleColor:BUTTON_SELETED_COLOR forState:UIControlStateSelected];
+        }else{
+            [button setTitleColor:selectedTextColor forState:UIControlStateSelected];
+        }
+        
+        
         
         //bg image
         if (index == start) {
-            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
         }else if(index == end){
-            [button setBackgroundImage:[imageManager focusMeImage] forState:UIButtonTypeCustom];
+            [button setBackgroundImage:[imageManager focusMeImage] forState:UIControlStateNormal];
             [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];
         }else{
             [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
@@ -323,6 +333,17 @@
 {
     return nil;
 }
+
+- (UIColor *)tabButtonTitleColorForNormal:(NSInteger)index
+{
+    return nil;
+}
+
+- (UIColor *)tabButtonTitleColorForSelected:(NSInteger)index
+{
+    return nil;
+}
+
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
     return nil;

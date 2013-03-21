@@ -36,7 +36,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
-        handler(NO, nil);
+        NSData *data = [NSData dataWithContentsOfFile:smartData.dataFilePath];
+        NSArray *itemsList = [[PBSaleIngotList parseFromData:data] ingotsList];
+        handler(NO, itemsList);
         [smartData release];
     }];
 }
