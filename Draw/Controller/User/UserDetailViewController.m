@@ -11,6 +11,13 @@
 #import "UserDetailCell.h"
 #import "UserService.h"
 #import "UserSettingController.h"
+#import "FriendController.h"
+#import "FriendService.h"
+#import "ChatDetailController.h"
+#import "MyFriend.h"
+#import "MessageStat.h"
+#import "SelectHotWordController.h"
+#import "CommonMessageCenter.h"
 
 #define    ROW_COUNT 1
 
@@ -96,6 +103,50 @@
 - (void)didClickEdit
 {
     [self.navigationController pushViewController:[[[UserSettingController alloc] init] autorelease] animated:YES];
+}
+
+- (void)didClickFanCountButton
+{
+    
+}
+- (void)didClickFollowCountButton
+{
+    
+}
+- (void)didClickFollowButton
+{
+    [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
+    [self showActivityWithText:NSLS(@"kFollowing")];
+}
+- (void)didClickChatButton
+{
+    PBGameUser* pbUser = [self.detail queryUser];
+    MyFriend* targetFriend = [MyFriend friendWithFid:[self.detail getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender level:pbUser.level];
+    MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+        ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
+    [self.navigationController pushViewController:controller
+                                                                 animated:YES];
+    [controller release];
+}
+- (void)didClickDrawToButton
+{
+    SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self.detail getUserId]] autorelease];
+    vc.superController = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)didFollowUser:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowFailed")
+                                                       delayTime:1.5
+                                                         isHappy:NO];
+    } else {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSuccessfully")
+                                                       delayTime:1.5
+                                                         isHappy:YES];
+    }
 }
 
 @end

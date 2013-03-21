@@ -62,6 +62,11 @@
         resultCode:(NSInteger)resultCode
          fromCache:(BOOL)fromCache;
 
+- (void)didGetPBFeed:(PBFeed *)pbFeed
+            byFeedId:(NSString *)feedId
+          resultCode:(NSInteger)resultCode
+           fromCache:(BOOL)fromCache;
+
 - (void)didUpdateFeedTimes:(DrawFeed *)feed
                 resultCode:(NSInteger)resultCode;
 
@@ -112,8 +117,12 @@
                    limit:(NSInteger)limit 
                 delegate:(id<FeedServiceDelegate>)delegate;
 
+//not return data ...
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getPBDrawByFeedId:(NSString *)feedId
+                 delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getOpusCount:(NSString *)targetUid
             delegete:(id<FeedServiceDelegate>)delegate;

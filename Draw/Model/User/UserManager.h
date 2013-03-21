@@ -61,6 +61,9 @@ typedef enum {
 - (NSString*)facetimeId;
 - (NSString*)birthday;
 - (NSInteger)zodiac;
+- (NSInteger)followCount;
+- (NSInteger)fanCount;
+- (NSString*)signature;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
@@ -76,6 +79,9 @@ typedef enum {
 - (void)setFacetimeId:(NSString*)facetimeId;
 - (void)setBirthday:(NSString*)birthdayString;
 - (void)setZodiac:(NSInteger)zodiac;
+- (void)setFollowCount:(NSInteger)followCount;
+- (void)setFanCount:(NSInteger)fanCount;
+- (void)setSignature:(NSString*)signature;
 
 
 - (BOOL)hasUser;
