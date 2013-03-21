@@ -1390,7 +1390,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
 
         str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];           // if return URL, it's 1 else 0
-        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:1];       // TODO, change to 0
+        str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:0];       // change to 0
         
         return str;
     };
