@@ -65,6 +65,11 @@ typedef enum{
     [[GameItemService defaultService] syncData:^(BOOL success) {
         [bself reloadTableViewDataSource];
     }];
+    
+    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        [bself reloadTableViewDataSource];
+        [bself updateBalance];
+    }];
 }
 
 - (void)viewDidLoad
