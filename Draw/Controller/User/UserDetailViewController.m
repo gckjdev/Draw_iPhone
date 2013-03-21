@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "UserDetailCell.h"
 #import "UserService.h"
+#import "UserSettingController.h"
 
 #define    ROW_COUNT 1
 
@@ -66,6 +67,7 @@
     
     if (cell) {
         [cell setCellWithUserDetail:self.detail];
+        cell.detailDelegate = self;
     }
     return cell;
 }
@@ -89,5 +91,11 @@
     return self;
 }
 
+
+#pragma mark - user detail cell delegate
+- (void)didClickEdit
+{
+    [self.navigationController pushViewController:[[[UserSettingController alloc] init] autorelease] animated:YES];
+}
 
 @end
