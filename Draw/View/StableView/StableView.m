@@ -16,7 +16,7 @@
 #import "GameItemManager.h"
 #import "UIButton+WebCache.h"
 
-#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 2, 61 * 2) : CGRectMake(0, 0, 61, 61))
+#define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 1.5, 61 * 1.5) : CGRectMake(0, 0, 61, 61))
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
@@ -102,7 +102,9 @@
     _itemType = itemType;
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemType];
     
-    [self setImageWithURL:[NSURL URLWithString:item.image]];
+    
+    
+    [self setBackgroundImageWithURL:[NSURL URLWithString:item.image]];
 }
 
 - (id)initWithNumber:(NSInteger)number
