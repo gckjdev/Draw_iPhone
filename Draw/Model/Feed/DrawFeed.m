@@ -351,7 +351,14 @@
     [defaults synchronize];
 }
 
-
+- (void)decreaseLocalFlowerTimes
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int value = [self actionTimesForKey:self.flowerKey];
+    NSNumber *number = [NSNumber numberWithInt:--value];
+    [defaults setObject:number forKey:self.flowerKey];
+    [defaults synchronize];
+}
 - (void)increaseLocalFlowerTimes
 {
     [self increaseActionTimes:self.flowerKey];

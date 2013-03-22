@@ -135,12 +135,37 @@
     if ([feed.drawImageUrl length] != 0){
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
 
-        //        UIImage *placeholderImage = [[ShareImageManager defaultManager] unloadBg];
+        UIImage *placeholderImage = nil;
+        if (self.feed.largeImage == nil) {
+            placeholderImage = [[ShareImageManager defaultManager] unloadBg];
+        }else{
+            placeholderImage = self.feed.largeImage;
+        }
 
-        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
+            
+            
+//            if (!cached) {
+//                self.drawImage.alpha = 0;
+//                [UIView animateWithDuration:1.5 animations:^{
+//                    self.drawImage.alpha = 1.0;
+//
+//                    self.feed.largeImage = image;
+//                    [self updateDrawImageView:image];
+//                    [self loadImageFinish];
+//                    
+//                }];
+//            }else{
+//                self.feed.largeImage = image;
+//                [self updateDrawImageView:image];
+//                [self loadImageFinish];
+//            }
+            
             self.feed.largeImage = image;
             [self updateDrawImageView:image];
             [self loadImageFinish];
+
+            
         } failure:^(NSError *error) {
             
         }];

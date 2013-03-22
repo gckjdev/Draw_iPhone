@@ -21,6 +21,8 @@
 #define DB_FIELD_ACTION_SAVE_ALBUM      @"save_album"
 
 typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache);
+typedef void (^ DownloadProgressHandler) (float progress);
+
 
 @protocol FeedServiceDelegate <NSObject>
 
@@ -126,7 +128,8 @@ typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFe
 //                 delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getPBDrawByFeed:(DrawFeed *)feed
-                 handler:(LoadPBDrawResultHandler)handler;
+                 handler:(LoadPBDrawResultHandler)handler
+       downloadDelegate:(id)downloadDelegate;
 
 
 - (void)getOpusCount:(NSString *)targetUid

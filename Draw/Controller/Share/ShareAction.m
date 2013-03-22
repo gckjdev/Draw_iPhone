@@ -372,7 +372,9 @@
                                                      delegate:self];
     }else{
         __block ShareAction *cp = self;
+        [self.superViewController showProgressViewWithMessage:NSLS(@"kLoading")];
         [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache) {
+            
             if (resultCode == 0) {
                 [[DrawDataService defaultService] savePaintWithPBDraw:pbDraw
                                                                 image:cp.image
@@ -380,9 +382,24 @@
             }else{
                 PPDebug(@"Save Failed!!");
             }
-        }];
+
+            [self.superViewController hideProgressView];
+        }
+         downloadDelegate:self];
     }
-    
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    if (progress == 1.0f){
+        // make this because after uploading data, it takes server sometime to process
+        progress = 0.99;
+    }
+
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    [self.superViewController.progressView setLabelText:progressText];
+
+    [self.superViewController.progressView setProgress:progress];
 }
 
 - (void)bindSNS:(int)snsType
