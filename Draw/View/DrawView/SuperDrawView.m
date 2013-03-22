@@ -178,6 +178,10 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 //        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
 //        CGContextFillRect(context, self.bounds);
     }
+    else{
+        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+        CGContextFillRect(context, self.bounds);
+    }
     CTMContext(context, self.bounds);
     [osManager showAllLayersInContext:context];
     

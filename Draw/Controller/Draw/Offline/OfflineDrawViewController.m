@@ -860,9 +860,23 @@
                 }
 //            });
             
+            
         } failureBlock:^(NSError *error) {
             PPDebug(@"%@ publish weibo failure", [snsService snsName]);
         }];
+        
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
+            [snsService followUser:[snsService officialWeiboId]
+                         userId:[snsService officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                       PPDebug(@"follow official weibo success");
+                       [GameSNSService updateFollowOfficialWeibo:snsService];
+                   } failureBlock:^(NSError *error) {
+                       PPDebug(@"follow weibo but error=%@", [error description]);
+                   }];
+        }
+        
     }
     
     return;
