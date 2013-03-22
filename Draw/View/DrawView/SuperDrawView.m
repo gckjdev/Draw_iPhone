@@ -124,9 +124,11 @@
 
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
 {
-    CGRect rect = [osManager addDrawAction:drawAction];
-    if (show) {
-        [self setNeedsDisplayInRect:rect];
+    if (drawAction) {
+        CGRect rect = [osManager addDrawAction:drawAction];
+        if (show) {
+            [self setNeedsDisplayInRect:rect];
+        }        
     }
 }
 

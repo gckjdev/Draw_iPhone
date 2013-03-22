@@ -15,6 +15,8 @@
 #import "ShareImageManager.h"
 #import "FeedManager.h"
 #import "FeedService.h"
+#import "UIViewUtils.h"
+
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
@@ -58,6 +60,8 @@
     [view.maskButton setBackgroundImage:selectedImage 
                                forState:UIControlStateSelected];
     [view.maskButton setAlpha:0.8];
+    [view setClipsToBounds:YES];
+    [view.drawImage setContentMode:UIViewContentModeScaleAspectFill];
     return view;
 }
 
@@ -73,6 +77,12 @@
 }
 
 
+- (void)updateImage:(UIImage *)image
+{
+    [self.drawImage setImage:image];
+//    [self scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeWidth];
+}
+
 - (void)setViewInfo:(DrawFeed *)feed
 {
     if (feed == nil) {
@@ -81,9 +91,11 @@
     }
     self.feed = feed;
     if(feed.drawImage){
-        [self.drawImage setImage:feed.drawImage];
+        [self updateImage:feed.drawImage];
+//        [self.drawImage setImage:feed.drawImage];
     }else if(feed.largeImage){
-        [self.drawImage setImage:feed.largeImage];
+        [self updateImage:feed.largeImage];
+//        [self.drawImage setImage:feed.largeImage];
     }
     else if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
@@ -95,9 +107,8 @@
                 [UIView animateWithDuration:1 animations:^{
                     self.drawImage.alpha = 1.0;
                 }];
-            }else{
-//                self.drawImage.alpha = 1.0;
             }
+         [self updateImage:image];
         } failure:^(NSError *error) {
             self.drawImage.alpha = 1;
         }];
@@ -120,7 +131,8 @@
         if (ISIPAD) {
             [[FeedService defaultService] updateOpus:feed.feedId image:image];
         }
-        [self.drawImage setImage:image];
+//        [self.drawImage setImage:image];
+        [self updateImage:image];
 
         feed.drawImage = image;
         self.drawImage.hidden = NO;

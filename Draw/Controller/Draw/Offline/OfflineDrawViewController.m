@@ -294,7 +294,7 @@
 - (void)initDrawView
 {
 //    CGRect frame = DRAW_VIEW_FRAME;
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect randRect]];
     
     drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
