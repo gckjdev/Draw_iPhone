@@ -29,7 +29,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     _wallServiceArray = [[NSMutableArray alloc] init];
     
     [self createWall:PBRewardWallTypeLimei forceCreate:NO];
-    [self createWall:PBRewardWallTypeWanpu forceCreate:NO];
+//    [self createWall:PBRewardWallTypeWanpu forceCreate:NO];
     [self createWall:PBRewardWallTypeYoumi forceCreate:NO];
     [self createWall:PBRewardWallTypeAder forceCreate:NO];
     
