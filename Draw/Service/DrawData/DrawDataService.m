@@ -106,8 +106,9 @@ static DrawDataService* _defaultDrawDataService = nil;
                     // add download feed draw data by data URL
                     if ([[pbFeed drawDataUrl] length] > 0){
                         NSData* data = [[FeedDownloadService defaultService]
-                                        downloadDrawDataFile:[pbFeed drawDataUrl]
-                                        fileName:[pbFeed feedId]];
+                                            downloadDrawDataFile:[pbFeed drawDataUrl]
+                                                        fileName:[pbFeed feedId]
+                                        downloadProgressDelegate:viewController];
                         
                         if (data != nil){
                             // create PBDraw from data and rewrite pbFeed

@@ -819,17 +819,17 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-        ToolView* toolview = nil;
-        switch (itemId) {
-            case ItemTypeFlower: {
-                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
-            } break;
-            case ItemTypeTomato: {
-                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
-            } break;
-            default:
-                break;
-        }
+//        ToolView* toolview = nil;
+//        switch (itemId) {
+//            case ItemTypeFlower: {
+//                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
+//            } break;
+//            case ItemTypeTomato: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
+//            } break;
+//            default:
+//                break;
+//        }
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

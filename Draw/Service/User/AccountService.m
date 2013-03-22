@@ -526,7 +526,8 @@ static AccountService* _defaultAccountService;
                                          targetUserId:targetUserId
                                           awardAmount:awardAmount 
                                              awardExp:awardExp];
-            
+        
+        PPDebug(@"<updateItemAmount> resultCode=%d", output.resultCode);
     });
 }
 

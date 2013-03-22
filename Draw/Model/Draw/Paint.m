@@ -114,7 +114,7 @@
              penType:(ItemType)penType
            pointList:(NSMutableArray *)pointNodeList
 {
-    return [[Paint alloc] initWithWidth:width color:color penType:penType pointList:pointNodeList];
+    return [[[Paint alloc] initWithWidth:width color:color penType:penType pointList:pointNodeList] autorelease];
 }
 
 

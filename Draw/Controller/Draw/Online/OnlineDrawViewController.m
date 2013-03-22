@@ -403,7 +403,7 @@
     drawView.touchActionType = TouchActionTypeDraw;
     self.penColor.alpha = 1.0;
     [drawView changeBackWithColor:self.penColor];
-    [self drawView:drawView didFinishDrawAction:[[ChangeBackAction alloc] initWithColor:self.penColor]];
+    [self drawView:drawView didFinishDrawAction:[[[ChangeBackAction alloc] initWithColor:self.penColor] autorelease]];
 
     self.eraserColor = self.penColor;
     self.penColor = drawView.lineColor = [DrawColor blackColor];
