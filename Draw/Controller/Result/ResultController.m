@@ -47,6 +47,8 @@
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "UIButton+WebCache.h"
+#import "GameItemManager.h"
 
 #define CONTINUE_TIME 10
 
@@ -413,6 +415,12 @@
 }
 - (void)initActionButton
 {
+    PBGameItem *flower = [[GameItemManager defaultManager] itemWithItemId:ItemTypeFlower];
+    [self.upButton setImageWithURL:[NSURL URLWithString:flower.image]];
+    
+    PBGameItem *tomato = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTomato];
+    [self.upButton setImageWithURL:[NSURL URLWithString:tomato.image]];
+    
     //init the up & down button
     if (_resultType != OnlineDraw) {
         [self initToolViews];
@@ -461,6 +469,7 @@
     [self.continueButton centerImageAndTitle:-1];
     [self.upButton centerImageAndTitle:-1];
     [self.downButton centerImageAndTitle:-1];
+    
 
 }
 

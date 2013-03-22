@@ -351,7 +351,9 @@
                                  gender:(NSString*)gender
                                  opusId:(NSString*)opusId                        
                          opusCreatorUId:(NSString*)opusCreatorUId  
-                               itemType:(int)itemType;
+                               itemType:(int)itemType
+                           awardBalance:(int)awardBalance
+                               awardExp:(int)awardExp;
 
 
 + (CommonNetworkOutput*)getMessageList:(NSString*)baseURL

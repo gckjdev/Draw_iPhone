@@ -21,6 +21,8 @@
 #define DB_FIELD_ACTION_SAVE_ALBUM      @"save_album"
 
 typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache);
+typedef void (^ DownloadProgressHandler) (float progress);
+
 
 @protocol FeedServiceDelegate <NSObject>
 
@@ -126,7 +128,8 @@ typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFe
 //                 delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getPBDrawByFeed:(DrawFeed *)feed
-                 handler:(LoadPBDrawResultHandler)handler;
+                 handler:(LoadPBDrawResultHandler)handler
+       downloadDelegate:(id)downloadDelegate;
 
 
 - (void)getOpusCount:(NSString *)targetUid
@@ -147,19 +150,15 @@ typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFe
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate;
 
-- (void)throwFlowerToOpus:(NSString *)opusId 
-                   author:(NSString *)author  
-                 delegate:(id<FeedServiceDelegate>)delegate;
-
-- (void)throwTomatoToOpus:(NSString *)opusId 
-                   author:(NSString *)author 
-                 delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
 
-- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
-           author:(NSString *)author   
+- (void)throwItem:(ItemType)itemType
+           toOpus:(NSString *)opusId
+           author:(NSString *)author
+     awardBalance:(int)awardBalance
+         awardExp:(int)awardExp
          delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)updateFeedTimes:(DrawFeed *)feed

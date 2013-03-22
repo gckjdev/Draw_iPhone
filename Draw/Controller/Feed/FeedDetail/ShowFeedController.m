@@ -516,33 +516,52 @@ enum{
     
 }
 
+- (void)setProgress:(CGFloat)progress
+{
+    if (progress == 1.0f){
+        // make this because after uploading data, it takes server sometime to process
+        progress = 0.99;
+    }
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    [self.progressView setLabelText:progressText];
+    
+    [self.progressView setProgress:progress];
+}
+
 - (void)loadDrawDataWithHanlder:(dispatch_block_t)handler
 {
 
     if(handler == NULL)return;
 
-    [self showActivityWithText:NSLS(@"kLoading")];
-     
+//    [self showActivityWithText:NSLS(@"kLoading")];
+    
+    [self showProgressViewWithMessage:NSLS(@"kLoading")];
+    
     if(self.feed.pbDraw){
-        [self hideActivity];
+        
+        [self hideProgressView];
+//        [self hideActivity];
         handler();
         return;
     }
     
     __block ShowFeedController * cp = self;
-    [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode,
-                                                                      PBDraw *pbDraw,
-                                                                      DrawFeed *feed,
-                                                                      BOOL fromCache)
+    [[FeedService defaultService] getPBDrawByFeed:self.feed
+                                          handler:
+     ^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache)
     {
-        [cp hideActivity];
+//        [cp hideActivity];
         if(resultCode == 0){
             cp.feed.pbDraw = pbDraw;
             handler();
         }else{
             
         }
-    }];
+
+        [self hideProgressView];
+    }
+     downloadDelegate:self];
 }
 
 #pragma mark - Click Actions
