@@ -27,7 +27,7 @@
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
     PBGameUser* pbUser = [detail queryUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"LV.%d",pbUser.level]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",pbUser.level]];
     [self.nickNameLabel setText:pbUser.nickName];
     [self.locationLabel setText:pbUser.location];
     [self.birthLabel setText:pbUser.birthday];

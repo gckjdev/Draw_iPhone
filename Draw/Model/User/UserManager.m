@@ -279,17 +279,22 @@ static UserManager* _defaultManager;
 
 - (NSInteger)followCount
 {
-    return 0;
+    return [_pbUser followCount];
 }
 
 - (NSInteger)fanCount
 {
-    return 0;
+    return [_pbUser fanCount];
+}
+
+- (int)bloodGroup
+{
+    return [_pbUser bloodGroup];
 }
 
 - (NSString*)signature
 {
-    return @"test";
+    return [_pbUser signature];
 }
 
 - (NSString*)facetimeIdFromOldStorage
@@ -303,7 +308,7 @@ static UserManager* _defaultManager;
 {
 //    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 //    NSString* value = [userDefaults objectForKey:KEY_LOCATION];
-//    return value;        
+//    return value;
 
     return [_pbUser location];
 
@@ -574,17 +579,30 @@ static UserManager* _defaultManager;
 
 - (void)setFollowCount:(NSInteger)followCount
 {
-    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setFollowCount:followCount];
+    self.pbUser = [builder build];
 }
 
 - (void)setFanCount:(NSInteger)fanCount
 {
-    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setFanCount:fanCount];
+    self.pbUser = [builder build];
+}
+
+- (void)setBloodGroup:(NSInteger)bloodGroup
+{
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setBloodGroup:bloodGroup];
+    self.pbUser = [builder build];
 }
 
 - (void)setSignature:(NSString *)signature
 {
-    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setSignature:signature];
+    self.pbUser = [builder build];
 }
 
 - (void)setUserId:(NSString *)userId
