@@ -56,7 +56,7 @@ static ShareService* _defaultService;
     
     NSString* text = @"";
     if (isDrawByMe){
-//        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
+        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
     }
     else{
         NSString* nick = nil;
@@ -66,9 +66,9 @@ static ShareService* _defaultService;
         else{
             nick = @"";
         }
-//        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
     }
-    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
+//    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
     
     PPDebug(@"Share Weibo Text=%@", text); 
     return text;
@@ -205,21 +205,19 @@ static ShareService* _defaultService;
     UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH*3 + labelHeight));
 
     CGContextRef ref = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ref);    
+
+   
     
     //line of left
     CGContextSetShadowWithColor(ref, CGSizeMake(-SHADOW_WIDTH, 0), SHADOW_BLUR, imageShadowColor.CGColor);
-    
     //right line
     CGContextSetShadowWithColor(ref, CGSizeMake(SHADOW_WIDTH, 0), SHADOW_BLUR, imageShadowColor.CGColor);
-    
     CGContextSetShadowWithColor(ref, CGSizeMake(0, SHADOW_WIDTH), SHADOW_BLUR, imageShadowColor.CGColor);
-    
+
+    // draw image with shadow
     CGRect rect = CGRectMake(SHADOW_WIDTH, 0, srcImage.size.width, srcImage.size.height);
     [srcImage drawInRect:rect];
-    
-    
-
-    CGContextSaveGState(ref);
     
 //    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
     [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];

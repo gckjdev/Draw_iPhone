@@ -579,7 +579,10 @@
 //        [_shopController.topNavigationController popToViewController:self animated:NO];
 //        [self.navigationController pushViewController:rc animated:NO];
 //    }else{
-        [self.navigationController pushViewController:rc animated:YES];
+    
+    [self.navigationController pushViewController:rc animated:YES];
+    [rc release];
+    
 //    }
 //    [rc release]; 
 }
@@ -813,20 +816,20 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-        ToolView* toolview = nil;
-        switch (itemId) {
-            case ItemTypeTips: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
-            } break;
-            case ItemTypeFlower: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
-            } break;
-            case ItemTypeTomato: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
-            } break;
-            default:
-                break;
-        }
+//        ToolView* toolview = nil;
+//        switch (itemId) {
+//            case ItemTypeTips: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
+//            } break;
+//            case ItemTypeFlower: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
+//            } break;
+//            case ItemTypeTomato: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
+//            } break;
+//            default:
+//                break;
+//        }
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

@@ -67,12 +67,17 @@
     if (self) {
         //set times info
         [self initTimeList:pbFeed.feedTimesList];
-        self.pbDraw = pbFeed.drawData;
+
+        if ([pbFeed hasDrawData]) {
+            self.pbDraw = pbFeed.drawData;
+        }
+
         //set draw info
         self.wordText = pbFeed.opusWord;
         [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;
+        self.drawDataUrl = pbFeed.drawDataUrl;
     }
     return self;
 }
@@ -81,6 +86,7 @@
 #define KEY_DRAW @"DRAW"
 #define KEY_IMAGE @"IMAGE"
 #define KEY_TIMES @"TIMES"
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -345,7 +351,14 @@
     [defaults synchronize];
 }
 
-
+- (void)decreaseLocalFlowerTimes
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int value = [self actionTimesForKey:self.flowerKey];
+    NSNumber *number = [NSNumber numberWithInt:--value];
+    [defaults setObject:number forKey:self.flowerKey];
+    [defaults synchronize];
+}
 - (void)increaseLocalFlowerTimes
 {
     [self increaseActionTimes:self.flowerKey];

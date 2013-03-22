@@ -1864,14 +1864,16 @@
 
 
 + (CommonNetworkOutput*)throwItemToOpus:(NSString*)baseURL
-                              appId:(NSString*)appId
-                             userId:(NSString*)userId
-                               nick:(NSString*)nick
-                             avatar:(NSString*)avatar
-                             gender:(NSString*)gender
-                             opusId:(NSString*)opusId                        
-                     opusCreatorUId:(NSString*)opusCreatorUId  
-                            itemType:(int)itemType
+                                  appId:(NSString*)appId
+                                 userId:(NSString*)userId
+                                   nick:(NSString*)nick
+                                 avatar:(NSString*)avatar
+                                 gender:(NSString*)gender
+                                 opusId:(NSString*)opusId                        
+                         opusCreatorUId:(NSString*)opusCreatorUId
+                               itemType:(int)itemType
+                           awardBalance:(int)awardBalance
+                               awardExp:(int)awardExp
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1893,6 +1895,10 @@
         //use item type as a action type. the action will show in the comment.
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:itemType];
         
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:opusCreatorUId];
+        str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:awardBalance];
+        str = [str stringByAddQueryParameter:PARA_EXP intValue:awardExp];
+
         //action type
         return str;
     };

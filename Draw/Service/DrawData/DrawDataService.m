@@ -106,20 +106,20 @@ static DrawDataService* _defaultDrawDataService = nil;
                     // add download feed draw data by data URL
                     if ([[pbFeed drawDataUrl] length] > 0){
                         NSData* data = [[FeedDownloadService defaultService]
-                                        downloadDrawDataFile:[pbFeed drawDataUrl]
-                                        fileName:[pbFeed feedId]];
+                                            downloadDrawDataFile:[pbFeed drawDataUrl]
+                                                        fileName:[pbFeed feedId]
+                                        downloadProgressDelegate:viewController];
                         
                         if (data != nil){
                             // create PBDraw from data and rewrite pbFeed
                             PBDraw* pbDraw = [PBDraw parseFromData:data];
                             pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
+                            if (pbDraw != nil) {
+                                [[FeedManager defaultManager] cachePBDraw:pbDraw forFeedId:pbFeed.feedId];
+                            }
                         }
                         
                     }
-                    if (pbFeed != nil){
-                        [[FeedManager defaultManager] cachePBFeed:pbFeed];
-                    }
-                    
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 }
                 resultCode = [response resultCode];

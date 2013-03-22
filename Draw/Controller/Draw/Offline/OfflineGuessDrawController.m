@@ -834,7 +834,8 @@
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
-    [self.view addSubview:holder];
+//    [self.view addSubview:holder];
+    [self.view insertSubview:holder atIndex:4];
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
@@ -871,20 +872,20 @@
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-        ToolView* toolview = nil;
-        switch (itemId) {
-            case ItemTypeTips: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
-            } break;
-            case ItemTypeFlower: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
-            } break;
-            case ItemTypeTomato: {
-                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
-            } break;
-            default:
-                break;
-        }
+//        ToolView* toolview = nil;
+//        switch (itemId) {
+//            case ItemTypeTips: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
+//            } break;
+//            case ItemTypeFlower: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
+//            } break;
+//            case ItemTypeTomato: {
+//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
+//            } break;
+//            default:
+//                break;
+//        }
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

@@ -155,7 +155,9 @@
     [self hideActivity];
     if (resultCode == 0) {
         [self.contentView setText:nil];
+        [self.feed incTimesForType:FeedTimesTypeComment];
         [self dismissModalViewControllerAnimated:YES];
+        
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") 
                                                        delayTime:1 

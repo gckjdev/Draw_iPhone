@@ -346,98 +346,177 @@ static FeedService *_staticFeedService = nil;
 
 
 #define GET_FEED_DETAIL_QUEUE @"GET_FEED_DETAIL_QUEUE"
+#define GET_PBDRAW_QUEUE @"GET_PBDRAW_QUEUE"
+
 - (void)getFeedByFeedId:(NSString *)feedId
                delegate:(id<FeedServiceDelegate>)delegate
 {
     
-    FeedManager *manager = [FeedManager defaultManager];
-
     NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
     [queue cancelAllOperations];
 
+//    __block DrawFeed *feed = nil;
+    
+    
     [queue addOperationWithBlock:^{
-        
-        // add by Benson
-        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
-        
-        PBFeed *pbFeed = [manager loadPBFeedWithFeedId:feedId];
-        DrawFeed *feed = nil;
-        BOOL fromCache = NO;
-//        BOOL downloadFileResult = NO;
-
         NSInteger resultCode = 0;
+        NSString* userId = [[UserManager defaultManager] userId];
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       userId:userId feedId:feedId];
+        resultCode = [output resultCode];
+        DrawFeed *feed = nil;
         
-        if (pbFeed != nil) {
-            PPDebug(@"<getFeedByFeedId> load local data, feedId = %@",feedId);
-            fromCache = YES;
-            feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-        }
-        else{
-            //if local data is nil, load data from remote service
-            PPDebug(@"<getFeedByFeedId> load remote data, feedId = %@",feedId);
-            NSString* userId = [[UserManager defaultManager] userId];
-                        
-            CommonNetworkOutput* output = [GameNetworkRequest
-                                           getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
-                                           userId:userId feedId:feedId];
+        if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
             
-            resultCode = [output resultCode];
-
-            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
                 
-                @try{
-                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                    resultCode = [response resultCode];
+                if (resultCode == ERROR_SUCCESS) {
+                    NSArray *list = [response feedList];
+                    PBFeed *pbFeed = nil;
+                    pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
                     
-                    if (resultCode == ERROR_SUCCESS) {
-                        NSArray *list = [response feedList];
-                        pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
                         
-                        // new support in server
-                        // add download feed draw data by data URL
-                        if ([[pbFeed drawDataUrl] length] > 0){
-                            NSData* data = [[FeedDownloadService defaultService]
-                                            downloadDrawDataFile:[pbFeed drawDataUrl]
-                                            fileName:[pbFeed feedId]];
-                            
-                            if (data != nil){
-                                // create PBDraw from data and rewrite pbFeed
-                                PBDraw* pbDraw = [PBDraw parseFromData:data];
-                                pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
-                            }
-                        }
-                        
-                        feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
-                        if ([feed isKindOfClass:[DrawFeed class]]) {
-                        }else{
-                            feed = nil;
-                        }
+                    }else{
+                        feed = nil;
                     }
                 }
-                @catch (NSException *exception) {
-                    PPDebug(@"<getFeedByFeedId> catch exception =%@", [exception description]);
-                    resultCode = ERROR_CLIENT_PARSE_DATA;
-                }
-                @finally {
-                }            
-
-                if (pbFeed != nil){
-                    [manager cachePBFeed:pbFeed];
-                }            
             }
+            @catch (NSException *exception) {
+                PPDebug(@"<getFeedByFeedId> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {}            
+
         }
+        
         //send back to delegate
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeed:resultCode:fromCache:)]) {
                 [delegate didGetFeed:feed
                           resultCode:resultCode
-                           fromCache:fromCache];
+                           fromCache:NO];
             }
         });
         
-        [subPool drain];
     }];
 }
+
+
+- (void)getPBDrawByFeed:(DrawFeed *)feed
+                handler:(LoadPBDrawResultHandler)handler
+       downloadDelegate:(id)downloadDelegate
+{
+    FeedManager *manager = [FeedManager defaultManager];
+    
+    NSOperationQueue *queue = [self getOperationQueue:GET_PBDRAW_QUEUE];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock:^{
+        
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        BOOL fromCache = NO;
+        PBDraw *pbDraw = nil;
+        NSInteger resultCode = 0;
+        
+        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
+        if (pbDraw) {
+            fromCache = YES;
+        }else{
+            if ([[feed drawDataUrl] length] > 0){
+                @try {
+                    NSData* data = [[FeedDownloadService defaultService]
+                                    downloadDrawDataFile:[feed drawDataUrl]
+                                    fileName:[feed feedId]
+                                    downloadProgressDelegate:downloadDelegate];
+                    if (data != nil){
+                        pbDraw = [PBDraw parseFromData:data];
+                    }else{
+                        resultCode = ERROR_RESPONSE_NULL;
+                    }
+                }
+                @catch (NSException *exception) {
+                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+                    resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                @finally {}
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (handler != NULL) {
+                handler(resultCode, pbDraw, feed, fromCache);
+            }
+        });
+        
+        if (!fromCache) {
+            [manager cachePBDraw:pbDraw forFeedId:feed.feedId];
+        }
+        [subPool drain];
+        
+    }];
+
+}
+
+
+//- (void)getPBDrawByFeed:(DrawFeed *)feed
+//               delegate:(id<FeedServiceDelegate>)delegate
+//{
+//    // new support in server
+//    // add download feed draw data by data URL
+//    
+//    FeedManager *manager = [FeedManager defaultManager];
+//    
+//    NSOperationQueue *queue = [self getOperationQueue:GET_PBDRAW_QUEUE];
+//    [queue cancelAllOperations];
+//
+//    [queue addOperationWithBlock:^{
+//        
+//        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];      
+//        BOOL fromCache = NO;
+//        PBDraw *pbDraw = nil;
+//        NSInteger resultCode = 0;
+//
+//        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
+//        if (pbDraw) {
+//            fromCache = YES;
+//        }else{
+//            if ([[feed drawDataUrl] length] > 0){
+//                @try {
+//                    NSData* data = [[FeedDownloadService defaultService]
+//                                    downloadDrawDataFile:[feed drawDataUrl]
+//                                    fileName:[feed feedId]
+//                                    downloadProgressDelegate:delegate
+//                                    ];
+//                    if (data != nil){
+//                        pbDraw = [PBDraw parseFromData:data];
+//                    }else{
+//                        resultCode = ERROR_RESPONSE_NULL;
+//                    }
+//                }
+//                @catch (NSException *exception) {
+//                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+//                    resultCode = ERROR_CLIENT_PARSE_DATA;
+//                }
+//                @finally {}
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (delegate && [delegate respondsToSelector:@selector(didGetPBDraw:byDrawFeed:resultCode:fromCache:)]) {
+//                [delegate didGetPBDraw:pbDraw byDrawFeed:feed resultCode:resultCode fromCache:fromCache];
+//            }
+//        });
+//        
+//        if (!fromCache) {
+//            [manager cachePBDraw:pbDraw forFeedId:feed.feedId];
+//        }
+//        [subPool drain];
+//     
+//    }];
+//}
 
 - (void)getOpusCount:(NSString *)targetUid
             delegete:(id<FeedServiceDelegate>)delegate
@@ -536,6 +615,8 @@ static FeedService *_staticFeedService = nil;
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId
            author:(NSString *)author
+     awardBalance:(int)awardBalance
+         awardExp:(int)awardExp
          delegate:(id<FeedServiceDelegate>)delegate
 {
     
@@ -549,7 +630,7 @@ static FeedService *_staticFeedService = nil;
     
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType];
+        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (itemType == ItemTypeFlower && delegate && [delegate respondsToSelector:@selector(didThrowFlowerToOpus:resultCode:)]) {
@@ -582,21 +663,6 @@ static FeedService *_staticFeedService = nil;
         });
     });
 
-}
-
-
-- (void)throwFlowerToOpus:(NSString *)opusId 
-                   author:(NSString *)author  
-                 delegate:(id<FeedServiceDelegate>)delegate
-{
-    [self throwItem:ItemTypeFlower toOpus:opusId author:author delegate:delegate];
-}
-
-- (void)throwTomatoToOpus:(NSString *)opusId 
-                   author:(NSString *)author 
-                 delegate:(id<FeedServiceDelegate>)delegate;
-{
-    [self throwItem:ItemTypeTomato toOpus:opusId author:author delegate:delegate];    
 }
 
 - (void)actionSaveOpus:(NSString *)opusId 
