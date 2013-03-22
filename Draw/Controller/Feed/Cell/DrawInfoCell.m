@@ -134,11 +134,10 @@
 {
     if ([feed.drawImageUrl length] != 0){
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
-        UIImage *placeholderImage = nil;
-//        if (self.loadingActivity.isAnimating) {
-//            placeholderImage = [[ShareImageManager defaultManager] unloadBg];
-//        }
-        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
+
+        //        UIImage *placeholderImage = [[ShareImageManager defaultManager] unloadBg];
+
+        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
             self.feed.largeImage = image;
             [self updateDrawImageView:image];
             [self loadImageFinish];
