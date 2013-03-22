@@ -615,6 +615,8 @@ static FeedService *_staticFeedService = nil;
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId
            author:(NSString *)author
+     awardBalance:(int)awardBalance
+         awardExp:(int)awardExp
          delegate:(id<FeedServiceDelegate>)delegate
 {
     
@@ -628,7 +630,7 @@ static FeedService *_staticFeedService = nil;
     
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType];
+        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (itemType == ItemTypeFlower && delegate && [delegate respondsToSelector:@selector(didThrowFlowerToOpus:resultCode:)]) {
@@ -661,21 +663,6 @@ static FeedService *_staticFeedService = nil;
         });
     });
 
-}
-
-
-- (void)throwFlowerToOpus:(NSString *)opusId 
-                   author:(NSString *)author  
-                 delegate:(id<FeedServiceDelegate>)delegate
-{
-    [self throwItem:ItemTypeFlower toOpus:opusId author:author delegate:delegate];
-}
-
-- (void)throwTomatoToOpus:(NSString *)opusId 
-                   author:(NSString *)author 
-                 delegate:(id<FeedServiceDelegate>)delegate;
-{
-    [self throwItem:ItemTypeTomato toOpus:opusId author:author delegate:delegate];    
 }
 
 - (void)actionSaveOpus:(NSString *)opusId 

@@ -150,19 +150,15 @@ typedef void (^ DownloadProgressHandler) (float progress);
 - (void)deleteFeed:(Feed *)feed
           delegate:(id<FeedServiceDelegate>)delegate;
 
-- (void)throwFlowerToOpus:(NSString *)opusId 
-                   author:(NSString *)author  
-                 delegate:(id<FeedServiceDelegate>)delegate;
-
-- (void)throwTomatoToOpus:(NSString *)opusId 
-                   author:(NSString *)author 
-                 delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
 
-- (void)throwItem:(ItemType)itemType toOpus:(NSString *)opusId 
-           author:(NSString *)author   
+- (void)throwItem:(ItemType)itemType
+           toOpus:(NSString *)opusId
+           author:(NSString *)author
+     awardBalance:(int)awardBalance
+         awardExp:(int)awardExp
          delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)updateFeedTimes:(DrawFeed *)feed

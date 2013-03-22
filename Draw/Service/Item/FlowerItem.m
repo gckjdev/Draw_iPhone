@@ -57,6 +57,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                     [[FeedService defaultService] throwItem:[bself itemId]
                                                      toOpus:feedOpusId
                                                      author:feedAuthor
+                                               awardBalance:awardAmount
+                                                   awardExp:awardExp
                                                    delegate:nil];
                 }
                 
@@ -68,6 +70,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
             [[FeedService defaultService] throwItem:[bself itemId]
                                              toOpus:feedOpusId
                                              author:feedAuthor
+                                       awardBalance:awardAmount
+                                           awardExp:awardExp
                                            delegate:nil];
             EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
             [bself.blockArray releaseBlock:tempHandler];

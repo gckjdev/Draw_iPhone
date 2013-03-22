@@ -834,7 +834,8 @@
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
-    [self.view addSubview:holder];
+//    [self.view addSubview:holder];
+    [self.view insertSubview:holder atIndex:4];
 }
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled

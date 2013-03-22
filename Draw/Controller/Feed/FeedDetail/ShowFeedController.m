@@ -414,6 +414,7 @@ enum{
     [self updateTitle];
     [self updateActionButtons];
     [self.feed setDrawData:nil];
+    [self.feed setPbDraw:nil];
 }
 
 #pragma mark - feed service delegate
@@ -587,6 +588,7 @@ enum{
                     isNewVersion:[cp.feed.drawData isNewVersion]
                           drawBg:cp.feed.pbDraw.drawBg
                             size:CGSizeFromPBSize(cp.feed.pbDraw.canvasSize)];
+        self.feed.drawData = nil;
     }];
     
 }
