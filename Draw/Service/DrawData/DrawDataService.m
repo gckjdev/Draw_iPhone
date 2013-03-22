@@ -114,13 +114,12 @@ static DrawDataService* _defaultDrawDataService = nil;
                             // create PBDraw from data and rewrite pbFeed
                             PBDraw* pbDraw = [PBDraw parseFromData:data];
                             pbFeed = [[[PBFeed builderWithPrototype:pbFeed] setDrawData:pbDraw] build];
+                            if (pbDraw != nil) {
+                                [[FeedManager defaultManager] cachePBDraw:pbDraw forFeedId:pbFeed.feedId];
+                            }
                         }
                         
                     }
-                    if (pbFeed != nil){
-                        [[FeedManager defaultManager] cachePBFeed:pbFeed];
-                    }
-                    
                     feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 }
                 resultCode = [response resultCode];
