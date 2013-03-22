@@ -40,24 +40,29 @@
 #import "UserGameItemManager.h"
 
 @interface ShowFeedController () {
-    ShareAction* _shareAction;
+    BOOL _didLoadDrawPicture;
+    UIImageView* _throwingItem;
+    ShareAction *_shareAction;
 }
+@property (retain, nonatomic) IBOutlet UIButton *guessButton;
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
+@property (retain, nonatomic) IBOutlet UIButton *commentButton;
+@property (retain, nonatomic) IBOutlet UIButton *flowerButton;
+@property (retain, nonatomic) IBOutlet UIButton *replayButton;
+
+
+@property(nonatomic, retain) UserInfoCell *userCell;
+@property(nonatomic, retain) DrawInfoCell *drawCell;
+@property(nonatomic, retain) CommentHeaderView *commentHeader;
+@property(nonatomic, retain) DrawFeed *feed;
+@property (nonatomic, retain) UseItemScene* useItemScene;
+
+- (IBAction)clickActionButton:(id)sender;
+
 
 @end
 
 @implementation ShowFeedController
-@synthesize titleLabel = _titleLabel;
-@synthesize guessButton = _guessButton;
-@synthesize saveButton = _saveButton;
-@synthesize commentButton = _commentButton;
-@synthesize flowerButton = _flowerButton;
-@synthesize tomatoButton = _tomatoButton;
-@synthesize replayButton = _replayButton;
-@synthesize feed = _feed;
-@synthesize userCell = _userCell;
-@synthesize drawCell = _drawCell;
-@synthesize commentHeader = _commentHeader;
-@synthesize useItemScene = _useItemScene;
 
 typedef enum{
     
@@ -79,15 +84,12 @@ typedef enum{
     PPRelease(_userCell);
     PPRelease(_tabManager);
     PPRelease(_commentHeader);
-    PPRelease(_titleLabel);
     PPRelease(_guessButton);
     PPRelease(_saveButton);
     PPRelease(_commentButton);
     PPRelease(_flowerButton);
-    PPRelease(_tomatoButton);
     PPRelease(_replayButton);
     PPRelease(_useItemScene);
-    PPRelease(_shareAction);
     [super dealloc];
 }
 
@@ -125,45 +127,17 @@ enum{
 
 #define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
 #define ACTION_BUTTON_Y ([DeviceDetection isIPAD] ? 921 : 422)
+
+
 - (void)updateActionButtons
 {
-    //data is nil
-//    NSInteger start = ActionTagGuess;
-//    NSInteger count = ActionTagEnd - start;
-//    
     self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
     self.replayButton.hidden = !self.guessButton.hidden;
-    
-//    if ([self.feed showAnswer]) {
-//
-//        start = ActionTagComment;
-//        self.guessButton.hidden = YES;
-//        self.replayButton.hidden = NO;
-//        count --;
-//    }else{
-//        self.replayButton.hidden = YES;
-//        self.guessButton.hidden = NO;
-//    }
-    
-//    CGFloat width = self.guessButton.frame.size.width;
-//    CGFloat space = (SCREEN_WIDTH - (count * width)) / (count + 1);
-//    CGFloat x = space;
-//    CGFloat y = ACTION_BUTTON_Y;
-//    
-//    for (NSInteger tag = start; tag < ActionTagEnd; ++ tag) {
-//        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-//        button.frame = CGRectMake(x, y, width, width);
-//        button.enabled = YES;
-//        x += width + space;
-//    }
+
     for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
         UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-        button.enabled = ([self.feed hasDrawActions] && _didLoadDrawPicture);
+        button.enabled = YES;
     }
-//    self.saveButton.enabled = !_didSave && [self.feed hasDrawActions] && _didLoadDrawPicture;
-//    if (![self.feed canSave]) {
-//        self.saveButton.enabled = NO;
-//    }
 }
 
 - (void)reloadCommentSection
@@ -388,6 +362,7 @@ enum{
     NSMutableArray *list = [[_tabManager currentTab] dataList];
     [list removeObject:feed];
     [self reloadCommentSection];
+    [self finishDeleteData:feed ForTabID:feed.feedType];
 
 }
 
@@ -414,18 +389,12 @@ enum{
 #pragma mark - cell delegate
 - (void)didUpdateShowView
 {
-    //update the times
-//    [self.commentHeader setViewInfo:self.feed];
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
     
     [self.dataTableView reloadData];
     
-//    [self updateUserInfo];
-    
-//    NSIndexSet *set = [NSIndexSet indexSetWithIndex:SectionDrawInfo];
-//    [self.dataTableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
@@ -441,16 +410,10 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self didUpdateShowView];
-    [self clickRefresh:nil];
-    [self updateTitle];    
+    [self clickRefreshButton:nil];
+    [self updateTitle];
     [self updateActionButtons];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    PPDebug(@"<ShowFeedController> retain count = %d",[self retainCount]);
+    [self.feed setDrawData:nil];
 }
 
 #pragma mark - feed service delegate
@@ -461,36 +424,10 @@ enum{
                    resultCode:(NSInteger)resultCode
                        offset:(int)offset
 {
-//    [self hideActivity];
-//    [self dataSourceDidFinishLoadingMoreData];
-    [self dataSourceDidFinishLoadingMoreData];
-    
-    TableTab *tab = [_tabManager tabForID:type];
     if (resultCode == 0) {
-        
-        PPDebug(@"<didGetFeedCommentList>get feed(%@)  succ!", opusId);
-        [tab setStatus:TableTabStatusLoaded];
-        NSInteger count = [feedList count];
-        if (count == 0) {
-            tab.hasMoreData = NO;
-            self.noMoreData = YES;
-        }else{
-            self.noMoreData = NO;
-            tab.hasMoreData = YES;
-            if (offset == 0) {
-                [_tabManager setDataList:feedList ForTabID:type];
-            }else{
-                [_tabManager addDataList:feedList toTab:type];
-            }
-            tab.offset += count;
-        }
-        [self reloadCommentSection];
+        [self finishLoadDataForTabID:type resultList:feedList];
     }else{
-        if (tab.offset == 0) {
-            [tab setStatus:TableTabStatusUnload];
-            [tab setHasMoreData:NO];
-        }
-        PPDebug(@"<didGetFeedCommentList>get feed(%@)  fail!", opusId);
+        [self failLoadDataForTabID:type];
     }
 }
 
@@ -550,7 +487,7 @@ enum{
                                                   rolling:YES
                                                itemEnough:itemEnough
                                            shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType] completion:^(BOOL finished) {
-                    [bself clickRefresh:nil];
+                [bself clickRefreshButton:nil];
                    PPDebug(@"<test2> complete 10");
                 }];
                 [bself.commentHeader setSeletType:CommentTypeFlower];
@@ -559,17 +496,6 @@ enum{
             }
         }];
         
-    }else{
-        
-        
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
-        UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:self.tomatoButton.frame] autorelease];
-        [throwItem setImage:[imageManager tomato]];
-        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
-            [self clickRefresh:nil];
-        }];
-        [_commentHeader setSeletType:CommentTypeTomato];
-        [self.feed increaseLocalTomatoTimes];
     }
 }
 
@@ -589,34 +515,66 @@ enum{
     
 }
 
-#pragma mark - Click Actions
-- (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)loadDrawDataWithHanlder:(dispatch_block_t)handler
+{
+
+    if(handler == NULL)return;
+
+    [self showActivityWithText:NSLS(@"kLoading")];
+     
+    if(self.feed.pbDraw){
+        [self hideActivity];
+        handler();
+        return;
+    }
+    
+    __block ShowFeedController * cp = self;
+    [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode,
+                                                                      PBDraw *pbDraw,
+                                                                      DrawFeed *feed,
+                                                                      BOOL fromCache)
+    {
+        [cp hideActivity];
+        if(resultCode == 0){
+            cp.feed.pbDraw = pbDraw;
+            handler();
+        }else{
+            
+        }
+    }];
 }
+
+#pragma mark - Click Actions
 
 - (void)performGuess
 {
+    __block ShowFeedController * cp = self;
     //enter guess controller
-    [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
-    [_commentHeader setSeletType:CommentTypeGuess];
-    [self hideActivity];
+    [self loadDrawDataWithHanlder:^{
+        [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
+        [_commentHeader setSeletType:CommentTypeGuess];
+        [cp hideActivity];        
+    }];
 }
 
 - (void)performReplay
 {
-    [self hideActivity];
-    ReplayView *replay = [ReplayView createReplayView];
-    [self.feed parseDrawData];
-    [replay showInController:self withActionList:self.feed.drawData.drawActionList
-                isNewVersion:[self.feed.drawData isNewVersion]
-                      drawBg:self.feed.pbDraw.drawBg
-                        size:CGSizeFromPBSize(self.feed.pbDraw.canvasSize)];
+    __block ShowFeedController * cp = self;
+
+    [self loadDrawDataWithHanlder:^{
+        ReplayView *replay = [ReplayView createReplayView];
+        [self.feed parseDrawData];
+        [replay showInController:cp withActionList:cp.feed.drawData.drawActionList
+                    isNewVersion:[cp.feed.drawData isNewVersion]
+                          drawBg:cp.feed.pbDraw.drawBg
+                            size:CGSizeFromPBSize(cp.feed.pbDraw.canvasSize)];
+    }];
+    
 }
 
 - (IBAction)clickActionButton:(id)sender {
     UIButton *button = (UIButton *)sender;
     if (button == self.guessButton) {
-        [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
     }else if(button == self.commentButton){
         //enter comment controller
@@ -638,10 +596,7 @@ enum{
         
     }else if(button == self.flowerButton){
         [self throwItem:ItemTypeFlower];
-    }else if(button == self.tomatoButton){
-        [self throwItem:ItemTypeTomato];
     }else if(button == self.replayButton){
-        [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
     }else{
         //NO action
@@ -667,10 +622,7 @@ enum{
 - (void)didSaveOpus:(BOOL)succ
 {
     [self hideActivity];
-    self.saveButton.userInteractionEnabled = YES;
     if (succ) {
-        self.saveButton.enabled = NO;
-        _didSave = YES;
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveOpusOK") delayTime:1.5 isHappy:YES];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveImageFail") delayTime:1.5 isHappy:NO];
@@ -679,34 +631,11 @@ enum{
 
 #pragma mark comment header delegate
 
-- (void)updateCommentListForTab:(TableTab *)tab
-{
-    [[FeedService defaultService] getOpusCommentList:_feed.feedId 
-                                                type:tab.tabID 
-                                              offset:tab.offset 
-                                               limit:tab.limit 
-                                            delegate:self];     
-    tab.status = TableTabStatusLoading;
-}
-
 - (void)didSelectCommentType:(int)type
 {
-    TableTab *tab = [_tabManager tabForID:type];
-    if (tab.isCurrentTab) {
-        return;
-    }
-    [_tabManager setCurrentTab:tab];
-    if (tab.status == TableTabStatusUnload) {
-        [self updateCommentListForTab:tab];
-    }
-    [self reloadCommentSection];
+    [self clickTab:type];
 }
 
-- (void)loadMoreTableViewDataSource
-{
-    TableTab *tab = [_tabManager currentTab];
-    [self updateCommentListForTab:tab];
-}
 
 
 #pragma mark - override methods.
@@ -727,44 +656,27 @@ enum{
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)initTabs
-{
-    NSArray *tabIDs = [NSArray arrayWithObjects:
-                       [NSNumber numberWithInteger:CommentTypeComment],
-                       [NSNumber numberWithInteger:CommentTypeGuess],
-                       [NSNumber numberWithInteger:CommentTypeFlower],
-                       [NSNumber numberWithInteger:CommentTypeTomato], nil];
-    
-    NSArray *tabNoDataDescList = [NSArray arrayWithObjects:NSLS(@"kNoComments"),
-                                  NSLS(@"kNoGuesses"),
-                                  NSLS(@"kNoFlowers"),
-                                  NSLS(@"kNoTomatos"), nil];
-    if (_tabManager != nil) {
-        PPRelease(_tabManager);
-    }
-    _tabManager = [[TableTabManager alloc] initWithTabIDList:tabIDs
-                                                   titleList:nil
-                                              noDataDescList:tabNoDataDescList 
-                                                       limit:12 
-                                             currentTabIndex:-1];
-    
-    self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
-    [self.commentHeader setViewInfo:self.feed];
-
-    [_commentHeader setSeletType:CommentTypeComment];
-    
-}
 
 #pragma mark - View lifecycle
+
+- (void)initTabButtons
+{
+    [super initTabButtons];
+    self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
+    [self.commentHeader setViewInfo:self.feed];
+    [self.commentHeader setSeletType:CommentTypeComment];
+}
 
 - (void)viewDidLoad
 {
     
-    [self setSupportRefreshFooter:YES];
+    [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    [self initTabButtons];
     [self updateActionButtons];
     [self updateTitle];
-    [self initTabs];
+    [[FeedService defaultService] getFeedByFeedId:_feed.feedId
+                                         delegate:self];
 }
 
 - (void)viewDidUnload
@@ -774,46 +686,50 @@ enum{
     [self setSaveButton:nil];
     [self setCommentButton:nil];
     [self setFlowerButton:nil];
-    [self setTomatoButton:nil];
     [self setReplayButton:nil];
 
     [self.feed setDrawData:nil];
+    [self setFeed:nil];
     [self setDrawCell:nil];
     [self setUserCell:nil];
     [self setCommentHeader:nil];
-    PPRelease(_tabManager);
+    
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-
-- (IBAction)clickRefresh:(id)sender {
-    if (self.feed.drawData == nil) {
-        [_drawCell setCellInfo:_feed];
+- (void)didGetFeed:(DrawFeed *)feed
+        resultCode:(NSInteger)resultCode
+         fromCache:(BOOL)fromCache
+{
+    if (resultCode == 0) {
+        self.feed.timesSet = feed.timesSet;
+        self.feed.pbDraw = feed.pbDraw;
+        self.feed.feedUser = feed.feedUser;
+        self.feed.createDate = feed.createDate;
+        self.feed.opusDesc = feed.opusDesc;
+        self.feed.feedType = feed.feedType;
+        self.feed.drawDataUrl = feed.drawDataUrl;
+        
+        if ([feed.drawImageUrl length] != 0) {
+            self.feed.drawImageUrl = feed.drawImageUrl;
+        }
+        [self.dataTableView reloadData];
+    }else{
+        PPDebug(@"<didGetFeed> Failed!!!");
     }
-    
-    //update times
-    [[FeedService defaultService] updateFeedTimes:self.feed delegate:self];
-    
-    TableTab *tab = [_tabManager currentTab];
-    tab.offset = 0;
-    [self updateCommentListForTab:tab];
 }
-- (void)didUpdateFeedTimes:(DrawFeed *)feed 
+
+
+
+- (void)didUpdateFeedTimes:(DrawFeed *)feed
                 resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0) {
-//        [_commentHeader updateTimes:feed];
         [_commentHeader setViewInfo:feed];
     }
-}
-
-#pragma mark - UIActionsheet delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
 }
 
 #pragma mark - DrawInfoCell delegate
@@ -832,5 +748,51 @@ enum{
         [self clickActionButton:self.guessButton];
     }
 }
+
+
+#pragma mark-- Common Tab Controller Delegate
+
+- (NSInteger)tabCount
+{
+    if ([_feed isContestFeed]) {
+        return 2;
+    }
+    return 3;
+}
+
+- (NSInteger)currentTabIndex
+{
+    return _defaultTabIndex;
+}
+
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 12;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    if ([_feed isContestFeed]) {
+        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeFlower};
+        return tabIDs[index];
+    }else{
+        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
+        return tabIDs[index];
+    }
+    
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    return nil;
+}
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[FeedService defaultService] getOpusCommentList:_feed.feedId
+                                                type:tab.tabID
+                                              offset:tab.offset
+                                               limit:tab.limit
+                                            delegate:self];
+}
+
 
 @end

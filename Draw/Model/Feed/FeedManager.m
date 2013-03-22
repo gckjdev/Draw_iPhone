@@ -154,6 +154,40 @@ FeedManager *_staticFeedManager = nil;
 }
 
 
+#define PBDRAW_KEY(x) [NSString stringWithFormat:@"%@_pbdraw",x]
+
+- (void)cachePBDraw:(PBDraw *)pbDraw forFeedId:(NSString *)feedId;
+{
+    [pbDraw retain];
+
+    @try {
+        NSString *key = PBDRAW_KEY(feedId);
+        PPDebug(@"<cachePBDraw> Key = %@",key);
+        [_storeManager saveData:[pbDraw data] forKey:key];
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<cachePBDraw> exception : %@",exception);
+    }
+    @finally {
+        
+    }
+    
+    [pbDraw release];
+
+}
+- (PBDraw *)loadPBDrawWithFeedId:(NSString *)feedId
+{
+    NSString *key = PBDRAW_KEY(feedId);
+    NSData *data = [_storeManager dataForKey:key];
+    if (data) {
+        PBDraw *pbDraw = [PBDraw parseFromData:data];
+        PPDebug(@"<loadPBDrawWithFeedId>, key= %@", key);
+        return pbDraw;
+    }
+    return nil;
+}
+
+
 
 #define FEED_INTERVAL 3600 * 24 * 5 //5 DAYS
 

@@ -186,10 +186,12 @@
         [self.imageButton setImage:self.image
                           forState:UIControlStateNormal];
         [self roundToolButton:self.imageButton cornerRadius:BUTTON_CORNER_RADIUS];
+        [self.imageButton setBackgroundColor:[UIColor whiteColor]];
     }else{
         [self.imageButton setImage:[imageManager bbsCreateImageEnable]
                           forState:UIControlStateNormal];
         [self roundToolButton:self.imageButton cornerRadius:0];
+        [self.imageButton setBackgroundColor:[UIColor clearColor]];
     }
     if (self.bonus > 0) {
         [self.rewardButton setTitle:[NSString stringWithFormat:@"+%d",self.bonus]
