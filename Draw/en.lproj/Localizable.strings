@@ -1109,7 +1109,11 @@
 "kWallRewardCoinMessage" = "Congratulation! you got %d coin(s)";
 "kWallRewardIngotMessage" = "Congratulations! you got %d coin(s)";
 
+"kZodiacArray" = "Aries^Taurus^Gemini^Cancer^Leo^Virgo^Libra^Scorpio^Sagittarius^Capricorn^Aquarius^Pisces";
+
+
 "kLoadingProgress" = "Loading... (%3.f%%)";
+
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

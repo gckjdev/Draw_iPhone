@@ -143,9 +143,29 @@
         }
 
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
+            
+            
+//            if (!cached) {
+//                self.drawImage.alpha = 0;
+//                [UIView animateWithDuration:1.5 animations:^{
+//                    self.drawImage.alpha = 1.0;
+//
+//                    self.feed.largeImage = image;
+//                    [self updateDrawImageView:image];
+//                    [self loadImageFinish];
+//                    
+//                }];
+//            }else{
+//                self.feed.largeImage = image;
+//                [self updateDrawImageView:image];
+//                [self loadImageFinish];
+//            }
+            
             self.feed.largeImage = image;
             [self updateDrawImageView:image];
             [self loadImageFinish];
+
+            
         } failure:^(NSError *error) {
             
         }];

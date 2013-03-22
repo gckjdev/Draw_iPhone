@@ -28,6 +28,7 @@
     NSInteger rowOfBloodGropu;
     NSInteger rowOfLocation;
     NSInteger rowOfZodiac;
+    NSInteger rowOfSignature;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;

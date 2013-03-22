@@ -416,10 +416,10 @@
 - (void)initActionButton
 {
     PBGameItem *flower = [[GameItemManager defaultManager] itemWithItemId:ItemTypeFlower];
-    [self.upButton setImageWithURL:[NSURL URLWithString:flower.image]];
+    [self.upButton setBackgroundImageWithURL:[NSURL URLWithString:flower.image]];
     
     PBGameItem *tomato = [[GameItemManager defaultManager] itemWithItemId:ItemTypeTomato];
-    [self.upButton setImageWithURL:[NSURL URLWithString:tomato.image]];
+    [self.upButton setBackgroundImageWithURL:[NSURL URLWithString:tomato.image]];
     
     //init the up & down button
     if (_resultType != OnlineDraw) {
