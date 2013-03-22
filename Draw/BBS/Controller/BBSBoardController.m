@@ -98,8 +98,21 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
+                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
+                                                     useLmAd:YES];
+    
     [super viewDidAppear:animated];
     [self updateBadge];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+
+    [super viewDidDisappear:animated];
 }
 
 - (void)updateBoardList
@@ -277,6 +290,10 @@
 }
 
 - (void)dealloc {
+
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+    
     PPRelease(_backButton);
     PPRelease(_myPostButton);
     PPRelease(_myActionButton);
