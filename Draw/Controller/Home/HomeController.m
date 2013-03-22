@@ -184,7 +184,7 @@
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
 //    [self.view bringSubviewToFront:self.testBulletin];
-    [self.view bringSubviewToFront:self.testCreateWallBtn];
+//    [self.view bringSubviewToFront:self.testCreateWallBtn];
 
 }
 
