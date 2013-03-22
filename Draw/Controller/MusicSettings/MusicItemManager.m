@@ -268,13 +268,13 @@ static MusicItemManager *_defaultManager;
     }
     else {
         [audioManager setIsMusicOn:YES];
-        NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
-        if([audioManager setBackGroundMusicWithURL:url]){
-            [audioManager backgroundMusicStart];
-        }
-        else {
+//        NSURL *url = [NSURL fileURLWithPath:self.currentMusicItem.localPath];
+//        if([audioManager setBackGroundMusicWithURL:url]){
+//            [audioManager backgroundMusicStart];
+//        }
+//        else {
             [UIUtils alert:NSLS(@"kMusicWrong")];
-        }
+//        }
     }
 }
 

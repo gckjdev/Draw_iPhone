@@ -32,6 +32,7 @@
 #import "GameSNSService.h"
 #import "MKBlockActionSheet.h"
 #import "GCDatePickerView.h"
+#import "TimeUtils.h"
 
 
 enum{
@@ -113,7 +114,8 @@ enum {
     rowOfBirthday = 4;
     rowOfBloodGropu = 5;
     rowOfZodiac = 6;
-    rowsInSectionUser = 7;
+    rowOfSignature = 7;
+    rowsInSectionUser = 8;
     
     //section guessword
     if (isDrawApp()) {
@@ -430,13 +432,16 @@ enum {
             [cell.detailTextLabel setText:[userManager location]];
         }else if (row == rowOfZodiac) {
             [cell.textLabel setText:NSLS(@"kZodiac")];
-            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%d", [userManager zodiac]]];
+            [cell.detailTextLabel setText:[LocaleUtils getZodiacWithIndex:[userManager zodiac]]];
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
             [cell.detailTextLabel setText:userManager.birthday];
         }else if (row == rowOfBloodGropu) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
-            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%d",userManager.bloodGroup]];
+            [cell.detailTextLabel setText:userManager.bloodGroup];
+        } else if (row == rowOfSignature) {
+            [cell.textLabel setText:NSLS(@"kSignature")];
+            [cell.detailTextLabel setText:userManager.signature];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -631,32 +636,52 @@ enum {
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == rowOfLocation) {
+            __block UserSettingController* bc = self;
             InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputLocation") clickOK:^(NSString *inputStr) {
                 [[UserManager defaultManager] setLocation:inputStr];
+                [bc.dataTableView reloadData];
             } clickCancel:^(NSString *inputStr) {
                 //
             }];
             [dialog showInView:self.view];
         }else if (row == rowOfZodiac) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"") otherButtonTitles:NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), nil] autorelease];
-            
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+            for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
+                [actionSheet addButtonWithTitle:zodiacStr];
+            }
+            int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+            [actionSheet setCancelButtonIndex:index];
+            __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                [userManager setZodiac:buttonIndex];
+                if (buttonIndex != actionSheet.cancelButtonIndex) [userManager setZodiac:buttonIndex];
+                [bc.dataTableView reloadData];
             }];
             [actionSheet showInView:self.view];
         }else if (row == rowOfBirthday) {
+            __block UserSettingController* bc = self;
             GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
                                                                   finishBlock:^(NSDate *date) {
-                //
+                                                                      [userManager setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
+                                                                      [bc.dataTableView reloadData];
             }];
             [view showInView:self.view];
         }else if (row == rowOfBloodGropu) {
             MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), NSLS(@"kOther"), nil] autorelease];
-            
+            __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                [userManager setBloodGroup:buttonIndex];
+                if(buttonIndex != actionSheet.cancelButtonIndex) [userManager setBloodGroup:[actionSheet buttonTitleAtIndex:buttonIndex]];
+                [bc.dataTableView reloadData];
             }];
             [actionSheet showInView:self.view];
+        } else if (row == rowOfSignature) {
+            __block UserSettingController* bc = self;
+            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
+                [[UserManager defaultManager] setSignature:inputStr];
+                [bc.dataTableView reloadData];
+            } clickCancel:^(NSString *inputStr) {
+                //
+            }];
+            [dialog showInView:self.view];
         }
     
     }else if (section == SECTION_GUESSWORD) {
