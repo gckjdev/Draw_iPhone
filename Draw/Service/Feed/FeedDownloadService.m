@@ -133,7 +133,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FeedDownloadService)
 }
 
 // call this method to download data
-- (NSData*)downloadDrawDataFile:(NSString*)fileURL fileName:(NSString*)fileName
+- (NSData*)downloadDrawDataFile:(NSString*)fileURL
+                       fileName:(NSString*)fileName
+       downloadProgressDelegate:(id)downloadProgressDelegate
 {
     if (fileURL == nil)
         return nil;
@@ -157,11 +159,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FeedDownloadService)
     NSString* tempPath = [FeedDownloadService getFileUpdateDownloadTempPath:zipFileName];
     [downloadHttpRequest setTemporaryFileDownloadPath:tempPath];
     
-    [downloadHttpRequest setDownloadProgressDelegate:nil];
+    [downloadHttpRequest setDownloadProgressDelegate:downloadProgressDelegate];
     [downloadHttpRequest setAllowResumeForFileDownloads:YES];
     
     PPDebug(@"<downloadDrawDataFile> URL=%@, Local Temp=%@, Store At=%@",
             url.absoluteString, tempPath, destPath);
+    
+    
     
     [downloadHttpRequest startSynchronous];
     

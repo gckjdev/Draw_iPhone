@@ -430,7 +430,8 @@ static FeedService *_staticFeedService = nil;
                 @try {
                     NSData* data = [[FeedDownloadService defaultService]
                                     downloadDrawDataFile:[feed drawDataUrl]
-                                    fileName:[feed feedId]];
+                                    fileName:[feed feedId]
+                                    downloadProgressDelegate:nil];
                     if (data != nil){
                         pbDraw = [PBDraw parseFromData:data];
                     }else{

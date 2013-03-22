@@ -56,7 +56,7 @@ static ShareService* _defaultService;
     
     NSString* text = @"";
     if (isDrawByMe){
-//        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
+        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
     }
     else{
         NSString* nick = nil;
@@ -66,9 +66,9 @@ static ShareService* _defaultService;
         else{
             nick = @"";
         }
-//        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
     }
-    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
+//    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
     
     PPDebug(@"Share Weibo Text=%@", text); 
     return text;

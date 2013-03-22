@@ -30,6 +30,9 @@
 #import "PPSNSCommonService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
+#import "MKBlockActionSheet.h"
+#import "GCDatePickerView.h"
+
 
 enum{
     SECTION_USER = 0,
@@ -635,11 +638,25 @@ enum {
             }];
             [dialog showInView:self.view];
         }else if (row == rowOfZodiac) {
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"") otherButtonTitles:NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), NSLS(@""), nil] autorelease];
             
+            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+                [userManager setZodiac:buttonIndex];
+            }];
+            [actionSheet showInView:self.view];
         }else if (row == rowOfBirthday) {
-            
+            GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
+                                                                  finishBlock:^(NSDate *date) {
+                //
+            }];
+            [view showInView:self.view];
         }else if (row == rowOfBloodGropu) {
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), NSLS(@"kOther"), nil] autorelease];
             
+            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+                [userManager setBloodGroup:buttonIndex];
+            }];
+            [actionSheet showInView:self.view];
         }
     
     }else if (section == SECTION_GUESSWORD) {
