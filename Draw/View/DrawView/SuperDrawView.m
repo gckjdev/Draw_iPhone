@@ -174,9 +174,6 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
         CGRect rect = CGRectZero;
         rect.size = self.drawBgImage.size;
         CGContextDrawTiledImage(context, rect, _drawBgImage.CGImage);
-    }else{
-//        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-//        CGContextFillRect(context, self.bounds);
     }
     else{
         CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);

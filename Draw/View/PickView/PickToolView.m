@@ -44,12 +44,7 @@
 {
     self = [super initWithFrame:PICK_TOOLVIEW_FRAME];
     if (self) {
-//        _title = [[UILabel alloc] initWithFrame:TITLE_LABEL_FRAME];
-//        [self addSubview:_title];
-//        [_title setBackgroundColor:[UIColor clearColor]];
-//        [_title setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
-//        [_title setText:NSLS(@"kPickToolTitle")];
-//        [_title setTextAlignment:UITextAlignmentCenter];
+
         [self setImage:[[ShareImageManager defaultManager] pickToolBackground]];
         self.tools = tools;
         [self updateToolViews];
