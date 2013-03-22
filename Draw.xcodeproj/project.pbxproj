@@ -722,10 +722,6 @@
 		C28C0A7416EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
 		C28C0A7516EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
 		C28C0A7616EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
-		C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
-		C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
-		C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
-		C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7816EB326E00A29B6C /* CacheManager.m */; };
 		C28E7C081602DAC600F4B6A5 /* DoubleKillItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */; };
 		C28E7C0E1602E5B200F4B6A5 /* IncTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C0D1602E5B100F4B6A5 /* IncTimeItemAction.m */; };
 		C28E7C111602E5E000F4B6A5 /* DecTimeItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C101602E5DD00F4B6A5 /* DecTimeItemAction.m */; };
@@ -7153,6 +7149,10 @@
 		EAA9E1681622B2A000E8DF1A /* UserLocationController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */; };
 		EAAFC5471615A4AB00C72BAB /* StatisticManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAFC5461615A4AB00C72BAB /* StatisticManager.m */; };
 		EAE0D149155FBC4900827DF9 /* MusicItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE0D148155FBC4800827DF9 /* MusicItemManager.m */; };
+		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
+		EAE5718E16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
+		EAE5718F16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
+		EAE5719016FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAE8A5611567ECEA002508D1 /* MusicSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */; };
 		EAF5AFD4155E2DD3008CD8EE /* MusicSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */; };
 		EAF5AFD5155E2DD3008CD8EE /* MusicSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAF5AFD3155E2DD3008CD8EE /* MusicSettingController.xib */; };
@@ -7875,8 +7875,6 @@
 		C28BD0DA16D4B03B00E974A6 /* common_dialog_input_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_dialog_input_bg@2x.png"; sourceTree = "<group>"; };
 		C28C0A7116EB324500A29B6C /* CacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheService.h; sourceTree = "<group>"; };
 		C28C0A7216EB324500A29B6C /* CacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheService.m; sourceTree = "<group>"; };
-		C28C0A7716EB326E00A29B6C /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
-		C28C0A7816EB326E00A29B6C /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		C28E7C061602DAC600F4B6A5 /* DoubleKillItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleKillItemAction.h; sourceTree = "<group>"; };
 		C28E7C071602DAC600F4B6A5 /* DoubleKillItemAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleKillItemAction.m; sourceTree = "<group>"; };
 		C28E7C0C1602E5AF00F4B6A5 /* IncTimeItemAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncTimeItemAction.h; sourceTree = "<group>"; };
@@ -10677,6 +10675,8 @@
 		EAAFC5461615A4AB00C72BAB /* StatisticManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticManager.m; sourceTree = "<group>"; };
 		EAE0D147155FBC4700827DF9 /* MusicItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicItemManager.h; sourceTree = "<group>"; };
 		EAE0D148155FBC4800827DF9 /* MusicItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicItemManager.m; sourceTree = "<group>"; };
+		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAE8A5601567ECE9002508D1 /* MusicSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MusicSettingCell~ipad.xib"; sourceTree = "<group>"; };
 		EAF5AFD1155E2DD3008CD8EE /* MusicSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSettingController.h; sourceTree = "<group>"; };
 		EAF5AFD2155E2DD3008CD8EE /* MusicSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSettingController.m; sourceTree = "<group>"; };
@@ -12323,8 +12323,6 @@
 				C2B537EB1677712300725802 /* CommonImageManager.m */,
 				C260DDDD16D1D2CD0008A243 /* SuperUserManageAction.h */,
 				C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */,
-				C28C0A7716EB326E00A29B6C /* CacheManager.h */,
-				C28C0A7816EB326E00A29B6C /* CacheManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -12928,6 +12926,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				EAE5718A16FC6ACB000AFADA /* Cache */,
 				A4A2E7A216E71DE900445888 /* JRSwizzle */,
 				CA1250A71668653000AFCC04 /* Block */,
 				C225866B15EF5A73009D686D /* Server */,
@@ -18257,6 +18256,15 @@
 			path = Statistic;
 			sourceTree = "<group>";
 		};
+		EAE5718A16FC6ACB000AFADA /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				EAE5718B16FC6ACB000AFADA /* CacheManager.h */,
+				EAE5718C16FC6ACB000AFADA /* CacheManager.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		EAF5AFCD155E2DB4008CD8EE /* MusicSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -23194,7 +23202,6 @@
 				CA881A6016EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6416EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7516EB324500A29B6C /* CacheService.m in Sources */,
-				C28C0A7B16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
@@ -23222,6 +23229,7 @@
 				C22EBD8716FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
+				EAE5718F16FC6ACB000AFADA /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23956,7 +23964,6 @@
 				CA881A6116EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6516EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7616EB324500A29B6C /* CacheService.m in Sources */,
-				C28C0A7C16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
@@ -23984,6 +23991,7 @@
 				C22EBD8816FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
+				EAE5719016FC6ACB000AFADA /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24719,7 +24727,6 @@
 				CA881A5E16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6216EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7316EB324500A29B6C /* CacheService.m in Sources */,
-				C28C0A7916EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
@@ -24755,6 +24762,7 @@
 				C22EBD8516FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
+				EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25497,7 +25505,6 @@
 				CA881A5F16EB278A0085F57B /* StrawTouchHandler.m in Sources */,
 				CA881A6316EB278A0085F57B /* TouchHandler.m in Sources */,
 				C28C0A7416EB324500A29B6C /* CacheService.m in Sources */,
-				C28C0A7A16EB326E00A29B6C /* CacheManager.m in Sources */,
 				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
@@ -25525,6 +25532,7 @@
 				C22EBD8616FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
+				EAE5718E16FC6ACB000AFADA /* CacheManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
