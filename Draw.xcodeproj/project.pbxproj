@@ -554,6 +554,18 @@
 		C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
 		C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
 		C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
+		C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */; };
+		C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */; };
+		C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */; };
+		C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */; };
+		C22EBE7516FBF735002A9CF5 /* GCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */; };
+		C22EBE7616FBF735002A9CF5 /* GCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */; };
+		C22EBE7716FBF735002A9CF5 /* GCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */; };
+		C22EBE7816FBF735002A9CF5 /* GCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */; };
+		C22EBE7A16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */; };
+		C22EBE7B16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */; };
+		C22EBE7C16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */; };
+		C22EBE7D16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */; };
 		C23496A616C1F75F00550F36 /* zjh_game_total_bet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E8168DBDB1009F43F7 /* zjh_game_total_bet_bg@2x.png */; };
 		C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
 		C235C61916A3F43600D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
@@ -7764,6 +7776,10 @@
 		C22EBD8216FB55BA002A9CF5 /* MKBlockAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBlockAlertView.h; sourceTree = "<group>"; };
 		C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBlockAlertView.m; sourceTree = "<group>"; };
 		C22EBD8416FB55BA002A9CF5 /* MKBlockConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBlockConstant.h; sourceTree = "<group>"; };
+		C22EBE6E16FBF721002A9CF5 /* GCDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDatePickerView.h; sourceTree = "<group>"; };
+		C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDatePickerView.m; sourceTree = "<group>"; };
+		C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCDatePickerView.xib; sourceTree = "<group>"; };
+		C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GCDatePickerView~ipad.xib"; sourceTree = "<group>"; };
 		C235C61516A3F43600D80BA4 /* coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coins@2x.png"; sourceTree = "<group>"; };
 		C235C61616A3F43600D80BA4 /* femaleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleImage.png; sourceTree = "<group>"; };
 		C235C61716A3F43600D80BA4 /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
@@ -11963,6 +11979,17 @@
 			path = MKBlocks;
 			sourceTree = "<group>";
 		};
+		C22EBE6D16FBF6E1002A9CF5 /* GCDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C22EBE6E16FBF721002A9CF5 /* GCDatePickerView.h */,
+				C22EBE6F16FBF721002A9CF5 /* GCDatePickerView.m */,
+				C22EBE7416FBF735002A9CF5 /* GCDatePickerView.xib */,
+				C22EBE7916FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib */,
+			);
+			path = GCDatePicker;
+			sourceTree = "<group>";
+		};
 		C2424794167989FD008B4E14 /* DrawSoundManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -12740,6 +12767,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C22EBE6D16FBF6E1002A9CF5 /* GCDatePicker */,
 				C22EBD7F16FB55BA002A9CF5 /* MKBlocks */,
 				C203C46F16F309380028A065 /* RoundPercentageView */,
 				A46E704616BBAA2D00F0E68C /* iCarousel */,
@@ -19688,6 +19716,8 @@
 				EA18EE8016F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787D16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
 				C2B97A3116F999200037B15B /* UserDetailCell.xib in Resources */,
+				C22EBE7716FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
+				C22EBE7C16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20564,6 +20594,8 @@
 				EA18EE8116F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
 				C250787E16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
 				C2B97A3216F999200037B15B /* UserDetailCell.xib in Resources */,
+				C22EBE7816FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
+				C22EBE7D16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21525,6 +21557,8 @@
 				C22EBD6B16FADEEA002A9CF5 /* user_detail_follow_bg@2x.png in Resources */,
 				C22EBD6D16FADEEA002A9CF5 /* user_detail_message_bg@2x.png in Resources */,
 				C22EBD7D16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */,
+				C22EBE7516FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
+				C22EBE7A16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22405,6 +22439,8 @@
 				C22EBD6C16FADEEA002A9CF5 /* user_detail_follow_bg@2x.png in Resources */,
 				C22EBD6E16FADEEA002A9CF5 /* user_detail_message_bg@2x.png in Resources */,
 				C22EBD7E16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */,
+				C22EBE7616FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
+				C22EBE7B16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23185,6 +23221,7 @@
 				CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8716FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
+				C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23946,6 +23983,7 @@
 				CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8816FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
+				C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24716,6 +24754,7 @@
 				CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8516FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
+				C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25485,6 +25524,7 @@
 				CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8616FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
+				C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
