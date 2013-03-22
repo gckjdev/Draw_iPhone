@@ -1077,6 +1077,8 @@
 "kWallRewardCoinMessage" = "下載免費應用，成功獲取了%d金幣";
 "kWallRewardIngotMessage" = "下載免費應用，成功獲取了%d元寶";
 
+"kLoadingProgress" = "加載中... (%3.f%%)";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -409,6 +409,7 @@ static FeedService *_staticFeedService = nil;
 
 - (void)getPBDrawByFeed:(DrawFeed *)feed
                 handler:(LoadPBDrawResultHandler)handler
+       downloadDelegate:(id)downloadDelegate
 {
     FeedManager *manager = [FeedManager defaultManager];
     
@@ -431,7 +432,7 @@ static FeedService *_staticFeedService = nil;
                     NSData* data = [[FeedDownloadService defaultService]
                                     downloadDrawDataFile:[feed drawDataUrl]
                                     fileName:[feed feedId]
-                                    downloadProgressDelegate:nil];
+                                    downloadProgressDelegate:downloadDelegate];
                     if (data != nil){
                         pbDraw = [PBDraw parseFromData:data];
                     }else{
@@ -461,59 +462,61 @@ static FeedService *_staticFeedService = nil;
 }
 
 
-- (void)getPBDrawByFeed:(DrawFeed *)feed
-               delegate:(id<FeedServiceDelegate>)delegate
-{
-    // new support in server
-    // add download feed draw data by data URL
-    
-    FeedManager *manager = [FeedManager defaultManager];
-    
-    NSOperationQueue *queue = [self getOperationQueue:GET_PBDRAW_QUEUE];
-    [queue cancelAllOperations];
-
-    [queue addOperationWithBlock:^{
-        
-        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];      
-        BOOL fromCache = NO;
-        PBDraw *pbDraw = nil;
-        NSInteger resultCode = 0;
-
-        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
-        if (pbDraw) {
-            fromCache = YES;
-        }else{
-            if ([[feed drawDataUrl] length] > 0){
-                @try {
-                    NSData* data = [[FeedDownloadService defaultService]
-                                    downloadDrawDataFile:[feed drawDataUrl]
-                                    fileName:[feed feedId]];
-                    if (data != nil){
-                        pbDraw = [PBDraw parseFromData:data];
-                    }else{
-                        resultCode = ERROR_RESPONSE_NULL;
-                    }
-                }
-                @catch (NSException *exception) {
-                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
-                    resultCode = ERROR_CLIENT_PARSE_DATA;
-                }
-                @finally {}
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetPBDraw:byDrawFeed:resultCode:fromCache:)]) {
-                [delegate didGetPBDraw:pbDraw byDrawFeed:feed resultCode:resultCode fromCache:fromCache];
-            }
-        });
-        
-        if (!fromCache) {
-            [manager cachePBDraw:pbDraw forFeedId:feed.feedId];
-        }
-        [subPool drain];
-     
-    }];
-}
+//- (void)getPBDrawByFeed:(DrawFeed *)feed
+//               delegate:(id<FeedServiceDelegate>)delegate
+//{
+//    // new support in server
+//    // add download feed draw data by data URL
+//    
+//    FeedManager *manager = [FeedManager defaultManager];
+//    
+//    NSOperationQueue *queue = [self getOperationQueue:GET_PBDRAW_QUEUE];
+//    [queue cancelAllOperations];
+//
+//    [queue addOperationWithBlock:^{
+//        
+//        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];      
+//        BOOL fromCache = NO;
+//        PBDraw *pbDraw = nil;
+//        NSInteger resultCode = 0;
+//
+//        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
+//        if (pbDraw) {
+//            fromCache = YES;
+//        }else{
+//            if ([[feed drawDataUrl] length] > 0){
+//                @try {
+//                    NSData* data = [[FeedDownloadService defaultService]
+//                                    downloadDrawDataFile:[feed drawDataUrl]
+//                                    fileName:[feed feedId]
+//                                    downloadProgressDelegate:delegate
+//                                    ];
+//                    if (data != nil){
+//                        pbDraw = [PBDraw parseFromData:data];
+//                    }else{
+//                        resultCode = ERROR_RESPONSE_NULL;
+//                    }
+//                }
+//                @catch (NSException *exception) {
+//                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+//                    resultCode = ERROR_CLIENT_PARSE_DATA;
+//                }
+//                @finally {}
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (delegate && [delegate respondsToSelector:@selector(didGetPBDraw:byDrawFeed:resultCode:fromCache:)]) {
+//                [delegate didGetPBDraw:pbDraw byDrawFeed:feed resultCode:resultCode fromCache:fromCache];
+//            }
+//        });
+//        
+//        if (!fromCache) {
+//            [manager cachePBDraw:pbDraw forFeedId:feed.feedId];
+//        }
+//        [subPool drain];
+//     
+//    }];
+//}
 
 - (void)getOpusCount:(NSString *)targetUid
             delegete:(id<FeedServiceDelegate>)delegate
