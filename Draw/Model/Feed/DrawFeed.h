@@ -78,6 +78,7 @@ typedef enum{
 
 - (BOOL)isContestFeed;
 
+- (void)decreaseLocalFlowerTimes;
 
 - (void)increaseLocalFlowerTimes;
 - (void)increaseLocalTomatoTimes;

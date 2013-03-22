@@ -469,8 +469,9 @@ enum{
 {
     if (itemId == ItemTypeFlower) {
         
+        [self.feed increaseLocalFlowerTimes];
+        
         __block typeof (self) bself = self;
-
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                isOffline:YES
                               feedOpusId:_feed.feedId
@@ -492,8 +493,10 @@ enum{
                    PPDebug(@"<test2> complete 10");
                 }];
                 [bself.commentHeader setSeletType:CommentTypeFlower];
-                [bself.feed increaseLocalFlowerTimes];
+                [bself.feed incTimesForType:FeedTimesTypeFlower];
                 PPDebug(@"<test2> complete 2");
+            }else{
+                [bself.feed decreaseLocalFlowerTimes];
             }
         }];
         
