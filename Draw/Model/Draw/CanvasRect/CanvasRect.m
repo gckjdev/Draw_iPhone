@@ -116,6 +116,12 @@
     return IPHONE_DEFAULT_RECT;
 }
 
++ (CGRect)randRect
+{
+    NSInteger rand = random()%10 + 1;
+    return [CanvasRect rectForCanvasRectStype:rand];
+}
+
 @end
 
 static const CGRect* getRectList()

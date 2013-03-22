@@ -35,6 +35,7 @@ typedef enum{
 + (CGRect)deprecatedRect;
 + (CGRect)defaultRect;
 + (CGRect)deprecatedIPhoneRect;
++ (CGRect)randRect;
 @end
 
 
