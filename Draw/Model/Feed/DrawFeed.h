@@ -40,6 +40,7 @@ typedef enum{
 @property (nonatomic, retain) PBDraw *pbDraw;
 @property (nonatomic, assign) DeviceType deviceType;
 @property (nonatomic, retain) NSString *opusDesc;
+@property (nonatomic, retain) NSString *drawDataUrl;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 
