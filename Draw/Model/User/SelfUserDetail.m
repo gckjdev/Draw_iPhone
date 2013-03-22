@@ -7,16 +7,14 @@
 //
 
 #import "SelfUserDetail.h"
-#import "SynthesizeSingleton.h"
 #import "UserManager.h"
 
 @implementation SelfUserDetail
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(SelfUserDetail)
 
 + (id<UserDetailProtocol>)createDetail
 {
-    return [SelfUserDetail sharedSelfUserDetail];
+    return [[[SelfUserDetail alloc] init] autorelease];
 }
 
 - (NSString*)getUserId

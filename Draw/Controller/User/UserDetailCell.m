@@ -29,9 +29,13 @@
     PBGameUser* pbUser = [detail queryUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",pbUser.level]];
     [self.nickNameLabel setText:pbUser.nickName];
-    [self.locationLabel setText:pbUser.location];
-    [self.birthLabel setText:pbUser.birthday];
-    [self.zodiacLabel setText:pbUser.zodiac];
+    [self.signLabel setText:pbUser.signature];
+    [self.locationLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kLocation"), pbUser.location]];
+    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), pbUser.birthday]];
+    [self.zodiacLabel setText:[NSString stringWithFormat:@"%@:%d", NSLS(@"kZodiac"), pbUser.zodiac]];
+    [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBloodGroup"), pbUser.bloodGroup]];
+    [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
+    [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
 
     [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
     
