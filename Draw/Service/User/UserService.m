@@ -1162,11 +1162,17 @@ static UserService* _defaultUserService;
                                                                      gameId:[ConfigManager gameId]
                                                                    ByUserId:targetUserId];
         dispatch_async(dispatch_get_main_queue(), ^{
+            PPDebug(@"<getUserInfo> targetUserId=%@, resultCode=%d", targetUserId, output.resultCode);
             if (output.resultCode == ERROR_SUCCESS) {
                 @try {
-                    DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
-                    PBGameUser* user = response.user;
-                    EXCUTE_BLOCK(block, 0, user);
+                    if (output.responseData != nil){
+                        DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
+                        PBGameUser* user = response.user;
+                        EXCUTE_BLOCK(block, 0, user);
+                    }
+                    else{
+                        EXCUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil);
+                    }
                 }
                 @catch (NSException *exception) {
                     EXCUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil);
