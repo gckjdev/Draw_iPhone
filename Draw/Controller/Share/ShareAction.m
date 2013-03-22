@@ -366,9 +366,23 @@
 
 - (void)favorite
 {
-    [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
-                                                    image:self.image
-                                                 delegate:self];
+    if (self.feed.pbDraw) {
+        [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
+                                                        image:self.image
+                                                     delegate:self];
+    }else{
+        __block ShareAction *cp = self;
+        [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache) {
+            if (resultCode == 0) {
+                [[DrawDataService defaultService] savePaintWithPBDraw:pbDraw
+                                                                image:cp.image
+                                                             delegate:cp];                
+            }else{
+                PPDebug(@"Save Failed!!");
+            }
+        }];
+    }
+    
 }
 
 - (void)bindSNS:(int)snsType
@@ -488,8 +502,8 @@
         }
     } else if (buttonIndex == buttonIndexFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
-        [self favorite];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+        [self favorite];
     } else if (buttonIndex == buttonIndexUseAsAvatar) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_MY_AVATAR];
         [[UserService defaultService] updateUserAvatar:self.image nickName:[UserManager defaultManager].nickName gender:[UserManager defaultManager].gender viewController:self.superViewController];

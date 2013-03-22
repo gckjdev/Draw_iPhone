@@ -89,6 +89,7 @@
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
+    [changBackAction release];
 }
 
 - (void)setDrawEnabled:(BOOL)enabled

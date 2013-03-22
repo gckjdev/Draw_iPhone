@@ -111,7 +111,7 @@ enum {
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIButton* btn = [[UIButton alloc] initWithFrame:HEADER_FRAME];
+    UIButton* btn = [[[UIButton alloc] initWithFrame:HEADER_FRAME] autorelease];
     [btn setBackgroundImage:[[ShareImageManager defaultManager] freeIngotHeaderBg] forState:UIControlStateNormal];
     [btn setTitle:[self titleForSection:section] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:HEADER_FONT]];

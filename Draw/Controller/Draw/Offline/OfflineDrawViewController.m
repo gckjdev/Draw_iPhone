@@ -106,7 +106,7 @@
 @property (retain, nonatomic) DrawColor *tempColor;
 @property (retain, nonatomic) InputAlertView *inputAlert;
 //@property (retain, nonatomic) TKProgressBarView *progressView;
-@property (retain, nonatomic) MBProgressHUD *progressView;
+
 
 @property (retain, nonatomic) NSString *tempImageFilePath;
 @property (retain, nonatomic) NSSet *shareWeiboSet;
@@ -180,7 +180,7 @@
     _draft.drawBg = nil;
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
-    PPRelease(_progressView);
+//    PPRelease(_progressView);
     PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
@@ -816,26 +816,7 @@
 //                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
 //}
 
-// TODO move to common
-- (void)showProgressView
-{
-    if (self.progressView == nil){
-        self.progressView = [[[MBProgressHUD alloc] initWithView:self.view] autorelease];
-    }
-    
-    [self.progressView setProgress:0.0];
-    [self.progressView setMode:MBProgressHUDModeDeterminate];
-    [self.progressView setLabelText:NSLS(@"kSending")];
-    
-    [self.view addSubview:_progressView];
-    [self.progressView show:YES];
-}
 
-- (void)hideProgressView
-{
-    [self.progressView hide:YES];
-    self.progressView = nil;
-}
 
 - (void)setProgress:(CGFloat)progress
 {
@@ -879,9 +860,23 @@
                 }
 //            });
             
+            
         } failureBlock:^(NSError *error) {
             PPDebug(@"%@ publish weibo failure", [snsService snsName]);
         }];
+        
+        // follow weibo if NOT followed
+        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
+            [snsService followUser:[snsService officialWeiboId]
+                         userId:[snsService officialWeiboId]
+                   successBlock:^(NSDictionary *userInfo) {
+                       PPDebug(@"follow official weibo success");
+                       [GameSNSService updateFollowOfficialWeibo:snsService];
+                   } failureBlock:^(NSError *error) {
+                       PPDebug(@"follow weibo but error=%@", [error description]);
+                   }];
+        }
+        
     }
     
     return;
@@ -915,7 +910,7 @@
     
 //    [self showActivityWithText:NSLS(@"kSending")];
     
-    [self showProgressView];
+    [self showProgressViewWithMessage:NSLS(@"kSending")];
     
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];

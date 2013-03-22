@@ -168,15 +168,15 @@ static LmWallService* _defaultService;
         isForRemoveAd = YES;
     }
     
-    NSString* title;
+//    NSString* title;
     NSString* message;
     
     if (isForRemoveAd){
-        title = @"广告已移除";
-        message = [NSString stringWithFormat:@"成功下载和使用应用，广告已移除，同时您获取了%d金币",(int)score-1] ;        
+//        title = @"广告已移除";
+        message = [NSString stringWithFormat:@"成功下载和使用应用，广告已移除，同时您获取了%d金币",(int)score-1] ;
     }
     else{
-        title = @"免费金币";
+//        title = @"免费金币";
         message = [NSString stringWithFormat:@"成功下载应用获取%d金币",(int)score] ;
     }        
 
