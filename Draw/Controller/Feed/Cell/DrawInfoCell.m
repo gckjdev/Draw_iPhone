@@ -125,8 +125,8 @@
 - (void)updateDrawImageView:(UIImage *)image
 {
     if (image) {
-        [self.drawImage scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
-        [self.drawImage setImage:image];        
+//        [self.drawImage scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
+        [self.drawImage setImage:image];
     }
 }
 
