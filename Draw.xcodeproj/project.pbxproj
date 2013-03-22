@@ -1001,6 +1001,8 @@
 		C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
 		C2F1DEC516786E1C002D8408 /* CommonSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC216786E1C002D8408 /* CommonSettingView.xib */; };
 		C2F1DEC616786E1C002D8408 /* CommonSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */; };
+		C2F23B8716FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F23B8616FC651500AC85C8 /* user_detail_black_btn_bg@2x.png */; };
+		C2F23B8816FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F23B8616FC651500AC85C8 /* user_detail_black_btn_bg@2x.png */; };
 		C2F2CF981639165500995DCB /* ZJHImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CF971639165500995DCB /* ZJHImageManager.m */; };
 		C2F2CFB3163932C000995DCB /* ZJHAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F2CFB2163932C000995DCB /* ZJHAvatarView.m */; };
 		C2F310B316AE2CBF0076064D /* DrawRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F310B216AE2CBF0076064D /* DrawRoomListCell.m */; };
@@ -8116,6 +8118,7 @@
 		C2F1DEC116786E1C002D8408 /* CommonSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSettingView.m; sourceTree = "<group>"; };
 		C2F1DEC216786E1C002D8408 /* CommonSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonSettingView.xib; sourceTree = "<group>"; };
 		C2F1DEC316786E1C002D8408 /* CommonSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSettingView~ipad.xib"; sourceTree = "<group>"; };
+		C2F23B8616FC651500AC85C8 /* user_detail_black_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_black_btn_bg@2x.png"; sourceTree = "<group>"; };
 		C2F2CF961639165500995DCB /* ZJHImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHImageManager.h; sourceTree = "<group>"; };
 		C2F2CF971639165500995DCB /* ZJHImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHImageManager.m; sourceTree = "<group>"; };
 		C2F2CFB1163932C000995DCB /* ZJHAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHAvatarView.h; sourceTree = "<group>"; };
@@ -12396,6 +12399,7 @@
 		C2B97A3916FAA5E90037B15B /* userDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C2F23B8616FC651500AC85C8 /* user_detail_black_btn_bg@2x.png */,
 				C22EBD7C16FB0D14002A9CF5 /* user_detail_gender_male@2x.png */,
 				C22EBD6616FADEEA002A9CF5 /* user_detail_draw_to_bg@2x.png */,
 				C22EBD6716FADEEA002A9CF5 /* user_detail_follow_bg@2x.png */,
@@ -21559,6 +21563,7 @@
 				C22EBD7D16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */,
 				C22EBE7516FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7A16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
+				C2F23B8716FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22441,6 +22446,7 @@
 				C22EBD7E16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */,
 				C22EBE7616FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7B16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
+				C2F23B8816FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

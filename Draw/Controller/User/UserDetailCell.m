@@ -12,6 +12,7 @@
 #import "ShareImageManager.h"
 #import "UserDetailProtocol.h"
 #import "UserSettingController.h"
+#import "LevelService.h"
 
 @implementation UserDetailCell
 
@@ -27,7 +28,7 @@
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
     PBGameUser* pbUser = [detail queryUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",pbUser.level]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",[LevelService defaultService].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];
     [self.locationLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kLocation"), pbUser.location]];
@@ -45,8 +46,12 @@
     [self.followButton setHidden:![detail canFollow]];
     [self.chatButton setHidden:![detail canChat]];
     [self.drawToButton setHidden:![detail canDraw]];
+    [self.blackListBtn setHidden:![detail canBlack]];
+    [self.superBlackBtn setHidden:![detail canSuperBlack]];
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
+    
+    
     
 }
 
@@ -94,6 +99,11 @@
     [_followButton release];
     [_fanCountButton release];
     [_followCountButton release];
+    [_sinaBtn release];
+    [_qqBtn release];
+    [_facebookBtn release];
+    [_blackListBtn release];
+    [_superBlackBtn release];
     [super dealloc];
 }
 

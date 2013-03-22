@@ -48,4 +48,14 @@
     return NO;
 }
 
+- (BOOL)canBlack
+{
+    return NO;
+}
+
+- (BOOL)canSuperBlack
+{
+    return NO;
+}
+
 @end

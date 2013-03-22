@@ -107,11 +107,15 @@
 
 - (void)didClickFanCountButton
 {
-    
+    if (![self.detail canFollow]) {
+        [self.navigationController pushViewController:[[[FriendController alloc] init] autorelease] animated:YES];
+    }
 }
 - (void)didClickFollowCountButton
 {
-    
+    if (![self.detail canFollow]) {
+        [self.navigationController pushViewController:[[[FriendController alloc] init] autorelease] animated:YES];
+    }
 }
 - (void)didClickFollowButton
 {

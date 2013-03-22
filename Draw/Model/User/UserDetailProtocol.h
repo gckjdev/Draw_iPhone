@@ -18,6 +18,8 @@
 - (BOOL)canFollow;
 - (BOOL)canChat;
 - (BOOL)canDraw;
+- (BOOL)canBlack;
+- (BOOL)canSuperBlack;
 
  @optional
 - (void)setPbGameUser:(PBGameUser*)pbUser;

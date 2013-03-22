@@ -45,7 +45,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *fanCountButton;
 @property (retain, nonatomic) IBOutlet UIButton *followCountButton;
 @property (assign, nonatomic) id<UserDetailCellDelegate> detailDelegate;
+@property (retain, nonatomic) IBOutlet UIButton *sinaBtn;
+@property (retain, nonatomic) IBOutlet UIButton *qqBtn;
+@property (retain, nonatomic) IBOutlet UIButton *facebookBtn;
+@property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 
+@property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 
 @end

@@ -452,9 +452,6 @@
     }];
 }
 
-
-
-
 - (void)bindSinaWeibo
 {
     [self bindSNS:TYPE_SINA];
