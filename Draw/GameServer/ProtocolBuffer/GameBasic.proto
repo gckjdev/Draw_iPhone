@@ -68,6 +68,10 @@ message PBGameUser {
   optional string deviceModel = 71;                 // 设备型号
   optional string deviceOS = 72;                    // 设备操作系统
 
+  optional string bloodGroup = 81;                  // 血型
+  optional int32  fanCount = 82;                    // 粉丝数目
+  optional int32  followCount = 83;                   // 关注数目
+
   optional string signature = 100;
 }
 

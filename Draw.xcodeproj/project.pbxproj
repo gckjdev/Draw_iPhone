@@ -546,6 +546,14 @@
 		C22EBD6E16FADEEA002A9CF5 /* user_detail_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD6816FADEEA002A9CF5 /* user_detail_message_bg@2x.png */; };
 		C22EBD7D16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD7C16FB0D14002A9CF5 /* user_detail_gender_male@2x.png */; };
 		C22EBD7E16FB0D14002A9CF5 /* user_detail_gender_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD7C16FB0D14002A9CF5 /* user_detail_gender_male@2x.png */; };
+		C22EBD8516FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */; };
+		C22EBD8616FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */; };
+		C22EBD8716FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */; };
+		C22EBD8816FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */; };
+		C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
+		C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
+		C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
+		C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */; };
 		C23496A616C1F75F00550F36 /* zjh_game_total_bet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D43E8168DBDB1009F43F7 /* zjh_game_total_bet_bg@2x.png */; };
 		C235C61816A3F43600D80BA4 /* coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61516A3F43600D80BA4 /* coins@2x.png */; };
 		C235C61916A3F43600D80BA4 /* femaleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61616A3F43600D80BA4 /* femaleImage.png */; };
@@ -7751,6 +7759,11 @@
 		C22EBD6716FADEEA002A9CF5 /* user_detail_follow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_follow_bg@2x.png"; sourceTree = "<group>"; };
 		C22EBD6816FADEEA002A9CF5 /* user_detail_message_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_message_bg@2x.png"; sourceTree = "<group>"; };
 		C22EBD7C16FB0D14002A9CF5 /* user_detail_gender_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_gender_male@2x.png"; sourceTree = "<group>"; };
+		C22EBD8016FB55BA002A9CF5 /* MKBlockActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBlockActionSheet.h; sourceTree = "<group>"; };
+		C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBlockActionSheet.m; sourceTree = "<group>"; };
+		C22EBD8216FB55BA002A9CF5 /* MKBlockAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBlockAlertView.h; sourceTree = "<group>"; };
+		C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBlockAlertView.m; sourceTree = "<group>"; };
+		C22EBD8416FB55BA002A9CF5 /* MKBlockConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBlockConstant.h; sourceTree = "<group>"; };
 		C235C61516A3F43600D80BA4 /* coins@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coins@2x.png"; sourceTree = "<group>"; };
 		C235C61616A3F43600D80BA4 /* femaleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleImage.png; sourceTree = "<group>"; };
 		C235C61716A3F43600D80BA4 /* maleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleImage.png; sourceTree = "<group>"; };
@@ -11938,6 +11951,18 @@
 			path = Server;
 			sourceTree = "<group>";
 		};
+		C22EBD7F16FB55BA002A9CF5 /* MKBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				C22EBD8016FB55BA002A9CF5 /* MKBlockActionSheet.h */,
+				C22EBD8116FB55BA002A9CF5 /* MKBlockActionSheet.m */,
+				C22EBD8216FB55BA002A9CF5 /* MKBlockAlertView.h */,
+				C22EBD8316FB55BA002A9CF5 /* MKBlockAlertView.m */,
+				C22EBD8416FB55BA002A9CF5 /* MKBlockConstant.h */,
+			);
+			path = MKBlocks;
+			sourceTree = "<group>";
+		};
 		C2424794167989FD008B4E14 /* DrawSoundManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -12715,6 +12740,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C22EBD7F16FB55BA002A9CF5 /* MKBlocks */,
 				C203C46F16F309380028A065 /* RoundPercentageView */,
 				A46E704616BBAA2D00F0E68C /* iCarousel */,
 				C297004B16A1363500A61521 /* RoundLineLabel */,
@@ -23157,6 +23183,8 @@
 				C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89516F99C41007DCC58 /* BBSController.m in Sources */,
 				CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */,
+				C22EBD8716FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
+				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23916,6 +23944,8 @@
 				C2B97A2E16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89616F99C41007DCC58 /* BBSController.m in Sources */,
 				CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */,
+				C22EBD8816FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
+				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24684,6 +24714,8 @@
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
 				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
 				CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */,
+				C22EBD8516FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
+				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25451,6 +25483,8 @@
 				C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89416F99C41007DCC58 /* BBSController.m in Sources */,
 				CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */,
+				C22EBD8616FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
+				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -106,7 +106,11 @@ enum {
     rowOfPassword = 0;
     rowOfGender = 1;
     rowOfNickName = 2;
-    rowsInSectionUser = 3;
+    rowOfLocation = 3;
+    rowOfBirthday = 4;
+    rowOfBloodGropu = 5;
+    rowOfZodiac = 6;
+    rowsInSectionUser = 7;
     
     //section guessword
     if (isDrawApp()) {
@@ -418,6 +422,18 @@ enum {
             [cell.detailTextLabel setText:nicknameLabel.text];            
         } else if (row == rowOfCustomDice) {
             [cell.textLabel setText:NSLS(@"kCustomDice")];
+        } else if (row == rowOfLocation) {
+            [cell.textLabel setText:NSLS(@"kLocation")];
+            [cell.detailTextLabel setText:[userManager location]];
+        }else if (row == rowOfZodiac) {
+            [cell.textLabel setText:NSLS(@"kZodiac")];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%d", [userManager zodiac]]];
+        }else if (row == rowOfBirthday) {
+            [cell.textLabel setText:NSLS(@"kBirthday")];
+            [cell.detailTextLabel setText:userManager.birthday];
+        }else if (row == rowOfBloodGropu) {
+            [cell.textLabel setText:NSLS(@"kBloodGroup")];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%d",userManager.bloodGroup]];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -611,6 +627,19 @@ enum {
         } else if (row == rowOfCustomDice){
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
+        } else if (row == rowOfLocation) {
+            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputLocation") clickOK:^(NSString *inputStr) {
+                [[UserManager defaultManager] setLocation:inputStr];
+            } clickCancel:^(NSString *inputStr) {
+                //
+            }];
+            [dialog showInView:self.view];
+        }else if (row == rowOfZodiac) {
+            
+        }else if (row == rowOfBirthday) {
+            
+        }else if (row == rowOfBloodGropu) {
+            
         }
     
     }else if (section == SECTION_GUESSWORD) {
@@ -1014,5 +1043,6 @@ enum {
 
     }
 }
+
 
 @end
