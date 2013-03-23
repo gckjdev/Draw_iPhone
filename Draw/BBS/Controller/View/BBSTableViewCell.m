@@ -82,7 +82,7 @@
     [self.contentTextView setText:nil];
     [self.contentTextView setScrollEnabled:NO];
     [self.contentTextView setEditable:NO];
-    [self.contentTextView setDataDetectorTypes:UIDataDetectorTypeAll];
+    [self.contentTextView setDataDetectorTypes:UIDataDetectorTypePhoneNumber|UIDataDetectorTypeLink];
 //    if ([DeviceDetection isOS6]) {
 //        [self.contentTextView setAllowsEditingTextAttributes:YES];
 //    }

@@ -435,7 +435,8 @@ static FeedService *_staticFeedService = nil;
                                     downloadProgressDelegate:downloadDelegate];
                     if (data != nil){
                         pbDraw = [PBDraw parseFromData:data];
-                    }else{
+                    }
+                    if (pbDraw == nil) {
                         resultCode = ERROR_RESPONSE_NULL;
                     }
                 }
