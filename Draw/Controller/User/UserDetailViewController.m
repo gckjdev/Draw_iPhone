@@ -180,7 +180,7 @@
 {
     if ([[UserManager defaultManager] isSuperUser]) {
         SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self.detail getUserId] nickName:[self.detail queryUser].nickName balance:[self.detail queryUser].coinBalance] autorelease];
-        [action showInController:_superViewController];
+        [action showInController:self];
     }
     
 }
