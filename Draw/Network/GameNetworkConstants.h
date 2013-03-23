@@ -133,6 +133,9 @@
 #define METHOD_BLACK_USER   @"blu"
 #define METHOD_BLACK_FRIEND @"blf"
 
+#define METHOD_NEW_UPDATE_USER      @"updateUser"
+#define METHOD_UPLOAD_USER_IMAGE    @"uploadUserImage"
+
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
 #define PARA_CORRECT_TIMES @"crt"
@@ -284,6 +287,8 @@
 
 #define PARA_NEED_RETURN_USER           @"r"
 #define PARA_AVATAR                     @"av"
+#define PARA_BACKGROUND                 @"bg"
+#define PARA_URL                        @"url"
 #define PARA_ACCESS_TOKEN               @"at"
 #define PARA_ACCESS_TOKEN_SECRET        @"ats"
 #define PARA_PROVINCE                   @"pro"
@@ -620,3 +625,4 @@
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();
 extern NSString* GlobalGetBoardServerURL();
+

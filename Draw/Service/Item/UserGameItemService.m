@@ -63,13 +63,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     BuyItemResultHandler tempHandler = (BuyItemResultHandler)[_blockArray copyBlock:handler];
         
     if (count <= 0) {
-        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, count, toUserId);
+        EXECUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, count, toUserId);
         [_blockArray releaseBlock:tempHandler];
         return;
     }
     
     if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:currency]) {
-        EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
+        EXECUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, count, toUserId);
         [_blockArray releaseBlock:tempHandler];
         return;
     }
@@ -94,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             }
             
             int result = output.resultCode;
-            EXCUTE_BLOCK(tempHandler, result, itemId, count, toUserId);
+            EXECUTE_BLOCK(tempHandler, result, itemId, count, toUserId);
             [bself.blockArray releaseBlock:tempHandler];
         });
     });
@@ -156,21 +156,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     if (item.consumeType != PBGameItemConsumeTypeAmountConsumable) {
-        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, NO);
+        EXECUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER, itemId, NO);
         [_blockArray releaseBlock:tempHandler];
         return;
     }
     
     if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:itemId amount:count]) {
         if (!forceBuy) {
-            EXCUTE_BLOCK(tempHandler, ERROR_ITEM_NOT_ENOUGH, itemId, NO);
+            EXECUTE_BLOCK(tempHandler, ERROR_ITEM_NOT_ENOUGH, itemId, NO);
             [_blockArray releaseBlock:tempHandler];
             return;
         }
         
         int totalPrice = [item promotionPrice] * count;
         if (![[AccountManager defaultManager] hasEnoughBalance:totalPrice currency:item.priceInfo.currency]) {
-            EXCUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, NO);
+            EXECUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, itemId, NO);
             [_blockArray releaseBlock:tempHandler];
             return;
         }
@@ -215,7 +215,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
             int result = output.resultCode;
             
             PPDebug(@"<execBlock> block=0x%X", tempHandler);
-            EXCUTE_BLOCK(tempHandler, result, itemId, isBuy);
+            EXECUTE_BLOCK(tempHandler, result, itemId, isBuy);
             [bself.blockArray releaseBlock:tempHandler];
         });
     });

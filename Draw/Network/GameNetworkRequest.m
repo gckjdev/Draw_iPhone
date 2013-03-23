@@ -3010,6 +3010,36 @@
                                   output:output];
 }
 
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                            appId:(NSString* )appId
+                           userId:(NSString*)userId
+                              data:(NSData*)data
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_NEW_UPDATE_USER];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendPostRequest:baseURL
+                                        data:data
+                         constructURLHandler:constructURLHandler
+                             responseHandler:responseHandler
+                                      output:output];
+}
+
 + (CommonNetworkOutput*)blackFriend:(NSString*)baseURL
                               appId:(NSString* )appId
                        targetUserId:(NSString*)targetUserId
@@ -3127,6 +3157,40 @@
                          responseHandler:responseHandler
                             outputFormat:FORMAT_PB
                                   output:output];
+}
+
++ (CommonNetworkOutput*)uploadUserImage:(NSString*)baseURL
+                                  appId:(NSString*)appId
+                                 userId:(NSString*)userId
+                              imageData:(NSData*)imageData
+                              imageType:(NSString*)imageType
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPLOAD_USER_IMAGE];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:imageType intValue:1];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                                uploadData:imageData
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output];
+    
 }
 
 

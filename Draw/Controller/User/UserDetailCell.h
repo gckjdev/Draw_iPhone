@@ -14,13 +14,20 @@
 
 @protocol UserDetailCellDelegate <NSObject>
 
+@optional
 - (void)didClickEdit;
 - (void)didClickFanCountButton;
 - (void)didClickFollowCountButton;
 - (void)didClickFollowButton;
 - (void)didClickChatButton;
 - (void)didClickDrawToButton;
+- (void)didClickAvatar;
+- (void)didclickBlack;
+- (void)didclickManage;
 
+- (void)didclickSina;
+- (void)didclickQQ;
+- (void)didclickFacebook;
 @end
 
 @interface UserDetailCell : PPTableViewCell

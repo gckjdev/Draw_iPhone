@@ -739,7 +739,7 @@
 							<object class="IBUIButton" id="331007648">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{216, 659}, {35, 29}}</string>
+								<string key="NSFrame">{{254, 659}, {35, 29}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -1087,9 +1087,9 @@
 							<reference ref="830181892"/>
 							<reference ref="149585192"/>
 							<reference ref="1019354794"/>
-							<reference ref="331007648"/>
 							<reference ref="1040361067"/>
 							<reference ref="703033034"/>
+							<reference ref="331007648"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1320,22 +1320,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="user_detail_avatar_bg@2x.png">{640, 535}</string>
-			<string key="user_detail_basic_bg@2x.png">{640, 357}</string>
-			<string key="user_detail_bg@2x.png">{640, 1377}</string>
-			<string key="user_detail_black_btn_bg@2x.png">{146, 58}</string>
-			<string key="user_detail_btn_bg@2x.png">{117, 118}</string>
-			<string key="user_detail_draw_to_bg@2x.png">{114, 115}</string>
-			<string key="user_detail_edit@2x.png">{69, 57}</string>
-			<string key="user_detail_facebook@2x.png">{69, 57}</string>
-			<string key="user_detail_follow_bg@2x.png">{114, 115}</string>
-			<string key="user_detail_message_bg@2x.png">{114, 115}</string>
-			<string key="user_detail_more@2x.png">{44, 45}</string>
-			<string key="user_detail_pull_down@2x.png">{28, 29}</string>
-			<string key="user_detail_qq@2x.png">{69, 57}</string>
-			<string key="user_detail_seperator_line1@2x.png">{646, 8}</string>
-			<string key="user_detail_seperator_line2@2x.png">{640, 11}</string>
-			<string key="user_detail_sina@2x.png">{69, 57}</string>
+			<string key="user_detail_avatar_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_basic_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_black_btn_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_btn_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_draw_to_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_edit@2x.png">{16, 16}</string>
+			<string key="user_detail_facebook@2x.png">{16, 16}</string>
+			<string key="user_detail_follow_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_message_bg@2x.png">{16, 16}</string>
+			<string key="user_detail_more@2x.png">{16, 16}</string>
+			<string key="user_detail_pull_down@2x.png">{16, 16}</string>
+			<string key="user_detail_qq@2x.png">{16, 16}</string>
+			<string key="user_detail_seperator_line1@2x.png">{16, 16}</string>
+			<string key="user_detail_seperator_line2@2x.png">{16, 16}</string>
+			<string key="user_detail_sina@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

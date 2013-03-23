@@ -48,7 +48,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         [bself updateItemsWithFile:dataFilePath];
-        EXCUTE_BLOCK(handler, YES);
+        EXECUTE_BLOCK(handler, YES);
         [smartData release];
         
     } failureBlock:^(NSError *error) {
@@ -56,7 +56,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         NSArray *itemsList = [bself itemsListFromFile:smartData.dataFilePath];
         [bself.itemManager setItemsList:itemsList];
 
-        EXCUTE_BLOCK(handler, NO);
+        EXECUTE_BLOCK(handler, NO);
         [smartData release];
     }];
 }

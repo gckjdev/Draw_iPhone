@@ -62,7 +62,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                                    delegate:nil];
                 }
                 
-                EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+                EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
                 [bself.blockArray releaseBlock:tempHandler];
             }];
         }else{
@@ -73,7 +73,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                        awardBalance:awardAmount
                                            awardExp:awardExp
                                            delegate:nil];
-            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
             [bself.blockArray releaseBlock:tempHandler];
         }
 
@@ -84,13 +84,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
             [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
                 if (resultCode == ERROR_SUCCESS) {
                     [[DrawGameService defaultService] rankGameResult:rankResult];
-                    EXCUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+                    EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
                     [bself.blockArray releaseBlock:tempHandler];
                 }
             }];
         }else{
             [[DrawGameService defaultService] rankGameResult:rankResult];
-            EXCUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+            EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
             [bself.blockArray releaseBlock:tempHandler];
         }
     }

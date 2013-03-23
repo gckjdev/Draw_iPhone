@@ -18,5 +18,8 @@
 + (NSString*)snsOfficialNick:(int)type;
 + (void)updateFollowOfficialWeibo:(PPSNSCommonService*)snsService;
 + (BOOL)hasFollowOfficialWeibo:(PPSNSCommonService*)snsService;
-
++ (void)askFollow:(PPSNSType)snsType
+       snsWeiboId:(NSString*)weiboId
+            title:(NSString*)title
+          message:(NSString*)message;
 @end
