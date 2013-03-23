@@ -22,4 +22,5 @@
        snsWeiboId:(NSString*)weiboId
             title:(NSString*)title
           message:(NSString*)message;
+
 @end

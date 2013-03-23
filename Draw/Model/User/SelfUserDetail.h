@@ -11,4 +11,6 @@
 
 @interface SelfUserDetail : NSObject<UserDetailProtocol>
 
+@property (assign, nonatomic) RelationType relation;
+
 @end
