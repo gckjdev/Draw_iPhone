@@ -13,6 +13,10 @@
 #import "UserDetailProtocol.h"
 #import "UserSettingController.h"
 #import "LevelService.h"
+#import "GameSNSService.h"
+#import "SNSUtils.h"
+#import "TimeUtils.h"
+#import "PPSNSCommonService.h"
 
 @implementation UserDetailCell
 
@@ -32,7 +36,8 @@
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];
     [self.locationLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kLocation"), pbUser.location]];
-    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), pbUser.birthday]];
+    NSDate* date = dateFromStringByFormat(pbUser.birthday, @"yyyyMMdd");
+    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), dateToString(date)]];
     [self.zodiacLabel setText:[NSString stringWithFormat:@"%@:%d", NSLS(@"kZodiac"), pbUser.zodiac]];
     [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBloodGroup"), pbUser.bloodGroup]];
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
@@ -51,7 +56,10 @@
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
-    
+    NSArray* snsUserArray = pbUser.snsUsersList;
+    [self.sinaBtn setHidden:![SNSUtils hasSNSType:TYPE_SINA inpbSnsUserArray:snsUserArray]];
+    [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
+    [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
     
 }
 
@@ -156,17 +164,44 @@
 
 - (IBAction)clickAvatar:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickAvatar)]) {
+        [_detailDelegate didClickAvatar];
+    }
 }
 
 - (IBAction)clickBlack:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickBlack)]) {
+        [_detailDelegate didclickBlack];
+    }
 }
 
-- (IBAction)clickSuperBlack:(id)sender
+- (IBAction)clickManage:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickManage)]) {
+        [_detailDelegate didclickManage];
+    }
+}
+
+- (IBAction)clickSina:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickSina)]) {
+        [_detailDelegate didclickSina];
+    }
+}
+
+- (IBAction)clickQQ:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickQQ)]) {
+        [_detailDelegate didclickQQ];
+    }
+}
+
+- (IBAction)clickFacebook:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickFacebook)]) {
+        [_detailDelegate didclickFacebook];
+    }
 }
 
 @end
