@@ -812,7 +812,7 @@ static AccountService* _defaultAccountService;
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     if (userId == nil){
-        EXCUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER);
+        EXECUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER);
         [_blockArray releaseBlock:tempHandler];
         return;
     }
@@ -838,7 +838,7 @@ static AccountService* _defaultAccountService;
                 [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
-            EXCUTE_BLOCK(tempHandler, output.resultCode);
+            EXECUTE_BLOCK(tempHandler, output.resultCode);
             [_blockArray releaseBlock:tempHandler];
         });      
     });    

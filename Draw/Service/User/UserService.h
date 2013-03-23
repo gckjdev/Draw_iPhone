@@ -22,7 +22,9 @@ typedef enum {
 @class MyFriend;
 @class PBGameUser;
 
-typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user);
+typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user, int relation);
+typedef void(^UpdateUserResultBlock)(int resultCode);
+typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 @protocol UserServiceDelegate <NSObject>
 
@@ -59,7 +61,16 @@ typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user);
 - (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
                      viewController:(PPViewController<UserServiceDelegate>*)viewController;
 
-- (void)updateUserAvatar:(UIImage*)avatarImage 
+- (void)uploadUserAvatar:(UIImage*)image
+             resultBlock:(UploadImageResultBlock)resultBlock;
+
+- (void)uploadUserBackground:(UIImage*)image
+                 resultBlock:(UploadImageResultBlock)resultBlock;
+
+- (void)updateUser:(PBGameUser*)pbUser
+       resultBlock:(UpdateUserResultBlock)resultBlock;
+
+- (void)updateUserAvatar:(UIImage*)avatarImage
                 nickName:(NSString*)nickName 
                   gender:(NSString*)gender
           viewController:(PPViewController<UserServiceDelegate>*)viewController;

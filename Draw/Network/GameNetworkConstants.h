@@ -133,6 +133,9 @@
 #define METHOD_BLACK_USER   @"blu"
 #define METHOD_BLACK_FRIEND @"blf"
 
+#define METHOD_NEW_UPDATE_USER      @"updateUser"
+#define METHOD_UPLOAD_USER_IMAGE    @"uploadUserImage"
+
 #define PARA_COMMENT_TIMES @"cmt"
 #define PARA_GUESS_TIMES @"gt"
 #define PARA_CORRECT_TIMES @"crt"

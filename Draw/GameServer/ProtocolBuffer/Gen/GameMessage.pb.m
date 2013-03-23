@@ -17480,6 +17480,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableWallListList;
 @property (retain) PBWall* wall;
 @property (retain) PBGameUser* user;
+@property int32_t userRelation;
 @end
 
 @implementation DataQueryResponse
@@ -17529,6 +17530,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUser_ = !!value;
 }
 @synthesize user;
+- (BOOL) hasUserRelation {
+  return !!hasUserRelation_;
+}
+- (void) setHasUserRelation:(BOOL) value {
+  hasUserRelation_ = !!value;
+}
+@synthesize userRelation;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17552,6 +17560,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
     self.user = [PBGameUser defaultInstance];
+    self.userRelation = 0;
   }
   return self;
 }
@@ -17754,6 +17763,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUser) {
     [output writeMessage:85 value:self.user];
   }
+  if (self.hasUserRelation) {
+    [output writeInt32:86 value:self.userRelation];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -17807,6 +17819,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasUser) {
     size += computeMessageSize(85, self.user);
+  }
+  if (self.hasUserRelation) {
+    size += computeInt32Size(86, self.userRelation);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -17958,6 +17973,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasUser) {
     [self mergeUser:other.user];
   }
+  if (other.hasUserRelation) {
+    [self setUserRelation:other.userRelation];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18072,6 +18090,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 688: {
+        [self setUserRelation:[input readInt32]];
         break;
       }
     }
@@ -18487,6 +18509,22 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearUser {
   result.hasUser = NO;
   result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasUserRelation {
+  return result.hasUserRelation;
+}
+- (int32_t) userRelation {
+  return result.userRelation;
+}
+- (DataQueryResponse_Builder*) setUserRelation:(int32_t) value {
+  result.hasUserRelation = YES;
+  result.userRelation = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserRelation {
+  result.hasUserRelation = NO;
+  result.userRelation = 0;
   return self;
 }
 @end

@@ -47,11 +47,13 @@
 {
     [super viewDidLoad];
     if (self.detail && [self.detail needUpdate]) {
-        [[UserService defaultService] getUserInfo:[self.detail getUserId] resultBlock:^(int resultCode, PBGameUser *user) {
+        [[UserService defaultService] getUserInfo:[self.detail getUserId] resultBlock:^(int resultCode, PBGameUser *user, int relation) {
             if (resultCode == 0 &&[self.detail respondsToSelector:@selector(setPbGameUser:)]
                                 && user != nil) {
                 [self.detail setPbGameUser:user];
                 [self.dataTableView reloadData];
+                
+                // TODO update relation
             }
         }];
     }
