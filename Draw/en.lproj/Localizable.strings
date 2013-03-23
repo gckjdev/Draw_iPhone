@@ -1113,8 +1113,13 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
-
-
+"kZodiac" = "Zodiac";
+"kBirthday" = "Birthday";
+"kBloodGroup" = "Blood Group";
+"kLocation" = "Location";
+"kOther" = "Other";
+"kInputLocation" = "Location";
+"kSignature" = "Signature";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

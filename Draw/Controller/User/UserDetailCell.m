@@ -154,4 +154,19 @@
     }
 }
 
+- (IBAction)clickAvatar:(id)sender
+{
+    
+}
+
+- (IBAction)clickBlack:(id)sender
+{
+    
+}
+
+- (IBAction)clickSuperBlack:(id)sender
+{
+    
+}
+
 @end
