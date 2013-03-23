@@ -23,6 +23,8 @@
 #import "SuperUserManageAction.h"
 #import "PPSNSCommonService.h"
 #import "CommonRoundAvatarView.h"
+#import "SNSUtils.h"
+#import "PPSNSIntegerationService.h"
 
 #define    ROW_COUNT 1
 
@@ -187,37 +189,36 @@
     
 }
 
+- (void)askFollowUserWithSnsType:(int)snsType snsId:(NSString*)snsId
+{
+    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    if ([snsService supportFollow] == NO)
+        return;
+    
+    [snsService askFollowWithTitle:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserTitle"),[SNSUtils snsNameOfType:snsType]]
+                    displayMessage:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserMessage"),[SNSUtils snsNameOfType:snsType]]
+                           weiboId:snsId
+                      successBlock:^(NSDictionary *userInfo) {
+                          
+                      } failureBlock:^(NSError *error) {
+                          
+                      }];
+}
+
 - (void)didclickSina
 {
-//    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-//    if ([snsService supportFollow] == NO)
-//        return;
-//    
-//    [snsService askFollowWithTitle:NSLS(@"kAskFollowSNSUser")
-//                    displayMessage:NSLS(@"kAskFollowSinaUserTitle")
-//                           weiboId:weiboId
-//                      successBlock:^(NSDictionary *userInfo) {
-//                          
-//                          if ([self hasFollowOfficialWeibo:snsService] == NO){
-//                              PPDebug(@"follow user %@ and reward success", weiboId);
-//                              [self updateFollowOfficialWeibo:snsService];
-//                          }
-//                          else{
-//                              PPDebug(@"follow user %@ but already reward", weiboId);
-//                          }
-//                          
-//                      } failureBlock:^(NSError *error) {
-//                          
-//                          PPDebug(@"askFollow but follow user %@ failure, error=%@", weiboId, [error description]);
-//                      }];
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+    [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId];
 }
 - (void)didclickQQ
 {
-    
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+    [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId];
 }
 - (void)didclickFacebook
 {
-    
+    PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+    [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId];
 }
 
 #pragma mark - friendService delegate

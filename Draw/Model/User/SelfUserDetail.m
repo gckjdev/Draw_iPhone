@@ -67,4 +67,13 @@
     return NO;
 }
 
+- (RelationType)relation
+{
+    return RelationTypeNo;
+}
+
+- (void)setRelation:(RelationType)relation
+{
+    
+}
 @end

@@ -12,6 +12,7 @@
 @interface ViewUserDetail : NSObject<UserDetailProtocol>
 
 
+@property (assign, nonatomic) RelationType relation;
 
 + (ViewUserDetail*)viewUserDetailWithUserId:(NSString*)userId
                                      avatar:(NSString*)avatar

@@ -108,6 +108,8 @@
     return [NSString stringWithFormat:@"@%@", [snsService officialWeiboId]];
 }
 
+
+
 //+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController
 //{
 //    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
