@@ -73,6 +73,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *eraser;
 @property (retain, nonatomic) IBOutlet UIButton *straw;
 //@property (retain, nonatomic) WidthView *widthView;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIButton *addColor;
+@property (retain, nonatomic) IBOutlet UIButton *switchPage;
 
 @property (retain, nonatomic) CMPopTipView *penPopTipView;
 @property (retain, nonatomic) CMPopTipView *colorBoxPopTipView;
@@ -84,6 +87,7 @@
 
 @property (retain, nonatomic) NSTimer *timer;
 
+- (IBAction)switchToolPage:(UIButton *)sender;
 
 @end
 
@@ -144,7 +148,17 @@
     [popTipView setPointerSize:POP_POINTER_SIZE];
     [popTipView setDelegate:self];
 }
-
+/*
+- (void)updateScrollView
+{
+    CGRect frame = self.scrollView.frame;
+    PPDebug(@"ScrollView frame = %@", NSStringFromCGRect(frame));
+    CGSize size = frame.size;
+    _scrollView.contentSize = CGSizeMake(size.width * 2, size.height);
+    PPDebug(@"Content Size = %@",NSStringFromCGSize(_scrollView.contentSize));
+    
+}
+*/
 - (void)updateSliders
 {
 //    CGPoint center = self.widthSlider.center;
@@ -156,7 +170,7 @@
                                              delegate:self];
     self.widthSlider.frame = frame;    
     [self.penWidth setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
-    [self addSubview:self.widthSlider];
+    [self.scrollView addSubview:self.widthSlider];
 
     frame = self.alphaSlider.frame;
     [self.alphaSlider removeFromSuperview];
@@ -166,9 +180,8 @@
                                              delegate:self];
     
     self.alphaSlider.frame = frame;
-    [self addSubview:self.alphaSlider];
+    [self.scrollView addSubview:self.alphaSlider];
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
-
 }
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color
@@ -223,12 +236,32 @@
     [self.straw setSelected:NO];
 }
 
+- (void)convertViewToSuperView:(UIView *)view
+{
+    CGPoint center = [self convertPoint:view.center toView:self];
+    view.center = center;
+    [self insertSubview:view belowSubview:self.scrollView];
+}
+- (void)updateColorTools
+{
+//  because of the scrollview needs to clip to bounds, so the pop tip view won't show outside the views. So I make the scrollview very high, but do this make the buttons adding on the subview can not receive click event. So add the buttons to the superview. But it is to boring to convert the views on the xib, so I code this code below. By Gamy 2013.3.23
+    
+
+//    [self addSubview:self.palette];
+//    [self convertViewToSuperView:self.palette];
+//    [self convertViewToSuperView:self.straw];
+//    [self convertViewToSuperView:self.addColor];
+    
+}
+
 - (void)updateView
 {
     [self updateRecentColorViews];
+    [self updateColorTools];
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
 
+//    [self updateScrollView];
     //update width and alpha
     [self updateSliders];
     [self setWidth:LINE_DEFAULT_WIDTH];
@@ -312,8 +345,15 @@
 
 - (void)setPanelForOnline:(BOOL)isOnline
 {
-    self.redo.hidden = self.undo.hidden = isOnline;
+//    self.redo.hidden = self.undo.hidden = isOnline;
     self.timeSet.hidden = self.chat.hidden = !isOnline;
+    
+    CGRect frame = self.scrollView.frame;
+    PPDebug(@"ScrollView frame = %@", NSStringFromCGRect(frame));
+    CGSize size = frame.size;
+    size.width = isOnline ? size.width : size.width * 2;
+    _scrollView.contentSize = size;
+    PPDebug(@"Content Size = %@",NSStringFromCGSize(_scrollView.contentSize));
 }
 
 - (void)setColor:(DrawColor *)color
@@ -551,6 +591,7 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
 {
+    [self.scrollView setClipsToBounds:YES];
     [drawSlider dismissPopupView];
     if (drawSlider == self.widthSlider) {
         NSInteger intValue = value;
@@ -573,6 +614,8 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
+    [self.scrollView setClipsToBounds:NO];
+    
     [self.straw setSelected:NO];
     [self dismissAllPopTipViews];
     
@@ -632,7 +675,7 @@
         self.shapeBoxPopTipView = nil;
     }else if(popTipView == self.drawBgBoxPopTipView){
         self.drawBgBoxPopTipView = nil;
-    }    
+    }
 }
 
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
@@ -759,9 +802,14 @@
     PPRelease(_undo);
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
+
+    PPRelease(_switchPage);
     
     [_eraser release];
     [_straw release];
+    [_scrollView release];
+    [_addColor release];
+
     [super dealloc];
 }
 
@@ -802,5 +850,24 @@
     self.timer = nil;
 }
 
+//0 or 1
+- (void)scrollToPage:(NSUInteger)page
+{
+    CGRect rect = self.scrollView.bounds;
+    rect.origin.x = page * CGRectGetWidth(rect);
+    [self.scrollView scrollRectToVisible:rect animated:YES];
+}
+
+- (IBAction)switchToolPage:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
+    NSUInteger page = sender.isSelected;
+    [self scrollToPage:page];
+    
+    [UIView animateWithDuration:0.15 animations:^{
+        CGFloat angle = sender.isSelected ? M_PI : -M_PI;
+        [sender setTransform:CGAffineTransformRotate(sender.transform, angle)];
+    }];
+    
+}
 @end
 
