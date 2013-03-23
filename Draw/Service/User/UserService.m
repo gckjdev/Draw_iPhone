@@ -31,6 +31,8 @@
 #import "MyFriend.h"
 #import "StatisticManager.h"
 #import "GameMessage.pb.h"
+#import "BlockUtils.h"
+#import "GameBasic.pb.h"
 
 @implementation UserService
 
@@ -1155,7 +1157,6 @@ static UserService* _defaultUserService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *tid = targetUserId;
         CommonNetworkOutput* output = [GameNetworkRequest       getUserInfo:SERVER_URL
                                                                      userId:userId
                                                                       appId:[ConfigManager appId]
@@ -1168,20 +1169,20 @@ static UserService* _defaultUserService;
                     if (output.responseData != nil){
                         DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
                         PBGameUser* user = response.user;
-                        EXCUTE_BLOCK(block, 0, user);
+                        EXECUTE_BLOCK(block, 0, user, response.userRelation);
                     }
                     else{
-                        EXCUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil);
+                        EXECUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil, 0);
                     }
                 }
                 @catch (NSException *exception) {
-                    EXCUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil);
+                    EXECUTE_BLOCK(block, ERROR_CLIENT_PARSE_DATA, nil, 0);
                 }
                 @finally {
                 }
             }
             else{
-                EXCUTE_BLOCK(block, output.resultCode, nil);
+                EXECUTE_BLOCK(block, output.resultCode, nil, 0);
             }
         });
     });
@@ -1295,6 +1296,49 @@ static UserService* _defaultUserService;
     });
 }
 
+- (void)uploadUserAvatar:(UIImage*)image
+             resultBlock:(UploadImageResultBlock)resultBlock
+{
+    
+}
+
+- (void)uploadUserBackground:(UIImage*)image
+                 resultBlock:(UploadImageResultBlock)resultBlock
+{
+    
+}
+
+- (void)updateUser:(PBGameUser*)pbUser
+       resultBlock:(UpdateUserResultBlock)resultBlock
+{
+    NSString* appId = [ConfigManager appId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:pbUser];
+    
+    // TODO set extra info like device model, etc
+    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+
+    // TODO, more
+    [builder setDeviceId:deviceId];
+    [builder setDeviceToken:deviceToken];
+    
+    NSData* data = [[builder build] data];
+
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL
+                                                              appId:appId
+                                                             userId:userId
+                                                                data:data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PPDebug(@"<updateUser> result=%d", output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
 
 
 @end

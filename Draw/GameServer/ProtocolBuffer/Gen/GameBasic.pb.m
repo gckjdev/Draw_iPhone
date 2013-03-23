@@ -766,6 +766,8 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSMutableArray* mutableItemsList;
 @property (retain) NSString* deviceModel;
 @property (retain) NSString* deviceOs;
+@property (retain) NSString* deviceId;
+@property (retain) NSString* deviceType;
 @property (retain) NSString* bloodGroup;
 @property int32_t fanCount;
 @property int32_t followCount;
@@ -974,6 +976,20 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasDeviceOs_ = !!value;
 }
 @synthesize deviceOs;
+- (BOOL) hasDeviceId {
+  return !!hasDeviceId_;
+}
+- (void) setHasDeviceId:(BOOL) value {
+  hasDeviceId_ = !!value;
+}
+@synthesize deviceId;
+- (BOOL) hasDeviceType {
+  return !!hasDeviceType_;
+}
+- (void) setHasDeviceType:(BOOL) value {
+  hasDeviceType_ = !!value;
+}
+@synthesize deviceType;
 - (BOOL) hasBloodGroup {
   return !!hasBloodGroup_;
 }
@@ -1020,6 +1036,8 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   self.mutableItemsList = nil;
   self.deviceModel = nil;
   self.deviceOs = nil;
+  self.deviceId = nil;
+  self.deviceType = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   [super dealloc];
@@ -1052,6 +1070,8 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.ingotBalance = 0;
     self.deviceModel = @"";
     self.deviceOs = @"";
+    self.deviceId = @"";
+    self.deviceType = @"";
     self.bloodGroup = @"";
     self.fanCount = 0;
     self.followCount = 0;
@@ -1204,6 +1224,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasDeviceOs) {
     [output writeString:72 value:self.deviceOs];
   }
+  if (self.hasDeviceId) {
+    [output writeString:73 value:self.deviceId];
+  }
+  if (self.hasDeviceType) {
+    [output writeString:74 value:self.deviceType];
+  }
   if (self.hasBloodGroup) {
     [output writeString:81 value:self.bloodGroup];
   }
@@ -1311,6 +1337,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDeviceOs) {
     size += computeStringSize(72, self.deviceOs);
+  }
+  if (self.hasDeviceId) {
+    size += computeStringSize(73, self.deviceId);
+  }
+  if (self.hasDeviceType) {
+    size += computeStringSize(74, self.deviceType);
   }
   if (self.hasBloodGroup) {
     size += computeStringSize(81, self.bloodGroup);
@@ -1495,6 +1527,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDeviceOs) {
     [self setDeviceOs:other.deviceOs];
   }
+  if (other.hasDeviceId) {
+    [self setDeviceId:other.deviceId];
+  }
+  if (other.hasDeviceType) {
+    [self setDeviceType:other.deviceType];
+  }
   if (other.hasBloodGroup) {
     [self setBloodGroup:other.bloodGroup];
   }
@@ -1648,6 +1686,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 578: {
         [self setDeviceOs:[input readString]];
+        break;
+      }
+      case 586: {
+        [self setDeviceId:[input readString]];
+        break;
+      }
+      case 594: {
+        [self setDeviceType:[input readString]];
         break;
       }
       case 650: {
@@ -2170,6 +2216,38 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearDeviceOs {
   result.hasDeviceOs = NO;
   result.deviceOs = @"";
+  return self;
+}
+- (BOOL) hasDeviceId {
+  return result.hasDeviceId;
+}
+- (NSString*) deviceId {
+  return result.deviceId;
+}
+- (PBGameUser_Builder*) setDeviceId:(NSString*) value {
+  result.hasDeviceId = YES;
+  result.deviceId = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceId {
+  result.hasDeviceId = NO;
+  result.deviceId = @"";
+  return self;
+}
+- (BOOL) hasDeviceType {
+  return result.hasDeviceType;
+}
+- (NSString*) deviceType {
+  return result.deviceType;
+}
+- (PBGameUser_Builder*) setDeviceType:(NSString*) value {
+  result.hasDeviceType = YES;
+  result.deviceType = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearDeviceType {
+  result.hasDeviceType = NO;
+  result.deviceType = @"";
   return self;
 }
 - (BOOL) hasBloodGroup {

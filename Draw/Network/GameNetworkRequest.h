@@ -584,4 +584,11 @@
                             forceBuy:(BOOL)forceBuy // 若不够钱是否强制购买后消耗
                                price:(int)price
                             currency:(PBGameCurrency)currency;
+
++ (CommonNetworkOutput*)updateUser:(NSString*)baseURL
+                             appId:(NSString* )appId
+                            userId:(NSString*)userId
+                              data:(NSData*)data;
+
+
 @end
