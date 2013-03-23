@@ -555,11 +555,11 @@ enum{
      ^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache)
     {
 //        [cp hideActivity];
-        if(resultCode == 0){
+        if(resultCode == 0 && pbDraw != nil){
             cp.feed.pbDraw = pbDraw;
             handler();
         }else{
-            
+            [cp popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
         }
 
         [self hideProgressView];

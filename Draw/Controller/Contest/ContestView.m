@@ -11,6 +11,8 @@
 //#import <QuartzCore/QuartzCore.h>
 #import "ShareImageManager.h"
 #import "UIButtonExt.h"
+#import "UIImageView+WebCache.h"
+
 @implementation ContestView
 
 @synthesize delegate = _delegate;
@@ -23,6 +25,23 @@
 @synthesize detailLabel = _detailLabel;
 @synthesize joinLabel = _joinLabel;
 
+- (void)updateViews
+{
+    if ([DeviceDetection isOS5]) {
+        [self.webView.scrollView setScrollEnabled:NO];
+    }
+    else{
+        self.webView.scalesPageToFit = NO;
+        
+        for (UIScrollView *view in self.webView.subviews) {
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                view.scrollEnabled = NO;
+            }
+        }
+    }
+    [self.detailLabel setText:NSLS(@"kContestRule")];
+}
+
 + (id)createContestView:(id)delegate
 {
     NSString* identifier = @"ContestView";
@@ -33,6 +52,7 @@
     }
     ContestView *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
+    [view updateViews];
     return view;
 }
 
@@ -45,6 +65,7 @@
     PPRelease(_webView);
     PPRelease(_bgView);
     [_activity release];
+    [_imageView release];
     [super dealloc];
 }
 
@@ -67,33 +88,53 @@
 }
 
 
+//- ()
+
+- (BOOL)isImageURL:(NSString *)url
+{
+    BOOL flag = NO;
+    
+    flag |= [url hasSuffix:@".jpg"];
+    flag |= [url hasSuffix:@".png"];
+    flag |= [url hasSuffix:@".jpeg"];
+    
+    return flag;
+}
+
 - (void)setViewInfo:(Contest *)contest
 {
     self.contest = contest;
-    [self refreshRequest];
     [self refreshCount];
-    if ([DeviceDetection isOS5]) {
-        [self.webView.scrollView setScrollEnabled:NO];
+    if ([self isImageURL:contest.contestUrl]) {
+        [self refreshImage];
+    }else{
+        [self refreshRequest];
     }
-    else{
-        self.webView.scalesPageToFit = NO;
 
-        for (UIScrollView *view in self.webView.subviews) {
-            if ([view isKindOfClass:[UIScrollView class]]) {
-                view.scrollEnabled = NO;
-            }
-        }
-    }
-    [self.detailLabel setText:NSLS(@"kContestRule")];
+
 }
 
 - (void)refreshRequest
 {
-    
+    self.imageView.hidden = YES;
+    self.webView.hidden = NO;
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:self.contest.contestUrl]];
 
     [self.webView loadRequest:request];
+}
+
+- (void)refreshImage
+{
+    self.imageView.hidden = NO;
+    self.webView.hidden = YES;
+    
+    NSURL *URL = [NSURL URLWithString:self.contest.contestUrl];
+    [self.imageView setImageWithURL:URL success:^(UIImage *image, BOOL cached) {
+        [self.activity stopAnimating];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)refreshCount
