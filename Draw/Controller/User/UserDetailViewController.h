@@ -12,6 +12,7 @@
 #import "FriendService.h"
 #import "ChangeAvatar.h"
 
+
 @interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate, FriendServiceDelegate, ChangeAvatarDelegate>
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;

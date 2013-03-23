@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
+#import "MyFriend.h"
 
 @protocol UserDetailProtocol <NSObject>
 
@@ -23,4 +24,6 @@
 
  @optional
 - (void)setPbGameUser:(PBGameUser*)pbUser;
+
+@property (assign, nonatomic) RelationType relation;
 @end

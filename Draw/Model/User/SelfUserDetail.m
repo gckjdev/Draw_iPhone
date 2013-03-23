@@ -12,6 +12,15 @@
 @implementation SelfUserDetail
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.relation = RelationTypeNo;
+    }
+    return self;
+}
+
 + (id<UserDetailProtocol>)createDetail
 {
     return [[[SelfUserDetail alloc] init] autorelease];

@@ -21,7 +21,8 @@
 #import "ChangeAvatar.h"
 #import "UserService.h"
 #import "SuperUserManageAction.h"
-
+#import "PPSNSCommonService.h"
+#import "CommonRoundAvatarView.h"
 
 #define    ROW_COUNT 1
 
@@ -51,6 +52,7 @@
             if (resultCode == 0 &&[self.detail respondsToSelector:@selector(setPbGameUser:)]
                                 && user != nil) {
                 [self.detail setPbGameUser:user];
+                [self.detail setRelation:relation];
                 [self.dataTableView reloadData];
                 
                 // TODO update relation
@@ -187,7 +189,27 @@
 
 - (void)didclickSina
 {
-    
+//    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    if ([snsService supportFollow] == NO)
+//        return;
+//    
+//    [snsService askFollowWithTitle:NSLS(@"kAskFollowSNSUser")
+//                    displayMessage:NSLS(@"kAskFollowSinaUserTitle")
+//                           weiboId:weiboId
+//                      successBlock:^(NSDictionary *userInfo) {
+//                          
+//                          if ([self hasFollowOfficialWeibo:snsService] == NO){
+//                              PPDebug(@"follow user %@ and reward success", weiboId);
+//                              [self updateFollowOfficialWeibo:snsService];
+//                          }
+//                          else{
+//                              PPDebug(@"follow user %@ but already reward", weiboId);
+//                          }
+//                          
+//                      } failureBlock:^(NSError *error) {
+//                          
+//                          PPDebug(@"askFollow but follow user %@ failure, error=%@", weiboId, [error description]);
+//                      }];
 }
 - (void)didclickQQ
 {
@@ -211,6 +233,15 @@
                                                        delayTime:1.5
                                                          isHappy:YES];
     }
+}
+
+#pragma mark - changeAvatarDelegate
+
+- (void)didImageSelected:(UIImage *)image
+{
+    UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
+    [cell.avatarView setImage:image];
+    
 }
 
 @end
