@@ -972,6 +972,10 @@
 		C2CA66E216ACD20800215924 /* new_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2974D5A168302DE00E012FC /* new_bulletin@2x.png */; };
 		C2CA66E316AD23FD00215924 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		C2CA66E416AD241300215924 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
+		C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
+		C2D6B09716FD8CEE00EDD41C /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
+		C2D6B09816FD8CEE00EDD41C /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
+		C2D6B09916FD8CEE00EDD41C /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		C2DA092716AE82B2003BBE2D /* tab_center_unselect@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */; };
 		C2DA092816AE82B2003BBE2D /* tab_center_selected@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */; };
 		C2DA092916AE82B6003BBE2D /* tab_center_selected@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */; };
@@ -8115,6 +8119,8 @@
 		C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		C2C54CFF1640F878005561DA /* NSMutableArray+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Stack.h"; sourceTree = "<group>"; };
 		C2C54D001640F878005561DA /* NSMutableArray+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Stack.m"; sourceTree = "<group>"; };
+		C2D6B09416FD8CEE00EDD41C /* SNSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUtils.h; sourceTree = "<group>"; };
+		C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUtils.m; sourceTree = "<group>"; };
 		C2DA092516AE82B2003BBE2D /* tab_center_unselect@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_unselect@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092616AE82B2003BBE2D /* tab_center_selected@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tab_center_selected@2x.jpg"; sourceTree = "<group>"; };
 		C2DA092D16AE8EBA003BBE2D /* DrawRoomListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRoomListController.h; sourceTree = "<group>"; };
@@ -12492,6 +12498,15 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		C2D6B09316FD8CEE00EDD41C /* SNS */ = {
+			isa = PBXGroup;
+			children = (
+				C2D6B09416FD8CEE00EDD41C /* SNSUtils.h */,
+				C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */,
+			);
+			path = SNS;
+			sourceTree = "<group>";
+		};
 		C2DD4F0A1610412500556CC7 /* DiceRobotDecisionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -12985,6 +13000,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				C2D6B09316FD8CEE00EDD41C /* SNS */,
 				EAE5718A16FC6ACB000AFADA /* Cache */,
 				A4A2E7A216E71DE900445888 /* JRSwizzle */,
 				CA1250A71668653000AFCC04 /* Block */,
@@ -23346,6 +23362,7 @@
 				CAEFC4B116FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				CAEFC4B516FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */,
+				C2D6B09816FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24108,6 +24125,7 @@
 				CAEFC4B216FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				CAEFC4B616FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */,
+				C2D6B09916FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24879,6 +24897,7 @@
 				CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				CAEFC4B316FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B716FD64DB00D799B7 /* TriangleShape.m in Sources */,
+				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25649,6 +25668,7 @@
 				CAEFC4B016FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				CAEFC4B416FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */,
+				C2D6B09716FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
