@@ -6993,10 +6993,10 @@
 		CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
 		CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
 		CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
-		CAEFC4BC16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC4BD16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC4BE16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC4BF16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */; };
+		CAEFC4F016FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
+		CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
+		CAEFC4F216FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
+		CAEFC4F316FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -10449,7 +10449,7 @@
 		CAEFC4A016FD64DB00D799B7 /* StarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarShape.m; sourceTree = "<group>"; };
 		CAEFC4A116FD64DB00D799B7 /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
 		CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
-		CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "draw_canvas_bg@2x.png"; path = "../../../../../../../../Users/qqn_pipi/Downloads/draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
+		CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -14693,7 +14693,7 @@
 		CA5B066F16BFC2FF004A64C4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				CAEFC4BB16FD6D1900D799B7 /* draw_canvas_bg@2x.png */,
+				CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */,
 				CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */,
 				CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */,
 				CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */,
@@ -19829,7 +19829,7 @@
 				CAEFC48716FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
 				CAEFC48B16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
 				CAEFC48F16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
-				CAEFC4BE16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */,
+				CAEFC4F216FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20719,7 +20719,7 @@
 				CAEFC48816FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
 				CAEFC48C16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
 				CAEFC49016FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
-				CAEFC4BF16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */,
+				CAEFC4F316FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21695,7 +21695,7 @@
 				CAEFC48516FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
 				CAEFC48916FD63EB00D799B7 /* draw_target@2x.png in Resources */,
 				CAEFC48D16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
-				CAEFC4BC16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */,
+				CAEFC4F016FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22590,7 +22590,7 @@
 				CAEFC48616FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
 				CAEFC48A16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
 				CAEFC48E16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
-				CAEFC4BD16FD6D1900D799B7 /* draw_canvas_bg@2x.png in Resources */,
+				CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

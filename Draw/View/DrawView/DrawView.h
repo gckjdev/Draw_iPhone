@@ -70,4 +70,5 @@ typedef enum{
 - (void)showDraft:(MyPaint *)draft;
 - (void)clearRedoStack;
 
+
 @end
