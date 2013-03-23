@@ -170,4 +170,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)isSuperUser;
 
 - (void)storeUserData:(PBGameUser*)user;
+- (void)setBackground:(NSString*)url;
+
 @end

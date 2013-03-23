@@ -1299,13 +1299,65 @@ static UserService* _defaultUserService;
 - (void)uploadUserAvatar:(UIImage*)image
              resultBlock:(UploadImageResultBlock)resultBlock
 {
+    // save data locally firstly
+    [[UserManager defaultManager] saveAvatarLocally:image];
+    [[UserManager defaultManager] storeUserData];
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSData* data = [image data];
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
+                                                                    appId:[ConfigManager appId]
+                                                                   userId:userId
+                                                                imageData:data
+                                                                imageType:PARA_AVATAR];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                // update avatar
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
+                [[UserManager defaultManager] setAvatar:retURL];
+                [[UserManager defaultManager] storeUserData];
+                EXECUTE_BLOCK(resultBlock, output.resultCode, retURL);
+            }
+            else{
+                EXECUTE_BLOCK(resultBlock, output.resultCode, nil);
+            }
+            
+        });
+    });
     
 }
 
 - (void)uploadUserBackground:(UIImage*)image
                  resultBlock:(UploadImageResultBlock)resultBlock
 {
+    // save data locally firstly
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSData* data = [image data];
     
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
+                                                                    appId:[ConfigManager appId]
+                                                                   userId:userId
+                                                                imageData:data
+                                                                imageType:PARA_BACKGROUND];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                // update avatar
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_URL];
+                [[UserManager defaultManager] setBackground:retURL];
+                [[UserManager defaultManager] storeUserData];
+                EXECUTE_BLOCK(resultBlock, output.resultCode, retURL);
+            }
+            else{
+                EXECUTE_BLOCK(resultBlock, output.resultCode, nil);
+            }
+            
+        });
+    });
 }
 
 - (void)updateUser:(PBGameUser*)pbUser
