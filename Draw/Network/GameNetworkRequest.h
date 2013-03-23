@@ -590,5 +590,9 @@
                             userId:(NSString*)userId
                               data:(NSData*)data;
 
-
++ (CommonNetworkOutput*)uploadUserImage:(NSString*)baseURL
+                                  appId:(NSString*)appId
+                                 userId:(NSString*)userId
+                              imageData:(NSData*)imageData
+                              imageType:(NSString*)imageType;
 @end

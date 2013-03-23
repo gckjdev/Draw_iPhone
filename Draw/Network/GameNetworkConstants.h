@@ -287,6 +287,8 @@
 
 #define PARA_NEED_RETURN_USER           @"r"
 #define PARA_AVATAR                     @"av"
+#define PARA_BACKGROUND                 @"bg"
+#define PARA_URL                        @"url"
 #define PARA_ACCESS_TOKEN               @"at"
 #define PARA_ACCESS_TOKEN_SECRET        @"ats"
 #define PARA_PROVINCE                   @"pro"
@@ -623,3 +625,4 @@
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();
 extern NSString* GlobalGetBoardServerURL();
+
