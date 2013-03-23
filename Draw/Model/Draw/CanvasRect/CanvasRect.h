@@ -36,8 +36,25 @@ typedef enum{
 + (CGRect)defaultRect;
 + (CGRect)deprecatedIPhoneRect;
 + (CGRect)randRect;
+
 @end
 
 
 static const CGRect* getRectList();
 //static CGRect* getIPhoneRectList;
+
+@interface CanvasRectView : UIControl
+{
+    
+}
+
+- (id)initWithCanvasRect:(CGRect)rect;
+
+@end
+
+
+
+
+
+
+
