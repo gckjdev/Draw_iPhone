@@ -409,7 +409,7 @@
         infoInView:(PPViewController*)superController
         needUpdate:(BOOL)needUpdate //if need update the info from service.
 {
-    if ([[UserManager defaultManager] isMe:afriend.friendUserId]) {
+    if ([[UserManager defaultManager] isMe:a friend.friendUserId]) {
         [superController popupMessage:NSLS(@"kCannotShowYourself") title:nil];
         return;
     }

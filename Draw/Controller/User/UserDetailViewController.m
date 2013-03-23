@@ -18,11 +18,16 @@
 #import "MessageStat.h"
 #import "SelectHotWordController.h"
 #import "CommonMessageCenter.h"
+#import "ChangeAvatar.h"
+#import "UserService.h"
+#import "SuperUserManageAction.h"
 
 #define    ROW_COUNT 1
 
 
-@interface UserDetailViewController ()
+@interface UserDetailViewController () {
+    ChangeAvatar* _changeAvatar;
+}
 
 @end
 
@@ -119,26 +124,78 @@
 }
 - (void)didClickFollowButton
 {
-    [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
-    [self showActivityWithText:NSLS(@"kFollowing")];
+    if ([self.detail canFollow]) {
+        [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
+        [self showActivityWithText:NSLS(@"kFollowing")];
+    }
+   
 }
 - (void)didClickChatButton
 {
-    PBGameUser* pbUser = [self.detail queryUser];
-    MyFriend* targetFriend = [MyFriend friendWithFid:[self.detail getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender level:pbUser.level];
-    MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+    if ([self.detail canChat]) {
+        PBGameUser* pbUser = [self.detail queryUser];
+        MyFriend* targetFriend = [MyFriend friendWithFid:[self.detail getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender level:pbUser.level];
+        MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
         ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
-    [self.navigationController pushViewController:controller
-                                                                 animated:YES];
-    [controller release];
+        [self.navigationController pushViewController:controller
+                                             animated:YES];
+        [controller release];
+    }
+    
 }
 - (void)didClickDrawToButton
 {
-    SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self.detail getUserId]] autorelease];
-    vc.superController = self;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.detail canDraw]) {
+        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self.detail getUserId]] autorelease];
+        vc.superController = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+   
 }
 
+- (void)didClickAvatar
+{
+    if ([self.detail canEdit]) {
+        if (_changeAvatar == nil) {
+            _changeAvatar = [[ChangeAvatar alloc] init];
+            _changeAvatar.autoRoundRect = NO;
+        }
+        [_changeAvatar showSelectionView:self];
+    }
+    
+}
+- (void)didclickBlack
+{
+    if ([self.detail canBlack]) {
+        [[FriendService defaultService] unblackFriend:[self.detail getUserId] successBlock:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
+        }];
+    }
+   
+}
+- (void)didclickManage
+{
+    if ([[UserManager defaultManager] isSuperUser]) {
+        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self.detail getUserId] nickName:[self.detail queryUser].nickName balance:[self.detail queryUser].coinBalance] autorelease];
+        [action showInController:_superViewController];
+    }
+    
+}
+
+- (void)didclickSina
+{
+    
+}
+- (void)didclickQQ
+{
+    
+}
+- (void)didclickFacebook
+{
+    
+}
+
+#pragma mark - friendService delegate
 - (void)didFollowUser:(int)resultCode
 {
     [self hideActivity];

@@ -435,7 +435,8 @@ enum {
             [cell.detailTextLabel setText:[LocaleUtils getZodiacWithIndex:[userManager zodiac]]];
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
-            [cell.detailTextLabel setText:userManager.birthday];
+            NSDate* date = dateFromStringByFormat(userManager.birthday, @"yyyyMMdd");
+            [cell.detailTextLabel setText:dateToString(date)];
         }else if (row == rowOfBloodGropu) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
             [cell.detailTextLabel setText:userManager.bloodGroup];

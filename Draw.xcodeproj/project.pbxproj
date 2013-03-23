@@ -728,6 +728,10 @@
 		C28E7C141602E5FC00F4B6A5 /* SkipItemAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C28E7C131602E5F900F4B6A5 /* SkipItemAction.m */; };
 		C2916CC01606B9DD00B0996E /* DiceRobotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */; };
 		C292CD4D1647966500BDE772 /* MoneyTree.m in Sources */ = {isa = PBXBuildFile; fileRef = C292CD4C1647966500BDE772 /* MoneyTree.m */; };
+		C2930CE416FD51FA00F78C99 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2930CE316FD51FA00F78C99 /* SNSUtils.m */; };
+		C2930CE516FD51FA00F78C99 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2930CE316FD51FA00F78C99 /* SNSUtils.m */; };
+		C2930CE616FD51FA00F78C99 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2930CE316FD51FA00F78C99 /* SNSUtils.m */; };
+		C2930CE716FD51FA00F78C99 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2930CE316FD51FA00F78C99 /* SNSUtils.m */; };
 		C295B911168571C2005B3559 /* DiceGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */; };
 		C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		C295B913168571C2005B3559 /* ZJHGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90F168571C2005B3559 /* ZJHGameJumpHandler.m */; };
@@ -7889,6 +7893,8 @@
 		C2916CBF1606B9DD00B0996E /* DiceRobotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRobotManager.m; sourceTree = "<group>"; };
 		C292CD4B1647966500BDE772 /* MoneyTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyTree.h; sourceTree = "<group>"; };
 		C292CD4C1647966500BDE772 /* MoneyTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTree.m; sourceTree = "<group>"; };
+		C2930CE216FD51FA00F78C99 /* SNSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSUtils.h; sourceTree = "<group>"; };
+		C2930CE316FD51FA00F78C99 /* SNSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSUtils.m; sourceTree = "<group>"; };
 		C295B90A168571C2005B3559 /* GameJumpHandlerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameJumpHandlerProtocol.h; sourceTree = "<group>"; };
 		C295B90B168571C2005B3559 /* ZJHGameJumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameJumpHandler.h; sourceTree = "<group>"; };
 		C295B90C168571C2005B3559 /* DiceGameJumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceGameJumpHandler.m; sourceTree = "<group>"; };
@@ -12144,6 +12150,15 @@
 			path = DiceRobotManager;
 			sourceTree = "<group>";
 		};
+		C2930CDC16FD515D00F78C99 /* SNS */ = {
+			isa = PBXGroup;
+			children = (
+				C2930CE216FD51FA00F78C99 /* SNSUtils.h */,
+				C2930CE316FD51FA00F78C99 /* SNSUtils.m */,
+			);
+			path = SNS;
+			sourceTree = "<group>";
+		};
 		C296871F15DCE03F006968BA /* DiceItemInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -12930,6 +12945,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				C2930CDC16FD515D00F78C99 /* SNS */,
 				EAE5718A16FC6ACB000AFADA /* Cache */,
 				A4A2E7A216E71DE900445888 /* JRSwizzle */,
 				CA1250A71668653000AFCC04 /* Block */,
@@ -23236,6 +23252,7 @@
 				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718F16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				C2930CE616FD51FA00F78C99 /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23998,6 +24015,7 @@
 				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5719016FC6ACB000AFADA /* CacheManager.m in Sources */,
+				C2930CE716FD51FA00F78C99 /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24769,6 +24787,7 @@
 				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				C2930CE416FD51FA00F78C99 /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25539,6 +25558,7 @@
 				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718E16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				C2930CE516FD51FA00F78C99 /* SNSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
