@@ -4127,26 +4127,6 @@
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
-		CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
-		CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
-		CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
-		CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4516DF3FF7002178FC /* BeelineShape.m */; };
-		CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
-		CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
-		CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
-		CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A4B16DF4027002178FC /* RectangleShape.m */; };
-		CA683A5216DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
-		CA683A5316DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
-		CA683A5416DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
-		CA683A5516DF403D002178FC /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5116DF403C002178FC /* EllipseShape.m */; };
-		CA683A5E16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
-		CA683A5F16DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
-		CA683A6016DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
-		CA683A6116DF4074002178FC /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A5D16DF4072002178FC /* StarShape.m */; };
-		CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
-		CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
-		CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
-		CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CA683A6316DF40AE002178FC /* TriangleShape.m */; };
 		CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
 		CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
@@ -5304,10 +5284,6 @@
 		CA9A7ED316DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9A7ED416DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		CA9A7ED516DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
-		CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
-		CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
-		CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
-		CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C8CBD15E0D94A006E447B /* XQueryComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBC15E0D94A006E447B /* XQueryComponents.m */; };
 		CA9C8CC015E0DE88006E447B /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C8CBF15E0DE88006E447B /* JumpHandler.m */; };
@@ -6945,6 +6921,74 @@
 		CAEECDE015DE28AB00FA5A2A /* ImageBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */; };
 		CAEECE1415DF8D5200FA5A2A /* BoardPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */; };
 		CAEECE1515DF8D5200FA5A2A /* BoardPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */; };
+		CAEFC46516FD63EB00D799B7 /* draw_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */; };
+		CAEFC46616FD63EB00D799B7 /* draw_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */; };
+		CAEFC46716FD63EB00D799B7 /* draw_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */; };
+		CAEFC46816FD63EB00D799B7 /* draw_desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */; };
+		CAEFC46916FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */; };
+		CAEFC46A16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */; };
+		CAEFC46B16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */; };
+		CAEFC46C16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */; };
+		CAEFC46D16FD63EB00D799B7 /* draw_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */; };
+		CAEFC46E16FD63EB00D799B7 /* draw_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */; };
+		CAEFC46F16FD63EB00D799B7 /* draw_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */; };
+		CAEFC47016FD63EB00D799B7 /* draw_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */; };
+		CAEFC47116FD63EB00D799B7 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45D16FD638600D799B7 /* draw_help@2x.png */; };
+		CAEFC47216FD63EB00D799B7 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45D16FD638600D799B7 /* draw_help@2x.png */; };
+		CAEFC47316FD63EB00D799B7 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45D16FD638600D799B7 /* draw_help@2x.png */; };
+		CAEFC47416FD63EB00D799B7 /* draw_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45D16FD638600D799B7 /* draw_help@2x.png */; };
+		CAEFC47516FD63EB00D799B7 /* draw_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */; };
+		CAEFC47616FD63EB00D799B7 /* draw_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */; };
+		CAEFC47716FD63EB00D799B7 /* draw_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */; };
+		CAEFC47816FD63EB00D799B7 /* draw_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */; };
+		CAEFC47916FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */; };
+		CAEFC47A16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */; };
+		CAEFC47B16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */; };
+		CAEFC47C16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */; };
+		CAEFC47D16FD63EB00D799B7 /* draw_size@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46016FD63A000D799B7 /* draw_size@2x.png */; };
+		CAEFC47E16FD63EB00D799B7 /* draw_size@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46016FD63A000D799B7 /* draw_size@2x.png */; };
+		CAEFC47F16FD63EB00D799B7 /* draw_size@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46016FD63A000D799B7 /* draw_size@2x.png */; };
+		CAEFC48016FD63EB00D799B7 /* draw_size@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46016FD63A000D799B7 /* draw_size@2x.png */; };
+		CAEFC48116FD63EB00D799B7 /* draw_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */; };
+		CAEFC48216FD63EB00D799B7 /* draw_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */; };
+		CAEFC48316FD63EB00D799B7 /* draw_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */; };
+		CAEFC48416FD63EB00D799B7 /* draw_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */; };
+		CAEFC48516FD63EB00D799B7 /* draw_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */; };
+		CAEFC48616FD63EB00D799B7 /* draw_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */; };
+		CAEFC48716FD63EB00D799B7 /* draw_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */; };
+		CAEFC48816FD63EB00D799B7 /* draw_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */; };
+		CAEFC48916FD63EB00D799B7 /* draw_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46316FD63C800D799B7 /* draw_target@2x.png */; };
+		CAEFC48A16FD63EB00D799B7 /* draw_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46316FD63C800D799B7 /* draw_target@2x.png */; };
+		CAEFC48B16FD63EB00D799B7 /* draw_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46316FD63C800D799B7 /* draw_target@2x.png */; };
+		CAEFC48C16FD63EB00D799B7 /* draw_target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46316FD63C800D799B7 /* draw_target@2x.png */; };
+		CAEFC48D16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
+		CAEFC48E16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
+		CAEFC48F16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
+		CAEFC49016FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
+		CAEFC4A316FD64DB00D799B7 /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49816FD64DB00D799B7 /* BeelineShape.m */; };
+		CAEFC4A416FD64DB00D799B7 /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49816FD64DB00D799B7 /* BeelineShape.m */; };
+		CAEFC4A516FD64DB00D799B7 /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49816FD64DB00D799B7 /* BeelineShape.m */; };
+		CAEFC4A616FD64DB00D799B7 /* BeelineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49816FD64DB00D799B7 /* BeelineShape.m */; };
+		CAEFC4A716FD64DB00D799B7 /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */; };
+		CAEFC4A816FD64DB00D799B7 /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */; };
+		CAEFC4A916FD64DB00D799B7 /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */; };
+		CAEFC4AA16FD64DB00D799B7 /* EllipseShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */; };
+		CAEFC4AB16FD64DB00D799B7 /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */; };
+		CAEFC4AC16FD64DB00D799B7 /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */; };
+		CAEFC4AD16FD64DB00D799B7 /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */; };
+		CAEFC4AE16FD64DB00D799B7 /* RectangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */; };
+		CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
+		CAEFC4B016FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
+		CAEFC4B116FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
+		CAEFC4B216FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
+		CAEFC4B316FD64DB00D799B7 /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A016FD64DB00D799B7 /* StarShape.m */; };
+		CAEFC4B416FD64DB00D799B7 /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A016FD64DB00D799B7 /* StarShape.m */; };
+		CAEFC4B516FD64DB00D799B7 /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A016FD64DB00D799B7 /* StarShape.m */; };
+		CAEFC4B616FD64DB00D799B7 /* StarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A016FD64DB00D799B7 /* StarShape.m */; };
+		CAEFC4B716FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
+		CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
+		CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
+		CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -8952,16 +8996,6 @@
 		CA67B87C15E89FB0002050DB /* GameApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameApp.m; sourceTree = "<group>"; };
 		CA67B8A715EB2928002050DB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		CA67B8A915EB292E002050DB /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		CA683A4416DF3FF7002178FC /* BeelineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeelineShape.h; sourceTree = "<group>"; };
-		CA683A4516DF3FF7002178FC /* BeelineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeelineShape.m; sourceTree = "<group>"; };
-		CA683A4A16DF4027002178FC /* RectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleShape.h; sourceTree = "<group>"; };
-		CA683A4B16DF4027002178FC /* RectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectangleShape.m; sourceTree = "<group>"; };
-		CA683A5016DF403C002178FC /* EllipseShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseShape.h; sourceTree = "<group>"; };
-		CA683A5116DF403C002178FC /* EllipseShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseShape.m; sourceTree = "<group>"; };
-		CA683A5C16DF4071002178FC /* StarShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarShape.h; sourceTree = "<group>"; };
-		CA683A5D16DF4072002178FC /* StarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarShape.m; sourceTree = "<group>"; };
-		CA683A6216DF40AD002178FC /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
-		CA683A6316DF40AE002178FC /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
 		CA6D351F15F71574004DC293 /* bottom_menubg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom_menubg@2x.png"; sourceTree = "<group>"; };
 		CA6D352015F71574004DC293 /* small_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "small_setting@2x.png"; sourceTree = "<group>"; };
 		CA6D353315F71918004DC293 /* en */ = {isa = PBXFileReference; explicitFileType = image.icns; name = en; path = "en.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
@@ -10088,8 +10122,6 @@
 		CA9A7EC216DC57B10089BD51 /* ShapeBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeBox.m; sourceTree = "<group>"; };
 		CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeBox.xib; sourceTree = "<group>"; };
 		CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShapeBox~ipad.xib"; sourceTree = "<group>"; };
-		CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
-		CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C8CBB15E0D94A006E447B /* XQueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQueryComponents.h; sourceTree = "<group>"; };
@@ -10384,6 +10416,29 @@
 		CAEECE1115DF8D5000FA5A2A /* BoardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardPanel.h; path = ../Controller/BoardPanel.h; sourceTree = "<group>"; };
 		CAEECE1215DF8D5100FA5A2A /* BoardPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardPanel.m; path = ../Controller/BoardPanel.m; sourceTree = "<group>"; };
 		CAEECE1315DF8D5200FA5A2A /* BoardPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BoardPanel.xib; path = ../Controller/BoardPanel.xib; sourceTree = "<group>"; };
+		CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_desc@2x.png"; sourceTree = "<group>"; };
+		CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_ellipse@2x.png"; sourceTree = "<group>"; };
+		CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_grid@2x.png"; sourceTree = "<group>"; };
+		CAEFC45D16FD638600D799B7 /* draw_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_help@2x.png"; sourceTree = "<group>"; };
+		CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_line@2x.png"; sourceTree = "<group>"; };
+		CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_rectangle@2x.png"; sourceTree = "<group>"; };
+		CAEFC46016FD63A000D799B7 /* draw_size@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_size@2x.png"; sourceTree = "<group>"; };
+		CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_star@2x.png"; sourceTree = "<group>"; };
+		CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_switch@2x.png"; sourceTree = "<group>"; };
+		CAEFC46316FD63C800D799B7 /* draw_target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_target@2x.png"; sourceTree = "<group>"; };
+		CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_triangle@2x.png"; sourceTree = "<group>"; };
+		CAEFC49716FD64DB00D799B7 /* BeelineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeelineShape.h; sourceTree = "<group>"; };
+		CAEFC49816FD64DB00D799B7 /* BeelineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeelineShape.m; sourceTree = "<group>"; };
+		CAEFC49916FD64DB00D799B7 /* EllipseShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipseShape.h; sourceTree = "<group>"; };
+		CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EllipseShape.m; sourceTree = "<group>"; };
+		CAEFC49B16FD64DB00D799B7 /* RectangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleShape.h; sourceTree = "<group>"; };
+		CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RectangleShape.m; sourceTree = "<group>"; };
+		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
+		CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
+		CAEFC49F16FD64DB00D799B7 /* StarShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarShape.h; sourceTree = "<group>"; };
+		CAEFC4A016FD64DB00D799B7 /* StarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarShape.m; sourceTree = "<group>"; };
+		CAEFC4A116FD64DB00D799B7 /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
+		CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -13736,6 +13791,7 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAEFC49616FD64DB00D799B7 /* Shape */,
 				CA35FF4416F867AC00D8E05D /* CanvasRect */,
 				CA35FF2016F8672100D8E05D /* DrawAction */,
 				CA48588816E19D4500AEE725 /* DrawBg */,
@@ -14616,6 +14672,17 @@
 		CA5B066F16BFC2FF004A64C4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */,
+				CAEFC45B16FD637E00D799B7 /* draw_ellipse@2x.png */,
+				CAEFC45C16FD638200D799B7 /* draw_grid@2x.png */,
+				CAEFC45D16FD638600D799B7 /* draw_help@2x.png */,
+				CAEFC45E16FD638E00D799B7 /* draw_line@2x.png */,
+				CAEFC45F16FD639600D799B7 /* draw_rectangle@2x.png */,
+				CAEFC46016FD63A000D799B7 /* draw_size@2x.png */,
+				CAEFC46116FD63AC00D799B7 /* draw_star@2x.png */,
+				CAEFC46216FD63BA00D799B7 /* draw_switch@2x.png */,
+				CAEFC46316FD63C800D799B7 /* draw_target@2x.png */,
+				CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */,
 				CA5B067016BFC2FF004A64C4 /* draw_add@2x.png */,
 				CA5B067116BFC2FF004A64C4 /* draw_color_bg@2x.png */,
 				CA5B067216BFC2FF004A64C4 /* draw_eraser@2x.png */,
@@ -14669,25 +14736,6 @@
 				CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */,
 			);
 			path = GameApp;
-			sourceTree = "<group>";
-		};
-		CA683A3E16DF3F9B002178FC /* Shape */ = {
-			isa = PBXGroup;
-			children = (
-				CA9A7ED616DC5C0F0089BD51 /* ShapeInfo.h */,
-				CA9A7ED716DC5C0F0089BD51 /* ShapeInfo.m */,
-				CA683A6216DF40AD002178FC /* TriangleShape.h */,
-				CA683A6316DF40AE002178FC /* TriangleShape.m */,
-				CA683A4416DF3FF7002178FC /* BeelineShape.h */,
-				CA683A4516DF3FF7002178FC /* BeelineShape.m */,
-				CA683A4A16DF4027002178FC /* RectangleShape.h */,
-				CA683A4B16DF4027002178FC /* RectangleShape.m */,
-				CA683A5016DF403C002178FC /* EllipseShape.h */,
-				CA683A5116DF403C002178FC /* EllipseShape.m */,
-				CA683A5C16DF4071002178FC /* StarShape.h */,
-				CA683A5D16DF4072002178FC /* StarShape.m */,
-			);
-			name = Shape;
 			sourceTree = "<group>";
 		};
 		CA745D131503B1B400600024 = {
@@ -16497,7 +16545,6 @@
 		CA96E267150DD63900292335 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA683A3E16DF3F9B002178FC /* Shape */,
 				CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */,
 				CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */,
 				CA96E26C150DE4FD00292335 /* GameSession.h */,
@@ -17445,6 +17492,25 @@
 				CAEECDDF15DE28A800FA5A2A /* ImageBoardView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAEFC49616FD64DB00D799B7 /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				CAEFC49716FD64DB00D799B7 /* BeelineShape.h */,
+				CAEFC49816FD64DB00D799B7 /* BeelineShape.m */,
+				CAEFC49916FD64DB00D799B7 /* EllipseShape.h */,
+				CAEFC49A16FD64DB00D799B7 /* EllipseShape.m */,
+				CAEFC49B16FD64DB00D799B7 /* RectangleShape.h */,
+				CAEFC49C16FD64DB00D799B7 /* RectangleShape.m */,
+				CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */,
+				CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */,
+				CAEFC49F16FD64DB00D799B7 /* StarShape.h */,
+				CAEFC4A016FD64DB00D799B7 /* StarShape.m */,
+				CAEFC4A116FD64DB00D799B7 /* TriangleShape.h */,
+				CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
@@ -19730,6 +19796,17 @@
 				C2B97A3116F999200037B15B /* UserDetailCell.xib in Resources */,
 				C22EBE7716FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7C16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
+				CAEFC46716FD63EB00D799B7 /* draw_desc@2x.png in Resources */,
+				CAEFC46B16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */,
+				CAEFC46F16FD63EB00D799B7 /* draw_grid@2x.png in Resources */,
+				CAEFC47316FD63EB00D799B7 /* draw_help@2x.png in Resources */,
+				CAEFC47716FD63EB00D799B7 /* draw_line@2x.png in Resources */,
+				CAEFC47B16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */,
+				CAEFC47F16FD63EB00D799B7 /* draw_size@2x.png in Resources */,
+				CAEFC48316FD63EB00D799B7 /* draw_star@2x.png in Resources */,
+				CAEFC48716FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
+				CAEFC48B16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
+				CAEFC48F16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20608,6 +20685,17 @@
 				C2B97A3216F999200037B15B /* UserDetailCell.xib in Resources */,
 				C22EBE7816FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7D16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
+				CAEFC46816FD63EB00D799B7 /* draw_desc@2x.png in Resources */,
+				CAEFC46C16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */,
+				CAEFC47016FD63EB00D799B7 /* draw_grid@2x.png in Resources */,
+				CAEFC47416FD63EB00D799B7 /* draw_help@2x.png in Resources */,
+				CAEFC47816FD63EB00D799B7 /* draw_line@2x.png in Resources */,
+				CAEFC47C16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */,
+				CAEFC48016FD63EB00D799B7 /* draw_size@2x.png in Resources */,
+				CAEFC48416FD63EB00D799B7 /* draw_star@2x.png in Resources */,
+				CAEFC48816FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
+				CAEFC48C16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
+				CAEFC49016FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21572,6 +21660,17 @@
 				C22EBE7516FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7A16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 				C2F23B8716FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */,
+				CAEFC46516FD63EB00D799B7 /* draw_desc@2x.png in Resources */,
+				CAEFC46916FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */,
+				CAEFC46D16FD63EB00D799B7 /* draw_grid@2x.png in Resources */,
+				CAEFC47116FD63EB00D799B7 /* draw_help@2x.png in Resources */,
+				CAEFC47516FD63EB00D799B7 /* draw_line@2x.png in Resources */,
+				CAEFC47916FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */,
+				CAEFC47D16FD63EB00D799B7 /* draw_size@2x.png in Resources */,
+				CAEFC48116FD63EB00D799B7 /* draw_star@2x.png in Resources */,
+				CAEFC48516FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
+				CAEFC48916FD63EB00D799B7 /* draw_target@2x.png in Resources */,
+				CAEFC48D16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22455,6 +22554,17 @@
 				C22EBE7616FBF735002A9CF5 /* GCDatePickerView.xib in Resources */,
 				C22EBE7B16FBFAB7002A9CF5 /* GCDatePickerView~ipad.xib in Resources */,
 				C2F23B8816FC651500AC85C8 /* user_detail_black_btn_bg@2x.png in Resources */,
+				CAEFC46616FD63EB00D799B7 /* draw_desc@2x.png in Resources */,
+				CAEFC46A16FD63EB00D799B7 /* draw_ellipse@2x.png in Resources */,
+				CAEFC46E16FD63EB00D799B7 /* draw_grid@2x.png in Resources */,
+				CAEFC47216FD63EB00D799B7 /* draw_help@2x.png in Resources */,
+				CAEFC47616FD63EB00D799B7 /* draw_line@2x.png in Resources */,
+				CAEFC47A16FD63EB00D799B7 /* draw_rectangle@2x.png in Resources */,
+				CAEFC47E16FD63EB00D799B7 /* draw_size@2x.png in Resources */,
+				CAEFC48216FD63EB00D799B7 /* draw_star@2x.png in Resources */,
+				CAEFC48616FD63EB00D799B7 /* draw_switch@2x.png in Resources */,
+				CAEFC48A16FD63EB00D799B7 /* draw_target@2x.png in Resources */,
+				CAEFC48E16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23178,13 +23288,7 @@
 				CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECD16D76370004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC516DC57B10089BD51 /* ShapeBox.m in Sources */,
-				CA9A7EDA16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0D16DF34FE00852E59 /* TimeoutSettingView.m in Sources */,
-				CA683A4816DF3FF7002178FC /* BeelineShape.m in Sources */,
-				CA683A4E16DF4027002178FC /* RectangleShape.m in Sources */,
-				CA683A5416DF403D002178FC /* EllipseShape.m in Sources */,
-				CA683A6016DF4074002178FC /* StarShape.m in Sources */,
-				CA683A6616DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA23518D16EB0DD800C88082 /* CustomInfoView.m in Sources */,
 				CA23518F16EB0DD800C88082 /* PriceView.m in Sources */,
 				CA23519116EB0DD800C88082 /* StoreCell.m in Sources */,
@@ -23236,6 +23340,12 @@
 				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718F16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				CAEFC4A516FD64DB00D799B7 /* BeelineShape.m in Sources */,
+				CAEFC4A916FD64DB00D799B7 /* EllipseShape.m in Sources */,
+				CAEFC4AD16FD64DB00D799B7 /* RectangleShape.m in Sources */,
+				CAEFC4B116FD64DB00D799B7 /* ShapeInfo.m in Sources */,
+				CAEFC4B516FD64DB00D799B7 /* StarShape.m in Sources */,
+				CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23940,13 +24050,7 @@
 				CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECE16D76371004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC616DC57B10089BD51 /* ShapeBox.m in Sources */,
-				CA9A7EDB16DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A4CA708F16DF26FA00114CA7 /* TimeoutSettingView.m in Sources */,
-				CA683A4916DF3FF8002178FC /* BeelineShape.m in Sources */,
-				CA683A4F16DF4027002178FC /* RectangleShape.m in Sources */,
-				CA683A5516DF403D002178FC /* EllipseShape.m in Sources */,
-				CA683A6116DF4074002178FC /* StarShape.m in Sources */,
-				CA683A6716DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA23520F16EB0DDF00C88082 /* CustomInfoView.m in Sources */,
 				CA23521116EB0DDF00C88082 /* PriceView.m in Sources */,
 				CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */,
@@ -23998,6 +24102,12 @@
 				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5719016FC6ACB000AFADA /* CacheManager.m in Sources */,
+				CAEFC4A616FD64DB00D799B7 /* BeelineShape.m in Sources */,
+				CAEFC4AA16FD64DB00D799B7 /* EllipseShape.m in Sources */,
+				CAEFC4AE16FD64DB00D799B7 /* RectangleShape.m in Sources */,
+				CAEFC4B216FD64DB00D799B7 /* ShapeInfo.m in Sources */,
+				CAEFC4B616FD64DB00D799B7 /* StarShape.m in Sources */,
+				CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24702,13 +24812,7 @@
 				CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECA16D7631D004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */,
-				CA9A7ED816DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0716DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
-				CA683A4616DF3FF7002178FC /* BeelineShape.m in Sources */,
-				CA683A4C16DF4027002178FC /* RectangleShape.m in Sources */,
-				CA683A5216DF403D002178FC /* EllipseShape.m in Sources */,
-				CA683A5E16DF4074002178FC /* StarShape.m in Sources */,
-				CA683A6416DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589016E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */,
 				CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
@@ -24769,6 +24873,12 @@
 				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				CAEFC4A316FD64DB00D799B7 /* BeelineShape.m in Sources */,
+				CAEFC4A716FD64DB00D799B7 /* EllipseShape.m in Sources */,
+				CAEFC4AB16FD64DB00D799B7 /* RectangleShape.m in Sources */,
+				CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */,
+				CAEFC4B316FD64DB00D799B7 /* StarShape.m in Sources */,
+				CAEFC4B716FD64DB00D799B7 /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25481,13 +25591,7 @@
 				CAE9AA7B16D72F17008392F9 /* SuperPen.m in Sources */,
 				A4A0CECC16D7636F004AC167 /* WallOpusView.m in Sources */,
 				CA9A7EC416DC57B10089BD51 /* ShapeBox.m in Sources */,
-				CA9A7ED916DC5C100089BD51 /* ShapeInfo.m in Sources */,
 				A406DF0A16DF34FD00852E59 /* TimeoutSettingView.m in Sources */,
-				CA683A4716DF3FF7002178FC /* BeelineShape.m in Sources */,
-				CA683A4D16DF4027002178FC /* RectangleShape.m in Sources */,
-				CA683A5316DF403D002178FC /* EllipseShape.m in Sources */,
-				CA683A5F16DF4074002178FC /* StarShape.m in Sources */,
-				CA683A6516DF40B0002178FC /* TriangleShape.m in Sources */,
 				CA48589116E19D8500AEE725 /* DrawBgManager.m in Sources */,
 				CA485F5516E440E300AEE725 /* DrawBgBox.m in Sources */,
 				CA8A6ACD16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */,
@@ -25539,6 +25643,12 @@
 				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
 				EAE5718E16FC6ACB000AFADA /* CacheManager.m in Sources */,
+				CAEFC4A416FD64DB00D799B7 /* BeelineShape.m in Sources */,
+				CAEFC4A816FD64DB00D799B7 /* EllipseShape.m in Sources */,
+				CAEFC4AC16FD64DB00D799B7 /* RectangleShape.m in Sources */,
+				CAEFC4B016FD64DB00D799B7 /* ShapeInfo.m in Sources */,
+				CAEFC4B416FD64DB00D799B7 /* StarShape.m in Sources */,
+				CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
