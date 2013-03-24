@@ -922,6 +922,10 @@
 		C2B97A7B16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
 		C2BB4EBE16A7DCFA008D3004 /* auto_recovery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
+		C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
+		C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
+		C2C2A1BD16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
+		C2C2A1BE16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
 		C2C54CEB1640C45B005561DA /* BetTable.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CEA1640C45B005561DA /* BetTable.m */; };
 		C2C54CFE1640F85C005561DA /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54CFD1640F85C005561DA /* NSMutableArray+Queue.m */; };
 		C2C54D011640F878005561DA /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C54D001640F878005561DA /* NSMutableArray+Stack.m */; };
@@ -8117,6 +8121,8 @@
 		C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_recovery@2x.png"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
+		C2C2A1B916FEB9970074A168 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
+		C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentedControl.m; sourceTree = "<group>"; };
 		C2C54CE91640C45B005561DA /* BetTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetTable.h; sourceTree = "<group>"; };
 		C2C54CEA1640C45B005561DA /* BetTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetTable.m; sourceTree = "<group>"; };
 		C2C54CFC1640F85B005561DA /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
@@ -12503,6 +12509,15 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		C2C2A1B316FDF59A0074A168 /* CustomSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2A1B916FEB9970074A168 /* CustomSegmentedControl.h */,
+				C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */,
+			);
+			path = CustomSegmentedControl;
+			sourceTree = "<group>";
+		};
 		C2D6B09316FD8CEE00EDD41C /* SNS */ = {
 			isa = PBXGroup;
 			children = (
@@ -12844,6 +12859,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2A1B316FDF59A0074A168 /* CustomSegmentedControl */,
 				C22EBE6D16FBF6E1002A9CF5 /* GCDatePicker */,
 				C22EBD7F16FB55BA002A9CF5 /* MKBlocks */,
 				C203C46F16F309380028A065 /* RoundPercentageView */,
@@ -23373,6 +23389,7 @@
 				CAEFC4B516FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09816FD8CEE00EDD41C /* SNSUtils.m in Sources */,
+				C2C2A1BD16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24136,6 +24153,7 @@
 				CAEFC4B616FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09916FD8CEE00EDD41C /* SNSUtils.m in Sources */,
+				C2C2A1BE16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24908,6 +24926,7 @@
 				CAEFC4B316FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B716FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
+				C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25679,6 +25698,7 @@
 				CAEFC4B416FD64DB00D799B7 /* StarShape.m in Sources */,
 				CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09716FD8CEE00EDD41C /* SNSUtils.m in Sources */,
+				C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
