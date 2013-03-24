@@ -17,6 +17,7 @@
 #import "SNSUtils.h"
 #import "TimeUtils.h"
 #import "PPSNSCommonService.h"
+#import "CustomSegmentedControl.h"
 
 @implementation UserDetailCell
 
@@ -114,6 +115,7 @@
     [_facebookBtn release];
     [_blackListBtn release];
     [_superBlackBtn release];
+    [_feedTabHolder release];
     [super dealloc];
 }
 
