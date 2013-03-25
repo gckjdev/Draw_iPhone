@@ -20,6 +20,8 @@
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
 
+
+
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -135,6 +137,19 @@
     [super dealloc];
 }
 
+#pragma mark - CustomSegmentedControl delegate
+- (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
+        [_detailDelegate didSelectTabAction:segmentIndex];
+    }
+}
+
+- (void) touchDownAtSegmentIndex:(NSUInteger)segmentIndex
+{
+    
+}
+
 -(IBAction)switchBasicInfoAndAction:(id)sender
 {
     [self.basicDetailView setHidden:!self.basicDetailView.hidden];
@@ -222,6 +237,11 @@
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickFacebook)]) {
         [_detailDelegate didclickFacebook];
     }
+}
+
+- (IBAction)clickMore:(id)sender
+{
+    
 }
 
 @end
