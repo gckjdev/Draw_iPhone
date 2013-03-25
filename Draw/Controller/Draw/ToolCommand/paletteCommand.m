@@ -6,8 +6,8 @@
 //
 //
 
-#import "palleteCommand.h"
+#import "paletteCommand.h"
 
-@implementation palleteCommand
+@implementation paletteCommand
 
 @end
