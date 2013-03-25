@@ -1045,5 +1045,10 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"user_detail_tab_bg.png"];
 }
 
+- (UIImage*)userDetailTabBgPressedImage
+{
+    return [UIImage strectchableImageName:@"user_detail_tab_bg_pressed.png"];
+}
+
 @end
 
