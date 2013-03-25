@@ -16,10 +16,10 @@
 #define IPAD_SCREEN_HORIZONTAL_RECT CGRectMake(0, 0, 1024, 768)
 
 #define IPAD_SCREEN_VERTICAL_RECT CGRectMake(0, 0, 768, 1024)
-#define IPHONE3_SCREEN_RECT CGRectMake(0, 0, 320, 480)
+//#define IPHONE3_SCREEN_RECT CGRectMake(0, 0, 320, 480)
 
-#define IPHONE4_SCREEN_RECT CGRectMake(0, 0, 640, 960)
-#define IPHONE5_SCREEN_RECT CGRectMake(0, 0, 640, 1136)
+#define IPHONE5_HORIZONTAL_RECT CGRectMake(0, 0, 1136, 640)
+#define IPHONE5_VERTICAL_RECT CGRectMake(0, 0, 640, 1136)
 
 #define IPHONE_DEPRECATED_RECT CGRectMake(0, 0, 304, 320)
 #define IPAD_DEPRECATED_RECT CGRectMake(0, 0, 730, 698)
@@ -84,11 +84,11 @@
         }
         case iPhone4ScreenRect:
         {
-            return IPHONE4_SCREEN_RECT;
+            return IPHONE5_HORIZONTAL_RECT;
         }
         case iPhone5ScreenRect:
         {
-            return IPHONE5_SCREEN_RECT;
+            return IPHONE5_VERTICAL_RECT;
         }
         case iPhoneDeprecatedRect:
         {

@@ -13,6 +13,7 @@ typedef enum{
     CanvasRectEnd = -1,
     iPhoneDefaultRect = 1,
     iPadDefaultRect,
+    
     iPadHorizontalRect,
     iPadVerticalRect,
     iPadLargeRect,
