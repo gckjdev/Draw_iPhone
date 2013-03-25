@@ -9,6 +9,7 @@
 #import "PPTableViewCell.h"
 #import "UserDetailProtocol.h"
 #import "CommonRoundAvatarView.h"
+#import "iCarousel.h"
 
 typedef enum {
     DetailTabActionClickOpus = 0,
@@ -65,6 +66,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *qqBtn;
 @property (retain, nonatomic) IBOutlet UIButton *facebookBtn;
 @property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
+@property (retain, nonatomic) IBOutlet iCarousel *carousel;
 
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
