@@ -132,6 +132,7 @@
     [_superBlackBtn release];
     [_feedTabHolder release];
     [_segmentedControl release];
+    [_carousel release];
     [super dealloc];
 }
 
@@ -223,5 +224,8 @@
         [_detailDelegate didclickFacebook];
     }
 }
+
+
+
 
 @end
