@@ -93,7 +93,7 @@
                               frame:cell.feedTabHolder.frame
                               unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
                               pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
-                              delegate:self] autorelease];
+                              delegate:cell] autorelease];
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     
@@ -141,13 +141,6 @@
 
 #pragma mark - CustomSegmentedControl delegate
 - (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
-{
-    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
-        [_detailDelegate didSelectTabAction:segmentIndex];
-    }
-}
-
-- (void) touchDownAtSegmentIndex:(NSUInteger)segmentIndex
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
         [_detailDelegate didSelectTabAction:segmentIndex];

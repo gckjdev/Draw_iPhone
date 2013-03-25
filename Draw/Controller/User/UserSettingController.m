@@ -35,6 +35,7 @@
 #import "TimeUtils.h"
 #import "UIImageView+WebCache.h"
 #import "CommonMessageCenter.h"
+#import "InputAlertView.h"
 
 enum{
     SECTION_USER = 0,
@@ -75,6 +76,8 @@ enum {
 - (void)askRebindQQ;
 - (void)askRebindSina;
 
+@property (retain, nonatomic) InputAlertView* inputAlertView;
+
 @end
 
 @implementation UserSettingController
@@ -98,6 +101,7 @@ enum {
     PPRelease(nicknameLabel);
     PPRelease(expAndLevelLabel);
     PPRelease(backgroundImage);
+    PPRelease(_inputAlertView);
     [super dealloc];
 }
 
@@ -436,14 +440,18 @@ enum {
             [cell.detailTextLabel setText:[_pbUserBuilder location]];
         }else if (row == rowOfZodiac) {
             [cell.textLabel setText:NSLS(@"kZodiac")];
-            [cell.detailTextLabel setText:[LocaleUtils getZodiacWithIndex:[_pbUserBuilder zodiac]]];
+            NSString* zodiac = [LocaleUtils getZodiacWithIndex:([_pbUserBuilder zodiac]-1)];
+            [cell.detailTextLabel setText:((zodiac == nil)?NSLS(@"kUnknown"):zodiac)];
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
-            NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, @"yyyyMMdd");
-            [cell.detailTextLabel setText:dateToString(date)];
+            if ([_pbUserBuilder hasBirthday]) {
+                NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, @"yyyyMMdd");
+                [cell.detailTextLabel setText:dateToString(date)];
+            }
         }else if (row == rowOfBloodGropu) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
-            [cell.detailTextLabel setText:_pbUserBuilder.bloodGroup];
+            NSString* bloodGroup = _pbUserBuilder.bloodGroup;
+            [cell.detailTextLabel setText:((bloodGroup == nil || bloodGroup.length <= 0)?NSLS(@"kUnknown"):bloodGroup)];
         } else if (row == rowOfSignature) {
             [cell.textLabel setText:NSLS(@"kSignature")];
             [cell.detailTextLabel setText:_pbUserBuilder.signature];
@@ -641,20 +649,15 @@ enum {
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == rowOfLocation) {
-            __block UserSettingController* bc = self;
-            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputLocation") clickOK:^(NSString *inputStr) {
-
-                if ([inputStr length] > 0){
-                    [_pbUserBuilder setLocation:inputStr];
-                    hasEdited = YES;
-                }
-                
-                [bc.dataTableView reloadData];
-                
-            } clickCancel:^(NSString *inputStr) {
+            __block UserSettingController* uc = self;
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                [locationManager startUpdatingLocation];
+                [uc showActivity];
+            } clickCancelBlock:^{
                 //
             }];
             [dialog showInView:self.view];
+            
         }else if (row == rowOfZodiac) {
             MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
             for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
@@ -666,7 +669,7 @@ enum {
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
                 if (buttonIndex != actionSheet.cancelButtonIndex){
                     
-                    [_pbUserBuilder setZodiac:buttonIndex];
+                    [_pbUserBuilder setZodiac:buttonIndex+1];
                     hasEdited = YES;
                 }
                 [bc.dataTableView reloadData];
@@ -675,6 +678,7 @@ enum {
         }else if (row == rowOfBirthday) {
             __block UserSettingController* bc = self;
             GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
+                                                                  defaultDate:dateFromStringByFormat(@"19900615", @"yyyyMMdd")
                                                                   finishBlock:^(NSDate *date) {
                                                                       
                                                                       if (date != nil){
@@ -688,7 +692,7 @@ enum {
             }];
             [view showInView:self.view];
         }else if (row == rowOfBloodGropu) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), NSLS(@"kOther"), nil] autorelease];
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), nil] autorelease];
             __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
                 if(buttonIndex != actionSheet.cancelButtonIndex){
@@ -699,18 +703,20 @@ enum {
             }];
             [actionSheet showInView:self.view];
         } else if (row == rowOfSignature) {
-            __block UserSettingController* bc = self;
-            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
-                if ([inputStr length] > 0){
-                    [_pbUserBuilder setSignature:inputStr];
-                    hasEdited = YES;
-                }
-                [bc.dataTableView reloadData];
-            } clickCancel:^(NSString *inputStr) {
-                //
-            }];
-            [dialog showInView:self.view];
-        }
+//            __block UserSettingController* bc = self;
+//            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
+//                if ([inputStr length] > 0){
+//                    [_pbUserBuilder setSignature:inputStr];
+//                    hasEdited = YES;
+//                }
+//                [bc.dataTableView reloadData];
+//            } clickCancel:^(NSString *inputStr) {
+//                //
+//            }];
+//            [dialog showInView:self.view];
+//        }
+            self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:YES];
+            [self.inputAlertView showInView:self.view animated:YES];
     
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
@@ -820,6 +826,13 @@ enum {
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)inputSignatureFinish
+{
+    [_pbUserBuilder setSignature:self.inputAlertView.contentText];
+    [self.dataTableView reloadData];
 }
 
 #define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"
@@ -1145,6 +1158,18 @@ enum {
     }else{
 
     }
+}
+
+#pragma mark - location delegate
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    [self hideActivity];
+	self.currentPlacemark = placemark;
+	NSLog(@"reverseGeocoder finish, placemark=%@", [placemark description] );
+    [[UserManager defaultManager] setLocation:placemark.locality];
+    [self.dataTableView reloadData];
+	//	NSLog(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.locality, placemark.thoroughfare, placemark.subThoroughfare);
 }
 
 /*

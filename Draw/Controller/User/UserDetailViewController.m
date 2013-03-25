@@ -291,9 +291,11 @@
         } break;
         case DetailTabActionClickGuessed: {
             [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:10 delegate:self];
+            [self showActivity];
         } break;
         case DetailTabActionClickOpus: {
             [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
+            [self showActivity];
         } break;
         default:
             break;
@@ -330,10 +332,15 @@
                   type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFeed: {
-                [self.guessedList addObjectsFromArray:feedList];
+                for (Feed* feed in feedList) {
+                    if (feed.feedType == FeedTypeGuess) {
+                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
+                    }
+                }
             } break;
             case FeedListTypeUserOpus: {
                 [self.opusList addObjectsFromArray:feedList];

@@ -114,6 +114,27 @@
     return view;
 }
 
++ (id)inputAlertViewWith:(NSString *)title
+                 content:(NSString *)content
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
+                  hasSNS:(BOOL)hasSNS
+{
+    InputAlertView *view = [self createView];
+    [view.title setText:title];
+    [view.content setText:content];
+    view.target = target;
+    view.commitSeletor = commitSeletor;
+    view.cancelSeletor = cancelSeletor;
+    if (!hasSNS) {
+        CGRect inputRect = view.inputView.frame;
+        CGRect snsRect = view.qqCheckBox.frame;
+        [view.inputView setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y, inputRect.size.width, snsRect.origin.y+snsRect.size.height-inputRect.origin.y)];
+    }
+    return view;
+}
+
 
 - (NSString *)contentText
 {
