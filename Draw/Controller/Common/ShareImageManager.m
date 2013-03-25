@@ -1040,5 +1040,10 @@ static UIImage* _whitePaperImage;
     }
 }
 
+- (UIImage*)userDetailTabBgImage
+{
+    return [UIImage strectchableImageName:@"user_detail_tab_bg.png"];
+}
+
 @end
 

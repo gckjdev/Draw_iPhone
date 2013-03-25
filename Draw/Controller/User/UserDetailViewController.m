@@ -259,7 +259,7 @@
         [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
         } failure:^{
-            UISegmentedControl
+            
             //
         }];
     }
