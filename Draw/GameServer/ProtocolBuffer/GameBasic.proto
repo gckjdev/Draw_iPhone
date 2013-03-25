@@ -10,6 +10,12 @@ message PBKeyValue{
   optional string value = 2;
 }
 
+enum PBOpenInfoType{
+  OPEN_TO_FRIEND = 0;       // 仅对互相关注的人公开
+  OPEN_NO = 1;              // 完全不公开
+  OPEN_ALL = 2;             // 完全公开
+}
+
 message PBSNSUser {
   required int32  type = 1;
   required string userId = 2;
@@ -74,7 +80,11 @@ message PBGameUser {
   optional int32  fanCount = 82;                    // 粉丝数目
   optional int32  followCount = 83;                   // 关注数目
 
+  optional PBOpenInfoType openInfoType = 91[default=OPEN_TO_FRIEND];        // 信息公开类型
+
   optional string signature = 100;
+  
+
 }
 
 message PBGameSession {
