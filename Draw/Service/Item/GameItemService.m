@@ -166,8 +166,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //[itemBuilder setUsageLife:0];
     [mutableArray addObject:[itemBuilder build]];
 
-
-
     //移除广告
     itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
     [itemBuilder setItemId:ItemTypeRemoveAd];
@@ -182,10 +180,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     priceInfo = [self currency:PBGameCurrencyCoin price:400];
     [itemBuilder setPriceInfo:priceInfo];
     [mutableArray addObject:[itemBuilder build]];
-
-
-
-
 
     //透明度
     itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
@@ -207,8 +201,73 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //[itemBuilder setUsageLifeUnit:nil];
     //[itemBuilder setUsageLife:0];
     [mutableArray addObject:[itemBuilder build]];
+    
+    //作品播放器
+    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
+    [itemBuilder setItemId:PaintPlayerItem];
+    [itemBuilder setName:@"kPaintPlayerItem"];
+    [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
+    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
+    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
+    //[itemBuilder setDemoImage:nil];
+    [itemBuilder setType:PBDrawItemTypeTool];
+    //[itemBuilder setAppleProductId:nil];
+    
+    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+    [itemBuilder setPriceInfo:priceInfo];
+    
+    startDate = (int)[[NSDate date] timeIntervalSince1970];
+    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+    [itemBuilder setPromotionInfo:promotionInfo];
+    
+    //[itemBuilder setDefaultSaleCount:1];
+    //[itemBuilder setUsageLifeUnit:nil];
+    //[itemBuilder setUsageLife:0];
+    [mutableArray addObject:[itemBuilder build]];
+    
+    //调色板
+    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
+    [itemBuilder setItemId:PaletteItem];
+    [itemBuilder setName:@"kPaletteItem"];
+    [itemBuilder setDesc:@"kPaletteItemDescription"];
+    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
+    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
+    //[itemBuilder setDemoImage:nil];
+    [itemBuilder setType:PBDrawItemTypeTool];
+    //[itemBuilder setAppleProductId:nil];
+    
+    
+    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
+    [itemBuilder setPriceInfo:priceInfo];
+    
+    startDate = (int)[[NSDate date] timeIntervalSince1970];
+    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
+    [itemBuilder setPromotionInfo:promotionInfo];
+    
+    //[itemBuilder setDefaultSaleCount:1];
+    //[itemBuilder setUsageLifeUnit:nil];
+    //[itemBuilder setUsageLife:0];
+    [mutableArray addObject:[itemBuilder build]];
 
-
+    //吸管
+    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
+    [itemBuilder setItemId:ColorStrawItem];
+    [itemBuilder setName:@"kStraw"];
+    [itemBuilder setDesc:@"kStrawDescription"];
+    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
+    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
+    //[itemBuilder setDemoImage:nil];
+    [itemBuilder setType:PBDrawItemTypeTool];
+    //[itemBuilder setAppleProductId:nil];
+    
+    priceInfo = [self currency:PBGameCurrencyCoin price:600];
+    [itemBuilder setPriceInfo:priceInfo];
+    //[itemBuilder setPromotionInfo:nil];
+    
+    //[itemBuilder setDefaultSaleCount:1];
+    //[itemBuilder setUsageLifeUnit:nil];
+    //[itemBuilder setUsageLife:0];
+    [mutableArray addObject:[itemBuilder build]];
 
     //虚线笔
     itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
@@ -373,7 +432,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //[itemBuilder setUsageLife:0];
     [mutableArray addObject:[itemBuilder build]];
 
-    //纹理背景
+    //纹理背景包
     itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
     [itemBuilder setItemId:VeinsBackground];
     [itemBuilder setName:@"kVeinsBackground"];
@@ -387,73 +446,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     priceInfo = [self currency:PBGameCurrencyIngot price:4];
     [itemBuilder setPriceInfo:priceInfo];
     //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //吸管
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ColorStrawItem];
-    [itemBuilder setName:@"kStraw"];
-    [itemBuilder setDesc:@"kStrawDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:600];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //作品播放器
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:PaintPlayerItem];
-    [itemBuilder setName:@"kPaintPlayerItem"];
-    [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
-    [itemBuilder setPriceInfo:priceInfo];
-
-    startDate = (int)[[NSDate date] timeIntervalSince1970];
-    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
-    [itemBuilder setPromotionInfo:promotionInfo];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //调色板
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:PaletteItem];
-    [itemBuilder setName:@"kPaletteItem"];
-    [itemBuilder setDesc:@"kPaletteItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
-    [itemBuilder setPriceInfo:priceInfo];
-
-    startDate = (int)[[NSDate date] timeIntervalSince1970];
-    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
-    [itemBuilder setPromotionInfo:promotionInfo];
 
     //[itemBuilder setDefaultSaleCount:1];
     //[itemBuilder setUsageLifeUnit:nil];
@@ -531,7 +523,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
 
     //write to file
-    NSString *filePath = @"/Users/gckj/shopItem/shop_item.pb";
+    NSString *filePath = @"/Users/Linruin/gitdata/shop_item.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
     PPDebug(@"<createTestDataFile> error");
     } else {

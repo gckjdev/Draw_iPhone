@@ -39,4 +39,3 @@ typedef enum{
 
 
 static const CGRect* getRectList();
-//static CGRect* getIPhoneRectList;
