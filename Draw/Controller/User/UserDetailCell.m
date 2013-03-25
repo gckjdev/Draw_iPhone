@@ -18,6 +18,13 @@
 #import "TimeUtils.h"
 #import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
+#import "ShareImageManager.h"
+
+@interface UserDetailCell ()
+
+@property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
+
+@end
 
 @implementation UserDetailCell
 
@@ -78,6 +85,14 @@
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
+    cell.segmentedControl = [[[CustomSegmentedControl alloc]
+                              initWithSegmentTitles:@[NSLS(@"kAll"), NSLS(@"kGuessed"), NSLS(@"kDrawed")]
+                              frame:cell.feedTabHolder.frame
+                              unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
+                              pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
+                              delegate:self] autorelease];
+    [cell addSubview:cell.segmentedControl];
+    [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     return cell;
 }
 
@@ -116,6 +131,7 @@
     [_blackListBtn release];
     [_superBlackBtn release];
     [_feedTabHolder release];
+    [_segmentedControl release];
     [super dealloc];
 }
 

@@ -9,6 +9,9 @@
 
 typedef enum
 {
+    
+    ItemTypeNo = 0,
+    
     ItemTypeTips = 1,
     ItemTypeFlower = 6,
     ItemTypeTomato = 7,
