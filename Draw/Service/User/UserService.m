@@ -1316,7 +1316,7 @@ static UserService* _defaultUserService;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
                 // update avatar
-                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
+                NSString* retURL = [[output jsonDataDict] objectForKey:PARA_URL];
                 [[UserManager defaultManager] setAvatar:retURL];
                 [[UserManager defaultManager] storeUserData];
                 EXECUTE_BLOCK(resultBlock, output.resultCode, retURL);
@@ -1368,15 +1368,16 @@ static UserService* _defaultUserService;
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:pbUser];
     
-    // TODO set extra info like device model, etc
+    // set extra info like device model, etc
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-
-    // TODO, more
     [builder setDeviceId:deviceId];
     [builder setDeviceToken:deviceToken];
     
-    NSData* data = [[builder build] data];
+    // TODO, more like country code, language
+    
+    PBGameUser* newUser = [builder build];
+    NSData* data = [newUser data];
 
     dispatch_async(workingQueue, ^{
         
@@ -1387,6 +1388,10 @@ static UserService* _defaultUserService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             PPDebug(@"<updateUser> result=%d", output.resultCode);
+            if (output.resultCode == ERROR_SUCCESS){
+                // update user info
+                [[UserManager defaultManager] storeUserData:newUser];
+            }
             EXECUTE_BLOCK(resultBlock, output.resultCode);
         });
     });

@@ -1087,6 +1087,13 @@
 "kOther" = "其他";
 "kInputLocation" = "輸入你所在的位置";
 "kSignature" = "個性簽名";
+
+// 未转换繁体
+"kUpdateAvatarSucc" = "头像已经成功上传并且更新";
+"kUpdateAvatarFail" = "头像上传失败，请稍候重试";
+"kPasswordSet" = "密码已设置";
+"kUploading" = "上传数据中...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

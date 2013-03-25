@@ -3037,6 +3037,7 @@
                                         data:data
                          constructURLHandler:constructURLHandler
                              responseHandler:responseHandler
+                                outputFormat:FORMAT_JSON
                                       output:output];
 }
 

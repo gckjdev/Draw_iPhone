@@ -412,6 +412,11 @@ static UserManager* _defaultManager;
     }
 }
 
+- (UIImage*)defaultAvatarImage
+{
+    return [UIImage imageNamed:[self defaultAvatar]];
+}
+
 - (BOOL)isUserMale
 {
     NSString* gender = [self gender];

@@ -172,4 +172,5 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)storeUserData:(PBGameUser*)user;
 - (void)setBackground:(NSString*)url;
 
+- (UIImage*)defaultAvatarImage;
 @end
