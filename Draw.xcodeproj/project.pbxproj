@@ -58,6 +58,7 @@
 		A406DF1016DF4FF800852E59 /* friend_detail_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D424B168D7588009F43F7 /* friend_detail_bg.png */; };
 		A40D71A916548737000CC598 /* PokerView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40D71A816548737000CC598 /* PokerView~ipad.xib */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
+		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A41CF57816578D0B0011AE45 /* ZJHCardTypesView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */; };
@@ -7400,6 +7401,8 @@
 		A40D71A816548737000CC598 /* PokerView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PokerView~ipad.xib"; sourceTree = "<group>"; };
 		A40D71DB16553575000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		A40D71DC16553575000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
+		A40EE81E170043A9003B8FFC /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
+		A40EE81F170043A9003B8FFC /* ReflectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectionView.m; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -11157,6 +11160,15 @@
 			path = FXLabel;
 			sourceTree = "<group>";
 		};
+		A40EE81D170043A9003B8FFC /* ReflectionView */ = {
+			isa = PBXGroup;
+			children = (
+				A40EE81E170043A9003B8FFC /* ReflectionView.h */,
+				A40EE81F170043A9003B8FFC /* ReflectionView.m */,
+			);
+			path = ReflectionView;
+			sourceTree = "<group>";
+		};
 		A41A665615C921DA00066E9B /* UISlideImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -12967,6 +12979,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A40EE81D170043A9003B8FFC /* ReflectionView */,
 				C2C2A1B316FDF59A0074A168 /* CustomSegmentedControl */,
 				C22EBE6D16FBF6E1002A9CF5 /* GCDatePicker */,
 				C22EBD7F16FB55BA002A9CF5 /* MKBlocks */,
@@ -25139,6 +25152,7 @@
 				CAEFC5971700055400D799B7 /* DrawToCommand.m in Sources */,
 				CAEFC59D1700058000D799B7 /* HelpCommand.m in Sources */,
 				CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */,
+				A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
