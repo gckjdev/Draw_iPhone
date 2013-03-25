@@ -18,9 +18,7 @@
 @class UserManager;
 @class HJManagedImageV;
 @interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate>
-{
-//    UserManager *userManager;
-    
+{    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
     NSInteger rowOfNickName;
@@ -48,16 +46,9 @@
     NSInteger rowsInSectionAccount;
     
     ChangeAvatar *changeAvatar;
-//    NSString *_updatePassword;
     
     BOOL hasEdited;
-//    BOOL isAutoSave;
-//    BOOL languageChanged;
-//    LanguageType languageType;
     GuessLevel guessLevel;
-//    NSString* _gender;
-    //ChatVoiceEnable chatVoice;
-//    LevelType
     
     UserManager *_userManager;
     int _currentLoginType;
@@ -70,6 +61,7 @@
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
@@ -79,7 +71,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (retain, nonatomic) PBGameUser_Builder *pbUserBuilder;
 @property (retain, nonatomic) UIImageView *avatarImageView;
-
 
 - (void)updateRowIndexs;
 @end
