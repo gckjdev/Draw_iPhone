@@ -27,6 +27,7 @@
 #import "PPSNSIntegerationService.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
+#import "FeedService.h"
 
 
 #define    ROW_COUNT 1
@@ -36,9 +37,23 @@
     ChangeAvatar* _changeAvatar;
 }
 
+@property (retain, nonatomic) NSMutableArray* opusList;
+@property (retain, nonatomic) NSMutableArray* guessedList;
+@property (retain, nonatomic) NSMutableArray* favouriateList;
+
 @end
 
 @implementation UserDetailViewController
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _opusList = [[NSMutableArray alloc] init];
+        _guessedList = [[NSMutableArray alloc] init];
+        _favouriateList = [[NSMutableArray alloc] init];
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +91,9 @@
 - (void)dealloc {
     [_backgroundImageView release];
     [_detail release];
+    PPRelease(_favouriateList);
+    PPRelease(_opusList);
+    PPRelease(_guessedList);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -106,7 +124,7 @@
 
 - (id)initWithUserDetail:(NSObject<UserDetailProtocol>*)detail
 {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.detail = detail;
     }
@@ -261,6 +279,23 @@
         } failure:^{
 
         }];
+    }
+}
+
+- (void)didSelectTabAction:(DetailTabAction)tabAction
+{
+    switch (tabAction) {
+        case DetailTabActionClickFavouriate: {
+            
+        } break;
+        case DetailTabActionClickGuessed: {
+            
+        } break;
+        case DetailTabActionClickOpus: {
+            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeMy delegate:self];
+        } break;
+        default:
+            break;
     }
 }
 
