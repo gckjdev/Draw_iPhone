@@ -28,6 +28,7 @@
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "FeedService.h"
+#import "Feed.h"
 
 
 #define    ROW_COUNT 1
@@ -289,10 +290,10 @@
             
         } break;
         case DetailTabActionClickGuessed: {
-            
+            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:10 delegate:self];
         } break;
         case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeMy delegate:self];
+            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
         } break;
         default:
             break;
@@ -321,6 +322,26 @@
     UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
     [cell.avatarView setImage:image];
     
+}
+
+#pragma mark - feed service delegate
+- (void)didGetFeedList:(NSArray *)feedList
+            targetUser:(NSString *)userId
+                  type:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    if (resultCode == 0) {
+        switch (type) {
+            case FeedListTypeUserFeed: {
+                [self.guessedList addObjectsFromArray:feedList];
+            } break;
+            case FeedListTypeUserOpus: {
+                [self.opusList addObjectsFromArray:feedList];
+            }
+            default:
+                break;
+        }
+    }
 }
 
 @end

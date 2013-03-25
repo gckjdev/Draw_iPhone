@@ -154,7 +154,9 @@
 
 - (void) touchDownAtSegmentIndex:(NSUInteger)segmentIndex
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
+        [_detailDelegate didSelectTabAction:segmentIndex];
+    }
 }
 
 -(IBAction)switchBasicInfoAndAction:(id)sender
