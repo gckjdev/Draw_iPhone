@@ -30,6 +30,7 @@
     if ([super excute]) {
         [self showPopTipView];
     }
+    return YES;
 }
 - (void)finish
 {
