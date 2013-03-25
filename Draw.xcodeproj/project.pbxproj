@@ -5328,10 +5328,6 @@
 		CAABB89416F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		CAABB89516F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		CAABB89616F99C41007DCC58 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
-		CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
-		CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
-		CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
-		CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB8A416FAF043007DCC58 /* ToolHandler.m */; };
 		CAACE19915F499E6002EB53A /* SuperDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAACE19815F499E6002EB53A /* SuperDrawView.m */; };
 		CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
 		CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF60E16F444C20097CFA1 /* CommonAdWallService.m */; };
@@ -7005,6 +7001,74 @@
 		CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
 		CAEFC4F216FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
 		CAEFC4F316FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
+		CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
+		CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
+		CAEFC5331700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
+		CAEFC5341700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
+		CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
+		CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
+		CAEFC5391700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
+		CAEFC53A1700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
+		CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
+		CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
+		CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
+		CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
+		CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
+		CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
+		CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
+		CAEFC5521700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
+		CAEFC5551700038900D799B7 /* EraserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5541700038700D799B7 /* EraserCommand.m */; };
+		CAEFC5561700038900D799B7 /* EraserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5541700038700D799B7 /* EraserCommand.m */; };
+		CAEFC5571700038900D799B7 /* EraserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5541700038700D799B7 /* EraserCommand.m */; };
+		CAEFC5581700038900D799B7 /* EraserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5541700038700D799B7 /* EraserCommand.m */; };
+		CAEFC55B170003A000D799B7 /* PaintBucketCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */; };
+		CAEFC55C170003A000D799B7 /* PaintBucketCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */; };
+		CAEFC55D170003A000D799B7 /* PaintBucketCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */; };
+		CAEFC55E170003A000D799B7 /* PaintBucketCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */; };
+		CAEFC561170003B700D799B7 /* ShapeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC560170003B500D799B7 /* ShapeCommand.m */; };
+		CAEFC562170003B700D799B7 /* ShapeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC560170003B500D799B7 /* ShapeCommand.m */; };
+		CAEFC563170003B700D799B7 /* ShapeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC560170003B500D799B7 /* ShapeCommand.m */; };
+		CAEFC564170003B700D799B7 /* ShapeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC560170003B500D799B7 /* ShapeCommand.m */; };
+		CAEFC5731700044E00D799B7 /* WidthPickCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5721700044C00D799B7 /* WidthPickCommand.m */; };
+		CAEFC5741700044E00D799B7 /* WidthPickCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5721700044C00D799B7 /* WidthPickCommand.m */; };
+		CAEFC5751700044E00D799B7 /* WidthPickCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5721700044C00D799B7 /* WidthPickCommand.m */; };
+		CAEFC5761700044E00D799B7 /* WidthPickCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5721700044C00D799B7 /* WidthPickCommand.m */; };
+		CAEFC5791700047500D799B7 /* WidthSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */; };
+		CAEFC57A1700047500D799B7 /* WidthSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */; };
+		CAEFC57B1700047500D799B7 /* WidthSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */; };
+		CAEFC57C1700047500D799B7 /* WidthSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */; };
+		CAEFC57F1700049300D799B7 /* AlphaSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */; };
+		CAEFC5801700049300D799B7 /* AlphaSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */; };
+		CAEFC5811700049300D799B7 /* AlphaSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */; };
+		CAEFC5821700049300D799B7 /* AlphaSliderCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */; };
+		CAEFC585170004B600D799B7 /* DrawBgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC584170004B000D799B7 /* DrawBgCommand.m */; };
+		CAEFC586170004B600D799B7 /* DrawBgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC584170004B000D799B7 /* DrawBgCommand.m */; };
+		CAEFC587170004B600D799B7 /* DrawBgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC584170004B000D799B7 /* DrawBgCommand.m */; };
+		CAEFC588170004B600D799B7 /* DrawBgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC584170004B000D799B7 /* DrawBgCommand.m */; };
+		CAEFC58B170004E600D799B7 /* CanvasSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */; };
+		CAEFC58C170004E600D799B7 /* CanvasSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */; };
+		CAEFC58D170004E600D799B7 /* CanvasSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */; };
+		CAEFC58E170004E600D799B7 /* CanvasSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */; };
+		CAEFC5911700052700D799B7 /* EditDescCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5901700052200D799B7 /* EditDescCommand.m */; };
+		CAEFC5921700052700D799B7 /* EditDescCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5901700052200D799B7 /* EditDescCommand.m */; };
+		CAEFC5931700052700D799B7 /* EditDescCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5901700052200D799B7 /* EditDescCommand.m */; };
+		CAEFC5941700052700D799B7 /* EditDescCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5901700052200D799B7 /* EditDescCommand.m */; };
+		CAEFC5971700055400D799B7 /* DrawToCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5961700054E00D799B7 /* DrawToCommand.m */; };
+		CAEFC5981700055400D799B7 /* DrawToCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5961700054E00D799B7 /* DrawToCommand.m */; };
+		CAEFC5991700055400D799B7 /* DrawToCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5961700054E00D799B7 /* DrawToCommand.m */; };
+		CAEFC59A1700055400D799B7 /* DrawToCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5961700054E00D799B7 /* DrawToCommand.m */; };
+		CAEFC59D1700058000D799B7 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC59C1700057A00D799B7 /* HelpCommand.m */; };
+		CAEFC59E1700058000D799B7 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC59C1700057A00D799B7 /* HelpCommand.m */; };
+		CAEFC59F1700058000D799B7 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC59C1700057A00D799B7 /* HelpCommand.m */; };
+		CAEFC5A01700058000D799B7 /* HelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC59C1700057A00D799B7 /* HelpCommand.m */; };
+		CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5A2170005A700D799B7 /* ChatCommand.m */; };
+		CAEFC5A4170005AD00D799B7 /* ChatCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5A2170005A700D799B7 /* ChatCommand.m */; };
+		CAEFC5A5170005AD00D799B7 /* ChatCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5A2170005A700D799B7 /* ChatCommand.m */; };
+		CAEFC5A6170005AD00D799B7 /* ChatCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5A2170005A700D799B7 /* ChatCommand.m */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
 		CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -10191,8 +10255,6 @@
 		CAA9C434159CA97100398EC5 /* LmWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LmWallService.m; sourceTree = "<group>"; };
 		CAABB89116F99C41007DCC58 /* BBSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSController.h; sourceTree = "<group>"; };
 		CAABB89216F99C41007DCC58 /* BBSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSController.m; sourceTree = "<group>"; };
-		CAABB8A316FAF042007DCC58 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
-		CAABB8A416FAF043007DCC58 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
 		CAACE19715F499E6002EB53A /* SuperDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperDrawView.h; sourceTree = "<group>"; };
 		CAACE19815F499E6002EB53A /* SuperDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperDrawView.m; sourceTree = "<group>"; };
 		CAADF60D16F444C20097CFA1 /* CommonAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAdWallService.h; sourceTree = "<group>"; };
@@ -10461,6 +10523,40 @@
 		CAEFC4A116FD64DB00D799B7 /* TriangleShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleShape.h; sourceTree = "<group>"; };
 		CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleShape.m; sourceTree = "<group>"; };
 		CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
+		CAEFC52F1700002F00D799B7 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
+		CAEFC5301700002F00D799B7 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
+		CAEFC5351700005400D799B7 /* ToolCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolCommand.h; sourceTree = "<group>"; };
+		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
+		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
+		CAEFC5421700024200D799B7 /* AddColorCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddColorCommand.m; sourceTree = "<group>"; };
+		CAEFC5471700026700D799B7 /* paletteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paletteCommand.h; sourceTree = "<group>"; };
+		CAEFC5481700026800D799B7 /* paletteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = paletteCommand.m; sourceTree = "<group>"; };
+		CAEFC54D1700036000D799B7 /* SelectPenCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPenCommand.h; sourceTree = "<group>"; };
+		CAEFC54E1700036200D799B7 /* SelectPenCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPenCommand.m; sourceTree = "<group>"; };
+		CAEFC5531700038600D799B7 /* EraserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EraserCommand.h; sourceTree = "<group>"; };
+		CAEFC5541700038700D799B7 /* EraserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EraserCommand.m; sourceTree = "<group>"; };
+		CAEFC5591700039B00D799B7 /* PaintBucketCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintBucketCommand.h; sourceTree = "<group>"; };
+		CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintBucketCommand.m; sourceTree = "<group>"; };
+		CAEFC55F170003B300D799B7 /* ShapeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeCommand.h; sourceTree = "<group>"; };
+		CAEFC560170003B500D799B7 /* ShapeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeCommand.m; sourceTree = "<group>"; };
+		CAEFC5711700044900D799B7 /* WidthPickCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthPickCommand.h; sourceTree = "<group>"; };
+		CAEFC5721700044C00D799B7 /* WidthPickCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidthPickCommand.m; sourceTree = "<group>"; };
+		CAEFC5771700046C00D799B7 /* WidthSliderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthSliderCommand.h; sourceTree = "<group>"; };
+		CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidthSliderCommand.m; sourceTree = "<group>"; };
+		CAEFC57D1700048900D799B7 /* AlphaSliderCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaSliderCommand.h; sourceTree = "<group>"; };
+		CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaSliderCommand.m; sourceTree = "<group>"; };
+		CAEFC583170004AD00D799B7 /* DrawBgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawBgCommand.h; sourceTree = "<group>"; };
+		CAEFC584170004B000D799B7 /* DrawBgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawBgCommand.m; sourceTree = "<group>"; };
+		CAEFC589170004DC00D799B7 /* CanvasSizeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasSizeCommand.h; sourceTree = "<group>"; };
+		CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasSizeCommand.m; sourceTree = "<group>"; };
+		CAEFC58F1700051D00D799B7 /* EditDescCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDescCommand.h; sourceTree = "<group>"; };
+		CAEFC5901700052200D799B7 /* EditDescCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescCommand.m; sourceTree = "<group>"; };
+		CAEFC5951700054800D799B7 /* DrawToCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToCommand.h; sourceTree = "<group>"; };
+		CAEFC5961700054E00D799B7 /* DrawToCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToCommand.m; sourceTree = "<group>"; };
+		CAEFC59B1700057400D799B7 /* HelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCommand.h; sourceTree = "<group>"; };
+		CAEFC59C1700057A00D799B7 /* HelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCommand.m; sourceTree = "<group>"; };
+		CAEFC5A11700059F00D799B7 /* ChatCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCommand.h; sourceTree = "<group>"; };
+		CAEFC5A2170005A700D799B7 /* ChatCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCommand.m; sourceTree = "<group>"; };
 		CAF10AF9151C665D008C4512 /* AccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManager.h; sourceTree = "<group>"; };
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
@@ -13621,11 +13717,11 @@
 		CA1041D61509B6E700F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAEFC52D1700002F00D799B7 /* ToolCommand */,
+				CAEFC52E1700002F00D799B7 /* ToolHandler */,
 				CA5328D716A3E1E000E9E96B /* Tool */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
-				CAABB8A316FAF042007DCC58 /* ToolHandler.h */,
-				CAABB8A416FAF043007DCC58 /* ToolHandler.m */,
 				CA22DCD5157CB009009C95CB /* Offline */,
 				CA22DCDE157CB00A009C95CB /* Online */,
 			);
@@ -17555,6 +17651,54 @@
 				CAEFC4A216FD64DB00D799B7 /* TriangleShape.m */,
 			);
 			path = Shape;
+			sourceTree = "<group>";
+		};
+		CAEFC52D1700002F00D799B7 /* ToolCommand */ = {
+			isa = PBXGroup;
+			children = (
+				CAEFC5351700005400D799B7 /* ToolCommand.h */,
+				CAEFC5361700005400D799B7 /* ToolCommand.m */,
+				CAEFC5411700024100D799B7 /* AddColorCommand.h */,
+				CAEFC5421700024200D799B7 /* AddColorCommand.m */,
+				CAEFC5471700026700D799B7 /* paletteCommand.h */,
+				CAEFC5481700026800D799B7 /* paletteCommand.m */,
+				CAEFC54D1700036000D799B7 /* SelectPenCommand.h */,
+				CAEFC54E1700036200D799B7 /* SelectPenCommand.m */,
+				CAEFC5531700038600D799B7 /* EraserCommand.h */,
+				CAEFC5541700038700D799B7 /* EraserCommand.m */,
+				CAEFC5591700039B00D799B7 /* PaintBucketCommand.h */,
+				CAEFC55A1700039E00D799B7 /* PaintBucketCommand.m */,
+				CAEFC55F170003B300D799B7 /* ShapeCommand.h */,
+				CAEFC560170003B500D799B7 /* ShapeCommand.m */,
+				CAEFC5711700044900D799B7 /* WidthPickCommand.h */,
+				CAEFC5721700044C00D799B7 /* WidthPickCommand.m */,
+				CAEFC5771700046C00D799B7 /* WidthSliderCommand.h */,
+				CAEFC5781700046F00D799B7 /* WidthSliderCommand.m */,
+				CAEFC57D1700048900D799B7 /* AlphaSliderCommand.h */,
+				CAEFC57E1700048D00D799B7 /* AlphaSliderCommand.m */,
+				CAEFC583170004AD00D799B7 /* DrawBgCommand.h */,
+				CAEFC584170004B000D799B7 /* DrawBgCommand.m */,
+				CAEFC589170004DC00D799B7 /* CanvasSizeCommand.h */,
+				CAEFC58A170004E200D799B7 /* CanvasSizeCommand.m */,
+				CAEFC58F1700051D00D799B7 /* EditDescCommand.h */,
+				CAEFC5901700052200D799B7 /* EditDescCommand.m */,
+				CAEFC5951700054800D799B7 /* DrawToCommand.h */,
+				CAEFC5961700054E00D799B7 /* DrawToCommand.m */,
+				CAEFC59B1700057400D799B7 /* HelpCommand.h */,
+				CAEFC59C1700057A00D799B7 /* HelpCommand.m */,
+				CAEFC5A11700059F00D799B7 /* ChatCommand.h */,
+				CAEFC5A2170005A700D799B7 /* ChatCommand.m */,
+			);
+			path = ToolCommand;
+			sourceTree = "<group>";
+		};
+		CAEFC52E1700002F00D799B7 /* ToolHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CAEFC52F1700002F00D799B7 /* ToolHandler.h */,
+				CAEFC5301700002F00D799B7 /* ToolHandler.m */,
+			);
+			path = ToolHandler;
 			sourceTree = "<group>";
 		};
 		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
@@ -23387,7 +23531,6 @@
 				CAADF65C16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89516F99C41007DCC58 /* BBSController.m in Sources */,
-				CAABB8A716FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8716FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8B16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7216FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
@@ -23400,6 +23543,23 @@
 				CAEFC4B916FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09816FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BD16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
+				CAEFC5331700002F00D799B7 /* ToolHandler.m in Sources */,
+				CAEFC5391700005400D799B7 /* ToolCommand.m in Sources */,
+				CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */,
+				CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */,
+				CAEFC5571700038900D799B7 /* EraserCommand.m in Sources */,
+				CAEFC55D170003A000D799B7 /* PaintBucketCommand.m in Sources */,
+				CAEFC563170003B700D799B7 /* ShapeCommand.m in Sources */,
+				CAEFC5751700044E00D799B7 /* WidthPickCommand.m in Sources */,
+				CAEFC57B1700047500D799B7 /* WidthSliderCommand.m in Sources */,
+				CAEFC5811700049300D799B7 /* AlphaSliderCommand.m in Sources */,
+				CAEFC587170004B600D799B7 /* DrawBgCommand.m in Sources */,
+				CAEFC58D170004E600D799B7 /* CanvasSizeCommand.m in Sources */,
+				CAEFC5931700052700D799B7 /* EditDescCommand.m in Sources */,
+				CAEFC5991700055400D799B7 /* DrawToCommand.m in Sources */,
+				CAEFC59F1700058000D799B7 /* HelpCommand.m in Sources */,
+				CAEFC5A5170005AD00D799B7 /* ChatCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24151,7 +24311,6 @@
 				CAADF65D16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2E16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89616F99C41007DCC58 /* BBSController.m in Sources */,
-				CAABB8A816FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8816FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8C16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7316FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
@@ -24164,6 +24323,23 @@
 				CAEFC4BA16FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09916FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BE16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
+				CAEFC5341700002F00D799B7 /* ToolHandler.m in Sources */,
+				CAEFC53A1700005400D799B7 /* ToolCommand.m in Sources */,
+				CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */,
+				CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC5521700036700D799B7 /* SelectPenCommand.m in Sources */,
+				CAEFC5581700038900D799B7 /* EraserCommand.m in Sources */,
+				CAEFC55E170003A000D799B7 /* PaintBucketCommand.m in Sources */,
+				CAEFC564170003B700D799B7 /* ShapeCommand.m in Sources */,
+				CAEFC5761700044E00D799B7 /* WidthPickCommand.m in Sources */,
+				CAEFC57C1700047500D799B7 /* WidthSliderCommand.m in Sources */,
+				CAEFC5821700049300D799B7 /* AlphaSliderCommand.m in Sources */,
+				CAEFC588170004B600D799B7 /* DrawBgCommand.m in Sources */,
+				CAEFC58E170004E600D799B7 /* CanvasSizeCommand.m in Sources */,
+				CAEFC5941700052700D799B7 /* EditDescCommand.m in Sources */,
+				CAEFC59A1700055400D799B7 /* DrawToCommand.m in Sources */,
+				CAEFC5A01700058000D799B7 /* HelpCommand.m in Sources */,
+				CAEFC5A6170005AD00D799B7 /* ChatCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24924,7 +25100,6 @@
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
 				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
-				CAABB8A516FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8516FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8916FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7016FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
@@ -24937,6 +25112,23 @@
 				CAEFC4B716FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
+				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
+				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
+				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
+				CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */,
+				CAEFC5551700038900D799B7 /* EraserCommand.m in Sources */,
+				CAEFC55B170003A000D799B7 /* PaintBucketCommand.m in Sources */,
+				CAEFC561170003B700D799B7 /* ShapeCommand.m in Sources */,
+				CAEFC5731700044E00D799B7 /* WidthPickCommand.m in Sources */,
+				CAEFC5791700047500D799B7 /* WidthSliderCommand.m in Sources */,
+				CAEFC57F1700049300D799B7 /* AlphaSliderCommand.m in Sources */,
+				CAEFC585170004B600D799B7 /* DrawBgCommand.m in Sources */,
+				CAEFC58B170004E600D799B7 /* CanvasSizeCommand.m in Sources */,
+				CAEFC5911700052700D799B7 /* EditDescCommand.m in Sources */,
+				CAEFC5971700055400D799B7 /* DrawToCommand.m in Sources */,
+				CAEFC59D1700058000D799B7 /* HelpCommand.m in Sources */,
+				CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25696,7 +25888,6 @@
 				CAADF65B16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89416F99C41007DCC58 /* BBSController.m in Sources */,
-				CAABB8A616FAF045007DCC58 /* ToolHandler.m in Sources */,
 				C22EBD8616FB55BA002A9CF5 /* MKBlockActionSheet.m in Sources */,
 				C22EBD8A16FB55BA002A9CF5 /* MKBlockAlertView.m in Sources */,
 				C22EBE7116FBF721002A9CF5 /* GCDatePickerView.m in Sources */,
@@ -25709,6 +25900,23 @@
 				CAEFC4B816FD64DB00D799B7 /* TriangleShape.m in Sources */,
 				C2D6B09716FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
+				CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */,
+				CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */,
+				CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */,
+				CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */,
+				CAEFC5561700038900D799B7 /* EraserCommand.m in Sources */,
+				CAEFC55C170003A000D799B7 /* PaintBucketCommand.m in Sources */,
+				CAEFC562170003B700D799B7 /* ShapeCommand.m in Sources */,
+				CAEFC5741700044E00D799B7 /* WidthPickCommand.m in Sources */,
+				CAEFC57A1700047500D799B7 /* WidthSliderCommand.m in Sources */,
+				CAEFC5801700049300D799B7 /* AlphaSliderCommand.m in Sources */,
+				CAEFC586170004B600D799B7 /* DrawBgCommand.m in Sources */,
+				CAEFC58C170004E600D799B7 /* CanvasSizeCommand.m in Sources */,
+				CAEFC5921700052700D799B7 /* EditDescCommand.m in Sources */,
+				CAEFC5981700055400D799B7 /* DrawToCommand.m in Sources */,
+				CAEFC59E1700058000D799B7 /* HelpCommand.m in Sources */,
+				CAEFC5A4170005AD00D799B7 /* ChatCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

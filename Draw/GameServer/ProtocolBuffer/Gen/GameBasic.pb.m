@@ -19,6 +19,16 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBOpenInfoTypeIsValidValue(PBOpenInfoType value) {
+  switch (value) {
+    case PBOpenInfoTypeOpenToFriend:
+    case PBOpenInfoTypeOpenNo:
+    case PBOpenInfoTypeOpenAll:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBGameCurrencyIsValidValue(PBGameCurrency value) {
   switch (value) {
     case PBGameCurrencyCoin:
@@ -771,6 +781,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 @property (retain) NSString* bloodGroup;
 @property int32_t fanCount;
 @property int32_t followCount;
+@property PBOpenInfoType openInfoType;
 @property (retain) NSString* signature;
 @end
 
@@ -1011,6 +1022,13 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   hasFollowCount_ = !!value;
 }
 @synthesize followCount;
+- (BOOL) hasOpenInfoType {
+  return !!hasOpenInfoType_;
+}
+- (void) setHasOpenInfoType:(BOOL) value {
+  hasOpenInfoType_ = !!value;
+}
+@synthesize openInfoType;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -1075,6 +1093,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.bloodGroup = @"";
     self.fanCount = 0;
     self.followCount = 0;
+    self.openInfoType = PBOpenInfoTypeOpenToFriend;
     self.signature = @"";
   }
   return self;
@@ -1239,6 +1258,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFollowCount) {
     [output writeInt32:83 value:self.followCount];
   }
+  if (self.hasOpenInfoType) {
+    [output writeEnum:91 value:self.openInfoType];
+  }
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
   }
@@ -1352,6 +1374,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFollowCount) {
     size += computeInt32Size(83, self.followCount);
+  }
+  if (self.hasOpenInfoType) {
+    size += computeEnumSize(91, self.openInfoType);
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
@@ -1542,6 +1567,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFollowCount) {
     [self setFollowCount:other.followCount];
   }
+  if (other.hasOpenInfoType) {
+    [self setOpenInfoType:other.openInfoType];
+  }
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
@@ -1706,6 +1734,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 664: {
         [self setFollowCount:[input readInt32]];
+        break;
+      }
+      case 728: {
+        int32_t value = [input readEnum];
+        if (PBOpenInfoTypeIsValidValue(value)) {
+          [self setOpenInfoType:value];
+        } else {
+          [unknownFields mergeVarintField:91 value:value];
+        }
         break;
       }
       case 802: {
@@ -2296,6 +2333,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFollowCount {
   result.hasFollowCount = NO;
   result.followCount = 0;
+  return self;
+}
+- (BOOL) hasOpenInfoType {
+  return result.hasOpenInfoType;
+}
+- (PBOpenInfoType) openInfoType {
+  return result.openInfoType;
+}
+- (PBGameUser_Builder*) setOpenInfoType:(PBOpenInfoType) value {
+  result.hasOpenInfoType = YES;
+  result.openInfoType = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearOpenInfoType {
+  result.hasOpenInfoType = NO;
+  result.openInfoType = PBOpenInfoTypeOpenToFriend;
   return self;
 }
 - (BOOL) hasSignature {

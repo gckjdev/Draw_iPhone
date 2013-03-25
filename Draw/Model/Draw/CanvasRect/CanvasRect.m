@@ -16,15 +16,15 @@
 #define IPAD_SCREEN_HORIZONTAL_RECT CGRectMake(0, 0, 1024, 768)
 
 #define IPAD_SCREEN_VERTICAL_RECT CGRectMake(0, 0, 768, 1024)
-#define IPHONE3_SCREEN_RECT CGRectMake(0, 0, 320, 480)
 
-#define IPHONE4_SCREEN_RECT CGRectMake(0, 0, 640, 960)
-#define IPHONE5_SCREEN_RECT CGRectMake(0, 0, 640, 1136)
+
+#define IPHONE5_HORIZONTAL_RECT CGRectMake(0, 0, 1136, 640)
+#define IPHONE5_VERTICAL_RECT CGRectMake(0, 0, 640, 1136)
 
 #define IPHONE_DEPRECATED_RECT CGRectMake(0, 0, 304, 320)
 #define IPAD_DEPRECATED_RECT CGRectMake(0, 0, 730, 698)
 
-#define MAX_WIDTH 1400
+#define MAX_WIDTH 1024
 
 #import "CanvasRect.h"
 #import <QuartzCore/QuartzCore.h>
@@ -78,17 +78,13 @@
         {
             return IPAD_SCREEN_VERTICAL_RECT;
         }
-        case iPhone3ScreenRect:
+        case iPhone5HorizontalRect:
         {
-            return IPHONE3_SCREEN_RECT;
+            return IPHONE5_HORIZONTAL_RECT;
         }
-        case iPhone4ScreenRect:
+        case iPhone5VerticalRect:
         {
-            return IPHONE4_SCREEN_RECT;
-        }
-        case iPhone5ScreenRect:
-        {
-            return IPHONE5_SCREEN_RECT;
+            return IPHONE5_VERTICAL_RECT;
         }
         case iPhoneDeprecatedRect:
         {
@@ -134,40 +130,20 @@
 
 static const CGRect* getRectList()
 {
-    if (ISIPAD) {
-        static const CGRect list[] = {
-            iPhoneDefaultRect,
-            iPadDefaultRect,
-            iPadHorizontalRect,
-            iPadVerticalRect,
-            iPadLargeRect,
-            iPadScreenHorizontalRect,
-            iPadScreenVerticalRect,
-            iPhone3ScreenRect,
-            iPhone4ScreenRect,
-            iPhone5ScreenRect,
-            CanvasRectEnd
-        };
-        return list;
-    }else{
-        static const CGRect list[] = {
-            iPhoneDefaultRect,
-            iPadDefaultRect,
-            /*
-            iPadHorizontalRect,
-            iPadVerticalRect,
-            iPadLargeRect,
-            iPadScreenHorizontalRect,
-            iPadScreenVerticalRect,
-            */
-            iPhone3ScreenRect,
-            iPhone4ScreenRect,
-            iPhone5ScreenRect,
-            CanvasRectEnd
-        };
-        return list;
-    }
-    return NULL;
+//    if (ISIPAD) {
+    static const CGRect list[] = {
+        iPhoneDefaultRect,
+        iPadDefaultRect,
+        iPadHorizontalRect,
+        iPadVerticalRect,
+        iPadLargeRect,
+        iPadScreenHorizontalRect,
+        iPadScreenVerticalRect,
+        iPhone5HorizontalRect,
+        iPhone5VerticalRect,
+        CanvasRectEnd
+    };
+    return list;
 }
 
 
@@ -204,6 +180,7 @@ static const CGRect* getRectList()
     CGFloat scale = WIDTH / MAX_WIDTH;
     rect.size.width *= scale;
     rect.size.height *= scale;
+    return rect;
 }
 
 - (id)initWithCanvasRect:(CGRect)rect
