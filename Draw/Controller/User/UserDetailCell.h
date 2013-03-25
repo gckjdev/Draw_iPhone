@@ -10,6 +10,7 @@
 #import "UserDetailProtocol.h"
 #import "CommonRoundAvatarView.h"
 #import "iCarousel.h"
+#import "CustomSegmentedControl.h"
 
 typedef enum {
     DetailTabActionClickOpus = 0,
