@@ -4379,11 +4379,13 @@ BOOL BetTypeIsValidValue(BetType value);
 @private
   BOOL hasResultCode_:1;
   BOOL hasTotalCount_:1;
+  BOOL hasUserRelation_:1;
   BOOL hasBbsDrawData_:1;
   BOOL hasWall_:1;
   BOOL hasUser_:1;
   int32_t resultCode;
   int32_t totalCount;
+  int32_t userRelation;
   PBBBSDraw* bbsDrawData;
   PBWall* wall;
   PBGameUser* user;
@@ -4403,11 +4405,13 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasBbsDrawData;
 - (BOOL) hasWall;
 - (BOOL) hasUser;
+- (BOOL) hasUserRelation;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
 @property (readonly, retain) PBWall* wall;
 @property (readonly, retain) PBGameUser* user;
+@property (readonly) int32_t userRelation;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4563,5 +4567,10 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeUser:(PBGameUser*) value;
 - (DataQueryResponse_Builder*) clearUser;
+
+- (BOOL) hasUserRelation;
+- (int32_t) userRelation;
+- (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
+- (DataQueryResponse_Builder*) clearUserRelation;
 @end
 

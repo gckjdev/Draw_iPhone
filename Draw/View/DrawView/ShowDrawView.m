@@ -354,8 +354,18 @@
     self.tempAction = nil;
 }
 
+- (void)delayShowAction:(DrawAction *)drawAction
+{
+    
+//    PPDebug(@"<delayShowAction>");
+    [self drawDrawAction:drawAction show:YES];
+    [self callDidDrawPaintDelegate];
+    [self performSelector:@selector(playNextFrame) withObject:nil];    
+}
+
 - (void)playCurrentFrame
 {
+
 //    [self updateTempPaint];
     [self updateTempAction];
     if (self.status == Playing) {
@@ -368,9 +378,15 @@
             }else{
                 [self updateLastAction:self.tempAction show:YES];
             }
+            
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
+
         }else{
-            [self drawDrawAction:_currentAction show:YES];
-            [self callDidDrawPaintDelegate];
+            if ([_currentAction isKindOfClass:[ShapeAction class]]) {
+                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
+            }else{
+                [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
+            }
         }
     }
     if(!_showPenHidden){
@@ -389,9 +405,11 @@
 
 - (void)drawRect:(CGRect)rect
 {
+//    PPDebug(@"<drawRect> TAG");
+    
     [super drawRect:rect];
     if (Playing == self.status) {
-        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
+//        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
 
         /*
         double now = CACurrentMediaTime();
@@ -406,6 +424,16 @@
         }
         */
     }
+}
+
+- (void)setNeedsDisplay
+{
+    [super setNeedsDisplay];
+}
+
+- (void)setNeedsDisplayInRect:(CGRect)rect
+{
+    [super setNeedsDisplayInRect:rect];
 }
 
 #define LEVEL_TIMES 50

@@ -8,23 +8,32 @@
 
 #import "PPTableViewCell.h"
 #import "UserDetailProtocol.h"
+#import "CommonRoundAvatarView.h"
 
 @class PBGameUser;
 @class CommonRoundAvatarView;
 
 @protocol UserDetailCellDelegate <NSObject>
 
+@optional
 - (void)didClickEdit;
 - (void)didClickFanCountButton;
 - (void)didClickFollowCountButton;
 - (void)didClickFollowButton;
 - (void)didClickChatButton;
 - (void)didClickDrawToButton;
+- (void)didClickAvatar;
+- (void)didclickBlack;
+- (void)didclickManage;
 
+- (void)didclickSina;
+- (void)didclickQQ;
+- (void)didclickFacebook;
 @end
 
-@interface UserDetailCell : PPTableViewCell
+@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate>
 
+@property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
 @property (retain, nonatomic) IBOutlet UILabel *followCountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *fanCountLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
@@ -45,7 +54,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *fanCountButton;
 @property (retain, nonatomic) IBOutlet UIButton *followCountButton;
 @property (assign, nonatomic) id<UserDetailCellDelegate> detailDelegate;
+@property (retain, nonatomic) IBOutlet UIButton *sinaBtn;
+@property (retain, nonatomic) IBOutlet UIButton *qqBtn;
+@property (retain, nonatomic) IBOutlet UIButton *facebookBtn;
+@property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 
+@property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 
 @end

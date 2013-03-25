@@ -375,15 +375,16 @@
         [self.superViewController showProgressViewWithMessage:NSLS(@"kLoading")];
         [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache) {
             
-            if (resultCode == 0) {
+            if (resultCode == 0 && pbDraw != nil) {
                 [[DrawDataService defaultService] savePaintWithPBDraw:pbDraw
                                                                 image:cp.image
                                                              delegate:cp];                
             }else{
                 PPDebug(@"Save Failed!!");
+                [cp.superViewController popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
             }
 
-            [self.superViewController hideProgressView];
+            [cp.superViewController hideProgressView];
         }
          downloadDelegate:self];
     }
@@ -451,9 +452,6 @@
         [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
     }];
 }
-
-
-
 
 - (void)bindSinaWeibo
 {

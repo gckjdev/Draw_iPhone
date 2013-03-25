@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
+#import "MyFriend.h"
 
 @protocol UserDetailProtocol <NSObject>
 
@@ -18,7 +19,11 @@
 - (BOOL)canFollow;
 - (BOOL)canChat;
 - (BOOL)canDraw;
+- (BOOL)canBlack;
+- (BOOL)canSuperBlack;
 
  @optional
 - (void)setPbGameUser:(PBGameUser*)pbUser;
+
+@property (assign, nonatomic) RelationType relation;
 @end

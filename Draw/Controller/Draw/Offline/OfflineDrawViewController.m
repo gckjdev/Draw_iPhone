@@ -309,7 +309,8 @@
     self.penColor = [DrawColor blackColor];
     _alpha = 1.0;
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
-    [self.view addSubview:holder];
+
+    [self.view insertSubview:holder aboveSubview:self.draftButton];
     PPDebug(@"DrawView Rect = %@",NSStringFromCGRect(drawView.frame));
 }
 

@@ -412,6 +412,11 @@ static UserManager* _defaultManager;
     }
 }
 
+- (UIImage*)defaultAvatarImage
+{
+    return [UIImage imageNamed:[self defaultAvatar]];
+}
+
 - (BOOL)isUserMale
 {
     NSString* gender = [self gender];
@@ -678,6 +683,23 @@ static UserManager* _defaultManager;
 //    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
 //    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];    
 //    [userDefaults synchronize];
+    
+}
+
+- (void)setBackground:(NSString*)url
+{
+    if ([url length] == 0)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setBackgroundUrl:url];
+    self.pbUser = [builder build];
+    
+    //    [self storeUserData:self.pbUser];
+    
+    //    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    //    [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
+    //    [userDefaults synchronize];
     
 }
 

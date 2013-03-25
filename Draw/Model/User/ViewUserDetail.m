@@ -8,6 +8,7 @@
 
 #import "ViewUserDetail.h"
 #import "GameBasic.pb.h"
+#import "UserManager.h"
 
 @interface ViewUserDetail ()
 
@@ -78,5 +79,13 @@
 {
     return YES;
 }
+- (BOOL)canBlack
+{
+    return YES;
+}
 
+- (BOOL)canSuperBlack
+{
+    return [[UserManager defaultManager] isSuperUser];
+}
 @end

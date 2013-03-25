@@ -1113,7 +1113,18 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
+"kZodiac" = "Zodiac";
+"kBirthday" = "Birthday";
+"kBloodGroup" = "Blood Group";
+"kLocation" = "Location";
+"kOther" = "Other";
+"kInputLocation" = "Location";
+"kSignature" = "Signature";
 
+"kUpdateAvatarSucc" = "Upload avatar successfully.";
+"kUpdateAvatarFail" = "Fail to upload avatar. Please try later.";
+"kPasswordSet" = "Password Set";
+"kUploading" = "Uploading data...";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

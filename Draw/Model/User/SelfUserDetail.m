@@ -12,6 +12,15 @@
 @implementation SelfUserDetail
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.relation = RelationTypeNo;
+    }
+    return self;
+}
+
 + (id<UserDetailProtocol>)createDetail
 {
     return [[[SelfUserDetail alloc] init] autorelease];
@@ -48,4 +57,23 @@
     return NO;
 }
 
+- (BOOL)canBlack
+{
+    return NO;
+}
+
+- (BOOL)canSuperBlack
+{
+    return NO;
+}
+
+- (RelationType)relation
+{
+    return RelationTypeNo;
+}
+
+- (void)setRelation:(RelationType)relation
+{
+    
+}
 @end

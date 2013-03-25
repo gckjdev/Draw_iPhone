@@ -12,6 +12,19 @@
 #import "ShareImageManager.h"
 #import "UserDetailProtocol.h"
 #import "UserSettingController.h"
+#import "LevelService.h"
+#import "GameSNSService.h"
+#import "SNSUtils.h"
+#import "TimeUtils.h"
+#import "PPSNSCommonService.h"
+#import "CustomSegmentedControl.h"
+#import "ShareImageManager.h"
+
+@interface UserDetailCell ()
+
+@property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
+
+@end
 
 @implementation UserDetailCell
 
@@ -27,11 +40,12 @@
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
     PBGameUser* pbUser = [detail queryUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",pbUser.level]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",[LevelService defaultService].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];
     [self.locationLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kLocation"), pbUser.location]];
-    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), pbUser.birthday]];
+    NSDate* date = dateFromStringByFormat(pbUser.birthday, @"yyyyMMdd");
+    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), dateToString(date)]];
     [self.zodiacLabel setText:[NSString stringWithFormat:@"%@:%d", NSLS(@"kZodiac"), pbUser.zodiac]];
     [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBloodGroup"), pbUser.bloodGroup]];
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
@@ -45,8 +59,15 @@
     [self.followButton setHidden:![detail canFollow]];
     [self.chatButton setHidden:![detail canChat]];
     [self.drawToButton setHidden:![detail canDraw]];
+    [self.blackListBtn setHidden:![detail canBlack]];
+    [self.superBlackBtn setHidden:![detail canSuperBlack]];
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
+    
+    NSArray* snsUserArray = pbUser.snsUsersList;
+    [self.sinaBtn setHidden:![SNSUtils hasSNSType:TYPE_SINA inpbSnsUserArray:snsUserArray]];
+    [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
+    [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
     
 }
 
@@ -62,7 +83,17 @@
 
 + (id)createCell:(id)delegate
 {
-    return (UserDetailCell*)[super createCell:delegate];
+    UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
+    cell.avatarView.delegate = cell;
+    cell.segmentedControl = [[[CustomSegmentedControl alloc]
+                              initWithSegmentTitles:@[NSLS(@"kAll"), NSLS(@"kGuessed"), NSLS(@"kDrawed")]
+                              frame:cell.feedTabHolder.frame
+                              unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
+                              pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
+                              delegate:self] autorelease];
+    [cell addSubview:cell.segmentedControl];
+    [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
+    return cell;
 }
 
 /*
@@ -94,6 +125,13 @@
     [_followButton release];
     [_fanCountButton release];
     [_followCountButton release];
+    [_sinaBtn release];
+    [_qqBtn release];
+    [_facebookBtn release];
+    [_blackListBtn release];
+    [_superBlackBtn release];
+    [_feedTabHolder release];
+    [_segmentedControl release];
     [super dealloc];
 }
 
@@ -141,6 +179,48 @@
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickDrawToButton)]) {
         [_detailDelegate didClickDrawToButton];
+    }
+}
+
+- (void)didClickOnAvatar:(CommonRoundAvatarView*)view
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickAvatar)]) {
+        [_detailDelegate didClickAvatar];
+    }
+}
+
+- (IBAction)clickBlack:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickBlack)]) {
+        [_detailDelegate didclickBlack];
+    }
+}
+
+- (IBAction)clickManage:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickManage)]) {
+        [_detailDelegate didclickManage];
+    }
+}
+
+- (IBAction)clickSina:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickSina)]) {
+        [_detailDelegate didclickSina];
+    }
+}
+
+- (IBAction)clickQQ:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickQQ)]) {
+        [_detailDelegate didclickQQ];
+    }
+}
+
+- (IBAction)clickFacebook:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didclickFacebook)]) {
+        [_detailDelegate didclickFacebook];
     }
 }
 

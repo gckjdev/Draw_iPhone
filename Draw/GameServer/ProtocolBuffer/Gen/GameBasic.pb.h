@@ -45,6 +45,14 @@
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
+  PBOpenInfoTypeOpenToFriend = 0,
+  PBOpenInfoTypeOpenNo = 1,
+  PBOpenInfoTypeOpenAll = 2,
+} PBOpenInfoType;
+
+BOOL PBOpenInfoTypeIsValidValue(PBOpenInfoType value);
+
+typedef enum {
   PBGameCurrencyCoin = 0,
   PBGameCurrencyIngot = 1,
 } PBGameCurrency;
@@ -253,24 +261,26 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 @interface PBGameUser : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
-  BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
+  BOOL hasIsPlaying_:1;
   BOOL hasExperience_:1;
-  BOOL hasFollowCount_:1;
-  BOOL hasFanCount_:1;
   BOOL hasLevel_:1;
-  BOOL hasGuessWordLanguage_:1;
-  BOOL hasUserLevel_:1;
-  BOOL hasZodiac_:1;
-  BOOL hasSeatId_:1;
-  BOOL hasIngotBalance_:1;
-  BOOL hasDiamondBalance_:1;
   BOOL hasCoinBalance_:1;
-  BOOL hasLanguage_:1;
-  BOOL hasDeviceModel_:1;
+  BOOL hasGuessWordLanguage_:1;
+  BOOL hasZodiac_:1;
+  BOOL hasDiamondBalance_:1;
+  BOOL hasIngotBalance_:1;
+  BOOL hasSeatId_:1;
+  BOOL hasUserLevel_:1;
+  BOOL hasFanCount_:1;
+  BOOL hasFollowCount_:1;
   BOOL hasDeviceOs_:1;
+  BOOL hasDeviceModel_:1;
+  BOOL hasDeviceId_:1;
+  BOOL hasDeviceType_:1;
   BOOL hasBloodGroup_:1;
   BOOL hasSignature_:1;
+  BOOL hasLanguage_:1;
   BOOL hasCountryCode_:1;
   BOOL hasDeviceToken_:1;
   BOOL hasBackgroundUrl_:1;
@@ -282,25 +292,28 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
   BOOL hasUserId_:1;
+  BOOL hasOpenInfoType_:1;
   BOOL gender_:1;
-  BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
+  BOOL isPlaying_:1;
   int64_t experience;
-  int32_t followCount;
-  int32_t fanCount;
   int32_t level;
-  int32_t guessWordLanguage;
-  int32_t userLevel;
-  int32_t zodiac;
-  int32_t seatId;
-  int32_t ingotBalance;
-  int32_t diamondBalance;
   int32_t coinBalance;
-  NSString* language;
-  NSString* deviceModel;
+  int32_t guessWordLanguage;
+  int32_t zodiac;
+  int32_t diamondBalance;
+  int32_t ingotBalance;
+  int32_t seatId;
+  int32_t userLevel;
+  int32_t fanCount;
+  int32_t followCount;
   NSString* deviceOs;
+  NSString* deviceModel;
+  NSString* deviceId;
+  NSString* deviceType;
   NSString* bloodGroup;
   NSString* signature;
+  NSString* language;
   NSString* countryCode;
   NSString* deviceToken;
   NSString* backgroundUrl;
@@ -312,8 +325,9 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   NSString* avatar;
   NSString* nickName;
   NSString* userId;
-  NSMutableArray* mutableAttributesList;
+  PBOpenInfoType openInfoType;
   NSMutableArray* mutableItemsList;
+  NSMutableArray* mutableAttributesList;
   NSMutableArray* mutableSnsUsersList;
 }
 - (BOOL) hasUserId;
@@ -342,9 +356,12 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (BOOL) hasIngotBalance;
 - (BOOL) hasDeviceModel;
 - (BOOL) hasDeviceOs;
+- (BOOL) hasDeviceId;
+- (BOOL) hasDeviceType;
 - (BOOL) hasBloodGroup;
 - (BOOL) hasFanCount;
 - (BOOL) hasFollowCount;
+- (BOOL) hasOpenInfoType;
 - (BOOL) hasSignature;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
@@ -372,9 +389,12 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 @property (readonly) int32_t ingotBalance;
 @property (readonly, retain) NSString* deviceModel;
 @property (readonly, retain) NSString* deviceOs;
+@property (readonly, retain) NSString* deviceId;
+@property (readonly, retain) NSString* deviceType;
 @property (readonly, retain) NSString* bloodGroup;
 @property (readonly) int32_t fanCount;
 @property (readonly) int32_t followCount;
+@property (readonly) PBOpenInfoType openInfoType;
 @property (readonly, retain) NSString* signature;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
@@ -568,6 +588,16 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (PBGameUser_Builder*) setDeviceOs:(NSString*) value;
 - (PBGameUser_Builder*) clearDeviceOs;
 
+- (BOOL) hasDeviceId;
+- (NSString*) deviceId;
+- (PBGameUser_Builder*) setDeviceId:(NSString*) value;
+- (PBGameUser_Builder*) clearDeviceId;
+
+- (BOOL) hasDeviceType;
+- (NSString*) deviceType;
+- (PBGameUser_Builder*) setDeviceType:(NSString*) value;
+- (PBGameUser_Builder*) clearDeviceType;
+
 - (BOOL) hasBloodGroup;
 - (NSString*) bloodGroup;
 - (PBGameUser_Builder*) setBloodGroup:(NSString*) value;
@@ -582,6 +612,11 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) followCount;
 - (PBGameUser_Builder*) setFollowCount:(int32_t) value;
 - (PBGameUser_Builder*) clearFollowCount;
+
+- (BOOL) hasOpenInfoType;
+- (PBOpenInfoType) openInfoType;
+- (PBGameUser_Builder*) setOpenInfoType:(PBOpenInfoType) value;
+- (PBGameUser_Builder*) clearOpenInfoType;
 
 - (BOOL) hasSignature;
 - (NSString*) signature;
