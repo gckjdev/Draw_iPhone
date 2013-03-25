@@ -1076,7 +1076,7 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
     self.password = @"";
     self.birthday = @"";
     self.zodiac = 0;
-    self.guessWordLanguage = 0;
+    self.guessWordLanguage = 1;
     self.backgroundUrl = @"";
     self.deviceToken = @"";
     self.countryCode = @"";
@@ -2047,7 +2047,7 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (PBGameUser_Builder*) clearGuessWordLanguage {
   result.hasGuessWordLanguage = NO;
-  result.guessWordLanguage = 0;
+  result.guessWordLanguage = 1;
   return self;
 }
 - (BOOL) hasBackgroundUrl {

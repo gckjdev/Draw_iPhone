@@ -42,6 +42,7 @@ typedef enum{
 
 
 static const CGRect* getRectList();
+
 //static CGRect* getIPhoneRectList;
 
 @interface CanvasRectView : UIControl
@@ -52,10 +53,4 @@ static const CGRect* getRectList();
 - (id)initWithCanvasRect:(CGRect)rect;
 
 @end
-
-
-
-
-
-
 
