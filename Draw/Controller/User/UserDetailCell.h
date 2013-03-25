@@ -10,6 +10,13 @@
 #import "UserDetailProtocol.h"
 #import "CommonRoundAvatarView.h"
 #import "iCarousel.h"
+#import "CustomSegmentedControl.h"
+
+typedef enum {
+    DetailTabActionClickOpus = 0,
+    DetailTabActionClickGuessed ,
+    DetailTabActionClickFavouriate,
+}DetailTabAction;
 
 @class PBGameUser;
 @class CommonRoundAvatarView;
@@ -30,9 +37,10 @@
 - (void)didclickSina;
 - (void)didclickQQ;
 - (void)didclickFacebook;
+- (void)didSelectTabAction:(DetailTabAction)tabAction;
 @end
 
-@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate>
+@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate>
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
 @property (retain, nonatomic) IBOutlet UILabel *followCountLabel;

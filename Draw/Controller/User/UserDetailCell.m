@@ -22,6 +22,8 @@
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
 
+
+
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -140,6 +142,19 @@
     [_segmentedControl release];
     [_carousel release];
     [super dealloc];
+}
+
+#pragma mark - CustomSegmentedControl delegate
+- (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
+        [_detailDelegate didSelectTabAction:segmentIndex];
+    }
+}
+
+- (void) touchDownAtSegmentIndex:(NSUInteger)segmentIndex
+{
+    
 }
 
 -(IBAction)switchBasicInfoAndAction:(id)sender
@@ -289,6 +304,10 @@
 	return view;
 }
 
+- (IBAction)clickMore:(id)sender
+{
+    
+}
 
 
 @end
