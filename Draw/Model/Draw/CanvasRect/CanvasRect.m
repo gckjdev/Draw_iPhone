@@ -24,7 +24,7 @@
 #define IPHONE_DEPRECATED_RECT CGRectMake(0, 0, 304, 320)
 #define IPAD_DEPRECATED_RECT CGRectMake(0, 0, 730, 698)
 
-#define MAX_WIDTH 1400
+#define MAX_WIDTH 1024
 
 #import "CanvasRect.h"
 #import <QuartzCore/QuartzCore.h>
@@ -180,6 +180,7 @@ static const CGRect* getRectList()
     CGFloat scale = WIDTH / MAX_WIDTH;
     rect.size.width *= scale;
     rect.size.height *= scale;
+    return rect;
 }
 
 - (id)initWithCanvasRect:(CGRect)rect
