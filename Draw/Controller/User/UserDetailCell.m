@@ -19,6 +19,10 @@
 #import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
+#import "ReflectionView.h"
+#import "UIButton+WebCache.h"
+
+
 
 @interface UserDetailCell ()
 
@@ -93,6 +97,8 @@
                               delegate:self] autorelease];
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
+    
+    cell.carousel.type = iCarouselTypeCoverFlow2;
     return cell;
 }
 
@@ -106,6 +112,8 @@
 */
 
 - (void)dealloc {
+    _carousel.delegate = nil;
+    _carousel.dataSource = nil;
     [_nickNameLabel release];
     [_signLabel release];
     [_levelLabel release];
@@ -134,6 +142,19 @@
     [_segmentedControl release];
     [_carousel release];
     [super dealloc];
+}
+
+#pragma mark - CustomSegmentedControl delegate
+- (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
+        [_detailDelegate didSelectTabAction:segmentIndex];
+    }
+}
+
+- (void) touchDownAtSegmentIndex:(NSUInteger)segmentIndex
+{
+    
 }
 
 -(IBAction)switchBasicInfoAndAction:(id)sender
@@ -226,6 +247,67 @@
 }
 
 
+- (void)setFeedArray:(NSArray *)feedArray
+{
+    PPRelease(_feedArray);
+    _feedArray = [feedArray retain];
+    [self.carousel reloadData];
+}
+
+
+#pragma mark -
+#pragma mark iCarousel methods
+
+
+- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+{
+    return 5;
+}
+
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(ReflectionView *)view
+{
+	UILabel *label = nil;
+	
+	//create new view if no view is available for recycling
+	if (view == nil)
+	{
+        //set up reflection view
+		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 200.0f)] autorelease];
+        
+        UIButton *button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+        
+        //set up content
+		label = [[[UILabel alloc] initWithFrame:view.bounds] autorelease];
+		label.backgroundColor = [UIColor lightGrayColor];
+		label.layer.borderColor = [UIColor whiteColor].CGColor;
+        label.layer.borderWidth = 4.0f;
+        label.layer.cornerRadius = 8.0f;
+        label.textAlignment = UITextAlignmentCenter;
+		label.font = [label.font fontWithSize:50];
+        label.tag = 9999;
+		[view addSubview:label];
+	}
+	else
+	{
+		label = (UILabel *)[view viewWithTag:9999];
+	}
+	
+    //set label
+	label.text = [NSString stringWithFormat:@"%i", index];
+    
+    //update reflection
+    //this step is expensive, so if you don't need
+    //unique reflections for each item, don't do this
+    //and you'll get much smoother peformance
+    [view update];
+	
+	return view;
+}
+
+- (IBAction)clickMore:(id)sender
+{
+    
+}
 
 
 @end
