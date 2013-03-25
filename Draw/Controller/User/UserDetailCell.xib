@@ -468,7 +468,7 @@
 								<array class="NSMutableArray" key="NSSubviews"/>
 								<string key="NSFrame">{{77, 78}, {168, 168}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="68152044"/>
+								<reference key="NSNextKeyView" ref="401480678"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="176572736">
 									<int key="NSColorSpace">3</int>
@@ -513,7 +513,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{288, 148}, {30, 28}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="401480678"/>
+								<reference key="NSNextKeyView" ref="347356920"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -542,7 +542,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{53, 78}, {23, 21}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="347356920"/>
+								<reference key="NSNextKeyView" ref="68152044"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -665,7 +665,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{288, 436}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="149585192"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -759,6 +759,15 @@
 								</object>
 								<reference key="IBUIFontDescription" ref="525949801"/>
 								<reference key="IBUIFont" ref="519071391"/>
+							</object>
+							<object class="IBUIView" id="815655374">
+								<reference key="NSNextResponder" ref="150961201"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{104, 426}, {112, 45}}</string>
+								<reference key="NSSuperview" ref="150961201"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<reference key="IBUIBackgroundColor" ref="29055669"/>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 784}</string>
@@ -977,6 +986,14 @@
 					<int key="connectionID">72</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">feedTabHolder</string>
+						<reference key="source" ref="849259711"/>
+						<reference key="destination" ref="815655374"/>
+					</object>
+					<int key="connectionID">81</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickEdit:</string>
 						<reference key="source" ref="427805329"/>
@@ -1039,6 +1056,42 @@
 					</object>
 					<int key="connectionID">53</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickBlack:</string>
+						<reference key="source" ref="905471670"/>
+						<reference key="destination" ref="849259711"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickSina:</string>
+						<reference key="source" ref="1019354794"/>
+						<reference key="destination" ref="849259711"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickQQ:</string>
+						<reference key="source" ref="1040361067"/>
+						<reference key="destination" ref="849259711"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickFacebook:</string>
+						<reference key="source" ref="331007648"/>
+						<reference key="destination" ref="849259711"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1090,6 +1143,7 @@
 							<reference ref="1040361067"/>
 							<reference ref="703033034"/>
 							<reference ref="331007648"/>
+							<reference ref="815655374"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1261,6 +1315,11 @@
 						<reference key="object" ref="703033034"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">80</int>
+						<reference key="object" ref="815655374"/>
+						<reference key="parent" ref="849259711"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1306,13 +1365,14 @@
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="71.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">73</int>
+			<int key="maxID">81</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -1320,22 +1380,22 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="user_detail_avatar_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_basic_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_black_btn_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_btn_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_draw_to_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_edit@2x.png">{16, 16}</string>
-			<string key="user_detail_facebook@2x.png">{16, 16}</string>
-			<string key="user_detail_follow_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_message_bg@2x.png">{16, 16}</string>
-			<string key="user_detail_more@2x.png">{16, 16}</string>
-			<string key="user_detail_pull_down@2x.png">{16, 16}</string>
-			<string key="user_detail_qq@2x.png">{16, 16}</string>
-			<string key="user_detail_seperator_line1@2x.png">{16, 16}</string>
-			<string key="user_detail_seperator_line2@2x.png">{16, 16}</string>
-			<string key="user_detail_sina@2x.png">{16, 16}</string>
+			<string key="user_detail_avatar_bg@2x.png">{640, 535}</string>
+			<string key="user_detail_basic_bg@2x.png">{640, 357}</string>
+			<string key="user_detail_bg@2x.png">{640, 1377}</string>
+			<string key="user_detail_black_btn_bg@2x.png">{146, 58}</string>
+			<string key="user_detail_btn_bg@2x.png">{117, 118}</string>
+			<string key="user_detail_draw_to_bg@2x.png">{114, 115}</string>
+			<string key="user_detail_edit@2x.png">{69, 57}</string>
+			<string key="user_detail_facebook@2x.png">{69, 57}</string>
+			<string key="user_detail_follow_bg@2x.png">{114, 115}</string>
+			<string key="user_detail_message_bg@2x.png">{114, 115}</string>
+			<string key="user_detail_more@2x.png">{44, 45}</string>
+			<string key="user_detail_pull_down@2x.png">{28, 29}</string>
+			<string key="user_detail_qq@2x.png">{69, 57}</string>
+			<string key="user_detail_seperator_line1@2x.png">{646, 8}</string>
+			<string key="user_detail_seperator_line2@2x.png">{640, 11}</string>
+			<string key="user_detail_sina@2x.png">{69, 57}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

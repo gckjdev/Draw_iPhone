@@ -21,6 +21,12 @@
 #import "ChangeAvatar.h"
 #import "UserService.h"
 #import "SuperUserManageAction.h"
+#import "PPSNSCommonService.h"
+#import "CommonRoundAvatarView.h"
+#import "SNSUtils.h"
+#import "PPSNSIntegerationService.h"
+#import "CommonMessageCenter.h"
+#import "CommonDialog.h"
 
 
 #define    ROW_COUNT 1
@@ -51,6 +57,7 @@
             if (resultCode == 0 &&[self.detail respondsToSelector:@selector(setPbGameUser:)]
                                 && user != nil) {
                 [self.detail setPbGameUser:user];
+                [self.detail setRelation:relation];
                 [self.dataTableView reloadData];
                 
                 // TODO update relation
@@ -185,17 +192,77 @@
     
 }
 
+- (void)askFollowUserWithSnsType:(int)snsType
+                           snsId:(NSString*)snsId
+                        nickName:(NSString*)nickName
+{
+    __block PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    if ([snsService supportFollow] == NO)
+        return;
+    
+//    [snsService askFollowWithTitle:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserTitle"),[SNSUtils snsNameOfType:snsType]]
+//                    displayMessage:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserMessage"),[SNSUtils snsNameOfType:snsType]]
+//                           weiboId:snsId
+//                      successBlock:^(NSDictionary *userInfo) {
+//                          
+//                      } failureBlock:^(NSError *error) {
+//                          
+//                      }];
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskFollowSNSUserTitle") message:NSLS(@"kAskFollowSNSUserMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [snsService followUser:nickName userId:snsId successBlock:^(NSDictionary *userInfo) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSucc")
+                                                           delayTime:1.5
+                                                             isHappy:YES];
+        } failureBlock:^(NSError *error) {
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:self.view];
+}
+
 - (void)didclickSina
 {
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName];
+    } else {
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    }
     
 }
 - (void)didclickQQ
 {
-    
+    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName];
+    } else {
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    }
 }
 - (void)didclickFacebook
 {
-    
+    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName];
+    } else {
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+//            UISegmentedControl
+            //
+        }];
+    }
 }
 
 #pragma mark - friendService delegate
@@ -211,6 +278,15 @@
                                                        delayTime:1.5
                                                          isHappy:YES];
     }
+}
+
+#pragma mark - changeAvatarDelegate
+
+- (void)didImageSelected:(UIImage *)image
+{
+    UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
+    [cell.avatarView setImage:image];
+    
 }
 
 @end

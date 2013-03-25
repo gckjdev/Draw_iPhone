@@ -17,6 +17,7 @@
 #import "SNSUtils.h"
 #import "TimeUtils.h"
 #import "PPSNSCommonService.h"
+#import "CustomSegmentedControl.h"
 
 @implementation UserDetailCell
 
@@ -75,7 +76,9 @@
 
 + (id)createCell:(id)delegate
 {
-    return (UserDetailCell*)[super createCell:delegate];
+    UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
+    cell.avatarView.delegate = cell;
+    return cell;
 }
 
 /*
@@ -112,6 +115,7 @@
     [_facebookBtn release];
     [_blackListBtn release];
     [_superBlackBtn release];
+    [_feedTabHolder release];
     [super dealloc];
 }
 
@@ -162,7 +166,7 @@
     }
 }
 
-- (IBAction)clickAvatar:(id)sender
+- (void)didClickOnAvatar:(CommonRoundAvatarView*)view
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickAvatar)]) {
         [_detailDelegate didClickAvatar];

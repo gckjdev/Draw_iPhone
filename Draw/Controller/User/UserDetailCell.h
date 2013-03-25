@@ -8,6 +8,7 @@
 
 #import "PPTableViewCell.h"
 #import "UserDetailProtocol.h"
+#import "CommonRoundAvatarView.h"
 
 @class PBGameUser;
 @class CommonRoundAvatarView;
@@ -30,8 +31,9 @@
 - (void)didclickFacebook;
 @end
 
-@interface UserDetailCell : PPTableViewCell
+@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate>
 
+@property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
 @property (retain, nonatomic) IBOutlet UILabel *followCountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *fanCountLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
