@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "CanvasRectBox.h"
 
-@interface CanvasSizeCommand : ToolCommand
+@interface CanvasSizeCommand : ToolCommand<CanvasRectBoxDelegate>
 
 @end

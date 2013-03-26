@@ -322,7 +322,7 @@
     command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeGrid] autorelease];
+    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
     command = [[[GridCommand alloc] initWithControl:self.grid itemType:ColorAlphaItem] autorelease];
