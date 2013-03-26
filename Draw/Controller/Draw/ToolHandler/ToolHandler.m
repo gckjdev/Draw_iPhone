@@ -10,6 +10,7 @@
 #import "BuyItemView.h"
 #import "ItemType.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "CanvasRect.h"
 
 @interface ToolHandler ()
 {
@@ -42,9 +43,9 @@
 {
     
 }
-- (void)changeCanvasRect:(CGRect)rect
+- (void)changeCanvasRect:(CanvasRect *)canvasRect
 {
-    
+    self.canvasRect = canvasRect;
 }
 - (void)changeWidth:(CGFloat)width
 {

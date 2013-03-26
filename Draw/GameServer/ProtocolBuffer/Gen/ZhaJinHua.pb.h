@@ -46,6 +46,8 @@
 @class PBUserItemList;
 @class PBUserItemList_Builder;
 @class PBUserItem_Builder;
+@class PBUserLevel;
+@class PBUserLevel_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBZJHGameResult;

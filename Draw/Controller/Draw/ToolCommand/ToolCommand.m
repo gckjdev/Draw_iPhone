@@ -25,7 +25,7 @@
 
 - (BOOL)hasItem:(ItemType)type
 {
-    static int itemType[] = {ItemTypeNo, Pencil, Eraser, -1};
+    static int itemType[] = {ItemTypeNo, Pencil, Eraser, CanvasRectiPadDefault, CanvasRectiPhoneDefault, -1};
     int *item = itemType;
     while (*item != -1) {
         if (*item == type) {

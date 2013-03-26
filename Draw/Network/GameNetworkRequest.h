@@ -595,4 +595,11 @@
                                  userId:(NSString*)userId
                               imageData:(NSData*)imageData
                               imageType:(NSString*)imageType;
+
++ (CommonNetworkOutput*)increaseExp:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             gameId:(NSString*)gameId
+                             userId:(NSString*)userId
+                                exp:(long)addExp;
+
 @end

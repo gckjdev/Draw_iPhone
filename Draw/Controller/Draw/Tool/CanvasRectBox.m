@@ -47,9 +47,10 @@
 
 - (void)clickCanvasRectView:(CanvasRectView *)view
 {
-    _currentRectView = view;
     if (self.delegate && [self.delegate respondsToSelector:@selector(canvasBox:didSelectedRect:)]) {
-        [self.delegate canvasBox:self didSelectedRect:view.rect];
+//        [self.delegate canvasBox:self didSelectedRect:view.rect canvasStyle:view.tag];
+        CanvasRect *canvasRect = [CanvasRect canvasRectWithStyle:view.tag];
+        [self.delegate canvasBox:self didSelectedRect:canvasRect];
     }
 }
 
@@ -135,8 +136,10 @@
     [super setSelected:selected];
     if (selected) {
         [self.title setTextColor:[UIColor redColor]];
+        [self.title.layer setBorderColor:[UIColor redColor].CGColor];        
     }else{
         [self.title setTextColor:[UIColor blackColor]];
+        [self.title.layer setBorderColor:[UIColor redColor].CGColor];                
     }
 }
 
@@ -174,6 +177,8 @@
     rect.size = CGSizeMake(width * scale, height * scale);
     return rect;
 }
+
+
 
 - (id)initWithCanvasRect:(CGRect)rect
 {
