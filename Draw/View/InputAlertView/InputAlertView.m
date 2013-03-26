@@ -24,6 +24,7 @@
 
 }
 
+@property (retain, nonatomic) IBOutlet UIImageView *contentBg;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (retain, nonatomic) IBOutlet UITextView *content;
 
@@ -114,6 +115,31 @@
     return view;
 }
 
++ (id)inputAlertViewWith:(NSString *)title
+                 content:(NSString *)content
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
+                  hasSNS:(BOOL)hasSNS
+{
+    InputAlertView *view = [self createView];
+    [view.title setText:title];
+    [view.content setText:content];
+    view.target = target;
+    view.commitSeletor = commitSeletor;
+    view.cancelSeletor = cancelSeletor;
+    if (!hasSNS) {
+        CGRect inputRect = view.content.frame;
+        [view.content setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y, inputRect.size.width, view.qqCheckBox.center.y - inputRect.origin.y)];
+        [view.contentBg setFrame:view.content.frame];
+        [view.qqCheckBox setHidden:YES];
+        [view.sinaCheckBox setHidden:YES];
+        [view.shareToQQ setHidden:YES];
+        [view.shareToSina setHidden:YES];
+    }
+    return view;
+}
+
 
 - (NSString *)contentText
 {
@@ -130,6 +156,7 @@
     PPRelease(_shareToQQ);
     PPRelease(_sinaCheckBox);
     PPRelease(_qqCheckBox);
+    [_contentBg release];
     [super dealloc];
 }
 

@@ -7,34 +7,62 @@
 //
 
 #import "AddColorCommand.h"
+#import "ColorView.h"
 
 @implementation AddColorCommand
 
-- (void)showPopTipView
-{
-    
-}
-- (void)hidePopTipView
-{
-    
-}
 
-
-//need to be override by the sub classes
 - (UIView *)contentView
 {
-    
+    return [ColorBox createViewWithdelegate:self];
 }
-- (BOOL)excute
+
+- (BOOL)execute
 {
-    if ([super excute]) {
+    if ([super execute]) {
         [self showPopTipView];
+        return YES;
     }
-    return YES;
+    return NO;
 }
-- (void)finish
+
+- (void)sendAnalyticsReport
 {
-    
+    AnalyticsReport(DRAW_CLICK_COLOR_BOX);
 }
+
+#pragma mark-- Color Box Delegate
+
+- (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
+{
+    [self.toolHandler changePenColor:color];
+    [self hidePopTipView];
+}
+- (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
+{
+    [self hidePopTipView];
+}
+- (void)didClickMoreButtonOnColorBox:(ColorBox *)colorBox
+{
+    UIView *topView = [self.control theTopView];
+    ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:topView.bounds];
+    colorShop.delegate  = self;
+    [colorShop showInView:topView animated:YES];
+}
+
+
+#pragma mark-- Color Shop Delegate
+
+- (void)didPickedColorView:(ColorView *)colorView{
+    [self.toolHandler changePenColor:colorView.drawColor];
+}
+
+- (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
+{
+//    [self dismissColorBoxPopTipView];
+    [self hidePopTipView];
+//    [self selectPen];
+}
+
 
 @end

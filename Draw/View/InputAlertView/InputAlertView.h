@@ -23,6 +23,12 @@
                   target:(id)target
            commitSeletor:(SEL)commitSeletor
            cancelSeletor:(SEL)cancelSeletor;
++ (id)inputAlertViewWith:(NSString *)title
+                 content:(NSString *)content
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
+                  hasSNS:(BOOL)hasSNS;
 
 - (NSString *)contentText;
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
