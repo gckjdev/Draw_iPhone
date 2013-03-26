@@ -21,7 +21,6 @@
 #import "UIUtils.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
-#define DEVICE_TYPE_IOS         1
 
 #define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
 

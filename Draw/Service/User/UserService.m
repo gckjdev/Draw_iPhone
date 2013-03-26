@@ -33,6 +33,7 @@
 #import "GameMessage.pb.h"
 #import "BlockUtils.h"
 #import "GameBasic.pb.h"
+#import "SNSUtils.h"
 
 @implementation UserService
 
@@ -561,6 +562,60 @@ static UserService* _defaultUserService;
     });
 }
 
+- (void)saveSNSUserData:(PBGameUser*)pbUser
+{    
+    PBSNSUser* sinaUser = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:pbUser.snsUsersList];
+    PBSNSUser* qqUser = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:pbUser.snsUsersList];
+    PBSNSUser* fbUser = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:pbUser.snsUsersList];
+    
+    NSString* sinaAccessToken = sinaUser.accessToken;
+    NSString* sinaId = sinaUser.userId;
+    NSString* sinaRefreshToken = sinaUser.refreshToken;
+    int       sinaExpireTime = sinaUser.expireTime;
+    NSDate*   sinaExpireDate = nil;
+    if (sinaExpireTime)
+        sinaExpireDate = [NSDate dateWithTimeIntervalSince1970:sinaExpireTime];
+    
+    NSString* qqAccessToken = qqUser.accessToken;
+    NSString* qqRefreshToken = qqUser.refreshToken;
+    int       qqExpireTime = qqUser.expireTime;
+    NSDate*   qqExpireDate = nil;
+    if (qqExpireTime)
+        qqExpireDate = [NSDate dateWithTimeIntervalSince1970:qqExpireTime];
+    NSString* qqOpenId = qqUser.qqOpenId;
+    NSString* qqId = qqUser.userId;
+    
+    NSString* facebookId = fbUser.userId;
+    NSString* facebookToken = fbUser.accessToken;
+    int       facebookExpireTime = fbUser.expireTime;
+    NSDate*   facebookExpireDate = nil;
+    if (facebookExpireTime)
+        facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
+
+    
+    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+    [sinaSNSService saveAccessToken:sinaAccessToken
+                       refreshToken:sinaRefreshToken
+                         expireDate:sinaExpireDate
+                             userId:sinaId
+                           qqOpenId:nil];
+    
+    PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+    [qqSNSService saveAccessToken:qqAccessToken
+                     refreshToken:qqRefreshToken
+                       expireDate:qqExpireDate
+                           userId:qqId
+                         qqOpenId:qqOpenId];
+    
+    PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+    [facebookSNSService saveAccessToken:facebookToken
+                           refreshToken:nil
+                             expireDate:facebookExpireDate
+                                 userId:facebookId
+                               qqOpenId:nil];
+    
+}
+
 - (int)createLocalUserAccount:(NSData*)data appId:(NSString*)appId
 {
     int resultCode = 0;
@@ -583,6 +638,8 @@ static UserService* _defaultUserService;
             // update new appId of user
             [self updateNewAppId:appId];
         }
+        
+        [self saveSNSUserData:user];
         
         // TODO : combine them?
         [[AccountService defaultService] syncAccount:nil];
@@ -1344,9 +1401,9 @@ static UserService* _defaultUserService;
                                                                 imageData:data
                                                                 imageType:PARA_BACKGROUND];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{            
             if (output.resultCode == ERROR_SUCCESS){
-                // update avatar
+                // update background
                 NSString* retURL = [[output jsonDataDict] objectForKey:PARA_URL];
                 [[UserManager defaultManager] setBackground:retURL];
                 [[UserManager defaultManager] storeUserData];
@@ -1355,7 +1412,6 @@ static UserService* _defaultUserService;
             else{
                 EXECUTE_BLOCK(resultBlock, output.resultCode, nil);
             }
-            
         });
     });
 }
@@ -1374,7 +1430,11 @@ static UserService* _defaultUserService;
     [builder setDeviceId:deviceId];
     [builder setDeviceToken:deviceToken];
     
-    // TODO, more like country code, language
+    [builder setCountryCode:[LocaleUtils getCountryCode]];
+    [builder setLanguage:[LocaleUtils getLanguageCode]];
+    [builder setDeviceModel:[UIDevice currentDevice].model];
+    [builder setDeviceType:STRING_DEVICE_TYPE_IOS];
+    [builder setDeviceModel:[DeviceDetection deviceOS]];
     
     PBGameUser* newUser = [builder build];
     NSData* data = [newUser data];

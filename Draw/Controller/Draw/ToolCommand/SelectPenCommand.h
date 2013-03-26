@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "PenBox.h"
 
-@interface SelectPenCommand : ToolCommand
+@interface SelectPenCommand : ToolCommand<PenBoxDelegate>
 
 @end

@@ -622,6 +622,9 @@
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0
 
+#define DEVICE_TYPE_IOS                 1
+#define STRING_DEVICE_TYPE_IOS          @"1"
+
 extern NSString* GlobalGetServerURL();
 extern NSString* GlobalGetTrafficServerURL();
 extern NSString* GlobalGetBoardServerURL();

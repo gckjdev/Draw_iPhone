@@ -32,6 +32,24 @@
 #import "GameItemManager.h"
 #import "UIButton+WebCache.h"
 
+#import "AddColorCommand.h"
+#import "AlphaSliderCommand.h"
+#import "CanvasSizeCommand.h"
+#import "ChatCommand.h"
+#import "DrawBgCommand.h"
+#import "DrawToCommand.h"
+#import "EditDescCommand.h"
+#import "EraserCommand.h"
+#import "HelpCommand.h"
+#import "PaintBucketCommand.h"
+#import "PaletteCommand.h"
+#import "SelectPenCommand.h"
+#import "ShapeCommand.h"
+#import "WidthPickCommand.h"
+#import "WidthSliderCommand.h"
+#import "StrawCommand.h"
+#import "GridCommand.h"
+
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
 @interface DrawToolPanel ()
@@ -39,9 +57,12 @@
     NSTimer *timer;
     NSInteger _retainTime;
     DrawColorManager *drawColorManager;
+    ToolCommandManager *toolCmdManager;
 }
 
 #pragma mark - click actions
+
+- (IBAction)clickTool:(id)sender;
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
 - (IBAction)clickPalette:(id)sender;
@@ -83,8 +104,16 @@
 @property (retain, nonatomic) CMPopTipView *widthBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *shapeBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *drawBgBoxPopTipView;
+@property (retain, nonatomic) IBOutlet UIButton *paintBucket;
 
+@property (retain, nonatomic) IBOutlet UIButton *shape;
+@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
+@property (retain, nonatomic) IBOutlet UIButton *grid;
+@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
+@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
+@property (retain, nonatomic) IBOutlet UIButton *help;
 
+@property (retain, nonatomic) IBOutlet UIButton *drawBg;
 @property (retain, nonatomic) NSTimer *timer;
 
 - (IBAction)switchToolPage:(UIButton *)sender;
@@ -254,8 +283,71 @@
     
 }
 
+- (void)registerToolCommands
+{
+    toolCmdManager = [[ToolCommandManager alloc] init];
+    ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[PaletteCommand alloc] initWithControl:self.palette itemType:PaletteItem] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[SelectPenCommand alloc] initWithControl:self.pen itemType:Pencil] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[EraserCommand alloc] initWithControl:self.eraser itemType:Eraser] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    
+    command = [[[WidthPickCommand alloc] initWithControl:self.penWidth itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    
+    command = [[[WidthSliderCommand alloc] initWithControl:self.widthSlider itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[AlphaSliderCommand alloc] initWithControl:self.widthSlider itemType:ColorAlphaItem] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    //
+    command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeGrid] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ColorAlphaItem] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+
+    
+
+}
+
 - (void)updateView
 {
+    [self registerToolCommands];
+    
+
+    
     [self updateRecentColorViews];
     [self updateColorTools];
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
@@ -448,6 +540,10 @@
 
 
 - (IBAction)clickEraser:(id)sender {
+    [self clickTool:sender];
+    return;
+
+    
     [self selectEraser];
     [self dismissAllPopTipViews];
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
@@ -458,6 +554,9 @@
 
 
 - (IBAction)clickPaintBucket:(id)sender {
+    [self clickTool:sender];
+    return;
+
     [self selectPen];
     [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
@@ -489,16 +588,32 @@
 
 }
 
-- (IBAction)clickAddColor:(id)sender {
-    //Pop up add color box
-    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
-        return [ColorBox createViewWithdelegate:self];
-    } atView:sender setter:@selector(setColorBoxPopTipView:)];
-        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
+- (IBAction)clickTool:(id)sender
+{
+    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [[toolCmdManager commandForControl:sender] execute];    
 }
+
+- (IBAction)clickAddColor:(id)sender {
+    [self clickTool:sender];
+    //Pop up add color box
+//    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
+//        return [ColorBox createViewWithdelegate:self];
+//    } atView:sender setter:@selector(setColorBoxPopTipView:)];
+//        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
+}
+
+
 
 - (IBAction)clickPalette:(id)sender {
 
+    [self clickTool:sender];
+    return;
+    
+    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [[toolCmdManager commandForControl:sender] execute];
+    return;
+    
     if (self.palette.selected) {
         if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
             [_delegate drawToolPanel:self startToBuyItem:PaletteItem];
@@ -519,6 +634,9 @@
 }
 
 - (IBAction)clickPen:(id)sender {
+    [self clickTool:sender];
+    return;
+
     AnalyticsReport(DRAW_CLICK_PEN);
     //pop up pen box.
     [self handlePopTipView:_penPopTipView contentView:^UIView *{
@@ -810,6 +928,14 @@
     [_scrollView release];
     [_addColor release];
 
+    [_shape release];
+    [_paintBucket release];
+    [_drawBg release];
+    [_canvasSize release];
+    [_grid release];
+    [_opusDesc release];
+    [_drawToUser release];
+    [_help release];
     [super dealloc];
 }
 

@@ -1,15 +1,14 @@
 //
-//  EraserCommand.m
+//  StrawCommand.m
 //  Draw
 //
-//  Created by gamy on 13-3-25.
+//  Created by gamy on 13-3-26.
 //
 //
 
-#import "EraserCommand.h"
+#import "StrawCommand.h"
 
-@implementation EraserCommand
-
+@implementation StrawCommand
 - (BOOL)execute
 {
     if ([super execute]) {
@@ -35,7 +34,6 @@
 
 - (void)sendAnalyticsReport
 {
-    AnalyticsReport(DRAW_CLICK_ERASER);
+    AnalyticsReport(DRAW_CLICK_STRAW);
 }
-
 @end

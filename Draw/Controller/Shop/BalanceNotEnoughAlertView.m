@@ -33,8 +33,10 @@
 
 + (void)showInController:(UIViewController *)controller
 {
-    CommonDialog *view = [self createView:controller];
-    [view showInView:controller.view];
+    if (controller) {
+        CommonDialog *view = [self createView:controller];
+        [view showInView:controller.view];        
+    }
 }
 
 

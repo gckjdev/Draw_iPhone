@@ -121,7 +121,8 @@ enum {
     //section guessword
     if (isDrawApp()) {
         //no matter what the language is, the level is normal.
-        if (_pbUserBuilder.guessWordLanguage == ChineseType) {
+        if (_pbUserBuilder.guessWordLanguage == ChineseType ||
+            _pbUserBuilder.guessWordLanguage == UnknowType) {
             rowOfLanguage = 0;
             rowOfLevel = -1;
             rowOfCustomWord = 1;
@@ -459,11 +460,15 @@ enum {
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
         {
-            [cell.textLabel setText:NSLS(@"kLanguageSettings")];     
-            if (_pbUserBuilder.guessWordLanguage == ChineseType) {
-                [cell.detailTextLabel setText:NSLS(@"kChinese")];
-            }else{
-                [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+            [cell.textLabel setText:NSLS(@"kLanguageSettings")];
+            switch (_pbUserBuilder.guessWordLanguage){
+                case EnglishType:
+                    [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+                    break;
+                case ChineseType:
+                default:
+                    [cell.detailTextLabel setText:NSLS(@"kChinese")];
+                    break;
             }
         }else if(row == rowOfLevel){
             [cell.textLabel setText:NSLS(@"kLevelSettings")];     

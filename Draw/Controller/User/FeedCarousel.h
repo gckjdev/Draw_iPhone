@@ -16,4 +16,8 @@
 + (id)createFeedCarousel;
 - (void)setDrawFeedList;
 
+- (void)startScrolling;
+- (void)stopScrolling;
+- (void)enabaleWrap:(BOOL)wrap;
+
 @end
