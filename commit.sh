@@ -17,13 +17,20 @@ git checkout *xcuserstate
 git checkout *DS_Store
 echo ''
 
-echo $line' oh, commit files. comment: '"$@"" "$line
-git commit -m "$@"
+echo $line' oh, commit files. comment: '"$1"" "$line
+git commit -m "$1"
 echo ''
 
-echo $line' hey, pull code from server '$line
-git pull
-echo ''
+if [ x$2 = x ]
+    then
+        echo $line' hey, pull code from server '$line
+        git pull
+        echo ''
+    else
+        echo $line' Skip pull from server '$line
+fi
+
+
 
 echo $line' wow, push code to server '$line
 git push
