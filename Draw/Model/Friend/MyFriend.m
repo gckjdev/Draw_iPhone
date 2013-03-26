@@ -128,17 +128,17 @@
 
 - (BOOL)hasFollow
 {
-    return (self.relation & RelationTypeFollow) != 0;
+    return [MyFriend hasFollow:self.relation];
 }
 
 - (BOOL)hasBlack
 {
-    return (self.relation & RelationTypeBlack) != 0;
+    return [MyFriend hasBlack:self.relation];
 }
 
 - (BOOL)isMyFan
 {
-    return (self.relation & RelationTypeFan) != 0;
+    return [MyFriend isMyFan:self.relation];
 }
 - (BOOL)isMale
 {
@@ -216,6 +216,21 @@
     PPRelease(_location);
     
     [super dealloc];
+}
+
++ (BOOL)hasFollow:(RelationType)type
+{
+    return (type & RelationTypeFollow) != 0;
+}
+
++ (BOOL)hasBlack:(RelationType)type
+{
+    return (type & RelationTypeBlack) != 0;
+}
+
++ (BOOL)isMyFan:(RelationType)type
+{
+    return (type & RelationTypeFan) != 0;
 }
 
 @end
