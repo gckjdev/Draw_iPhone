@@ -21,7 +21,6 @@
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"
 
-
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -78,6 +77,8 @@
     
     BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
     [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
+    UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
+    [self.followButton setBackgroundImage:followBtnBg forState:UIControlStateNormal];
 }
 
 + (float)getCellHeight

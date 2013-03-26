@@ -1050,5 +1050,15 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"user_detail_tab_bg_pressed.png"];
 }
 
+- (UIImage*)userDetailFollowUserBtnBg
+{
+    return [UIImage imageNamed:@"user_detail_follow_bg.png"];
+}
+
+- (UIImage*)userDetailUnfollowUserBtnBg
+{
+    return [UIImage imageNamed:@"user_detail_unfollow_bg.png"];
+}
+
 @end
 
