@@ -715,7 +715,7 @@ enum {
 //            }];
 //            [dialog showInView:self.view];
 //        }
-            self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:YES];
+            self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
             [self.inputAlertView showInView:self.view animated:YES];
     
     }else if (section == SECTION_GUESSWORD) {
@@ -1170,6 +1170,14 @@ enum {
     [[UserManager defaultManager] setLocation:placemark.locality];
     [self.dataTableView reloadData];
 	//	NSLog(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.locality, placemark.thoroughfare, placemark.subThoroughfare);
+}
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    if (!ISIPAD) {
+        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+        [self.inputAlertView adjustWithKeyBoardRect:keyboardRect];
+    }
 }
 
 /*
