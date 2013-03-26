@@ -10,9 +10,15 @@
 #import "AutoCreateViewByXib.h"
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
+#import "DrawFeed.h"
+
+#define SCROLL_SPEED 0.1 //items per second, can be negative or fractional
 
 @interface FeedCarousel()
 @property (retain, nonatomic) NSArray *drawFeeds;
+@property (nonatomic, assign) NSTimer *scrollTimer;
+@property (nonatomic, assign) NSTimeInterval lastTime;
+@property (nonatomic, assign) BOOL wrap;
 
 @end
 
@@ -23,10 +29,14 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 + (id)createFeedCarousel
 {
     FeedCarousel *view = [self createView];
-    view.carousel.delegate = self;
-    view.carousel.dataSource = self;
-    view.carousel.type = iCarouselTypeCoverFlow2;
-
+    view.carousel.delegate = view;
+    view.carousel.dataSource = view;
+    view.carousel.type = iCarouselTypeCylinder;
+    
+//    CGSize offset = CGSizeMake(0.0f, -190);
+//    view.carousel.viewpointOffset = offset;
+//    offset = CGSizeMake(0.0f, -155);
+//    view.carousel.contentOffset = offset;
     return view;
 }
 
@@ -37,6 +47,8 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 }
 
 - (void)dealloc {
+    [_scrollTimer invalidate];
+    _scrollTimer = nil;
     _carousel.delegate = nil;
     _carousel.dataSource = nil;
     [_drawFeeds release];
@@ -51,7 +63,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return 5;
+    return 100;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(ReflectionView *)view
@@ -64,9 +76,12 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
         //set up reflection view
 		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)] autorelease];
         
+        DrawFeed *feed = [_drawFeeds objectAtIndex:index];
+        NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
+        
         button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+        [button setImageWithURL:url placeholderImage:nil];
         //set up content
-		button.backgroundColor = [UIColor lightGrayColor];
 		button.layer.borderColor = [UIColor whiteColor].CGColor;
         button.layer.borderWidth = 4.0f;
         button.layer.cornerRadius = 8.0f;
@@ -86,9 +101,46 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     //this step is expensive, so if you don't need
     //unique reflections for each item, don't do this
     //and you'll get much smoother peformance
-    [view update];
+//    [view update];
 	
 	return view;
+}
+
+- (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
+{
+    switch (option)
+    {
+        case iCarouselOptionWrap:
+            return _wrap;
+//        case iCarouselOptionShowBackfaces:
+//            return -0.2;
+//        case iCarouselOptionOffsetMultiplier:
+//            return -0.2;
+//        case iCarouselOptionVisibleItems:
+//            return -0.2;
+//        case iCarouselOptionCount:
+//            return -0.2;
+//        case iCarouselOptionArc:
+//            return -0.2;
+//        case iCarouselOptionAngle:
+//            return -0.2;
+//        case iCarouselOptionRadius:
+//            return -0.2;
+//        case iCarouselOptionTilt:
+//            return -0.2;
+        case iCarouselOptionSpacing:
+            // add a bit of spacing between the item views
+            return value * 1.05f;
+        case iCarouselOptionFadeMin:
+            return -0.2;
+        case iCarouselOptionFadeMax:
+            return 0.2;
+        case iCarouselOptionFadeRange:
+            return 2.0;
+        default:
+            return value;
+    }
+    return value;
 }
 
 - (void)clickFeedButton:(id)sender
@@ -97,7 +149,44 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     PPDebug(@"click button: %@", [button titleForState:UIControlStateNormal]);
 }
 
+#pragma mark -
+#pragma mark Autoscroll
 
+- (void)startScrolling
+{
+    [_scrollTimer invalidate];
+    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0
+                                                   target:self
+                                                 selector:@selector(scrollStep)
+                                                 userInfo:nil
+                                                  repeats:YES];
+}
 
+- (void)stopScrolling
+{
+    [_scrollTimer invalidate];
+    _scrollTimer = nil;
+}
+
+- (void)scrollStep
+{
+    //calculate delta time
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    float delta = _lastTime - now;
+    _lastTime = now;
+    
+    //don't autoscroll when user is manipulating carousel
+    if (!_carousel.dragging && !_carousel.decelerating)
+    {
+        //scroll carousel
+        _carousel.scrollOffset += delta * (float)(SCROLL_SPEED);
+    }
+}
+
+- (void)enabaleWrap:(BOOL)wrap
+{
+    self.wrap = wrap;
+    [self.carousel reloadData];
+}
 
 @end
