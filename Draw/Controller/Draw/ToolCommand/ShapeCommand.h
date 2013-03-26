@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "ShapeBox.h"
 
-@interface ShapeCommand : ToolCommand
+@interface ShapeCommand : ToolCommand<ShapeBoxDelegate>
 
 @end

@@ -50,7 +50,8 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeDesc:(NSString *)desc;
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
 - (void)usePaintBucket;
-
+- (void)enterDrawMode;
+- (void)enterStrawMode;
 @end
 
 

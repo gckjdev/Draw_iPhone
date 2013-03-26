@@ -66,6 +66,17 @@
 {
     
 }
+
+- (void)enterDrawMode
+{
+    
+}
+- (void)enterStrawMode
+{
+    
+}
+
+
 //- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 //{
 //    BOOL canRedo = [_drawView canRedo];
