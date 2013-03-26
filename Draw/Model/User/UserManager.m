@@ -117,6 +117,9 @@ static UserManager* _defaultManager;
     // set guess word language type
     [builder setGuessWordLanguage:[self getLanguageTypeFromOldStorage]];
     
+    // set device token
+    [builder setDeviceToken:[self getDeviceTokenFromOldStorage]];
+    
     self.pbUser = [builder build];
     return;    
 }
@@ -644,13 +647,7 @@ static UserManager* _defaultManager;
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceToken:deviceToken];
     self.pbUser = [builder build];
-//    [self storeUserData:self.pbUser];
-    
-    // store in user default also for device token, it's a special hanlding
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:deviceToken forKey:KEY_DEVICE_TOKEN];    
-    [userDefaults synchronize];
-    
+    [self storeUserData];    
 }
 
 - (void)setPassword:(NSString*)password
