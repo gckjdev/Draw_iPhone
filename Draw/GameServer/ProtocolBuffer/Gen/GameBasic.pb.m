@@ -746,6 +746,263 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 }
 @end
 
+@interface PBUserLevel ()
+@property (retain) NSString* gameId;
+@property int32_t level;
+@property int64_t exp;
+@end
+
+@implementation PBUserLevel
+
+- (BOOL) hasGameId {
+  return !!hasGameId_;
+}
+- (void) setHasGameId:(BOOL) value {
+  hasGameId_ = !!value;
+}
+@synthesize gameId;
+- (BOOL) hasLevel {
+  return !!hasLevel_;
+}
+- (void) setHasLevel:(BOOL) value {
+  hasLevel_ = !!value;
+}
+@synthesize level;
+- (BOOL) hasExp {
+  return !!hasExp_;
+}
+- (void) setHasExp:(BOOL) value {
+  hasExp_ = !!value;
+}
+@synthesize exp;
+- (void) dealloc {
+  self.gameId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.gameId = @"";
+    self.level = 1;
+    self.exp = 0L;
+  }
+  return self;
+}
+static PBUserLevel* defaultPBUserLevelInstance = nil;
++ (void) initialize {
+  if (self == [PBUserLevel class]) {
+    defaultPBUserLevelInstance = [[PBUserLevel alloc] init];
+  }
+}
++ (PBUserLevel*) defaultInstance {
+  return defaultPBUserLevelInstance;
+}
+- (PBUserLevel*) defaultInstance {
+  return defaultPBUserLevelInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGameId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGameId) {
+    [output writeString:1 value:self.gameId];
+  }
+  if (self.hasLevel) {
+    [output writeInt32:2 value:self.level];
+  }
+  if (self.hasExp) {
+    [output writeInt64:3 value:self.exp];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGameId) {
+    size += computeStringSize(1, self.gameId);
+  }
+  if (self.hasLevel) {
+    size += computeInt32Size(2, self.level);
+  }
+  if (self.hasExp) {
+    size += computeInt64Size(3, self.exp);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBUserLevel*) parseFromData:(NSData*) data {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromData:data] build];
+}
++ (PBUserLevel*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBUserLevel*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromInputStream:input] build];
+}
++ (PBUserLevel*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserLevel*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromCodedInputStream:input] build];
+}
++ (PBUserLevel*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserLevel*)[[[PBUserLevel builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserLevel_Builder*) builder {
+  return [[[PBUserLevel_Builder alloc] init] autorelease];
+}
++ (PBUserLevel_Builder*) builderWithPrototype:(PBUserLevel*) prototype {
+  return [[PBUserLevel builder] mergeFrom:prototype];
+}
+- (PBUserLevel_Builder*) builder {
+  return [PBUserLevel builder];
+}
+@end
+
+@interface PBUserLevel_Builder()
+@property (retain) PBUserLevel* result;
+@end
+
+@implementation PBUserLevel_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBUserLevel alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBUserLevel_Builder*) clear {
+  self.result = [[[PBUserLevel alloc] init] autorelease];
+  return self;
+}
+- (PBUserLevel_Builder*) clone {
+  return [PBUserLevel builderWithPrototype:result];
+}
+- (PBUserLevel*) defaultInstance {
+  return [PBUserLevel defaultInstance];
+}
+- (PBUserLevel*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBUserLevel*) buildPartial {
+  PBUserLevel* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBUserLevel_Builder*) mergeFrom:(PBUserLevel*) other {
+  if (other == [PBUserLevel defaultInstance]) {
+    return self;
+  }
+  if (other.hasGameId) {
+    [self setGameId:other.gameId];
+  }
+  if (other.hasLevel) {
+    [self setLevel:other.level];
+  }
+  if (other.hasExp) {
+    [self setExp:other.exp];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBUserLevel_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBUserLevel_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGameId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setLevel:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setExp:[input readInt64]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGameId {
+  return result.hasGameId;
+}
+- (NSString*) gameId {
+  return result.gameId;
+}
+- (PBUserLevel_Builder*) setGameId:(NSString*) value {
+  result.hasGameId = YES;
+  result.gameId = value;
+  return self;
+}
+- (PBUserLevel_Builder*) clearGameId {
+  result.hasGameId = NO;
+  result.gameId = @"";
+  return self;
+}
+- (BOOL) hasLevel {
+  return result.hasLevel;
+}
+- (int32_t) level {
+  return result.level;
+}
+- (PBUserLevel_Builder*) setLevel:(int32_t) value {
+  result.hasLevel = YES;
+  result.level = value;
+  return self;
+}
+- (PBUserLevel_Builder*) clearLevel {
+  result.hasLevel = NO;
+  result.level = 1;
+  return self;
+}
+- (BOOL) hasExp {
+  return result.hasExp;
+}
+- (int64_t) exp {
+  return result.exp;
+}
+- (PBUserLevel_Builder*) setExp:(int64_t) value {
+  result.hasExp = YES;
+  result.exp = value;
+  return self;
+}
+- (PBUserLevel_Builder*) clearExp {
+  result.hasExp = NO;
+  result.exp = 0L;
+  return self;
+}
+@end
+
 @interface PBGameUser ()
 @property (retain) NSString* userId;
 @property (retain) NSString* nickName;

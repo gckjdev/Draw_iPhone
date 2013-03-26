@@ -1002,8 +1002,9 @@ enum {
 
 - (void)uploadUserAvatar:(UIImage*)image
 {
+    [self showActivityWithText:NSLS(@"kSaving")];
     [[UserService defaultService] uploadUserAvatar:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
-        
+        [self hideActivity];
         if (resultCode == ERROR_SUCCESS && [imageRemoteURL length] > 0){
             [_pbUserBuilder setAvatar:imageRemoteURL];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarSucc") delayTime:1.5];
@@ -1020,7 +1021,10 @@ enum {
     if (hasEdited) {
         PBGameUser* user = [_pbUserBuilder build];
         self.pbUserBuilder = [PBGameUser builderWithPrototype:user];
+        
+        [self showActivityWithText:NSLS(@"kSaving")];
         [[UserService defaultService] updateUser:user resultBlock:^(int resultCode) {
+            [self hideActivity];
             if (resultCode == ERROR_SUCCESS){
                 
                 // clear edit flag
