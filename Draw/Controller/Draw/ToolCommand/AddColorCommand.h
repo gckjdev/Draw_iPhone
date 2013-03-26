@@ -7,7 +7,9 @@
 //
 
 #import "ToolCommand.h"
+#import "ColorBox.h"
+#import "ColorShopView.h"
 
-@interface AddColorCommand : ToolCommand
+@interface AddColorCommand : ToolCommand<ColorBoxDelegate, ColorShopViewDelegate>
 
 @end

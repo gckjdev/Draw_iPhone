@@ -18,6 +18,8 @@ typedef enum{
 }ToolEvent;
 
 @class ToolHandler;
+@class PBDrawBg;
+@class MyFriend;
 
 @protocol ToolHandlerDelegate <NSObject>
 
@@ -34,11 +36,26 @@ didHandledToolEvent:(ToolEvent)toolEvent
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
 @property(nonatomic, assign)PPTableViewController<ToolHandlerDelegate> *controller;
 
+@property (retain, nonatomic) DrawColor* eraserColor;
+@property (retain, nonatomic) DrawColor* penColor;
+@property (retain, nonatomic) DrawColor *tempColor;
+
+- (void)changePenColor:(DrawColor *)color;
+- (void)changeDrawBG:(PBDrawBg *)drawBG;
+- (void)changeInPenType:(ItemType)type;
+- (void)changeCanvasRect:(CGRect)rect;
+- (void)changeWidth:(CGFloat)width;
+- (void)changeAlpha:(CGFloat)alpha;
+- (void)changeShape:(ShapeType)shape;
+- (void)changeDesc:(NSString *)desc;
+- (void)changeDrawToFriend:(MyFriend *)aFriend;
+- (void)usePaintBucket;
+
 @end
 
 
 @interface ToolHandler(Online)
 
-
+- (void)handleChat:(NSString *)message;
 
 @end

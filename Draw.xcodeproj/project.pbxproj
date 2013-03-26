@@ -7013,10 +7013,10 @@
 		CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
-		CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54A1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54B1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54C1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
 		CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
 		CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
 		CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
@@ -10529,8 +10529,8 @@
 		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
 		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
 		CAEFC5421700024200D799B7 /* AddColorCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddColorCommand.m; sourceTree = "<group>"; };
-		CAEFC5471700026700D799B7 /* paletteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paletteCommand.h; sourceTree = "<group>"; };
-		CAEFC5481700026800D799B7 /* paletteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = paletteCommand.m; sourceTree = "<group>"; };
+		CAEFC5471700026700D799B7 /* PaletteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteCommand.h; sourceTree = "<group>"; };
+		CAEFC5481700026800D799B7 /* PaletteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteCommand.m; sourceTree = "<group>"; };
 		CAEFC54D1700036000D799B7 /* SelectPenCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPenCommand.h; sourceTree = "<group>"; };
 		CAEFC54E1700036200D799B7 /* SelectPenCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPenCommand.m; sourceTree = "<group>"; };
 		CAEFC5531700038600D799B7 /* EraserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EraserCommand.h; sourceTree = "<group>"; };
@@ -17660,8 +17660,8 @@
 				CAEFC5361700005400D799B7 /* ToolCommand.m */,
 				CAEFC5411700024100D799B7 /* AddColorCommand.h */,
 				CAEFC5421700024200D799B7 /* AddColorCommand.m */,
-				CAEFC5471700026700D799B7 /* paletteCommand.h */,
-				CAEFC5481700026800D799B7 /* paletteCommand.m */,
+				CAEFC5471700026700D799B7 /* PaletteCommand.h */,
+				CAEFC5481700026800D799B7 /* PaletteCommand.m */,
 				CAEFC54D1700036000D799B7 /* SelectPenCommand.h */,
 				CAEFC54E1700036200D799B7 /* SelectPenCommand.m */,
 				CAEFC5531700038600D799B7 /* EraserCommand.h */,
@@ -23546,7 +23546,7 @@
 				CAEFC5331700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5391700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54B1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5571700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55D170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -24326,7 +24326,7 @@
 				CAEFC5341700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC53A1700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54C1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5521700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5581700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55E170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -25115,7 +25115,7 @@
 				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5551700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55B170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -25903,7 +25903,7 @@
 				CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54A1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5561700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55C170003A000D799B7 /* PaintBucketCommand.m in Sources */,

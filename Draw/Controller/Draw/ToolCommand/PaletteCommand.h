@@ -8,6 +8,7 @@
 
 #import "ToolCommand.h"
 
-@interface paletteCommand : ToolCommand
+@interface PaletteCommand : ToolCommand
 
 @end
+

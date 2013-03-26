@@ -10,4 +10,13 @@
 
 @implementation PaintBucketCommand
 
+- (BOOL)execute
+{
+//    if ([super execute]) {
+        [self.toolHandler usePaintBucket];
+        return YES;
+//    }
+//    return NO;
+}
+
 @end

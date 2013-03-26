@@ -32,6 +32,10 @@
 #import "GameItemManager.h"
 #import "UIButton+WebCache.h"
 
+#import "ToolCommand.h"
+#import "PaletteCommand.h"
+#import "AddColorCommand.h"
+
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
 @interface DrawToolPanel ()
@@ -39,6 +43,7 @@
     NSTimer *timer;
     NSInteger _retainTime;
     DrawColorManager *drawColorManager;
+    ToolCommandManager *toolCmdManager;
 }
 
 #pragma mark - click actions
@@ -254,8 +259,22 @@
     
 }
 
+- (void)registerToolCommands
+{
+    toolCmdManager = [[ToolCommandManager alloc] init];
+    ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    command = [[[PaletteCommand alloc] initWithControl:self.palette itemType:PaletteItem] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+}
+
 - (void)updateView
 {
+    [self registerToolCommands];
+    
+
+    
     [self updateRecentColorViews];
     [self updateColorTools];
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
@@ -490,15 +509,22 @@
 }
 
 - (IBAction)clickAddColor:(id)sender {
+    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [[toolCmdManager commandForControl:sender] execute];
+
     //Pop up add color box
-    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
-        return [ColorBox createViewWithdelegate:self];
-    } atView:sender setter:@selector(setColorBoxPopTipView:)];
-        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
+//    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
+//        return [ColorBox createViewWithdelegate:self];
+//    } atView:sender setter:@selector(setColorBoxPopTipView:)];
+//        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
 }
 
 - (IBAction)clickPalette:(id)sender {
 
+    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [[toolCmdManager commandForControl:sender] execute];
+    return;
+    
     if (self.palette.selected) {
         if (_delegate && [_delegate respondsToSelector:@selector(drawToolPanel:startToBuyItem:)]) {
             [_delegate drawToolPanel:self startToBuyItem:PaletteItem];
