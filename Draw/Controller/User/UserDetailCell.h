@@ -38,6 +38,7 @@ typedef enum {
 - (void)didclickQQ;
 - (void)didclickFacebook;
 - (void)didSelectTabAction:(DetailTabAction)tabAction;
+- (void)didClickMore;
 @end
 
 @interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate>
@@ -73,5 +74,5 @@ typedef enum {
 
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
-
+- (void)setDrawFeedList:(NSArray*)feedList;
 @end

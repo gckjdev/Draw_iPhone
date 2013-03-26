@@ -251,5 +251,10 @@
     
 }
 
+- (void)setDrawFeedList:(NSArray*)feedList
+{
+    [self.carousel setDrawFeedList:feedList];
+}
+
 
 @end
