@@ -23,7 +23,7 @@
     NSInteger rowOfGender;
     NSInteger rowOfNickName;
     NSInteger rowOfBirthday;
-    NSInteger rowOfBloodGropu;
+    NSInteger rowOfBloodGroup;
     NSInteger rowOfLocation;
     NSInteger rowOfZodiac;
     NSInteger rowOfSignature;

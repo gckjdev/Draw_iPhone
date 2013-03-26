@@ -1092,7 +1092,10 @@
 "kUpdateAvatarFail" = "頭像上傳失敗，請稍候重試";
 "kPasswordSet" = "密碼已設置";
 "kUploading" = "上傳數據中...";
-
+"kUnknown" = "未知";
+"kInputSignature" = "輸入個性簽名";
+"kGetLocationTitle" = "定位";
+"kGetLocationMsg" = "應用即將獲取你的位置，按確定繼續。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
