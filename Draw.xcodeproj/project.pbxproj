@@ -7090,6 +7090,18 @@
 		CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF839CF170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
+		CAF839D0170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
+		CAF839D1170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
+		CAF839D2170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
+		CAF839D41701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
+		CAF839D51701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
+		CAF839D61701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
+		CAF839D71701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
+		CAF839D91701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
+		CAF839DA1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
+		CAF839DB1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
+		CAF839DC1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
@@ -10588,6 +10600,10 @@
 		CAF839BD1701507B00494ED6 /* StrawCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawCommand.m; sourceTree = "<group>"; };
 		CAF839C71701520900494ED6 /* GridCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCommand.h; sourceTree = "<group>"; };
 		CAF839C81701520A00494ED6 /* GridCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCommand.m; sourceTree = "<group>"; };
+		CAF839CD170174F300494ED6 /* CanvasRectBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasRectBox.h; sourceTree = "<group>"; };
+		CAF839CE170174F500494ED6 /* CanvasRectBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasRectBox.m; sourceTree = "<group>"; };
+		CAF839D31701751B00494ED6 /* CanvasRectBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanvasRectBox.xib; sourceTree = "<group>"; };
+		CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CanvasRectBox~ipad.xib"; sourceTree = "<group>"; };
 		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
 		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
 		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
@@ -14722,6 +14738,10 @@
 				CA9A7EC216DC57B10089BD51 /* ShapeBox.m */,
 				CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */,
 				CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */,
+				CAF839CD170174F300494ED6 /* CanvasRectBox.h */,
+				CAF839CE170174F500494ED6 /* CanvasRectBox.m */,
+				CAF839D31701751B00494ED6 /* CanvasRectBox.xib */,
+				CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -20041,6 +20061,8 @@
 				CAEFC4F216FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C216FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7417002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
+				CAF839D61701751D00494ED6 /* CanvasRectBox.xib in Resources */,
+				CAF839DB1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20933,6 +20955,8 @@
 				CAEFC4F316FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C316FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7517002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
+				CAF839D71701751D00494ED6 /* CanvasRectBox.xib in Resources */,
+				CAF839DC1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21912,6 +21936,8 @@
 				C2C2A1C016FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7217002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
 				A40EE828170053C2003B8FFC /* FeedCarousel.xib in Resources */,
+				CAF839D41701751D00494ED6 /* CanvasRectBox.xib in Resources */,
+				CAF839D91701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22809,6 +22835,8 @@
 				CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C116FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7317002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
+				CAF839D51701751D00494ED6 /* CanvasRectBox.xib in Resources */,
+				CAF839DA1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23610,6 +23638,7 @@
 				CAEFC5A5170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839C01701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */,
+				CAF839D1170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24392,6 +24421,7 @@
 				CAEFC5A6170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839C11701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */,
+				CAF839D2170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25185,6 +25215,7 @@
 				A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */,
 				CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
+				CAF839CF170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25975,6 +26006,7 @@
 				CAEFC5A4170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839BF1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */,
+				CAF839D0170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

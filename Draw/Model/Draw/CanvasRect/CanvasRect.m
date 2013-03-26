@@ -33,7 +33,7 @@
 
 @implementation CanvasRect
 
-- (id)initWithCanvasStyle:(CanvasRectStype)style
+- (id)initWithCanvasStyle:(CanvasRectStyle)style
 {
     self = [super init];
     if (self) {
@@ -42,12 +42,12 @@
     return self;
 }
 
-+ (CanvasRect *)canvasRectWithStyle:(CanvasRectStype)style;
++ (CanvasRect *)canvasRectWithStyle:(CanvasRectStyle)style;
 {
     return [[[CanvasRect alloc] initWithCanvasStyle:style] autorelease];
 }
 
-+ (CGRect)rectForCanvasRectStype:(CanvasRectStype)style
++ (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style
 {
     switch (style) {
         case iPhoneDefaultRect:
