@@ -323,7 +323,9 @@ NSString* GlobalGetBoardServerURL()
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     //sync level details
-    [[LevelService defaultService] syncExpAndLevel:SYNC];
+    
+    // TODO merge to sync user account and item
+//    [[LevelService defaultService] syncExpAndLevel:SYNC];
     
 
     [[BBSService defaultService] getBBSPrivilegeList];//kira:get bbs permission first, for super user manage

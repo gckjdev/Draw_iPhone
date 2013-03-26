@@ -27,6 +27,11 @@ message PBSNSUser {
   optional string qqOpenId  = 8;                // QQ Weibo Only
 }
 
+message PBUserLevel{
+  required string gameId = 1;
+  optional int32  level = 2 [default=1];
+  optional int64  exp = 3 [default=0];
+}
 
 message PBGameUser {
   required string userId = 1;                   // 用户ID
@@ -55,10 +60,8 @@ message PBGameUser {
   optional string language = 39;                    // 设备语言，如 zh_Hans
 
   // level & experience
-  optional int32  level = 41;
-  optional int64  experience = 42;
-
-
+  optional int32  level = 41;                       // 当前游戏的等级
+  optional int64  experience = 42;                  // 当前游戏的经验
   
   // account info
   optional int32  coinBalance = 51;                 // 金币余额
@@ -84,7 +87,7 @@ message PBGameUser {
 
   optional string signature = 100;
   
-
+  
 }
 
 message PBGameSession {

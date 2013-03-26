@@ -33,21 +33,22 @@
 
 @implementation CanvasRect
 
-- (id)initWithCanvasStyle:(CanvasRectStype)style
+- (id)initWithCanvasStyle:(CanvasRectStyle)style
 {
     self = [super init];
     if (self) {
         self.rect = [CanvasRect rectForCanvasRectStype:style];
+        self.style = style;
     }
     return self;
 }
 
-+ (CanvasRect *)canvasRectWithStyle:(CanvasRectStype)style;
++ (CanvasRect *)canvasRectWithStyle:(CanvasRectStyle)style;
 {
     return [[[CanvasRect alloc] initWithCanvasStyle:style] autorelease];
 }
 
-+ (CGRect)rectForCanvasRectStype:(CanvasRectStype)style
++ (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style
 {
     switch (style) {
         case iPhoneDefaultRect:
@@ -112,6 +113,15 @@
     return IPHONE_DEPRECATED_RECT;
 }
 
++ (CanvasRectStyle)defaultCanvasRectStyle
+{
+    if (ISIPAD) {
+        return iPadDefaultRect;
+    }
+    return iPhoneDefaultRect;
+
+}
+
 + (CGRect)defaultRect
 {
     if (ISIPAD) {
@@ -126,79 +136,40 @@
     return [CanvasRect rectForCanvasRectStype:rand];
 }
 
-@end
-
-static const CGRect* getRectList()
++ (CanvasRectStyle *)getRectStyleList
 {
-//    if (ISIPAD) {
-    static const CGRect list[] = {
+    //    if (ISIPAD) {
+    static CanvasRectStyle list[] = {
         iPhoneDefaultRect,
         iPadDefaultRect,
-        iPadHorizontalRect,
-        iPadVerticalRect,
         iPadLargeRect,
+        
+        iPadHorizontalRect,
         iPadScreenHorizontalRect,
-        iPadScreenVerticalRect,
         iPhone5HorizontalRect,
+        
+        iPadVerticalRect,
+        iPadScreenVerticalRect,
         iPhone5VerticalRect,
+        
         CanvasRectEnd
     };
     return list;
 }
 
 
-#import "UIViewUtils.h"
-@interface CanvasRectView()
 
-@property(nonatomic, retain)UILabel *title;
-
-@end
-
-@implementation CanvasRectView
-
-#define WIDTH (ISIPAD ? 200 : 100)
-#define BORDER_WIDTH (ISIPAD ? 4 : 2)
-
-- (void)dealloc
++ (CanvasRectStyle)canvasRectStyleFromItemType:(ItemType)itemType
 {
-    PPRelease(_title);
-    [super dealloc];
+    return itemType - CanvasRectStart;
 }
-
-- (void)setSelected:(BOOL)selected
++ (ItemType)itemTypeFromCanvasRectStyle:(CanvasRectStyle)canvasRectStyle
 {
-    [super setSelected:selected];
-    if (selected) {
-        [self.title setTextColor:[UIColor redColor]];
-    }else{
-        [self.title setTextColor:[UIColor blackColor]];
-    }
-}
-
-- (CGRect)scaleRect:(CGRect)rect
-{
-    CGFloat scale = WIDTH / MAX_WIDTH;
-    rect.size.width *= scale;
-    rect.size.height *= scale;
-    return rect;
-}
-
-- (id)initWithCanvasRect:(CGRect)rect
-{
-    self = [super initWithFrame:CGRectMake(0, 0, WIDTH, WIDTH)];
-    if (self) {
-        self.title = [[[UILabel alloc] initWithFrame:[self scaleRect:rect]] autorelease];
-        [self.title setCenter:CGRectGetCenter(self.bounds)];
-        [self addSubview:_title];
-        
-        [_title.layer setBorderWidth:BORDER_WIDTH];
-        [_title.layer setBorderColor:[UIColor blackColor].CGColor];
-        
-        NSString *txt = [NSString stringWithFormat:@"%.0f X %.0f",rect.size.width, rect.size.height];
-        [_title setText:txt];
-    }
-    return self;
+    return CanvasRectStart + canvasRectStyle;
 }
 
 
 @end
+
+
+

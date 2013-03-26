@@ -22,7 +22,6 @@
 #import "FeedCarousel.h"
 
 
-
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -73,11 +72,17 @@
     [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
     [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
     
+    
+    BOOL hasBlack = [MyFriend hasBlack:[detail relation]];
+    [self.blackListBtn setTitle:(hasBlack?NSLS(@"kUnblack"):NSLS(@"kBlack")) forState:UIControlStateNormal];
+    
+    BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
+    [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
 }
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1600:800);
+    return ([DeviceDetection isIPAD]?1884:785);
 }
 
 + (NSString*)getCellIdentifier
@@ -248,7 +253,9 @@
 
 - (IBAction)clickMore:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickMore)]) {
+        [_detailDelegate didClickMore];
+    }
 }
 
 - (void)setDrawFeedList:(NSArray*)feedList

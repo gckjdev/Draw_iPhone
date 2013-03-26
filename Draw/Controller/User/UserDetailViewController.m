@@ -29,7 +29,7 @@
 #import "CommonDialog.h"
 #import "FeedService.h"
 #import "Feed.h"
-
+#import "UserFeedController.h"
 
 #define    ROW_COUNT 1
 
@@ -110,11 +110,10 @@
 {
     if (!self.detailCell) {
         self.detailCell = [UserDetailCell createCell:self];
-        
-        if (self.detailCell) {
-            [self.detailCell setCellWithUserDetail:self.detail];
-            self.detailCell.detailDelegate = self;
-        }
+        self.detailCell.detailDelegate = self;
+    }
+    if (self.detailCell) {
+        [self.detailCell setCellWithUserDetail:self.detail];
     }
     
     return self.detailCell;
@@ -216,6 +215,13 @@
         [action showInController:self];
     }
     
+}
+- (void)didClickMore
+{
+    UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
+                                                               nickName:[self.detail queryUser].nickName];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)askFollowUserWithSnsType:(int)snsType

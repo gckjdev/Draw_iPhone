@@ -69,7 +69,7 @@
 
 - (RelationType)relation
 {
-    return RelationTypeNo;
+    return RelationTypeSelf;
 }
 
 - (void)setRelation:(RelationType)relation

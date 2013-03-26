@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DrawUtils.h"
+#import "ItemType.h"
 
 typedef enum{
     CanvasRectEnd = -1,
+    CanvasRectNo = 0,
     iPhoneDefaultRect = 1,
     iPadDefaultRect,
     
@@ -19,38 +21,32 @@ typedef enum{
     iPadLargeRect,
     iPadScreenHorizontalRect,
     iPadScreenVerticalRect,
-//    iPhone3ScreenRect,
+
     iPhone5HorizontalRect,
     iPhone5VerticalRect,
     
     iPhoneDeprecatedRect = 10000,
     iPadDeprecatedRect = 10001,
-}CanvasRectStype;
+}CanvasRectStyle;
 
 @interface CanvasRect : NSObject
 
 @property(nonatomic, assign)CGRect rect;
+@property(nonatomic, assign)CanvasRectStyle style;
 
-+ (CanvasRect *)canvasRectWithStyle:(CanvasRectStype)style;
-+ (CGRect)rectForCanvasRectStype:(CanvasRectStype)style;
++ (CanvasRect *)canvasRectWithStyle:(CanvasRectStyle)style;
++ (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style;
 + (CGRect)deprecatedRect;
 + (CGRect)defaultRect;
++ (CanvasRectStyle)defaultCanvasRectStyle;
 + (CGRect)deprecatedIPhoneRect;
 + (CGRect)randRect;
++ (CanvasRectStyle *)getRectStyleList;
++ (CanvasRectStyle)canvasRectStyleFromItemType:(ItemType)itemType;
++ (ItemType)itemTypeFromCanvasRectStyle:(CanvasRectStyle)canvasRectStyle;
 
 @end
 
 
-static const CGRect* getRectList();
 
-//static CGRect* getIPhoneRectList;
-
-@interface CanvasRectView : UIControl
-{
-    
-}
-
-- (id)initWithCanvasRect:(CGRect)rect;
-
-@end
 

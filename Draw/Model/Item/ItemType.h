@@ -48,6 +48,22 @@ typedef enum
     VeinsBackground = 1200,         //纹理背景
     
     BasicShape = 1300,              //基本形状
+
+    
+    CanvasRectStart = 1400,              //画布尺寸
+
+    CanvasRectiPhoneDefault,
+    CanvasRectiPadDefault,
+    CanvasRectiPadHorizontal,
+    CanvasRectiPadVertical,
+    CanvasRectiPadLarge,
+    CanvasRectiPadScreenHorizontal,
+    CanvasRectiPadScreenVertical,
+    CanvasRectiPhone5Horizontal,
+    CanvasRectiPhone5Vertical,
+    
+
+    
     
     //Liar dice.
 //    ItemTypeChangeDice = 2000,
@@ -77,4 +93,9 @@ typedef enum
     ItemTypeCustomDiceGreenDiamondDice = 2510,
     ItemTypeCustomDicePurpleDiamondDice = 2511,
     ItemTypeCustomDiceEnd = 2512
+    
+    
+    
 }ItemType;
+
+

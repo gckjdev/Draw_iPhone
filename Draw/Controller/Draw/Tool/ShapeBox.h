@@ -16,7 +16,6 @@
 
 @optional
 - (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type;
-- (void)dismissShapeBox:(ShapeBox *)shapeBox;
 
 @end
 

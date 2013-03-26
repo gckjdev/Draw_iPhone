@@ -14,6 +14,7 @@
 //public static final int RELATION_FOLLOW = 1;
 
 typedef enum{
+    RelationTypeSelf = -1,
     RelationTypeNo = 0,
     RelationTypeFollow = 1,
     RelationTypeFan = 2,
@@ -91,4 +92,8 @@ typedef enum{
 - (BOOL)isFacebookUser;
 - (NSString *)genderDesc;
 - (BOOL)hasBlack;
+
++ (BOOL)hasFollow:(RelationType)type;
++ (BOOL)hasBlack:(RelationType)type;
++ (BOOL)isMyFan:(RelationType)type;
 @end

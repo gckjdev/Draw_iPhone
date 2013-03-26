@@ -63,10 +63,10 @@ typedef enum {
 
 - (long)expRequiredForNextLevel;
 
-- (void)syncExpAndLevel:(PPViewController*)viewController 
-                   type:(int)type;
-- (void)syncExpAndLevel:(int)type;
-- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp;
+//- (void)syncExpAndLevel:(PPViewController*)viewController 
+//                   type:(int)type;
+//- (void)syncExpAndLevel:(int)type;
+//- (void)syncExpAndLevel:(int)type awardExp:(long)awardExp;
 
 //- (void)initLevelDict;
 //methods below for the one

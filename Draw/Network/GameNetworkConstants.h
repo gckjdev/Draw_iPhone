@@ -113,7 +113,8 @@
 #define METHOD_FINDDRAW @"fd"
 
 //for levelService
-#define METHOD_SYND_LEVEL_EXP   @"sle"
+#define METHOD_SYND_LEVEL_EXP           @"sle"
+#define METHOD_INCREASE_EXPERIENCE      @"increaseExp"
 
 //for Draw offline
 #define METHOD_CREATE_OPUS @"cop"
