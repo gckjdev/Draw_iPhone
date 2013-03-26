@@ -873,6 +873,10 @@
 		C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */; };
 		C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */; };
 		C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */; };
+		C2B6067917017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */; };
+		C2B6067A17017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */; };
+		C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
+		C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
 		C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
@@ -8182,6 +8186,8 @@
 		C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailCell~ipad.xib"; sourceTree = "<group>"; };
+		C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailViewController~ipad.xib"; sourceTree = "<group>"; };
 		C2B97A2816F999200037B15B /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
 		C2B97A2916F999200037B15B /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
 		C2B97A2A16F999200037B15B /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
@@ -14417,6 +14423,7 @@
 		CA32213A151DEDBF0039A384 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */,
 				C2B97A2816F999200037B15B /* UserDetailCell.m */,
 				C2B97A2916F999200037B15B /* UserDetailCell.xib */,
 				C2B97A2A16F999200037B15B /* UserDetailCell.h */,
@@ -14433,6 +14440,7 @@
 				C250787416F710B7009B7ED2 /* UserDetailViewController.h */,
 				C250787516F710B7009B7ED2 /* UserDetailViewController.m */,
 				C250787616F710B7009B7ED2 /* UserDetailViewController.xib */,
+				C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */,
 				A40EE824170053A5003B8FFC /* FeedCarousel.h */,
 				A40EE825170053A5003B8FFC /* FeedCarousel.m */,
 				A40EE827170053C2003B8FFC /* FeedCarousel.xib */,
@@ -21912,6 +21920,8 @@
 				C2C2A1C016FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7217002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
 				A40EE828170053C2003B8FFC /* FeedCarousel.xib in Resources */,
+				C2B6067917017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */,
+				C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22809,6 +22819,8 @@
 				CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C116FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7317002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
+				C2B6067A17017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */,
+				C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
