@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "DrawBgBox.h"
 
-@interface DrawBgCommand : ToolCommand
+@interface DrawBgCommand : ToolCommand<DrawBgBoxDelegate>
 
 @end

@@ -40,6 +40,14 @@ didHandledToolEvent:(ToolEvent)toolEvent
 @property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawColor *tempColor;
 
+@property (assign, nonatomic) BOOL grid;
+
+
+//method from draw view
+- (CGFloat)width;
+- (PBDrawBg *)drawBG;
+
+
 - (void)changePenColor:(DrawColor *)color;
 - (void)changeDrawBG:(PBDrawBg *)drawBG;
 - (void)changeInPenType:(ItemType)type;
@@ -50,7 +58,9 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeDesc:(NSString *)desc;
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
 - (void)usePaintBucket;
-
+- (void)enterDrawMode;
+- (void)enterStrawMode;
+- (void)useGid:(BOOL)flag;
 @end
 
 

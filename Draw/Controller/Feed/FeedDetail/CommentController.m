@@ -10,6 +10,13 @@
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 
+@interface CommentController ()
+{
+    BOOL canSend;
+}
+
+@end
+
 @implementation CommentController
 @synthesize contentView;
 @synthesize inputBGView;
@@ -22,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        canSend = YES;
     }
     return self;
 }
@@ -94,6 +102,10 @@
 
 - (void)sendComment
 {
+    if (!canSend) {
+        return;
+    }
+    canSend = NO;
     NSString *msg = contentView.text;
     if ([msg length] != 0) {
         [self showActivityWithText:NSLS(@"kSending")];
@@ -153,6 +165,7 @@
             resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
+    canSend = YES;
     if (resultCode == 0) {
         [self.contentView setText:nil];
         [self.feed incTimesForType:FeedTimesTypeComment];

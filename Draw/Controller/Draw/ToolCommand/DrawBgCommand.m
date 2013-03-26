@@ -10,4 +10,26 @@
 
 @implementation DrawBgCommand
 
+- (UIView *)contentView
+{
+    DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
+    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
+    return drawBgBox;
+}
+
+- (BOOL)execute
+{
+    if ([super execute]) {
+        [self showPopTipView];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg
+{
+    [self.toolHandler changeDrawBG:drawBg];
+    [self hidePopTipView];
+}
+
 @end

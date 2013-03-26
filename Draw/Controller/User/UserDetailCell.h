@@ -38,6 +38,7 @@ typedef enum {
 - (void)didclickQQ;
 - (void)didclickFacebook;
 - (void)didSelectTabAction:(DetailTabAction)tabAction;
+- (void)didClickMore;
 @end
 
 @interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate>
@@ -68,9 +69,10 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *facebookBtn;
 @property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
-@property (retain, nonatomic) NSArray* feedArray;
+
+@property (retain, nonatomic) IBOutlet UIView *feedPlaceHolderView;
 
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
-
+- (void)setDrawFeedList:(NSArray*)feedList;
 @end

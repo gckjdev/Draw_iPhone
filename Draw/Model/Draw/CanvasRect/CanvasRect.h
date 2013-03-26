@@ -25,32 +25,23 @@ typedef enum{
     
     iPhoneDeprecatedRect = 10000,
     iPadDeprecatedRect = 10001,
-}CanvasRectStype;
+}CanvasRectStyle;
 
 @interface CanvasRect : NSObject
 
 @property(nonatomic, assign)CGRect rect;
 
-+ (CanvasRect *)canvasRectWithStyle:(CanvasRectStype)style;
-+ (CGRect)rectForCanvasRectStype:(CanvasRectStype)style;
++ (CanvasRect *)canvasRectWithStyle:(CanvasRectStyle)style;
++ (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style;
 + (CGRect)deprecatedRect;
 + (CGRect)defaultRect;
 + (CGRect)deprecatedIPhoneRect;
 + (CGRect)randRect;
++ (CanvasRectStyle *)getRectStyleList;
+
 
 @end
 
 
-static const CGRect* getRectList();
 
-//static CGRect* getIPhoneRectList;
-
-@interface CanvasRectView : UIControl
-{
-    
-}
-
-- (id)initWithCanvasRect:(CGRect)rect;
-
-@end
 

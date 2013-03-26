@@ -47,8 +47,8 @@
 #import "ShapeCommand.h"
 #import "WidthPickCommand.h"
 #import "WidthSliderCommand.h"
-
-
+#import "StrawCommand.h"
+#import "GridCommand.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -104,8 +104,16 @@
 @property (retain, nonatomic) CMPopTipView *widthBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *shapeBoxPopTipView;
 @property (retain, nonatomic) CMPopTipView *drawBgBoxPopTipView;
+@property (retain, nonatomic) IBOutlet UIButton *paintBucket;
 
+@property (retain, nonatomic) IBOutlet UIButton *shape;
+@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
+@property (retain, nonatomic) IBOutlet UIButton *grid;
+@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
+@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
+@property (retain, nonatomic) IBOutlet UIButton *help;
 
+@property (retain, nonatomic) IBOutlet UIButton *drawBg;
 @property (retain, nonatomic) NSTimer *timer;
 
 - (IBAction)switchToolPage:(UIButton *)sender;
@@ -290,8 +298,48 @@
     command = [[[EraserCommand alloc] initWithControl:self.eraser itemType:Eraser] autorelease];
     [toolCmdManager registerCommand:command];
 
+    command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
     
     
+    command = [[[WidthPickCommand alloc] initWithControl:self.penWidth itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    
+    command = [[[WidthSliderCommand alloc] initWithControl:self.widthSlider itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[AlphaSliderCommand alloc] initWithControl:self.widthSlider itemType:ColorAlphaItem] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    //
+    command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ColorAlphaItem] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+
+    
+
 }
 
 - (void)updateView
@@ -880,6 +928,14 @@
     [_scrollView release];
     [_addColor release];
 
+    [_shape release];
+    [_paintBucket release];
+    [_drawBg release];
+    [_canvasSize release];
+    [_grid release];
+    [_opusDesc release];
+    [_drawToUser release];
+    [_help release];
     [super dealloc];
 }
 

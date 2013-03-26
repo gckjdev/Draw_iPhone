@@ -19,13 +19,13 @@
 #import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
-
-
+#import "FeedCarousel.h"
 
 
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
+@property (retain, nonatomic) FeedCarousel *carousel;
 
 @end
 
@@ -72,11 +72,17 @@
     [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
     [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
     
+    
+    BOOL hasBlack = [MyFriend hasBlack:[detail relation]];
+    [self.blackListBtn setTitle:(hasBlack?NSLS(@"kUnblack"):NSLS(@"kBlack")) forState:UIControlStateNormal];
+    
+    BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
+    [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
 }
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1600:800);
+    return ([DeviceDetection isIPAD]?1884:785);
 }
 
 + (NSString*)getCellIdentifier
@@ -97,6 +103,13 @@
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     
+    cell.carousel = [FeedCarousel createFeedCarousel];
+    cell.carousel.center = cell.feedPlaceHolderView.center;
+    [cell addSubview:cell.carousel];
+    
+    [cell.carousel startScrolling];
+    [cell.carousel enabaleWrap:YES];
+    
     return cell;
 }
 
@@ -110,6 +123,7 @@
 */
 
 - (void)dealloc {
+    [_carousel release];
     [_nickNameLabel release];
     [_signLabel release];
     [_levelLabel release];
@@ -136,6 +150,7 @@
     [_superBlackBtn release];
     [_feedTabHolder release];
     [_segmentedControl release];
+    [_feedPlaceHolderView release];
     [super dealloc];
 }
 
@@ -238,7 +253,14 @@
 
 - (IBAction)clickMore:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickMore)]) {
+        [_detailDelegate didClickMore];
+    }
+}
+
+- (void)setDrawFeedList:(NSArray*)feedList
+{
+    [self.carousel setDrawFeedList:feedList];
 }
 
 

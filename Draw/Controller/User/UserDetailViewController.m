@@ -29,7 +29,7 @@
 #import "CommonDialog.h"
 #import "FeedService.h"
 #import "Feed.h"
-
+#import "UserFeedController.h"
 
 #define    ROW_COUNT 1
 
@@ -41,6 +41,7 @@
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
 @property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (retain, nonatomic) UserDetailCell* detailCell;
 
 @end
 
@@ -54,6 +55,8 @@
         _guessedList = [[NSMutableArray alloc] init];
         _favouriateList = [[NSMutableArray alloc] init];
     }
+    
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -95,6 +98,7 @@
     PPRelease(_favouriateList);
     PPRelease(_opusList);
     PPRelease(_guessedList);
+    PPRelease(_detailCell);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -104,13 +108,15 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UserDetailCell* cell = [UserDetailCell createCell:self];
-    
-    if (cell) {
-        [cell setCellWithUserDetail:self.detail];
-        cell.detailDelegate = self;
+    if (!self.detailCell) {
+        self.detailCell = [UserDetailCell createCell:self];
+        self.detailCell.detailDelegate = self;
     }
-    return cell;
+    if (self.detailCell) {
+        [self.detailCell setCellWithUserDetail:self.detail];
+    }
+    
+    return self.detailCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -209,6 +215,13 @@
         [action showInController:self];
     }
     
+}
+- (void)didClickMore
+{
+    UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
+                                                               nickName:[self.detail queryUser].nickName];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)askFollowUserWithSnsType:(int)snsType
@@ -321,8 +334,7 @@
 
 - (void)didImageSelected:(UIImage *)image
 {
-    UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
-    [cell.avatarView setImage:image];
+    [self.detailCell.avatarView setImage:image];
     
 }
 
@@ -337,13 +349,20 @@
         switch (type) {
             case FeedListTypeUserFeed: {
                 for (Feed* feed in feedList) {
-                    if (feed.feedType == FeedTypeGuess) {
+                    if ([feed isKindOfClass:[GuessFeed class]]) {
                         [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
                     }
                 }
+                [[self detailCell] setDrawFeedList:self.guessedList];
             } break;
             case FeedListTypeUserOpus: {
-                [self.opusList addObjectsFromArray:feedList];
+                for (Feed* feed in feedList) {
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.opusList addObject:feed];
+                    }
+                }
+                UserDetailCell* cell = [self detailCell];
+                [cell setDrawFeedList:self.opusList];
             }
             default:
                 break;

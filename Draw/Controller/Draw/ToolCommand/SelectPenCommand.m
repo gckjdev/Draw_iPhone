@@ -38,6 +38,7 @@
 - (void)buyItemSuccessfully:(ItemType)type
 {
     [self updatePenWithPenType:type];
+    [self hidePopTipView];
 }
 
 
@@ -52,6 +53,8 @@
 {
     if ([self canUseItem:penType]) {
         [self updatePenWithPenType:penType];
+        [self hidePopTipView];               
     }
+
 }
 @end
