@@ -14,7 +14,7 @@
 @property (retain, nonatomic) IBOutlet iCarousel *carousel;
 
 + (id)createFeedCarousel;
-- (void)setDrawFeedList;
+- (void)setDrawFeedList:(NSArray *)drawFeeds;
 
 - (void)startScrolling;
 - (void)stopScrolling;

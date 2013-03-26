@@ -73,5 +73,5 @@ typedef enum {
 
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
-
+- (void)setDrawFeedList:(NSArray*)feedList;
 @end
