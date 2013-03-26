@@ -54,6 +54,8 @@
         _guessedList = [[NSMutableArray alloc] init];
         _favouriateList = [[NSMutableArray alloc] init];
     }
+    
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

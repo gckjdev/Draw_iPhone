@@ -19,13 +19,14 @@
 #import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
-
+#import "FeedCarousel.h"
 
 
 
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
+@property (retain, nonatomic) FeedCarousel *carousel;
 
 @end
 
@@ -97,6 +98,13 @@
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     
+    cell.carousel = [FeedCarousel createFeedCarousel];
+    cell.carousel.center = cell.feedPlaceHolderView.center;
+    [cell addSubview:cell.carousel];
+    
+    [cell.carousel startScrolling];
+    [cell.carousel enabaleWrap:YES];
+    
     return cell;
 }
 
@@ -110,6 +118,7 @@
 */
 
 - (void)dealloc {
+    [_carousel release];
     [_nickNameLabel release];
     [_signLabel release];
     [_levelLabel release];
@@ -136,6 +145,7 @@
     [_superBlackBtn release];
     [_feedTabHolder release];
     [_segmentedControl release];
+    [_feedPlaceHolderView release];
     [super dealloc];
 }
 

@@ -113,7 +113,7 @@ enum {
     rowOfNickName = 2;
     rowOfLocation = 3;
     rowOfBirthday = 4;
-    rowOfBloodGropu = 5;
+    rowOfBloodGroup = 5;
     rowOfZodiac = 6;
     rowOfSignature = 7;
     rowsInSectionUser = 8;
@@ -449,7 +449,7 @@ enum {
                 NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, @"yyyyMMdd");
                 [cell.detailTextLabel setText:dateToString(date)];
             }
-        }else if (row == rowOfBloodGropu) {
+        }else if (row == rowOfBloodGroup) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
             NSString* bloodGroup = _pbUserBuilder.bloodGroup;
             [cell.detailTextLabel setText:((bloodGroup == nil || bloodGroup.length <= 0)?NSLS(@"kUnknown"):bloodGroup)];
@@ -656,8 +656,8 @@ enum {
         } else if (row == rowOfLocation) {
             __block UserSettingController* uc = self;
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [locationManager startUpdatingLocation];
-                [uc showActivity];
+                [uc startUpdatingLocation];
+                [uc showActivityWithText:NSLS(@"kGetingLocation")];
             } clickCancelBlock:^{
                 //
             }];
@@ -696,7 +696,7 @@ enum {
                                                                       [bc.dataTableView reloadData];
             }];
             [view showInView:self.view];
-        }else if (row == rowOfBloodGropu) {
+        }else if (row == rowOfBloodGroup) {
             MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), nil] autorelease];
             __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
@@ -1167,16 +1167,6 @@ enum {
 
 #pragma mark - location delegate
 
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
-{
-    [self hideActivity];
-	self.currentPlacemark = placemark;
-	NSLog(@"reverseGeocoder finish, placemark=%@", [placemark description] );
-    [[UserManager defaultManager] setLocation:placemark.locality];
-    [self.dataTableView reloadData];
-	//	NSLog(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.locality, placemark.thoroughfare, placemark.subThoroughfare);
-}
-
 - (void)keyboardWillShowWithRect:(CGRect)keyboardRect
 {
     if (!ISIPAD) {
@@ -1184,6 +1174,33 @@ enum {
         [self.inputAlertView adjustWithKeyBoardRect:keyboardRect];
     }
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    [self hideActivity];
+    [super locationManager:manager didUpdateToLocation:newLocation fromLocation:oldLocation];
+    [self reverseGeocodeCurrentLocation:self.currentLocation];
+}
+#pragma mark reverseGeocoder
+
+- (void)reverseGeocodeCurrentLocation:(CLLocation *)location
+{
+    self.reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:location.coordinate] autorelease];
+    reverseGeocoder.delegate = self;
+    [reverseGeocoder start];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+{
+    NSLog(@"MKReverseGeocoder has failed.");
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+	self.currentPlacemark = placemark;
+	[[UserManager defaultManager] setLocation:self.currentPlacemark.locality];
+    [self.dataTableView reloadData];
+}
+
 
 /*
  
