@@ -20,6 +20,7 @@ typedef enum{
 @class ToolHandler;
 @class PBDrawBg;
 @class MyFriend;
+@class CanvasRect;
 
 @protocol ToolHandlerDelegate <NSObject>
 
@@ -35,6 +36,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
 @property(nonatomic, assign)PPTableViewController<ToolHandlerDelegate> *controller;
+@property(nonatomic, retain)CanvasRect *canvasRect;
 
 @property (retain, nonatomic) DrawColor* eraserColor;
 @property (retain, nonatomic) DrawColor* penColor;
@@ -51,7 +53,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changePenColor:(DrawColor *)color;
 - (void)changeDrawBG:(PBDrawBg *)drawBG;
 - (void)changeInPenType:(ItemType)type;
-- (void)changeCanvasRect:(CGRect)rect;
+- (void)changeCanvasRect:(CanvasRect *)canvasRect;
 - (void)changeWidth:(CGFloat)width;
 - (void)changeAlpha:(CGFloat)alpha;
 - (void)changeShape:(ShapeType)shape;

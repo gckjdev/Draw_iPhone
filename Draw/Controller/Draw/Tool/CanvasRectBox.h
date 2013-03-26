@@ -14,7 +14,7 @@
 
 @protocol CanvasRectBoxDelegate <NSObject>
 
-- (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CGRect)rect;
+- (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CanvasRect *)rect;
 
 @end
 

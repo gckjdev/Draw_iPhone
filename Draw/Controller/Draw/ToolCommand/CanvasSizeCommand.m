@@ -8,6 +8,11 @@
 
 #import "CanvasSizeCommand.h"
 
+@interface CanvasSizeCommand ()
+
+
+@end
+
 @implementation CanvasSizeCommand
 
 - (BOOL)execute
@@ -22,6 +27,11 @@
 - (UIView *)contentView
 {
     CanvasRectBox *rectBox = [CanvasRectBox canvasRectBoxWithDelegate:self];
+    CanvasRectStyle style = self.toolHandler.canvasRect.style;
+    if (style == 0) {
+        style = [CanvasRect defaultCanvasRectStyle];
+    }
+    [rectBox setSelectedRect:style];
     return rectBox;
 }
 
@@ -30,9 +40,24 @@
     AnalyticsReport(DRAW_CLICK_CANVAS_BOX);
 }
 
-- (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CGRect)rect
+- (void)useCanvasRect:(CanvasRect *)canvasRect
 {
-    [self.toolHandler changeCanvasRect:rect];
+    [self.toolHandler changeCanvasRect:canvasRect];
+    [self hidePopTipView];
+}
+
+- (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CanvasRect *)rect
+{
+//    CanvasRect
+    if ([self canUseItem:[CanvasRect itemTypeFromCanvasRectStyle:rect.style]]) {
+        [self useCanvasRect:rect];
+    }
+}
+
+- (void)buyItemSuccessfully:(ItemType)type
+{
+    CanvasRectStyle style = [CanvasRect canvasRectStyleFromItemType:type];
+    [self useCanvasRect:[CanvasRect canvasRectWithStyle:style]];
 }
 
 @end

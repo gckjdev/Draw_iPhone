@@ -26,6 +26,7 @@
 @property(nonatomic, assign, getter = isShowing)BOOL showing;
 @property(nonatomic, retain) CMPopTipView *popTipView;
 
+
 - (BOOL)canUseItem:(ItemType)type;
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType;
 

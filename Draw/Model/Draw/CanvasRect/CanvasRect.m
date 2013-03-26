@@ -38,6 +38,7 @@
     self = [super init];
     if (self) {
         self.rect = [CanvasRect rectForCanvasRectStype:style];
+        self.style = style;
     }
     return self;
 }
@@ -112,6 +113,15 @@
     return IPHONE_DEPRECATED_RECT;
 }
 
++ (CanvasRectStyle)defaultCanvasRectStyle
+{
+    if (ISIPAD) {
+        return iPadDefaultRect;
+    }
+    return iPhoneDefaultRect;
+
+}
+
 + (CGRect)defaultRect
 {
     if (ISIPAD) {
@@ -146,6 +156,18 @@
     };
     return list;
 }
+
+
+
++ (CanvasRectStyle)canvasRectStyleFromItemType:(ItemType)itemType
+{
+    return itemType - CanvasRectStart;
+}
++ (ItemType)itemTypeFromCanvasRectStyle:(CanvasRectStyle)canvasRectStyle
+{
+    return CanvasRectStart + canvasRectStyle;
+}
+
 
 @end
 
