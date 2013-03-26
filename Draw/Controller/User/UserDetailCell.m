@@ -22,7 +22,6 @@
 #import "FeedCarousel.h"
 
 
-
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -77,7 +76,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1600:800);
+    return ([DeviceDetection isIPAD]?1884:785);
 }
 
 + (NSString*)getCellIdentifier
@@ -248,7 +247,9 @@
 
 - (IBAction)clickMore:(id)sender
 {
-    
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickMore)]) {
+        [_detailDelegate didClickMore];
+    }
 }
 
 - (void)setDrawFeedList:(NSArray*)feedList

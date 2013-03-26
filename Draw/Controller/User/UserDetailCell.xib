@@ -45,7 +45,7 @@
 							<object class="IBUIImageView" id="213671570">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrameSize">{320, 791}</string>
+								<string key="NSFrameSize">{320, 785}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSNextKeyView" ref="541929261"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1084,6 +1084,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickMore:</string>
+						<reference key="source" ref="830181892"/>
+						<reference key="destination" ref="849259711"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickSina:</string>
 						<reference key="source" ref="1019354794"/>
 						<reference key="destination" ref="849259711"/>
@@ -1160,8 +1169,8 @@
 							<reference ref="1040361067"/>
 							<reference ref="703033034"/>
 							<reference ref="331007648"/>
-							<reference ref="273674008"/>
 							<reference ref="404705006"/>
+							<reference ref="273674008"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1396,7 +1405,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">91</int>
+			<int key="maxID">92</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -29,7 +29,7 @@
 #import "CommonDialog.h"
 #import "FeedService.h"
 #import "Feed.h"
-
+#import "UserFeedController.h"
 
 #define    ROW_COUNT 1
 
@@ -216,6 +216,13 @@
         [action showInController:self];
     }
     
+}
+- (void)didClickMore
+{
+    UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
+                                                               nickName:[self.detail queryUser].nickName];
+    [self.navigationController pushViewController:uc animated:YES];
+    [uc release];
 }
 
 - (void)askFollowUserWithSnsType:(int)snsType
