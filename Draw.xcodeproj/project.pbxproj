@@ -877,6 +877,10 @@
 		C2B6067A17017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */; };
 		C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
 		C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
+		C2B606861701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */; };
+		C2B606871701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */; };
+		C2B606881701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */; };
+		C2B606891701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */; };
 		C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
@@ -8200,6 +8204,7 @@
 		C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailCell~ipad.xib"; sourceTree = "<group>"; };
 		C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailViewController~ipad.xib"; sourceTree = "<group>"; };
+		C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_unfollow_bg@2x.png"; sourceTree = "<group>"; };
 		C2B97A2816F999200037B15B /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
 		C2B97A2916F999200037B15B /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
 		C2B97A2A16F999200037B15B /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
@@ -12626,6 +12631,7 @@
 		C2B97A3916FAA5E90037B15B /* userDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */,
 				C2D3ED7117002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png */,
 				C2C2A1BF16FEF23A0074A168 /* user_detail_tab_bg@2x.png */,
 				C2F23B8616FC651500AC85C8 /* user_detail_black_btn_bg@2x.png */,
@@ -20071,6 +20077,7 @@
 				C2D3ED7417002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
 				CAF0DB5917019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5D17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B606881701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20965,6 +20972,7 @@
 				C2D3ED7517002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
 				CAF0DB5A17019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5E17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B606891701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21948,6 +21956,7 @@
 				C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 				CAF0DB5717019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5B17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B606861701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22849,6 +22858,7 @@
 				C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 				CAF0DB5817019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5C17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B606871701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
