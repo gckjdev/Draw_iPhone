@@ -10,4 +10,8 @@
 
 @implementation GridCommand
 
+- (BOOL)execute{
+    [self.toolHandler useGid:!self.toolHandler.grid];
+}
+
 @end

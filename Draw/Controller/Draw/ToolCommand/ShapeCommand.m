@@ -15,7 +15,9 @@
 {
     if ([super execute]) {
         [self showPopTipView];
+        return YES;
     }
+    return NO;
 }
 
 - (UIView *)contentView
@@ -28,6 +30,7 @@
 - (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type
 {
     [self.toolHandler changeShape:type];
+    [self hidePopTipView];
     //TODO change the control view with shape type
 }
 

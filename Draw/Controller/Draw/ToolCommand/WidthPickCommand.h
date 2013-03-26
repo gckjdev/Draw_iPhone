@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "WidthBox.h"
 
-@interface WidthPickCommand : ToolCommand
+@interface WidthPickCommand : ToolCommand<WidthBoxDelegate>
 
 @end

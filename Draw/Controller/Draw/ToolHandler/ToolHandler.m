@@ -76,6 +76,21 @@
     
 }
 
+- (void)useGid:(BOOL)flag
+{
+    
+}
+
+
+- (CGFloat)width
+{
+    return self.drawView.lineWidth;
+}
+- (PBDrawBg *)drawBG
+{
+    return self.drawView.drawBg;
+}
+
 
 //- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
 //{
