@@ -873,6 +873,10 @@
 		C2B5384B1677712300725802 /* ZJHPassWordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */; };
 		C2B5384C1677712300725802 /* ZJHRoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */; };
 		C2B5384D1677712300725802 /* ZJHRoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */; };
+		C2B6067917017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */; };
+		C2B6067A17017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */; };
+		C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
+		C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */; };
 		C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2C16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C2B97A2D16F999200037B15B /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
@@ -7090,18 +7094,6 @@
 		CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
-		CAF839CF170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
-		CAF839D0170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
-		CAF839D1170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
-		CAF839D2170174F600494ED6 /* CanvasRectBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CE170174F500494ED6 /* CanvasRectBox.m */; };
-		CAF839D41701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
-		CAF839D51701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
-		CAF839D61701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
-		CAF839D71701751D00494ED6 /* CanvasRectBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D31701751B00494ED6 /* CanvasRectBox.xib */; };
-		CAF839D91701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
-		CAF839DA1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
-		CAF839DB1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
-		CAF839DC1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */; };
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
@@ -8194,6 +8186,8 @@
 		C2B5381E1677712300725802 /* ZJHPassWordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHPassWordDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2B5381F1677712300725802 /* ZJHRoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C2B538201677712300725802 /* ZJHRoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHRoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
+		C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailCell~ipad.xib"; sourceTree = "<group>"; };
+		C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserDetailViewController~ipad.xib"; sourceTree = "<group>"; };
 		C2B97A2816F999200037B15B /* UserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailCell.m; sourceTree = "<group>"; };
 		C2B97A2916F999200037B15B /* UserDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailCell.xib; sourceTree = "<group>"; };
 		C2B97A2A16F999200037B15B /* UserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailCell.h; sourceTree = "<group>"; };
@@ -10600,10 +10594,6 @@
 		CAF839BD1701507B00494ED6 /* StrawCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawCommand.m; sourceTree = "<group>"; };
 		CAF839C71701520900494ED6 /* GridCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCommand.h; sourceTree = "<group>"; };
 		CAF839C81701520A00494ED6 /* GridCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCommand.m; sourceTree = "<group>"; };
-		CAF839CD170174F300494ED6 /* CanvasRectBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasRectBox.h; sourceTree = "<group>"; };
-		CAF839CE170174F500494ED6 /* CanvasRectBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasRectBox.m; sourceTree = "<group>"; };
-		CAF839D31701751B00494ED6 /* CanvasRectBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanvasRectBox.xib; sourceTree = "<group>"; };
-		CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CanvasRectBox~ipad.xib"; sourceTree = "<group>"; };
 		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
 		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
 		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
@@ -14433,6 +14423,7 @@
 		CA32213A151DEDBF0039A384 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				C2B6067717017B5C00935B75 /* UserDetailCell~ipad.xib */,
 				C2B97A2816F999200037B15B /* UserDetailCell.m */,
 				C2B97A2916F999200037B15B /* UserDetailCell.xib */,
 				C2B97A2A16F999200037B15B /* UserDetailCell.h */,
@@ -14449,6 +14440,7 @@
 				C250787416F710B7009B7ED2 /* UserDetailViewController.h */,
 				C250787516F710B7009B7ED2 /* UserDetailViewController.m */,
 				C250787616F710B7009B7ED2 /* UserDetailViewController.xib */,
+				C2B6067817017B5C00935B75 /* UserDetailViewController~ipad.xib */,
 				A40EE824170053A5003B8FFC /* FeedCarousel.h */,
 				A40EE825170053A5003B8FFC /* FeedCarousel.m */,
 				A40EE827170053C2003B8FFC /* FeedCarousel.xib */,
@@ -14738,10 +14730,6 @@
 				CA9A7EC216DC57B10089BD51 /* ShapeBox.m */,
 				CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */,
 				CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */,
-				CAF839CD170174F300494ED6 /* CanvasRectBox.h */,
-				CAF839CE170174F500494ED6 /* CanvasRectBox.m */,
-				CAF839D31701751B00494ED6 /* CanvasRectBox.xib */,
-				CAF839D81701794900494ED6 /* CanvasRectBox~ipad.xib */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -20061,8 +20049,6 @@
 				CAEFC4F216FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C216FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7417002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
-				CAF839D61701751D00494ED6 /* CanvasRectBox.xib in Resources */,
-				CAF839DB1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20955,8 +20941,6 @@
 				CAEFC4F316FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C316FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7517002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
-				CAF839D71701751D00494ED6 /* CanvasRectBox.xib in Resources */,
-				CAF839DC1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21936,8 +21920,8 @@
 				C2C2A1C016FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7217002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
 				A40EE828170053C2003B8FFC /* FeedCarousel.xib in Resources */,
-				CAF839D41701751D00494ED6 /* CanvasRectBox.xib in Resources */,
-				CAF839D91701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B6067917017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */,
+				C2B6067B17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22835,8 +22819,8 @@
 				CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */,
 				C2C2A1C116FEF23A0074A168 /* user_detail_tab_bg@2x.png in Resources */,
 				C2D3ED7317002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png in Resources */,
-				CAF839D51701751D00494ED6 /* CanvasRectBox.xib in Resources */,
-				CAF839DA1701794B00494ED6 /* CanvasRectBox~ipad.xib in Resources */,
+				C2B6067A17017B5C00935B75 /* UserDetailCell~ipad.xib in Resources */,
+				C2B6067C17017B5C00935B75 /* UserDetailViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23638,7 +23622,6 @@
 				CAEFC5A5170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839C01701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */,
-				CAF839D1170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24421,7 +24404,6 @@
 				CAEFC5A6170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839C11701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */,
-				CAF839D2170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25215,7 +25197,6 @@
 				A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */,
 				CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
-				CAF839CF170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26006,7 +25987,6 @@
 				CAEFC5A4170005AD00D799B7 /* ChatCommand.m in Sources */,
 				CAF839BF1701507C00494ED6 /* StrawCommand.m in Sources */,
 				CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */,
-				CAF839D0170174F600494ED6 /* CanvasRectBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
