@@ -33,7 +33,7 @@
     AnalyticsReport(DRAW_CLICK_PALETTE);
 }
 
-- (void)buyItemSuccessfully
+- (void)buyItemSuccessfully:(ItemType)type
 {
     [self.control setSelected:NO];
     [self showPopTipView];

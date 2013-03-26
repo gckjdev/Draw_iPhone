@@ -23,13 +23,27 @@
     [super dealloc];
 }
 
+- (BOOL)hasItem:(ItemType)type
+{
+    static int itemType[] = {ItemTypeNo, Pencil, Eraser, -1};
+    int *item = itemType;
+    while (*item != -1) {
+        if (*item == type) {
+            return YES;
+        }
+        item ++;
+    }
+    
+    return [[UserGameItemManager defaultManager] hasItem:itemType];
+}
+
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
 {
     self = [super init];
     if (self) {
         self.control = control;
         self.itemType = itemType;
-        if (itemType != ItemTypeNo && ![[UserGameItemManager defaultManager] hasItem:itemType]) {
+        if (![self hasItem:itemType]) {
             self.control.selected = YES;
         }
         
@@ -40,7 +54,7 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
-    if (type == ItemTypeNo || [[UserGameItemManager defaultManager] hasItem:type]) {
+    if ([self hasItem:type]) {
         return YES;
     }
     
@@ -49,7 +63,7 @@
     [BuyItemView showOnlyBuyItemView:type inView:[self.control theTopView]
                        resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_SUCCESS) {
-            [cp buyItemSuccessfully];
+            [cp buyItemSuccessfully:type];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
             [BalanceNotEnoughAlertView showInController:[self.control theViewController]];
         }
@@ -113,7 +127,7 @@
     return nil;
 }
 
-- (void)buyItemSuccessfully
+- (void)buyItemSuccessfully:(ItemType)type
 {
     self.control.selected = NO;
 }

@@ -32,9 +32,23 @@
 #import "GameItemManager.h"
 #import "UIButton+WebCache.h"
 
-#import "ToolCommand.h"
-#import "PaletteCommand.h"
 #import "AddColorCommand.h"
+#import "AlphaSliderCommand.h"
+#import "CanvasSizeCommand.h"
+#import "ChatCommand.h"
+#import "DrawBgCommand.h"
+#import "DrawToCommand.h"
+#import "EditDescCommand.h"
+#import "EraserCommand.h"
+#import "HelpCommand.h"
+#import "PaintBucketCommand.h"
+#import "PaletteCommand.h"
+#import "SelectPenCommand.h"
+#import "ShapeCommand.h"
+#import "WidthPickCommand.h"
+#import "WidthSliderCommand.h"
+
+
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -47,6 +61,8 @@
 }
 
 #pragma mark - click actions
+
+- (IBAction)clickTool:(id)sender;
 - (IBAction)clickUndo:(id)sender;
 - (IBAction)clickRedo:(id)sender;
 - (IBAction)clickPalette:(id)sender;
@@ -264,8 +280,17 @@
     toolCmdManager = [[ToolCommandManager alloc] init];
     ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
+    
     command = [[[PaletteCommand alloc] initWithControl:self.palette itemType:PaletteItem] autorelease];
     [toolCmdManager registerCommand:command];
+    
+    command = [[[SelectPenCommand alloc] initWithControl:self.pen itemType:Pencil] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[EraserCommand alloc] initWithControl:self.eraser itemType:Eraser] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    
     
 }
 
@@ -467,6 +492,10 @@
 
 
 - (IBAction)clickEraser:(id)sender {
+    [self clickTool:sender];
+    return;
+
+    
     [self selectEraser];
     [self dismissAllPopTipViews];
         if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickEraserButton:)]) {
@@ -477,6 +506,9 @@
 
 
 - (IBAction)clickPaintBucket:(id)sender {
+    [self clickTool:sender];
+    return;
+
     [self selectPen];
     [self dismissAllPopTipViews];    
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didClickPaintBucket:)]) {
@@ -508,10 +540,14 @@
 
 }
 
-- (IBAction)clickAddColor:(id)sender {
+- (IBAction)clickTool:(id)sender
+{
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
-    [[toolCmdManager commandForControl:sender] execute];
+    [[toolCmdManager commandForControl:sender] execute];    
+}
 
+- (IBAction)clickAddColor:(id)sender {
+    [self clickTool:sender];
     //Pop up add color box
 //    [self handlePopTipView:_colorBoxPopTipView contentView:^UIView *{
 //        return [ColorBox createViewWithdelegate:self];
@@ -519,8 +555,13 @@
 //        AnalyticsReport(DRAW_CLICK_COLOR_BOX);
 }
 
+
+
 - (IBAction)clickPalette:(id)sender {
 
+    [self clickTool:sender];
+    return;
+    
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
     return;
@@ -545,6 +586,9 @@
 }
 
 - (IBAction)clickPen:(id)sender {
+    [self clickTool:sender];
+    return;
+
     AnalyticsReport(DRAW_CLICK_PEN);
     //pop up pen box.
     [self handlePopTipView:_penPopTipView contentView:^UIView *{

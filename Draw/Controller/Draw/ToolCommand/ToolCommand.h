@@ -23,7 +23,7 @@
 @property(nonatomic, assign)ToolHandler *toolHandler;
 @property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
-@property(nonatomic, assign, readonly, getter = isShowing)BOOL showing;
+@property(nonatomic, assign, getter = isShowing)BOOL showing;
 @property(nonatomic, retain) CMPopTipView *popTipView;
 
 - (BOOL)canUseItem:(ItemType)type;
@@ -37,7 +37,7 @@
 - (void)sendAnalyticsReport;
 - (UIView *)contentView;
 - (BOOL)execute;
-- (void)buyItemSuccessfully;
+- (void)buyItemSuccessfully:(ItemType)type;
 
 
 
