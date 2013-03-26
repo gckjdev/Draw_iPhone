@@ -38,6 +38,7 @@ typedef enum {
 - (void)didclickQQ;
 - (void)didclickFacebook;
 - (void)didSelectTabAction:(DetailTabAction)tabAction;
+- (void)didClickMore;
 @end
 
 @interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate>

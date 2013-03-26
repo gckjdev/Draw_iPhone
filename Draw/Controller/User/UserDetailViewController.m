@@ -41,6 +41,7 @@
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
 @property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (retain, nonatomic) UserDetailCell* detailCell;
 
 @end
 
@@ -97,6 +98,7 @@
     PPRelease(_favouriateList);
     PPRelease(_opusList);
     PPRelease(_guessedList);
+    PPRelease(_detailCell);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -106,13 +108,16 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UserDetailCell* cell = [UserDetailCell createCell:self];
-    
-    if (cell) {
-        [cell setCellWithUserDetail:self.detail];
-        cell.detailDelegate = self;
+    if (!self.detailCell) {
+        self.detailCell = [UserDetailCell createCell:self];
+        
+        if (self.detailCell) {
+            [self.detailCell setCellWithUserDetail:self.detail];
+            self.detailCell.detailDelegate = self;
+        }
     }
-    return cell;
+    
+    return self.detailCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -323,8 +328,7 @@
 
 - (void)didImageSelected:(UIImage *)image
 {
-    UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
-    [cell.avatarView setImage:image];
+    [self.detailCell.avatarView setImage:image];
     
 }
 
@@ -339,13 +343,20 @@
         switch (type) {
             case FeedListTypeUserFeed: {
                 for (Feed* feed in feedList) {
-                    if (feed.feedType == FeedTypeGuess) {
+                    if ([feed isKindOfClass:[GuessFeed class]]) {
                         [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
                     }
                 }
+                [[self detailCell] setDrawFeedList:self.guessedList];
             } break;
             case FeedListTypeUserOpus: {
-                [self.opusList addObjectsFromArray:feedList];
+                for (Feed* feed in feedList) {
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.opusList addObject:feed];
+                    }
+                }
+                UserDetailCell* cell = [self detailCell];
+                [cell setDrawFeedList:self.opusList];
             }
             default:
                 break;
