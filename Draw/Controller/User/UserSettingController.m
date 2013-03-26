@@ -105,6 +105,20 @@ enum {
     [super dealloc];
 }
 
+- (NSArray*)getPrivacyPublicTypeNameArray
+{
+    return @[ NSLS(@"kPrivacyToFriend"), NSLS(@"kPrivacyToNone"), NSLS(@"kPrivacyToAll") ];
+}
+
+- (NSString*)nameForPrivacyPublicType:(PBOpenInfoType)type
+{
+    NSArray* array = [self getPrivacyPublicTypeNameArray];
+    if (type < [array count]) {
+        return [array objectAtIndex:type];
+    }
+    return nil;
+}
+
 - (void)updateRowIndexs
 {
     //section user
@@ -116,7 +130,8 @@ enum {
     rowOfBloodGroup = 5;
     rowOfZodiac = 6;
     rowOfSignature = 7;
-    rowsInSectionUser = 8;
+    rowOfPrivacy = 8;
+    rowsInSectionUser = 9;
     
     //section guessword
     if (isDrawApp()) {
@@ -456,6 +471,11 @@ enum {
         } else if (row == rowOfSignature) {
             [cell.textLabel setText:NSLS(@"kSignature")];
             [cell.detailTextLabel setText:_pbUserBuilder.signature];
+        } else if (row == rowOfPrivacy) {
+            [cell.textLabel setText:NSLS(@"kPrivacy")];
+            if ([_pbUserBuilder hasOpenInfoType]) {
+                [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
+            }
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -723,7 +743,24 @@ enum {
             self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
             [self.inputAlertView showInView:self.view animated:YES];
     
-    }else if (section == SECTION_GUESSWORD) {
+        }else if (row == rowOfPrivacy) {
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kPrivacy") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+            for (NSString* privacyTypeStr in [self getPrivacyPublicTypeNameArray]) {
+                [actionSheet addButtonWithTitle:privacyTypeStr];
+            }
+            int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+            [actionSheet setCancelButtonIndex:index];
+            __block UserSettingController* bc = self;
+            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+                if (buttonIndex != actionSheet.cancelButtonIndex){
+                    
+                    [_pbUserBuilder setOpenInfoType:buttonIndex];
+                    hasEdited = YES;
+                }
+                [bc.dataTableView reloadData];
+            }];
+            [actionSheet showInView:self.view];
+        }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
             //        LanguageType type = [userManager getLanguageType];
@@ -1002,8 +1039,9 @@ enum {
 
 - (void)uploadUserAvatar:(UIImage*)image
 {
+    [self showActivityWithText:NSLS(@"kSaving")];
     [[UserService defaultService] uploadUserAvatar:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
-        
+        [self hideActivity];
         if (resultCode == ERROR_SUCCESS && [imageRemoteURL length] > 0){
             [_pbUserBuilder setAvatar:imageRemoteURL];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarSucc") delayTime:1.5];
@@ -1020,7 +1058,10 @@ enum {
     if (hasEdited) {
         PBGameUser* user = [_pbUserBuilder build];
         self.pbUserBuilder = [PBGameUser builderWithPrototype:user];
+        
+        [self showActivityWithText:NSLS(@"kSaving")];
         [[UserService defaultService] updateUser:user resultBlock:^(int resultCode) {
+            [self hideActivity];
             if (resultCode == ERROR_SUCCESS){
                 
                 // clear edit flag

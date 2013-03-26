@@ -110,11 +110,10 @@
 {
     if (!self.detailCell) {
         self.detailCell = [UserDetailCell createCell:self];
-        
-        if (self.detailCell) {
-            [self.detailCell setCellWithUserDetail:self.detail];
-            self.detailCell.detailDelegate = self;
-        }
+        self.detailCell.detailDelegate = self;
+    }
+    if (self.detailCell) {
+        [self.detailCell setCellWithUserDetail:self.detail];
     }
     
     return self.detailCell;

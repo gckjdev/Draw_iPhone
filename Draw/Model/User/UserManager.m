@@ -295,6 +295,16 @@ static UserManager* _defaultManager;
     return [_pbUser bloodGroup];
 }
 
+- (int)level
+{
+    return [_pbUser level];
+}
+
+- (long)experience
+{
+    return [_pbUser experience];
+}
+
 - (NSString*)signature
 {
     return [_pbUser signature];
@@ -534,6 +544,22 @@ static UserManager* _defaultManager;
 //    [userDefaults setObject:nickName forKey:KEY_NICKNAME];    
 //    [userDefaults synchronize];
 //    
+}
+
+- (void)setExperience:(long)exp
+{
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setExperience:exp];
+    self.pbUser = [builder build];
+    [self storeUserData];
+}
+
+- (void)setLevel:(int)level
+{
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setLevel:level];
+    self.pbUser = [builder build];
+    [self storeUserData];
 }
 
 - (void)setEmail:(NSString *)email

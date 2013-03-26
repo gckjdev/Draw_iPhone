@@ -790,6 +790,12 @@ static AccountService* _defaultAccountService;
                 
                 // sync user item from server
                 [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                
+                // sync user level and exp
+                if ([user hasLevel] && [user hasExperience]){
+                    [[LevelService defaultService] setLevel:user.level];
+                    [[LevelService defaultService] setExperience:user.experience];
+                }
             }
             
             if (output.resultCode == ERROR_SUCCESS) {

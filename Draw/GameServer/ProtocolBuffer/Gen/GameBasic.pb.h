@@ -42,6 +42,8 @@
 @class PBUserItemList;
 @class PBUserItemList_Builder;
 @class PBUserItem_Builder;
+@class PBUserLevel;
+@class PBUserLevel_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
@@ -256,6 +258,72 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (NSString*) qqOpenId;
 - (PBSNSUser_Builder*) setQqOpenId:(NSString*) value;
 - (PBSNSUser_Builder*) clearQqOpenId;
+@end
+
+@interface PBUserLevel : PBGeneratedMessage {
+@private
+  BOOL hasExp_:1;
+  BOOL hasLevel_:1;
+  BOOL hasGameId_:1;
+  int64_t exp;
+  int32_t level;
+  NSString* gameId;
+}
+- (BOOL) hasGameId;
+- (BOOL) hasLevel;
+- (BOOL) hasExp;
+@property (readonly, retain) NSString* gameId;
+@property (readonly) int32_t level;
+@property (readonly) int64_t exp;
+
++ (PBUserLevel*) defaultInstance;
+- (PBUserLevel*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserLevel_Builder*) builder;
++ (PBUserLevel_Builder*) builder;
++ (PBUserLevel_Builder*) builderWithPrototype:(PBUserLevel*) prototype;
+
++ (PBUserLevel*) parseFromData:(NSData*) data;
++ (PBUserLevel*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserLevel*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserLevel*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserLevel*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserLevel*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserLevel_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserLevel* result;
+}
+
+- (PBUserLevel*) defaultInstance;
+
+- (PBUserLevel_Builder*) clear;
+- (PBUserLevel_Builder*) clone;
+
+- (PBUserLevel*) build;
+- (PBUserLevel*) buildPartial;
+
+- (PBUserLevel_Builder*) mergeFrom:(PBUserLevel*) other;
+- (PBUserLevel_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserLevel_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGameId;
+- (NSString*) gameId;
+- (PBUserLevel_Builder*) setGameId:(NSString*) value;
+- (PBUserLevel_Builder*) clearGameId;
+
+- (BOOL) hasLevel;
+- (int32_t) level;
+- (PBUserLevel_Builder*) setLevel:(int32_t) value;
+- (PBUserLevel_Builder*) clearLevel;
+
+- (BOOL) hasExp;
+- (int64_t) exp;
+- (PBUserLevel_Builder*) setExp:(int64_t) value;
+- (PBUserLevel_Builder*) clearExp;
 @end
 
 @interface PBGameUser : PBGeneratedMessage {

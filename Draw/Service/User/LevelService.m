@@ -17,6 +17,7 @@
 #import "ItemType.h"
 #import "CommonMessageCenter.h"
 #import "UserGameItemService.h"
+#import "GameMessage.pb.h"
 
 #define KEY_LEVEL           @"USER_KEY_LEVEL"
 #define KEY_EXP             @"USER_KEY_EXPERIENCE"
@@ -80,48 +81,35 @@ static LevelService* _defaultLevelService;
 - (NSString*)upgradeMessage:(int)newLevel
 {
     return [GameApp upgradeMessage:newLevel];
-    
-    /*
-    if (isDiceApp()) {
-        return [NSString stringWithFormat:NSLS(@"kDiceUpgradeMsg"),newLevel,[ConfigManager diceCutAwardForLevelUp]];
-    }
-    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
-    */
 }
 
 - (NSString*)degradeMessage:(int)newLevel
 {
     return [GameApp degradeMessage:newLevel];
-    
-    /*
-    if (isDiceApp()) {
-     return [NSString stringWithFormat:NSLS(@"kDiceUpgradeMsg"),newLevel,[ConfigManager diceCutAwardForLevelUp]];
-     
-        return [NSString stringWithFormat:NSLS(@"kDiceDegradeMsg"),newLevel];
-    }
-     return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
-    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
-    */
 }
 
 - (int)level
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSNumber* value = [userDefaults objectForKey:KEY_LEVEL];
-    if (value) {
-        return value.intValue;
-    }
-    return 1;
+    return [[UserManager defaultManager] level];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSNumber* value = [userDefaults objectForKey:KEY_LEVEL];
+//    if (value) {
+//        return value.intValue;
+//    }
+//    return 1;
 }
 
 - (long)experience
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    NSNumber* value = [userDefaults objectForKey:KEY_EXP];
-    if (value) {
-        return value.longValue;
-    }
-    return 0;
+    return [[UserManager defaultManager] experience];
+    
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSNumber* value = [userDefaults objectForKey:KEY_EXP];
+//    if (value) {
+//        return value.longValue;
+//    }
+//    return 0;
 }
 
 - (void)setLevel:(NSInteger)level
@@ -130,9 +118,13 @@ static LevelService* _defaultLevelService;
         return;
     
     PPDebug(@"<setLevel> level=%d", level);
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[NSNumber numberWithLong:level] forKey:KEY_LEVEL];    
-    [userDefaults synchronize];
+//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setObject:[NSNumber numberWithLong:level] forKey:KEY_LEVEL];    
+//    [userDefaults synchronize];
+    
+//    PPDebug(@"<setExperience> experience=%ld", experience);
+    [[UserManager defaultManager] setLevel:level];
+    
 }
 - (void)setExperience:(long)experience
 {
@@ -140,9 +132,13 @@ static LevelService* _defaultLevelService;
         return;
     
     PPDebug(@"<setExperience> experience=%ld", experience);
+    [[UserManager defaultManager] setExperience:experience];
+
+    /*
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithLong:experience] forKey:KEY_EXP];    
     [userDefaults synchronize];
+    */
 }
 
 - (int)getLevelByExp:(long)exp
@@ -166,10 +162,59 @@ static LevelService* _defaultLevelService;
     [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:[ConfigManager flowerAwardFordLevelUp] handler:NULL];
 }
 
+// new user level and exp implementation
+- (void)incExpToServer:(long)addExp
+{
+    if ([[UserManager defaultManager] hasUser] == NO){
+        PPDebug(@"<incExpToServer> but user not found yet.");
+        return;
+    }
+    
+    //[viewController showActivityWithText:NSLS(@"kRegisteringUser")];
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest increaseExp:SERVER_URL
+                                           appId:[ConfigManager appId]
+                                          gameId:[ConfigManager gameId]
+                                          userId:[UserManager defaultManager].userId
+                                             exp:addExp];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PPDebug(@"<incExpToServer> add exp(%ld) resultCode(%d)", addExp, output.resultCode);
+            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil) {
+                
+                @try {
+                    // update level and exp from server
+                    DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                    PBGameUser *user = res.user;
+                    
+                    if (user != nil && [user hasLevel] && [user hasExperience]){
+                        [self setLevel:user.level];
+                        [self setExperience:user.experience];
+                    }
+
+                }
+                @catch (NSException *exception) {
+                    PPDebug(@"<incExpToServer> catch exception=%@", [exception description]);
+                }
+                @finally {
+                    
+                }
+                
+            }
+        });
+        
+    });
+    
+}
+
 
 - (void)addExp:(long)exp 
       delegate:(id<LevelServiceDelegate>)delegate
 {
+//    exp = 100;
+    
     long currentExp = [self experience] + exp ;
     int newLevel = [self getLevelByExp:(currentExp)];
     [self setExperience:(currentExp)];
@@ -181,7 +226,10 @@ static LevelService* _defaultLevelService;
             [delegate levelUp:newLevel];
         }
     }
-    [self syncExpAndLevel:UPDATE];
+    
+    [self incExpToServer:exp];
+    
+//    [self syncExpAndLevel:UPDATE];
 }
 
 - (void)awardExp:(long)awardExp
@@ -213,7 +261,11 @@ static LevelService* _defaultLevelService;
             }
         }        
     }
-    [self syncExpAndLevel:AWARD awardExp:awardExp];
+    
+    [self incExpToServer:awardExp];
+    
+//    
+//    [self syncExpAndLevel:AWARD awardExp:awardExp];
 }
 
 - (void)minusExp:(long)exp 
@@ -229,7 +281,10 @@ static LevelService* _defaultLevelService;
             [delegate levelDown:newLevel];
         }
     }
-    [self syncExpAndLevel:UPDATE];
+    
+    [self incExpToServer:exp];
+    
+//    [self syncExpAndLevel:UPDATE];
 }
 
 - (long)expRequiredForNextLevel
@@ -240,7 +295,7 @@ static LevelService* _defaultLevelService;
 }
 
 
-
+/*
 - (void)syncExpAndLevel:(PPViewController*)viewController 
                    type:(int)type
 {
@@ -342,6 +397,7 @@ static LevelService* _defaultLevelService;
 {
     [self syncExpAndLevel:type awardExp:0];
 }
+*/
 
 /*
 - (int)levelForSource:(LevelSource)source

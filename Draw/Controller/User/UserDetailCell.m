@@ -72,6 +72,12 @@
     [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
     [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
     
+    
+    BOOL hasBlack = [MyFriend hasBlack:[detail relation]];
+    [self.blackListBtn setTitle:(hasBlack?NSLS(@"kUnblack"):NSLS(@"kBlack")) forState:UIControlStateNormal];
+    
+    BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
+    [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
 }
 
 + (float)getCellHeight

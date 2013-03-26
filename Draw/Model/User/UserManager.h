@@ -65,6 +65,8 @@ typedef enum {
 - (NSInteger)fanCount;
 - (NSString*)signature;
 - (NSInteger)bloodGroup;
+- (int)level;
+- (long)experience;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
@@ -84,7 +86,8 @@ typedef enum {
 - (void)setFanCount:(NSInteger)fanCount;
 - (void)setSignature:(NSString*)signature;
 - (void)setBloodGroup:(NSInteger)bloodGroup;
-
+- (void)setExperience:(long)exp;
+- (void)setLevel:(int)level;
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
