@@ -1087,6 +1087,12 @@
 "kOther" = "其他";
 "kInputLocation" = "輸入你所在的位置";
 "kSignature" = "個性簽名";
+
+"kUpdateAvatarSucc" = "頭像已經成功上傳並且更新";
+"kUpdateAvatarFail" = "頭像上傳失敗，請稍候重試";
+"kPasswordSet" = "密碼已設置";
+"kUploading" = "上傳數據中...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

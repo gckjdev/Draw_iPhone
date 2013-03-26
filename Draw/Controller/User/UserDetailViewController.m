@@ -27,6 +27,8 @@
 #import "PPSNSIntegerationService.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
+#import "FeedService.h"
+#import "Feed.h"
 
 
 #define    ROW_COUNT 1
@@ -36,9 +38,23 @@
     ChangeAvatar* _changeAvatar;
 }
 
+@property (retain, nonatomic) NSMutableArray* opusList;
+@property (retain, nonatomic) NSMutableArray* guessedList;
+@property (retain, nonatomic) NSMutableArray* favouriateList;
+
 @end
 
 @implementation UserDetailViewController
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _opusList = [[NSMutableArray alloc] init];
+        _guessedList = [[NSMutableArray alloc] init];
+        _favouriateList = [[NSMutableArray alloc] init];
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,6 +92,9 @@
 - (void)dealloc {
     [_backgroundImageView release];
     [_detail release];
+    PPRelease(_favouriateList);
+    PPRelease(_opusList);
+    PPRelease(_guessedList);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -106,7 +125,7 @@
 
 - (id)initWithUserDetail:(NSObject<UserDetailProtocol>*)detail
 {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.detail = detail;
     }
@@ -259,9 +278,27 @@
         [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
         } failure:^{
-//            UISegmentedControl
-            //
+
         }];
+    }
+}
+
+- (void)didSelectTabAction:(DetailTabAction)tabAction
+{
+    switch (tabAction) {
+        case DetailTabActionClickFavouriate: {
+            
+        } break;
+        case DetailTabActionClickGuessed: {
+            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:10 delegate:self];
+            [self showActivity];
+        } break;
+        case DetailTabActionClickOpus: {
+            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
+            [self showActivity];
+        } break;
+        default:
+            break;
     }
 }
 
@@ -287,6 +324,31 @@
     UserDetailCell* cell = (UserDetailCell*)[self.dataTableView cellForRowAtIndexPath:0];
     [cell.avatarView setImage:image];
     
+}
+
+#pragma mark - feed service delegate
+- (void)didGetFeedList:(NSArray *)feedList
+            targetUser:(NSString *)userId
+                  type:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        switch (type) {
+            case FeedListTypeUserFeed: {
+                for (Feed* feed in feedList) {
+                    if (feed.feedType == FeedTypeGuess) {
+                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
+                    }
+                }
+            } break;
+            case FeedListTypeUserOpus: {
+                [self.opusList addObjectsFromArray:feedList];
+            }
+            default:
+                break;
+        }
+    }
 }
 
 @end

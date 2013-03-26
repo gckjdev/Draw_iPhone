@@ -18,9 +18,7 @@
 @class UserManager;
 @class HJManagedImageV;
 @interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate>
-{
-    UserManager *userManager;
-    
+{    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
     NSInteger rowOfNickName;
@@ -47,28 +45,23 @@
     NSInteger rowsInSectionSound;
     NSInteger rowsInSectionAccount;
     
-    HJManagedImageV *imageView;
     ChangeAvatar *changeAvatar;
-    NSString *_updatePassword;
     
     BOOL hasEdited;
-    BOOL avatarChanged;
-    BOOL isSoundOn;
-    BOOL isMusicOn;
-    BOOL isAutoSave;
-//    BOOL languageChanged;
-    LanguageType languageType;
     GuessLevel guessLevel;
-    NSString* _gender;
-    //ChatVoiceEnable chatVoice;
-//    LevelType
     
     UserManager *_userManager;
     int _currentLoginType;
+    
+    BOOL isSoundOn;
+    BOOL isMusicOn;
+    BOOL avatarChanged;
 }
+
 - (IBAction)clickSaveButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
+
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
@@ -76,9 +69,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (retain, nonatomic) NSString *updatePassword;
-@property (retain, nonatomic) NSString* gender;
-@property (retain, nonatomic) NSString* tempEmail;
+@property (retain, nonatomic) PBGameUser_Builder *pbUserBuilder;
+@property (retain, nonatomic) UIImageView *avatarImageView;
 
 - (void)updateRowIndexs;
 @end

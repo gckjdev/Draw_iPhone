@@ -48,7 +48,7 @@ message PBGameUser {
   
   optional string birthday = 33;                    // 格式：19800102
   optional int32  zodiac = 34;                      // 星座：1-12
-  optional int32  guessWordLanguage = 35;           // 猜词语言
+  optional int32  guessWordLanguage = 35[default=1];// 猜词语言: 1:Chinese 2:English
   optional string backgroundURL = 36;               // 用户背景Remote URL
   optional string deviceToken = 37;                 // iPhone Device Token
   optional string countryCode = 38;                 // 国家代码，如 CN

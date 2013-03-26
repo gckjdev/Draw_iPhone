@@ -33,7 +33,9 @@
 #import "MKBlockActionSheet.h"
 #import "GCDatePickerView.h"
 #import "TimeUtils.h"
-
+#import "UIImageView+WebCache.h"
+#import "CommonMessageCenter.h"
+#import "InputAlertView.h"
 
 enum{
     SECTION_USER = 0,
@@ -74,6 +76,8 @@ enum {
 - (void)askRebindQQ;
 - (void)askRebindSina;
 
+@property (retain, nonatomic) InputAlertView* inputAlertView;
+
 @end
 
 @implementation UserSettingController
@@ -85,22 +89,19 @@ enum {
 @synthesize avatarButton;
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
-@synthesize updatePassword = _updatePassword;
-@synthesize gender = _gender;
-@synthesize tempEmail = _tempEmail;
 
 - (void)dealloc {
-    PPRelease(_tempEmail);
+    PPRelease(_pbUserBuilder);
     PPRelease(titleLabel);
     PPRelease(tableViewBG);
     PPRelease(avatarButton);
     PPRelease(saveButton);
-    PPRelease(imageView);
+    PPRelease(_avatarImageView);
     PPRelease(changeAvatar);
     PPRelease(nicknameLabel);
-    PPRelease(_gender);
     PPRelease(expAndLevelLabel);
     PPRelease(backgroundImage);
+    PPRelease(_inputAlertView);
     [super dealloc];
 }
 
@@ -120,7 +121,7 @@ enum {
     //section guessword
     if (isDrawApp()) {
         //no matter what the language is, the level is normal.
-        if (languageType == ChineseType) {
+        if (_pbUserBuilder.guessWordLanguage == ChineseType) {
             rowOfLanguage = 0;
             rowOfLevel = -1;
             rowOfCustomWord = 1;
@@ -152,12 +153,12 @@ enum {
 
 - (void)updateAvatar:(UIImage *)image
 {
-    [imageView setImage:image];
+    [_avatarImageView setImage:image];
 }
 
-- (void)updateNickname:(NSString *)nick
+- (void)updateNicknameLabel
 {
-    [self.nicknameLabel setText:nick];
+    [self.nicknameLabel setText:_pbUserBuilder.nickName];
 }
 
 - (void)askInputEmail:(NSString*)text
@@ -169,26 +170,27 @@ enum {
     [dialog showInView:self.view];                    
 }
 
-
 - (void)updateInfoFromUserManager
 {
-    userManager = [UserManager defaultManager];
-    [imageView clear];
-    if ([userManager.avatarURL length] > 0){
-        [imageView setUrl:[NSURL URLWithString:[userManager avatarURL]]];
-    }
-    else{
-        [imageView setImage:[UIImage imageNamed:[userManager defaultAvatar]]];
-    }
-    [GlobalGetImageCache() manage:imageView];
-    [self updateNickname:[userManager nickName]];
-    self.updatePassword = nil;
+
+}
+
+- (void)resetEditStatus
+{
     hasEdited = NO;
-    avatarChanged = NO;
-    languageType = [userManager getLanguageType];
-    self.gender = [userManager gender];
-    guessLevel = [ConfigManager guessDifficultLevel];
-    //chatVoice = [ConfigManager getChatVoiceEnable];
+}
+
+- (void)displayAvatarView
+{
+    NSURL* url = [NSURL URLWithString:[_userManager avatarURL]];
+    UIImage* defaultImage = [[UserManager defaultManager] defaultAvatarImage];
+    [_avatarImageView setImageWithURL:url
+                     placeholderImage:defaultImage
+                              success:^(UIImage *image, BOOL cached) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -213,36 +215,39 @@ enum {
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
-    
-    userManager = [UserManager defaultManager];
-    self.tempEmail = [userManager email];
+    // set data for table view
+    _userManager = [UserManager defaultManager];
+    self.pbUserBuilder = [PBGameUser builderWithPrototype:[_userManager pbUser]];
     isSoundOn = [AudioManager defaultManager].isSoundOn;
     isMusicOn = [AudioManager defaultManager].isMusicOn;
-    isAutoSave = [ConfigManager isAutoSave];
-
+    
+    [super viewDidLoad];
+    
+    // set background
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    
-    
-//    [self.backgroundImage setImage:[UIImage imageNamed:@"gameroom_bg.png"]];
-//    if ([ConfigManager isLiarDice]){
-//        
-//    }
-    
     [self.backgroundImage setImage:[UIImage imageNamed:[GameApp background]]];
     
+    // init SAVE button
     [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
     [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-    imageView = [[HJManagedImageV alloc] initWithFrame:avatarButton.bounds];
-    [avatarButton addSubview:imageView];
     
-    [self updateInfoFromUserManager];
+    // init avatar image view and button
+    self.avatarImageView = [[[UIImageView alloc] initWithFrame:avatarButton.bounds] autorelease];
+    [avatarButton addSubview:_avatarImageView];
+    [self displayAvatarView];
+    
+    // init table view row and section
     [self updateRowIndexs];
+    
+    // init nick name
+    [self updateNicknameLabel];
+    
+    // init level and exp info label
     LevelService* svc = [LevelService defaultService];
     [self.expAndLevelLabel setText:[NSString stringWithFormat:NSLS(@"kLevelInfo"), svc.level, svc.experience, svc.expRequiredForNextLevel]];
     
+    // init table view
     [dataTableView setBackgroundView:nil];
 }
 
@@ -269,7 +274,7 @@ enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([DeviceDetection isIPAD]) {
-        return 96;
+        return 90;
     }
     else {
         return 48;
@@ -319,8 +324,8 @@ enum {
 {
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
-    isAutoSave = !btn.selected;
-    [ConfigManager setAutoSave:isAutoSave];
+//    isAutoSave = !btn.selected;
+//    [ConfigManager setAutoSave:isAutoSave];
 }
 
 
@@ -410,12 +415,15 @@ enum {
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
             [cell.textLabel setText:NSLS(@"kPassword")];      
-            if ([userManager isPasswordEmpty] && [self.updatePassword length] == 0) {
+            if ([_pbUserBuilder.password length] == 0) {
                 [cell.detailTextLabel setText:NSLS(@"kUnset")];
+            }
+            else{
+                [cell.detailTextLabel setText:NSLS(@"kPasswordSet")];
             }
         }else if (row == rowOfGender){
             [cell.textLabel setText:NSLS(@"kGender")];
-            if ([self.gender isEqualToString:MALE]) {
+            if ([_pbUserBuilder gender]) {
                 [cell.detailTextLabel setText:NSLS(@"kMale")];
             }else{
                 [cell.detailTextLabel setText:NSLS(@"kFemale")];
@@ -429,26 +437,30 @@ enum {
             [cell.textLabel setText:NSLS(@"kCustomDice")];
         } else if (row == rowOfLocation) {
             [cell.textLabel setText:NSLS(@"kLocation")];
-            [cell.detailTextLabel setText:[userManager location]];
+            [cell.detailTextLabel setText:[_pbUserBuilder location]];
         }else if (row == rowOfZodiac) {
             [cell.textLabel setText:NSLS(@"kZodiac")];
-            [cell.detailTextLabel setText:[LocaleUtils getZodiacWithIndex:[userManager zodiac]]];
+            NSString* zodiac = [LocaleUtils getZodiacWithIndex:([_pbUserBuilder zodiac]-1)];
+            [cell.detailTextLabel setText:((zodiac == nil)?NSLS(@"kUnknown"):zodiac)];
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
-            NSDate* date = dateFromStringByFormat(userManager.birthday, @"yyyyMMdd");
-            [cell.detailTextLabel setText:dateToString(date)];
+            if ([_pbUserBuilder hasBirthday]) {
+                NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, @"yyyyMMdd");
+                [cell.detailTextLabel setText:dateToString(date)];
+            }
         }else if (row == rowOfBloodGropu) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
-            [cell.detailTextLabel setText:userManager.bloodGroup];
+            NSString* bloodGroup = _pbUserBuilder.bloodGroup;
+            [cell.detailTextLabel setText:((bloodGroup == nil || bloodGroup.length <= 0)?NSLS(@"kUnknown"):bloodGroup)];
         } else if (row == rowOfSignature) {
             [cell.textLabel setText:NSLS(@"kSignature")];
-            [cell.detailTextLabel setText:userManager.signature];
+            [cell.detailTextLabel setText:_pbUserBuilder.signature];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
         {
             [cell.textLabel setText:NSLS(@"kLanguageSettings")];     
-            if (languageType == ChineseType) {
+            if (_pbUserBuilder.guessWordLanguage == ChineseType) {
                 [cell.detailTextLabel setText:NSLS(@"kChinese")];
             }else{
                 [cell.detailTextLabel setText:NSLS(@"kEnglish")];
@@ -470,7 +482,7 @@ enum {
             [cell.detailTextLabel setText:nil];
             UIButton *btn = [self addSwitchButtonWithTag:DRAW_AUTOSAVE_TAG toCell:cell];
             [btn addTarget:self action:@selector(clickAutoSaveSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-            [btn setSelected:!isAutoSave];            
+//            [btn setSelected:!isAutoSave];            
 
         }
     } else if (section == SECTION_SOUND) {
@@ -511,8 +523,8 @@ enum {
             case ROW_EMAIL:
             {
                 [cell.textLabel setText:NSLS(@"kSetEmail")];
-                if ([_tempEmail length] > 0){
-                    [cell.detailTextLabel setText:_tempEmail];
+                if ([_pbUserBuilder.email length] > 0){
+                    [cell.detailTextLabel setText:_pbUserBuilder.email];
                 }
                 else{
                     [cell.detailTextLabel setText:NSLS(@"kEmailNotSet")];
@@ -622,7 +634,7 @@ enum {
             
         }else if (row == rowOfGender){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
-            int index = ([self.gender isEqualToString:MALE]) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
+            int index = (_pbUserBuilder.gender) ? INDEX_OF_MALE : INDEX_OF_FEMALE;
             [actionSheet setDestructiveButtonIndex:index];
             [actionSheet showInView:self.view];
             actionSheet.tag = GENDER_TAG;
@@ -637,14 +649,15 @@ enum {
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == rowOfLocation) {
-            __block UserSettingController* bc = self;
-            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputLocation") clickOK:^(NSString *inputStr) {
-                [[UserManager defaultManager] setLocation:inputStr];
-                [bc.dataTableView reloadData];
-            } clickCancel:^(NSString *inputStr) {
+            __block UserSettingController* uc = self;
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+                [locationManager startUpdatingLocation];
+                [uc showActivity];
+            } clickCancelBlock:^{
                 //
             }];
             [dialog showInView:self.view];
+            
         }else if (row == rowOfZodiac) {
             MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
             for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
@@ -654,42 +667,62 @@ enum {
             [actionSheet setCancelButtonIndex:index];
             __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                if (buttonIndex != actionSheet.cancelButtonIndex) [userManager setZodiac:buttonIndex];
+                if (buttonIndex != actionSheet.cancelButtonIndex){
+                    
+                    [_pbUserBuilder setZodiac:buttonIndex+1];
+                    hasEdited = YES;
+                }
                 [bc.dataTableView reloadData];
             }];
             [actionSheet showInView:self.view];
         }else if (row == rowOfBirthday) {
             __block UserSettingController* bc = self;
             GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
+                                                                  defaultDate:dateFromStringByFormat(@"19900615", @"yyyyMMdd")
                                                                   finishBlock:^(NSDate *date) {
-                                                                      [userManager setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
+                                                                      
+                                                                      if (date != nil){
+                                                                          
+                                                                          [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
+                                                                          
+                                                                          hasEdited = YES;
+                                                                      }
+                                                                      
                                                                       [bc.dataTableView reloadData];
             }];
             [view showInView:self.view];
         }else if (row == rowOfBloodGropu) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), NSLS(@"kOther"), nil] autorelease];
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), nil] autorelease];
             __block UserSettingController* bc = self;
             [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                if(buttonIndex != actionSheet.cancelButtonIndex) [userManager setBloodGroup:[actionSheet buttonTitleAtIndex:buttonIndex]];
+                if(buttonIndex != actionSheet.cancelButtonIndex){
+                    [_pbUserBuilder setBloodGroup:[actionSheet buttonTitleAtIndex:buttonIndex]];
+                    hasEdited = YES;
+                }
                 [bc.dataTableView reloadData];
             }];
             [actionSheet showInView:self.view];
         } else if (row == rowOfSignature) {
-            __block UserSettingController* bc = self;
-            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
-                [[UserManager defaultManager] setSignature:inputStr];
-                [bc.dataTableView reloadData];
-            } clickCancel:^(NSString *inputStr) {
-                //
-            }];
-            [dialog showInView:self.view];
-        }
+//            __block UserSettingController* bc = self;
+//            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
+//                if ([inputStr length] > 0){
+//                    [_pbUserBuilder setSignature:inputStr];
+//                    hasEdited = YES;
+//                }
+//                [bc.dataTableView reloadData];
+//            } clickCancel:^(NSString *inputStr) {
+//                //
+//            }];
+//            [dialog showInView:self.view];
+//        }
+            self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
+            [self.inputAlertView showInView:self.view animated:YES];
     
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
             //        LanguageType type = [userManager getLanguageType];
-            [actionSheet setDestructiveButtonIndex:languageType - 1];
+            [actionSheet setDestructiveButtonIndex:_pbUserBuilder.guessWordLanguage - 1];
             [actionSheet showInView:self.view];
             actionSheet.tag = LANGUAGE_TAG;
             [actionSheet release]; 
@@ -743,7 +776,7 @@ enum {
         switch (row) {
             case ROW_EMAIL:
             {
-                [self askInputEmail:_tempEmail];
+                [self askInputEmail:_pbUserBuilder.email];
             }
                 break;
             case ROW_SINA_WEIBO:
@@ -793,6 +826,13 @@ enum {
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)inputSignatureFinish
+{
+    [_pbUserBuilder setSignature:self.inputAlertView.contentText];
+    [self.dataTableView reloadData];
 }
 
 #define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"
@@ -824,7 +864,7 @@ enum {
 - (void)didLogin:(int)result userInfo:(NSDictionary*)userInfo
 {        
     if (result == 0){
-        [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+        [[UserService defaultService] updateUserWithSNSUserInfo:[_pbUserBuilder userId] userInfo:userInfo viewController:self];
         
         // ask to follow user
         [self askFollow];
@@ -836,10 +876,13 @@ enum {
 - (void)didUserRegistered:(int)resultCode
 {
     if (resultCode == 0){
-        [self popupMessage:NSLS(@"kUserBindSucc") title:nil];
+//        [self popupMessage:NSLS(@"kUserBindSucc") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindSucc") delayTime:1.5];
+        
     }
     else{
-        [self popupMessage:NSLS(@"kUserBindFail") title:nil];
+//        [self popupMessage:NSLS(@"kUserBindFail") title:nil];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:1.5];
     }
     
     self.navigationController.navigationBarHidden = YES;    
@@ -862,7 +905,7 @@ enum {
         [service readMyUserInfo:^(NSDictionary *userInfo) {
             [self hideActivity];
             PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId] userInfo:userInfo viewController:self];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[_pbUserBuilder userId] userInfo:userInfo viewController:self];
             
             // ask follow official weibo account here
             [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
@@ -922,14 +965,16 @@ enum {
         
     }else {
         if (actionSheet.tag == LANGUAGE_TAG) {
-            languageType = buttonIndex + 1;
+            _pbUserBuilder.guessWordLanguage = buttonIndex + 1;
+            hasEdited = YES;
         }else if(actionSheet.tag == LEVEL_TAG){
             guessLevel = [self buttonIndexToGuessLevel:buttonIndex];
         } else  if (actionSheet.tag == GENDER_TAG) {
             if (buttonIndex != actionSheet.destructiveButtonIndex) {
                 hasEdited = YES;
             }
-            self.gender = (buttonIndex == INDEX_OF_MALE) ? MALE : FEMALE;
+            BOOL gender = (buttonIndex == INDEX_OF_MALE) ? YES : NO;
+            [_pbUserBuilder setGender:gender];
         }
         
 //        else if (actionSheet.tag == CHAT_VOICE_TAG) {
@@ -940,41 +985,59 @@ enum {
     [self.dataTableView reloadData];
 }
 
-- (BOOL)isLocalChanged
-{ 
-//    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
-    BOOL localChanged = (languageType != [userManager getLanguageType]) 
-    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
-    return localChanged;
+//- (BOOL)isLocalChanged
+//{ 
+////    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
+//        
+//    BOOL localChanged = (languageType != [userManager getLanguageType]) 
+//    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
+//    return localChanged;
+//}
+
+
+- (void)uploadUserAvatar:(UIImage*)image
+{
+    [[UserService defaultService] uploadUserAvatar:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
+        
+        if (resultCode == ERROR_SUCCESS && [imageRemoteURL length] > 0){
+            [_pbUserBuilder setAvatar:imageRemoteURL];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarSucc") delayTime:1.5];
+            [self updateAvatar:image];
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarFail") delayTime:1.5];
+        }
+    }];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
     
-    BOOL localChanged = [self isLocalChanged];
-
-    if (localChanged) {
-        [userManager setLanguageType:languageType];
-        [ConfigManager setGuessDifficultLevel:guessLevel];
-        [userManager setGender:self.gender];
-        //[ConfigManager setChatVoiceEnable:chatVoice];
-        if (!hasEdited) {
-            [self popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];            
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
     if (hasEdited) {
-        UIImage *image = avatarChanged ?  imageView.image : nil;
-        [[UserService defaultService] updateUserAvatar:image 
-                                              nickName:nicknameLabel.text 
-                                                gender:self.gender 
-                                              password:self.updatePassword          
-                                                 email:_tempEmail
-                                        viewController:self];               
+        PBGameUser* user = [_pbUserBuilder build];
+        self.pbUserBuilder = [PBGameUser builderWithPrototype:user];
+        [[UserService defaultService] updateUser:user resultBlock:^(int resultCode) {
+            if (resultCode == ERROR_SUCCESS){
+                
+                // clear edit flag
+                hasEdited = NO;
+                
+                // show message
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateUserSucc") delayTime:1.5];
+                
+                // reload user and table view
+                self.pbUserBuilder = [PBGameUser builderWithPrototype:_userManager.pbUser];
+                [self updateNicknameLabel];
+                [self.dataTableView reloadData];
+            }
+            else{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateUserFail") delayTime:1.5];                
+            }
+        }];
         
-    }else if(!localChanged){
-        [self popupHappyMessage:NSLS(@"kNoUpdate") title:nil];
+    }else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoUpdate") delayTime:1.5];
     }
-//    [[AudioManager defaultManager] saveSoundSettings];
+
 }
 
 - (IBAction)clickAvatar:(id)sender {
@@ -986,8 +1049,8 @@ enum {
 }
 
 - (IBAction)clickBackButton:(id)sender {
-    BOOL localChanged = [self isLocalChanged];
-    if (localChanged || hasEdited) {
+    
+    if (hasEdited) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton delegate:self];
         [dialog showInView:self.view];
     }else{
@@ -1017,6 +1080,7 @@ enum {
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)clickBack:(CommonDialog *)dialog
 {
 //    [dialog removeFromSuperview];    
@@ -1026,30 +1090,37 @@ enum {
 
 - (void)didImageSelected:(UIImage*)image
 {
-    [self updateAvatar:image];
-    avatarChanged = YES;
-    hasEdited = YES;
+//    [self updateAvatar:image];
+    [self uploadUserAvatar:image];
 }
 
 
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
     if (dialog.tag == DIALOG_TAG_NICKNAME) {
-        [self updateNickname:targetText];
-        hasEdited = YES;
-    }
-    else if(dialog.tag == DIALOG_TAG_PASSWORD)
-    {
-        self.updatePassword = [targetText encodeMD5Base64:PASSWORD_KEY];        
-        hasEdited = YES;
-    }
-    else if (dialog.tag == DIALOG_TAG_EMAIL){
-        if (NSStringIsValidEmail(targetText)){
-            self.tempEmail = targetText;            
+        if ([targetText length] > 0){
+            [_pbUserBuilder setNickName:targetText];
+            [self updateNicknameLabel];
             hasEdited = YES;
         }
         else{
-            [self popupMessage:NSLS(@"kEmailNotValid") title:@""];
+            
+        }
+    }
+    else if(dialog.tag == DIALOG_TAG_PASSWORD)
+    {
+        if ([targetText length] > 0){
+            [_pbUserBuilder setPassword:[targetText encodeMD5Base64:PASSWORD_KEY]];
+            hasEdited = YES;
+        }
+    }
+    else if (dialog.tag == DIALOG_TAG_EMAIL){
+        if (NSStringIsValidEmail(targetText)){
+            [_pbUserBuilder setEmail:targetText];
+            hasEdited = YES;
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEmailNotValid") delayTime:1.5];            
             [self askInputEmail:targetText];
         }
     }
@@ -1065,15 +1136,17 @@ enum {
 #pragma mark - Password Dialog Delegate
 - (void)passwordIsWrong:(NSString *)password
 {
-    [self popupHappyMessage:NSLS(@"kPasswordWrong") title:nil];    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordWrong") delayTime:1.5];
+    
 }
 - (void)twoInputDifferent
 {
-    [self popupHappyMessage:NSLS(@"kPasswordDifferent") title:nil];    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordDifferent") delayTime:1.5];
 }
+
 - (void)passwordIsIllegal:(NSString *)password
 {
-    [self popupHappyMessage:NSLS(@"kPasswordIllegal") title:nil];    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordIllegal") delayTime:1.5];
 }
 
 - (void)didUserUpdated:(int)resultCode
@@ -1086,6 +1159,39 @@ enum {
 
     }
 }
+
+#pragma mark - location delegate
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    [self hideActivity];
+	self.currentPlacemark = placemark;
+	NSLog(@"reverseGeocoder finish, placemark=%@", [placemark description] );
+    [[UserManager defaultManager] setLocation:placemark.locality];
+    [self.dataTableView reloadData];
+	//	NSLog(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.locality, placemark.thoroughfare, placemark.subThoroughfare);
+}
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    if (!ISIPAD) {
+        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+        [self.inputAlertView adjustWithKeyBoardRect:keyboardRect];
+    }
+}
+
+/*
+ 
+功能
+ 1）位置：使用CoreLoation自动获取并且自动转换为城市，而不是输入，点击该行，获取位置并且转换为城市后，询问用户是否确认，是则设置，否则不设置
+ 2）生日：默认值为1990-06-15
+ 3）血型：其他修改为“未知”，送空字符串即可（或者去掉最后一项）
+ 4）星座：取值为1-12，而不是0-11，否则默认用户都是白羊座，0表示未设置
+ 5）个性签名：输入框应该是一个TextView，可以换行等等（未国际化），因为个性化签名可以更长一些
+ 6）新增 信息公开设置 openInfoType
+ 
+ 
+ */
 
 
 @end
