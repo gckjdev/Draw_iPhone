@@ -10,4 +10,25 @@
 
 @implementation ShapeCommand
 
+
+- (BOOL)execute
+{
+    if ([super execute]) {
+        [self showPopTipView];
+    }
+}
+
+- (UIView *)contentView
+{
+    return [ShapeBox shapeBoxWithDelegate:self];
+
+}
+
+
+- (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type
+{
+    [self.toolHandler changeShape:type];
+    //TODO change the control view with shape type
+}
+
 @end

@@ -10,4 +10,5 @@
 
 @interface EraserCommand : ToolCommand
 
+
 @end

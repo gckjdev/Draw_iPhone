@@ -35,7 +35,9 @@ typedef enum
     PaintPlayerItem = 1103,
     ColorStrawItem = 1104,
     PurseItem = 1105,               //钱袋
-
+    
+    ItemTypeGrid = 1106,
+    
     
     TransverseCanvas = 1150,        //横版画布
     VerticalCanvas = 1151,          //竖版画布

@@ -9,29 +9,54 @@
 #import <Foundation/Foundation.h>
 #import "ItemType.h"
 #import "ToolHandler.h"
+#import "AnalyticsManager.h"
+#import "CMPopTipView.h"
+#import "UIViewUtils.h"
+
+#define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
 @class PPViewController;
 
-@interface ToolCommand : NSObject
+@interface ToolCommand : NSObject<CMPopTipViewDelegate>
 
 @property(nonatomic, assign)UIControl *control;
 @property(nonatomic, assign)ToolHandler *toolHandler;
 @property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
+@property(nonatomic, assign, getter = isShowing)BOOL showing;
+@property(nonatomic, retain) CMPopTipView *popTipView;
 
 - (BOOL)canUseItem:(ItemType)type;
-- (UIView *)thePPTopView;
+- (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType;
 
-
-- (id)initWithButton:(UIControl *)control itemType:(ItemType)itemType;
 - (void)showPopTipView;
 - (void)hidePopTipView;
-
+- (void)finish;
 
 //need to be override by the sub classes
+- (void)sendAnalyticsReport;
 - (UIView *)contentView;
-- (BOOL)excute;
-- (void)finish;
+- (BOOL)execute;
+- (void)buyItemSuccessfully:(ItemType)type;
+
 
 
 @end
+
+
+@interface ToolCommandManager : NSObject
+{
+    
+}
+
+- (id)init;
+
+- (void)registerCommand:(ToolCommand *)command;
+- (void)unregisterCommand:(ToolCommand *)command;
+- (ToolCommand *)commandForControl:(UIControl *)control;
+- (void)removeAllCommand;
+- (void)hideAllPopTipViews;
+- (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
+
+@end
+

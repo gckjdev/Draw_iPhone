@@ -86,6 +86,7 @@
 						<string key="NSFrame">{{283, 55}, {33, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -288,7 +289,7 @@
 									<object class="IBUIButton" id="1065372799">
 										<reference key="NSNextResponder" ref="511657176"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{-15, 6}, {44, 44}}</string>
+										<string key="NSFrame">{{-3, 6}, {35, 44}}</string>
 										<reference key="NSSuperview" ref="511657176"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="629355142"/>
@@ -297,10 +298,6 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
-										<double key="IBUIContentEdgeInsets.top">0.0</double>
-										<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-										<double key="IBUIContentEdgeInsets.left">10</double>
-										<double key="IBUIContentEdgeInsets.right">-10</double>
 										<reference key="IBUIHighlightedTitleColor" ref="806468247"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">1</int>
@@ -317,12 +314,13 @@
 									<object class="IBUIButton" id="1037917703">
 										<reference key="NSNextResponder" ref="511657176"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{22, 6}, {44, 44}}</string>
+										<string key="NSFrame">{{26, 6}, {34, 44}}</string>
 										<reference key="NSSuperview" ref="511657176"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="140804943"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
+										<int key="IBUIContentMode">3</int>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
@@ -864,6 +862,70 @@
 					<int key="connectionID">89</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">shape</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="535350486"/>
+					</object>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">paintBucket</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="140804943"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">drawBg</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="1004972817"/>
+					</object>
+					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">canvasSize</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="603637563"/>
+					</object>
+					<int key="connectionID">93</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">grid</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="81928228"/>
+					</object>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">opusDesc</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="484805275"/>
+					</object>
+					<int key="connectionID">95</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">drawToUser</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="537432708"/>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">help</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="522449680"/>
+					</object>
+					<int key="connectionID">97</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUndo:</string>
 						<reference key="source" ref="587674421"/>
@@ -883,48 +945,48 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickPen:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="1065372799"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">29</int>
+					<int key="connectionID">104</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickEraser:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="1037917703"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">30</int>
+					<int key="connectionID">105</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickPaintBucket:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="140804943"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">43</int>
+					<int key="connectionID">106</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickAddColor:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="1041540627"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">31</int>
+					<int key="connectionID">108</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickPalette:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="476021577"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">42</int>
+					<int key="connectionID">110</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -937,39 +999,84 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickStraw:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="257603996"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">58</int>
+					<int key="connectionID">109</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickWidthBox:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="341213902"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">70</int>
+					<int key="connectionID">111</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickShape:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="535350486"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">73</int>
+					<int key="connectionID">107</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickDrawBg:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="1004972817"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">75</int>
+					<int key="connectionID">98</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTool:</string>
+						<reference key="source" ref="603637563"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">99</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTool:</string>
+						<reference key="source" ref="81928228"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">100</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTool:</string>
+						<reference key="source" ref="484805275"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">101</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTool:</string>
+						<reference key="source" ref="537432708"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">102</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTool:</string>
+						<reference key="source" ref="522449680"/>
+						<reference key="destination" ref="191373211"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">103</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1220,12 +1327,13 @@
 				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="84.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="9.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">111</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1281,6 +1389,7 @@
 						<string key="clickRedo:">id</string>
 						<string key="clickShape:">id</string>
 						<string key="clickStraw:">id</string>
+						<string key="clickTool:">id</string>
 						<string key="clickUndo:">id</string>
 						<string key="clickWidthBox:">UIButton</string>
 						<string key="switchToolPage:">UIButton</string>
@@ -1326,6 +1435,10 @@
 							<string key="name">clickStraw:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="clickTool:">
+							<string key="name">clickTool:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clickUndo:">
 							<string key="name">clickUndo:</string>
 							<string key="candidateClassName">id</string>
@@ -1342,15 +1455,23 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="addColor">UIButton</string>
 						<string key="alphaSlider">DrawSlider</string>
+						<string key="canvasSize">UIButton</string>
 						<string key="chat">UIButton</string>
 						<string key="colorAlpha">UIButton</string>
 						<string key="colorBGImageView">UIImageView</string>
+						<string key="drawBg">UIButton</string>
+						<string key="drawToUser">UIButton</string>
 						<string key="eraser">UIButton</string>
+						<string key="grid">UIButton</string>
+						<string key="help">UIButton</string>
+						<string key="opusDesc">UIButton</string>
+						<string key="paintBucket">UIButton</string>
 						<string key="palette">UIButton</string>
 						<string key="pen">UIButton</string>
 						<string key="penWidth">UIButton</string>
 						<string key="redo">UIButton</string>
 						<string key="scrollView">UIScrollView</string>
+						<string key="shape">UIButton</string>
 						<string key="straw">UIButton</string>
 						<string key="switchPage">UIButton</string>
 						<string key="timeSet">UIButton</string>
@@ -1366,6 +1487,10 @@
 							<string key="name">alphaSlider</string>
 							<string key="candidateClassName">DrawSlider</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="canvasSize">
+							<string key="name">canvasSize</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="chat">
 							<string key="name">chat</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1378,8 +1503,32 @@
 							<string key="name">colorBGImageView</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="drawBg">
+							<string key="name">drawBg</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawToUser">
+							<string key="name">drawToUser</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="eraser">
 							<string key="name">eraser</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="grid">
+							<string key="name">grid</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="help">
+							<string key="name">help</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="opusDesc">
+							<string key="name">opusDesc</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="paintBucket">
+							<string key="name">paintBucket</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="palette">
@@ -1401,6 +1550,10 @@
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="shape">
+							<string key="name">shape</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="straw">
 							<string key="name">straw</string>

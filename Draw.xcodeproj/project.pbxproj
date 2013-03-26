@@ -7020,10 +7020,10 @@
 		CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
-		CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
-		CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* paletteCommand.m */; };
+		CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54A1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54B1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
+		CAEFC54C1700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
 		CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
 		CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
 		CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC54E1700036200D799B7 /* SelectPenCommand.m */; };
@@ -7082,6 +7082,14 @@
 		CAF7E82A16BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
 		CAF7E82B16BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
 		CAF7E82C16BB662B00F09584 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
+		CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839BD1701507B00494ED6 /* StrawCommand.m */; };
+		CAF839BF1701507C00494ED6 /* StrawCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839BD1701507B00494ED6 /* StrawCommand.m */; };
+		CAF839C01701507C00494ED6 /* StrawCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839BD1701507B00494ED6 /* StrawCommand.m */; };
+		CAF839C11701507C00494ED6 /* StrawCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839BD1701507B00494ED6 /* StrawCommand.m */; };
+		CAF839C91701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
@@ -10542,8 +10550,8 @@
 		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
 		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
 		CAEFC5421700024200D799B7 /* AddColorCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddColorCommand.m; sourceTree = "<group>"; };
-		CAEFC5471700026700D799B7 /* paletteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paletteCommand.h; sourceTree = "<group>"; };
-		CAEFC5481700026800D799B7 /* paletteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = paletteCommand.m; sourceTree = "<group>"; };
+		CAEFC5471700026700D799B7 /* PaletteCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteCommand.h; sourceTree = "<group>"; };
+		CAEFC5481700026800D799B7 /* PaletteCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteCommand.m; sourceTree = "<group>"; };
 		CAEFC54D1700036000D799B7 /* SelectPenCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPenCommand.h; sourceTree = "<group>"; };
 		CAEFC54E1700036200D799B7 /* SelectPenCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPenCommand.m; sourceTree = "<group>"; };
 		CAEFC5531700038600D799B7 /* EraserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EraserCommand.h; sourceTree = "<group>"; };
@@ -10576,6 +10584,10 @@
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
 		CAF7E82716BB662B00F09584 /* WidthBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthBox.h; sourceTree = "<group>"; };
 		CAF7E82816BB662B00F09584 /* WidthBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidthBox.m; sourceTree = "<group>"; };
+		CAF839BC1701507A00494ED6 /* StrawCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrawCommand.h; sourceTree = "<group>"; };
+		CAF839BD1701507B00494ED6 /* StrawCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawCommand.m; sourceTree = "<group>"; };
+		CAF839C71701520900494ED6 /* GridCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCommand.h; sourceTree = "<group>"; };
+		CAF839C81701520A00494ED6 /* GridCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCommand.m; sourceTree = "<group>"; };
 		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
 		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
 		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
@@ -17687,8 +17699,8 @@
 				CAEFC5361700005400D799B7 /* ToolCommand.m */,
 				CAEFC5411700024100D799B7 /* AddColorCommand.h */,
 				CAEFC5421700024200D799B7 /* AddColorCommand.m */,
-				CAEFC5471700026700D799B7 /* paletteCommand.h */,
-				CAEFC5481700026800D799B7 /* paletteCommand.m */,
+				CAEFC5471700026700D799B7 /* PaletteCommand.h */,
+				CAEFC5481700026800D799B7 /* PaletteCommand.m */,
 				CAEFC54D1700036000D799B7 /* SelectPenCommand.h */,
 				CAEFC54E1700036200D799B7 /* SelectPenCommand.m */,
 				CAEFC5531700038600D799B7 /* EraserCommand.h */,
@@ -17715,6 +17727,10 @@
 				CAEFC59C1700057A00D799B7 /* HelpCommand.m */,
 				CAEFC5A11700059F00D799B7 /* ChatCommand.h */,
 				CAEFC5A2170005A700D799B7 /* ChatCommand.m */,
+				CAF839BC1701507A00494ED6 /* StrawCommand.h */,
+				CAF839BD1701507B00494ED6 /* StrawCommand.m */,
+				CAF839C71701520900494ED6 /* GridCommand.h */,
+				CAF839C81701520A00494ED6 /* GridCommand.m */,
 			);
 			path = ToolCommand;
 			sourceTree = "<group>";
@@ -23578,7 +23594,7 @@
 				CAEFC5331700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5391700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5451700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54B1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54B1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5511700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5571700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55D170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -23592,6 +23608,8 @@
 				CAEFC5991700055400D799B7 /* DrawToCommand.m in Sources */,
 				CAEFC59F1700058000D799B7 /* HelpCommand.m in Sources */,
 				CAEFC5A5170005AD00D799B7 /* ChatCommand.m in Sources */,
+				CAF839C01701507C00494ED6 /* StrawCommand.m in Sources */,
+				CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24358,7 +24376,7 @@
 				CAEFC5341700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC53A1700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5461700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54C1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54C1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5521700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5581700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55E170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -24372,6 +24390,8 @@
 				CAEFC59A1700055400D799B7 /* DrawToCommand.m in Sources */,
 				CAEFC5A01700058000D799B7 /* HelpCommand.m in Sources */,
 				CAEFC5A6170005AD00D799B7 /* ChatCommand.m in Sources */,
+				CAF839C11701507C00494ED6 /* StrawCommand.m in Sources */,
+				CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25147,7 +25167,7 @@
 				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC5491700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC54F1700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5551700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55B170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -25163,6 +25183,8 @@
 				CAEFC5A3170005AD00D799B7 /* ChatCommand.m in Sources */,
 				A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */,
 				A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */,
+				CAF839BE1701507C00494ED6 /* StrawCommand.m in Sources */,
+				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25937,7 +25959,7 @@
 				CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */,
-				CAEFC54A1700026900D799B7 /* paletteCommand.m in Sources */,
+				CAEFC54A1700026900D799B7 /* PaletteCommand.m in Sources */,
 				CAEFC5501700036700D799B7 /* SelectPenCommand.m in Sources */,
 				CAEFC5561700038900D799B7 /* EraserCommand.m in Sources */,
 				CAEFC55C170003A000D799B7 /* PaintBucketCommand.m in Sources */,
@@ -25951,6 +25973,8 @@
 				CAEFC5981700055400D799B7 /* DrawToCommand.m in Sources */,
 				CAEFC59E1700058000D799B7 /* HelpCommand.m in Sources */,
 				CAEFC5A4170005AD00D799B7 /* ChatCommand.m in Sources */,
+				CAF839BF1701507C00494ED6 /* StrawCommand.m in Sources */,
+				CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
