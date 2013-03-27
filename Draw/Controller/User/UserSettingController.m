@@ -674,59 +674,14 @@ enum {
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == rowOfLocation) {
-            __block UserSettingController* uc = self;
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [uc startUpdatingLocation];
-                [uc showActivityWithText:NSLS(@"kGetingLocation")];
-            } clickCancelBlock:^{
-                //
-            }];
-            [dialog showInView:self.view];
+            [self askUpdateLocation];
             
         }else if (row == rowOfZodiac) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
-            for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
-                [actionSheet addButtonWithTitle:zodiacStr];
-            }
-            int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
-            [actionSheet setCancelButtonIndex:index];
-            __block UserSettingController* bc = self;
-            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                if (buttonIndex != actionSheet.cancelButtonIndex){
-                    
-                    [_pbUserBuilder setZodiac:buttonIndex+1];
-                    hasEdited = YES;
-                }
-                [bc.dataTableView reloadData];
-            }];
-            [actionSheet showInView:self.view];
+            [self askSetZodiac];
         }else if (row == rowOfBirthday) {
-            __block UserSettingController* bc = self;
-            GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
-                                                                  defaultDate:dateFromStringByFormat(@"19900615", @"yyyyMMdd")
-                                                                  finishBlock:^(NSDate *date) {
-                                                                      
-                                                                      if (date != nil){
-                                                                          
-                                                                          [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
-                                                                          
-                                                                          hasEdited = YES;
-                                                                      }
-                                                                      
-                                                                      [bc.dataTableView reloadData];
-            }];
-            [view showInView:self.view];
+            [self askSetBirthday];
         }else if (row == rowOfBloodGroup) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), nil] autorelease];
-            __block UserSettingController* bc = self;
-            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                if(buttonIndex != actionSheet.cancelButtonIndex){
-                    [_pbUserBuilder setBloodGroup:[actionSheet buttonTitleAtIndex:buttonIndex]];
-                    hasEdited = YES;
-                }
-                [bc.dataTableView reloadData];
-            }];
-            [actionSheet showInView:self.view];
+            [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
 //            __block UserSettingController* bc = self;
 //            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
@@ -744,22 +699,7 @@ enum {
             [self.inputAlertView showInView:self.view animated:YES];
     
         }else if (row == rowOfPrivacy) {
-            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kPrivacy") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
-            for (NSString* privacyTypeStr in [self getPrivacyPublicTypeNameArray]) {
-                [actionSheet addButtonWithTitle:privacyTypeStr];
-            }
-            int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
-            [actionSheet setCancelButtonIndex:index];
-            __block UserSettingController* bc = self;
-            [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-                if (buttonIndex != actionSheet.cancelButtonIndex){
-                    
-                    [_pbUserBuilder setOpenInfoType:buttonIndex];
-                    hasEdited = YES;
-                }
-                [bc.dataTableView reloadData];
-            }];
-            [actionSheet showInView:self.view];
+            [self askSetPrivacy];
         }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
@@ -869,6 +809,91 @@ enum {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+}
+
+- (void)askUpdateLocation
+{
+    __block UserSettingController* uc = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [uc startUpdatingLocation];
+        [uc showActivityWithText:NSLS(@"kGetingLocation")];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:self.view];
+}
+
+- (void)askSetZodiac
+{
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+    for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
+        [actionSheet addButtonWithTitle:zodiacStr];
+    }
+    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    [actionSheet setCancelButtonIndex:index];
+    __block UserSettingController* bc = self;
+    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != actionSheet.cancelButtonIndex){
+            
+            [_pbUserBuilder setZodiac:buttonIndex+1];
+            hasEdited = YES;
+        }
+        [bc.dataTableView reloadData];
+    }];
+    [actionSheet showInView:self.view];
+}
+
+- (void)askSetBirthday
+{
+    __block UserSettingController* bc = self;
+    GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
+                                                          defaultDate:dateFromStringByFormat(@"19900615", @"yyyyMMdd")
+                                                          finishBlock:^(NSDate *date) {
+                                                              
+                                                              if (date != nil){
+                                                                  
+                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
+                                                                  
+                                                                  hasEdited = YES;
+                                                              }
+                                                              
+                                                              [bc.dataTableView reloadData];
+                                                          }];
+    [view showInView:self.view];
+}
+
+- (void)askSetBloodGroup
+{
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kBloodGroup") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"A") otherButtonTitles:NSLS(@"B"), NSLS(@"AB"), NSLS(@"O"), nil] autorelease];
+    __block UserSettingController* bc = self;
+    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+        if(buttonIndex != actionSheet.cancelButtonIndex){
+            [_pbUserBuilder setBloodGroup:[actionSheet buttonTitleAtIndex:buttonIndex]];
+            hasEdited = YES;
+        }
+        [bc.dataTableView reloadData];
+    }];
+    [actionSheet showInView:self.view];
+}
+
+- (void)askSetPrivacy
+{
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kPrivacy") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+    for (NSString* privacyTypeStr in [self getPrivacyPublicTypeNameArray]) {
+        [actionSheet addButtonWithTitle:privacyTypeStr];
+    }
+    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    [actionSheet setCancelButtonIndex:index];
+    __block UserSettingController* bc = self;
+    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != actionSheet.cancelButtonIndex){
+            
+            [_pbUserBuilder setOpenInfoType:buttonIndex];
+            hasEdited = YES;
+        }
+        [bc.dataTableView reloadData];
+    }];
+    [actionSheet showInView:self.view];
 }
 
 - (void)inputSignatureFinish

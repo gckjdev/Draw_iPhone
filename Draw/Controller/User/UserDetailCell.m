@@ -21,6 +21,10 @@
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"
 
+#define NICK_NAME_FONT (ISIPAD?30:15)
+#define NICK_NAME_MAX_WIDTH (ISIPAD?424:212)
+
+
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -79,6 +83,14 @@
     [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
     UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
     [self.followButton setBackgroundImage:followBtnBg forState:UIControlStateNormal];
+    
+    [self adjustNickAndGenderImg:detail];
+}
+
+- (void)adjustNickAndGenderImg:(NSObject<UserDetailProtocol> *)detail
+{
+    NSString* nickName = [[detail queryUser] nickName];
+    CGSize size = [nickName sizeWithFont:NICK_NAME_FONT];
 }
 
 + (float)getCellHeight
