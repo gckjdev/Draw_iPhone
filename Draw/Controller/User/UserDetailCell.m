@@ -84,31 +84,24 @@
     UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
     [self.followButton setBackgroundImage:followBtnBg forState:UIControlStateNormal];
     
-    [self adjustNickAndGenderImg:detail];
+    [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
+    [self adjustView:self.levelLabel toLabel:self.signLabel];
 }
 
-- (void)adjustNickAndGenderImg:(NSObject<UserDetailProtocol> *)detail
+- (void)adjustView:(UIView*)view
+           toLabel:(UILabel*)label
 {
-    NSString* nickName = [[detail queryUser] nickName];
-    CGSize size = [nickName sizeWithFont:self.nickNameLabel.font];
-    if (size.width < self.nickNameLabel.frame.size.width) {
-        CGPoint orgPoint = CGPointMake(self.nickNameLabel.frame.origin.x - self.genderImageView.frame.size.width/2 , self.nickNameLabel.center.y);
-        orgPoint.x += (self.nickNameLabel.frame.size.width - size.width)/2;
-        [self.genderImageView setCenter:orgPoint];
+    NSString* text = label.text;
+    if (text == nil || text.length <= 0) {
+        [view setCenter:label.center];
+        return;
     }
-    
-}
-
-- (void)adjustLvlAndSignature:(NSObject<UserDetailProtocol> *)detail
-{
-    NSString* signature = [[detail queryUser] signature];
-    CGSize size = [signature sizeWithFont:self.signLabel.font];
-    if (size.width < self.signLabel.frame.size.width) {
-        CGPoint orgPoint = CGPointMake(self.signLabel.frame.origin.x - self.levelLabel.frame.size.width/2 , self.signLabel.center.y);
-        orgPoint.x += (self.signLabel.frame.size.width - size.width)/2;
-        [self.levelLabel setCenter:orgPoint];
+    CGSize size = [text sizeWithFont:label.font];
+    if (size.width < label.frame.size.width) {
+        CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
+        orgPoint.x += (label.frame.size.width - size.width)/2;
+        [view setCenter:orgPoint];
     }
-    
 }
 
 + (float)getCellHeight
