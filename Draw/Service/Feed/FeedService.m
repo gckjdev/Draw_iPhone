@@ -19,6 +19,10 @@
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
 
+#define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
+#define GET_PBDRAW_QUEUE        @"GET_PBDRAW_QUEUE"
+#define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
+
 static FeedService *_staticFeedService = nil;
 @implementation FeedService
 
@@ -256,11 +260,12 @@ static FeedService *_staticFeedService = nil;
                   delegate:(id<FeedServiceDelegate>)delegate
 {
 
-    // TODO use operation queue to cancel pervious request
-//    NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
-//    [queue cancelAllOperations];
-    
-    dispatch_async(workingQueue, ^{
+    // use operation queue to cancel pervious request
+    NSString* queueId = [NSString stringWithFormat:@"%@_%d", GET_FEED_COMMENT_QUEUE, type];
+    NSOperationQueue *queue = [self getOperationQueue:queueId];
+    [queue cancelAllOperations];
+
+    [queue addOperationWithBlock:^{
         
         // add by Benson
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
@@ -275,6 +280,7 @@ static FeedService *_staticFeedService = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             @try{
+                PPDebug(@"<getOpusCommentList> result=%d", resultCode);
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
                 NSArray *pbFeedList = [response feedList];
@@ -295,7 +301,7 @@ static FeedService *_staticFeedService = nil;
         });
         
         [subPool drain];
-    });
+    }];
 
 }
 
@@ -345,8 +351,7 @@ static FeedService *_staticFeedService = nil;
 }
 
 
-#define GET_FEED_DETAIL_QUEUE @"GET_FEED_DETAIL_QUEUE"
-#define GET_PBDRAW_QUEUE @"GET_PBDRAW_QUEUE"
+
 
 - (void)getFeedByFeedId:(NSString *)feedId
                delegate:(id<FeedServiceDelegate>)delegate
