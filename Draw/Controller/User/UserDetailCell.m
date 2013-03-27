@@ -128,6 +128,7 @@
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     
     cell.carousel = [FeedCarousel createFeedCarousel];
+    cell.carousel.delegate = self;
     cell.carousel.center = cell.feedPlaceHolderView.center;
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
@@ -286,5 +287,12 @@
     [self.carousel setDrawFeedList:feedList];
 }
 
+#pragma mark - feedCarousel delegate
+- (void)didSelectDrawFeed:(DrawFeed *)drawFeed
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickDrawFeed:)]) {
+        [_detailDelegate didClickDrawFeed:drawFeed];
+    }
+}
 
 @end
