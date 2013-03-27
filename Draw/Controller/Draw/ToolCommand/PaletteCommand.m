@@ -40,4 +40,10 @@
 }
 
 
+- (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
+{
+    [self.toolHandler changePenColor:color];
+//    [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
+}
+
 @end

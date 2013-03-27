@@ -15,6 +15,7 @@
 #import "RectangleShape.h"
 #import "EllipseShape.h"
 #import "StarShape.h"
+#import "ShareImageManager.h"
 
 @interface ShapeInfo()
 {
@@ -146,6 +147,25 @@
     [builder setShapeType:self.type];
     [builder addAllRectComponent:self.rectComponent];
     [builder setWidth:self.width];
+}
+
++ (UIImage *)shapeImageForShapeType:(ShapeType)type
+{
+    ShareImageManager *manager = [ShareImageManager defaultManager];
+    switch (type) {
+        case ShapeTypeBeeline:
+            return [manager shapeLine];
+        case ShapeTypeEllipse:
+            return [manager shapeEllipse];
+        case ShapeTypeRectangle:
+            return [manager shapeRectangle];
+        case ShapeTypeStar:
+            return [manager shapeStar];
+        case ShapeTypeTriangle:
+            return [manager shapeTriangle];
+        default:
+            return nil;
+    }
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ToolCommand.h"
 
-@interface StrawCommand : ToolCommand
+
+@interface StrawCommand : ToolCommand<DrawViewStrawDelegate>
 
 @end

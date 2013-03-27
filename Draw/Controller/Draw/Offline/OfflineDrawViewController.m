@@ -299,7 +299,7 @@
 //    CGRect frame = DRAW_VIEW_FRAME;
     drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     
-    drawView.strawDelegate = _drawToolPanel;
+//    drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
@@ -1255,8 +1255,7 @@
 - (void)updateRecentColors
 {
     if (_tempColor) {
-        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
-        [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
+        [_drawToolPanel updateRecentColorViewWithColor:_tempColor updateModel:YES];
         self.tempColor = nil;
     }
 }
