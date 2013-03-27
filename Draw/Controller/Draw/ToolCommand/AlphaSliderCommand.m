@@ -10,4 +10,11 @@
 
 @implementation AlphaSliderCommand
 
+
+
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_ALPHA);
+}
+
+
 @end

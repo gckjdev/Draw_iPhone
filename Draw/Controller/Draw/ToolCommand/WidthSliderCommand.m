@@ -10,4 +10,9 @@
 
 @implementation WidthSliderCommand
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_WIDTH);
+}
+
+
 @end
