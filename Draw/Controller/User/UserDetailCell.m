@@ -22,7 +22,7 @@
 #import "FeedCarousel.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
-#define NICK_NAME_MAX_WIDTH (ISIPAD?424:212)
+#define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
 
 
 @interface UserDetailCell ()
@@ -84,18 +84,29 @@
     UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
     [self.followButton setBackgroundImage:followBtnBg forState:UIControlStateNormal];
     
-    [self adjustNickAndGenderImg:detail];
+    [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
+    [self adjustView:self.levelLabel toLabel:self.signLabel];
 }
 
-- (void)adjustNickAndGenderImg:(NSObject<UserDetailProtocol> *)detail
+- (void)adjustView:(UIView*)view
+           toLabel:(UILabel*)label
 {
-    NSString* nickName = [[detail queryUser] nickName];
-    CGSize size = [nickName sizeWithFont:NICK_NAME_FONT];
+    NSString* text = label.text;
+    if (text == nil || text.length <= 0) {
+        [view setCenter:label.center];
+        return;
+    }
+    CGSize size = [text sizeWithFont:label.font];
+    if (size.width < label.frame.size.width) {
+        CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
+        orgPoint.x += (label.frame.size.width - size.width)/2;
+        [view setCenter:orgPoint];
+    }
 }
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1884:785);
+    return ([DeviceDetection isIPAD]?1884:706);
 }
 
 + (NSString*)getCellIdentifier
@@ -119,7 +130,6 @@
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.center = cell.feedPlaceHolderView.center;
     [cell addSubview:cell.carousel];
-    
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
     

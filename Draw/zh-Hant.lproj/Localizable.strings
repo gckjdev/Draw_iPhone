@@ -1096,6 +1096,8 @@
 "kInputSignature" = "輸入個性簽名";
 "kGetLocationTitle" = "定位";
 "kGetLocationMsg" = "應用即將獲取你的位置，按確定繼續。";
+"kSNSAccount" = "社交帳號";
+"kSpecial" = "特別功能";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
