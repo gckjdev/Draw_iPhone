@@ -115,7 +115,9 @@
 "kSaved" = "Saved";
 "kFailed" = "Failed";
 "kTurnResult" = "Result of turn";
-"kBuyColor" = "Color Shop";
+"kMoreColor" = "Buy More";
+"kBuyColor" = "Buy Color";
+"kColorShop" = "Buy Color";
 "kConnectionRecover" = "Connection Recover";
 "kConnectionBroken" = "Connection Broken";
 "kNoServerAvailable" = "Sorry, server is full of users. Please try later.";
