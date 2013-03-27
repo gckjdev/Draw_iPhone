@@ -98,8 +98,8 @@
 "kSubmit" = "Submit";
 "kCancel" = "Cancel";
 
-"kQuitGameAlertTitle" = "Quit Game";
-"kQuitGameAlertMessage" = "Are you sure to quit the game?";
+"kQuitGameAlertTitle" = "Quit";
+"kQuitGameAlertMessage" = "Are you sure to quit?";
 
 "kQuitDrawAlertMessage" = "Are you going to save the drawing?";
 "kQuitDrawAlertTitle" = "Quit";
@@ -535,7 +535,7 @@
 
 "kCurrentCoins" = "Coins ";
 "kCurrentItems" = "Items ";
-"kFreeGetCoins" = "Free Coins";
+"kFreeGetCoins" = "Free Ingots";
 
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
@@ -651,7 +651,7 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFreeCoins" = "Free Coins";
+"kFreeCoins" = "Free Ingots";
 "kFeeds" = "Timeline";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
@@ -928,7 +928,7 @@
 "kHomeMenuTypeDrawTimeline" = "Timeline";
 "kHomeMenuTypeDrawRank" = "Top";
 "kHomeMenuTypeDrawApps" = "Apps";
-"kHomeMenuTypeDrawFreeCoins" = "Free Coins";
+"kHomeMenuTypeDrawFreeCoins" = "Free Ingots";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";
@@ -1043,7 +1043,7 @@
 "kNoDiscount" = "None";
 
 "kMyBalance" = "My Balance:";
-"kSaveMoney" = "Save";
+"kSaveMoney" = "Save ";
 "kGift:" = "GIFT:";
 "kTool" = "Tool";
 "kTo:" = "TO:";
@@ -1060,9 +1060,9 @@
 
 "kBuyColorFailed"= "Buy color failed";
 
-"kItemNormal" = "Props";
+"kItemNormal" = "Item";
 "kItemTool" = "Tool";
-"kItemPromotion" = "Disc";
+"kItemPromotion" = "Hot";
 "kDownloadRewardAppTips" = "Download our apps to earn ingots";
 "kRewardWallTips" = "Download third-party apps to earn ingots";
 "kFreeIngot" = "Free Ingot";

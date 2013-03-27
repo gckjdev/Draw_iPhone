@@ -100,8 +100,8 @@
 "kOK" = "确定";
 "kSubmit" = "提交";
 "kCancel" = "取消";
-"kQuitGameAlertMessage" = "确定要退出游戏吗?";
-"kQuitGameAlertTitle" = "退出游戏";
+"kQuitGameAlertMessage" = "确定要退出吗?";
+"kQuitGameAlertTitle" = "退出";
 
 "kQuitDrawAlertMessage" = "是否保存对作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出绘画";
@@ -553,7 +553,7 @@
 
 "kCurrentCoins" = "现有金币 ";
 "kCurrentItems" = "现有锦囊 ";
-"kFreeGetCoins" = "免费金币";
+"kFreeGetCoins" = "免费元宝";
 
 "kCustomWordManage" = "词库管理";
 "kAddCustomWord" = "添加新词";
@@ -663,7 +663,7 @@
 "kGuessOnly" = "我要猜";
 "kDrawOnly" = "我要画";
 "kFeed" = "猜画动态";
-"kFreeCoins" = "免费金币";
+"kFreeCoins" = "免费元宝";
 "kFeeds" = "动态";
 
 
@@ -952,7 +952,7 @@
 "kHomeMenuTypeDrawContest" = "画画大赛";
 "kHomeMenuTypeDrawBBS" = "玩家论坛";
 "kHomeMenuTypeDrawApps" = "应用推荐";
-"kHomeMenuTypeDrawFreeCoins" = "免费金币";
+"kHomeMenuTypeDrawFreeCoins" = "免费元宝";
 "kHomeMenuTypeDrawHome" = "主页";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
@@ -961,7 +961,7 @@
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
-"kFreeCoin" = "免费金币";
+"kFreeCoin" = "免费元宝";
 
 "kHomeMenuTypeZJHHelp" = "帮助";
 "kHomeMenuTypeZJHStart" = "快速开始";
