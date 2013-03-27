@@ -59,7 +59,6 @@
 #import "DrawHolderView.h"
 #import "GameItemManager.h"
 #import "CanvasRect.h"
-#import "BalanceNotEnoughAlertView.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1061,9 +1060,6 @@
                 break;
                 
         }
-    }else
-    {
-        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
     }
 }
 
@@ -1178,9 +1174,6 @@
         [drawView.lineColor setAlpha:_alpha];
     }else{
         [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [BalanceNotEnoughAlertView showInController:self];
-            }
         }];
     }
     
@@ -1225,8 +1218,6 @@
     [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_SUCCESS) {
             [self buyItemSuccess:itemId result:resultCode];
-        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-            [BalanceNotEnoughAlertView showInController:self];
         }
     }];
 }

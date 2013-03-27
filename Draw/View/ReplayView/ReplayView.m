@@ -21,7 +21,6 @@
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
-#import "BalanceNotEnoughAlertView.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
@@ -389,8 +388,6 @@
             if (resultCode == ERROR_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
-            }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [BalanceNotEnoughAlertView showInController:self];
             }
         }];
     }

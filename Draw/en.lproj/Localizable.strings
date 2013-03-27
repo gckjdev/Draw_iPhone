@@ -1052,7 +1052,7 @@
 "kAlreadyBought" = "Had";
 "kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
 "kCleanCache" = "Clear Cache";
-
+"kGiveSuccess" = "Give Success!";
 
 "kNoSaleItemNormal" = "No Normal Items";
 "kNoSaleItemTool" = "No Tool Items";
