@@ -114,6 +114,7 @@
     return @"UserDetailCell";
 }
 
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
 + (id)createCell:(id)delegate
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
@@ -129,10 +130,10 @@
     
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.delegate = cell;
-    cell.carousel.center = cell.feedPlaceHolderView.center;
+    cell.carousel.center = CAROUSEL_CENTER;
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
-    [cell.carousel enabaleWrap:NO];
+    [cell.carousel enabaleWrap:YES];
     
     return cell;
 }
@@ -174,7 +175,6 @@
     [_superBlackBtn release];
     [_feedTabHolder release];
     [_segmentedControl release];
-    [_feedPlaceHolderView release];
     [super dealloc];
 }
 
