@@ -31,29 +31,29 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 @end
 
-@interface ToolHandler : NSObject<DrawToolPanelDelegate>
+@interface ToolHandler : NSObject
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
 @property(nonatomic, assign)PPTableViewController<ToolHandlerDelegate> *controller;
-@property(nonatomic, retain)CanvasRect *canvasRect;
 
+@property (retain, nonatomic) CanvasRect *canvasRect;
 @property (retain, nonatomic) DrawColor* eraserColor;
-@property (retain, nonatomic) DrawColor* penColor;
 @property (retain, nonatomic) DrawColor *tempColor;
 
-@property (assign, nonatomic) BOOL grid;
 
 
 //method from draw view
 - (CGFloat)width;
 - (PBDrawBg *)drawBG;
-
+- (ItemType)penType;
+- (DrawColor *)penColor;
+- (BOOL)grid;
 
 - (void)changePenColor:(DrawColor *)color;
 - (void)changeDrawBG:(PBDrawBg *)drawBG;
 - (void)changeInPenType:(ItemType)type;
-- (void)changeCanvasRect:(CanvasRect *)canvasRect;
+- (BOOL)changeCanvasRect:(CanvasRect *)canvasRect;
 - (void)changeWidth:(CGFloat)width;
 - (void)changeAlpha:(CGFloat)alpha;
 - (void)changeShape:(ShapeType)shape;
@@ -63,6 +63,9 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)enterDrawMode;
 - (void)enterStrawMode;
 - (void)useGid:(BOOL)flag;
+
+
+
 @end
 
 

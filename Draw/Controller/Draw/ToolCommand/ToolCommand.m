@@ -34,7 +34,7 @@
         item ++;
     }
     
-    return [[UserGameItemManager defaultManager] hasItem:itemType];
+    return [[UserGameItemManager defaultManager] hasItem:type];
 }
 
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
@@ -203,6 +203,21 @@
         if (command != command1) {
             [command1 hidePopTipView];
         }
+    }
+}
+
+
+- (void)updateHandler:(ToolHandler *)handler
+{
+    for (ToolCommand *command in commandList) {
+        [command setToolHandler:handler];
+    }
+}
+
+- (void)updatePanel:(DrawToolPanel *)panel
+{
+    for (ToolCommand *command in commandList) {
+        [command setToolPanel:panel];
     }
 }
 

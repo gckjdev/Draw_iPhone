@@ -182,7 +182,7 @@
 
 - (void)showInContext:(CGContextRef)context
 {
-    if ([self hasContentToShow]) {
+    if ([self hasContentToShow] || self.forceShow) {
         CGContextDrawLayerAtPoint(context, CGPointZero, cacheLayer);
     }
 }

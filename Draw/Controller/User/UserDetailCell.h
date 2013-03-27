@@ -11,6 +11,7 @@
 #import "CommonRoundAvatarView.h"
 #import "iCarousel.h"
 #import "CustomSegmentedControl.h"
+#import "FeedCarousel.h"
 
 typedef enum {
     DetailTabActionClickOpus = 0,
@@ -39,9 +40,10 @@ typedef enum {
 - (void)didclickFacebook;
 - (void)didSelectTabAction:(DetailTabAction)tabAction;
 - (void)didClickMore;
+- (void)didClickDrawFeed:(DrawFeed *)drawFeed;
 @end
 
-@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate>
+@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
 @property (retain, nonatomic) IBOutlet UILabel *followCountLabel;

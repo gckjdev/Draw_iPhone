@@ -30,6 +30,7 @@
 #import "FeedService.h"
 #import "Feed.h"
 #import "UserFeedController.h"
+#import "ShowFeedController.h"
 
 #define    ROW_COUNT 1
 
@@ -343,6 +344,13 @@
         default:
             break;
     }
+}
+
+- (void)didClickDrawFeed:(DrawFeed *)drawFeed
+{
+    ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 #pragma mark - friendService delegate

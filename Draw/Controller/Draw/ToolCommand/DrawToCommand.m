@@ -10,4 +10,9 @@
 
 @implementation DrawToCommand
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_CHANGE_DRAWTOUSER);
+}
+
+
 @end

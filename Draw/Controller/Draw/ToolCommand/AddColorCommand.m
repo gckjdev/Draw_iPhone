@@ -8,6 +8,7 @@
 
 #import "AddColorCommand.h"
 #import "ColorView.h"
+#import "DrawToolPanel.h"
 
 @implementation AddColorCommand
 
@@ -36,7 +37,9 @@
 - (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
 {
     [self.toolHandler changePenColor:color];
+    [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
     [self hidePopTipView];
+//    [self.toolHandler ]
 }
 - (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
 {
@@ -55,6 +58,7 @@
 
 - (void)didPickedColorView:(ColorView *)colorView{
     [self.toolHandler changePenColor:colorView.drawColor];
+    [self.toolPanel updateRecentColorViewWithColor:colorView.drawColor updateModel:YES];
 }
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId

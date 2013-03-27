@@ -12,6 +12,12 @@
 
 - (BOOL)execute{
     [self.toolHandler useGid:!self.toolHandler.grid];
+    return YES;
 }
+
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_GRID);
+}
+
 
 @end

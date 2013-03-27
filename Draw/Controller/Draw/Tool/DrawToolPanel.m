@@ -213,8 +213,13 @@
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
 }
 
-- (void)updateRecentColorViewWithColor:(DrawColor *)color
+- (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel
 {
+    if (updateModel) {
+        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
+    }
+
+    
     for (ColorPoint *p in self.subviews) {
         if ([p isKindOfClass:[ColorPoint class]]) {
             [p removeFromSuperview];
@@ -245,7 +250,7 @@
 }
 - (void)updateRecentColorViews
 {
-    [self updateRecentColorViewWithColor:[DrawColor blackColor]];
+    [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 }
 
 - (void)updateNeedBuyToolViews
@@ -304,7 +309,7 @@
     command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ItemTypeNo] autorelease];
+    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
     [toolCmdManager registerCommand:command];
     
     
@@ -337,8 +342,7 @@
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-
-    
+    [toolCmdManager updateHandler:self.toolHandler];
 
 }
 
@@ -349,7 +353,7 @@
 
     
     [self updateRecentColorViews];
-    [self updateColorTools];
+
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
 
@@ -393,6 +397,20 @@
     [view updateView];
     return view;
     
+}
+
++ (id)createViewWithdToolHandler:(ToolHandler *)handler
+{
+    DrawToolPanel *panel = nil;
+    if (ISIPHONE5) {
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
+    }else{
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
+    }
+    panel.toolHandler = handler;
+    handler.drawToolPanel = panel;
+    [panel updateView];
+    return panel;
 }
 
 - (void)dismissPopTipViewsWithout:(CMPopTipView *)popView
@@ -659,10 +677,9 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    if (updateRecentColor && color != nil) {
-        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
-        [self updateRecentColorViewWithColor:color];
-    }
+
+    [self updateRecentColorViewWithColor:color updateModel:updateRecentColor];
+
 //    [self.alphaSlider setValue:1.0];
     //update show list;
 }
@@ -670,14 +687,14 @@
 #pragma mark - Color Point Delegate
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
-    for (ColorPoint *point in [self subviews]) {
-        if ([point isKindOfClass:[ColorPoint class]] && colorPoint != point) {
-            [point setSelected:NO];
-        }
-    }
+//    for (ColorPoint *point in [self subviews]) {
+//        if ([point isKindOfClass:[ColorPoint class]] && colorPoint != point) {
+//            [point setSelected:NO];
+//        }
+//    }
     [colorPoint setSelected:YES];
-    [self dismissAllPopTipViews];
-    [self handleSelectColorDelegateWithColor:colorPoint.color updateRecentColor:NO];
+    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
+    [self.toolHandler changePenColor:colorPoint.color];
 }
 
 
@@ -900,6 +917,7 @@
     PPDebug(@"%@ dealloc",self);
     self.delegate = nil;
     [drawColorManager syncRecentList];
+    PPRelease(_toolHandler);    
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
     PPRelease(_palettePopTipView);

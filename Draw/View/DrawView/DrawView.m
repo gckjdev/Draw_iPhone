@@ -17,6 +17,8 @@
 #import "ShapeTouchHandler.h"
 #import "DrawUtils.h"
 #import "DrawAction.h"
+#import "DrawHolderView.h"
+
 
 #define MAX_POINT_COUNT 5
 
@@ -206,16 +208,39 @@
         self.lineColor = [DrawColor blackColor];
         self.lineWidth = LINE_DEFAULT_WIDTH;
         self.penType = Pencil;
-        _drawActionList = [[NSMutableArray alloc] init];
         self.backgroundColor = [UIColor whiteColor];
+        
+        _drawActionList = [[NSMutableArray alloc] init];
         _redoStack = [[PPStack alloc] init];
         
         osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
+        
         [self setMultipleTouchEnabled:YES];
         _gestureRecognizerManager.delegate = self;
     }
     
     return self;
+}
+
+- (void)changeRect:(CGRect)rect
+{
+    self.transform = CGAffineTransformIdentity;
+    self.bounds = rect;
+    self.frame = rect;
+    [osManager release];
+    osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
+    if (_grid) {
+        [osManager setShowGridOffscreen:YES];
+    }
+    [(DrawHolderView *)self.superview updateContentScale];
+    [self setNeedsDisplay];
+}
+
+- (void)setGrid:(BOOL)grid
+{
+    _grid = grid;
+    [osManager setShowGridOffscreen:grid];
+    [self setNeedsDisplay];
 }
 
 - (void)dealloc
@@ -329,6 +354,16 @@
     [osManager printOSInfo];
 }
 
+
+- (UIImage *)createImage
+{
+    if ([osManager showGridOffscreen]) {
+        [osManager setShowGridOffscreen:NO];
+    }
+    UIImage *image = [super createImage];
+    [osManager setShowGridOffscreen:_grid];
+    return image;
+}
 
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
