@@ -53,6 +53,9 @@
 }
 - (void)dealloc
 {
+    self.clickBackBlock = nil;
+    self.clickOkBlock = nil;
+    
     _delegate = nil;
     [_OKButton release];
     [_backButton release];
@@ -292,6 +295,7 @@
     }
     if (_clickOkBlock != nil) {
         _clickOkBlock();
+        self.clickOkBlock = nil;
     }
     [self disappear];
 }
@@ -303,6 +307,7 @@
     }
     if (_clickBackBlock != nil) {
         _clickBackBlock();
+        self.clickBackBlock = nil;
     }
     [self disappear];
 }
@@ -325,16 +330,18 @@
     return self;
 }
 
-- (void)setClickOkBlock:(DialogSelectionBlock)block
-{
-    [_clickOkBlock release];
-    _clickOkBlock = [block copy];
-}
-- (void)setClickBackBlock:(DialogSelectionBlock)block
-{
-    [_clickBackBlock release];
-    _clickBackBlock = [block copy];
-}
+//- (void)setClickOkBlock:(DialogSelectionBlock)block
+//{
+//    [_clickOkBlock release];
+//    _clickOkBlock = [block copy];
+//}
+//- (void)setClickBackBlock:(DialogSelectionBlock)block
+//{
+//    self.clickBackBlock = block;
+//    
+////    [_clickBackBlock release];
+////    _clickBackBlock = [block copy];
+//}
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message

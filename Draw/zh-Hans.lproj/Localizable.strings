@@ -1078,8 +1078,8 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
-"kDownloadRewardAppTips" = "下载兄弟免费应用可直接赚取元宝";
-"kRewardWallTips" = "其他第三方免费应用，赚取1~10元宝";
+"kDownloadRewardAppTips" = "下载兄弟应用(免费)，使用后可赚取元宝";
+"kRewardWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kFreeIngot" = "免费元宝";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中...";
@@ -1111,6 +1111,10 @@
 "kGetLocationMsg" = "应用即将获取你的位置，按确定继续。";
 "kSNSAccount" = "社交帐号";
 "kSpecial" = "特别功能";
+
+"kDownloadAppTitle" = "下载应用";
+"kDownloadAppMessage" = "确认跳转到AppStore去下载本应用吗？";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

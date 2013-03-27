@@ -1063,8 +1063,8 @@
 "kItemNormal" = "Props";
 "kItemTool" = "Tool";
 "kItemPromotion" = "Disc";
-"kDownloadRewardAppTips" = "Download these apps to earn some ingots";
-"kRewardWallTips" = "Enter and download apps to earn some ingots";
+"kDownloadRewardAppTips" = "Download our apps to earn ingots";
+"kRewardWallTips" = "Download third-party apps to earn ingots";
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
@@ -1131,6 +1131,10 @@
 "kGetLocationMsg" = "Are you sure to enable the location service?";
 "kSNSAccount" = "SNS";
 "kSpecial" = "Extra Option";
+
+"kDownloadAppTitle" = "Download Apps";
+"kDownloadAppMessage" = "Go to AppStore and download this app to earn ingots now?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
