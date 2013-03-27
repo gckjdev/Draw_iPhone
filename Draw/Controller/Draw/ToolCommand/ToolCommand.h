@@ -59,5 +59,7 @@
 - (void)hideAllPopTipViews;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 
+- (void)updateHandler:(ToolHandler *)handler;
+
 @end
 

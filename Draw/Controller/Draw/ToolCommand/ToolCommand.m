@@ -34,7 +34,7 @@
         item ++;
     }
     
-    return [[UserGameItemManager defaultManager] hasItem:itemType];
+    return [[UserGameItemManager defaultManager] hasItem:type];
 }
 
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
@@ -206,4 +206,11 @@
     }
 }
 
+
+- (void)updateHandler:(ToolHandler *)handler
+{
+    for (ToolCommand *command in commandList) {
+        [command setToolHandler:handler];
+    }
+}
 @end

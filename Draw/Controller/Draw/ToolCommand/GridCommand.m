@@ -12,6 +12,7 @@
 
 - (BOOL)execute{
     [self.toolHandler useGid:!self.toolHandler.grid];
+    return YES;
 }
 
 @end

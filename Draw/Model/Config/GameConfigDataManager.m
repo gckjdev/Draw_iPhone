@@ -10,8 +10,10 @@
 #import "Config.pb.h"
 #import "GameConfigData.h"
 #import "PPSmartUpdateDataUtils.h"
+#import "UIUtils.h"
+#import "GameApp.h"
 
-#define DEFAULT_CONFIG_FILE     @"default_config.pb"
+//#define DEFAULT_CONFIG_FILE     @"default_config.pb"
 
 @interface GameConfigDataManager()
 {
@@ -43,15 +45,20 @@ static dispatch_once_t onceToken;
 - (id)init
 {
     self = [super init];    
-    _defaultConfigData = [[GameConfigData alloc] initWithName:DEFAULT_CONFIG_FILE];
+    _defaultConfigData = [[GameConfigData alloc] initWithName:[GameConfigDataManager configFileName]];
     [_defaultConfigData autoUpdate];
     return self;
 }
-                          
+
 - (void)dealloc
 {
     [_defaultConfigData release];
     [super dealloc];
+}
+
++ (NSString*)configFileName
+{
+    return [NSString stringWithFormat:@"default_config_%@.pb", [GameApp gameId]];
 }
 
 - (PBConfig*)defaultConfig
@@ -60,7 +67,12 @@ static dispatch_once_t onceToken;
 }
 
 + (PBAppReward*)createAppReward:(NSString*)appNameCn
-appId:(NSString*)appId
+                         nameEn:(NSString*)nameEn
+                         descCn:(NSString*)descCn
+                         descEn:(NSString*)descEn
+                          appId:(NSString*)appId
+                     appLogoURL:(NSString*)appLogoURL
+                   rewardAmount:(int)rewardAmount
 {
     // set name
     PBLocalizeString_Builder *str1 = [PBLocalizeString builder];
@@ -70,24 +82,25 @@ appId:(NSString*)appId
     
     PBLocalizeString_Builder *str3 = [PBLocalizeString builder];
     [str3 setLanguageCode:@"en"];
-    [str3 setText:appNameCn];
-    [str3 setLocalizedText:[NSString stringWithFormat:@"%@(en)",appNameCn]];
+    [str3 setText:nameEn];
+    [str3 setLocalizedText:[NSString stringWithFormat:@"%@",nameEn]];
 
     // set desc
     PBLocalizeString_Builder *str2 = [PBLocalizeString builder];
     [str2 setLanguageCode:@"zh-Hans"];
-    [str2 setText:@"TEST DESC"];
-    [str2 setLocalizedText:@"TEST DESC"];
+    [str2 setText:descCn];
+    [str2 setLocalizedText:descCn];
     
     PBLocalizeString_Builder *str4 = [PBLocalizeString builder];
     [str4 setLanguageCode:@"en"];
-    [str4 setText:@"TEST DESC en"];
-    [str4 setLocalizedText:@"TEST DESC en"];
+    [str4 setText:descEn];
+    [str4 setLocalizedText:descEn];
     
     PBApp_Builder* appBuilder = [PBApp builder];
     [appBuilder setAppId:appId];
-    [appBuilder setDownloadUrl:@"https://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8"];
-    [appBuilder setLogo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+    [appBuilder setDownloadUrl:[UIUtils getAppLink:appId]];
+    [appBuilder setLogo:appLogoURL];
+    
     [appBuilder addName:[str1 build]];
     [appBuilder addName:[str3 build]];
     [appBuilder addDesc:[str2 build]];
@@ -95,7 +108,7 @@ appId:(NSString*)appId
     
     PBAppReward_Builder* appRewardBuilder = [PBAppReward builder];
     [appRewardBuilder setApp:[appBuilder build]];
-    [appRewardBuilder setRewardAmount:10];
+    [appRewardBuilder setRewardAmount:rewardAmount];
     [appRewardBuilder setRewardCurrency:PBGameCurrencyIngot];
     
     return [appRewardBuilder build];;
@@ -129,8 +142,8 @@ appId:(NSString*)appId
 + (void)createTestConfigData
 {
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:DEFAULT_CONFIG_FILE];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:DEFAULT_CONFIG_FILE]];
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
 
     PBConfig_Builder* builder = [PBConfig builder];
                                  
@@ -160,35 +173,35 @@ appId:(NSString*)appId
     */
     
 
-    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"Dice" appId:@"1234"];
+    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:3];
 
-    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"ZJH" appId:@"2234"];
+    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:5];
     
-    PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美"
-                                                          enName:@"limei"
+    PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
+                                                          enName:@"Li Mei"
                                                             type:PBRewardWallTypeLimei
-                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
-    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普"
-                                                          enName:@"wanpu"
+                                                            logo:@"http://limei.com/Public/images/logo.png"];
+    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
+                                                          enName:@"Wan Pu"
                                                             type:PBRewardWallTypeWanpu
-                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+                                                            logo:@"http://www.waps.cn/img/logo.png"];
     
-    PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米"
-                                                          enName:@"youmi"
+    PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
+                                                          enName:@"You Mi"
                                                             type:PBRewardWallTypeYoumi
                                                             logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
     
-    PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人"
-                                                          enName:@"renren"
+    PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人 推荐应用"
+                                                          enName:@"Ren Ren Ader"
                                                             type:PBRewardWallTypeAder
                                                             logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
     
-    [builder addAppRewards:diceApp];
     [builder addAppRewards:zjhApp];
+    [builder addAppRewards:diceApp];
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
     [builder addRewardWalls:ader];
-    [builder addRewardWalls:wanpu];
+//    [builder addRewardWalls:wanpu];
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
