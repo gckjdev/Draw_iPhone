@@ -77,14 +77,14 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
         DrawFeed *feed = [_drawFeeds objectAtIndex:index];
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         
-        button = [[[UIButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 110.0f, 110.0f)] autorelease];
+        button = [[[UIButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 120.0f, 120.0f)] autorelease];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [button setImageWithURL:url placeholderImage:nil];
         //set up content
-		button.layer.borderColor = [UIColor clearColor].CGColor;
-        button.layer.borderWidth = 4.0f;
-        button.layer.cornerRadius = 8.0f;
-        [button.layer setMasksToBounds:YES];
+//		button.layer.borderColor = [UIColor clearColor].CGColor;
+//        button.layer.borderWidth = 4.0f;
+//        button.layer.cornerRadius = 8.0f;
+//        [button.layer setMasksToBounds:YES];
         button.tag = 9999;
 //        [button addTarget:self action:@selector(clickFeedButton:) forControlEvents:UIControlEventTouchUpInside];
 		[view addSubview:button];
@@ -164,7 +164,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
         case iCarouselOptionFadeMax:
             return 0.1;
         case iCarouselOptionFadeRange:
-            return 3.0;
+            return 2.0;
         default:
             return value;
     }
