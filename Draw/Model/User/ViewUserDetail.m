@@ -9,6 +9,8 @@
 #import "ViewUserDetail.h"
 #import "GameBasic.pb.h"
 #import "UserManager.h"
+#import "UserService.h"
+#import "PPTableViewController.h"
 
 @interface ViewUserDetail ()
 
@@ -88,4 +90,26 @@
 {
     return [[UserManager defaultManager] isSuperUser];
 }
+
+- (PBGameUser*)getUser
+{
+    return self.pbUser;
+}
+
+- (void)loadUser:(PPTableViewController*)viewController
+{
+    [viewController showActivityWithText:NSLS(@"kLoading")];
+    [[UserService defaultService] getUserInfo:[self getUserId] resultBlock:^(int resultCode, PBGameUser *user, int relation) {
+        if (resultCode == 0){
+
+            self.pbUser = user;
+            [self setRelation:relation];
+            
+            // reload data
+            [viewController.dataTableView reloadData];
+        }
+    }];
+    
+}
+
 @end

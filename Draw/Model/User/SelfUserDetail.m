@@ -8,6 +8,7 @@
 
 #import "SelfUserDetail.h"
 #import "UserManager.h"
+#import "PPTableViewController.h"
 
 @implementation SelfUserDetail
 
@@ -30,10 +31,10 @@
 {
     return [[UserManager defaultManager] userId];
 }
-- (PBGameUser*)queryUser
-{
-    return [UserManager defaultManager].pbUser;
-}
+//- (PBGameUser*)queryUser
+//{
+//    return [UserManager defaultManager].pbUser;
+//}
 - (BOOL)canEdit
 {
     return YES;
@@ -76,4 +77,18 @@
 {
     
 }
+
+- (PBGameUser*)getUser
+{
+    return [UserManager defaultManager].pbUser;
+}
+
+- (void)loadUser:(PPTableViewController*)viewController
+{
+    // do nothing, just reload data
+    [viewController.dataTableView reloadData];
+    
+    // TODO get user follow and fan count
+}
+
 @end

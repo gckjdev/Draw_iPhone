@@ -73,16 +73,7 @@
 {
     [super viewDidLoad];
     if (self.detail && [self.detail needUpdate]) {
-        [[UserService defaultService] getUserInfo:[self.detail getUserId] resultBlock:^(int resultCode, PBGameUser *user, int relation) {
-            if (resultCode == 0 &&[self.detail respondsToSelector:@selector(setPbGameUser:)]
-                                && user != nil) {
-                [self.detail setPbGameUser:user];
-                [self.detail setRelation:relation];
-                [self.dataTableView reloadData];
-                
-                // TODO update relation
-            }
-        }];
+
     }
     [self didSelectTabAction:DetailTabActionClickOpus];
     // Do any additional setup after loading the view from its nib.
@@ -175,7 +166,7 @@
 - (void)didClickChatButton
 {
     if ([self.detail canChat]) {
-        PBGameUser* pbUser = [self.detail queryUser];
+        PBGameUser* pbUser = [self.detail getUser];
         MyFriend* targetFriend = [MyFriend friendWithFid:[self.detail getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender level:pbUser.level];
         MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
         ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
@@ -206,6 +197,29 @@
     }
     
 }
+
+- (void)uploadUserAvatar:(UIImage*)image
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[UserService defaultService] uploadUserAvatar:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
+        [self hideActivity];
+        if (resultCode == 0 && [imageRemoteURL length] > 0){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarSucc") delayTime:1.5];
+            [self.detail loadUser:self];
+            [self.detailCell.avatarView setImage:image];            
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarFail") delayTime:1.5];
+        }
+    }];
+}
+
+// ChangeAvatar Delegate
+- (void)didImageSelected:(UIImage *)image
+{
+    [self uploadUserAvatar:image];
+}
+
 - (void)didclickBlack
 {
     if ([self.detail canBlack]) {
@@ -218,7 +232,7 @@
 - (void)didclickManage
 {
     if ([[UserManager defaultManager] isSuperUser]) {
-        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self.detail getUserId] nickName:[self.detail queryUser].nickName balance:[self.detail queryUser].coinBalance] autorelease];
+        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self.detail getUserId] nickName:[self.detail getUser].nickName balance:[self.detail getUser].coinBalance] autorelease];
         [action showInController:self];
     }
     
@@ -226,7 +240,7 @@
 - (void)didClickMore
 {
     UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
-                                                               nickName:[self.detail queryUser].nickName];
+                                                               nickName:[self.detail getUser].nickName];
     [self.navigationController pushViewController:uc animated:YES];
     [uc release];
 }
@@ -307,7 +321,7 @@
 - (void)didclickSina
 {
     if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName];
     } else {
         [self askRebindSina];
@@ -317,7 +331,7 @@
 - (void)didclickQQ
 {
     if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName];
     } else {
         [self askRebindQQ];
@@ -326,7 +340,7 @@
 - (void)didclickFacebook
 {
     if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName];
     } else {
         [self askRebindFacebook];
@@ -394,13 +408,7 @@
     [self.dataTableView reloadData];
 }
 
-#pragma mark - changeAvatarDelegate
 
-- (void)didImageSelected:(UIImage *)image
-{
-    [self.detailCell.avatarView setImage:image];
-    
-}
 
 #pragma mark - feed service delegate
 - (void)didGetFeedList:(NSArray *)feedList
