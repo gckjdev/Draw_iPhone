@@ -45,7 +45,7 @@
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
-    PBGameUser* pbUser = [detail queryUser];
+    PBGameUser* pbUser = [detail getUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",[LevelService defaultService].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];

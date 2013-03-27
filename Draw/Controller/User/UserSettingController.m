@@ -1061,7 +1061,6 @@ enum {
 //    return localChanged;
 //}
 
-
 - (void)uploadUserAvatar:(UIImage*)image
 {
     [self showActivityWithText:NSLS(@"kSaving")];
