@@ -42,6 +42,20 @@
 						<reference key="NSNextResponder" ref="849259711"/>
 						<int key="NSvFlags">256</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIView" id="273674008">
+								<reference key="NSNextResponder" ref="150961201"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{161, 442}, {1, 1}}</string>
+								<reference key="NSSuperview" ref="150961201"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="149585192"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<object class="NSColor" key="IBUIBackgroundColor" id="176572736">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
 							<object class="IBUIImageView" id="213671570">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">319</int>
@@ -138,8 +152,8 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<double key="IBUITitleEdgeInsets.top">0.0</double>
 								<double key="IBUITitleEdgeInsets.bottom">-24</double>
-								<double key="IBUITitleEdgeInsets.left">10</double>
-								<double key="IBUITitleEdgeInsets.right">10</double>
+								<double key="IBUITitleEdgeInsets.left">5</double>
+								<double key="IBUITitleEdgeInsets.right">5</double>
 								<string key="IBUINormalTitle">加关注</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
@@ -280,10 +294,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="908745537"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<object class="NSColor" key="IBUIBackgroundColor" id="176572736">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MCAwAA</bytes>
-										</object>
+										<reference key="IBUIBackgroundColor" ref="176572736"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -839,17 +850,6 @@
 								<reference key="IBUIBackgroundColor" ref="29055669"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIView" id="273674008">
-								<reference key="NSNextResponder" ref="150961201"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{161, 442}, {1, 1}}</string>
-								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="149585192"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="176572736"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
 						</array>
 						<string key="NSFrameSize">{320, 705}</string>
 						<reference key="NSSuperview" ref="849259711"/>
@@ -1252,8 +1252,8 @@
 							<reference ref="703033034"/>
 							<reference ref="331007648"/>
 							<reference ref="404705006"/>
-							<reference ref="273674008"/>
 							<reference ref="957889801"/>
+							<reference ref="273674008"/>
 							<reference ref="532551517"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -1528,6 +1528,75 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UserDetailCell</string>
 					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickBlack:">id</string>
+						<string key="clickChatButton:">id</string>
+						<string key="clickDrawToButton:">id</string>
+						<string key="clickEdit:">id</string>
+						<string key="clickFacebook:">id</string>
+						<string key="clickFanCount:">id</string>
+						<string key="clickFollow:">id</string>
+						<string key="clickFollowCount:">id</string>
+						<string key="clickManage:">id</string>
+						<string key="clickMore:">id</string>
+						<string key="clickQQ:">id</string>
+						<string key="clickSina:">id</string>
+						<string key="switchBasicInfoAndAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickBlack:">
+							<string key="name">clickBlack:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickChatButton:">
+							<string key="name">clickChatButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickDrawToButton:">
+							<string key="name">clickDrawToButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickEdit:">
+							<string key="name">clickEdit:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFacebook:">
+							<string key="name">clickFacebook:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFanCount:">
+							<string key="name">clickFanCount:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFollow:">
+							<string key="name">clickFollow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFollowCount:">
+							<string key="name">clickFollowCount:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickManage:">
+							<string key="name">clickManage:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickMore:">
+							<string key="name">clickMore:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickQQ:">
+							<string key="name">clickQQ:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickSina:">
+							<string key="name">clickSina:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="switchBasicInfoAndAction:">
+							<string key="name">switchBasicInfoAndAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarView">CommonRoundAvatarView</string>
 						<string key="backgroundImageView">UIImageView</string>

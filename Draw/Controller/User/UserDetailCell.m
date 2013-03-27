@@ -128,11 +128,11 @@
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     
     cell.carousel = [FeedCarousel createFeedCarousel];
-    cell.carousel.delegate = self;
+    cell.carousel.delegate = cell;
     cell.carousel.center = cell.feedPlaceHolderView.center;
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
-    [cell.carousel enabaleWrap:YES];
+    [cell.carousel enabaleWrap:NO];
     
     return cell;
 }

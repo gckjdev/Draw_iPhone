@@ -84,6 +84,7 @@
             }
         }];
     }
+    [self didSelectTabAction:DetailTabActionClickOpus];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -161,8 +162,13 @@
 - (void)didClickFollowButton
 {
     if ([self.detail canFollow]) {
-        [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
-        [self showActivityWithText:NSLS(@"kFollowing")];
+        if ([MyFriend hasFollow:[self.detail relation]]) {
+            [[FriendService defaultService] unFollowUser:[self.detail getUserId] viewController:self];
+            [self showActivityWithText:NSLS(@"kUnfollowing")];
+        } else {
+            [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
+            [self showActivityWithText:NSLS(@"kFollowing")];
+        }
     }
    
 }
@@ -335,11 +341,11 @@
         } break;
         case DetailTabActionClickGuessed: {
             [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:10 delegate:self];
-            [self showActivity];
+            [self showActivityWithText:NSLS(@"kUpdating")];
         } break;
         case DetailTabActionClickOpus: {
             [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
-            [self showActivity];
+            [self showActivityWithText:NSLS(@"kUpdating")];
         } break;
         default:
             break;
@@ -366,6 +372,26 @@
                                                        delayTime:1.5
                                                          isHappy:YES];
     }
+    [self.detail setRelation:(([self.detail relation]) | RelationTypeFollow)];
+    [self.dataTableView reloadData];
+}
+
+- (void)didUnFollowUser:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowFailed")
+                                                       delayTime:1.5
+                                                         isHappy:NO];
+    } else {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowSuccessfully")
+                                                       delayTime:1.5
+                                                         isHappy:YES];
+    }
+    if ([MyFriend hasFollow:[self.detail relation]]) {
+        [self.detail setRelation:(([self.detail relation]) - RelationTypeFollow)];
+    }
+    [self.dataTableView reloadData];
 }
 
 #pragma mark - changeAvatarDelegate
@@ -389,6 +415,7 @@
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[GuessFeed class]]) {
                         [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
                     }
                 }
                 [[self detailCell] setDrawFeedList:self.guessedList];
@@ -397,10 +424,12 @@
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[DrawFeed class]]) {
                         [self.opusList addObject:feed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
                 UserDetailCell* cell = [self detailCell];
                 [cell setDrawFeedList:self.opusList];
+                
             }
             default:
                 break;
