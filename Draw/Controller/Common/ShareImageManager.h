@@ -238,5 +238,7 @@
 - (UIImage*)userDetailGenderImage:(BOOL)isMale;
 - (UIImage*)userDetailTabBgImage;
 - (UIImage*)userDetailTabBgPressedImage;
+- (UIImage*)userDetailFollowUserBtnBg;
+- (UIImage*)userDetailUnfollowUserBtnBg;
 
 @end
