@@ -90,18 +90,30 @@
 - (void)adjustNickAndGenderImg:(NSObject<UserDetailProtocol> *)detail
 {
     NSString* nickName = [[detail queryUser] nickName];
-    CGSize size = [nickName sizeWithFont:self.nickNameLabel.font forWidth:self.nickNameLabel.frame.size.width lineBreakMode:NSLineBreakByCharWrapping];
-    if (size.width < NICK_NAME_MAX_WIDTH) {
+    CGSize size = [nickName sizeWithFont:self.nickNameLabel.font];
+    if (size.width < self.nickNameLabel.frame.size.width) {
         CGPoint orgPoint = CGPointMake(self.nickNameLabel.frame.origin.x - self.genderImageView.frame.size.width/2 , self.nickNameLabel.center.y);
-        orgPoint.x += (NICK_NAME_MAX_WIDTH - size.width)/2;
+        orgPoint.x += (self.nickNameLabel.frame.size.width - size.width)/2;
         [self.genderImageView setCenter:orgPoint];
+    }
+    
+}
+
+- (void)adjustLvlAndSignature:(NSObject<UserDetailProtocol> *)detail
+{
+    NSString* signature = [[detail queryUser] signature];
+    CGSize size = [signature sizeWithFont:self.signLabel.font];
+    if (size.width < self.signLabel.frame.size.width) {
+        CGPoint orgPoint = CGPointMake(self.signLabel.frame.origin.x - self.levelLabel.frame.size.width/2 , self.signLabel.center.y);
+        orgPoint.x += (self.signLabel.frame.size.width - size.width)/2;
+        [self.levelLabel setCenter:orgPoint];
     }
     
 }
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1884:785);
+    return ([DeviceDetection isIPAD]?1884:706);
 }
 
 + (NSString*)getCellIdentifier
