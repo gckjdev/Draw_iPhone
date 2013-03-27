@@ -33,8 +33,6 @@ typedef enum{
 @interface StoreController ()
 
 @property (retain, nonatomic) UIButton *selectedButton;
-@property (assign, nonatomic) int selectedItemId;
-@property (assign, nonatomic) int selectedCount;
 
 @end
 
@@ -139,87 +137,17 @@ typedef enum{
 {
     PPDebug(@"select row: %d", indexPath.row);
     PBGameItem *item = [self.tabDataList objectAtIndex:indexPath.row];
-    self.selectedItemId = item.itemId;
 
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
         __block typeof (self) bself = self;
         
-        [BuyItemView showBuyItemView:item.itemId inView:self.view buyResultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            if (itemId == ItemTypeRemoveAd) {
-                [[AdService defaultService] disableAd];
-            }
+        [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             [bself updateBalance];
-            [bself showUserGameItemServiceResult:resultCode item:[[GameItemManager defaultManager] itemWithItemId:itemId] count:count toUserId:toUserId];
             [bself.dataTableView reloadData];
-        } giveHandler:^(PBGameItem *item, int count) {
-            PPDebug(@"you give %d %@", count, NSLS(item.name));
-            bself.selectedItemId = item.itemId;
-            bself.selectedCount = count;
-            FriendController *vc = [[[FriendController alloc] initWithDelegate:bself] autorelease];
-            [bself.navigationController pushViewController:vc animated:YES];
         }];
     }
-}
-
-- (void)showUserGameItemServiceResult:(int)resultCode
-                                 item:(PBGameItem *)item
-                                count:(int)count
-                             toUserId:(NSString *)toUserId
-{
-    switch (resultCode) {
-        case ERROR_SUCCESS:
-            [self updateBalance];
-            break;
-            
-        case ERROR_NETWORK:
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
-            break;
-            
-        case ERROR_BALANCE_NOT_ENOUGH:
-            [BalanceNotEnoughAlertView showInController:self];
-            break;
-            
-        case ERROR_BAD_PARAMETER:
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBadParaMeter") delayTime:1 isHappy:NO];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)friendController:(FriendController *)controller
-         didSelectFriend:(MyFriend *)aFriend
-{
-    [controller.navigationController popViewControllerAnimated:YES];
-    GiftDetailView *giftDetailView = [GiftDetailView createWithItem:_selectedItemId myFriend:aFriend count:_selectedCount];
-    
-    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kGive")
-                                                         infoView:giftDetailView
-                                                   hasCloseButton:YES
-                                                     buttonTitles:[NSArray arrayWithObjects:NSLS(@"kCancel"), NSLS(@"kOK"), nil]];
-    
-    
-    
-    [cusInfoView showInView:self.view];
-    
-    __block typeof (self) bself = self;
-    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        [cusInfoView dismiss];
-        if (button.tag == 1) {
-            [[UserGameItemService defaultService] giveItem:_selectedItemId toUser:[aFriend friendUserId] count:_selectedCount handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == ERROR_SUCCESS) {
-                    [cusInfoView dismiss];
-                }
-                [bself showUserGameItemServiceResult:resultCode
-                                               item:nil
-                                              count:count
-                                           toUserId:toUserId];
-            }];
-        }
-    }];
 }
 
 - (NSInteger)tabCount //default 1

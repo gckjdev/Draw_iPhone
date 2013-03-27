@@ -9,11 +9,6 @@
 #import "ToolCommand.h"
 #import "UserGameItemManager.h"
 #import "BuyItemView.h"
-#import "BalanceNotEnoughAlertView.h"
-
-
-
-
 
 @implementation ToolCommand
 
@@ -64,8 +59,6 @@
                        resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_SUCCESS) {
             [cp buyItemSuccessfully:type];
-        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-            [BalanceNotEnoughAlertView showInController:[self.control theViewController]];
         }
     }];
 

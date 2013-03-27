@@ -72,9 +72,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 
-@property (retain, nonatomic) IBOutlet UIView *feedPlaceHolderView;
-
-
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList;
+
 @end

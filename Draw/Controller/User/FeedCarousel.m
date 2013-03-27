@@ -69,19 +69,15 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(ReflectionView *)view
 {
 	UIButton *button = nil;
-	
+
+    
 	//create new view if no view is available for recycling
 	if (view == nil)
 	{
         //set up reflection view
 		view = [[[ReflectionView alloc] initWithFrame:FEED_VIEW_FRAME] autorelease];
-        
-        DrawFeed *feed = [_drawFeeds objectAtIndex:index];
-        NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
-        
         button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [button setImageWithURL:url placeholderImage:nil];
         //set up content
 //		button.layer.borderColor = [UIColor clearColor].CGColor;
 //        button.layer.borderWidth = 4.0f;
@@ -95,9 +91,10 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 	{
 		button = (UIButton *)[view viewWithTag:9999];
 	}
-	
-    //set label
-	[button setTitle:[NSString stringWithFormat:@"%i", index] forState:UIControlStateNormal];
+    
+    DrawFeed *feed = [_drawFeeds objectAtIndex:index];
+    NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
+    [button setImageWithURL:url placeholderImage:nil];
     
     //update reflection
     //this step is expensive, so if you don't need

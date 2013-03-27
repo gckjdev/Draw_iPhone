@@ -57,6 +57,7 @@ typedef enum{
 @property(nonatomic, assign) TouchActionType touchActionType;
 @property(nonatomic, assign) BOOL grid;
 
+
 - (void)clearScreen;
 - (void)changeBackWithColor:(DrawColor *)color;
 
@@ -71,5 +72,7 @@ typedef enum{
 - (void)clearRedoStack;
 
 - (void)changeRect:(CGRect)rect;
+
+
 
 @end

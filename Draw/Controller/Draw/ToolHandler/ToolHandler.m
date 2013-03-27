@@ -32,13 +32,15 @@
 - (void)setDrawView:(DrawView *)drawView
 {
     _drawView = drawView;
-    
-    //TODO update Eraser Color
+    self.penColor = drawView.lineColor;
+    self.penType = drawView.penType;
 }
 
 - (void)changePenColor:(DrawColor *)color
 {
+    self.penColor = color;
     self.drawView.lineColor = color;
+    self.drawView.penType = self.penType;
 }
 - (void)changeDrawBG:(PBDrawBg *)drawBG
 {
@@ -56,7 +58,13 @@
 
 - (void)changeInPenType:(ItemType)type
 {
+    self.penType = type;
     [self.drawView setPenType:type];
+    if (type == Eraser) {
+        self.drawView.lineColor = [DrawColor colorWithColor:self.eraserColor];
+    }else{
+        self.drawView.lineColor = self.penColor;
+    }
 }
 
 - (BOOL)changeCanvasRect:(CanvasRect *)canvasRect
@@ -75,7 +83,10 @@
 }
 - (void)changeAlpha:(CGFloat)alpha
 {
-    [self.drawView.lineColor setAlpha:alpha];
+    [self.penColor setAlpha:alpha];
+    if (self.drawView.penType != Eraser) {
+        [self.drawView.lineColor setAlpha:alpha];
+    }
 }
 - (void)changeShape:(ShapeType)shape
 {
@@ -109,17 +120,6 @@
 
 /////////////////////////////
 
-
-- (ItemType)penType
-{
-    return self.drawView.penType;
-}
-
-- (DrawColor *)penColor
-{
-    return self.drawView.lineColor;
-}
-
 - (BOOL)grid
 {
     return self.drawView.grid;
@@ -145,12 +145,7 @@
 
 - (DrawColor *)eraserColor
 {
-    if (_eraserColor == nil) {
-        self.eraserColor = [DrawColor whiteColor];
-    }
-    return _eraserColor;
+    return self.drawView.bgColor;
 }
-
-
 
 @end

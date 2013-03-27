@@ -343,6 +343,7 @@
     [toolCmdManager registerCommand:command];
 
     [toolCmdManager updateHandler:self.toolHandler];
+    [toolCmdManager updatePanel:self];
 
 }
 

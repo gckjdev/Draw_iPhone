@@ -155,6 +155,7 @@
 "kEmailUsed" = "对不起，该电子邮件已经被注册。";
 "kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入。";
 "kGeneralFailure" = "对不起，注册失败，请稍候再试。";
+"kGiveSuccess" = "赠送成功";
 
 "kInputNickName" = "请输入昵称";
 "Skip" = "跳过";

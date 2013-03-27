@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GameBasic.pb.h"
 #import "UserGameItemService.h"
+#import "FriendController.h"
 
-typedef void (^GiveHandler)(PBGameItem *item, int count);
-
-@interface BuyItemView : UIView
+@interface BuyItemView : UIView <FriendControllerDelegate>
 @property (assign, nonatomic, readonly) int count;
 
 @property (retain, nonatomic) IBOutlet UIButton *countButton;
@@ -27,6 +26,5 @@ typedef void (^GiveHandler)(PBGameItem *item, int count);
 
 + (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
-       buyResultHandler:(BuyItemResultHandler)buyResultHandler
-            giveHandler:(GiveHandler)giveHandler;
+          resultHandler:(BuyItemResultHandler)resultHandler;
 @end

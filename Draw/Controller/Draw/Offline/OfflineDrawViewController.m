@@ -59,7 +59,6 @@
 #import "DrawHolderView.h"
 #import "GameItemManager.h"
 #import "CanvasRect.h"
-#import "BalanceNotEnoughAlertView.h"
 
 
 #import "ToolHandler.h"
@@ -299,7 +298,7 @@
 //    CGRect frame = DRAW_VIEW_FRAME;
     drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
     
-    drawView.strawDelegate = _drawToolPanel;
+//    drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
@@ -1068,9 +1067,6 @@
                 break;
                 
         }
-    }else
-    {
-        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
     }
 }
 
@@ -1185,9 +1181,6 @@
         [drawView.lineColor setAlpha:_alpha];
     }else{
         [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-                [BalanceNotEnoughAlertView showInController:self];
-            }
         }];
     }
     
@@ -1232,8 +1225,6 @@
     [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_SUCCESS) {
             [self buyItemSuccess:itemId result:resultCode];
-        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
-            [BalanceNotEnoughAlertView showInController:self];
         }
     }];
 }
@@ -1255,8 +1246,7 @@
 - (void)updateRecentColors
 {
     if (_tempColor) {
-        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
-        [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
+        [_drawToolPanel updateRecentColorViewWithColor:_tempColor updateModel:YES];
         self.tempColor = nil;
     }
 }

@@ -13,7 +13,7 @@
 - (BOOL)execute
 {
     if ([super execute]) {
-        [self.toolHandler changeInPenType:self.itemType];
+        [self updatePenWithPenType:self.itemType];
         [self showPopTipView];
         return YES;
     }
@@ -31,6 +31,8 @@
 - (void)updatePenWithPenType:(ItemType)type
 {
     self.itemType = type;
+    [self.toolHandler enterDrawMode];
+    [self.toolHandler changeInPenType:self.itemType];
     //TODO update Pen view
 }
 

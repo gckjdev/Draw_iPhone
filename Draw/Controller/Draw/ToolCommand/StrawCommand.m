@@ -9,6 +9,13 @@
 #import "StrawCommand.h"
 
 @implementation StrawCommand
+
+- (void)setToolHandler:(ToolHandler *)toolHandler
+{
+    [super setToolHandler:toolHandler];
+    toolHandler.drawView.strawDelegate = self;
+}
+
 - (BOOL)execute
 {
     if ([super execute]) {
@@ -41,6 +48,13 @@
 - (void)buyItemSuccessfully:(ItemType)type
 {
     [self showPopTipView];
+}
+
+- (void)didStrawGetColor:(DrawColor *)color
+{
+    [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
+    [self.toolHandler changePenColor:color];
+    [self hidePopTipView];
 }
 
 @end
