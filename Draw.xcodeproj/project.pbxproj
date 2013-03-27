@@ -61,6 +61,7 @@
 		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
 		A40EE828170053C2003B8FFC /* FeedCarousel.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40EE827170053C2003B8FFC /* FeedCarousel.xib */; };
+		A40EE88B1702A62C003B8FFC /* FeedCarousel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */; };
 		A40FEEDE15E22E1300A88C57 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40FEEDD15E22E1300A88C57 /* ChatView.m */; };
 		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A41CF57816578D0B0011AE45 /* ZJHCardTypesView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF57616578D0B0011AE45 /* ZJHCardTypesView.m */; };
@@ -7436,6 +7437,7 @@
 		A40EE824170053A5003B8FFC /* FeedCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCarousel.h; sourceTree = "<group>"; };
 		A40EE825170053A5003B8FFC /* FeedCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCarousel.m; sourceTree = "<group>"; };
 		A40EE827170053C2003B8FFC /* FeedCarousel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedCarousel.xib; sourceTree = "<group>"; };
+		A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedCarousel~ipad.xib"; sourceTree = "<group>"; };
 		A40FEEDC15E22E1300A88C57 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
 		A40FEEDD15E22E1300A88C57 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
@@ -14466,6 +14468,7 @@
 				A40EE824170053A5003B8FFC /* FeedCarousel.h */,
 				A40EE825170053A5003B8FFC /* FeedCarousel.m */,
 				A40EE827170053C2003B8FFC /* FeedCarousel.xib */,
+				A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -21957,6 +21960,7 @@
 				CAF0DB5717019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5B17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606861701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
+				A40EE88B1702A62C003B8FFC /* FeedCarousel~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
