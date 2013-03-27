@@ -213,8 +213,13 @@
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
 }
 
-- (void)updateRecentColorViewWithColor:(DrawColor *)color
+- (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel
 {
+    if (updateModel) {
+        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
+    }
+
+    
     for (ColorPoint *p in self.subviews) {
         if ([p isKindOfClass:[ColorPoint class]]) {
             [p removeFromSuperview];
@@ -245,7 +250,7 @@
 }
 - (void)updateRecentColorViews
 {
-    [self updateRecentColorViewWithColor:[DrawColor blackColor]];
+    [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 }
 
 - (void)updateNeedBuyToolViews
@@ -672,10 +677,9 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawToolPanel:didSelectColor:)]) {
         [self.delegate drawToolPanel:self didSelectColor:color];
     }
-    if (updateRecentColor && color != nil) {
-        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
-        [self updateRecentColorViewWithColor:color];
-    }
+
+    [self updateRecentColorViewWithColor:color updateModel:updateRecentColor];
+
 //    [self.alphaSlider setValue:1.0];
     //update show list;
 }
@@ -683,14 +687,14 @@
 #pragma mark - Color Point Delegate
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
-    for (ColorPoint *point in [self subviews]) {
-        if ([point isKindOfClass:[ColorPoint class]] && colorPoint != point) {
-            [point setSelected:NO];
-        }
-    }
+//    for (ColorPoint *point in [self subviews]) {
+//        if ([point isKindOfClass:[ColorPoint class]] && colorPoint != point) {
+//            [point setSelected:NO];
+//        }
+//    }
     [colorPoint setSelected:YES];
-    [self dismissAllPopTipViews];
-    [self handleSelectColorDelegateWithColor:colorPoint.color updateRecentColor:NO];
+    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
+    [self.toolHandler changePenColor:colorPoint.color];
 }
 
 

@@ -10,4 +10,9 @@
 
 @implementation EditDescCommand
 
+
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_EDIT_DESC);
+}
+
 @end

@@ -32,4 +32,9 @@
     [self hidePopTipView];
 }
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_DRAWBG_BOX);
+}
+
+
 @end

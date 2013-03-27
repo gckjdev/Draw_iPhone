@@ -21,6 +21,7 @@
 
 @property(nonatomic, assign)UIControl *control;
 @property(nonatomic, assign)ToolHandler *toolHandler;
+@property(nonatomic, assign)DrawToolPanel *toolPanel;
 @property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
 @property(nonatomic, assign, getter = isShowing)BOOL showing;
@@ -60,6 +61,7 @@
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 
 - (void)updateHandler:(ToolHandler *)handler;
+- (void)updatePanel:(DrawToolPanel *)panel;
 
 @end
 

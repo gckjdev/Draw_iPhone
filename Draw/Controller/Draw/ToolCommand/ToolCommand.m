@@ -213,4 +213,12 @@
         [command setToolHandler:handler];
     }
 }
+
+- (void)updatePanel:(DrawToolPanel *)panel
+{
+    for (ToolCommand *command in commandList) {
+        [command setToolPanel:panel];
+    }
+}
+
 @end

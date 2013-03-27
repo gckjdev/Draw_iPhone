@@ -86,7 +86,7 @@
 - (void)updateView;
 - (void)dismissAllPopTipViews;
 - (void)setPanelForOnline:(BOOL)isOnline;
-- (void)updateRecentColorViewWithColor:(DrawColor *)color;
+- (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
 - (void)updateNeedBuyToolViews;
 
 - (void)userItem:(ItemType)type;

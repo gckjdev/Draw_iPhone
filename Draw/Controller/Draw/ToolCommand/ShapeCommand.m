@@ -34,4 +34,9 @@
     //TODO change the control view with shape type
 }
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_SHAPE_BOX);
+}
+
+
 @end

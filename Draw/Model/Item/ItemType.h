@@ -39,11 +39,11 @@ typedef enum
     ItemTypeGrid = 1106,
     
     
-//    TransverseCanvas = 1150,        //横版画布
-//    VerticalCanvas = 1151,          //竖版画布
-//    SquareCanvasLarge = 1152,       //正方形画布(大)
-//    TransverseCanvasLarge = 1153,   //横版画布(大)
-//    VerticalCanvasLarge = 1154,     //竖版画布(大)
+    TransverseCanvas = 1150,        //横版画布
+    VerticalCanvas = 1151,          //竖版画布
+    SquareCanvasLarge = 1152,       //正方形画布(大)
+    TransverseCanvasLarge = 1153,   //横版画布(大)
+    VerticalCanvasLarge = 1154,     //竖版画布(大)
     
     VeinsBackground = 1200,         //纹理背景
     

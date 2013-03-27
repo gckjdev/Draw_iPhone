@@ -15,4 +15,9 @@
     return YES;
 }
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_GRID);
+}
+
+
 @end
