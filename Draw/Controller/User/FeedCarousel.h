@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "DrawFeed.h"
+
+@protocol FeedCarouselProtocol <NSObject>
+
+@optional
+- (void)didSelectDrawFeed:(DrawFeed *)drawFeed;
+
+@end
 
 @interface FeedCarousel : UIView <iCarouselDataSource, iCarouselDelegate>
-@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet iCarousel *carousel;
+@property (assign, nonatomic) id<FeedCarouselProtocol> delegate;
 
 + (id)createFeedCarousel;
 - (void)setDrawFeedList:(NSArray *)drawFeeds;

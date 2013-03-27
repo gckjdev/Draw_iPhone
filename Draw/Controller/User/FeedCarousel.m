@@ -10,7 +10,6 @@
 #import "AutoCreateViewByXib.h"
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
-#import "DrawFeed.h"
 
 #define SCROLL_SPEED 0.1 //items per second, can be negative or fractional
 
@@ -31,7 +30,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     FeedCarousel *view = [self createView];
     view.carousel.delegate = view;
     view.carousel.dataSource = view;
-    view.carousel.type = iCarouselTypeCylinder;
+    view.carousel.type = iCarouselTypeCoverFlow;
     
 //    CGSize offset = CGSizeMake(0.0f, -190);
 //    view.carousel.viewpointOffset = offset;
@@ -52,7 +51,6 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     _carousel.delegate = nil;
     _carousel.dataSource = nil;
     [_drawFeeds release];
-    [_bgImageView release];
     [_carousel release];
     [super dealloc];
 }
@@ -74,19 +72,21 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 	if (view == nil)
 	{
         //set up reflection view
-		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)] autorelease];
+		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 120.0f)] autorelease];
         
         DrawFeed *feed = [_drawFeeds objectAtIndex:index];
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         
-        button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
+        button = [[[UIButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 110.0f, 110.0f)] autorelease];
+        button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [button setImageWithURL:url placeholderImage:nil];
         //set up content
-		button.layer.borderColor = [UIColor whiteColor].CGColor;
+		button.layer.borderColor = [UIColor clearColor].CGColor;
         button.layer.borderWidth = 4.0f;
         button.layer.cornerRadius = 8.0f;
+        [button.layer setMasksToBounds:YES];
         button.tag = 9999;
-        [button addTarget:self action:@selector(clickFeedButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [button addTarget:self action:@selector(clickFeedButton:) forControlEvents:UIControlEventTouchUpInside];
 		[view addSubview:button];
 	}
 	else
@@ -106,6 +106,14 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 	return view;
 }
 
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"did select: %d", index);
+    if ([_delegate respondsToSelector:@selector(didSelectDrawFeed:)]) {
+        [_delegate didSelectDrawFeed:[_drawFeeds objectAtIndex:index]];
+    }
+}
+
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
     switch (option)
@@ -116,38 +124,58 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 //            return -0.2;
 //        case iCarouselOptionOffsetMultiplier:
 //            return -0.2;
-//        case iCarouselOptionVisibleItems:
-//            return -0.2;
+        case iCarouselOptionVisibleItems:
+            return value;
 //        case iCarouselOptionCount:
 //            return -0.2;
-//        case iCarouselOptionArc:
-//            return -0.2;
-//        case iCarouselOptionAngle:
-//            return -0.2;
-//        case iCarouselOptionRadius:
-//            return -0.2;
-//        case iCarouselOptionTilt:
-//            return -0.2;
+
+        case iCarouselOptionArc:
+            return value;
+        case iCarouselOptionAngle:
+            return value;
+        case iCarouselOptionRadius:
+            return value;
+        case iCarouselOptionTilt:
+        {
+            if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
+                return value * 0.8;
+            }else{
+                return value;
+                
+            }
+        }
+            
         case iCarouselOptionSpacing:
-            // add a bit of spacing between the item views
-            return value * 1.05f;
+        {
+            if (carousel.type == iCarouselTypeRotary || carousel.type == iCarouselTypeInvertedRotary) {
+                return value *1.1;
+            }else if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
+                return value * 2;
+            }else if (carousel.type == iCarouselTypeTimeMachine || carousel.type == iCarouselTypeInvertedTimeMachine){
+                return value * 0.5;
+            }else{
+                return value * 1.05f;
+                
+            }
+        }
+
         case iCarouselOptionFadeMin:
-            return -0.2;
+            return -0.1;
         case iCarouselOptionFadeMax:
-            return 0.2;
+            return 0.1;
         case iCarouselOptionFadeRange:
-            return 2.0;
+            return 3.0;
         default:
             return value;
     }
     return value;
 }
 
-- (void)clickFeedButton:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    PPDebug(@"click button: %@", [button titleForState:UIControlStateNormal]);
-}
+//- (void)clickFeedButton:(id)sender
+//{
+//    UIButton *button = (UIButton *)sender;
+//    PPDebug(@"click button: %@", [button titleForState:UIControlStateNormal]);
+//}
 
 #pragma mark -
 #pragma mark Autoscroll
@@ -155,7 +183,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 - (void)startScrolling
 {
     [_scrollTimer invalidate];
-    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0
+    _scrollTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/24.0
                                                    target:self
                                                  selector:@selector(scrollStep)
                                                  userInfo:nil
@@ -187,6 +215,11 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 {
     self.wrap = wrap;
     [self.carousel reloadData];
+}
+
+- (IBAction)changeType:(id)sender {
+    self.carousel.type ++;
+    self.carousel.type %= 10;
 }
 
 @end
