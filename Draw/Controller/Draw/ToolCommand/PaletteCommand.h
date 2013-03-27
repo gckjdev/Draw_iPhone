@@ -7,8 +7,9 @@
 //
 
 #import "ToolCommand.h"
+#import "Palette.h"
 
-@interface PaletteCommand : ToolCommand
+@interface PaletteCommand : ToolCommand<ColorPickingBoxDelegate>
 
 @end
 

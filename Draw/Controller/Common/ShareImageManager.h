@@ -137,6 +137,15 @@
 //- (UIImage *)quillPen;
 //- (UIImage*)waterPen;
 
+
+//shape image
+
+- (UIImage *)shapeLine;
+- (UIImage *)shapeRectangle;
+- (UIImage *)shapeEllipse;
+- (UIImage *)shapeTriangle;
+- (UIImage *)shapeStar;
+
 - (UIImage *)itemOut;
 - (UIImage *)itemShadow;
 - (UIImage *)rewardCoin;

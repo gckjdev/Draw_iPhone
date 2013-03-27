@@ -17,4 +17,6 @@
 + (ViewUserDetail*)viewUserDetailWithUserId:(NSString*)userId
                                      avatar:(NSString*)avatar
                                    nickName:(NSString*)nickName;
+
+
 @end

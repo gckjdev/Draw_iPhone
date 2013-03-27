@@ -37,18 +37,18 @@ didHandledToolEvent:(ToolEvent)toolEvent
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
 @property(nonatomic, assign)PPTableViewController<ToolHandlerDelegate> *controller;
 
+
 @property (retain, nonatomic) CanvasRect *canvasRect;
-@property (retain, nonatomic) DrawColor* eraserColor;
-@property (retain, nonatomic) DrawColor *tempColor;
+@property (retain, nonatomic) DrawColor *penColor;
 
-
+@property(nonatomic, assign) ItemType penType;
 
 //method from draw view
 - (CGFloat)width;
 - (PBDrawBg *)drawBG;
-- (ItemType)penType;
 - (DrawColor *)penColor;
 - (BOOL)grid;
+- (DrawColor *)eraserColor;
 
 - (void)changePenColor:(DrawColor *)color;
 - (void)changeDrawBG:(PBDrawBg *)drawBG;

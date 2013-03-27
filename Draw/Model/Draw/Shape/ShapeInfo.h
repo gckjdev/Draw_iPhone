@@ -37,6 +37,8 @@ typedef enum{
 @property(nonatomic, retain)DrawColor *color;
 
 
++ (UIImage *)shapeImageForShapeType:(ShapeType)type;
+
 + (id)shapeWithType:(ShapeType) type penType:(ItemType)penType width:(CGFloat)with color:(DrawColor *)color;
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;

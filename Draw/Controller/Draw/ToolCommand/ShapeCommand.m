@@ -7,6 +7,7 @@
 //
 
 #import "ShapeCommand.h"
+#import "ShapeInfo.h"
 
 @implementation ShapeCommand
 
@@ -31,7 +32,10 @@
 {
     [self.toolHandler changeShape:type];
     [self hidePopTipView];
-    //TODO change the control view with shape type
+
+    UIImage * image = [ShapeInfo shapeImageForShapeType:type];
+    UIButton *button = (UIButton *)self.control;
+    [button setImage:image forState:UIControlStateNormal];
 }
 
 -(void)sendAnalyticsReport{

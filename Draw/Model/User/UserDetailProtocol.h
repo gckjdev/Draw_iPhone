@@ -10,10 +10,12 @@
 #import "GameBasic.pb.h"
 #import "MyFriend.h"
 
+@class PPTableViewController;
+
 @protocol UserDetailProtocol <NSObject>
 
 - (NSString*)getUserId;
-- (PBGameUser*)queryUser;
+//- (PBGameUser*)queryUser;
 - (BOOL)canEdit;
 - (BOOL)needUpdate;
 - (BOOL)canFollow;
@@ -22,8 +24,11 @@
 - (BOOL)canBlack;
 - (BOOL)canSuperBlack;
 
- @optional
-- (void)setPbGameUser:(PBGameUser*)pbUser;
+- (PBGameUser*)getUser;
+- (void)loadUser:(PPTableViewController*)viewController;
+
+// @optional
+//- (void)setPbGameUser:(PBGameUser*)pbUser;
 
 @property (assign, nonatomic) RelationType relation;
 @end

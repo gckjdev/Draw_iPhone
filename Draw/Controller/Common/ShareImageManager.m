@@ -498,6 +498,29 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"tipbag"];
 }
 
+
+- (UIImage *)shapeLine
+{
+    return [self fixedImageNamed:@"draw_line"];
+}
+- (UIImage *)shapeRectangle
+{
+    return [self fixedImageNamed:@"draw_rectangle"];
+}
+- (UIImage *)shapeEllipse
+{
+        return [self fixedImageNamed:@"draw_ellipse"];
+}
+- (UIImage *)shapeTriangle
+{
+   return [self fixedImageNamed:@"draw_triangle"];
+}
+- (UIImage *)shapeStar
+{
+    return [self fixedImageNamed:@"draw_star"];
+}
+
+
 - (UIImage *)itemOut
 {
     return [UIImage imageNamed:@"itemOut.png"];
