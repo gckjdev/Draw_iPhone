@@ -11,6 +11,8 @@
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
 
+#define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 288.0f, 288.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
+
 #define SCROLL_SPEED 0.1 //items per second, can be negative or fractional
 
 @interface FeedCarousel()
@@ -72,12 +74,12 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 	if (view == nil)
 	{
         //set up reflection view
-		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 120.0f)] autorelease];
+		view = [[[ReflectionView alloc] initWithFrame:FEED_VIEW_FRAME] autorelease];
         
         DrawFeed *feed = [_drawFeeds objectAtIndex:index];
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         
-        button = [[[UIButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 120.0f, 120.0f)] autorelease];
+        button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [button setImageWithURL:url placeholderImage:nil];
         //set up content
