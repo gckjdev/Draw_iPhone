@@ -16,4 +16,9 @@
     return YES;
 }
 
+
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_PAINT_BUCKET);
+}
+
 @end

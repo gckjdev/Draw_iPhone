@@ -51,7 +51,7 @@
     [tableBg setImage:[imageManager showcaseBackgroundImage]];
     [view.dataTableView setBackgroundView:tableBg];
     [tableBg release];
-    [view.titleLabel setText:NSLS(@"kBuyColor")];
+    [view.titleLabel setText:NSLS(@"kColorShop")];
     view.dataTableView.delegate = view;
     view.dataTableView.dataSource = view;
     //get the datalist

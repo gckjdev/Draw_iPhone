@@ -22,6 +22,7 @@
 @property(nonatomic, assign, readonly)BOOL hasImage;
 @property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 
+@property(nonatomic, assign) BOOL forceShow;
 
 - (id)initWithCapacity:(NSUInteger)capacity rect:(CGRect)rect; //default is 50, 0 for no limit
 

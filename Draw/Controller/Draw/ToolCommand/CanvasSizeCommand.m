@@ -60,4 +60,6 @@
     [self useCanvasRect:[CanvasRect canvasRectWithStyle:style]];
 }
 
+
+
 @end

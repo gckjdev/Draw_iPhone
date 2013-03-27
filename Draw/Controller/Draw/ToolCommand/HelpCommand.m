@@ -10,4 +10,10 @@
 
 @implementation HelpCommand
 
+
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_HELP);
+}
+
+
 @end

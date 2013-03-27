@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12A269</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -109,6 +109,7 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
+								<float key="IBUIMinimumScaleFactor">0.5</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">16</double>
@@ -118,7 +119,6 @@
 									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="213353104">
 								<reference key="NSNextResponder" ref="1019502086"/>
@@ -153,7 +153,7 @@
 							<object class="IBUILabel" id="416114783">
 								<reference key="NSNextResponder" ref="1019502086"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{83, 38}, {153, 17}}</string>
+								<string key="NSFrame">{{83, 38}, {198, 17}}</string>
 								<reference key="NSSuperview" ref="1019502086"/>
 								<reference key="NSNextKeyView" ref="336381639"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -354,8 +354,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bulletin_accessory@2x.png">{16, 16}</string>
-			<string key="store_cell@2x.png">{16, 16}</string>
+			<string key="bulletin_accessory@2x.png">{16, 25}</string>
+			<string key="store_cell@2x.png">{565, 147}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

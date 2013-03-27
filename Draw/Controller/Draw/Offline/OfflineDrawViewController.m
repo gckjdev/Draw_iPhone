@@ -60,6 +60,9 @@
 #import "GameItemManager.h"
 #import "CanvasRect.h"
 
+
+#import "ToolHandler.h"
+
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;
@@ -106,7 +109,7 @@
 @property (retain, nonatomic) InputAlertView *inputAlert;
 //@property (retain, nonatomic) TKProgressBarView *progressView;
 
-
+@property (assign, nonatomic) ToolHandler *toolHandler;
 @property (retain, nonatomic) NSString *tempImageFilePath;
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
@@ -346,7 +349,11 @@
 
 - (void)initDrawToolPanel
 {
-    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
+    self.toolHandler = [[[ToolHandler alloc] init] autorelease];
+    self.toolHandler.drawView = drawView;
+    self.toolHandler.controller = self;
+    
+    self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
@@ -429,8 +436,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initDrawToolPanel];
     [self initDrawView];
+    [self initDrawToolPanel];
     [self initWordLabel];
     [self initSubmitButton];
 //    _unDraftPaintCount = 0;

@@ -15,15 +15,20 @@
 #import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "GameAdWallService.h"
+#import "ConfigManager.h"
+#import "CommonDialog.h"
 
-#define SECTION_COUNT 2
+//#define SECTION_COUNT 2
 
 enum {
     SECTION_FRIEND_APP = 0,
-    SECTION_WALL    = 1,
+    SECTION_WALL    = 1,    
 };
 
 @interface FreeIngotController ()
+{
+    int _sectionCount;
+}
 
 @property (retain, nonatomic) NSArray* friendAppArray;
 @property (retain, nonatomic) NSArray* wallArray;
@@ -44,6 +49,12 @@ enum {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        if ([ConfigManager wallEnabled]){
+            _sectionCount = 2;
+        }
+        else{
+            _sectionCount = 1;
+        }
     }
     return self;
 }
@@ -107,7 +118,7 @@ enum {
 }
 
 #define HEADER_FRAME ([DeviceDetection isIPAD]?CGRectMake(0,0,768,61):CGRectMake(0,0,320,36))
-#define HEADER_FONT ([DeviceDetection isIPAD]?30:15)
+#define HEADER_FONT ([DeviceDetection isIPAD]?26:12)
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -117,7 +128,6 @@ enum {
     [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:HEADER_FONT]];
     [btn setTitleColor:[UIColor colorWithRed:81/255.0 green:45/255.0 blue:7/255.0 alpha:1] forState:UIControlStateNormal];
     return btn;
-    
 }
 
 - (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -127,23 +137,27 @@ enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return SECTION_COUNT;
+    return _sectionCount;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
-        PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
-        [UIUtils openURL:appReward.app.downloadUrl];
+        
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDownloadAppTitle") message:NSLS(@"kDownloadAppMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+
+            PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
+            [UIUtils openURL:appReward.app.downloadUrl];
+            
+        } clickCancelBlock:^{
+            
+        }];
+        
+        [dialog showInView:self.view];
+        
     } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
-
         [[GameAdWallService defaultService] showWall:self wallType:rewardWall.type forceShowWall:YES];
-        
-//        if (rewardWall.type == 0) {
-//            [[LmWallService defaultService] show:self];
-//            
-//        }
     }
 }
 

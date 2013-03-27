@@ -33,4 +33,9 @@
     [self hidePopTipView];
 }
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_WIDTH_BOX);
+}
+
+
 @end

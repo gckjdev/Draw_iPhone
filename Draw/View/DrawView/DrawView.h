@@ -55,7 +55,7 @@ typedef enum{
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
-
+@property(nonatomic, assign) BOOL grid;
 
 - (void)clearScreen;
 - (void)changeBackWithColor:(DrawColor *)color;
@@ -70,5 +70,6 @@ typedef enum{
 - (void)showDraft:(MyPaint *)draft;
 - (void)clearRedoStack;
 
+- (void)changeRect:(CGRect)rect;
 
 @end

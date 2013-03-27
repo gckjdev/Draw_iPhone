@@ -15,7 +15,7 @@
     NSMutableArray *_offscreenList;
 }
 
-
+@property(nonatomic, retain)Offscreen *gridOffscreen;
 
 @end
 
@@ -28,13 +28,51 @@
 #define SHOWVIEW_UNDO_STEP 1
 
 
+
 @implementation OffscreenManager
 
+#define VALUE(X) (ISIPAD ? 2*X : X)
+#define LINE_SPACE 15
+
+- (void)addGridOffscreen:(CGRect)rect
+{
+    self.gridOffscreen = [[[Offscreen alloc] initWithCapacity:0 rect:rect] autorelease];
+    self.gridOffscreen.forceShow = YES;
+    CGContextRef context = [self.gridOffscreen cacheContext];
+
+    CGContextSetStrokeColorWithColor(context, [UIColor lightGrayColor].CGColor);
+    CGContextSetLineWidth(context, VALUE(0.5));
+    
+//    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+//    CGContextFillRect(context, rect);
+    
+    NSInteger i = 1;
+    
+    
+    
+    while (i * LINE_SPACE < (CGRectGetWidth(rect))) {
+        CGContextMoveToPoint(context, i * LINE_SPACE, 0);
+        CGContextAddLineToPoint(context, i * LINE_SPACE, CGRectGetHeight(rect));
+        CGContextStrokePath(context);
+        i ++;
+    }
+    
+    i = 1;
+    while (i * LINE_SPACE < (CGRectGetHeight(rect))) {
+        CGContextMoveToPoint(context, 0, i * LINE_SPACE);
+        CGContextAddLineToPoint(context, CGRectGetWidth(rect), i * LINE_SPACE);
+        CGContextStrokePath(context);
+        i ++;
+    }
+
+}
 
 
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
-    return [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
+    OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
+    [manager addGridOffscreen:rect];
+    return manager;
 }
 + (id)showViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
@@ -45,6 +83,7 @@
 - (void)dealloc
 {
     PPRelease(_offscreenList);
+    PPRelease(_gridOffscreen);
 //    PPRelease(_drawPen);
     [super dealloc];
 }
@@ -216,6 +255,9 @@
     for (NSInteger i = _level - 1; i >= 0; -- i) {
         Offscreen *os = [_offscreenList objectAtIndex:i];
         [os showInContext:context];
+    }
+    if (self.showGridOffscreen) {
+        [_gridOffscreen showInContext:context];
     }
 }
 

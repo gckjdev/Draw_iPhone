@@ -25,39 +25,62 @@
 
 #pragma mark - Draw Tool Panel Delegate
 
+
+
+
+
+- (void)setDrawView:(DrawView *)drawView
+{
+    _drawView = drawView;
+    
+    //TODO update Eraser Color
+}
+
 - (void)changePenColor:(DrawColor *)color
 {
-    
+    self.drawView.lineColor = color;
 }
 - (void)changeDrawBG:(PBDrawBg *)drawBG
 {
-    
+    self.drawView.drawBg = drawBG;
 }
 
 - (void)usePaintBucket
 {
-    
+    DrawColor *color = [DrawColor colorWithColor:self.penColor];
+    color.alpha = 1;
+    [self.drawView changeBackWithColor:color];
+
+    //TODO call back
 }
 
 - (void)changeInPenType:(ItemType)type
 {
-    
+    [self.drawView setPenType:type];
 }
-- (void)changeCanvasRect:(CanvasRect *)canvasRect
+
+- (BOOL)changeCanvasRect:(CanvasRect *)canvasRect
 {
-    self.canvasRect = canvasRect;
+    if ([[self.drawView drawActionList] count] == 0) {
+        self.canvasRect = canvasRect;
+        [self.drawView changeRect:canvasRect.rect];
+        return YES;
+    }
+    PPDebug(@"<changeCanvasRect> fail, draw view is not empty");
+    return NO;
 }
 - (void)changeWidth:(CGFloat)width
 {
-    
+    self.drawView.lineWidth = width;
 }
 - (void)changeAlpha:(CGFloat)alpha
 {
-    
+    [self.drawView.lineColor setAlpha:alpha];
 }
 - (void)changeShape:(ShapeType)shape
 {
-    
+    self.drawView.touchActionType = TouchActionTypeShape;
+    [self.drawView setShapeType:shape];
 }
 - (void)changeDesc:(NSString *)desc
 {
@@ -70,16 +93,36 @@
 
 - (void)enterDrawMode
 {
-    
+    self.drawView.touchActionType = TouchActionTypeDraw;
 }
 - (void)enterStrawMode
 {
-    
+    self.drawView.touchActionType = TouchActionTypeGetColor;
 }
 
 - (void)useGid:(BOOL)flag
 {
-    
+    self.drawView.grid = flag;
+}
+
+
+
+/////////////////////////////
+
+
+- (ItemType)penType
+{
+    return self.drawView.penType;
+}
+
+- (DrawColor *)penColor
+{
+    return self.drawView.lineColor;
+}
+
+- (BOOL)grid
+{
+    return self.drawView.grid;
 }
 
 
@@ -90,6 +133,22 @@
 - (PBDrawBg *)drawBG
 {
     return self.drawView.drawBg;
+}
+
+- (CanvasRect *)canvasRect
+{
+    if (_canvasRect == nil) {
+        self.canvasRect = [CanvasRect canvasRectWithStyle:[CanvasRect defaultCanvasRectStyle]];
+    }
+    return _canvasRect;
+}
+
+- (DrawColor *)eraserColor
+{
+    if (_eraserColor == nil) {
+        self.eraserColor = [DrawColor whiteColor];
+    }
+    return _eraserColor;
 }
 
 @end

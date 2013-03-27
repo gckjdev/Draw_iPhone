@@ -10,4 +10,9 @@
 
 @implementation ChatCommand
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_CHAT);
+}
+
+
 @end

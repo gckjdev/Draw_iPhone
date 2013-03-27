@@ -23,6 +23,7 @@
 {
     self.showing = YES;
     [self.control setSelected:YES];
+    [self.toolHandler enterStrawMode];
 }
 
 - (void)hidePopTipView
@@ -36,4 +37,10 @@
 {
     AnalyticsReport(DRAW_CLICK_STRAW);
 }
+
+- (void)buyItemSuccessfully:(ItemType)type
+{
+    [self showPopTipView];
+}
+
 @end
