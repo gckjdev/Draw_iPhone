@@ -101,7 +101,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     //this step is expensive, so if you don't need
     //unique reflections for each item, don't do this
     //and you'll get much smoother peformance
-//    [view update];
+    [view update];
 	
 	return view;
 }
