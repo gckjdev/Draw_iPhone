@@ -98,8 +98,8 @@
 "kSubmit" = "Submit";
 "kCancel" = "Cancel";
 
-"kQuitGameAlertTitle" = "Quit Game";
-"kQuitGameAlertMessage" = "Are you sure to quit the game?";
+"kQuitGameAlertTitle" = "Quit";
+"kQuitGameAlertMessage" = "Are you sure to quit?";
 
 "kQuitDrawAlertMessage" = "Are you going to save the drawing?";
 "kQuitDrawAlertTitle" = "Quit";
@@ -115,7 +115,9 @@
 "kSaved" = "Saved";
 "kFailed" = "Failed";
 "kTurnResult" = "Result of turn";
-"kBuyColor" = "Color Shop";
+"kMoreColor" = "Buy More";
+"kBuyColor" = "Buy Color";
+"kColorShop" = "Buy Color";
 "kConnectionRecover" = "Connection Recover";
 "kConnectionBroken" = "Connection Broken";
 "kNoServerAvailable" = "Sorry, server is full of users. Please try later.";
@@ -535,7 +537,7 @@
 
 "kCurrentCoins" = "Coins ";
 "kCurrentItems" = "Items ";
-"kFreeGetCoins" = "Free Coins";
+"kFreeGetCoins" = "Free Ingots";
 
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
@@ -651,7 +653,7 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFreeCoins" = "Free Coins";
+"kFreeCoins" = "Free Ingots";
 "kFeeds" = "Timeline";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
@@ -928,7 +930,7 @@
 "kHomeMenuTypeDrawTimeline" = "Timeline";
 "kHomeMenuTypeDrawRank" = "Top";
 "kHomeMenuTypeDrawApps" = "Apps";
-"kHomeMenuTypeDrawFreeCoins" = "Free Coins";
+"kHomeMenuTypeDrawFreeCoins" = "Free Ingots";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";
@@ -1043,7 +1045,7 @@
 "kNoDiscount" = "None";
 
 "kMyBalance" = "My Balance:";
-"kSaveMoney" = "Save";
+"kSaveMoney" = "Save ";
 "kGift:" = "GIFT:";
 "kTool" = "Tool";
 "kTo:" = "TO:";
@@ -1052,7 +1054,7 @@
 "kAlreadyBought" = "Had";
 "kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
 "kCleanCache" = "Clear Cache";
-
+"kGiveSuccess" = "Give Success!";
 
 "kNoSaleItemNormal" = "No Normal Items";
 "kNoSaleItemTool" = "No Tool Items";
@@ -1060,11 +1062,11 @@
 
 "kBuyColorFailed"= "Buy color failed";
 
-"kItemNormal" = "Props";
+"kItemNormal" = "Item";
 "kItemTool" = "Tool";
-"kItemPromotion" = "Disc";
-"kDownloadRewardAppTips" = "Download these apps to earn some ingots";
-"kRewardWallTips" = "Enter and download apps to earn some ingots";
+"kItemPromotion" = "Hot";
+"kDownloadRewardAppTips" = "Download our apps to earn ingots";
+"kRewardWallTips" = "Download third-party apps to earn ingots";
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
@@ -1131,6 +1133,10 @@
 "kGetLocationMsg" = "Are you sure to enable the location service?";
 "kSNSAccount" = "SNS";
 "kSpecial" = "Extra Option";
+
+"kDownloadAppTitle" = "Download Apps";
+"kDownloadAppMessage" = "Go to AppStore and download this app to earn ingots now?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -101,8 +101,8 @@
 "kOK" = "確定";
 "kSubmit" = "提交";
 "kCancel" = "取消";
-"kQuitGameAlertMessage" = "確定要退出遊戲嗎?";
-"kQuitGameAlertTitle" = "退出遊戲";
+"kQuitGameAlertMessage" = "確定要退出嗎?";
+"kQuitGameAlertTitle" = "退出";
 
 "kQuitDrawAlertMessage" = "是否保存對作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出繪畫";
@@ -113,7 +113,7 @@
 "kBalanceNotEnoughTitle" = "余額不足";
 "kBalanceNotEnoughDesc" = "不好意思，你的余額不夠了，你可以通過以下途徑來增加您的余額。";
 "kGetFreeIngot" = "免費元寶";
-
+"kGiveSuccess" = "贈送成功";
 
 "kContinue" = "繼續 [%d]";
 "kExit" = "退出遊戲";
@@ -1066,8 +1066,10 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促銷";
-"kDownloadRewardAppTips" = "下載兄弟免費應用可直接賺取元寶";
-"kRewardWallTips" = "其他第三方免費應用，賺取1~10元寶";
+//"kDownloadRewardAppTips" = "下載兄弟應用可直接賺取元寶";
+//"kRewardWallTips" = "其他第三方免費應用，賺取元寶";
+"kDownloadRewardAppTips" = "下載兄弟應用(免費)，使用後可賺取元寶";
+"kRewardWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取元寶";
 "kFreeIngot" = "免費元寶";
 "kGoToBBS4Help" = "逛逛論壇尋求幫助";
 "kCleaning" = "清理緩存中...";
@@ -1098,6 +1100,10 @@
 "kGetLocationMsg" = "應用即將獲取你的位置，按確定繼續。";
 "kSNSAccount" = "社交帳號";
 "kSpecial" = "特別功能";
+
+"kDownloadAppTitle" = "下載應用";
+"kDownloadAppMessage" = "確認跳轉到AppStore去下載本應用嗎？";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

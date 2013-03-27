@@ -34,8 +34,6 @@ typedef void (^DialogSelectionBlock)(void);
 @end
 
 @interface CommonDialog : CommonInfoView {
-    DialogSelectionBlock _clickOkBlock;
-    DialogSelectionBlock _clickBackBlock;
     BOOL    _shouldResize;
 }
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
@@ -48,6 +46,9 @@ typedef void (^DialogSelectionBlock)(void);
 @property (retain, nonatomic) IBOutlet UIImageView *frontBackgroundImageView;
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
+
+@property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
+@property (copy, nonatomic) DialogSelectionBlock clickBackBlock;
 
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 

@@ -148,6 +148,4 @@
     return self.drawView.bgColor;
 }
 
-
-
 @end

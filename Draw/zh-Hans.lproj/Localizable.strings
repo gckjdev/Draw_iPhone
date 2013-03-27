@@ -100,8 +100,8 @@
 "kOK" = "确定";
 "kSubmit" = "提交";
 "kCancel" = "取消";
-"kQuitGameAlertMessage" = "确定要退出游戏吗?";
-"kQuitGameAlertTitle" = "退出游戏";
+"kQuitGameAlertMessage" = "确定要退出吗?";
+"kQuitGameAlertTitle" = "退出";
 
 "kQuitDrawAlertMessage" = "是否保存对作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出绘画";
@@ -155,6 +155,7 @@
 "kEmailUsed" = "对不起，该电子邮件已经被注册。";
 "kEmailNotValid" = "对不起，该电子邮件格式不正确，请重新输入。";
 "kGeneralFailure" = "对不起，注册失败，请稍候再试。";
+"kGiveSuccess" = "赠送成功";
 
 "kInputNickName" = "请输入昵称";
 "Skip" = "跳过";
@@ -553,7 +554,7 @@
 
 "kCurrentCoins" = "现有金币 ";
 "kCurrentItems" = "现有锦囊 ";
-"kFreeGetCoins" = "免费金币";
+"kFreeGetCoins" = "免费元宝";
 
 "kCustomWordManage" = "词库管理";
 "kAddCustomWord" = "添加新词";
@@ -663,7 +664,7 @@
 "kGuessOnly" = "我要猜";
 "kDrawOnly" = "我要画";
 "kFeed" = "猜画动态";
-"kFreeCoins" = "免费金币";
+"kFreeCoins" = "免费元宝";
 "kFeeds" = "动态";
 
 
@@ -952,7 +953,7 @@
 "kHomeMenuTypeDrawContest" = "画画大赛";
 "kHomeMenuTypeDrawBBS" = "玩家论坛";
 "kHomeMenuTypeDrawApps" = "应用推荐";
-"kHomeMenuTypeDrawFreeCoins" = "免费金币";
+"kHomeMenuTypeDrawFreeCoins" = "免费元宝";
 "kHomeMenuTypeDrawHome" = "主页";
 "kHomeMenuTypeDrawOpus" = "作品";
 "kHomeMenuTypeDrawMessage" = "消息";
@@ -961,7 +962,7 @@
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
-"kFreeCoin" = "免费金币";
+"kFreeCoin" = "免费元宝";
 
 "kHomeMenuTypeZJHHelp" = "帮助";
 "kHomeMenuTypeZJHStart" = "快速开始";
@@ -1078,8 +1079,8 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
-"kDownloadRewardAppTips" = "下载兄弟免费应用可直接赚取元宝";
-"kRewardWallTips" = "其他第三方免费应用，赚取1~10元宝";
+"kDownloadRewardAppTips" = "下载兄弟应用(免费)，使用后可赚取元宝";
+"kRewardWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kFreeIngot" = "免费元宝";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中...";
@@ -1111,6 +1112,10 @@
 "kGetLocationMsg" = "应用即将获取你的位置，按确定继续。";
 "kSNSAccount" = "社交帐号";
 "kSpecial" = "特别功能";
+
+"kDownloadAppTitle" = "下载应用";
+"kDownloadAppMessage" = "确认跳转到AppStore去下载本应用吗？";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

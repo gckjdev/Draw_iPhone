@@ -118,7 +118,7 @@
     self.frame = frame;
     
     [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
-    [self.moreButton setTitle:NSLS(@"kBuyColor") forState:UIControlStateNormal];
+    [self.moreButton setTitle:NSLS(@"kMoreColor") forState:UIControlStateNormal];
 }
 
 + (id)createViewWithdelegate:(id)delegate

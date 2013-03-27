@@ -15,11 +15,15 @@
 #import "UIViewUtils.h"
 #import "CustomInfoView.h"
 #import "AdService.h"
-#import "FriendController.h"
 #import "VersionUpdateView.h"
 #import "UserGameItemManager.h"
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
+#import "BalanceNotEnoughAlertView.h"
+#import "UIViewUtils.h"
+#import "AdService.h"
+#import "ItemType.h"
+#import "GiftDetailView.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -29,7 +33,8 @@
 @interface BuyItemView()
 @property (assign, nonatomic) int count;
 @property (retain, nonatomic) PBGameItem *item;
-
+@property (assign, nonatomic) UIView *inView;
+@property (assign, nonatomic) BuyItemResultHandler resultHandler;
 @end
 
 @implementation BuyItemView
@@ -37,6 +42,7 @@
 AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 - (void)dealloc {
+    RELEASE_BLOCK(_resultHandler);
     [_item release];
     [_priceLabel release];
     [_currencyImageView release];
@@ -166,16 +172,23 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                
+                if (resultCode == ERROR_SUCCESS){
                     [cusInfoView dismiss];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
+                    if (itemId == ItemTypeRemoveAd) {
+                        [[AdService defaultService] disableAd];
+                    }
+                }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                    [cusInfoView dismiss];
+                    [BalanceNotEnoughAlertView showInController:[inView theViewController]];
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:YES];
                 }
                 
-                if (resultHandler != NULL) {
-                    resultHandler(resultCode, itemId, count, toUserId);
-                }
+                EXECUTE_BLOCK(resultHandler, resultCode, itemId, count, toUserId);
             }];
         }
     }];
@@ -184,8 +197,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 + (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
-       buyResultHandler:(BuyItemResultHandler)buyResultHandler
-            giveHandler:(GiveHandler)giveHandler
+          resultHandler:(BuyItemResultHandler)resultHandler
 {
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     if (item == nil || inView == nil) {
@@ -198,7 +210,8 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     }
     
     BuyItemView *infoView = [self createWithItem:item];
-    
+    infoView.inView = inView;
+
     CustomInfoView *cusInfoView;
     
     if ([[UserGameItemManager defaultManager] canBuyItemNow:infoView.item]) {
@@ -217,9 +230,9 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     [cusInfoView showInView:inView];
         
     [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-        
-        int count = ((BuyItemView *)infoView).count;
-        PBGameItem *item = ((BuyItemView *)infoView).item;
+        BuyItemView * buyItemView = (BuyItemView *)infoView;
+        int count = buyItemView.count;
+        PBGameItem *item = buyItemView.item;
         
         if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
             
@@ -227,23 +240,67 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-                if (resultCode == 0 || resultCode == ERROR_BALANCE_NOT_ENOUGH) {
+                if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
+                    if (itemId == ItemTypeRemoveAd) {
+                        [[AdService defaultService] disableAd];
+                    }
+                }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                    [cusInfoView dismiss];
+                    [BalanceNotEnoughAlertView showInController:[inView theViewController]];
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:YES];
                 }
                 
-                if (buyResultHandler != NULL) {
-                    buyResultHandler(resultCode, itemId, count, toUserId);
-                }
+                EXECUTE_BLOCK(resultHandler, resultCode, itemId, count, toUserId);
             }];
         }else{
             PPDebug(@"you give %d %@", count, NSLS(item.name));
-            if (giveHandler != NULL) {
-                giveHandler(item, count);
-            }
+            COPY_BLOCK(buyItemView.resultHandler, resultHandler);
+            
+            FriendController *vc = [[[FriendController alloc] initWithDelegate:(BuyItemView *)infoView] autorelease];
+            [[[inView theViewController] navigationController] pushViewController:vc animated:YES];
+        
             [cusInfoView dismiss];
+        }
+    }];
+}
+
+
+- (void)friendController:(FriendController *)controller
+         didSelectFriend:(MyFriend *)aFriend
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    GiftDetailView *giftDetailView = [GiftDetailView createWithItem:_item.itemId myFriend:aFriend count:_count];
+    
+    CustomInfoView *cusInfoView = [CustomInfoView createWithTitle:NSLS(@"kGive")
+                                                         infoView:giftDetailView
+                                                   hasCloseButton:YES
+                                                     buttonTitles:[NSArray arrayWithObjects:NSLS(@"kCancel"), NSLS(@"kOK"), nil]];
+        
+    [cusInfoView showInView:[self.inView PPRootView]];
+    
+    __block typeof (self) bself = self;
+    [cusInfoView setActionBlock:^(UIButton *button, UIView *infoView){
+        [cusInfoView showActivity];
+        if (button.tag == 1) {
+            [[UserGameItemService defaultService] giveItem:bself.item.itemId toUser:[aFriend friendUserId] count:bself.count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+                [cusInfoView hideActivity];
+                if (resultCode == ERROR_SUCCESS) {
+                    [cusInfoView dismiss];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGiveSuccess") delayTime:2 isHappy:YES];
+                }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                    [BalanceNotEnoughAlertView showInController:[self.inView theViewController]];
+                    [cusInfoView dismiss];
+                }else{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:YES];
+                }
+                EXECUTE_BLOCK(_resultHandler, resultCode, itemId, count, toUserId);
+                RELEASE_BLOCK(_resultHandler);
+            }];
         }
     }];
 }
