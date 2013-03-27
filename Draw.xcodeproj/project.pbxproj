@@ -1253,8 +1253,6 @@
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
-		CA1250EE1669EDD800AFCC04 /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250EC1669EDD800AFCC04 /* default_config.pb */; };
-		CA1250EF1669EDD800AFCC04 /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250ED1669EDD800AFCC04 /* default_config_version.txt */; };
 		CA12611C16785F0D00DD96F4 /* common_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1260F416785F0D00DD96F4 /* common_home_badge@2x.png */; };
 		CA12611D16785F0D00DD96F4 /* common_home_bbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1260F516785F0D00DD96F4 /* common_home_bbs@2x.png */; };
 		CA12611E16785F0D00DD96F4 /* common_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1260F616785F0D00DD96F4 /* common_home_bottom_bg@2x.png */; };
@@ -2303,8 +2301,6 @@
 		CA16BE141682FAD900F81B47 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA16BE151682FAD900F81B47 /* bbs_option_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */; };
 		CA16BE161682FAD900F81B47 /* bbs_option_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */; };
-		CA16BE171682FAD900F81B47 /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250EC1669EDD800AFCC04 /* default_config.pb */; };
-		CA16BE181682FAD900F81B47 /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250ED1669EDD800AFCC04 /* default_config_version.txt */; };
 		CA16BE191682FAD900F81B47 /* bbs_create_draw_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */; };
 		CA16BE1A1682FAD900F81B47 /* bbs_create_draw_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */; };
 		CA16BE1B1682FAD900F81B47 /* bbs_create_image_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */; };
@@ -3386,8 +3382,6 @@
 		CA16C39A1682FAE300F81B47 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA16C39B1682FAE300F81B47 /* bbs_option_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */; };
 		CA16C39C1682FAE300F81B47 /* bbs_option_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */; };
-		CA16C39D1682FAE300F81B47 /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250EC1669EDD800AFCC04 /* default_config.pb */; };
-		CA16C39E1682FAE300F81B47 /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250ED1669EDD800AFCC04 /* default_config_version.txt */; };
 		CA16C39F1682FAE300F81B47 /* bbs_create_draw_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */; };
 		CA16C3A01682FAE300F81B47 /* bbs_create_draw_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */; };
 		CA16C3A11682FAE300F81B47 /* bbs_create_image_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */; };
@@ -3522,6 +3516,30 @@
 		CA1882C21648C94B000942D6 /* PPMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1882BC1648C94A000942D6 /* PPMessageManager.m */; };
 		CA1882C31648C94B000942D6 /* PPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1882BE1648C94A000942D6 /* PPMessage.m */; };
 		CA1882C41648C94B000942D6 /* MessageStat.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1882C01648C94A000942D6 /* MessageStat.m */; };
+		CA189AE11702B26600339D42 /* default_config_Dice_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */; };
+		CA189AE21702B26600339D42 /* default_config_Dice_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */; };
+		CA189AE31702B26600339D42 /* default_config_Dice_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */; };
+		CA189AE41702B26600339D42 /* default_config_Dice_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */; };
+		CA189AE51702B26600339D42 /* default_config_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADC1702B26600339D42 /* default_config_Dice.pb */; };
+		CA189AE61702B26600339D42 /* default_config_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADC1702B26600339D42 /* default_config_Dice.pb */; };
+		CA189AE71702B26600339D42 /* default_config_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADC1702B26600339D42 /* default_config_Dice.pb */; };
+		CA189AE81702B26600339D42 /* default_config_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADC1702B26600339D42 /* default_config_Dice.pb */; };
+		CA189AE91702B26600339D42 /* default_config_Draw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */; };
+		CA189AEA1702B26600339D42 /* default_config_Draw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */; };
+		CA189AEB1702B26600339D42 /* default_config_Draw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */; };
+		CA189AEC1702B26600339D42 /* default_config_Draw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */; };
+		CA189AED1702B26600339D42 /* default_config_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADE1702B26600339D42 /* default_config_Draw.pb */; };
+		CA189AEE1702B26600339D42 /* default_config_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADE1702B26600339D42 /* default_config_Draw.pb */; };
+		CA189AEF1702B26600339D42 /* default_config_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADE1702B26600339D42 /* default_config_Draw.pb */; };
+		CA189AF01702B26600339D42 /* default_config_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADE1702B26600339D42 /* default_config_Draw.pb */; };
+		CA189AF11702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */; };
+		CA189AF21702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */; };
+		CA189AF31702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */; };
+		CA189AF41702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */; };
+		CA189AF51702B26600339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */; };
+		CA189AF61702B26600339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */; };
+		CA189AF71702B26600339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */; };
+		CA189AF81702B26600339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */; };
 		CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CA18D40215CFB230001B421A /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		CA18D40515CFB242001B421A /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -6388,8 +6406,6 @@
 		CAB5CB3B16994F0200A4CE3B /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CAB5CB3C16994F0200A4CE3B /* bbs_option_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AA1668D6B0009B4053 /* bbs_option_bg@2x.png */; };
 		CAB5CB3D16994F0200A4CE3B /* bbs_option_bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC792AB1668D6B0009B4053 /* bbs_option_bubble@2x.png */; };
-		CAB5CB3E16994F0200A4CE3B /* default_config.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA1250EC1669EDD800AFCC04 /* default_config.pb */; };
-		CAB5CB3F16994F0200A4CE3B /* default_config_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA1250ED1669EDD800AFCC04 /* default_config_version.txt */; };
 		CAB5CB4016994F0200A4CE3B /* bbs_create_draw_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */; };
 		CAB5CB4116994F0200A4CE3B /* bbs_create_draw_enable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */; };
 		CAB5CB4216994F0200A4CE3B /* bbs_create_image_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */; };
@@ -8699,8 +8715,6 @@
 		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
 		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
 		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
-		CA1250EC1669EDD800AFCC04 /* default_config.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config.pb; sourceTree = "<group>"; };
-		CA1250ED1669EDD800AFCC04 /* default_config_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_version.txt; sourceTree = "<group>"; };
 		CA1260F416785F0D00DD96F4 /* common_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_home_badge@2x.png"; sourceTree = "<group>"; };
 		CA1260F516785F0D00DD96F4 /* common_home_bbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_home_bbs@2x.png"; sourceTree = "<group>"; };
 		CA1260F616785F0D00DD96F4 /* common_home_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_home_bottom_bg@2x.png"; sourceTree = "<group>"; };
@@ -8796,6 +8810,12 @@
 		CA1882BF1648C94A000942D6 /* PPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMessage.h; sourceTree = "<group>"; };
 		CA1882C01648C94A000942D6 /* MessageStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageStat.m; sourceTree = "<group>"; };
 		CA1882C11648C94A000942D6 /* MessageStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageStat.h; sourceTree = "<group>"; };
+		CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Dice_version.txt; sourceTree = "<group>"; };
+		CA189ADC1702B26600339D42 /* default_config_Dice.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Dice.pb; sourceTree = "<group>"; };
+		CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Draw_version.txt; sourceTree = "<group>"; };
+		CA189ADE1702B26600339D42 /* default_config_Draw.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Draw.pb; sourceTree = "<group>"; };
+		CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
+		CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua.pb; sourceTree = "<group>"; };
 		CA18D3FD15CFACD3001B421A /* FeedClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedClasses.h; sourceTree = "<group>"; };
 		CA18D3FE15CFACD3001B421A /* FeedClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedClasses.m; sourceTree = "<group>"; };
 		CA18D40015CFB230001B421A /* DrawFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFeed.h; sourceTree = "<group>"; };
@@ -14104,8 +14124,12 @@
 		CA1250EB1669EDD800AFCC04 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				CA1250EC1669EDD800AFCC04 /* default_config.pb */,
-				CA1250ED1669EDD800AFCC04 /* default_config_version.txt */,
+				CA189ADB1702B26600339D42 /* default_config_Dice_version.txt */,
+				CA189ADC1702B26600339D42 /* default_config_Dice.pb */,
+				CA189ADD1702B26600339D42 /* default_config_Draw_version.txt */,
+				CA189ADE1702B26600339D42 /* default_config_Draw.pb */,
+				CA189ADF1702B26600339D42 /* default_config_Zhajinhua_version.txt */,
+				CA189AE01702B26600339D42 /* default_config_Zhajinhua.pb */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -19141,8 +19165,6 @@
 				CA16BE141682FAD900F81B47 /* Config.proto in Resources */,
 				CA16BE151682FAD900F81B47 /* bbs_option_bg@2x.png in Resources */,
 				CA16BE161682FAD900F81B47 /* bbs_option_bubble@2x.png in Resources */,
-				CA16BE171682FAD900F81B47 /* default_config.pb in Resources */,
-				CA16BE181682FAD900F81B47 /* default_config_version.txt in Resources */,
 				CA16BE191682FAD900F81B47 /* bbs_create_draw_disable@2x.png in Resources */,
 				CA16BE1A1682FAD900F81B47 /* bbs_create_draw_enable@2x.png in Resources */,
 				CA16BE1B1682FAD900F81B47 /* bbs_create_image_disable@2x.png in Resources */,
@@ -20078,6 +20100,12 @@
 				CAF0DB5917019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5D17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606881701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
+				CA189AE31702B26600339D42 /* default_config_Dice_version.txt in Resources */,
+				CA189AE71702B26600339D42 /* default_config_Dice.pb in Resources */,
+				CA189AEB1702B26600339D42 /* default_config_Draw_version.txt in Resources */,
+				CA189AEF1702B26600339D42 /* default_config_Draw.pb in Resources */,
+				CA189AF31702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */,
+				CA189AF71702B26600339D42 /* default_config_Zhajinhua.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20409,8 +20437,6 @@
 				CA16C39A1682FAE300F81B47 /* Config.proto in Resources */,
 				CA16C39B1682FAE300F81B47 /* bbs_option_bg@2x.png in Resources */,
 				CA16C39C1682FAE300F81B47 /* bbs_option_bubble@2x.png in Resources */,
-				CA16C39D1682FAE300F81B47 /* default_config.pb in Resources */,
-				CA16C39E1682FAE300F81B47 /* default_config_version.txt in Resources */,
 				CA16C39F1682FAE300F81B47 /* bbs_create_draw_disable@2x.png in Resources */,
 				CA16C3A01682FAE300F81B47 /* bbs_create_draw_enable@2x.png in Resources */,
 				CA16C3A11682FAE300F81B47 /* bbs_create_image_disable@2x.png in Resources */,
@@ -20973,6 +20999,12 @@
 				CAF0DB5A17019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5E17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606891701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
+				CA189AE41702B26600339D42 /* default_config_Dice_version.txt in Resources */,
+				CA189AE81702B26600339D42 /* default_config_Dice.pb in Resources */,
+				CA189AEC1702B26600339D42 /* default_config_Draw_version.txt in Resources */,
+				CA189AF01702B26600339D42 /* default_config_Draw.pb in Resources */,
+				CA189AF41702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */,
+				CA189AF81702B26600339D42 /* default_config_Zhajinhua.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21318,8 +21350,6 @@
 				CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */,
 				CAC792AC1668D6B0009B4053 /* bbs_option_bg@2x.png in Resources */,
 				CAC792AD1668D6B0009B4053 /* bbs_option_bubble@2x.png in Resources */,
-				CA1250EE1669EDD800AFCC04 /* default_config.pb in Resources */,
-				CA1250EF1669EDD800AFCC04 /* default_config_version.txt in Resources */,
 				CAB5DE531669FF7600A23011 /* bbs_create_draw_disable@2x.png in Resources */,
 				CAB5DE541669FF7600A23011 /* bbs_create_draw_enable@2x.png in Resources */,
 				CAB5DE551669FF7600A23011 /* bbs_create_image_disable@2x.png in Resources */,
@@ -21957,6 +21987,12 @@
 				CAF0DB5717019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5B17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606861701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
+				CA189AE11702B26600339D42 /* default_config_Dice_version.txt in Resources */,
+				CA189AE51702B26600339D42 /* default_config_Dice.pb in Resources */,
+				CA189AE91702B26600339D42 /* default_config_Draw_version.txt in Resources */,
+				CA189AED1702B26600339D42 /* default_config_Draw.pb in Resources */,
+				CA189AF11702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */,
+				CA189AF51702B26600339D42 /* default_config_Zhajinhua.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22311,8 +22347,6 @@
 				CAB5CB3B16994F0200A4CE3B /* Config.proto in Resources */,
 				CAB5CB3C16994F0200A4CE3B /* bbs_option_bg@2x.png in Resources */,
 				CAB5CB3D16994F0200A4CE3B /* bbs_option_bubble@2x.png in Resources */,
-				CAB5CB3E16994F0200A4CE3B /* default_config.pb in Resources */,
-				CAB5CB3F16994F0200A4CE3B /* default_config_version.txt in Resources */,
 				CAB5CB4016994F0200A4CE3B /* bbs_create_draw_disable@2x.png in Resources */,
 				CAB5CB4116994F0200A4CE3B /* bbs_create_draw_enable@2x.png in Resources */,
 				CAB5CB4216994F0200A4CE3B /* bbs_create_image_disable@2x.png in Resources */,
@@ -22859,6 +22893,12 @@
 				CAF0DB5817019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5C17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606871701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
+				CA189AE21702B26600339D42 /* default_config_Dice_version.txt in Resources */,
+				CA189AE61702B26600339D42 /* default_config_Dice.pb in Resources */,
+				CA189AEA1702B26600339D42 /* default_config_Draw_version.txt in Resources */,
+				CA189AEE1702B26600339D42 /* default_config_Draw.pb in Resources */,
+				CA189AF21702B26600339D42 /* default_config_Zhajinhua_version.txt in Resources */,
+				CA189AF61702B26600339D42 /* default_config_Zhajinhua.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
