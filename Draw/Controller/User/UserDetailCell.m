@@ -22,7 +22,7 @@
 #import "FeedCarousel.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
-#define NICK_NAME_MAX_WIDTH (ISIPAD?424:212)
+#define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
 
 
 @interface UserDetailCell ()
@@ -90,7 +90,13 @@
 - (void)adjustNickAndGenderImg:(NSObject<UserDetailProtocol> *)detail
 {
     NSString* nickName = [[detail queryUser] nickName];
-    CGSize size = [nickName sizeWithFont:NICK_NAME_FONT];
+    CGSize size = [nickName sizeWithFont:self.nickNameLabel.font forWidth:self.nickNameLabel.frame.size.width lineBreakMode:NSLineBreakByCharWrapping];
+    if (size.width < NICK_NAME_MAX_WIDTH) {
+        CGPoint orgPoint = CGPointMake(self.nickNameLabel.frame.origin.x - self.genderImageView.frame.size.width , self.nickNameLabel.center.y);
+        orgPoint.x += (NICK_NAME_MAX_WIDTH - size.width)/2;
+        [self.genderImageView setCenter:orgPoint];
+    }
+    
 }
 
 + (float)getCellHeight
