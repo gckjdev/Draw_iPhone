@@ -92,7 +92,7 @@
     NSString* nickName = [[detail queryUser] nickName];
     CGSize size = [nickName sizeWithFont:self.nickNameLabel.font forWidth:self.nickNameLabel.frame.size.width lineBreakMode:NSLineBreakByCharWrapping];
     if (size.width < NICK_NAME_MAX_WIDTH) {
-        CGPoint orgPoint = CGPointMake(self.nickNameLabel.frame.origin.x - self.genderImageView.frame.size.width , self.nickNameLabel.center.y);
+        CGPoint orgPoint = CGPointMake(self.nickNameLabel.frame.origin.x - self.genderImageView.frame.size.width/2 , self.nickNameLabel.center.y);
         orgPoint.x += (NICK_NAME_MAX_WIDTH - size.width)/2;
         [self.genderImageView setCenter:orgPoint];
     }
