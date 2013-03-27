@@ -2,3 +2,5 @@
 build_game_protocol.sh
 .gitnore
 .DS_Store
+temp.txt
+tmp.txt
