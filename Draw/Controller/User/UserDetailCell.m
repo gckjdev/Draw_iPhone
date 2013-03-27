@@ -125,7 +125,6 @@
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.center = cell.feedPlaceHolderView.center;
     [cell addSubview:cell.carousel];
-    
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
     
