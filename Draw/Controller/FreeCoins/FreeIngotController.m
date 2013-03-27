@@ -157,13 +157,7 @@ enum {
         
     } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
-
         [[GameAdWallService defaultService] showWall:self wallType:rewardWall.type forceShowWall:YES];
-        
-//        if (rewardWall.type == 0) {
-//            [[LmWallService defaultService] show:self];
-//            
-//        }
     }
 }
 

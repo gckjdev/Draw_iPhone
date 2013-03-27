@@ -118,7 +118,7 @@ static UserManager* _defaultManager;
     [builder setGuessWordLanguage:[self getLanguageTypeFromOldStorage]];
     
     // set device token
-    [builder setDeviceToken:[self getDeviceTokenFromOldStorage]];
+    [builder setDeviceToken:[self deviceTokenFromOldStorage]];
     
     self.pbUser = [builder build];
     return;    
