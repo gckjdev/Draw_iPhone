@@ -101,8 +101,8 @@
 "kOK" = "確定";
 "kSubmit" = "提交";
 "kCancel" = "取消";
-"kQuitGameAlertMessage" = "確定要退出遊戲嗎?";
-"kQuitGameAlertTitle" = "退出遊戲";
+"kQuitGameAlertMessage" = "確定要退出嗎?";
+"kQuitGameAlertTitle" = "退出";
 
 "kQuitDrawAlertMessage" = "是否保存對作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出繪畫";
