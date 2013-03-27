@@ -9,6 +9,13 @@
 #import "SelfUserDetail.h"
 #import "UserManager.h"
 #import "PPTableViewController.h"
+#import "FriendService.h"
+
+@interface SelfUserDetail()
+
+@property (nonatomic, retain) PPTableViewController* superViewController;
+
+@end
 
 @implementation SelfUserDetail
 
@@ -20,6 +27,12 @@
         self.relation = RelationTypeNo;
     }
     return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(_superViewController);
+    [super dealloc];
 }
 
 + (id<UserDetailProtocol>)createDetail
@@ -85,10 +98,32 @@
 
 - (void)loadUser:(PPTableViewController*)viewController
 {
-    // do nothing, just reload data
-    [viewController.dataTableView reloadData];
     
-    // TODO get user follow and fan count
+    PBGameUser* user = [self getUser];
+    if (user.fanCount == 0 || user.followCount == 0){
+        self.superViewController = viewController;
+        [viewController showActivityWithText:NSLS(@"kLoading")];
+        [[FriendService defaultService] getRelationCount:self];
+        return;
+    }
+    else{
+        [viewController.dataTableView reloadData];
+    }
+    
 }
+
+- (void)didGetFanCount:(NSInteger)fanCount
+           followCount:(NSInteger)followCount
+            blackCount:(NSInteger)blackCount
+            resultCode:(NSInteger)resultCode
+{
+    [[UserManager defaultManager] setFanCount:fanCount];
+    [[UserManager defaultManager] setFollowCount:followCount];
+    
+    [_superViewController hideActivity];
+    [_superViewController.dataTableView reloadData];
+    self.superViewController = nil;
+}
+
 
 @end

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "UserDetailProtocol.h"
+#import "FriendService.h"
 
-@interface SelfUserDetail : NSObject<UserDetailProtocol>
+@interface SelfUserDetail : NSObject<UserDetailProtocol, FriendServiceDelegate>
 
 @property (assign, nonatomic) RelationType relation;
 
