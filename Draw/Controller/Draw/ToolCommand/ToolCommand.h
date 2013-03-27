@@ -53,6 +53,8 @@
 
 - (id)init;
 
++ (id)defaultManager;
+
 - (void)registerCommand:(ToolCommand *)command;
 - (void)unregisterCommand:(ToolCommand *)command;
 - (ToolCommand *)commandForControl:(UIControl *)control;
@@ -62,6 +64,8 @@
 
 - (void)updateHandler:(ToolHandler *)handler;
 - (void)updatePanel:(DrawToolPanel *)panel;
+
+- (BOOL)isPaletteShowing;
 
 @end
 

@@ -35,7 +35,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
-@property(nonatomic, assign)PPTableViewController<ToolHandlerDelegate> *controller;
+@property(nonatomic, assign)PPTableViewController *controller;
 
 
 @property (retain, nonatomic) CanvasRect *canvasRect;

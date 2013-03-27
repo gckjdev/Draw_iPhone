@@ -290,7 +290,8 @@
 
 - (void)registerToolCommands
 {
-    toolCmdManager = [[ToolCommandManager alloc] init];
+    toolCmdManager = [ToolCommandManager defaultManager];
+    [toolCmdManager removeAllCommand];
     ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
@@ -917,6 +918,7 @@
     
     PPDebug(@"%@ dealloc",self);
     self.delegate = nil;
+    [toolCmdManager removeAllCommand];
     [drawColorManager syncRecentList];
     PPRelease(_toolHandler);    
     PPRelease(_colorBoxPopTipView);
