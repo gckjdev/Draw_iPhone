@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "DrawSlider.h"
 
-@interface AlphaSliderCommand : ToolCommand
+@interface AlphaSliderCommand : ToolCommand<DrawSliderDelegate>
 
 @end
