@@ -71,10 +71,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    if (self.detail && [self.detail needUpdate]) {
+    [self.detail loadUser:self];
 
-    }
+    [super viewDidLoad];
     [self didSelectTabAction:DetailTabActionClickOpus];
     // Do any additional setup after loading the view from its nib.
 }
