@@ -303,7 +303,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName];
     } else {
-        
+        [self askRebindSina];
     }
     
 }
@@ -313,7 +313,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName];
     } else {
-        
+        [self askRebindQQ];
     }
 }
 - (void)didclickFacebook
@@ -322,7 +322,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail queryUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName];
     } else {
-        
+        [self askRebindFacebook];
     }
 }
 

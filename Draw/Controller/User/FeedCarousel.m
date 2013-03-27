@@ -11,6 +11,8 @@
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
 
+#define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 288.0f, 288.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
+
 #define SCROLL_SPEED 0.1 //items per second, can be negative or fractional
 
 @interface FeedCarousel()
@@ -30,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     FeedCarousel *view = [self createView];
     view.carousel.delegate = view;
     view.carousel.dataSource = view;
-    view.carousel.type = iCarouselTypeCoverFlow;
+    view.carousel.type = iCarouselTypeCylinder;
     
 //    CGSize offset = CGSizeMake(0.0f, -190);
 //    view.carousel.viewpointOffset = offset;
@@ -72,19 +74,19 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 	if (view == nil)
 	{
         //set up reflection view
-		view = [[[ReflectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 120.0f)] autorelease];
+		view = [[[ReflectionView alloc] initWithFrame:FEED_VIEW_FRAME] autorelease];
         
         DrawFeed *feed = [_drawFeeds objectAtIndex:index];
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
         
-        button = [[[UIButton alloc] initWithFrame:CGRectMake(5.0f, 5.0f, 110.0f, 110.0f)] autorelease];
+        button = [[[UIButton alloc] initWithFrame:view.bounds] autorelease];
         button.imageView.contentMode = UIViewContentModeScaleAspectFit;
         [button setImageWithURL:url placeholderImage:nil];
         //set up content
-		button.layer.borderColor = [UIColor clearColor].CGColor;
-        button.layer.borderWidth = 4.0f;
-        button.layer.cornerRadius = 8.0f;
-        [button.layer setMasksToBounds:YES];
+//		button.layer.borderColor = [UIColor clearColor].CGColor;
+//        button.layer.borderWidth = 4.0f;
+//        button.layer.cornerRadius = 8.0f;
+//        [button.layer setMasksToBounds:YES];
         button.tag = 9999;
 //        [button addTarget:self action:@selector(clickFeedButton:) forControlEvents:UIControlEventTouchUpInside];
 		[view addSubview:button];
@@ -164,7 +166,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
         case iCarouselOptionFadeMax:
             return 0.1;
         case iCarouselOptionFadeRange:
-            return 3.0;
+            return 2.0;
         default:
             return value;
     }

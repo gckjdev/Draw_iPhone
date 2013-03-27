@@ -1129,6 +1129,8 @@
 "kInputSignature" = "Input Your Signature";
 "kGetLocationTitle" = "Locating";
 "kGetLocationMsg" = "Are you sure to enable the location service?";
+"kSNSAccount" = "SNS";
+"kSpecial" = "Extra Option";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
