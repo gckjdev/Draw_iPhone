@@ -16,6 +16,10 @@
 
 @property (nonatomic, assign, readonly)NSUInteger level; //default is 3
 @property (nonatomic, assign, readonly)NSUInteger step; //default is 50
+@property (nonatomic, assign)BOOL showGridOffscreen;
+
+//- (void)addGridOffscreen;
+//- (void)showGridOffscreen:(BOOL)show;
 
 
 //draw view: the level should be >= 4

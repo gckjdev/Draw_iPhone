@@ -304,7 +304,7 @@
     command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ItemTypeNo] autorelease];
+    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
     [toolCmdManager registerCommand:command];
     
     
@@ -337,8 +337,7 @@
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-
-    
+    [toolCmdManager updateHandler:self.toolHandler];
 
 }
 
@@ -349,7 +348,7 @@
 
     
     [self updateRecentColorViews];
-    [self updateColorTools];
+
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
 
@@ -393,6 +392,20 @@
     [view updateView];
     return view;
     
+}
+
++ (id)createViewWithdToolHandler:(ToolHandler *)handler
+{
+    DrawToolPanel *panel = nil;
+    if (ISIPHONE5) {
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
+    }else{
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
+    }
+    panel.toolHandler = handler;
+    handler.drawToolPanel = panel;
+    [panel updateView];
+    return panel;
 }
 
 - (void)dismissPopTipViewsWithout:(CMPopTipView *)popView
@@ -900,6 +913,7 @@
     PPDebug(@"%@ dealloc",self);
     self.delegate = nil;
     [drawColorManager syncRecentList];
+    PPRelease(_toolHandler);    
     PPRelease(_colorBoxPopTipView);
     PPRelease(_penPopTipView);
     PPRelease(_palettePopTipView);

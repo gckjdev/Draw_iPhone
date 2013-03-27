@@ -24,6 +24,7 @@
 
 
 @class DrawToolPanel;
+@class ToolHandler;
 
 @protocol DrawToolPanelDelegate <NSObject>
 
@@ -75,8 +76,13 @@
 @property(nonatomic, assign)NSInteger timerDuration;
 @property(nonatomic, retain)NSString *drawBgId;
 
+@property(nonatomic, retain)ToolHandler *toolHandler;
+
 
 + (id)createViewWithdelegate:(id)delegate;
+
++ (id)createViewWithdToolHandler:(ToolHandler *)handler;
+
 - (void)updateView;
 - (void)dismissAllPopTipViews;
 - (void)setPanelForOnline:(BOOL)isOnline;
