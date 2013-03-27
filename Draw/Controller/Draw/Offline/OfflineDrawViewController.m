@@ -62,6 +62,8 @@
 
 
 #import "ToolHandler.h"
+#import "ToolCommand.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -601,11 +603,13 @@
 
 - (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
 {
-    [self.drawToolPanel dismissAllPopTipViews];
-    [self updateRecentColors];
-    if (action) {
-        _isNewDraft = NO;
+ 
+    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
+        [self.drawToolPanel updateRecentColorViewWithColor:drawView.lineColor updateModel:YES];
     }
+    [[ToolCommandManager defaultManager] hideAllPopTipViews];
+    _isNewDraft = NO;
+
 }
 
 #define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
