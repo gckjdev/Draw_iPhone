@@ -42,7 +42,6 @@
 
 - (void)dealloc
 {
-    self.finishBlock = nil;
     PPRelease(_superViewController);
     [super dealloc];
 }
