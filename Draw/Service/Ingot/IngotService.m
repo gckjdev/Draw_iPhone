@@ -9,46 +9,62 @@
 #import "IngotService.h"
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
-#import "GameBasic.pb.h"
+#import "IngotManager.h"
+#import "BlockArray.h"
 
-#define INGOT_FILE_NAME  @"sale_ingot.pb"
-#define INGOT_FILE_VERSION  @"1.0"
+@interface IngotService()
+@property (retain, nonatomic) BlockArray *blockArray;
+
+@end
 
 @implementation IngotService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 
-- (PBSaleIngot*)findSaleIngoWithAppleProductId:(NSString*)appleProductId
+- (void)dealloc
 {
-    return nil;
+    [_blockArray releaseAllBlock];
+    [_blockArray release];
+    [super dealloc];
 }
 
-- (void)getIngotsList:(GetIngotsListResultHandler)handler
+- (id)init
 {
-    //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:INGOT_FILE_NAME type:SMART_UPDATE_DATA_TYPE_PB bundlePath:INGOT_FILE_NAME initDataVersion:INGOT_FILE_VERSION];
+    if(self = [super init])
+    {
+        self.blockArray = [[[BlockArray alloc] init] autorelease];
+    }    
+
+    return self;
+}
+
+- (void)syncData:(GetIngotsListResultHandler)handler
+{
+    GetIngotsListResultHandler tempHandler = (GetIngotsListResultHandler)[_blockArray copyBlock:handler];
+
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:SALE_INGOT_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:SALE_INGOT_FILE_BUNDLE_PATH initDataVersion:SALE_INGOT_FILE_VERSION];
     
+    __block typeof(self) bself = self;
+
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"getIngotsList successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
-        NSArray *itemsList = [[PBSaleIngotList parseFromData:data] ingotsList];
-        handler(YES, itemsList);
+        NSArray *ingotList = [[PBSaleIngotList parseFromData:data] ingotsList];
+        [[IngotManager defaultManager] setIngotList:ingotList];
+        
+        EXECUTE_BLOCK(tempHandler, YES, ingotList);
+        [bself.blockArray releaseBlock:tempHandler];
         [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
         NSData *data = [NSData dataWithContentsOfFile:smartData.dataFilePath];
-        NSArray *itemsList = [[PBSaleIngotList parseFromData:data] ingotsList];
-        handler(NO, itemsList);
+        NSArray *ingotList = [[PBSaleIngotList parseFromData:data] ingotsList];
+        [[IngotManager defaultManager] setIngotList:ingotList];
+        EXECUTE_BLOCK(tempHandler, NO, ingotList);
+        [bself.blockArray releaseBlock:tempHandler];
         [smartData release];
     }];
 }
-
-
-//************************************************************
-//"com.orange.draw.coins20000",
-//"com.orange.draw.coins400",
-//"com.orange.draw.coins2400",
-//"com.orange.draw.coins6000"
 
 + (void)createTestDataFile
 {
@@ -93,7 +109,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
     PBSaleIngotList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = @"/Users/gckj/shopItem/sale_ingot.pb";
+    NSString *filePath = @"/Users/Linruin/gitdata/sale_ingot.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {

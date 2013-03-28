@@ -130,6 +130,10 @@
 "kBuyCoinsSucc" = "購買金幣成功";
 "kCongratulations" = "恭喜猜對了!";
 "kPity" = "請再接再厲!";
+"kChargingIngot" = "元寶充值中...";
+"kChargIngotSuccess" = "元寶充值成功!";
+"kChargIngotFailure" = "元寶充值失敗!";
+
 
 "kStartingGame" = "請求開始遊戲中...";
 
@@ -1109,7 +1113,8 @@
 "kAskFollowSNSUserMessage" = "使用%@關注該好友";
 "kFollowSNSSucc" = "成功通過%@關注了該好友!";
 
-
+"kUndoing" = "撤銷中...";
+"kRedoing" = "重做中...";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

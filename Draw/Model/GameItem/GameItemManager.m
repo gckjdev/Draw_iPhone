@@ -11,7 +11,6 @@
 #import "GameBasic.pb.h"
 #import "PPSmartUpdateDataUtils.h"
 
-#define SHOP_ITEM_FILE_TYPE @"pb"
 
 @interface GameItemManager()
 

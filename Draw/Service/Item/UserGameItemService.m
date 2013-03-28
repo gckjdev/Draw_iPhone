@@ -40,8 +40,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (id)init
 {
-    self = [super init];
-    _blockArray = [[BlockArray alloc] init];
+    if(self = [super init])
+    {
+        self.blockArray = [[[BlockArray alloc] init] autorelease];
+    }
+    
     return self;
 }
 

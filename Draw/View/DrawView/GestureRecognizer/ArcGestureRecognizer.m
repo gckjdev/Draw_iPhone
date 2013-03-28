@@ -235,6 +235,10 @@
 
 - (BOOL)isCircle
 {
+
+    if (self.forceCircle) {
+        return YES;
+    }
     BOOL flag = [tTrace1 isCircle] && [tTrace2 isCircle];
     if (!flag && [tTrace1 pointCount] == DETECT_POINT_NUMBER && [tTrace2 pointCount] == DETECT_POINT_NUMBER) {
         CGFloat sum = [tTrace1 radian] + [tTrace2 radian];

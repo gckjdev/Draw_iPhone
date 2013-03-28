@@ -178,7 +178,7 @@
 							<object class="IBUIButton" id="76260091">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{173, 32}, {49, 17}}</string>
+								<string key="NSFrame">{{173, 32}, {52, 17}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSNextKeyView" ref="109221860"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -192,7 +192,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">省15%</string>
+								<string key="IBUINormalTitle">省88%</string>
 								<reference key="IBUIHighlightedTitleColor" ref="499465647"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -371,10 +371,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="charge_bg@2x.png">{99, 50}</string>
-			<string key="charge_cell_bg@2x.png">{565, 111}</string>
-			<string key="green_bg@2x.png">{75, 31}</string>
-			<string key="ingot@2x.png">{64, 64}</string>
+			<string key="charge_bg@2x.png">{16, 16}</string>
+			<string key="charge_cell_bg@2x.png">{16, 16}</string>
+			<string key="green_bg@2x.png">{16, 16}</string>
+			<string key="ingot@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

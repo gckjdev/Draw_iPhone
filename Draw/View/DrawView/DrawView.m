@@ -371,6 +371,15 @@
     return image;
 }
 
+- (NSInteger)totalActionCount
+{
+    return [self actionCount] + [_redoStack size];
+}
+
+- (NSInteger)actionCount
+{
+    return [[self drawActionList] count];
+}
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
 {
