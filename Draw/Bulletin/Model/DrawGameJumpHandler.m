@@ -47,7 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
         jumpController = [[[FreeCoinsControllerViewController alloc] init] autorelease];
     }else if ([func isEqualToString:FUNC_FREE_INGOT ignoreCapital:YES]) {
         jumpController = [[[FreeIngotController alloc] init] autorelease];
-    } else ([func isEqualToString:FUNC_SHOP ignoreCapital:YES]){
+    } else if ([func isEqualToString:FUNC_SHOP ignoreCapital:YES]){
         jumpController = [[[StoreController alloc] init] autorelease];
     }else{
         PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);
