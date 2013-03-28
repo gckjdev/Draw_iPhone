@@ -23,6 +23,7 @@
 
 - (void)showPopTipView
 {
+    [self becomeActive];
     self.showing = YES;
     [self.control setSelected:YES];
 }

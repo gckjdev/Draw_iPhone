@@ -30,9 +30,14 @@
 
 - (void)updatePenWithPenType:(ItemType)type
 {
+    [self becomeActive];
     self.itemType = type;
     [self.toolHandler enterDrawMode];
     [self.toolHandler changeInPenType:self.itemType];
+
+    [self hidePopTipView];
+    
+    
     //TODO update Pen view
 }
 
@@ -40,7 +45,6 @@
 - (void)buyItemSuccessfully:(ItemType)type
 {
     [self updatePenWithPenType:type];
-    [self hidePopTipView];
 }
 
 
@@ -55,8 +59,7 @@
 {
     if ([self canUseItem:penType]) {
         [self updatePenWithPenType:penType];
-        [self hidePopTipView];               
+      
     }
-
 }
 @end

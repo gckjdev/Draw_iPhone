@@ -15,7 +15,7 @@
     Palette *pallete = [Palette createViewWithdelegate:self];
     if (self.toolHandler.penColor) {
         pallete.currentColor = self.toolHandler.penColor;
-        self.toolHandler changePenColor:pallete.currentColor;
+        [self.toolHandler changePenColor:pallete.currentColor];
     }
     return pallete;
 }
@@ -43,8 +43,8 @@
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
+    [self becomeActive];
     [self.toolHandler changePenColor:color];
-//    [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
 }
 
 @end

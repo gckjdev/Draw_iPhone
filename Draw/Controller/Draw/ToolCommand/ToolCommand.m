@@ -114,6 +114,11 @@
     [self hidePopTipView];
 }
 
+- (void)becomeActive
+{
+    [[ToolCommandManager defaultManager] makeCommanActive:self];
+}
+
 //need to be override by the sub classes
 - (UIView *)contentView
 {
@@ -208,12 +213,20 @@ ToolCommandManager *_staticToolCommandManager = nil;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command
 {
     for (ToolCommand *command1 in commandList) {
-        if (command != command1) {
+        if (command != command1 && command1.popTipView) {
             [command1 hidePopTipView];
         }
     }
 }
 
+- (void)makeCommanActive:(ToolCommand *)command
+{
+    for (ToolCommand *command1 in commandList) {
+        if (command != command1) {
+            [command1 hidePopTipView];
+        }
+    }
+}
 
 - (void)updateHandler:(ToolHandler *)handler
 {
@@ -239,4 +252,14 @@ ToolCommandManager *_staticToolCommandManager = nil;
     return NO;
 }
 
+- (void)resetAlpha
+{
+    for (ToolCommand *command in commandList) {
+        if (command.itemType == ColorAlphaItem) {
+            DrawSlider* slider =(DrawSlider *)command.control;
+            [slider setValue:1];
+            return;
+        }
+    }
+}
 @end
