@@ -65,8 +65,8 @@
     [self.followButton setHidden:![detail canFollow]];
     [self.chatButton setHidden:![detail canChat]];
     [self.drawToButton setHidden:![detail canDraw]];
-    [self.blackListBtn setHidden:![detail canBlack]];
-    [self.superBlackBtn setHidden:![detail canSuperBlack]];
+    [self.blackListBtn setHidden:![detail isBlackBtnVisable]];
+    [self.superBlackBtn setHidden:![detail isSuperManageBtnVisable]];
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
@@ -86,6 +86,7 @@
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
     [self adjustView:self.levelLabel toLabel:self.signLabel];
+
 }
 
 - (void)adjustView:(UIView*)view
