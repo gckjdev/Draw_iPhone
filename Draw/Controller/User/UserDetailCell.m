@@ -20,6 +20,7 @@
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"
+#import "UIColor+UIColorExt.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -126,6 +127,7 @@
                               delegate:cell] autorelease];
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
+    [cell.segmentedControl setTitleColor:OPAQUE_COLOR(100, 72, 40) forState:UIControlStateNormal];
     
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.delegate = cell;
