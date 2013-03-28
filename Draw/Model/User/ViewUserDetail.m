@@ -20,6 +20,7 @@
 #import "PPSNSIntegerationService.h"
 #import "SNSUtils.h"
 #import "CommonDialog.h"
+#import "ConfigManager.h"
 
 @interface ViewUserDetail () {
     LoadFeedFinishBlock _finishBlock;
@@ -155,10 +156,10 @@
             
         } break;
         case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:10 delegate:self];
+            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
         } break;
         case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
+            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
         } break;
         default:
             break;
@@ -204,9 +205,9 @@
     if ([snsService supportFollow] == NO)
         return;
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskFollowSNSUserTitle") message:NSLS(@"kAskFollowSNSUserMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserTitle"), [SNSUtils snsNameOfType:snsType]] message:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserMessage"), [SNSUtils snsNameOfType:snsType]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
         [snsService followUser:nickName userId:snsId successBlock:^(NSDictionary *userInfo) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSucc")
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kFollowSNSSucc"), [SNSUtils snsNameOfType:snsType]]
                                                            delayTime:1.5
                                                              isHappy:YES];
         } failureBlock:^(NSError *error) {
@@ -324,7 +325,7 @@
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
                     }
                 }
-                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);
+                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);                
                 //                [[self detailCell] setDrawFeedList:self.guessedList];
             } break;
             case FeedListTypeUserOpus: {
@@ -345,6 +346,12 @@
     } else {
         EXECUTE_BLOCK(_finishBlock, resultCode, nil);
     }
+}
+
+- (NSString*)blackUserBtnTitle
+{
+    BOOL hasBlack = [MyFriend hasBlack:[self relation]];
+    return hasBlack?NSLS(@"kUnblackFriend"):NSLS(@"kBlackFriend");
 }
 
 @end

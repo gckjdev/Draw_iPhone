@@ -459,7 +459,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.drawToolPanel updateView];
     [self startBackupTimer];
 }
 
@@ -680,7 +679,6 @@
         [self shareToWeibo];
 
     }else if(resultCode == ERROR_CONTEST_END){
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestEnd") delayTime:1.5 isSuccessful:NO];
         [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubmitFailure") delayTime:1.5 isSuccessful:NO];
@@ -797,16 +795,6 @@
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
     [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:DRAW_CLICK_DRAFT];
 }
-
-
-//- (NSMutableArray *)compressActionList:(NSArray *)drawActionList
-//{
-//    return  [DrawAction scaleActionList:drawActionList
-//                                 xScale:1.0 / IPAD_WIDTH_SCALE
-//                                 yScale:1.0 / IPAD_HEIGHT_SCALE];
-//}
-
-
 
 - (void)setProgress:(CGFloat)progress
 {
@@ -998,97 +986,18 @@
         }
     }else {
         [self alertExit];
-//        CommonDialog *dialog = nil;
-//        if ([drawView.drawActionList count] == 0 || !_isAutoSave) {
-//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle")
-//                                                 message:NSLS(@"kQuitGameAlertMessage")
-//                                                   style:CommonDialogStyleDoubleButton 
-//                                                delegate:self];
-//        }else{
-//            dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") 
-//                                                 message:NSLS(@"kQuitDrawAlertMessage") 
-//                                                   style:CommonDialogStyleDoubleButton 
-//                                                delegate:self];
-//        }
-//        
-//        dialog.tag = DIALOG_TAG_ESCAPE;
-//        [dialog showInView:self.view];
     }
 }
 
 #pragma mark - level service delegate
 - (void)levelUp:(int)level
 {
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kUpgradeMsg"),level] delayTime:1.5 isHappy:YES];
+
 }
 
-
-
-- (void)buyItemSuccess:(int)itemId
-                result:(int)result
-{
-    if (result == 0) {
-        switch (itemId) {
-            case PaletteItem:
-            case ColorAlphaItem:
-            case ColorStrawItem:
-                [self.drawToolPanel updateNeedBuyToolViews];
-                [self.drawToolPanel userItem:itemId];
-                break;
-            case Pen:
-            case Pencil:
-            case IcePen:
-            case Quill:
-            case WaterPen:
-            {
-                drawView.touchActionType = TouchActionTypeDraw;
-                [self.drawToolPanel setPenType:itemId];
-                [drawView setPenType:itemId];
-                break;
-            }
-            default:
-                break;
-                
-        }
-    }
-}
 
 #pragma mark - CommonItemInfoView Delegate
 
-
-
-
-- (void)didBuyItem:(int)itemId
-            result:(int)result
-{
-    if (result == 0) {
-        switch (itemId) {
-            case PaletteItem:
-            case ColorAlphaItem:
-            case ColorStrawItem:
-                [self.drawToolPanel updateNeedBuyToolViews];
-                [self.drawToolPanel userItem:itemId];
-                break;
-            case Pen:
-            case Pencil:
-            case IcePen:
-            case Quill:
-            case WaterPen:
-            {
-                drawView.touchActionType = TouchActionTypeDraw;
-                [self.drawToolPanel setPenType:itemId];
-                [drawView setPenType:itemId];
-                break;
-            }
-            default:
-                break;
-
-        }
-    }else
-    {
-        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
-    }
-}
 
 - (void)performRevoke
 {

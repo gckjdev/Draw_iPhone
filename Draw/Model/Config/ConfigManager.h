@@ -84,6 +84,8 @@ typedef enum{
 
 + (NSString*)gameId;
 
++ (NSInteger)getDrawGridLineSpace;
+
 + (int)getTomatoAwardExp;
 + (int)getTomatoAwardAmount;
 + (int)getFlowerAwardExp;
@@ -221,5 +223,5 @@ typedef enum{
 + (BOOL)isEnableAderWall;
 + (BOOL)isEnableTapjoyWall;
 + (BOOL)isEnableYoumiWall;
-
++ (NSInteger)getDefaultDetailOpusCount;
 @end

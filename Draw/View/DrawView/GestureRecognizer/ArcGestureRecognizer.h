@@ -18,6 +18,8 @@
 @property(nonatomic, assign, readonly) CGFloat radian;
 @property(nonatomic, assign, readonly) BOOL direction;
 
+@property(nonatomic, assign)BOOL forceCircle;
+
 @end
 
 extern CGFloat CGPointDistance(CGPoint p1, CGPoint p2);

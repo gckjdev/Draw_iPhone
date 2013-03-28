@@ -1956,6 +1956,7 @@
 + (CommonNetworkOutput*)actionSaveOnOpus:(NSString*)baseURL                                  
                                    appId:(NSString*)appId                                 
                                   userId:(NSString*)userId
+                              actionType:(int)actionType
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId                        
 {
@@ -1972,7 +1973,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusId];        
         str = [str stringByAddQueryParameter:PARA_ACTION_NAME value:actionName];
-        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_SAVE];
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
         
         return str;
     };

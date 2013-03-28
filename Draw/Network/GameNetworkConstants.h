@@ -149,7 +149,9 @@
 
 #define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3
-#define ACTION_TYPE_SAVE     100
+#define ACTION_TYPE_SAVE                    100
+#define ACTION_TYPE_ADD_FAVORITE            (ACTION_TYPE_SAVE)
+#define ACTION_TYPE_REMOVE_FAVORITE         101
 
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
