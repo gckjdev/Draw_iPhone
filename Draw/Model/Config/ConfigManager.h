@@ -84,6 +84,8 @@ typedef enum{
 
 + (NSString*)gameId;
 
++ (NSInteger)getDrawGridLineSpace;
+
 + (int)getTomatoAwardExp;
 + (int)getTomatoAwardAmount;
 + (int)getFlowerAwardExp;

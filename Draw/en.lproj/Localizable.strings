@@ -1137,6 +1137,8 @@
 "kDownloadAppTitle" = "Download Apps";
 "kDownloadAppMessage" = "Go to AppStore and download this app to earn ingots now?";
 
+"kChangeCanvasFailed" = "Cann't change canvas size when the paint is not blank.";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

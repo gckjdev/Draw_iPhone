@@ -17,6 +17,10 @@
 
 - (UIScrollView *)superScrollView
 {
+    if (ISIPHONE5) {
+        return nil;
+    }
+
     UIView *view = self.control;
     while (view && ![view isKindOfClass:[UIScrollView class]]) {
         view = view.superview;

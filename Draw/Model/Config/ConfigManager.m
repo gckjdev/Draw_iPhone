@@ -306,6 +306,11 @@
     return [MobClickUtils getIntValueByKey:@"NEW_WALL_TYPE" defaultValue:WallTypeLimei];
 }
 
++ (NSInteger)getDrawGridLineSpace
+{
+    return [MobClickUtils getIntValueByKey:@"GRID_LINE_SPACE" defaultValue:15];
+};
+
 + (BOOL)removeAdByIAP
 {
     return ([MobClickUtils getIntValueByKey:@"DEL_AD_TYPE" defaultValue:0] == 1);
@@ -315,6 +320,7 @@
 {
     return [MobClickUtils getIntValueByKey:@"TOMATO_EXP" defaultValue:-5];
 }
+
 
 + (int)getTomatoAwardAmount
 {

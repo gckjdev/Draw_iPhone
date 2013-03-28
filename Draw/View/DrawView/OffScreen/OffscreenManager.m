@@ -9,6 +9,9 @@
 #import "OffscreenManager.h"
 #import "Offscreen.h"
 #import "CanvasRect.h"
+#import "ConfigManager.h"
+
+
 
 @interface OffscreenManager()
 {
@@ -32,15 +35,16 @@
 @implementation OffscreenManager
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
-#define LINE_SPACE 15
+#define LINE_SPACE [ConfigManager getDrawGridLineSpace]
 
 - (void)addGridOffscreen:(CGRect)rect
 {
+    
     self.gridOffscreen = [[[Offscreen alloc] initWithCapacity:0 rect:rect] autorelease];
     self.gridOffscreen.forceShow = YES;
     CGContextRef context = [self.gridOffscreen cacheContext];
 
-    CGContextSetStrokeColorWithColor(context, [UIColor lightGrayColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:160/255. green:1 blue:1 alpha:1].CGColor);
     CGContextSetLineWidth(context, VALUE(0.5));
     
 //    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
