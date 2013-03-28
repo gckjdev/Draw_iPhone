@@ -19,15 +19,15 @@
 #import "ConfigManager.h"
 
 @interface SelfUserDetail() {
-    LoadFeedFinishBlock _finishBlock;
+    
 }
 
-
-@property (nonatomic, retain) PPTableViewController* superViewController;
+@property (nonatomic, assign) PPTableViewController* superViewController;
 
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
 @property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (copy, nonatomic)   LoadFeedFinishBlock finishBlock;
 
 @end
 
@@ -48,6 +48,7 @@
 
 - (void)dealloc
 {
+    self.finishBlock = nil;
     PPRelease(_superViewController);
     PPRelease(_opusList);
     PPRelease(_guessedList);
@@ -152,6 +153,8 @@
 
 - (void)loadFeedByTabAction:(int)tabAction finishBLock:(LoadFeedFinishBlock)block
 {
+    self.finishBlock = block;
+    
     switch (tabAction) {
         case DetailTabActionClickFavouriate: {
             
@@ -165,8 +168,10 @@
         default:
             break;
     }
-    RELEASE_BLOCK(_finishBlock);
-    COPY_BLOCK(_finishBlock, block);
+    
+    
+//    RELEASE_BLOCK(_finishBlock);
+//    COPY_BLOCK(_finishBlock, block);
 }
 
 - (void)blackUser:(PPTableViewController *)viewController
@@ -269,6 +274,7 @@
                     }
                 }
                 EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);
+                self.finishBlock = nil;
 //                [[self detailCell] setDrawFeedList:self.guessedList];
             } break;
             case FeedListTypeUserOpus: {
@@ -282,13 +288,20 @@
 //                [cell setDrawFeedList:self.opusList];
                 
                 EXECUTE_BLOCK(_finishBlock, resultCode, self.opusList);
+                self.finishBlock = nil;
             }
-            default:
+            default:{
+                EXECUTE_BLOCK(_finishBlock, resultCode, self.opusList);
+                self.finishBlock = nil;
                 break;
+            }
         }
     } else {
         EXECUTE_BLOCK(_finishBlock, resultCode, nil);
+        self.finishBlock = nil;
     }
+    
+    
 }
 
 - (NSString*)blackUserBtnTitle

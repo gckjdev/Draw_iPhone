@@ -31,6 +31,7 @@ typedef enum{
     FeedListTypeHistoryRank = 9,
     FeedListTypeTopPlayer = 10,
     
+    FeedListTypeUserFavorite = 100,
     
 }FeedListType;
 

@@ -325,7 +325,7 @@
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
                     }
                 }
-                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);
+                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);                
                 //                [[self detailCell] setDrawFeedList:self.guessedList];
             } break;
             case FeedListTypeUserOpus: {

@@ -22,7 +22,7 @@
 
 typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache);
 typedef void (^ DownloadProgressHandler) (float progress);
-
+typedef void (^ FeedActionResultBlock) (int resultCode);
 
 @protocol FeedServiceDelegate <NSObject>
 
@@ -120,6 +120,11 @@ typedef void (^ DownloadProgressHandler) (float progress);
                    limit:(NSInteger)limit 
                 delegate:(id<FeedServiceDelegate>)delegate;
 
+- (void)getUserFavoriteOpusList:(NSString *)userId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       delegate:(id<FeedServiceDelegate>)delegate;
+
 //not return data ...
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;
@@ -153,6 +158,15 @@ typedef void (^ DownloadProgressHandler) (float progress);
 
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
+
+// user favorite methods
+- (void)getUserFavoriteOpusList:(NSString *)userId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
+- (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId
