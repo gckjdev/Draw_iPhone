@@ -245,6 +245,7 @@
 }
 
 
+
 - (NSString*)blackUserBtnTitle
 {
     BOOL hasBlack = [MyFriend hasBlack:[self relation]];

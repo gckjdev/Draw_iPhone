@@ -200,9 +200,18 @@
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
+    
+    TouchActionType type = self.toolHandler.drawView.touchActionType;
+    
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     [self.toolHandler changePenColor:colorPoint.color];
     [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
+    if (type == TouchActionTypeShape) {
+        [self.toolHandler enterStrawMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
+
 }
 
 - (void)registerToolCommands
@@ -224,7 +233,7 @@
     command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
+    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:BasicShape] autorelease];
     [toolCmdManager registerCommand:command];
     
     command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
@@ -271,7 +280,7 @@
     [self updateSliders];
     
     [self registerToolCommands];
-    
+        
     [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
@@ -411,6 +420,7 @@
 }
 
 - (IBAction)switchToolPage:(UIButton *)sender {
+    [toolCmdManager hideAllPopTipViews];
     sender.selected = !sender.isSelected;
     NSUInteger page = sender.isSelected;
     [self scrollToPage:page];

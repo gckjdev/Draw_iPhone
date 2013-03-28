@@ -100,6 +100,7 @@
 {
     self.drawView.touchActionType = TouchActionTypeShape;
     [self.drawView setShapeType:shape];
+    self.drawView.penType = self.penType;
 }
 - (void)changeDesc:(NSString *)desc
 {

@@ -116,7 +116,9 @@
 }
 
 #define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
+
 #define TAB_FONT    (ISIPAD?20:10)
+
 + (id)createCell:(id)delegate
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];

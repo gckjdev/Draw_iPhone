@@ -135,6 +135,7 @@
 		A455F8CB1585D21400CA5743 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C01585D21400CA5743 /* grayArrow@2x.png */; };
 		A455F8CC1585D21400CA5743 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C11585D21400CA5743 /* whiteArrow.png */; };
 		A455F8CD1585D21400CA5743 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A455F8C21585D21400CA5743 /* whiteArrow@2x.png */; };
+		A457E9AD170444BC00926838 /* IngotManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A457E9AC170444BC00926838 /* IngotManager.m */; };
 		A45AA839162FC0150030D668 /* UIPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */; };
 		A45BC60E15F1C4F80003DDDC /* DiceConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BC60D15F1C4F80003DDDC /* DiceConfigManager.m */; };
 		A45BF5E215D231A000CDD5C2 /* DiceFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A45BF5E115D231A000CDD5C2 /* DiceFontManager.m */; };
@@ -7588,6 +7589,8 @@
 		A455F8C01585D21400CA5743 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		A455F8C11585D21400CA5743 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		A455F8C21585D21400CA5743 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		A457E9AB170444BC00926838 /* IngotManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngotManager.h; sourceTree = "<group>"; };
+		A457E9AC170444BC00926838 /* IngotManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngotManager.m; sourceTree = "<group>"; };
 		A45AA837162FC0150030D668 /* UIPlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceholderTextView.h; sourceTree = "<group>"; };
 		A45AA838162FC0150030D668 /* UIPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceholderTextView.m; sourceTree = "<group>"; };
 		A45BC60C15F1C4F80003DDDC /* DiceConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceConfigManager.h; sourceTree = "<group>"; };
@@ -14268,6 +14271,8 @@
 		CA16411E16D724B5001C615F /* GameItem */ = {
 			isa = PBXGroup;
 			children = (
+				A457E9AB170444BC00926838 /* IngotManager.h */,
+				A457E9AC170444BC00926838 /* IngotManager.m */,
 				A41ECB8216F2CD4200248AEA /* PBGameItem+Extend.h */,
 				A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */,
 				CA16411F16D724CA001C615F /* GameItem.h */,
@@ -25301,6 +25306,7 @@
 				CAF839C91701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADEC91704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
+				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

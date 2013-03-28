@@ -9,7 +9,10 @@
 #import "GestureRecognizerManager.h"
 #import "ArcGestureRecognizer.h"
 #import "SuperDrawView.h"
-//#import "UIViewUtils.h"
+#import "RoundPercentageView.h"
+//#import "DrawUtils.h"
+#import "UIViewUtils.h"
+#import "DrawView.h"
 
 @interface GestureRecognizerManager()
 {
@@ -18,10 +21,25 @@
     BOOL lastDirection;
     NSMutableSet *grSet;
     BOOL _canMove;
+    
+    RoundPercentageView *roundPercentView;
+    ArcGestureRecognizer *arcGesture;
 //    BOOL notScale;
 }
 
 @end
+
+
+//12,9,9,55
+//82,81,79 45
+
+#define ROUND_BG_COLOR [UIColor colorWithRed:82/255. green:81/255. blue:79/255. alpha:45/255.]
+#define ROUND_FG_COLOR [UIColor colorWithRed:12/255. green:9/255. blue:9/255. alpha:55/255.]
+#define VALUE(X) (ISIPAD ? 2 * X : X)
+
+#define ROUND_BORDER_WIDTH VALUE(5)
+#define ROUND_VIEW_WIDTH VALUE(200)
+#define ROUND_FONT_SIZE VALUE(16)
 
 @implementation GestureRecognizerManager
 
@@ -31,6 +49,13 @@
     if (self) {
         self.capture = YES;
         grSet = [[NSMutableSet alloc] initWithCapacity:5];
+        roundPercentView = [[RoundPercentageView alloc] initWithFrame:CGRectMake(0, 0, ROUND_VIEW_WIDTH, ROUND_VIEW_WIDTH)];
+        [roundPercentView setBackgroundTintColor:ROUND_BG_COLOR];
+        [roundPercentView setProgressTintColor:ROUND_BG_COLOR];
+        [roundPercentView setProgressColor:ROUND_FG_COLOR];
+        [roundPercentView setLineWidth:ROUND_BORDER_WIDTH];
+        [roundPercentView setTextColor:[UIColor whiteColor]];
+        [roundPercentView setTextFont:[UIFont boldSystemFontOfSize:ROUND_FONT_SIZE]];
     }
     return self;
 }
@@ -38,6 +63,7 @@
 - (void)dealloc
 {
     PPRelease(grSet);
+    PPRelease(roundPercentView);
     [super dealloc];
 }
 
@@ -110,7 +136,7 @@
 {
     view.userInteractionEnabled = YES;  // Enable user interaction
     view.multipleTouchEnabled = YES;
-    ArcGestureRecognizer *arcGesture = [[ArcGestureRecognizer alloc] initWithTarget:self action:@selector(handleArcGesture:)];
+    arcGesture = [[ArcGestureRecognizer alloc] initWithTarget:self action:@selector(handleArcGesture:)];
     [view addGestureRecognizer:arcGesture];
     [grSet addObject:arcGesture];
     return [arcGesture autorelease];
@@ -118,12 +144,36 @@
 
 #define REDO_UNDO_RADIAN 1
 
+- (void)updateRoundPercentViewWithDirection:(BOOL)direction angle:(CGFloat)angle
+{
+    [roundPercentView setAngle:angle];
+    if (direction) {
+        [roundPercentView setText:NSLS(@"kRedoing")];
+    }else{
+        [roundPercentView setText:NSLS(@"kUndoing")];
+    }
+}
+
+- (CGFloat)angleForDrawView:(DrawView *)drawView
+{
+    if ([drawView isKindOfClass:[DrawView class]]) {
+        return M_PI_2 * (1 - ((CGFloat)drawView.actionCount / (CGFloat)drawView.totalActionCount));
+    }
+    return 0;
+}
+
 - (void)handleArcGesture:(ArcGestureRecognizer *)gestureRecognizer
 {
     [self stateCallBack:gestureRecognizer];
+    
+    CGFloat angle = [self angleForDrawView:(DrawView *)gestureRecognizer.view];
+    
     if([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
         PPDebug(@"=======================<handleArcGesture> began!!!=======================");
         lastRadian = 0;
+        [[gestureRecognizer.view superview] addSubview:roundPercentView];
+        roundPercentView.center = CGRectGetCenter([gestureRecognizer.view superview].bounds);
+        [self updateRoundPercentViewWithDirection:lastDirection angle:angle];
     }
     if ([gestureRecognizer state] == UIGestureRecognizerStateChanged) {
         BOOL direction = [gestureRecognizer direction];
@@ -149,13 +199,16 @@
             }
         }
         
+        [self updateRoundPercentViewWithDirection:lastDirection angle:angle];
+
 //        NSString *dir = [gestureRecognizer direction] ? @">>>>>>>>>>>>>>" : @"<<<<<<<<<<<<<";
 //        PPDebug(@"direction = %@, radian = %f", dir, gestureRecognizer.radian);
     }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
              [gestureRecognizer state] == UIGestureRecognizerStateCancelled){
-        
+        [roundPercentView removeFromSuperview];
     }else if(gestureRecognizer.state == UIGestureRecognizerStateFailed){
         PPDebug(@"=======================<handleArcGesture> failed!!!=======================");
+        [roundPercentView removeFromSuperview];        
     }
     
 }
@@ -297,6 +350,8 @@
         frame.origin = origin;
         view.frame = frame;
         _canMove = [self canMoveView:view];
+        arcGesture.forceCircle = !_canMove;
+
     }
     PPDebug(@"<adjustView> frame = %@",NSStringFromCGRect(view.frame));
     [UIView commitAnimations];

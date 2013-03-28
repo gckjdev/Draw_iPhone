@@ -158,6 +158,8 @@
     
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    PPDebug(@"<touchesMoved> touches = %@, count = %d", touches, [touches count]);
     _pointCount ++;
     [super touchesMoved:touches withEvent:event];
     [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:TouchStateMove];
@@ -371,6 +373,15 @@
     return image;
 }
 
+- (NSInteger)totalActionCount
+{
+    return [self actionCount] + [_redoStack size];
+}
+
+- (NSInteger)actionCount
+{
+    return [[self drawActionList] count];
+}
 - (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
                  didGestureBegan:(UIGestureRecognizer *)gestureRecognizer
 {

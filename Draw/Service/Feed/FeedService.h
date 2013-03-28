@@ -164,6 +164,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
                          offset:(NSInteger)offset
                           limit:(NSInteger)limit
                        delegate:(id<FeedServiceDelegate>)delegate;
+
 - (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 
