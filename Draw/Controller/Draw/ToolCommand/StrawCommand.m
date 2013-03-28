@@ -20,7 +20,7 @@
 {
     if ([super execute]) {
         [self showPopTipView];
-        [self.toolHandler changeInPenType:Eraser];
+        return YES;
     }
     return NO;
 }

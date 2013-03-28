@@ -198,7 +198,10 @@ ToolCommandManager *_staticToolCommandManager = nil;
 - (void)hideAllPopTipViews
 {
     for (ToolCommand *command in commandList) {
-        [command hidePopTipView];
+        if (command.popTipView) {
+            [command hidePopTipView];
+        }
+
     }
 }
 

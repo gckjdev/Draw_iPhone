@@ -19,7 +19,7 @@
 @class Word;
 @class ShareImageManager;
 
-@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,CommonDialogDelegate,LevelServiceDelegate, DrawToolPanelDelegate> {
+@interface OnlineDrawViewController : SuperGameViewController<DrawViewDelegate,CommonDialogDelegate,LevelServiceDelegate> {
     DrawView *drawView;
 }
 
