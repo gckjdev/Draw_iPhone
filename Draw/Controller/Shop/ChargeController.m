@@ -80,8 +80,36 @@
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
     PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
-//    [self showActivityWithText:NSLS(@"kBuying")];
+    [self showActivityWithText:NSLS(@"kBuying")];
+    [[AccountService defaultService] setDelegate:self];
     [[AccountService defaultService] buyIngot:saleIngot];
+}
+
+- (void)didFinishBuyProduct:(int)resultCode
+{
+    [self hideActivity];
+    
+    if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
+        [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    else if (resultCode == PAYMENT_CANCEL){
+        return;
+    }
+    
+    // update product count number label
+    [self updateIngot];
+    
+    if (resultCode == 0){
+        [self popupMessage:NSLS(@"kBuyCoinsSucc") title:nil];
+    }
+}
+
+- (void)didProcessingBuyProduct
+{
+    [self hideActivity];
+    [self showActivityWithText:NSLS(@"kProcessingIAP")];
 }
 
 @end

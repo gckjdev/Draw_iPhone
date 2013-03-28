@@ -57,6 +57,7 @@
 #pragma mark-- Color Shop Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
+    [self becomeActive];    
     [self.toolHandler changePenColor:colorView.drawColor];
     [self.toolPanel updateRecentColorViewWithColor:colorView.drawColor updateModel:YES];
 }

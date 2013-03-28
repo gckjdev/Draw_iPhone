@@ -271,7 +271,7 @@
 "kCleanDrawMessage" = "清屏之后之前所画的东西都会消失，确定吗？";
 "kSavePercent" = "节省%02d%%";
 
-"kShareTitle" = "作品分享";
+"kShareTitle" = "本地作品";
 
 "kNickNameEmpty" = "昵称不能为空";
 "Nick" = "昵称";
@@ -334,7 +334,7 @@
 "kWordLengthTip" = "温馨小提示：当前猜词的字数为［%d］";
 "kContentNull" = "搜索条件不能为空";
 
-"kNoDrawings" = "你还没有任何作品";
+"kNoDrawings" = "暂无本地保存的作品或者草稿";
 "kAll" = "所有";
 "kMine" = "我的";
 "kDraft" = "草稿";
@@ -973,7 +973,7 @@
 "kHomeMenuTypeZJHShop" = "商店";
 
 "kAlreadLastVersion" = "已经是最新版本啦!";
-"kAppUpdate" = "版本升级";
+"kAppUpdate" = "版本升级(当前版本:%@)";
 
 "kSetTimeoutAction" = "设置超时操作";
 "kFoldCard" = "弃牌";

@@ -26,10 +26,20 @@
     return NO;
 }
 
+- (void)updateWithDrawBG:(PBDrawBg *)drawBG
+{
+    [self.toolHandler changeDrawBG:drawBG];
+    [self hidePopTipView];
+}
+
 - (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg
 {
-    [self.toolHandler changeDrawBG:drawBg];
-    [self hidePopTipView];
+    [self updateWithDrawBG:drawBg];
+}
+
+- (void)buyItemSuccessfully:(ItemType)type
+{
+    
 }
 
 -(void)sendAnalyticsReport{

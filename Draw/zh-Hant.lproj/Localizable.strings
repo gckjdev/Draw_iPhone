@@ -270,7 +270,7 @@
 "kCleanDrawMessage" = "清屏之後之前所畫的東西都會消失，確定嗎？";
 "kSavePercent" = "節省%02d%%";
 
-"kShareTitle" = "作品分享";
+"kShareTitle" = "本地作品";
 
 "kNickNameEmpty" = "暱稱不能為空";
 "Nick" = "暱稱";
@@ -341,7 +341,7 @@
 "kWordLengthTip" = "溫馨小提示：當前猜詞的字數為［%d］";
 "kContentNull" = "搜索條件不能為空";
 
-"kNoDrawings" = "你還沒有任何作品呢";
+"kNoDrawings" = "暫無本地保存的作品或者草稿";
 "kAll" = "所有";
 "kMine" = "我的";
 "kDraft" = "草稿";
@@ -1220,7 +1220,7 @@
 "kZJHDegradeMsg" = "噢，你玩得太不認真了，都降到%d級了";
 
 "kAlreadLastVersion" = "已經是最新版本啦!";
-"kAppUpdate" = "版本升級";
+"kAppUpdate" = "版本升級(當前版本:%@)";
 
 
 "kSetTimeoutAction" = "設置超時操作";

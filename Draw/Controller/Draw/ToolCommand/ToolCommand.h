@@ -35,6 +35,8 @@
 - (void)hidePopTipView;
 - (void)finish;
 
+- (void)becomeActive;
+
 //need to be override by the sub classes
 - (void)sendAnalyticsReport;
 - (UIView *)contentView;
@@ -66,6 +68,9 @@
 - (void)updatePanel:(DrawToolPanel *)panel;
 
 - (BOOL)isPaletteShowing;
+- (void)makeCommanActive:(ToolCommand *)command;
 
+
+- (void)resetAlpha;
 @end
 
