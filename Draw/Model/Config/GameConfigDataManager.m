@@ -181,10 +181,10 @@ static dispatch_once_t onceToken;
                                                           enName:@"Li Mei"
                                                             type:PBRewardWallTypeLimei
                                                             logo:@"http://58.215.160.100:8080/icon/ad_limei.png"];
-    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
-                                                          enName:@"Wan Pu"
-                                                            type:PBRewardWallTypeWanpu
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
+//    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
+//                                                          enName:@"Wan Pu"
+//                                                            type:PBRewardWallTypeWanpu
+//                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
     
     PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
                                                           enName:@"You Mi"

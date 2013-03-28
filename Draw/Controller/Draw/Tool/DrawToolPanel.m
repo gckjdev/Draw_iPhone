@@ -139,7 +139,7 @@
                                              delegate:nil];
     self.widthSlider.frame = frame;    
     [self.penWidth setTitle:NSLS(@"kPenWidth") forState:UIControlStateNormal];
-    [self.scrollView addSubview:self.widthSlider];
+
 
     frame = self.alphaSlider.frame;
     [self.alphaSlider removeFromSuperview];
@@ -149,8 +149,16 @@
                                              delegate:nil];
     
     self.alphaSlider.frame = frame;
-    [self.scrollView addSubview:self.alphaSlider];
     [self.colorAlpha setTitle:NSLS(@"kColorAlpha") forState:UIControlStateNormal];
+    
+    if (ISIPHONE5) {
+        [self addSubview:self.alphaSlider];
+        [self addSubview:self.widthSlider];
+    }else{
+        [self.scrollView addSubview:self.alphaSlider];
+        [self.scrollView addSubview:self.widthSlider];
+    }
+
 }
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel
@@ -192,10 +200,8 @@
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
-    [colorPoint setSelected:YES];
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     [self.toolHandler changePenColor:colorPoint.color];
-    [self.toolHandler changeInPenType:self.toolHandler.penType];
     [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
 }
 

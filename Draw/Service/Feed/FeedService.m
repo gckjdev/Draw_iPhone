@@ -155,28 +155,28 @@ static FeedService *_staticFeedService = nil;
 }
 
 - (void)getUserFeedList:(NSString *)userId
-                 offset:(NSInteger)offset 
-                  limit:(NSInteger)limit 
+                   type:(FeedListType)type
+                 offset:(NSInteger)offset
+                  limit:(NSInteger)limit
                delegate:(id<FeedServiceDelegate>)delegate
 {
-//    [delegate showActivityWithText:NSLS(@"kParsingData")];
     dispatch_async(workingQueue, ^{
-
+        
         // add by Benson
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        CommonNetworkOutput* output = [GameNetworkRequest 
-                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
-                                       userId:userId 
-                                       feedListType:FeedListTypeUserFeed 
-                                       offset:offset 
-                                       limit:limit 
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       userId:userId
+                                       feedListType:type
+                                       offset:offset
+                                       limit:limit
                                        lang:UnknowType];
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
-            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
-
+            PPDebug(@"<FeedService> getUserFeedList type=%d finish, start to parse data.", type);
+            
             @try{
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
@@ -190,16 +190,83 @@ static FeedService *_staticFeedService = nil;
             @finally {
             }
         }
-
+        
         PPDebug(@"<FeedService> parse data finish, start display the views.");
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
-                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
+                [delegate didGetFeedList:list targetUser:userId type:type resultCode:resultCode];
             }
         });
         
         [subPool drain];
     });
+}
+
+- (void)getUserFavoriteOpusList:(NSString *)userId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       delegate:(id<FeedServiceDelegate>)delegate
+{
+    [self getUserFeedList:userId
+                     type:FeedListTypeUserFavorite
+                   offset:offset
+                    limit:limit
+                 delegate:delegate];
+}
+
+- (void)getUserFeedList:(NSString *)userId
+                 offset:(NSInteger)offset 
+                  limit:(NSInteger)limit 
+               delegate:(id<FeedServiceDelegate>)delegate
+{
+    
+    
+    [self getUserFeedList:userId
+                     type:FeedListTypeUserFeed
+                   offset:offset
+                    limit:limit
+                 delegate:delegate];
+    
+//    dispatch_async(workingQueue, ^{
+//
+//        // add by Benson
+//        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+//        
+//        CommonNetworkOutput* output = [GameNetworkRequest 
+//                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
+//                                       userId:userId 
+//                                       feedListType:FeedListTypeUserFeed 
+//                                       offset:offset 
+//                                       limit:limit 
+//                                       lang:UnknowType];
+//        NSArray *list = nil;
+//        NSInteger resultCode = output.resultCode;
+//        if (resultCode == ERROR_SUCCESS){
+//            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
+//
+//            @try{
+//                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+//                resultCode = [response resultCode];
+//                NSArray *pbFeedList = [response feedList];
+//                list = [FeedManager parsePbFeedList:pbFeedList];
+//            }
+//            @catch (NSException *exception) {
+//                PPDebug(@"<getUserFeedList> catch exception =%@", [exception description]);
+//                resultCode = ERROR_CLIENT_PARSE_DATA;
+//            }
+//            @finally {
+//            }
+//        }
+//
+//        PPDebug(@"<FeedService> parse data finish, start display the views.");
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
+//                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
+//            }
+//        });
+//        
+//        [subPool drain];
+//    });
 }
 
 - (void)getUserOpusList:(NSString *)userId
@@ -671,27 +738,77 @@ static FeedService *_staticFeedService = nil;
 
 }
 
-- (void)actionSaveOpus:(NSString *)opusId 
+- (void)actionSaveOpus:(NSString *)opusId
+            actionType:(int)actionType
             actionName:(NSString*)actionName
+           resultBlock:(FeedActionResultBlock)resultBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];    
+    NSString* appId = [ConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
                                                                      appId:appId
                                                                     userId:userId
+                                                                actionType:actionType
                                                                 actionName:actionName
                                                                     opusId:opusId];
         
         PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
                 opusId, actionName, output.resultCode);
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//        });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
     });
     
 }
+
+- (void)actionSaveOpus:(NSString *)opusId 
+            actionName:(NSString*)actionName
+{
+    
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_SAVE
+              actionName:actionName
+             resultBlock:nil];
+    
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    NSString* appId = [ConfigManager appId];    
+//    
+//    dispatch_async(workingQueue, ^{
+//        CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
+//                                                                     appId:appId
+//                                                                    userId:userId
+//                                                                actionName:actionName
+//                                                                    opusId:opusId];
+//        
+//        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
+//                opusId, actionName, output.resultCode);        
+//    });
+    
+}
+
+- (void)addOpusIntoFavorite:(NSString *)opusId
+                resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_ADD_FAVORITE
+              actionName:DB_FIELD_ACTION_SAVE_TIMES
+             resultBlock:resultBlock];
+
+}
+
+- (void)removeOpusFromFavorite:(NSString *)opusId
+                   resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_REMOVE_FAVORITE
+              actionName:@""
+             resultBlock:resultBlock];
+    
+}
+
 
 #define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"
 

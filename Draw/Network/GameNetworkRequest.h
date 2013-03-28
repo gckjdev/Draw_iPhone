@@ -489,6 +489,7 @@
 + (CommonNetworkOutput*)actionSaveOnOpus:(NSString*)baseURL                                  
                                    appId:(NSString*)appId                                 
                                   userId:(NSString*)userId
+                              actionType:(int)actionType
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId;
 

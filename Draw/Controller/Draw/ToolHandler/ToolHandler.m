@@ -38,7 +38,7 @@
 
 - (void)changePenColor:(DrawColor *)color
 {
-    CGFloat alpha = self.drawView.lineColor.alpha;
+    CGFloat alpha = self.penColor.alpha;
     color = [DrawColor colorWithColor:color];
     self.penColor = color;
     self.drawView.lineColor = color;
