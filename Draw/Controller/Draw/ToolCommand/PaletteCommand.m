@@ -15,7 +15,7 @@
     Palette *pallete = [Palette createViewWithdelegate:self];
     if (self.toolHandler.penColor) {
         pallete.currentColor = self.toolHandler.penColor;
-        self.toolHandler changePenColor:pallete.currentColor;
+        [self.toolHandler changePenColor:pallete.currentColor];
     }
     return pallete;
 }
