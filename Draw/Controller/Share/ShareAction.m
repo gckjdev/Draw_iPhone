@@ -40,7 +40,6 @@
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
-    NSInteger buttonIndexSave;
     NSInteger buttonIndexFavorite;
     NSInteger buttonIndexUseAsAvatar;
     NSInteger buttonIndexUseAsContactAvatar;
@@ -199,8 +198,7 @@
         buttonIndexWeixinTimeline = 4;
         buttonIndexEmail = 5;
         buttonIndexAlbum = 6;
-        buttonIndexSave = 7,
-        buttonIndexFavorite = 8;
+        buttonIndexFavorite = 7;
 //        buttonIndexUseAsAvatar = 8;
 //        buttonIndexUseAsContactAvatar = 9;
         
@@ -369,7 +367,7 @@
     }
 }
 
-- (void)saveToApp
+- (void)favorite
 {
     if (self.feed.pbDraw) {
         [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
@@ -395,12 +393,12 @@
     }
 }
 
-- (void)favorite
-{
-    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
-        //
-    }];
-}
+//- (void)favorite
+//{
+//    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
+//        //
+//    }];
+//}
 
 - (void)setProgress:(CGFloat)progress
 {
@@ -527,11 +525,9 @@
         } else {
             [self shareViaSNS:TYPE_FACEBOOK];
         }
-    } else if (buttonIndex == buttonIndexSave) {
+    } else if (buttonIndex == buttonIndexFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
-        [self saveToApp];
-    }  else if (buttonIndex == buttonIndexFavorite) {
         [self favorite];
     }else if (buttonIndex == buttonIndexUseAsAvatar) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_MY_AVATAR];
