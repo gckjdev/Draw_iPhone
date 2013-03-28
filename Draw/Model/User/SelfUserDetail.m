@@ -16,6 +16,7 @@
 #import "SNSUtils.h"
 #import "CommonDialog.h"
 #import "CommonMessageCenter.h"
+#import "ConfigManager.h"
 
 @interface SelfUserDetail() {
     LoadFeedFinishBlock _finishBlock;
@@ -156,10 +157,10 @@
             
         } break;
         case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:10 delegate:self];
+            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
         } break;
         case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
+            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
         } break;
         default:
             break;
@@ -288,5 +289,10 @@
     } else {
         EXECUTE_BLOCK(_finishBlock, resultCode, nil);
     }
+}
+
+- (NSString*)blackUserBtnTitle
+{
+    return nil;
 }
 @end

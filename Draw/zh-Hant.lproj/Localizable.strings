@@ -1103,7 +1103,9 @@
 
 "kDownloadAppTitle" = "下載應用";
 "kDownloadAppMessage" = "確認跳轉到AppStore去下載本應用嗎？";
-
+"kAskFollowSNSUserTitle" = "%@關注";
+"kAskFollowSNSUserMessage" = "使用%@關注該好友";
+"kFollowSNSSucc" = "成功通過%@關注了該好友!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
