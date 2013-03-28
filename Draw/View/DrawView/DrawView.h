@@ -73,6 +73,7 @@ typedef enum{
 
 - (void)changeRect:(CGRect)rect;
 
-
+- (NSInteger)totalActionCount;
+- (NSInteger)actionCount;
 
 @end

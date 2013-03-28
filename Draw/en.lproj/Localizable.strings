@@ -1142,7 +1142,8 @@
 "kAskFollowSNSUserMessage" = "It's going to follow he/her via %@, are you sure?";
 "kFollowSNSSucc" = "Follow friend via %@ successfully!";
 
-
+"kUndoing" = "Undoing...";
+"kRedoing" = "Redoing...";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

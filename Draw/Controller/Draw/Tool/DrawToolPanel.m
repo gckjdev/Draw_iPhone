@@ -224,7 +224,7 @@
     command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:Eraser] autorelease];
+    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:BasicShape] autorelease];
     [toolCmdManager registerCommand:command];
     
     command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
@@ -411,6 +411,7 @@
 }
 
 - (IBAction)switchToolPage:(UIButton *)sender {
+    [toolCmdManager hideAllPopTipViews];
     sender.selected = !sender.isSelected;
     NSUInteger page = sender.isSelected;
     [self scrollToPage:page];
