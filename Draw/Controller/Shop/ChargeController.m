@@ -38,10 +38,12 @@
     [self updateIngot];
     
     __block typeof(self) bself = self;
-    [[IngotService sharedIngotService] getIngotsList:^(BOOL success, NSArray *ingotsList){
+    [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
         bself.dataList = ingotsList;
         [bself.dataTableView reloadData];
     }];
+    
+    [IngotService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -89,20 +91,27 @@
 {
     [self hideActivity];
     
-    if (resultCode != 0 && resultCode != PAYMENT_CANCEL){
+    if (resultCode != ERROR_SUCCESS && resultCode != PAYMENT_CANCEL){
         [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil];
-        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     else if (resultCode == PAYMENT_CANCEL){
         return;
     }
     
-    // update product count number label
-    [self updateIngot];
-    
-    if (resultCode == 0){
-        [self popupMessage:NSLS(@"kBuyCoinsSucc") title:nil];
+    if (resultCode == ERROR_SUCCESS){
+        [self showActivityWithText:NSLS(@"kChargingIngot")];
+    }
+}
+
+- (void)didFinishChargeIngot:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == ERROR_SUCCESS) {
+        [self updateIngot];
+        [self popupMessage:NSLS(@"kChargIngotSuccess") title:nil];
+    }else{
+        [self popupMessage:NSLS(@"kChargIngotFailure") title:nil];
     }
 }
 

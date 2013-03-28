@@ -165,7 +165,7 @@
 
 #define METHOD_GET_TRAFFIC_SERVER_LIST @"gt"
 #define METHOD_CHARGE_ACCOUNT @"ca"
-#define METHOD_CHARGE_INGOT @"ci"
+#define METHOD_CHARGE_INGOT @"cia"
 
 #define METHOD_DEDUCT_ACCOUNT @"da"
 #define METHOD_UPDATE_ITEM_AMOUNT @"uia"

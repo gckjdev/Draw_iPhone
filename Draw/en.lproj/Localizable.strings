@@ -128,6 +128,10 @@
 "kStartingGame" = "Starting Game...";
 "kProcessingIAP" = "Processing purchasing request...";
 
+"kChargingIngot" = "Charging...";
+"kChargIngotSuccess" = "Charge succeed!";
+"kChargIngotFailure" = "Charge failed!";
+
 "kCoinsNotEnoughTitle" = "Message";
 "kCoinsNotEnough" = "Sorry, you don't have enough coins. Do you want to purchase coins now?";
 "kCoinsNotEnoughTips" = "Sorry, you coins are less than %d. You can purchase coins after the game";

@@ -535,12 +535,12 @@
 }
 
 + (CommonNetworkOutput*)chargeIngot:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
-                               byUser:(NSString*)byUserId
+                             userId:(NSString*)userId
+                             amount:(int)amount
+                             source:(int)source
+                      transactionId:(NSString*)transactionId
+                 transactionReceipt:(NSString*)transactionRecepit
+                             byUser:(NSString*)byUserId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     

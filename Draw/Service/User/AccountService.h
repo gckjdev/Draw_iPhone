@@ -29,6 +29,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)didFinishBuyProduct:(int)resultCode;
 - (void)didProcessingBuyProduct;
 - (void)didSyncFinish;
+- (void)didFinishChargeIngot:(int)resultCode;
 
 @end
 

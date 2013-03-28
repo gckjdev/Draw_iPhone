@@ -178,7 +178,7 @@
 							<object class="IBUIButton" id="531079884">
 								<reference key="NSNextResponder" ref="445987130"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{346, 64}, {98, 34}}</string>
+								<string key="NSFrame">{{346, 64}, {102, 34}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
 								<reference key="NSNextKeyView" ref="580456081"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -192,7 +192,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">省15%</string>
+								<string key="IBUINormalTitle">save 88%</string>
 								<reference key="IBUIHighlightedTitleColor" ref="65853738"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
