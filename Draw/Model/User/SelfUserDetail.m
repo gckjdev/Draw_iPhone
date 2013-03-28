@@ -85,12 +85,12 @@
     return NO;
 }
 
-- (BOOL)canBlack
+- (BOOL)isBlackBtnVisable
 {
     return NO;
 }
 
-- (BOOL)canSuperBlack
+- (BOOL)isSuperManageBtnVisable
 {
     return NO;
 }
@@ -156,6 +156,19 @@
     }
     RELEASE_BLOCK(_finishBlock);
     COPY_BLOCK(_finishBlock, block);
+}
+
+- (void)blackUser
+{
+    
+}
+- (void)superManageUser
+{
+    
+}
+- (void)clickSNSBtnType:(int)snsType
+{
+    
 }
 
 #pragma mark - feed service delegate

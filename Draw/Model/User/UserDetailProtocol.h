@@ -24,12 +24,19 @@ typedef void (^LoadFeedFinishBlock)(int resultCode, NSArray* feedList);
 - (BOOL)canFollow;
 - (BOOL)canChat;
 - (BOOL)canDraw;
-- (BOOL)canBlack;
-- (BOOL)canSuperBlack;
+
+- (BOOL)isBlackBtnVisable;
+- (BOOL)isSuperManageBtnVisable;
+
+- (BOOL)isSNSBtnVisable:(int)snsType;
 
 - (PBGameUser*)getUser;
 - (void)loadUser:(PPTableViewController*)viewController;
 - (void)loadFeedByTabAction:(int)tabAction finishBLock:(LoadFeedFinishBlock)block;
+
+- (void)blackUser:(PPTableViewController*)viewController;
+- (void)superManageUser:(PPTableViewController*)viewController;
+- (void)clickSNSBtnType:(int)snsType;
 
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;

@@ -12,6 +12,10 @@
 #import "UserService.h"
 #import "PPTableViewController.h"
 #import "UserDetailCell.h"
+#import "MyFriend.h"
+#import "CommonMessageCenter.h"
+#import "FriendService.h"
+#import "SuperUserManageAction.h"
 
 @interface ViewUserDetail () {
     LoadFeedFinishBlock _finishBlock;
@@ -102,12 +106,12 @@
 {
     return YES;
 }
-- (BOOL)canBlack
+- (BOOL)isBlackBtnVisable
 {
     return YES;
 }
 
-- (BOOL)canSuperBlack
+- (BOOL)isSuperManageBtnVisable
 {
     return [[UserManager defaultManager] isSuperUser];
 }
@@ -150,6 +154,38 @@
     }
     RELEASE_BLOCK(_finishBlock);
     COPY_BLOCK(_finishBlock, block);
+}
+
+- (void)blackUser:(PPTableViewController*)viewController
+{
+    if ([MyFriend hasBlack:[self relation]]) {
+        [[FriendService defaultService] unblackFriend:[self getUserId] successBlock:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
+            if ([MyFriend hasBlack:[self relation]]) {
+                [self setRelation:([self relation] - RelationTypeBlack)];
+            }
+            [viewController.dataTableView reloadData];
+        }];
+        
+    } else {
+        
+        [[FriendService defaultService] blackFriend:[self getUserId] successBlock:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
+            [self setRelation:RelationTypeBlack];
+            [viewController.dataTableView reloadData];
+        }];
+    }
+}
+- (void)superManageUser:(PPTableViewController*)viewController
+{
+    if ([[UserManager defaultManager] isSuperUser]) {
+        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self getUserId] nickName:[self getUser].nickName balance:[self getUser].coinBalance] autorelease];
+        [action showInController:viewController];
+    }
+}
+- (void)clickSNSBtnType:(int)snsType
+{
+    
 }
 
 #pragma mark - feed service delegate

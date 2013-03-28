@@ -203,32 +203,11 @@
 
 - (void)didclickBlack
 {
-    if ([self.detail canBlack]) {
-        if ([MyFriend hasBlack:[self.detail relation]]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
-            if ([MyFriend hasBlack:[self.detail relation]]) {
-                [self.detail setRelation:([self.detail relation] - RelationTypeBlack)];
-            }
-            [self.dataTableView reloadData];
-        } else {
-            [[FriendService defaultService] unblackFriend:[self.detail getUserId] successBlock:^{
-                [[FriendService defaultService] blackFriend:[self.detail getUserId] successBlock:^{
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
-                    [self.detail setRelation:RelationTypeBlack];
-                    [self.dataTableView reloadData];
-                }];
-            }];
-        }
-        
-    }
-    
+    [self.detail blackUser:self];
 }
 - (void)didclickManage
 {
-    if ([[UserManager defaultManager] isSuperUser]) {
-        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self.detail getUserId] nickName:[self.detail getUser].nickName balance:[self.detail getUser].coinBalance] autorelease];
-        [action showInController:self];
-    }
+    [self.detail superManageUser:self];
     
 }
 - (void)didClickMore
