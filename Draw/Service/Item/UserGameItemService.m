@@ -145,6 +145,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
           handler:handler];
 }
 
+- (BOOL)hasEnoughBalanceToBuyItem:(int)itemId count:(int)count
+{
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
+    int totalPrice = [item promotionPrice] * count;
+    int balance = [[AccountManager defaultManager] getBalanceWithCurrency:item.priceInfo.currency];
+    if (balance >= totalPrice) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 - (void)consumeItem:(int)itemId
               count:(int)count
            forceBuy:(BOOL)forceBuy
@@ -161,7 +173,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         return;
     }
     
-    if (![[UserGameItemManager defaultManager] hasEnoughItemAmount:itemId amount:count]) {
+    if (![[UserGameItemManager defaultManager] hasEnoughItem:itemId amount:count]) {
         if (!forceBuy) {
             EXECUTE_BLOCK(tempHandler, ERROR_ITEM_NOT_ENOUGH, itemId, NO);
             [_blockArray releaseBlock:tempHandler];

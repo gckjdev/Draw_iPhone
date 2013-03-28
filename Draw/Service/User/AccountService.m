@@ -541,15 +541,6 @@ static AccountService* _defaultAccountService;
     return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
 }
 
-- (BOOL)hasEnoughItemAmount:(int)itemType amount:(int)amount
-{
-    UserItem* userItem = [[ItemManager defaultManager] findUserItemByType:itemType];
-    if (userItem == nil)
-        return NO;
-    
-    return [[userItem amount] intValue] >= amount;
-}
-
 #define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
 #define MAX_CHECKIN_COINS       5
 
