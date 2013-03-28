@@ -15,6 +15,9 @@
 #import "PPViewController.h"
 #import "UserService.h"
 #import "UserManager.h"
+#import "CommonDialog.h"
+#import "SNSUtils.h"
+#import "CommonMessageCenter.h"
 
 @implementation GameSNSService
 
@@ -108,6 +111,47 @@
     return [NSString stringWithFormat:@"@%@", [snsService officialWeiboId]];
 }
 
++ (void)askRebindQQ:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
++ (void)askRebindSina:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
++ (void)askRebindFacebook:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+            
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
 
 
 //+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController

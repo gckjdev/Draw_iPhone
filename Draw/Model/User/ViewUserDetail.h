@@ -10,12 +10,6 @@
 #import "UserDetailProtocol.h"
 #import "FeedService.h"
 
-typedef enum {
-    DetailTabActionClickOpus = 0,
-    DetailTabActionClickGuessed ,
-    DetailTabActionClickFavouriate,
-}DetailTabAction;
-
 @interface ViewUserDetail : NSObject<UserDetailProtocol, FeedServiceDelegate>
 
 

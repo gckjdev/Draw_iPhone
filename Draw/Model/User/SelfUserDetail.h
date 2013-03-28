@@ -11,11 +11,7 @@
 #import "FriendService.h"
 #import "FeedService.h"
 
-typedef enum {
-    DetailTabActionClickOpus = 0,
-    DetailTabActionClickGuessed ,
-    DetailTabActionClickFavouriate,
-}DetailTabAction;
+
 
 @interface SelfUserDetail : NSObject<UserDetailProtocol, FriendServiceDelegate, FeedServiceDelegate>
 

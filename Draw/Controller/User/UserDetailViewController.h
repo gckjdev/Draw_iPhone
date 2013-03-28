@@ -13,6 +13,11 @@
 #import "ChangeAvatar.h"
 #import "FeedService.h"
 
+typedef enum {
+    DetailTabActionClickOpus = 0,
+    DetailTabActionClickGuessed ,
+    DetailTabActionClickFavouriate,
+}DetailTabAction;
 
 @interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate, FriendServiceDelegate, ChangeAvatarDelegate, FeedServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
