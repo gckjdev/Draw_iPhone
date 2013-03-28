@@ -218,106 +218,20 @@
     [uc release];
 }
 
-- (void)askFollowUserWithSnsType:(int)snsType
-                           snsId:(NSString*)snsId
-                        nickName:(NSString*)nickName
-{
-    __block PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-    if ([snsService supportFollow] == NO)
-        return;
-    
-//    [snsService askFollowWithTitle:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserTitle"),[SNSUtils snsNameOfType:snsType]]
-//                    displayMessage:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserMessage"),[SNSUtils snsNameOfType:snsType]]
-//                           weiboId:snsId
-//                      successBlock:^(NSDictionary *userInfo) {
-//                          
-//                      } failureBlock:^(NSError *error) {
-//                          
-//                      }];
-    
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskFollowSNSUserTitle") message:NSLS(@"kAskFollowSNSUserMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [snsService followUser:nickName userId:snsId successBlock:^(NSDictionary *userInfo) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSucc")
-                                                           delayTime:1.5
-                                                             isHappy:YES];
-        } failureBlock:^(NSError *error) {
-            //
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
-    [dialog showInView:self.view];
-}
 
-- (void)askRebindQQ
-{
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_QQ succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
-            //
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
-    [dialog showInView:self.view];
-}
-
-- (void)askRebindSina
-{
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_SINA succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
-            //
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
-    [dialog showInView:self.view];
-}
-
-- (void)askRebindFacebook
-{
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
-        } failure:^{
-            
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
-    [dialog showInView:self.view];
-}
 
 - (void)didclickSina
 {
-    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
-        [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName];
-    } else {
-        [self askRebindSina];
-    }
+    [self.detail clickSNSBtnType:TYPE_SINA viewController:self];
     
 }
 - (void)didclickQQ
 {
-    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
-        [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName];
-    } else {
-        [self askRebindQQ];
-    }
+    [self.detail clickSNSBtnType:TYPE_QQ viewController:self];
 }
 - (void)didclickFacebook
 {
-    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
-        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self.detail getUser] snsUsersList]];
-        [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName];
-    } else {
-        [self askRebindFacebook];
-    }
+    [self.detail clickSNSBtnType:TYPE_FACEBOOK viewController:self];
 }
 
 - (void)didClickTabAtIndex:(int)index

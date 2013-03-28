@@ -16,6 +16,10 @@
 #import "CommonMessageCenter.h"
 #import "FriendService.h"
 #import "SuperUserManageAction.h"
+#import "PPSNSCommonService.h"
+#import "PPSNSIntegerationService.h"
+#import "SNSUtils.h"
+#import "CommonDialog.h"
 
 @interface ViewUserDetail () {
     LoadFeedFinishBlock _finishBlock;
@@ -26,6 +30,7 @@
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
 @property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (retain, nonatomic) SuperUserManageAction* manageAction;
 
 @end
 
@@ -48,6 +53,7 @@
     PPRelease(_opusList);
     PPRelease(_guessedList);
     PPRelease(_favouriateList);
+    PPRelease(_manageAction);
     [super dealloc];
 }
 
@@ -116,6 +122,11 @@
     return [[UserManager defaultManager] isSuperUser];
 }
 
+- (BOOL)isSNSBtnVisable:(int)snsType
+{
+    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]];
+}
+
 - (PBGameUser*)getUser
 {
     return self.pbUser;
@@ -179,13 +190,122 @@
 - (void)superManageUser:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] isSuperUser]) {
-        SuperUserManageAction* action = [[[SuperUserManageAction alloc] initWithTargetUserId:[self getUserId] nickName:[self getUser].nickName balance:[self getUser].coinBalance] autorelease];
-        [action showInController:viewController];
+        self.manageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:[self getUserId] nickName:[self getUser].nickName balance:[self getUser].coinBalance] autorelease];
+        [self.manageAction showInController:viewController];
     }
 }
-- (void)clickSNSBtnType:(int)snsType
+
+- (void)askFollowUserWithSnsType:(int)snsType
+                           snsId:(NSString*)snsId
+                        nickName:(NSString*)nickName
+                  viewController:(UIViewController*)viewController
 {
+    __block PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+    if ([snsService supportFollow] == NO)
+        return;
     
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskFollowSNSUserTitle") message:NSLS(@"kAskFollowSNSUserMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [snsService followUser:nickName userId:snsId successBlock:^(NSDictionary *userInfo) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSucc")
+                                                           delayTime:1.5
+                                                             isHappy:YES];
+        } failureBlock:^(NSError *error) {
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindQQ:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindSina:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindFacebook:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+            
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)clickSina:(UIViewController*)viewController
+{
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
+    } else {
+        [self askRebindSina:viewController];
+    }
+    
+}
+- (void)clickQQ:(UIViewController*)viewController
+{
+    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
+    } else {
+        [self askRebindQQ:viewController];
+    }
+}
+- (void)clickFacebook:(UIViewController*)viewController
+{
+    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
+        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
+        [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
+    } else {
+        [self askRebindFacebook:viewController];
+    }
+}
+
+
+- (void)clickSNSBtnType:(int)snsType
+         viewController:(PPTableViewController*)viewController
+{
+    switch (snsType) {
+        case TYPE_SINA: {
+            [self clickSina:viewController];
+        }break;
+        case TYPE_QQ: {
+            [self clickQQ:viewController];
+        }break;
+        case TYPE_FACEBOOK: {
+            [self clickFacebook:viewController];
+        } break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - feed service delegate
