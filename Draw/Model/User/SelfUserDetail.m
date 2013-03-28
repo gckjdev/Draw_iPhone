@@ -142,32 +142,8 @@
     self.superViewController = nil;
 }
 
-<<<<<<< HEAD
-=======
-- (void)loadFeedByTabAction:(int)tabAction finishBLock:(LoadFeedFinishBlock)block
-{
-    self.finishBlock = block;
-    
-    switch (tabAction) {
-        case DetailTabActionClickFavouriate: {
-            
-        } break;
-        case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-        } break;
-        case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
-        } break;
-        default:
-            break;
-    }
-    
-    
-//    RELEASE_BLOCK(_finishBlock);
-//    COPY_BLOCK(_finishBlock, block);
-}
 
->>>>>>> 0a4227e13ed5f0e77f59b3261ffcfebdfee36ad2
+
 - (void)blackUser:(PPTableViewController *)viewController
 {
     
@@ -209,57 +185,6 @@
     }
 }
 
-
-<<<<<<< HEAD
-=======
-#pragma mark - feed service delegate
-- (void)didGetFeedList:(NSArray *)feedList
-            targetUser:(NSString *)userId
-                  type:(FeedListType)type
-            resultCode:(NSInteger)resultCode
-{
-//    [self hideActivity];
-    if (resultCode == 0) {
-        switch (type) {
-            case FeedListTypeUserFeed: {
-                for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
-                    }
-                }
-                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);
-                self.finishBlock = nil;
-//                [[self detailCell] setDrawFeedList:self.guessedList];
-            } break;
-            case FeedListTypeUserOpus: {
-                for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[DrawFeed class]]) {
-                        [self.opusList addObject:feed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
-                    }
-                }
-//                UserDetailCell* cell = [self detailCell];
-//                [cell setDrawFeedList:self.opusList];
-                
-                EXECUTE_BLOCK(_finishBlock, resultCode, self.opusList);
-                self.finishBlock = nil;
-            }
-            default:{
-                EXECUTE_BLOCK(_finishBlock, resultCode, self.opusList);
-                self.finishBlock = nil;
-                break;
-            }
-        }
-    } else {
-        EXECUTE_BLOCK(_finishBlock, resultCode, nil);
-        self.finishBlock = nil;
-    }
-    
-    
-}
-
->>>>>>> 0a4227e13ed5f0e77f59b3261ffcfebdfee36ad2
 - (NSString*)blackUserBtnTitle
 {
     return nil;
