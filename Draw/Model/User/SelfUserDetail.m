@@ -22,8 +22,7 @@
     LoadFeedFinishBlock _finishBlock;
 }
 
-
-@property (nonatomic, retain) PPTableViewController* superViewController;
+@property (nonatomic, assign) PPTableViewController* superViewController;
 
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
