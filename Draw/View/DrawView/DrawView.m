@@ -117,6 +117,11 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didStartTouchWithAction:)]) {
+        [self.delegate drawView:self didStartTouchWithAction:nil];
+    }
+    
     PPDebug(@"=========<touchesBegan>======= touch count = %d",[touches count]);
     
     if (self.currentTouch == nil) {

@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "UserDetailProtocol.h"
+#import "FeedService.h"
 
-@interface ViewUserDetail : NSObject<UserDetailProtocol>
+typedef enum {
+    DetailTabActionClickOpus = 0,
+    DetailTabActionClickGuessed ,
+    DetailTabActionClickFavouriate,
+}DetailTabAction;
+
+@interface ViewUserDetail : NSObject<UserDetailProtocol, FeedServiceDelegate>
 
 
 @property (assign, nonatomic) RelationType relation;

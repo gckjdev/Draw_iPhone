@@ -181,8 +181,8 @@
 #pragma mark - CustomSegmentedControl delegate
 - (void) touchUpInsideSegmentIndex:(NSUInteger)segmentIndex
 {
-    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didSelectTabAction:)]) {
-        [_detailDelegate didSelectTabAction:segmentIndex];
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickTabAtIndex:)]) {
+        [_detailDelegate didClickTabAtIndex:segmentIndex];
     }
 }
 

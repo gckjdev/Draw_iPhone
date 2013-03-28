@@ -143,6 +143,10 @@
 }
 @end
 
+
+
+
+ToolCommandManager *_staticToolCommandManager = nil;
 @implementation ToolCommandManager
 
 - (void)dealloc
@@ -150,6 +154,14 @@
     [self removeAllCommand];
     PPRelease(commandList);
     [super dealloc];
+}
+
++ (id)defaultManager
+{
+    if (_staticToolCommandManager == nil) {
+        _staticToolCommandManager = [[ToolCommandManager alloc] init];
+    }
+    return _staticToolCommandManager;
 }
 
 - (id)init
@@ -186,7 +198,10 @@
 - (void)hideAllPopTipViews
 {
     for (ToolCommand *command in commandList) {
-        [command hidePopTipView];
+        if (command.popTipView) {
+            [command hidePopTipView];
+        }
+
     }
 }
 
@@ -212,6 +227,16 @@
     for (ToolCommand *command in commandList) {
         [command setToolPanel:panel];
     }
+}
+
+- (BOOL)isPaletteShowing
+{
+    for (ToolCommand *command in commandList) {
+        if (command.itemType == PaletteItem) {
+            return command.isShowing;
+        }
+    }
+    return NO;
 }
 
 @end

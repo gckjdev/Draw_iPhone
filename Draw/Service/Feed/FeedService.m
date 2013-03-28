@@ -157,7 +157,7 @@ static FeedService *_staticFeedService = nil;
 - (void)getUserFeedList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit 
-               delegate:(PPViewController<FeedServiceDelegate> *)delegate
+               delegate:(id<FeedServiceDelegate>)delegate
 {
 //    [delegate showActivityWithText:NSLS(@"kParsingData")];
     dispatch_async(workingQueue, ^{
@@ -206,7 +206,7 @@ static FeedService *_staticFeedService = nil;
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit
                    type:(FeedListType)type
-               delegate:(PPViewController<FeedServiceDelegate> *)delegate
+               delegate:(id<FeedServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
         

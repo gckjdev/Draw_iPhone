@@ -91,13 +91,13 @@ typedef void (^ DownloadProgressHandler) (float progress);
 - (void)getUserFeedList:(NSString *)userId
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
-           delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+           delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit
                    type:(FeedListType)type
-               delegate:(PPViewController<FeedServiceDelegate> *)delegate;
+               delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 

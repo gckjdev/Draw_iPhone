@@ -11,18 +11,39 @@
 #import "UserManager.h"
 #import "UserService.h"
 #import "PPTableViewController.h"
+#import "UserDetailCell.h"
 
-@interface ViewUserDetail ()
+@interface ViewUserDetail () {
+    LoadFeedFinishBlock _finishBlock;
+}
 
 @property (retain, nonatomic) PBGameUser* pbUser;
+
+@property (retain, nonatomic) NSMutableArray* opusList;
+@property (retain, nonatomic) NSMutableArray* guessedList;
+@property (retain, nonatomic) NSMutableArray* favouriateList;
 
 @end
 
 @implementation ViewUserDetail
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _opusList = [[NSMutableArray alloc] init];
+        _guessedList = [[NSMutableArray alloc] init];
+        _favouriateList = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [_pbUser release];
+    PPRelease(_opusList);
+    PPRelease(_guessedList);
+    PPRelease(_favouriateList);
     [super dealloc];
 }
 
@@ -47,7 +68,7 @@
               avatar:(NSString*)avatar
             nickName:(NSString*)nickName
 {
-    self = [super init];
+    self = [self init];
     if (self) {
         PBGameUser_Builder* builder = [PBGameUser builder];
         [builder setUserId:userId];
@@ -110,6 +131,64 @@
         }
     }];
     
+}
+
+- (void)loadFeedByTabAction:(int)tabAction finishBLock:(LoadFeedFinishBlock)block
+{
+    switch (tabAction) {
+        case DetailTabActionClickFavouriate: {
+            
+        } break;
+        case DetailTabActionClickGuessed: {
+            [[FeedService defaultService] getUserFeedList:[self getUserId] offset:self.guessedList.count limit:10 delegate:self];
+        } break;
+        case DetailTabActionClickOpus: {
+            [[FeedService defaultService] getUserOpusList:[self getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
+        } break;
+        default:
+            break;
+    }
+    RELEASE_BLOCK(_finishBlock);
+    COPY_BLOCK(_finishBlock, block);
+}
+
+#pragma mark - feed service delegate
+- (void)didGetFeedList:(NSArray *)feedList
+            targetUser:(NSString *)userId
+                  type:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    //    [self hideActivity];
+    if (resultCode == 0) {
+        switch (type) {
+            case FeedListTypeUserFeed: {
+                for (Feed* feed in feedList) {
+                    if ([feed isKindOfClass:[GuessFeed class]]) {
+                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
+                    }
+                }
+                EXECUTE_BLOCK(_finishBlock, resultCode, self.guessedList);
+                //                [[self detailCell] setDrawFeedList:self.guessedList];
+            } break;
+            case FeedListTypeUserOpus: {
+                for (Feed* feed in feedList) {
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.opusList addObject:feed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
+                    }
+                }
+                //                UserDetailCell* cell = [self detailCell];
+                //                [cell setDrawFeedList:self.opusList];
+                
+                EXECUTE_BLOCK(_finishBlock, resultCode, self.opusList);
+            }
+            default:
+                break;
+        }
+    } else {
+        EXECUTE_BLOCK(_finishBlock, resultCode, nil);
+    }
 }
 
 @end

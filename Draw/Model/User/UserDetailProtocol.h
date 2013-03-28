@@ -12,6 +12,9 @@
 
 @class PPTableViewController;
 
+typedef void (^LoadFeedFinishBlock)(int resultCode, NSArray* feedList);
+
+
 @protocol UserDetailProtocol <NSObject>
 
 - (NSString*)getUserId;
@@ -26,6 +29,7 @@
 
 - (PBGameUser*)getUser;
 - (void)loadUser:(PPTableViewController*)viewController;
+- (void)loadFeedByTabAction:(int)tabAction finishBLock:(LoadFeedFinishBlock)block;
 
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
