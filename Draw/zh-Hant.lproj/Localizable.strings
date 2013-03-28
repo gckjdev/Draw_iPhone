@@ -979,7 +979,7 @@
 "kEmail" = "郵件";
 "kWeChatTimeline" = "微信";
 "kWeChatFriends" = "微信朋友圈";
-"kFavorite" = "保存";
+"kFavorite" = "收藏";
 "kAlbum" = "相冊";
 "kSinaWeibo" = "新浪微博";
 "kTencentWeibo" = "騰訊微博";
@@ -1115,7 +1115,7 @@
 
 "kUndoing" = "撤銷中...";
 "kRedoing" = "重做中...";
-"kFavorite" = "收藏";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
