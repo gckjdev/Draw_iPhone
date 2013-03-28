@@ -180,21 +180,21 @@ static dispatch_once_t onceToken;
     PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
                                                           enName:@"Li Mei"
                                                             type:PBRewardWallTypeLimei
-                                                            logo:@"http://limei.com/Public/images/logo.png"];
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_limei.png"];
     PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
                                                           enName:@"Wan Pu"
                                                             type:PBRewardWallTypeWanpu
-                                                            logo:@"http://www.waps.cn/img/logo.png"];
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
     
     PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
                                                           enName:@"You Mi"
                                                             type:PBRewardWallTypeYoumi
-                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_youmi.png"];
     
     PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人 推荐应用"
                                                           enName:@"Ren Ren Ader"
                                                             type:PBRewardWallTypeAder
-                                                            logo:@"http://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg"];
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_renren.png"];
     
     [builder addAppRewards:zjhApp];
     [builder addAppRewards:diceApp];

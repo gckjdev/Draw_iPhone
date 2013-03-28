@@ -43,8 +43,8 @@
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
+    [self becomeActive];
     [self.toolHandler changePenColor:color];
-//    [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
 }
 
 @end

@@ -36,7 +36,8 @@ typedef void (^LoadFeedFinishBlock)(int resultCode, NSArray* feedList);
 
 - (void)blackUser:(PPTableViewController*)viewController;
 - (void)superManageUser:(PPTableViewController*)viewController;
-- (void)clickSNSBtnType:(int)snsType;
+- (void)clickSNSBtnType:(int)snsType
+         viewController:(PPTableViewController*)viewController;
 
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;

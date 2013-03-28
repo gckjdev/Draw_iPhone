@@ -28,6 +28,7 @@
 
 - (void)showPopTipView
 {
+    [self becomeActive];
     self.showing = YES;
     [self.control setSelected:YES];
     [self.toolHandler enterStrawMode];
@@ -53,7 +54,9 @@
 - (void)didStrawGetColor:(DrawColor *)color
 {
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
+    [self.toolHandler changeAlpha:1];
     [self.toolHandler changePenColor:color];
+    [[ToolCommandManager defaultManager] resetAlpha];
     [self hidePopTipView];
 }
 
