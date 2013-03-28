@@ -1103,8 +1103,12 @@
 
 "kDownloadAppTitle" = "下載應用";
 "kDownloadAppMessage" = "確認跳轉到AppStore去下載本應用嗎？";
-
 "kChangeCanvasFailed" = "當畫布有內容的時候不允許改變畫布尺寸。";
+
+"kAskFollowSNSUserTitle" = "%@關注";
+"kAskFollowSNSUserMessage" = "使用%@關注該好友";
+"kFollowSNSSucc" = "成功通過%@關注了該好友!";
+
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
@@ -1220,7 +1224,7 @@
 "kZJHDegradeMsg" = "噢，你玩得太不認真了，都降到%d級了";
 
 "kAlreadLastVersion" = "已經是最新版本啦!";
-"kAppUpdate" = "版本升級";
+"kAppUpdate" = "版本升級(當前版本:%@)";
 
 
 "kSetTimeoutAction" = "設置超時操作";

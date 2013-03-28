@@ -223,5 +223,5 @@ typedef enum{
 + (BOOL)isEnableAderWall;
 + (BOOL)isEnableTapjoyWall;
 + (BOOL)isEnableYoumiWall;
-
++ (NSInteger)getDefaultDetailOpusCount;
 @end

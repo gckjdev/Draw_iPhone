@@ -144,7 +144,7 @@
     } else if (anIndex == rowOfAbout) {
         [aCell.textLabel setText:NSLS(@"kAbout_us")];
     } else if (anIndex == rowOfAppUpdate){
-        [aCell.textLabel setText:NSLS(@"kAppUpdate")];
+        [aCell.textLabel setText:[NSString stringWithFormat:NSLS(@"kAppUpdate"), [UIUtils getAppVersion]]];
         if ([UIUtils checkAppHasUpdateVersion]) {
             aCell.accessoryView = [self badgeView];
         }else{

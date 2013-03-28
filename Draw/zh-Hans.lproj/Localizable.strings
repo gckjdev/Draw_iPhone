@@ -973,7 +973,7 @@
 "kHomeMenuTypeZJHShop" = "商店";
 
 "kAlreadLastVersion" = "已经是最新版本啦!";
-"kAppUpdate" = "版本升级";
+"kAppUpdate" = "版本升级(当前版本:%@)";
 
 "kSetTimeoutAction" = "设置超时操作";
 "kFoldCard" = "弃牌";
@@ -1115,6 +1115,9 @@
 
 "kDownloadAppTitle" = "下载应用";
 "kDownloadAppMessage" = "确认跳转到AppStore去下载本应用吗？";
+"kAskFollowSNSUserTitle" = "%@关注";
+"kAskFollowSNSUserMessage" = "使用%@关注该好友";
+"kFollowSNSSucc" = "成功通过%@关注了该好友!";
 
 
 "kChangeCanvasFailed" = "当画布有内容的时候不允许改变画布尺寸。";
