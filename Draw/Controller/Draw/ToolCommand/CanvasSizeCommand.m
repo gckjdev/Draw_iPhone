@@ -7,6 +7,8 @@
 //
 
 #import "CanvasSizeCommand.h"
+#import "CommonMessageCenter.h"
+
 
 @interface CanvasSizeCommand ()
 
@@ -42,8 +44,12 @@
 
 - (void)useCanvasRect:(CanvasRect *)canvasRect
 {
-    [self.toolHandler changeCanvasRect:canvasRect];
-    [self hidePopTipView];
+    if ([self.toolHandler changeCanvasRect:canvasRect]) {
+        [self hidePopTipView];
+    }else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kChangeCanvasFailed") delayTime:1.5];
+    }
+
 }
 
 - (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CanvasRect *)rect

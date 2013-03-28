@@ -70,14 +70,12 @@
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
-    NSArray* snsUserArray = pbUser.snsUsersList;
-    [self.sinaBtn setHidden:![SNSUtils hasSNSType:TYPE_SINA inpbSnsUserArray:snsUserArray]];
-    [self.qqBtn setHidden:![SNSUtils hasSNSType:TYPE_QQ inpbSnsUserArray:snsUserArray]];
-    [self.facebookBtn setHidden:![SNSUtils hasSNSType:TYPE_FACEBOOK inpbSnsUserArray:snsUserArray]];
+    [self.sinaBtn setHidden:![detail isSNSBtnVisable:TYPE_SINA]];
+    [self.qqBtn setHidden:![detail isSNSBtnVisable:TYPE_QQ]];
+    [self.facebookBtn setHidden:![detail isSNSBtnVisable:TYPE_FACEBOOK]];
     
     
-    BOOL hasBlack = [MyFriend hasBlack:[detail relation]];
-    [self.blackListBtn setTitle:(hasBlack?NSLS(@"kUnblack"):NSLS(@"kBlack")) forState:UIControlStateNormal];
+    [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
     
     BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
     [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];

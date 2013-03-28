@@ -1137,6 +1137,12 @@
 "kDownloadAppTitle" = "Download Apps";
 "kDownloadAppMessage" = "Go to AppStore and download this app to earn ingots now?";
 
+"kChangeCanvasFailed" = "Cann't change canvas size when the paint is not blank.";
+"kAskFollowSNSUserTitle" = "%@ Following";
+"kAskFollowSNSUserMessage" = "It's going to follow he/her via %@, are you sure?";
+"kFollowSNSSucc" = "Follow friend via %@ successfully!";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1226,7 +1232,7 @@
 "kEndWithMaxTotal" = "The total bet hits the threshold:%d, game over!";
 
 "kAlreadLastVersion" = "It's the last version now!";
-"kAppUpdate" = "Version update";
+"kAppUpdate" = "Version update(Current version is %@)";
 
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
