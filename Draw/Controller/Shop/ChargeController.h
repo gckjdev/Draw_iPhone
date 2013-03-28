@@ -11,7 +11,7 @@
 #import "ChargeCell.h"
 #import "AccountService.h"
 
-@interface ChargeController : PPTableViewController<ChargeCellDelegate>
+@interface ChargeController : PPTableViewController<ChargeCellDelegate, AccountServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
 
 @end
