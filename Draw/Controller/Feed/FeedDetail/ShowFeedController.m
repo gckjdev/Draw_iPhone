@@ -38,6 +38,7 @@
 #import "GameItemService.h"
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
+#import "BalanceNotEnoughAlertView.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -473,13 +474,13 @@ enum{
         
         __block typeof (self) bself = self;
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
-                               isOffline:YES
-                              feedOpusId:_feed.feedId
-                              feedAuthor:_feed.author.userId
-                                 forFree:isFree
-                           resultHandler:^(int resultCode, int itemId, BOOL isBuy)
+                                     isOffline:YES
+                                    feedOpusId:_feed.feedId
+                                    feedAuthor:_feed.author.userId
+                                       forFree:isFree
+                                 resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
-            if (resultCode == 0){
+            if (resultCode == ERROR_SUCCESS){
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
                 UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:bself.flowerButton.frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
@@ -487,19 +488,21 @@ enum{
                 [DrawGameAnimationManager showThrowFlower:throwItem
                                          animInController:bself
                                                   rolling:YES
-                                               itemEnough:itemEnough
-                                           shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType] completion:^(BOOL finished) {
+                                               itemEnough:!isBuy
+                                           shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType]
+                                               completion:^(BOOL finished) {
                 [bself clickRefreshButton:nil];
                    PPDebug(@"<test2> complete 10");
                 }];
                 [bself.commentHeader setSeletType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
                 PPDebug(@"<test2> complete 2");
-            }else{
-                [bself.feed decreaseLocalFlowerTimes];
+            }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                [BalanceNotEnoughAlertView showInController:bself];
+            }else if (resultCode == ERROR_NETWORK){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
             }
         }];
-        
     }
 }
 

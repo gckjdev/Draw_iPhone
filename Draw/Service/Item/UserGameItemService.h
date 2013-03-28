@@ -46,4 +46,7 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy)
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
 
+- (BOOL)hasEnoughBalanceToBuyItem:(int)itemId
+                            count:(int)count;
+
 @end

@@ -18,6 +18,6 @@
 - (int)countOfItem:(int)itemId;
 - (BOOL)hasItem:(int)itemId;
 - (BOOL)canBuyItemNow:(PBGameItem *)item;
-- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount;
+- (BOOL)hasEnoughItem:(int)itemId amount:(int)amount;
 
 @end

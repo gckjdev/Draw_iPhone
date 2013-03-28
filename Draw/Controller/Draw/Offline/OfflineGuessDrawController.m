@@ -112,21 +112,20 @@
 }
 
 #pragma mark - throw item animation
-- (void)showAnimationThrowTool:(ToolView*)toolView
-{
-    BOOL itemEnough = [[UserGameItemManager defaultManager] hasEnoughItemAmount:toolView.itemType amount:1];
-    
+- (void)showAnimationThrowTool:(ToolView*)toolView isBuy:(BOOL)isBuy
+{    
     _throwingItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     [self.view addSubview:_throwingItem];
-    [_throwingItem setImage:toolView.imageView.image];
+    
+    [_throwingItem setImage:[toolView backgroundImageForState:UIControlStateNormal]];
     _throwingItem.center = self.view.center;
     
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:_throwingItem animInController:self rolling:NO itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
             //
         }];
     }else if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:_throwingItem animInController:self rolling:NO itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:_scene.sceneType] completion:^(BOOL finished) {
             //
         }];
     }
@@ -752,17 +751,17 @@
 
 
 - (void)throwFlower:(ToolView *)toolView
-{
-    // add throw animation
-    [self showAnimationThrowTool:toolView];
-    
+{    
     // send request for item usage and award
-    
+    __block typeof (self) bself = self;
     [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
+            [self showAnimationThrowTool:toolView isBuy:isBuy];
             [_scene throwAFlower];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
-            [BalanceNotEnoughAlertView showInController:self];
+            [BalanceNotEnoughAlertView showInController:bself];
+        }else if (resultCode == ERROR_NETWORK){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
         }
     }];
 }

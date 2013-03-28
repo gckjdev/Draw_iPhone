@@ -747,37 +747,36 @@
                                    forFree:NO
                              resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
-            [bself throwItemAnimation:toolView];
+            [bself throwItemAnimation:toolView isBuy:isBuy];
             [toolView decreaseNumber];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             if ([self isOffline]) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
             }else{
-                [BalanceNotEnoughAlertView showInController:self];
+                [BalanceNotEnoughAlertView showInController:bself];
             }
+        }else if (resultCode == ERROR_NETWORK){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
         }
     }];
 }
 
-- (void)throwItemAnimation:(ToolView*)toolView
+- (void)throwItemAnimation:(ToolView*)toolView isBuy:(BOOL)isBuy
 {
-    BOOL itemEnough = [[UserGameItemManager defaultManager] hasEnoughItemAmount:toolView.itemType amount:1];
     UIImageView* throwingItem= [[[UIImageView alloc] initWithFrame:toolView.frame] autorelease];
-    [throwingItem setImage:toolView.imageView.image];
+    [throwingItem setImage:[toolView backgroundImageForState:UIControlStateNormal]];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:throwingItem animInController:self rolling:YES itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             //
         }];
         [_useItemScene throwATomato];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:throwingItem animInController:self rolling:YES itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:self.useItemScene.sceneType] completion:^(BOOL finished) {
             //
         }];
         [_useItemScene throwAFlower];
     }
-    
-    
 }
 
 
