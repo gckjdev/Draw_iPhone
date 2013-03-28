@@ -11,11 +11,10 @@
 #import "PPSmartUpdateData.h"
 #import "GameItemManager.h"
 #import "ItemType.h"
-
+#import "BlockArray.h"
 
 @interface GameItemService()
-
-@property (retain, nonatomic) GameItemManager *itemManager;
+@property (retain, nonatomic) BlockArray *blockArray;
 
 @end
 
@@ -25,38 +24,47 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)dealloc
 {
-    [_itemManager release];
+    [_blockArray releaseAllBlock];
+    [_blockArray release];
     [super dealloc];
 }
 
 - (id)init
 {
-    if (self = [super init]) {
-        self.itemManager = [GameItemManager defaultManager];
+    if(self = [super init])
+    {
+        self.blockArray = [[[BlockArray alloc] init] autorelease];
     }
     
     return self;
 }
 
+
 - (void)syncData:(SyncItemsDataResultHandler)handler
 {
-    __block typeof(self) bself = self;
+    SyncItemsDataResultHandler tempHandler = (SyncItemsDataResultHandler)[_blockArray copyBlock:handler];
+
     
     //load data
     PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:SHOP_ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:SHOP_ITEMS_FILE_BUNDLE_PATH initDataVersion:SHOP_ITEMS_FILE_VERSION];
     
+    __block typeof(self) bself = self;
+
     [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         [bself updateItemsWithFile:dataFilePath];
-        EXECUTE_BLOCK(handler, YES);
+        EXECUTE_BLOCK(tempHandler, YES);
+        [bself.blockArray releaseBlock:tempHandler];
         [smartData release];
         
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         NSArray *itemsList = [bself itemsListFromFile:smartData.dataFilePath];
-        [bself.itemManager setItemsList:itemsList];
+        [[GameItemManager defaultManager] setItemsList:itemsList];
 
-        EXECUTE_BLOCK(handler, NO);
+        EXECUTE_BLOCK(tempHandler, NO);
+        [bself.blockArray releaseBlock:tempHandler];
+
         [smartData release];
     }];
 }
@@ -65,7 +73,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSArray *itemsList = [[PBGameItemList parseFromData:data] itemsList];
-    [_itemManager setItemsList:itemsList];
+    [[GameItemManager defaultManager] setItemsList:itemsList];
 }
 
 - (NSArray *)itemsListFromFile:(NSString *)filePath

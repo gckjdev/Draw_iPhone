@@ -27,7 +27,7 @@
 #import "LevelService.h"
 #import "AdService.h"
 #import "GameBasic.pb.h"
-#import "IngotService.h"
+#import "IngotManager.h"
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
 #import "UserGameItemService.h"
@@ -112,9 +112,9 @@ static AccountService* _defaultAccountService;
 {
     NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
     [self chargeIngot:amount
-                 source:PurchaseType
-          transactionId:transaction.transactionIdentifier
-     transactionRecepit:base64receipt];
+               source:PurchaseType
+        transactionId:transaction.transactionIdentifier
+   transactionRecepit:base64receipt];
 }
 
 - (void)makeChargeRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
@@ -139,7 +139,7 @@ static AccountService* _defaultAccountService;
             [transaction.transactionReceipt description]);
     
     NSString* productId  = transaction.payment.productIdentifier;
-    PBSaleIngot* saleIngot = [[IngotService sharedIngotService] findSaleIngoWithAppleProductId:productId];
+    PBSaleIngot* saleIngot = [[IngotManager defaultManager] ingotWithProductId:productId];
     if (saleIngot == nil){        
         // use old, for compatibility
         PriceModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
@@ -960,18 +960,17 @@ static AccountService* _defaultAccountService;
         
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest chargeIngot:SERVER_URL
-                                            userId:toUserId
-                                            amount:amount
-                                            source:source
-                                     transactionId:transactionId
-                                transactionReceipt:transactionRecepit
-                                            byUser:byUserId];
+                                          userId:toUserId
+                                          amount:amount
+                                          source:source
+                                   transactionId:transactionId
+                              transactionReceipt:transactionRecepit
+                                          byUser:byUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalance:balance currency:PBGameCurrencyIngot];
-                
             }
             else{
                 PPDebug(@"<chargeIngot> failure, result=%d", output.resultCode);
@@ -980,6 +979,9 @@ static AccountService* _defaultAccountService;
                 }
             }
             
+            if ([_delegate respondsToSelector:@selector(didFinishChargeIngot:)]) {
+                [_delegate didFinishChargeIngot:output.resultCode];
+            }
         });
     });
     

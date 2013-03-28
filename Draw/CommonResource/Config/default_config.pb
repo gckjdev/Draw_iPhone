@@ -1,25 +1,0 @@
-Šªxhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-enkNamelimei
-zh-HanskNameåŠ›ç¾ŽŠªxhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-enkNameyoumi
-zh-HanskNameæœ‰ç±³Š«xhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-enkNamerenren
-zh-HanskNameäººäººŠªxhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-enkNamewanpu
-zh-HanskNameä¸‡æ™®’¹
-²
-
-zh-HansDiceDice
-
-enDiceDice(en)1234
-zh-Hans	TEST DESC	TEST DESC 
-enTEST DESC enTEST DESC en"@https://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8*xhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-’µ
-®
-
-zh-HansZJHZJH
-
-enZJHZJH(en)2234
-zh-Hans	TEST DESC	TEST DESC 
-enTEST DESC enTEST DESC en"@https://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8*xhttp://a2.mzstatic.com/us/r1000/114/Purple2/v4/99/03/26/9903264b-c5c7-2666-03e9-fddec311e017/mzl.uzfuouyo.175x175-75.jpg
-

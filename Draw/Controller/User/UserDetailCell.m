@@ -115,6 +115,7 @@
 }
 
 #define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
+
 + (id)createCell:(id)delegate
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
