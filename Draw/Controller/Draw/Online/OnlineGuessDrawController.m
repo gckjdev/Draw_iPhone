@@ -675,25 +675,25 @@
 }
 
 - (void)throwFlower:(ToolView *)toolView
-{
-    // add throw animation
-    [self showAnimationThrowTool:toolView];
-    
+{    
     [[FlowerItem sharedFlowerItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
+            [self showAnimationThrowTool:toolView isBuy:isBuy];
             [_scene throwAFlower];
             if (![_scene canThrowFlower]) {
                 [toolView setEnabled:NO];
             }
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        }else if (resultCode == ERROR_NETWORK){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
         }
     }];
 }
 
 - (void)throwTomato:(ToolView *)toolView
 {
-    [self showAnimationThrowTool:toolView];
+    [self showAnimationThrowTool:toolView isBuy:NO];
     [_scene throwATomato];
 
     // TODO: add throw tomato code here

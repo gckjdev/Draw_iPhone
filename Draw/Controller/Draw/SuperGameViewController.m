@@ -418,21 +418,19 @@
     [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
 }
 
-- (void)showAnimationThrowTool:(ToolView*)toolView
+- (void)showAnimationThrowTool:(ToolView*)toolView isBuy:(BOOL)isBuy
 {
-    BOOL itemEnough = [[UserGameItemManager defaultManager] hasEnoughItemAmount:toolView.itemType amount:1];
-
     UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:ITEM_FRAME] autorelease];
     throwItem.center = self.view.center;
     [self.view addSubview:throwItem];
-    [throwItem setImage:toolView.imageView.image];
+    [throwItem setImage:[toolView backgroundImageForState:UIControlStateNormal]];
     if (toolView.itemType == ItemTypeTomato) {
-        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowTomato:throwItem animInController:self rolling:NO itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
             
         }];
     }
     if (toolView.itemType == ItemTypeFlower) {
-        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO itemEnough:itemEnough shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
+        [DrawGameAnimationManager showThrowFlower:throwItem animInController:self rolling:NO itemEnough:!isBuy shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:YES] completion:^(BOOL finished) {
             
         }];
     }

@@ -17,7 +17,7 @@
     while (view && ![view isKindOfClass:[UIScrollView class]]) {
         view = view.superview;
     }
-    return view;
+    return (UIScrollView *)view;
 }
 
 -(void)sendAnalyticsReport{

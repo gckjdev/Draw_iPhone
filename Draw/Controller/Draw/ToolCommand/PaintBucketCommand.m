@@ -12,10 +12,20 @@
 
 - (BOOL)execute
 {
+    [self becomeActive];    
     [self.toolHandler usePaintBucket];
     return YES;
 }
 
+- (void)showPopTipView
+{
+    
+}
+
+- (void)hidePopTipView
+{
+    
+}
 
 -(void)sendAnalyticsReport{
     AnalyticsReport(DRAW_CLICK_PAINT_BUCKET);

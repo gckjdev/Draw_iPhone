@@ -38,9 +38,13 @@
 
 - (void)changePenColor:(DrawColor *)color
 {
+    CGFloat alpha = self.drawView.lineColor.alpha;
+    color = [DrawColor colorWithColor:color];
     self.penColor = color;
     self.drawView.lineColor = color;
     self.drawView.penType = self.penType;
+    [self changeAlpha:alpha];
+    
 }
 - (void)changeDrawBG:(PBDrawBg *)drawBG
 {
@@ -53,16 +57,20 @@
     color.alpha = 1;
     [self.drawView changeBackWithColor:color];
 
-    //TODO call back
+    [self changePenColor:[DrawColor blackColor]];
+    [self changeInPenType:self.penType];
+    [self.drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
+
 }
 
 - (void)changeInPenType:(ItemType)type
 {
-    self.penType = type;
+
     [self.drawView setPenType:type];
     if (type == Eraser) {
         self.drawView.lineColor = [DrawColor colorWithColor:self.eraserColor];
     }else{
+        self.penType = type;        
         self.drawView.lineColor = self.penColor;
     }
 }

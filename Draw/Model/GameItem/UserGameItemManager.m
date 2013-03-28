@@ -76,7 +76,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return [[self userItemWithItemId:itemId] count];
 }
 
-- (BOOL)hasEnoughItemAmount:(int)itemId amount:(int)amount
+- (BOOL)hasEnoughItem:(int)itemId amount:(int)amount
 {
     return [self countOfItem:itemId] >= amount;
 }
@@ -94,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (BOOL)hasItem:(int)itemId
 {
-    if (![self hasEnoughItemAmount:itemId amount:1]) {
+    if (![self hasEnoughItem:itemId amount:1]) {
         return NO;
     }
     
@@ -120,7 +120,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (BOOL)canBuyItemNow:(PBGameItem *)item
 {
-    if (![self hasEnoughItemAmount:item.itemId amount:1]) {
+    if (![self hasEnoughItem:item.itemId amount:1]) {
         return YES;
     }
     

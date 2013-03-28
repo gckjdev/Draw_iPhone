@@ -195,6 +195,8 @@
     [colorPoint setSelected:YES];
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     [self.toolHandler changePenColor:colorPoint.color];
+    [self.toolHandler changeInPenType:self.toolHandler.penType];
+    [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
 }
 
 - (void)registerToolCommands

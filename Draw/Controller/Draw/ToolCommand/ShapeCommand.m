@@ -30,12 +30,14 @@
 
 - (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type
 {
+    [self becomeActive]; 
     [self.toolHandler changeShape:type];
     [self hidePopTipView];
 
     UIImage * image = [ShapeInfo shapeImageForShapeType:type];
     UIButton *button = (UIButton *)self.control;
     [button setImage:image forState:UIControlStateNormal];
+   
 }
 
 -(void)sendAnalyticsReport{

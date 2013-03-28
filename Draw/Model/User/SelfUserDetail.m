@@ -11,6 +11,11 @@
 #import "PPTableViewController.h"
 #import "FriendService.h"
 #import "UserDetailCell.h"
+#import "PPSNSCommonService.h"
+#import "PPSNSIntegerationService.h"
+#import "SNSUtils.h"
+#import "CommonDialog.h"
+#import "CommonMessageCenter.h"
 
 @interface SelfUserDetail() {
     LoadFeedFinishBlock _finishBlock;
@@ -85,14 +90,19 @@
     return NO;
 }
 
-- (BOOL)canBlack
+- (BOOL)isBlackBtnVisable
 {
     return NO;
 }
 
-- (BOOL)canSuperBlack
+- (BOOL)isSuperManageBtnVisable
 {
     return NO;
+}
+
+- (BOOL)isSNSBtnVisable:(int)snsType
+{
+    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]];
 }
 
 - (RelationType)relation
@@ -157,6 +167,89 @@
     RELEASE_BLOCK(_finishBlock);
     COPY_BLOCK(_finishBlock, block);
 }
+
+- (void)blackUser:(PPTableViewController *)viewController
+{
+    
+}
+- (void)superManageUser:(PPTableViewController *)viewController
+{
+    
+}
+- (void)askRebindQQ:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindSina:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindFacebook:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+            
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+}
+
+- (void)clickSina:(UIViewController*)viewController
+{
+    [self askRebindSina:viewController];
+}
+- (void)clickQQ:(UIViewController*)viewController
+{
+    [self askRebindQQ:viewController];
+}
+- (void)clickFacebook:(UIViewController*)viewController
+{
+    [self askRebindFacebook:viewController];
+}
+
+
+- (void)clickSNSBtnType:(int)snsType
+         viewController:(PPTableViewController*)viewController
+{
+    switch (snsType) {
+        case TYPE_SINA: {
+            [self clickSina:viewController];
+        }break;
+        case TYPE_QQ: {
+            [self clickQQ:viewController];
+        }break;
+        case TYPE_FACEBOOK: {
+            [self clickFacebook:viewController];
+        } break;
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - feed service delegate
 - (void)didGetFeedList:(NSArray *)feedList
