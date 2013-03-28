@@ -21,6 +21,7 @@
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"
 #import "UIColor+UIColorExt.h"
+#import "RoundPercentageView.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -115,12 +116,13 @@
 }
 
 #define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
+#define TAB_FONT    (ISIPAD?20:10)
 + (id)createCell:(id)delegate
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
-                              initWithSegmentTitles:@[NSLS(@"kAll"), NSLS(@"kGuessed"), NSLS(@"kDrawed")]
+                              initWithSegmentTitles:@[NSLS(@"kOPus"), NSLS(@"kGuessed"), NSLS(@"kDrawed")]
                               frame:cell.feedTabHolder.frame
                               unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
                               pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
@@ -128,6 +130,8 @@
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     [cell.segmentedControl setTitleColor:OPAQUE_COLOR(100, 72, 40) forState:UIControlStateNormal];
+    [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [cell.segmentedControl setTitleFont:[UIFont systemFontOfSize:TAB_FONT]];
     
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.delegate = cell;
@@ -135,6 +139,7 @@
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
+    
     
     return cell;
 }
