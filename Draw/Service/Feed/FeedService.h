@@ -159,6 +159,11 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 - (void)actionSaveOpus:(NSString *)opusId 
             actionName:(NSString*)actionName;
 
+// user favorite methods
+- (void)getUserFavoriteOpusList:(NSString *)userId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       delegate:(id<FeedServiceDelegate>)delegate
 - (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 
