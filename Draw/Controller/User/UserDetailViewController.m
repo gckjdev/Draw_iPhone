@@ -39,26 +39,12 @@
     ChangeAvatar* _changeAvatar;
 }
 
-@property (retain, nonatomic) NSMutableArray* opusList;
-@property (retain, nonatomic) NSMutableArray* guessedList;
-@property (retain, nonatomic) NSMutableArray* favouriateList;
 @property (retain, nonatomic) UserDetailCell* detailCell;
 
 @end
 
 @implementation UserDetailViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _opusList = [[NSMutableArray alloc] init];
-        _guessedList = [[NSMutableArray alloc] init];
-        _favouriateList = [[NSMutableArray alloc] init];
-    }
-    
-    return self;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,9 +58,8 @@
 - (void)viewDidLoad
 {
     [self.detail loadUser:self];
-
     [super viewDidLoad];
-    [self didSelectTabAction:DetailTabActionClickOpus];
+    [self didClickTabAtIndex:0];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -87,9 +72,6 @@
 - (void)dealloc {
     [_backgroundImageView release];
     [_detail release];
-    PPRelease(_favouriateList);
-    PPRelease(_opusList);
-    PPRelease(_guessedList);
     PPRelease(_detailCell);
     [super dealloc];
 }
@@ -222,11 +204,24 @@
 - (void)didclickBlack
 {
     if ([self.detail canBlack]) {
-        [[FriendService defaultService] unblackFriend:[self.detail getUserId] successBlock:^{
+        if ([MyFriend hasBlack:[self.detail relation]]) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
-        }];
+            if ([MyFriend hasBlack:[self.detail relation]]) {
+                [self.detail setRelation:([self.detail relation] - RelationTypeBlack)];
+            }
+            [self.dataTableView reloadData];
+        } else {
+            [[FriendService defaultService] unblackFriend:[self.detail getUserId] successBlock:^{
+                [[FriendService defaultService] blackFriend:[self.detail getUserId] successBlock:^{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
+                    [self.detail setRelation:RelationTypeBlack];
+                    [self.dataTableView reloadData];
+                }];
+            }];
+        }
+        
     }
-   
+    
 }
 - (void)didclickManage
 {
@@ -346,23 +341,14 @@
     }
 }
 
-- (void)didSelectTabAction:(DetailTabAction)tabAction
+- (void)didClickTabAtIndex:(int)index
 {
-    switch (tabAction) {
-        case DetailTabActionClickFavouriate: {
-            
-        } break;
-        case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:10 delegate:self];
-            [self showActivityWithText:NSLS(@"kUpdating")];
-        } break;
-        case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:10 type:FeedListTypeUserOpus delegate:self];
-            [self showActivityWithText:NSLS(@"kUpdating")];
-        } break;
-        default:
-            break;
-    }
+    __block UserDetailViewController* uc = self;
+    [self.detail loadFeedByTabAction:index finishBLock:^(int resultCode, NSArray *feedList) {
+        [uc hideActivity];
+        if (resultCode == 0) 
+        [uc.detailCell setDrawFeedList:feedList];
+    }];
 }
 
 - (void)didClickDrawFeed:(DrawFeed *)drawFeed
@@ -409,39 +395,6 @@
 
 
 
-#pragma mark - feed service delegate
-- (void)didGetFeedList:(NSArray *)feedList
-            targetUser:(NSString *)userId
-                  type:(FeedListType)type
-            resultCode:(NSInteger)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0) {
-        switch (type) {
-            case FeedListTypeUserFeed: {
-                for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
-                    }
-                }
-                [[self detailCell] setDrawFeedList:self.guessedList];
-            } break;
-            case FeedListTypeUserOpus: {
-                for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[DrawFeed class]]) {
-                        [self.opusList addObject:feed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
-                    }
-                }
-                UserDetailCell* cell = [self detailCell];
-                [cell setDrawFeedList:self.opusList];
-                
-            }
-            default:
-                break;
-        }
-    }
-}
+
 
 @end

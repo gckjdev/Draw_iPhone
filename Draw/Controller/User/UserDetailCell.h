@@ -13,12 +13,6 @@
 #import "CustomSegmentedControl.h"
 #import "FeedCarousel.h"
 
-typedef enum {
-    DetailTabActionClickOpus = 0,
-    DetailTabActionClickGuessed ,
-    DetailTabActionClickFavouriate,
-}DetailTabAction;
-
 @class PBGameUser;
 @class CommonRoundAvatarView;
 
@@ -38,7 +32,7 @@ typedef enum {
 - (void)didclickSina;
 - (void)didclickQQ;
 - (void)didclickFacebook;
-- (void)didSelectTabAction:(DetailTabAction)tabAction;
+- (void)didClickTabAtIndex:(int)index;
 - (void)didClickMore;
 - (void)didClickDrawFeed:(DrawFeed *)drawFeed;
 @end
