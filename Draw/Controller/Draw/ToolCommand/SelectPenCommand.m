@@ -32,7 +32,7 @@
 {
     [self becomeActive];
     self.itemType = type;
-    [self.toolHandler enterDrawMode];
+//    [self.toolHandler enterDrawMode];
     [self.toolHandler changeInPenType:self.itemType];
 
     [self hidePopTipView];

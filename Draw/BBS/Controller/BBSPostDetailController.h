@@ -14,7 +14,7 @@
 #import "BBSPostActionHeaderView.h"
 #import "MWPhotoBrowser.h"
 
-@interface BBSPostDetailController : BBSController<BBSPostActionCellDelegate, BBSPostActionHeaderViewDelegate>
+@interface BBSPostDetailController : BBSController<BBSPostActionCellDelegate, BBSPostActionHeaderViewDelegate, CreatePostControllerDelegate>
 {
     
 }

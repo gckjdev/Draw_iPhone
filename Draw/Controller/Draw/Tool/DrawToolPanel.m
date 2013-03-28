@@ -200,9 +200,18 @@
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
+    
+    TouchActionType type = self.toolHandler.drawView.touchActionType;
+    
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     [self.toolHandler changePenColor:colorPoint.color];
     [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
+    if (type == TouchActionTypeShape) {
+        [self.toolHandler enterStrawMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
+
 }
 
 - (void)registerToolCommands
@@ -271,7 +280,7 @@
     [self updateSliders];
     
     [self registerToolCommands];
-    
+        
     [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
