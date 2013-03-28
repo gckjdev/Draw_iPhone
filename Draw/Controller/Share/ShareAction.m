@@ -40,6 +40,7 @@
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
+    NSInteger buttonIndexSave;
     NSInteger buttonIndexFavorite;
     NSInteger buttonIndexUseAsAvatar;
     NSInteger buttonIndexUseAsContactAvatar;
@@ -198,9 +199,10 @@
         buttonIndexWeixinTimeline = 4;
         buttonIndexEmail = 5;
         buttonIndexAlbum = 6;
-        buttonIndexFavorite = 7;
-        buttonIndexUseAsAvatar = 8;
-        buttonIndexUseAsContactAvatar = 9;
+        buttonIndexSave = 7,
+        buttonIndexFavorite = 8;
+//        buttonIndexUseAsAvatar = 8;
+//        buttonIndexUseAsContactAvatar = 9;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
                                                              delegate:self
@@ -313,7 +315,10 @@
 //    }
     NSArray* array = [[WordManager defaultManager] randGuessWordList:(rand()%10 == 0)?nil:self.feed.wordText];
     if (array.count >= 4) {
-        text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
+        text = self.feed.opusDesc;
+        if (text == nil || text.length == 0) {
+            text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
+        }
     }
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text drawUserId:self.drawUserId snsType:type];
@@ -364,7 +369,7 @@
     }
 }
 
-- (void)favorite
+- (void)saveToApp
 {
     if (self.feed.pbDraw) {
         [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
@@ -388,6 +393,13 @@
         }
          downloadDelegate:self];
     }
+}
+
+- (void)favorite
+{
+    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
+        //
+    }];
 }
 
 - (void)setProgress:(CGFloat)progress
@@ -515,11 +527,13 @@
         } else {
             [self shareViaSNS:TYPE_FACEBOOK];
         }
-    } else if (buttonIndex == buttonIndexFavorite) {
+    } else if (buttonIndex == buttonIndexSave) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+        [self saveToApp];
+    }  else if (buttonIndex == buttonIndexFavorite) {
         [self favorite];
-    } else if (buttonIndex == buttonIndexUseAsAvatar) {
+    }else if (buttonIndex == buttonIndexUseAsAvatar) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_MY_AVATAR];
         [[UserService defaultService] updateUserAvatar:self.image nickName:[UserManager defaultManager].nickName gender:[UserManager defaultManager].gender viewController:self.superViewController];
         

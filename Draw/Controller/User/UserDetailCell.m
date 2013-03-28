@@ -124,7 +124,7 @@
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
-                              initWithSegmentTitles:@[NSLS(@"kOPus"), NSLS(@"kGuessed"), NSLS(@"kDrawed")]
+                              initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
                               frame:cell.feedTabHolder.frame
                               unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
                               pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
