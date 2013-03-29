@@ -1163,6 +1163,7 @@
 "kPrivacyToFriend" = "Public To Follow";
 "kPrivacyToNone" = "Public To No One";
 "kPrivacyToAll" = "Public To All";
+"kInvisable" = "(Invisable)";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

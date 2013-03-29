@@ -29,6 +29,8 @@
 
 - (BOOL)isSNSBtnVisable:(int)snsType;
 
+- (BOOL)isPrivacyVisable;
+
 - (PBGameUser*)getUser;
 - (void)loadUser:(PPTableViewController*)viewController;
 
