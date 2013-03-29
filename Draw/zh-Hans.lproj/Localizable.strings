@@ -1430,7 +1430,7 @@
 "kPrice:" = "价格:";
 "kDesc:" = "描述:";
 "kDiscountIs" = "%d%%折扣";
-"kNoDiscount" = "无折扣";
+"kNoDiscount" = "无";
 
 "kMyBalance" = "我的余额:";
 "kSaveMoney" = "节省";

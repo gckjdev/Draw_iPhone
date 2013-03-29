@@ -81,7 +81,7 @@ typedef enum{
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
-    [self  updateItemData];
+    [self updateItemData];
     [GameItemService createTestDataFile];
 }
 
