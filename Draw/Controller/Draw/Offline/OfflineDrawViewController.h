@@ -17,7 +17,8 @@
 #import "DrawConstants.h"
 #import "LevelService.h"
 #import "DrawToolPanel.h"
-
+#import "MyFriend.h"
+#import "UserService.h"
 
 //#import "CommonItemInfoView.h"
 
@@ -38,7 +39,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate> {
     
 }
 
@@ -53,6 +54,8 @@
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) Contest *contest;
 @property (assign, nonatomic) UIViewController *startController;
+@property (retain, nonatomic) NSString *opusDesc;
+@property (retain, nonatomic) MyFriend *targetFriend;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;
@@ -78,6 +81,8 @@
                           fromController:(UIViewController*)fromController
                          startController:(UIViewController*)startController
                                targetUid:(NSString *)targetUid;
+
+
 
 /*
 + (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController;

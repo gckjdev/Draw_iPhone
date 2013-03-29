@@ -27,6 +27,13 @@ message PBDraw {
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
   optional PBDrawBg drawBg = 20;                    // draw background info
   optional PBSize canvasSize = 21;                        // draw rect size
+  
+  //for draft
+  optional string targetUid = 30;
+  optional string targetNickName = 31;
+  optional string targetAvatar = 32;
+  optional string opusDesc = 33;
+  optional string contestId = 34;
 }
 
 message PBFeedTimes{
@@ -171,12 +178,6 @@ message PBNoCompressDrawData
 }
 
 
-message PBDrawBg
-{
-    required string bgId = 1;
-    optional string localUrl  = 2;
-    optional string remoteUrl  = 3;
-}
 
 message PBDrawBgList
 {

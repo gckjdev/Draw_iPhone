@@ -8,19 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ColorPoint.h"
-#import "DrawSlider.h"
 #import "PenView.h"
 #import "ItemType.h"
 #import "Palette.h"
-#import "CMPopTipView.h"
-//#import "PenBox.h"
-//#import "ColorBox.h"
-//#import "ColorShopView.h"
 #import "DrawView.h"
-//#import "WidthBox.h"
-//#import "ShapeBox.h"
-//#import "DrawBgBox.h"
-
+#import "MyFriend.h"
 
 
 @class ToolHandler;
@@ -31,14 +23,9 @@
 {
     
 }
-//@property(nonatomic, retain)DrawColor *color;
-//@property(nonatomic, assign)CGFloat width;
-//@property(nonatomic, assign)CGFloat alpha;
-//@property(nonatomic, assign)ItemType penType;
-//@property(nonatomic, assign)ShapeType shapeType;
+
 @property(nonatomic, assign)NSInteger timerDuration;
 @property(nonatomic, retain)NSString *drawBgId;
-
 @property(nonatomic, retain)ToolHandler *toolHandler;
 
 
@@ -49,6 +36,8 @@
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
+
+- (void)updateDrawToUser:(MyFriend *)user;
 
 #pragma mark - Timer
 

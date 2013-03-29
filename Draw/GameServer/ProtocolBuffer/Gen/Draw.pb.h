@@ -103,11 +103,16 @@
   BOOL hasCreateDate_:1;
   BOOL hasVersion_:1;
   BOOL hasScore_:1;
-  BOOL hasUserId_:1;
-  BOOL hasWord_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
+  BOOL hasContestId_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasTargetAvatar_:1;
+  BOOL hasTargetNickName_:1;
+  BOOL hasTargetUid_:1;
   BOOL hasOpusId_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasNickName_:1;
+  BOOL hasWord_:1;
+  BOOL hasUserId_:1;
   BOOL hasDrawBg_:1;
   BOOL hasCanvasSize_:1;
   BOOL gender_:1;
@@ -117,11 +122,16 @@
   int32_t createDate;
   int32_t version;
   int32_t score;
-  NSString* userId;
-  NSString* word;
-  NSString* nickName;
-  NSString* avatar;
+  NSString* contestId;
+  NSString* opusDesc;
+  NSString* targetAvatar;
+  NSString* targetNickName;
+  NSString* targetUid;
   NSString* opusId;
+  NSString* avatar;
+  NSString* nickName;
+  NSString* word;
+  NSString* userId;
   PBDrawBg* drawBg;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
@@ -140,6 +150,11 @@
 - (BOOL) hasIsCompressed;
 - (BOOL) hasDrawBg;
 - (BOOL) hasCanvasSize;
+- (BOOL) hasTargetUid;
+- (BOOL) hasTargetNickName;
+- (BOOL) hasTargetAvatar;
+- (BOOL) hasOpusDesc;
+- (BOOL) hasContestId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -154,6 +169,11 @@
 - (BOOL) isCompressed;
 @property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* canvasSize;
+@property (readonly, retain) NSString* targetUid;
+@property (readonly, retain) NSString* targetNickName;
+@property (readonly, retain) NSString* targetAvatar;
+@property (readonly, retain) NSString* opusDesc;
+@property (readonly, retain) NSString* contestId;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -271,6 +291,31 @@
 - (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
 - (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
 - (PBDraw_Builder*) clearCanvasSize;
+
+- (BOOL) hasTargetUid;
+- (NSString*) targetUid;
+- (PBDraw_Builder*) setTargetUid:(NSString*) value;
+- (PBDraw_Builder*) clearTargetUid;
+
+- (BOOL) hasTargetNickName;
+- (NSString*) targetNickName;
+- (PBDraw_Builder*) setTargetNickName:(NSString*) value;
+- (PBDraw_Builder*) clearTargetNickName;
+
+- (BOOL) hasTargetAvatar;
+- (NSString*) targetAvatar;
+- (PBDraw_Builder*) setTargetAvatar:(NSString*) value;
+- (PBDraw_Builder*) clearTargetAvatar;
+
+- (BOOL) hasOpusDesc;
+- (NSString*) opusDesc;
+- (PBDraw_Builder*) setOpusDesc:(NSString*) value;
+- (PBDraw_Builder*) clearOpusDesc;
+
+- (BOOL) hasContestId;
+- (NSString*) contestId;
+- (PBDraw_Builder*) setContestId:(NSString*) value;
+- (PBDraw_Builder*) clearContestId;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {
@@ -1205,72 +1250,6 @@
 - (PBNoCompressDrawData_Builder*) setDrawToUserBuilder:(PBUserBasicInfo_Builder*) builderForValue;
 - (PBNoCompressDrawData_Builder*) mergeDrawToUser:(PBUserBasicInfo*) value;
 - (PBNoCompressDrawData_Builder*) clearDrawToUser;
-@end
-
-@interface PBDrawBg : PBGeneratedMessage {
-@private
-  BOOL hasBgId_:1;
-  BOOL hasLocalUrl_:1;
-  BOOL hasRemoteUrl_:1;
-  NSString* bgId;
-  NSString* localUrl;
-  NSString* remoteUrl;
-}
-- (BOOL) hasBgId;
-- (BOOL) hasLocalUrl;
-- (BOOL) hasRemoteUrl;
-@property (readonly, retain) NSString* bgId;
-@property (readonly, retain) NSString* localUrl;
-@property (readonly, retain) NSString* remoteUrl;
-
-+ (PBDrawBg*) defaultInstance;
-- (PBDrawBg*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDrawBg_Builder*) builder;
-+ (PBDrawBg_Builder*) builder;
-+ (PBDrawBg_Builder*) builderWithPrototype:(PBDrawBg*) prototype;
-
-+ (PBDrawBg*) parseFromData:(NSData*) data;
-+ (PBDrawBg*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDrawBg*) parseFromInputStream:(NSInputStream*) input;
-+ (PBDrawBg*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDrawBg*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBDrawBg*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBDrawBg_Builder : PBGeneratedMessage_Builder {
-@private
-  PBDrawBg* result;
-}
-
-- (PBDrawBg*) defaultInstance;
-
-- (PBDrawBg_Builder*) clear;
-- (PBDrawBg_Builder*) clone;
-
-- (PBDrawBg*) build;
-- (PBDrawBg*) buildPartial;
-
-- (PBDrawBg_Builder*) mergeFrom:(PBDrawBg*) other;
-- (PBDrawBg_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDrawBg_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasBgId;
-- (NSString*) bgId;
-- (PBDrawBg_Builder*) setBgId:(NSString*) value;
-- (PBDrawBg_Builder*) clearBgId;
-
-- (BOOL) hasLocalUrl;
-- (NSString*) localUrl;
-- (PBDrawBg_Builder*) setLocalUrl:(NSString*) value;
-- (PBDrawBg_Builder*) clearLocalUrl;
-
-- (BOOL) hasRemoteUrl;
-- (NSString*) remoteUrl;
-- (PBDrawBg_Builder*) setRemoteUrl:(NSString*) value;
-- (PBDrawBg_Builder*) clearRemoteUrl;
 @end
 
 @interface PBDrawBgList : PBGeneratedMessage {

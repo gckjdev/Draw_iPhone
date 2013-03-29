@@ -198,6 +198,17 @@
 }
 
 
+- (void)updateDrawToUser:(MyFriend *)user
+{
+
+    NSURL *URL = [NSURL URLWithString:user.avatar];
+    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
+        [self.drawToUser setImage:image forState:UIControlStateNormal];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
     
