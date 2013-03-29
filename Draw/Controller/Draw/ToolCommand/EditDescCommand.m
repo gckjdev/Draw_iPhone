@@ -45,13 +45,13 @@
 
 - (void)showPopTipView
 {
-    self.isShowing = YES;
+    self.showing = YES;
 
     //TODO alert the input alert view
 }
 - (void)hidePopTipView
 {
-    self.isShowing = NO;
+    self.showing = NO;
     //TODO hide the alert View
 }
 

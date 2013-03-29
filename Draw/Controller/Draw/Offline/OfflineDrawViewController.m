@@ -188,6 +188,8 @@
     PPRelease(_contest);
     PPRelease(draftButton);
     PPRelease(_submitButton);
+    PPRelease(_targetFriend);
+    PPRelease(_opusDesc);
     [super dealloc];
 }
 
@@ -421,6 +423,18 @@
 
 #pragma mark - View lifecycle
 
+- (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
+{
+    self.targetFriend = user;
+    [self.drawToolPanel updateDrawToUser:user];
+}
+
+- (void)updateTargetFriend
+{
+    if (self.targetUid) {
+        [[UserService defaultService] getUserSimpleInfoByUserId:self.targetUid delegate:self];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -433,6 +447,7 @@
 //    _lastSaveTime = time(0);
     _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
 
+    [self updateTargetFriend];
 
     [self initRecovery];    
 }
