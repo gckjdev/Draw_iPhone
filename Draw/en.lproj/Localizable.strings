@@ -1148,7 +1148,9 @@
 
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
-
+"kFavoriting" = "Favoriting";
+"KSaveToLocalTitle" = "Save To Local";
+"kSaveToLocalMsg" = "Do you want to save this opus to local?";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
