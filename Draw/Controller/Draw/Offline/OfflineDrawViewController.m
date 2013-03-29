@@ -188,7 +188,6 @@
     PPRelease(_contest);
     PPRelease(draftButton);
     PPRelease(_submitButton);
-    PPRelease(_targetFriend);
     PPRelease(_opusDesc);
     [super dealloc];
 }
@@ -425,8 +424,9 @@
 
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
-    self.targetFriend = user;
-    [self.drawToolPanel updateDrawToUser:user];
+    if (resultCode == 0 && user) {
+        [self.drawToolPanel updateDrawToUser:user];
+    }
 }
 
 - (void)updateTargetFriend
@@ -725,12 +725,22 @@
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-    //TODO Edith the draw to User
     PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-                                                                           pbdrawBg:drawView.drawBg
                                                                                size:drawView.bounds.size
+                                                                           opusDesc:self.opusDesc
                                                                          drawToUser:nil];
     return data;
+}
+
+- (void)setTargetUid:(NSString *)targetUid
+{
+    if(_targetUid != targetUid){
+        PPRelease(_targetUid);
+        _targetUid = [targetUid retain];
+        if (self.draft) {
+            [self.draft setTargetUserId:targetUid];
+        }
+    }
 }
 
 - (void)saveDraft:(BOOL)showResult

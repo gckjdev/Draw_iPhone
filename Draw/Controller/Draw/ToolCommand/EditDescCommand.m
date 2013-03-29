@@ -20,7 +20,6 @@
 
 - (void)dealloc
 {
-    PPRelease(_inputAlertView);
     [super dealloc];
 }
 

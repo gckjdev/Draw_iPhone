@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "FriendController.h"
 
-@interface DrawToCommand : ToolCommand
+@interface DrawToCommand : ToolCommand<FriendControllerDelegate>
 
 @end
