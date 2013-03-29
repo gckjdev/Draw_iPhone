@@ -843,4 +843,20 @@
     return  [MobClickUtils getIntValueByKey:@"DEFAULT_DETAIL_OPUS_COUNT" defaultValue:10];
 }
 
++ (NSString*)getFreeIngotPostId
+{
+    return  [MobClickUtils getStringValueByKey:@"BBS_POST_ID_FREE_INGOT" defaultValue:@"51203af8e4b0b5edbdc36219"];
+}
+
++ (NSString*)getBugReportPostId
+{
+    return  [MobClickUtils getStringValueByKey:@"BBS_POST_ID_BUG_REPORT" defaultValue:@"50eaa5e2e4b0fa7710d1a820"];
+}
+
++ (NSString*)getFeedbackPostId
+{
+    return  [MobClickUtils getStringValueByKey:@"BBS_POST_ID_FEEDBACK" defaultValue:@"50eaa5e2e4b0fa7710d1a820"];
+}
+
+
 @end

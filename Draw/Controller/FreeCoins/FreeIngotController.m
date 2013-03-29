@@ -17,6 +17,7 @@
 #import "GameAdWallService.h"
 #import "ConfigManager.h"
 #import "CommonDialog.h"
+#import "BBSPostDetailController.h"
 
 //#define SECTION_COUNT 2
 
@@ -168,9 +169,12 @@ enum {
 
 - (IBAction)clickToBBS:(id)sender
 {
-    BBSBoardController *bbs = [[BBSBoardController alloc] init];
-    [self.navigationController pushViewController:bbs animated:YES];
-    [bbs release];
+
+    [BBSPostDetailController enterFreeIngotPostController:self animated:YES];
+    
+//    BBSBoardController *bbs = [[BBSBoardController alloc] init];
+//    [self.navigationController pushViewController:bbs animated:YES];
+//    [bbs release];
 }
 
 @end

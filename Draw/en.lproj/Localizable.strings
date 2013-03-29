@@ -1151,6 +1151,10 @@
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
 "kFavoriting" = "Favoriting";
+
+"kNoSupportViewFollow" = "Not support to view other user's followers";
+"kNoSupportViewFan" = "Not support to view other user's fans";
+
 "KSaveToLocalTitle" = "Favor successfully";
 "kSaveToLocalMsg" = "Favor successfully!Do you want to save this opus to local?";
 "kNoSNSTips" = "He/She hasn't bind any SNS account yet.";
@@ -1160,6 +1164,7 @@
 "kPrivacyToNone" = "Public To No One";
 "kPrivacyToAll" = "Public To All";
 "kInvisable" = "(Invisable)";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

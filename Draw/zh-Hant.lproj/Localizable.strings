@@ -1118,15 +1118,17 @@
 "kUndoing" = "撤銷中...";
 "kRedoing" = "重做中...";
 "kFavoriting" = "收藏中...";
+
 "KSaveToLocalTitle" = "收藏成功";
-"kSaveToLocalMsg" = "收藏成功！你想把作品保存到本地(可以在“作品分享”裡面看到)嗎？";
+"kSaveToLocalMsg" = "收藏成功！你想同時把作品保存到本地(可以在［本地作品］裡面找到)嗎？";
 "kNoSNSTips" = "該玩家未綁定任何社交帳號";
 
 "kPrivacy" = "隱私";
-"kPrivacyToFriend" = "對關注可見";
-"kPrivacyToNone" = "無人可見";
+"kPrivacyToFriend" = "僅對相互關注好友可見";
+"kPrivacyToNone" = "所有人不可見";
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1473,6 +1475,9 @@
 
 "kStore" = "商店";
 "kBalance" = "餘額:";
+
+"kNoSupportViewFollow" = "暫不支持查看其他用戶的粉絲";
+"kNoSupportViewFan" = "暫不支持查看其他用戶的關注";
 
 /*********************** BBS国际化字符串结束 *************************/
 

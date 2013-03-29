@@ -15,6 +15,7 @@
 #import "BBSPostCommand.h"
 #import "BBSPostCommandPanel.h"
 #import "BBSPermissionManager.h"
+#import "BBSBoardController.h"
 
 @interface BBSPostDetailController ()
 {
@@ -619,4 +620,59 @@ typedef enum{
     PPRelease(_header);
     [super viewDidUnload];
 }
+
+#pragma mark - enter specific post
+
++ (UIViewController *)enterFreeIngotPostController:(UIViewController *)fromController
+                                                 animated:(BOOL)animated
+{
+    NSString* postId = [ConfigManager getFreeIngotPostId];
+    if ([postId length] > 0){
+        return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
+                                                      fromController:fromController
+                                                            animated:animated];
+    }
+    else{
+        BBSBoardController *vc = [[BBSBoardController alloc] init];
+        [fromController.navigationController pushViewController:vc
+                                                       animated:animated];
+        return [vc autorelease];
+    }
+}
+
++ (UIViewController *)enterFeedbackPostController:(UIViewController *)fromController
+                                                animated:(BOOL)animated
+{
+    NSString* postId = [ConfigManager getFeedbackPostId];
+    if ([postId length] > 0){
+        return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
+                                                      fromController:fromController
+                                                            animated:animated];
+    }
+    else{
+        BBSBoardController *vc = [[BBSBoardController alloc] init];
+        [fromController.navigationController pushViewController:vc
+                                                       animated:animated];
+        return [vc autorelease];
+    }
+}
+
++ (UIViewController *)enterBugReportPostController:(UIViewController *)fromController
+                                                 animated:(BOOL)animated
+{
+    NSString* postId = [ConfigManager getBugReportPostId];
+    if ([postId length] > 0){
+        return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
+                                                      fromController:fromController
+                                                            animated:animated];
+    }
+    else{
+        BBSBoardController *vc = [[BBSBoardController alloc] init];
+        [fromController.navigationController pushViewController:vc
+                                                       animated:animated];
+        return [vc autorelease];
+    }
+}
+
+
 @end
