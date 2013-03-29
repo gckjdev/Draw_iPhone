@@ -308,9 +308,9 @@
         switch (type) {
             case FeedListTypeUserFavorite: {
                 for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.favoriteList addObject:((GuessFeed*)feed).drawFeed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.favoriteList addObject:feed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
                 [[self detailCell] setDrawFeedList:self.guessedList];
