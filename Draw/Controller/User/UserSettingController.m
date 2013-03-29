@@ -834,20 +834,28 @@ enum {
     __block UserSettingController* bc = self;
     [actionSheet setActionBlock:^(NSInteger buttonIndex) {
         if (buttonIndex != actionSheet.cancelButtonIndex){
+            if (buttonIndex <= actionSheet.destructiveButtonIndex) {
+                [_pbUserBuilder setZodiac:buttonIndex];
+            } else {
+                [_pbUserBuilder setZodiac:buttonIndex+1];
+            }
             
-            [_pbUserBuilder setZodiac:buttonIndex+1];
             hasEdited = YES;
         }
         [bc.dataTableView reloadData];
     }];
+    if ([_pbUserBuilder hasZodiac]) {
+        [actionSheet setDestructiveButtonIndex:_pbUserBuilder.zodiac-1];
+    }
     [actionSheet showInView:self.view];
 }
 
 - (void)askSetBirthday
 {
     __block UserSettingController* bc = self;
+    NSString* defaultDateStr = [_pbUserBuilder hasBirthday]?_pbUserBuilder.birthday:@"19900615";
     GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
-                                                          defaultDate:dateFromStringByFormat(@"19900615", @"yyyyMMdd")
+                                                          defaultDate:dateFromStringByFormat(defaultDateStr, @"yyyyMMdd")
                                                           finishBlock:^(NSDate *date) {
                                                               
                                                               if (date != nil){
@@ -873,6 +881,15 @@ enum {
         }
         [bc.dataTableView reloadData];
     }];
+    if ([_pbUserBuilder hasBloodGroup]) {
+        for (int i = 0; i < [actionSheet numberOfButtons]; i ++) {
+            NSString* buttonTitle = [actionSheet buttonTitleAtIndex:i];
+            if ([_pbUserBuilder.bloodGroup isEqualToString:buttonTitle]) {
+                [actionSheet setDestructiveButtonIndex:i];
+            }
+        }
+    
+    }
     [actionSheet showInView:self.view];
 }
 
@@ -893,6 +910,9 @@ enum {
         }
         [bc.dataTableView reloadData];
     }];
+    if ([_pbUserBuilder hasOpenInfoType]) {
+        [actionSheet setDestructiveButtonIndex:_pbUserBuilder.openInfoType];
+    }
     [actionSheet showInView:self.view];
 }
 

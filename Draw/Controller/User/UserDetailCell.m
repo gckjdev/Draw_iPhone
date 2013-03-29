@@ -53,7 +53,7 @@
     [self.signLabel setText:pbUser.signature];
     
     if ([detail isPrivacyVisable]) {
-        [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
+        
         NSDate* date = dateFromStringByFormat(pbUser.birthday, @"yyyyMMdd");
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?dateToString(date):@"-")]];
         NSString* zodiacStr = [pbUser hasZodiac]?[LocaleUtils getZodiacWithIndex:pbUser.zodiac-1]:@"-";
@@ -61,11 +61,12 @@
         [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),zodiacStr]];
         [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), ([pbUser hasBloodGroup]?pbUser.bloodGroup:@"-")]];
     } else {
-        [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), NSLS(@"kInvisable")]];
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), NSLS(@"kInvisable")]];
         [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),NSLS(@"kInvisable")]];
         [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), NSLS(@"kInvisable")]];
     }
+    
+    [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
     
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
     [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
