@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -634,6 +634,7 @@
 						<string key="clickCancel:">id</string>
 						<string key="clickClose:">id</string>
 						<string key="clickConfirm:">id</string>
+						<string key="clickMask:">id</string>
 						<string key="clickQQCheckBox:">UIButton</string>
 						<string key="clickSinaCheckBox:">UIButton</string>
 					</dictionary>
@@ -648,6 +649,10 @@
 						</object>
 						<object class="IBActionInfo" key="clickConfirm:">
 							<string key="name">clickConfirm:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickMask:">
+							<string key="name">clickMask:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickQQCheckBox:">

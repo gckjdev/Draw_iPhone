@@ -65,7 +65,6 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)useGid:(BOOL)flag;
 
 
-
 @end
 
 
