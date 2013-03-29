@@ -85,6 +85,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 //        [button.layer setMasksToBounds:YES];
         button.tag = 9999;
 //        [button addTarget:self action:@selector(clickFeedButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.userInteractionEnabled = NO;
 		[view addSubview:button];
 	}
 	else

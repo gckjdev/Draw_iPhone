@@ -46,7 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
     
     //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:SHOP_ITEMS_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:SHOP_ITEMS_FILE_BUNDLE_PATH initDataVersion:SHOP_ITEMS_FILE_VERSION];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:[GameItemManager shopItemsFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[GameItemManager shopItemsFileBundlePath] initDataVersion:[GameItemManager shopItemsFileVersion]];
     
     __block typeof(self) bself = self;
 

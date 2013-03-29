@@ -102,6 +102,7 @@
 		A43E85F916227E06003A57F1 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E85F016227E06003A57F1 /* UIButton+WebCache.m */; };
 		A43E85FA16227E06003A57F1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */; };
 		A43FF3281650E9EF00B490B7 /* DiceMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43FF3271650E9EF00B490B7 /* DiceMessageView.m */; };
+		A44710AC17053A4700428284 /* sale_ingot_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44710AB17053A4700428284 /* sale_ingot_Draw.pb */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
@@ -232,8 +233,7 @@
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
-		A4B3B38516EB28E000EBF8DA /* sale_ingot.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */; };
-		A4B3B38616EB28E000EBF8DA /* shop_item.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item.pb */; };
+		A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
 		A4B45F6716787D82009EA231 /* ZJHRoomListCell_dual~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6516787D81009EA231 /* ZJHRoomListCell_dual~ipad.xib */; };
@@ -7543,6 +7543,7 @@
 		A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		A43FF3261650E9EF00B490B7 /* DiceMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceMessageView.h; sourceTree = "<group>"; };
 		A43FF3271650E9EF00B490B7 /* DiceMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceMessageView.m; sourceTree = "<group>"; };
+		A44710AB17053A4700428284 /* sale_ingot_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = sale_ingot_Draw.pb; sourceTree = "<group>"; };
 		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
 		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
 		A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommonGameNetworkClient+ZJHNetworkExtend.h"; sourceTree = "<group>"; };
@@ -7706,8 +7707,7 @@
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
-		A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = sale_ingot.pb; sourceTree = "<group>"; };
-		A4B3B38416EB28E000EBF8DA /* shop_item.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item.pb; sourceTree = "<group>"; };
+		A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Draw.pb; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
 		A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHRoomListCell_dual.xib; sourceTree = "<group>"; };
@@ -15201,8 +15201,8 @@
 		CA7D41DE168D7588009F43F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				A4B3B38316EB28E000EBF8DA /* sale_ingot.pb */,
-				A4B3B38416EB28E000EBF8DA /* shop_item.pb */,
+				A44710AB17053A4700428284 /* sale_ingot_Draw.pb */,
+				A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */,
 				CA485B2916E1F02C00AEE725 /* draw_bg.zip */,
 				A4A0CECF16D8A2A6004AC167 /* frames.pb */,
 				A4DE140E1697DB7B00841940 /* hot_word.pb */,
@@ -21908,8 +21908,7 @@
 				CA23516816EB0DD200C88082 /* ChargeCell.xib in Resources */,
 				CA23516A16EB0DD200C88082 /* BuyItemView.xib in Resources */,
 				CA23516C16EB0DD200C88082 /* GiftDetailView.xib in Resources */,
-				A4B3B38516EB28E000EBF8DA /* sale_ingot.pb in Resources */,
-				A4B3B38616EB28E000EBF8DA /* shop_item.pb in Resources */,
+				A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */,
 				C29D1A4916EDD62B0095328D /* FreeIngotController.xib in Resources */,
 				C29D1A5316EDD6630095328D /* FreeIngotController~ipad.xib in Resources */,
 				C203C45716EEC7970028A065 /* FreeIngotCell.xib in Resources */,
@@ -22018,6 +22017,7 @@
 				CA189B131702B64900339D42 /* default_config_Draw.pb in Resources */,
 				CA189B171702B64900339D42 /* default_config_Zhajinhua_version.txt in Resources */,
 				CA189B1B1702B64900339D42 /* default_config_Zhajinhua.pb in Resources */,
+				A44710AC17053A4700428284 /* sale_ingot_Draw.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
