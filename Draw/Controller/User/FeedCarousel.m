@@ -20,12 +20,25 @@
 @property (nonatomic, assign) NSTimer *scrollTimer;
 @property (nonatomic, assign) NSTimeInterval lastTime;
 @property (nonatomic, assign) BOOL wrap;
+@property (retain, nonatomic) UIActivityIndicatorView *indicator;
 
 @end
 
 @implementation FeedCarousel
 
 AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
+
+- (void)dealloc {
+    [_indicator release];
+    [_scrollTimer invalidate];
+    _scrollTimer = nil;
+    _carousel.delegate = nil;
+    _carousel.dataSource = nil;
+    [_drawFeeds release];
+    [_carousel release];
+    [super dealloc];
+}
+
 
 + (id)createFeedCarousel
 {
@@ -41,21 +54,31 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     return view;
 }
 
+- (void)showActivity
+{
+    if (_indicator == nil) {
+        self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        self.indicator.center = self.center;
+        [self addSubview:self.indicator];
+    }
+    
+    self.indicator.hidden = NO;
+    
+    [_indicator startAnimating];
+}
+
+- (void)hideActivity
+{
+    [_indicator stopAnimating];
+    self.indicator.hidden = YES;
+}
+
 - (void)setDrawFeedList:(NSArray *)drawFeeds
 {
     self.drawFeeds = drawFeeds;
     [self.carousel reloadData];
 }
 
-- (void)dealloc {
-    [_scrollTimer invalidate];
-    _scrollTimer = nil;
-    _carousel.delegate = nil;
-    _carousel.dataSource = nil;
-    [_drawFeeds release];
-    [_carousel release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark iCarousel methods

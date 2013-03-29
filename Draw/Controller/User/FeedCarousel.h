@@ -22,6 +22,9 @@
 @property (assign, nonatomic) id<FeedCarouselProtocol> delegate;
 
 + (id)createFeedCarousel;
+- (void)showActivity;
+- (void)hideActivity;
+
 - (void)setDrawFeedList:(NSArray *)drawFeeds;
 
 - (void)startScrolling;
