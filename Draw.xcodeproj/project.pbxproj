@@ -3829,10 +3829,6 @@
 		CA4151B4165502640062A638 /* BBSBoardSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151B0165502640062A638 /* BBSBoardSection.xib */; };
 		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
-		CA41EF57170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
-		CA41EF58170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
-		CA41EF59170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
-		CA41EF5A170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
@@ -5413,10 +5409,6 @@
 		CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
 		CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
 		CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
-		CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
 		CAB5C70116994F0200A4CE3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CAB5C70216994F0200A4CE3B /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CAB5C70316994F0200A4CE3B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
@@ -8979,8 +8971,6 @@
 		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
 		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
 		CA41C95A15206C1100013DC8 /* ShoppingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingManager.m; sourceTree = "<group>"; };
-		CA41EF55170544EC00A56671 /* RewindHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewindHandler.h; sourceTree = "<group>"; };
-		CA41EF56170544EC00A56671 /* RewindHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewindHandler.m; sourceTree = "<group>"; };
 		CA4215FF152196B900FAA008 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
 		CA421600152196B900FAA008 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -10371,8 +10361,6 @@
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
 		CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
 		CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
-		CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcGestureRecognizer.h; sourceTree = "<group>"; };
-		CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcGestureRecognizer.m; sourceTree = "<group>"; };
 		CAB5CC9916994F0200A4CE3B /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
@@ -16612,8 +16600,6 @@
 				CA881A4B16EB278A0085F57B /* StrawTouchHandler.m */,
 				CA881A4C16EB278A0085F57B /* TouchHandler.h */,
 				CA881A4D16EB278A0085F57B /* TouchHandler.m */,
-				CA41EF55170544EC00A56671 /* RewindHandler.h */,
-				CA41EF56170544EC00A56671 /* RewindHandler.m */,
 			);
 			path = TouchHandler;
 			sourceTree = "<group>";
@@ -17217,8 +17203,6 @@
 		CAB5325C16F0232B008FD307 /* GestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */,
-				CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */,
 				CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */,
 				CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */,
 			);
@@ -23682,7 +23666,6 @@
 				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61716F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -23735,7 +23718,6 @@
 				CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5517019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECB1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
-				CA41EF59170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24467,7 +24449,6 @@
 				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61816F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -24520,7 +24501,6 @@
 				CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5617019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECC1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
-				CA41EF5A170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25253,7 +25233,6 @@
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
 				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
 				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
@@ -25317,7 +25296,6 @@
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADEC91704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
 				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
-				CA41EF57170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26057,7 +26035,6 @@
 				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -26110,7 +26087,6 @@
 				CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5417019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECA1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
-				CA41EF58170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
