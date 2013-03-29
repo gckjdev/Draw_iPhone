@@ -3829,6 +3829,10 @@
 		CA4151B4165502640062A638 /* BBSBoardSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4151B0165502640062A638 /* BBSBoardSection.xib */; };
 		CA41C9501520608D00013DC8 /* PriceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C94F1520608D00013DC8 /* PriceService.m */; };
 		CA41C95B15206C1100013DC8 /* ShoppingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41C95A15206C1100013DC8 /* ShoppingManager.m */; };
+		CA41EF57170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
+		CA41EF58170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
+		CA41EF59170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
+		CA41EF5A170544EC00A56671 /* RewindHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA41EF56170544EC00A56671 /* RewindHandler.m */; };
 		CA421601152196B900FAA008 /* AccountService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA421600152196B900FAA008 /* AccountService.m */; };
 		CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
 		CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
@@ -8975,6 +8979,8 @@
 		CA41C94F1520608D00013DC8 /* PriceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceService.m; sourceTree = "<group>"; };
 		CA41C95915206C1000013DC8 /* ShoppingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingManager.h; sourceTree = "<group>"; };
 		CA41C95A15206C1100013DC8 /* ShoppingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingManager.m; sourceTree = "<group>"; };
+		CA41EF55170544EC00A56671 /* RewindHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewindHandler.h; sourceTree = "<group>"; };
+		CA41EF56170544EC00A56671 /* RewindHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewindHandler.m; sourceTree = "<group>"; };
 		CA4215FF152196B900FAA008 /* AccountService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountService.h; sourceTree = "<group>"; };
 		CA421600152196B900FAA008 /* AccountService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountService.m; sourceTree = "<group>"; };
 		CA4216021521973A00FAA008 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -16606,6 +16612,8 @@
 				CA881A4B16EB278A0085F57B /* StrawTouchHandler.m */,
 				CA881A4C16EB278A0085F57B /* TouchHandler.h */,
 				CA881A4D16EB278A0085F57B /* TouchHandler.m */,
+				CA41EF55170544EC00A56671 /* RewindHandler.h */,
+				CA41EF56170544EC00A56671 /* RewindHandler.m */,
 			);
 			path = TouchHandler;
 			sourceTree = "<group>";
@@ -23727,6 +23735,7 @@
 				CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5517019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECB1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
+				CA41EF59170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24511,6 +24520,7 @@
 				CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5617019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECC1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
+				CA41EF5A170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25307,6 +25317,7 @@
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADEC91704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
 				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
+				CA41EF57170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26099,6 +26110,7 @@
 				CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */,
 				CAF0DB5417019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADECA1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
+				CA41EF58170544EC00A56671 /* RewindHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
