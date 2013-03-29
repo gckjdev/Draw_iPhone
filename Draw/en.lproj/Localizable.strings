@@ -1151,6 +1151,7 @@
 "kFavoriting" = "Favoriting";
 "KSaveToLocalTitle" = "Save To Local";
 "kSaveToLocalMsg" = "Do you want to save this opus to local?";
+"kNoSNSTips" = "He/She hasn't bind any SNS account yet.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
