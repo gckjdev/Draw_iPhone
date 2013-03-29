@@ -25,6 +25,7 @@
 
 - (BOOL)isBlackBtnVisable;
 - (BOOL)isSuperManageBtnVisable;
+- (BOOL)hasFeedTab;
 
 - (BOOL)isSNSBtnVisable:(int)snsType;
 

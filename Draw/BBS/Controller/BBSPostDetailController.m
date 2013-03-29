@@ -25,6 +25,7 @@
     PBBBSAction *_selectedAction;
     
     UITextView *_helpTextView;
+    
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
@@ -32,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *toolBarBG;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
 
+@property (retain, nonatomic) NSString *postID;
 
 @end
 
@@ -62,6 +64,18 @@ typedef enum{
 {
     BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
     pd.post = post;
+    pd.postID = post.postId;
+    [fromController.navigationController pushViewController:pd animated:animated];
+    return [pd autorelease];
+}
+
+
++ (BBSPostDetailController *)enterPostDetailControllerWithPostID:(NSString *)postID
+                                                  fromController:(UIViewController *)fromController
+                                                        animated:(BOOL)animated
+{
+    BBSPostDetailController *pd = [[BBSPostDetailController alloc] init];
+    pd.postID = postID;
     [fromController.navigationController pushViewController:pd animated:animated];
     return [pd autorelease];
 }
@@ -160,11 +174,29 @@ typedef enum{
 }
 
 
+- (void)loadPost
+{
+    if (self.post == nil) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [[BBSService defaultService] getBBSPostWithPostId:self.postID delegate:self];
+    }
+}
+
+- (void)didGetBBSPost:(PBBBSPost *)post postId:(NSString *)postId resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        self.post = post;
+        [self.dataTableView reloadData];
+    }
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self initViews];
+    [self loadPost];
 //    if ([self defaultTabID] == Support) {
 //        [_header clickSupport:_header.support];
 //    }else{
@@ -213,7 +245,7 @@ typedef enum{
     
     TableTab *tab = [_tabManager tabForID:tabID];
     
-    [[BBSService defaultService] getBBSActionListWithPostId:self.post.postId
+    [[BBSService defaultService] getBBSActionListWithPostId:self.postID
                                                  actionType:type
                                                      offset:tab.offset
                                                       limit:tab.limit

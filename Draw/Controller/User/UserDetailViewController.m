@@ -42,7 +42,7 @@
 @property (retain, nonatomic) UserDetailCell* detailCell;
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
-@property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (retain, nonatomic) NSMutableArray* favoriteList;
 
 @end
 
@@ -55,7 +55,7 @@
     if (self) {
         _opusList = [[NSMutableArray alloc] init];
         _guessedList = [[NSMutableArray alloc] init];
-        _favouriateList = [[NSMutableArray alloc] init];
+        _favoriteList = [[NSMutableArray alloc] init];
         // Custom initialization
     }
     return self;
@@ -243,18 +243,16 @@
 - (void)didClickTabAtIndex:(int)index
 {
     switch (index) {
-        case DetailTabActionClickFavouriate: {
+        case DetailTabActionClickFavouriate:
+        {
             [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-            
-        } break;
-        case DetailTabActionClickGuessed: {
-//            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-            
-            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-        } break;
-        case DetailTabActionClickOpus: {
+        }
+            break;
+        case DetailTabActionClickOpus:
+        {
             [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
-        } break;
+        }
+            break;
         default:
             break;
     }
@@ -312,14 +310,14 @@
     [self hideActivity];
     if (resultCode == 0) {
         switch (type) {
-            case FeedListTypeUserFeed: {
+            case FeedListTypeUserFavorite: {
                 for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.favoriteList addObject:feed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                [[self detailCell] setDrawFeedList:self.guessedList];
+                [[self detailCell] setDrawFeedList:self.favoriteList];
             } break;
             case FeedListTypeUserOpus: {
                 for (Feed* feed in feedList) {

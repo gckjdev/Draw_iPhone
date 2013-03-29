@@ -11,6 +11,9 @@
 #import "GameBasic.pb.h"
 #import "PPSmartUpdateDataUtils.h"
 
+#define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
+#define SHOP_ITEM_FILE_TYPE @"pb"
+#define SHOP_ITEMS_FILE_VERSION @"1.0"
 
 @interface GameItemManager()
 
@@ -38,6 +41,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
     }
     
     return self;
+}
+
++ (NSString *)shopItemsFileName
+{
+    return [[[[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]] stringByAppendingString:@"."] stringByAppendingString:[self shopItemsFileType]];
+}
+
++ (NSString *)shopItemsFileBundlePath
+{
+    return [self shopItemsFileName];
+}
+
++ (NSString *)shopItemsFileType
+{
+    return SHOP_ITEM_FILE_TYPE;
+}
+
++ (NSString *)shopItemsFileVersion
+{
+    return SHOP_ITEMS_FILE_VERSION;
 }
 
 - (void)setItemsList:(NSArray *)itemsList
@@ -94,5 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 {
     return [[[self itemWithItemId:itemId] priceInfo] currency];
 }
+
+
 
 @end

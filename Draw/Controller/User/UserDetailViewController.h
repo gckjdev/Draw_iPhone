@@ -15,7 +15,6 @@
 
 typedef enum {
     DetailTabActionClickOpus = 0,
-    DetailTabActionClickGuessed ,
     DetailTabActionClickFavouriate,
 }DetailTabAction;
 

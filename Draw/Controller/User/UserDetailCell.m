@@ -86,6 +86,8 @@
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
     [self adjustView:self.levelLabel toLabel:self.signLabel];
+    
+    [self.segmentedControl setHidden:![detail hasFeedTab]];
 
 }
 
@@ -117,7 +119,7 @@
 
 #define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
 
-#define TAB_FONT    (ISIPAD?20:10)
+#define TAB_FONT    (ISIPAD?24:12)
 
 + (id)createCell:(id)delegate
 {
