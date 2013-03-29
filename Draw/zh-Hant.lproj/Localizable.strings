@@ -680,6 +680,7 @@
 "kUserFeedTitle" = "%@的動態";
 "kUserFeed" = "動態";
 "kUserOpus" = "作品";
+"kUserFavorite" = "收藏";
 
 // For Weibo Settings
 "kSetEmail" = "電子郵件";
@@ -876,6 +877,7 @@
 
 "kUserNoFeed" = "%@ 還沒有動態。";
 "kUserNoOpus" = "%@ 還沒有作品。";
+"kUserNoFavorite" = "%@ 還沒有收藏";
 
 "kOpusOperation" = "請選擇你需要的操作";
 
