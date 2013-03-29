@@ -397,7 +397,7 @@
     PPDebug(@"<didGestureEnd>");
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         [self.touchHandler handleFailTouch];
-        self.touchHandler = nil;        
+        self.touchHandler = nil;
     }
 }
 @end

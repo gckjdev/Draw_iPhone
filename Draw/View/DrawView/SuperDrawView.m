@@ -9,7 +9,6 @@
 #import "SuperDrawView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DrawView.h"
-#import "ArcGestureRecognizer.h"
 #import "UIViewUtils.h"
 
 #define DEFALT_MIN_SCALE 1
@@ -60,15 +59,9 @@
         self.maxScale = DEFALT_MAX_SCALE;
         self.scale = self.minScale;
         _gestureRecognizerManager = [[GestureRecognizerManager alloc] init];
-        UIGestureRecognizer *pan = [_gestureRecognizerManager addPanGestureReconizerToView:self];
-        UIGestureRecognizer *pinch = [_gestureRecognizerManager addPinchGestureReconizerToView:self];
-        UIGestureRecognizer *doubleTap = [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
-        if ([self isKindOfClass:[DrawView class]]) {
-            UIGestureRecognizer *arc = [_gestureRecognizerManager addArcGestureRecognizerToView:self];
-            [pan requireGestureRecognizerToFail:arc];
-            [pinch requireGestureRecognizerToFail:arc];
-            [arc requireGestureRecognizerToFail:doubleTap];
-        }
+        [_gestureRecognizerManager addPanGestureReconizerToView:self];
+        [_gestureRecognizerManager addPinchGestureReconizerToView:self];
+        [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
 
     }
     return self;

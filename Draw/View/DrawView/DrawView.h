@@ -36,7 +36,7 @@ typedef enum{
     TouchActionTypeDraw = 0,
     TouchActionTypeGetColor = 1,
     TouchActionTypeShape = 2,
-    
+    TouchActionTypeRewind = 3,
 }TouchActionType;
 
 @interface DrawView : SuperDrawView<GestureRecognizerManagerDelegate>

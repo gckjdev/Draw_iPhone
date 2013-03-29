@@ -266,7 +266,7 @@
     if ([touchSet count] == 2 && !_isTwoFingers) {
         [self startWith:touchSet];
         _isTwoFingers = YES;
-        [self performSelector:@selector(recognizerBegan) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(recognizerBegan) withObject:nil afterDelay:0.7];
         start = time(0);
     }else if([touchSet count] > 3){
         
@@ -304,10 +304,10 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
     NSLog(@"ARC End");
     failed = YES;
     self.state = UIGestureRecognizerStateRecognized;
-    [super touchesEnded:touches withEvent:event];
     if (self.state == UIGestureRecognizerStateFailed) {
         return;
     }
