@@ -367,8 +367,9 @@
     }
 }
 
-- (void)favorite
+- (void)saveToLocal
 {
+    [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     if (self.feed.pbDraw) {
         [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
                                                         image:self.image
@@ -393,12 +394,23 @@
     }
 }
 
-//- (void)favorite
-//{
-//    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
-//        //
-//    }];
-//}
+- (void)favorite
+{
+    __block PPViewController* vc = self.superViewController;
+    __block ShareAction* ac = self;
+    [vc showActivityWithText:NSLS(@"kFavoriting")];
+    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
+        [vc hideActivity];
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"KSaveToLocalTitle") message:NSLS(@"kSaveToLocalMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            [ac saveToLocal];
+        } clickCancelBlock:^{
+            //
+        }];
+        [dialog.backButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+        [dialog showInView:vc.view];
+    }];
+}
 
 - (void)setProgress:(CGFloat)progress
 {
@@ -527,7 +539,6 @@
         }
     } else if (buttonIndex == buttonIndexFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
-        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
         [self favorite];
     }else if (buttonIndex == buttonIndexUseAsAvatar) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_MY_AVATAR];

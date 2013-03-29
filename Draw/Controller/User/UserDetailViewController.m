@@ -42,7 +42,7 @@
 @property (retain, nonatomic) UserDetailCell* detailCell;
 @property (retain, nonatomic) NSMutableArray* opusList;
 @property (retain, nonatomic) NSMutableArray* guessedList;
-@property (retain, nonatomic) NSMutableArray* favouriateList;
+@property (retain, nonatomic) NSMutableArray* favoriteList;
 
 @end
 
@@ -55,7 +55,7 @@
     if (self) {
         _opusList = [[NSMutableArray alloc] init];
         _guessedList = [[NSMutableArray alloc] init];
-        _favouriateList = [[NSMutableArray alloc] init];
+        _favoriteList = [[NSMutableArray alloc] init];
         // Custom initialization
     }
     return self;
@@ -244,10 +244,7 @@
 {
     switch (index) {
         case DetailTabActionClickFavouriate: {
-            
-        } break;
-        case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:self.favoriteList limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
         } break;
         case DetailTabActionClickOpus: {
             [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
@@ -309,10 +306,10 @@
     [self hideActivity];
     if (resultCode == 0) {
         switch (type) {
-            case FeedListTypeUserFeed: {
+            case FeedListTypeUserFavorite: {
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.guessedList addObject:((GuessFeed*)feed).drawFeed];
+                        [self.favoriteList addObject:((GuessFeed*)feed).drawFeed];
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
                     }
                 }
