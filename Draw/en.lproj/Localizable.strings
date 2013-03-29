@@ -1151,8 +1151,8 @@
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
 "kFavoriting" = "Favoriting";
-"KSaveToLocalTitle" = "Favorite successfully";
-"kSaveToLocalMsg" = "Favorite successfully!Do you want to save this opus to local?";
+"KSaveToLocalTitle" = "Favor successfully";
+"kSaveToLocalMsg" = "Favor successfully!Do you want to save this opus to local?";
 "kNoSNSTips" = "He/She hasn't bind any SNS account yet.";
 
 "kPrivacy" = "Privacy";
