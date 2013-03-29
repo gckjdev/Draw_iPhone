@@ -19,7 +19,8 @@
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
-    UserTypeOpus = FeedListTypeUserOpus,    
+    UserTypeOpus = FeedListTypeUserOpus,
+    UserTypeFavorite = FeedListTypeUserFavorite,
 }UserFeedType;
 
 @interface UserFeedController () {
@@ -72,7 +73,15 @@ typedef enum{
 
 #pragma mark - View lifecycle
 
-
+- (void)initTabButtons
+{
+    [super initTabButtons];
+    if ([[UserManager defaultManager] isMe:self.userId]) {
+        [[self.view viewWithTag:UserTypeFeed] removeFromSuperview];
+    }else{
+        [[self.view viewWithTag:UserTypeFavorite] removeFromSuperview];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -101,9 +110,11 @@ typedef enum{
     
     switch (self.currentTab.tabID) {
         case UserTypeOpus:
+        case UserTypeFavorite:
             return [RankView heightForRankViewType:RankViewTypeNormal]+1;
         case UserTypeFeed:
             return [FeedCell getCellHeight];
+
         default:
             return 0;
     }
@@ -166,7 +177,7 @@ typedef enum{
         [cell setCellInfo:feed];
         return cell;
         
-    }else if(tab.tabID == UserTypeOpus){
+    }else if(tab.tabID == UserTypeOpus || tab.tabID == UserTypeFavorite){
         
         NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
         UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -200,11 +211,11 @@ typedef enum{
 
 - (void)updateSeparator:(NSInteger)dataCount
 {
-    if (self.currentTab.tabID == UserTypeOpus) {
+    if (self.currentTab.tabID == UserTypeOpus || self.currentTab.tabID == UserTypeFavorite) {
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }else{
         if (dataCount == 0) {
-            [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];            
+            [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         }else{
             [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];            
         }
@@ -220,6 +231,7 @@ typedef enum{
         case UserTypeFeed:
             return count;
         case UserTypeOpus:
+        case UserTypeFavorite:
             if (count %3 == 0) {
                 return count/3;
             }else{
@@ -333,25 +345,42 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {UserTypeOpus,UserTypeFeed};
-    return tabId[index];
+    if ([[UserManager defaultManager] isMe:self.userId]) {
+        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite};
+        return tabId[index];
+    }else{
+        NSInteger tabId[] = {UserTypeOpus, UserTypeFeed};
+        return tabId[index];
+    }
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    
-    NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
-    NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];    
-    NSString *tabDesc[] = {noOpus,noFeed};
-    
-    return tabDesc[index];
+    if ([[UserManager defaultManager] isMe:self.userId]) {
+        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),self.nickName];
+        NSString *tabDesc[] = {noOpus,noFeed};
+        
+        return tabDesc[index];
+    }else{
+        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
+        NSString *tabDesc[] = {noOpus,noFeed};
+        
+        return tabDesc[index];
+    }
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserFeed")};
-    return tabTitle[index];
-    
+    if ([[UserManager defaultManager] isMe:self.userId]) {
+        NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite")};
+        return tabTitle[index];
+    }else{
+        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserFeed")};
+        return tabTitle[index];
+
+    }
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
@@ -370,11 +399,15 @@ typedef enum{
             case UserTypeOpus:
             {
                 [feedService getUserOpusList:_userId offset:offset limit:limit type:FeedListTypeUserOpus delegate:self];
+                break;
+            }
+            case UserTypeFavorite:
+            {
+                [feedService getUserFavoriteOpusList:_userId offset:offset limit:limit delegate:self];
             }
             default:
                 break;
         }
-        
     }
 }
 
