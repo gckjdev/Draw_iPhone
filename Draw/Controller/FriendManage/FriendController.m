@@ -81,7 +81,7 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _defaultTabIndex = 0;
+//        _defaultTabIndex = 0;
     }
     return self;
 }
@@ -123,6 +123,10 @@ typedef enum{
     return self;
 }
 
+- (void)setDefaultTabIndex:(FriendTabIndexType)tabIndex
+{
+    _defaultTabIndex = tabIndex;
+}
 
 - (void)initTabButton
 {

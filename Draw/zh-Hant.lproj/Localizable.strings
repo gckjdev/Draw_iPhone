@@ -1120,6 +1120,7 @@
 "kFavoriting" = "收藏中...";
 "KSaveToLocalTitle" = "本地保存";
 "KSaveToLocalMsg" = "你想把作品保存到本地(可以在“作品分享”裡面看到)嗎？";
+"kNoSNSTips" = "該玩家未綁定任何社交帳號";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1421,7 +1422,7 @@
 "kPrice:" = "價格:";
 "kDesc:" = "描述:";
 "kDiscountIs" = "%d%%折扣";
-"kNoDiscount" = "無折扣";
+"kNoDiscount" = "無";
 
 "kMyBalance" = "我的餘額:";
 "kSaveMoney" = "節省";

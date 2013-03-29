@@ -5457,10 +5457,6 @@
 		CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
 		CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
 		CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */; };
-		CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
-		CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */; };
 		CAB5C70116994F0200A4CE3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CAB5C70216994F0200A4CE3B /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CAB5C70316994F0200A4CE3B /* CommonService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CC41509A56100F60C03 /* CommonService.m */; };
@@ -10413,8 +10409,6 @@
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
 		CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
 		CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
-		CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcGestureRecognizer.h; sourceTree = "<group>"; };
-		CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcGestureRecognizer.m; sourceTree = "<group>"; };
 		CAB5CC9916994F0200A4CE3B /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
@@ -17257,8 +17251,6 @@
 		CAB5325C16F0232B008FD307 /* GestureRecognizer */ = {
 			isa = PBXGroup;
 			children = (
-				CAB5326316F02349008FD307 /* ArcGestureRecognizer.h */,
-				CAB5326416F02349008FD307 /* ArcGestureRecognizer.m */,
 				CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */,
 				CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */,
 			);
@@ -23740,7 +23732,6 @@
 				C29D1A4716EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44F16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326116F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326716F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD2F16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47916F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61716F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -24534,7 +24525,6 @@
 				C29D1A4816EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C45016EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326216F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326816F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD3016F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47A16F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61816F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -25329,7 +25319,6 @@
 				C29D1A4516EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326516F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
 				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
 				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
@@ -26132,7 +26121,6 @@
 				C29D1A4616EDD62B0095328D /* FreeIngotController.m in Sources */,
 				C203C44E16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5326016F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
-				CAB5326616F02349008FD307 /* ArcGestureRecognizer.m in Sources */,
 				CA21FD2E16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47816F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61616F444C20097CFA1 /* CommonAdWallService.m in Sources */,

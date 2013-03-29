@@ -128,13 +128,17 @@
 - (void)didClickFanCountButton
 {
     if (![self.detail canFollow]) {
-        [self.navigationController pushViewController:[[[FriendController alloc] init] autorelease] animated:YES];
+        FriendController* vc = [[[FriendController alloc] init] autorelease];
+        [vc setDefaultTabIndex:FriendTabIndexFan];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (void)didClickFollowCountButton
 {
     if (![self.detail canFollow]) {
-        [self.navigationController pushViewController:[[[FriendController alloc] init] autorelease] animated:YES];
+        FriendController* vc = [[[FriendController alloc] init] autorelease];
+        [vc setDefaultTabIndex:FriendTabIndexFollow];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (void)didClickFollowButton
@@ -243,12 +247,16 @@
 - (void)didClickTabAtIndex:(int)index
 {
     switch (index) {
-        case DetailTabActionClickFavouriate: {
-            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:self.favoriteList limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-        } break;
-        case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
-        } break;
+        case DetailTabActionClickFavouriate:
+        {
+            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+        }
+            break;
+        case DetailTabActionClickOpus:
+        {
+            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+        }
+            break;
         default:
             break;
     }
@@ -308,12 +316,12 @@
         switch (type) {
             case FeedListTypeUserFavorite: {
                 for (Feed* feed in feedList) {
-                    if ([feed isKindOfClass:[GuessFeed class]]) {
-                        [self.favoriteList addObject:((GuessFeed*)feed).drawFeed];
-                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((GuessFeed*)feed).drawFeed.wordText);
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        [self.favoriteList addObject:feed];
+                        PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                [[self detailCell] setDrawFeedList:self.guessedList];
+                [[self detailCell] setDrawFeedList:self.favoriteList];
             } break;
             case FeedListTypeUserOpus: {
                 for (Feed* feed in feedList) {

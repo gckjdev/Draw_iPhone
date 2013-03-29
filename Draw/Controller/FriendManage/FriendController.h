@@ -25,6 +25,10 @@
       didSelectFriend:(MyFriend *)aFriend;
 @end
 
+typedef enum{
+    FriendTabIndexFollow = 0,
+    FriendTabIndexFan = 1
+} FriendTabIndexType;
 
 typedef enum{
     ControllerTypeShowFriend = 0,
@@ -44,6 +48,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *inviteButton;
 @property (retain, nonatomic) IBOutlet UIButton *newFanNumber;
 
+- (void)setDefaultTabIndex:(FriendTabIndexType)tabIndex;
 
 //invite a set of friends;
 - (id)initWithInviteText:(NSString *)inviteText //a invite text send to friends via sms        

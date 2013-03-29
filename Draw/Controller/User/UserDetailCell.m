@@ -48,14 +48,16 @@
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
     PBGameUser* pbUser = [detail getUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d",[LevelService defaultService].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];
-    [self.locationLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kLocation"), pbUser.location]];
+    [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
     NSDate* date = dateFromStringByFormat(pbUser.birthday, @"yyyyMMdd");
-    [self.birthLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBirthday"), dateToString(date)]];
-    [self.zodiacLabel setText:[NSString stringWithFormat:@"%@:%d", NSLS(@"kZodiac"), pbUser.zodiac]];
-    [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kBloodGroup"), pbUser.bloodGroup]];
+    [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?dateToString(date):@"-")]];
+    NSString* zodiacStr = [pbUser hasZodiac]?[LocaleUtils getZodiacWithIndex:pbUser.zodiac-1]:@"-";
+    zodiacStr = (zodiacStr != nil)?zodiacStr:@"-";
+    [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),zodiacStr]];
+    [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), ([pbUser hasBloodGroup]?pbUser.bloodGroup:@"-")]];
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
     [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
 
@@ -88,6 +90,8 @@
     [self adjustView:self.levelLabel toLabel:self.signLabel];
     
     [self.segmentedControl setHidden:![detail hasFeedTab]];
+    
+    [self.noSNSTipsLabel setHidden:!(self.sinaBtn.hidden && self.qqBtn.hidden && self.facebookBtn.hidden)];
 
 }
 
@@ -117,7 +121,7 @@
     return @"UserDetailCell";
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 442))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 452))
 
 #define TAB_FONT    (ISIPAD?24:12)
 
@@ -185,6 +189,7 @@
     [_superBlackBtn release];
     [_feedTabHolder release];
     [_segmentedControl release];
+    [_noSNSTipsLabel release];
     [super dealloc];
 }
 
