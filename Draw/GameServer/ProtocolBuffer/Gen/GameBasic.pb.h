@@ -6,6 +6,8 @@
 @class PBApp_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
+@class PBDrawBg;
+@class PBDrawBg_Builder;
 @class PBGameItem;
 @class PBGameItemList;
 @class PBGameItemList_Builder;
@@ -936,6 +938,81 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (PBGameSessionChanged_Builder*) clearUsersUpdatedList;
 @end
 
+@interface PBDrawBg : PBGeneratedMessage {
+@private
+  BOOL hasShowStyle_:1;
+  BOOL hasBgId_:1;
+  BOOL hasLocalUrl_:1;
+  BOOL hasRemoteUrl_:1;
+  int32_t showStyle;
+  NSString* bgId;
+  NSString* localUrl;
+  NSString* remoteUrl;
+}
+- (BOOL) hasBgId;
+- (BOOL) hasLocalUrl;
+- (BOOL) hasRemoteUrl;
+- (BOOL) hasShowStyle;
+@property (readonly, retain) NSString* bgId;
+@property (readonly, retain) NSString* localUrl;
+@property (readonly, retain) NSString* remoteUrl;
+@property (readonly) int32_t showStyle;
+
++ (PBDrawBg*) defaultInstance;
+- (PBDrawBg*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDrawBg_Builder*) builder;
++ (PBDrawBg_Builder*) builder;
++ (PBDrawBg_Builder*) builderWithPrototype:(PBDrawBg*) prototype;
+
++ (PBDrawBg*) parseFromData:(NSData*) data;
++ (PBDrawBg*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBg*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawBg*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBg*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawBg*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDrawBg_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDrawBg* result;
+}
+
+- (PBDrawBg*) defaultInstance;
+
+- (PBDrawBg_Builder*) clear;
+- (PBDrawBg_Builder*) clone;
+
+- (PBDrawBg*) build;
+- (PBDrawBg*) buildPartial;
+
+- (PBDrawBg_Builder*) mergeFrom:(PBDrawBg*) other;
+- (PBDrawBg_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBg_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasBgId;
+- (NSString*) bgId;
+- (PBDrawBg_Builder*) setBgId:(NSString*) value;
+- (PBDrawBg_Builder*) clearBgId;
+
+- (BOOL) hasLocalUrl;
+- (NSString*) localUrl;
+- (PBDrawBg_Builder*) setLocalUrl:(NSString*) value;
+- (PBDrawBg_Builder*) clearLocalUrl;
+
+- (BOOL) hasRemoteUrl;
+- (NSString*) remoteUrl;
+- (PBDrawBg_Builder*) setRemoteUrl:(NSString*) value;
+- (PBDrawBg_Builder*) clearRemoteUrl;
+
+- (BOOL) hasShowStyle;
+- (int32_t) showStyle;
+- (PBDrawBg_Builder*) setShowStyle:(int32_t) value;
+- (PBDrawBg_Builder*) clearShowStyle;
+@end
+
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
@@ -944,12 +1021,14 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
   BOOL hasBetterColor_:1;
+  BOOL hasDrawBg_:1;
   Float32 width;
   int32_t type;
   int32_t color;
   int32_t penType;
   int32_t shapeType;
   int32_t betterColor;
+  PBDrawBg* drawBg;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointsXList;
   NSMutableArray* mutablePointsYList;
@@ -962,12 +1041,14 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (BOOL) hasPenType;
 - (BOOL) hasShapeType;
 - (BOOL) hasBetterColor;
+- (BOOL) hasDrawBg;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
 @property (readonly) int32_t shapeType;
 @property (readonly) int32_t betterColor;
+@property (readonly, retain) PBDrawBg* drawBg;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -1068,6 +1149,13 @@ BOOL PBGameTimeUnitIsValidValue(PBGameTimeUnit value);
 - (int32_t) betterColor;
 - (PBDrawAction_Builder*) setBetterColor:(int32_t) value;
 - (PBDrawAction_Builder*) clearBetterColor;
+
+- (BOOL) hasDrawBg;
+- (PBDrawBg*) drawBg;
+- (PBDrawAction_Builder*) setDrawBg:(PBDrawBg*) value;
+- (PBDrawAction_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue;
+- (PBDrawAction_Builder*) mergeDrawBg:(PBDrawBg*) value;
+- (PBDrawAction_Builder*) clearDrawBg;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

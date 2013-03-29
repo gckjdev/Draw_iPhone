@@ -23,6 +23,7 @@
                   target:(id)target
            commitSeletor:(SEL)commitSeletor
            cancelSeletor:(SEL)cancelSeletor;
+
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content
                   target:(id)target
