@@ -102,6 +102,11 @@
     return YES;
 }
 
+- (BOOL)isPrivacyVisable
+{
+    return YES;
+}
+
 - (RelationType)relation
 {
     return RelationTypeSelf;

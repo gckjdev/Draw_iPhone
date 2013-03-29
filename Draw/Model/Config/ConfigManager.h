@@ -224,4 +224,9 @@ typedef enum{
 + (BOOL)isEnableTapjoyWall;
 + (BOOL)isEnableYoumiWall;
 + (NSInteger)getDefaultDetailOpusCount;
+
++ (NSString*)getFreeIngotPostId;
++ (NSString*)getBugReportPostId;
++ (NSString*)getFeedbackPostId;
+
 @end
