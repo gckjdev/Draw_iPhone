@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<int key="IBDocument.SystemTarget">1536</int>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
+			<string key="NS.object.0">1926</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -253,7 +253,7 @@
 					<object class="IBUIImageView" id="536620801">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{63, 41}, {16, 15}}</string>
+						<string key="NSFrame">{{63, 40.5}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="893143396"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -261,7 +261,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">common_home_coin@2x.png</string>
+							<string key="NSResourceName">coin@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="218733648">
@@ -513,15 +513,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_home_badge@2x.png">{16, 16}</string>
-			<string key="common_home_coin@2x.png">{16, 16}</string>
-			<string key="man1@2x.png">{16, 16}</string>
-			<string key="zjh_home_charge_bg@2x.png">{16, 16}</string>
-			<string key="zjh_home_freecoin_bg@2x.png">{16, 16}</string>
-			<string key="zjh_home_header_bg@2x.png">{16, 16}</string>
-			<string key="zjh_home_header_foot@2x.png">{16, 16}</string>
-			<string key="zjh_home_header_man@2x.png">{16, 16}</string>
+			<string key="coin@2x.png">{64, 64}</string>
+			<string key="common_home_badge@2x.png">{36, 38}</string>
+			<string key="man1@2x.png">{128, 125}</string>
+			<string key="zjh_home_charge_bg@2x.png">{95, 43}</string>
+			<string key="zjh_home_freecoin_bg@2x.png">{95, 43}</string>
+			<string key="zjh_home_header_bg@2x.png">{640, 342}</string>
+			<string key="zjh_home_header_foot@2x.png">{640, 119}</string>
+			<string key="zjh_home_header_man@2x.png">{401, 407}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
+		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>
 </archive>
