@@ -57,9 +57,15 @@
 #pragma mark-- Color Shop Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
+    TouchActionType type = self.toolHandler.drawView.touchActionType;
     [self becomeActive];    
     [self.toolHandler changePenColor:colorView.drawColor];
     [self.toolPanel updateRecentColorViewWithColor:colorView.drawColor updateModel:YES];
+    if (type == TouchActionTypeShape) {
+        [self.toolHandler enterStrawMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
 }
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId

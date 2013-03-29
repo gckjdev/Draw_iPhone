@@ -22,5 +22,7 @@
 //       snsWeiboId:(NSString*)weiboId
 //            title:(NSString*)title
 //          message:(NSString*)message;
-
++ (void)askRebindQQ:(UIViewController*)viewController;
++ (void)askRebindSina:(UIViewController*)viewController;
++ (void)askRebindFacebook:(UIViewController*)viewController;
 @end

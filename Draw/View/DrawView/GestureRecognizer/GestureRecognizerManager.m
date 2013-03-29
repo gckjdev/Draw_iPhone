@@ -35,6 +35,11 @@
 
 #define ROUND_BG_COLOR [UIColor colorWithRed:82/255. green:81/255. blue:79/255. alpha:45/255.]
 #define ROUND_FG_COLOR [UIColor colorWithRed:12/255. green:9/255. blue:9/255. alpha:55/255.]
+#define VALUE(X) (ISIPAD ? 2 * X : X)
+
+#define ROUND_BORDER_WIDTH VALUE(5)
+#define ROUND_VIEW_WIDTH VALUE(200)
+#define ROUND_FONT_SIZE VALUE(16)
 
 @implementation GestureRecognizerManager
 
@@ -44,14 +49,13 @@
     if (self) {
         self.capture = YES;
         grSet = [[NSMutableSet alloc] initWithCapacity:5];
-        if (ISIPAD) {
-            roundPercentView = [[RoundPercentageView alloc] initWithFrame:CGRectMake(0, 0, 400, 400)];
-        }else{
-            roundPercentView = [[RoundPercentageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-        }
-        
+        roundPercentView = [[RoundPercentageView alloc] initWithFrame:CGRectMake(0, 0, ROUND_VIEW_WIDTH, ROUND_VIEW_WIDTH)];
         [roundPercentView setBackgroundTintColor:ROUND_BG_COLOR];
         [roundPercentView setProgressTintColor:ROUND_BG_COLOR];
+        [roundPercentView setProgressColor:ROUND_FG_COLOR];
+        [roundPercentView setLineWidth:ROUND_BORDER_WIDTH];
+        [roundPercentView setTextColor:[UIColor whiteColor]];
+        [roundPercentView setTextFont:[UIFont boldSystemFontOfSize:ROUND_FONT_SIZE]];
     }
     return self;
 }

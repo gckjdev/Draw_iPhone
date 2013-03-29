@@ -962,7 +962,7 @@
 "kEmail" = "E-mail";
 "kWeChatTimeline" = "WeChat";
 "kWeChatFriends" = "WeChat Friends";
-"kFavorite" = "Save";
+"kFavorite" = "Favorite";
 "kAlbum" = "Album";
 "kSinaWeibo" = "Sina";
 "kTencentWeibo" = "Tencent";
@@ -1148,6 +1148,7 @@
 
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

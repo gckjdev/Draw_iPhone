@@ -13,11 +13,15 @@
 #import "ContestController.h"
 #import "StringUtil.h"
 #import "FreeCoinsControllerViewController.h"
+#import "StoreController.h"
+#import "FreeIngotController.h"
 
 #define FUNC_FEED    @"feed"
 #define FUNC_CONTEST    @"contest"
 #define FUNC_TOP    @"top"
 #define FUNC_FREE_COINS  @"free_coins"
+#define FUNC_FREE_INGOT  @"free_ingot"
+#define FUNC_SHOP          @"shop"
 
 @implementation DrawGameJumpHandler
 
@@ -41,6 +45,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
         jumpController = [[[HotController alloc] init] autorelease];
     }else if ([func isEqualToString:FUNC_FREE_COINS ignoreCapital:YES]){
         jumpController = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+    }else if ([func isEqualToString:FUNC_FREE_INGOT ignoreCapital:YES]) {
+        jumpController = [[[FreeIngotController alloc] init] autorelease];
+    } else if ([func isEqualToString:FUNC_SHOP ignoreCapital:YES]){
+        jumpController = [[[StoreController alloc] init] autorelease];
     }else{
         PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@", gameId, func);
     }
