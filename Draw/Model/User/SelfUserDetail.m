@@ -97,6 +97,11 @@
     return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]];
 }
 
+- (BOOL)hasFeedTab
+{
+    return YES;
+}
+
 - (RelationType)relation
 {
     return RelationTypeSelf;

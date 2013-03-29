@@ -68,6 +68,11 @@
     return YES;
 }
 
+- (BOOL)hasFeedTab
+{
+    return NO;
+}
+
 - (id)initWithUserId:(NSString*)userId
               avatar:(NSString*)avatar
             nickName:(NSString*)nickName
