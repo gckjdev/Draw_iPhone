@@ -1465,6 +1465,9 @@
 "kStore" = "商店";
 "kBalance" = "餘額:";
 
+"kNoSupportViewFollow" = "暫不支持查看其他用戶的粉絲";
+"kNoSupportViewFan" = "暫不支持查看其他用戶的關注";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";
