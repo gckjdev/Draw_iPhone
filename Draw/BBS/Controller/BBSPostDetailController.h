@@ -25,4 +25,10 @@
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated;
 
+
++ (BBSPostDetailController *)enterPostDetailControllerWithPostID:(NSString *)postID
+                                                fromController:(UIViewController *)fromController
+                                                      animated:(BOOL)animated;
+
+
 @end

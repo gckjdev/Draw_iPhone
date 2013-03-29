@@ -66,6 +66,7 @@
         if ([self isKindOfClass:[DrawView class]]) {
             UIGestureRecognizer *arc = [_gestureRecognizerManager addArcGestureRecognizerToView:self];
             [pan requireGestureRecognizerToFail:arc];
+            [pinch requireGestureRecognizerToFail:arc];
             [arc requireGestureRecognizerToFail:doubleTap];
         }
 

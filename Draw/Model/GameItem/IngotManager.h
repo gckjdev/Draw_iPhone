@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#define SALE_INGOT_FILE_WITHOUT_SUFFIX  @"sale_ingot"
-#define SALE_INGOT_FILE_TYPE @"pb"
-#define SALE_INGOT_FILE @"sale_ingot.pb"
-#define SALE_INGOT_FILE_BUNDLE_PATH @"sale_ingot.pb"
-#define SALE_INGOT_FILE_VERSION @"1.0"
+
 
 @interface IngotManager : NSObject
 
 @property (retain, nonatomic) NSArray *ingotList;
 
 + (IngotManager *)defaultManager;
++ (NSString *)saleIngotFileName;
++ (NSString *)saleIngotFileBundlePath;
++ (NSString *)saleIngotFileVersion;
 
 - (PBSaleIngot *)ingotWithProductId:(NSString *)productId;
+
 
 @end

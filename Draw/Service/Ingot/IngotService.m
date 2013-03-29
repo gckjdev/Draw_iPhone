@@ -42,7 +42,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 {
     GetIngotsListResultHandler tempHandler = (GetIngotsListResultHandler)[_blockArray copyBlock:handler];
 
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:SALE_INGOT_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:SALE_INGOT_FILE_BUNDLE_PATH initDataVersion:SALE_INGOT_FILE_VERSION];
+    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:[IngotManager saleIngotFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[IngotManager saleIngotFileBundlePath] initDataVersion:[IngotManager saleIngotFileVersion]];
     
     __block typeof(self) bself = self;
 

@@ -9,7 +9,9 @@
 #import "IngotManager.h"
 #import "SynthesizeSingleton.h"
 
-
+#define SALE_INGOT_FILE_WITHOUT_SUFFIX  @"sale_ingot"
+#define SALE_INGOT_FILE_TYPE @"pb"
+#define SALE_INGOT_FILE_VERSION @"1.0"
 
 @interface IngotManager()
 
@@ -44,6 +46,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotManager);
     }
     
     return nil;
+}
+
++ (NSString *)saleIngotFileName
+{
+    return [[[[SALE_INGOT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]] stringByAppendingString:@"."] stringByAppendingString:[self saleIngotFileType]];
+}
+
++ (NSString *)saleIngotFileBundlePath
+{
+    return [self saleIngotFileName];
+}
+
++ (NSString *)saleIngotFileType
+{
+    return SALE_INGOT_FILE_TYPE;
+}
+
++ (NSString *)saleIngotFileVersion
+{
+    return SALE_INGOT_FILE_VERSION;
 }
 
 @end
