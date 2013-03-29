@@ -244,13 +244,16 @@
 {
     switch (index) {
         case DetailTabActionClickFavouriate: {
+            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
             
         } break;
         case DetailTabActionClickGuessed: {
-            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+//            [[FeedService defaultService] getUserFeedList:[self.detail getUserId] offset:self.guessedList.count limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+            
+            [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
         } break;
         case DetailTabActionClickOpus: {
-            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:self.opusList.count limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+            [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
         } break;
         default:
             break;

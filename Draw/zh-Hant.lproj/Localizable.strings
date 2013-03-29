@@ -1417,7 +1417,7 @@
 "kPrice:" = "價格:";
 "kDesc:" = "描述:";
 "kDiscountIs" = "%d%%折扣";
-"kNoDiscount" = "無折扣";
+"kNoDiscount" = "無";
 
 "kMyBalance" = "我的餘額:";
 "kSaveMoney" = "節省";
