@@ -107,6 +107,8 @@
 - (void)changeDesc:(NSString *)desc
 {
     PPDebug(@"<ChangeDesc> desc = %@", desc);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.drawView theViewController];
+    oc.opusDesc = desc;
 }
 - (void)changeDrawToFriend:(MyFriend *)aFriend
 {

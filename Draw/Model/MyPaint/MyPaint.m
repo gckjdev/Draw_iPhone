@@ -35,6 +35,7 @@
 @synthesize drawDataVersion = _drawDataVersion;
 @synthesize drawBg = _drawBg;
 @synthesize canvasSize = _canvasSize;
+@synthesize opusDesc = _opusDesc;
 
 - (NSString *)imageFilePath
 {
