@@ -159,7 +159,6 @@
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    PPDebug(@"<touchesMoved> touches = %@, count = %d", touches, [touches count]);
     _pointCount ++;
     [super touchesMoved:touches withEvent:event];
     [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:TouchStateMove];
@@ -388,6 +387,7 @@
     PPDebug(@"gestureRecognizer = %@ <didGestureBegan>", [gestureRecognizer class]);
     if (![gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         [self.touchHandler handleFailTouch];
+        self.touchHandler = nil;
     }
 }
 
@@ -397,6 +397,7 @@
     PPDebug(@"<didGestureEnd>");
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
         [self.touchHandler handleFailTouch];
+        self.touchHandler = nil;        
     }
 }
 @end
