@@ -680,6 +680,7 @@
 "kUserFeedTitle" = "%@的動態";
 "kUserFeed" = "動態";
 "kUserOpus" = "作品";
+"kUserFavorite" = "收藏";
 
 // For Weibo Settings
 "kSetEmail" = "電子郵件";
@@ -876,6 +877,7 @@
 
 "kUserNoFeed" = "%@ 還沒有動態。";
 "kUserNoOpus" = "%@ 還沒有作品。";
+"kUserNoFavorite" = "%@ 還沒有收藏";
 
 "kOpusOperation" = "請選擇你需要的操作";
 
@@ -1116,8 +1118,14 @@
 "kUndoing" = "撤銷中...";
 "kRedoing" = "重做中...";
 "kFavoriting" = "收藏中...";
-"KSaveToLocalTitle" = "本地保存";
-"KSaveToLocalMsg" = "你想把作品保存到本地(可以在“作品分享”裡面看到)嗎？";
+"KSaveToLocalTitle" = "收藏成功";
+"kSaveToLocalMsg" = "收藏成功！你想把作品保存到本地(可以在“作品分享”裡面看到)嗎？";
+"kNoSNSTips" = "該玩家未綁定任何社交帳號";
+
+"kPrivacy" = "隱私";
+"kPrivacyToFriend" = "對關注可見";
+"kPrivacyToNone" = "無人可見";
+"kPrivacyToAll" = "所有人可見";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

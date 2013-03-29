@@ -15,6 +15,7 @@
 
 @class PBGameUser;
 @class CommonRoundAvatarView;
+@class LocalizableLabel;
 
 @protocol UserDetailCellDelegate <NSObject>
 
@@ -65,6 +66,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *facebookBtn;
 @property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *noSNSTipsLabel;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList;
