@@ -116,9 +116,19 @@ message PBGameSessionChanged {
   repeated PBGameUser usersUpdated = 7;
 }
 
+message PBDrawBg
+{
+    required string bgId = 1;
+    optional string localUrl  = 2;
+    optional string remoteUrl  = 3;
+    optional int32 showStyle = 4 [default=0]; // 0 for show in center, 1 for show in pattern
+}
+
+
 // internal usage, to store draw data
 message PBDrawAction {
-  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape
+  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape 3: change bg with color, 
+                                                //4 : change bg with draw bg
 
   //deprecated attribute
   repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
@@ -140,6 +150,9 @@ message PBDrawAction {
   
   // for new compressed algorithm color
   optional int32 betterColor = 13;
+
+  optional PBDrawBg drawBg = 14; //
+
 }
 
 message PBMessage {

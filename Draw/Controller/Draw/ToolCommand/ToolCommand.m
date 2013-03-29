@@ -9,6 +9,7 @@
 #import "ToolCommand.h"
 #import "UserGameItemManager.h"
 #import "BuyItemView.h"
+#import "DrawSlider.h"
 
 @implementation ToolCommand
 

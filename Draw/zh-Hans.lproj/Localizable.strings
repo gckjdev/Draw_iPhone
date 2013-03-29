@@ -1134,9 +1134,15 @@
 "kUndoing" = "撤销中...";
 "kRedoing" = "重做中...";
 "kFavoriting" = "收藏中...";
-"KSaveToLocalTitle" = "本地保存";
-"KSaveToLocalMsg" = "你想把作品保存到本地(可以在“作品分享”里面看到)吗？";
+"KSaveToLocalTitle" = "收藏成功";
+"kSaveToLocalMsg" = "收藏成功！你想把作品保存到本地(可以在“作品分享”里面看到)吗？";
 "kNoSNSTips" = "该玩家未绑定任何社交帐号";
+
+"kPrivacy" = "隐私";
+"kPrivacyToFriend" = "对关注可见";
+"kPrivacyToNone" = "无人可见";
+"kPrivacyToAll" = "所有人可见";
+"kInvisable" = "(不可见)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

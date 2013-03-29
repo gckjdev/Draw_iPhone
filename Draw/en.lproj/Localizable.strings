@@ -1152,9 +1152,15 @@
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
 "kFavoriting" = "Favoriting";
-"KSaveToLocalTitle" = "Save To Local";
-"kSaveToLocalMsg" = "Do you want to save this opus to local?";
+"KSaveToLocalTitle" = "Favor successfully";
+"kSaveToLocalMsg" = "Favor successfully!Do you want to save this opus to local?";
 "kNoSNSTips" = "He/She hasn't bind any SNS account yet.";
+
+"kPrivacy" = "Privacy";
+"kPrivacyToFriend" = "Public To Follow";
+"kPrivacyToNone" = "Public To No One";
+"kPrivacyToAll" = "Public To All";
+"kInvisable" = "(Invisable)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

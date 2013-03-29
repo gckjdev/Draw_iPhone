@@ -73,6 +73,19 @@
     return NO;
 }
 
+- (BOOL)isPrivacyVisable
+{
+    PBGameUser* user = [self getUser];
+    if (user.openInfoType == PBOpenInfoTypeOpenAll) {
+        return YES;
+    } else if (user.openInfoType == PBOpenInfoTypeOpenNo) {
+        return NO;
+    } else {
+        return [MyFriend hasFollow:self.relation]&&[MyFriend isMyFan:self.relation];
+    }
+    
+}
+
 - (id)initWithUserId:(NSString*)userId
               avatar:(NSString*)avatar
             nickName:(NSString*)nickName

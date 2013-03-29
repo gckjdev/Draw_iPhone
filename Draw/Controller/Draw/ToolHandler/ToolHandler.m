@@ -104,11 +104,11 @@
 }
 - (void)changeDesc:(NSString *)desc
 {
-    
+    PPDebug(@"<ChangeDesc> desc = %@", desc);
 }
 - (void)changeDrawToFriend:(MyFriend *)aFriend
 {
-    
+    PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
 }
 
 - (void)enterDrawMode
