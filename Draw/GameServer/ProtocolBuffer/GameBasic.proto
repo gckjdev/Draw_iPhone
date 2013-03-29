@@ -84,7 +84,8 @@ message PBGameUser {
   optional int32  followCount = 83;                   // 关注数目
 
   optional PBOpenInfoType openInfoType = 91[default=OPEN_TO_FRIEND];        // 信息公开类型
-
+  optional int32  opusCoverflowType = 92;           // 用户作品的cover flow展示设置
+  
   optional string signature = 100;
   
   

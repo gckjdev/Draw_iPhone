@@ -1039,6 +1039,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t fanCount;
 @property int32_t followCount;
 @property PBOpenInfoType openInfoType;
+@property int32_t opusCoverflowType;
 @property (retain) NSString* signature;
 @end
 
@@ -1286,6 +1287,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasOpenInfoType_ = !!value;
 }
 @synthesize openInfoType;
+- (BOOL) hasOpusCoverflowType {
+  return !!hasOpusCoverflowType_;
+}
+- (void) setHasOpusCoverflowType:(BOOL) value {
+  hasOpusCoverflowType_ = !!value;
+}
+@synthesize opusCoverflowType;
 - (BOOL) hasSignature {
   return !!hasSignature_;
 }
@@ -1351,6 +1359,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.fanCount = 0;
     self.followCount = 0;
     self.openInfoType = PBOpenInfoTypeOpenToFriend;
+    self.opusCoverflowType = 0;
     self.signature = @"";
   }
   return self;
@@ -1518,6 +1527,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasOpenInfoType) {
     [output writeEnum:91 value:self.openInfoType];
   }
+  if (self.hasOpusCoverflowType) {
+    [output writeInt32:92 value:self.opusCoverflowType];
+  }
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
   }
@@ -1634,6 +1646,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasOpenInfoType) {
     size += computeEnumSize(91, self.openInfoType);
+  }
+  if (self.hasOpusCoverflowType) {
+    size += computeInt32Size(92, self.opusCoverflowType);
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
@@ -1827,6 +1842,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasOpenInfoType) {
     [self setOpenInfoType:other.openInfoType];
   }
+  if (other.hasOpusCoverflowType) {
+    [self setOpusCoverflowType:other.opusCoverflowType];
+  }
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
@@ -2000,6 +2018,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
         } else {
           [unknownFields mergeVarintField:91 value:value];
         }
+        break;
+      }
+      case 736: {
+        [self setOpusCoverflowType:[input readInt32]];
         break;
       }
       case 802: {
@@ -2606,6 +2628,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearOpenInfoType {
   result.hasOpenInfoType = NO;
   result.openInfoType = PBOpenInfoTypeOpenToFriend;
+  return self;
+}
+- (BOOL) hasOpusCoverflowType {
+  return result.hasOpusCoverflowType;
+}
+- (int32_t) opusCoverflowType {
+  return result.opusCoverflowType;
+}
+- (PBGameUser_Builder*) setOpusCoverflowType:(int32_t) value {
+  result.hasOpusCoverflowType = YES;
+  result.opusCoverflowType = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearOpusCoverflowType {
+  result.hasOpusCoverflowType = NO;
+  result.opusCoverflowType = 0;
   return self;
 }
 - (BOOL) hasSignature {
