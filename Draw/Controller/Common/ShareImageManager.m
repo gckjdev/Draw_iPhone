@@ -1083,5 +1083,26 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"user_detail_unfollow_bg.png"];
 }
 
+- (UIImage*)userDetailChatToBtnBg
+{
+    return [UIImage imageNamed:@"user_detail_message_bg.png"];
+}
+- (UIImage*)userDetailDrawToBtnBg
+{
+    return [UIImage imageNamed:@"user_detail_unfollow_bg.png"];
+}
+- (UIImage*)selfDetailBalanceBtnBg
+{
+    return [UIImage imageNamed:@"self_detail_banalce_bg.png"];
+}
+- (UIImage*)selfDetailIngotBtnBg
+{
+    return [UIImage imageNamed:@"self_detail_ingot_bg.png"];
+}
+- (UIImage*)selfDetailExpBtnBg
+{
+    return [UIImage imageNamed:@"self_detail_exp_bg.png"];
+}
+
 @end
 

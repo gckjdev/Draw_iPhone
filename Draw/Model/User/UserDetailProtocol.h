@@ -11,6 +11,7 @@
 #import "MyFriend.h"
 
 @class PPTableViewController;
+@class PPViewController;
 
 
 @protocol UserDetailProtocol <NSObject>
@@ -27,8 +28,6 @@
 - (BOOL)isSuperManageBtnVisable;
 - (BOOL)hasFeedTab;
 
-- (BOOL)isSNSBtnVisable:(int)snsType;
-
 - (BOOL)isPrivacyVisable;
 
 - (PBGameUser*)getUser;
@@ -40,6 +39,12 @@
          viewController:(PPTableViewController*)viewController;
 
 - (NSString*)blackUserBtnTitle;
+
+- (void)initSNSButton:(UIButton*)button
+             withType:(int)snsType;
+
+- (void)initUserActionButtonAtIndex:(int)index;
+- (void)clickUserActionButtonAtIndex:(int)index viewController:(PPViewController*)viewController;
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 
