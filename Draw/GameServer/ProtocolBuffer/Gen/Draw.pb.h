@@ -103,16 +103,11 @@
   BOOL hasCreateDate_:1;
   BOOL hasVersion_:1;
   BOOL hasScore_:1;
-  BOOL hasContestId_:1;
-  BOOL hasOpusDesc_:1;
-  BOOL hasTargetAvatar_:1;
-  BOOL hasTargetNickName_:1;
-  BOOL hasTargetUid_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasNickName_:1;
-  BOOL hasWord_:1;
   BOOL hasUserId_:1;
+  BOOL hasWord_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasOpusId_:1;
   BOOL hasDrawBg_:1;
   BOOL hasCanvasSize_:1;
   BOOL gender_:1;
@@ -122,16 +117,11 @@
   int32_t createDate;
   int32_t version;
   int32_t score;
-  NSString* contestId;
-  NSString* opusDesc;
-  NSString* targetAvatar;
-  NSString* targetNickName;
-  NSString* targetUid;
-  NSString* opusId;
-  NSString* avatar;
-  NSString* nickName;
-  NSString* word;
   NSString* userId;
+  NSString* word;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* opusId;
   PBDrawBg* drawBg;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
@@ -150,11 +140,6 @@
 - (BOOL) hasIsCompressed;
 - (BOOL) hasDrawBg;
 - (BOOL) hasCanvasSize;
-- (BOOL) hasTargetUid;
-- (BOOL) hasTargetNickName;
-- (BOOL) hasTargetAvatar;
-- (BOOL) hasOpusDesc;
-- (BOOL) hasContestId;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
@@ -169,11 +154,6 @@
 - (BOOL) isCompressed;
 @property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* canvasSize;
-@property (readonly, retain) NSString* targetUid;
-@property (readonly, retain) NSString* targetNickName;
-@property (readonly, retain) NSString* targetAvatar;
-@property (readonly, retain) NSString* opusDesc;
-@property (readonly, retain) NSString* contestId;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -291,31 +271,6 @@
 - (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
 - (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
 - (PBDraw_Builder*) clearCanvasSize;
-
-- (BOOL) hasTargetUid;
-- (NSString*) targetUid;
-- (PBDraw_Builder*) setTargetUid:(NSString*) value;
-- (PBDraw_Builder*) clearTargetUid;
-
-- (BOOL) hasTargetNickName;
-- (NSString*) targetNickName;
-- (PBDraw_Builder*) setTargetNickName:(NSString*) value;
-- (PBDraw_Builder*) clearTargetNickName;
-
-- (BOOL) hasTargetAvatar;
-- (NSString*) targetAvatar;
-- (PBDraw_Builder*) setTargetAvatar:(NSString*) value;
-- (PBDraw_Builder*) clearTargetAvatar;
-
-- (BOOL) hasOpusDesc;
-- (NSString*) opusDesc;
-- (PBDraw_Builder*) setOpusDesc:(NSString*) value;
-- (PBDraw_Builder*) clearOpusDesc;
-
-- (BOOL) hasContestId;
-- (NSString*) contestId;
-- (PBDraw_Builder*) setContestId:(NSString*) value;
-- (PBDraw_Builder*) clearContestId;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {
@@ -1154,10 +1109,12 @@
 @interface PBNoCompressDrawData : PBGeneratedMessage {
 @private
   BOOL hasVersion_:1;
+  BOOL hasOpusDesc_:1;
   BOOL hasDrawBg_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDrawToUser_:1;
   int32_t version;
+  NSString* opusDesc;
   PBDrawBg* drawBg;
   PBSize* canvasSize;
   PBUserBasicInfo* drawToUser;
@@ -1168,10 +1125,12 @@
 - (BOOL) hasDrawBg;
 - (BOOL) hasCanvasSize;
 - (BOOL) hasDrawToUser;
+- (BOOL) hasOpusDesc;
 @property (readonly) int32_t version;
 @property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* canvasSize;
 @property (readonly, retain) PBUserBasicInfo* drawToUser;
+@property (readonly, retain) NSString* opusDesc;
 - (NSArray*) drawActionListList;
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 - (NSArray*) drawActionList2List;
@@ -1250,6 +1209,11 @@
 - (PBNoCompressDrawData_Builder*) setDrawToUserBuilder:(PBUserBasicInfo_Builder*) builderForValue;
 - (PBNoCompressDrawData_Builder*) mergeDrawToUser:(PBUserBasicInfo*) value;
 - (PBNoCompressDrawData_Builder*) clearDrawToUser;
+
+- (BOOL) hasOpusDesc;
+- (NSString*) opusDesc;
+- (PBNoCompressDrawData_Builder*) setOpusDesc:(NSString*) value;
+- (PBNoCompressDrawData_Builder*) clearOpusDesc;
 @end
 
 @interface PBDrawBgList : PBGeneratedMessage {

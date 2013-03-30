@@ -10,6 +10,7 @@
 #import "UserGameItemManager.h"
 #import "BuyItemView.h"
 #import "DrawSlider.h"
+#import "EditDescCommand.h"
 
 @implementation ToolCommand
 
@@ -260,6 +261,15 @@ ToolCommandManager *_staticToolCommandManager = nil;
             DrawSlider* slider =(DrawSlider *)command.control;
             [slider setValue:1];
             return;
+        }
+    }
+}
+
+- (InputAlertView *)inputAlertView
+{
+    for (ToolCommand *command in commandList) {
+        if ([command isKindOfClass:[EditDescCommand class]]) {
+            return [(EditDescCommand *)command inputAlertView];
         }
     }
 }

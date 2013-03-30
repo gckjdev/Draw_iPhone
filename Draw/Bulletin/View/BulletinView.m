@@ -70,7 +70,7 @@
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BulletinService* service = [BulletinService defaultService];
-    Bulletin* bulletin;
+    Bulletin* bulletin = nil;
     if (indexPath.row < service.bulletins.count) {
         bulletin = [[BulletinService defaultService].bulletins objectAtIndex:([BulletinService defaultService].bulletins.count - indexPath.row - 1)];
         

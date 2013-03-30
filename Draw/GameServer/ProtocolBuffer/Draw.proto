@@ -28,12 +28,6 @@ message PBDraw {
   optional PBDrawBg drawBg = 20;                    // draw background info
   optional PBSize canvasSize = 21;                        // draw rect size
   
-  //for draft
-  optional string targetUid = 30;
-  optional string targetNickName = 31;
-  optional string targetAvatar = 32;
-  optional string opusDesc = 33;
-  optional string contestId = 34;
 }
 
 message PBFeedTimes{
@@ -175,6 +169,7 @@ message PBNoCompressDrawData
 
     repeated PBDrawAction drawActionList2 = 5; //use after version 2.0
     optional PBUserBasicInfo drawToUser = 6;
+    optional string opusDesc = 7;
 }
 
 

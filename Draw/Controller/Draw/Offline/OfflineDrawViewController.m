@@ -137,6 +137,7 @@
 //@synthesize bgColor = _bgColor;
 @synthesize contest = _contest;
 @synthesize startController = _startController;
+@synthesize opusDesc = _opusDesc;
 
 //#define PAPER_VIEW_TAG 20120403 
 
@@ -188,7 +189,6 @@
     PPRelease(_contest);
     PPRelease(draftButton);
     PPRelease(_submitButton);
-    PPRelease(_targetFriend);
     PPRelease(_opusDesc);
     [super dealloc];
 }
@@ -252,6 +252,7 @@
             [self.contest setContestId:draft.contestId];
             [self.contest setCanSubmitCount:1];
         }
+        self.opusDesc = draft.opusDesc;
         
         PPDebug(@"draft word = %@", [self.word description]);
     }
@@ -300,6 +301,7 @@
     if (self.draft) {
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
+        self.opusDesc = self.draft.opusDesc;
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
 
@@ -351,6 +353,22 @@
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:self.drawToolPanel];
     [self.drawToolPanel setPanelForOnline:NO];
+}
+
+- (void)setOpusDesc:(NSString *)opusDesc
+{
+    if(_opusDesc != opusDesc){
+        PPRelease(_opusDesc);
+        _opusDesc = [opusDesc retain];
+    }
+}
+
+- (NSString *)opusDesc
+{
+    if (_opusDesc == nil) {
+        return  self.inputAlert.contentText;
+    }
+    return _opusDesc;
 }
 
 #pragma mark - Auto Recovery Service Methods
@@ -425,8 +443,9 @@
 
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
-    self.targetFriend = user;
-    [self.drawToolPanel updateDrawToUser:user];
+    if (resultCode == 0 && user) {
+        [self.drawToolPanel updateDrawToUser:user];
+    }
 }
 
 - (void)updateTargetFriend
@@ -528,8 +547,6 @@
     else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
         [self showInputAlertView];
-        //TODO click input Alert ok button
-//        [self.inputAlert clickConfirm];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
         
@@ -725,12 +742,22 @@
 
 - (PBNoCompressDrawData *)drawDataSnapshot
 {
-    //TODO Edith the draw to User
     PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-                                                                           pbdrawBg:drawView.drawBg
                                                                                size:drawView.bounds.size
+                                                                           opusDesc:self.opusDesc
                                                                          drawToUser:nil];
     return data;
+}
+
+- (void)setTargetUid:(NSString *)targetUid
+{
+    if(_targetUid != targetUid){
+        PPRelease(_targetUid);
+        _targetUid = [targetUid retain];
+        if (self.draft) {
+            [self.draft setTargetUserId:targetUid];
+        }
+    }
 }
 
 - (void)saveDraft:(BOOL)showResult
@@ -752,7 +779,7 @@
             result = YES;
             PPDebug(@"<saveDraft> save draft");
             [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            
+            [self.draft setOpusDesc:self.opusDesc];
             result = [pManager updateDraft:self.draft
                                      image:image
                       pbNoCompressDrawData:[self drawDataSnapshot]];
@@ -767,7 +794,7 @@
                                       nickName:[userManager nickName]
                                           word:_word
                                       language:languageType];
-
+            
             
             if (self.draft) {
                 result = YES;
@@ -895,7 +922,7 @@
 
 - (NSString*)getOpusComment
 {
-    return self.inputAlert.contentText;
+    return self.opusDesc;
 }
 
 - (void)commitOpus:(NSSet *)share
@@ -913,7 +940,7 @@
     [self writeTempFile:image];
     [self setShareWeiboSet:share];    
 
-    NSString *text = self.inputAlert.contentText;
+    NSString *text = self.opusDesc;
     
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
     
@@ -932,11 +959,17 @@
 
 }
 
+- (void)cancelAlerView
+{
+    self.opusDesc = self.inputAlert.contentText;
+}
+
 - (void)showInputAlertView
 {
     if (self.inputAlert == nil) {
-        self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:nil target:self commitSeletor:@selector(commitOpus:) cancelSeletor:NULL];
+        self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
     }
+    self.inputAlert.contentText = self.opusDesc;
     [self.inputAlert showInView:self.view animated:YES];
 }
 
@@ -1028,7 +1061,9 @@
 {
     if (!ISIPAD) {
         PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];        
+        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
+        [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
+        
     }
 }
 

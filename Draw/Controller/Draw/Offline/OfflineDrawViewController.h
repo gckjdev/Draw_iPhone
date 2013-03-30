@@ -55,7 +55,6 @@
 @property (retain, nonatomic) Contest *contest;
 @property (assign, nonatomic) UIViewController *startController;
 @property (retain, nonatomic) NSString *opusDesc;
-@property (retain, nonatomic) MyFriend *targetFriend;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;

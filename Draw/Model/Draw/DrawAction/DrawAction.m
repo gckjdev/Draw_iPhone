@@ -488,10 +488,35 @@
     return nil;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
++ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
+                                                            size:(CGSize)size
+                                                        opusDesc:(NSString *)opusDesc
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser
 {
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeInt32:self.type forKey:@"type"];
+    if ([drawActionList count] != 0) {
+        PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
+        
+        for (DrawAction *drawAction in drawActionList) {
+            PBDrawAction *pbd = [drawAction toPBDrawAction];
+            if (pbd) {
+                [builder addDrawActionList2:pbd];
+            }
+        }
+        
+        if (drawToUser) {
+            [builder setDrawToUser:drawToUser];
+        }
+        if (opusDesc) {
+            [builder setOpusDesc:opusDesc];
+        }
+        [builder setCanvasSize:CGSizeToPBSize(size)];
+        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+        
+        PBNoCompressDrawData *nData = [builder build];
+        PPRelease(builder);
+        return nData;
+    }
+    return nil;
 }
 
 @end

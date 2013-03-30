@@ -40,6 +40,7 @@
 #import "GridCommand.h"
 
 #import "WidthView.h"
+#import "UIImageUtil.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -202,8 +203,10 @@
 {
 
     NSURL *URL = [NSURL URLWithString:user.avatar];
+    __block typeof(self) cp = self;
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
-        [self.drawToUser setImage:image forState:UIControlStateNormal];
+        image = [UIImage shrinkImage:image withRate:0.8];
+        [cp.drawToUser setImage:image forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         
     }];

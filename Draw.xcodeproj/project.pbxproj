@@ -7176,6 +7176,14 @@
 		CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
@@ -10688,6 +10696,10 @@
 		CAF839BD1701507B00494ED6 /* StrawCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawCommand.m; sourceTree = "<group>"; };
 		CAF839C71701520900494ED6 /* GridCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCommand.h; sourceTree = "<group>"; };
 		CAF839C81701520A00494ED6 /* GridCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCommand.m; sourceTree = "<group>"; };
+		CAF95E2517068B4000B7526C /* RedoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedoCommand.h; sourceTree = "<group>"; };
+		CAF95E2617068B4000B7526C /* RedoCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedoCommand.m; sourceTree = "<group>"; };
+		CAF95E3017068C4D00B7526C /* UndoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoCommand.h; sourceTree = "<group>"; };
+		CAF95E3117068C4D00B7526C /* UndoCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoCommand.m; sourceTree = "<group>"; };
 		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
 		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
 		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
@@ -17853,6 +17865,10 @@
 				CAF839BD1701507B00494ED6 /* StrawCommand.m */,
 				CAF839C71701520900494ED6 /* GridCommand.h */,
 				CAF839C81701520A00494ED6 /* GridCommand.m */,
+				CAF95E2517068B4000B7526C /* RedoCommand.h */,
+				CAF95E2617068B4000B7526C /* RedoCommand.m */,
+				CAF95E3017068C4D00B7526C /* UndoCommand.h */,
+				CAF95E3117068C4D00B7526C /* UndoCommand.m */,
 			);
 			path = ToolCommand;
 			sourceTree = "<group>";
@@ -23794,6 +23810,8 @@
 				A44710D0170545F800428284 /* CommonItem.m in Sources */,
 				A44710D31705460C00428284 /* ReflectionView.m in Sources */,
 				A44710D61705462000428284 /* ShoppingCell.m in Sources */,
+				CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24587,6 +24605,8 @@
 				A44710D1170545F900428284 /* CommonItem.m in Sources */,
 				A44710D41705460D00428284 /* ReflectionView.m in Sources */,
 				A44710D71705462100428284 /* ShoppingCell.m in Sources */,
+				CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25382,6 +25402,8 @@
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADEC91704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
 				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
+				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26183,6 +26205,8 @@
 				A44710CF170545F700428284 /* CommonItem.m in Sources */,
 				A44710D21705460B00428284 /* ReflectionView.m in Sources */,
 				A44710D51705462000428284 /* ShoppingCell.m in Sources */,
+				CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
