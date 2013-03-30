@@ -11,6 +11,7 @@
 #import "MyFriend.h"
 
 @class PPTableViewController;
+@class PPViewController;
 
 
 @protocol UserDetailProtocol <NSObject>
@@ -41,6 +42,9 @@
 
 - (void)initSNSButton:(UIButton*)button
              withType:(int)snsType;
+
+- (void)initUserActionButtonAtIndex:(int)index;
+- (void)clickUserActionButtonAtIndex:(int)index viewController:(PPViewController*)viewController;
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 

@@ -276,6 +276,11 @@
     [sc release];
 }
 
+- (void)didClickUserActionButtonAtIndex:(NSInteger)index
+{
+    [self.detail clickUserActionButtonAtIndex:index viewController:self];
+}
+
 #pragma mark - friendService delegate
 - (void)didFollowUser:(int)resultCode
 {

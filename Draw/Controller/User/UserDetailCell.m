@@ -26,6 +26,8 @@
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
 
+#define USER_ACTION_BTN_INDEX_OFFSET    20130330
+
 
 @interface UserDetailCell ()
 
@@ -307,6 +309,13 @@
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickMore)]) {
         [_detailDelegate didClickMore];
+    }
+}
+
+- (IBAction)clickUserAction:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickUserActionButtonAtIndex:)]) {
+        [_detailDelegate didClickUserActionButtonAtIndex:((UIButton*)sender).tag];
     }
 }
 

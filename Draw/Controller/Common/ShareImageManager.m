@@ -1083,5 +1083,26 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"user_detail_unfollow_bg.png"];
 }
 
+- (UIImage*)userDetailChatToBtnBg
+{
+    
+}
+- (UIImage*)userDetailDrawToBtnBg
+{
+    
+}
+- (UIImage*)selfDetailBalanceBtnBg
+{
+    
+}
+- (UIImage*)selfDetailIngotBtnBg
+{
+    
+}
+- (UIImage*)selfDetailExpBtnBg
+{
+    
+}
+
 @end
 

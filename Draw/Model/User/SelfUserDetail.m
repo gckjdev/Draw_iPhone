@@ -228,4 +228,15 @@
 {
     [button setHighlighted:![self isSNSBtnVisable:snsType]];
 }
+
+- (void)initUserActionButtonAtIndex:(int)index
+{
+    
+}
+
+- (void)clickUserActionButtonAtIndex:(int)index
+                      viewController:(PPViewController *)viewController
+{
+    
+}
 @end

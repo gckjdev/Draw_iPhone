@@ -11,7 +11,13 @@
 #import "FriendService.h"
 #import "FeedService.h"
 
-
+typedef enum {
+    SelfDetailActionFollowCount = 0,
+    SelfDetailActionBalance,
+    SelfDetailActionExp,
+    SelfDetailActionIngot,
+    SelfDetailActionFanCount,
+}SelfDetailAction;
 
 @interface SelfUserDetail : NSObject<UserDetailProtocol, FriendServiceDelegate, FeedServiceDelegate>
 

@@ -287,4 +287,51 @@
     [button setHidden:![self isSNSBtnVisable:snsType]];
 }
 
+- (void)initUserActionButtonAtIndex:(int)index
+{
+    switch (index) {
+        case UserDetailActionFollowCount:
+            //
+            break;
+        case UserDetailActionDrawTo: {
+            
+        } break;
+        case UserDetailActionFollow: {
+            
+        } break;
+        case UserDetailActionChatTo: {
+            
+        } break;
+        case UserDetailActionFanCount: {
+            
+        } break;
+        default:
+            break;
+    }
+}
+
+- (void)clickUserActionButtonAtIndex:(int)index
+                      viewController:(PPViewController *)viewController
+{
+    switch (index) {
+        case UserDetailActionFollowCount:
+            //
+            break;
+        case UserDetailActionDrawTo: {
+            
+        } break;
+        case UserDetailActionFollow: {
+            
+        } break;
+        case UserDetailActionChatTo: {
+            
+        } break;
+        case UserDetailActionFanCount: {
+            
+        } break;
+        default:
+            break;
+    }
+}
+
 @end

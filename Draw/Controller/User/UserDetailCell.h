@@ -37,6 +37,7 @@
 - (void)didClickTabAtIndex:(int)index;
 - (void)didClickMore;
 - (void)didClickDrawFeed:(DrawFeed *)drawFeed;
+- (void)didClickUserActionButtonAtIndex:(NSInteger)index;
 @end
 
 @interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
