@@ -132,13 +132,20 @@
         [vc setDefaultTabIndex:FriendTabIndexFan];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoSupportViewFan") delayTime:1.5];
+    }
 }
+
 - (void)didClickFollowCountButton
 {
     if (![self.detail canFollow]) {
         FriendController* vc = [[[FriendController alloc] init] autorelease];
         [vc setDefaultTabIndex:FriendTabIndexFollow];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoSupportViewFollow") delayTime:1.5];
     }
 }
 - (void)didClickFollowButton
@@ -267,6 +274,11 @@
     ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
+}
+
+- (void)didClickUserActionButtonAtIndex:(NSInteger)index
+{
+    [self.detail clickUserActionButtonAtIndex:index viewController:self];
 }
 
 #pragma mark - friendService delegate

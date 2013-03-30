@@ -18,7 +18,7 @@
 
 - (PBDrawBg *)pbDrawBgWithId:(NSString *)drawBgId;
 - (NSString *)baseDir;
-- (NSArray *)pbDrawBgList;
+- (NSArray *)pbDrawBgGroupList;
 
 //Test Code
 + (void)createTestData:(NSUInteger)number;

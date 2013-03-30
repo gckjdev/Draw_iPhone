@@ -346,8 +346,7 @@
     if (draft.drawBg) {
         [self setDrawBg: draft.drawBg];
     }
-    CGSize size = draft.canvasSize;
-    self.frame = CGRectMake(0, 0, size.width, size.height);
+    [self changeRect:CGRectFromCGSize(draft.canvasSize)];
     [self synBGColor];
     [self show];
 }

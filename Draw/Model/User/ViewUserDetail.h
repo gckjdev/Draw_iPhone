@@ -10,6 +10,14 @@
 #import "UserDetailProtocol.h"
 #import "FeedService.h"
 
+typedef enum {
+    UserDetailActionFollowCount = 0,
+    UserDetailActionDrawTo,
+    UserDetailActionFollow,
+    UserDetailActionChatTo,
+    UserDetailActionFanCount,
+}UserDetailAction;
+
 @interface ViewUserDetail : NSObject<UserDetailProtocol, FeedServiceDelegate>
 
 

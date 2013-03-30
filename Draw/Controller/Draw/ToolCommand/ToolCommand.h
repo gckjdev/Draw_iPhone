@@ -12,6 +12,7 @@
 #import "AnalyticsManager.h"
 #import "CMPopTipView.h"
 #import "UIViewUtils.h"
+#import "InputAlertView.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -72,5 +73,6 @@
 
 
 - (void)resetAlpha;
+- (InputAlertView *)inputAlertView;
 @end
 

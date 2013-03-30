@@ -247,7 +247,13 @@
 - (UIImage*)userDetailGenderImage:(BOOL)isMale;
 - (UIImage*)userDetailTabBgImage;
 - (UIImage*)userDetailTabBgPressedImage;
+
 - (UIImage*)userDetailFollowUserBtnBg;
 - (UIImage*)userDetailUnfollowUserBtnBg;
+- (UIImage*)userDetailChatToBtnBg;
+- (UIImage*)userDetailDrawToBtnBg;
+- (UIImage*)selfDetailBalanceBtnBg;
+- (UIImage*)selfDetailIngotBtnBg;
+- (UIImage*)selfDetailExpBtnBg;
 
 @end

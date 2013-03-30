@@ -501,6 +501,18 @@
 		C20ADECA1704334100BF1630 /* UIColor+UIColorExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C20ADEC81704334100BF1630 /* UIColor+UIColorExt.m */; };
 		C20ADECB1704334100BF1630 /* UIColor+UIColorExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C20ADEC81704334100BF1630 /* UIColor+UIColorExt.m */; };
 		C20ADECC1704334100BF1630 /* UIColor+UIColorExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C20ADEC81704334100BF1630 /* UIColor+UIColorExt.m */; };
+		C20ADEE21706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */; };
+		C20ADEE31706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */; };
+		C20ADEE41706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */; };
+		C20ADEE51706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */; };
+		C20ADEE61706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */; };
+		C20ADEE71706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */; };
+		C20ADEE81706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */; };
+		C20ADEE91706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */; };
+		C20ADEEA1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */; };
+		C20ADEEB1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */; };
+		C20ADEEC1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */; };
+		C20ADEED1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */; };
 		C20D4B2515E1D78800074885 /* CommonInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20D4B2415E1D78800074885 /* CommonInfoView.m */; };
 		C20D4B4F15E3274E00074885 /* DiceGamePlayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */; };
 		C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
@@ -7176,6 +7188,22 @@
 		CAF839CA1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CB1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
 		CAF839CC1701520A00494ED6 /* GridCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF839C81701520A00494ED6 /* GridCommand.m */; };
+		CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E2617068B4000B7526C /* RedoCommand.m */; };
+		CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF95E3117068C4D00B7526C /* UndoCommand.m */; };
+		CAF95E3F1706EE1E00B7526C /* DrawBgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */; };
+		CAF95E401706EE1E00B7526C /* DrawBgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */; };
+		CAF95E411706EE1E00B7526C /* DrawBgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */; };
+		CAF95E421706EE1E00B7526C /* DrawBgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */; };
+		CAF95E491706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */; };
+		CAF95E4A1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */; };
+		CAF95E4B1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */; };
+		CAF95E4C1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */; };
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
@@ -7958,6 +7986,9 @@
 		C203C47616F309A50028A065 /* RoundPercentageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundPercentageView.m; sourceTree = "<group>"; };
 		C20ADEC71704334100BF1630 /* UIColor+UIColorExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColorExt.h"; sourceTree = "<group>"; };
 		C20ADEC81704334100BF1630 /* UIColor+UIColorExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColorExt.m"; sourceTree = "<group>"; };
+		C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_balance_btn_bg@2x.png"; sourceTree = "<group>"; };
+		C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_exp_btn_bg@2x.png"; sourceTree = "<group>"; };
+		C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "self_detail_ingot_btn_bg@2x.png"; sourceTree = "<group>"; };
 		C20D4B2315E1D78800074885 /* CommonInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonInfoView.h; sourceTree = "<group>"; };
 		C20D4B2415E1D78800074885 /* CommonInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonInfoView.m; sourceTree = "<group>"; };
 		C20D4B4E15E3274E00074885 /* DiceGamePlayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceGamePlayController~ipad.xib"; sourceTree = "<group>"; };
@@ -10688,6 +10719,12 @@
 		CAF839BD1701507B00494ED6 /* StrawCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrawCommand.m; sourceTree = "<group>"; };
 		CAF839C71701520900494ED6 /* GridCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCommand.h; sourceTree = "<group>"; };
 		CAF839C81701520A00494ED6 /* GridCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCommand.m; sourceTree = "<group>"; };
+		CAF95E2517068B4000B7526C /* RedoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedoCommand.h; sourceTree = "<group>"; };
+		CAF95E2617068B4000B7526C /* RedoCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedoCommand.m; sourceTree = "<group>"; };
+		CAF95E3017068C4D00B7526C /* UndoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoCommand.h; sourceTree = "<group>"; };
+		CAF95E3117068C4D00B7526C /* UndoCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoCommand.m; sourceTree = "<group>"; };
+		CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawBgCell.xib; sourceTree = "<group>"; };
+		CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgCell~ipad.xib"; sourceTree = "<group>"; };
 		CAF9B70E16AA3C7800865CCE /* PenEffectProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenEffectProtocol.h; sourceTree = "<group>"; };
 		CAF9B70F16AA3CA200865CCE /* SmoothCurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmoothCurvePen.h; sourceTree = "<group>"; };
 		CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothCurvePen.m; sourceTree = "<group>"; };
@@ -12713,6 +12750,9 @@
 		C2B97A3916FAA5E90037B15B /* userDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C20ADEDF1706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png */,
+				C20ADEE01706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png */,
+				C20ADEE11706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png */,
 				C2B606851701A24400935B75 /* user_detail_unfollow_bg@2x.png */,
 				C2D3ED7117002B0C001016D9 /* user_detail_tab_bg_pressed@2x.png */,
 				C2C2A1BF16FEF23A0074A168 /* user_detail_tab_bg@2x.png */,
@@ -14813,6 +14853,8 @@
 				CAF0DB5017019AED009FE646 /* CanvasRectBox.m */,
 				CAF0DB5117019AED009FE646 /* CanvasRectBox.xib */,
 				CAF0DB5217019AED009FE646 /* CanvasRectBox~ipad.xib */,
+				CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */,
+				CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */,
 				CA485F5016E440E300AEE725 /* DrawBgBox.h */,
 				CA485F5116E440E300AEE725 /* DrawBgBox.m */,
 				CA485F5216E440E300AEE725 /* DrawBgBox.xib */,
@@ -17853,6 +17895,10 @@
 				CAF839BD1701507B00494ED6 /* StrawCommand.m */,
 				CAF839C71701520900494ED6 /* GridCommand.h */,
 				CAF839C81701520A00494ED6 /* GridCommand.m */,
+				CAF95E2517068B4000B7526C /* RedoCommand.h */,
+				CAF95E2617068B4000B7526C /* RedoCommand.m */,
+				CAF95E3017068C4D00B7526C /* UndoCommand.h */,
+				CAF95E3117068C4D00B7526C /* UndoCommand.m */,
 			);
 			path = ToolCommand;
 			sourceTree = "<group>";
@@ -20176,6 +20222,11 @@
 				A44710C61705458E00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710D91705462900428284 /* ShoppingCell.xib in Resources */,
 				A44710DC1705462F00428284 /* ShoppingCell~ipad.xib in Resources */,
+				C20ADEE41706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */,
+				C20ADEE81706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				C20ADEEC1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */,
+				CAF95E411706EE1E00B7526C /* DrawBgCell.xib in Resources */,
+				CAF95E4B1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21081,6 +21132,11 @@
 				A44710C71705458F00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710D81705462800428284 /* ShoppingCell.xib in Resources */,
 				A44710DB1705462E00428284 /* ShoppingCell~ipad.xib in Resources */,
+				C20ADEE51706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */,
+				C20ADEE91706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				C20ADEED1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */,
+				CAF95E421706EE1E00B7526C /* DrawBgCell.xib in Resources */,
+				CAF95E4C1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22070,6 +22126,11 @@
 				CA189B171702B64900339D42 /* default_config_Zhajinhua_version.txt in Resources */,
 				CA189B1B1702B64900339D42 /* default_config_Zhajinhua.pb in Resources */,
 				A44710AC17053A4700428284 /* sale_ingot_Draw.pb in Resources */,
+				C20ADEE21706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */,
+				C20ADEE61706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				C20ADEEA1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */,
+				CAF95E3F1706EE1E00B7526C /* DrawBgCell.xib in Resources */,
+				CAF95E491706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22982,6 +23043,11 @@
 				A44710C51705458D00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710DA1705462A00428284 /* ShoppingCell.xib in Resources */,
 				A44710DD1705463000428284 /* ShoppingCell~ipad.xib in Resources */,
+				C20ADEE31706D9C800BF1630 /* self_detail_balance_btn_bg@2x.png in Resources */,
+				C20ADEE71706D9C800BF1630 /* self_detail_exp_btn_bg@2x.png in Resources */,
+				C20ADEEB1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */,
+				CAF95E401706EE1E00B7526C /* DrawBgCell.xib in Resources */,
+				CAF95E4A1706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23794,6 +23860,8 @@
 				A44710D0170545F800428284 /* CommonItem.m in Sources */,
 				A44710D31705460C00428284 /* ReflectionView.m in Sources */,
 				A44710D61705462000428284 /* ShoppingCell.m in Sources */,
+				CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24587,6 +24655,8 @@
 				A44710D1170545F900428284 /* CommonItem.m in Sources */,
 				A44710D41705460D00428284 /* ReflectionView.m in Sources */,
 				A44710D71705462100428284 /* ShoppingCell.m in Sources */,
+				CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25382,6 +25452,8 @@
 				CAF0DB5317019AED009FE646 /* CanvasRectBox.m in Sources */,
 				C20ADEC91704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
 				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
+				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26183,6 +26255,8 @@
 				A44710CF170545F700428284 /* CommonItem.m in Sources */,
 				A44710D21705460B00428284 /* ReflectionView.m in Sources */,
 				A44710D51705462000428284 /* ShoppingCell.m in Sources */,
+				CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */,
+				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

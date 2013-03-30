@@ -487,6 +487,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             if ([nDraw hasDrawBg]) {
                 paint.drawBg = nDraw.drawBg;
             }
+            if ([nDraw hasOpusDesc]) {
+                paint.opusDesc = nDraw.opusDesc;
+            }
             if (![nDraw hasCanvasSize]) {
                 paint.canvasSize = [CanvasRect deprecatedRect].size;
             }else{

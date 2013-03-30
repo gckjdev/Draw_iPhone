@@ -31,4 +31,14 @@
                                                       animated:(BOOL)animated;
 
 
++ (UIViewController *)enterFreeIngotPostController:(UIViewController *)fromController
+                                                 animated:(BOOL)animated;
+
++ (UIViewController *)enterFeedbackPostController:(UIViewController *)fromController
+                                                 animated:(BOOL)animated;
+
++ (UIViewController *)enterBugReportPostController:(UIViewController *)fromController
+                                                 animated:(BOOL)animated;
+
+
 @end

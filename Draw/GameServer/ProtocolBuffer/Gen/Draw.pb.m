@@ -37,11 +37,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property BOOL isCompressed;
 @property (retain) PBDrawBg* drawBg;
 @property (retain) PBSize* canvasSize;
-@property (retain) NSString* targetUid;
-@property (retain) NSString* targetNickName;
-@property (retain) NSString* targetAvatar;
-@property (retain) NSString* opusDesc;
-@property (retain) NSString* contestId;
 @end
 
 @implementation PBDraw
@@ -155,41 +150,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   hasCanvasSize_ = !!value;
 }
 @synthesize canvasSize;
-- (BOOL) hasTargetUid {
-  return !!hasTargetUid_;
-}
-- (void) setHasTargetUid:(BOOL) value {
-  hasTargetUid_ = !!value;
-}
-@synthesize targetUid;
-- (BOOL) hasTargetNickName {
-  return !!hasTargetNickName_;
-}
-- (void) setHasTargetNickName:(BOOL) value {
-  hasTargetNickName_ = !!value;
-}
-@synthesize targetNickName;
-- (BOOL) hasTargetAvatar {
-  return !!hasTargetAvatar_;
-}
-- (void) setHasTargetAvatar:(BOOL) value {
-  hasTargetAvatar_ = !!value;
-}
-@synthesize targetAvatar;
-- (BOOL) hasOpusDesc {
-  return !!hasOpusDesc_;
-}
-- (void) setHasOpusDesc:(BOOL) value {
-  hasOpusDesc_ = !!value;
-}
-@synthesize opusDesc;
-- (BOOL) hasContestId {
-  return !!hasContestId_;
-}
-- (void) setHasContestId:(BOOL) value {
-  hasContestId_ = !!value;
-}
-@synthesize contestId;
 - (void) dealloc {
   self.userId = nil;
   self.word = nil;
@@ -199,11 +159,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.opusId = nil;
   self.drawBg = nil;
   self.canvasSize = nil;
-  self.targetUid = nil;
-  self.targetNickName = nil;
-  self.targetAvatar = nil;
-  self.opusDesc = nil;
-  self.contestId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -222,11 +177,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.isCompressed = YES;
     self.drawBg = [PBDrawBg defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
-    self.targetUid = @"";
-    self.targetNickName = @"";
-    self.targetAvatar = @"";
-    self.opusDesc = @"";
-    self.contestId = @"";
   }
   return self;
 }
@@ -320,21 +270,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (self.hasCanvasSize) {
     [output writeMessage:21 value:self.canvasSize];
   }
-  if (self.hasTargetUid) {
-    [output writeString:30 value:self.targetUid];
-  }
-  if (self.hasTargetNickName) {
-    [output writeString:31 value:self.targetNickName];
-  }
-  if (self.hasTargetAvatar) {
-    [output writeString:32 value:self.targetAvatar];
-  }
-  if (self.hasOpusDesc) {
-    [output writeString:33 value:self.opusDesc];
-  }
-  if (self.hasContestId) {
-    [output writeString:34 value:self.contestId];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -388,21 +323,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(21, self.canvasSize);
-  }
-  if (self.hasTargetUid) {
-    size += computeStringSize(30, self.targetUid);
-  }
-  if (self.hasTargetNickName) {
-    size += computeStringSize(31, self.targetNickName);
-  }
-  if (self.hasTargetAvatar) {
-    size += computeStringSize(32, self.targetAvatar);
-  }
-  if (self.hasOpusDesc) {
-    size += computeStringSize(33, self.opusDesc);
-  }
-  if (self.hasContestId) {
-    size += computeStringSize(34, self.contestId);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -527,21 +447,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
   }
-  if (other.hasTargetUid) {
-    [self setTargetUid:other.targetUid];
-  }
-  if (other.hasTargetNickName) {
-    [self setTargetNickName:other.targetNickName];
-  }
-  if (other.hasTargetAvatar) {
-    [self setTargetAvatar:other.targetAvatar];
-  }
-  if (other.hasOpusDesc) {
-    [self setOpusDesc:other.opusDesc];
-  }
-  if (other.hasContestId) {
-    [self setContestId:other.contestId];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -633,26 +538,6 @@ static PBDraw* defaultPBDrawInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setCanvasSize:[subBuilder buildPartial]];
-        break;
-      }
-      case 242: {
-        [self setTargetUid:[input readString]];
-        break;
-      }
-      case 250: {
-        [self setTargetNickName:[input readString]];
-        break;
-      }
-      case 258: {
-        [self setTargetAvatar:[input readString]];
-        break;
-      }
-      case 266: {
-        [self setOpusDesc:[input readString]];
-        break;
-      }
-      case 274: {
-        [self setContestId:[input readString]];
         break;
       }
     }
@@ -937,86 +822,6 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearCanvasSize {
   result.hasCanvasSize = NO;
   result.canvasSize = [PBSize defaultInstance];
-  return self;
-}
-- (BOOL) hasTargetUid {
-  return result.hasTargetUid;
-}
-- (NSString*) targetUid {
-  return result.targetUid;
-}
-- (PBDraw_Builder*) setTargetUid:(NSString*) value {
-  result.hasTargetUid = YES;
-  result.targetUid = value;
-  return self;
-}
-- (PBDraw_Builder*) clearTargetUid {
-  result.hasTargetUid = NO;
-  result.targetUid = @"";
-  return self;
-}
-- (BOOL) hasTargetNickName {
-  return result.hasTargetNickName;
-}
-- (NSString*) targetNickName {
-  return result.targetNickName;
-}
-- (PBDraw_Builder*) setTargetNickName:(NSString*) value {
-  result.hasTargetNickName = YES;
-  result.targetNickName = value;
-  return self;
-}
-- (PBDraw_Builder*) clearTargetNickName {
-  result.hasTargetNickName = NO;
-  result.targetNickName = @"";
-  return self;
-}
-- (BOOL) hasTargetAvatar {
-  return result.hasTargetAvatar;
-}
-- (NSString*) targetAvatar {
-  return result.targetAvatar;
-}
-- (PBDraw_Builder*) setTargetAvatar:(NSString*) value {
-  result.hasTargetAvatar = YES;
-  result.targetAvatar = value;
-  return self;
-}
-- (PBDraw_Builder*) clearTargetAvatar {
-  result.hasTargetAvatar = NO;
-  result.targetAvatar = @"";
-  return self;
-}
-- (BOOL) hasOpusDesc {
-  return result.hasOpusDesc;
-}
-- (NSString*) opusDesc {
-  return result.opusDesc;
-}
-- (PBDraw_Builder*) setOpusDesc:(NSString*) value {
-  result.hasOpusDesc = YES;
-  result.opusDesc = value;
-  return self;
-}
-- (PBDraw_Builder*) clearOpusDesc {
-  result.hasOpusDesc = NO;
-  result.opusDesc = @"";
-  return self;
-}
-- (BOOL) hasContestId {
-  return result.hasContestId;
-}
-- (NSString*) contestId {
-  return result.contestId;
-}
-- (PBDraw_Builder*) setContestId:(NSString*) value {
-  result.hasContestId = YES;
-  result.contestId = value;
-  return self;
-}
-- (PBDraw_Builder*) clearContestId {
-  result.hasContestId = NO;
-  result.contestId = @"";
   return self;
 }
 @end
@@ -4651,6 +4456,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) PBSize* canvasSize;
 @property (retain) NSMutableArray* mutableDrawActionList2List;
 @property (retain) PBUserBasicInfo* drawToUser;
+@property (retain) NSString* opusDesc;
 @end
 
 @implementation PBNoCompressDrawData
@@ -4685,12 +4491,20 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasDrawToUser_ = !!value;
 }
 @synthesize drawToUser;
+- (BOOL) hasOpusDesc {
+  return !!hasOpusDesc_;
+}
+- (void) setHasOpusDesc:(BOOL) value {
+  hasOpusDesc_ = !!value;
+}
+@synthesize opusDesc;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.drawBg = nil;
   self.canvasSize = nil;
   self.mutableDrawActionList2List = nil;
   self.drawToUser = nil;
+  self.opusDesc = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4699,6 +4513,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     self.drawBg = [PBDrawBg defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
     self.drawToUser = [PBUserBasicInfo defaultInstance];
+    self.opusDesc = @"";
   }
   return self;
 }
@@ -4770,6 +4585,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (self.hasDrawToUser) {
     [output writeMessage:6 value:self.drawToUser];
   }
+  if (self.hasOpusDesc) {
+    [output writeString:7 value:self.opusDesc];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -4796,6 +4614,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawToUser) {
     size += computeMessageSize(6, self.drawToUser);
+  }
+  if (self.hasOpusDesc) {
+    size += computeStringSize(7, self.opusDesc);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4896,6 +4717,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasDrawToUser) {
     [self mergeDrawToUser:other.drawToUser];
   }
+  if (other.hasOpusDesc) {
+    [self setOpusDesc:other.opusDesc];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4958,6 +4782,10 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawToUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 58: {
+        [self setOpusDesc:[input readString]];
         break;
       }
     }
@@ -5127,35 +4955,63 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   result.drawToUser = [PBUserBasicInfo defaultInstance];
   return self;
 }
+- (BOOL) hasOpusDesc {
+  return result.hasOpusDesc;
+}
+- (NSString*) opusDesc {
+  return result.opusDesc;
+}
+- (PBNoCompressDrawData_Builder*) setOpusDesc:(NSString*) value {
+  result.hasOpusDesc = YES;
+  result.opusDesc = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearOpusDesc {
+  result.hasOpusDesc = NO;
+  result.opusDesc = @"";
+  return self;
+}
 @end
 
-@interface PBDrawBgList ()
+@interface PBDrawBgGroup ()
+@property int32_t groupId;
 @property (retain) NSMutableArray* mutableDrawBgsList;
+@property (retain) NSMutableArray* mutableNameList;
 @end
 
-@implementation PBDrawBgList
+@implementation PBDrawBgGroup
 
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
 @synthesize mutableDrawBgsList;
+@synthesize mutableNameList;
 - (void) dealloc {
   self.mutableDrawBgsList = nil;
+  self.mutableNameList = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.groupId = 0;
   }
   return self;
 }
-static PBDrawBgList* defaultPBDrawBgListInstance = nil;
+static PBDrawBgGroup* defaultPBDrawBgGroupInstance = nil;
 + (void) initialize {
-  if (self == [PBDrawBgList class]) {
-    defaultPBDrawBgListInstance = [[PBDrawBgList alloc] init];
+  if (self == [PBDrawBgGroup class]) {
+    defaultPBDrawBgGroupInstance = [[PBDrawBgGroup alloc] init];
   }
 }
-+ (PBDrawBgList*) defaultInstance {
-  return defaultPBDrawBgListInstance;
++ (PBDrawBgGroup*) defaultInstance {
+  return defaultPBDrawBgGroupInstance;
 }
-- (PBDrawBgList*) defaultInstance {
-  return defaultPBDrawBgListInstance;
+- (PBDrawBgGroup*) defaultInstance {
+  return defaultPBDrawBgGroupInstance;
 }
 - (NSArray*) drawBgsList {
   return mutableDrawBgsList;
@@ -5164,8 +5020,23 @@ static PBDrawBgList* defaultPBDrawBgListInstance = nil;
   id value = [mutableDrawBgsList objectAtIndex:index];
   return value;
 }
+- (NSArray*) nameList {
+  return mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  id value = [mutableNameList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
   for (PBDrawBg* element in self.drawBgsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBLocalizeString* element in self.nameList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -5173,7 +5044,284 @@ static PBDrawBgList* defaultPBDrawBgListInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeInt32:1 value:self.groupId];
+  }
   for (PBDrawBg* element in self.drawBgsList) {
+    [output writeMessage:2 value:element];
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    [output writeMessage:3 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeInt32Size(1, self.groupId);
+  }
+  for (PBDrawBg* element in self.drawBgsList) {
+    size += computeMessageSize(2, element);
+  }
+  for (PBLocalizeString* element in self.nameList) {
+    size += computeMessageSize(3, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDrawBgGroup*) parseFromData:(NSData*) data {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromData:data] build];
+}
++ (PBDrawBgGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawBgGroup*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromInputStream:input] build];
+}
++ (PBDrawBgGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawBgGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDrawBgGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgGroup*)[[[PBDrawBgGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawBgGroup_Builder*) builder {
+  return [[[PBDrawBgGroup_Builder alloc] init] autorelease];
+}
++ (PBDrawBgGroup_Builder*) builderWithPrototype:(PBDrawBgGroup*) prototype {
+  return [[PBDrawBgGroup builder] mergeFrom:prototype];
+}
+- (PBDrawBgGroup_Builder*) builder {
+  return [PBDrawBgGroup builder];
+}
+@end
+
+@interface PBDrawBgGroup_Builder()
+@property (retain) PBDrawBgGroup* result;
+@end
+
+@implementation PBDrawBgGroup_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDrawBgGroup alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDrawBgGroup_Builder*) clear {
+  self.result = [[[PBDrawBgGroup alloc] init] autorelease];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) clone {
+  return [PBDrawBgGroup builderWithPrototype:result];
+}
+- (PBDrawBgGroup*) defaultInstance {
+  return [PBDrawBgGroup defaultInstance];
+}
+- (PBDrawBgGroup*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDrawBgGroup*) buildPartial {
+  PBDrawBgGroup* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDrawBgGroup_Builder*) mergeFrom:(PBDrawBgGroup*) other {
+  if (other == [PBDrawBgGroup defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.mutableDrawBgsList.count > 0) {
+    if (result.mutableDrawBgsList == nil) {
+      result.mutableDrawBgsList = [NSMutableArray array];
+    }
+    [result.mutableDrawBgsList addObjectsFromArray:other.mutableDrawBgsList];
+  }
+  if (other.mutableNameList.count > 0) {
+    if (result.mutableNameList == nil) {
+      result.mutableNameList = [NSMutableArray array];
+    }
+    [result.mutableNameList addObjectsFromArray:other.mutableNameList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setGroupId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        PBDrawBg_Builder* subBuilder = [PBDrawBg builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addDrawBgs:[subBuilder buildPartial]];
+        break;
+      }
+      case 26: {
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addName:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (int32_t) groupId {
+  return result.groupId;
+}
+- (PBDrawBgGroup_Builder*) setGroupId:(int32_t) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBDrawBgGroup_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = 0;
+  return self;
+}
+- (NSArray*) drawBgsList {
+  if (result.mutableDrawBgsList == nil) { return [NSArray array]; }
+  return result.mutableDrawBgsList;
+}
+- (PBDrawBg*) drawBgsAtIndex:(int32_t) index {
+  return [result drawBgsAtIndex:index];
+}
+- (PBDrawBgGroup_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value {
+  [result.mutableDrawBgsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) addAllDrawBgs:(NSArray*) values {
+  if (result.mutableDrawBgsList == nil) {
+    result.mutableDrawBgsList = [NSMutableArray array];
+  }
+  [result.mutableDrawBgsList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) clearDrawBgsList {
+  result.mutableDrawBgsList = nil;
+  return self;
+}
+- (PBDrawBgGroup_Builder*) addDrawBgs:(PBDrawBg*) value {
+  if (result.mutableDrawBgsList == nil) {
+    result.mutableDrawBgsList = [NSMutableArray array];
+  }
+  [result.mutableDrawBgsList addObject:value];
+  return self;
+}
+- (NSArray*) nameList {
+  if (result.mutableNameList == nil) { return [NSArray array]; }
+  return result.mutableNameList;
+}
+- (PBLocalizeString*) nameAtIndex:(int32_t) index {
+  return [result nameAtIndex:index];
+}
+- (PBDrawBgGroup_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableNameList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) addAllName:(NSArray*) values {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObjectsFromArray:values];
+  return self;
+}
+- (PBDrawBgGroup_Builder*) clearNameList {
+  result.mutableNameList = nil;
+  return self;
+}
+- (PBDrawBgGroup_Builder*) addName:(PBLocalizeString*) value {
+  if (result.mutableNameList == nil) {
+    result.mutableNameList = [NSMutableArray array];
+  }
+  [result.mutableNameList addObject:value];
+  return self;
+}
+@end
+
+@interface PBDrawBgMeta ()
+@property (retain) NSMutableArray* mutableDrawBgGroupList;
+@end
+
+@implementation PBDrawBgMeta
+
+@synthesize mutableDrawBgGroupList;
+- (void) dealloc {
+  self.mutableDrawBgGroupList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
++ (void) initialize {
+  if (self == [PBDrawBgMeta class]) {
+    defaultPBDrawBgMetaInstance = [[PBDrawBgMeta alloc] init];
+  }
+}
++ (PBDrawBgMeta*) defaultInstance {
+  return defaultPBDrawBgMetaInstance;
+}
+- (PBDrawBgMeta*) defaultInstance {
+  return defaultPBDrawBgMetaInstance;
+}
+- (NSArray*) drawBgGroupList {
+  return mutableDrawBgGroupList;
+}
+- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index {
+  id value = [mutableDrawBgGroupList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBDrawBgGroup* element in self.drawBgGroupList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBDrawBgGroup* element in self.drawBgGroupList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -5185,47 +5333,47 @@ static PBDrawBgList* defaultPBDrawBgListInstance = nil;
   }
 
   size = 0;
-  for (PBDrawBg* element in self.drawBgsList) {
+  for (PBDrawBgGroup* element in self.drawBgGroupList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBDrawBgList*) parseFromData:(NSData*) data {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromData:data] build];
++ (PBDrawBgMeta*) parseFromData:(NSData*) data {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromData:data] build];
 }
-+ (PBDrawBgList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBDrawBgMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromInputStream:input] build];
++ (PBDrawBgMeta*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromInputStream:input] build];
 }
-+ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDrawBgMeta*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromCodedInputStream:input] build];
++ (PBDrawBgMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBDrawBgList*)[[[PBDrawBgList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBDrawBgMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawBgMeta*)[[[PBDrawBgMeta builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBDrawBgList_Builder*) builder {
-  return [[[PBDrawBgList_Builder alloc] init] autorelease];
++ (PBDrawBgMeta_Builder*) builder {
+  return [[[PBDrawBgMeta_Builder alloc] init] autorelease];
 }
-+ (PBDrawBgList_Builder*) builderWithPrototype:(PBDrawBgList*) prototype {
-  return [[PBDrawBgList builder] mergeFrom:prototype];
++ (PBDrawBgMeta_Builder*) builderWithPrototype:(PBDrawBgMeta*) prototype {
+  return [[PBDrawBgMeta builder] mergeFrom:prototype];
 }
-- (PBDrawBgList_Builder*) builder {
-  return [PBDrawBgList builder];
+- (PBDrawBgMeta_Builder*) builder {
+  return [PBDrawBgMeta builder];
 }
 @end
 
-@interface PBDrawBgList_Builder()
-@property (retain) PBDrawBgList* result;
+@interface PBDrawBgMeta_Builder()
+@property (retain) PBDrawBgMeta* result;
 @end
 
-@implementation PBDrawBgList_Builder
+@implementation PBDrawBgMeta_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -5233,49 +5381,49 @@ static PBDrawBgList* defaultPBDrawBgListInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBDrawBgList alloc] init] autorelease];
+    self.result = [[[PBDrawBgMeta alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBDrawBgList_Builder*) clear {
-  self.result = [[[PBDrawBgList alloc] init] autorelease];
+- (PBDrawBgMeta_Builder*) clear {
+  self.result = [[[PBDrawBgMeta alloc] init] autorelease];
   return self;
 }
-- (PBDrawBgList_Builder*) clone {
-  return [PBDrawBgList builderWithPrototype:result];
+- (PBDrawBgMeta_Builder*) clone {
+  return [PBDrawBgMeta builderWithPrototype:result];
 }
-- (PBDrawBgList*) defaultInstance {
-  return [PBDrawBgList defaultInstance];
+- (PBDrawBgMeta*) defaultInstance {
+  return [PBDrawBgMeta defaultInstance];
 }
-- (PBDrawBgList*) build {
+- (PBDrawBgMeta*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBDrawBgList*) buildPartial {
-  PBDrawBgList* returnMe = [[result retain] autorelease];
+- (PBDrawBgMeta*) buildPartial {
+  PBDrawBgMeta* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBDrawBgList_Builder*) mergeFrom:(PBDrawBgList*) other {
-  if (other == [PBDrawBgList defaultInstance]) {
+- (PBDrawBgMeta_Builder*) mergeFrom:(PBDrawBgMeta*) other {
+  if (other == [PBDrawBgMeta defaultInstance]) {
     return self;
   }
-  if (other.mutableDrawBgsList.count > 0) {
-    if (result.mutableDrawBgsList == nil) {
-      result.mutableDrawBgsList = [NSMutableArray array];
+  if (other.mutableDrawBgGroupList.count > 0) {
+    if (result.mutableDrawBgGroupList == nil) {
+      result.mutableDrawBgGroupList = [NSMutableArray array];
     }
-    [result.mutableDrawBgsList addObjectsFromArray:other.mutableDrawBgsList];
+    [result.mutableDrawBgGroupList addObjectsFromArray:other.mutableDrawBgGroupList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -5291,41 +5439,41 @@ static PBDrawBgList* defaultPBDrawBgListInstance = nil;
         break;
       }
       case 10: {
-        PBDrawBg_Builder* subBuilder = [PBDrawBg builder];
+        PBDrawBgGroup_Builder* subBuilder = [PBDrawBgGroup builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addDrawBgs:[subBuilder buildPartial]];
+        [self addDrawBgGroup:[subBuilder buildPartial]];
         break;
       }
     }
   }
 }
-- (NSArray*) drawBgsList {
-  if (result.mutableDrawBgsList == nil) { return [NSArray array]; }
-  return result.mutableDrawBgsList;
+- (NSArray*) drawBgGroupList {
+  if (result.mutableDrawBgGroupList == nil) { return [NSArray array]; }
+  return result.mutableDrawBgGroupList;
 }
-- (PBDrawBg*) drawBgsAtIndex:(int32_t) index {
-  return [result drawBgsAtIndex:index];
+- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index {
+  return [result drawBgGroupAtIndex:index];
 }
-- (PBDrawBgList_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value {
-  [result.mutableDrawBgsList replaceObjectAtIndex:index withObject:value];
+- (PBDrawBgMeta_Builder*) replaceDrawBgGroupAtIndex:(int32_t) index with:(PBDrawBgGroup*) value {
+  [result.mutableDrawBgGroupList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBDrawBgList_Builder*) addAllDrawBgs:(NSArray*) values {
-  if (result.mutableDrawBgsList == nil) {
-    result.mutableDrawBgsList = [NSMutableArray array];
+- (PBDrawBgMeta_Builder*) addAllDrawBgGroup:(NSArray*) values {
+  if (result.mutableDrawBgGroupList == nil) {
+    result.mutableDrawBgGroupList = [NSMutableArray array];
   }
-  [result.mutableDrawBgsList addObjectsFromArray:values];
+  [result.mutableDrawBgGroupList addObjectsFromArray:values];
   return self;
 }
-- (PBDrawBgList_Builder*) clearDrawBgsList {
-  result.mutableDrawBgsList = nil;
+- (PBDrawBgMeta_Builder*) clearDrawBgGroupList {
+  result.mutableDrawBgGroupList = nil;
   return self;
 }
-- (PBDrawBgList_Builder*) addDrawBgs:(PBDrawBg*) value {
-  if (result.mutableDrawBgsList == nil) {
-    result.mutableDrawBgsList = [NSMutableArray array];
+- (PBDrawBgMeta_Builder*) addDrawBgGroup:(PBDrawBgGroup*) value {
+  if (result.mutableDrawBgGroupList == nil) {
+    result.mutableDrawBgGroupList = [NSMutableArray array];
   }
-  [result.mutableDrawBgsList addObject:value];
+  [result.mutableDrawBgGroupList addObject:value];
   return self;
 }
 @end

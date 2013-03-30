@@ -15,6 +15,8 @@
 @class PBDiceConfig_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
+@class PBDrawBg;
+@class PBDrawBg_Builder;
 @class PBDrawConfig;
 @class PBDrawConfig_Builder;
 @class PBGameItem;

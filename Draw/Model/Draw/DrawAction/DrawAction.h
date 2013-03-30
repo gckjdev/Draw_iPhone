@@ -99,6 +99,13 @@ typedef enum {
                                                             size:(CGSize)size
                                                       drawToUser:(PBUserBasicInfo *)drawToUser;
 
++ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
+                                                            size:(CGSize)size
+                                                        opusDesc:(NSString *)opusDesc
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser;
+
+
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
 

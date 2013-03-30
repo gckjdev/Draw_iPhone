@@ -220,7 +220,11 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [GameSNSService askRebindSina:viewController];
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
     }
     
 }
@@ -230,7 +234,11 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [GameSNSService askRebindQQ:viewController];
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
     }
 }
 - (void)clickFacebook:(UIViewController*)viewController
@@ -239,7 +247,11 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [GameSNSService askRebindFacebook:viewController];
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+            
+        }];
     }
 }
 
@@ -268,6 +280,58 @@
 {
     BOOL hasBlack = [MyFriend hasBlack:[self relation]];
     return hasBlack?NSLS(@"kUnblackFriend"):NSLS(@"kBlackFriend");
+}
+
+- (void)initSNSButton:(UIButton*)button withType:(int)snsType
+{
+    [button setHidden:![self isSNSBtnVisable:snsType]];
+}
+
+- (void)initUserActionButtonAtIndex:(int)index
+{
+    switch (index) {
+        case UserDetailActionFollowCount:
+            //
+            break;
+        case UserDetailActionDrawTo: {
+            
+        } break;
+        case UserDetailActionFollow: {
+            
+        } break;
+        case UserDetailActionChatTo: {
+            
+        } break;
+        case UserDetailActionFanCount: {
+            
+        } break;
+        default:
+            break;
+    }
+}
+
+- (void)clickUserActionButtonAtIndex:(int)index
+                      viewController:(PPViewController *)viewController
+{
+    switch (index) {
+        case UserDetailActionFollowCount:
+            //
+            break;
+        case UserDetailActionDrawTo: {
+            
+        } break;
+        case UserDetailActionFollow: {
+            
+        } break;
+        case UserDetailActionChatTo: {
+            
+        } break;
+        case UserDetailActionFanCount: {
+            
+        } break;
+        default:
+            break;
+    }
 }
 
 @end
