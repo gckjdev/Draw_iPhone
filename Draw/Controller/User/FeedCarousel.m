@@ -149,36 +149,40 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 //            return -0.2;
         case iCarouselOptionVisibleItems:
             return value;
+;
 //        case iCarouselOptionCount:
 //            return -0.2;
 
         case iCarouselOptionArc:
+            return value * (ISIPAD ? 0.8 : 1.0);
+
             return value;
         case iCarouselOptionAngle:
             return value;
+
         case iCarouselOptionRadius:
             return value;
+
         case iCarouselOptionTilt:
         {
             if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
-                return value * 0.8;
+                return value * (ISIPAD ? 0.4 : 0.8);
+//                return value * 0.8;
             }else{
                 return value;
-                
             }
         }
             
         case iCarouselOptionSpacing:
         {
             if (carousel.type == iCarouselTypeRotary || carousel.type == iCarouselTypeInvertedRotary) {
-                return value *1.1;
+                return value * (ISIPAD ? 1.1 : 1.1);
             }else if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
                 return value * 2;
             }else if (carousel.type == iCarouselTypeTimeMachine || carousel.type == iCarouselTypeInvertedTimeMachine){
                 return value * 0.5;
             }else{
                 return value * 1.05f;
-                
             }
         }
 
