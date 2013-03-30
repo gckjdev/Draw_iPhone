@@ -825,16 +825,24 @@ enum {
 
 - (void)askSetZodiac
 {
-    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
-    for (NSString* zodiacStr in [LocaleUtils getZodiacArray]) {
-        [actionSheet addButtonWithTitle:zodiacStr];
+    NSString* defaultZodiac = nil;
+    if ([_pbUserBuilder hasZodiac]) {
+        defaultZodiac = [LocaleUtils getZodiacWithIndex:_pbUserBuilder.zodiac-1];
+    }
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kZodiac") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:defaultZodiac otherButtonTitles:nil] autorelease];
+    for (int i = 0; i < [LocaleUtils getZodiacArray].count ; i++) {
+        NSString* zodiacStr = [LocaleUtils getZodiacWithIndex:i];
+        if (i != _pbUserBuilder.zodiac - 1) {
+            [actionSheet addButtonWithTitle:zodiacStr];
+        }
     }
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block UserSettingController* bc = self;
     [actionSheet setActionBlock:^(NSInteger buttonIndex) {
-        if (buttonIndex != actionSheet.cancelButtonIndex){
-            if (buttonIndex <= actionSheet.destructiveButtonIndex) {
+        PPDebug(@"destruction index = %d", actionSheet.destructiveButtonIndex);
+        if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex){
+            if (buttonIndex < _pbUserBuilder.zodiac) {
                 [_pbUserBuilder setZodiac:buttonIndex];
             } else {
                 [_pbUserBuilder setZodiac:buttonIndex+1];
@@ -842,11 +850,10 @@ enum {
             
             hasEdited = YES;
         }
+        PPDebug(@"did click index --%d", buttonIndex);
         [bc.dataTableView reloadData];
     }];
-    if ([_pbUserBuilder hasZodiac]) {
-        [actionSheet setDestructiveButtonIndex:_pbUserBuilder.zodiac-1];
-    }
+
     [actionSheet showInView:self.view];
 }
 
