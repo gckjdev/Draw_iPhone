@@ -11,7 +11,7 @@
 
 @interface EditDescCommand ()
 
-@property(nonatomic, retain) InputAlertView *inputAlertView;
+
 
 @end
 
@@ -30,11 +30,13 @@
     return vc.view;
 }
 
+    
+
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
 {
     self = [super initWithControl:control itemType:itemType];
     if (self) {
-        _inputAlertView = [[InputAlertView inputAlertViewWith:NSLS(@"kEditDesc") content:nil target:self commitSeletor:NULL cancelSeletor:NULL] retain];
+        
     }
     return self;
 }
@@ -43,16 +45,40 @@
     AnalyticsReport(DRAW_CLICK_EDIT_DESC);
 }
 
+- (void)comfirm:(id)msg
+{
+    [self changeDesc:self.inputAlertView.contentText];
+    [self performSelector:@selector(hidePopTipView) withObject:nil afterDelay:0.1];
+}
+
+- (void)cancel
+{
+//    [self changeDesc:self.inputAlertView.contentText];
+    [self performSelector:@selector(hidePopTipView) withObject:nil afterDelay:0.1];
+}
+
 - (void)showPopTipView
 {
-    self.showing = YES;
+//    self.showing = YES;
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.control theViewController];
+    self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO];
+    [self.inputAlertView showInView:oc.view animated:YES];
 
-    //TODO alert the input alert view
 }
+
+- (BOOL)execute
+{
+    if ([super execute]) {
+        [self showPopTipView];
+        return YES;
+    }
+    return NO;
+}
+
 - (void)hidePopTipView
 {
-    self.showing = NO;
-    //TODO hide the alert View
+//    self.showing = NO;
+    self.inputAlertView = nil;
 }
 
 //TODO when close the alertView, call changeDesc method

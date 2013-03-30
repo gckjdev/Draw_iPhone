@@ -145,6 +145,10 @@
 {
     return self.content.text;
 }
+- (NSString *)setContentText:(NSString *)text
+{
+    [self.content setText:text];
+}
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);

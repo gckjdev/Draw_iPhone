@@ -8,7 +8,7 @@
 
 #import "DrawToCommand.h"
 #import "MyFriend.h"
-
+#import "UIImageUtil.h"
 
 @implementation DrawToCommand
 
@@ -21,17 +21,26 @@
 {
     if (aFriend) {
         [self.toolHandler changeDrawToFriend:aFriend];
-        UIButton *button = (UIButton *)self.control;
-        //TODO set the button image, not the background image with aFriend.avatar.
+        [self.toolPanel updateDrawToUser:aFriend];
     }
+}
+
+- (void)friendController:(FriendController *)controller
+         didSelectFriend:(MyFriend *)aFriend
+{
+    [self changeTargetFriend:aFriend];
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)execute
 {
     //TODO enter MyFriendController and select the friend
+    FriendController *fc = [[FriendController alloc] initWithDelegate:self];
+    [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
+    [fc release];
+    
+    return YES;
 }
 
-
-//TODO
 
 @end

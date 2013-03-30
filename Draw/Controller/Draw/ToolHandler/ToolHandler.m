@@ -11,6 +11,8 @@
 #import "ItemType.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "CanvasRect.h"
+#import "OfflineDrawViewController.h"
+#import "UIViewUtils.h"
 
 @interface ToolHandler ()
 {
@@ -105,10 +107,14 @@
 - (void)changeDesc:(NSString *)desc
 {
     PPDebug(@"<ChangeDesc> desc = %@", desc);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.drawView theViewController];
+    oc.opusDesc = desc;
 }
 - (void)changeDrawToFriend:(MyFriend *)aFriend
 {
     PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.drawView theViewController];
+    [oc setTargetUid:aFriend.friendUserId];
 }
 
 - (void)enterDrawMode
