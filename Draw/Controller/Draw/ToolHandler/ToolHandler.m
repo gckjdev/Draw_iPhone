@@ -131,9 +131,18 @@
     self.drawView.grid = flag;
 }
 
+- (void)handleRedo
+{
+    [self.drawView redo];
+}
+- (void)handleUndo
+{
+    [self.drawView undo];
+}
 
 
 /////////////////////////////
+//Atrributes
 
 - (BOOL)grid
 {

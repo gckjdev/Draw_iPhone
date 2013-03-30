@@ -63,7 +63,8 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)enterDrawMode;
 - (void)enterStrawMode;
 - (void)useGid:(BOOL)flag;
-
+- (void)handleRedo;
+- (void)handleUndo;
 
 @end
 
