@@ -34,7 +34,7 @@
 {
     self = [super initWithControl:control itemType:itemType];
     if (self) {
-        _inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditDesc") content:nil target:self commitSeletor:NULL cancelSeletor:NULL];
+        _inputAlertView = [[InputAlertView inputAlertViewWith:NSLS(@"kEditDesc") content:nil target:self commitSeletor:NULL cancelSeletor:NULL] retain];
     }
     return self;
 }
