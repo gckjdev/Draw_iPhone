@@ -94,7 +94,7 @@
 
 - (BOOL)isSNSBtnVisable:(int)snsType
 {
-    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]];
+    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:snsType] isAuthorizeExpired];
 }
 
 - (BOOL)hasFeedTab
@@ -164,15 +164,40 @@
 
 - (void)clickSina:(UIViewController*)viewController
 {
-    [GameSNSService askRebindSina:viewController];
+    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
+        [GameSNSService askRebindSina:viewController];
+    } else {
+        [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    }
+         
 }
 - (void)clickQQ:(UIViewController*)viewController
 {
-    [GameSNSService askRebindQQ:viewController];
+    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
+        [GameSNSService askRebindQQ:viewController];
+    } else {
+        [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+        } failure:^{
+            //
+        }];
+    }
 }
 - (void)clickFacebook:(UIViewController*)viewController
 {
-    [GameSNSService askRebindFacebook:viewController];
+    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
+        [GameSNSService askRebindFacebook:viewController];
+    } else {
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+        } failure:^{
+            
+        }];
+    }
 }
 
 
@@ -197,5 +222,10 @@
 - (NSString*)blackUserBtnTitle
 {
     return nil;
+}
+
+- (void)initSNSButton:(UIButton *)button withType:(int)snsType
+{
+    [button setHighlighted:![self isSNSBtnVisable:snsType]];
 }
 @end

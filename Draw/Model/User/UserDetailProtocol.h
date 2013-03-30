@@ -27,8 +27,6 @@
 - (BOOL)isSuperManageBtnVisable;
 - (BOOL)hasFeedTab;
 
-- (BOOL)isSNSBtnVisable:(int)snsType;
-
 - (BOOL)isPrivacyVisable;
 
 - (PBGameUser*)getUser;
@@ -40,6 +38,9 @@
          viewController:(PPTableViewController*)viewController;
 
 - (NSString*)blackUserBtnTitle;
+
+- (void)initSNSButton:(UIButton*)button
+             withType:(int)snsType;
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 

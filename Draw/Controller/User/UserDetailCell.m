@@ -84,9 +84,12 @@
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
-    [self.sinaBtn setHidden:![detail isSNSBtnVisable:TYPE_SINA]];
-    [self.qqBtn setHidden:![detail isSNSBtnVisable:TYPE_QQ]];
-    [self.facebookBtn setHidden:![detail isSNSBtnVisable:TYPE_FACEBOOK]];
+//    [self.sinaBtn setHidden:![detail isSNSBtnVisable:TYPE_SINA]];
+//    [self.qqBtn setHidden:![detail isSNSBtnVisable:TYPE_QQ]];
+//    [self.facebookBtn setHidden:![detail isSNSBtnVisable:TYPE_FACEBOOK]];
+    [detail initSNSButton:self.sinaBtn withType:TYPE_SINA];
+    [detail initSNSButton:self.qqBtn withType:TYPE_QQ];
+    [detail initSNSButton:self.facebookBtn withType:TYPE_FACEBOOK];
     
     
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];

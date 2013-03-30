@@ -16,6 +16,7 @@
 @class PBGameUser;
 @class CommonRoundAvatarView;
 @class LocalizableLabel;
+@class PPViewController;
 
 @protocol UserDetailCellDelegate <NSObject>
 
