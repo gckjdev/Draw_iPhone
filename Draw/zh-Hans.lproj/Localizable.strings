@@ -728,6 +728,7 @@
 
 "kDeleting" = "删除中...";
 "kDeleteFail" = "删除失败！";
+"kUnfavoriteFail" = "取消收藏失败";
 
 "kFanStatus" = "新粉丝(%d)";
 "kFeedStatus" = "新动态(%d)";

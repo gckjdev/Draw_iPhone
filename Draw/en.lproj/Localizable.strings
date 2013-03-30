@@ -713,7 +713,7 @@
 "kChallenge" = "Challenge";
 "kDeleting" = "Deleting...";
 "kDeleteFail" = "Fail to delete.";
-
+"kUnfavoriteFail" = "Fail to unsubscribe";
 
 "kFanStatus" = "New Fans(%d)";
 "kFeedStatus" = "New Feed(%d)";
