@@ -49,10 +49,24 @@
 
 @implementation DrawBgCell
 
+- (void)clickButton:(id)sender
+{
+    
+}
+
 + (id)createCell:(id)delegate
 {
     DrawBgCell *cell = [UIView createViewWithXibIdentifier:[DrawBgCell getCellIdentifier]];
     cell.delegate = delegate;
+    for (UIButton *button in cell.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            if (button.tag > 0 && button.tag < 6) {
+                [button setBackgroundColor:[UIColor clearColor]];
+                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+            }
+
+        }
+    }
     return cell;
 }
 
