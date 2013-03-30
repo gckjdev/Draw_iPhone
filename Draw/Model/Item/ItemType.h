@@ -46,6 +46,12 @@ typedef enum
     VerticalCanvasLarge = 1154,     //竖版画布(大)
     
     VeinsBackground = 1200,         //纹理背景
+    WatercolorBackground,           //水彩背景
+    RoundBackground,                //圆形
+    RectangleBackground,            //方形
+    
+    
+    
     
     BasicShape = 1300,              //基本形状
 
