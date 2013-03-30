@@ -91,7 +91,7 @@
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="1028871951">
+								<object class="NSFont" key="IBUIFont" id="152645768">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
@@ -121,7 +121,7 @@
 									<string key="NSResourceName">draw_add@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="476021577">
 								<reference key="NSNextResponder" ref="518756962"/>
@@ -148,7 +148,7 @@
 									<string key="NSResourceName">draw_palette@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{0, 5}, {320, 42}}</string>
@@ -212,7 +212,7 @@
 											<string key="NSResourceName">pen_pencil@2x.png</string>
 										</object>
 										<reference key="IBUIFontDescription" ref="36910274"/>
-										<reference key="IBUIFont" ref="1028871951"/>
+										<reference key="IBUIFont" ref="152645768"/>
 									</object>
 									<object class="IBUIButton" id="1037917703">
 										<reference key="NSNextResponder" ref="511657176"/>
@@ -246,7 +246,7 @@
 											<string key="NSResourceName">draw_rubber@2x.png</string>
 										</object>
 										<reference key="IBUIFontDescription" ref="36910274"/>
-										<reference key="IBUIFont" ref="1028871951"/>
+										<reference key="IBUIFont" ref="152645768"/>
 									</object>
 								</array>
 								<string key="NSFrameSize">{53, 55}</string>
@@ -377,7 +377,7 @@
 									<string key="NSResourceName">draw_canvas_bg@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="603637563">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -403,7 +403,7 @@
 									<string key="NSResourceName">draw_size@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="81928228">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -429,7 +429,7 @@
 									<string key="NSResourceName">draw_grid@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="484805275">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -455,7 +455,7 @@
 									<string key="NSResourceName">draw_desc@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="537432708">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -481,7 +481,7 @@
 									<string key="NSResourceName">draw_target@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="522449680">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -507,7 +507,7 @@
 									<string key="NSResourceName">draw_help@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="587674421">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -537,7 +537,7 @@
 									<string key="NSResourceName">draw_undo_normal@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="606420503">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -568,7 +568,7 @@
 									<string key="NSResourceName">draw_redo_normal@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="140804943">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -594,7 +594,7 @@
 									<string key="NSResourceName">draw_oil@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="96719713">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -620,7 +620,7 @@
 									<string key="NSResourceName">group_message@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 							<object class="IBUIButton" id="535350486">
 								<reference key="NSNextResponder" ref="1000692843"/>
@@ -645,7 +645,7 @@
 									<string key="NSResourceName">draw_star@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
-								<reference key="IBUIFont" ref="1028871951"/>
+								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{46, 45}, {275, 55}}</string>
@@ -684,7 +684,7 @@
 							<string key="NSResourceName">draw_switch@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="36910274"/>
-						<reference key="IBUIFont" ref="1028871951"/>
+						<reference key="IBUIFont" ref="152645768"/>
 					</object>
 					<object class="IBUIButton" id="510518648">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -995,12 +995,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickChat:</string>
+						<string key="label">clickTool:</string>
 						<reference key="source" ref="96719713"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">53</int>
+					<int key="connectionID">114</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1347,7 +1347,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">113</int>
+			<int key="maxID">114</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
