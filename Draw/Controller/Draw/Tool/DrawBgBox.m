@@ -35,7 +35,7 @@
 }
 
 - (void)dealloc {
-    PPRelease(_scrollView);
+    PPRelease(_tableView);
     PPRelease(_selectedBgId);
     [super dealloc];
 }
@@ -68,7 +68,7 @@
 
 + (NSString *)getCellIdentifier
 {
-    return @"DrawBgCell"
+    return @"DrawBgCell";
 }
 
 @end
