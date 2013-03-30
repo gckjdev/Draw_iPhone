@@ -12,7 +12,7 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler UndoCommand];
+    [self.toolHandler handleUndo];
     return YES;
 }
 

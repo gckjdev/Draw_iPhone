@@ -38,6 +38,8 @@
 #import "WidthSliderCommand.h"
 #import "StrawCommand.h"
 #import "GridCommand.h"
+#import "RedoCommand.h"
+#import "UndoCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -185,7 +187,7 @@
         frame.origin = CGPointMake(x, SPACE_COLOR_UP);
         point.frame = frame;
         point.delegate = self;
-        [self addSubview:point];
+        [self insertSubview:point belowSubview:self.scrollView];
         [point setSelected:NO];
         if (i == 0 ||  [color isEqual:c]) {
             selectedPoint = point;
@@ -281,6 +283,12 @@
     [toolCmdManager registerCommand:command];
 
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    command = [[[UndoCommand alloc] initWithControl:self.undo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
     [toolCmdManager updateHandler:self.toolHandler];
