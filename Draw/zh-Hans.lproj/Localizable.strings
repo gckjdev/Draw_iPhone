@@ -233,6 +233,8 @@
 "kGive_a_5-star_review" = "给个好评";
 "kSure_delete" = "删除作品";
 "kAre_you_sure" = "确定删除?";
+"kAre_you_sure_to_unfavorite" = "确定取消收藏?";
+
 "kOptions" = "选项";
 "kShare" = "分享";
 "kReplay" = "回放";
@@ -686,6 +688,8 @@
 "kUserFeed" = "动态";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
+"kUnFavorite" = "取消收藏";
+"kUnFavoriting" = "取消收藏...";
 
 // For Weibo Settings
 "kSetEmail" = "电子邮件";
@@ -724,6 +728,7 @@
 
 "kDeleting" = "删除中...";
 "kDeleteFail" = "删除失败！";
+"kUnfavoriteFail" = "取消收藏失败";
 
 "kFanStatus" = "新粉丝(%d)";
 "kFeedStatus" = "新动态(%d)";

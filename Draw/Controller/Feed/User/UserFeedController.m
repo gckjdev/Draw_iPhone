@@ -16,6 +16,7 @@
 #import "UseItemScene.h"
 #import "ConfigManager.h"
 #import "UserManager.h"
+#import "MKBlockActionSheet.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -266,9 +267,6 @@ typedef enum{
         PPDebug(@"warnning:<UserFeedController> feedId = %@ is illegal feed, cannot set the detail", feed.feedId);
         return;
     }
-//    ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
-//    [self.navigationController pushViewController:sfc animated:YES];
-//    [sfc release];
     [self enterDetailFeed:drawFeed];
     
     
@@ -285,7 +283,8 @@ typedef enum{
 - (void)alertDeleteConfirm
 {
     CommonDialog* dialog = nil;
-    dialog = [CommonDialog createDialogWithTitle:[NSString stringWithFormat:@"%@［超级管理员权限模式］", NSLS(@"kSure_delete")]
+    NSString *title = [[UserManager defaultManager] isSuperUser] ? [NSString stringWithFormat:@"%@［超级管理员权限模式］", NSLS(@"kSure_delete")] : NSLS(@"kSure_delete");
+    dialog = [CommonDialog createDialogWithTitle:title
                                              message:NSLS(@"kAre_you_sure")
                                                style:CommonDialogStyleDoubleButton
                                             delegate:nil clickOkBlock:^{
@@ -300,13 +299,45 @@ typedef enum{
     [dialog showInView:self.view];
 }
 
+- (void)alertUnFavoriteConfirm
+{
+    CommonDialog* dialog = nil;
+    __block typeof (self) bself = self;
+    dialog = [CommonDialog createDialogWithTitle:NSLS(@"kUnFavorite")
+                                         message:NSLS(@"kAre_you_sure_to_unfavorite")
+                                           style:CommonDialogStyleDoubleButton
+                                        delegate:nil clickOkBlock:^{
+                                            if (_selectedFeed) {
+                                                [self showActivityWithText:NSLS(@"kUnFavoriting")];
+                                                [[FeedService defaultService] removeOpusFromFavorite:_selectedFeed.feedId resultBlock:^(int resultCode) {
+                                                    [bself hideActivity];
+                                                    if (resultCode != 0) {
+                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfavoriteFail") delayTime:1.5 isHappy:NO];
+                                                        return;
+                                                    }
+                                                    [bself finishDeleteData:_selectedFeed ForTabID:bself.currentTab.tabID];
+                                                    _selectedFeed = nil;
+                                                }];
+                                            }
+                                        } clickCancelBlock:^{
+                                            //
+                                        }];
+    [dialog showInView:self.view];
+}
+
 typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexDelete = 1,
+    ActionSheetIndexUnFavorite = 1,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self handleActionSheetForOpus:buttonIndex];
+}
+
+- (void)handleActionSheetForOpus:(NSInteger)buttonIndex
 {
     _selectedFeed = nil;
     DrawFeed* feed = _selectedRankView.feed;
@@ -330,6 +361,7 @@ typedef enum{
         }
             break;
     }
+
 }
 
 
@@ -467,10 +499,12 @@ typedef enum{
 }
 
 
+
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView
 {
-    
+    _selectedRankView = rankView;
+
     if ([[UserManager defaultManager] isSuperUser]) {
         UIActionSheet* actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
@@ -480,14 +514,63 @@ typedef enum{
                                       otherButtonTitles:NSLS(@"kDelete"), nil];
         [actionSheet showInView:self.view];
         [actionSheet release];
-        _selectedRankView = rankView;
     } else {
-        ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-        [self.navigationController pushViewController:sc animated:YES];
-        [sc release];
+        MKBlockActionSheet *sheet;
+        TableTab *tab = [self currentTab];
+        if(tab.tabID == UserTypeOpus ){
+            if ([[UserManager defaultManager] isMe:self.userId]) {
+                sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kDelete"), nil] autorelease];
+                [sheet showInView:self.view];
+                __block typeof (self) bself  = self;
+                [sheet setActionBlock:^(NSInteger buttonIndex){
+                    [bself handleActionSheetForOpus:buttonIndex];
+                }];
+            }else{
+                [self enterDetailFeed:_selectedRankView.feed];
+            }
+        }else if(tab.tabID == UserTypeFavorite){
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
+            [sheet showInView:self.view];
+            __block typeof (self) bself  = self;
+            [sheet setActionBlock:^(NSInteger buttonIndex){
+                [bself handleActionSheetForFavorite:buttonIndex];
+            }];
+        }
     }
-    
 }
+
+- (void)handleActionSheetForFavorite:(NSInteger)buttonIndex
+{
+    _selectedFeed = nil;
+    DrawFeed* feed = _selectedRankView.feed;
+    
+    switch (buttonIndex) {
+        case ActionSheetIndexUnFavorite:
+        {
+            _selectedFeed = feed;
+            [self alertUnFavoriteConfirm];
+        }
+            break;
+        case ActionSheetIndexDetail:
+        {
+            [self enterDetailFeed:feed];
+        }
+            break;
+        default:
+        {
+            
+        }
+            break;
+    }
+}
+
+- (void)showRankView:(RankView *)rankView
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+}
+
 
 
 @end
