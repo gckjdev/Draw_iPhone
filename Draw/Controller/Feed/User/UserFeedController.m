@@ -43,9 +43,11 @@ typedef enum{
     [super dealloc];
 }
 
-- (id)initWithUserId:(NSString *)userId nickName:(NSString *)nickName
+- (id)initWithUserId:(NSString *)userId
+            nickName:(NSString *)nickName
+     defaultTabIndex:(int)defaultTabIndex
 {
-    self = [super init];
+    self = [super initWithDefaultTabIndex:defaultTabIndex];
     if (self) {
         self.userId = userId;
         self.nickName = nickName;
@@ -86,7 +88,8 @@ typedef enum{
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    
     [self initTabButtons];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
 

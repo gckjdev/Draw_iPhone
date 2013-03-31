@@ -37,6 +37,7 @@
 
 @interface UserDetailViewController () {
     ChangeAvatar* _changeAvatar;
+    int currentTabIndex;
 }
 
 @property (retain, nonatomic) UserDetailCell* detailCell;
@@ -66,6 +67,7 @@
     [self.detail loadUser:self];
     [super viewDidLoad];
     [self didClickTabAtIndex:0];
+    currentTabIndex = DetailTabActionClickOpus;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -193,7 +195,6 @@
         }
         [_changeAvatar showSelectionView:self];
     }
-    
 }
 
 - (void)uploadUserAvatar:(UIImage*)image
@@ -230,7 +231,8 @@
 - (void)didClickMore
 {
     UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
-                                                               nickName:[self.detail getUser].nickName];
+                                                               nickName:[self.detail getUser].nickName
+                                                        defaultTabIndex:currentTabIndex];
     [self.navigationController pushViewController:uc animated:YES];
     [uc release];
 }
@@ -253,6 +255,7 @@
 
 - (void)didClickTabAtIndex:(int)index
 {
+    currentTabIndex = index;
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
