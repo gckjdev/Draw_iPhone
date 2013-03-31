@@ -13,28 +13,33 @@
 - (UIView *)contentView
 {
     DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
-    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
+//    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
     return drawBgBox;
 }
 
 - (BOOL)execute
 {
-    if ([super execute]) {
-        [self showPopTipView];
-        return YES;
-    }
-    return NO;
+    
+    UIView *view = [self contentView];
+    UIView *spView = [[self.control theViewController] view];
+    view.center = spView.center;
+    [spView addSubview:view];
+    return YES;
 }
 
 - (void)updateWithDrawBG:(PBDrawBg *)drawBG
 {
     [self.toolHandler changeDrawBG:drawBG];
-    [self hidePopTipView];
 }
 
-- (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg
+- (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg groudId:(NSInteger)groupId
 {
-    [self updateWithDrawBG:drawBg];
+    if ([self canUseItem:groupId]) {
+        [self updateWithDrawBG:drawBg];
+        [drawBgBox dismiss];
+    }else{
+
+    }
 }
 
 - (void)buyItemSuccessfully:(ItemType)type

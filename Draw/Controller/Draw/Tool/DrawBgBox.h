@@ -23,18 +23,27 @@ didSelectedDrawBg:(PBDrawBg *)drawBg
 
 @end
 
-@interface DrawBgBox : UIView<UITableViewDataSource, UITableViewDelegate>
+@protocol DrawBgCellDelegate <NSObject>
+
+- (void)drawBgCell:(DrawBgCell *)cell didSelectDrawBg:(PBDrawBg *)bg;
+
+@end
+
+@interface DrawBgBox : UIView<UITableViewDataSource, UITableViewDelegate, DrawBgCellDelegate>
 
 @property(nonatomic, assign) id<DrawBgBoxDelegate> delegate;
 - (void)updateViewsWithSelectedBgId:(NSString *)bgId;
 
 + (id)drawBgBoxWithDelegate:(id<DrawBgBoxDelegate>)delegate;
+- (void)dismiss;
 
 @end
 
 
 //////////////////////
 //////////////////////
+
+
 
 @interface DrawBgCell : PPTableViewCell
 
@@ -43,5 +52,7 @@ didSelectedDrawBg:(PBDrawBg *)drawBg
 - (void)updateCellWithDrawBGGroup:(PBDrawBgGroup *)group;
 
 + (NSString *)getCellIdentifier;
+
+@property(nonatomic, assign)PBDrawBgGroup *group;
 
 @end

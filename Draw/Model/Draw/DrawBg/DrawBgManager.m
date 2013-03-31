@@ -152,7 +152,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         
         //////bg list
         
-        for (i = start; i <= start + 5; i ++) {
+        for (i = start; i < start + 5; i ++) {
             NSString *bgId = [NSString stringWithFormat:@"%d",i];
             NSString *localUrl = [NSString stringWithFormat:@"%d.jpg",i];
             NSString *remoteUrl = @"http://58.215.160.100:8080/app_res/smart_data/draw_bg/";
@@ -205,6 +205,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         return [UIImage imageWithContentsOfFile:filePath];
     }
     return nil;
+}
+
+- (NSURL *)remoteURL
+{
+    return [NSURL URLWithString:self.remoteUrl];
 }
 
 @end
