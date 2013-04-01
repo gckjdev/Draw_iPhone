@@ -65,6 +65,9 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)handleRedo;
 - (void)handleUndo;
 
+- (TouchActionType)setTouchActionType:(TouchActionType)type;
+- (TouchActionType)touchActionType;
+
 @end
 
 

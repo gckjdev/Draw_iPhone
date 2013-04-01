@@ -222,8 +222,8 @@
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     [self.toolHandler changePenColor:colorPoint.color];
     [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
-    if (type == TouchActionTypeShape) {
-        [self.toolHandler enterStrawMode];
+    if(type == TouchActionTypeShape){
+        [self.toolHandler changeShape:self.toolHandler.drawView.shapeType];
     }else{
         [self.toolHandler enterDrawMode];
     }

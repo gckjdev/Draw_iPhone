@@ -140,7 +140,14 @@
     [self.drawView undo];
 }
 
-
+- (TouchActionType)setTouchActionType:(TouchActionType)type
+{
+    self.drawView.touchActionType = type;
+}
+- (TouchActionType)touchActionType
+{
+    return self.drawView.touchActionType;
+}
 /////////////////////////////
 //Atrributes
 

@@ -43,7 +43,11 @@
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
+    TouchActionType t = self.toolHandler.touchActionType;
     [self becomeActive];
+    if (t == TouchActionTypeShape) {
+        [self.toolHandler setTouchActionType:t];
+    }
     [self.toolHandler changePenColor:color];
 }
 
