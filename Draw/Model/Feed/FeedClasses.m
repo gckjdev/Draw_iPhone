@@ -21,6 +21,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_signature);
     PPRelease(_userId);
     PPRelease(_nickName);
     PPRelease(_avatar);
@@ -31,13 +32,15 @@
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
               gender:(BOOL)gender
+           signature:(NSString*)signature
 {
     self = [super init];
     if (self) {
         self.userId = userId;
         self.nickName = nickName;
         self.avatar = avatar;
-        self.gender = gender;        
+        self.gender = gender;
+        self.signature = signature;
     }
     return self;
 }
@@ -71,12 +74,14 @@
                         nickName:(NSString *)nickName 
                           avatar:(NSString *)avatar 
                           gender:(BOOL)gender
+                       signature:(NSString*)signature
 {
     return [[[FeedUser alloc] 
              initWithUserId:userId 
              nickName:nickName 
              avatar:avatar 
-             gender:gender] 
+             gender:gender
+             signature:signature]
             autorelease];
 }
 

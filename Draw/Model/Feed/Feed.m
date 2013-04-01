@@ -45,7 +45,8 @@
         self.feedUser = [FeedUser feedUserWithUserId:pbFeed.userId 
                                             nickName:pbFeed.nickName 
                                               avatar:pbFeed.avatar 
-                                              gender:pbFeed.gender];
+                                              gender:pbFeed.gender
+                                           signature:pbFeed.signature];
         
     }
     return self;

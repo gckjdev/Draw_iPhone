@@ -248,6 +248,7 @@
 #define PARA_DEVICEOS @"dos"
 #define PARA_DEVICETOKEN @"dto"
 #define PARA_NICKNAME @"nn"
+#define PARA_SIGNATURE @"sig"
 
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"

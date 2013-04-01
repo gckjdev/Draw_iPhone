@@ -1530,6 +1530,7 @@
                             userId:(NSString*)userId
                               nick:(NSString*)nick
                             avatar:(NSString*)avatar
+                         signature:(NSString*)signature
                             gender:(NSString*)gender
                             wordId:(NSString*)wordId
                               word:(NSString *)word
@@ -1561,6 +1562,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
+        str = [str stringByAddQueryParameter:PARA_SIGNATURE value:signature];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_WORD_ID value:wordId];
         str = [str stringByAddQueryParameter:PARA_WORD value:word];
