@@ -11,132 +11,166 @@
 #import "UIViewUtils.h"
 #import "DrawBgManager.h"
 #import "UIImageView+WebCache.h"
+#import "LocaleUtils.h"
+
 
 @interface DrawBgBox()
 {
     
 }
+- (IBAction)clickCloseButton:(id)sender;
 
 @property(nonatomic, retain) NSString *selectedBgId;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) NSArray *dataList;;
 
 @end
 
 @implementation DrawBgBox
 
-
-#define NUMBER_PER_ROW 3
-#define SPACE (ISIPAD ? 10 : 5)
-#define IMAGEVIEW_SIZE (ISIPAD ? CGSizeMake(160,160) : CGSizeMake(80,80))
-
-- (UIImageView *)imageViewForDrawBG:(PBDrawBg *)drawBG
+- (void)dismiss
 {
-    CGRect rect = CGRectZero;
-    rect.size = IMAGEVIEW_SIZE;
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:rect] autorelease];
-    UIImage *image = [drawBG localImage];
-    if (image) {
-        UIColor *color = [UIColor colorWithPatternImage:image];
-        [imageView setBackgroundColor:color];
-    }
-    return imageView;
-}
-
-- (NSArray *)pbDrawBgList
-{
-    DrawBgManager *bgManager = [DrawBgManager defaultManager];
-    NSArray *bgList = [bgManager pbDrawBgList];
-    return bgList;
-}
-
-- (void)updateViewsWithSelectedBgId:(NSString *)bgId
-{
-    self.selectedBgId = bgId;
-    //Find the draw bg index;
-    
-    NSInteger index = -1;
-    NSInteger i = 0;
-    for (PBDrawBg *drawBg in [self pbDrawBgList]) {
-        if ([drawBg.bgId isEqualToString:bgId]) {
-            index = i;
-            break;
-        }
-        ++ i;
-    }
-    
-    for (UIView *view in self.scrollView.subviews) {
-        if([view isKindOfClass:[UIControl class]]){
-            if (index == view.tag) {
-                view.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.3];
-            }else{
-                view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-            }
-        }
-    }
-}
-
-- (void)updateViews
-{
-    CGPoint origin = CGPointZero;
-    NSInteger i = 0;
-    
-    for (PBDrawBg *drawBG in [self pbDrawBgList]) {
-        UIImageView *imageView = [self imageViewForDrawBG:drawBG];
-        origin.x = (i % NUMBER_PER_ROW) * (SPACE + IMAGEVIEW_SIZE.width);
-        origin.y = (i / NUMBER_PER_ROW) * (SPACE + IMAGEVIEW_SIZE.height);        
-        CGRect frame = imageView.frame;
-        frame.origin = origin;
-        imageView.frame = frame;
-        [imageView setTag:i];
-        [self.scrollView addSubview:imageView];
-        
-        //Add Action
-        UIControl *control = [[[UIControl alloc] initWithFrame:frame] autorelease];
-        [self.scrollView addSubview:control];
-        [control setTag:i];
-        [control addTarget:self action:@selector(clickOnPBDrawBgIndex:) forControlEvents:UIControlEventTouchUpInside];
-        ++ i;
-    }
-    
-    //update content size
-    CGFloat height = (i/NUMBER_PER_ROW + 1) * (SPACE + IMAGEVIEW_SIZE.height) - SPACE;
-    CGSize contentSize = self.scrollView.contentSize;
-    if (height > contentSize.height) {
-        contentSize.height = height;
-        self.scrollView.contentSize = contentSize;
-    }
-    
-    [self updateViewsWithSelectedBgId:nil];
-}
-
-
-- (void)clickOnPBDrawBgIndex:(UIControl *)control
-{
-    DrawBgManager *bgManager = [DrawBgManager defaultManager];
-    NSArray *bgList = [bgManager pbDrawBgList];
-    NSInteger index = control.tag;
-    
-    if (index < [bgList count]) {
-        PBDrawBg *drawBg = [bgList objectAtIndex:index];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(drawBgBox:didSelectedDrawBg:)]) {
-            [self updateViewsWithSelectedBgId:drawBg.bgId];
-            [self.delegate drawBgBox:self didSelectedDrawBg:drawBg];
-
-        }
-    }
+    [self removeFromSuperview];
 }
 
 + (id)drawBgBoxWithDelegate:(id<DrawBgBoxDelegate>)delegate
 {
     DrawBgBox *box = [UIView createViewWithXibIdentifier:@"DrawBgBox"];
     box.delegate = delegate;
-    [box updateViews];
+    box.dataList = [[DrawBgManager defaultManager] pbDrawBgGroupList];
+    box.tableView.delegate = box;
+    box.tableView.dataSource = box;
+    
+    [box setBackgroundColor:[UIColor clearColor]];
+    [box.tableView setBackgroundColor:[UIColor clearColor]];
+    
     return box;
 }
 
 - (void)dealloc {
-    PPRelease(_scrollView);
+    PPRelease(_tableView);
     PPRelease(_selectedBgId);
+    PPRelease(_dataList);
     [super dealloc];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.dataList count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [DrawBgCell getCellHeight];
+}
+
+- (PBDrawBgGroup *)groupOfIndexPath:(NSIndexPath *)indexPath
+{
+    PBDrawBgGroup *group = [self.dataList objectAtIndex:indexPath.row];
+    return group;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DrawBgCell *cell = [tableView dequeueReusableCellWithIdentifier:[DrawBgCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [DrawBgCell createCell:self];
+    }
+    cell.indexPath = indexPath;
+    PBDrawBgGroup *group = [self groupOfIndexPath:indexPath];
+    [cell updateCellWithDrawBGGroup:group];
+    return cell;
+}
+- (void)updateViewsWithSelectedBgId:(NSString *)bgId
+{
+    
+}
+
+- (void)drawBgCell:(DrawBgCell *)cell didSelectDrawBg:(PBDrawBg *)bg
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawBgBox:didSelectedDrawBg:groudId:)]) {
+        PBDrawBgGroup *bgGroup = [self groupOfIndexPath:cell.indexPath];
+        [self.delegate drawBgBox:self didSelectedDrawBg:bg groudId:bgGroup.groupId];
+    }
+}
+- (IBAction)clickCloseButton:(id)sender {
+    [self dismiss];
+}
+@end
+
+
+
+////////////////
+////////////////
+
+
+
+
+@implementation DrawBgCell
+
+#define NAME_LABEL_TAG 10
+
+- (UILabel *)nameLabel
+{
+    return (id)[self viewWithTag:NAME_LABEL_TAG];
+}
+
+- (void)clickButton:(UIButton *)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawBgCell:didSelectDrawBg:)]) {
+        NSInteger index = sender.tag;
+        PBDrawBg *bg = [self.group drawBgsAtIndex:index - 1];
+        [self.delegate drawBgCell:self didSelectDrawBg:bg];
+    }
+}
+
++ (id)createCell:(id)delegate
+{
+    DrawBgCell *cell = [UIView createViewWithXibIdentifier:[DrawBgCell getCellIdentifier]];
+    cell.delegate = delegate;
+    for (UIButton *button in cell.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            if (button.tag > 0 && button.tag < 6) {
+                [button setBackgroundColor:[UIColor clearColor]];
+                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+                [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
+            }
+
+        }
+    }
+    return cell;
+}
+
++ (CGFloat)getCellHeight
+{
+    return (ISIPAD ? 152 : 76);
+}
+
+- (void)updateCellWithDrawBGGroup:(PBDrawBgGroup *)group
+{
+    self.group = group;
+    NSString *name = [[group nameAtIndex:0] localizedText];
+    [[self nameLabel] setText:name];
+    NSInteger i = 1;
+    for (PBDrawBg *bg in group.drawBgsList) {
+        UIImage *image = [bg localImage];
+        UIButton *button = (UIButton *)[self viewWithTag:i];
+        if (image) {
+            [button setImage:image forState:UIControlStateNormal];
+        }else{
+            [button.imageView setImageWithURL:bg.remoteURL success:^(UIImage *image, BOOL cached) {
+                [button setImage:image forState:UIControlStateNormal];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+        ++ i;
+    }
+}
+
++ (NSString *)getCellIdentifier
+{
+    return @"DrawBgCell";
+}
+
 @end

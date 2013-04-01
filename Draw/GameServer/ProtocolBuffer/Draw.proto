@@ -173,10 +173,16 @@ message PBNoCompressDrawData
 }
 
 
-
-message PBDrawBgList
+message PBDrawBgGroup
 {
-    repeated PBDrawBg drawBgs = 1;
+    required int32 groupId = 1;
+    repeated PBDrawBg drawBgs = 2;
+    repeated PBLocalizeString name = 3;    
+}
+
+message PBDrawBgMeta
+{
+    repeated PBDrawBgGroup drawBgGroup = 1;
 }
 
 message PBHotWord

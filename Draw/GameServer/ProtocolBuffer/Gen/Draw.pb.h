@@ -15,8 +15,10 @@
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
-@class PBDrawBgList;
-@class PBDrawBgList_Builder;
+@class PBDrawBgGroup;
+@class PBDrawBgGroup_Builder;
+@class PBDrawBgMeta;
+@class PBDrawBgMeta_Builder;
 @class PBDrawBg_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
@@ -1216,53 +1218,121 @@
 - (PBNoCompressDrawData_Builder*) clearOpusDesc;
 @end
 
-@interface PBDrawBgList : PBGeneratedMessage {
+@interface PBDrawBgGroup : PBGeneratedMessage {
 @private
+  BOOL hasGroupId_:1;
+  int32_t groupId;
   NSMutableArray* mutableDrawBgsList;
+  NSMutableArray* mutableNameList;
 }
+- (BOOL) hasGroupId;
+@property (readonly) int32_t groupId;
 - (NSArray*) drawBgsList;
 - (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
 
-+ (PBDrawBgList*) defaultInstance;
-- (PBDrawBgList*) defaultInstance;
++ (PBDrawBgGroup*) defaultInstance;
+- (PBDrawBgGroup*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBDrawBgList_Builder*) builder;
-+ (PBDrawBgList_Builder*) builder;
-+ (PBDrawBgList_Builder*) builderWithPrototype:(PBDrawBgList*) prototype;
+- (PBDrawBgGroup_Builder*) builder;
++ (PBDrawBgGroup_Builder*) builder;
++ (PBDrawBgGroup_Builder*) builderWithPrototype:(PBDrawBgGroup*) prototype;
 
-+ (PBDrawBgList*) parseFromData:(NSData*) data;
-+ (PBDrawBgList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input;
-+ (PBDrawBgList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBDrawBgList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgGroup*) parseFromData:(NSData*) data;
++ (PBDrawBgGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgGroup*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawBgGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawBgGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBDrawBgList_Builder : PBGeneratedMessage_Builder {
+@interface PBDrawBgGroup_Builder : PBGeneratedMessage_Builder {
 @private
-  PBDrawBgList* result;
+  PBDrawBgGroup* result;
 }
 
-- (PBDrawBgList*) defaultInstance;
+- (PBDrawBgGroup*) defaultInstance;
 
-- (PBDrawBgList_Builder*) clear;
-- (PBDrawBgList_Builder*) clone;
+- (PBDrawBgGroup_Builder*) clear;
+- (PBDrawBgGroup_Builder*) clone;
 
-- (PBDrawBgList*) build;
-- (PBDrawBgList*) buildPartial;
+- (PBDrawBgGroup*) build;
+- (PBDrawBgGroup*) buildPartial;
 
-- (PBDrawBgList_Builder*) mergeFrom:(PBDrawBgList*) other;
-- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDrawBgList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBDrawBgGroup_Builder*) mergeFrom:(PBDrawBgGroup*) other;
+- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBgGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGroupId;
+- (int32_t) groupId;
+- (PBDrawBgGroup_Builder*) setGroupId:(int32_t) value;
+- (PBDrawBgGroup_Builder*) clearGroupId;
 
 - (NSArray*) drawBgsList;
 - (PBDrawBg*) drawBgsAtIndex:(int32_t) index;
-- (PBDrawBgList_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value;
-- (PBDrawBgList_Builder*) addDrawBgs:(PBDrawBg*) value;
-- (PBDrawBgList_Builder*) addAllDrawBgs:(NSArray*) values;
-- (PBDrawBgList_Builder*) clearDrawBgsList;
+- (PBDrawBgGroup_Builder*) replaceDrawBgsAtIndex:(int32_t) index with:(PBDrawBg*) value;
+- (PBDrawBgGroup_Builder*) addDrawBgs:(PBDrawBg*) value;
+- (PBDrawBgGroup_Builder*) addAllDrawBgs:(NSArray*) values;
+- (PBDrawBgGroup_Builder*) clearDrawBgsList;
+
+- (NSArray*) nameList;
+- (PBLocalizeString*) nameAtIndex:(int32_t) index;
+- (PBDrawBgGroup_Builder*) replaceNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBDrawBgGroup_Builder*) addName:(PBLocalizeString*) value;
+- (PBDrawBgGroup_Builder*) addAllName:(NSArray*) values;
+- (PBDrawBgGroup_Builder*) clearNameList;
+@end
+
+@interface PBDrawBgMeta : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableDrawBgGroupList;
+}
+- (NSArray*) drawBgGroupList;
+- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index;
+
++ (PBDrawBgMeta*) defaultInstance;
+- (PBDrawBgMeta*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDrawBgMeta_Builder*) builder;
++ (PBDrawBgMeta_Builder*) builder;
++ (PBDrawBgMeta_Builder*) builderWithPrototype:(PBDrawBgMeta*) prototype;
+
++ (PBDrawBgMeta*) parseFromData:(NSData*) data;
++ (PBDrawBgMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgMeta*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawBgMeta*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawBgMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawBgMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDrawBgMeta_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDrawBgMeta* result;
+}
+
+- (PBDrawBgMeta*) defaultInstance;
+
+- (PBDrawBgMeta_Builder*) clear;
+- (PBDrawBgMeta_Builder*) clone;
+
+- (PBDrawBgMeta*) build;
+- (PBDrawBgMeta*) buildPartial;
+
+- (PBDrawBgMeta_Builder*) mergeFrom:(PBDrawBgMeta*) other;
+- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawBgMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) drawBgGroupList;
+- (PBDrawBgGroup*) drawBgGroupAtIndex:(int32_t) index;
+- (PBDrawBgMeta_Builder*) replaceDrawBgGroupAtIndex:(int32_t) index with:(PBDrawBgGroup*) value;
+- (PBDrawBgMeta_Builder*) addDrawBgGroup:(PBDrawBgGroup*) value;
+- (PBDrawBgMeta_Builder*) addAllDrawBgGroup:(NSArray*) values;
+- (PBDrawBgMeta_Builder*) clearDrawBgGroupList;
 @end
 
 @interface PBHotWord : PBGeneratedMessage {
