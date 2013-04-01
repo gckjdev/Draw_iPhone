@@ -128,10 +128,13 @@
         UIImage *image = [showView createImage];
         
         //if the server has no image data update the server data
-        if (ISIPAD) {
-            [[FeedService defaultService] updateOpus:feed.feedId image:image];
-        }
+        //remove by Benson 2013-03-31
+//        if (ISIPAD) {
+//            [[FeedService defaultService] updateOpus:feed.feedId image:image];
+//        }
+        
 //        [self.drawImage setImage:image];
+        
         [self updateImage:image];
 
         feed.drawImage = image;

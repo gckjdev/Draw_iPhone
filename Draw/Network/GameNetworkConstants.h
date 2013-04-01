@@ -474,6 +474,7 @@
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"
+#define PARA_TARGETUSER_NICKNAME @"tnn"
 #define PARA_FRIENDSTYPE    @"ft"
 #define PARA_SEARCHSTRING   @"ss"
 #define PARA_START_INDEX    @"si"

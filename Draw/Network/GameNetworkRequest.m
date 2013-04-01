@@ -1653,9 +1653,9 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
-        str = [str stringByAddQueryParameter:PARA_OPUS_ID intValue:newType];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:@""];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSER_NICKNAME value:@""];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:newType];
         
         return str;
     };
