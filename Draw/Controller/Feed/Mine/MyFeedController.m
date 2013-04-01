@@ -11,7 +11,9 @@
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
 #import "FeedCell.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "ViewUserDetail.h"
+#import "UserDetailViewController.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "StatisticManager.h"
@@ -779,11 +781,15 @@ typedef enum{
 {
     
     NSString* genderString = gender?@"m":@"f";
-    MyFriend *friend = [MyFriend friendWithFid:userId
-                                      nickName:nickName
-                                        avatar:nil
-                                        gender:genderString
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+//    MyFriend *friend = [MyFriend friendWithFid:userId
+//                                      nickName:nickName
+//                                        avatar:nil
+//                                        gender:genderString
+//                                         level:1];
+//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
+    return;
 }
 @end

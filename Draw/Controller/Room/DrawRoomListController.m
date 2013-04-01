@@ -9,7 +9,9 @@
 #import "DrawRoomListController.h"
 #import "DrawGameService.h"
 #import "DrawRoomListCell.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "MyFriend.h"
 #import "GameBasic.pb.h"
 #import "UserManager.h"
@@ -192,13 +194,8 @@
 
 - (void)didQueryUser:(NSString *)userId
 {
-    MyFriend *friend = [MyFriend friendWithFid:userId
-                                      nickName:nil
-                                        avatar:nil
-                                        gender:nil
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    return;
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
 }
 
 - (void)handleLeftTabAction

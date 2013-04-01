@@ -27,7 +27,9 @@
 #import "SuperUserManageAction.h"
 #import "BBSPermissionManager.h"
 
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "DiceUserInfoView.h"
 #import "ZJHUserInfoView.h"
 #import "Bbs.pb.h"
@@ -300,9 +302,8 @@
            canChat:(BOOL)canChat
 {
     if (isDrawApp()) {
-        [DrawUserInfoView showFriend:afriend
-                          infoInView:superController
-                          needUpdate:needUpdate];
+        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName]] autorelease];
+        [superController.navigationController pushViewController:uc animated:YES];
         return;
     }
     if (isDiceApp()) {

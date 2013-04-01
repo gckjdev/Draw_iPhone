@@ -14,7 +14,7 @@
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "CommonUserInfoView.h"
 

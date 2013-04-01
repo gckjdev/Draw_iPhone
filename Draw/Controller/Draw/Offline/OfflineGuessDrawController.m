@@ -33,7 +33,9 @@
 #import "Draw.h"
 #import "AccountManager.h"
 #import "ShowFeedController.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "FeedService.h"
 #import "DrawGameAnimationManager.h"
 #import "UIImageExt.h"
@@ -856,12 +858,16 @@
 #pragma mark - avatar view delegate
 - (void)didClickOnAvatar:(NSString *)userId
 {
-    MyFriend *friend = [MyFriend friendWithFid:userId
-                                      nickName:nil
-                                        avatar:nil
-                                        gender:nil
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+//    MyFriend *friend = [MyFriend friendWithFid:userId
+//                                      nickName:nil
+//                                        avatar:nil
+//                                        gender:nil
+//                                         level:1];
+//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
+    return;
 
 }
 

@@ -16,7 +16,7 @@
 #import "MyFriend.h"
 #import "FriendManager.h"
 //#import "ChatMessage.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "MessageStat.h"
 #import "PPMessageManager.h"

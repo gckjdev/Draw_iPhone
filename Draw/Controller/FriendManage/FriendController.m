@@ -21,7 +21,7 @@
 #import "RoomService.h"
 #import "WXApi.h"
 #import "DrawAppDelegate.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "ConfigManager.h"
 #import "NotificationManager.h"
 #import "DiceUserInfoView.h"
