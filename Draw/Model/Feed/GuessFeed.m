@@ -69,7 +69,8 @@
                           userId:pbFeed.opusCreatorUserId 
                           nickName:pbFeed.opusCreatorNickName 
                           avatar:pbFeed.opusCreatorAvatar 
-                          gender:pbFeed.opusCreatorGender 
+                          gender:pbFeed.opusCreatorGender
+                          signature:pbFeed.signature
                           drawImageUrl:pbFeed.opusImage 
                           pbDraw:pbFeed.drawData 
                           wordText:pbFeed.opusWord 
