@@ -150,7 +150,7 @@ typedef enum{
         [self showColorShopView];
     }else{
         if ([item hasUrl]) {
-            TaoBaoController *vc = [[[TaoBaoController alloc] init] autorelease];
+            TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:[item name]] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
             __block typeof (self) bself = self;
