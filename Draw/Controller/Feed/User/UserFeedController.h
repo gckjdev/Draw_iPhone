@@ -23,6 +23,9 @@
 @property(nonatomic, retain)NSString *nickName;
 
 - (id)initWithUserId:(NSString *)userId
+            nickName:(NSString *)nickName;
+
+- (id)initWithUserId:(NSString *)userId
             nickName:(NSString *)nickName
      defaultTabIndex:(int)defaultTabIndex;
 @end
