@@ -130,13 +130,7 @@
 
 - (void)didClickAvatar
 {
-    if ([self.detail canEdit]) {
-        if (_changeAvatar == nil) {
-            _changeAvatar = [[ChangeAvatar alloc] init];
-            _changeAvatar.autoRoundRect = NO;
-        }
-        [_changeAvatar showSelectionView:self];
-    }
+    [self.detail clickAvatar:self];
 }
 
 - (void)uploadUserAvatar:(UIImage*)image

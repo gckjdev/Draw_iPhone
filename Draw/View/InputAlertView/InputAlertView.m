@@ -145,9 +145,11 @@
 {
     return self.content.text;
 }
+
 - (NSString *)setContentText:(NSString *)text
 {
     [self.content setText:text];
+    return self.content.text;
 }
 
 - (void)dealloc {
