@@ -79,7 +79,7 @@
 - (PBDrawAction *)toPBDrawAction
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
-    [builder setType:DrawActionTypePaint];
+    [builder setType:DrawActionTypeChangeBack];
     [builder setWidth:BACK_GROUND_WIDTH];
     [builder addPointsX:0];
     [builder addPointsX:0];
