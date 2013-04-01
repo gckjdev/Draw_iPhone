@@ -858,5 +858,21 @@
     return  [MobClickUtils getStringValueByKey:@"BBS_POST_ID_FEEDBACK" defaultValue:@"50eaa5e2e4b0fa7710d1a820"];
 }
 
++ (NSString *)getDianRongBiName
+{
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_NAME" defaultValue:@"电容笔"];
+}
++ (NSString *)getDianRongBiDesc
+{
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"维锐电容笔，包邮79元，额外3999金币，欢迎来抢购吧！"];
+}
++ (NSString *)getDianRongBiImageURL
+{
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_ICON_URL" defaultValue:@"http://58.215.160.100:8080/icon/weirui_pen1.jpg"];
+}
++ (NSString *)getDianRongBiTaoBaoURL
+{
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_TAOBAO_URL" defaultValue:@"http://a.m.taobao.com/i17538377874.htm"];
+}
 
 @end

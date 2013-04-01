@@ -10,6 +10,16 @@
 #import "Draw.pb.h"
 #import "SDWebImageManager.h"
 
+
+typedef enum{
+    
+    ShowStyleCenter = 0,
+    ShowStylePattern,
+    
+}ShowStyle;
+
+
+
 @interface DrawBgManager : NSObject
 
 

@@ -1066,15 +1066,17 @@
 "kCleanCache" = "Clear Cache";
 "kGiveSuccess" = "Give Success!";
 
-"kNoSaleItemNormal" = "No Normal Items";
-"kNoSaleItemTool" = "No Tool Items";
+"kNoSaleItemNormal" = "No normal items";
+"kNoSaleItemTool" = "No tool items";
 "kNoSaleItemPromoting" = "No promoting item now";
+"kNoSaleItemTaoBao" = "No TaoBao items now";
 
 "kBuyColorFailed"= "Buy color failed";
 
 "kItemNormal" = "Item";
 "kItemTool" = "Tool";
 "kItemPromotion" = "Hot";
+"kItemTaoBao" = "Tao";
 "kDownloadRewardAppTips" = "Download our apps to earn ingots";
 "kRewardWallTips" = "Download third-party apps to earn ingots";
 "kFreeIngot" = "Free Ingot";
