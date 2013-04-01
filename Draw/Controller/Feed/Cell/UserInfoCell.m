@@ -58,13 +58,12 @@
 //    self.avatarView.delegate = self;
     
     //name
-//    if ([feed.author.signture length] > 0) {
-    if (NO) {
+    if ([feed.author.signature length] > 0) {
         self.nickNameLabel.hidden = NO;
         self.signLabel.hidden = NO;
         self.nickLabel.hidden = YES;
         self.nickNameLabel.text = nickName;
-//        self.signLabel.text = feed.author.signture;
+        self.signLabel.text = feed.author.signature;
     }else{
         self.nickNameLabel.hidden = YES;
         self.signLabel.hidden = YES;
