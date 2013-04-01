@@ -10,6 +10,10 @@
 #import "IngotService.h"
 #import "AccountManager.h"
 #import "TaoBaoController.h"
+#import "MobClickUtils.h"
+
+// TO DO UPDATE
+#define KEY_TAOBAO_CHARGE_URL  @"kTaoBaoCharge"
 
 @interface ChargeController ()
 
@@ -65,7 +69,10 @@
 }
 
 - (IBAction)clickTaoBaoButton:(id)sender {
-    TaoBaoController *controller = [[TaoBaoController alloc] init];
+    //NSString *urlString = [MobClickUtils getStringValueByKey:KEY_TAOBAO_CHARGE_URL defaultValue:nil];
+    NSString *urlString = @"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0";
+    
+    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:urlString title:NSLS(@"kTaoBaoCharge")];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }

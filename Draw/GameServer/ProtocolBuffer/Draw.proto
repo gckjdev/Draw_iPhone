@@ -25,7 +25,7 @@ message PBDraw {
   optional int32 score = 12;                        // draw word score
 
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
-  optional PBDrawBg drawBg = 20;                    // draw background info
+
   optional PBSize canvasSize = 21;                        // draw rect size
   
 }
@@ -165,7 +165,7 @@ message PBNoCompressDrawData
     repeated PBNoCompressDrawAction drawActionList = 1;
 
     optional int32 version = 2 [default=0];      // draw data version
-    optional PBDrawBg drawBg = 3; //draw bg info
+
     optional PBSize canvasSize = 4;
 
     repeated PBDrawAction drawActionList2 = 5; //use after version 2.0

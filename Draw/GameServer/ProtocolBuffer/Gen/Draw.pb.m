@@ -35,7 +35,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) NSString* opusId;
 @property int32_t score;
 @property BOOL isCompressed;
-@property (retain) PBDrawBg* drawBg;
 @property (retain) PBSize* canvasSize;
 @end
 
@@ -136,13 +135,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (void) setIsCompressed:(BOOL) value {
   isCompressed_ = !!value;
 }
-- (BOOL) hasDrawBg {
-  return !!hasDrawBg_;
-}
-- (void) setHasDrawBg:(BOOL) value {
-  hasDrawBg_ = !!value;
-}
-@synthesize drawBg;
 - (BOOL) hasCanvasSize {
   return !!hasCanvasSize_;
 }
@@ -157,7 +149,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   self.avatar = nil;
   self.mutableDrawDataList = nil;
   self.opusId = nil;
-  self.drawBg = nil;
   self.canvasSize = nil;
   [super dealloc];
 }
@@ -175,7 +166,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.opusId = @"";
     self.score = 0;
     self.isCompressed = YES;
-    self.drawBg = [PBDrawBg defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
   }
   return self;
@@ -214,11 +204,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   for (PBDrawAction* element in self.drawDataList) {
     if (!element.isInitialized) {
-      return NO;
-    }
-  }
-  if (self.hasDrawBg) {
-    if (!self.drawBg.isInitialized) {
       return NO;
     }
   }
@@ -263,9 +248,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasIsCompressed) {
     [output writeBool:19 value:self.isCompressed];
-  }
-  if (self.hasDrawBg) {
-    [output writeMessage:20 value:self.drawBg];
   }
   if (self.hasCanvasSize) {
     [output writeMessage:21 value:self.canvasSize];
@@ -317,9 +299,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   }
   if (self.hasIsCompressed) {
     size += computeBoolSize(19, self.isCompressed);
-  }
-  if (self.hasDrawBg) {
-    size += computeMessageSize(20, self.drawBg);
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(21, self.canvasSize);
@@ -441,9 +420,6 @@ static PBDraw* defaultPBDrawInstance = nil;
   if (other.hasIsCompressed) {
     [self setIsCompressed:other.isCompressed];
   }
-  if (other.hasDrawBg) {
-    [self mergeDrawBg:other.drawBg];
-  }
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
   }
@@ -520,15 +496,6 @@ static PBDraw* defaultPBDrawInstance = nil;
       }
       case 152: {
         [self setIsCompressed:[input readBool]];
-        break;
-      }
-      case 162: {
-        PBDrawBg_Builder* subBuilder = [PBDrawBg builder];
-        if (self.hasDrawBg) {
-          [subBuilder mergeFrom:self.drawBg];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setDrawBg:[subBuilder buildPartial]];
         break;
       }
       case 170: {
@@ -762,36 +729,6 @@ static PBDraw* defaultPBDrawInstance = nil;
 - (PBDraw_Builder*) clearIsCompressed {
   result.hasIsCompressed = NO;
   result.isCompressed = YES;
-  return self;
-}
-- (BOOL) hasDrawBg {
-  return result.hasDrawBg;
-}
-- (PBDrawBg*) drawBg {
-  return result.drawBg;
-}
-- (PBDraw_Builder*) setDrawBg:(PBDrawBg*) value {
-  result.hasDrawBg = YES;
-  result.drawBg = value;
-  return self;
-}
-- (PBDraw_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue {
-  return [self setDrawBg:[builderForValue build]];
-}
-- (PBDraw_Builder*) mergeDrawBg:(PBDrawBg*) value {
-  if (result.hasDrawBg &&
-      result.drawBg != [PBDrawBg defaultInstance]) {
-    result.drawBg =
-      [[[PBDrawBg builderWithPrototype:result.drawBg] mergeFrom:value] buildPartial];
-  } else {
-    result.drawBg = value;
-  }
-  result.hasDrawBg = YES;
-  return self;
-}
-- (PBDraw_Builder*) clearDrawBg {
-  result.hasDrawBg = NO;
-  result.drawBg = [PBDrawBg defaultInstance];
   return self;
 }
 - (BOOL) hasCanvasSize {
@@ -4491,7 +4428,6 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @interface PBNoCompressDrawData ()
 @property (retain) NSMutableArray* mutableDrawActionListList;
 @property int32_t version;
-@property (retain) PBDrawBg* drawBg;
 @property (retain) PBSize* canvasSize;
 @property (retain) NSMutableArray* mutableDrawActionList2List;
 @property (retain) PBUserBasicInfo* drawToUser;
@@ -4508,13 +4444,6 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasVersion_ = !!value;
 }
 @synthesize version;
-- (BOOL) hasDrawBg {
-  return !!hasDrawBg_;
-}
-- (void) setHasDrawBg:(BOOL) value {
-  hasDrawBg_ = !!value;
-}
-@synthesize drawBg;
 - (BOOL) hasCanvasSize {
   return !!hasCanvasSize_;
 }
@@ -4539,7 +4468,6 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @synthesize opusDesc;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
-  self.drawBg = nil;
   self.canvasSize = nil;
   self.mutableDrawActionList2List = nil;
   self.drawToUser = nil;
@@ -4549,7 +4477,6 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.version = 0;
-    self.drawBg = [PBDrawBg defaultInstance];
     self.canvasSize = [PBSize defaultInstance];
     self.drawToUser = [PBUserBasicInfo defaultInstance];
     self.opusDesc = @"";
@@ -4588,11 +4515,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
       return NO;
     }
   }
-  if (self.hasDrawBg) {
-    if (!self.drawBg.isInitialized) {
-      return NO;
-    }
-  }
   for (PBDrawAction* element in self.drawActionList2List) {
     if (!element.isInitialized) {
       return NO;
@@ -4611,9 +4533,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasVersion) {
     [output writeInt32:2 value:self.version];
-  }
-  if (self.hasDrawBg) {
-    [output writeMessage:3 value:self.drawBg];
   }
   if (self.hasCanvasSize) {
     [output writeMessage:4 value:self.canvasSize];
@@ -4641,9 +4560,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasVersion) {
     size += computeInt32Size(2, self.version);
-  }
-  if (self.hasDrawBg) {
-    size += computeMessageSize(3, self.drawBg);
   }
   if (self.hasCanvasSize) {
     size += computeMessageSize(4, self.canvasSize);
@@ -4741,9 +4657,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasVersion) {
     [self setVersion:other.version];
   }
-  if (other.hasDrawBg) {
-    [self mergeDrawBg:other.drawBg];
-  }
   if (other.hasCanvasSize) {
     [self mergeCanvasSize:other.canvasSize];
   }
@@ -4788,15 +4701,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
       }
       case 16: {
         [self setVersion:[input readInt32]];
-        break;
-      }
-      case 26: {
-        PBDrawBg_Builder* subBuilder = [PBDrawBg builder];
-        if (self.hasDrawBg) {
-          [subBuilder mergeFrom:self.drawBg];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setDrawBg:[subBuilder buildPartial]];
         break;
       }
       case 34: {
@@ -4873,36 +4777,6 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 - (PBNoCompressDrawData_Builder*) clearVersion {
   result.hasVersion = NO;
   result.version = 0;
-  return self;
-}
-- (BOOL) hasDrawBg {
-  return result.hasDrawBg;
-}
-- (PBDrawBg*) drawBg {
-  return result.drawBg;
-}
-- (PBNoCompressDrawData_Builder*) setDrawBg:(PBDrawBg*) value {
-  result.hasDrawBg = YES;
-  result.drawBg = value;
-  return self;
-}
-- (PBNoCompressDrawData_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue {
-  return [self setDrawBg:[builderForValue build]];
-}
-- (PBNoCompressDrawData_Builder*) mergeDrawBg:(PBDrawBg*) value {
-  if (result.hasDrawBg &&
-      result.drawBg != [PBDrawBg defaultInstance]) {
-    result.drawBg =
-      [[[PBDrawBg builderWithPrototype:result.drawBg] mergeFrom:value] buildPartial];
-  } else {
-    result.drawBg = value;
-  }
-  result.hasDrawBg = YES;
-  return self;
-}
-- (PBNoCompressDrawData_Builder*) clearDrawBg {
-  result.hasDrawBg = NO;
-  result.drawBg = [PBDrawBg defaultInstance];
   return self;
 }
 - (BOOL) hasCanvasSize {

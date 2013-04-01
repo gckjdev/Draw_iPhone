@@ -170,22 +170,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         [drawBgMeta addDrawBgGroup:[gb build]];
         start += 10;
     }
-    
-//    for (NSInteger i = 1; i <= number; ++i) {
-//        NSString *bgId = [NSString stringWithFormat:@"%d",i];
-//        NSString *localUrl = [NSString stringWithFormat:@"%d.jpg",i];
-//        NSString *remoteUrl = @"http://58.215.160.100:8080/app_res/smart_data/draw_bg/";
-//        remoteUrl = [remoteUrl stringByAppendingPathComponent:localUrl];
-//
-//        PBDrawBg_Builder *builder = [[[PBDrawBg_Builder alloc] init] autorelease];
-//        [builder setBgId:bgId];
-//        [builder setLocalUrl:localUrl];
-//        [builder setRemoteUrl:remoteUrl];
-//        PBDrawBg *drawBg = [builder build];
-//        [lBuilder addDrawBgs:drawBg];
-//        PPDebug(@"draw bg = [%@, %@, %@]",drawBg.bgId, drawBg.localUrl, drawBg.remoteUrl);        
-//    }
-//    PBDrawBgList *list = [lBuilder build];
+
     NSData *data = [[drawBgMeta build] data];
     PPDebug(@"<Write Data>, data length = %d",[data length]);
     [data writeToFile:@"/Users/qqn_pipi/tool/draw_bg/meta.pb" atomically:YES];

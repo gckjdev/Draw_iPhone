@@ -506,7 +506,6 @@
 {
     PPDebug(@"<startPlay>");
     [self.showView play];
-    [showView setDrawBg:self.draw.drawBg];
 }
 
 - (void)updateDrawInfo

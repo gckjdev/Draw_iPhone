@@ -20,16 +20,19 @@
 @property(nonatomic, retain)NSString *nickName;
 @property(nonatomic, retain)NSString *avatar;
 @property(nonatomic, assign)BOOL gender;
+@property(nonatomic, retain)NSString *signature;
 
 - (id)initWithUserId:(NSString *)userId 
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
-              gender:(BOOL)gender;
+              gender:(BOOL)gender
+           signature:(NSString*)signature;
 
 + (FeedUser *)feedUserWithUserId:(NSString *)userId 
-            nickName:(NSString *)nickName 
-              avatar:(NSString *)avatar 
-              gender:(BOOL)gender;
+                        nickName:(NSString *)nickName
+                          avatar:(NSString *)avatar
+                          gender:(BOOL)gender
+                       signature:(NSString*)signature;
 
 - (NSString *)genderString;
 @end

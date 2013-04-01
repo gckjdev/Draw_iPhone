@@ -8,26 +8,52 @@
 
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
+#import "CommonDialog.h"
 
-// TO DO UPDATE
-#define KEY_TAOBAO_URL  @"kTaoBao"
+@interface TaoBaoController()
+@property (retain, nonatomic) NSString *customTitle;
+@property (retain, nonatomic) NSString *url;
+
+@end
 
 
 @implementation TaoBaoController
+
+- (id)initWithURL:(NSString *)URL title:(NSString *)title
+{
+    self = [super init];
+    if (self) {
+        self.url = URL;
+        self.customTitle = title;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //NSString *urlString = [MobClickUtils getStringValueByKey:KEY_TAOBAO_URL defaultValue:nil];
-    NSString *urlString = @"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0";
+    self.titleLabel.text = self.customTitle;
     
-    if (urlString) {
-         NSURL *url = [NSURL URLWithString:urlString];
+    if (_url) {
+        NSURL *url = [NSURL URLWithString:_url];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.taoBaoWebView loadRequest:request];
         [self showActivityWithText:NSLS(@"kLoading")];
     }
+}
+
+- (void)clickBack:(id)sender
+{
+    __block TaoBaoController* vc = self;
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kQuitTaoBaoTips") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [vc.navigationController popViewControllerAnimated:YES];
+    } clickCancelBlock:^{
+        
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,11 +63,15 @@
 
 - (void)dealloc {
     [_taoBaoWebView release];
+    [_titleLabel release];
+    [_customTitle release];
+    [_url release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setTaoBaoWebView:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 

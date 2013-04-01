@@ -22,12 +22,14 @@
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
-
+#import "ConfigManager.h"
+#import "TaoBaoController.h"
 
 typedef enum{
     TabIDNormal = 100,
     TabIDTool = 101,
     TabIDPromotion = 102,
+    TabIDTaoBao = 103
 }TabID;
 
 @interface StoreController ()
@@ -147,18 +149,23 @@ typedef enum{
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
-        __block typeof (self) bself = self;
-        
-        [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-            [bself updateBalance];
-            [bself.dataTableView reloadData];
-        }];
+        if ([item hasUrl]) {
+            TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:[item name]] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            __block typeof (self) bself = self;
+            
+            [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
+                [bself updateBalance];
+                [bself.dataTableView reloadData];
+            }];
+        }
     }
 }
 
 - (NSInteger)tabCount //default 1
 {
-    return 3;
+    return 4;
 }
 - (NSInteger)currentTabIndex
 {
@@ -168,13 +175,13 @@ typedef enum{
 
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabIDs[] = {TabIDNormal, TabIDTool, TabIDPromotion};
+    NSInteger tabIDs[] = {TabIDNormal, TabIDTool, TabIDPromotion, TabIDTaoBao};
     return tabIDs[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitles[] = {NSLS(@"kItemNormal"), NSLS(@"kItemTool"), NSLS(@"kItemPromotion")};
+    NSString *tabTitles[] = {NSLS(@"kItemNormal"), NSLS(@"kItemTool"), NSLS(@"kItemPromotion"), NSLS(@"kItemTaoBao")};
     return tabTitles[index];
 
 }
@@ -193,24 +200,16 @@ typedef enum{
             return NSLS(@"kNoSaleItemPromoting");
             break;
             
+        case TabIDTaoBao:
+            return NSLS(@"kNoSaleItemTaoBao");
+            break;
+            
         default:
             break;
     }
     
     return nil;
 }
-
-//#define TAB_BUTTON_TITLE_COLOR [UIColor colorWithRed:102/255.0 green:67/255.0 blue:25/255.0 alpha:1]
-//
-//- (UIColor *)tabButtonTitleColorForNormal:(NSInteger)index
-//{
-//    return TAB_BUTTON_TITLE_COLOR;
-//}
-//
-//- (UIColor *)tabButtonTitleColorForSelected:(NSInteger)index
-//{
-//    return TAB_BUTTON_TITLE_COLOR;
-//}
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {    
@@ -226,9 +225,28 @@ typedef enum{
             [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] promotingItemsList]];
              break;
             
+        case TabIDTaoBao:
+            [self finishLoadDataForTabID:tabID resultList:[self taoBaoItemList]];
+            break;
+            
         default:
             break;
     }
+}
+
+- (NSArray *)taoBaoItemList{
+    NSArray *arr = [NSArray arrayWithObjects:[self dianRongBi], nil];
+    return arr;
+}
+
+- (PBGameItem *)dianRongBi{
+    PBGameItem_Builder *builder = [[[PBGameItem_Builder alloc] init] autorelease];
+    [builder setItemId:ItemTypeTaoBao];
+    [builder setName:[ConfigManager getDianRongBiName]];
+    [builder setDesc:[ConfigManager getDianRongBiDesc]];
+    [builder setImage:[ConfigManager getDianRongBiImageURL]];
+    [builder setUrl:[ConfigManager getDianRongBiTaoBaoURL]];
+    return [builder build];
 }
 
 #pragma mark -

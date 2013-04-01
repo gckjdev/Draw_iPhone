@@ -7269,6 +7269,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 @property int32_t itemId;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
+@property (retain) NSString* url;
 @property PBGameItemConsumeType consumeType;
 @property (retain) NSString* image;
 @property (retain) NSString* demoImage;
@@ -7304,6 +7305,13 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
   hasDesc_ = !!value;
 }
 @synthesize desc;
+- (BOOL) hasUrl {
+  return !!hasUrl_;
+}
+- (void) setHasUrl:(BOOL) value {
+  hasUrl_ = !!value;
+}
+@synthesize url;
 - (BOOL) hasConsumeType {
   return !!hasConsumeType_;
 }
@@ -7377,6 +7385,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
 - (void) dealloc {
   self.name = nil;
   self.desc = nil;
+  self.url = nil;
   self.image = nil;
   self.demoImage = nil;
   self.appleProductId = nil;
@@ -7389,6 +7398,7 @@ static PBPromotionInfo* defaultPBPromotionInfoInstance = nil;
     self.itemId = 0;
     self.name = @"";
     self.desc = @"";
+    self.url = @"";
     self.consumeType = PBGameItemConsumeTypeNonConsumable;
     self.image = @"";
     self.demoImage = @"";
@@ -7443,6 +7453,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (self.hasDesc) {
     [output writeString:3 value:self.desc];
   }
+  if (self.hasUrl) {
+    [output writeString:4 value:self.url];
+  }
   if (self.hasConsumeType) {
     [output writeEnum:5 value:self.consumeType];
   }
@@ -7490,6 +7503,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   }
   if (self.hasDesc) {
     size += computeStringSize(3, self.desc);
+  }
+  if (self.hasUrl) {
+    size += computeStringSize(4, self.url);
   }
   if (self.hasConsumeType) {
     size += computeEnumSize(5, self.consumeType);
@@ -7605,6 +7621,9 @@ static PBGameItem* defaultPBGameItemInstance = nil;
   if (other.hasDesc) {
     [self setDesc:other.desc];
   }
+  if (other.hasUrl) {
+    [self setUrl:other.url];
+  }
   if (other.hasConsumeType) {
     [self setConsumeType:other.consumeType];
   }
@@ -7666,6 +7685,10 @@ static PBGameItem* defaultPBGameItemInstance = nil;
       }
       case 26: {
         [self setDesc:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setUrl:[input readString]];
         break;
       }
       case 40: {
@@ -7777,6 +7800,22 @@ static PBGameItem* defaultPBGameItemInstance = nil;
 - (PBGameItem_Builder*) clearDesc {
   result.hasDesc = NO;
   result.desc = @"";
+  return self;
+}
+- (BOOL) hasUrl {
+  return result.hasUrl;
+}
+- (NSString*) url {
+  return result.url;
+}
+- (PBGameItem_Builder*) setUrl:(NSString*) value {
+  result.hasUrl = YES;
+  result.url = value;
+  return self;
+}
+- (PBGameItem_Builder*) clearUrl {
+  result.hasUrl = NO;
+  result.url = @"";
   return self;
 }
 - (BOOL) hasConsumeType {

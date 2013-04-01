@@ -274,10 +274,10 @@
         case NotificationTypeFlower:
         case NotificationTypeReply:
         case NotificationTypeTomato:
-            [MyFeedController enterControllerWithIndex:2 fromController:self animated:YES];
+            [MyFeedController enterControllerWithIndex:1 fromController:self animated:YES];
             break;
         case NotificationTypeDrawToMe:            
-            [MyFeedController enterControllerWithIndex:3 fromController:self animated:YES];
+            [MyFeedController enterControllerWithIndex:2 fromController:self animated:YES];
             break;            
         default:
             break;
