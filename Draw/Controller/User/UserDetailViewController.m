@@ -37,6 +37,7 @@
 
 @interface UserDetailViewController () {
     ChangeAvatar* _changeAvatar;
+    int currentTabIndex;
 }
 
 @property (retain, nonatomic) UserDetailCell* detailCell;
@@ -66,6 +67,7 @@
     [self.detail loadUser:self];
     [super viewDidLoad];
     [self didClickTabAtIndex:0];
+    currentTabIndex = DetailTabActionClickOpus;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -125,64 +127,6 @@
     [self.navigationController pushViewController:[[[UserSettingController alloc] init] autorelease] animated:YES];
 }
 
-- (void)didClickFanCountButton
-{
-    if (![self.detail canFollow]) {
-        FriendController* vc = [[[FriendController alloc] init] autorelease];
-        [vc setDefaultTabIndex:FriendTabIndexFan];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoSupportViewFan") delayTime:1.5];
-    }
-}
-
-- (void)didClickFollowCountButton
-{
-    if (![self.detail canFollow]) {
-        FriendController* vc = [[[FriendController alloc] init] autorelease];
-        [vc setDefaultTabIndex:FriendTabIndexFollow];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoSupportViewFollow") delayTime:1.5];
-    }
-}
-- (void)didClickFollowButton
-{
-    if ([self.detail canFollow]) {
-        if ([MyFriend hasFollow:[self.detail relation]]) {
-            [[FriendService defaultService] unFollowUser:[self.detail getUserId] viewController:self];
-            [self showActivityWithText:NSLS(@"kUnfollowing")];
-        } else {
-            [[FriendService defaultService] followUser:[self.detail getUserId] withDelegate:self];
-            [self showActivityWithText:NSLS(@"kFollowing")];
-        }
-    }
-   
-}
-- (void)didClickChatButton
-{
-    if ([self.detail canChat]) {
-        PBGameUser* pbUser = [self.detail getUser];
-        MyFriend* targetFriend = [MyFriend friendWithFid:[self.detail getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender level:pbUser.level];
-        MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
-        ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
-        [self.navigationController pushViewController:controller
-                                             animated:YES];
-        [controller release];
-    }
-    
-}
-- (void)didClickDrawToButton
-{
-    if ([self.detail canDraw]) {
-        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self.detail getUserId]] autorelease];
-        vc.superController = self;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-   
-}
 
 - (void)didClickAvatar
 {
@@ -193,7 +137,6 @@
         }
         [_changeAvatar showSelectionView:self];
     }
-    
 }
 
 - (void)uploadUserAvatar:(UIImage*)image
@@ -230,7 +173,8 @@
 - (void)didClickMore
 {
     UserFeedController* uc = [[UserFeedController alloc] initWithUserId:[self.detail getUserId]
-                                                               nickName:[self.detail getUser].nickName];
+                                                               nickName:[self.detail getUser].nickName
+                                                        defaultTabIndex:currentTabIndex];
     [self.navigationController pushViewController:uc animated:YES];
     [uc release];
 }
@@ -253,6 +197,7 @@
 
 - (void)didClickTabAtIndex:(int)index
 {
+    currentTabIndex = index;
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
@@ -280,42 +225,6 @@
 {
     [self.detail clickUserActionButtonAtIndex:index viewController:self];
 }
-
-#pragma mark - friendService delegate
-- (void)didFollowUser:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode != 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowFailed")
-                                                       delayTime:1.5
-                                                         isHappy:NO];
-    } else {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSuccessfully")
-                                                       delayTime:1.5
-                                                         isHappy:YES];
-    }
-    [self.detail setRelation:(([self.detail relation]) | RelationTypeFollow)];
-    [self.dataTableView reloadData];
-}
-
-- (void)didUnFollowUser:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode != 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowFailed")
-                                                       delayTime:1.5
-                                                         isHappy:NO];
-    } else {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowSuccessfully")
-                                                       delayTime:1.5
-                                                         isHappy:YES];
-    }
-    if ([MyFriend hasFollow:[self.detail relation]]) {
-        [self.detail setRelation:(([self.detail relation]) - RelationTypeFollow)];
-    }
-    [self.dataTableView reloadData];
-}
-
 
 #pragma mark - feed service delegate
 - (void)didGetFeedList:(NSArray *)feedList

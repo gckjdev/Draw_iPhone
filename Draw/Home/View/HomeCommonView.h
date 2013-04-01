@@ -27,6 +27,6 @@
     
 }
 @property(nonatomic, assign)id delegate;
-
+- (void)updateMenu:(int)type badge:(NSInteger)badge;
 
 @end

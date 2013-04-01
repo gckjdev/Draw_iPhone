@@ -779,6 +779,8 @@
 "kPrice" = "價格";
 "kCost" = "花費";
 "kCoins" = "金幣";
+"kIngot" = "元寶";
+"kExp" = "經驗";
 
 "kThrowTomatoMessage" = "你給作者扔了個番茄，讓TA扣了%d點經驗, %d個金幣";
 "kSendFlowerMessage" = "你給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
@@ -967,6 +969,7 @@
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "設置";
 "kHomeMenuTypeDrawShop" = "道具商店";
+"kHomeMenuTypeDrawMore" = "更多";
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
@@ -1133,6 +1136,10 @@
 "kPrivacyToNone" = "所有人不可見";
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
+
+"kTaoBaoShop" = "猜猜畫畫淘寶店";
+
+"kEditOpusDesc" = "編輯作品描述";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

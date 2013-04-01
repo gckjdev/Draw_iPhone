@@ -17,6 +17,7 @@
 @class CommonRoundAvatarView;
 @class LocalizableLabel;
 @class PPViewController;
+@class UserDetailRoundButton;
 
 @protocol UserDetailCellDelegate <NSObject>
 
@@ -57,11 +58,11 @@
 @property (retain, nonatomic) IBOutlet UIView *basicDetailView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
-@property (retain, nonatomic) IBOutlet UIButton *drawToButton;
-@property (retain, nonatomic) IBOutlet UIButton *chatButton;
-@property (retain, nonatomic) IBOutlet UIButton *followButton;
-@property (retain, nonatomic) IBOutlet UIButton *fanCountButton;
-@property (retain, nonatomic) IBOutlet UIButton *followCountButton;
+@property (retain, nonatomic) IBOutlet UserDetailRoundButton *drawToButton;
+@property (retain, nonatomic) IBOutlet UserDetailRoundButton *chatButton;
+@property (retain, nonatomic) IBOutlet UserDetailRoundButton *followButton;
+@property (retain, nonatomic) IBOutlet UserDetailRoundButton *fanCountButton;
+@property (retain, nonatomic) IBOutlet UserDetailRoundButton *followCountButton;
 @property (assign, nonatomic) id<UserDetailCellDelegate> detailDelegate;
 @property (retain, nonatomic) IBOutlet UIButton *sinaBtn;
 @property (retain, nonatomic) IBOutlet UIButton *qqBtn;

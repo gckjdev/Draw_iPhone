@@ -30,4 +30,7 @@
 
 - (UIImage *)localImage;
 
+- (NSURL *)remoteURL;
+
+
 @end

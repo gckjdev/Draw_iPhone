@@ -9,6 +9,7 @@
 #import "ChargeController.h"
 #import "IngotService.h"
 #import "AccountManager.h"
+#import "TaoBaoController.h"
 
 @interface ChargeController ()
 
@@ -18,11 +19,13 @@
 
 - (void)dealloc {
     [_ingotCountLabel release];
+    [_taobaoLinkView release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setIngotCountLabel:nil];
+    [self setTaobaoLinkView:nil];
     [super viewDidUnload];
 }
 
@@ -31,11 +34,22 @@
     self.ingotCountLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
 
+- (void)updateTaobaoLinkView
+{
+    if ([LocaleUtils isChina]) {
+        self.taobaoLinkView.hidden = NO;
+    } else {
+        self.taobaoLinkView.hidden = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self updateIngot];
+    
+    [self updateTaobaoLinkView];
     
     __block typeof(self) bself = self;
     [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
@@ -48,6 +62,12 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTaoBaoButton:(id)sender {
+    TaoBaoController *controller = [[TaoBaoController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 #pragma mark -

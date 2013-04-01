@@ -10,8 +10,8 @@
 #import "GameBasic.pb.h"
 #import "MyFriend.h"
 
+@class UserDetailRoundButton;
 @class PPTableViewController;
-@class PPViewController;
 
 
 @protocol UserDetailProtocol <NSObject>
@@ -19,10 +19,6 @@
 - (NSString*)getUserId;
 //- (PBGameUser*)queryUser;
 - (BOOL)canEdit;
-- (BOOL)needUpdate;
-- (BOOL)canFollow;
-- (BOOL)canChat;
-- (BOOL)canDraw;
 
 - (BOOL)isBlackBtnVisable;
 - (BOOL)isSuperManageBtnVisable;
@@ -43,8 +39,8 @@
 - (void)initSNSButton:(UIButton*)button
              withType:(int)snsType;
 
-- (void)initUserActionButtonAtIndex:(int)index;
-- (void)clickUserActionButtonAtIndex:(int)index viewController:(PPViewController*)viewController;
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index;
+- (void)clickUserActionButtonAtIndex:(int)index viewController:(PPTableViewController*)viewController;
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 

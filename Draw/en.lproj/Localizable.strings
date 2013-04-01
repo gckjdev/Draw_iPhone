@@ -770,6 +770,8 @@
 "kPrice" = "Price";
 "kCost" = "Cost";
 "kCoins" = "coins";
+"kIngot" = "ingots";
+"kExp" = "exp";
 
 "kThrowTomatoMessage" = "You threw a tomato to the painter, his/her experience decrease by %d, his/her coins decrease by %d";
 "kSendFlowerMessage" = "You sent a flower to the painter, his/her experience increase by %d, his/her coins decrease by %d";
@@ -945,6 +947,7 @@
 "kHomeMenuTypeDrawMessage" = "Message";
 "kHomeMenuTypeDrawSetting" = "Setting";
 "kHomeMenuTypeDrawShop" = "Shop";
+"kHomeMenuTypeDrawMore" = "More";
 
 "kCharge" = "Buy";
 "kChargeTitle" = "Charge";
@@ -1165,6 +1168,9 @@
 "kPrivacyToNone" = "Public To No One";
 "kPrivacyToAll" = "Public To All";
 "kInvisable" = "(Invisable)";
+"kEditOpusDesc" = "Opus description";
+
+"kTaoBaoShop" = "Drawlively Taobao Shop";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
