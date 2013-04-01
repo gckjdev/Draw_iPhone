@@ -1165,6 +1165,7 @@
 "kPrivacyToNone" = "Public To No One";
 "kPrivacyToAll" = "Public To All";
 "kInvisable" = "(Invisable)";
+"kEditOpusDesc" = "Opus description";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

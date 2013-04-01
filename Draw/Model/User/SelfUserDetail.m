@@ -21,6 +21,7 @@
 #import "FriendController.h"
 #import "ShareImageManager.h"
 #import "AccountManager.h"
+#import "UserDetailRoundButton.h"
 
 @interface SelfUserDetail() {
     
@@ -232,57 +233,62 @@
     [button setHighlighted:![self isSNSBtnVisable:snsType]];
 }
 
-- (UILabel*)labelWithText:(NSString*)text
-{
-    UILabel* label = [[[UILabel alloc] init] autorelease];
-    [label setText:text];
-    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setUserInteractionEnabled:NO];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setTextColor:[UIColor whiteColor]];
-    return label;
-    
-}
+//- (UILabel*)labelWithText:(NSString*)text
+//{
+//    UILabel* label = [[[UILabel alloc] init] autorelease];
+//    [label setText:text];
+//    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [label setUserInteractionEnabled:NO];
+//    [label setBackgroundColor:[UIColor clearColor]];
+//    [label setTextColor:[UIColor whiteColor]];
+//    return label;
+//    
+//}
+//
+//- (void)addButton:(UIButton*)button
+//           number:(NSInteger)number
+//            title:(NSString*)title
+//{
+//    UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
+//    UILabel* titleLabel = [self labelWithText:title];
+//    
+//    [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    
+//    [button addSubview:numberLabel];
+//    [button addSubview:titleLabel];
+//}
 
-- (void)addButton:(UIButton*)button
-           number:(NSInteger)number
-            title:(NSString*)title
-{
-    UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
-    UILabel* titleLabel = [self labelWithText:title];
-    
-    [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-    [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-    
-    [button addSubview:numberLabel];
-    [button addSubview:titleLabel];
-}
-
-- (void)initUserActionButton:(UIButton*)button atIndex:(int)index
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
     PBGameUser* user = [self getUser];
     [button setTitle:nil forState:UIControlStateNormal];
     switch (index) {
         case SelfDetailActionFollowCount: {
-            [self addButton:button number:user.followCount title:NSLS(@"kFollow")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
+            [button.downLabel setText:NSLS(@"kFollow")];
         } break;
         case SelfDetailActionBalance: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailBalanceBtnBg] forState:UIControlStateNormal];
             int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
-            [self addButton:button number:balance title:NSLS(@"kCoin")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", balance]];
+            [button.downLabel setText:NSLS(@"kBalance")];
         } break;
         case SelfDetailActionExp: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailExpBtnBg] forState:UIControlStateNormal];
-            [self addButton:button number:user.experience title:NSLS(@"kExp")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.experience]];
+            [button.downLabel setText:NSLS(@"kExperience")];
         } break;
         case SelfDetailActionIngot: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailIngotBtnBg] forState:UIControlStateNormal];
             int ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
-            [self addButton:button number:ingot title:NSLS(@"kIngot")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", ingot]];
+            [button.downLabel setText:NSLS(@"kIngots")];
         } break;
         case SelfDetailActionFanCount: {
-            [self addButton:button number:user.fanCount title:NSLS(@"kFans")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
+            [button.downLabel setText:NSLS(@"kFans")];
         } break;
         default:
             break;

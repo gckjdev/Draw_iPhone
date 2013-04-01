@@ -43,7 +43,6 @@
     }
     DrawInfoCell *cell = [topLevelObjects objectAtIndex:0];
     cell.delegate = delegate;
-    [cell.loadingActivity stopAnimating];
     return cell;
 }
 
@@ -93,6 +92,12 @@
 {
     if ([feed isKindOfClass:[DrawToUserFeed class]]) {
         DrawToUserFeed *drawToUserFeed = (DrawToUserFeed*)feed;
+        if (drawToUserFeed.targetUser == nil) {
+            [self.drawToButton setHidden:YES];
+            return;
+        }
+        [self.drawToButton setHidden:NO];
+        
         [self initTargetUser:[[drawToUserFeed targetUser] userId] nickName:[[drawToUserFeed targetUser] nickName]]; 
         NSString *targetUserName = nil;
         if ([[UserManager defaultManager] isMe:_targetUser.userId]) {
@@ -130,6 +135,11 @@
     }
 }
 
+- (BOOL)isSmallImageUrl:(NSString *)url
+{
+    return [url hasSuffix:@"_m.jpg"] || [url hasSuffix:@"_m.png"];
+}
+
 - (void)updateShowView:(DrawFeed *)feed
 {
     if ([feed.drawImageUrl length] != 0){
@@ -142,30 +152,15 @@
             placeholderImage = self.feed.largeImage;
         }
 
+        
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
-            
-            
-//            if (!cached) {
-//                self.drawImage.alpha = 0;
-//                [UIView animateWithDuration:1.5 animations:^{
-//                    self.drawImage.alpha = 1.0;
-//
-//                    self.feed.largeImage = image;
-//                    [self updateDrawImageView:image];
-//                    [self loadImageFinish];
-//                    
-//                }];
-//            }else{
-//                self.feed.largeImage = image;
-//                [self updateDrawImageView:image];
-//                [self loadImageFinish];
-//            }
             
             self.feed.largeImage = image;
             [self updateDrawImageView:image];
-            [self loadImageFinish];
+            if (![self isSmallImageUrl:feed.drawImageUrl]) {
+                [self loadImageFinish];
+            }
 
-            
         } failure:^(NSError *error) {
             
         }];
@@ -236,11 +231,14 @@
     [self updateShowView:feed];
     [self updateTime:feed];
     [self updateDesc:feed.opusDesc];
+    [self updateDrawToUserInfo:feed];
 }
 
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    _feed.largeImage = nil;
+    _feed.drawImage = nil;
     PPRelease(drawImage);
     PPRelease(timeLabel);
     PPRelease(loadingActivity);

@@ -15,7 +15,9 @@
 {
     self = [super initWithPBFeed:pbFeed];
     if (self) {
-        self.targetUser = [FeedUser feedUserWithUserId:pbFeed.targetUserId nickName:pbFeed.targetUserNickName avatar:nil gender:YES];
+        if ([pbFeed.targetUserId length] != 0) {
+            self.targetUser = [FeedUser feedUserWithUserId:pbFeed.targetUserId nickName:pbFeed.targetUserNickName avatar:nil gender:YES];            
+        }
     }
     return self;
 }

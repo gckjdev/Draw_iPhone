@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "MyFriend.h"
 
+@class UserDetailRoundButton;
 @class PPTableViewController;
 
 
@@ -38,7 +39,7 @@
 - (void)initSNSButton:(UIButton*)button
              withType:(int)snsType;
 
-- (void)initUserActionButton:(UIButton*)button atIndex:(int)index;
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index;
 - (void)clickUserActionButtonAtIndex:(int)index viewController:(PPTableViewController*)viewController;
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
