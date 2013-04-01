@@ -19,13 +19,17 @@
               type:(HomeMenuType)type
 {
     [self.button setImage:icon forState:UIControlStateNormal];
+    [self setType:type];
+    
+    if (!isMainMenuButton(type)) {
+        title = nil;
+    }
     if (self.title) {
         [self.title setText:title];
     }else{
         [self.button setTitle:title forState:UIControlStateNormal];
     }
-    
-    [self setType:type];
+
 }
 
 - (void)updateBadge:(NSInteger)count
@@ -83,6 +87,9 @@
             return NSLS(@"kPlayWithFriend");
         }
 
+        case HomeMenuTypeDrawMore:
+            return NSLS(@"kHomeMenuTypeDrawMore");
+            
         //ZJH
         case HomeMenuTypeZJHHelp:{
             return NSLS(@"kHomeMenuTypeZJHHelp");
@@ -142,7 +149,8 @@
             return [imageManager drawHomeOnlineGuess];
         }
         case HomeMenuTypeDrawTimeline:{
-            return [imageManager drawHomeTimeline];
+//            return [imageManager drawHomeTimeline];
+            return [imageManager drawHomeMe];
         }
         case HomeMenuTypeDrawRank:{
             return [imageManager drawHomeTop];
@@ -154,7 +162,8 @@
             return [imageManager drawHomeBbs];
         }
         case HomeMenuTypeDrawShop:{
-            return [imageManager drawHomeShop];
+//            return [imageManager drawHomeShop];
+            return [imageManager drawHomeMore];
         }
         case HomeMenuTypeDrawApps:{
             return [imageManager drawAppsRecommand];
@@ -179,7 +188,9 @@
             return [imageManager drawHomeSetting];
         }
         case HomeMenuTypeDrawMore:{
-            return [imageManager drawHomeMore];
+//            return [imageManager drawHomeMore];
+            return [imageManager drawHomeShop];
+
         }
         case HomeMenuTypeDrawMe:{
             return [imageManager drawHomeMe];
@@ -266,16 +277,12 @@
 
 - (BOOL)isHomeMainMenu
 {
-    NSInteger type = self.type;
-    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin) || (type >= HomeMenuTypeDiceStart && type < HomeMenuTypeDiceBottomBegin)) {
-        return YES;
-    }
-    return NO;
+    return isMainMenuButton(self.type);
 }
 
 + (NSString *)identifierForType:(HomeMenuType)type
 {
-    if (type < HomeMenuTypeDrawBottomBegin || (type >= HomeMenuTypeZJHMainBegin && type < HomeMenuTypeZJHBottomBegin) || (type >= HomeMenuTypeDiceStart && type < HomeMenuTypeDiceBottomBegin)) {
+    if (isMainMenuButton(type)) {
         return @"HomeMainMenu";
     }else{
         return @"HomeBottomMenu";
@@ -469,4 +476,31 @@ int *getDiceBottomMenuTypeList()
         HomeMenuTypeEnd
     };
     return list;
+}
+
+
+BOOL typeInList(HomeMenuType type, int *list)
+{
+    int *l = list;
+    while (l != NULL && *l != HomeMenuTypeEnd) {
+        if (*l == type) {
+            return YES;
+        }
+        ++ l;
+    }
+    return NO;
+}
+
+BOOL isMainMenuButton(HomeMenuType type)
+{
+    if (typeInList(type, getDrawMainMenuTypeList())) {
+        return YES;
+    }
+    if (typeInList(type, getDiceMainMenuTypeList())) {
+        return YES;
+    }
+    if (typeInList(type, getZJHMainMenuTypeList())) {
+        return YES;
+    }
+    return NO;
 }

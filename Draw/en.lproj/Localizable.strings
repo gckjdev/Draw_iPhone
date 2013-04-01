@@ -947,6 +947,7 @@
 "kHomeMenuTypeDrawMessage" = "Message";
 "kHomeMenuTypeDrawSetting" = "Setting";
 "kHomeMenuTypeDrawShop" = "Shop";
+"kHomeMenuTypeDrawMore" = "More";
 
 "kCharge" = "Buy";
 "kChargeTitle" = "Charge";

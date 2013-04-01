@@ -14,4 +14,5 @@
 @interface ChargeController : PPTableViewController<ChargeCellDelegate, AccountServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
 
+@property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
 @end

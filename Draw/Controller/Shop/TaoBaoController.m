@@ -7,23 +7,25 @@
 //
 
 #import "TaoBaoController.h"
+#import "MobClickUtils.h"
 
-@interface TaoBaoController ()
+// TO DO UPDATE
+#define KEY_TAOBAO_URL  @"kTaoBao"
 
-@end
 
 @implementation TaoBaoController
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:@"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0"];
-    if (url) {
+    //NSString *urlString = [MobClickUtils getStringValueByKey:KEY_TAOBAO_URL defaultValue:nil];
+    NSString *urlString = @"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0";
+    
+    if (urlString) {
+         NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.taoBaoWebView loadRequest:request];
-        
         [self showActivityWithText:NSLS(@"kLoading")];
     }
 }
