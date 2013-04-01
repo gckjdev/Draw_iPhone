@@ -962,8 +962,8 @@
 "kHomeMenuTypeDrawGame" = "游戏";
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
-"kHomeMenuTypeDrawContest" = "画画大赛";
-"kHomeMenuTypeDrawBBS" = "玩家论坛";
+"kHomeMenuTypeDrawContest" = "比赛";
+"kHomeMenuTypeDrawBBS" = "论坛";
 "kHomeMenuTypeDrawApps" = "应用推荐";
 "kHomeMenuTypeDrawFreeCoins" = "免费元宝";
 "kHomeMenuTypeDrawHome" = "主页";
