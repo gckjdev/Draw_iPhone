@@ -9,6 +9,7 @@
 #import "ChargeController.h"
 #import "IngotService.h"
 #import "AccountManager.h"
+#import "TaoBaoController.h"
 
 @interface ChargeController ()
 
@@ -48,6 +49,12 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTaoBaoButton:(id)sender {
+    TaoBaoController *controller = [[TaoBaoController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 #pragma mark -
