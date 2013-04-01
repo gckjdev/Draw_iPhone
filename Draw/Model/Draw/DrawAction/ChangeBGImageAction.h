@@ -10,4 +10,8 @@
 
 @interface ChangeBGImageAction : DrawAction
 
+@property(nonatomic, retain)PBDrawBg *drawBg;
+
+- (id)initWithDrawBg:(PBDrawBg *)drawBg;
+
 @end

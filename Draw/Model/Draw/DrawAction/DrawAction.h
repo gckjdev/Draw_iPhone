@@ -43,52 +43,8 @@ typedef enum {
 
 @property(nonatomic, assign)DrawActionType type;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
-/*
-@property (nonatomic, assign) DrawActionType type;
-@property (nonatomic, retain) Paint *paint;
-@property (nonatomic, retain) ShapeInfo *shapeInfo;
-
-- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action dataVersion:(int)dataVersion;
-- (PBNoCompressDrawAction *)toPBNoCompressDrawAction;
-
-- (NSInteger)pointCount;
-- (id)initWithPBDrawAction:(PBDrawAction *)action;
-- (id)initWithType:(DrawActionType)aType paint:(Paint*)aPaint;
-
-+ (DrawAction *)actionWithType:(DrawActionType)aType paint:(Paint*)aPaint;
-+ (DrawAction *)actionWithShpapeInfo:(ShapeInfo *)shapeInfo;
 
 
-+ (DrawAction *)changeBackgroundActionWithColor:(DrawColor *)color;
-+ (DrawAction *)clearScreenAction;
-
-
-+ (BOOL)isDrawActionListBlank:(NSArray *)actionList;
-+ (NSMutableArray *)getTheLastActionListWithoutClean:(NSArray *)actionList;
-+ (DrawAction *)scaleAction:(DrawAction *)action 
-                      xScale:(CGFloat)xScale 
-                     yScale:(CGFloat)yScale;
-
-+ (NSMutableArray *)scaleActionList:(NSArray *)list 
-                       xScale:(CGFloat)xScale 
-                      yScale:(CGFloat)yScale;
-
-
-+ (NSInteger)pointCountForActions:(NSArray *)actionList;
-+ (double)calculateSpeed:(NSArray *)actionList;
-+ (double)calculateSpeed:(NSArray *)actionList defaultSpeed:(double)defaultSpeed maxSecond:(NSInteger)second;
-
-
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
-+ (PBNoCompressDrawData *)drawActionListToPBNoCompressDrawData:(NSArray *)drawActionList pbdrawBg:(PBDrawBg *)drawBg size:(CGSize)size;
-
-- (BOOL)isChangeBackAction;
-- (BOOL)isCleanAction;
-- (BOOL)isDrawAction;
-- (BOOL)isShapeAction;
-
-*/
-//new Method should overload by sub classes..
 
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
@@ -106,6 +62,7 @@ typedef enum {
                                                       drawToUser:(PBUserBasicInfo *)drawToUser;
 
 
+//new Method should overload by sub classes..
 
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;

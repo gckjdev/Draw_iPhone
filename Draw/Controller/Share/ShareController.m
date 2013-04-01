@@ -198,14 +198,13 @@ typedef enum{
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),
-                    NSLS(@"kShareAsGif"),NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
         }else{        
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                           delegate:self 
                                                  cancelButtonTitle:NSLS(@"kCancel") 
                                             destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
-                                                 otherButtonTitles:NSLS(@"kShareAsGif"),
+                                                 otherButtonTitles:
                                                         NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }
     }
@@ -334,10 +333,10 @@ typedef enum{
         
         [_shareAction displayWithViewController:self];
     }
-    else if (buttonIndex == SHARE_AS_GIF)
-    {
-        [self shareAsGif];
-    }
+//    else if (buttonIndex == SHARE_AS_GIF)
+//    {
+//        [self shareAsGif];
+//    }
     else if (buttonIndex == REPLAY){
         [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
@@ -561,7 +560,7 @@ typedef enum{
 - (void)updateActionSheetIndexs
 {
     int index = 0;
-    SHARE_AS_GIF = -1;
+//    SHARE_AS_GIF = -1;
     if ([LocaleUtils isChina]){
         if (self.isDraftTab) {
             EDIT  = index++;
@@ -569,7 +568,7 @@ typedef enum{
             EDIT = -1;
         }
         SHARE_AS_PHOTO = index++;
-        SHARE_AS_GIF = index++;
+//        SHARE_AS_GIF = index++;
         REPLAY = index++;
         DELETE = index++;
         DELETE_ALL = index++;

@@ -34,7 +34,8 @@
 
 - (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg groudId:(NSInteger)groupId
 {
-    if ([self canUseItem:groupId]) {
+    //TODO remove || YES
+    if ([self canUseItem:groupId] || YES) {
         [self updateWithDrawBG:drawBg];
         [drawBgBox dismiss];
     }else{

@@ -50,7 +50,7 @@
 }
 - (void)changeDrawBG:(PBDrawBg *)drawBG
 {
-    self.drawView.drawBg = drawBG;
+    [self.drawView changeBGImageWithDrawBG:drawBG];
 }
 
 - (void)usePaintBucket
