@@ -45,6 +45,12 @@ typedef enum{
 
 - (id)initWithUserId:(NSString *)userId
             nickName:(NSString *)nickName
+{
+    return [self initWithUserId:userId nickName:nickName defaultTabIndex:0];
+}
+
+- (id)initWithUserId:(NSString *)userId
+            nickName:(NSString *)nickName
      defaultTabIndex:(int)defaultTabIndex
 {
     self = [super initWithDefaultTabIndex:defaultTabIndex];

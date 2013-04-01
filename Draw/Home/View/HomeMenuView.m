@@ -322,14 +322,15 @@ int *getDrawMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawDraw,
         HomeMenuTypeDrawGuess,
         HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawTimeline,
+//        HomeMenuTypeDrawTimeline,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawShop,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
+//        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawPlayWithFriend,
+        HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
     return list;
@@ -341,13 +342,14 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawDraw,
         HomeMenuTypeDrawGuess,
         HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawTimeline,
+//        HomeMenuTypeDrawTimeline,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawShop,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
+//        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
         HomeMenuTypeDrawPlayWithFriend,
+        HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
     return list;
@@ -362,11 +364,11 @@ int *getDrawMainMenuTypeList()
 int *getDrawBottomMenuTypeList()
 {
     int static list[] = {
-        HomeMenuTypeDrawMe,
+        HomeMenuTypeDrawTimeline,
         HomeMenuTypeDrawOpus,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawShop,
         HomeMenuTypeEnd
     };
     return list;    

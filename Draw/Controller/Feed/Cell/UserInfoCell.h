@@ -18,6 +18,8 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *nickLabel;
 @property (retain, nonatomic) IBOutlet UIView *avatarView;
+@property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *signLabel;
 
 - (void)setCellInfo:(DrawFeed *)feed;
 + (NSString*)getCellIdentifier;
