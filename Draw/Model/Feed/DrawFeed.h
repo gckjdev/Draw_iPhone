@@ -48,7 +48,8 @@ typedef enum{
               userId:(NSString *)userId 
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
-              gender:(BOOL)gender 
+              gender:(BOOL)gender
+           signature:(NSString *)signature
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
             wordText:(NSString *)wordText 
@@ -57,7 +58,7 @@ typedef enum{
 - (void)parseDrawData:(PBFeed *)pbFeed;
 - (void)parseDrawData;
 - (BOOL)isMyOpus;
-- (BOOL) hasGuessed;
+- (BOOL)hasGuessed;
 - (void)incGuessTimes;
 - (void)incCorrectTimes;
 
