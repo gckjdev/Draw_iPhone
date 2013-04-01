@@ -7346,6 +7346,9 @@
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
 		EA6916BE15ECCF4C0001CB5A /* DiceSettingView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
@@ -10952,6 +10955,10 @@
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
 		EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreCell~ipad.xib"; sourceTree = "<group>"; };
+		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
+		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
+		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
+		EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaoBaoController~ipad.xib"; sourceTree = "<group>"; };
 		EA6916BD15ECCF4C0001CB5A /* DiceSettingView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceSettingView~ipad.xib"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
@@ -13980,6 +13987,10 @@
 				EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */,
 				A4CD500F16F9B56200BE6694 /* BalanceNotEnoughAlertView.h */,
 				A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */,
+				EA49C86017093CD200843B6B /* TaoBaoController.h */,
+				EA49C86117093CD200843B6B /* TaoBaoController.m */,
+				EA49C86217093CD200843B6B /* TaoBaoController.xib */,
+				EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -22139,6 +22150,8 @@
 				C20ADEEA1706D9C800BF1630 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				CAF95E3F1706EE1E00B7526C /* DrawBgCell.xib in Resources */,
 				CAF95E491706EE4D00B7526C /* DrawBgCell~ipad.xib in Resources */,
+				EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */,
+				EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25465,6 +25478,7 @@
 				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
+				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
