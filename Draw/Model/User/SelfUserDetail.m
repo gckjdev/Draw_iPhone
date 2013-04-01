@@ -21,6 +21,7 @@
 #import "FriendController.h"
 #import "ShareImageManager.h"
 #import "AccountManager.h"
+#import "UserDetailRoundButton.h"
 
 @interface SelfUserDetail() {
     
@@ -232,34 +233,34 @@
     [button setHighlighted:![self isSNSBtnVisable:snsType]];
 }
 
-- (UILabel*)labelWithText:(NSString*)text
-{
-    UILabel* label = [[[UILabel alloc] init] autorelease];
-    [label setText:text];
-    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setUserInteractionEnabled:NO];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setTextColor:[UIColor whiteColor]];
-    return label;
-    
-}
+//- (UILabel*)labelWithText:(NSString*)text
+//{
+//    UILabel* label = [[[UILabel alloc] init] autorelease];
+//    [label setText:text];
+//    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [label setUserInteractionEnabled:NO];
+//    [label setBackgroundColor:[UIColor clearColor]];
+//    [label setTextColor:[UIColor whiteColor]];
+//    return label;
+//    
+//}
+//
+//- (void)addButton:(UIButton*)button
+//           number:(NSInteger)number
+//            title:(NSString*)title
+//{
+//    UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
+//    UILabel* titleLabel = [self labelWithText:title];
+//    
+//    [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    
+//    [button addSubview:numberLabel];
+//    [button addSubview:titleLabel];
+//}
 
-- (void)addButton:(UIButton*)button
-           number:(NSInteger)number
-            title:(NSString*)title
-{
-    UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
-    UILabel* titleLabel = [self labelWithText:title];
-    
-    [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-    [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-    
-    [button addSubview:numberLabel];
-    [button addSubview:titleLabel];
-}
-
-- (void)initUserActionButton:(UIButton*)button atIndex:(int)index
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
     PBGameUser* user = [self getUser];
     [button setTitle:nil forState:UIControlStateNormal];

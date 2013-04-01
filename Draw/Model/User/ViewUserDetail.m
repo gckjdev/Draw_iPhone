@@ -27,9 +27,7 @@
 #import "FriendService.h"
 #import "ChatDetailController.h"
 #import "MessageStat.h"
-
-#define BTN_NUMBER_TAG  20130401
-#define BTN_TITLE_TAG   120130401
+#import "UserDetailRoundButton.h"
 
 @interface ViewUserDetail () {
 
@@ -298,48 +296,48 @@
     [button setHidden:![self isSNSBtnVisable:snsType]];
 }
 
-- (UILabel*)labelWithText:(NSString*)text
-{
-    UILabel* label = [[[UILabel alloc] init] autorelease];
-    [label setText:text];
-    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setUserInteractionEnabled:NO];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setTextColor:[UIColor whiteColor]];
-    return label;
-    
-}
+//- (UILabel*)labelWithText:(NSString*)text
+//{
+//    UILabel* label = [[[UILabel alloc] init] autorelease];
+//    [label setText:text];
+//    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [label setUserInteractionEnabled:NO];
+//    [label setBackgroundColor:[UIColor clearColor]];
+//    [label setTextColor:[UIColor whiteColor]];
+//    return label;
+//    
+//}
+//
+//- (void)addButton:(UIButton*)button
+//           number:(NSInteger)number
+//            title:(NSString*)title
+//{
+//    [button setTitle:nil forState:UIControlStateNormal];
+//    
+//    UILabel* numberLabel = (UILabel*)[button viewWithTag:BTN_NUMBER_TAG];
+//    if (numberLabel) {
+//        [numberLabel setText:[NSString stringWithFormat:@"%d", number]];
+//    } else {
+//        UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
+//        [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//        numberLabel.tag = BTN_NUMBER_TAG;
+//        [button addSubview:numberLabel];
+//    }
+//    
+//    UILabel* titleLabel = (UILabel*)[button viewWithTag:BTN_TITLE_TAG];
+//    if (!titleLabel) {
+//        UILabel* titleLabel = [self labelWithText:title];
+//        [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//        titleLabel.tag = BTN_TITLE_TAG;
+//        [button addSubview:titleLabel];
+//    }
+//    
+//    
+//}
 
-- (void)addButton:(UIButton*)button
-           number:(NSInteger)number
-            title:(NSString*)title
-{
-    [button setTitle:nil forState:UIControlStateNormal];
-    
-    UILabel* numberLabel = (UILabel*)[button viewWithTag:BTN_NUMBER_TAG];
-    if (numberLabel) {
-        [numberLabel setText:[NSString stringWithFormat:@"%d", number]];
-    } else {
-        UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
-        [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-        numberLabel.tag = BTN_NUMBER_TAG;
-        [button addSubview:numberLabel];
-    }
-    
-    UILabel* titleLabel = (UILabel*)[button viewWithTag:BTN_TITLE_TAG];
-    if (!titleLabel) {
-        UILabel* titleLabel = [self labelWithText:title];
-        [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-        titleLabel.tag = BTN_TITLE_TAG;
-        [button addSubview:titleLabel];
-    }
-    
-    
-}
 
-
-- (void)initUserActionButton:(UIButton*)button atIndex:(int)index
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
     PBGameUser* user = [self getUser];
     switch (index) {
