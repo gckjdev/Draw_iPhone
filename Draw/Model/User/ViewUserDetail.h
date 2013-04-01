@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UserDetailProtocol.h"
 #import "FeedService.h"
+#import "FriendService.h"
 
 typedef enum {
     UserDetailActionFollowCount = 0,
@@ -18,7 +19,7 @@ typedef enum {
     UserDetailActionFanCount,
 }UserDetailAction;
 
-@interface ViewUserDetail : NSObject<UserDetailProtocol, FeedServiceDelegate>
+@interface ViewUserDetail : NSObject<UserDetailProtocol, FeedServiceDelegate, FriendServiceDelegate>
 
 
 @property (assign, nonatomic) RelationType relation;

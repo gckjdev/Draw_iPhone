@@ -1093,15 +1093,15 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage*)selfDetailBalanceBtnBg
 {
-    return [UIImage imageNamed:@"self_detail_banalce_bg.png"];
+    return [UIImage imageNamed:@"self_detail_balance_btn_bg.png"];
 }
 - (UIImage*)selfDetailIngotBtnBg
 {
-    return [UIImage imageNamed:@"self_detail_ingot_bg.png"];
+    return [UIImage imageNamed:@"self_detail_ingot_btn_bg.png"];
 }
 - (UIImage*)selfDetailExpBtnBg
 {
-    return [UIImage imageNamed:@"self_detail_exp_bg.png"];
+    return [UIImage imageNamed:@"self_detail_exp_btn_bg.png"];
 }
 
 @end

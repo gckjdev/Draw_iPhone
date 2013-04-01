@@ -22,14 +22,24 @@
 #import "SNSUtils.h"
 #import "CommonDialog.h"
 #import "ConfigManager.h"
+#import "ShareImageManager.h"
+#import "SelectHotWordController.h"
+#import "FriendService.h"
+#import "ChatDetailController.h"
+#import "MessageStat.h"
+
+#define BTN_NUMBER_TAG  20130401
+#define BTN_TITLE_TAG   120130401
 
 @interface ViewUserDetail () {
-   
+
 }
 
 @property (retain, nonatomic) PBGameUser* pbUser;
 
 @property (retain, nonatomic) SuperUserManageAction* manageAction;
+
+@property (retain, nonatomic) PPTableViewController* superViewController;
 
 @end
 
@@ -47,6 +57,7 @@
 - (void)dealloc
 {
     [_pbUser release];
+    PPRelease(_superViewController);
     PPRelease(_manageAction);
     [super dealloc];
 }
@@ -287,20 +298,89 @@
     [button setHidden:![self isSNSBtnVisable:snsType]];
 }
 
-- (void)initUserActionButtonAtIndex:(int)index
+- (UILabel*)labelWithText:(NSString*)text
+{
+    UILabel* label = [[[UILabel alloc] init] autorelease];
+    [label setText:text];
+    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setUserInteractionEnabled:NO];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextColor:[UIColor whiteColor]];
+    return label;
+    
+}
+
+- (void)addButton:(UIButton*)button
+           number:(NSInteger)number
+            title:(NSString*)title
+{
+    [button setTitle:nil forState:UIControlStateNormal];
+    
+    UILabel* numberLabel = (UILabel*)[button viewWithTag:BTN_NUMBER_TAG];
+    if (numberLabel) {
+        [numberLabel setText:[NSString stringWithFormat:@"%d", number]];
+    } else {
+        UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
+        [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+        numberLabel.tag = BTN_NUMBER_TAG;
+        [button addSubview:numberLabel];
+    }
+    
+    UILabel* titleLabel = (UILabel*)[button viewWithTag:BTN_TITLE_TAG];
+    if (!titleLabel) {
+        UILabel* titleLabel = [self labelWithText:title];
+        [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+        titleLabel.tag = BTN_TITLE_TAG;
+        [button addSubview:titleLabel];
+    }
+    
+    
+}
+
+
+- (void)initUserActionButton:(UIButton*)button atIndex:(int)index
+{
+    PBGameUser* user = [self getUser];
+    switch (index) {
+        case UserDetailActionFollowCount:
+            [self addButton:button number:user.followCount title:NSLS(@"kFollow")];
+            break;
+        case UserDetailActionDrawTo: {
+            
+        } break;
+        case UserDetailActionFollow: {
+            BOOL hasFollow = [MyFriend hasFollow:[self relation]];
+            [button setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
+            UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
+            [button setBackgroundImage:followBtnBg forState:UIControlStateNormal];
+        } break;
+        case UserDetailActionChatTo: {
+            
+        } break;
+        case UserDetailActionFanCount: {
+            [self addButton:button number:user.fanCount title:NSLS(@"kFans")];
+        } break;
+        default:
+            break;
+    }
+}
+
+- (void)clickUserActionButtonAtIndex:(int)index
+                      viewController:(PPTableViewController *)viewController
 {
     switch (index) {
         case UserDetailActionFollowCount:
             //
             break;
         case UserDetailActionDrawTo: {
-            
+            [self didClickDrawToButton:viewController];
         } break;
         case UserDetailActionFollow: {
-            
+            [self didClickFollowButton:viewController];
         } break;
         case UserDetailActionChatTo: {
-            
+            [self didClickChatButton:viewController];
         } break;
         case UserDetailActionFanCount: {
             
@@ -310,28 +390,72 @@
     }
 }
 
-- (void)clickUserActionButtonAtIndex:(int)index
-                      viewController:(PPViewController *)viewController
+- (void)didClickFollowButton:(PPTableViewController*)viewController
 {
-    switch (index) {
-        case UserDetailActionFollowCount:
-            //
-            break;
-        case UserDetailActionDrawTo: {
-            
-        } break;
-        case UserDetailActionFollow: {
-            
-        } break;
-        case UserDetailActionChatTo: {
-            
-        } break;
-        case UserDetailActionFanCount: {
-            
-        } break;
-        default:
-            break;
+    PBGameUser* user = [self getUser];
+    MyFriend* friend = [MyFriend friendWithFid:user.userId nickName:user.nickName avatar:user.avatar gender:nil level:user.level];
+    if ([MyFriend hasFollow:[self relation]]) {
+        [[FriendService defaultService] unFollowUser:friend delegate:self];
+        [viewController showActivityWithText:NSLS(@"kUnfollowing")];
+    } else {
+        [[FriendService defaultService] followUser:friend delegate:self];
+        [viewController showActivityWithText:NSLS(@"kFollowing")];
     }
+    self.superViewController = viewController;
+    
+}
+- (void)didClickChatButton:(PPTableViewController*)viewController
+{
+    PBGameUser* pbUser = [self getUser];
+    MyFriend* targetFriend = [MyFriend friendWithFid:[self getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender?@"m":@"f" level:pbUser.level];
+    MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+    ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
+    [viewController.navigationController pushViewController:controller
+                                         animated:YES];
+    [controller release];
+    
+}
+- (void)didClickDrawToButton:(PPTableViewController*)viewController
+{
+    SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
+    vc.superController = viewController;
+    [viewController.navigationController pushViewController:vc animated:YES];
+    
+}
+
+#pragma mark - friendService delegate
+- (void)didFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode
+{
+    [self.superViewController hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowFailed")
+                                                       delayTime:1.5
+                                                         isHappy:NO];
+    } else {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFollowSuccessfully")
+                                                       delayTime:1.5
+                                                         isHappy:YES];
+    }
+    [self setRelation:(([self relation]) | RelationTypeFollow)];
+    [self.superViewController.dataTableView reloadData];
+}
+
+- (void)didUnFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode
+{
+    [self.superViewController hideActivity];
+    if (resultCode != 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowFailed")
+                                                       delayTime:1.5
+                                                         isHappy:NO];
+    } else {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfollowSuccessfully")
+                                                       delayTime:1.5
+                                                         isHappy:YES];
+    }
+    if ([MyFriend hasFollow:[self relation]]) {
+        [self setRelation:(([self relation]) - RelationTypeFollow)];
+    }
+    [self.superViewController.dataTableView reloadData];
 }
 
 @end
