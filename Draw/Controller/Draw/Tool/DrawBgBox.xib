@@ -35,7 +35,7 @@
 			</object>
 			<object class="IBUIView" id="191373211">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="589708549">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -117,8 +117,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="589708549"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC42NjY2NjY2NjY3IDAuNzUAA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAgMC41AA</bytes>
 				</object>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
