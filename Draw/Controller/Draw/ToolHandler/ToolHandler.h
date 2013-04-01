@@ -45,7 +45,6 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 //method from draw view
 - (CGFloat)width;
-- (PBDrawBg *)drawBG;
 - (DrawColor *)penColor;
 - (BOOL)grid;
 - (DrawColor *)eraserColor;

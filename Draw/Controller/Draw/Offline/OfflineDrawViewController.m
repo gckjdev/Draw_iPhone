@@ -176,7 +176,6 @@
 
     self.delegate = nil;
     _draft.drawActionList = nil;
-    _draft.drawBg = nil;
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
 //    PPRelease(_progressView);
@@ -734,7 +733,6 @@
                       drawActionList:drawView.drawActionList
                       drawWord:self.word
                       language:languageType
-                      drawBg:drawView.drawBg
                       size:drawView.bounds.size
                       isCompressed:YES];
     return pbDraw;
@@ -951,7 +949,6 @@
                                               targetUid:self.targetUid
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
-                                                 drawBg:drawView.drawBg
                                                    size:drawView.bounds.size
                                                delegate:self];
 

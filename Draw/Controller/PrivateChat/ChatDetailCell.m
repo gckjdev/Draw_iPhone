@@ -17,7 +17,7 @@
 #import "LocaleUtils.h"
 #import "PPMessage.h"
 #import "UIImageView+WebCache.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameApp.h"
 #import "MyFriend.h"

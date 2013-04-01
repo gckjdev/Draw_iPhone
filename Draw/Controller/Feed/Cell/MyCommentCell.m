@@ -12,7 +12,9 @@
 #import "DeviceDetection.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 #import "MyFriend.h"
@@ -172,11 +174,15 @@
 #pragma mark - avatar view delegate
 - (void)didClickOnAvatar:(NSString *)userId
 {
-    MyFriend *friend = [MyFriend friendWithFid:userId
-                                      nickName:nil
-                                        avatar:nil
-                                        gender:nil
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
+//    MyFriend *friend = [MyFriend friendWithFid:userId
+//                                      nickName:nil
+//                                        avatar:nil
+//                                        gender:nil
+//                                         level:1];
+//    [DrawUserInfoView showFriend:friend infoInView:_superViewController needUpdate:YES];
+    
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
+    [_superViewController.navigationController pushViewController:uc animated:YES];
+    return;
 }
 @end

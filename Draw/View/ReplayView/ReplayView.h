@@ -26,7 +26,6 @@
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
-                  drawBg:(PBDrawBg *)drawBg
                     size:(CGSize)size;
 
 

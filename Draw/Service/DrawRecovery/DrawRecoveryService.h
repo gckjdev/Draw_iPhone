@@ -46,6 +46,5 @@
 
 - (void)handleTimer:(NSArray*)drawActionList;
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList;
-- (void)handleChangeDrawBg:(PBDrawBg *)drawBg;
 
 @end

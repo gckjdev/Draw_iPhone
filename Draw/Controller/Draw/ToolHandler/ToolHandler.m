@@ -154,10 +154,6 @@
 {
     return self.drawView.lineWidth;
 }
-- (PBDrawBg *)drawBG
-{
-    return self.drawView.drawBg;
-}
 
 - (CanvasRect *)canvasRect
 {

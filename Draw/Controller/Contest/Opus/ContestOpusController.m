@@ -10,7 +10,9 @@
 #import "TableTabManager.h"
 #import "ShareImageManager.h"
 #import "ShowFeedController.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "Contest.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
@@ -344,13 +346,14 @@ typedef enum{
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
 {
     TopPlayer *player = topPlayerView.topPlayer;
-    NSString* genderString = player.gender?@"m":@"f";
-    MyFriend *friend = [MyFriend friendWithFid:player.userId
-                                      nickName:player.nickName
-                                        avatar:player.avatar
-                                        gender:genderString
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+//    NSString* genderString = player.gender?@"m":@"f";
+//    MyFriend *friend = [MyFriend friendWithFid:player.userId
+//                                      nickName:player.nickName
+//                                        avatar:player.avatar
+//                                        gender:genderString
+//                                         level:1];
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
 }
 
 @end

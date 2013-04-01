@@ -484,9 +484,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
             paint.drawDataVersion = nDraw.version;
-            if ([nDraw hasDrawBg]) {
-                paint.drawBg = nDraw.drawBg;
-            }
             if ([nDraw hasOpusDesc]) {
                 paint.opusDesc = nDraw.opusDesc;
             }
@@ -500,9 +497,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];
             paint.drawDataVersion = pbDraw.version;
-            if ([pbDraw hasDrawBg]) {
-                paint.drawBg = pbDraw.drawBg;
-            }
             if (![pbDraw hasCanvasSize]) {
                 paint.canvasSize = [CanvasRect deprecatedRect].size;
             }else{

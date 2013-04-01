@@ -12,7 +12,7 @@
 #import "ShowFeedController.h"
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "UseItemScene.h"
 #import "ConfigManager.h"
 #import "UserManager.h"

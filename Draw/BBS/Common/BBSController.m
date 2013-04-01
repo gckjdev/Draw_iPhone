@@ -116,7 +116,6 @@
         [replayView showInController:self
                       withActionList:drawActionList
                         isNewVersion:isNewVersion
-                              drawBg:nil
                                 size:canvasSize];
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);

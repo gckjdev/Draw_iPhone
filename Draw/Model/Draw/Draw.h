@@ -33,7 +33,6 @@
 
 @property (retain, nonatomic) NSDate *date;
 @property (assign, nonatomic) NSInteger version;
-@property (retain, nonatomic) PBDrawBg *drawBg;
 @property (assign, nonatomic) CGSize canvasSize;
 
 - (CGRect)canvasRect;
@@ -43,7 +42,6 @@
               avatar:(NSString *)avatar
       drawActionList:(NSMutableArray *)drawActionList 
                 word:(Word *)word
-              drawBg:(PBDrawBg *)drawBg
           canvasSize:(CGSize)size;
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;

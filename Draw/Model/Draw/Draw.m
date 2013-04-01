@@ -24,7 +24,6 @@
     PPRelease(_word);
     PPRelease(_date);
     PPRelease(_avatar);
-    PPRelease(_drawBg);
     [super dealloc];
 }
 
@@ -54,7 +53,6 @@
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];
         self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
         self.version = pbDraw.version;
-        self.drawBg = pbDraw.drawBg;
         if ([pbDraw hasCanvasSize]) {
             self.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
         }else{
@@ -69,7 +67,6 @@
               avatar:(NSString *)avatar
       drawActionList:(NSMutableArray *)drawActionList
                 word:(Word *)word
-              drawBg:(PBDrawBg *)drawBg
           canvasSize:(CGSize)size;
 {
     self = [super init];
@@ -79,7 +76,6 @@
         self.avatar = avatar;
         self.drawActionList = drawActionList;
         self.word = word;
-        self.drawBg = drawBg;
         self.date = [NSDate date];
         self.languageType = [[UserManager defaultManager] getLanguageType];
         self.version = [ConfigManager currentDrawDataVersion];
@@ -112,10 +108,6 @@
     [builder setLevel:[self.word level]];
     [builder setLanguage:self.languageType];
     [builder setScore:[self.word score]];
-    
-    if (self.drawBg != nil){
-        [builder setDrawBg:self.drawBg];
-    }
     
     [builder setCanvasSize:CGSizeToPBSize(self.canvasSize)];
     

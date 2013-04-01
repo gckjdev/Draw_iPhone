@@ -9,20 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Draw.pb.h"
 #import "DrawUtils.h"
-//#import "ShapeAction.h"
-//#import "CleanAction.h"
-//#import "PaintAction.h"
-//#import "ChangeBackAction.h"
-
-//#import "ItemType.h"
-//#import "ShapeInfo.h"
-
-//@class Paint;
-//@class PBDrawAction;
-//@class DrawColor;
-//@class PBNoCompressDrawAction;
-//@class PBNoCompressDrawData;
-//@class PBDrawBg;
 
 
 typedef enum {
@@ -36,7 +22,7 @@ typedef enum {
 
 //#define BACK_GROUND_WIDTH 5000
 
-@interface DrawAction : NSObject<NSCoding> {
+@interface DrawAction : NSObject {
 //    Paint *_paint;
 }
 
@@ -52,7 +38,6 @@ typedef enum {
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                        pbdrawBg:(PBDrawBg *)drawBg
                                                             size:(CGSize)size
                                                       drawToUser:(PBUserBasicInfo *)drawToUser;
 

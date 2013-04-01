@@ -12,7 +12,9 @@
 #import "CommentCell.h"
 #import "CommentFeed.h"
 #import "TableTabManager.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "ViewUserDetail.h"
+#import "UserDetailViewController.h"
 #import "OfflineGuessDrawController.h"
 #import "CommentController.h"
 #import "ShareService.h"
@@ -302,13 +304,15 @@ enum{
 
         {
             FeedUser *feedUser = self.feed.author;
-            MyFriend *friend = [MyFriend friendWithFid:feedUser.userId
-                                              nickName:feedUser.nickName
-                                                avatar:feedUser.avatar
-                                                gender:feedUser.genderString
-                                                 level:1];
-            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-
+//            MyFriend *friend = [MyFriend friendWithFid:feedUser.userId
+//                                              nickName:feedUser.nickName
+//                                                avatar:feedUser.avatar
+//                                                gender:feedUser.genderString
+//                                                 level:1];
+//            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
+            [self.navigationController pushViewController:uc animated:YES];
+            
         }
             break;
             
@@ -400,12 +404,14 @@ enum{
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
 {
-    MyFriend *friend = [MyFriend friendWithFid:userId
-                                      nickName:nickName
-                                        avatar:nil
-                                        gender:@"m"
-                                         level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+//    MyFriend *friend = [MyFriend friendWithFid:userId
+//                                      nickName:nickName
+//                                        avatar:nil
+//                                        gender:@"m"
+//                                         level:1];
+//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -590,9 +596,9 @@ enum{
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
         [self.feed parseDrawData];
-        [replay showInController:cp withActionList:cp.feed.drawData.drawActionList
+        [replay showInController:cp
+                  withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
-                          drawBg:cp.feed.pbDraw.drawBg
                             size:CGSizeFromPBSize(cp.feed.pbDraw.canvasSize)];
         self.feed.drawData = nil;
     }];
@@ -642,7 +648,8 @@ enum{
 }
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
-    [DrawUserInfoView showFriend:myFriend infoInView:self needUpdate:YES];
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
 }
 
 #pragma mark draw data service delegate
