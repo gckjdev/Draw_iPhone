@@ -15,7 +15,7 @@
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "UIViewUtils.h"
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)

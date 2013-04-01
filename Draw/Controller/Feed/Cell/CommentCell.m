@@ -12,7 +12,7 @@
 #import "DeviceDetection.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 #import "MyFriend.h"

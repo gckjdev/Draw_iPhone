@@ -22,7 +22,9 @@
 #import "DeviceDetection.h"
 #import "WordManager.h"
 #import "LevelService.h"
-#import "DrawUserInfoView.h"
+//#import "DrawUserInfoView.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 #import "NotificationManager.h"
 #import "MyFriend.h"
 #import "NotificationName.h"
@@ -240,8 +242,11 @@
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     RoomUser *roomUser = room.creator;
 
-    MyFriend *friend = [MyFriend friendWithFid:roomUser.userId nickName:roomUser.nickName avatar:roomUser.avatar gender:roomUser.gender level:1];
-    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+//    MyFriend *friend = [MyFriend friendWithFid:roomUser.userId nickName:roomUser.nickName avatar:roomUser.avatar gender:roomUser.gender level:1];
+//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
+    
+    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:roomUser.userId avatar:roomUser.avatar nickName:roomUser.nickName]] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
 }
 
 
