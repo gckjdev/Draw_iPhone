@@ -1092,6 +1092,7 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
+"kItemTaoBao" = "淘宝";
 "kDownloadRewardAppTips" = "下载兄弟应用(免费)，使用后可赚取元宝";
 "kRewardWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kFreeIngot" = "免费元宝";
@@ -1470,6 +1471,7 @@
 "kNoSaleItemNormal" = "暂无可销售的道具";
 "kNoSaleItemTool" = "暂无可销售的工具";
 "kNoSaleItemPromoting" = "暂无促销的工具或道具";
+"kNoSaleItemTaoBao" = "暂无淘宝商品";
 
 "kDottedLinePen" = "虚线笔";
 "kDottedLinePenDescription" = "一种可以轻易画出虚线的笔";

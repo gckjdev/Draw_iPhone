@@ -382,7 +382,7 @@
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
 
         }else{
-            if ([_currentAction isKindOfClass:[ShapeAction class]]) {
+            if (![_currentAction isKindOfClass:[PaintAction class]]) {
                 [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
             }else{
                 [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
@@ -405,25 +405,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-//    PPDebug(@"<drawRect> TAG");
-    
     [super drawRect:rect];
-    if (Playing == self.status) {
-//        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
-
-        /*
-        double now = CACurrentMediaTime();
-//        double delay = DEFAULT_PLAY_SPEED;
-        if (now - _playFrameTime > DEFAULT_PLAY_SPEED){
-//            PPDebug(@"Exceed max delay");
-            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:MIN_PLAY_SPEED];
-        }
-        else{
-//            PPDebug(@"Normal delay");
-            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:DEFAULT_PLAY_SPEED];
-        }
-        */
-    }
 }
 
 - (void)setNeedsDisplay

@@ -40,6 +40,10 @@
 {
     [[self viewWithTag:TAG_PRICE_VIEW] removeFromSuperview];
     
+    if (![_item hasPriceInfo]) {
+        return;
+    }
+    
     GameItemPriceView *priceView = [GameItemPriceView createWithItem:_item];
 
     priceView.tag = TAG_PRICE_VIEW;

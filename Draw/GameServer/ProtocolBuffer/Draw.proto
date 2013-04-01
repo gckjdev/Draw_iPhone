@@ -59,6 +59,7 @@ message PBFeed {
   optional string nickName = 21;
   optional string avatar = 22;
   optional bool   gender = 23;
+  optional string signature = 24;       // 用户签名，新增 2013-4-1
 
   // for user draw
   optional PBDraw drawData = 31;

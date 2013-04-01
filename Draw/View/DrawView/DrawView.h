@@ -10,7 +10,7 @@
 #import "SuperDrawView.h"
 #import "MyPaint.h"
 #import "ShapeInfo.h"
-
+#import "ChangeBGImageAction.h"
 
 @class DrawView;
 @protocol DrawViewDelegate <NSObject>
@@ -59,7 +59,8 @@ typedef enum{
 
 
 - (void)clearScreen;
-- (void)changeBackWithColor:(DrawColor *)color;
+- (ChangeBackAction *)changeBackWithColor:(DrawColor *)color;
+- (ChangeBGImageAction *)changeBGImageWithDrawBG:(PBDrawBg *)drawBg;
 
 - (void)setDrawEnabled:(BOOL)enabled;
 

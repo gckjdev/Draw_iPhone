@@ -69,6 +69,7 @@
     [self didClickTabAtIndex:0];
     currentTabIndex = DetailTabActionClickOpus;
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,13 +131,7 @@
 
 - (void)didClickAvatar
 {
-    if ([self.detail canEdit]) {
-        if (_changeAvatar == nil) {
-            _changeAvatar = [[ChangeAvatar alloc] init];
-            _changeAvatar.autoRoundRect = NO;
-        }
-        [_changeAvatar showSelectionView:self];
-    }
+    [self.detail clickAvatar:self];
 }
 
 - (void)uploadUserAvatar:(UIImage*)image

@@ -22,9 +22,10 @@
 #import "ShareImageManager.h"
 #import "AccountManager.h"
 #import "UserDetailRoundButton.h"
+#import "ChangeAvatar.h"
 
 @interface SelfUserDetail() {
-    
+    ChangeAvatar* _changeAvatar;
 }
 
 @property (nonatomic, assign) PPTableViewController* superViewController;
@@ -329,6 +330,15 @@
     FriendController* vc = [[[FriendController alloc] init] autorelease];
     [vc setDefaultTabIndex:FriendTabIndexFollow];
     [viewController.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)clickAvatar:(PPTableViewController <ChangeAvatarDelegate>*)viewController
+{
+    if (_changeAvatar == nil) {
+        _changeAvatar = [[ChangeAvatar alloc] init];
+        _changeAvatar.autoRoundRect = NO;
+    }
+    [_changeAvatar showSelectionView:viewController];
 }
 
 @end

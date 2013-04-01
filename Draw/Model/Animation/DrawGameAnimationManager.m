@@ -123,7 +123,8 @@
         msg = [NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),[ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
     } else {
         PBGameItem* flower = [[GameItemManager defaultManager] itemWithItemId:ItemTypeFlower];
-        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerWithCoinsMessage"), [flower promotionPrice], [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+        int price = [flower promotionPrice];
+        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerWithCoinsMessage"), price, [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
     }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {

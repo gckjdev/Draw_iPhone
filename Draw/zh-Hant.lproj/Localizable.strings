@@ -1080,6 +1080,8 @@
 "kItemNormal" = "道具";
 "kItemTool" = "工具";
 "kItemPromotion" = "促銷";
+"kItemTaoBao" = "淘寶";
+
 //"kDownloadRewardAppTips" = "下載兄弟應用可直接賺取元寶";
 //"kRewardWallTips" = "其他第三方免費應用，賺取元寶";
 "kDownloadRewardAppTips" = "下載兄弟應用(免費)，使用後可賺取元寶";
@@ -1456,6 +1458,7 @@
 "kNoSaleItemNormal" = "暫無可銷售的道具";
 "kNoSaleItemTool" = "暫無可銷售的工具";
 "kNoSaleItemPromoting" = "暫無促銷的工具或道具";
+"kNoSaleItemTaoBao" = "暫無淘寶商品";
 
 "kAlreadyBought" = "已購";
 "kBuyColorFailed"= "購買顏色失敗";
