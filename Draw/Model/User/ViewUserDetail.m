@@ -28,6 +28,7 @@
 #import "ChatDetailController.h"
 #import "MessageStat.h"
 #import "UserDetailRoundButton.h"
+#import "MWPhoto.h"
 
 @interface ViewUserDetail () {
 
@@ -456,6 +457,26 @@
         [self setRelation:(([self relation]) - RelationTypeFollow)];
     }
     [self.superViewController.dataTableView reloadData];
+}
+
+- (void)clickAvatar:(PPTableViewController *)viewController
+{
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Modal
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [viewController presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
+}
+
+#pragma mark - mwPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:[NSURL URLWithString:[[self getUser] avatar]]];
 }
 
 @end

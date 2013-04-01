@@ -44,5 +44,7 @@
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 
+- (void)clickAvatar:(PPTableViewController*)viewController;
+
 @property (assign, nonatomic) RelationType relation;
 @end
