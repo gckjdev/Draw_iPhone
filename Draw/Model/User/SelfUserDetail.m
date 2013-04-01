@@ -266,24 +266,29 @@
     [button setTitle:nil forState:UIControlStateNormal];
     switch (index) {
         case SelfDetailActionFollowCount: {
-            [self addButton:button number:user.followCount title:NSLS(@"kFollow")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
+            [button.downLabel setText:NSLS(@"kFollow")];
         } break;
         case SelfDetailActionBalance: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailBalanceBtnBg] forState:UIControlStateNormal];
             int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
-            [self addButton:button number:balance title:NSLS(@"kCoin")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", balance]];
+            [button.downLabel setText:NSLS(@"kBalance")];
         } break;
         case SelfDetailActionExp: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailExpBtnBg] forState:UIControlStateNormal];
-            [self addButton:button number:user.experience title:NSLS(@"kExp")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.experience]];
+            [button.downLabel setText:NSLS(@"kExperience")];
         } break;
         case SelfDetailActionIngot: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailIngotBtnBg] forState:UIControlStateNormal];
             int ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
-            [self addButton:button number:ingot title:NSLS(@"kIngot")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", ingot]];
+            [button.downLabel setText:NSLS(@"kIngots")];
         } break;
         case SelfDetailActionFanCount: {
-            [self addButton:button number:user.fanCount title:NSLS(@"kFans")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
+            [button.downLabel setText:NSLS(@"kFans")];
         } break;
         default:
             break;

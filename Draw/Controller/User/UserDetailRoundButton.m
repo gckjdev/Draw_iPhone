@@ -32,8 +32,8 @@
 }
 - (void)addUpDownLabel
 {
-    _upLabel = [self labelWithFontSize:self.titleLabel.font];
-    _downLabel = [self labelWithFontSize:self.titleLabel.font];
+    self.upLabel = [self labelWithFontSize:self.titleLabel.font];
+    self.downLabel = [self labelWithFontSize:self.titleLabel.font];
     [_upLabel setFrame:CGRectMake(self.frame.size.width*0.15, self.frame.size.height*0.15, self.frame.size.width*0.7, self.frame.size.height*0.35)];
     [_downLabel setFrame:CGRectMake(self.frame.size.width*0.15, self.frame.size.height/2, self.frame.size.width*0.7, self.frame.size.height*0.35)];
     [self addSubview:_upLabel];

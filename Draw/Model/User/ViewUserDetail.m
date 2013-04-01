@@ -341,9 +341,10 @@
 {
     PBGameUser* user = [self getUser];
     switch (index) {
-        case UserDetailActionFollowCount:
-            [self addButton:button number:user.followCount title:NSLS(@"kFollow")];
-            break;
+        case UserDetailActionFollowCount: {
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
+            [button.downLabel setText:NSLS(@"kFollow")];
+        }break;
         case UserDetailActionDrawTo: {
             
         } break;
@@ -357,7 +358,8 @@
             
         } break;
         case UserDetailActionFanCount: {
-            [self addButton:button number:user.fanCount title:NSLS(@"kFans")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
+            [button.downLabel setText:NSLS(@"kFans")];
         } break;
         default:
             break;
