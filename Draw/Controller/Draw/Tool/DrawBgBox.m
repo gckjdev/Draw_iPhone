@@ -40,8 +40,6 @@
     box.dataList = [[DrawBgManager defaultManager] pbDrawBgGroupList];
     box.tableView.delegate = box;
     box.tableView.dataSource = box;
-    
-    [box setBackgroundColor:[UIColor clearColor]];
     [box.tableView setBackgroundColor:[UIColor clearColor]];
     
     return box;
