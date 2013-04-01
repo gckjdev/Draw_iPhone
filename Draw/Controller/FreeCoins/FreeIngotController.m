@@ -18,6 +18,7 @@
 #import "ConfigManager.h"
 #import "CommonDialog.h"
 #import "BBSPostDetailController.h"
+#import "UIViewController+UIViewController_StoreProductViewController.h"
 
 //#define SECTION_COUNT 2
 
@@ -148,7 +149,10 @@ enum {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDownloadAppTitle") message:NSLS(@"kDownloadAppMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
 
             PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
-            [UIUtils openURL:appReward.app.downloadUrl];
+            
+            [self openApp:appReward.app.appId];
+            
+//            [UIUtils openURL:appReward.app.downloadUrl];
             
         } clickCancelBlock:^{
             

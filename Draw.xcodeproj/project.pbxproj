@@ -3622,6 +3622,10 @@
 		CA189B1C1702B64900339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189B061702B64900339D42 /* default_config_Zhajinhua.pb */; };
 		CA189B1D1702B64900339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189B061702B64900339D42 /* default_config_Zhajinhua.pb */; };
 		CA189B1E1702B64900339D42 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = CA189B061702B64900339D42 /* default_config_Zhajinhua.pb */; };
+		CA189B3C1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */; };
+		CA189B3D1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */; };
+		CA189B3E1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */; };
+		CA189B3F1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */; };
 		CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		CA18D40215CFB230001B421A /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		CA18D40515CFB242001B421A /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -8930,6 +8934,8 @@
 		CA189B041702B64900339D42 /* default_config_Draw.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Draw.pb; sourceTree = "<group>"; };
 		CA189B051702B64900339D42 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
 		CA189B061702B64900339D42 /* default_config_Zhajinhua.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua.pb; sourceTree = "<group>"; };
+		CA189B3A1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+UIViewController_StoreProductViewController.h"; sourceTree = "<group>"; };
+		CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+UIViewController_StoreProductViewController.m"; sourceTree = "<group>"; };
 		CA18D3FD15CFACD3001B421A /* FeedClasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedClasses.h; sourceTree = "<group>"; };
 		CA18D3FE15CFACD3001B421A /* FeedClasses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedClasses.m; sourceTree = "<group>"; };
 		CA18D40015CFB230001B421A /* DrawFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFeed.h; sourceTree = "<group>"; };
@@ -13062,6 +13068,8 @@
 				CA103CD31509A56100F60C03 /* PPViewController.m */,
 				CA103CD41509A56100F60C03 /* Resource */,
 				CA103CD71509A56100F60C03 /* Test */,
+				CA189B3A1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.h */,
+				CA189B3B1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m */,
 			);
 			path = "Core-Application";
 			sourceTree = "<group>";
@@ -23923,6 +23931,7 @@
 				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				CA189B3E1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24720,6 +24729,7 @@
 				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				CA189B3F1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25520,6 +25530,7 @@
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				CA189B3C1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26325,6 +26336,7 @@
 				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				CA189B3D1709ADFE00339D42 /* UIViewController+UIViewController_StoreProductViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
