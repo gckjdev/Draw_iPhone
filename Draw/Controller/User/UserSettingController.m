@@ -683,24 +683,13 @@ enum {
         }else if (row == rowOfBloodGroup) {
             [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
-//            __block UserSettingController* bc = self;
-//            InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kInputSignature") clickOK:^(NSString *inputStr) {
-//                if ([inputStr length] > 0){
-//                    [_pbUserBuilder setSignature:inputStr];
-//                    hasEdited = YES;
-//                }
-//                [bc.dataTableView reloadData];
-//            } clickCancel:^(NSString *inputStr) {
-//                //
-//            }];
-//            [dialog showInView:self.view];
-//        }
             self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
             [self.inputAlertView showInView:self.view animated:YES];
-    
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
-        }else if (section == SECTION_GUESSWORD) {
+        }
+        }
+    else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
             //        LanguageType type = [userManager getLanguageType];
@@ -730,7 +719,8 @@ enum {
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
         }
-    }else if (section == SECTION_SOUND) {
+    }
+    else if (section == SECTION_SOUND) {
         if(row == rowOfSoundSwitcher) {
             //no action
         }else if (row == rowOfMusicSettings) {
@@ -808,8 +798,9 @@ enum {
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
+    
 }
+
 
 - (void)askUpdateLocation
 {
@@ -1289,7 +1280,9 @@ enum {
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
 	self.currentPlacemark = placemark;
-	[[UserManager defaultManager] setLocation:self.currentPlacemark.locality];
+	[_pbUserBuilder setLocation:self.currentPlacemark.locality];
+    hasEdited = YES;
+    PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
     [self.dataTableView reloadData];
 }
 
