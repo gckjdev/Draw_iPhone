@@ -70,6 +70,7 @@
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
     CGRect rect = textView.frame;
+    [textView setFont:[[BBSFontManager defaultManager] postContentFont]];
     rect.size = CGSizeMake(CONTENT_WIDTH, 10);
     textView.frame = rect;
     [textView setText:text];
@@ -167,6 +168,8 @@
     }else{
         self.image.hidden = YES;
     }
+    
+    [self.contentTextView setFont:[[BBSFontManager defaultManager] postContentFont]];
     
     if ([DeviceDetection isOS6] && [action isReply]) {
         NSInteger length = [text length];

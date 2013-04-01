@@ -30,7 +30,8 @@ typedef enum {
     DrawActionTypePaint,
     DrawActionTypeClean,
     DrawActionTypeShape,
-    DrawActionTypeChangeBack, //use only in the client, should not send it to the server...
+    DrawActionTypeChangeBack, //change bg with color
+    DrawActionTypeChangeBGImage, //change bg with pb draw bg
 } DrawActionType;
 
 //#define BACK_GROUND_WIDTH 5000

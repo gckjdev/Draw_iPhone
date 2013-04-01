@@ -77,10 +77,11 @@
     if (isDrawApp()) {
         rowOfShare = count++;
         rowOfFollow = count++;
+        rowOfCleanCache = count++;
         rowOfAddWords = count++;
         rowOfReportBug = count++;
         rowOfFeedback = count++;
-        rowOfMoreApp = count++;
+        
         rowOfAppUpdate = count++;
         
         if ([ConfigManager isInReviewVersion] == NO){
@@ -90,7 +91,7 @@
             rowOfGiveReview = -1;
         }
         rowOfAbout = count++;
-        rowOfCleanCache = count++;
+        rowOfMoreApp = count++;
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
