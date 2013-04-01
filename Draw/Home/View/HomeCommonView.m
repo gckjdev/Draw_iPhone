@@ -8,7 +8,13 @@
 
 #import "HomeCommonView.h"
 
+
 @implementation HomeCommonView
 @synthesize delegate = _delegate;
+
+- (void)updateMenu:(int)type badge:(NSInteger)badge
+{
+    
+}
 
 @end

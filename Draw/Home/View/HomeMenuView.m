@@ -88,7 +88,7 @@
         }
 
         case HomeMenuTypeDrawMore:
-            return @"Test";
+            return NSLS(@"kHomeMenuTypeDrawMore");
             
         //ZJH
         case HomeMenuTypeZJHHelp:{

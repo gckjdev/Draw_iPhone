@@ -23,6 +23,7 @@
 #import "AudioManager.h"
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
+#import "HomeMenuView.h"
 
 @interface SuperHomeController ()
 {
@@ -171,16 +172,32 @@
     [[UserService defaultService] getStatistic:self];
 }
 
+
+- (HomeCommonView *)panelForType:(HomeMenuType)type
+{
+    if(isMainMenuButton(type)){
+        return self.homeMainMenuPanel;
+    }
+    return self.homeBottomMenuPanel;
+}
+
+- (void)updateBadgeWithType:(HomeMenuType)type badge:(NSInteger)badge
+{
+    HomeCommonView *panel = [self panelForType:type];
+    [panel updateMenu:type badge:badge];
+}
+
 - (void)updateAllBadge
 {
     StatisticManager *manager = [StatisticManager defaultManager];
-    
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawMessage badge:manager.messageCount];
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawFriend badge:manager.fanCount];
-    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
-    
+
+    [self updateBadgeWithType:HomeMenuTypeDrawMessage badge:manager.messageCount];
+    [self updateBadgeWithType:HomeMenuTypeDrawFriend badge:manager.fanCount];
+    [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
+
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
-    [self.homeMainMenuPanel updateMenu:HomeMenuTypeDrawTimeline badge:timelineCount];
+    
+    [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
     
     [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     

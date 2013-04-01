@@ -971,6 +971,7 @@
 "kHomeMenuTypeDrawMessage" = "消息";
 "kHomeMenuTypeDrawSetting" = "设置";
 "kHomeMenuTypeDrawShop" = "商店";
+"kHomeMenuTypeDrawMore" = "更多";
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
