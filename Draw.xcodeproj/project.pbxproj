@@ -1083,6 +1083,10 @@
 		C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E7401E1629500A0037E7F6 /* UseItemScene.m */; };
 		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
 		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
+		C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */; };
+		C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */; };
+		C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */; };
+		C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */; };
 		C2EBB8EC164A1B200024D605 /* ZJHSoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */; };
 		C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */; };
@@ -8370,6 +8374,8 @@
 		C2E90FEA15BD44DA00828562 /* RecommendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendApp.m; sourceTree = "<group>"; };
 		C2E90FEC15BD454200828562 /* RecommendAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppManager.h; sourceTree = "<group>"; };
 		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
+		C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailRoundButton.h; sourceTree = "<group>"; };
+		C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailRoundButton.m; sourceTree = "<group>"; };
 		C2EBB8EA164A1B200024D605 /* ZJHSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHSoundManager.h; sourceTree = "<group>"; };
 		C2EBB8EB164A1B200024D605 /* ZJHSoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHSoundManager.m; sourceTree = "<group>"; };
 		C2EE13DE1664839E00ADBE2E /* PPViewController+StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PPViewController+StarryLoadingView.h"; sourceTree = "<group>"; };
@@ -14596,6 +14602,8 @@
 				A40EE825170053A5003B8FFC /* FeedCarousel.m */,
 				A40EE827170053C2003B8FFC /* FeedCarousel.xib */,
 				A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */,
+				C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */,
+				C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -23862,6 +23870,7 @@
 				A44710D61705462000428284 /* ShoppingCell.m in Sources */,
 				CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
+				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24657,6 +24666,7 @@
 				A44710D71705462100428284 /* ShoppingCell.m in Sources */,
 				CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
+				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25454,6 +25464,7 @@
 				A457E9AD170444BC00926838 /* IngotManager.m in Sources */,
 				CAF95E2717068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
+				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26257,6 +26268,7 @@
 				A44710D51705462000428284 /* ShoppingCell.m in Sources */,
 				CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
+				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,15 +58,27 @@
 //    self.avatarView.delegate = self;
     
     //name
-    [self.nickLabel setText:nickName];
-
-
+//    if ([feed.author.signture length] > 0) {
+    if (NO) {
+        self.nickNameLabel.hidden = NO;
+        self.signLabel.hidden = NO;
+        self.nickLabel.hidden = YES;
+        self.nickNameLabel.text = nickName;
+//        self.signLabel.text = feed.author.signture;
+    }else{
+        self.nickNameLabel.hidden = YES;
+        self.signLabel.hidden = YES;
+        self.nickLabel.hidden = NO;
+        [self.nickLabel setText:nickName];
+    }
 }
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
     PPRelease(nickLabel);
     PPRelease(avatarView);
+    [_nickNameLabel release];
+    [_signLabel release];
     [super dealloc];
 }
 @end

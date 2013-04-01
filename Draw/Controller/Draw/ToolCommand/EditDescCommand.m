@@ -61,7 +61,7 @@
 {
 //    self.showing = YES;
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.control theViewController];
-    self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO];
+    self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO];
     [self.inputAlertView showInView:oc.view animated:YES];
 
 }

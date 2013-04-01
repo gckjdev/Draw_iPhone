@@ -27,7 +27,7 @@
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
 
 #define USER_ACTION_BTN_INDEX_OFFSET    20130330
-
+#define USER_ACTION_BTN_COUNT 5
 
 @interface UserDetailCell ()
 
@@ -50,7 +50,7 @@
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
     PBGameUser* pbUser = [detail getUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];//TODO:level and exp should move to userManager's pbuser, and all info should be got from pbuser. fix it later
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];
     [self.nickNameLabel setText:pbUser.nickName];
     [self.signLabel setText:pbUser.signature];
     
@@ -78,28 +78,23 @@
     self.basicDetailView.hidden = YES;
     
     [self.editButton setHidden:![detail canEdit]];
-    [self.followButton setHidden:![detail canFollow]];
-    [self.chatButton setHidden:![detail canChat]];
-    [self.drawToButton setHidden:![detail canDraw]];
     [self.blackListBtn setHidden:![detail isBlackBtnVisable]];
     [self.superBlackBtn setHidden:![detail isSuperManageBtnVisable]];
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:[pbUser gender]]];
     
-//    [self.sinaBtn setHidden:![detail isSNSBtnVisable:TYPE_SINA]];
-//    [self.qqBtn setHidden:![detail isSNSBtnVisable:TYPE_QQ]];
-//    [self.facebookBtn setHidden:![detail isSNSBtnVisable:TYPE_FACEBOOK]];
     [detail initSNSButton:self.sinaBtn withType:TYPE_SINA];
     [detail initSNSButton:self.qqBtn withType:TYPE_QQ];
     [detail initSNSButton:self.facebookBtn withType:TYPE_FACEBOOK];
     
+    for (int i = 0; i < USER_ACTION_BTN_COUNT; i ++) {
+        UIButton* btn = (UIButton*)[self viewWithTag:(USER_ACTION_BTN_INDEX_OFFSET+i)];
+        [detail initUserActionButton:btn atIndex:i];
+    }
+    
     
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
     
-    BOOL hasFollow = [MyFriend hasFollow:[detail relation]];
-    [self.followButton setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
-    UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
-    [self.followButton setBackgroundImage:followBtnBg forState:UIControlStateNormal];
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
     [self adjustView:self.levelLabel toLabel:self.signLabel];
@@ -315,7 +310,7 @@
 - (IBAction)clickUserAction:(id)sender
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickUserActionButtonAtIndex:)]) {
-        [_detailDelegate didClickUserActionButtonAtIndex:((UIButton*)sender).tag];
+        [_detailDelegate didClickUserActionButtonAtIndex:(((UIButton*)sender).tag - USER_ACTION_BTN_INDEX_OFFSET)];
     }
 }
 

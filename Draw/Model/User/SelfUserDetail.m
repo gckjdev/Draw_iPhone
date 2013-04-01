@@ -18,6 +18,10 @@
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
 #import "GameSNSService.h"
+#import "FriendController.h"
+#import "ShareImageManager.h"
+#import "AccountManager.h"
+#import "UserDetailRoundButton.h"
 
 @interface SelfUserDetail() {
     
@@ -229,14 +233,102 @@
     [button setHighlighted:![self isSNSBtnVisable:snsType]];
 }
 
-- (void)initUserActionButtonAtIndex:(int)index
+//- (UILabel*)labelWithText:(NSString*)text
+//{
+//    UILabel* label = [[[UILabel alloc] init] autorelease];
+//    [label setText:text];
+//    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
+//    [label setTextAlignment:NSTextAlignmentCenter];
+//    [label setUserInteractionEnabled:NO];
+//    [label setBackgroundColor:[UIColor clearColor]];
+//    [label setTextColor:[UIColor whiteColor]];
+//    return label;
+//    
+//}
+//
+//- (void)addButton:(UIButton*)button
+//           number:(NSInteger)number
+//            title:(NSString*)title
+//{
+//    UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
+//    UILabel* titleLabel = [self labelWithText:title];
+//    
+//    [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
+//    
+//    [button addSubview:numberLabel];
+//    [button addSubview:titleLabel];
+//}
+
+- (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
-    
+    PBGameUser* user = [self getUser];
+    [button setTitle:nil forState:UIControlStateNormal];
+    switch (index) {
+        case SelfDetailActionFollowCount: {
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
+            [button.downLabel setText:NSLS(@"kFollow")];
+        } break;
+        case SelfDetailActionBalance: {
+            [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailBalanceBtnBg] forState:UIControlStateNormal];
+            int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", balance]];
+            [button.downLabel setText:NSLS(@"kBalance")];
+        } break;
+        case SelfDetailActionExp: {
+            [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailExpBtnBg] forState:UIControlStateNormal];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.experience]];
+            [button.downLabel setText:NSLS(@"kExperience")];
+        } break;
+        case SelfDetailActionIngot: {
+            [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailIngotBtnBg] forState:UIControlStateNormal];
+            int ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", ingot]];
+            [button.downLabel setText:NSLS(@"kIngots")];
+        } break;
+        case SelfDetailActionFanCount: {
+            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
+            [button.downLabel setText:NSLS(@"kFans")];
+        } break;
+        default:
+            break;
+    }
+            
 }
 
 - (void)clickUserActionButtonAtIndex:(int)index
-                      viewController:(PPViewController *)viewController
+                      viewController:(PPTableViewController *)viewController
 {
-    
+    switch (index) {
+        case SelfDetailActionFollowCount:
+            [self didClickFollowCountButton:viewController];
+            break;
+        case SelfDetailActionBalance: {
+        } break;
+        case SelfDetailActionExp: {
+        } break;
+        case SelfDetailActionIngot: {
+        } break;
+        case SelfDetailActionFanCount: {
+            [self didClickFanCountButton:viewController];
+        } break;
+        default:
+            break;
+    }
 }
+
+- (void)didClickFanCountButton:(PPTableViewController*)viewController
+{
+    FriendController* vc = [[[FriendController alloc] init] autorelease];
+    [vc setDefaultTabIndex:FriendTabIndexFan];
+    [viewController.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)didClickFollowCountButton:(PPTableViewController*)viewController
+{
+    FriendController* vc = [[[FriendController alloc] init] autorelease];
+    [vc setDefaultTabIndex:FriendTabIndexFollow];
+    [viewController.navigationController pushViewController:vc animated:YES];
+}
+
 @end
