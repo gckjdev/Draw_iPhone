@@ -11,6 +11,7 @@
 #import "AccountManager.h"
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
+#import "ConfigManager.h"
 
 // TO DO UPDATE
 #define KEY_TAOBAO_CHARGE_URL  @"kTaoBaoCharge"
@@ -40,7 +41,7 @@
 
 - (void)updateTaobaoLinkView
 {
-    if ([LocaleUtils isChina]) {
+    if ([LocaleUtils isChina] && [ConfigManager isInReviewVersion] == NO) {
         self.taobaoLinkView.hidden = NO;
     } else {
         self.taobaoLinkView.hidden = YES;
