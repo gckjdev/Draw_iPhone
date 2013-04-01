@@ -153,7 +153,7 @@
     [[self nameLabel] setText:name];
     NSInteger i = 1;
     for (PBDrawBg *bg in group.drawBgsList) {
-        UIImage *image = [bg localImage];
+        UIImage *image = [bg localThumb];
         UIButton *button = (UIButton *)[self viewWithTag:i];
         if (image) {
             [button setImage:image forState:UIControlStateNormal];
