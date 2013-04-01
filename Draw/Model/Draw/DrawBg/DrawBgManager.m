@@ -212,4 +212,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return [NSURL URLWithString:self.remoteUrl];
 }
 
+- (int)type
+{
+    return self.showStyle;
+}
+
 @end

@@ -84,14 +84,26 @@
     [self drawDrawAction:cleanAction show:YES];
     self.bgColor = [DrawColor whiteColor];
 }
-- (void)changeBackWithColor:(DrawColor *)color
+- (ChangeBackAction *)changeBackWithColor:(DrawColor *)color
 {
     [self clearRedoStack];
-    DrawAction *changBackAction = [[ChangeBackAction alloc] initWithColor:color];
+    ChangeBackAction *changBackAction = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
-    [changBackAction release];
+    return changBackAction;
+}
+- (ChangeBGImageAction *)changeBGImageWithDrawBG:(PBDrawBg *)drawBg
+{
+    [self clearRedoStack];
+    
+    ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
+    [self addDrawAction:changBG];
+    [self drawDrawAction:changBG show:YES];
+                                    
+    self.bgColor = [DrawColor whiteColor];
+    
+    return changBG;
 }
 
 - (void)setDrawEnabled:(BOOL)enabled
