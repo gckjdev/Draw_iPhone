@@ -784,6 +784,8 @@
 "kPrice" = "价格";
 "kCost" = "花费";
 "kCoins" = "金币";
+"kIngot" = "元宝";
+"kExp" = "经验";
 
 "kThrowTomatoMessage" = "你给作者扔了个番茄，让TA扣了%d点经验, %d个金币";
 "kSendFlowerMessage" = "你给作者送了朵鲜花，让TA额外增加了%d点经验，%d个金币";
@@ -1147,7 +1149,10 @@
 
 "kInvisable" = "(不可见)";
 
+"kTaoBaoShop" = "猜猜画画淘宝店";
+
 "kEditOpusDesc" = "编辑作品描述";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
