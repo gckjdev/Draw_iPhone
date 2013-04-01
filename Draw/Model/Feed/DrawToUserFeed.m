@@ -16,7 +16,7 @@
     self = [super initWithPBFeed:pbFeed];
     if (self) {
         if ([pbFeed.targetUserId length] != 0) {
-            self.targetUser = [FeedUser feedUserWithUserId:pbFeed.targetUserId nickName:pbFeed.targetUserNickName avatar:nil gender:YES];            
+            self.targetUser = [FeedUser feedUserWithUserId:pbFeed.targetUserId nickName:pbFeed.targetUserNickName avatar:nil gender:YES signature:pbFeed.signature];
         }
     }
     return self;

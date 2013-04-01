@@ -111,7 +111,8 @@ typedef enum{
     FeedUser *feedUser = [[FeedUser alloc]initWithUserId:feed.opusCreator
                                                 nickName:nil
                                                   avatar:nil
-                                                  gender:YES];
+                                                  gender:YES
+                                               signature:nil];
     drawFeed.feedUser = feedUser;
     [feedUser release];
 
