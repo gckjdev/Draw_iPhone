@@ -28,7 +28,7 @@ typedef enum {
     
     int EDIT;
     int SHARE_AS_PHOTO;
-    int SHARE_AS_GIF;
+//    int SHARE_AS_GIF;
     int REPLAY;
     int DELETE;
     int DELETE_ALL;
