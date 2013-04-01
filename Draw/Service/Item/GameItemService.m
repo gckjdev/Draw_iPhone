@@ -59,6 +59,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+        PPDebug(@"datafilepath = %@", smartData.dataFilePath);
         NSArray *itemsList = [bself itemsListFromFile:smartData.dataFilePath];
         [[GameItemManager defaultManager] setItemsList:itemsList];
 
