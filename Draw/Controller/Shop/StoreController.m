@@ -70,6 +70,12 @@ typedef enum{
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateBalance];
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
