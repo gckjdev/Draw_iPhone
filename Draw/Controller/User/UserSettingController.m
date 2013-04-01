@@ -917,6 +917,7 @@ enum {
 - (void)inputSignatureFinish
 {
     [_pbUserBuilder setSignature:self.inputAlertView.contentText];
+    hasEdited = YES;
     [self.dataTableView reloadData];
 }
 

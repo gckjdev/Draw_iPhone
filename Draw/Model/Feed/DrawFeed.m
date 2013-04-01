@@ -131,7 +131,8 @@
               userId:(NSString *)userId 
             nickName:(NSString *)nickName 
               avatar:(NSString *)avatar 
-              gender:(BOOL)gender 
+              gender:(BOOL)gender
+           signature:(NSString *)signature
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
             wordText:(NSString *)wordText 
@@ -144,7 +145,7 @@
                                             nickName:nickName 
                                               avatar:avatar 
                                               gender:gender
-                                           signature:nil];
+                                           signature:signature];
         self.wordText = wordText;
         [self initTimeList:timesArray];
         [self initDrawInfo:drawImageUrl drawData:pbDraw];
