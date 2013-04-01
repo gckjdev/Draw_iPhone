@@ -669,8 +669,6 @@
             
             FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
-//            [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-//            [[LmWallService defaultService] show:self];
         }
             break;
             
@@ -690,6 +688,16 @@
             FriendRoomController *vc = [[[FriendRoomController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
+            
+        case HomeMenuTypeDrawMore:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
+            
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+        }
+            break;
             
         default:
             break;
@@ -742,7 +750,6 @@
             FriendController *mfc = [[FriendController alloc] init];
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
-//            [[StatisticManager defaultManager] setFanCount:0];
         }
             break;
         case HomeMenuTypeDrawMessage:
@@ -752,7 +759,6 @@
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-//            [[StatisticManager defaultManager] setMessageCount:0];
             
         }
             break;
@@ -763,6 +769,24 @@
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];
             [feedBack release];
+        }
+            break;
+            
+        case HomeMenuTypeDrawTimeline:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
+            
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [[StatisticManager defaultManager] setFeedCount:0];
+        }
+            break;
+            
+        case HomeMenuTypeDrawShop:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
+            
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
 
