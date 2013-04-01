@@ -6983,6 +6983,10 @@
 		CAE1BA95162EB9DE00AA0C05 /* highlight_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE1BA94162EB9DE00AA0C05 /* highlight_mask@2x.png */; };
 		CAE2CABE151B2ECA0062ED37 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CABD151B2ECA0062ED37 /* Account.m */; };
 		CAE2CAC1151B2F7C0062ED37 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE2CAC0151B2F7C0062ED37 /* Item.m */; };
+		CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
+		CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
+		CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
+		CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
@@ -10606,6 +10610,8 @@
 		CAE2CABF151B2F7C0062ED37 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		CAE2CAC0151B2F7C0062ED37 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		CAE32603160199AA00AD77C3 /* MainDataModel 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 10.xcdatamodel"; sourceTree = "<group>"; };
+		CAE4B0E11709643100B4AB90 /* ChangeBGImageAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeBGImageAction.h; sourceTree = "<group>"; };
+		CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeBGImageAction.m; sourceTree = "<group>"; };
 		CAE51894165CCB33006157CC /* BBSPostActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSPostActionCell.h; sourceTree = "<group>"; };
 		CAE51895165CCB33006157CC /* BBSPostActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSPostActionCell.m; sourceTree = "<group>"; };
 		CAE51897165CCB55006157CC /* BBSPostActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionCell.xib; sourceTree = "<group>"; };
@@ -14632,6 +14638,8 @@
 				CA35FF2816F8672100D8E05D /* PaintAction.m */,
 				CA35FF2916F8672100D8E05D /* ShapeAction.h */,
 				CA35FF2A16F8672100D8E05D /* ShapeAction.m */,
+				CAE4B0E11709643100B4AB90 /* ChangeBGImageAction.h */,
+				CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */,
 			);
 			path = DrawAction;
 			sourceTree = "<group>";
@@ -23884,6 +23892,7 @@
 				CAF95E2917068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
+				CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24680,6 +24689,7 @@
 				CAF95E2A17068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
+				CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25479,6 +25489,7 @@
 				CAF95E3217068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
+				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26283,6 +26294,7 @@
 				CAF95E2817068B4000B7526C /* RedoCommand.m in Sources */,
 				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
+				CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
