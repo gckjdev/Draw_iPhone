@@ -201,7 +201,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DrawBgManager defaultManager];
+    
 //    [DrawBgManager createTestData:0];
     srand(time(0));
     
@@ -217,12 +217,14 @@ NSString* GlobalGetBoardServerURL()
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
 
+
     [GameConfigDataManager createTestConfigData];
     [GameConfigDataManager defaultManager];
     
     
     if (isDrawApp()) {
         [WordManager defaultManager];
+        [DrawBgManager defaultManager];        
     } else if (isDiceApp()){
         [DiceFontManager unZipFiles];
     }

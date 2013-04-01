@@ -98,9 +98,15 @@ typedef enum{
 
 @end
 
+
+
 int *getDrawMainMenuTypeList();
-int *getDrawBottomMenuTypeList();
 int *getZJHMainMenuTypeList();
-int *getZJHBottomMenuTypeList();
 int *getDiceMainMenuTypeList();
+
+int *getZJHBottomMenuTypeList();
+int *getDrawBottomMenuTypeList();
 int *getDiceBottomMenuTypeList();
+
+BOOL isMainMenuButton(HomeMenuType type);
+

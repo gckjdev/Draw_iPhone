@@ -273,18 +273,18 @@
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailBalanceBtnBg] forState:UIControlStateNormal];
             int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
             [button.upLabel setText:[NSString stringWithFormat:@"%d", balance]];
-            [button.downLabel setText:NSLS(@"kBalance")];
+            [button.downLabel setText:NSLS(@"kCoins")];
         } break;
         case SelfDetailActionExp: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailExpBtnBg] forState:UIControlStateNormal];
-            [button.upLabel setText:[NSString stringWithFormat:@"%d", user.experience]];
-            [button.downLabel setText:NSLS(@"kExperience")];
+            [button.upLabel setText:[NSString stringWithFormat:@"%"PRId64, user.experience]];
+            [button.downLabel setText:NSLS(@"kExp")];
         } break;
         case SelfDetailActionIngot: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailIngotBtnBg] forState:UIControlStateNormal];
             int ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
             [button.upLabel setText:[NSString stringWithFormat:@"%d", ingot]];
-            [button.downLabel setText:NSLS(@"kIngots")];
+            [button.downLabel setText:NSLS(@"kIngot")];
         } break;
         case SelfDetailActionFanCount: {
             [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];

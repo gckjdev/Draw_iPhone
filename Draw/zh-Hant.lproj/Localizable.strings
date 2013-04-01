@@ -779,6 +779,8 @@
 "kPrice" = "價格";
 "kCost" = "花費";
 "kCoins" = "金幣";
+"kIngot" = "元寶";
+"kExp" = "經驗";
 
 "kThrowTomatoMessage" = "你給作者扔了個番茄，讓TA扣了%d點經驗, %d個金幣";
 "kSendFlowerMessage" = "你給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
