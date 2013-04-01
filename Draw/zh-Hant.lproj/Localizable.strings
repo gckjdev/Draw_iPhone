@@ -1137,7 +1137,8 @@
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
 
-"kTaoBaoShop" = "猜猜畫畫淘寶店";
+"kTaoBaoCharge" = "淘寶充值";
+"kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kEditOpusDesc" = "編輯作品描述";
 

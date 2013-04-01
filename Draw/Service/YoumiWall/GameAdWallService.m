@@ -164,12 +164,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             BOOL awardIngot = ([GameApp wallRewardCoinType] == PBGameCurrencyIngot);
             NSString* message = nil;
             if (awardIngot){
-                [[AccountService defaultService] chargeAccount:score source:LmAppReward];
-                message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
-            }
-            else{
                 [[AccountService defaultService] chargeIngot:score source:LmAppReward];
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardIngotMessage"), score];
+            }
+            else{
+                [[AccountService defaultService] chargeAccount:score source:LmAppReward];
+                message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
             }
             
             [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:0];

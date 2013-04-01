@@ -1150,7 +1150,8 @@
 
 "kInvisable" = "(不可见)";
 
-"kTaoBaoShop" = "猜猜画画淘宝店";
+"kTaoBaoCharge" = "淘宝充值";
+"kQuitTaoBaoTips" = "确定退出淘宝？";
 
 "kEditOpusDesc" = "编辑作品描述";
 
