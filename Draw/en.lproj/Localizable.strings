@@ -770,6 +770,8 @@
 "kPrice" = "Price";
 "kCost" = "Cost";
 "kCoins" = "coins";
+"kIngot" = "ingots";
+"kExp" = "exp";
 
 "kThrowTomatoMessage" = "You threw a tomato to the painter, his/her experience decrease by %d, his/her coins decrease by %d";
 "kSendFlowerMessage" = "You sent a flower to the painter, his/her experience increase by %d, his/her coins decrease by %d";
