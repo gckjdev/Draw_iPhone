@@ -254,6 +254,8 @@ message PBGameItem {
   required string name = 2;                             // 道具名称，英文，用于国际化，比如Flower，代码需要使用本地的国际化字符串对其处理
   optional string desc = 3;                             // 道具描述，英文，用于国际化，代码需要使用本地的国际化字符串对其处理
   
+  optional string url = 4;                              // 道具URL
+  
   optional PBGameItemConsumeType consumeType = 5;       // 消耗类型
 
   optional string image = 11;                           // 道具图片地址，远程URL

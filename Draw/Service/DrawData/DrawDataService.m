@@ -193,6 +193,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
+    NSString* signature = [[UserManager defaultManager] signature];
     
     PBDraw *draw = [self buildPBDraw:userId
                                 nick:nick
@@ -213,7 +214,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                appId:appId 
                                                               userId:userId 
                                                                 nick:nick 
-                                                              avatar:avatar 
+                                                              avatar:avatar
+                                                           signature:signature
                                                               gender:gender
                                                               wordId:drawWord.wordId
                                                                 word:drawWord.text

@@ -12,5 +12,8 @@
 @interface TaoBaoController : PPViewController <UIWebViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIWebView *taoBaoWebView;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+
+- (id)initWithURL:(NSString *)URL title:(NSString *)title;
 
 @end

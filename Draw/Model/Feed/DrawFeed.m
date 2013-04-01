@@ -143,7 +143,8 @@
         self.feedUser = [FeedUser feedUserWithUserId:userId 
                                             nickName:nickName 
                                               avatar:avatar 
-                                              gender:gender];
+                                              gender:gender
+                                           signature:nil];
         self.wordText = wordText;
         [self initTimeList:timesArray];
         [self initDrawInfo:drawImageUrl drawData:pbDraw];

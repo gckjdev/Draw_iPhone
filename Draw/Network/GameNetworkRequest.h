@@ -280,6 +280,7 @@
                             userId:(NSString*)userId
                               nick:(NSString*)nick
                             avatar:(NSString*)avatar
+                         signature:(NSString*)signature
                             gender:(NSString*)gender
                             wordId:(NSString*)wordId
                               word:(NSString *)word

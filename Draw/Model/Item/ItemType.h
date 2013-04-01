@@ -9,7 +9,7 @@
 
 typedef enum
 {
-    
+    ItemTypeTaoBao = -1,
     ItemTypeNo = 0,
     
     ItemTypeTips = 1,
