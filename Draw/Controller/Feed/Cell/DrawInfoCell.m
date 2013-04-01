@@ -81,7 +81,7 @@
 - (void)initTargetUser:(NSString *)userId nickName:(NSString *)nickName
 {
     if (_targetUser == nil) {
-        _targetUser = [[FeedUser alloc] initWithUserId:userId nickName:nickName avatar:nil gender:NO];
+        _targetUser = [[FeedUser alloc] initWithUserId:userId nickName:nickName avatar:nil gender:NO signature:nil];
     }else{
         [_targetUser setUserId:userId];
         [_targetUser setNickName:nickName];
