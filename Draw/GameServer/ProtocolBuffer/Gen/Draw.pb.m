@@ -1439,6 +1439,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
+@property (retain) NSString* signature;
 @property (retain) PBDraw* drawData;
 @property (retain) NSString* targetUserId;
 @property (retain) NSString* targetUserNickName;
@@ -1544,6 +1545,13 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 - (void) setGender:(BOOL) value {
   gender_ = !!value;
 }
+- (BOOL) hasSignature {
+  return !!hasSignature_;
+}
+- (void) setHasSignature:(BOOL) value {
+  hasSignature_ = !!value;
+}
+@synthesize signature;
 - (BOOL) hasDrawData {
   return !!hasDrawData_;
 }
@@ -1731,6 +1739,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   self.gameId = nil;
   self.nickName = nil;
   self.avatar = nil;
+  self.signature = nil;
   self.drawData = nil;
   self.targetUserId = nil;
   self.targetUserNickName = nil;
@@ -1761,6 +1770,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
+    self.signature = @"";
     self.drawData = [PBDraw defaultInstance];
     self.targetUserId = @"";
     self.targetUserNickName = @"";
@@ -1874,6 +1884,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasGender) {
     [output writeBool:23 value:self.gender];
+  }
+  if (self.hasSignature) {
+    [output writeString:24 value:self.signature];
   }
   if (self.hasDrawData) {
     [output writeMessage:31 value:self.drawData];
@@ -1991,6 +2004,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasGender) {
     size += computeBoolSize(23, self.gender);
+  }
+  if (self.hasSignature) {
+    size += computeStringSize(24, self.signature);
   }
   if (self.hasDrawData) {
     size += computeMessageSize(31, self.drawData);
@@ -2180,6 +2196,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasGender) {
     [self setGender:other.gender];
   }
+  if (other.hasSignature) {
+    [self setSignature:other.signature];
+  }
   if (other.hasDrawData) {
     [self mergeDrawData:other.drawData];
   }
@@ -2323,6 +2342,10 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 184: {
         [self setGender:[input readBool]];
+        break;
+      }
+      case 194: {
+        [self setSignature:[input readString]];
         break;
       }
       case 250: {
@@ -2602,6 +2625,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearGender {
   result.hasGender = NO;
   result.gender = NO;
+  return self;
+}
+- (BOOL) hasSignature {
+  return result.hasSignature;
+}
+- (NSString*) signature {
+  return result.signature;
+}
+- (PBFeed_Builder*) setSignature:(NSString*) value {
+  result.hasSignature = YES;
+  result.signature = value;
+  return self;
+}
+- (PBFeed_Builder*) clearSignature {
+  result.hasSignature = NO;
+  result.signature = @"";
   return self;
 }
 - (BOOL) hasDrawData {
