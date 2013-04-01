@@ -29,7 +29,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotManager);
 - (id)init{
     if (self = [super init]) {
         NSBundle *bundle = [NSBundle mainBundle];
-        NSString *path = [bundle pathForResource:SALE_INGOT_FILE_WITHOUT_SUFFIX ofType:SALE_INGOT_FILE_TYPE];
+        NSString *path = [bundle pathForResource:[IngotManager saleIngotFileName] ofType:SALE_INGOT_FILE_TYPE];
         NSData *data = [NSData dataWithContentsOfFile:path];
         self.ingotList = [[PBSaleIngotList parseFromData:data] ingotsList];
     }
