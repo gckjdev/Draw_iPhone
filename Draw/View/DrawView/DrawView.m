@@ -355,9 +355,6 @@
 - (void)showDraft:(MyPaint *)draft
 {
     self.drawActionList = draft.drawActionList;
-    if (draft.drawBg) {
-        [self setDrawBg: draft.drawBg];
-    }
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
     [self synBGColor];
     [self show];

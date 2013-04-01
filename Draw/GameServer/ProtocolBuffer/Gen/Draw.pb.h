@@ -110,7 +110,6 @@
   BOOL hasNickName_:1;
   BOOL hasAvatar_:1;
   BOOL hasOpusId_:1;
-  BOOL hasDrawBg_:1;
   BOOL hasCanvasSize_:1;
   BOOL gender_:1;
   BOOL isCompressed_:1;
@@ -124,7 +123,6 @@
   NSString* nickName;
   NSString* avatar;
   NSString* opusId;
-  PBDrawBg* drawBg;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
@@ -140,7 +138,6 @@
 - (BOOL) hasOpusId;
 - (BOOL) hasScore;
 - (BOOL) hasIsCompressed;
-- (BOOL) hasDrawBg;
 - (BOOL) hasCanvasSize;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* word;
@@ -154,7 +151,6 @@
 @property (readonly, retain) NSString* opusId;
 @property (readonly) int32_t score;
 - (BOOL) isCompressed;
-@property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
@@ -259,13 +255,6 @@
 - (BOOL) isCompressed;
 - (PBDraw_Builder*) setIsCompressed:(BOOL) value;
 - (PBDraw_Builder*) clearIsCompressed;
-
-- (BOOL) hasDrawBg;
-- (PBDrawBg*) drawBg;
-- (PBDraw_Builder*) setDrawBg:(PBDrawBg*) value;
-- (PBDraw_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue;
-- (PBDraw_Builder*) mergeDrawBg:(PBDrawBg*) value;
-- (PBDraw_Builder*) clearDrawBg;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;
@@ -1121,24 +1110,20 @@
 @private
   BOOL hasVersion_:1;
   BOOL hasOpusDesc_:1;
-  BOOL hasDrawBg_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDrawToUser_:1;
   int32_t version;
   NSString* opusDesc;
-  PBDrawBg* drawBg;
   PBSize* canvasSize;
   PBUserBasicInfo* drawToUser;
   NSMutableArray* mutableDrawActionListList;
   NSMutableArray* mutableDrawActionList2List;
 }
 - (BOOL) hasVersion;
-- (BOOL) hasDrawBg;
 - (BOOL) hasCanvasSize;
 - (BOOL) hasDrawToUser;
 - (BOOL) hasOpusDesc;
 @property (readonly) int32_t version;
-@property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly, retain) PBSize* canvasSize;
 @property (readonly, retain) PBUserBasicInfo* drawToUser;
 @property (readonly, retain) NSString* opusDesc;
@@ -1192,13 +1177,6 @@
 - (int32_t) version;
 - (PBNoCompressDrawData_Builder*) setVersion:(int32_t) value;
 - (PBNoCompressDrawData_Builder*) clearVersion;
-
-- (BOOL) hasDrawBg;
-- (PBDrawBg*) drawBg;
-- (PBNoCompressDrawData_Builder*) setDrawBg:(PBDrawBg*) value;
-- (PBNoCompressDrawData_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue;
-- (PBNoCompressDrawData_Builder*) mergeDrawBg:(PBDrawBg*) value;
-- (PBNoCompressDrawData_Builder*) clearDrawBg;
 
 - (BOOL) hasCanvasSize;
 - (PBSize*) canvasSize;

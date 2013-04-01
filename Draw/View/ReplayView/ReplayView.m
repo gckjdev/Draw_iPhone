@@ -129,7 +129,6 @@
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
-                  drawBg:(PBDrawBg *)drawBg
                     size:(CGSize)size
 {    
     self.superController = controller;
@@ -141,7 +140,6 @@
     
     self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(size) drawActionList:actionList delegate:self];
     
-    [self.showView setDrawBg:drawBg];
     [self.showView setPressEnable:YES];
 
     [self.holderView setContentView:self.showView];
@@ -157,7 +155,10 @@
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
 {
-    [self showInController:controller withActionList:actionList isNewVersion:isNewVersion drawBg:nil size:self.holderView.frame.size];
+    [self showInController:controller
+            withActionList:actionList
+              isNewVersion:isNewVersion
+                      size:self.holderView.frame.size];
 }
 
 - (void)dealloc {

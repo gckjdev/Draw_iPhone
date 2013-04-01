@@ -20,7 +20,6 @@
     
 }
 @property(nonatomic, assign)CGSize size;
-@property(nonatomic, retain)PBDrawBg *drawBg;
 
 @end
 
@@ -29,7 +28,6 @@
 
 - (void)dealloc
 {
-    PPRelease(_drawBg);
     PPRelease(_drawToUser);
     [super dealloc];
 }
@@ -66,7 +64,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
      language:(NSInteger)language
 {
     
-    self.drawBg = nil;
     self.size = CGSizeZero;
     
     if (_currentPaint != nil){
@@ -118,7 +115,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
         PBNoCompressDrawData *drawData = [DrawAction pbNoCompressDrawDataFromDrawActionList:arrayList
-                                                                                   pbdrawBg:cp.drawBg
                                                                                        size:cp.canvasSize
                                                                                  drawToUser:cp.drawToUser];
         
@@ -158,7 +154,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         
         // clear current paint
         self.currentPaint = nil;
-        self.drawBg = nil;
         self.size = CGSizeZero;
         
         // delete file
@@ -218,9 +213,5 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
 }
 
-- (void)handleChangeDrawBg:(PBDrawBg *)drawBg
-{
-    self.drawBg = drawBg;
-}
 
 @end

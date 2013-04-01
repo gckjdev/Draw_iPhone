@@ -33,7 +33,6 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *drawActionList;
-@property (nonatomic, retain) UIImage *drawBgImage;
 
 @property (nonatomic, assign) CGFloat scale; //current scale
 
@@ -59,9 +58,6 @@
 - (void)updateLastAction:(DrawAction *)action show:(BOOL)show;
 
 //- (void)drawPaint:(Paint *)paint show:(BOOL)show;
-
-- (void)setDrawBg:(PBDrawBg *)drawBg;
-- (PBDrawBg *)drawBg;
 
 - (void)resetTransform;
 

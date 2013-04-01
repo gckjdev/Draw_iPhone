@@ -144,76 +144,12 @@ static DrawDataService* _defaultDrawDataService = nil;
     }];
 }
 
-//
-//- (PBDrawAction *)buildPBDrawAction:(DrawAction *)drawAction isCompressed:(BOOL)isCompressed
-//{
-//    PBDrawAction_Builder* dataBuilder = [[PBDrawAction_Builder alloc] init];
-//    
-//    [dataBuilder setType:[drawAction type]];
-//    
-//    if ([drawAction isShapeAction]) {
-//        [dataBuilder setShapeType:drawAction.shapeInfo.type];
-//        [dataBuilder addAllRectComponent:[drawAction.shapeInfo rectComponent]];
-//
-//        // set width
-//        CGFloat width = [[drawAction shapeInfo] width];
-//        if ([DeviceDetection isIPAD]) {
-//            width /= 2;
-//        }
-//        [dataBuilder setWidth:width];
-//        
-//        // set color
-//        NSInteger intColor  = [DrawUtils compressDrawColor:drawAction.shapeInfo.color];
-//        [dataBuilder setColor:intColor];
-//        
-//        // set pen type
-//        [dataBuilder setPenType:[[drawAction shapeInfo] penType]];
-//        
-//    }else{
-//        
-//        // add points
-//        NSArray* pointXList;
-//        NSArray* pointYList;
-//        
-//        NSArray *pointList = [drawAction.paint createNumberPointList:isCompressed pointXList:&pointXList pointYList:&pointYList];
-//        
-//        if (isCompressed){
-//            [dataBuilder addAllPoints:pointList];
-//        }
-//        else{
-//            [dataBuilder addAllPointsX:pointXList];
-//            [dataBuilder addAllPointsY:pointYList];
-//        }
-//        
-//        // set width
-//        CGFloat width = [[drawAction paint] width];
-//        if ([DeviceDetection isIPAD]) {
-//            width /= 2;
-//        }
-//        [dataBuilder setWidth:width];
-//        
-//        // set color
-//        NSInteger intColor = [DrawUtils compressDrawColor:drawAction.paint.color];
-//        [dataBuilder setColor:intColor];
-//        
-//        // set pen type
-//        [dataBuilder setPenType:[[drawAction paint] penType]];
-//        
-//    }
-//    
-//    PBDrawAction *action = [dataBuilder build];
-//    [dataBuilder release];    
-//    return action;
-//
-//}
-//
 - (PBDraw*)buildPBDraw:(NSString*)userId
                   nick:(NSString *)nick
                 avatar:(NSString *)avatar
         drawActionList:(NSArray*)drawActionList
               drawWord:(Word*)drawWord
               language:(LanguageType)language
-                drawBg:(PBDrawBg *)drawBg
                   size:(CGSize)size
           isCompressed:(BOOL)isCompressed
 {
@@ -226,9 +162,6 @@ static DrawDataService* _defaultDrawDataService = nil;
     [builder setLanguage:language];
     [builder setScore:[drawWord score]];
     
-    if (drawBg != nil){
-        [builder setDrawBg:drawBg];
-    }
     [builder setCanvasSize:CGSizeToPBSize(size)];
     
     for (DrawAction* drawAction in drawActionList){
@@ -251,7 +184,6 @@ static DrawDataService* _defaultDrawDataService = nil;
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
-                   drawBg:(PBDrawBg *)drawBg //new attributes By Gamy
                      size:(CGSize)size
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
@@ -268,7 +200,6 @@ static DrawDataService* _defaultDrawDataService = nil;
                       drawActionList:drawActionList
                             drawWord:drawWord
                             language:language
-                              drawBg:drawBg
                                 size:size
                         isCompressed:NO];
     

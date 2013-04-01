@@ -590,9 +590,9 @@ enum{
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
         [self.feed parseDrawData];
-        [replay showInController:cp withActionList:cp.feed.drawData.drawActionList
+        [replay showInController:cp
+                  withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
-                          drawBg:cp.feed.pbDraw.drawBg
                             size:CGSizeFromPBSize(cp.feed.pbDraw.canvasSize)];
         self.feed.drawData = nil;
     }];

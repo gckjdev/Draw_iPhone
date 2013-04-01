@@ -125,7 +125,6 @@
     return drawActionList;
 }
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                        pbdrawBg:(PBDrawBg *)drawBg
                                                             size:(CGSize)size
                                                       drawToUser:(PBUserBasicInfo *)drawToUser
 {
@@ -141,9 +140,6 @@
         
         if (drawToUser) {
             [builder setDrawToUser:drawToUser];
-        }
-        if (drawBg) {
-            [builder setDrawBg:drawBg];
         }
         [builder setCanvasSize:CGSizeToPBSize(size)];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];

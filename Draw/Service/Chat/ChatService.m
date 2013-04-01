@@ -168,7 +168,6 @@ static ChatService *_chatService = nil;
                                                           drawActionList:drawActionList
                                                                 drawWord:nil 
                                                                 language:ChineseType
-                                                                  drawBg:nil
                                                                     size:[CanvasRect defaultRect].size
                                                                     isCompressed:YES];
                     data = [draw data];

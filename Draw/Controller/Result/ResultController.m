@@ -646,7 +646,6 @@
                                             level:WordLevelLow
                                             score:[ConfigManager offlineDrawMyWordScore]]
                       language:1
-                      drawBg:nil
                       size:CGSizeMake(300, 300) //TODO should update the real size, here for test
                       isCompressed:YES];
     

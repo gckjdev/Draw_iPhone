@@ -46,7 +46,6 @@
                 targetUid:(NSString *)targetUid 
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
-                   drawBg:(PBDrawBg *)drawBg //new attributes By Gamy
                      size:(CGSize)size
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
@@ -66,7 +65,6 @@
         drawActionList:(NSArray*)drawActionList
               drawWord:(Word*)drawWord
               language:(LanguageType)language
-                drawBg:(PBDrawBg *)drawBg
                   size:(CGSize)size
           isCompressed:(BOOL)isCompressed;
 
