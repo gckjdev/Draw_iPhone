@@ -72,8 +72,8 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     CGSize size = [desc sizeWithFont:label.font constrainedToSize:withinSize lineBreakMode:UILineBreakModeTailTruncation];
     
     if(size.height > HEIGHT_OF_DESC_LABEL){
-        CGFloat height = (size.height - HEIGHT_OF_DESC_LABEL + view.frame.size.height + HEIGHT_ADDTION_TO_DESC_LABEL);
-        [view updateHeight:height];
+        CGFloat delta = (size.height - HEIGHT_OF_DESC_LABEL + HEIGHT_ADDTION_TO_DESC_LABEL);
+        [view updateHeight:(view.frame.size.height + delta)];
         [view.backgroundImageView setImage:[[ShareImageManager defaultManager] itemDetailBgImage]];
     }
     

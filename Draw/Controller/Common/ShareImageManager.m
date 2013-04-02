@@ -1049,9 +1049,11 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"balance_bg.png"];
 }
 
+
+
 - (UIImage *)itemDetailBgImage
 {
-    return [UIImage strectchableImageName:@"item_detail_bg@2x.png" topCapHeight:120];
+    return [[self fixedImageNamed:@"item_detail_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:(ISIPAD ? 120 : 60)];
 }
 
 - (UIImage*)userDetailGenderImage:(BOOL)isMale
