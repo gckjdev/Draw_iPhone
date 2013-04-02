@@ -22,6 +22,7 @@
 #import "FeedCarousel.h"
 #import "UIColor+UIColorExt.h"
 #import "RoundPercentageView.h"
+#import "UIImageView+WebCache.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -78,6 +79,7 @@
     self.basicDetailView.hidden = YES;
     
     [self.editButton setHidden:![detail canEdit]];
+    [self.customBackgroundControl setHidden:![detail canEdit]];
     [self.blackListBtn setHidden:![detail isBlackBtnVisable]];
     [self.superBlackBtn setHidden:![detail isSuperManageBtnVisable]];
     
@@ -100,6 +102,10 @@
     [self.segmentedControl setHidden:![detail hasFeedTab]];
     
     [self.noSNSTipsLabel setHidden:!(self.sinaBtn.hidden && self.qqBtn.hidden && self.facebookBtn.hidden)];
+    
+    [self.customBackgroundImageView setImageWithURL:[NSURL URLWithString:[[detail getUser] backgroundUrl]]];
+    
+    [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)adjustView:(UIView*)view
@@ -197,6 +203,8 @@
     [_feedTabHolder release];
     [_segmentedControl release];
     [_noSNSTipsLabel release];
+    [_customBackgroundControl release];
+    [_customBackgroundImageView release];
     [super dealloc];
 }
 
@@ -308,6 +316,13 @@
 {
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickUserActionButtonAtIndex:)]) {
         [_detailDelegate didClickUserActionButtonAtIndex:(((UIButton*)sender).tag - USER_ACTION_BTN_INDEX_OFFSET)];
+    }
+}
+
+- (IBAction)clickCustomBackground:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickCustomBackground)]) {
+        [_detailDelegate didClickCustomBackground];
     }
 }
 
