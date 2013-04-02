@@ -51,6 +51,8 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
+
+//    return YES;     //TODO remove the code after test.
     if ([self hasItem:type]) {
         return YES;
     }
