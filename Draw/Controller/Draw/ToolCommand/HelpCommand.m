@@ -12,7 +12,7 @@
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define WIDTH VALUE(180)
-#define HEIGHT VALUE(200)
+#define HEIGHT VALUE(220)
 #define FONT_SIZE VALUE(16)
 
 @implementation HelpCommand

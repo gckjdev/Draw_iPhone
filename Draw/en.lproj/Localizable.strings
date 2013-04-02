@@ -1209,7 +1209,7 @@
 "kBlackUserTitle" = "Black List";
 
 "kGestureExplain" = "Gestures";
-"kGestureExplainContent" = "Zoom in —— Two-finger kneading out\n\nZoom out —— Two-finger kneading inward\n\nMove —— Two-finger Move\n\nReset —— Two-finger double taps\n\n";
+"kGestureExplainContent" = "Zoom in —— Two-finger kneading out\n\nZoom out —— Two-finger kneading inward\n\nMove —— Two-finger Move\n\nReset —— Two-finger double taps";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
