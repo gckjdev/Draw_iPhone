@@ -208,7 +208,6 @@ static AdService* _defaultService;
         [_viewController showActivityWithText:NSLS(@"kBuying")];
         [[AccountService defaultService] setDelegate:self];
         [[AccountService defaultService] buyCoin:model];
-        
     }    
 }
 
@@ -667,6 +666,10 @@ static AdService* _defaultService;
                          frame:(CGRect)frame
                      iPadFrame:(CGRect)iPadFrame
 {
+    if ([self isShowAd] == NO){
+        return nil;
+    }
+    
     if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
         return nil;
     }
