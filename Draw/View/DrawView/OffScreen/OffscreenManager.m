@@ -10,8 +10,8 @@
 #import "Offscreen.h"
 #import "CanvasRect.h"
 #import "ConfigManager.h"
-
-
+#import "ChangeBackAction.h"
+#import "ChangeBGImageAction.h"
 
 @interface OffscreenManager()
 {
@@ -19,6 +19,7 @@
 }
 
 @property(nonatomic, retain)Offscreen *gridOffscreen;
+@property(nonatomic, retain)Offscreen *bgOffscreen;
 
 @end
 
@@ -72,15 +73,30 @@
 }
 
 
+- (void)addBgOffscreen:(CGRect)rect
+{
+    self.bgOffscreen = [[[Offscreen alloc] initWithCapacity:1 rect:rect] autorelease];
+    self.bgOffscreen.forceShow = YES;
+}
+
+
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
     [manager addGridOffscreen:rect];
+
+    //DONOT REMOVE BY GAMY
+//    [manager addBgOffscreen:rect];
     return manager;
 }
 + (id)showViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
-    return [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
+    OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
+    
+        //DONOT REMOVE BY GAMY
+//    [manager addBgOffscreen:rect];
+    
+    return manager;
 }
 
 
@@ -88,7 +104,7 @@
 {
     PPRelease(_offscreenList);
     PPRelease(_gridOffscreen);
-//    PPRelease(_drawPen);
+    PPRelease(_bgOffscreen);
     [super dealloc];
 }
 
@@ -148,42 +164,9 @@
 {
     return [_offscreenList objectAtIndex:0];
 }
-
-//- (void)updateDrawPenWithPaint:(Paint *)paint
-//{
-//    [self setStrokeColor:paint.color width:paint.width];
-//    if (paint) {
-//        if (paint.penType != [self.drawPen penType]) {
-//            self.drawPen = [DrawPenFactory createDrawPen:paint.penType];
-//        }
-//        CGContextRef context = [[self enteryScreen] cacheContext];
-////        CGContextRestoreGState(context);
-//        [self.drawPen updateCGContext:context paint:paint];
-//        CGContextSaveGState(context);
-//    }
-//}
-
-//- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width
-//{
-//    [[self enteryScreen] setStrokeColor:color lineWidth:width];
-//}
-
-//- (CGRect)updateLastPaint:(Paint *)paint
-//{
-//    return [[self enteryScreen] strokePaint:paint clear:YES];
-//}
-//
 - (CGRect)updateLastAction:(DrawAction *)action
 {
     return [[self enteryScreen] drawAction:action clear:YES];
-//    action drawInContext:<#(CGContextRef)#> inRect:<#(CGRect)#>
-//    if (action.type == DrawActionTypePaint) {
-//        return [self updateLastPaint:action.paint];
-//    }else if(action.type == DrawActionTypeShape)
-//    {
-//        return [[self enteryScreen] drawShape:action.shapeInfo clear:YES];
-//    }
-//    return [[self enteryScreen] rect];
 }
 
 - (void)printOSInfo
@@ -199,6 +182,12 @@
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action
 {
+    
+    //DONOT REMOVE BY GAMY
+    
+//    if ([action isKindOfClass:[ChangeBackAction class]] || [action isKindOfClass:[ChangeBGImageAction class]]) {
+//        return [self.bgOffscreen drawAction:action clear:YES];
+//    }
     Offscreen *entery = [self enteryScreen];
     BOOL full = [entery isFull];
     if (full) {
@@ -256,6 +245,10 @@
 //show all the action render in the layer list
 - (void)showAllLayersInContext:(CGContextRef)context
 {
+    if (self.bgOffscreen) {
+        [_bgOffscreen showInContext:context];
+    }
+
     for (NSInteger i = _level - 1; i >= 0; -- i) {
         Offscreen *os = [_offscreenList objectAtIndex:i];
         [os showInContext:context];
