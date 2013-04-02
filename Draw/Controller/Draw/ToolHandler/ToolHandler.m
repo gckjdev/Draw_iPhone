@@ -143,6 +143,7 @@
 - (TouchActionType)setTouchActionType:(TouchActionType)type
 {
     self.drawView.touchActionType = type;
+    return self.drawView.touchActionType;
 }
 - (TouchActionType)touchActionType
 {

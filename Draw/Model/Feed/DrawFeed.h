@@ -37,7 +37,8 @@ typedef enum{
 @property (nonatomic, retain) Draw *drawData;
 @property (nonatomic, retain) NSString *drawImageUrl;
 @property (nonatomic, retain) NSSet *timesSet;
-@property (nonatomic, retain) PBDraw *pbDraw;
+//@property (nonatomic, retain) PBDraw *pbDraw;
+@property (nonatomic, retain) NSData *pbDrawData;
 @property (nonatomic, assign) DeviceType deviceType;
 @property (nonatomic, retain) NSString *opusDesc;
 @property (nonatomic, retain) NSString *drawDataUrl;
@@ -95,6 +96,6 @@ typedef enum{
 - (BOOL)canSendFlower;
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
-- (BOOL)hasDrawActions;
+//- (BOOL)hasDrawActions;
 
 @end

@@ -311,10 +311,11 @@ CommonMessageViewTheme globalGetTheme() {
 	if (_dismissTimer) {
         if ([_dismissTimer isValid]) {
             [_dismissTimer invalidate];
-            [_dismissTimer release];
-            _dismissTimer = nil;
         }
+        
+        PPRelease(_dismissTimer);
     }
+    
     NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
     _dismissTimer = [[NSTimer scheduledTimerWithTimeInterval:delayTime.floatValue target:self selector:@selector(animationStep2) userInfo:nil repeats:NO] retain];
 	

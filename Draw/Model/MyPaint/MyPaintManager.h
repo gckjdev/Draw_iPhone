@@ -13,6 +13,8 @@
 #import "Word.h"
 #import "StorageManager.h"
 
+@class DrawFeed;
+
 @protocol MyPaintManagerDelegate <NSObject>
 
 @optional
@@ -68,7 +70,7 @@
 #pragma mark new methods.
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
-                    pbDrawData:(PBDraw*)pbDrawData;
+                        pbDraw:(PBDraw*)pbDraw;
 
 - (MyPaint *)createDraft:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
@@ -94,5 +96,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
 
 - (NSString*)fullDataPath:(NSString*)dataFileName;
+
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                    pbDrawData:(NSData*)pbDrawData
+                          feed:(DrawFeed*)feed;
 
 @end

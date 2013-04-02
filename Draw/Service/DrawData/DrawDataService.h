@@ -68,6 +68,11 @@
                   size:(CGSize)size
           isCompressed:(BOOL)isCompressed;
 
+- (void)savePaintWithPBDraw:(DrawFeed*)feed
+                 pbDrawData:(NSData*)pbDrawData
+                      image:(UIImage*)image
+                   delegate:(id<DrawDataServiceDelegate>)delegate;
+
 
 - (void)savePaintWithPBDraw:(PBDraw*)pbDraw
              image:(UIImage*)image

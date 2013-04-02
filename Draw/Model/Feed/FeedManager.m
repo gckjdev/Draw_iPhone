@@ -156,6 +156,26 @@ FeedManager *_staticFeedManager = nil;
 
 #define PBDRAW_KEY(x) [NSString stringWithFormat:@"%@_pbdraw",x]
 
+- (void)cachePBDrawData:(NSData *)pbDrawData forFeedId:(NSString *)feedId
+{
+    [pbDrawData retain];
+    
+    @try {
+        NSString *key = PBDRAW_KEY(feedId);
+        PPDebug(@"<cachePBDrawData> Key = %@",key);
+        [_storeManager saveData:pbDrawData forKey:key];
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<cachePBDrawData> exception : %@",exception);
+    }
+    @finally {
+        
+    }
+    
+    [pbDrawData release];
+    
+}
+
 - (void)cachePBDraw:(PBDraw *)pbDraw forFeedId:(NSString *)feedId;
 {
     [pbDraw retain];
@@ -175,6 +195,21 @@ FeedManager *_staticFeedManager = nil;
     [pbDraw release];
 
 }
+
+- (NSData *)loadPBDrawDataWithFeedId:(NSString *)feedId
+{
+    NSString *key = PBDRAW_KEY(feedId);
+    NSData *data = [_storeManager dataForKey:key];
+    return data;
+//    if (data) {
+//        PBDraw *pbDraw = [PBDraw parseFromData:data];
+//        PPDebug(@"<loadPBDrawWithFeedId>, key= %@", key);
+//        return pbDraw;
+//    }
+//    return nil;
+}
+
+
 - (PBDraw *)loadPBDrawWithFeedId:(NSString *)feedId
 {
     NSString *key = PBDRAW_KEY(feedId);
