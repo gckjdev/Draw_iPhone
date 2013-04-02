@@ -62,7 +62,7 @@
         [bself.dataTableView reloadData];
     }];
     
-    [IngotService createTestDataFile];
+//    [IngotService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {
