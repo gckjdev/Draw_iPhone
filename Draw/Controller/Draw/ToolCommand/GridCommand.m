@@ -11,8 +11,17 @@
 @implementation GridCommand
 
 - (BOOL)execute{
+    if ([super execute]) {
+        [self.toolHandler useGid:!self.toolHandler.grid];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (void)buyItemSuccessfully:(ItemType)type
+{
     [self.toolHandler useGid:!self.toolHandler.grid];
-    return YES;
 }
 
 -(void)sendAnalyticsReport{
