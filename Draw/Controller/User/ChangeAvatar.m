@@ -33,6 +33,7 @@
 {
     [_superViewController release];
     [_popoverController release];
+    RELEASE_BLOCK(_selectImageBlock);
     [super dealloc];
 }
 
@@ -43,6 +44,17 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
     [actionSheet showInView:[superViewController view]];
     [actionSheet release];        
+}
+
+- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
+{
+    self.selectImageBlock = selectedImageBlock;
+    self.superViewController = superViewController;
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+    [actionSheet showInView:[superViewController view]];
+    [actionSheet release];
 }
 
 //- (void)setUserAvatar:(UIImage*)image
@@ -59,7 +71,7 @@
 //    [picker dismissModalViewControllerAnimated:YES];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     if (image != nil){
-        if ([_superViewController respondsToSelector:@selector(didImageSelected:)])
+        if (_superViewController &&  [_superViewController respondsToSelector:@selector(didImageSelected:)])
             
             if (_autoRoundRect || (_imageSize.width > 0.0f && _imageSize.height > 0.0f)){
                 if (_autoRoundRect){
@@ -72,6 +84,9 @@
             
             [_superViewController didImageSelected:image];
             
+    }
+    if (_selectImageBlock != NULL) {
+        EXECUTE_BLOCK(_selectImageBlock, image);
     }
     if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:YES];

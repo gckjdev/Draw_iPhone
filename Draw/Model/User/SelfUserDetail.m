@@ -28,7 +28,7 @@
     ChangeAvatar* _changeAvatar;
 }
 
-@property (nonatomic, assign) PPTableViewController* superViewController;
+@property (nonatomic, retain) PPTableViewController* superViewController;
 
 
 @end

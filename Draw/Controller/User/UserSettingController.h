@@ -17,7 +17,7 @@
 
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,ChangeAvatarDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate>
 {    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
@@ -28,6 +28,7 @@
     NSInteger rowOfZodiac;
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
+    NSInteger rowOfCustomBg;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;
@@ -46,7 +47,7 @@
     NSInteger rowsInSectionSound;
     NSInteger rowsInSectionAccount;
     
-    ChangeAvatar *changeAvatar;
+    ChangeAvatar *imageUploader;
     
     BOOL hasEdited;
     GuessLevel guessLevel;

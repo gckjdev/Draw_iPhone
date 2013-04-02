@@ -97,7 +97,7 @@ enum {
     PPRelease(avatarButton);
     PPRelease(saveButton);
     PPRelease(_avatarImageView);
-    PPRelease(changeAvatar);
+    PPRelease(imageUploader);
     PPRelease(nicknameLabel);
     PPRelease(expAndLevelLabel);
     PPRelease(backgroundImage);
@@ -131,7 +131,8 @@ enum {
     rowOfZodiac = 6;
     rowOfSignature = 7;
     rowOfPrivacy = 8;
-    rowsInSectionUser = 9;
+    rowOfCustomBg = 9;
+    rowsInSectionUser = 10;
     
     //section guessword
     if (isDrawApp()) {
@@ -170,6 +171,11 @@ enum {
 - (void)updateAvatar:(UIImage *)image
 {
     [_avatarImageView setImage:image];
+}
+
+- (void)updateBackground:(UIImage*)image
+{
+    [self.backgroundImage setImage:image];
 }
 
 - (void)updateNicknameLabel
@@ -271,6 +277,8 @@ enum {
 {
     self.navigationController.navigationBarHidden = YES;
     [super viewDidAppear:animated];
+    NSString* str = [_pbUserBuilder  backgroundUrl];
+    [self.backgroundImage setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:[GameApp background]]];
 }
 
 - (void)viewDidUnload
@@ -476,6 +484,8 @@ enum {
             if ([_pbUserBuilder hasOpenInfoType]) {
                 [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
             }
+        } else if (row == rowOfCustomBg) {
+            [cell.textLabel setText:NSLS(@"kCustomBg")];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -687,8 +697,17 @@ enum {
             [self.inputAlertView showInView:self.view animated:YES];
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
+        } else if (row == rowOfCustomBg) {
+            __block UserSettingController* uc = self;
+            if (imageUploader == nil) {
+                imageUploader = [[ChangeAvatar alloc] init];
+                imageUploader.autoRoundRect = NO;
+            }
+            [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
+                [uc uploadCustomBg:image];
+            }];
         }
-        }
+    }
     else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
@@ -1096,6 +1115,22 @@ enum {
     }];
 }
 
+- (void)uploadCustomBg:(UIImage*)image
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[UserService defaultService] uploadUserBackground:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
+        [self hideActivity];
+        if (resultCode == ERROR_SUCCESS && [imageRemoteURL length] > 0){
+            [_pbUserBuilder setBackgroundUrl:imageRemoteURL];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundSucc") delayTime:1.5];
+            [self updateBackground:image];
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundFail") delayTime:1.5];
+        }
+    }];
+}
+
 - (IBAction)clickSaveButton:(id)sender {
     
     if (hasEdited) {
@@ -1130,11 +1165,15 @@ enum {
 }
 
 - (IBAction)clickAvatar:(id)sender {
-    if (changeAvatar == nil) {
-        changeAvatar = [[ChangeAvatar alloc] init];
-        changeAvatar.autoRoundRect = NO;
+    
+    __block UserSettingController* uc = self;
+    if (imageUploader == nil) {
+        imageUploader = [[ChangeAvatar alloc] init];
+        imageUploader.autoRoundRect = NO;
     }
-    [changeAvatar showSelectionView:self];
+    [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
+        [uc updateAvatar:image];
+    }];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -1177,11 +1216,11 @@ enum {
 
 
 
-- (void)didImageSelected:(UIImage*)image
-{
-//    [self updateAvatar:image];
-    [self uploadUserAvatar:image];
-}
+//- (void)didImageSelected:(UIImage*)image
+//{
+////    [self updateAvatar:image];
+//    [self uploadUserAvatar:image];
+//}
 
 
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
@@ -1287,7 +1326,10 @@ enum {
     [self.dataTableView reloadData];
 }
 
-
+- (void)didImageSelected:(UIImage *)image
+{
+    hasEdited = YES;
+}
 /*
  
 功能
