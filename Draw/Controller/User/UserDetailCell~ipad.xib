@@ -72,7 +72,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-20</double>
 								<double key="IBUITitleEdgeInsets.left">10</double>
 								<double key="IBUITitleEdgeInsets.right">10</double>
-								<string key="IBUINormalTitle">画给TA</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="29055669">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -112,7 +111,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-20</double>
 								<double key="IBUITitleEdgeInsets.left">10</double>
 								<double key="IBUITitleEdgeInsets.right">10</double>
-								<string key="IBUINormalTitle">悄悄话</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -139,7 +137,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-20</double>
 								<double key="IBUITitleEdgeInsets.left">10</double>
 								<double key="IBUITitleEdgeInsets.right">10</double>
-								<string key="IBUINormalTitle">加关注</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -166,7 +163,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-20</double>
 								<double key="IBUITitleEdgeInsets.left">0.0</double>
 								<double key="IBUITitleEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">粉丝</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -193,7 +189,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-20</double>
 								<double key="IBUITitleEdgeInsets.left">0.0</double>
 								<double key="IBUITitleEdgeInsets.right">0.0</double>
-								<string key="IBUINormalTitle">关注</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -629,7 +624,7 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="712704544">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="505046347">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">common_dialog_btn_bg@2x.png</string>
 								</object>
@@ -653,7 +648,7 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<reference key="IBUINormalBackgroundImage" ref="712704544"/>
+								<reference key="IBUINormalBackgroundImage" ref="505046347"/>
 								<reference key="IBUIFontDescription" ref="770994763"/>
 								<reference key="IBUIFont" ref="229826060"/>
 							</object>
@@ -1387,6 +1382,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="59.CustomClassName">LocalizableLabel</string>
 				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

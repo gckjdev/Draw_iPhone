@@ -341,22 +341,23 @@
 - (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
     PBGameUser* user = [self getUser];
+    NSString* heStr = [user gender]?NSLS(@"kHim"):NSLS(@"kHer");
     switch (index) {
         case UserDetailActionFollowCount: {
             [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
-            [button.downLabel setText:NSLS(@"kFollow")];
+            [button.downLabel setText:NSLS(@"kDetailFollower")];
         }break;
         case UserDetailActionDrawTo: {
-            
+            [button.downLabel setText:[NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr]];
         } break;
         case UserDetailActionFollow: {
             BOOL hasFollow = [MyFriend hasFollow:[self relation]];
-            [button setTitle:(hasFollow?NSLS(@"kUnfollow"):NSLS(@"kFollow")) forState:UIControlStateNormal];
+            [button.downLabel setText:(hasFollow?NSLS(@"kUnfollow"):[NSString stringWithFormat:NSLS(@"kDetailFollow"), heStr])];
             UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
             [button setBackgroundImage:followBtnBg forState:UIControlStateNormal];
         } break;
         case UserDetailActionChatTo: {
-            
+            [button.downLabel setText:[NSString stringWithFormat:NSLS(@"kDetailChat"), heStr]];
         } break;
         case UserDetailActionFanCount: {
             [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
