@@ -66,6 +66,7 @@
         
     }
     
+    
     [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
     self.itemNameLabel.text = NSLS(item.name);
     
@@ -85,7 +86,7 @@
 - (void)setItem:(PBGameItem *)item
           count:(int)count
 {
-    if (item.itemId == ItemTypeColor) {
+    if (item.itemId == ItemTypeColor || item.itemId == ItemTypePurse) {
         self.countButton.hidden = YES;
         return;
     }

@@ -24,6 +24,7 @@
 #import "AdService.h"
 #import "ItemType.h"
 #import "GiftDetailView.h"
+#import "ConfigManager.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -176,9 +177,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 if (resultCode == ERROR_SUCCESS){
                     [cusInfoView dismiss];
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
-                    if (itemId == ItemTypeRemoveAd) {
-                        [[AdService defaultService] disableAd];
-                    }
+//                    if (itemId == ItemTypeRemoveAd) {
+//                        [[AdService defaultService] disableAd];
+//                    }else if(itemId == ItemTypePurse){
+//                        [[AccountService defaultService] chargeAccount:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
+//                    }
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
                     [BalanceNotEnoughAlertView showInController:[inView theViewController]];
@@ -245,6 +248,8 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
                     if (itemId == ItemTypeRemoveAd) {
                         [[AdService defaultService] disableAd];
+                    }else if(itemId == ItemTypePurse){
+                        [[AccountService defaultService] chargeAccount:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
                     }
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
                     [cusInfoView dismiss];
@@ -291,6 +296,9 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 [cusInfoView hideActivity];
                 if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
+                    if(itemId == ItemTypePurse){
+                        [[AccountService defaultService] chargeAccount:(([ConfigManager getCoinsIngotRate] * bself.item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
+                    }
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGiveSuccess") delayTime:2 isHappy:YES];
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
                     [BalanceNotEnoughAlertView showInController:[self.inView theViewController]];

@@ -875,4 +875,10 @@
     return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_TAOBAO_URL" defaultValue:@"http://a.m.taobao.com/i17538377874.htm"];
 }
 
++ (int)getCoinsIngotRate
+{
+    return  [MobClickUtils getIntValueByKey:@"COINS_INGOT_RATE" defaultValue:1000];
+}
+
+
 @end

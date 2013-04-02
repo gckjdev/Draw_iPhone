@@ -378,12 +378,6 @@ static AccountService* _defaultAccountService;
                     [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];
                 }
             }
-            
-//            if (source == PurchaseType){
-//                [self verifyReceiptWithAmount:amount
-//                                transactionId:transactionId
-//                           transactionRecepit:transactionRecepit];
-//            }
         });
     });
 }
