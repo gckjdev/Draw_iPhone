@@ -1197,6 +1197,9 @@
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
+"kCustomBg" = "Custom Background";
+"kUpdateBackgroundSucc" = "Update backtround successfully!";
+"kUpdateBackgroundFail" = "Update backtround fail, try later.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

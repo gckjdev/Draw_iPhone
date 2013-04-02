@@ -1181,6 +1181,9 @@
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
 "kDetailChat" = "搭訕";
+"kCustomBg" = "自定義背景";
+"kUpdateBackgroundSucc" = "更新背景成功!";
+"kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
