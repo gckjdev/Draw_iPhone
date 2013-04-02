@@ -608,7 +608,7 @@
 							<object class="IBUIButton" id="905471670">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">-2147483347</int>
-								<string key="NSFrame">{{247, 1339}, {247, 75}}</string>
+								<string key="NSFrame">{{260, 1339}, {247, 75}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSNextKeyView" ref="703033034"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -623,7 +623,7 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="562674107">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="914276227">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">common_dialog_btn_bg@2x.png</string>
 								</object>
@@ -647,7 +647,7 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<reference key="IBUINormalBackgroundImage" ref="562674107"/>
+								<reference key="IBUINormalBackgroundImage" ref="914276227"/>
 								<reference key="IBUIFontDescription" ref="770994763"/>
 								<reference key="IBUIFont" ref="229826060"/>
 							</object>

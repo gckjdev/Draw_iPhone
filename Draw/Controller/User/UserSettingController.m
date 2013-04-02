@@ -1177,6 +1177,8 @@ enum {
     }];
 }
 
+// -Dbg_upload.local=/Library/WebServer/Documents/upload/ -Dbg_upload.remote=http://192.168.1.198/upload/
+
 - (IBAction)clickBackButton:(id)sender {
     
     if (hasEdited) {

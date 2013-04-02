@@ -172,6 +172,7 @@
     } clickCancelBlock:^{
         //
     }];
+    [dialog showInView:self.view];
     
 }
 - (void)didclickManage
@@ -212,6 +213,7 @@
         {
             if (self.favoriteList.count == 0) {
                 [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+                [[self detailCell] setIsLoadingFeed:YES];
             } else {
                 [[self detailCell] setDrawFeedList:self.favoriteList];
             }
@@ -222,6 +224,7 @@
         {
             if (self.opusList.count == 0) {
                 [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+                [[self detailCell] setIsLoadingFeed:YES];
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
             }
@@ -250,7 +253,7 @@
                   type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
-    [self hideActivity];
+    [[self detailCell] setIsLoadingFeed:NO];
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {
