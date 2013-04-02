@@ -118,8 +118,8 @@
         
         ShowDrawView *showView = [ShowDrawView showView];
         showView.center = self.drawImage.center;
-        [showView resetFrameSize:self.drawImage.frame.size];
-        [feed parseDrawData];
+        [showView resetFrameSize:self.drawImage.frame.size];        
+        [feed parseDrawData];   // can be removed, old legacy
         [showView setDrawActionList:feed.drawData.drawActionList];
         [self insertSubview:showView aboveSubview:self.drawImage];
 
@@ -147,8 +147,7 @@
         [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
     }
     feed.drawData = nil;
-    feed.pbDraw = nil;
-
+    feed.pbDrawData = nil;
     
     if (feed.showAnswer) {
         NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];

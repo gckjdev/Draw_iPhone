@@ -51,6 +51,8 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
+
+//    return YES;     //TODO remove the code after test.
     if ([self hasItem:type]) {
         return YES;
     }
@@ -272,5 +274,7 @@ ToolCommandManager *_staticToolCommandManager = nil;
             return [(EditDescCommand *)command inputAlertView];
         }
     }
+    
+    return nil;
 }
 @end

@@ -23,7 +23,7 @@
 
 - (id)initWithCanvasRect:(CGRect)rect;
 + (CGFloat)width;
-
+- (CGFloat)contentHeight;
 @end
 
 
@@ -54,6 +54,9 @@
     }
 }
 
+#define ROW_1_OFFSET (ISIPAD ? (-20) : (-10))
+#define CONTENT_HEIGHT_OFFSET (ISIPAD ? 6 : 3)
+
 - (void)updateView
 {
     CanvasRectStyle *list = [CanvasRect getRectStyleList];
@@ -70,6 +73,10 @@
         
         CGPoint origin = CGPointMake((index % ROW_NUMBER) * (space + [CanvasRectView width]), index / ROW_NUMBER * (space + [CanvasRectView width]));
         
+        if (index / ROW_NUMBER == 1) {
+            origin.y += ROW_1_OFFSET;
+        }
+        
         CGRect frame = view.frame;
         frame.origin = origin;
         view.frame = frame;
@@ -79,7 +86,7 @@
         [view addTarget:self action:@selector(clickCanvasRectView:) forControlEvents:UIControlEventTouchUpInside];
         list ++; index ++;
     }
-    
+    contentHeight += CONTENT_HEIGHT_OFFSET;
     self.scrollView.contentSize =  CGSizeMake(CGRectGetWidth(self.frame), contentHeight);
 }
 
@@ -119,6 +126,11 @@
 #define MAX_SIZE 1136
 
 
+
+- (CGFloat)contentHeight
+{
+    return self.title.bounds.size.height;
+}
 
 + (CGFloat)width
 {

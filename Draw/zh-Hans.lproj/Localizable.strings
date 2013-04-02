@@ -118,7 +118,8 @@
 "kSaved" = "保存成功";
 "kFailed" = "失败";
 "kTurnResult" = "本轮结果";
-"kBuyColor" = "购买颜色";
+"kColor" = "颜色";
+"kColorDesc" = "各种颜色组合，为你精心搭配好，使用起来更加得心应手";
 "kConnectionRecover" = "连接恢复";
 "kConnectionBroken" = "连接中断";
 "kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试。";
@@ -715,7 +716,7 @@
 "kDrawToUserNoWordDesc" = "画了一幅画给%@。";
 "kHisFriend" = "TA好友";
 
-"kRemoveAd" = "移除广告";
+"kRemoveAd" = "广告拦截器";
 "kRemoveAdByIAP" = "你只需要购买400个金币即可直接移除广告，确认吗？";
 "kMessage" = "消息";
 "kAdRemoved" = "已移除";
@@ -763,21 +764,53 @@
 
 "kFlower" = "鲜花";
 "kTomato" = "番茄";
-"kRemoveAd" = "移除广告";
 "kTips" = "锦囊";
 "kPen" = "毛笔";
 "kIcePen" = "雪糕笔";
 "kQuill" = "鹅毛笔";
 "kWaterPen" = "麦克笔";
 
+
+
 "kFlowerDescription" = "看到好的作品就送些鲜花！赠人玫瑰，手有余香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。";
-"kRemoveAdDescription" = "买了它！从此远离广告！";
+"kRemoveAdDescription" = "拦截并且不显示所有广告";
 "kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
 "kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
 "kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
 "kWaterPenDescription" = "麦克笔，国外进口的一种高级画笔";
+
+
+"kItemTypePurse" = "钱箱";
+"kItemTypePurseDesc" = "包含一万个金币的钱箱";
+
+"kItemTypeGrid" = "网格参考线";
+"kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
+
+"kSquareCanvasLarge" = "正方形画布(大)";
+"kSquareCanvasLargeDesc" = "正方形画布，尺寸为1024*1024，配合放大功能，可以画的更加精细，也可以用于创作四格漫画等";
+
+"kHorizontalCanvasSmall" = "横版画布(小)";
+"kHorizontalCanvasSmallDesc" = "横版画布，尺寸为700*432，用于画横版画";
+
+"kHorizontalCanvas" = "横版画布(中)";
+"kHorizontalCanvasDesc" = "横版画布，尺寸为1024*768，用于画横版画，该尺寸同时也是iPad屏幕标准尺寸";
+
+"kHorizontalCanvasLarge" = "横版画布(大)";
+"kHorizontalCanvasLargeDesc" = "横版画布，尺寸为1136*640，用于画横版画，该尺寸同时也是iPhone5标准尺寸";
+
+"kVerticalCanvasSmall" = "竖版画布(小)";
+"kVerticalCanvasSmallDesc" = "竖版画布，尺寸为432*700，用于画竖版画";
+
+"kVerticalCanvas" = "竖版画布(中)";
+"kVerticalCanvasDesc" = "竖版画布，尺寸为768*1024，用于画竖版画，该尺寸同时也是iPad标准尺寸";
+
+"kVerticalCanvasLarge" = "竖版画布(大)";
+"kVerticalCanvasLargeDesc" = "竖版画布，尺寸为640*1136，用于画竖版画，该尺寸同时也是iPhone5标准尺寸";
+
+"kDrawBackgroundDesc" = "绘画背景，让你的画画更加生动漂亮";
+
 
 "kPickToolTitle" = "使用道具";
 
@@ -1108,6 +1141,7 @@
 "kZodiacArray" = "白羊座^金牛座^双子座^巨蟹座^狮子座^处女座^天秤座^天蝎座^射手座^摩羯座^水瓶座^双鱼座";
 
 "kLoadingProgress" = "加载中... (%3.f%%)";
+"kParsingData" = "解析数据中...";
 "kZodiac" = "星座";
 "kBirthday" = "生日";
 "kBloodGroup" = "血型";
@@ -1152,6 +1186,7 @@
 "kInvisable" = "(不可见)";
 
 "kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
+"kTaoBaoChargeTitle" = "淘宝店充值";
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kEditOpusDesc" = "编辑作品描述";
@@ -1483,23 +1518,9 @@
 "kSmoothPen" = "平滑笔";
 "kSmoothPenDescription" = "可以画出平滑的线，如秀发般柔顺";
 
-"kTransverseCanvas" = "横版画布";
-"kTransverseCanvasDescription" = "一种横向的画布";
-"kVerticalCanvas" = "竖版画布";
-"kVerticalCanvasDescription" = "一种竖向的画布";
-"kSquareCanvasLarge" = "正方形画布(大)";
-"kSquareCanvasLargeDescription" = "一种正方形的大画布";
-"kTransverseCanvasLarge" = "横版画布(大)";
-"kTransverseCanvasLargeDescription" = "一种横向的大画布";
-"kVerticalCanvasLarge" = "竖版画布(大)";
-"kVerticalCanvasLargeDescription" = "一种竖向的大画布";
-
-"kVeinsBackground" = "纹理背景";
-"kVeinsBackgroundDescription" = "可以为你的画添加纹理背景";
 "kBasicShape" = "基本形状";
-"kBasicShapeDescription" = "可以轻易画出各种基本的形状";
-"kPurseItem" = "钱袋";
-"kPurseItemDescription" = "可以用元宝购买金币";
+"kBasicShapeDescription" = "用于绘画，包含直线、圆形、矩形、五角星、三角形五种基本形状";
+
 
 "kUpdateTips" = "更新提示";
 "kVersionIsOld"  = "版本过低，不能使用该功能，确定立即更新？";

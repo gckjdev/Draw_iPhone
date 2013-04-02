@@ -133,7 +133,6 @@
                 [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
                 [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
             }
-
         }
     }
     return cell;

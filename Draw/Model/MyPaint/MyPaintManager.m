@@ -19,6 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Draw.pb.h"
 #import "DrawAction.h"
+#import "DrawFeed.h"
 #import "CanvasRect.h"
 
 
@@ -302,29 +303,65 @@ static MyPaintManager* _defaultManager;
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
               image:(UIImage*)image
-         pbDrawData:(PBDraw*)pbDrawData
+         pbDrawData:(NSData*)pbDrawData
+               feed:(DrawFeed*)feed
+
+//             userId:(NSString*)userId
+//           nickName:(NSString*)nickName
+//               word:(NSString*)word
+//           language:(int)language
+//              level:(int)level
 {
     NSString *imageFileName = [self imageFileName];
     NSString *pbDataFileName = [self pbDataFileName];
     
     [_imageManager saveImage:image forKey:imageFileName];
-    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+    [_drawDataManager saveData:pbDrawData forKey:pbDataFileName];
+    //    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
     
     
     [newMyPaint setDataFilePath:pbDataFileName];
     [newMyPaint setImage:imageFileName];
     
-    BOOL drawByMe = [[UserManager defaultManager] isMe:pbDrawData.userId];
+    BOOL drawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
     
     [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
-    [newMyPaint setDrawUserId:pbDrawData.userId];
-    [newMyPaint setDrawUserNickName:pbDrawData.nickName];
+    [newMyPaint setDrawUserId:feed.feedUser.userId];
+    [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
     [newMyPaint setCreateDate:[NSDate date]];
-    [newMyPaint setDrawWord:pbDrawData.word];
+    [newMyPaint setDrawWord:feed.wordText];
 
-    [newMyPaint setLanguage:[NSNumber numberWithInt:pbDrawData.language]];
-    [newMyPaint setLevel:[NSNumber numberWithInt:pbDrawData.level]];
+    [newMyPaint setLanguage:[NSNumber numberWithInt:ChineseType]];      // hard code here, some risk?
+    [newMyPaint setLevel:[NSNumber numberWithInt:1]];                   // hard code here, some risk?
 
+}
+
+- (void)initMyPaint:(MyPaint *)newMyPaint
+              image:(UIImage*)image
+             pbDraw:(PBDraw*)pbDraw
+{
+    NSString *imageFileName = [self imageFileName];
+    NSString *pbDataFileName = [self pbDataFileName];
+    
+    [_imageManager saveImage:image forKey:imageFileName];
+    [_drawDataManager saveData:[pbDraw data] forKey:pbDataFileName];
+    //    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
+    
+    
+    [newMyPaint setDataFilePath:pbDataFileName];
+    [newMyPaint setImage:imageFileName];
+    
+    BOOL drawByMe = [[UserManager defaultManager] isMe:pbDraw.userId];
+    
+    [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
+    [newMyPaint setDrawUserId:pbDraw.userId];
+    [newMyPaint setDrawUserNickName:pbDraw.nickName];
+    [newMyPaint setCreateDate:[NSDate date]];
+    [newMyPaint setDrawWord:pbDraw.word];
+    
+    [newMyPaint setLanguage:[NSNumber numberWithInt:pbDraw.word]];      // hard code here, some risk?
+    [newMyPaint setLevel:[NSNumber numberWithInt:pbDraw.language]];                   // hard code here, some risk?
+    
 }
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
@@ -362,12 +399,40 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
-                    pbDrawData:(PBDraw*)pbDrawData 
+                    pbDrawData:(NSData*)pbDrawData
+                          feed:(DrawFeed*)feed
+//                        userId:(NSString*)userId
+//                      nickName:(NSString*)nickName
+//                          word:(NSString*)word
+//                      language:(int)language
+//                         level:(int)level
+
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
     
-    [self initMyPaint:newMyPaint image:image pbDrawData:pbDrawData];
+    [self initMyPaint:newMyPaint
+                image:image
+           pbDrawData:pbDrawData
+                 feed:feed];
+    
+    [newMyPaint setDraft:[NSNumber numberWithBool:NO]];
+    
+    PPDebug(@"<createMyPaintWithImage> %@", [newMyPaint description]);
+    return [dataManager save];
+    
+}
+
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                        pbDraw:(PBDraw*)pbDraw
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    
+    [self initMyPaint:newMyPaint
+                image:image
+               pbDraw:pbDraw];
+    
     [newMyPaint setDraft:[NSNumber numberWithBool:NO]];
     
     PPDebug(@"<createMyPaintWithImage> %@", [newMyPaint description]);
