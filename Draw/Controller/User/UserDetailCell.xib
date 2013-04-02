@@ -44,8 +44,8 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="213671570">
 								<reference key="NSNextResponder" ref="150961201"/>
-								<int key="NSvFlags">319</int>
-								<string key="NSFrameSize">{320, 785}</string>
+								<int key="NSvFlags">301</int>
+								<string key="NSFrame">{{0, -100}, {320, 985}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSNextKeyView" ref="957889801"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -72,7 +72,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-25</double>
 								<double key="IBUITitleEdgeInsets.left">10</double>
 								<double key="IBUITitleEdgeInsets.right">10</double>
-								<string key="IBUINormalTitle">画给TA</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="29055669">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
@@ -112,7 +111,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-25</double>
 								<double key="IBUITitleEdgeInsets.left">10</double>
 								<double key="IBUITitleEdgeInsets.right">10</double>
-								<string key="IBUINormalTitle">悄悄话</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -139,7 +137,6 @@
 								<double key="IBUITitleEdgeInsets.bottom">-24</double>
 								<double key="IBUITitleEdgeInsets.left">5</double>
 								<double key="IBUITitleEdgeInsets.right">5</double>
-								<string key="IBUINormalTitle">加关注</string>
 								<reference key="IBUIHighlightedTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleColor" ref="29055669"/>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
@@ -613,7 +610,7 @@
 							<object class="IBUIButton" id="905471670">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{111, 640}, {99, 45}}</string>
+								<string key="NSFrame">{{114, 646}, {93, 33}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSNextKeyView" ref="703033034"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -628,9 +625,9 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="904137467">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="226606243">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">user_detail_black_btn_bg@2x.png</string>
+									<string key="NSResourceName">common_dialog_btn_bg@2x.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="345906218">
 									<int key="type">1</int>
@@ -645,7 +642,7 @@
 							<object class="IBUIButton" id="703033034">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{221.5, 640.5}, {99, 45}}</string>
+								<string key="NSFrame">{{224.5, 646.5}, {93, 33}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -659,9 +656,9 @@
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMjgyMzUyOTQxMiAwLjE1Njg2Mjc0NTEAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="705320348"/>
-								<reference key="IBUINormalBackgroundImage" ref="904137467"/>
-								<reference key="IBUIFontDescription" ref="103798340"/>
-								<reference key="IBUIFont" ref="18799948"/>
+								<reference key="IBUINormalBackgroundImage" ref="226606243"/>
+								<reference key="IBUIFontDescription" ref="345906218"/>
+								<reference key="IBUIFont" ref="278334743"/>
 							</object>
 							<object class="IBUIButton" id="830181892">
 								<reference key="NSNextResponder" ref="150961201"/>
@@ -1170,7 +1167,6 @@
 							<reference ref="127274822"/>
 							<reference ref="853562852"/>
 							<reference ref="492713582"/>
-							<reference ref="905471670"/>
 							<reference ref="277945030"/>
 							<reference ref="126958862"/>
 							<reference ref="830181892"/>
@@ -1183,6 +1179,7 @@
 							<reference ref="957889801"/>
 							<reference ref="532551517"/>
 							<reference ref="112373542"/>
+							<reference ref="905471670"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1290,11 +1287,6 @@
 						<reference key="parent" ref="849259711"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="853562852"/>
-						<reference key="parent" ref="849259711"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">58</int>
 						<reference key="object" ref="277945030"/>
 						<reference key="parent" ref="849259711"/>
@@ -1357,6 +1349,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">95</int>
 						<reference key="object" ref="112373542"/>
+						<reference key="parent" ref="849259711"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">35</int>
+						<reference key="object" ref="853562852"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
 				</array>
@@ -1427,10 +1424,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="common_dialog_btn_bg@2x.png">{166, 59}</string>
 			<string key="user_detail_avatar_bg@2x.png">{640, 535}</string>
 			<string key="user_detail_basic_bg@2x.png">{640, 357}</string>
 			<string key="user_detail_bg@2x.png">{640, 1377}</string>
-			<string key="user_detail_black_btn_bg@2x.png">{146, 58}</string>
 			<string key="user_detail_btn_bg@2x.png">{117, 118}</string>
 			<string key="user_detail_draw_to_bg@2x.png">{114, 115}</string>
 			<string key="user_detail_edit@2x.png">{69, 57}</string>
