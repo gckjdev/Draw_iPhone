@@ -370,19 +370,21 @@
 - (void)saveToLocal
 {
     [self.superViewController showActivityWithText:NSLS(@"kSaving")];
-    if (self.feed.pbDraw) {
-        [[DrawDataService defaultService] savePaintWithPBDraw:self.feed.pbDraw
+    if (self.feed.pbDrawData) {
+        [[DrawDataService defaultService] savePaintWithPBDraw:self.feed
+                                                   pbDrawData:self.feed.pbDrawData
                                                         image:self.image
                                                      delegate:self];
     }else{
         __block ShareAction *cp = self;
         [self.superViewController showProgressViewWithMessage:NSLS(@"kLoading")];
-        [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache) {
+        [[FeedService defaultService] getPBDrawByFeed:cp.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
             
-            if (resultCode == 0 && pbDraw != nil) {
-                [[DrawDataService defaultService] savePaintWithPBDraw:pbDraw
+            if (resultCode == 0 && pbDrawData != nil) {
+                [[DrawDataService defaultService] savePaintWithPBDraw:feed
+                                                           pbDrawData:pbDrawData
                                                                 image:cp.image
-                                                             delegate:cp];                
+                                                             delegate:cp];
             }else{
                 PPDebug(@"Save Failed!!");
                 [cp.superViewController popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];

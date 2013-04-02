@@ -116,7 +116,8 @@
 "kFailed" = "Failed";
 "kTurnResult" = "Result of turn";
 "kMoreColor" = "Buy More";
-"kBuyColor" = "Buy Color";
+"kColor" = "Color";
+"kColorDesc" = "Groups of color, which make draw more effective.";
 "kColorShop" = "Buy Color";
 "kConnectionRecover" = "Connection Recover";
 "kConnectionBroken" = "Connection Broken";
@@ -764,6 +765,34 @@
 "kQuillDescription" = "Quill pen to draw much faster..."; 
 "kWaterPenDescription" = "Mike pen from United Kingdom...";
 
+"kItemTypePurse" = "Coins Box";
+"kItemTypePurseDesc" = "10,000 coins inside it";
+
+"kItemTypeGrid" = "Network Grid";
+"kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
+
+"kSquareCanvasLarge" = "Square Canvas(L)";
+"kSquareCanvasLargeDesc" = "A Large Square Canvas of size 1024*1024, including zone in and zone out feature, make drawing more funny.";
+
+"kHorizontalCanvasSmall" = "Horizontal Canvas(S)";
+"kHorizontalCanvasSmallDesc" = "A Horizontal Canvas with size of 700*432.";
+
+"kHorizontalCanvas" = "Horizontal Canvas(M)";
+"kHorizontalCanvasDesc" = "A Horizontal Canvas with size of 1024*768, which fit iPad screen.";
+
+"kHorizontalCanvasLarge" = "Horizontal Canvas(L)";
+"kHorizontalCanvasLargeDesc" = "A Large Horizontal Canvas with size of 1136*640, which fit iPhone5 screen.";
+
+"kVerticalCanvasSmall" = "Vertical Canvas(S)";
+"kVerticalCanvasSmallDesc" = "A Vertical Canvas with size of 432*700.";
+
+"kVerticalCanvas" = "Vertical Canvas(M)";
+"kVerticalCanvasDesc" = "A Vertical Canvas with size of 768*1024, which fit iPad screen.";
+
+"kVerticalCanvasLarge" = "Vertical Canvas(L)";
+"kVerticalCanvasLargeDesc" = "A Large Vertical Canvas with size of 640*1136, which fit iPhone5 screen.";
+
+"kDrawBackgroundDesc" = "A butiful backgroud on your drawing";
 
 "kPickToolTitle" = "Use Item";
 
@@ -1090,23 +1119,9 @@
 "kSmoothPen" = "Smooth Pen";
 "kSmoothPenDescription" = "Can draw a smooth line";
 
-"kTransverseCanvas" = "Transverse Canvas";
-"kTransverseCanvasDescription" = "A transverse canvas";
-"kVerticalCanvas" = "Vertical Canvas";
-"kVerticalCanvasDescription" = "A vertical canvas";
-"kSquareCanvasLarge" = "Square Canvas(L)";
-"kSquareCanvasLargeDescription" = "A square canvas";
-"kTransverseCanvasLarge" = "Transverse Canvas(L)";
-"kTransverseCanvasLargeDescription" = "A transverse large canvas";
-"kVerticalCanvasLarge" = "Vertical Canvas(L)";
-"kVerticalCanvasLargeDescription" = "A vertical large canvas";
-
-"kVeinsBackground" = "Veins Background";
-"kVeinsBackgroundDescription" = "Can add texture background for your painting";
 "kBasicShape" = "Basic Shape";
-"kBasicShapeDescription" = "Can easily draw the basic shapes";
-"kPurseItem" = "Pockets";
-"kPurseItemDescription" = "Can buy gold bullions";
+"kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
+
 
 "kUpdateTips" = "Update Tips";
 "kVersionIsOld" = "Version is too low to use this feature, do you want to update version now?";

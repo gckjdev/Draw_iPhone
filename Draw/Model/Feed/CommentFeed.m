@@ -169,6 +169,8 @@
 
 - (void)dealloc
 {
+    PPRelease(_opusCreator);
+    PPRelease(_opusId);
     PPRelease(_comment);
     PPRelease(_commentInfo);
     [super dealloc];

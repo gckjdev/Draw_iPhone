@@ -12,6 +12,7 @@
 #import "GameItemManager.h"
 #import "ItemType.h"
 #import "BlockArray.h"
+#import "NSDate+TKCategory.h"
 
 @interface GameItemService()
 @property (retain, nonatomic) BlockArray *blockArray;
@@ -99,13 +100,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 }
 
 + (PBPromotionInfo *)price:(int)price
-                 startDate:(int)startDate
-                expireDate:(int)expireDate
+                 startDate:(NSDate *)startDate
+                expireDate:(NSDate *)expireDate
 {
     PBPromotionInfo_Builder *promotionInfoBuilder = [[PBPromotionInfo_Builder alloc] init];
     [promotionInfoBuilder setPrice:price];
-    [promotionInfoBuilder setStartDate:startDate];
-    [promotionInfoBuilder setExpireDate:expireDate];
+    [promotionInfoBuilder setStartDate:[startDate timeIntervalSince1970]];
+    [promotionInfoBuilder setExpireDate:[expireDate  timeIntervalSince1970]];
     PBPromotionInfo *promotionInfo = [promotionInfoBuilder build];
     [promotionInfoBuilder release];
     return promotionInfo;
@@ -118,414 +119,312 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 + (void)createTestDataFile
 {    
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-
-    PBGameItem_Builder *itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-
+    
     // 鲜花
-    [itemBuilder setItemId:ItemTypeFlower];
-    [itemBuilder setName:@"kFlower"];
-    [itemBuilder setDesc:@"kFlowerDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"flower@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeNomal];
-    //[itemBuilder setAppleProductId:nil];
-    PBItemPriceInfo *priceInfo = [self currency:PBGameCurrencyCoin price:20];
-    [itemBuilder setPriceInfo:priceInfo];
-    int startDate = (int)[[NSDate date] timeIntervalSince1970];
-    PBPromotionInfo *promotionInfo = [self price:10 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
-    [itemBuilder setPromotionInfo:promotionInfo];
-    [itemBuilder setDefaultSaleCount:10];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
+    [mutableArray addObject:[self itemWithItemId:ItemTypeFlower
+                                            name:@"kFlower"
+                                            desc:@"kFlowerDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:URL_ITEM_IMAGE(@"flower@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
+    
     // 锦囊
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ItemTypeTips];
-    [itemBuilder setName:@"kTips"];
-    [itemBuilder setDesc:@"kTipsDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeAmountConsumable];
-
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"tipbag@2x.png")];
-    [itemBuilder setType:PBDrawItemTypeNomal];    
-    priceInfo = [self currency:PBGameCurrencyCoin price:20];
-    [itemBuilder setPriceInfo:priceInfo];
-    [itemBuilder setDefaultSaleCount:10];
-    [mutableArray addObject:[itemBuilder build]];
-
-
-    // 购买颜色
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ItemTypeColor];
-    [itemBuilder setName:@"kBuyColor"];
-    [itemBuilder setDesc:@"kBuyColor"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"print_oil@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeNomal];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:100];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //移除广告
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ItemTypeRemoveAd];
-    [itemBuilder setName:@"kRemoveAd"];
-    [itemBuilder setDesc:@"kRemoveAdDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"clean_ad@2x.png")];
-    [itemBuilder setType:PBDrawItemTypeNomal];
-    [itemBuilder setAppleProductId:@"com.orange.draw.removead"];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:400];
-    [itemBuilder setPriceInfo:priceInfo];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //透明度
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ColorAlphaItem];
-    [itemBuilder setName:@"kColorAlphaItem"];
-    [itemBuilder setDesc:@"kColorAlphaItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:4000];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTips
+                                            name:@"kTips"
+                                            desc:@"kTipsDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:URL_ITEM_IMAGE(@"tipbag@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
     
-    //作品播放器
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:PaintPlayerItem];
-    [itemBuilder setName:@"kPaintPlayerItem"];
-    [itemBuilder setDesc:@"kPaintPlayerItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
+    // 颜色
+    [mutableArray addObject:[self itemWithItemId:ItemTypeColor
+                                            name:@"kColor"
+                                            desc:@"kColorDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"print_oil@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:100
+                                        currency:PBGameCurrencyCoin]];
+
+    // 广告拦截器
+    [mutableArray addObject:[self itemWithItemId:ItemTypeRemoveAd
+                                           name:@"kRemoveAd"
+                                           desc:@"kRemoveAdDescription"
+                                    consumeType:PBGameItemConsumeTypeNonConsumable
+                                          image:URL_ITEM_IMAGE(@"clean_ad@2x.png")
+                                           type:PBDrawItemTypeNomal
+                                          price:1000
+                                       currency:PBGameCurrencyCoin]];
+
+    // 钱箱
+    [mutableArray addObject:[self itemWithItemId:ItemTypePurse
+                                            name:@"kItemTypePurse"
+                                            desc:@"kItemTypePurseDesc"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:URL_ITEM_IMAGE(@"purse_item@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:10
+                                        currency:PBGameCurrencyIngot]];
     
-    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
-    [itemBuilder setPriceInfo:priceInfo];
+    // 正方形画布（大）	
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPadLarge
+                                            name:@"kSquareCanvasLarge"
+                                            desc:@"kSquareCanvasLargeDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:2
+                                        currency:PBGameCurrencyIngot]];
     
-    startDate = (int)[[NSDate date] timeIntervalSince1970];
-    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
-    [itemBuilder setPromotionInfo:promotionInfo];
+    // 横版画布（小）
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPadHorizontal
+                                            name:@"kHorizontalCanvasSmall"
+                                            desc:@"kHorizontalCanvasSmallDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:1000
+                                        currency:PBGameCurrencyCoin]];
+
+    // 横版画布（中）
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenHorizontal
+                                            name:@"kHorizontalCanvas"
+                                            desc:@"kHorizontalCanvasDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:2
+                                        currency:PBGameCurrencyIngot]];
     
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-    
-    //调色板
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:PaletteItem];
-    [itemBuilder setName:@"kPaletteItem"];
-    [itemBuilder setDesc:@"kPaletteItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
+    // 横版画布（大）
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPhone5Horizontal
+                                            name:@"kHorizontalCanvasLarge"
+                                            desc:@"kHorizontalCanvasLargeDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:2
+                                        currency:PBGameCurrencyIngot]];
     
     
-    priceInfo = [self currency:PBGameCurrencyCoin price:2000];
-    [itemBuilder setPriceInfo:priceInfo];
+    // 竖版画布（小）
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPadVertical
+                                            name:@"kVerticalCanvasSmall"
+                                            desc:@"kVerticalCanvasSmallDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:1000
+                                        currency:PBGameCurrencyCoin]];
     
-    startDate = (int)[[NSDate date] timeIntervalSince1970];
-    promotionInfo = [self price:80 startDate:startDate expireDate:startDate + 5 * 24 * 60 * 60];
-    [itemBuilder setPromotionInfo:promotionInfo];
+    // 竖版画布（中）		
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenVertical
+                                            name:@"kVerticalCanvas"
+                                            desc:@"kVerticalCanvasDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:2
+                                        currency:PBGameCurrencyIngot]];
     
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //吸管
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:ColorStrawItem];
-    [itemBuilder setName:@"kStraw"];
-    [itemBuilder setDesc:@"kStrawDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
+    // 竖版画布（大）
+    [mutableArray addObject:[self itemWithItemId:CanvasRectiPhone5Vertical
+                                            name:@"kVerticalCanvasLarge"
+                                            desc:@"kVerticalCanvasLargeDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:2
+                                        currency:PBGameCurrencyIngot]];
     
-    priceInfo = [self currency:PBGameCurrencyCoin price:600];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
+    // 网格参考线
+    [mutableArray addObject:[self itemWithItemId:ItemTypeGrid
+                                            name:@"kItemTypeGrid"
+                                            desc:@"kItemTypeGridDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:1000
+                                        currency:PBGameCurrencyCoin]];
     
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
+    // 背景1		
+    [mutableArray addObject:[self itemWithItemId:DrawBackground1
+                                            name:@"kDrawBackground1"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景2
+    [mutableArray addObject:[self itemWithItemId:DrawBackground2
+                                            name:@"kDrawBackground2"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景3
+    [mutableArray addObject:[self itemWithItemId:DrawBackground3
+                                            name:@"kDrawBackground3"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景4
+    [mutableArray addObject:[self itemWithItemId:DrawBackground4
+                                            name:@"kDrawBackground4"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景5
+    [mutableArray addObject:[self itemWithItemId:DrawBackground5
+                                            name:@"kDrawBackground5"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景6
+    [mutableArray addObject:[self itemWithItemId:DrawBackground6
+                                            name:@"kDrawBackground6"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景7
+    [mutableArray addObject:[self itemWithItemId:DrawBackground7
+                                            name:@"kDrawBackground7"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景8
+    [mutableArray addObject:[self itemWithItemId:DrawBackground8
+                                            name:@"kDrawBackground8"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景9
+    [mutableArray addObject:[self itemWithItemId:DrawBackground9
+                                            name:@"kDrawBackground9"
+                                            desc:@"kDrawBackgroundDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"")
+                                            type:PBDrawItemTypeTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:2
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 吸管
+    [mutableArray addObject:[self itemWithItemId:ColorStrawItem
+                                            name:@"kStraw"
+                                            desc:@"kStrawDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")
+                                            type:PBDrawItemTypeTool
+                                           price:600
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 作品播放器
+    [mutableArray addObject:[self itemWithItemId:PaintPlayerItem
+                                            name:@"kPaintPlayerItem"
+                                            desc:@"kPaintPlayerItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")
+                                            type:PBDrawItemTypeTool
+                                           price:2000
+                                        currency:PBGameCurrencyCoin]];
+    
+    
+    // 调色盘
+    [mutableArray addObject:[self itemWithItemId:PaletteItem
+                                            name:@"kPaletteItem"
+                                            desc:@"kPaletteItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")
+                                            type:PBDrawItemTypeTool
+                                           price:4000
+                                        currency:PBGameCurrencyCoin
+                                  promotionPrice:2000
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
 
-    //虚线笔
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:DottedLinePen];
-    [itemBuilder setName:@"kDottedLinePen"];
-    [itemBuilder setDesc:@"kDottedLinePenDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"dotted_line_pen@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeNomal];
-    [itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:1000];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-
-    //麦克笔
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:WaterPen];
-    [itemBuilder setName:@"kWaterPen"];
-    [itemBuilder setDesc:@"kWaterPenDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"mike_pen@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-    priceInfo = [self currency:PBGameCurrencyCoin price:1000];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    // 平滑笔
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:SmoothPen];
-    [itemBuilder setName:@"kSmoothPen"];
-    [itemBuilder setDesc:@"kSmoothPenDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"smooth_pen@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:2];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-
-    //横版画布
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:TransverseCanvas];
-    [itemBuilder setName:@"kTransverseCanvas"];
-    [itemBuilder setDesc:@"kTransverseCanvasDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"transverse_canva@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:1000];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //竖版画布
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:VerticalCanvas];
-    [itemBuilder setName:@"kVerticalCanvas"];
-    [itemBuilder setDesc:@"kVerticalCanvasDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"vertical_canvas@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:1000];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //正方形画布(大)
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:SquareCanvasLarge];
-    [itemBuilder setName:@"kSquareCanvasLarge"];
-    [itemBuilder setDesc:@"kSquareCanvasLargeDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"square_canvas_large@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:2];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-
-    //横版画布(大)
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:TransverseCanvasLarge];
-    [itemBuilder setName:@"kTransverseCanvasLarge"];
-    [itemBuilder setDesc:@"kTransverseCanvasLargeDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"transverse_canvas_large@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:2];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //竖版画布(大)
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:VerticalCanvasLarge];
-    [itemBuilder setName:@"kVerticalCanvasLarge"];
-    [itemBuilder setDesc:@"kVerticalCanvasLargeDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"vertical_canvas_large@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:2];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //纹理背景包
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:VeinsBackground];
-    [itemBuilder setName:@"kVeinsBackground"];
-    [itemBuilder setDesc:@"kVeinsBackgroundDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"veins_background@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:4];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //基本形状
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:BasicShape];
-    [itemBuilder setName:@"kBasicShape"];
-    [itemBuilder setDesc:@"kBasicShapeDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"Basic_Shape@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:5];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-
-
-    //钱袋
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:PurseItem];
-    [itemBuilder setName:@"kPurseItem"];
-    [itemBuilder setDesc:@"kPurseItemDescription"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeNonConsumable];
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"purse_item@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeTool];
-    //[itemBuilder setAppleProductId:nil];
-
-
-    priceInfo = [self currency:PBGameCurrencyIngot price:10];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:1];
-    //[itemBuilder setUsageLifeUnit:nil];
-    //[itemBuilder setUsageLife:0];
-    [mutableArray addObject:[itemBuilder build]];
-
-    //时间消耗品
-    itemBuilder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [itemBuilder setItemId:1800];
-    [itemBuilder setName:@"时间消耗品"];
-    [itemBuilder setDesc:@"时间消耗品的描述"];
-    [itemBuilder setConsumeType:PBGameItemConsumeTypeTimeConsumable];
-
-    [itemBuilder setImage:URL_ITEM_IMAGE(@"时间消耗品@2x.png")];
-    //[itemBuilder setDemoImage:nil];
-    [itemBuilder setType:PBDrawItemTypeNomal];
-    //[itemBuilder setAppleProductId:nil];
-
-    priceInfo = [self currency:PBGameCurrencyCoin price:20];
-    [itemBuilder setPriceInfo:priceInfo];
-    //[itemBuilder setPromotionInfo:nil];
-
-    //[itemBuilder setDefaultSaleCount:0];
-    [itemBuilder setUsageLifeUnit:PBGameTimeUnitDay];
-    [itemBuilder setUsageLife:1];
-    [mutableArray addObject:[itemBuilder build]];
-
+    //基本形状	
+    [mutableArray addObject:[self itemWithItemId:BasicShape
+                                            name:@"kBasicShape"
+                                            desc:@"kBasicShapeDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_basic_shape@2x.png")
+                                            type:PBDrawItemTypeTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot]];
+    
+    
+    // 透明笔
+    [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
+                                            name:@"kColorAlphaItem"
+                                            desc:@"kColorAlphaItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
+                                            type:PBDrawItemTypeTool
+                                           price:10
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:5
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
 
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
     [listBuilder addAllItems:mutableArray];
@@ -541,6 +440,72 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
     [listBuilder release];
 }
+
+
++ (PBGameItem *)itemWithItemId:(int)itemId
+                          name:(NSString *)name
+                          desc:(NSString *)desc
+                   consumeType:(PBGameItemConsumeType)consumeType
+                         image:(NSString *)image
+                          type:(PBDrawItemType)type
+                         price:(int)price
+                      currency:(PBGameCurrency)currency
+{
+    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:price startDate:nil expireDate:nil];
+}
+
++ (PBGameItem *)itemWithItemId:(int)itemId
+                          name:(NSString *)name
+                          desc:(NSString *)desc
+                   consumeType:(PBGameItemConsumeType)consumeType
+                         image:(NSString *)image
+                          type:(PBDrawItemType)type
+                         price:(int)price
+                      currency:(PBGameCurrency)currency
+                promotionPrice:(int)promotionPrice
+                     startDate:(NSDate*)startDate
+                    expireDate:(NSDate*)expireDate
+{
+    int defaultSaleCount = 1;
+    if (consumeType == PBGameItemConsumeTypeAmountConsumable) {
+        defaultSaleCount = 10;
+    }
+    
+    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:promotionPrice startDate:startDate expireDate:expireDate defaultSaleCount:defaultSaleCount usageLifeUnit:0 usageLife:0];
+}
+
++ (PBGameItem *)itemWithItemId:(int)itemId
+                          name:(NSString *)name
+                          desc:(NSString *)desc
+                   consumeType:(PBGameItemConsumeType)consumeType
+                         image:(NSString *)image
+                          type:(PBDrawItemType)type
+                         price:(int)price
+                      currency:(PBGameCurrency)currency
+                promotionPrice:(int)promotionPrice
+                     startDate:(NSDate*)startDate
+                    expireDate:(NSDate*)expireDate
+              defaultSaleCount:(int)defaultSaleCount
+                 usageLifeUnit:(PBGameTimeUnit)usageLifeUnit
+                     usageLife:(int)usageLife;
+{
+    PBGameItem_Builder *builder = [[[PBGameItem_Builder alloc] init] autorelease];
+    [builder setItemId:itemId];
+    [builder setName:name];
+    [builder setDesc:desc];
+    [builder setConsumeType:consumeType];
+    [builder setImage:image];
+    [builder setType:type];
+    [builder setPriceInfo:[self currency:currency price:price]];
+    [builder setPromotionInfo:[self price:promotionPrice startDate:startDate expireDate:expireDate]];
+    [builder setDefaultSaleCount:defaultSaleCount];
+    [builder setUsageLifeUnit:usageLifeUnit];
+    [builder setUsageLife:usageLife];
+    return [builder build];
+}
+
+
+
 
 
 @end

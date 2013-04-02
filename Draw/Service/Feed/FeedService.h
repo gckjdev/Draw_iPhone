@@ -20,7 +20,7 @@
 #define DB_FIELD_ACTION_SHARE_WECHAT_FRIENDS      @"share_wechat_friends"
 #define DB_FIELD_ACTION_SAVE_ALBUM      @"save_album"
 
-typedef void (^ LoadPBDrawResultHandler) (int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache);
+typedef void (^ LoadPBDrawResultHandler) (int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache);
 typedef void (^ DownloadProgressHandler) (float progress);
 typedef void (^ FeedActionResultBlock) (int resultCode);
 

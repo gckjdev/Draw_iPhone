@@ -274,5 +274,7 @@ ToolCommandManager *_staticToolCommandManager = nil;
             return [(EditDescCommand *)command inputAlertView];
         }
     }
+    
+    return nil;
 }
 @end

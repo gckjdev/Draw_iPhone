@@ -492,25 +492,27 @@ static FeedService *_staticFeedService = nil;
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         BOOL fromCache = NO;
-        PBDraw *pbDraw = nil;
+//        PBDraw *pbDraw = nil;
         NSInteger resultCode = 0;
-        
-        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
-        if (pbDraw) {
+        NSData* data = nil;
+//        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
+        data = [manager loadPBDrawDataWithFeedId:feed.feedId];
+        if (data) {
             fromCache = YES;
+//            data = [pbDraw data];
         }else{
             if ([[feed drawDataUrl] length] > 0){
                 @try {
-                    NSData* data = [[FeedDownloadService defaultService]
+                    data = [[FeedDownloadService defaultService]
                                     downloadDrawDataFile:[feed drawDataUrl]
                                     fileName:[feed feedId]
                                     downloadProgressDelegate:downloadDelegate];
-                    if (data != nil){
-                        pbDraw = [PBDraw parseFromData:data];
-                    }
-                    if (pbDraw == nil) {
-                        resultCode = ERROR_RESPONSE_NULL;
-                    }
+//                    if (data != nil){
+//                        pbDraw = [PBDraw parseFromData:data];
+//                    }
+//                    if (pbDraw == nil) {
+//                        resultCode = ERROR_RESPONSE_NULL;
+//                    }
                 }
                 @catch (NSException *exception) {
                     PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
@@ -521,13 +523,16 @@ static FeedService *_staticFeedService = nil;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (handler != NULL) {
-                handler(resultCode, pbDraw, feed, fromCache);
+                handler(resultCode, data, feed, fromCache);
             }
         });
         
         if (!fromCache) {
-            [manager cachePBDraw:pbDraw forFeedId:feed.feedId];
+            // TODO save download file directly
+            [manager cachePBDrawData:data forFeedId:feed.feedId];
+            //[manager cachePBDraw:pbDraw forFeedId:feed.feedId];
         }
+        
         [subPool drain];
         
     }];
