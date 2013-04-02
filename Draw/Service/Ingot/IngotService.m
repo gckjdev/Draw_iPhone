@@ -109,7 +109,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
     PBSaleIngotList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = @"/Users/Linruin/gitdata/sale_ingot.pb";
+    NSString *filePath = @"/Users/Linruin/gitdata/sale_ingot_Draw.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {

@@ -120,6 +120,8 @@
 "kTurnResult" = "本轮结果";
 "kColor" = "颜色";
 "kColorDesc" = "各种颜色组合，为你精心搭配好，使用起来更加得心应手";
+"kColorShop" = "购买颜色";
+
 "kConnectionRecover" = "连接恢复";
 "kConnectionBroken" = "连接中断";
 "kNoServerAvailable" = "非常抱歉，服务器已经满了，请稍候再试。";
@@ -819,6 +821,9 @@
 "kCoins" = "金币";
 "kIngot" = "元宝";
 "kExp" = "经验";
+
+"kTaoBaoProductDetail" = "淘宝商品详情";
+
 
 "kThrowTomatoMessage" = "你给作者扔了个番茄，让TA扣了%d点经验, %d个金币";
 "kSendFlowerMessage" = "你给作者送了朵鲜花，让TA额外增加了%d点经验，%d个金币";

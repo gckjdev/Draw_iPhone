@@ -92,9 +92,7 @@
         [detail initUserActionButton:btn atIndex:i];
     }
     
-    
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
-    
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
     [self adjustView:self.levelLabel toLabel:self.signLabel];
@@ -102,7 +100,6 @@
     [self.segmentedControl setHidden:![detail hasFeedTab]];
     
     [self.noSNSTipsLabel setHidden:!(self.sinaBtn.hidden && self.qqBtn.hidden && self.facebookBtn.hidden)];
-
 }
 
 - (void)adjustView:(UIView*)view
