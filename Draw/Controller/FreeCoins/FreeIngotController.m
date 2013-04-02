@@ -18,7 +18,7 @@
 #import "ConfigManager.h"
 #import "CommonDialog.h"
 #import "BBSPostDetailController.h"
-#import "UIViewController+UIViewController_StoreProductViewController.h"
+//#import "UIViewController+UIViewController_StoreProductViewController.h"
 
 //#define SECTION_COUNT 2
 
@@ -146,19 +146,18 @@ enum {
 {
     if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
         
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDownloadAppTitle") message:NSLS(@"kDownloadAppMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDownloadAppTitle") message:NSLS(@"kDownloadAppMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
 
-            PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
-            
+            PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];            
             [self openApp:appReward.app.appId];
             
 //            [UIUtils openURL:appReward.app.downloadUrl];
             
-        } clickCancelBlock:^{
-            
-        }];
+//        } clickCancelBlock:^{
+//            
+//        }];
         
-        [dialog showInView:self.view];
+//        [dialog showInView:self.view];
         
     } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];

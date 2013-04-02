@@ -31,7 +31,7 @@
 #import "StatisticManager.h"
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
-
+#import "UIViewUtils.h"
 
 @interface FriendController ()
 {
@@ -128,6 +128,23 @@ typedef enum{
     _defaultTabIndex = tabIndex;
 }
 
+#define VALUE(X) (ISIPAD ? 2 * X : X)
+#define PAPER_TAG 1000
+#define OFFSET VALUE(40)
+
+- (UIView *)paper
+{
+    return [self.view viewWithTag:PAPER_TAG];
+}
+
+- (void)hideBottomButtons
+{
+    self.inviteButton.hidden = self.searchUserButton.hidden = YES;
+    [self.dataTableView updateHeight:(OFFSET + CGRectGetHeight(self.dataTableView.bounds))];
+
+    [self.paper updateHeight:(OFFSET + CGRectGetHeight(self.paper.bounds))];
+}
+
 - (void)initTabButton
 {
     [super initTabButtons];
@@ -147,9 +164,9 @@ typedef enum{
             [inviteButton setTitle:NSLS(@"kWeixinInvite") forState:UIControlStateNormal];
             break;
         case ControllerTypeSelectFriend:
-            [self.titleLabel setText:NSLS(@"kSelectContacts")];    
-            self.inviteButton.hidden = self.searchUserButton.hidden = YES;
+            [self.titleLabel setText:NSLS(@"kSelectContacts")];
             [editButton setHidden:YES];
+            [self hideBottomButtons];
             break;
         case ControllerTypeShowFriend:
         default:

@@ -221,7 +221,7 @@ NSString* GlobalGetBoardServerURL()
     [GameConfigDataManager createTestConfigData];
     [GameConfigDataManager defaultManager];
     
-    
+//    [DrawBgManager scaleImages];
     if (isDrawApp()) {
         [WordManager defaultManager];
         [DrawBgManager defaultManager];        

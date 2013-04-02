@@ -40,8 +40,6 @@
     box.dataList = [[DrawBgManager defaultManager] pbDrawBgGroupList];
     box.tableView.delegate = box;
     box.tableView.dataSource = box;
-    
-    [box setBackgroundColor:[UIColor clearColor]];
     [box.tableView setBackgroundColor:[UIColor clearColor]];
     
     return box;
@@ -153,7 +151,7 @@
     [[self nameLabel] setText:name];
     NSInteger i = 1;
     for (PBDrawBg *bg in group.drawBgsList) {
-        UIImage *image = [bg localImage];
+        UIImage *image = [bg localThumb];
         UIButton *button = (UIButton *)[self viewWithTag:i];
         if (image) {
             [button setImage:image forState:UIControlStateNormal];
