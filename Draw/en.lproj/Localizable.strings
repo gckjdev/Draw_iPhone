@@ -1208,6 +1208,8 @@
 "kBlackUserMsg" = "Do you want to put this player into black list? He/She can no longer talk to you or draw to you.";
 "kBlackUserTitle" = "Black List";
 
+"kGestureExplain" = "Gestures";
+"kGestureExplainContent" = "Zoom in —— Two-finger kneading out\n\nZoom out —— Two-finger kneading inward\n\nMove —— Two-finger Move\n\nReset —— Two-finger double taps\n\n";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

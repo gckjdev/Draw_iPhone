@@ -182,7 +182,7 @@
 							<object class="IBUIButton" id="747405515">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-2, 3}, {48, 48}}</string>
+								<string key="NSFrame">{{-1, 4}, {46, 46}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="369048015"/>
@@ -208,7 +208,7 @@
 							<object class="IBUIButton" id="369048015">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{42, 4}, {46, 46}}</string>
+								<string key="NSFrame">{{43, 4}, {42, 46}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="756407259"/>
@@ -270,7 +270,7 @@
 							<object class="IBUIButton" id="108570440">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{133, 9}, {37, 37}}</string>
+								<string key="NSFrame">{{136.5, 9.5}, {34, 34}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="74032871"/>
@@ -279,6 +279,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<double key="IBUIContentEdgeInsets.top">5</double>
+								<double key="IBUIContentEdgeInsets.bottom">5</double>
+								<double key="IBUIContentEdgeInsets.left">5</double>
+								<double key="IBUIContentEdgeInsets.right">5</double>
 								<string key="IBUINormalTitle">SP</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
@@ -291,13 +295,17 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_star@2x.png</string>
 								</object>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">draw_tool_button_bg@2x.png</string>
+								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
 							</object>
 							<object class="IBUIButton" id="756407259">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{83, 8}, {42, 38}}</string>
+								<string key="NSFrame">{{84, 10}, {38, 34}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="372386368"/>
@@ -324,7 +332,7 @@
 							<object class="IBUIButton" id="352307443">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{227, 10}, {33, 34}}</string>
+								<string key="NSFrame">{{233, 10}, {33, 34}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="621933239"/>
@@ -355,7 +363,7 @@
 							<object class="IBUIButton" id="74032871">
 								<reference key="NSNextResponder" ref="811778752"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{181, 10}, {33, 34}}</string>
+								<string key="NSFrame">{{184, 10}, {33, 34}}</string>
 								<reference key="NSSuperview" ref="811778752"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="352307443"/>
@@ -627,6 +635,7 @@
 						<string key="NSFrame">{{216, 146}, {95, 22}}</string>
 						<reference key="NSSuperview" ref="68347603"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="397568519"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -5684,7 +5693,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="92.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="93.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="93.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="93.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="94.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="94.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="95.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -5912,6 +5921,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
 			<string key="draw_switch@2x.png">{73, 72}</string>
 			<string key="draw_target@2x.png">{73, 72}</string>
+			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>
 			<string key="draw_width_highlight@2x.png">{67, 34}</string>
