@@ -73,7 +73,7 @@
     //NSString *urlString = [MobClickUtils getStringValueByKey:KEY_TAOBAO_CHARGE_URL defaultValue:nil];
     NSString *urlString = @"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0";
     
-    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:urlString title:NSLS(@"kTaoBaoCharge")];
+    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:urlString title:NSLS(@"kTaoBaoChargeTitle")];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }

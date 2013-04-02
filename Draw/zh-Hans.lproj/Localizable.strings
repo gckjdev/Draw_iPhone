@@ -1152,6 +1152,7 @@
 "kInvisable" = "(不可见)";
 
 "kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
+"kTaoBaoChargeTitle" = "淘宝店充值";
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kEditOpusDesc" = "编辑作品描述";

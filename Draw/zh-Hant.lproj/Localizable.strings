@@ -1139,7 +1139,8 @@
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
 
-"kTaoBaoCharge" = "淘寶充值";
+"kTaoBaoCharge" = "到官方淘寶店充值（支持支付寶）";
+"kTaoBaoChargeTitle" = "淘寶店充值";
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kEditOpusDesc" = "編輯作品描述";
