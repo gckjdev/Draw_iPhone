@@ -1174,7 +1174,12 @@
 
 "kTaoBaoCharge" = "Taobao Charge";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
-
+"kHim" = "him";
+"kHer" = "her";
+"kDetailDrawTo" = "Draw sth.";
+"kDetailFollower" = "Followers";
+"kDetailFollow" = "Follow";
+"kDetailChat" = "Chat";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

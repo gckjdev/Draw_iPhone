@@ -1155,7 +1155,12 @@
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kEditOpusDesc" = "编辑作品描述";
-
+"kHim" = "他";
+"kHer" = "她";
+"kDetailDrawTo" = "画给%@";
+"kDetailFollower" = "关注";
+"kDetailFollow" = "关注%@";
+"kDetailChat" = "搭讪";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

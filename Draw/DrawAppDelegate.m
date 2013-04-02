@@ -226,6 +226,8 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     
+//    [DrawBgManager scaleImages];
+
     if (isDrawApp()) {
         [WordManager defaultManager];
         [DrawBgManager defaultManager];        
