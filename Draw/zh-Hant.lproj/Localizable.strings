@@ -1128,6 +1128,7 @@
 "kZodiacArray" = "白羊座^金牛座^雙子座^巨蟹座^獅子座^處女座^天秤座^天蠍座^射手座^摩羯座^水瓶座^雙魚座";
 
 "kLoadingProgress" = "加載中... (%3.f%%)";
+"kParsingData" = "解析數據中...";
 "kZodiac" = "星座";
 "kBirthday" = "生日";
 "kBloodGroup" = "血型";

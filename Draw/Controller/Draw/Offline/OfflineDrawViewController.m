@@ -391,7 +391,8 @@
                                          userId:[[UserManager defaultManager] userId]
                                        nickName:[[UserManager defaultManager] nickName]
                                            word:_word
-                                       language:languageType];    
+                                       language:languageType
+                                     canvasSize:drawView.bounds.size];
 }
 
 - (void)stopRecovery

@@ -1142,6 +1142,7 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
+"kParsingData" = "Prepare to show...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";
 "kBloodGroup" = "Blood Group";
