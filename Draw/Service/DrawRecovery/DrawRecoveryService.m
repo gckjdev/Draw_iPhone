@@ -19,7 +19,6 @@
 {
     
 }
-@property(nonatomic, assign)CGSize size;
 
 @end
 
@@ -62,9 +61,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
      nickName:(NSString *)nickName
          word:(Word *)word
      language:(NSInteger)language
+   canvasSize:(CGSize)canvasSize
 {
     
-    self.size = CGSizeZero;
+    self.canvasSize = canvasSize;
     
     if (_currentPaint != nil){
         [self stop];
@@ -86,7 +86,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                            word:word
                                                                        language:language];
 
-        PPDebug(@"<start> file name=%@", _currentPaint.dataFilePath);
+        PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);
@@ -154,7 +154,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         
         // clear current paint
         self.currentPaint = nil;
-        self.size = CGSizeZero;
+        self.canvasSize = CGSizeZero;
         
         // delete file
         dispatch_async(workingQueue, ^{

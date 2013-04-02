@@ -36,7 +36,8 @@
         userId:(NSString *)userId
       nickName:(NSString *)nickName
           word:(Word *)word
-      language:(NSInteger)language;
+      language:(NSInteger)language
+   canvasSize:(CGSize)canvasSize;
 
 //- (void)backup:(PBNoCompressDrawData*)drawData;
 - (void)backup:(NSArray*)drawActionList;
