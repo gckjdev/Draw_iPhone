@@ -21,7 +21,7 @@
 @synthesize drawData = _drawData;
 @synthesize wordText = _wordText;
 @synthesize largeImage = _largeImage;
-@synthesize pbDraw = _pbDraw;
+//@synthesize pbDraw = _pbDraw;
 @synthesize deviceType = _deviceType;
 
 - (void)initTimeList:(NSArray *)feedTimesList
@@ -37,8 +37,8 @@
 }
 
 
-
-- (void)initDrawInfo:(NSString *)drawImageUrl drawData:(PBDraw *)drawData
+- (void)initDrawInfo:(NSString *)drawImageUrl data:(NSData*)data
+//- (void)initDrawInfo:(NSString *)drawImageUrl drawData:(PBDraw *)drawData
 {
     self.drawImageUrl = drawImageUrl;
     if ([self.drawImageUrl length] == 0) {
@@ -47,8 +47,13 @@
         //load draw data from local
         self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
         self.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feedId];
+
+        // rem by Benson
+//        self.pbDraw = drawData;
+        self.pbDrawData = data;
         
-        self.pbDraw = drawData;
+        
+        
 //        if (self.drawImage == nil && drawData) {
 //            Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
 //            self.drawData = draw;
@@ -69,12 +74,14 @@
         [self initTimeList:pbFeed.feedTimesList];
 
         if ([pbFeed hasDrawData]) {
-            self.pbDraw = pbFeed.drawData;
+//            self.pbDraw = pbFeed.drawData;
+            self.pbDrawData = [pbFeed.drawData data];
         }
 
         //set draw info
         self.wordText = pbFeed.opusWord;
-        [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
+//        [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
+        [self initDrawInfo:pbFeed.opusImage data:nil];
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;
         self.drawDataUrl = pbFeed.drawDataUrl;
@@ -119,12 +126,25 @@
 
 - (void)parseDrawData
 {
-    if (self.drawData == nil && self.pbDraw != nil) {
+//    if (self.drawData == nil && self.pbDraw != nil) {
+//        PPDebug(@"<parseDrawData> parse DrawData, ready to show.");
+//        Draw* drawData = [[Draw alloc] initWithPBDraw:self.pbDraw];
+//        self.drawData = drawData;
+//        [drawData release];
+//    }
+
+    if (self.drawData == nil && self.pbDrawData != nil) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
         PPDebug(@"<parseDrawData> parse DrawData, ready to show.");
-        Draw* drawData = [[Draw alloc] initWithPBDraw:self.pbDraw];
+        PBDraw* pbDraw = [PBDraw parseFromData:self.pbDrawData];
+        Draw* drawData = [[Draw alloc] initWithPBDraw:pbDraw];
         self.drawData = drawData;
         [drawData release];
+        
+        [pool drain];
     }
+
 }
 
 - (id)initWithFeedId:(NSString *)feedId
@@ -148,7 +168,7 @@
                                            signature:signature];
         self.wordText = wordText;
         [self initTimeList:timesArray];
-        [self initDrawInfo:drawImageUrl drawData:pbDraw];
+        [self initDrawInfo:drawImageUrl data:nil];  // ignore PBDraw here because it's NOT loaded
     }
     return self;
 }
@@ -411,21 +431,22 @@
     return [self localSaveTimes] < self.saveLimit;
 }
 
-- (BOOL)hasDrawActions
-{
-    return [self.pbDraw.drawDataList count] != 0;
-}
+//- (BOOL)hasDrawActions
+//{
+//    return [self.pbDraw.drawDataList count] != 0;
+//}
 
 - (void)dealloc
 {
+    PPRelease(_pbDrawData);
     PPRelease(_drawImage);    
     PPRelease(_drawData);
     PPRelease(_wordText);    
     PPRelease(_drawImageUrl);
     PPRelease(_timesSet);    
     PPRelease(_largeImage);
-    PPRelease(_pbDraw);
     PPRelease(_opusDesc);
+    PPRelease(_feedUser);
     [super dealloc];
 }
 

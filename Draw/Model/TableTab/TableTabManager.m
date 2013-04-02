@@ -11,6 +11,12 @@
 
 @implementation TableTabManager
 
+- (void)dealloc
+{
+    PPRelease(_tabList);
+    [super dealloc];
+}
+
 - (id)initWithTabIDList:(NSArray *)tabIDs
               titleList:(NSArray *)titleList 
          noDataDescList:(NSArray *)noDataList

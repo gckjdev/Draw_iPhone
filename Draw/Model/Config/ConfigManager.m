@@ -860,15 +860,15 @@
 
 + (NSString *)getDianRongBiName
 {
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_NAME" defaultValue:@"电容笔"];
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_NAME" defaultValue:@"维锐魔法师电容笔"];
 }
 + (NSString *)getDianRongBiDesc
 {
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"维锐电容笔，包邮79元，额外3999金币，欢迎来抢购吧！"];
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"];
 }
 + (NSString *)getDianRongBiImageURL
 {
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_ICON_URL" defaultValue:@"http://58.215.160.100:8080/icon/weirui_pen1.jpg"];
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_ICON_URL" defaultValue:@"http://58.215.160.100:8080/icon/weirui_pen1.png"];
 }
 + (NSString *)getDianRongBiTaoBaoURL
 {

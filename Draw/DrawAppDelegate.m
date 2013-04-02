@@ -70,6 +70,7 @@
 #import "BBSService.h"
 #import "DrawBgManager.h"
 #import "GameAdWallService.h"
+#import "GameItemService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -217,11 +218,16 @@ NSString* GlobalGetBoardServerURL()
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
 
+//    [GameConfigDataManager createTestConfigData];
 
-    [GameConfigDataManager createTestConfigData];
+    // load config data
     [GameConfigDataManager defaultManager];
     
+    // load item data
+    [[GameItemService defaultService] syncData:NULL];
     
+//    [DrawBgManager scaleImages];
+
     if (isDrawApp()) {
         [WordManager defaultManager];
         [DrawBgManager defaultManager];        

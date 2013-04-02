@@ -12,11 +12,13 @@
 #import "Draw.pb.h"
 #import "FileUtil.h"
 #import "ConfigManager.h"
-
+#import "UIImageExt.h"
 
 #define DRAW_BG_ZIP_NAME @"draw_bg.zip"
 #define DRAW_BG_VERSION_KEY @"CFDrawBGVersion"
 #define DRAW_BG_META_FILE @"meta.pb"
+#define SUFFIX @".jpg"
+#define THUMB_SUFFIX @"_m.jpg"
 
 @interface DrawBgManager()
 {
@@ -176,11 +178,56 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     [data writeToFile:@"/Users/qqn_pipi/tool/draw_bg/meta.pb" atomically:YES];
 }
 
+
++ (void)scaleImages
+{
+    
+    NSString *dir = @"/Users/qqn_pipi/tool/draw_bg";
+    NSArray *list = [FileUtil fileNameListBelowDir:dir suffix:SUFFIX];
+    
+    for (NSString *name in list) {
+        NSString *path = [dir stringByAppendingPathComponent:name];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        image = [image imageByScalingAndCroppingForSize:CGSizeMake(70, 70)];
+        NSString *temp = [name substringToIndex:[name length] - 4];
+        temp = [NSString stringWithFormat:@"%@_m.jpg",temp];
+        path = [dir stringByAppendingPathComponent:temp];
+        [[image data] writeToFile:path atomically:YES];
+    }
+}
+
 @end
 
 
 
 @implementation PBDrawBg(Ext)
+
+
+
+- (NSString *)localThumbUrl
+{
+
+    NSRange range = [self.localUrl rangeOfString:SUFFIX];
+    if (range.location == NSNotFound) {
+        return nil;
+    }
+    NSString *url = [self.localUrl substringToIndex:range.location];
+    url = [NSString stringWithFormat:@"%@%@",url,THUMB_SUFFIX];
+    return url;
+}
+
+- (UIImage *)localThumb
+{
+    NSString *dir = [[DrawBgManager defaultManager] baseDir];
+    
+    NSString *filePath = [dir stringByAppendingPathComponent:self.localThumbUrl];
+    
+    if (filePath) {
+        return [UIImage imageWithContentsOfFile:filePath];
+    }
+    return nil;
+
+}
 
 - (UIImage *)localImage
 {

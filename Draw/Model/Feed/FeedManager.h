@@ -62,8 +62,10 @@ typedef enum{
 
 //new methods: cache pbdraw after draw version 2.0
 - (void)cachePBDraw:(PBDraw *)pbDraw forFeedId:(NSString *)feedId;
-- (PBDraw *)loadPBDrawWithFeedId:(NSString *)feedId;
+- (void)cachePBDrawData:(NSData *)pbDrawData forFeedId:(NSString *)feedId;
 
+- (PBDraw *)loadPBDrawWithFeedId:(NSString *)feedId;
+- (NSData *)loadPBDrawDataWithFeedId:(NSString *)feedId;
 
 - (void)removeOldCache;
 

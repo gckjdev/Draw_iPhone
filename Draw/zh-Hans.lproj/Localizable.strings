@@ -1184,11 +1184,16 @@
 
 "kInvisable" = "(不可见)";
 
-"kTaoBaoCharge" = "淘宝充值";
-"kQuitTaoBaoTips" = "确定退出淘宝？";
+"kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
+"kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kEditOpusDesc" = "编辑作品描述";
-
+"kHim" = "他";
+"kHer" = "她";
+"kDetailDrawTo" = "画给%@";
+"kDetailFollower" = "关注";
+"kDetailFollow" = "关注%@";
+"kDetailChat" = "搭讪";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

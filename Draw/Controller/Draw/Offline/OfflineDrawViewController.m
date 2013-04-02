@@ -119,7 +119,7 @@
 - (void)initDrawView;
 
 - (void)saveDraft:(BOOL)showResult;
-- (PBDraw *)pbDraw;
+- (PBDraw *)createPBDraw;
 
 @end
 
@@ -551,7 +551,9 @@
         
         
         // Save Image Locally        
-        [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
+        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
+                                                        image:drawView.createImage
+                                                     delegate:self];
 
         if (self.contest) {
             
@@ -599,7 +601,9 @@
     if(dialog.tag == DIALOG_TAG_SUBMIT){
 
         // Save Image Locally
-        [[DrawDataService defaultService] savePaintWithPBDraw:self.pbDraw image:drawView.createImage delegate:self];
+        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
+                                                        image:drawView.createImage
+                                                     delegate:self];
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
@@ -723,7 +727,7 @@
 
 #pragma mark - Draft
 
-- (PBDraw *)pbDraw
+- (PBDraw *)createPBDraw
 {
     UserManager *userManager = [UserManager defaultManager];
     PBDraw *pbDraw = [[DrawDataService defaultService]

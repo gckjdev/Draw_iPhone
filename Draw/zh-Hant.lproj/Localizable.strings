@@ -1173,7 +1173,12 @@
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kEditOpusDesc" = "編輯作品描述";
-
+"kHim" = "他";
+"kHer" = "她";
+"kDetailDrawTo" = "畫給%@";
+"kDetailFollower" = "關注";
+"kDetailFollow" = "關注%@";
+"kDetailChat" = "搭訕";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

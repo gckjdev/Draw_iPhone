@@ -32,6 +32,7 @@ typedef enum{
 
 //Test Code
 + (void)createTestData:(NSUInteger)number;
++ (void)scaleImages;
 
 @end
 
@@ -39,7 +40,8 @@ typedef enum{
 @interface PBDrawBg(Ext)
 
 - (UIImage *)localImage;
-
+- (NSString *)localThumbUrl;
+- (UIImage *)localThumb;
 - (NSURL *)remoteURL;
 
 

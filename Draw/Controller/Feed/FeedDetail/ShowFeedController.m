@@ -80,8 +80,11 @@ typedef enum{
 {
     _drawCell.delegate = nil;
     _userCell.delegate = nil;
+
     _feed.drawData = nil;
-    _feed.pbDraw = nil;
+    _feed.pbDrawData = nil;
+    
+    
     PPRelease(_feed);
     PPRelease(_drawCell);
     PPRelease(_userCell);
@@ -421,7 +424,7 @@ enum{
     [self updateTitle];
     [self updateActionButtons];
     [self.feed setDrawData:nil];
-    [self.feed setPbDraw:nil];
+    [self.feed setPbDrawData:nil];
 }
 
 #pragma mark - feed service delegate
@@ -550,7 +553,7 @@ enum{
     
     [self showProgressViewWithMessage:NSLS(@"kLoading")];
     
-    if(self.feed.pbDraw){
+    if (self.feed.pbDrawData){
         
         [self hideProgressView];
 //        [self hideActivity];
@@ -561,11 +564,11 @@ enum{
     __block ShowFeedController * cp = self;
     [[FeedService defaultService] getPBDrawByFeed:self.feed
                                           handler:
-     ^(int resultCode, PBDraw *pbDraw, DrawFeed *feed, BOOL fromCache)
+     ^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache)
     {
 //        [cp hideActivity];
-        if(resultCode == 0 && pbDraw != nil){
-            cp.feed.pbDraw = pbDraw;
+        if(resultCode == 0 && pbDrawData != nil){
+            cp.feed.pbDrawData = pbDrawData;
             handler();
         }else{
             [cp popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
@@ -599,7 +602,7 @@ enum{
         [replay showInController:cp
                   withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
-                            size:CGSizeFromPBSize(cp.feed.pbDraw.canvasSize)];
+                            size:cp.feed.drawData.canvasSize];
         self.feed.drawData = nil;
     }];
     
@@ -740,7 +743,7 @@ enum{
 {
     if (resultCode == 0) {
         self.feed.timesSet = feed.timesSet;
-        self.feed.pbDraw = feed.pbDraw;
+        self.feed.pbDrawData = feed.pbDrawData;
         self.feed.feedUser = feed.feedUser;
         self.feed.createDate = feed.createDate;
         self.feed.opusDesc = feed.opusDesc;
