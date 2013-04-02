@@ -1144,6 +1144,7 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
+"kParsingData" = "Prepare to show...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";
 "kBloodGroup" = "Blood Group";
@@ -1190,6 +1191,7 @@
 "kEditOpusDesc" = "Opus description";
 
 "kTaoBaoCharge" = "Taobao Charge";
+"kTaoBaoChargeTitle" = "Taobao Charge";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
 "kHim" = "him";
 "kHer" = "her";
@@ -1197,6 +1199,9 @@
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
+"kCustomBg" = "Custom Background";
+"kUpdateBackgroundSucc" = "Update backtround successfully!";
+"kUpdateBackgroundFail" = "Update backtround fail, try later.";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

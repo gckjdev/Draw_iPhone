@@ -533,12 +533,20 @@ enum{
 
 - (void)setProgress:(CGFloat)progress
 {
+    BOOL isDownloadDone = NO;
     if (progress == 1.0f){
         // make this because after uploading data, it takes server sometime to process
         progress = 0.99;
+        isDownloadDone = YES;
     }
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    NSString* progressText = nil;    
+    if (isDownloadDone){
+        progressText = NSLS(@"kParsingData");
+    }
+    else{
+        progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    }
     [self.progressView setLabelText:progressText];
     
     [self.progressView setProgress:progress];

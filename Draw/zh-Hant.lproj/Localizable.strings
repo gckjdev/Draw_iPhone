@@ -1131,6 +1131,7 @@
 "kZodiacArray" = "白羊座^金牛座^雙子座^巨蟹座^獅子座^處女座^天秤座^天蠍座^射手座^摩羯座^水瓶座^雙魚座";
 
 "kLoadingProgress" = "加載中... (%3.f%%)";
+"kParsingData" = "解析數據中...";
 "kZodiac" = "星座";
 "kBirthday" = "生日";
 "kBloodGroup" = "血型";
@@ -1172,7 +1173,8 @@
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
 
-"kTaoBaoCharge" = "淘寶充值";
+"kTaoBaoCharge" = "到官方淘寶店充值（支持支付寶）";
+"kTaoBaoChargeTitle" = "淘寶店充值";
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kEditOpusDesc" = "編輯作品描述";
@@ -1182,6 +1184,9 @@
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
 "kDetailChat" = "搭訕";
+"kCustomBg" = "自定義背景";
+"kUpdateBackgroundSucc" = "更新背景成功!";
+"kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

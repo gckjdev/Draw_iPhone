@@ -136,11 +136,14 @@
     if (self.drawData == nil && self.pbDrawData != nil) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         
-        PPDebug(@"<parseDrawData> parse DrawData, ready to show.");
+        PPDebug(@"<parseDrawData> start to parse DrawData......");
+        int start = time(0);
         PBDraw* pbDraw = [PBDraw parseFromData:self.pbDrawData];
         Draw* drawData = [[Draw alloc] initWithPBDraw:pbDraw];
         self.drawData = drawData;
         [drawData release];
+        int end = time(0);
+        PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);
         
         [pool drain];
     }

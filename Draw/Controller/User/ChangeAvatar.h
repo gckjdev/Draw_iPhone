@@ -14,6 +14,8 @@
 
 @end
 
+typedef void(^DidSelectedImageBlock)(UIImage* image);
+
 @class PPViewController;
 
 @interface ChangeAvatar : NSObject<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -22,9 +24,12 @@
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) BOOL autoRoundRect;
 @property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
 
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showEditImageView:(UIImage*)image
              inController:(PPViewController<ChangeAvatarDelegate>*)superViewController;
+- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock;
 
 @end

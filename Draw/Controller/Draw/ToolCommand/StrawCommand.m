@@ -10,6 +10,15 @@
 
 @implementation StrawCommand
 
+- (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
+{
+    self = [super initWithControl:control itemType:itemType];
+    if (self) {
+        [self.control setSelected:NO];
+    }
+    return self;
+}
+
 - (void)setToolHandler:(ToolHandler *)toolHandler
 {
     [super setToolHandler:toolHandler];
