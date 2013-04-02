@@ -88,7 +88,7 @@
     [detail initSNSButton:self.facebookBtn withType:TYPE_FACEBOOK];
     
     for (int i = 0; i < USER_ACTION_BTN_COUNT; i ++) {
-        UIButton* btn = (UIButton*)[self viewWithTag:(USER_ACTION_BTN_INDEX_OFFSET+i)];
+        UserDetailRoundButton* btn =(UserDetailRoundButton*)[self viewWithTag:(USER_ACTION_BTN_INDEX_OFFSET+i)];
         [detail initUserActionButton:btn atIndex:i];
     }
     
@@ -131,7 +131,7 @@
     return @"UserDetailCell";
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(386, 1274) : CGPointMake(160, 452))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 974) : CGPointMake(160, 452))
 
 #define TAB_FONT    (ISIPAD?24:12)
 
