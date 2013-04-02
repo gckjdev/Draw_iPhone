@@ -31,6 +31,7 @@
 #import "Feed.h"
 #import "UserFeedController.h"
 #import "ShowFeedController.h"
+#import "UIImageView+WebCache.h"
 
 #define    ROW_COUNT 1
 
@@ -70,6 +71,13 @@
     currentTabIndex = DetailTabActionClickOpus;
     // Do any additional setup after loading the view from its nib.
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString* str = [[self.detail getUser] backgroundUrl];
+    [self.backgroundImageView setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:[GameApp background]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,7 +166,13 @@
 
 - (void)didclickBlack
 {
-    [self.detail blackUser:self];
+    __block UserDetailViewController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlackUserTitle") message:NSLS(@"kBlackUserMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [cp.detail blackUser:cp];
+    } clickCancelBlock:^{
+        //
+    }];
+    
 }
 - (void)didclickManage
 {
