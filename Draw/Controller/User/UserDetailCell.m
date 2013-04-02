@@ -316,6 +316,16 @@
     [self.carousel setDrawFeedList:feedList];
 }
 
+- (void)setIsLoadingFeed:(BOOL)isLoading
+{
+    if (isLoading) {
+        [self.carousel showActivity];
+    } else {
+        [self.carousel hideActivity];
+    }
+
+}
+
 #pragma mark - feedCarousel delegate
 - (void)didSelectDrawFeed:(DrawFeed *)drawFeed
 {
@@ -323,5 +333,7 @@
         [_detailDelegate didClickDrawFeed:drawFeed];
     }
 }
+
+
 
 @end
