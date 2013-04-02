@@ -749,7 +749,6 @@ enum{
         self.feed.opusDesc = feed.opusDesc;
         self.feed.feedType = feed.feedType;
         self.feed.drawDataUrl = feed.drawDataUrl;
-        
         if ([feed.drawImageUrl length] != 0) {
             self.feed.drawImageUrl = feed.drawImageUrl;
         }
