@@ -124,6 +124,8 @@
 "kTurnResult" = "本輪結果";
 "kColor" = "顏色";
 "kColorDesc" = "各種顏色組合，為你精心搭配好，使用起來更加得心應手";
+"kColorShop" = "購買顏色";
+
 "kConnectionRecover" = "連接恢復";
 "kConnectionBroken" = "連接中斷";
 "kNoServerAvailable" = "非常抱歉，服務器已經滿了，請稍候再試。";
@@ -811,6 +813,7 @@
 "kCoins" = "金幣";
 "kIngot" = "元寶";
 "kExp" = "經驗";
+"kTaoBaoProductDetail" = "淘寶商品詳情";
 
 "kThrowTomatoMessage" = "你給作者扔了個番茄，讓TA扣了%d點經驗, %d個金幣";
 "kSendFlowerMessage" = "你給作者送了朵鮮花，讓TA額外增加了%d點經驗，%d個金幣";
@@ -1170,7 +1173,8 @@
 "kPrivacyToAll" = "所有人可見";
 "kInvisable" = "(不可見)";
 
-"kTaoBaoCharge" = "淘寶充值";
+"kTaoBaoCharge" = "到官方淘寶店充值（支持支付寶）";
+"kTaoBaoChargeTitle" = "淘寶店充值";
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kEditOpusDesc" = "編輯作品描述";
@@ -1180,7 +1184,15 @@
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
 "kDetailChat" = "搭訕";
+
 "kSelectBGImage" = "選擇背景";
+
+"kCustomBg" = "自定義背景";
+"kUpdateBackgroundSucc" = "更新背景成功!";
+"kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
+"kBlackUserMsg" = "將該玩家列入黑名單之後，他/她將無法看到你的動態，無法給你發消息和畫畫，確定嗎？";
+"kBlackUserTitle" = "黑名單";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -31,6 +31,7 @@
 #import "Feed.h"
 #import "UserFeedController.h"
 #import "ShowFeedController.h"
+#import "UIImageView+WebCache.h"
 
 #define    ROW_COUNT 1
 
@@ -70,6 +71,13 @@
     currentTabIndex = DetailTabActionClickOpus;
     // Do any additional setup after loading the view from its nib.
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSString* str = [[self.detail getUser] backgroundUrl];
+    [self.backgroundImageView setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:[GameApp background]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,7 +166,14 @@
 
 - (void)didclickBlack
 {
-    [self.detail blackUser:self];
+    __block UserDetailViewController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlackUserTitle") message:NSLS(@"kBlackUserMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [cp.detail blackUser:cp];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:self.view];
+    
 }
 - (void)didclickManage
 {
@@ -198,6 +213,7 @@
         {
             if (self.favoriteList.count == 0) {
                 [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+                [[self detailCell] setIsLoadingFeed:YES];
             } else {
                 [[self detailCell] setDrawFeedList:self.favoriteList];
             }
@@ -208,6 +224,7 @@
         {
             if (self.opusList.count == 0) {
                 [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+                [[self detailCell] setIsLoadingFeed:YES];
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
             }
@@ -236,7 +253,7 @@
                   type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
-    [self hideActivity];
+    [[self detailCell] setIsLoadingFeed:NO];
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {

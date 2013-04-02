@@ -168,7 +168,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            image:URL_ITEM_IMAGE(@"purse_item@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:10
-                                        currency:PBGameCurrencyIngot]];
+                                        currency:PBGameCurrencyIngot
+                                defaultSaleCount:1]];
     
     // 正方形画布（大）	
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadLarge
@@ -431,7 +432,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
 
     //write to file
-    NSString *filePath = @"/Users/Linruin/gitdata/shop_item.pb";
+    NSString *filePath = @"/Users/Linruin/gitdata/shop_item_Draw.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
     PPDebug(@"<createTestDataFile> error");
     } else {
@@ -441,6 +442,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [listBuilder release];
 }
 
++ (PBGameItem *)itemWithItemId:(int)itemId
+                          name:(NSString *)name
+                          desc:(NSString *)desc
+                   consumeType:(PBGameItemConsumeType)consumeType
+                         image:(NSString *)image
+                          type:(PBDrawItemType)type
+                         price:(int)price
+                      currency:(PBGameCurrency)currency
+              defaultSaleCount:(int)defaultSaleCount
+{
+    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:0 startDate:0 expireDate:0 defaultSaleCount:defaultSaleCount usageLifeUnit:0 usageLife:0];
+}
 
 + (PBGameItem *)itemWithItemId:(int)itemId
                           name:(NSString *)name

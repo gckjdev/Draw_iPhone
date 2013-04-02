@@ -796,6 +796,8 @@
 
 "kPickToolTitle" = "Use Item";
 
+"kTaoBaoProductDetail" = "TaoBao Product Detail";
+
 "kPrice" = "Price";
 "kCost" = "Cost";
 "kCoins" = "coins";
@@ -1189,6 +1191,7 @@
 "kEditOpusDesc" = "Opus description";
 
 "kTaoBaoCharge" = "Taobao Charge";
+"kTaoBaoChargeTitle" = "Taobao Charge";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
 "kHim" = "him";
 "kHer" = "her";
@@ -1196,7 +1199,15 @@
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
+
 "kSelectBGImage" = "Select Background";
+
+"kCustomBg" = "Custom Background";
+"kUpdateBackgroundSucc" = "Update backtround successfully!";
+"kUpdateBackgroundFail" = "Update backtround fail, try later.";
+"kBlackUserMsg" = "Do you want to put this player into black list? He/She can no longer talk to you or draw to you.";
+"kBlackUserTitle" = "Black List";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

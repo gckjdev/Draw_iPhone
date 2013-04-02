@@ -158,6 +158,7 @@
 {
     [viewController showActivityWithText:NSLS(@"kLoading")];
     [[UserService defaultService] getUserInfo:[self getUserId] resultBlock:^(int resultCode, PBGameUser *user, int relation) {
+        [viewController hideActivity];
         if (resultCode == 0){
 
             self.pbUser = user;

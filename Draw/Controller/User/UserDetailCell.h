@@ -73,5 +73,6 @@
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList;
+- (void)setIsLoadingFeed:(BOOL)isLoading;
 
 @end
