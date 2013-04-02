@@ -122,7 +122,8 @@
 "kSaved" = "保存成功";
 "kFailed" = "失敗";
 "kTurnResult" = "本輪結果";
-"kBuyColor" = "購買顏色";
+"kColor" = "顏色";
+"kColorDesc" = "各種顏色組合，為你精心搭配好，使用起來更加得心應手";
 "kConnectionRecover" = "連接恢復";
 "kConnectionBroken" = "連接中斷";
 "kNoServerAvailable" = "非常抱歉，服務器已經滿了，請稍候再試。";
@@ -711,7 +712,8 @@
 "kDrawToUserNoWordDesc" = "畫了一幅畫給%@。";
 "kHisFriend" = "TA好友";
 
-"kRemoveAd" = "移除廣告";
+"kRemoveAd" = "廣告攔截器";
+
 "kRemoveAdByIAP" = "你只需要購買400個金幣即可直接移除廣告，確認嗎？";
 "kMessage" = "消息";
 "kAdRemoved" = "已移除";
@@ -757,7 +759,6 @@
 
 "kFlower" = "鮮花";
 "kTomato" = "番茄";
-"kRemoveAd" = "移除廣告";
 "kTips" = "錦囊";
 
 "kPen" = "毛筆";
@@ -767,12 +768,41 @@
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
-"kRemoveAdDescription" = "買了它！從此遠離廣告！";
+"kRemoveAdDescription" = "攔截並且不顯示所有廣告";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
 "kIcePenDescription" = "看上去像雪糕的筆，畫起來更加甜蜜";
 "kQuillDescription" = "用鵝毛做的筆，畫起來更加輕便";
 "kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
+
+"kItemTypePurse" = "錢箱";
+"kItemTypePurseDesc" = "包含一萬個金幣的錢箱";
+
+"kItemTypeGrid" = "網格參考線";
+"kItemTypeGridDesc" = "繪畫時候用網格參考線，可對準和對齊繪畫元素";
+
+"kSquareCanvasLarge" = "正方形畫布(大)";
+"kSquareCanvasLargeDesc" = "正方形畫布，尺寸為1024*1024，配合放大功能，可以畫的更加精細，也可以用於創作四格漫畫等";
+
+"kHorizontalCanvasSmall" = "橫版畫布(小)";
+"kHorizontalCanvasSmallDesc" = "橫版畫布，尺寸為700*432，用於畫橫版畫";
+
+"kHorizontalCanvas" = "橫版畫布(中)";
+"kHorizontalCanvasDesc" = "橫版畫布，尺寸為1024*768，用於畫橫版畫，該尺寸同時也是iPad屏幕標準尺寸";
+
+"kHorizontalCanvasLarge" = "橫版畫布(大)";
+"kHorizontalCanvasLargeDesc" = "橫版畫布，尺寸為1136*640，用於畫橫版畫，該尺寸同時也是iPhone5標準尺寸";
+
+"kVerticalCanvasSmall" = "豎版畫布(小)";
+"kVerticalCanvasSmallDesc" = "豎版畫布，尺寸為432*700，用於畫豎版畫";
+
+"kVerticalCanvas" = "豎版畫布(中)";
+"kVerticalCanvasDesc" = "豎版畫布，尺寸為768*1024，用於畫豎版畫，該尺寸同時也是iPad標準尺寸";
+
+"kVerticalCanvasLarge" = "豎版畫布(大)";
+"kVerticalCanvasLargeDesc" = "豎版畫布，尺寸為640*1136，用於畫豎版畫，該尺寸同時也是iPhone5標準尺寸";
+
+"kDrawBackgroundDesc" = "繪畫背景，讓你的畫畫更加生動漂亮";
 
 "kPickToolTitle" = "使用道具";
 
@@ -1468,23 +1498,9 @@
 "kSmoothPen" = "平滑筆";
 "kSmoothPenDescription" = "可以畫出平滑的線，如秀發般柔順";
 
-"kTransverseCanvas" = "橫版畫布";
-"kTransverseCanvasDescription" = "一種橫向的畫布";
-"kVerticalCanvas" = "豎版畫布";
-"kVerticalCanvasDescription" = "一種豎向的畫布";
-"kSquareCanvasLarge" = "正方形畫布(大)";
-"kSquareCanvasLargeDescription" = "一種正方形的大畫布";
-"kTransverseCanvasLarge" = "橫版畫布(大)";
-"kTransverseCanvasLargeDescription" = "一種橫向的大畫布";
-"kVerticalCanvasLarge" = "豎版畫布(大)";
-"kVerticalCanvasLargeDescription" = "一種豎向的大畫布";
-
-"kVeinsBackground" = "紋理背景";
-"kVeinsBackgroundDescription" = "可以為你的畫添加紋理背景";
 "kBasicShape" = "基本形狀";
-"kBasicShapeDescription" = "可以輕易畫出各種基本的形狀";
-"kPurseItem" = "錢袋";
-"kPurseItemDescription" = "可以用元寶購買金幣";
+"kBasicShapeDescription" = "用於繪畫，包含直線、圓形、矩形、五角星、三角形五種基本形狀";
+
 
 "kUpdateTips" = "更新提示";
 "kVersionIsOld" = "版本過低，不能使用該功能，確定立即更新？";
