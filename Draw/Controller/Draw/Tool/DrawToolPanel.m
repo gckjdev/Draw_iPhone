@@ -273,7 +273,7 @@
     command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ColorAlphaItem] autorelease];
+    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];
     [toolCmdManager registerCommand:command];
 
     command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
