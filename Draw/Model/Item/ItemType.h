@@ -9,6 +9,10 @@
 
 typedef enum
 {
+    
+    
+    ItemTypeListEndFlag = -1000,
+    
     ItemTypeTaoBao = -1,
     ItemTypeNo = 0,
     

@@ -10,7 +10,7 @@
 
 @implementation DrawBgCommand
 
-- (UIView *)contentView
+- (DrawBgBox *)contentView
 {
     DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
 //    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
@@ -20,10 +20,11 @@
 - (BOOL)execute
 {
     
-    UIView *view = [self contentView];
+    DrawBgBox *view = [self contentView];
     UIView *spView = [[self.control theViewController] view];
     view.center = spView.center;
-    [spView addSubview:view];
+    [view showInView:spView];
+//    [spView addSubview:view];
     return YES;
 }
 

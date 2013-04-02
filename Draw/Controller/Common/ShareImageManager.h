@@ -256,4 +256,6 @@
 - (UIImage*)selfDetailIngotBtnBg;
 - (UIImage*)selfDetailExpBtnBg;
 
+- (UIImage*)customInfoViewMainBgImage;
+
 @end

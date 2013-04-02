@@ -1104,5 +1104,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"self_detail_exp_btn_bg.png"];
 }
 
+- (UIImage*)customInfoViewMainBgImage;
+{
+    return [[self fixedImageNamed:@"common_dialog_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:60];
+}
+
 @end
 
