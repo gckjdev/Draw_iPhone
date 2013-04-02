@@ -175,7 +175,7 @@ enum {
 
 - (void)updateBackground:(UIImage*)image
 {
-    [self.backgroundImage setImage:image];
+//    [self.backgroundImage setImage:image];
 }
 
 - (void)updateNicknameLabel
@@ -1172,7 +1172,8 @@ enum {
         imageUploader.autoRoundRect = NO;
     }
     [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
-        [uc updateAvatar:image];
+        [uc uploadUserAvatar:image];
+//        [uc updateAvatar:image];
     }];
 }
 
@@ -1328,7 +1329,6 @@ enum {
 
 - (void)didImageSelected:(UIImage *)image
 {
-    hasEdited = YES;
 }
 /*
  
