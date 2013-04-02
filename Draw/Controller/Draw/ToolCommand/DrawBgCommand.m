@@ -10,17 +10,10 @@
 
 @implementation DrawBgCommand
 
-- (DrawBgBox *)contentView
-{
-    DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
-//    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
-    return drawBgBox;
-}
-
 - (BOOL)execute
 {
     
-    DrawBgBox *view = [self contentView];
+    DrawBgBox *view = [DrawBgBox drawBgBoxWithDelegate:self];
     UIView *spView = [[self.control theViewController] view];
     view.center = spView.center;
     [view showInView:spView];
