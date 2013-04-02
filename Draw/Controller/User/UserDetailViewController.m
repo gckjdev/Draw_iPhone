@@ -166,7 +166,13 @@
 
 - (void)didclickBlack
 {
-    [self.detail blackUser:self];
+    __block UserDetailViewController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlackUserTitle") message:NSLS(@"kBlackUserMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [cp.detail blackUser:cp];
+    } clickCancelBlock:^{
+        //
+    }];
+    
 }
 - (void)didclickManage
 {

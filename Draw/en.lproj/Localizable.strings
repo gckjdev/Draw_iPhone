@@ -1200,6 +1200,8 @@
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Update backtround fail, try later.";
+"kBlackUserMsg" = "Do you want to put this player into black list? He/She can no longer talk to you or draw to you.";
+"kBlackUserTitle" = "Black List";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -1199,6 +1199,8 @@
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失败，稍后再试。";
+"kBlackUserMsg" = "将该玩家列入黑名单之后，他/她将无法看到你的动态，无法给你发消息和画画，确定吗？";
+"kBlackUserTitle" = "黑名单";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
