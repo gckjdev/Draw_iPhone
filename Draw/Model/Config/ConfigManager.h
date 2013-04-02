@@ -234,4 +234,5 @@ typedef enum{
 + (NSString *)getDianRongBiImageURL;
 + (NSString *)getDianRongBiTaoBaoURL;
 
++ (int)getCoinsIngotRate;
 @end
