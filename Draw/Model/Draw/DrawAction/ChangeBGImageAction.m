@@ -86,7 +86,7 @@
 {
     CGSize cSize = rect.size;
     //if the size scale is the same, and canvas size is not large than the bg size
-    if (abs(size.width * cSize.height - cSize.width * size.height) < 2  && cSize.width <= (size.width + 1)) {
+    if (abs(size.width * cSize.height - cSize.width * size.height) < 2) {
         return rect;
     }else{
         //return the mid rect, the size

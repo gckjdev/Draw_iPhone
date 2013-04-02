@@ -34,45 +34,37 @@ typedef enum
     ColorAlphaItem = 1102,
     PaintPlayerItem = 1103,
     ColorStrawItem = 1104,
-    PurseItem = 1105,               //钱袋
     
     ItemTypeGrid = 1106,
     
+    ItemTypePurse = 1105,            
     
-    TransverseCanvas = 1150,        //横版画布
-    VerticalCanvas = 1151,          //竖版画布
-    SquareCanvasLarge = 1152,       //正方形画布(大)
-    TransverseCanvasLarge = 1153,   //横版画布(大)
-    VerticalCanvasLarge = 1154,     //竖版画布(大)
+    DrawBackgroundStart = 1200,
+    DrawBackground1,                
+    DrawBackground2,
+    DrawBackground3,
+    DrawBackground4,
+    DrawBackground5,
+    DrawBackground6,
+    DrawBackground7,
+    DrawBackground8,
+    DrawBackground9,
     
-    VeinsBackground = 1200,         //纹理背景
-    WatercolorBackground,           //水彩背景
-    RoundBackground,                //圆形
-    RectangleBackground,            //方形
+    ///////////////
+    BasicShape = 1300,
     
-    
-    
-    
-    BasicShape = 1300,              //基本形状
-
-    
-    CanvasRectStart = 1400,              //画布尺寸
-
-    CanvasRectiPhoneDefault,
-    CanvasRectiPadDefault,
-    CanvasRectiPadHorizontal,
-    CanvasRectiPadVertical,
-    CanvasRectiPadLarge,
-    CanvasRectiPadScreenHorizontal,
-    CanvasRectiPadScreenVertical,
-    CanvasRectiPhone5Horizontal,
-    CanvasRectiPhone5Vertical,
-    
-
-    
+    CanvasRectStart = 1400,         
+    CanvasRectiPhoneDefault,            // 300 * 300
+    CanvasRectiPadDefault,              // 700 * 700
+    CanvasRectiPadHorizontal,           // 700 * 432
+    CanvasRectiPadVertical,             // 432 * 700
+    CanvasRectiPadLarge,                // 1024 * 1024
+    CanvasRectiPadScreenHorizontal,     // 1024 * 768
+    CanvasRectiPadScreenVertical,       // 768 * 1024
+    CanvasRectiPhone5Horizontal,        // 1136 * 640
+    CanvasRectiPhone5Vertical,          // 640 * 1136
     
     //Liar dice.
-//    ItemTypeChangeDice = 2000,
     ItemTypeRollAgain = 2001,
     ItemTypeCut = 2002,
     ItemTypePeek = 2003,
@@ -99,9 +91,6 @@ typedef enum
     ItemTypeCustomDiceGreenDiamondDice = 2510,
     ItemTypeCustomDicePurpleDiamondDice = 2511,
     ItemTypeCustomDiceEnd = 2512
-    
-    
-    
 }ItemType;
 
 

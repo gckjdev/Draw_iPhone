@@ -39,6 +39,8 @@ typedef enum  {
     
     SuperUserCharge = 400,
     
+    ChargeAsAGift = 420
+    
 }BalanceSourceType;
 
 @interface UserAccount : NSObject

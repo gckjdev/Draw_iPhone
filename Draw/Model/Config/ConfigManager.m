@@ -864,7 +864,7 @@
 }
 + (NSString *)getDianRongBiDesc
 {
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"知名品牌，原装正品，包邮79元，全网最低价格，额外赠送3999猜猜画画金币"];
+    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"];
 }
 + (NSString *)getDianRongBiImageURL
 {
@@ -874,5 +874,11 @@
 {
     return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_TAOBAO_URL" defaultValue:@"http://a.m.taobao.com/i17538377874.htm"];
 }
+
++ (int)getCoinsIngotRate
+{
+    return  [MobClickUtils getIntValueByKey:@"COINS_INGOT_RATE" defaultValue:1000];
+}
+
 
 @end

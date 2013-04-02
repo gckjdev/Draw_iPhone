@@ -108,7 +108,11 @@
         CGFloat y = self.startPoint.y;
         rect = CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
     }else{
-        rect = CGRectWithPoints(self.startPoint, self.endPoint);
+        if ([self isKindOfClass:[BeelineShape class]]) {
+            rect = CGRectWithPointsAndWidth(self.startPoint, self.endPoint, self.width);
+        }else{
+            rect = CGRectWithPoints(self.startPoint, self.endPoint);
+        }
     }
     if(CGRectEqualToRect(CGRectZero, _redrawRect)){
         _redrawRect = rect;

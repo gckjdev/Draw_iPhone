@@ -402,6 +402,15 @@ CGRect CGRectWithPoints(CGPoint p1, CGPoint p2)
     CGFloat height = ABS(p1.y - p2.y);
     return CGRectMake(x, y, width, height);
 }
+CGRect CGRectWithPointsAndWidth(CGPoint p1, CGPoint p2, CGFloat width)
+{
+    
+    CGFloat x = MIN(p1.x, p2.x) - width / 2;
+    CGFloat y = MIN(p1.y, p2.y) - width / 2;
+    width = ABS(p1.x - p2.x) + width;
+    CGFloat height = ABS(p1.y - p2.y) + width;
+    return CGRectMake(x, y, width, height);
+}
 
 CGSize CGSizeFromPBSize(PBSize *size)
 {

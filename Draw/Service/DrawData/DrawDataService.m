@@ -23,6 +23,7 @@
 #import "ConfigManager.h"
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
+#import "DrawFeed.h"
 
 static DrawDataService* _defaultDrawDataService = nil;
 
@@ -286,6 +287,31 @@ static DrawDataService* _defaultDrawDataService = nil;
 
 }
 
+- (void)savePaintWithPBDraw:(DrawFeed*)feed
+                 pbDrawData:(NSData*)pbDrawData
+                      image:(UIImage*)image
+                   delegate:(id<DrawDataServiceDelegate>)delegate;
+{
+    if ([pbDrawData length] == 0){
+        PPDebug(@"<savePaintWithPBDraw>data is nil.");
+        return;        
+    }
+    else if (image == nil){
+        PPDebug(@"<savePaintWithPBDraw>image is nil.");
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
+                                                                   pbDrawData:pbDrawData
+                                                                         feed:feed];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+                [delegate didSaveOpus:result];
+            }
+        });
+    });
+}
 
 
 - (void)savePaintWithPBDraw:(PBDraw*)pbDraw
@@ -302,7 +328,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     dispatch_async(workingQueue, ^{
         BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
-                                                                   pbDrawData:pbDraw];
+                                                                   pbDraw:pbDraw];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
                 [delegate didSaveOpus:result];
