@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "LocaleUtils.h"
 #import "CustomInfoView.h"
+#import "UserGameItemManager.h"
 
 @interface DrawBgBox()
 {
@@ -187,13 +188,17 @@
     return defaultName;
 }
 
-- (void)updateNameWithNameList:(NSArray *)list
+- (void)updateName:(PBDrawBgGroup *)group
 {
+    NSArray *list = group.nameList;
     NSString *name = nil;
     if ([LocaleUtils isChinese]) {
         name = [self nameInList:list language:@"zh_Hans"];
     }else{
         name = [self nameInList:list language:@"en"];
+    }
+    if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
+        name = [NSString stringWithFormat:@"%@ [%@]", name, NSLS(@"kHasBought")];
     }
     [[self nameLabel] setText:name];
 }
@@ -202,7 +207,7 @@
 {
     self.group = group;
     NSInteger i = 1;
-    [self updateNameWithNameList:group.nameList];
+    [self updateName:group];
     for (PBDrawBg *bg in group.drawBgsList) {
         UIImage *image = [bg localThumb];
         UIButton *button = (UIButton *)[self viewWithTag:i];
