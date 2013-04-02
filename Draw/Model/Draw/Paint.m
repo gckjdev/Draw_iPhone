@@ -241,11 +241,15 @@
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
 {
     if ([self.pointNodeList count] != 0) {
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        
         NSMutableArray *pointXList = nil;
         NSMutableArray *pointYList = nil;
         [self createPointXList:&pointXList pointYList:&pointYList];
         [builder addAllPointsX:pointXList];
         [builder addAllPointsY:pointYList];
+        
+        [pool drain];
     }
     [builder setBetterColor:[self.color toBetterCompressColor]];
     [builder setPenType:self.penType];
