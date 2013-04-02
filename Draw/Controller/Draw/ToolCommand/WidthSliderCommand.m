@@ -40,19 +40,54 @@
 
 
 
+#define WIDTH_VIEW_TAG 100
+#define LABEL_TAG 101
+
+#define SIZE [WidthView width]
+
+- (void)updateValue:(CGFloat)value withContentView:(UIView *)contentView
+{
+    WidthView *width = (WidthView *)[contentView viewWithTag:WIDTH_VIEW_TAG];
+    [width setWidth:value];
+    
+    UILabel *label = (UILabel *)[contentView viewWithTag:LABEL_TAG];
+    NSString *text = [NSString stringWithFormat:@"%.0f",value];
+    [label setText:text];
+}
+
+- (UIView *)sliderContentViewWithValue:(CGFloat)value
+{
+
+    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SIZE, SIZE * 2)];
+    WidthView *width = [WidthView viewWithWidth:value];
+    width.tag = WIDTH_VIEW_TAG;
+    [width setSelected:YES];    
+    [content addSubview:width];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SIZE, SIZE, SIZE)];
+    label.tag = LABEL_TAG;
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [content addSubview:label];
+    
+    [self updateValue:value withContentView:content];
+    
+    return [content autorelease];
+}
 
 - (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value
 {
-    WidthView *widthView = (WidthView *)drawSlider.contentView;
-    [widthView setWidth:value];
+//    WidthView *widthView = (WidthView *)drawSlider.contentView;
+//    [widthView setWidth:value];
+    [self updateValue:value withContentView:drawSlider.contentView];
 
 }
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     [[self superScrollView] setClipsToBounds:NO];
-    WidthView *width = [WidthView viewWithWidth:value];
-    [drawSlider popupWithContenView:width];
-    [width setSelected:YES];
+//    WidthView *width = [WidthView viewWithWidth:value];
+    [drawSlider popupWithContenView:[self sliderContentViewWithValue:value]];
+
 }
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
 {
