@@ -245,8 +245,9 @@
         case DetailTabActionClickFavouriate:
         {
             if (self.favoriteList.count == 0) {
-                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
                 [[self detailCell] setIsLoadingFeed:YES];
+                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+                
             } else {
                 [[self detailCell] setDrawFeedList:self.favoriteList];
             }
@@ -256,8 +257,9 @@
         case DetailTabActionClickOpus:
         {
             if (self.opusList.count == 0) {
-                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
                 [[self detailCell] setIsLoadingFeed:YES];
+                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+                
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
             }
