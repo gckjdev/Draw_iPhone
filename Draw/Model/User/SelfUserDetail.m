@@ -342,15 +342,4 @@
     }];
 }
 
-- (void)clickBackground:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
-{
-    if (_changeAvatar == nil) {
-        _changeAvatar = [[ChangeAvatar alloc] init];
-        _changeAvatar.autoRoundRect = NO;
-    }
-    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
-        EXECUTE_BLOCK(aBlock, image);
-    }];
-}
-
 @end

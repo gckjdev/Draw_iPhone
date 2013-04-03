@@ -48,8 +48,5 @@
 - (void)clickAvatar:(PPTableViewController*)viewController
      didSelectBlock:(void(^)(UIImage* image))aBlock;
 
-- (void)clickBackground:(PPTableViewController*)viewController
-     didSelectBlock:(void(^)(UIImage* image))aBlock;
-
 @property (assign, nonatomic) RelationType relation;
 @end
