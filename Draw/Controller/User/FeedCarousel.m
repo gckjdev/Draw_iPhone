@@ -11,7 +11,7 @@
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
 
-#define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 288.0f, 288.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
+#define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 240.0f, 240.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
 
 #define SCROLL_SPEED 0.1 //items per second, can be negative or fractional
 

@@ -134,7 +134,7 @@
     return @"UserDetailCell";
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 924) : CGPointMake(160, 452))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 915) : CGPointMake(160, 455))
 
 #define TAB_FONT    (ISIPAD?24:12)
 
