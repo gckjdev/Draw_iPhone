@@ -346,5 +346,12 @@
     }];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (self.maxInputLen > 0 && range.location >= self.maxInputLen)
+        return NO; // return NO to not change text
+    return YES;
+}
+
 
 @end

@@ -881,5 +881,13 @@
     return  [MobClickUtils getIntValueByKey:@"COINS_INGOT_RATE" defaultValue:1000];
 }
 
++ (int)getSignatureMaxLen
+{
+    return  [MobClickUtils getIntValueByKey:@"SIGNATURE_MAX_LEN" defaultValue:600];
+}
++ (int)getNicknameMaxLen
+{
+    return  [MobClickUtils getIntValueByKey:@"NICKNAME_MAX_LEN" defaultValue:60];
+}
 
 @end
