@@ -130,6 +130,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:20
                                         currency:PBGameCurrencyCoin]];
     
+    // 番茄
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTomato
+                                            name:@"kTomato"
+                                            desc:@"kTomatoDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:URL_ITEM_IMAGE(@"tomato@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
+    
     // 锦囊
     [mutableArray addObject:[self itemWithItemId:ItemTypeTips
                                             name:@"kTips"

@@ -757,7 +757,7 @@
 "kWaterPen" = "Mike Pen";
 
 "kFlowerDescription" = "Whenever you see awesome draws, send some flowers to the author!";
-"kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!";
+"kTomatoDescription" = "Whenever you see bad draws, throw some tomatoes to the author!only can be used in online game.";
 "kRemoveAdDescription" = "Buy it and remove all the advertisements!";
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
 "kBrushPenDescription" = "Mao pen from ancient China...";
