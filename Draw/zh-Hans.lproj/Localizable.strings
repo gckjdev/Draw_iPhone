@@ -868,7 +868,7 @@
 "kNotEnoughCoin" = "金币不足";
 "kNotEnoughCoinOrItem" = "道具和金币都不够了，充充值吧";
 
-"kParsingData" = "解析数据中...";
+"kParsingData" = "解析数据中，请耐心等待...";
 
 "kLatestFeed" = "最新";
 
@@ -1201,11 +1201,18 @@
 "kDetailFollower" = "关注";
 "kDetailFollow" = "关注%@";
 "kDetailChat" = "搭讪";
+
+"kSelectBGImage" = "选择背景";
+
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失败，稍后再试。";
 "kBlackUserMsg" = "将该玩家列入黑名单之后，他/她将无法看到你的动态，无法给你发消息和画画，确定吗？";
 "kBlackUserTitle" = "黑名单";
+
+"kGestureExplain" = "手势说明";
+"kGestureExplainContent" = "放大 —— 双指捏合向外\n\n缩小 —— 双指捏合向内\n\n移动 —— 双指移动\n\n还原 —— 双指双击\n\n";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

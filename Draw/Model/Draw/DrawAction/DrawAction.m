@@ -18,6 +18,11 @@
 
 @implementation DrawAction
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action
 {
     switch (action.type) {

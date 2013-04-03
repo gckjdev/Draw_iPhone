@@ -277,8 +277,6 @@ enum {
 {
     self.navigationController.navigationBarHidden = YES;
     [super viewDidAppear:animated];
-    NSString* str = [_pbUserBuilder  backgroundUrl];
-    [self.backgroundImage setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:[GameApp background]]];
 }
 
 - (void)viewDidUnload

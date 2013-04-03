@@ -8,22 +8,32 @@
 
 #import "DrawBgCommand.h"
 
+@interface DrawBgCommand()
+{
+    
+}
+
+@property(nonatomic, retain)DrawBgBox *box;
+
+@end
+
 @implementation DrawBgCommand
 
-- (UIView *)contentView
+- (void)dealloc
 {
-    DrawBgBox *drawBgBox = [DrawBgBox drawBgBoxWithDelegate:self];
-//    [drawBgBox updateViewsWithSelectedBgId:self.toolHandler.drawBG.bgId];
-    return drawBgBox;
+    PPRelease(_box);
+    [super dealloc];
 }
 
 - (BOOL)execute
 {
     
-    UIView *view = [self contentView];
+    DrawBgBox *view = [DrawBgBox drawBgBoxWithDelegate:self];
     UIView *spView = [[self.control theViewController] view];
     view.center = spView.center;
-    [spView addSubview:view];
+    [view showInView:spView];
+    self.box = view;
+//    [spView addSubview:view];
     return YES;
 }
 
@@ -32,14 +42,13 @@
     if ([self canUseItem:groupId]) {
         [self.toolHandler changeDrawBG:drawBg];
         [drawBgBox dismiss];
-    }else{
-
+        self.box = nil;
     }
 }
 
 - (void)buyItemSuccessfully:(ItemType)type
 {
-    
+    [self.box reloadView];
 }
 
 -(void)sendAnalyticsReport{
