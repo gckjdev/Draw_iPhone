@@ -781,7 +781,7 @@ typedef enum{
            atIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSString* genderString = gender?@"m":@"f";
+//    NSString* genderString = gender?@"m":@"f";
 //    MyFriend *friend = [MyFriend friendWithFid:userId
 //                                      nickName:nickName
 //                                        avatar:nil

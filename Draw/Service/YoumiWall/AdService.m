@@ -63,7 +63,7 @@ static AdService* _defaultService;
 {
     self = [super init];
 
-    [self initWappuAdSDK];
+//    [self initWappuAdSDK];
     
      _isShowAd = ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
     
@@ -345,7 +345,7 @@ static AdService* _defaultService;
         return NO;
     }
 
-    return _isShowAd;
+    return ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
 }
 
 - (UIView*)createMangoAdInView:(UIView*)superView
