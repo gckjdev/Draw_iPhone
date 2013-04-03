@@ -172,7 +172,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
             }
             
-            [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:0];            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
         }
     };
     
