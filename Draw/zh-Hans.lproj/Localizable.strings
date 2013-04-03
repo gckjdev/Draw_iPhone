@@ -1208,11 +1208,15 @@
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失败，稍后再试。";
 "kBlackUserMsg" = "将该玩家列入黑名单之后，他/她将无法看到你的动态，无法给你发消息和画画，确定吗？";
+"kUnblackUserMsg" = "需要将该玩家从黑名单中移除吗?";
 "kBlackUserTitle" = "黑名单";
 
 "kGestureExplain" = "手势说明";
 "kGestureExplainContent" = "放大 —— 双指捏合向外\n\n缩小 —— 双指捏合向内\n\n移动 —— 双指移动\n\n还原 —— 双指双击\n\n";
+
 "kImageNull" = "生成图片失败，请重试。";
+"kHisOpus" = "TA的作品";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
