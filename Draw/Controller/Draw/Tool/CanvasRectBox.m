@@ -10,8 +10,17 @@
 #import "UIViewUtils.h"
 #import "CanvasRect.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UserGameItemManager.h"
+#import "ItemType.h"
 
 #pragma mark-- CanvasRectView
+
+typedef enum {
+    CanvasRectViewTypeUnbuy = 0,
+    CanvasRectViewTypeBought,
+    CanvasRectViewTypeSelected,
+    
+}CanvasRectViewType;
 
 @interface CanvasRectView : UIControl
 {
@@ -19,7 +28,7 @@
 }
 @property(nonatomic, retain)UILabel *title;
 @property(nonatomic, assign)CGRect rect;
-
+@property(nonatomic, assign)CanvasRectViewType type;
 
 - (id)initWithCanvasRect:(CGRect)rect;
 + (CGFloat)width;
@@ -84,6 +93,14 @@
         [self.scrollView addSubview:view];
         view.tag = *list;
         [view addTarget:self action:@selector(clickCanvasRectView:) forControlEvents:UIControlEventTouchUpInside];
+        ItemType type = [CanvasRect itemTypeFromCanvasRectStyle:*list];
+        
+        if ([[UserGameItemManager defaultManager] hasItem:type]) {
+            [view setType:CanvasRectViewTypeBought];
+        }else{
+            [view setType:CanvasRectViewTypeUnbuy];
+        }
+        
         list ++; index ++;
     }
     contentHeight += CONTENT_HEIGHT_OFFSET;
@@ -100,9 +117,9 @@
 
 - (void)setSelectedRect:(CanvasRectStyle)style
 {
-    [_currentRectView setSelected:NO];
+    [_currentRectView setType:CanvasRectViewTypeBought];
     _currentRectView = (CanvasRectView *)[self.scrollView viewWithTag:style];
-    [_currentRectView setSelected:YES];
+    [_currentRectView setType:CanvasRectViewTypeSelected];
 }
 
 
@@ -143,17 +160,33 @@
     [super dealloc];
 }
 
-- (void)setSelected:(BOOL)selected
+- (void)setType:(CanvasRectViewType)type
 {
-    [super setSelected:selected];
-    if (selected) {
-        [self.title setTextColor:[UIColor redColor]];
-        [self.title.layer setBorderColor:[UIColor redColor].CGColor];        
-    }else{
-        [self.title setTextColor:[UIColor blackColor]];
-        [self.title.layer setBorderColor:[UIColor redColor].CGColor];                
+    _type = type;
+    UIColor *color = nil;
+    switch (type) {
+        case CanvasRectViewTypeBought:
+        {
+            color = [UIColor greenColor];
+            break;
+        }
+        case CanvasRectViewTypeSelected:
+        {
+            color = [UIColor redColor];
+            break;
+        }
+        case CanvasRectViewTypeUnbuy:
+        default:
+        {
+            color = [UIColor grayColor];
+            break;
+        }
     }
+    [self.title setTextColor:color];
+    [self.title.layer setBorderColor:color.CGColor];
+    
 }
+
 
 - (CGFloat)scale:(NSInteger)value
 {
@@ -190,6 +223,11 @@
     return rect;
 }
 
+
+- (void)updateColor
+{
+    
+}
 
 
 - (id)initWithCanvasRect:(CGRect)rect

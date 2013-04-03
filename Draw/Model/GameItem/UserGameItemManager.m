@@ -10,6 +10,23 @@
 #import "SynthesizeSingleton.h"
 #import "NSDate+TKCategory.h"
 #import "GameItemManager.h"
+#import "ItemType.h"
+
+
+
+static int *getDefaultItemTypeList()
+{
+    static int list[] = {
+        ItemTypeNo,
+        Pencil,
+        Eraser,
+        CanvasRectiPadDefault,
+        CanvasRectiPhoneDefault,
+        ItemTypeListEndFlag
+    };
+    
+    return list;
+}
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -92,8 +109,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return NO;
 }
 
+- (BOOL)isDefaultItem:(int)itemType
+{
+    int *list = getDefaultItemTypeList();
+    while (list != NULL && *list != ItemTypeListEndFlag) {
+        if (*list == itemType) {
+            return YES;
+        }
+        list ++;
+    }
+    return NO;
+}
+
 - (BOOL)hasItem:(int)itemId
 {
+    if ([self isDefaultItem:itemId]) {
+        return YES;
+    }
+    
     if (![self hasEnoughItem:itemId amount:1]) {
         return NO;
     }

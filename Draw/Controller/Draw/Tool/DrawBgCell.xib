@@ -197,7 +197,7 @@
 					<object class="IBUILabel" id="986890701">
 						<reference key="NSNextResponder" ref="917909913"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 4}, {77, 21}}</string>
+						<string key="NSFrame">{{0, 4}, {149, 21}}</string>
 						<reference key="NSSuperview" ref="917909913"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="57474994"/>
@@ -209,7 +209,10 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">纹理</string>
-						<nil key="IBUITextColor"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4yNDMxMzcyNTQ5IDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">

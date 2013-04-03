@@ -16,8 +16,9 @@
 #import "UIImageUtil.h"
 
 @interface CustomInfoView()
-@property (retain, nonatomic) UIView *infoView;
 @property (retain, nonatomic) UIActivityIndicatorView *indicator;
+@property (assign, nonatomic) CloseHandler closeHandler;
+
 @end
 
 
@@ -47,6 +48,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_titleLabel release];
     [_closeButton release];
     RELEASE_BLOCK(_actionBlock);
+    RELEASE_BLOCK(_closeHandler);
+    [_mainBgImageView release];
     [super dealloc];
 }
 
@@ -74,18 +77,36 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView
+         closeHandler:(CloseHandler)closeHandler
+{
+    return [self createWithTitle:title infoView:infoView hasCloseButton:YES closeHandler:closeHandler buttonTitles:nil];
+}
+
++ (id)createWithTitle:(NSString *)title
+             infoView:(UIView *)infoView
        hasCloseButton:(BOOL)hasCloseButton
+         buttonTitles:(NSArray *)buttonTitles
+{
+    return [self createWithTitle:title infoView:infoView hasCloseButton:hasCloseButton closeHandler:NULL buttonTitles:buttonTitles];
+}
+
++ (id)createWithTitle:(NSString *)title
+             infoView:(UIView *)infoView
+       hasCloseButton:(BOOL)hasCloseButton
+         closeHandler:(CloseHandler)closeHandler
          buttonTitles:(NSArray *)buttonTitles
 {
     CustomInfoView *view = [self createView];
         
     view.infoView = infoView;
+    COPY_BLOCK(view.closeHandler, closeHandler);
     
     // set mainView size
     CGFloat width = SPACE_HORIZONTAL + infoView.frame.size.width + SPACE_HORIZONTAL;
     CGFloat height = TITLE_HEIGHT + SPACE_VERTICAL + infoView.frame.size.height + SPACE_VERTICAL;
     [view.mainView updateWidth:width];
     [view.mainView updateHeight:height];
+    [view.mainBgImageView setImage:[[ShareImageManager defaultManager] customInfoViewMainBgImage]];
     
     // set title
     view.titleLabel.text = title;
@@ -141,7 +162,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [view.mainView addSubview:button2];
     }
     
-    [view.mainView updateCenterY:(view.center.y - 10)];
+    PPDebug(@"center = %f, %f", view.center.x, view.center.y);
+    view.mainView.center = view.center;
     
     return view;
 }
@@ -201,6 +223,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 - (void)showInView:(UIView *)view
 {
     [view addSubview:self];
+
     [self.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:(self.superview.frame.size.height*1.5) to:(self.superview.frame.size.height*0.5) duration:0.3] forKey:@""];
 }
 
@@ -242,6 +265,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (IBAction)clickCloseButton:(id)sender {
     [self dismiss];
+    EXECUTE_BLOCK(_closeHandler);
 }
 
 @end

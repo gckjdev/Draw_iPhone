@@ -36,7 +36,8 @@ didSelectedDrawBg:(PBDrawBg *)drawBg
 
 + (id)drawBgBoxWithDelegate:(id<DrawBgBoxDelegate>)delegate;
 - (void)dismiss;
-
+- (void)showInView:(UIView *)view;
+- (void)reloadView;
 @end
 
 
