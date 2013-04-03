@@ -988,9 +988,12 @@
     }
     
     if (targetType == TypeGraffiti) {
-        if (delegate && [delegate respondsToSelector:@selector(didController:submitActionList:drawImage:)]) {
+        if (delegate && [delegate respondsToSelector:@selector(didController:submitActionList:canvasSize:drawImage:)]) {
             UIImage *image = [drawView createImage];
-            [delegate didController:self submitActionList:drawView.drawActionList drawImage:image];
+            [delegate didController:self
+                   submitActionList:drawView.drawActionList
+                         canvasSize:drawView.bounds.size
+                          drawImage:image];
         }
     }else {
         if(self.contest){
