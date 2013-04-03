@@ -104,7 +104,8 @@ typedef enum{
                drawActionList:(NSArray *)drawActionList
                     drawImage:(UIImage *)drawImage
                         bonus:(NSInteger)bonus
-                     delegate:(id<BBSServiceDelegate>)delegate;
+                     delegate:(id<BBSServiceDelegate>)delegate
+                   canvasSize:(CGSize)size;
 
 - (void)getBBSPostListWithBoardId:(NSString *)boardId
                         targetUid:(NSString *)targetUid
@@ -127,7 +128,8 @@ typedef enum{
                          image:(UIImage *)image
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
-                      delegate:(id<BBSServiceDelegate>)delegate;
+                      delegate:(id<BBSServiceDelegate>)delegate
+                    canvasSize:(CGSize)size;
 
 //- (void)createActionWithPost:(PBBBSPost *)post
 //                sourceAction:(PBBBSAction *)action

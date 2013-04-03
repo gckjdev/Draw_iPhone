@@ -753,17 +753,8 @@ enum{
          fromCache:(BOOL)fromCache
 {
     if (resultCode == 0) {
+        feed.largeImage = self.feed.largeImage;
         self.feed = feed;
-//        self.feed.timesSet = feed.timesSet;
-//        self.feed.pbDrawData = feed.pbDrawData;
-//        self.feed.feedUser = feed.feedUser;
-//        self.feed.createDate = feed.createDate;
-//        self.feed.opusDesc = feed.opusDesc;
-//        self.feed.feedType = feed.feedType;
-//        self.feed.drawDataUrl = feed.drawDataUrl;
-//        if ([feed.drawImageUrl length] != 0) {
-//            self.feed.drawImageUrl = feed.drawImageUrl;
-//        }
         [self.dataTableView reloadData];
     }else{
         PPDebug(@"<didGetFeed> Failed!!!");

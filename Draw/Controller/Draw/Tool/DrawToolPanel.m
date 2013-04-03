@@ -290,6 +290,10 @@
 
     command = [[[UndoCommand alloc] initWithControl:self.undo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
+    
+    command = [[[ChatCommand alloc] initWithControl:self.chat itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
 
     [toolCmdManager updateHandler:self.toolHandler];
     [toolCmdManager updatePanel:self];
@@ -351,8 +355,9 @@
 
 - (void)setPanelForOnline:(BOOL)isOnline
 {
-//    self.redo.hidden = self.undo.hidden = isOnline;
     self.timeSet.hidden = self.chat.hidden = !isOnline;
+    
+    //TODO Exchage some button frame
     
     CGRect frame = self.scrollView.frame;
     PPDebug(@"ScrollView frame = %@", NSStringFromCGRect(frame));

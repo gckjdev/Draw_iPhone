@@ -80,7 +80,6 @@
 - (void)updateImage:(UIImage *)image
 {
     [self.drawImage setImage:image];
-//    [self scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeWidth];
 }
 
 - (void)setViewInfo:(DrawFeed *)feed
@@ -90,62 +89,35 @@
         return;
     }
     self.feed = feed;
-    if(feed.drawImage){
-        [self updateImage:feed.drawImage];
-//        [self.drawImage setImage:feed.drawImage];
-    }else if(feed.largeImage){
-        [self updateImage:feed.largeImage];
-//        [self.drawImage setImage:feed.largeImage];
-    }
-    else if ([feed.drawImageUrl length] != 0) {
+   if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
-        UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
 
-        [self.drawImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                self.drawImage.alpha = 0;
-                [UIView animateWithDuration:1 animations:^{
-                    self.drawImage.alpha = 1.0;
-                }];
-            }
-         [self updateImage:image];
+        UIImage *defaultImage = nil;
+       
+        if(feed.largeImage){
+            defaultImage = feed.largeImage;
+        }
+        else{
+            defaultImage = [[ShareImageManager defaultManager] unloadBg];
+        }
+        [self.drawImage setImageWithURL:url
+                       placeholderImage:defaultImage
+                                success:^(UIImage *image, BOOL cached) {
+            self.drawImage.alpha = 0;
+            [UIView animateWithDuration:1 animations:^{
+                self.drawImage.alpha = 1.0;
+            }];
+            feed.largeImage = image;
+            [self updateImage:image];
         } failure:^(NSError *error) {
             self.drawImage.alpha = 1;
         }];
     }else{
-        PPDebug(@"<setViewInfo> show draw view. feedId=%@,word=%@", 
+        PPDebug(@"<setViewInfo> Old Opus, no image to show. feedId=%@,word=%@", 
                 feed.feedId,feed.wordText);
-        
-        ShowDrawView *showView = [ShowDrawView showView];
-        showView.center = self.drawImage.center;
-        [showView resetFrameSize:self.drawImage.frame.size];        
-        [feed parseDrawData];   // can be removed, old legacy
-        [showView setDrawActionList:feed.drawData.drawActionList];
-        [self insertSubview:showView aboveSubview:self.drawImage];
-
-        [showView show];
-        
-        UIImage *image = [showView createImage];
-        
-        //if the server has no image data update the server data
-        //remove by Benson 2013-03-31
-//        if (ISIPAD) {
-//            [[FeedService defaultService] updateOpus:feed.feedId image:image];
-//        }
-        
-//        [self.drawImage setImage:image];
-        
-        [self updateImage:image];
-
-        feed.drawImage = image;
-        self.drawImage.hidden = NO;
-        
-        showView.drawActionList = nil;
-        [showView removeFromSuperview];
-        showView = nil;
-        //save image.
-        [[FeedManager defaultManager] saveFeed:feed.feedId largeImage:image];
+        [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
     }
+    
     feed.drawData = nil;
     feed.pbDrawData = nil;
     

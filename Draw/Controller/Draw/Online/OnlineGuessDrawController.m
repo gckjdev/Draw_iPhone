@@ -520,6 +520,14 @@
     [paint release];
 }
 
+// new draw action delegate methods, add by Benson 2013-04-02
+- (void)didReceiveDrawActionData:(PBDrawAction*)drawAction
+                 isSetCanvasSize:(BOOL)isSetCanvasSize
+                      canvasSize:(CGSize)canvasSize
+{
+    // TODO display draw action here
+}
+
 - (void)didReceiveRedrawResponse:(GameMessage *)message
 {
     DrawAction *action = [[[CleanAction alloc] init] autorelease];

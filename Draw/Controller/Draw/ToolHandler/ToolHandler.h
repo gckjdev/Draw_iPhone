@@ -64,6 +64,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)useGid:(BOOL)flag;
 - (void)handleRedo;
 - (void)handleUndo;
+- (void)handleChat;
 
 - (TouchActionType)setTouchActionType:(TouchActionType)type;
 - (TouchActionType)touchActionType;

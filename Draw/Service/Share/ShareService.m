@@ -40,7 +40,7 @@ static ShareService* _defaultService;
                isDrawByMe:(BOOL)isDrawByMe 
                  drawWord:(NSString*)drawWord
 {
-    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:snsType];
+//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:snsType];
     NSArray* wordArray = [[WordManager defaultManager] randDrawWordList];
     NSMutableArray* array2 = [NSMutableArray arrayWithArray:wordArray];
     [array2 insertObject:[Word wordWithText:drawWord level:0] atIndex:(rand()%3)];

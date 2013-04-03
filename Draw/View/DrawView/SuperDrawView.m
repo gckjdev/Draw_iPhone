@@ -132,6 +132,10 @@
 
 }
 
+- (void)changeRect:(CGRect)rect
+{
+    
+}
 
 //- (void)setScale:(CGFloat)scale
 //{

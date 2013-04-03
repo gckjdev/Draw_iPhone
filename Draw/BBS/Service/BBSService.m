@@ -195,7 +195,7 @@ BBSService *_staticBBSService;
     return post;
 }
 
-+ (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList
++ (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList canvasSize:(CGSize)size;
 {
     PBBBSDraw *bbsDraw = nil;
     NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
@@ -207,7 +207,7 @@ BBSService *_staticBBSService;
         PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
         [builder addAllDrawActionList:pbDrawActionList];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setCanvasSize:CGSizeToPBSize([CanvasRect defaultRect].size)];
+        [builder setCanvasSize:CGSizeToPBSize(size)];
         bbsDraw = [builder build];
         [builder release];
     }
@@ -349,6 +349,7 @@ BBSService *_staticBBSService;
                     drawImage:(UIImage *)drawImage
                         bonus:(NSInteger)bonus
                      delegate:(id<BBSServiceDelegate>)delegate
+                   canvasSize:(CGSize)size
 {
 
         BBSPostContentType type = ContentTypeText;
@@ -358,7 +359,7 @@ BBSService *_staticBBSService;
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
-            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList];
+            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
             drawData = [bbsDraw data];
         }
         
@@ -586,6 +587,7 @@ BBSService *_staticBBSService;
                 drawActionList:(NSArray *)drawActionList
                      drawImage:(UIImage *)drawImage
                       delegate:(id<BBSServiceDelegate>)delegate
+                    canvasSize:(CGSize)size
 {
         NSInteger resultCode = ERROR_SUCCESS;
         BBSPostContentType contentType = ContentTypeNo;
@@ -602,7 +604,7 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeImage;
             }else if (drawImage) {
                 contentType = ContentTypeDraw;
-                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList];
+                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
                 drawData = [bbsDraw data];
             }else{
                 contentType = ContentTypeText;

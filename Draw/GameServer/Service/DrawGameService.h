@@ -17,6 +17,12 @@
 
 // draw actions
 - (void)didReceiveDrawData:(GameMessage *)message;
+
+// new draw action delegate methods, add by Benson 2013-04-02
+- (void)didReceiveDrawActionData:(PBDrawAction*)drawAction
+                 isSetCanvasSize:(BOOL)isSetCanvasSize
+                      canvasSize:(CGSize)canvasSize;
+
 //- (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel;
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language;
 //- (void)didReceiveGuessWord:(NSString*)wordText guessUserId:(NSString*)guessUserId guessCorrect:(BOOL)guessCorrect;
@@ -77,7 +83,7 @@
     NSMutableArray *_gameObserverList;
     
     NSString                        *_gameId;
-    NSMutableArray                  *_roomList;
+    NSMutableArray                  *_roomList;    
 }
 
 //@property (nonatomic, retain) NSString* userId;
@@ -100,6 +106,7 @@
 //@property (nonatomic, retain) NSMutableArray *drawActionList;
 @property (nonatomic, retain) NSString* serverAddress;
 @property (nonatomic, assign) int serverPort;
+@property (nonatomic, assign) CGSize canvasSize;
 
 @property (nonatomic, assign) int onlineUserCount;
 
@@ -116,6 +123,8 @@
                                    width:(float)width           
                                  penType:(int)penType;
 
+- (void)sendDrawAction:(PBDrawAction*)drawAction
+            canvasSize:(PBSize*)canvasSize;
 
 - (void)cleanDraw;
 - (void)startGame;

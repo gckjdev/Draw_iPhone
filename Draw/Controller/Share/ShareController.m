@@ -261,6 +261,7 @@ typedef enum{
 }
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray*)drawActionList
+           canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
     WXMediaMessage *message = [WXMediaMessage message];

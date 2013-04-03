@@ -34,6 +34,7 @@
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller;
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray*)drawActionList
+           canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage;
 
 @end

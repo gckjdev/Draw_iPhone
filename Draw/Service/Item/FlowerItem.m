@@ -101,21 +101,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         }
 
     }else{
-        int rankResult = RANK_FLOWER;
         
-        if (!isFree) {
-            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
-                if (resultCode == ERROR_SUCCESS) {
-                    [[DrawGameService defaultService] rankGameResult:rankResult];
-                    EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
-                    [bself.blockArray releaseBlock:tempHandler];
-                }
-            }];
-        }else{
-            [[DrawGameService defaultService] rankGameResult:rankResult];
-            EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
-            [bself.blockArray releaseBlock:tempHandler];
-        }
+        // free for online play game
+        int rankResult = RANK_FLOWER;
+        [[DrawGameService defaultService] rankGameResult:rankResult];
+        EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+        [bself.blockArray releaseBlock:tempHandler];
+        
+//        if (!isFree) {
+//            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+//                if (resultCode == ERROR_SUCCESS) {
+//                    [[DrawGameService defaultService] rankGameResult:rankResult];
+//                    EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
+//                    [bself.blockArray releaseBlock:tempHandler];
+//                }
+//            }];
+//        }else{
+//        }
     }
 }
 
