@@ -450,9 +450,10 @@ static DrawGameService* _defaultService;
         PPDebug(@"<handleSendDrawDataRequest>");
 
         PBDrawAction* drawAction = [[message sendDrawDataRequest] drawAction];
-        PBSize* drawSize = [[message sendDrawDataRequest] canvasSize];
-        BOOL isSetCanvasSize = NO;
-        if (drawSize != nil){
+
+        BOOL isSetCanvasSize = [[message sendDrawDataRequest] hasCanvasSize];
+        if (isSetCanvasSize){
+            PBSize* drawSize = [[message sendDrawDataRequest] canvasSize];            
             CGSize size = CGSizeFromPBSize(drawSize);
             if (CGSizeEqualToSize(size, CGSizeZero) == NO){
                 PPDebug(@"<handleSendDrawDataRequest> set canvas size to %@", NSStringFromCGSize(size));

@@ -834,7 +834,6 @@
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
-//    [self.view addSubview:holder];
     [self.view insertSubview:holder atIndex:4];
 }
 

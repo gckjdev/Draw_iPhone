@@ -51,6 +51,13 @@
 @synthesize penType = _penType;
 
 
+- (void)callbackFinishDelegateWithAction:(DrawAction *)action
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
+        [self.delegate drawView:self didFinishDrawAction:action];
+    }
+}
+
 - (void)synBGColor
 {
     NSInteger count = [self.drawActionList count];
@@ -91,6 +98,7 @@
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
+    [self callbackFinishDelegateWithAction:changBackAction];
     return changBackAction;
 }
 - (ChangeBGImageAction *)changeBGImageWithDrawBG:(PBDrawBg *)drawBg
@@ -102,7 +110,7 @@
     [self drawDrawAction:changBG show:YES];
                                     
     self.bgColor = [DrawColor whiteColor];
-    
+    [self callbackFinishDelegateWithAction:changBG];
     return changBG;
 }
 
@@ -134,7 +142,7 @@
         [self.delegate drawView:self didStartTouchWithAction:nil];
     }
     
-    PPDebug(@"=========<touchesBegan>======= touch count = %d",[touches count]);
+//    PPDebug(@"=========<touchesBegan>======= touch count = %d",[touches count]);
     
     if (self.currentTouch == nil) {
         
@@ -187,9 +195,8 @@
         
         [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:state];
         
-        if (drawAction && self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
-            [self.delegate drawView:self didFinishDrawAction:drawAction];
-        }
+        [self callbackFinishDelegateWithAction:drawAction];
+        
         PPDebug(@"RESET touch handler and current touch");
         self.touchHandler = nil;
         self.currentTouch = nil;
@@ -198,14 +205,14 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    PPDebug(@"**********<touchesEND>********** touch count = %d",[touches count]);    
+//    PPDebug(@"**********<touchesEND>********** touch count = %d",[touches count]);    
     [self finishTouches:touches withTouchState:TouchStateEnd];
 }
 
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    PPDebug(@"#########<touchesCancel>######### touch count = %d",[touches count]);
+//    PPDebug(@"#########<touchesCancel>######### touch count = %d",[touches count]);
     [self finishTouches:touches withTouchState:TouchStateCancel];
 }
 
