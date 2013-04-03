@@ -142,6 +142,35 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [self sendSimpleMessage:GameCommandTypeStartGameRequest userId:userId sessionId:sessionId];    
 }
 
+- (void)sendDrawActionRequest:(NSString*)userId
+                    sessionId:(long)sessionId
+                   drawAction:(PBDrawAction*)drawAction
+                   canvasSize:(PBSize)canvasSize
+{
+    SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
+//    [requestBuilder setColor:color];
+//    [requestBuilder addAllPoints:pointList];
+//    [requestBuilder setWidth:width];
+//    [requestBuilder setPenType:penType];
+
+    if (drawAction != nil){
+        [requestBuilder setDrawAction:drawAction];
+    }
+    
+    if (canvasSize != nil){
+        [requestBuilder setCanvasSize:canvasSize];
+    }
+    
+    GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
+    [messageBuilder setCommand:GameCommandTypeSendDrawDataRequest];
+    [messageBuilder setMessageId:[self generateMessageId]];
+    [messageBuilder setUserId:userId];
+    [messageBuilder setSessionId:sessionId];
+    [messageBuilder setSendDrawDataRequest:[requestBuilder build]];
+    
+    GameMessage* gameMessage = [messageBuilder build];
+    [self sendData:[gameMessage data]];
+}
 
 - (void)sendDrawDataRequest:(NSString*)userId 
                   sessionId:(long)sessionId 

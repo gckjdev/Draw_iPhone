@@ -22,6 +22,7 @@
 #import "ConfigManager.h"
 #import "LevelService.h"
 #import "PaintAction.h"
+#import "DrawUtils.h"
 
 @implementation DrawGameService
 
@@ -441,6 +442,36 @@ static DrawGameService* _defaultService;
     });
 }
 
+- (void)handleSendDrawDataRequest:(GameMessage*)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // Update Game Session Data
+        PPDebug(@"<handleSendDrawDataRequest>");
+
+        PBDrawAction* drawAction = [[message sendDrawDataRequest] drawAction];
+        PBSize* drawSize = [[message sendDrawDataRequest] canvasSize];
+        BOOL isSetCanvasSize = NO;
+        if (drawSize != nil){
+            CGSize size = CGSizeFromPBSize(drawSize);
+            if (CGSizeEqualToSize(size, CGSizeZero) == NO){
+                PPDebug(@"<handleSendDrawDataRequest> set canvas size to %@", NSStringFromCGSize(size));
+                self.canvasSize = size;
+                isSetCanvasSize = YES;
+            }
+            else{
+                PPDebug(@"<handleSendDrawDataRequest> receive canvas size zero");
+            }
+        }
+        
+        if ([_showDelegate respondsToSelector:@selector(didReceiveDrawActionData:isSetCanvasSize:canvasSize:)]) {
+            [_showDelegate didReceiveDrawActionData:drawAction
+                                    isSetCanvasSize:isSetCanvasSize
+                                         canvasSize:self.canvasSize];
+        }
+    });
+}
+
 - (void)handleNewDrawDataNotification:(GameMessage*)message
 {
     dispatch_async(dispatch_get_main_queue(), ^{         
@@ -637,6 +668,10 @@ static DrawGameService* _defaultService;
             [self handleCreateRoomResponse:message];
             break;
             
+        case GameCommandTypeSendDrawDataRequest:
+            [self handleSendDrawDataRequest:message];
+            break;
+            
 //        case GameCommandTypeJoinGameResponse:
 //            [self handleJoinGameResponse:message];
 //            break;
@@ -805,6 +840,21 @@ static DrawGameService* _defaultService;
     [self scheduleKeepAliveTimer];
     
     
+}
+
+- (void)sendDrawAction:(PBDrawAction*)drawAction
+            canvasSize:(PBSize)canvasSize
+{
+    PPDebug(@"<sendDrawAction> canvasSize=(%d, %d)", canvasSize.width, canvasSize.height);
+    [_networkClient sendDrawActionRequest:[self userId]
+                              sessionId:[_session sessionId]
+                             drawAction:drawAction
+                             canvasSize:canvasSize];
+//    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList penType:penType];
+//    [self saveDrawActionType:DrawActionTypePaint paint:paint];
+//    [paint release];
+    
+    [self scheduleKeepAliveTimer];
 }
 
 - (void)cleanDraw
