@@ -118,8 +118,8 @@
 #define WORD_BASE_X (([DeviceDetection isIPAD])? 26 : 5)
 //#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : 390)
 //#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : 425)
-#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : ([DeviceDetection screenSize].height - 90))
-#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : ([DeviceDetection screenSize].height - 55))
+#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : (CGRectGetHeight(self.view.frame) - 90 + 20))
+#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : (CGRectGetHeight(self.view.frame) - 55 + 20))
 
 #define WORD_SPACE_X (([DeviceDetection isIPAD])? 22 : 4)
 
@@ -346,8 +346,8 @@
     
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        button.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin;
+
+        button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
 
         
         [button setTag:i];
@@ -394,11 +394,17 @@
         }else{
             [self setButton:button title:title enabled:YES];
         }
+        [self.view bringSubviewToFront:button];
+        PPDebug(@"<updateCandidateViewsWithText> superView = %@, title = %@, frame = %@, hide = %d",button.superview, title, NSStringFromCGRect(button.frame), button.isHidden);
+        
     }
     for (; tag <= CANDIDATE_END_TAG; ++ tag) {
         UIButton *button = (UIButton *)[self.view viewWithTag:tag];
         [self setButton:button title:nil enabled:NO];
         button.hidden = YES;
+
+        PPDebug(@"<updateCandidateViewsWithText> title = %@, frame = %@, hide = %d",[button titleForState:UIControlStateNormal], NSStringFromCGRect(button.frame), button.isHidden);
+        
     }
 }
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang
