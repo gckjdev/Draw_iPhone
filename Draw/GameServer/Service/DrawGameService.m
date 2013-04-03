@@ -843,7 +843,7 @@ static DrawGameService* _defaultService;
 }
 
 - (void)sendDrawAction:(PBDrawAction*)drawAction
-            canvasSize:(PBSize)canvasSize
+            canvasSize:(PBSize*)canvasSize
 {
     PPDebug(@"<sendDrawAction> canvasSize=(%d, %d)", canvasSize.width, canvasSize.height);
     [_networkClient sendDrawActionRequest:[self userId]
