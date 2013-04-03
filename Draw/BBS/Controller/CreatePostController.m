@@ -53,7 +53,7 @@
 @property(nonatomic, retain) NSString *postId;
 @property(nonatomic, retain) NSString *postUid;
 @property(nonatomic, retain) NSString *postText;
-
+@property(nonatomic, assign) CGSize canvasSize;
 
 
 @end
@@ -325,7 +325,8 @@
                                                       image:self.image
                                              drawActionList:self.drawActionList
                                                   drawImage:self.drawImage
-                                                   delegate:self];
+                                                   delegate:self
+                                                 canvasSize:self.canvasSize];
         
     }else{
         [[BBSService defaultService] createPostWithBoardId:_bbsBoard.boardId
@@ -334,7 +335,8 @@
                                             drawActionList:self.drawActionList
                                                  drawImage:self.drawImage
                                                      bonus:self.bonus
-                                                  delegate:self];
+                                                  delegate:self
+                                                canvasSize:self.canvasSize];
     }
 
 }
@@ -557,12 +559,14 @@
 
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray *)drawActionList
+           canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
     self.image = nil;
     self.drawImage = drawImage;
     self.drawActionList = drawActionList;
+    self.canvasSize = size;
     [self updateToolButtons];
 }
 /*

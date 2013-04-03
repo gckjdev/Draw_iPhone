@@ -481,7 +481,7 @@
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
 }
-- (void)sendDrawMessage:(NSMutableArray *)drawActionList
+- (void)sendDrawMessage:(NSMutableArray *)drawActionList canvasSize:(CGSize)size
 {
     // load new message to avoid missing new message while staying in send message mode
     [self loadNewMessage:NO];
@@ -490,7 +490,7 @@
     [self constructMessage:message];
     [message setMessageType:MessageTypeDraw];
     [message setDrawActionList:drawActionList];
-    [message setCanvasSize:[CanvasRect defaultRect].size];
+    [message setCanvasSize:size];
     [[ChatService defaultService] sendMessage:message delegate:self];    
     [self.messageList addObject:message];
     [self.dataTableView reloadData];
@@ -505,10 +505,11 @@
 }
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray *)drawActionList
+           canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [self sendDrawMessage:drawActionList];
+    [self sendDrawMessage:drawActionList canvasSize:size];
     [self tableViewScrollToBottom];
 }
 
@@ -594,7 +595,7 @@
     ReplayView *replayView = [ReplayView createReplayView];
     NSMutableArray *actionList = [message drawActionList];
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
-    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion];
+    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion size:message.canvasSize];
 }
 - (void)clickMessage:(PPMessage *)message 
   withDrawActionList:(NSArray *)drawActionList

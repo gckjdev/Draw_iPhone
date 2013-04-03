@@ -436,6 +436,16 @@
     PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
 }
 
+- (void)changeRect:(CGRect)rect
+{
+    self.transform = CGAffineTransformIdentity;
+    self.bounds = rect;
+    self.frame = rect;
+    PPRelease(osManager);
+    osManager = [[OffscreenManager showViewOffscreenManagerWithRect:rect] retain];
+    [(DrawHolderView *)self.superview updateContentScale];
+    [self setNeedsDisplay];
+}
 @end
 
 
