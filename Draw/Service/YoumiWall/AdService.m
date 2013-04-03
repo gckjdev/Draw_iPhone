@@ -576,12 +576,13 @@ static AdService* _defaultService;
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd
 {        
-    PPDebug(@"<createAdView>");
     
     if ([self isShowAd] == NO){
+        PPDebug(@"<createAdView> but ad is disabled");
         return nil;
     }
     
+    PPDebug(@"<createAdView>");
     return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
 
     if ([self isShowWanpuAd] == YES){
