@@ -73,13 +73,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    NSString* str = [[self.detail getUser] backgroundUrl];
-    [self.backgroundImageView setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:[GameApp background]]];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -139,8 +132,48 @@
 
 - (void)didClickAvatar
 {
-    [self.detail clickAvatar:self];
+    __block UserDetailViewController* uc = self;
+    [self.detail clickAvatar:self didSelectBlock:^(UIImage *image) {
+        [uc uploadUserAvatar:image];
+    }];
 }
+
+- (void)didClickCustomBackground
+{
+    __block UserDetailViewController* uc = self;
+    [self.detail clickAvatar:self didSelectBlock:^(UIImage *image) {
+        [uc uploadCustomBg:image];
+    }];
+}
+
+- (void)uploadCustomBg:(UIImage*)image
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[UserService defaultService] uploadUserBackground:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
+        [self hideActivity];
+        if (resultCode == 0 && [imageRemoteURL length] > 0){
+            [[UserManager defaultManager] setBackground:imageRemoteURL];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundSucc") delayTime:1.5];
+            [self.detail loadUser:self];
+            [[self detailCell].customBackgroundImageView setImage:image];
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundFail") delayTime:1.5];
+        }
+    }];
+}
+
+
+//- (void)didClickCustomBackground{
+//    __block UserDetailViewController* uc = self;
+//    if (_changeAvatar == nil) {
+//        _changeAvatar = [[ChangeAvatar alloc] init];
+//        _changeAvatar.autoRoundRect = NO;
+//    }
+//    [_changeAvatar showSelectionView:self selectedImageBlock:^(UIImage *image) {
+//        [uc uploadCustomBg:image];
+//    }];
+//}
 
 - (void)uploadUserAvatar:(UIImage*)image
 {
@@ -161,7 +194,7 @@
 // ChangeAvatar Delegate
 - (void)didImageSelected:(UIImage *)image
 {
-    [self uploadUserAvatar:image];
+//    [self uploadUserAvatar:image];
 }
 
 - (void)didclickBlack

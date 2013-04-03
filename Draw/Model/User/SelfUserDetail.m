@@ -30,7 +30,6 @@
 
 @property (nonatomic, retain) PPTableViewController* superViewController;
 
-
 @end
 
 @implementation SelfUserDetail
@@ -332,13 +331,15 @@
     [viewController.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)clickAvatar:(PPTableViewController <ChangeAvatarDelegate>*)viewController
+- (void)clickAvatar:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
     if (_changeAvatar == nil) {
         _changeAvatar = [[ChangeAvatar alloc] init];
         _changeAvatar.autoRoundRect = NO;
     }
-    [_changeAvatar showSelectionView:viewController];
+    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
+        EXECUTE_BLOCK(aBlock, image);
+    }];
 }
 
 @end

@@ -29,6 +29,7 @@
 - (void)didClickChatButton;
 - (void)didClickDrawToButton;
 - (void)didClickAvatar;
+- (void)didClickCustomBackground;
 - (void)didclickBlack;
 - (void)didclickManage;
 
@@ -42,6 +43,7 @@
 @end
 
 @interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
+@property (retain, nonatomic) IBOutlet UIControl *customBackgroundControl;
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
 @property (retain, nonatomic) IBOutlet UILabel *followCountLabel;
@@ -53,6 +55,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *birthLabel;
 @property (retain, nonatomic) IBOutlet UILabel *zodiacLabel;
 @property (retain, nonatomic) IBOutlet UILabel *bloodTypeLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *customBackgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
 @property (retain, nonatomic) IBOutlet CommonRoundAvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIView *basicDetailView;

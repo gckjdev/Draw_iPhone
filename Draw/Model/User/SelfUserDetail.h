@@ -23,4 +23,5 @@ typedef enum {
 
 @property (assign, nonatomic) RelationType relation;
 
+
 @end

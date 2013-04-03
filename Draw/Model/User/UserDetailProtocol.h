@@ -10,6 +10,7 @@
 #import "GameBasic.pb.h"
 #import "MyFriend.h"
 
+
 @class UserDetailRoundButton;
 @class PPTableViewController;
 
@@ -44,7 +45,8 @@
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 
-- (void)clickAvatar:(PPTableViewController*)viewController;
+- (void)clickAvatar:(PPTableViewController*)viewController
+     didSelectBlock:(void(^)(UIImage* image))aBlock;
 
 @property (assign, nonatomic) RelationType relation;
 @end
