@@ -82,6 +82,7 @@
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
+    PPRelease(_drawToolPanel);
     [_wordLabelBGView release];
     [super dealloc];
 }
@@ -115,7 +116,8 @@
     self.toolHandler.drawView = drawView;
     self.toolHandler.controller = self;
     
-    self.drawToolPanel = [DrawToolPanel createViewWithdelegate:self];
+    self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
+    
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
