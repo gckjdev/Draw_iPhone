@@ -461,11 +461,14 @@ enum{
         return;
     }
     if ((itemId == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (itemId == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[self.useItemScene unavailableItemMessage] delayTime:1.5 isHappy:YES];
+        UseItemScene * sence = self.useItemScene;
+        
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[sence unavailableItemMessage] delayTime:1.5 isHappy:YES];
         return;
     }
 
-    BOOL isFree = [_useItemScene isItemFree:itemId];
+//    BOOL isFree = [_useItemScene isItemFree:itemId];
+    BOOL isFree = [_feed isContestFeed];
     BOOL itemEnough = YES;
     
     
