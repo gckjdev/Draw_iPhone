@@ -343,6 +343,7 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
     CGColorSpaceRef colorSpace =  CGColorSpaceCreateDeviceRGB();
+
     CGContextRef context = CGBitmapContextCreate(
                                                  NULL,
                                                  width,
@@ -351,6 +352,17 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
                                                  width * 4,
                                                  colorSpace,
                                                  kCGImageAlphaPremultipliedLast);
+//    if (context == NULL) {
+//        context = CGBitmapContextCreate(
+//                                                 NULL,
+//                                                 width,
+//                                                 height,
+//                                                 8, // 每个通道8位
+//                                                 width * 4,
+//                                                 colorSpace,
+//                                                 kCGImageAlphaNoneSkipLast);
+//        
+//    }
     CGColorSpaceRelease(colorSpace);
     return context;
 

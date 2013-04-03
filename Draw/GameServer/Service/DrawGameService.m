@@ -219,7 +219,6 @@ static DrawGameService* _defaultService;
     PPDebug(@"<DrawGameService>save an action:%d", aType);
 //    [self.drawActionList addObject:action];
     [self.session addDrawAction:action];
-    [action release];
 }
 
 - (void)clearHistoryUser

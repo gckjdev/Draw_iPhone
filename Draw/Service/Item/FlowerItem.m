@@ -41,7 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
 {
     int awardAmount = 0;
     int awardExp = 0;
-    NSString* targetUserId = nil;
+//    NSString* targetUserId = nil;
     
     
     NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
@@ -56,7 +56,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     if (isOffline) {
 
         // prepare data for consumeItem request
-        targetUserId = toUserId;
+//        targetUserId = toUserId;
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
