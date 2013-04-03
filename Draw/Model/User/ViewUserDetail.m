@@ -185,15 +185,17 @@
                 if ([MyFriend hasBlack:[vd relation]]) {
                     [vd setRelation:([vd relation] - RelationTypeBlack)];
                 }
+                [viewController.dataTableView reloadData];
             }];
-            [viewController.dataTableView reloadData];
+            
         } else {
             
             [[FriendService defaultService] blackFriend:[self getUserId] successBlock:^{
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
                 [vd setRelation:RelationTypeBlack];
+                [viewController.dataTableView reloadData];
             }];
-            [viewController.dataTableView reloadData];
+            
         }
         
     } clickCancelBlock:^{
