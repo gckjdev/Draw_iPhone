@@ -124,7 +124,7 @@
                                  penType:(int)penType;
 
 - (void)sendDrawAction:(PBDrawAction*)drawAction
-            canvasSize:(PBSize)canvasSize;
+            canvasSize:(PBSize*)canvasSize;
 
 - (void)cleanDraw;
 - (void)startGame;
