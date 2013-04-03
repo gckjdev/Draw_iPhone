@@ -60,7 +60,7 @@
 //- (void)drawPaint:(Paint *)paint show:(BOOL)show;
 
 - (void)resetTransform;
-
+- (void)changeRect:(CGRect)rect;
 @end
 
 

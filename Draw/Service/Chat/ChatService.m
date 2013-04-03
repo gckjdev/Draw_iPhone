@@ -162,13 +162,14 @@ static ChatService *_chatService = nil;
             {
                 drawActionList = [(DrawMessage *)message drawActionList];
                 if (drawActionList != nil) {
+                    
                     PBDraw *draw = [[DrawDataService defaultService] buildPBDraw:nil 
                                                                     nick:nil 
                                                                   avatar:nil
                                                           drawActionList:drawActionList
                                                                 drawWord:nil 
                                                                 language:ChineseType
-                                                                    size:[CanvasRect defaultRect].size
+                                                                    size:[(DrawMessage *)message canvasSize]
                                                                     isCompressed:YES];
                     data = [draw data];
                 }

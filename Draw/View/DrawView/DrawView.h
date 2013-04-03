@@ -72,8 +72,6 @@ typedef enum{
 - (void)showDraft:(MyPaint *)draft;
 - (void)clearRedoStack;
 
-- (void)changeRect:(CGRect)rect;
-
 - (NSInteger)totalActionCount;
 - (NSInteger)actionCount;
 
