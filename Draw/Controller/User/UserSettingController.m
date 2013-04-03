@@ -868,14 +868,14 @@ enum {
 - (void)askSetBirthday
 {
     __block UserSettingController* bc = self;
-    NSString* defaultDateStr = [_pbUserBuilder hasBirthday]?_pbUserBuilder.birthday:@"19900615";
+    NSString* defaultDateStr = [_pbUserBuilder hasBirthday]?_pbUserBuilder.birthday:@"1990-06-15";
     GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
-                                                          defaultDate:dateFromStringByFormat(defaultDateStr, @"yyyyMMdd")
+                                                          defaultDate:dateFromStringByFormat(defaultDateStr, @"yyyy-MM-dd")
                                                           finishBlock:^(NSDate *date) {
                                                               
                                                               if (date != nil){
                                                                   
-                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyyMMdd")];
+                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyy-MM-dd")];
                                                                   
                                                                   hasEdited = YES;
                                                               }
