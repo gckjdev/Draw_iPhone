@@ -145,7 +145,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
 - (void)sendDrawActionRequest:(NSString*)userId
                     sessionId:(long)sessionId
                    drawAction:(PBDrawAction*)drawAction
-                   canvasSize:(PBSize)canvasSize
+                   canvasSize:(PBSize*)canvasSize
 {
     SendDrawDataRequest_Builder *requestBuilder = [[[SendDrawDataRequest_Builder alloc] init] autorelease];
 //    [requestBuilder setColor:color];

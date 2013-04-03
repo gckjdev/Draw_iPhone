@@ -51,7 +51,7 @@
 - (void)sendDrawActionRequest:(NSString*)userId
                     sessionId:(long)sessionId
                    drawAction:(PBDrawAction*)drawAction
-                   canvasSize:(PBSize)canvasSize;
+                   canvasSize:(PBSize*)canvasSize;
 
 - (void)sendCleanDraw:(NSString*)userId 
             sessionId:(long)sessionId;
