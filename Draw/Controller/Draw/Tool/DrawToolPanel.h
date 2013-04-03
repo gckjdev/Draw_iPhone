@@ -29,7 +29,7 @@
 @property(nonatomic, retain)ToolHandler *toolHandler;
 
 
-+ (id)createViewWithdelegate:(id)delegate;
+//+ (id)createViewWithdelegate:(id)delegate;
 
 + (id)createViewWithdToolHandler:(ToolHandler *)handler;
 

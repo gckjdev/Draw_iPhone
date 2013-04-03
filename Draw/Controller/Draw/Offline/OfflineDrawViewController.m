@@ -173,12 +173,11 @@
 - (void)dealloc
 {
     [self stopRecovery];
-
+    self.toolHandler = nil;
     self.delegate = nil;
     _draft.drawActionList = nil;
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
-//    PPRelease(_progressView);
     PPRelease(_drawToolPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
@@ -290,10 +289,7 @@
 
 - (void)initDrawView
 {
-//    CGRect frame = DRAW_VIEW_FRAME;
     drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
-    
-//    drawView.strawDelegate = _drawToolPanel;
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
@@ -623,11 +619,11 @@
     }
 }
 
-- (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
+- (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
  
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:drawView.lineColor updateModel:YES];
+        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     _isNewDraft = NO;

@@ -769,7 +769,7 @@
 "kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
-"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。僅用於在線遊戲。";
 "kRemoveAdDescription" = "攔截並且不顯示所有廣告";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";

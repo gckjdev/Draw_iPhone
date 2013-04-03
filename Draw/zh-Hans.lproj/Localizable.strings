@@ -775,7 +775,7 @@
 
 
 "kFlowerDescription" = "看到好的作品就送些鲜花！赠人玫瑰，手有余香。";
-"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。仅用于在线游戏。";
 "kRemoveAdDescription" = "拦截并且不显示所有广告";
 "kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
