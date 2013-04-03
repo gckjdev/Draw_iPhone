@@ -175,4 +175,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 }
 
 
+- (ItemType *)boughtPenTypeList
+{
+    
+    static ItemType typeList[10] = {Pencil,ItemTypeListEndFlag};
+    int i = Pencil+1, j = 1;
+    for (; i < PenCount; i ++) {
+        ItemType type = i;
+        if ([self hasItem:type]) {
+            typeList[j++] = type;
+        }
+    }
+    typeList[j] = ItemTypeListEndFlag;
+    return typeList;
+}
+
 @end
