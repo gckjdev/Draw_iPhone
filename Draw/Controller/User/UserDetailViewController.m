@@ -32,6 +32,7 @@
 #import "UserFeedController.h"
 #import "ShowFeedController.h"
 #import "UIImageView+WebCache.h"
+#import "UseItemScene.h"
 
 #define    ROW_COUNT 1
 
@@ -245,8 +246,9 @@
         case DetailTabActionClickFavouriate:
         {
             if (self.favoriteList.count == 0) {
-                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
                 [[self detailCell] setIsLoadingFeed:YES];
+                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+                
             } else {
                 [[self detailCell] setDrawFeedList:self.favoriteList];
             }
@@ -256,8 +258,9 @@
         case DetailTabActionClickOpus:
         {
             if (self.opusList.count == 0) {
-                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
                 [[self detailCell] setIsLoadingFeed:YES];
+                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+                
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
             }
@@ -270,7 +273,9 @@
 
 - (void)didClickDrawFeed:(DrawFeed *)drawFeed
 {
-    ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    
+    UseItemScene *scene  = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
+    ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:scene];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
