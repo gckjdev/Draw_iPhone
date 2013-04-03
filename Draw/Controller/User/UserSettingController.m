@@ -1308,7 +1308,7 @@ enum {
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
 	self.currentPlacemark = placemark;
-	[_pbUserBuilder setLocation:self.currentPlacemark.locality];
+	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.locality]];
     hasEdited = YES;
     PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
     [self.dataTableView reloadData];
@@ -1316,6 +1316,7 @@ enum {
 
 - (void)didImageSelected:(UIImage *)image
 {
+    
 }
 /*
  

@@ -346,7 +346,8 @@
     
     for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//        button.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        button.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin;
 
         
         [button setTag:i];
@@ -466,9 +467,9 @@
     
     [self initWordViews];
     [self initTargetViews];
-    [self initWithCachData];
     [self initPickToolView];
     _guessCorrect = NO;
+    [self performSelector:@selector(initWithCacheData)];
 //    _shopController = nil;
     
 }
@@ -779,15 +780,17 @@
     
 }
 
-- (void)initWithCachData
+- (void)initWithCacheData
 {
     if (drawGameService.sessionStatus == SESSION_PLAYING) {
-        
         if (drawGameService.word.text) {
             [self didReceiveDrawWord:drawGameService.word.text 
-                               level:drawGameService.word.level 
+                               level:drawGameService.word.level
                             language:drawGameService.language];
-        }        
+        }
+        
+        [showView changeRect:CGRectFromCGSize(drawGameService.canvasSize)];
+
         NSArray *actionList = drawGameService.drawActionList;
         for (DrawAction *action in actionList) {
             [showView addDrawAction:action play:YES];
