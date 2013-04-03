@@ -160,6 +160,7 @@
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
+    [cell.carousel showActivity];
     
     
     return cell;

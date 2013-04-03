@@ -461,7 +461,7 @@
     [self.superViewController.dataTableView reloadData];
 }
 
-- (void)clickAvatar:(PPTableViewController *)viewController
+- (void)clickAvatar:(PPTableViewController *)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Modal
