@@ -71,9 +71,3 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 @end
 
-
-@interface ToolHandler(Online)
-
-- (void)handleChat:(NSString *)message;
-
-@end

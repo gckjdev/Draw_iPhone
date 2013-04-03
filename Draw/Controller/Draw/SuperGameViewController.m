@@ -26,6 +26,7 @@
 #import "AccountService.h"
 #import "UseItemScene.h"
 #import "UserGameItemManager.h"
+#import "DrawHolderView.h"
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 

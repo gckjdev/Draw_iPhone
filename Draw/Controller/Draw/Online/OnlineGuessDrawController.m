@@ -42,6 +42,8 @@
 #import "FlowerItem.h"
 #import "GameItemManager.h"
 #import "UserGameItemManager.h"
+#import "DrawHolderView.h"
+
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -511,21 +513,18 @@
     }
 }
 
-- (void)didReceiveDrawData:(GameMessage *)message
-{
-    Paint *paint = [[Paint alloc] initWithGameMessage:message];
-//    DrawAction *action = [DrawAction actionWithType:DrawActionTypePaint paint:paint];
-    PaintAction *action = [PaintAction paintActionWithPaint:paint];
-    [showView addDrawAction:action play:YES];
-    [paint release];
-}
 
 // new draw action delegate methods, add by Benson 2013-04-02
 - (void)didReceiveDrawActionData:(PBDrawAction*)drawAction
                  isSetCanvasSize:(BOOL)isSetCanvasSize
                       canvasSize:(CGSize)canvasSize
 {
-    // TODO display draw action here
+    if (isSetCanvasSize) {
+        [showView changeRect:CGRectFromCGSize(canvasSize)];
+    }else{
+        DrawAction *action = [DrawAction drawActionWithPBDrawAction:drawAction];
+        [showView addDrawAction:action play:YES];
+    }
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
@@ -751,6 +750,7 @@
         button.hidden = YES;
     }    
 }
+
 - (void)updateTargetViews:(Word *)word
 {
 
@@ -764,15 +764,19 @@
     
 }
 
-//#define DRAW_VIEW_Y_OFFSET (ISIPAD ? 6 : 6)
 
 - (void)initShowView
 {
-    CGRect frame = [CanvasRect defaultRect];
-//    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
-    showView = [[ShowDrawView alloc] initWithFrame:frame];
+
+    CGRect rect = [CanvasRect defaultRect];
+    if (!CGSizeEqualToSize(drawGameService.canvasSize, CGSizeZero)) {
+        rect = CGRectFromCGSize(drawGameService.canvasSize);
+    }
+    showView = [[ShowDrawView alloc] initWithFrame:rect];
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
-    [self.view insertSubview:showView aboveSubview:drawBackground];
+    DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
+    [self.view insertSubview:holder atIndex:4];
+    
 }
 
 - (void)initWithCachData
