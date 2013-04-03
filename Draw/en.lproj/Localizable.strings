@@ -1206,6 +1206,7 @@
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Update backtround fail, try later.";
 "kBlackUserMsg" = "Do you want to put this player into black list? He/She can no longer talk to you or draw to you.";
+"kUnblackUserMsg" = "Do you want to remove this player from black list?";
 "kBlackUserTitle" = "Black List";
 
 "kGestureExplain" = "Gestures";

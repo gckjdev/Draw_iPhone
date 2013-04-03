@@ -175,24 +175,34 @@
 
 - (void)blackUser:(PPTableViewController*)viewController
 {
-    if ([MyFriend hasBlack:[self relation]]) {
-        [[FriendService defaultService] unblackFriend:[self getUserId] successBlock:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
-            if ([MyFriend hasBlack:[self relation]]) {
-                [self setRelation:([self relation] - RelationTypeBlack)];
-            }
+    NSString* msg = [MyFriend hasBlack:[self relation]]?NSLS(@"kUnblackUserMsg"):NSLS(@"kBlackUserMsg");
+
+    __block ViewUserDetail* vd = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlackUserTitle") message:msg style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        if ([MyFriend hasBlack:[vd relation]]) {
+            [[FriendService defaultService] unblackFriend:[self getUserId] successBlock:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnblackUserSuccess") delayTime:1.5];
+                if ([MyFriend hasBlack:[vd relation]]) {
+                    [vd setRelation:([vd relation] - RelationTypeBlack)];
+                }
+            }];
             [viewController.dataTableView reloadData];
-        }];
-        
-    } else {
-        
-        [[FriendService defaultService] blackFriend:[self getUserId] successBlock:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
-            [self setRelation:RelationTypeBlack];
+        } else {
+            
+            [[FriendService defaultService] blackFriend:[self getUserId] successBlock:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBlackUserSuccess") delayTime:1.5];
+                [vd setRelation:RelationTypeBlack];
+            }];
             [viewController.dataTableView reloadData];
-        }];
-    }
+        }
+        
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:viewController.view];
+    
 }
+
 - (void)superManageUser:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] isSuperUser]) {

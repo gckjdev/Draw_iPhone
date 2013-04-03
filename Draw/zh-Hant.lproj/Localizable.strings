@@ -1191,6 +1191,7 @@
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
 "kBlackUserMsg" = "將該玩家列入黑名單之後，他/她將無法看到你的動態，無法給你發消息和畫畫，確定嗎？";
+"kUnblackUserMsg" = "需要將該玩家從黑名單中移除嗎?";
 "kBlackUserTitle" = "黑名單";
 
 "kGestureExplain" = "手勢說明";

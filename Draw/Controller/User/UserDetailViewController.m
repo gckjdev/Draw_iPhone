@@ -68,12 +68,19 @@
 {
     [self.detail loadUser:self];
     [super viewDidLoad];
-    [self didClickTabAtIndex:0];
-    currentTabIndex = DetailTabActionClickOpus;
+    
     // Do any additional setup after loading the view from its nib.
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.opusList removeAllObjects];
+    [self.favoriteList removeAllObjects];
+    [self didClickTabAtIndex:currentTabIndex];
+    currentTabIndex = DetailTabActionClickOpus;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -201,13 +208,7 @@
 
 - (void)didclickBlack
 {
-    __block UserDetailViewController* cp = self;
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlackUserTitle") message:NSLS(@"kBlackUserMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [cp.detail blackUser:cp];
-    } clickCancelBlock:^{
-        //
-    }];
-    [dialog showInView:self.view];
+    [self.detail blackUser:self];
     
 }
 - (void)didclickManage
