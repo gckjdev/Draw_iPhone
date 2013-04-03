@@ -23,6 +23,7 @@
 #import "AccountManager.h"
 #import "UserDetailRoundButton.h"
 #import "ChangeAvatar.h"
+#import "ChargeController.h"
 
 @interface SelfUserDetail() {
     ChangeAvatar* _changeAvatar;
@@ -303,11 +304,13 @@
         case SelfDetailActionFollowCount:
             [self didClickFollowCountButton:viewController];
             break;
+        case SelfDetailActionIngot:
         case SelfDetailActionBalance: {
+            ChargeController *controller = [[ChargeController alloc] init];
+            [viewController.navigationController pushViewController:controller animated:YES];
+            [controller release];
         } break;
         case SelfDetailActionExp: {
-        } break;
-        case SelfDetailActionIngot: {
         } break;
         case SelfDetailActionFanCount: {
             [self didClickFanCountButton:viewController];

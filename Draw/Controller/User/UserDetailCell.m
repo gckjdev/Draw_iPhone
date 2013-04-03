@@ -64,9 +64,9 @@
         [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),zodiacStr]];
         [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), ([pbUser hasBloodGroup]?pbUser.bloodGroup:@"-")]];
     } else {
-        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), NSLS(@"kInvisable")]];
-        [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),NSLS(@"kInvisable")]];
-        [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), NSLS(@"kInvisable")]];
+        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), @"-"]];
+        [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"), @"-"]];
+        [self.bloodTypeLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBloodGroup"), @"-"]];
     }
     
     [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
@@ -126,7 +126,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1455:706);
+    return ([DeviceDetection isIPAD]?1469:706);
 }
 
 + (NSString*)getCellIdentifier
@@ -134,7 +134,7 @@
     return @"UserDetailCell";
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 924) : CGPointMake(160, 452))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 930) : CGPointMake(160, 455))
 
 #define TAB_FONT    (ISIPAD?24:12)
 

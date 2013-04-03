@@ -26,10 +26,16 @@
 @implementation ToolHandler
 
 
-#pragma mark - Draw Tool Panel Delegate
-
-
-
+- (void)dealloc
+{
+    PPDebug(@"%@ dealloc",self);
+    self.controller = nil;
+    self.drawView = nil;
+    self.drawToolPanel = nil;
+    PPRelease(_canvasRect);
+    PPRelease(_penColor);
+    [super dealloc];
+}
 
 
 - (void)setDrawView:(DrawView *)drawView
@@ -108,13 +114,13 @@
 - (void)changeDesc:(NSString *)desc
 {
     PPDebug(@"<ChangeDesc> desc = %@", desc);
-    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.drawView theViewController];
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     oc.opusDesc = desc;
 }
 - (void)changeDrawToFriend:(MyFriend *)aFriend
 {
     PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
-    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.drawView theViewController];
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     [oc setTargetUid:aFriend.friendUserId];
 }
 
@@ -143,7 +149,7 @@
 
 - (void)handleChat
 {
-    OnlineDrawViewController *oc = [self.drawView theViewController];
+    OnlineDrawViewController *oc = (OnlineDrawViewController *)self.controller;
     [oc showGroupChatView];
 }
 
