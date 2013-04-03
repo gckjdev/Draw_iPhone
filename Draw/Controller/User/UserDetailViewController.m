@@ -32,6 +32,7 @@
 #import "UserFeedController.h"
 #import "ShowFeedController.h"
 #import "UIImageView+WebCache.h"
+#import "UseItemScene.h"
 
 #define    ROW_COUNT 1
 
@@ -270,7 +271,9 @@
 
 - (void)didClickDrawFeed:(DrawFeed *)drawFeed
 {
-    ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed];
+    
+    UseItemScene *scene  = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
+    ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:scene];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
