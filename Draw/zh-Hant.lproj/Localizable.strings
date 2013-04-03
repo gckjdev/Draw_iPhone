@@ -769,7 +769,7 @@
 "kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
-"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。僅用於在線遊戲。";
 "kRemoveAdDescription" = "攔截並且不顯示所有廣告";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
@@ -1191,10 +1191,14 @@
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
 "kBlackUserMsg" = "將該玩家列入黑名單之後，他/她將無法看到你的動態，無法給你發消息和畫畫，確定嗎？";
+"kUnblackUserMsg" = "需要將該玩家從黑名單中移除嗎?";
 "kBlackUserTitle" = "黑名單";
 
 "kGestureExplain" = "手勢說明";
 "kGestureExplainContent" = "放大 —— 雙指捏合向外\n\n縮小 —— 雙指捏合向內\n\n移動 —— 雙指移動\n\n還原 —— 雙指雙擊\n\n";
+"kImageNull" = "生成圖片失敗，請重試。";
+"kHisOpus" = "TA的作品";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

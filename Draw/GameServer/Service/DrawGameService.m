@@ -219,7 +219,6 @@ static DrawGameService* _defaultService;
     PPDebug(@"<DrawGameService>save an action:%d", aType);
 //    [self.drawActionList addObject:action];
     [self.session addDrawAction:action];
-    [action release];
 }
 
 - (void)clearHistoryUser
@@ -451,6 +450,10 @@ static DrawGameService* _defaultService;
 
         PBDrawAction* drawAction = [[message sendDrawDataRequest] drawAction];
 
+        if ([[message sendDrawDataRequest] hasDrawAction]) {
+            [[self session] addDrawAction:[DrawAction drawActionWithPBDrawAction:drawAction]];
+        }
+        
         BOOL isSetCanvasSize = [[message sendDrawDataRequest] hasCanvasSize];
         if (isSetCanvasSize){
             PBSize* drawSize = [[message sendDrawDataRequest] canvasSize];            
@@ -480,7 +483,7 @@ static DrawGameService* _defaultService;
         // Update Game Session Data
         [_session updateCurrentTurnByMessage:[message notification]];
         
-        // TODO chaneg to notifyGameObserver
+        // TODO change to notifyGameObserver
         if ([[[message notification] word] length] > 0){
             
             // receive user pick word, set status to playing

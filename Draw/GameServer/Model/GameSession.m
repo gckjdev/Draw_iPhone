@@ -314,7 +314,9 @@
 
 - (void)addDrawAction:(DrawAction *)action
 {
-    [self.currentTurn.drawActionList addObject:action];
+    if (action) {
+        [self.currentTurn.drawActionList addObject:action];
+    }
 }
 
 - (void)removeAllDrawActions
