@@ -160,8 +160,8 @@
     [super viewDidLoad];
     drawGameService.drawDelegate = self;
     [self initWordLabel];
-    [self initDrawToolPanel];
     [self initDrawView];
+    [self initDrawToolPanel];
     [drawGameService sendDrawAction:nil canvasSize:CGSizeToPBSize(drawView.bounds.size)];
 }
 
