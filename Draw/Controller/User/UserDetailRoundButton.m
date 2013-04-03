@@ -27,6 +27,7 @@
     [label setUserInteractionEnabled:NO];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:[UIColor whiteColor]];
+    [label setAdjustsFontSizeToFitWidth:YES];
     return label;
     
 }
