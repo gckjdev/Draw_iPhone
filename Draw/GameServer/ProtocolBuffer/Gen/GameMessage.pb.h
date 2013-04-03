@@ -3004,6 +3004,8 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasWord_:1;
   BOOL hasGuessWord_:1;
   BOOL hasGuessUserId_:1;
+  BOOL hasDrawAction_:1;
+  BOOL hasCanvasSize_:1;
   BOOL guessCorrect_:1;
   Float32 width;
   int32_t level;
@@ -3013,6 +3015,8 @@ BOOL BetTypeIsValidValue(BetType value);
   NSString* word;
   NSString* guessWord;
   NSString* guessUserId;
+  PBDrawAction* drawAction;
+  PBSize* canvasSize;
   NSMutableArray* mutablePointsList;
   int32_t pointsMemoizedSerializedSize;
 }
@@ -3025,6 +3029,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasGuessWord;
 - (BOOL) hasGuessUserId;
 - (BOOL) hasGuessCorrect;
+- (BOOL) hasDrawAction;
+- (BOOL) hasCanvasSize;
 @property (readonly, retain) NSString* word;
 @property (readonly) int32_t level;
 @property (readonly) int32_t language;
@@ -3034,6 +3040,8 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) NSString* guessWord;
 @property (readonly, retain) NSString* guessUserId;
 - (BOOL) guessCorrect;
+@property (readonly, retain) PBDrawAction* drawAction;
+@property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 
@@ -3122,6 +3130,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) guessCorrect;
 - (SendDrawDataRequest_Builder*) setGuessCorrect:(BOOL) value;
 - (SendDrawDataRequest_Builder*) clearGuessCorrect;
+
+- (BOOL) hasDrawAction;
+- (PBDrawAction*) drawAction;
+- (SendDrawDataRequest_Builder*) setDrawAction:(PBDrawAction*) value;
+- (SendDrawDataRequest_Builder*) setDrawActionBuilder:(PBDrawAction_Builder*) builderForValue;
+- (SendDrawDataRequest_Builder*) mergeDrawAction:(PBDrawAction*) value;
+- (SendDrawDataRequest_Builder*) clearDrawAction;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (SendDrawDataRequest_Builder*) setCanvasSize:(PBSize*) value;
+- (SendDrawDataRequest_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (SendDrawDataRequest_Builder*) mergeCanvasSize:(PBSize*) value;
+- (SendDrawDataRequest_Builder*) clearCanvasSize;
 @end
 
 @interface SendDrawDataResponse : PBGeneratedMessage {

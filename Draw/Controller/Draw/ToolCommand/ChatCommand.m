@@ -14,5 +14,10 @@
     AnalyticsReport(DRAW_CLICK_CHAT);
 }
 
+- (BOOL)execute
+{
+    [self.toolHandler handleChat];
+    return YES;
+}
 
 @end

@@ -39,17 +39,13 @@
 #import "PointNode.h"
 #import "BuyItemView.h"
 #import "GameItemManager.h"
+#import "ToolCommand.h"
 
 @interface OnlineDrawViewController ()
 {
 
-    CGFloat _alpha;
 }
 @property(nonatomic, retain)DrawToolPanel *drawToolPanel;
-@property (retain, nonatomic) DrawColor* eraserColor;
-@property (retain, nonatomic) DrawColor* bgColor;
-@property (retain, nonatomic) DrawColor* penColor;
-@property (retain, nonatomic) DrawColor *tempColor;
 
 @property (retain, nonatomic) IBOutlet UIImageView *wordLabelBGView;
 
@@ -83,7 +79,6 @@
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
-    PPRelease(_tempColor);
     [_wordLabelBGView release];
     [super dealloc];
 }
@@ -127,17 +122,13 @@
 
 - (void)initDrawView
 {
-    UIView *paperView = [self.view viewWithTag:PAPER_VIEW_TAG];
+
     CGRect frame = [CanvasRect defaultRect];
 //    frame.origin.y -= DRAW_VIEW_Y_OFFSET;
     drawView = [[DrawView alloc] initWithFrame:frame];
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
-    drawView.strawDelegate = self.drawToolPanel;
-    [self.view insertSubview:drawView aboveSubview:paperView];
-    self.eraserColor = self.bgColor = [DrawColor whiteColor];
-    self.penColor = [DrawColor blackColor];
-    _alpha = 1.0;
+    [self.view insertSubview:drawView atIndex:4];
 }
 
 - (void)initWordLabel
@@ -295,8 +286,10 @@
 
 - (void)drawView:(DrawView *)drawView didStartTouchWithAction:(DrawAction *)action
 {
-    [self.drawToolPanel dismissAllPopTipViews];
-    [self updateRecentColors];
+    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
+        [self.drawToolPanel updateRecentColorViewWithColor:drawView.lineColor updateModel:YES];
+    }
+    [[ToolCommandManager defaultManager] hideAllPopTipViews];
 }
 
 
@@ -304,7 +297,6 @@
 
 
 - (IBAction)clickChangeRoomButton:(id)sender {
-    [self.drawToolPanel dismissAllPopTipViews];
     
     CommonDialogStyle style;
     NSString *message = nil;
@@ -326,157 +318,6 @@
 - (void)levelDown:(int)level
 {
     
-}
-#pragma mark - CommonItemInfoView Delegate
-
-- (void)didBuyItem:(int)itemId
-            result:(int)result
-{
-    if (result == 0) {
-        switch (itemId) {
-            case PaletteItem:
-            case ColorAlphaItem:
-            case ColorStrawItem:
-                [self.drawToolPanel updateNeedBuyToolViews];
-                [self.drawToolPanel userItem:itemId];
-                break;
-            case Pen:
-            case Pencil:
-            case IcePen:
-            case Quill:
-            case WaterPen:
-            {
-                [self.drawToolPanel setPenType:itemId];
-                [drawView setPenType:itemId];
-                break;
-            }
-            default:
-                break;
-                
-        }
-    }else
-    {
-        [self popupMessage:NSLS(@"kNotEnoughCoin") title:nil];
-    }
-}
-
-
-- (void)synEraserColor
-{
-    self.eraserColor = drawView.bgColor;
-    if (drawView.penType == Eraser) {
-        drawView.lineColor = self.eraserColor;
-    }
-}
-
-#pragma mark - Draw Tool Panel Delegate
-
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickRedoButton:(UIButton *)button
-{
-    [drawView redo];
-    [self synEraserColor];
-}
-
-- (void)performRevoke
-{
-    [drawView revoke:^{
-        [self hideActivity];
-    }];
-    [self synEraserColor];
-}
-
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickUndoButton:(UIButton *)button
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    [self showActivityWithText:NSLS(@"kRevoking")];
-    [self performSelector:@selector(performRevoke) withObject:nil afterDelay:0.1f];
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickEraserButton:(UIButton *)button
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    [drawView setLineColor:self.eraserColor];
-    [drawView setPenType:Eraser];
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickPaintBucket:(UIButton *)button
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    self.penColor.alpha = 1.0;
-    [drawView changeBackWithColor:self.penColor];
-    [self drawView:drawView didFinishDrawAction:[[[ChangeBackAction alloc] initWithColor:self.penColor] autorelease]];
-
-    self.eraserColor = self.penColor;
-    self.penColor = drawView.lineColor = [DrawColor blackColor];
-    [drawView.lineColor setAlpha:_alpha];
-    [toolPanel setColor:self.penColor];
-    [self updateRecentColors];
-    [_drawToolPanel updateRecentColorViewWithColor:[DrawColor blackColor]];
-
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectPen:(ItemType)penType
-               bought:(BOOL)bought
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    if (bought) {
-        PPDebug(@"<didSelectPen> pen type = %d",penType);
-        drawView.penType = penType;
-    }else{
-        [BuyItemView showOnlyBuyItemView:penType inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-        }];
-    }
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectWidth:(CGFloat)width
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    drawView.lineWidth = width;
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectColor:(DrawColor *)color
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    self.tempColor = color;
-    self.penColor = color;
-    [drawView setLineColor:[DrawColor colorWithColor:color]];
-    [drawView.lineColor setAlpha:_alpha];
-
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didSelectAlpha:(CGFloat)alpha
-{
-    drawView.touchActionType = TouchActionTypeDraw;
-    _alpha = alpha;
-    if (drawView.lineColor != self.eraserColor) {
-        [drawView.lineColor setAlpha:alpha];
-    }
-}
-
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickChatButton:(UIButton *)button
-{
-    [self showGroupChatView];
-}
-
-- (void)drawToolPanelDidTimeout:(DrawToolPanel *)toolPanel
-{
-    
-}
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel startToBuyItem:(ItemType)type
-{    
-    [BuyItemView showOnlyBuyItemView:type inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
-    }];
-}
-
-- (void)drawToolPanel:(DrawToolPanel *)toolPanel didClickStrawButton:(UIButton *)button
-{
-    drawView.touchActionType = TouchActionTypeGetColor;
-}
-
-
-#pragma mark - Recent Color
-
-- (void)updateRecentColors
-{
-    if (_tempColor) {
-        [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:_tempColor];
-        [_drawToolPanel updateRecentColorViewWithColor:_tempColor];
-        self.tempColor = nil;
-    }
 }
 
 @end
