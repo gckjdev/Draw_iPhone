@@ -7,14 +7,30 @@
 //
 
 #import "SelectPenCommand.h"
+#import "UserGameItemManager.h"
+#import "Item.h"
 
 @implementation SelectPenCommand
+
+- (BOOL)popupPenView
+{
+    int *list = [[UserGameItemManager defaultManager] boughtPenTypeList];
+    while (list != NULL && *list != ItemTypeListEndFlag) {
+        if (*list != Pencil) {
+            return YES;
+        }
+        ++ list;
+    }
+    return NO;
+}
 
 - (BOOL)execute
 {
     if ([super execute]) {
         [self updatePenWithPenType:self.itemType];
-        [self showPopTipView];
+        if ([self popupPenView] != 0) {
+            [self showPopTipView];
+        }
         return YES;
     }
     return NO;
@@ -37,8 +53,10 @@
 
     [self hidePopTipView];
     
-    
-    //TODO update Pen view
+
+    UIButton *button = (UIButton *)self.control;
+    [button setImage:[Item imageForItemType:type] forState:UIControlStateNormal];
+
 }
 
 

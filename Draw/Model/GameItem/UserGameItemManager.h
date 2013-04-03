@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
+#import "ItemType.h"
 
 @interface UserGameItemManager : NSObject
 
@@ -19,5 +20,7 @@
 - (BOOL)hasItem:(int)itemId;
 - (BOOL)canBuyItemNow:(PBGameItem *)item;
 - (BOOL)hasEnoughItem:(int)itemId amount:(int)amount;
+
+- (ItemType *)boughtPenTypeList;
 
 @end
