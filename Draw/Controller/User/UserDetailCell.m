@@ -126,7 +126,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1455:706);
+    return ([DeviceDetection isIPAD]?1469:706);
 }
 
 + (NSString*)getCellIdentifier
@@ -134,7 +134,7 @@
     return @"UserDetailCell";
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 915) : CGPointMake(160, 455))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 930) : CGPointMake(160, 455))
 
 #define TAB_FONT    (ISIPAD?24:12)
 
