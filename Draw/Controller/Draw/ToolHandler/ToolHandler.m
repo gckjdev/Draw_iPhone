@@ -12,6 +12,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "CanvasRect.h"
 #import "OfflineDrawViewController.h"
+#import "OnlineDrawViewController.h"
 #import "UIViewUtils.h"
 
 @interface ToolHandler ()
@@ -138,6 +139,12 @@
 - (void)handleUndo
 {
     [self.drawView undo];
+}
+
+- (void)handleChat
+{
+    OnlineDrawViewController *oc = [self.drawView theViewController];
+    [oc showGroupChatView];
 }
 
 - (TouchActionType)setTouchActionType:(TouchActionType)type

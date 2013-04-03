@@ -10917,6 +10917,8 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
 @property (retain) NSString* guessWord;
 @property (retain) NSString* guessUserId;
 @property BOOL guessCorrect;
+@property (retain) PBDrawAction* drawAction;
+@property (retain) PBSize* canvasSize;
 @end
 
 @implementation SendDrawDataRequest
@@ -10990,11 +10992,27 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
 - (void) setGuessCorrect:(BOOL) value {
   guessCorrect_ = !!value;
 }
+- (BOOL) hasDrawAction {
+  return !!hasDrawAction_;
+}
+- (void) setHasDrawAction:(BOOL) value {
+  hasDrawAction_ = !!value;
+}
+@synthesize drawAction;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (void) dealloc {
   self.word = nil;
   self.mutablePointsList = nil;
   self.guessWord = nil;
   self.guessUserId = nil;
+  self.drawAction = nil;
+  self.canvasSize = nil;
   [super dealloc];
 }
 - (id) init {
@@ -11008,6 +11026,8 @@ static GameChatResponse* defaultGameChatResponseInstance = nil;
     self.guessWord = @"";
     self.guessUserId = @"";
     self.guessCorrect = NO;
+    self.drawAction = [PBDrawAction defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
   }
   return self;
 }
@@ -11031,6 +11051,11 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   return [value intValue];
 }
 - (BOOL) isInitialized {
+  if (self.hasDrawAction) {
+    if (!self.drawAction.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -11067,6 +11092,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   }
   if (self.hasGuessCorrect) {
     [output writeBool:43 value:self.guessCorrect];
+  }
+  if (self.hasDrawAction) {
+    [output writeMessage:44 value:self.drawAction];
+  }
+  if (self.hasCanvasSize) {
+    [output writeMessage:45 value:self.canvasSize];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -11115,6 +11146,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   }
   if (self.hasGuessCorrect) {
     size += computeBoolSize(43, self.guessCorrect);
+  }
+  if (self.hasDrawAction) {
+    size += computeMessageSize(44, self.drawAction);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(45, self.canvasSize);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -11224,6 +11261,12 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
   if (other.hasGuessCorrect) {
     [self setGuessCorrect:other.guessCorrect];
   }
+  if (other.hasDrawAction) {
+    [self mergeDrawAction:other.drawAction];
+  }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -11288,6 +11331,24 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
       }
       case 344: {
         [self setGuessCorrect:[input readBool]];
+        break;
+      }
+      case 354: {
+        PBDrawAction_Builder* subBuilder = [PBDrawAction builder];
+        if (self.hasDrawAction) {
+          [subBuilder mergeFrom:self.drawAction];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDrawAction:[subBuilder buildPartial]];
+        break;
+      }
+      case 362: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -11466,6 +11527,66 @@ static SendDrawDataRequest* defaultSendDrawDataRequestInstance = nil;
 - (SendDrawDataRequest_Builder*) clearGuessCorrect {
   result.hasGuessCorrect = NO;
   result.guessCorrect = NO;
+  return self;
+}
+- (BOOL) hasDrawAction {
+  return result.hasDrawAction;
+}
+- (PBDrawAction*) drawAction {
+  return result.drawAction;
+}
+- (SendDrawDataRequest_Builder*) setDrawAction:(PBDrawAction*) value {
+  result.hasDrawAction = YES;
+  result.drawAction = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) setDrawActionBuilder:(PBDrawAction_Builder*) builderForValue {
+  return [self setDrawAction:[builderForValue build]];
+}
+- (SendDrawDataRequest_Builder*) mergeDrawAction:(PBDrawAction*) value {
+  if (result.hasDrawAction &&
+      result.drawAction != [PBDrawAction defaultInstance]) {
+    result.drawAction =
+      [[[PBDrawAction builderWithPrototype:result.drawAction] mergeFrom:value] buildPartial];
+  } else {
+    result.drawAction = value;
+  }
+  result.hasDrawAction = YES;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearDrawAction {
+  result.hasDrawAction = NO;
+  result.drawAction = [PBDrawAction defaultInstance];
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (SendDrawDataRequest_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (SendDrawDataRequest_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (SendDrawDataRequest_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 @end
@@ -14427,6 +14548,11 @@ static GameMessage* defaultGameMessageInstance = nil;
   }
   if (self.hasGameStartNotificationRequest) {
     if (!self.gameStartNotificationRequest.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasSendDrawDataRequest) {
+    if (!self.sendDrawDataRequest.isInitialized) {
       return NO;
     }
   }

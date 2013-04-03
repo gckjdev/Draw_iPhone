@@ -292,6 +292,9 @@ message SendDrawDataRequest {
   optional string guessWord = 41;
   optional string guessUserId = 42;
   optional bool guessCorrect = 43;  
+
+  optional PBDrawAction drawAction = 44;    // add by Gamy 2013-4-3
+  optional PBSize canvasSize = 45;          // add by Gamy 2013-4-3
 }
 
 message SendDrawDataResponse{
