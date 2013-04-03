@@ -162,6 +162,10 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 {
     CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];    
 
+    if (context == NULL) {
+        PPDebug(@"<createBitmapContext> failed. context = NULL");
+        return NULL;
+    }
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
 
