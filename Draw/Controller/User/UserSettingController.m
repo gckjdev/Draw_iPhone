@@ -131,7 +131,7 @@ enum {
     rowOfZodiac = 6;
     rowOfSignature = 7;
     rowOfPrivacy = 8;
-    rowOfCustomBg = 9;
+//    rowOfCustomBg = 9;
     rowsInSectionUser = 10;
     
     //section guessword
@@ -479,11 +479,7 @@ enum {
             [cell.detailTextLabel setText:_pbUserBuilder.signature];
         } else if (row == rowOfPrivacy) {
             [cell.textLabel setText:NSLS(@"kPrivacy")];
-            if ([_pbUserBuilder hasOpenInfoType]) {
-                [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
-            }
-        } else if (row == rowOfCustomBg) {
-            [cell.textLabel setText:NSLS(@"kCustomBg")];
+            [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -695,15 +691,6 @@ enum {
             [self.inputAlertView showInView:self.view animated:YES];
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
-        } else if (row == rowOfCustomBg) {
-            __block UserSettingController* uc = self;
-            if (imageUploader == nil) {
-                imageUploader = [[ChangeAvatar alloc] init];
-                imageUploader.autoRoundRect = NO;
-            }
-            [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
-                [uc uploadCustomBg:image];
-            }];
         }
     }
     else if (section == SECTION_GUESSWORD) {
