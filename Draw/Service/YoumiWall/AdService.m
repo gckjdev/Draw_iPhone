@@ -63,7 +63,7 @@ static AdService* _defaultService;
 {
     self = [super init];
 
-    [self initWappuAdSDK];
+//    [self initWappuAdSDK];
     
      _isShowAd = ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
     
@@ -345,7 +345,7 @@ static AdService* _defaultService;
         return NO;
     }
 
-    return _isShowAd;
+    return ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
 }
 
 - (UIView*)createMangoAdInView:(UIView*)superView
@@ -576,12 +576,13 @@ static AdService* _defaultService;
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd
 {        
-    PPDebug(@"<createAdView>");
     
     if ([self isShowAd] == NO){
+        PPDebug(@"<createAdView> but ad is disabled");
         return nil;
     }
     
+    PPDebug(@"<createAdView>");
     return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
 
     if ([self isShowWanpuAd] == YES){

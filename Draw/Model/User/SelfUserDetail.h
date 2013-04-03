@@ -23,5 +23,6 @@ typedef enum {
 
 @property (assign, nonatomic) RelationType relation;
 
++ (id<UserDetailProtocol>)createDetail;
 
 @end

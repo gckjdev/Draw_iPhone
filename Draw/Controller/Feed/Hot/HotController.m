@@ -369,8 +369,8 @@ typedef enum{
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
 {
     TopPlayer *player = topPlayerView.topPlayer;
-    NSString* genderString = player.gender?@"m":@"f";
-//    MyFriend *friend = [MyFriend friendWithFid:player.userId 
+//    NSString* genderString = player.gender?@"m":@"f";
+//    MyFriend *friend = [MyFriend friendWithFid:player.userId
 //                                      nickName:player.nickName
 //                                        avatar:player.avatar
 //                                        gender:genderString 
