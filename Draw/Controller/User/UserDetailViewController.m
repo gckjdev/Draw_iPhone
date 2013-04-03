@@ -74,6 +74,7 @@
     
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -242,15 +243,17 @@
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
+    [[self detailCell] setDrawFeedList:nil];
+    [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
             if (self.favoriteList.count == 0) {
-                [[self detailCell] setIsLoadingFeed:YES];
                 [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
                 
             } else {
                 [[self detailCell] setDrawFeedList:self.favoriteList];
+                [[self detailCell] setIsLoadingFeed:NO];
             }
             
         }
@@ -258,11 +261,11 @@
         case DetailTabActionClickOpus:
         {
             if (self.opusList.count == 0) {
-                [[self detailCell] setIsLoadingFeed:YES];
                 [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
                 
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
+                [[self detailCell] setIsLoadingFeed:NO];
             }
         }
             break;

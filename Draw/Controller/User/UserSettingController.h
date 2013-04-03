@@ -28,7 +28,7 @@
     NSInteger rowOfZodiac;
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
-    NSInteger rowOfCustomBg;
+//    NSInteger rowOfCustomBg;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;
