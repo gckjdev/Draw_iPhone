@@ -524,13 +524,13 @@ static DrawGameService* _defaultService;
             if ([_showDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
                 [_showDelegate didReceiveDrawData:message];
             }
-            NSArray* array = [[message notification] pointsList];
-            int color = [[message notification] color];
-            int penType = [[message notification] penType];
-            float width = [[message notification] width];
-            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
-            [self saveDrawActionType:DrawActionTypePaint paint:paint];
-            [paint release];
+//            NSArray* array = [[message notification] pointsList];
+//            int color = [[message notification] color];
+//            int penType = [[message notification] penType];
+//            float width = [[message notification] width];
+//            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
+//            [self saveDrawActionType:DrawActionTypePaint paint:paint];
+//            [paint release];
         }
         
         
@@ -833,9 +833,9 @@ static DrawGameService* _defaultService;
                                   color:color
                                   width:width 
                                 penType:penType];
-    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList penType:penType];
-    [self saveDrawActionType:DrawActionTypePaint paint:paint];
-    [paint release];
+//    Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:pointList penType:penType];
+//    [self saveDrawActionType:DrawActionTypePaint paint:paint];
+//    [paint release];
     
     [self scheduleKeepAliveTimer];
     
