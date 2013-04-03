@@ -627,7 +627,7 @@
 "kChatListTitle" = "Chat";
 "kNoChatListInfo" = "No record";
 "kGraffitiMessage" = "Graffiti";
-"kAddChat" = "Create";
+"kAddChat" = "New";
 "kSelectContacts" = "Select friend";
 "KNoFollowContacts" = "No follower yet";
 "kSendMessage" = "Send";
