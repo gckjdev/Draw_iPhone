@@ -280,7 +280,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     cell.delegate = delegate;
     cell.isReceive = isRecevie;
     [cell.contentButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-    UIEdgeInsets sets = UIEdgeInsetsMake(0, 0, 0, 0);
+    UIEdgeInsets sets;
     if (isRecevie) {
         [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] leftBubbleImage] forState:UIControlStateNormal];        
         sets = UIEdgeInsetsMake(TEXT_VERTICAL_EDGE, BUBBLE_TIP_WIDTH, TEXT_VERTICAL_EDGE, BUBBLE_NOT_TIP_WIDTH);

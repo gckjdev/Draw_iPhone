@@ -61,6 +61,10 @@
 @synthesize showView;
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
+
+
+
+
 - (void)dealloc
 {
     [drawGameService setShowDelegate:nil];
@@ -475,7 +479,9 @@
     [self initTargetViews];
     [self initPickToolView];
     _guessCorrect = NO;
-    [self performSelector:@selector(initWithCacheData)];
+    [self initWithCacheData];
+
+//    [self performSelector:@selector(initWithCacheData)];
 //    _shopController = nil;
     
 }

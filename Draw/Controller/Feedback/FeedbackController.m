@@ -449,7 +449,7 @@ enum {
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     
     [super viewDidLoad];
-    [self.TitleLabel setText:NSLS(@"kFeedback")];
+    [self.TitleLabel setText:NSLS(@"kMore")];
     
     
     [self initRowNumber];

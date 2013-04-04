@@ -162,8 +162,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [view.mainView addSubview:button2];
     }
     
-    PPDebug(@"center = %f, %f", view.center.x, view.center.y);
     view.mainView.center = view.center;
+    [view.mainView updateCenterY:(view.mainView.center.y - (ISIPAD ? 20 : 10))];
+
     
     return view;
 }

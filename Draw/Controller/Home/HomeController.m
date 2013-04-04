@@ -51,6 +51,7 @@
 #import "AnalyticsManager.h"
 #import "DrawRecoveryService.h"
 
+
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
 
@@ -213,7 +214,9 @@
 
 - (void)updateRecoveryDrawCount
 {
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:[[DrawRecoveryService defaultService] recoveryDrawCount]];
+    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:count];
+    [[StatisticManager defaultManager] setRecoveryCount:count];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -736,8 +739,12 @@
         case HomeMenuTypeDrawOpus:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_OPUS];
-            
-            ShareController* share = [[ShareController alloc] init ];
+            ShareController* share = [[ShareController alloc] init];
+            int count = [[StatisticManager defaultManager] recoveryCount];
+            if (count > 0) {
+                [share setDefaultTabIndex:2];
+                [[StatisticManager defaultManager] setRecoveryCount:0];
+            }
             [self.navigationController pushViewController:share animated:YES];
             [share release];
             
@@ -748,6 +755,9 @@
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
 
             FriendController *mfc = [[FriendController alloc] init];
+            if ([[StatisticManager defaultManager] fanCount] > 0) {
+                [mfc setDefaultTabIndex:FriendTabIndexFan];
+            }
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
         }

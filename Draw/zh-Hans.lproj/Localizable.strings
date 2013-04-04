@@ -1212,10 +1212,10 @@
 "kBlackUserTitle" = "黑名单";
 
 "kGestureExplain" = "手势说明";
-"kGestureExplainContent" = "放大 —— 双指捏合向外\n\n缩小 —— 双指捏合向内\n\n移动 —— 双指移动\n\n还原 —— 双指双击\n\n";
+"kGestureExplainContent" = "放大 — 双指捏合向外\n\n缩小 — 双指捏合向内\n\n移动 — 双指移动\n\n还原 — 双指双击\n";
 
 "kImageNull" = "生成图片失败，请重试。";
-"kHisOpus" = "TA的作品";
+"kHisOpus" = "作品";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

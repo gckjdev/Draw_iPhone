@@ -890,4 +890,13 @@
     return  [MobClickUtils getIntValueByKey:@"NICKNAME_MAX_LEN" defaultValue:60];
 }
 
++ (NSString *)getTaobaoChargeURL
+{
+    return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0"];
+    
+}
+
+
+
+
 @end

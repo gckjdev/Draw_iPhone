@@ -52,7 +52,7 @@
 - (void)initTargetViews;
 - (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
 - (void)updateTargetViews:(Word *)word;
-- (void)initWithCachData;
+- (void)initWithCacheData;
 
 
 

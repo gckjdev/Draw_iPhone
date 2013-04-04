@@ -596,6 +596,15 @@ typedef enum{
     
 }
 
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = 1;
+    }
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -604,7 +613,7 @@ typedef enum{
         [self setFromWeiXin:NO];
         
         _gifImages = [[NSMutableArray alloc] init];
-        _defaultTabIndex = 1;
+
         _myPaintManager = [MyPaintManager defaultManager];
     }
     return self;

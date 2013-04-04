@@ -781,6 +781,9 @@ static AccountService* _defaultAccountService;
                     [[LevelService defaultService] setLevel:user.level];
                     [[LevelService defaultService] setExperience:user.experience];
                 }
+                
+                // sync other user information, add by Benson 2013-04-02
+                [[UserManager defaultManager] storeUserData:user];
             }
             
             if (output.resultCode == ERROR_SUCCESS) {

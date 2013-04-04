@@ -238,4 +238,6 @@ typedef enum{
 
 + (int)getSignatureMaxLen;
 + (int)getNicknameMaxLen;
+
++ (NSString *)getTaobaoChargeURL;
 @end
