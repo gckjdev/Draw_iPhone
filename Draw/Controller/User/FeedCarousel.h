@@ -32,5 +32,6 @@
 - (void)startScrolling;
 - (void)stopScrolling;
 - (void)enabaleWrap:(BOOL)wrap;
+- (void)clearDrawFeedList;
 
 @end
