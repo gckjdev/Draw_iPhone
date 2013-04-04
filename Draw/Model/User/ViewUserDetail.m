@@ -243,11 +243,16 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_SINA succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            [SNSUtils bindSNS:TYPE_SINA succ:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+            } failure:^{
+                //
+            }];
+        } clickCancelBlock:^{
             //
         }];
+        [dialog showInView:viewController.view];
     }
     
 }
@@ -257,11 +262,16 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_QQ succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            [SNSUtils bindSNS:TYPE_QQ succ:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+            } failure:^{
+                //
+            }];
+        } clickCancelBlock:^{
             //
         }];
+        [dialog showInView:viewController.view];
     }
 }
 - (void)clickFacebook:(UIViewController*)viewController
@@ -270,11 +280,16 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
-        } failure:^{
-            
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+            } failure:^{
+                //
+            }];
+        } clickCancelBlock:^{
+            //
         }];
+        [dialog showInView:viewController.view];
     }
 }
 
