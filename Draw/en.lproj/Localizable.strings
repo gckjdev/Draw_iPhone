@@ -1228,6 +1228,7 @@
 "kHisOpus" = "Opus";
 "kNicknameOutofRange" = "Nickname out of range! The length of nickname should not above %d letters.";
 "kSignatureOutofRange" = "Signature out of range! The length of signature should not above %d letters.";
+"kNoBindNoFollow" = "You can follow player only if you have bind %@. Do you want to bind it now?";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
