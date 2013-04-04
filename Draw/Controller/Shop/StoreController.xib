@@ -358,11 +358,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_taobao_icon.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="321234676">
+						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="900894031">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="321234676"/>
+						<reference key="IBUINormalBackgroundImage" ref="900894031"/>
 						<reference key="IBUIFontDescription" ref="1028846749"/>
 						<reference key="IBUIFont" ref="729382766"/>
 					</object>
