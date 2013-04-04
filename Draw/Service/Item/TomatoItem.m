@@ -39,8 +39,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(TomatoItem);
         forFree:(BOOL)isFree
   resultHandler:(ConsumeItemResultHandler)handler
 {
-    int awardAmount = 0;
-    int awardExp = 0;    
+//    int awardAmount = 0;
+//    int awardExp = 0;    
     
     NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
     if (currentStatus == NotReachable) {

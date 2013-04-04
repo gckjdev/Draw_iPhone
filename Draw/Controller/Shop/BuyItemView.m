@@ -125,14 +125,14 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 - (IBAction)clickCountButton:(id)sender {
     InputDialog *dialog = [InputDialog dialogWith:@"kInputCount" clickOK:^(NSString *inputStr) {
-        self.count = [inputStr intValue];
-        if (self.count >= MAX_COUNT) {
-            self.count = MAX_COUNT;
+        int count = [inputStr intValue];
+        if (count < MIN_COUNT) {
+            return;
         }
-        if (self.count <= 0) {
-            self.count = _item.defaultSaleCount;
-        }
+        
+        self.count = MIN(count, MAX_COUNT);
         [self update];
+        
     } clickCancel:^(NSString *inputStr) {
         
     }];
