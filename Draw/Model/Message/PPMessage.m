@@ -321,22 +321,22 @@
     }
     return self;
 }
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
-    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
-        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
+//    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
+//        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
+//    }
+//    return self;
+//}
 @end
 
 
@@ -365,31 +365,31 @@
     }
     return self;
 }
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-    
-    [aCoder encodeObject:self.reqMessageId forKey:KEY_REQ_MESSAGEID];
-    
-    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
-    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
-    
-    [aCoder encodeInteger:self.replyResult forKey:KEY_REPLY_RESULT];
-
-    
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
-        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
-        self.replyResult = [aDecoder decodeIntegerForKey:KEY_REPLY_RESULT];
-        self.reqMessageId = [aDecoder decodeObjectForKey:KEY_REQ_MESSAGEID];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//    
+//    [aCoder encodeObject:self.reqMessageId forKey:KEY_REQ_MESSAGEID];
+//    
+//    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
+//    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
+//    
+//    [aCoder encodeInteger:self.replyResult forKey:KEY_REPLY_RESULT];
+//
+//    
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
+//        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
+//        self.replyResult = [aDecoder decodeIntegerForKey:KEY_REPLY_RESULT];
+//        self.reqMessageId = [aDecoder decodeObjectForKey:KEY_REQ_MESSAGEID];
+//    }
+//    return self;
+//}
 @end
 
 
@@ -414,22 +414,22 @@
     PPRelease(_image);
     [super dealloc];
 }
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-    
-    [aCoder encodeObject:self.imageUrl forKey:KEY_IMAGE_URL];    
-    
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.imageUrl = [aDecoder decodeObjectForKey:KEY_IMAGE_URL];
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//    
+//    [aCoder encodeObject:self.imageUrl forKey:KEY_IMAGE_URL];    
+//    
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        self.imageUrl = [aDecoder decodeObjectForKey:KEY_IMAGE_URL];
+//    }
+//    return self;
+//}
 
 @end
 
@@ -452,18 +452,18 @@
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [super encodeWithCoder:aCoder];
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        //init the attributes.
-    }
-    return self;
-}
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [super encodeWithCoder:aCoder];
+//}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self) {
+//        //init the attributes.
+//    }
+//    return self;
+//}
 
 @end

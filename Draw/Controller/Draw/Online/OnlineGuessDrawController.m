@@ -61,6 +61,10 @@
 @synthesize showView;
 @synthesize candidateString = _candidateString;
 @synthesize drawBackground;
+
+
+
+
 - (void)dealloc
 {
     [drawGameService setShowDelegate:nil];

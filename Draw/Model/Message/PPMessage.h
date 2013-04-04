@@ -36,7 +36,7 @@ typedef enum {
     MessageStatusFail = 4,
 } MessageStatus;
 
-@interface PPMessage : NSObject<NSCoding>
+@interface PPMessage : NSObject
 {
     NSString * _messageId;
     NSDate * _createDate;

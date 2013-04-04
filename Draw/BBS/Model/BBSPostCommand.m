@@ -56,7 +56,8 @@
                                                   image:nil
                                          drawActionList:nil
                                               drawImage:nil
-                                               delegate:self.controller];
+                                               delegate:self.controller
+                                             canvasSize:CGSizeZero];
 
 }
 
