@@ -103,6 +103,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setGuessDifficultLevel:guessDiffLevel];
     [requestBuilder setRoomName:roomName];
     [requestBuilder setUserLevel:userLevel];
+    [requestBuilder setVersion:1];                  // new version
+    
 
     if ([snsUserData count] > 0){
         [requestBuilder addAllSnsUsers:snsUserData];
@@ -429,6 +431,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setAvatar:[user avatar]];
     [requestBuilder setGender:[user gender]];    
     [requestBuilder setUser:user];
+    [requestBuilder setUserLevel:user.level];
+    [requestBuilder setVersion:1];                  // new version
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];
@@ -455,6 +459,8 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setAvatar:[user avatar]];
     [requestBuilder setGender:[user gender]];
     [requestBuilder setUser:user];
+    [requestBuilder setUserLevel:user.level];
+    [requestBuilder setVersion:1];                  // new version
     
     GameMessage_Builder *messageBuilder = [[[GameMessage_Builder alloc] init] autorelease];
     [messageBuilder setCommand:GameCommandTypeJoinGameRequest];

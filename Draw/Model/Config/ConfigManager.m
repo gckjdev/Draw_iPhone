@@ -209,7 +209,7 @@
         return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9080"];
     }
     else{
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN_NEW" defaultValue:@"58.215.172.169:9090"];
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN_NEW" defaultValue:@"58.215.172.169:9010"];
     }
 }
 

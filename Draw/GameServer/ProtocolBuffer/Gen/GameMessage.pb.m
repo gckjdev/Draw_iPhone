@@ -6523,6 +6523,7 @@ static ChangeCardResponse* defaultChangeCardResponseInstance = nil;
 @property int32_t userLevel;
 @property (retain) PBGameUser* user;
 @property int32_t ruleType;
+@property int32_t version;
 @end
 
 @implementation JoinGameRequest
@@ -6651,6 +6652,13 @@ static ChangeCardResponse* defaultChangeCardResponseInstance = nil;
   hasRuleType_ = !!value;
 }
 @synthesize ruleType;
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 - (void) dealloc {
   self.userId = nil;
   self.gameId = nil;
@@ -6682,6 +6690,7 @@ static ChangeCardResponse* defaultChangeCardResponseInstance = nil;
     self.userLevel = 0;
     self.user = [PBGameUser defaultInstance];
     self.ruleType = 0;
+    self.version = 0;
   }
   return self;
 }
@@ -6788,6 +6797,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (self.hasRuleType) {
     [output writeInt32:101 value:self.ruleType];
   }
+  if (self.hasVersion) {
+    [output writeInt32:102 value:self.version];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -6855,6 +6867,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   }
   if (self.hasRuleType) {
     size += computeInt32Size(101, self.ruleType);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(102, self.version);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6991,6 +7006,9 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
   if (other.hasRuleType) {
     [self setRuleType:other.ruleType];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -7089,6 +7107,10 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
       }
       case 808: {
         [self setRuleType:[input readInt32]];
+        break;
+      }
+      case 816: {
+        [self setVersion:[input readInt32]];
         break;
       }
     }
@@ -7422,6 +7444,22 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 - (JoinGameRequest_Builder*) clearRuleType {
   result.hasRuleType = NO;
   result.ruleType = 0;
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (JoinGameRequest_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (JoinGameRequest_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 @end
