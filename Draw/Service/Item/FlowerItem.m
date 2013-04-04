@@ -40,9 +40,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
   resultHandler:(ConsumeItemResultHandler)handler
 {
     int awardAmount = 0;
-    int awardExp = 0;
-//    NSString* targetUserId = nil;
-    
+    int awardExp = 0;    
     
     NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
     if (currentStatus == NotReachable) {
@@ -56,7 +54,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     if (isOffline) {
 
         // prepare data for consumeItem request
-//        targetUserId = toUserId;
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
@@ -101,23 +98,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         }
 
     }else{
-        
         // free for online play game
         int rankResult = RANK_FLOWER;
         [[DrawGameService defaultService] rankGameResult:rankResult];
         EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
         [bself.blockArray releaseBlock:tempHandler];
-        
-//        if (!isFree) {
-//            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
-//                if (resultCode == ERROR_SUCCESS) {
-//                    [[DrawGameService defaultService] rankGameResult:rankResult];
-//                    EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
-//                    [bself.blockArray releaseBlock:tempHandler];
-//                }
-//            }];
-//        }else{
-//        }
     }
 }
 

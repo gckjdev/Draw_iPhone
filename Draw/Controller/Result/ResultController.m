@@ -49,6 +49,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "UIButton+WebCache.h"
 #import "GameItemManager.h"
+#import "TomatoItem.h"
 
 #define CONTINUE_TIME 10
 
@@ -737,27 +738,53 @@
             self.downButton.enabled = NO;
         return;
     }
-        
-    __block typeof (self) bself = self;
-    [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
-                                 isOffline:[self isOffline]
-                                feedOpusId:_feed.feedId
-                                feedAuthor:_feed.author.userId
-                                   forFree:NO
-                             resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
-        if (resultCode == ERROR_SUCCESS) {
-            [bself throwItemAnimation:toolView isBuy:isBuy];
-            [toolView decreaseNumber];
-        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
-            if ([self isOffline]) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-            }else{
-                [BalanceNotEnoughAlertView showInController:bself];
-            }
-        }else if (resultCode == ERROR_NETWORK){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
-        }
-    }];
+    
+    if (toolView.itemType == ItemTypeFlower) {
+        __block typeof (self) bself = self;
+        [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
+                                     isOffline:[self isOffline]
+                                    feedOpusId:_feed.feedId
+                                    feedAuthor:_feed.author.userId
+                                       forFree:NO
+                                 resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+                                     if (resultCode == ERROR_SUCCESS) {
+                                         [bself throwItemAnimation:toolView isBuy:isBuy];
+                                         [toolView decreaseNumber];
+                                     }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                                         if ([self isOffline]) {
+                                             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+                                         }else{
+                                             [BalanceNotEnoughAlertView showInController:bself];
+                                         }
+                                     }else if (resultCode == ERROR_NETWORK){
+                                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
+                                     }
+                                 }];
+    }
+    
+    if (toolView.itemType == ItemTypeTomato) {
+        __block typeof (self) bself = self;
+        [[TomatoItem sharedTomatoItem] useItem:_feed.author.userId
+                                     isOffline:[self isOffline]
+                                    feedOpusId:_feed.feedId
+                                    feedAuthor:_feed.author.userId
+                                       forFree:NO
+                                 resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+                                     if (resultCode == ERROR_SUCCESS) {
+                                         [bself throwItemAnimation:toolView isBuy:isBuy];
+                                         [toolView decreaseNumber];
+                                     }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+                                         if ([self isOffline]) {
+                                             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+                                         }else{
+                                             [BalanceNotEnoughAlertView showInController:bself];
+                                         }
+                                     }else if (resultCode == ERROR_NETWORK){
+                                         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
+                                     }
+                                 }];
+
+    }
 }
 
 - (void)throwItemAnimation:(ToolView*)toolView isBuy:(BOOL)isBuy
