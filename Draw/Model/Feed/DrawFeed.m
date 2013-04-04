@@ -434,6 +434,25 @@
     return [self localSaveTimes] < self.saveLimit;
 }
 
+
+
+#define IMAGE_SUFFIX @".jpg"
+#define THUMB_IMAGE_SUFFIX @"_m.jpg"
+
+- (NSURL *)thumbURL
+{
+    NSString *url =  self.drawImageUrl;
+    if (![self.drawImageUrl hasSuffix:THUMB_IMAGE_SUFFIX] && [self.drawImageUrl hasSuffix:IMAGE_SUFFIX]) {
+        NSUInteger loc = [self.drawImageUrl rangeOfString:IMAGE_SUFFIX].location;
+        if (loc != NSNotFound) {
+            url = [self.drawImageUrl substringToIndex:loc];
+            url = [url stringByAppendingString:THUMB_IMAGE_SUFFIX];
+            
+        }
+    }
+    return [NSURL URLWithString:url];
+}
+
 //- (BOOL)hasDrawActions
 //{
 //    return [self.pbDraw.drawDataList count] != 0;

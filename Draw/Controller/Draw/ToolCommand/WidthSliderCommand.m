@@ -64,7 +64,7 @@
     [width setSelected:YES];    
     [content addSubview:width];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, SIZE, SIZE, SIZE)];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, SIZE, SIZE, SIZE)] autorelease];
     label.tag = LABEL_TAG;
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextAlignment:NSTextAlignmentCenter];

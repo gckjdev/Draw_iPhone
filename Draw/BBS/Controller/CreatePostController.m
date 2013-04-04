@@ -454,7 +454,11 @@
         [self updateToolButtons];
     }else{
         NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"),bonus];
-        msg = NSLS(msg);
+        if(ISIPAD){
+            [self popupUnhappyMessage:msg title:nil];
+        }else{
+            [UIUtils alert:msg];
+        }
     }
 }
 
