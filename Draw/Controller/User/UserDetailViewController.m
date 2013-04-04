@@ -76,10 +76,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.opusList removeAllObjects];
-    [self.favoriteList removeAllObjects];
     [self didClickTabAtIndex:currentTabIndex];
-    currentTabIndex = DetailTabActionClickOpus;
 }
 
 - (void)didReceiveMemoryWarning
@@ -241,29 +238,32 @@
     [self.detail clickSNSBtnType:TYPE_FACEBOOK viewController:self];
 }
 
+- (void)updateFavoriteList
+{
+    [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+}
+
+- (void)updateOpusList
+{
+    [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+}
+
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
-    [[self detailCell] setDrawFeedList:nil];
+//    [[self detailCell] setDrawFeedList:nil];
     [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
-            if (self.favoriteList.count == 0) {
-                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-                
-            } else {
-                [[self detailCell] setDrawFeedList:self.favoriteList];
-                [[self detailCell] setIsLoadingFeed:NO];
-            }
+            [self updateFavoriteList];
             
         }
             break;
         case DetailTabActionClickOpus:
         {
-            if (self.opusList.count == 0) {
-                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
-                
+            if (self.favoriteList.count == 0 || [self.detail canEdit]) {
+                [self updateOpusList];
             } else {
                 [[self detailCell] setDrawFeedList:self.opusList];
                 [[self detailCell] setIsLoadingFeed:NO];
@@ -299,6 +299,7 @@
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {
+                [self.favoriteList removeAllObjects];
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[DrawFeed class]]) {
                         [self.favoriteList addObject:feed];
@@ -308,6 +309,7 @@
                 [[self detailCell] setDrawFeedList:self.favoriteList];
             } break;
             case FeedListTypeUserOpus: {
+                [self.opusList removeAllObjects];
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[DrawFeed class]]) {
                         [self.opusList addObject:feed];
