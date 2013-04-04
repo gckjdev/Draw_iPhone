@@ -236,11 +236,11 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUINormalTitleShadowColor" ref="764526642"/>
-						<object class="NSCustomResource" key="IBUISelectedImage" id="347189110">
+						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_tool_select_icon@2x.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage" id="439992634">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_tool_icon@2x.png</string>
 						</object>
@@ -282,8 +282,14 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUINormalTitleShadowColor" ref="764526642"/>
-						<reference key="IBUISelectedImage" ref="347189110"/>
-						<reference key="IBUINormalImage" ref="439992634"/>
+						<object class="NSCustomResource" key="IBUISelectedImage" id="628362035">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_promotion_select_icon@2x.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage" id="654382760">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_promotion_icon@2x.png</string>
+						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="230106924"/>
 						<reference key="IBUINormalBackgroundImage" ref="351685426"/>
 						<reference key="IBUIFontDescription" ref="1053242597"/>
@@ -317,14 +323,8 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUINormalTitleShadowColor" ref="764526642"/>
-						<object class="NSCustomResource" key="IBUISelectedImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">item_promotion_select_icon@2x.png</string>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">item_promotion_icon@2x.png</string>
-						</object>
+						<reference key="IBUISelectedImage" ref="628362035"/>
+						<reference key="IBUINormalImage" ref="654382760"/>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_select@2x.png</string>
@@ -862,7 +862,7 @@
 				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="25.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="0.0" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="25.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="26.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="2" key="26.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
@@ -882,7 +882,7 @@
 				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="53.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="0.0" key="53.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="53.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>

@@ -251,20 +251,20 @@
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
-//    [[self detailCell] setDrawFeedList:nil];
+    [[self detailCell] clearDrawFeedList];
     [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
-            [self updateFavoriteList];
-        }
-            break;
+                [self updateFavoriteList];
+        } break;
         case DetailTabActionClickOpus:
         {
             if (self.favoriteList.count == 0 || [self.detail canEdit]) {
                 [self updateOpusList];
             } else {
-                [[self detailCell] setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [[self detailCell] setDrawFeedList:self.opusList tipText:tipText];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
         }
@@ -305,7 +305,9 @@
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                [[self detailCell] setDrawFeedList:self.favoriteList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
+
+                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
             } break;
             case FeedListTypeUserOpus: {
                 [self.opusList removeAllObjects];
@@ -316,7 +318,8 @@
                     }
                 }
                 UserDetailCell* cell = [self detailCell];
-                [cell setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [cell setDrawFeedList:self.opusList tipText:tipText];
             }
             default:
                 break;
