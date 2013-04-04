@@ -701,7 +701,7 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{184, 1200}, {84, 69}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="578401976"/>
+								<reference key="NSNextKeyView" ref="750094167"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -835,10 +835,10 @@
 								<reference key="IBUIFont" ref="12158011"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
-							<object class="IBUILabel" id="578401976">
+							<object class="IBUILabel" id="750094167">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{203, 1180}, {387, 69}}</string>
+								<string key="NSFrame">{{12.5, 1200}, {768, 69}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSNextKeyView" ref="1040361067"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1050,7 +1050,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">noSNSTipsLabel</string>
 						<reference key="source" ref="849259711"/>
-						<reference key="destination" ref="578401976"/>
+						<reference key="destination" ref="750094167"/>
 					</object>
 					<int key="connectionID">108</int>
 				</object>
@@ -1226,7 +1226,7 @@
 							<reference ref="225102615"/>
 							<reference ref="957889801"/>
 							<reference ref="410422127"/>
-							<reference ref="578401976"/>
+							<reference ref="750094167"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1420,7 +1420,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">107</int>
-						<reference key="object" ref="578401976"/>
+						<reference key="object" ref="750094167"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
 				</array>
