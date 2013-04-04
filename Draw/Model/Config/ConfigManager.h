@@ -235,4 +235,7 @@ typedef enum{
 + (NSString *)getDianRongBiTaoBaoURL;
 
 + (int)getCoinsIngotRate;
+
++ (int)getSignatureMaxLen;
++ (int)getNicknameMaxLen;
 @end

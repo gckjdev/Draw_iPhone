@@ -132,7 +132,7 @@ enum {
     rowOfSignature = 7;
     rowOfPrivacy = 8;
 //    rowOfCustomBg = 9;
-    rowsInSectionUser = 10;
+    rowsInSectionUser = 9;
     
     //section guessword
     if (isDrawApp()) {
@@ -673,6 +673,7 @@ enum {
             InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             [dialog setTargetText:nicknameLabel.text];
+            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
@@ -688,6 +689,7 @@ enum {
             [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
             self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
+            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
             [self.inputAlertView showInView:self.view animated:YES];
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];

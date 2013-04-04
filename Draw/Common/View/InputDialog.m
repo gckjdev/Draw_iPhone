@@ -274,6 +274,13 @@
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (self.maxInputLen > 0 && range.location >= self.maxInputLen)
+        return NO; // return NO to not change text
+    return YES;
+}
+
 - (void)dealloc {
     PPRelease(cancelButton);
     PPRelease(okButton);

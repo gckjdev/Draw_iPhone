@@ -17,6 +17,7 @@
     
 }
 
+@property (assign, nonatomic) NSInteger maxInputLen;
 
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content
