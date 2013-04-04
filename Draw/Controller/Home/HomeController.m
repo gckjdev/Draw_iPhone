@@ -214,7 +214,9 @@
 
 - (void)updateRecoveryDrawCount
 {
-    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:[[DrawRecoveryService defaultService] recoveryDrawCount]];
+    NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+    [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:count];
+    [[StatisticManager defaultManager] setRecoveryCount:count];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -738,9 +740,10 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_OPUS];
             ShareController* share = [[ShareController alloc] init];
-            int count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+            int count = [[StatisticManager defaultManager] recoveryCount];
             if (count > 0) {
                 [share setDefaultTabIndex:2];
+                [[StatisticManager defaultManager] setRecoveryCount:0];
             }
             [self.navigationController pushViewController:share animated:YES];
             [share release];
