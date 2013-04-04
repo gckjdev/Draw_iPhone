@@ -1167,9 +1167,9 @@
 "kDownloadAppMessage" = "確認跳轉到AppStore去下載本應用嗎？";
 "kChangeCanvasFailed" = "當畫布有內容的時候不允許改變畫布尺寸。";
 
-"kAskFollowSNSUserTitle" = "%@關注";
-"kAskFollowSNSUserMessage" = "使用%@關注該好友";
-"kFollowSNSSucc" = "成功通過%@關注了該好友!";
+"kAskFollowSNSUserTitle" = "關注%@";
+"kAskFollowSNSUserMessage" = "關注該好友的%@";
+"kFollowSNSSucc" = "成功關注了該好友的%@!";
 
 "kUndoing" = "撤銷中...";
 "kRedoing" = "重做中...";
