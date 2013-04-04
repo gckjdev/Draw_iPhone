@@ -157,7 +157,7 @@
         if (feed.drawImage) {
             [imageView setImage:feed.drawImage];
         }else{
-            [imageView setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
+            [imageView setImageWithURL:[feed thumbURL]];
         }
         
         NSInteger page = index / IMAGE_NUMBER_PER_PAGE;

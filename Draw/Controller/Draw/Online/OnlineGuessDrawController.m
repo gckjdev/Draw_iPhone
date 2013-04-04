@@ -479,7 +479,9 @@
     [self initTargetViews];
     [self initPickToolView];
     _guessCorrect = NO;
-    [self performSelector:@selector(initWithCacheData)];
+    [self initWithCacheData];
+
+//    [self performSelector:@selector(initWithCacheData)];
 //    _shopController = nil;
     
 }

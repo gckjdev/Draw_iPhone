@@ -96,7 +96,9 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FreeIngotCell *cell = [tableView dequeueReusableCellWithIdentifier:[FreeIngotCell getCellIdentifier]];
-    cell = [FreeIngotCell createCell:self];
+    if(cell == nil){
+        cell = [FreeIngotCell createCell:self];
+    }
     if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
         PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
         [cell setCellWithPBAppReward:appReward];

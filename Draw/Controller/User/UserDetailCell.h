@@ -75,7 +75,9 @@
 @property (retain, nonatomic) IBOutlet LocalizableLabel *noSNSTipsLabel;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
-- (void)setDrawFeedList:(NSArray*)feedList;
+- (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
+- (void)clearDrawFeedList;
+
 - (void)setIsLoadingFeed:(BOOL)isLoading;
 
 @end

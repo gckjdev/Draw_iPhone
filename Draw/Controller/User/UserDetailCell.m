@@ -112,7 +112,7 @@
            toLabel:(UILabel*)label
 {
     NSString* text = label.text;
-    if (text == nil || text.length <= 0) {
+    if (text == nil || text.length == 0) {
         [view setCenter:label.center];
         return;
     }
@@ -327,9 +327,15 @@
     }
 }
 
-- (void)setDrawFeedList:(NSArray*)feedList
+- (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText
 {
-    [self.carousel setDrawFeedList:feedList];
+    [self.carousel setDrawFeedList:feedList
+                           tipText:(NSString *)tipText];
+}
+
+- (void)clearDrawFeedList
+{
+    [self.carousel clearDrawFeedList];
 }
 
 - (void)setIsLoadingFeed:(BOOL)isLoading

@@ -37,6 +37,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     _carousel.dataSource = nil;
     [_drawFeeds release];
     [_carousel release];
+    [_tipLable release];
     [super dealloc];
 }
 
@@ -75,8 +76,23 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 }
 
 - (void)setDrawFeedList:(NSArray *)drawFeeds
+                tipText:(NSString *)tipText
 {
     self.drawFeeds = drawFeeds;
+    [self.carousel reloadData];
+    
+    if ([drawFeeds count] > 0) {
+        self.tipLable.hidden = YES;
+    }else{
+        self.tipLable.hidden = NO;
+        self.tipLable.text = tipText;
+    }
+}
+
+- (void)clearDrawFeedList
+{
+    self.tipLable.hidden = YES;
+    self.drawFeeds = nil;
     [self.carousel reloadData];
 }
 

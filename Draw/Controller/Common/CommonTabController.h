@@ -55,8 +55,12 @@ typedef enum{
 - (IBAction)clickTabButton:(id)sender;
 - (IBAction)clickRefreshButton:(id)sender;
 
+
+
 - (void)clickTab:(NSInteger)tabID;
 - (id)initWithDefaultTabIndex:(NSInteger)index;
+
+- (void)setDefaultTabIndex:(int)tabIndex;
 
 + (void)enterControllerWithIndex:(NSInteger)index
                   fromController:(UIViewController *)controller 

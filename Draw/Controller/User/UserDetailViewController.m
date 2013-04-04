@@ -76,10 +76,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.opusList removeAllObjects];
-    [self.favoriteList removeAllObjects];
     [self didClickTabAtIndex:currentTabIndex];
-    currentTabIndex = DetailTabActionClickOpus;
 }
 
 - (void)didReceiveMemoryWarning
@@ -241,31 +238,33 @@
     [self.detail clickSNSBtnType:TYPE_FACEBOOK viewController:self];
 }
 
+- (void)updateFavoriteList
+{
+    [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+}
+
+- (void)updateOpusList
+{
+    [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+}
+
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
-    [[self detailCell] setDrawFeedList:nil];
+    [[self detailCell] clearDrawFeedList];
     [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
-            if (self.favoriteList.count == 0) {
-                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-                
-            } else {
-                [[self detailCell] setDrawFeedList:self.favoriteList];
-                [[self detailCell] setIsLoadingFeed:NO];
-            }
-            
-        }
-            break;
+                [self updateFavoriteList];
+        } break;
         case DetailTabActionClickOpus:
         {
-            if (self.opusList.count == 0) {
-                [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
-                
+            if (self.favoriteList.count == 0 || [self.detail canEdit]) {
+                [self updateOpusList];
             } else {
-                [[self detailCell] setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [[self detailCell] setDrawFeedList:self.opusList tipText:tipText];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
         }
@@ -299,15 +298,19 @@
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {
+                [self.favoriteList removeAllObjects];
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[DrawFeed class]]) {
                         [self.favoriteList addObject:feed];
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                [[self detailCell] setDrawFeedList:self.favoriteList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
+
+                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
             } break;
             case FeedListTypeUserOpus: {
+                [self.opusList removeAllObjects];
                 for (Feed* feed in feedList) {
                     if ([feed isKindOfClass:[DrawFeed class]]) {
                         [self.opusList addObject:feed];
@@ -315,7 +318,8 @@
                     }
                 }
                 UserDetailCell* cell = [self detailCell];
-                [cell setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [cell setDrawFeedList:self.opusList tipText:tipText];
             }
             default:
                 break;
