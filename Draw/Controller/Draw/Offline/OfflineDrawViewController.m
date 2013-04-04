@@ -327,7 +327,10 @@
 
 - (void)initDrawView
 {
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:CanvasRectiPadDefault]];
+//    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:CanvasRectiPadDefault]];
+    
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
@@ -337,7 +340,7 @@
         self.opusDesc = self.draft.opusDesc;
     }else{
         //Test
-        [self addTestActions];
+//        [self addTestActions];
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
 
