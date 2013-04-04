@@ -12,7 +12,7 @@
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define WIDTH VALUE(180)
-#define HEIGHT VALUE(220)
+#define HEIGHT VALUE(200)
 #define FONT_SIZE VALUE(16)
 
 @implementation HelpCommand
@@ -27,7 +27,11 @@
     [label setFont:font];
     [label setText:NSLS(@"kGestureExplainContent")];
     CustomInfoView *info = [CustomInfoView createWithTitle:NSLS(@"kGestureExplain") infoView:label];
+    
+    [info.mainView updateCenterY:(info.mainView.center.y - (ISIPAD ? 40 : 20))];
+    
     [info showInView:[self.control theTopView]];
+    
     return YES;
 }
 -(void)sendAnalyticsReport{

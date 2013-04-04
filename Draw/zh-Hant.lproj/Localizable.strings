@@ -1195,7 +1195,7 @@
 "kBlackUserTitle" = "黑名單";
 
 "kGestureExplain" = "手勢說明";
-"kGestureExplainContent" = "放大 — 雙指捏合向外\n\n縮小 — 雙指捏合向內\n\n移動 — 雙指移動\n\n還原 — 雙指雙擊\n\n";
+"kGestureExplainContent" = "放大 — 雙指捏合向外\n\n縮小 — 雙指捏合向內\n\n移動 — 雙指移動\n\n還原 — 雙指雙擊\n";
 "kImageNull" = "生成圖片失敗，請重試。";
 "kHisOpus" = "作品";
 
