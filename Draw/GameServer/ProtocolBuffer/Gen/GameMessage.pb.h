@@ -1910,6 +1910,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasIsRobot_:1;
   BOOL hasGender_:1;
   BOOL hasSessionToBeChange_:1;
+  BOOL hasVersion_:1;
   BOOL hasRuleType_:1;
   BOOL hasUserLevel_:1;
   BOOL hasGuessDifficultLevel_:1;
@@ -1926,6 +1927,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL isRobot_:1;
   BOOL gender_:1;
   int64_t sessionToBeChange;
+  int32_t version;
   int32_t ruleType;
   int32_t userLevel;
   int32_t guessDifficultLevel;
@@ -1958,6 +1960,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasUserLevel;
 - (BOOL) hasUser;
 - (BOOL) hasRuleType;
+- (BOOL) hasVersion;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* gameId;
 @property (readonly) int32_t autoNew;
@@ -1974,6 +1977,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly) int32_t userLevel;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t ruleType;
+@property (readonly) int32_t version;
 - (NSArray*) excludeSessionIdList;
 - (int64_t) excludeSessionIdAtIndex:(int32_t) index;
 - (NSArray*) snsUsersList;
@@ -2108,6 +2112,11 @@ BOOL BetTypeIsValidValue(BetType value);
 - (int32_t) ruleType;
 - (JoinGameRequest_Builder*) setRuleType:(int32_t) value;
 - (JoinGameRequest_Builder*) clearRuleType;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (JoinGameRequest_Builder*) setVersion:(int32_t) value;
+- (JoinGameRequest_Builder*) clearVersion;
 @end
 
 @interface JoinGameResponse : PBGeneratedMessage {

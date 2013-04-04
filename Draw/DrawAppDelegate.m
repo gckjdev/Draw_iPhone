@@ -219,7 +219,7 @@ NSString* GlobalGetBoardServerURL()
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
 
-//    [GameConfigDataManager createTestConfigData];
+    [GameConfigDataManager createTestConfigData];
 
     // load config data
     [GameConfigDataManager defaultManager];
