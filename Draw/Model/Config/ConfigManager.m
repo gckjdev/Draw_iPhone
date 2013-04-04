@@ -883,7 +883,7 @@
 
 + (int)getSignatureMaxLen
 {
-    return  [MobClickUtils getIntValueByKey:@"SIGNATURE_MAX_LEN" defaultValue:600];
+    return  [MobClickUtils getIntValueByKey:@"SIGNATURE_MAX_LEN" defaultValue:400];
 }
 + (int)getNicknameMaxLen
 {
