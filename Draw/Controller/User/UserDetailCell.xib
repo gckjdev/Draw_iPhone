@@ -90,7 +90,7 @@
 								<string key="NSFrame">{{0, 360}, {320, 4}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="930820349"/>
+								<reference key="NSNextKeyView" ref="991124685"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -99,7 +99,7 @@
 							<object class="IBUIImageView" id="334388955">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{320, 364}</string>
+								<string key="NSFrameSize">{320, 341}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="33434113"/>
@@ -274,7 +274,7 @@
 									<object class="IBUIImageView" id="304357654">
 										<reference key="NSNextResponder" ref="347356920"/>
 										<int key="NSvFlags">317</int>
-										<string key="NSFrameSize">{322, 185}</string>
+										<string key="NSFrameSize">{322, 165}</string>
 										<reference key="NSSuperview" ref="347356920"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="372745069"/>
@@ -395,7 +395,7 @@
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
 								</array>
-								<string key="NSFrame">{{0, 178}, {322, 185}}</string>
+								<string key="NSFrame">{{0, 178}, {322, 165}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="304357654"/>
@@ -601,7 +601,7 @@
 							<object class="IBUILabel" id="492713582">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{140, 614}, {49, 21}}</string>
+								<string key="NSFrame">{{133, 614}, {55, 21}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="905471670"/>
@@ -631,7 +631,7 @@
 								<string key="NSFrame">{{140, 544}, {49, 21}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1019354794"/>
+								<reference key="NSNextKeyView" ref="112373542"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -691,6 +691,7 @@
 								<string key="NSFrame">{{224.5, 646.5}, {93, 33}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -739,7 +740,7 @@
 								<string key="NSFrame">{{76, 577}, {35, 29}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="112373542"/>
+								<reference key="NSNextKeyView" ref="1040361067"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -808,7 +809,7 @@
 								<reference key="IBUIFontDescription" ref="525949801"/>
 								<reference key="IBUIFont" ref="600695308"/>
 							</object>
-							<object class="IBUILabel" id="930820349">
+							<object class="IBUILabel" id="991124685">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{76, 348}, {168, 28}}</string>
@@ -847,10 +848,10 @@
 							<object class="IBUILabel" id="112373542">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{77, 577}, {161, 29}}</string>
+								<string key="NSFrame">{{-2.5, 577}, {320, 29}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1040361067"/>
+								<reference key="NSNextKeyView" ref="1019354794"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -864,10 +865,10 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="29055669"/>
 								<int key="IBUIBaselineAdjustment">0</int>
+								<float key="IBUIMinimumFontSize">6</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="345906218"/>
 								<reference key="IBUIFont" ref="278334743"/>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 705}</string>
@@ -1259,7 +1260,6 @@
 							<reference ref="401480678"/>
 							<reference ref="127274822"/>
 							<reference ref="853562852"/>
-							<reference ref="492713582"/>
 							<reference ref="830181892"/>
 							<reference ref="1019354794"/>
 							<reference ref="1040361067"/>
@@ -1275,7 +1275,8 @@
 							<reference ref="905471670"/>
 							<reference ref="33434113"/>
 							<reference ref="334388955"/>
-							<reference ref="930820349"/>
+							<reference ref="991124685"/>
+							<reference ref="492713582"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1464,7 +1465,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">106</int>
-						<reference key="object" ref="930820349"/>
+						<reference key="object" ref="991124685"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
 				</array>
@@ -1563,17 +1564,75 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UserDetailCell</string>
 					<string key="superclassName">PPTableViewCell</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickCustomBackground:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickCustomBackground:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickCustomBackground:</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickBlack:">id</string>
+						<string key="clickChatButton:">id</string>
+						<string key="clickDrawToButton:">id</string>
+						<string key="clickEdit:">id</string>
+						<string key="clickFacebook:">id</string>
+						<string key="clickFanCount:">id</string>
+						<string key="clickFollow:">id</string>
+						<string key="clickFollowCount:">id</string>
+						<string key="clickManage:">id</string>
+						<string key="clickMore:">id</string>
+						<string key="clickSina:">id</string>
+						<string key="clickUserAction:">id</string>
+						<string key="switchBasicInfoAndAction:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickBlack:">
+							<string key="name">clickBlack:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="clickChatButton:">
+							<string key="name">clickChatButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickDrawToButton:">
+							<string key="name">clickDrawToButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickEdit:">
+							<string key="name">clickEdit:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFacebook:">
+							<string key="name">clickFacebook:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFanCount:">
+							<string key="name">clickFanCount:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFollow:">
+							<string key="name">clickFollow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickFollowCount:">
+							<string key="name">clickFollowCount:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickManage:">
+							<string key="name">clickManage:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickMore:">
+							<string key="name">clickMore:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickSina:">
+							<string key="name">clickSina:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickUserAction:">
+							<string key="name">clickUserAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="switchBasicInfoAndAction:">
+							<string key="name">switchBasicInfoAndAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="avatarView">CommonRoundAvatarView</string>
 						<string key="backgroundImageView">UIImageView</string>

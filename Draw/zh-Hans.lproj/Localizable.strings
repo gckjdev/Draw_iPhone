@@ -811,6 +811,16 @@
 "kVerticalCanvasLarge" = "竖版画布(大)";
 "kVerticalCanvasLargeDesc" = "竖版画布，尺寸为640*1136，用于画竖版画，该尺寸同时也是iPhone5标准尺寸";
 
+"kDrawBackground1" = "背景";
+"kDrawBackground2" = "背景";
+"kDrawBackground3" = "背景";
+"kDrawBackground4" = "背景";
+"kDrawBackground5" = "背景";
+"kDrawBackground6" = "背景";
+"kDrawBackground7" = "背景";
+"kDrawBackground8" = "背景";
+"kDrawBackground9" = "背景";
+
 "kDrawBackgroundDesc" = "绘画背景，让你的画画更加生动漂亮";
 
 
@@ -929,6 +939,8 @@
 "kUserNoFeed" = "%@ 还没有动态。";
 "kUserNoOpus" = "%@ 还没有作品。";
 "kUserNoFavorite" = "%@ 还没有收藏";
+
+
 
 "kOpusOperation" = "请选择你需要的操作";
 
