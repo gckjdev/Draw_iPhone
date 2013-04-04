@@ -43,7 +43,7 @@
 #import "GameItemManager.h"
 #import "UserGameItemManager.h"
 #import "DrawHolderView.h"
-
+#import "TomatoItem.h"
 
 #define PAPER_VIEW_TAG 20120403
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
@@ -713,15 +713,23 @@
 
 - (void)throwTomato:(ToolView *)toolView
 {
-    [self showAnimationThrowTool:toolView isBuy:NO];
-    [_scene throwATomato];
 
     // TODO: add throw tomato code here
-
+    [[TomatoItem sharedTomatoItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+        if (resultCode == ERROR_SUCCESS) {
+            [self showAnimationThrowTool:toolView isBuy:isBuy];
+            [_scene throwATomato];
+            if (![_scene canThrowTomato]) {
+                [toolView setEnabled:NO];
+            }
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
+        }else if (resultCode == ERROR_NETWORK){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
+        }
+    }];
     
-    if (![_scene canThrowTomato]) {
-        [toolView setEnabled:NO];
-    }
+
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView

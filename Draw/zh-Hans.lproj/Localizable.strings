@@ -940,6 +940,7 @@
 "kUserNoOpus" = "%@ 还没有作品。";
 "kUserNoFavorite" = "%@ 还没有收藏";
 
+"kInputCount" = "输入您要购买的数量";
 
 
 "kOpusOperation" = "请选择你需要的操作";

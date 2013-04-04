@@ -40,9 +40,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
   resultHandler:(ConsumeItemResultHandler)handler
 {
     int awardAmount = 0;
-    int awardExp = 0;
-//    NSString* targetUserId = nil;
-    
+    int awardExp = 0;    
     
     NetworkStatus currentStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
     if (currentStatus == NotReachable) {
@@ -56,7 +54,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     if (isOffline) {
 
         // prepare data for consumeItem request
-//        targetUserId = toUserId;
         awardAmount = [ConfigManager getFlowerAwardAmount];
         awardExp = [ConfigManager getFlowerAwardExp];
         
@@ -101,23 +98,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
         }
 
     }else{
-        
         // free for online play game
-        int rankResult = RANK_FLOWER;
-        [[DrawGameService defaultService] rankGameResult:rankResult];
-        EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
-        [bself.blockArray releaseBlock:tempHandler];
         
-//        if (!isFree) {
-//            [[UserGameItemService defaultService] consumeItem:[self itemId] count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
-//                if (resultCode == ERROR_SUCCESS) {
-//                    [[DrawGameService defaultService] rankGameResult:rankResult];
-//                    EXECUTE_BLOCK(tempHandler, 0, [bself itemId], isBuy);
-//                    [bself.blockArray releaseBlock:tempHandler];
-//                }
-//            }];
-//        }else{
-//        }
+        if ([[UserGameItemManager defaultManager] hasEnoughItem:ItemTypeFlower amount:1]) {
+            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+            }];
+            [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
+            EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], NO);
+            [bself.blockArray releaseBlock:tempHandler];
+            
+        }else if([[UserGameItemService defaultService] hasEnoughBalanceToBuyItem:ItemTypeFlower count:1]){
+            [[UserGameItemService defaultService] consumeItem:ItemTypeFlower count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+            }];
+            [[DrawGameService defaultService] rankGameResult:RANK_FLOWER];
+            EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], YES);
+            [bself.blockArray releaseBlock:tempHandler];
+        }else{
+            EXECUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, [bself itemId], YES);
+            [bself.blockArray releaseBlock:tempHandler];
+        }
     }
 }
 

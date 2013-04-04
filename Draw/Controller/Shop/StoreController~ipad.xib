@@ -213,7 +213,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{252, 119}, {132, 62}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="227218997"/>
+						<reference key="NSNextKeyView" ref="714377914"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">101</int>
@@ -260,6 +260,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{384, 119}, {132, 62}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="227218997"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">102</int>
@@ -282,11 +283,11 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUINormalTitleShadowColor" ref="764526642"/>
-						<object class="NSCustomResource" key="IBUISelectedImage" id="628362035">
+						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_select_icon@2x.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage" id="654382760">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_icon@2x.png</string>
 						</object>
@@ -323,8 +324,14 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="764526642"/>
 						<reference key="IBUINormalTitleShadowColor" ref="764526642"/>
-						<reference key="IBUISelectedImage" ref="628362035"/>
-						<reference key="IBUINormalImage" ref="654382760"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_taobao_select_icon@2x.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_taobao_icon@2x.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_select@2x.png</string>
@@ -498,6 +505,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{622, 946}, {100, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="728606032"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -911,6 +919,8 @@
 			<string key="item_promotion_icon@2x.png">{34, 35}</string>
 			<string key="item_promotion_select@2x.png">{133, 62}</string>
 			<string key="item_promotion_select_icon@2x.png">{34, 35}</string>
+			<string key="item_taobao_icon@2x.png">{34, 35}</string>
+			<string key="item_taobao_select_icon@2x.png">{34, 35}</string>
 			<string key="item_tool@2x.png">{133, 62}</string>
 			<string key="item_tool_icon@2x.png">{34, 35}</string>
 			<string key="item_tool_select@2x.png">{133, 62}</string>
