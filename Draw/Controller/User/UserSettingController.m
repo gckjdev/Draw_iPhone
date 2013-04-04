@@ -673,7 +673,7 @@ enum {
             InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             [dialog setTargetText:nicknameLabel.text];
-            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+//            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
@@ -689,7 +689,7 @@ enum {
             [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
             self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
-            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+//            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
             [self.inputAlertView showInView:self.view animated:YES];
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
@@ -1119,6 +1119,15 @@ enum {
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+    
+    if (_pbUserBuilder.nickName.length > [ConfigManager getNicknameMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kNicknameOutofRange"), [ConfigManager getNicknameMaxLen], [ConfigManager getNicknameMaxLen]/2] delayTime:1.5];
+        return;
+    }
+    if (_pbUserBuilder.signature.length > [ConfigManager getSignatureMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSignatureOutofRange"), [ConfigManager getSignatureMaxLen], [ConfigManager getSignatureMaxLen]/2] delayTime:1.5];
+        return;
+    }
     
     if (hasEdited) {
         PBGameUser* user = [_pbUserBuilder build];
