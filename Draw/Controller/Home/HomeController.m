@@ -51,6 +51,7 @@
 #import "AnalyticsManager.h"
 #import "DrawRecoveryService.h"
 
+
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
 
@@ -736,8 +737,11 @@
         case HomeMenuTypeDrawOpus:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_OPUS];
-            
-            ShareController* share = [[ShareController alloc] init ];
+            ShareController* share = [[ShareController alloc] init];
+            int count = [[DrawRecoveryService defaultService] recoveryDrawCount];
+            if (count > 0) {
+                [share setDefaultTabIndex:2];
+            }
             [self.navigationController pushViewController:share animated:YES];
             [share release];
             
@@ -748,6 +752,9 @@
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
 
             FriendController *mfc = [[FriendController alloc] init];
+            if ([[StatisticManager defaultManager] fanCount] > 0) {
+                [mfc setDefaultTabIndex:FriendTabIndexFan];
+            }
             [self.navigationController pushViewController:mfc animated:YES];
             [mfc release];
         }

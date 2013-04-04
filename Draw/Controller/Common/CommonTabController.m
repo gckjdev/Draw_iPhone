@@ -14,6 +14,12 @@
 @synthesize titleLabel = _titleLabel;
 @synthesize noDataTipLabl = _noDataTipLabl;
 
+
+- (void)setDefaultTabIndex:(int)tabIndex
+{
+    _defaultTabIndex = tabIndex;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
