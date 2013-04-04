@@ -1301,7 +1301,7 @@
 "kEndWithMaxTotal" = "The total bet hits the threshold:%d, game over!";
 
 "kAlreadLastVersion" = "It's the last version now!";
-"kAppUpdate" = "Version update(Current version is %@)";
+"kAppUpdate" = "Version update(Ver %@)";
 
 "kJoining" = "Entering the room";
 "kCreatingRoom" = "Creating the room";
