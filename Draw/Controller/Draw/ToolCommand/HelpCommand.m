@@ -11,7 +11,7 @@
 #import "UIColor+UIColorExt.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
-#define WIDTH VALUE(180)
+#define WIDTH VALUE(230)
 #define HEIGHT VALUE(200)
 #define FONT_SIZE VALUE(16)
 

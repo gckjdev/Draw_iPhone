@@ -61,7 +61,7 @@
                              bself.infoView = nil;
                          }];
         
-        [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 40 : 20))];
+        [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 35 : 20))];
     }
 
     [self.infoView showInView:view];
