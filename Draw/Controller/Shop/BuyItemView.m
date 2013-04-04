@@ -129,6 +129,9 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         if (self.count >= MAX_COUNT) {
             self.count = MAX_COUNT;
         }
+        if (self.count <= 0) {
+            self.count = _item.defaultSaleCount;
+        }
         [self update];
     } clickCancel:^(NSString *inputStr) {
         

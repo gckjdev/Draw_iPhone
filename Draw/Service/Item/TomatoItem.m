@@ -99,10 +99,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(TomatoItem);
 //
 //    }else{
         // free for online play game
-        int rankResult = RANK_TOMATO;
-        [[DrawGameService defaultService] rankGameResult:rankResult];
-        EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
+    if ([[UserGameItemManager defaultManager] hasEnoughItem:ItemTypeTomato amount:1]) {
+        [[UserGameItemService defaultService] consumeItem:ItemTypeTomato count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+        }];
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+        EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], NO);
         [bself.blockArray releaseBlock:tempHandler];
+        
+    }else if([[UserGameItemService defaultService] hasEnoughBalanceToBuyItem:ItemTypeTomato count:1]){
+        [[UserGameItemService defaultService] consumeItem:ItemTypeTomato count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+        }];
+        [[DrawGameService defaultService] rankGameResult:RANK_TOMATO];
+        EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], YES);
+        [bself.blockArray releaseBlock:tempHandler];
+    }else{
+        EXECUTE_BLOCK(tempHandler, ERROR_BALANCE_NOT_ENOUGH, [bself itemId], YES);
+        [bself.blockArray releaseBlock:tempHandler];
+    }
 //    }
 }
 

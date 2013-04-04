@@ -1116,6 +1116,8 @@
 
 "kBuyColorFailed"= "Buy color failed";
 
+"kInputCount" = "Input Count";
+
 "kItemNormal" = "Item";
 "kItemTool" = "Tool";
 "kItemPromotion" = "Hot";
