@@ -257,14 +257,13 @@
         case DetailTabActionClickFavouriate:
         {
             if (self.favoriteList.count == 0) {
-                [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
-                
+                [self updateFavoriteList];
             } else {
                 NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
                 [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
-            [self updateFavoriteList];            
+
         }
             break;
         case DetailTabActionClickOpus:
