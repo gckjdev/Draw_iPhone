@@ -43,6 +43,10 @@ typedef enum{
 @property (nonatomic, retain) NSString *opusDesc;
 @property (nonatomic, retain) NSString *drawDataUrl;
 
+
+//just an method
+- (NSURL *)thumbURL;
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 
 - (id)initWithFeedId:(NSString *)feedId

@@ -127,7 +127,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     NSInteger i = 1;
     NSInteger start = 1;
     for (NSString *group in groupList) {
-        i = start;
+
         PBDrawBgGroup_Builder *gb = [[[PBDrawBgGroup_Builder alloc] init] autorelease];
 
         
