@@ -91,12 +91,12 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 - (UIImage *)drawHomeShop{
-    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
 - (UIImage *)drawHomeMore
 {
-    NSString *imageName = [self fixImageName:@"common_home_more"];
+    NSString *imageName = [self fixImageName:@"draw_home_more"];
     return [UIImage imageNamed:imageName];
 }
 

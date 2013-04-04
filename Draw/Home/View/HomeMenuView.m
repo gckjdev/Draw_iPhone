@@ -136,7 +136,6 @@
 + (UIImage *)imageForType:(HomeMenuType)type
 {
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
-//    ShareImageManager *shareImageManager = [ShareImageManager defaultManager];
     switch (type) {
             //draw main menu
         case HomeMenuTypeDrawDraw :{
@@ -149,8 +148,7 @@
             return [imageManager drawHomeOnlineGuess];
         }
         case HomeMenuTypeDrawTimeline:{
-//            return [imageManager drawHomeTimeline];
-            return [imageManager drawHomeMe];
+            return [imageManager drawHomeTimeline];
         }
         case HomeMenuTypeDrawRank:{
             return [imageManager drawHomeTop];
@@ -162,8 +160,7 @@
             return [imageManager drawHomeBbs];
         }
         case HomeMenuTypeDrawShop:{
-//            return [imageManager drawHomeShop];
-            return [imageManager drawHomeMore];
+            return [imageManager drawHomeShop];
         }
         case HomeMenuTypeDrawApps:{
             return [imageManager drawAppsRecommand];
@@ -188,9 +185,7 @@
             return [imageManager drawHomeSetting];
         }
         case HomeMenuTypeDrawMore:{
-//            return [imageManager drawHomeMore];
-            return [imageManager drawHomeShop];
-
+            return [imageManager drawHomeMore];
         }
         case HomeMenuTypeDrawMe:{
             return [imageManager drawHomeMe];
