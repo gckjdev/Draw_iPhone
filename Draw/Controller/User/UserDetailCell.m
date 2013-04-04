@@ -327,9 +327,15 @@
     }
 }
 
-- (void)setDrawFeedList:(NSArray*)feedList
+- (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText
 {
-    [self.carousel setDrawFeedList:feedList];
+    [self.carousel setDrawFeedList:feedList
+                           tipText:(NSString *)tipText];
+}
+
+- (void)clearDrawFeedList
+{
+    [self.carousel clearDrawFeedList];
 }
 
 - (void)setIsLoadingFeed:(BOOL)isLoading

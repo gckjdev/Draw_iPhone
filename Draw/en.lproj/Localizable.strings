@@ -792,6 +792,17 @@
 "kVerticalCanvasLarge" = "Vertical Canvas(L)";
 "kVerticalCanvasLargeDesc" = "A Large Vertical Canvas with size of 640*1136, which fit iPhone5 screen.";
 
+
+"kDrawBackground1" = "Background";
+"kDrawBackground2" = "Background";
+"kDrawBackground3" = "Background";
+"kDrawBackground4" = "Background";
+"kDrawBackground5" = "Background";
+"kDrawBackground6" = "Background";
+"kDrawBackground7" = "Background";
+"kDrawBackground8" = "Background";
+"kDrawBackground9" = "Background";
+
 "kDrawBackgroundDesc" = "A butiful backgroud on your drawing";
 
 "kPickToolTitle" = "Use Item";
@@ -905,6 +916,7 @@
 "kUserNoFeed" = "%@ has no feeds.";
 "kUserNoOpus" = "%@ has no opus.";
 "kUserNoFavorite" = "%@ has no favorite.";
+
 
 "kOpusOperation" = "Choose your operation";
 

@@ -244,7 +244,7 @@
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
-    [[self detailCell] setDrawFeedList:nil];
+    [[self detailCell] clearDrawFeedList];
     [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
@@ -253,7 +253,8 @@
                 [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
                 
             } else {
-                [[self detailCell] setDrawFeedList:self.favoriteList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
+                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
             
@@ -265,7 +266,8 @@
                 [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
                 
             } else {
-                [[self detailCell] setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [[self detailCell] setDrawFeedList:self.opusList tipText:tipText];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
         }
@@ -305,7 +307,9 @@
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                [[self detailCell] setDrawFeedList:self.favoriteList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
+
+                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
             } break;
             case FeedListTypeUserOpus: {
                 for (Feed* feed in feedList) {
@@ -315,7 +319,8 @@
                     }
                 }
                 UserDetailCell* cell = [self detailCell];
-                [cell setDrawFeedList:self.opusList];
+                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
+                [cell setDrawFeedList:self.opusList tipText:tipText];
             }
             default:
                 break;

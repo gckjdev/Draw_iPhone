@@ -804,6 +804,16 @@
 "kVerticalCanvasLarge" = "豎版畫布(大)";
 "kVerticalCanvasLargeDesc" = "豎版畫布，尺寸為640*1136，用於畫豎版畫，該尺寸同時也是iPhone5標準尺寸";
 
+"kDrawBackground1" = "背景";
+"kDrawBackground2" = "背景";
+"kDrawBackground3" = "背景";
+"kDrawBackground4" = "背景";
+"kDrawBackground5" = "背景";
+"kDrawBackground6" = "背景";
+"kDrawBackground7" = "背景";
+"kDrawBackground8" = "背景";
+"kDrawBackground9" = "背景";
+
 "kDrawBackgroundDesc" = "繪畫背景，讓你的畫畫更加生動漂亮";
 
 "kPickToolTitle" = "使用道具";
@@ -920,6 +930,8 @@
 "kUserNoFavorite" = "%@ 還沒有收藏";
 
 "kOpusOperation" = "請選擇你需要的操作";
+
+
 
 "kStatement" = "比賽聲明";
 "kDecline" = "拒絕";
