@@ -931,6 +931,7 @@
 
 "kOpusOperation" = "請選擇你需要的操作";
 
+"kInputCount" = "輸入您要購買的數量";
 
 
 "kStatement" = "比賽聲明";
@@ -1210,7 +1211,9 @@
 "kGestureExplainContent" = "放大 — 雙指捏合向外\n\n縮小 — 雙指捏合向內\n\n移動 — 雙指移動\n\n還原 — 雙指雙擊\n";
 "kImageNull" = "生成圖片失敗，請重試。";
 "kHisOpus" = "作品";
-
+"kNicknameOutofRange" = "暱稱最長不可超過%d個字母或者%d個漢字。";
+"kSignatureOutofRange" = "個性簽名最長不可超過%d個字母或者%d個漢字。";
+"kNoBindNoFollow" = "你還沒綁定%@或者帳號已過期，你需要再綁定才能關注哦。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

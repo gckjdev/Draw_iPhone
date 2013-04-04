@@ -308,11 +308,11 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUINormalTitleShadowColor" ref="985244317"/>
-						<object class="NSCustomResource" key="IBUISelectedImage" id="225369030">
+						<object class="NSCustomResource" key="IBUISelectedImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_select_icon.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage" id="141658367">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion_icon.png</string>
 						</object>
@@ -350,13 +350,19 @@
 						<reference key="IBUIHighlightedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUISelectedTitleShadowColor" ref="985244317"/>
 						<reference key="IBUINormalTitleShadowColor" ref="985244317"/>
-						<reference key="IBUISelectedImage" ref="225369030"/>
-						<reference key="IBUINormalImage" ref="141658367"/>
-						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="358852200">
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_taobao_select_icon.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_taobao_icon.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="900894031">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">item_promotion@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="358852200"/>
+						<reference key="IBUINormalBackgroundImage" ref="900894031"/>
 						<reference key="IBUIFontDescription" ref="1028846749"/>
 						<reference key="IBUIFont" ref="729382766"/>
 					</object>
@@ -1070,6 +1076,8 @@
 			<string key="item_promotion@2x.png">{133, 62}</string>
 			<string key="item_promotion_icon.png">{16, 16}</string>
 			<string key="item_promotion_select_icon.png">{16, 16}</string>
+			<string key="item_taobao_icon.png">{16, 16}</string>
+			<string key="item_taobao_select_icon.png">{16, 16}</string>
 			<string key="item_tool@2x.png">{133, 62}</string>
 			<string key="item_tool_icon.png">{16, 16}</string>
 			<string key="item_tool_select@2x.png">{133, 62}</string>
