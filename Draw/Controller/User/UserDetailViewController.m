@@ -256,16 +256,8 @@
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
-            if (self.favoriteList.count == 0) {
                 [self updateFavoriteList];
-            } else {
-                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
-                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
-                [[self detailCell] setIsLoadingFeed:NO];
-            }
-
-        }
-            break;
+        } break;
         case DetailTabActionClickOpus:
         {
             if (self.favoriteList.count == 0 || [self.detail canEdit]) {
