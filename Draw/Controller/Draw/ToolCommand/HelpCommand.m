@@ -11,7 +11,7 @@
 #import "UIColor+UIColorExt.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
-#define WIDTH VALUE(230)
+#define WIDTH ([LocaleUtils isChinese] ? VALUE(180) : VALUE(230))
 #define HEIGHT VALUE(200)
 #define FONT_SIZE VALUE(16)
 
@@ -19,6 +19,7 @@
 
 - (BOOL)execute
 {
+    
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)] autorelease];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setNumberOfLines:0];

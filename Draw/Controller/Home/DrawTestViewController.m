@@ -84,7 +84,7 @@
     [self.view addSubview:slider1];
 
    */ 
-    DrawToolPanel *panel = [DrawToolPanel createViewWithdelegate:nil];
+    DrawToolPanel *panel = [DrawToolPanel createViewWithdToolHandler:nil];
     panel.center = CGPointMake(160, 407.5);
     [self.view addSubview:panel];
     
