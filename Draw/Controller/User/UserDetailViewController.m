@@ -257,7 +257,6 @@
         case DetailTabActionClickFavouriate:
         {
             [self updateFavoriteList];
-            
         }
             break;
         case DetailTabActionClickOpus:
