@@ -112,7 +112,7 @@
            toLabel:(UILabel*)label
 {
     NSString* text = label.text;
-    if (text == nil || text.length <= 0) {
+    if (text == nil || text.length == 0) {
         [view setCenter:label.center];
         return;
     }
