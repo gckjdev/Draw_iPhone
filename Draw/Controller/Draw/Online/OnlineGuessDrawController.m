@@ -534,10 +534,10 @@
 {
     if (isSetCanvasSize) {
         [showView changeRect:CGRectFromCGSize(canvasSize)];
-    }else{
-        DrawAction *action = [DrawAction drawActionWithPBDrawAction:drawAction];
-        [showView addDrawAction:action play:YES];
     }
+        
+    DrawAction *action = [DrawAction drawActionWithPBDrawAction:drawAction];
+    [showView addDrawAction:action play:YES];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
@@ -713,15 +713,13 @@
 
 - (void)throwTomato:(ToolView *)toolView
 {
-    [self showAnimationThrowTool:toolView isBuy:NO];
-    [_scene throwATomato];
 
     // TODO: add throw tomato code here
     [[TomatoItem sharedTomatoItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
-            [_scene throwAFlower];
-            if (![_scene canThrowFlower]) {
+            [_scene throwATomato];
+            if (![_scene canThrowTomato]) {
                 [toolView setEnabled:NO];
             }
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
@@ -731,9 +729,7 @@
         }
     }];
     
-    if (![_scene canThrowTomato]) {
-        [toolView setEnabled:NO];
-    }
+
 }
 #pragma mark - click tool delegate
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView

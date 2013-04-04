@@ -423,6 +423,7 @@ static DrawGameService* _defaultService;
         [self.session updateByGameNotification:[message notification]];
 //        [self.session removeAllDrawActions];
         [self.session.currentTurn resetData];
+        self.canvasSize = CGSizeZero;
 
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
@@ -458,13 +459,15 @@ static DrawGameService* _defaultService;
         if (isSetCanvasSize){
             PBSize* drawSize = [[message sendDrawDataRequest] canvasSize];            
             CGSize size = CGSizeFromPBSize(drawSize);
-            if (CGSizeEqualToSize(size, CGSizeZero) == NO){
+            if (CGSizeEqualToSize(size, CGSizeZero) == NO &&
+                CGSizeEqualToSize(size, self.canvasSize) == NO){
                 PPDebug(@"<handleSendDrawDataRequest> set canvas size to %@", NSStringFromCGSize(size));
                 self.canvasSize = size;
                 isSetCanvasSize = YES;
             }
             else{
                 PPDebug(@"<handleSendDrawDataRequest> receive canvas size zero");
+                isSetCanvasSize = NO;
             }
         }
         

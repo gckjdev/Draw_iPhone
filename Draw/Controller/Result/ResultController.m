@@ -436,10 +436,20 @@
         }
         
     }else{
+        //在线画画
         upButton.hidden = downButton.hidden = YES;
         upLabel.hidden = downLabel.hidden = YES;
-        continueButton.center = CGPointMake(self.view.center.x*0.75, continueButton.center.y);
-        saveButton.center  = CGPointMake(self.view.center.x/4, continueButton.center.y);
+
+        //        saveButton.center = continueButton.center;
+//        
+//        CGPoint continueCenter = upButton.center;
+//        continueCenter.y = continueButton.center.y;
+//        continueButton.center = continueCenter;
+        
+//        continueButton.center = upButton.center;
+        
+        continueButton.center = CGPointMake(self.view.frame.size.width/3.0, continueButton.center.y);
+        saveButton.center  = CGPointMake(self.view.frame.size.width*2/3.0, continueButton.center.y);
     }
     
     //init the continue button
