@@ -534,10 +534,10 @@
 {
     if (isSetCanvasSize) {
         [showView changeRect:CGRectFromCGSize(canvasSize)];
-    }else{
-        DrawAction *action = [DrawAction drawActionWithPBDrawAction:drawAction];
-        [showView addDrawAction:action play:YES];
     }
+        
+    DrawAction *action = [DrawAction drawActionWithPBDrawAction:drawAction];
+    [showView addDrawAction:action play:YES];
 }
 
 - (void)didReceiveRedrawResponse:(GameMessage *)message
