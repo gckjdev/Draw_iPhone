@@ -287,9 +287,47 @@
 #pragma mark - Update Data
 
 
+- (void)createActionWithStartPoint:(CGPoint)p1 endPoint:(CGPoint)p2
+{
+    
+    PPDebug(@"Line: %@ -----> %@",NSStringFromCGPoint(p1),NSStringFromCGPoint(p2));
+    NSMutableArray *pList = [NSMutableArray arrayWithCapacity:4];
+    Paint *paint = [Paint paintWithWidth:1 color:[DrawColor blackColor] penType:Pencil pointList:pList];
+    [paint addPoint:p1 inRect:drawView.bounds];
+    [paint addPoint:p2 inRect:drawView.bounds];
+    
+    PaintAction *action = [PaintAction paintActionWithPaint:paint];
+    [drawView drawDrawAction:action show:YES];
+    [drawView addDrawAction:action];
+
+}
+
+
+- (void)addTestActions
+{
+    CGFloat OFFSET = 2;
+    CGFloat width = CGRectGetWidth(drawView.bounds);
+    CGFloat height = CGRectGetHeight(drawView.bounds);
+
+    for (NSInteger i = 0; i < 1000; i += OFFSET) {
+        CGFloat H = i;
+        if (H * 2 >= width ) {
+            break;
+        }
+        
+        [self createActionWithStartPoint:CGPointMake(H, H) endPoint:CGPointMake(width - H, H)];
+
+        [self createActionWithStartPoint:CGPointMake(width - H, H) endPoint:CGPointMake(width - H, height - H)];
+
+        [self createActionWithStartPoint:CGPointMake(width - H, height - H) endPoint:CGPointMake(H, height - H)];
+
+        [self createActionWithStartPoint:CGPointMake(H, height - H) endPoint:CGPointMake(H, H)];
+    }
+}
+
 - (void)initDrawView
 {
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:CanvasRectiPadDefault]];
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     _isNewDraft = YES;
@@ -297,6 +335,9 @@
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
+    }else{
+        //Test
+        [self addTestActions];
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
 
