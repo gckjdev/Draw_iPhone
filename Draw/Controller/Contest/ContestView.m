@@ -58,6 +58,7 @@
 
 - (void)dealloc
 {
+    self.delegate = nil;
     PPRelease(_contest);
     PPRelease(_joinLabel);
     PPRelease(_opusLabel);
