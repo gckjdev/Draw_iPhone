@@ -16,6 +16,7 @@
 
 @interface GameItemService()
 @property (retain, nonatomic) BlockArray *blockArray;
+@property (retain, nonatomic) PPSmartUpdateData *smartData;
 
 @end
 
@@ -25,6 +26,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)dealloc
 {
+    PPRelease(_smartData);
     [_blockArray releaseAllBlock];
     [_blockArray release];
     [super dealloc];
@@ -35,6 +37,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     if(self = [super init])
     {
         self.blockArray = [[[BlockArray alloc] init] autorelease];
+        self.smartData = [[[PPSmartUpdateData alloc] initWithName:[GameItemManager shopItemsFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[GameItemManager shopItemsFileBundlePath] initDataVersion:[GameItemManager shopItemsFileVersion]] autorelease];
     }
     
     return self;
@@ -44,30 +47,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 - (void)syncData:(SyncItemsDataResultHandler)handler
 {
     SyncItemsDataResultHandler tempHandler = (SyncItemsDataResultHandler)[_blockArray copyBlock:handler];
-
-    
-    //load data
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:[GameItemManager shopItemsFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[GameItemManager shopItemsFileBundlePath] initDataVersion:[GameItemManager shopItemsFileVersion]];
     
     __block typeof(self) bself = self;
 
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+    [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         [bself updateItemsWithFile:dataFilePath];
         EXECUTE_BLOCK(tempHandler, YES);
         [bself.blockArray releaseBlock:tempHandler];
-        [smartData release];
         
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        PPDebug(@"datafilepath = %@", smartData.dataFilePath);
-        NSArray *itemsList = [bself itemsListFromFile:smartData.dataFilePath];
+        PPDebug(@"datafilepath = %@", bself.smartData.dataFilePath);
+        NSArray *itemsList = [bself itemsListFromFile:bself.smartData.dataFilePath];
         [[GameItemManager defaultManager] setItemsList:itemsList];
 
         EXECUTE_BLOCK(tempHandler, NO);
         [bself.blockArray releaseBlock:tempHandler];
-
-        [smartData release];
     }];
 }
 
