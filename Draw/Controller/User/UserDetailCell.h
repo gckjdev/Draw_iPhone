@@ -73,6 +73,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *blackListBtn;
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *noSNSTipsLabel;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *specialTitleLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *specialSepLine;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
