@@ -27,7 +27,13 @@
 
 - (BOOL)execute
 {
-    if ([super execute]) {
+//    if ([super execute]) {
+//        [self showPopTipView];
+//        return YES;
+//    }
+//    return NO;
+    if ([self canUseItem:self.itemType]) {
+        [self sendAnalyticsReport];
         [self showPopTipView];
         return YES;
     }
