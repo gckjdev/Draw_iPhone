@@ -454,7 +454,7 @@
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
                          responseHandler:responseHandler
-                            outputFormat:FORMAT_PROTOCOLBUFFER
+                            outputFormat:FORMAT_PB
                                   output:output];
     
 }
