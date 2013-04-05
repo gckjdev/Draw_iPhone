@@ -23,6 +23,8 @@
 #import "UIColor+UIColorExt.h"
 #import "RoundPercentageView.h"
 #import "UIImageView+WebCache.h"
+#import "CustomInfoView.h"
+#import "UIViewUtils.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -34,6 +36,7 @@
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
 @property (retain, nonatomic) FeedCarousel *carousel;
+@property (assign, nonatomic) NSObject<UserDetailProtocol> *detail;
 
 @end
 
@@ -50,6 +53,7 @@
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
+    self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];
     [self.nickNameLabel setText:pbUser.nickName];
@@ -370,6 +374,9 @@
     }
 }
 
+- (IBAction)clickSignButton:(id)sender {
+    [[CustomInfoView createWithTitle:NSLS(@"kSignature") info:[[self.detail getUser] signature]] showInView:self];
+}
 
 
 @end

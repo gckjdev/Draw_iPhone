@@ -778,7 +778,7 @@
 "kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
 
 "kItemTypePurse" = "錢箱";
-"kItemTypePurseDesc" = "包含一萬個金幣的錢箱";
+"kItemTypePurseDesc" = "包含10000個金幣的錢箱";
 
 "kItemTypeGrid" = "網格參考線";
 "kItemTypeGridDesc" = "繪畫時候用網格參考線，可對準和對齊繪畫元素";
@@ -1063,7 +1063,7 @@
 
 
 "kPaletteItem" = "調色板";
-"kColorAlphaItem" = "透明笔";
+"kColorAlphaItem" = "透明筆";
 "kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
 "kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
 
