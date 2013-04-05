@@ -130,8 +130,9 @@
     view.cancelSeletor = cancelSeletor;
     if (!hasSNS) {
         CGRect inputRect = view.content.frame;
-        [view.content setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y, inputRect.size.width, view.qqCheckBox.center.y - inputRect.origin.y)];
-        [view.contentBg setFrame:view.content.frame];
+        [view.contentBg setFrame:CGRectMake(inputRect.origin.x, inputRect.origin.y, inputRect.size.width, view.qqCheckBox.center.y - inputRect.origin.y)];
+//        [view.contentBg setFrame:view.content.frame];
+        [view.content setCenter:view.contentBg.center];
         [view.qqCheckBox setHidden:YES];
         [view.sinaCheckBox setHidden:YES];
         [view.shareToQQ setHidden:YES];
