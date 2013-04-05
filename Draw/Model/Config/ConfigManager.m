@@ -206,7 +206,7 @@
 //    return @"192.168.1.198:8080";
     
     if ([[UserManager defaultManager] getLanguageType] == ChineseType ){        
-        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9080"];
+        return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9000"];
     }
     else{
         return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_EN_NEW" defaultValue:@"58.215.172.169:9010"];

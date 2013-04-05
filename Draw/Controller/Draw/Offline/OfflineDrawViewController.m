@@ -286,14 +286,27 @@
 
 #pragma mark - Update Data
 
-
+#define STEP 5
 - (void)createActionWithStartPoint:(CGPoint)p1 endPoint:(CGPoint)p2
 {
     
     PPDebug(@"Line: %@ -----> %@",NSStringFromCGPoint(p1),NSStringFromCGPoint(p2));
-    NSMutableArray *pList = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray *pList = [NSMutableArray array];
     Paint *paint = [Paint paintWithWidth:1 color:[DrawColor blackColor] penType:Pencil pointList:pList];
     [paint addPoint:p1 inRect:drawView.bounds];
+    
+//    if (p1.x == p2.x) {
+//        for (NSInteger i = p1.y; i <= p2.y; i += STEP) {
+//            CGPoint p = CGPointMake(p1.x, i);
+//            [paint addPoint:p inRect:drawView.bounds];
+//        }
+//    }else if (p1.y == p2.y) {
+//        for (NSInteger i = p1.x; i <= p2.x; i += STEP) {
+//            CGPoint p = CGPointMake(i,p1.y);
+//            [paint addPoint:p inRect:drawView.bounds];
+//        }
+//    }
+    
     [paint addPoint:p2 inRect:drawView.bounds];
     
     PaintAction *action = [PaintAction paintActionWithPaint:paint];
@@ -305,23 +318,47 @@
 
 - (void)addTestActions
 {
-    CGFloat OFFSET = 2;
+    CGFloat OFFSET = 3;
     CGFloat width = CGRectGetWidth(drawView.bounds);
     CGFloat height = CGRectGetHeight(drawView.bounds);
 
-    for (NSInteger i = 0; i < 1000; i += OFFSET) {
+    CGPoint cP;
+    for (NSInteger r = width/2-2; r > 2; r -= OFFSET) {
+        NSMutableArray *pList = [NSMutableArray array];
+        Paint *paint = [Paint paintWithWidth:1 color:[DrawColor blackColor] penType:Pencil pointList:pList];
+
+        for (CGFloat a = 0.0; a <= M_PI * 3; a+= 0.03) {
+            if (M_PI * 2 <= a) {
+                a = 2*M_PI+0.015;
+                cP = CGPointMake(cosf(a) * r + width/2., sinf(a)*r + height/2.);
+                [paint addPoint:cP inRect:drawView.bounds];
+                break;
+            }
+            cP = CGPointMake(cosf(a) * r + width/2., sinf(a)*r + height/2.);
+            [paint addPoint:cP inRect:drawView.bounds];
+            
+        }
+        PaintAction *action = [PaintAction paintActionWithPaint:paint];
+        [drawView drawDrawAction:action show:YES];
+        [drawView addDrawAction:action];
+
+    }
+    
+    return;
+    
+    for (NSInteger i = 0; i < 10000; i += OFFSET) {
         CGFloat H = i;
-        if (H * 2 >= width ) {
+        if (H  > width ) {
             break;
         }
         
-        [self createActionWithStartPoint:CGPointMake(H, H) endPoint:CGPointMake(width - H, H)];
+        [self createActionWithStartPoint:CGPointMake(0, H) endPoint:CGPointMake(width, H)];
 
-        [self createActionWithStartPoint:CGPointMake(width - H, H) endPoint:CGPointMake(width - H, height - H)];
+//        [self createActionWithStartPoint:CGPointMake(width - H, H) endPoint:CGPointMake(width - H, height - H)];
+//
+//        [self createActionWithStartPoint:CGPointMake(H, height - H) endPoint:CGPointMake(width - H, height - H)];
 
-        [self createActionWithStartPoint:CGPointMake(width - H, height - H) endPoint:CGPointMake(H, height - H)];
-
-        [self createActionWithStartPoint:CGPointMake(H, height - H) endPoint:CGPointMake(H, H)];
+        [self createActionWithStartPoint:CGPointMake(H, 0) endPoint:CGPointMake(H, height)];
     }
 }
 
