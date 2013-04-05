@@ -683,7 +683,7 @@ enum {
             [self askUpdateLocation];
             
         }else if (row == rowOfZodiac) {
-//            [self askSetZodiac];
+            [self askSetZodiac];
         }else if (row == rowOfBirthday) {
             [self askSetBirthday];
         }else if (row == rowOfBloodGroup) {
@@ -877,7 +877,9 @@ enum {
                                                               if (date != nil){
                                                                   
                                                                   [_pbUserBuilder setBirthday:dateToStringByFormat(date, DATE_FORMAT)];
-                                                                  [_pbUserBuilder setZodiac:dateToZodiac(date)];
+                                                                  if (![_pbUserBuilder hasBirthday]) {
+                                                                      [_pbUserBuilder setZodiac:dateToZodiac(date)];
+                                                                  }
                                                                   hasEdited = YES;
                                                               }
                                                               
