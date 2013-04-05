@@ -323,6 +323,8 @@
 
     [toolCmdManager updateHandler:self.toolHandler];
     [toolCmdManager updatePanel:self];
+    
+    [self.toolHandler enterDrawMode];
 
 }
 

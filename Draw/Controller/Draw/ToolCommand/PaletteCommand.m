@@ -57,7 +57,8 @@
     [self becomeActive];
     if (t == TouchActionTypeShape) {
         [self.toolHandler enterShapeMode];
-//        [self.toolPanel setShapeSelected:YES];
+    }else{
+        [self.toolHandler enterDrawMode];
     }
     [self.toolHandler changePenColor:color];
 }

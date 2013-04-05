@@ -35,11 +35,16 @@
 #pragma mark-- Color Box Delegate
 
 - (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
-{
+{    
+    TouchActionType type = self.toolHandler.drawView.touchActionType;
     [self.toolHandler changePenColor:color];
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
     [self hidePopTipView];
-//    [self.toolHandler ]
+    if (type == TouchActionTypeShape) {
+        [self.toolHandler enterShapeMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
 }
 - (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
 {
