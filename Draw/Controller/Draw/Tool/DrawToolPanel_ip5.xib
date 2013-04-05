@@ -87,11 +87,12 @@
 							<object class="IBUIImageView" id="553028480">
 								<reference key="NSNextResponder" ref="419834011"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{3, 0}, {311, 42}}</string>
+								<string key="NSFrame">{{5.5, 0}, {310, 42}}</string>
 								<reference key="NSSuperview" ref="419834011"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="315064821"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUITag">201304051</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -102,7 +103,7 @@
 							<object class="IBUIButton" id="639054212">
 								<reference key="NSNextResponder" ref="419834011"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{274, 2}, {29, 39}}</string>
+								<string key="NSFrame">{{276, 2}, {29, 39}}</string>
 								<reference key="NSSuperview" ref="419834011"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1036126919"/>
@@ -139,7 +140,7 @@
 							<object class="IBUIButton" id="315064821">
 								<reference key="NSNextResponder" ref="419834011"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{245, 9}, {24, 24}}</string>
+								<string key="NSFrame">{{247, 9}, {24, 24}}</string>
 								<reference key="NSSuperview" ref="419834011"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="639054212"/>
@@ -5790,6 +5791,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="straw">UIButton</string>
 						<string key="switchPage">UIButton</string>
 						<string key="timeSet">UIButton</string>
+						<string key="toolBGImageView">UIImageView</string>
 						<string key="undo">UIButton</string>
 						<string key="widthSlider">DrawSlider</string>
 					</dictionary>
@@ -5881,6 +5883,10 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="IBToOneOutletInfo" key="timeSet">
 							<string key="name">timeSet</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolBGImageView">
+							<string key="name">toolBGImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="undo">
 							<string key="name">undo</string>

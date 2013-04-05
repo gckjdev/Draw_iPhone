@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UserGameItemManager.h"
 #import "ItemType.h"
+#import "UIColor+UIColorExt.h"
 
 #pragma mark-- CanvasRectView
 
@@ -167,20 +168,24 @@ typedef enum {
     switch (type) {
         case CanvasRectViewTypeBought:
         {
-            color = [UIColor greenColor];
+            color = OPAQUE_COLOR(43, 203, 185);
             break;
         }
         case CanvasRectViewTypeSelected:
         {
-            color = [UIColor redColor];
+            color = OPAQUE_COLOR(214, 93, 97);
             break;
         }
         case CanvasRectViewTypeUnbuy:
         default:
         {
-            color = [UIColor grayColor];
+            color = OPAQUE_COLOR(111, 111, 111);
             break;
         }
+            /*
+             43  203  185已购买
+             214  93  97当前
+             111  111  111没卖的*/
     }
     [self.title setTextColor:color];
     [self.title.layer setBorderColor:color.CGColor];

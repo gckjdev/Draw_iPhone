@@ -658,10 +658,19 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    
 }
 
-- (UIImage *)drawColorBG; //draw_color_bg@2x.png
+- (UIImage *)drawColorBG //draw_color_bg@2x.png
 {
-    return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
+//    return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
+    return [UIImage strectchableImageName:@"draw_color_bg"];
 }
+
+- (UIImage *)drawToolBG //draw_tool_bg@2x.png
+{
+    return [UIImage strectchableImageName:@"draw_tool_bg"];
+//    return [self fixedAndStrectchableImageNamed:@"draw_tool_bg"];
+}
+
+
 - (UIImage *)drawSliderLoader
 {
 //    NSString *name = [self fixImageName:@"draw_slider_load"];

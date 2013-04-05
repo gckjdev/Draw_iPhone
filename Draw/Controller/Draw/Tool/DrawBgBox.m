@@ -134,10 +134,16 @@
 @implementation DrawBgCell
 
 #define NAME_LABEL_TAG 10
+#define FLAG_BUTTON_TAG 11
 
 - (UILabel *)nameLabel
 {
     return (id)[self viewWithTag:NAME_LABEL_TAG];
+}
+
+- (UIButton *)flagButton
+{
+    return (id)[self viewWithTag:FLAG_BUTTON_TAG];
 }
 
 - (void)clickButton:(UIButton *)sender
@@ -189,6 +195,8 @@
     return defaultName;
 }
 
+#define MAX_WITH_ITEM_NAME (ISIPAD ? 400 : 200)
+
 - (void)updateName:(PBDrawBgGroup *)group
 {
     NSArray *list = group.nameList;
@@ -198,10 +206,21 @@
     }else{
         name = [self nameInList:list language:@"en"];
     }
-    if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
-        name = [NSString stringWithFormat:@"%@ [%@]", name, NSLS(@"kHasBought")];
-    }
+    CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
     [[self nameLabel] setText:name];
+    CGSize size = [name sizeWithFont:[self nameLabel].font constrainedToSize:withinSize lineBreakMode:[self nameLabel].lineBreakMode];
+    [[self nameLabel] updateWidth:size.width];
+    
+    if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
+        CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;
+        
+        [[self flagButton] updateOriginX:originX];
+        [[self flagButton] setHidden:NO];
+        [[self flagButton] setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
+    }else{
+        [[self flagButton] setHidden:YES];
+    }
+
 }
 
 - (void)updateCellWithDrawBGGroup:(PBDrawBgGroup *)group
