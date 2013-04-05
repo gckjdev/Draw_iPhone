@@ -257,5 +257,6 @@
 - (UIImage*)selfDetailExpBtnBg;
 
 - (UIImage*)customInfoViewMainBgImage;
+- (UIImage *)draftsBoxBgImage;
 
 @end

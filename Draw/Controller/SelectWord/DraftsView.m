@@ -10,6 +10,7 @@
 #import "AutoCreateViewByXib.h"
 #import "OfflineDrawViewController.h"
 #import "AnimationManager.h"
+#import "ShareImageManager.h"
 
 @interface DraftsView()
 
@@ -23,6 +24,7 @@ AUTO_CREATE_VIEW_BY_XIB(DraftsView);
     [_tableView release];
     [_drafts release];
     [_titleLabel release];
+    [_bgButton release];
     [super dealloc];
 }
 
@@ -40,6 +42,7 @@ AUTO_CREATE_VIEW_BY_XIB(DraftsView);
     // Animation
     CAAnimation *ani = [AnimationManager moveVerticalAnimationFrom:(view.frame.size.height + draftsView.frame.size.height/2) to:view.center.y duration:0.3];
     [draftsView.layer addAnimation:ani forKey:nil];
+    [draftsView.bgButton setBackgroundImage:[[ShareImageManager defaultManager] draftsBoxBgImage] forState:UIControlStateNormal];
     
     [view addSubview:draftsView];
 }

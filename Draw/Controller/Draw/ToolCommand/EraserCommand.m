@@ -12,12 +12,12 @@
 
 - (BOOL)execute
 {
-    if ([super execute]) {
+//    if ([super execute]) {
         [self showPopTipView];
         [self.toolHandler changeInPenType:Eraser];
         return YES;
-    }
-    return NO;
+//    }
+//    return NO;
 }
 
 

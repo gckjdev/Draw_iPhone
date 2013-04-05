@@ -1111,5 +1111,10 @@ static UIImage* _whitePaperImage;
     return [[self fixedImageNamed:@"common_dialog_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:60];
 }
 
+- (UIImage *)draftsBoxBgImage
+{
+    return [[self fixedImageNamed:@"all_my_words_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:240];
+}
+
 @end
 

@@ -94,12 +94,20 @@ typedef enum{
     [super dealloc];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _defaultTabIndex = 1;
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _defaultTabIndex = 1;
         
         _bbsImageManager = [BBSImageManager defaultManager];
         _bbsFontManager = [BBSFontManager defaultManager];
@@ -196,13 +204,9 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    self.postID = self.post.postId;
     [self initViews];
     [self loadPost];
-//    if ([self defaultTabID] == Support) {
-//        [_header clickSupport:_header.support];
-//    }else{
-//        [_header clickComment:_header.comment];
-//    }
 }
 
 - (void)didReceiveMemoryWarning
