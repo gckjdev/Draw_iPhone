@@ -102,7 +102,6 @@
     }else{
         animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
     }
-    //    [animationGroup setValue:ANIM_KEY_THROW_TOMATO forKey:DRAW_ANIM];
     [AnimationPlayer showView:tomatoImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
         completion(finished);
         if (shouldShowTips) {

@@ -785,7 +785,7 @@
 
 
 "kItemTypePurse" = "钱箱";
-"kItemTypePurseDesc" = "包含一万个金币的钱箱";
+"kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
@@ -946,6 +946,9 @@
 "kUserNoFeed" = "%@ 还没有动态。";
 "kUserNoOpus" = "%@ 还没有作品。";
 "kUserNoFavorite" = "%@ 还没有收藏";
+
+"kNoOpus" = "暂无作品";
+"kNoFavorite" = "暂无收藏";
 
 "kInputCount" = "输入您要购买的数量";
 

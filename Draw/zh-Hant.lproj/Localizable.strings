@@ -778,7 +778,7 @@
 "kWaterPenDescription" = "麥克筆，國外進口的一種高級畫筆";
 
 "kItemTypePurse" = "錢箱";
-"kItemTypePurseDesc" = "包含一萬個金幣的錢箱";
+"kItemTypePurseDesc" = "包含10000個金幣的錢箱";
 
 "kItemTypeGrid" = "網格參考線";
 "kItemTypeGridDesc" = "繪畫時候用網格參考線，可對準和對齊繪畫元素";
@@ -936,6 +936,9 @@
 "kUserNoFeed" = "%@ 還沒有動態。";
 "kUserNoOpus" = "%@ 還沒有作品。";
 "kUserNoFavorite" = "%@ 還沒有收藏";
+
+"kNoOpus" = "暫無作品";
+"kNoFavorite" = "暫無收藏";
 
 "kOpusOperation" = "請選擇你需要的操作";
 

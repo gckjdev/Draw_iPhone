@@ -38,7 +38,6 @@
 #import "DrawColorManager.h"
 #import "PointNode.h"
 #import "BuyItemView.h"
-#import "GameItemManager.h"
 #import "ToolCommand.h"
 #import "DrawHolderView.h"
 #import "ToolHandler.h"

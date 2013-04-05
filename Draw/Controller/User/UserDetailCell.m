@@ -23,6 +23,8 @@
 #import "UIColor+UIColorExt.h"
 #import "RoundPercentageView.h"
 #import "UIImageView+WebCache.h"
+#import "CustomInfoView.h"
+#import "UIViewUtils.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -34,6 +36,7 @@
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
 @property (retain, nonatomic) FeedCarousel *carousel;
+@property (assign, nonatomic) NSObject<UserDetailProtocol> *detail;
 
 @end
 
@@ -50,15 +53,15 @@
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail
 {
+    self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];
     [self.nickNameLabel setText:pbUser.nickName];
-    [self.signLabel setText:pbUser.signature];
+//    [self.signLabel setText:pbUser.signature];
+    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
     if ([detail isPrivacyVisable]) {
-        
-        NSDate* date = dateFromStringByFormat(pbUser.birthday, DATE_FORMAT);
-        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?dateToString(date):@"-")]];
+        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?pbUser.birthday:@"-")]];
         NSString* zodiacStr = [pbUser hasZodiac]?[LocaleUtils getZodiacWithIndex:pbUser.zodiac-1]:@"-";
         zodiacStr = (zodiacStr != nil)?zodiacStr:@"-";
         [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),zodiacStr]];
@@ -97,7 +100,7 @@
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
-    [self adjustView:self.levelLabel toLabel:self.signLabel];
+//    [self adjustView:self.levelLabel toLabel:self.signLabel];
     
     [self.segmentedControl setHidden:![detail hasFeedTab]];
     
@@ -106,6 +109,9 @@
     [self.customBackgroundImageView setImageWithURL:[NSURL URLWithString:[[detail getUser] backgroundUrl]]];
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
+    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
 }
 
 - (void)adjustView:(UIView*)view
@@ -122,6 +128,16 @@
         orgPoint.x += (label.frame.size.width - size.width)/2;
         [view setCenter:orgPoint];
     }
+}
+
+- (void)adjustSignatureLabel:(UILabel*)label WithText:(NSString*)signatureText
+{
+    [label setText:signatureText];
+    CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:NSLineBreakByWordWrapping];
+    if (size.height < label.frame.size.height) {
+        [label setFrame:CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height)];
+    }
+
 }
 
 + (float)getCellHeight
@@ -206,6 +222,8 @@
     [_noSNSTipsLabel release];
     [_customBackgroundControl release];
     [_customBackgroundImageView release];
+    [_specialTitleLabel release];
+    [_specialSepLine release];
     [super dealloc];
 }
 
@@ -356,6 +374,9 @@
     }
 }
 
+- (IBAction)clickSignButton:(id)sender {
+    [[CustomInfoView createWithTitle:NSLS(@"kSignature") info:[[self.detail getUser] signature]] showInView:self];
+}
 
 
 @end
