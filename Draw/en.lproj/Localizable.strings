@@ -792,18 +792,25 @@
 "kVerticalCanvasLarge" = "Vertical Canvas(L)";
 "kVerticalCanvasLargeDesc" = "A Large Vertical Canvas with size of 640*1136, which fit iPhone5 screen.";
 
+"kDrawBgAntares" = "Antares";
+"kDrawBgAdhara" = "Adhara";
+"kDrawBgElnath" = "Elnath";
+"kDrawBgAlioth" = "Alioth";
+"kDrawBgMimosa" = "Mimosa";
+"kDrawBgArcturus" = "Arcturus";
+"kDrawBgPollux" = "Pollux";
+"kDrawBgRegulus" = "Regulus";
+"kDrawBgMirfak" = "Mirfak";
 
-"kDrawBackground1" = "Background";
-"kDrawBackground2" = "Background";
-"kDrawBackground3" = "Background";
-"kDrawBackground4" = "Background";
-"kDrawBackground5" = "Background";
-"kDrawBackground6" = "Background";
-"kDrawBackground7" = "Background";
-"kDrawBackground8" = "Background";
-"kDrawBackground9" = "Background";
-
-"kDrawBackgroundDesc" = "A butiful backgroud on your drawing";
+"kDrawBgAntaresDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgAdharaDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgElnathDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgAliothDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgMimosaDesc" = "A butiful backgroud on your drawing, with size of 768*1024";
+"kDrawBgArcturusDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgPolluxDesc" = "butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgRegulusDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"kDrawBgMirfakDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 
 "kPickToolTitle" = "Use Item";
 

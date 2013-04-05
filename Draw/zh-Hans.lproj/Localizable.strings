@@ -811,18 +811,25 @@
 "kVerticalCanvasLarge" = "竖版画布(大)";
 "kVerticalCanvasLargeDesc" = "竖版画布，尺寸为640*1136，用于画竖版画，该尺寸同时也是iPhone5标准尺寸";
 
-"kDrawBackground1" = "背景";
-"kDrawBackground2" = "背景";
-"kDrawBackground3" = "背景";
-"kDrawBackground4" = "背景";
-"kDrawBackground5" = "背景";
-"kDrawBackground6" = "背景";
-"kDrawBackground7" = "背景";
-"kDrawBackground8" = "背景";
-"kDrawBackground9" = "背景";
+"kDrawBgAntares" = "心宿";
+"kDrawBgAdhara" = "弧矢";
+"kDrawBgElnath" = "五车";
+"kDrawBgAlioth" = "玉衡";
+"kDrawBgMimosa" = "十字架";
+"kDrawBgArcturus" = "大角";
+"kDrawBgPollux" = "北河";
+"kDrawBgRegulus" = "轩辕";
+"kDrawBgMirfak" = "天船";
 
-"kDrawBackgroundDesc" = "绘画背景，让你的画画更加生动漂亮";
-
+"kDrawBgAntaresDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgAdharaDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgElnathDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgAliothDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgMimosaDesc" = "绘画背景，让你的画画更加生动漂亮, 大小768*1024";
+"kDrawBgArcturusDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgPolluxDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgRegulusDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgMirfakDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
 
 "kPickToolTitle" = "使用道具";
 

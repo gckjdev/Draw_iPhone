@@ -81,9 +81,6 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.text = desc;
     [view addSubview:label];
     
-    
-
-    
     return view;
 }
 
