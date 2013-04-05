@@ -14,6 +14,12 @@
 
 #define DEFAULT_AVATAR_SIZE 320
 
+@interface ChangeAvatar ()
+
+@property (assign, nonatomic) BOOL hasRemoveOption;
+
+@end
+
 @implementation ChangeAvatar
 
 @synthesize superViewController = _superViewController;
@@ -34,6 +40,7 @@
     [_superViewController release];
     [_popoverController release];
     RELEASE_BLOCK(_selectImageBlock);
+    RELEASE_BLOCK(_setDefaultBlock);
     [super dealloc];
 }
 
@@ -48,11 +55,21 @@
 
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
        selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
+       didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
+                    title:(NSString*)title
+          hasRemoveOption:(BOOL)hasRemoveOption
 {
     self.selectImageBlock = selectedImageBlock;
     self.superViewController = superViewController;
+    self.hasRemoveOption = hasRemoveOption;
+    self.setDefaultBlock = setDefaultBlock;
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+    if (hasRemoveOption) {
+        [actionSheet addButtonWithTitle:NSLS(@"kResetDefault")];
+    }
+    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    [actionSheet setCancelButtonIndex:index];
     [actionSheet showInView:[superViewController view]];
     [actionSheet release];
 }
@@ -155,12 +172,17 @@
     
 }
 
+- (void)setDefault
+{
+    EXECUTE_BLOCK(_setDefaultBlock);
+}
+
 - (void)handleSelectAvatar:(int)buttonIndex
 {
     enum{
         BUTTON_SELECT_ALBUM,
         BUTTON_TAKE_PHOTO,
-        BUTTON_CANCEL
+        BUTTON_SET_DEFAULT
     };
     
     switch (buttonIndex) {
@@ -171,7 +193,9 @@
         case BUTTON_TAKE_PHOTO:
             [self takePhoto];
             break;
-            
+        case BUTTON_SET_DEFAULT:
+            [self setDefault];
+            break;
         default:
             break;
     }

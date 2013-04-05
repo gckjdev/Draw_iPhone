@@ -44,21 +44,38 @@
     return penBox;
 }
 
-- (void)updatePenWithPenType:(ItemType)type
+- (void)updateControlView
 {
-    [self becomeActive];
-    self.itemType = type;
-//    [self.toolHandler enterDrawMode];
-    [self.toolHandler changeInPenType:self.itemType];
-
-    [self hidePopTipView];
-    
-
+    [self.control setSelected:YES];
     UIButton *button = (UIButton *)self.control;
-    [button setImage:[Item imageForItemType:type] forState:UIControlStateNormal];
-
+    [button setImage:[Item imageForItemType:self.itemType] forState:UIControlStateNormal];
+    [button setImage:[Item seletedPenImageForType:self.itemType] forState:UIControlStateSelected];
 }
 
+- (void)updatePenWithPenType:(ItemType)type
+{
+    [self hidePopTipView];
+    [self becomeActive];
+    self.itemType = type;
+    [self.toolHandler changeInPenType:self.itemType];
+    [self updateControlView];
+}
+
+- (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
+{
+    self = [super initWithControl:control itemType:itemType];
+    if (self) {
+        [self updateControlView];
+    }
+    return self;
+}
+
+
+- (void)hidePopTipView
+{
+    [super hidePopTipView];
+    [self.control setSelected:NO];
+}
 
 - (void)buyItemSuccessfully:(ItemType)type
 {
@@ -77,7 +94,6 @@
 {
     if ([self canUseItem:penType]) {
         [self updatePenWithPenType:penType];
-      
     }
 }
 @end

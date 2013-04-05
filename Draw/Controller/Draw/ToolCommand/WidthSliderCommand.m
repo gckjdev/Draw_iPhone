@@ -55,9 +55,11 @@
     [label setText:text];
 }
 
+#define VALUE(X) (ISIPAD ? 2 * X : X)
+#define WIDTH_FONT_SIZE VALUE(14.0)
+
 - (UIView *)sliderContentViewWithValue:(CGFloat)value
 {
-
     UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SIZE, SIZE * 2)];
     WidthView *width = [WidthView viewWithWidth:value];
     width.tag = WIDTH_VIEW_TAG;
@@ -66,6 +68,7 @@
     
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, SIZE, SIZE, SIZE)] autorelease];
     label.tag = LABEL_TAG;
+    [label setFont:[UIFont systemFontOfSize:WIDTH_FONT_SIZE]];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextAlignment:NSTextAlignmentCenter];
     [content addSubview:label];
@@ -77,15 +80,13 @@
 
 - (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value
 {
-//    WidthView *widthView = (WidthView *)drawSlider.contentView;
-//    [widthView setWidth:value];
     [self updateValue:value withContentView:drawSlider.contentView];
 
 }
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
+    [[ToolCommandManager defaultManager] hideAllPopTipViewsExcept:self];
     [[self superScrollView] setClipsToBounds:NO];
-//    WidthView *width = [WidthView viewWithWidth:value];
     [drawSlider popupWithContenView:[self sliderContentViewWithValue:value]];
 
 }

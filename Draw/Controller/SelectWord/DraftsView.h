@@ -24,6 +24,7 @@
 @property (assign, nonatomic) id<DraftsViewDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *drafts;
+@property (retain, nonatomic) IBOutlet UIButton *bgButton;
 
 + (void)showInView:(UIView *)view delegate:(id<DraftsViewDelegate>)delegate;
 

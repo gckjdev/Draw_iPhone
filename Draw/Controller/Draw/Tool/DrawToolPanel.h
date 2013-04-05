@@ -36,8 +36,8 @@
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
-
 - (void)updateDrawToUser:(MyFriend *)user;
+- (void)updateWidthSliderWithValue:(CGFloat)value;
 
 #pragma mark - Timer
 

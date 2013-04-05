@@ -200,6 +200,10 @@
     [selectedPoint setSelected:YES];
 }
 
+- (void)updateWidthSliderWithValue:(CGFloat)value
+{
+    [self.widthSlider setValue:value];
+}
 
 - (void)updateDrawToUser:(MyFriend *)user
 {

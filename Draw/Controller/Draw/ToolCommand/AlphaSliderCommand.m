@@ -58,6 +58,7 @@
 }
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
+    [[ToolCommandManager defaultManager] hideAllPopTipViewsExcept:self];
     if (![self canUseItem:ColorAlphaItem]) {
         [self.control setSelected:YES];
         return;
