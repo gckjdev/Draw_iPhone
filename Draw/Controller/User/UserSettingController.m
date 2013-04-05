@@ -467,8 +467,7 @@ enum {
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
             if ([_pbUserBuilder hasBirthday]) {
-                NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, DATE_FORMAT);
-                [cell.detailTextLabel setText:dateToString(date)];
+                [cell.detailTextLabel setText:_pbUserBuilder.birthday];
             }
         }else if (row == rowOfBloodGroup) {
             [cell.textLabel setText:NSLS(@"kBloodGroup")];
@@ -1167,13 +1166,16 @@ enum {
         imageUploader = [[ChangeAvatar alloc] init];
         imageUploader.autoRoundRect = NO;
     }
-    [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
-        [uc uploadUserAvatar:image];
-//        [uc updateAvatar:image];
-    }];
+    [imageUploader showSelectionView:self
+                  selectedImageBlock:^(UIImage *image) {
+                      [uc uploadUserAvatar:image];
+                  }
+                  didSetDefaultBlock:nil
+                               title:nil
+                     hasRemoveOption:NO];
+    
+    
 }
-
-// -Dbg_upload.local=/Library/WebServer/Documents/upload/ -Dbg_upload.remote=http://192.168.1.198/upload/
 
 - (IBAction)clickBackButton:(id)sender {
     

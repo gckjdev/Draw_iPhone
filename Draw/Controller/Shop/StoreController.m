@@ -33,6 +33,10 @@ typedef enum{
 }TabID;
 
 @interface StoreController ()
+{
+    BOOL _isLoadingAccountDataFinish;
+    BOOL _isLoadingItemDataFinish;
+}
 
 @property (retain, nonatomic) UIButton *selectedButton;
 
@@ -61,12 +65,30 @@ typedef enum{
 
 - (void)updateItemData
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    
     __block typeof(self) bself = self;
+    
+    _isLoadingAccountDataFinish = NO;
+    _isLoadingItemDataFinish = NO;
+    
     [[GameItemService defaultService] syncData:^(BOOL success) {
+        _isLoadingItemDataFinish = YES;
+        
+        if (_isLoadingItemDataFinish && _isLoadingAccountDataFinish){
+            [self hideActivity];
+        }
+        
         [bself reloadTableViewDataSource];
     }];
     
     [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        _isLoadingAccountDataFinish = YES;
+
+        if (_isLoadingItemDataFinish && _isLoadingAccountDataFinish){
+            [self hideActivity];
+        }
+        
         [bself reloadTableViewDataSource];
         [bself updateBalance];
     }];
