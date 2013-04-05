@@ -1232,6 +1232,7 @@
 
 "kLoginSucc" = "Login successfully";
 "kLoginFail" = "Fail to login, please check your email or password";
+"kResetDefault" = "Reset Default";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
