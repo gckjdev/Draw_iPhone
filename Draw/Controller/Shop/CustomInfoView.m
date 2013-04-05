@@ -162,11 +162,15 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
         [view.mainView addSubview:button2];
     }
     
-    view.mainView.center = view.center;
-    [view.mainView updateCenterY:(view.mainView.center.y - (ISIPAD ? 20 : 10))];
-
-    
     return view;
+}
+
+- (void)updateMainViewCenter
+{
+    self.mainView.center = self.center;
+    CGFloat centerY = (self.mainView.center.y - (ISIPAD ? 20 : 10));
+    centerY = MIN(centerY, (ISIPAD ? 502 : 230));
+    [self.mainView updateCenterY:centerY];
 }
 
 - (void)enableButtons:(BOOL)enabled
@@ -224,6 +228,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 - (void)showInView:(UIView *)view
 {
     self.frame = view.bounds;
+    [self updateMainViewCenter];
     [view addSubview:self];
 
     [self.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:(self.superview.frame.size.height*1.5) to:(self.superview.frame.size.height*0.5) duration:0.3] forKey:@""];
