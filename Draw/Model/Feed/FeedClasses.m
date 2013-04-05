@@ -41,7 +41,7 @@
         self.avatar = avatar;
         self.gender = gender;
         self.signature = signature;
-        PPDebug(@"<initFeedUser> user nick=%@ signature = %@", nickName, signature);
+//        PPDebug(@"<initFeedUser> user nick=%@ signature = %@", nickName, signature);
     }
     return self;
 }

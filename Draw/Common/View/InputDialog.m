@@ -257,6 +257,10 @@
 - (void)showInView:(UIView *)view
 {
     self.frame = view.frame;
+    if (_maxInputLen > 0 && [self.targetTextField.text length] >= _maxInputLen) {
+        NSString* text = [self.targetTextField.text substringToIndex:_maxInputLen];
+        [self.targetTextField setText:text];
+    }
     [super showInView:view];
     [self.targetTextField becomeFirstResponder];
 }
