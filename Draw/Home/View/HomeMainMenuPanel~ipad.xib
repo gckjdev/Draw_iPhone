@@ -75,7 +75,7 @@
 					<object class="IBUIButton" id="224844068">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{673, 450}, {85, 85}}</string>
+						<string key="NSFrame">{{688, 440}, {80, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -84,9 +84,9 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">40</double>
+						<double key="IBUIContentEdgeInsets.top">38</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-						<double key="IBUIContentEdgeInsets.left">40</double>
+						<double key="IBUIContentEdgeInsets.left">0.0</double>
 						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="194448479">
 							<int key="NSColorSpace">3</int>
@@ -117,7 +117,7 @@
 					<object class="IBUIButton" id="808681202">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{10, 452}, {85, 83}}</string>
+						<string key="NSFrame">{{0, 440}, {80, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="224844068"/>
@@ -126,10 +126,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">40</double>
+						<double key="IBUIContentEdgeInsets.top">38</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">40</double>
+						<double key="IBUIContentEdgeInsets.right">0.0</double>
 						<reference key="IBUIHighlightedTitleColor" ref="194448479"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>

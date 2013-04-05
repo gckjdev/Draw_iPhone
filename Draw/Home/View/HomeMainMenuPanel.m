@@ -179,20 +179,19 @@
 }
 
 
-#define AMPLITUDE [DeviceDetection isIPAD] ? 15 * 2 : 15
-#define SPACE_PAGE_EDAGE 10
+#define AMPLITUDE [DeviceDetection isIPAD] ? 50 : 25
+#define SPACE_PAGE_EDAGE ([DeviceDetection isIPAD] ? 24 : 12)
 
 - (void)animatePageButtons
 {
 
     CGPoint center = self.next.center;
-    CGFloat halfWidth = self.next.frame.size.width / 2;
-    center.x = [self bounds].size.width - SPACE_PAGE_EDAGE - halfWidth;
+    center.x = CGRectGetWidth(self.bounds) - SPACE_PAGE_EDAGE;
     self.next.center = center;
 
     
-    center = self.previous.center;
-    center.x = SPACE_PAGE_EDAGE + halfWidth;
+    
+    center.x = SPACE_PAGE_EDAGE;
     self.previous.center = center;
     
     [UIView beginAnimations:@"Animated" context:NULL];
@@ -201,6 +200,7 @@
     [UIView setAnimationRepeatCount:MAXFLOAT];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     
+    center = self.previous.center;
     center.x += AMPLITUDE;
     self.previous.center = center;
     
