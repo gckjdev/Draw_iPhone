@@ -785,7 +785,7 @@
 
 
 "kItemTypePurse" = "钱箱";
-"kItemTypePurseDesc" = "包含一万个金币的钱箱";
+"kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
