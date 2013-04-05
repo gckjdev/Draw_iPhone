@@ -131,8 +131,8 @@ enum {
     rowOfZodiac = 6;
     rowOfSignature = 7;
     rowOfPrivacy = 8;
-//    rowOfCustomBg = 9;
-    rowsInSectionUser = 9;
+    rowOfCustomBg = 9;
+    rowsInSectionUser = 10;
     
     //section guessword
     if (isDrawApp()) {
@@ -315,7 +315,7 @@ enum {
         return rowsInSectionAccount;
     }
     else if (section == SECTION_REMOVE_AD){
-        return 1;
+        return (isDrawApp())?0:1;
     }
     else{
         return 0;
@@ -479,6 +479,8 @@ enum {
         } else if (row == rowOfPrivacy) {
             [cell.textLabel setText:NSLS(@"kPrivacy")];
             [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
+        } else if (row == rowOfCustomBg) {
+            [cell.textLabel setText:NSLS(@"kCustomBg")];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -672,7 +674,7 @@ enum {
             InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             [dialog setTargetText:nicknameLabel.text];
-//            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
             CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
@@ -688,10 +690,21 @@ enum {
             [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
             self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
-//            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
             [self.inputAlertView showInView:self.view animated:YES];
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
+        }else if (row == rowOfCustomBg) {
+            __block UserSettingController* uc = self;
+            if (imageUploader == nil) {
+                imageUploader = [[ChangeAvatar alloc] init];
+                imageUploader.autoRoundRect = NO;
+            }
+            [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
+                [uc uploadCustomBg:image];
+            } didSetDefaultBlock:^{
+                [uc uploadCustomBg:nil];
+            } title:NSLS(@"kCustomBg") hasRemoveOption:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {

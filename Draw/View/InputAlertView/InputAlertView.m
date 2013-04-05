@@ -176,6 +176,10 @@
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated
 {
+    if (_maxInputLen > 0 && [self.content.text length] >= _maxInputLen) {
+        NSString* text = [self.content.text substringToIndex:_maxInputLen];
+        [self.content setText:text];
+    }
     [view addSubview:self];
     if(animated){
         self.center = [self hideCenter];

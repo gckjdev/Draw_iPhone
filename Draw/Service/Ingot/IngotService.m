@@ -14,7 +14,7 @@
 
 @interface IngotService()
 @property (retain, nonatomic) BlockArray *blockArray;
-
+@property (retain, nonatomic) PPSmartUpdateData *smartData;
 @end
 
 @implementation IngotService
@@ -23,6 +23,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 
 - (void)dealloc
 {
+    PPRelease(_smartData);
     [_blockArray releaseAllBlock];
     [_blockArray release];
     [super dealloc];
@@ -33,7 +34,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
     if(self = [super init])
     {
         self.blockArray = [[[BlockArray alloc] init] autorelease];
-    }    
+        self.smartData = [[PPSmartUpdateData alloc] initWithName:[IngotManager saleIngotFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[IngotManager saleIngotFileBundlePath] initDataVersion:[IngotManager saleIngotFileVersion]];
+
+    }
 
     return self;
 }
@@ -42,11 +45,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 {
     GetIngotsListResultHandler tempHandler = (GetIngotsListResultHandler)[_blockArray copyBlock:handler];
 
-    PPSmartUpdateData *smartData = [[PPSmartUpdateData alloc] initWithName:[IngotManager saleIngotFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[IngotManager saleIngotFileBundlePath] initDataVersion:[IngotManager saleIngotFileVersion]];
     
     __block typeof(self) bself = self;
 
-    [smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+    [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"getIngotsList successfully");
         NSData *data = [NSData dataWithContentsOfFile:dataFilePath];
         NSArray *ingotList = [[PBSaleIngotList parseFromData:data] ingotsList];
@@ -54,15 +56,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
         
         EXECUTE_BLOCK(tempHandler, YES, ingotList);
         [bself.blockArray releaseBlock:tempHandler];
-        [smartData release];
     } failureBlock:^(NSError *error) {
         PPDebug(@"getIngotsList failure error=%@", [error description]);
-        NSData *data = [NSData dataWithContentsOfFile:smartData.dataFilePath];
+        NSData *data = [NSData dataWithContentsOfFile:bself.smartData.dataFilePath];
         NSArray *ingotList = [[PBSaleIngotList parseFromData:data] ingotsList];
         [[IngotManager defaultManager] setIngotList:ingotList];
         EXECUTE_BLOCK(tempHandler, NO, ingotList);
         [bself.blockArray releaseBlock:tempHandler];
-        [smartData release];
     }];
 }
 
