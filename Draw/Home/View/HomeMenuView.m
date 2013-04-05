@@ -331,7 +331,7 @@ int *getDrawMainMenuTypeListWithFreeCoins()
 //        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
         HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeDrawPlayWithFriend,
+//        HomeMenuTypeDrawPlayWithFriend,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -350,7 +350,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawContest,
 //        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
-        HomeMenuTypeDrawPlayWithFriend,
+//        HomeMenuTypeDrawPlayWithFriend,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
