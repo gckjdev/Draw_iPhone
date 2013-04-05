@@ -34,6 +34,7 @@
 #import "BlockUtils.h"
 #import "GameBasic.pb.h"
 #import "SNSUtils.h"
+#import "UserGameItemManager.h"
 
 @implementation UserService
 
@@ -641,8 +642,13 @@ static UserService* _defaultUserService;
         
         [self saveSNSUserData:user];
         
-        // TODO : combine them?
-        [[AccountService defaultService] syncAccount:nil];
+        // sync balance from server
+        AccountManager* _accountManager = [AccountManager defaultManager];
+        [_accountManager updateBalance:user.coinBalance];
+        [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+        
+        // sync user item from server
+        [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
     }
     @catch (NSException *exception) {
         resultCode = ERROR_CLIENT_PARSE_DATA;
@@ -679,7 +685,7 @@ static UserService* _defaultUserService;
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
                 
-                [self createLocalUserAccount:output.responseData appId:appId];
+                output.resultCode = [self createLocalUserAccount:output.responseData appId:appId];
                 
 //                DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
 //                PBGameUser* user = response.user;

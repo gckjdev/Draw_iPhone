@@ -327,6 +327,15 @@
             CompleteUserInfoController* controller = [[[CompleteUserInfoController alloc] init] autorelease];
             [self.navigationController pushViewController:controller animated:NO];    
         }
+        else if (_currentLoginType == LOGIN_USER_BY_EMAIL){
+            if (resultCode == 0){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoginSucc") delayTime:1.5f];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoginFail") delayTime:1.5f];
+            }
+        }
         else{
             [self.navigationController popToRootViewControllerAnimated:YES];            
         }
@@ -352,6 +361,9 @@
     }
     else{        
         // do nothing here
+        if (_currentLoginType == LOGIN_USER_BY_EMAIL){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kLoginFail") delayTime:3.0f];
+        }
     }
 }
 
@@ -382,6 +394,7 @@
 #pragma mark - input idalog delegate
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
+    _currentLoginType = LOGIN_USER_BY_EMAIL;
     [[UserService defaultService] loginUserByEmail:userIdTextField.text 
                                           password:[targetText encodeMD5Base64:PASSWORD_KEY]
                                     viewController:self];
