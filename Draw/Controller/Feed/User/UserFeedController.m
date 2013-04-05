@@ -398,13 +398,16 @@ typedef enum{
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
     if ([[UserManager defaultManager] isMe:self.userId]) {
-        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
-        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),self.nickName];
+//        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
+//        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),self.nickName];
+        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
         NSString *tabDesc[] = {noOpus,noFeed};
         
         return tabDesc[index];
     }else{
-        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+//        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
+        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
         NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
         NSString *tabDesc[] = {noOpus,noFeed};
         

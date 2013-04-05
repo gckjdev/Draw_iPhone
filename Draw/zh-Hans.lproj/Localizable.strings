@@ -785,7 +785,7 @@
 
 
 "kItemTypePurse" = "钱箱";
-"kItemTypePurseDesc" = "包含一万个金币的钱箱";
+"kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
@@ -947,6 +947,9 @@
 "kUserNoOpus" = "%@ 还没有作品。";
 "kUserNoFavorite" = "%@ 还没有收藏";
 
+"kNoOpus" = "暂无作品";
+"kNoFavorite" = "暂无收藏";
+
 "kInputCount" = "输入您要购买的数量";
 
 
@@ -1075,7 +1078,7 @@
 "kDonotSave" = "不保存";
 
 "kPaletteItem" = "调色板";
-"kColorAlphaItem" = "透明筆";
+"kColorAlphaItem" = "透明笔";
 "kPaletteItemDescription" = "买了这个，你可以自已调出任何颜色！";
 "kColorAlphaItemDescription" = "买了它，可以画出半透明的笔画。";
 
@@ -1151,7 +1154,7 @@
 "kItemTool" = "工具";
 "kItemPromotion" = "促销";
 "kItemTaoBao" = "淘宝";
-"kDownloadRewardAppTips" = "下载兄弟应用(免费)，使用后可赚取元宝";
+"kDownloadRewardAppTips" = "下载兄弟应用(免费)，首次使用后可赚取元宝";
 "kRewardWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kFreeIngot" = "免费元宝";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";

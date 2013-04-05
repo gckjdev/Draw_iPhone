@@ -9,6 +9,7 @@
 #import "PaletteCommand.h"
 #import "Palette.h"
 
+
 @implementation PaletteCommand
 - (UIView *)contentView
 {
@@ -40,6 +41,15 @@
     [self showPopTipView];
 }
 
+
+- (void)hidePopTipView
+{
+    if (self.popTipView) {
+        [self.toolPanel updateRecentColorViewWithColor:self.toolHandler.penColor
+                                           updateModel:YES];
+    }
+    [super hidePopTipView];
+}
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
