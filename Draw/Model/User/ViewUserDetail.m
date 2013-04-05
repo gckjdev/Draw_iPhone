@@ -508,4 +508,9 @@
     return [MWPhoto photoWithURL:[NSURL URLWithString:[[self getUser] avatar]]];
 }
 
+- (void)clickCustomBg:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
+{
+    // do nothing
+}
+
 @end

@@ -37,10 +37,10 @@
 
 - (void)dealloc
 {
-    [_superViewController release];
-    [_popoverController release];
-    RELEASE_BLOCK(_selectImageBlock);
-    RELEASE_BLOCK(_setDefaultBlock);
+    PPRelease(_superViewController);
+    PPRelease(_popoverController);
+    self.selectImageBlock = nil;
+    self.setDefaultBlock = nil;    
     [super dealloc];
 }
 
@@ -104,6 +104,7 @@
     }
     if (_selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
+        self.selectImageBlock = nil;
     }
     if (_popoverController != nil) {
         [_popoverController dismissPopoverAnimated:YES];
@@ -172,9 +173,10 @@
     
 }
 
-- (void)setDefault
+- (void)executeDefault
 {
     EXECUTE_BLOCK(_setDefaultBlock);
+    self.setDefaultBlock = nil;
 }
 
 - (void)handleSelectAvatar:(int)buttonIndex
@@ -194,7 +196,7 @@
             [self takePhoto];
             break;
         case BUTTON_SET_DEFAULT:
-            [self setDefault];
+            [self executeDefault];
             break;
         default:
             break;
