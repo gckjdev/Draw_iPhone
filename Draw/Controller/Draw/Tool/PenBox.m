@@ -35,6 +35,7 @@
 {
     UIImage *image = [Item imageForItemType:type];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[Item seletedPenImageForType:type] forState:UIControlStateSelected];
     [button setFrame:CGRectMake(0, 0, BUTTON_SIZE, BUTTON_SIZE)];
     [button setImage:image forState:UIControlStateNormal];
     [button setTag:type];
@@ -54,7 +55,7 @@
         ++ i;
         ++ list;
     }
-    [self updateWidth:(BUTTON_SIZE * i)];
+    [self updateWidth:(BUTTON_SIZE * (i))];
 }
 
 + (id)createViewWithdelegate:(id)delegate

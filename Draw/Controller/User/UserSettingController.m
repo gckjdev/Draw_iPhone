@@ -467,7 +467,7 @@ enum {
         }else if (row == rowOfBirthday) {
             [cell.textLabel setText:NSLS(@"kBirthday")];
             if ([_pbUserBuilder hasBirthday]) {
-                NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, @"yyyyMMdd");
+                NSDate* date = dateFromStringByFormat(_pbUserBuilder.birthday, DATE_FORMAT);
                 [cell.detailTextLabel setText:dateToString(date)];
             }
         }else if (row == rowOfBloodGroup) {
@@ -859,12 +859,12 @@ enum {
     __block UserSettingController* bc = self;
     NSString* defaultDateStr = [_pbUserBuilder hasBirthday]?_pbUserBuilder.birthday:@"1990-06-15";
     GCDatePickerView* view = [GCDatePickerView DatePickerViewWithMode:UIDatePickerModeDate
-                                                          defaultDate:dateFromStringByFormat(defaultDateStr, @"yyyy-MM-dd")
+                                                          defaultDate:dateFromStringByFormat(defaultDateStr, DATE_FORMAT)
                                                           finishBlock:^(NSDate *date) {
                                                               
                                                               if (date != nil){
                                                                   
-                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, @"yyyy-MM-dd")];
+                                                                  [_pbUserBuilder setBirthday:dateToStringByFormat(date, DATE_FORMAT)];
                                                                   
                                                                   hasEdited = YES;
                                                               }

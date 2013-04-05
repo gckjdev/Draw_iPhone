@@ -31,6 +31,7 @@
 {
     [self.toolHandler changeWidth:width];
     [self hidePopTipView];
+    [self.toolPanel updateWidthSliderWithValue:width];
 }
 
 -(void)sendAnalyticsReport{
