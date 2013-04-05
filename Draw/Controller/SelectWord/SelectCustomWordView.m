@@ -57,6 +57,7 @@
     
     view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] wordsFromCustomWords]];
     
+    [view.bgButton setBackgroundImage:[[ShareImageManager defaultManager] draftsBoxBgImage] forState:UIControlStateNormal];
     return view;
 }
 
@@ -152,6 +153,7 @@
     PPRelease(closeButton);
     [_titleLabel release];
     [_addWordButton release];
+    [_bgButton release];
     [super dealloc];
 }
 
