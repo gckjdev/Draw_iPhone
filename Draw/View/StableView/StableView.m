@@ -101,10 +101,11 @@
 {
     _itemType = itemType;
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemType];
-    
-    
-    
     [self setBackgroundImageWithURL:[NSURL URLWithString:item.image]];
+    
+    if (itemType == ItemTypeTomato) {
+        [self setBackgroundImage:[[ShareImageManager defaultManager] tomato] forState:UIControlStateNormal];
+    }
 }
 
 - (id)initWithNumber:(NSInteger)number

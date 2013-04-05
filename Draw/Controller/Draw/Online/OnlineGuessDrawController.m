@@ -703,9 +703,11 @@
             if (![_scene canThrowFlower]) {
                 [toolView setEnabled:NO];
             }
-        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
+        }
+        else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-        }else if (resultCode == ERROR_NETWORK){
+        }
+        else if (resultCode == ERROR_NETWORK){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
         }
     }];
