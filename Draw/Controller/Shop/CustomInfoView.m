@@ -223,6 +223,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (void)showInView:(UIView *)view
 {
+    self.frame = view.bounds;
     [view addSubview:self];
 
     [self.layer addAnimation:[AnimationManager moveVerticalAnimationFrom:(self.superview.frame.size.height*1.5) to:(self.superview.frame.size.height*0.5) duration:0.3] forKey:@""];
