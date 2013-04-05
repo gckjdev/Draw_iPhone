@@ -1075,7 +1075,7 @@
 "kDonotSave" = "不保存";
 
 "kPaletteItem" = "调色板";
-"kColorAlphaItem" = "透明筆";
+"kColorAlphaItem" = "透明笔";
 "kPaletteItemDescription" = "买了这个，你可以自已调出任何颜色！";
 "kColorAlphaItemDescription" = "买了它，可以画出半透明的笔画。";
 
