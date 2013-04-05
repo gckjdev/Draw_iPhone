@@ -7352,6 +7352,10 @@
 		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		CAFFDFCF170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */; };
+		CAFFDFD0170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */; };
+		CAFFDFD1170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */; };
+		CAFFDFD2170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */; };
 		EA18012E15E77DA100DF9440 /* ChatViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */; };
 		EA18147115E2427C00CAF901 /* DiceRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */; };
 		EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
@@ -10979,6 +10983,7 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_tool_button_selected_bg@2x.png"; sourceTree = "<group>"; };
 		EA18012D15E77DA100DF9440 /* ChatViewCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatViewCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18146F15E2427C00CAF901 /* DiceRoomListCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceRoomListCell~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GameItemDetailView~ipad.xib"; sourceTree = "<group>"; };
@@ -15089,6 +15094,7 @@
 		CA5B066F16BFC2FF004A64C4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */,
 				CA837474170B1D6100AE46ED /* draw_tool_button_bg@2x.png */,
 				CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */,
 				CAEFC45A16FD637D00D799B7 /* draw_desc@2x.png */,
@@ -20305,6 +20311,7 @@
 				C2E04FE5170991870009F2A9 /* user_detail_avatar_bg_ipad@2x.png in Resources */,
 				C2E04FEF170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837477170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
+				CAFFDFD1170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21219,6 +21226,7 @@
 				C2E04FE6170991870009F2A9 /* user_detail_avatar_bg_ipad@2x.png in Resources */,
 				C2E04FF0170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837478170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
+				CAFFDFD2170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22225,6 +22233,7 @@
 				A44E6CC2170D2A340067B647 /* draw_home_timeline@2x.png_old.png in Resources */,
 				A44E6CC8170D75410067B647 /* item_taobao_icon@2x.png in Resources */,
 				A44E6CC9170D75410067B647 /* item_taobao_select_icon@2x.png in Resources */,
+				CAFFDFCF170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23146,6 +23155,7 @@
 				C2E04FE4170991870009F2A9 /* user_detail_avatar_bg_ipad@2x.png in Resources */,
 				C2E04FEE170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837476170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
+				CAFFDFD0170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
