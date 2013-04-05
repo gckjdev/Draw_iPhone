@@ -1027,7 +1027,7 @@
 "kMoreColor" = "More";
 
 "kPaletteItem" = "Palette";
-"kColorAlphaItem" = "Custom Alpha";
+"kColorAlphaItem" = "Alpha Pen";
 "kPaletteItemDescription" = "You can custom any color with the palette.";
 "kColorAlphaItemDescription" = "You can custom alpha of your paint.";
 

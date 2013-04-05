@@ -1052,7 +1052,7 @@
 
 
 "kPaletteItem" = "調色板";
-"kColorAlphaItem" = "透明度";
+"kColorAlphaItem" = "透明笔";
 "kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
 "kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
 
@@ -1196,7 +1196,7 @@
 "kDetailDrawTo" = "畫給%@";
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
-"kDetailChat" = "搭訕";
+"kDetailChat" = "聊天";
 
 "kSelectBGImage" = "選擇背景";
 
