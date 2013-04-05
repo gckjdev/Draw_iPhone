@@ -947,6 +947,9 @@
 "kUserNoOpus" = "%@ 还没有作品。";
 "kUserNoFavorite" = "%@ 还没有收藏";
 
+"kNoOpus" = "暂无作品";
+"kNoFavorite" = "暂无收藏";
+
 "kInputCount" = "输入您要购买的数量";
 
 
