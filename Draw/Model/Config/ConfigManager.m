@@ -814,7 +814,7 @@
 
 + (NSString *)currentDrawBgVersion
 {
-    return @"1.0";
+    return @"1.1";
 }
 
 + (BOOL)isEnableLimeiWall
