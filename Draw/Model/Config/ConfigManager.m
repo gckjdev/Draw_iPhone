@@ -896,7 +896,22 @@
     
 }
 
+/*
+ 
+ 心宿 Antares
+ 弧矢 Adhara
+ 五车 Elnath
+ 玉衡 Alioth
+ 十字架 Mimosa
+ 大角 Arcturus
+ 北河 Pollux
+ 轩辕 Regulus
+ 天船 Mirfak
 
+ 英仙 Mirfak
+ 船帆 Regor
+ 
+ */
 
 
 @end
