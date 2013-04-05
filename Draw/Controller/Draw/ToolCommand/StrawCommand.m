@@ -8,6 +8,13 @@
 
 #import "StrawCommand.h"
 
+@interface StrawCommand ()
+{
+    TouchActionType type;
+}
+
+@end
+
 @implementation StrawCommand
 
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
@@ -27,11 +34,6 @@
 
 - (BOOL)execute
 {
-//    if ([super execute]) {
-//        [self showPopTipView];
-//        return YES;
-//    }
-//    return NO;
     if ([self canUseItem:self.itemType]) {
         [self sendAnalyticsReport];
         [self showPopTipView];
@@ -43,17 +45,15 @@
 
 - (void)showPopTipView
 {
+    type = self.toolHandler.touchActionType;
     [self becomeActive];
     self.showing = YES;
-    [self.control setSelected:YES];
     [self.toolHandler enterStrawMode];
 }
 
 - (void)hidePopTipView
 {
     self.showing = NO;
-    [self.control setSelected:NO];
-    [self.toolHandler enterDrawMode];
 }
 
 - (void)sendAnalyticsReport
@@ -72,6 +72,12 @@
     [self.toolHandler changeAlpha:1];
     [self.toolHandler changePenColor:color];
     [[ToolCommandManager defaultManager] resetAlpha];
+    if (type == TouchActionTypeShape) {
+        [self.toolHandler enterShapeMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
+    
     [self hidePopTipView];
 }
 

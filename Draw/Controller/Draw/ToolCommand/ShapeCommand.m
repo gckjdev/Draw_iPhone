@@ -21,6 +21,18 @@
     return NO;
 }
 
+//- (void)showPopTipView
+//{
+//    [super showPopTipView];
+//}
+//
+//
+//- (void)hidePopTipView
+//{
+//    [super hidePopTipView];
+////    [self.control setSelected:NO];
+//}
+
 - (UIView *)contentView
 {
     return [ShapeBox shapeBoxWithDelegate:self];
@@ -37,6 +49,7 @@
     UIImage * image = [ShapeInfo shapeImageForShapeType:type];
     UIButton *button = (UIButton *)self.control;
     [button setImage:image forState:UIControlStateNormal];
+//    [button setSelected:YES];
    
 }
 

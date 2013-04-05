@@ -578,6 +578,7 @@
 								<string key="NSFrame">{{508, 9}, {36, 36}}</string>
 								<reference key="NSSuperview" ref="1000692843"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -626,7 +627,7 @@
 							<object class="IBUIButton" id="535350486">
 								<reference key="NSNextResponder" ref="1000692843"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{464, 10}, {35, 35}}</string>
+								<string key="NSFrame">{{463, 9}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="1000692843"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="140804943"/>
@@ -650,6 +651,10 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_star@2x.png</string>
 								</object>
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">draw_tool_button_selected_bg@2x.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_tool_button_bg@2x.png</string>
@@ -658,7 +663,7 @@
 								<reference key="IBUIFont" ref="152645768"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{46.5, 45}, {275, 55}}</string>
+						<string key="NSFrame">{{47.5, 45}, {275, 55}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="81928228"/>
@@ -1343,6 +1348,7 @@
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="66.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="2" key="72.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="74.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="77.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1584,6 +1590,7 @@
 			<string key="draw_target@2x.png">{73, 72}</string>
 			<string key="draw_tool_bg@2x.png">{237, 100}</string>
 			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
+			<string key="draw_tool_button_selected_bg@2x.png">{75, 74}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>
 			<string key="draw_width_highlight@2x.png">{67, 34}</string>

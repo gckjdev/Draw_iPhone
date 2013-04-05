@@ -60,6 +60,8 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)usePaintBucket;
 - (void)enterDrawMode;
 - (void)enterStrawMode;
+- (void)enterShapeMode;
+- (void)enterEraserMode;
 - (void)useGid:(BOOL)flag;
 - (void)handleRedo;
 - (void)handleUndo;

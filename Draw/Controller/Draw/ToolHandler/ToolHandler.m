@@ -107,9 +107,10 @@
 }
 - (void)changeShape:(ShapeType)shape
 {
-    self.drawView.touchActionType = TouchActionTypeShape;
+    [self enterShapeMode];
     [self.drawView setShapeType:shape];
     self.drawView.penType = self.penType;
+    [self changePenColor:self.penColor];
 }
 - (void)changeDesc:(NSString *)desc
 {
@@ -124,13 +125,37 @@
     [oc setTargetUid:aFriend.friendUserId];
 }
 
+- (void)enterShapeMode
+{
+    self.drawView.touchActionType = TouchActionTypeShape;
+    [self.drawToolPanel setShapeSelected:YES];
+    [self.drawToolPanel setPenSelected:NO];
+    [self.drawToolPanel setStrawSelected:NO];
+    [self.drawToolPanel setEraserSelected:NO];    
+}
+- (void)enterEraserMode
+{
+    self.drawView.touchActionType = TouchActionTypeDraw;
+    [self.drawToolPanel setPenSelected:NO];
+    [self.drawToolPanel setShapeSelected:NO];
+    [self.drawToolPanel setStrawSelected:NO];
+    [self.drawToolPanel setEraserSelected:YES];
+}
 - (void)enterDrawMode
 {
     self.drawView.touchActionType = TouchActionTypeDraw;
+    [self.drawToolPanel setPenSelected:YES];
+    [self.drawToolPanel setShapeSelected:NO];
+    [self.drawToolPanel setStrawSelected:NO];
+    [self.drawToolPanel setEraserSelected:NO];
 }
 - (void)enterStrawMode
 {
     self.drawView.touchActionType = TouchActionTypeGetColor;
+    [self.drawToolPanel setStrawSelected:YES];
+    [self.drawToolPanel setShapeSelected:NO];
+    [self.drawToolPanel setPenSelected:NO];
+    [self.drawToolPanel setEraserSelected:NO];
 }
 
 - (void)useGid:(BOOL)flag

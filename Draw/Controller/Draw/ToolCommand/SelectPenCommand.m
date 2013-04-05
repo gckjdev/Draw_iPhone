@@ -26,6 +26,7 @@
 
 - (BOOL)execute
 {
+    [self.toolHandler enterDrawMode];
     if ([super execute]) {
         [self updatePenWithPenType:self.itemType];
         if ([self popupPenView] != 0) {
@@ -46,7 +47,6 @@
 
 - (void)updateControlView
 {
-    [self.control setSelected:YES];
     UIButton *button = (UIButton *)self.control;
     [button setImage:[Item imageForItemType:self.itemType] forState:UIControlStateNormal];
     [button setImage:[Item seletedPenImageForType:self.itemType] forState:UIControlStateSelected];
@@ -74,7 +74,6 @@
 - (void)hidePopTipView
 {
     [super hidePopTipView];
-    [self.control setSelected:NO];
 }
 
 - (void)buyItemSuccessfully:(ItemType)type

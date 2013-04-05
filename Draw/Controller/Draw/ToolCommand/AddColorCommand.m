@@ -62,7 +62,7 @@
     [self.toolHandler changePenColor:colorView.drawColor];
     [self.toolPanel updateRecentColorViewWithColor:colorView.drawColor updateModel:YES];
     if (type == TouchActionTypeShape) {
-        [self.toolHandler enterStrawMode];
+        [self.toolHandler enterShapeMode];
     }else{
         [self.toolHandler enterDrawMode];
     }

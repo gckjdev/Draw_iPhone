@@ -628,7 +628,7 @@
 							<object class="IBUIButton" id="906043271">
 								<reference key="NSNextResponder" ref="310984990"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{1179, 25}, {61, 61}}</string>
+								<string key="NSFrame">{{1178, 24}, {63, 63}}</string>
 								<reference key="NSSuperview" ref="310984990"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="136445830"/>
@@ -649,6 +649,10 @@
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">draw_star@2x.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">draw_tool_button_selected_bg@2x.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
@@ -1314,7 +1318,7 @@
 				<string key="154.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="154.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="155.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="155.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="155.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="156.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="156.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="157.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1573,6 +1577,7 @@
 			<string key="draw_target@2x.png">{73, 72}</string>
 			<string key="draw_tool_bg@2x.png">{237, 100}</string>
 			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
+			<string key="draw_tool_button_selected_bg@2x.png">{75, 74}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>
 			<string key="draw_width_highlight@2x.png">{67, 34}</string>

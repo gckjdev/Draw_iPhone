@@ -12,12 +12,10 @@
 
 - (BOOL)execute
 {
-//    if ([super execute]) {
-        [self showPopTipView];
-        [self.toolHandler changeInPenType:Eraser];
-        return YES;
-//    }
-//    return NO;
+    [self showPopTipView];
+    [self.toolHandler enterEraserMode];
+    [self.toolHandler changeInPenType:Eraser];
+    return YES;
 }
 
 
@@ -25,14 +23,12 @@
 {
     [self becomeActive];
     self.showing = YES;
-    [self.control setSelected:YES];
+
 }
 
 - (void)hidePopTipView
 {
     self.showing = NO;
-    [self.control setSelected:NO];
-    [self.toolHandler enterDrawMode];
 }
 
 - (void)sendAnalyticsReport

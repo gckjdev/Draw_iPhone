@@ -38,6 +38,10 @@
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
 - (void)updateDrawToUser:(MyFriend *)user;
 - (void)updateWidthSliderWithValue:(CGFloat)value;
+- (void)setShapeSelected:(BOOL)selected;
+- (void)setStrawSelected:(BOOL)selected;
+- (void)setPenSelected:(BOOL)selected;
+- (void)setEraserSelected:(BOOL)selected;
 
 #pragma mark - Timer
 

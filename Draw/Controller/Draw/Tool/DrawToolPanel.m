@@ -208,6 +208,25 @@
     [self.widthSlider setValue:value];
 }
 
+- (void)setShapeSelected:(BOOL)selected
+{
+    self.shape.selected = selected;
+}
+
+- (void)setStrawSelected:(BOOL)selected
+{
+    [self.straw setSelected:selected];
+}
+
+- (void)setPenSelected:(BOOL)selected
+{
+    [self.pen setSelected:selected];
+}
+
+- (void)setEraserSelected:(BOOL)selected
+{
+    [self.eraser setSelected:selected];
+}
 - (void)updateDrawToUser:(MyFriend *)user
 {
 
@@ -230,7 +249,7 @@
     [self.toolHandler changePenColor:colorPoint.color];
     [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
     if(type == TouchActionTypeShape){
-        [self.toolHandler changeShape:self.toolHandler.drawView.shapeType];
+        [self.toolHandler enterShapeMode];
     }else{
         [self.toolHandler enterDrawMode];
     }
