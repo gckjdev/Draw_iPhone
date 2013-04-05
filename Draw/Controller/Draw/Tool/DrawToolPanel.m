@@ -93,6 +93,7 @@
 - (IBAction)switchToolPage:(UIButton *)sender;
 
 - (IBAction)clickTool:(UIButton *)sender;
+@property (retain, nonatomic) IBOutlet UIImageView *toolBGImageView;
 
 @end
 
@@ -103,7 +104,7 @@
 #define MAX_COLOR_NUMBER 7
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
-#define SPACE_COLOR_LEFT (ISIPAD ? 40 : 8)
+#define SPACE_COLOR_LEFT (ISIPAD ? 40 : 10)
 #define SPACE_COLOR_COLOR (ISIPAD ? 14 : ((ISIPHONE5) ? 7 :2))
 #define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(13))
 
@@ -120,10 +121,12 @@
 
 #define POP_POINTER_SIZE VALUE(8.0)
 
-
-
+//#define COLOR_BG_TAG 201304051
+//#define TOOL_BG_TAG 201304052
 
 #pragma mark - setter methods
+
+
 
 - (IBAction)clickTool:(id)sender
 {
@@ -315,9 +318,7 @@
 
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
-
-//    [self updateScrollView];
-    //update width and alpha
+    [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
 
 }
 
@@ -410,19 +411,20 @@
 
     PPRelease(_switchPage);
     
-    [_eraser release];
-    [_straw release];
-    [_scrollView release];
-    [_addColor release];
-
-    [_shape release];
-    [_paintBucket release];
-    [_drawBg release];
-    [_canvasSize release];
-    [_grid release];
-    [_opusDesc release];
-    [_drawToUser release];
-    [_help release];
+    PPRelease(_eraser);
+    PPRelease(_straw);
+    PPRelease(_scrollView);
+    PPRelease(_addColor);
+    
+    PPRelease(_shape);
+    PPRelease(_paintBucket);
+    PPRelease(_drawBg);
+    PPRelease(_canvasSize);
+    PPRelease(_grid);
+    PPRelease(_opusDesc);
+    PPRelease(_drawToUser);
+    PPRelease(_help);
+    PPRelease(_toolBGImageView);
     [super dealloc];
 }
 

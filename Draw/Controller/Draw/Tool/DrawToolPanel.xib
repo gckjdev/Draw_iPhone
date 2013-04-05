@@ -44,11 +44,12 @@
 							<object class="IBUIImageView" id="914431066">
 								<reference key="NSNextResponder" ref="518756962"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 0}, {311, 42}}</string>
+								<string key="NSFrame">{{3.5, 0}, {312, 42}}</string>
 								<reference key="NSSuperview" ref="518756962"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1041540627"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<int key="IBUITag">201304051</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -176,6 +177,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1037917703"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<int key="IBUITag">201304052</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
@@ -186,7 +188,7 @@
 									<object class="IBUIButton" id="1065372799">
 										<reference key="NSNextResponder" ref="511657176"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{-10, 6}, {43, 44}}</string>
+										<string key="NSFrame">{{-8, 6}, {43, 44}}</string>
 										<reference key="NSSuperview" ref="511657176"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="629355142"/>
@@ -697,7 +699,7 @@
 					<object class="IBUIButton" id="510518648">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{5, 54}, {37, 37}}</string>
+						<string key="NSFrame">{{6, 54}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1000692843"/>
@@ -937,6 +939,14 @@
 						<reference key="destination" ref="535350486"/>
 					</object>
 					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">toolBGImageView</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="629355142"/>
+					</object>
+					<int key="connectionID">115</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1355,7 +1365,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">114</int>
+			<int key="maxID">115</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1437,6 +1447,7 @@
 						<string key="straw">UIButton</string>
 						<string key="switchPage">UIButton</string>
 						<string key="timeSet">UIButton</string>
+						<string key="toolBGImageView">UIImageView</string>
 						<string key="undo">UIButton</string>
 						<string key="widthSlider">DrawSlider</string>
 					</dictionary>
@@ -1528,6 +1539,10 @@
 						<object class="IBToOneOutletInfo" key="timeSet">
 							<string key="name">timeSet</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="toolBGImageView">
+							<string key="name">toolBGImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="undo">
 							<string key="name">undo</string>

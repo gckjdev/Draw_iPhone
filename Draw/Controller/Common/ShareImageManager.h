@@ -160,6 +160,7 @@
 - (UIImage*)backButtonImage;
 
 - (UIImage *)drawColorBG; //draw_color_bg@2x.png
+- (UIImage *)drawToolBG;
 
 - (UIImage *)drawSliderLoader;
 - (UIImage *)drawSliderBG;
