@@ -135,7 +135,6 @@
 						<reference key="IBUIShadowColor" ref="795456264"/>
 						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="856400491">
 							<int key="type">1</int>
 							<double key="pointSize">34</double>
@@ -145,6 +144,7 @@
 							<double key="NSSize">34</double>
 							<int key="NSfFlags">16</int>
 						</object>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="696369894">
 						<reference key="NSNextResponder" ref="191373211"/>
