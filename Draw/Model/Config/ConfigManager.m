@@ -892,7 +892,7 @@
 
 + (NSString *)getTaobaoChargeURL
 {
-    return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://a.m.taobao.com/i19338999705.htm?v=0&mz_key=0"];
+    return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"];
     
 }
 
