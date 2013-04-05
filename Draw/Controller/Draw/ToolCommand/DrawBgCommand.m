@@ -43,6 +43,13 @@
         [self.toolHandler changeDrawBG:drawBg];
         [drawBgBox dismiss];
         self.box = nil;
+
+        if (self.toolHandler.touchActionType == TouchActionTypeShape) {
+            [self.toolHandler enterShapeMode];
+        }else{
+            [self.toolHandler enterDrawMode];
+        }
+        
     }
 }
 

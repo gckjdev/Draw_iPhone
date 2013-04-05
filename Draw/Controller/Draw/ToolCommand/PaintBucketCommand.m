@@ -14,6 +14,12 @@
 {
     [self becomeActive];    
     [self.toolHandler usePaintBucket];
+    if (self.toolHandler.touchActionType == TouchActionTypeShape) {
+        [self.toolHandler enterShapeMode];
+    }else{
+        [self.toolHandler enterDrawMode];
+    }
+
     return YES;
 }
 
