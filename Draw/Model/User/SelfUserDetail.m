@@ -360,4 +360,9 @@
     } title:nil hasRemoveOption:NO];
 }
 
+- (BOOL)shouldShow
+{
+    return YES;
+}
+
 @end

@@ -513,4 +513,9 @@
     // do nothing
 }
 
+- (BOOL)shouldShow
+{
+    return ![[UserManager defaultManager] isMe:[self getUserId]];
+}
+
 @end

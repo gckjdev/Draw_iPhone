@@ -21,7 +21,7 @@
 - (NSString*)getUserId;
 //- (PBGameUser*)queryUser;
 - (BOOL)canEdit;
-
+- (BOOL)shouldShow;
 - (BOOL)isBlackBtnVisable;
 - (BOOL)isSuperManageBtnVisable;
 - (BOOL)hasFeedTab;
