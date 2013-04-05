@@ -63,6 +63,11 @@
     return [GameApp gameId];
 }
 
++ (int)getHomeDisplayOpusNumber
+{
+    return [MobClickUtils getIntValueByKey:@"HOME_DISPLAY_OPUS_NUMBER" defaultValue:9];
+}
+
 + (int)getBalanceDeviation
 {
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
