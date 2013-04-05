@@ -227,15 +227,17 @@
 - (void)didclickSina
 {
     [self.detail clickSNSBtnType:TYPE_SINA viewController:self];
-    
+    [self.dataTableView reloadData];//TODO:should be optimize later, don't use hightLight to mark sns status , because when click btn, it auto reset highLight status, same as follows
 }
 - (void)didclickQQ
 {
     [self.detail clickSNSBtnType:TYPE_QQ viewController:self];
+    [self.dataTableView reloadData];
 }
 - (void)didclickFacebook
 {
     [self.detail clickSNSBtnType:TYPE_FACEBOOK viewController:self];
+    [self.dataTableView reloadData];
 }
 
 - (void)updateFavoriteList
