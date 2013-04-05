@@ -259,14 +259,14 @@
         case DetailTabActionClickFavouriate:
         {
                 [self updateFavoriteList];
-        } break;
+        }
+            break;
         case DetailTabActionClickOpus:
         {
             if (self.favoriteList.count == 0 || [self.detail canEdit]) {
                 [self updateOpusList];
             } else {
-                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
-                [[self detailCell] setDrawFeedList:self.opusList tipText:tipText];
+                [[self detailCell] setDrawFeedList:self.opusList tipText:NSLS(@"kNoOpus")];
                 [[self detailCell] setIsLoadingFeed:NO];
             }
         }
@@ -307,9 +307,7 @@
                         PPDebug(@"<UserDetailViewController> get opus - <%@>", ((DrawFeed*)feed).wordText);
                     }
                 }
-                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),[[self.detail getUser] nickName]];
-
-                [[self detailCell] setDrawFeedList:self.favoriteList tipText:tipText];
+                [[self detailCell] setDrawFeedList:self.favoriteList tipText:NSLS(@"kNoFavorite")];
             } break;
             case FeedListTypeUserOpus: {
                 [self.opusList removeAllObjects];
@@ -320,8 +318,7 @@
                     }
                 }
                 UserDetailCell* cell = [self detailCell];
-                NSString *tipText = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),[[self.detail getUser] nickName]];
-                [cell setDrawFeedList:self.opusList tipText:tipText];
+                [cell setDrawFeedList:self.opusList tipText:NSLS(@"kNoOpus")];
             }
             default:
                 break;

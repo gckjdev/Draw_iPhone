@@ -924,6 +924,8 @@
 "kUserNoOpus" = "%@ has no opus.";
 "kUserNoFavorite" = "%@ has no favorite.";
 
+"kNoOpus" = "No opus";
+"kNoFavorite" = "No favorite";
 
 "kOpusOperation" = "Choose your operation";
 
