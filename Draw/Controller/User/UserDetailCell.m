@@ -56,9 +56,7 @@
     [self.signLabel setText:pbUser.signature];
     
     if ([detail isPrivacyVisable]) {
-        
-        NSDate* date = dateFromStringByFormat(pbUser.birthday, DATE_FORMAT);
-        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?dateToString(date):@"-")]];
+        [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?pbUser.birthday:@"-")]];
         NSString* zodiacStr = [pbUser hasZodiac]?[LocaleUtils getZodiacWithIndex:pbUser.zodiac-1]:@"-";
         zodiacStr = (zodiacStr != nil)?zodiacStr:@"-";
         [self.zodiacLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kZodiac"),zodiacStr]];
