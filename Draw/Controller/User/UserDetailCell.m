@@ -57,7 +57,7 @@
     
     if ([detail isPrivacyVisable]) {
         
-        NSDate* date = dateFromStringByFormat(pbUser.birthday, @"yyyyMMdd");
+        NSDate* date = dateFromStringByFormat(pbUser.birthday, DATE_FORMAT);
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?dateToString(date):@"-")]];
         NSString* zodiacStr = [pbUser hasZodiac]?[LocaleUtils getZodiacWithIndex:pbUser.zodiac-1]:@"-";
         zodiacStr = (zodiacStr != nil)?zodiacStr:@"-";

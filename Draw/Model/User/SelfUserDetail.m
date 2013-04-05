@@ -334,6 +334,19 @@
     [viewController.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)clickCustomBg:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
+{
+    if (_changeAvatar == nil) {
+        _changeAvatar = [[ChangeAvatar alloc] init];
+        _changeAvatar.autoRoundRect = NO;
+    }
+    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
+        EXECUTE_BLOCK(aBlock, image);
+    } didSetDefaultBlock:^{
+        EXECUTE_BLOCK(aBlock,  nil);
+    } title:NSLS(@"kCustomBg") hasRemoveOption:YES];
+}
+
 - (void)clickAvatar:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
     if (_changeAvatar == nil) {
@@ -342,7 +355,9 @@
     }
     [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
         EXECUTE_BLOCK(aBlock, image);
-    }];
+    } didSetDefaultBlock:^{
+        //
+    } title:nil hasRemoveOption:NO];
 }
 
 @end

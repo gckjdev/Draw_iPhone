@@ -15,6 +15,7 @@
 @end
 
 typedef void(^DidSelectedImageBlock)(UIImage* image);
+typedef void(^DidSetDefaultBlock)(void);
 
 @class PPViewController;
 
@@ -25,11 +26,15 @@ typedef void(^DidSelectedImageBlock)(UIImage* image);
 @property (nonatomic, assign) BOOL autoRoundRect;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
+@property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
 
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showEditImageView:(UIImage*)image
              inController:(PPViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
-       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock;
+       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
+       didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
+                    title:(NSString*)title
+          hasRemoveOption:(BOOL)hasRemoveOption;
 
 @end
