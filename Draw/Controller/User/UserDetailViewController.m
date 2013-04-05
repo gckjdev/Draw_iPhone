@@ -147,7 +147,7 @@
 - (void)didClickCustomBackground
 {
     __block UserDetailViewController* uc = self;
-    [self.detail clickAvatar:self didSelectBlock:^(UIImage *image) {
+    [self.detail clickCustomBg:self didSelectBlock:^(UIImage *image) {
         [uc uploadCustomBg:image];
     }];
 }

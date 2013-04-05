@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameBasic.pb.h"
 #import "MyFriend.h"
+#import "ChangeAvatar.h"
 
 
 @class UserDetailRoundButton;
@@ -45,8 +46,8 @@
 // @optional
 //- (void)setPbGameUser:(PBGameUser*)pbUser;
 
-- (void)clickAvatar:(PPTableViewController*)viewController
+- (void)clickAvatar:(PPTableViewController<ChangeAvatarDelegate>*)viewController
      didSelectBlock:(void(^)(UIImage* image))aBlock;
-
+- (void)clickCustomBg:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock;
 @property (assign, nonatomic) RelationType relation;
 @end
