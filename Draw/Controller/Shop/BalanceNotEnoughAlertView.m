@@ -16,7 +16,7 @@
 
 + (id)createView:(UIViewController *)controller;
 {
-    CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+    CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
         FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
         [controller.navigationController pushViewController:vc animated:YES];
         
