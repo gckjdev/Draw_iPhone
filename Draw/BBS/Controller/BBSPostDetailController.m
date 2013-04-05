@@ -204,7 +204,9 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
-    self.postID = self.post.postId;
+    if (self.postID == nil){
+        self.postID = self.post.postId;
+    }
     [self initViews];
     [self loadPost];
 }

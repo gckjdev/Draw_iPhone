@@ -1166,13 +1166,16 @@ enum {
         imageUploader = [[ChangeAvatar alloc] init];
         imageUploader.autoRoundRect = NO;
     }
-    [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
-        [uc uploadUserAvatar:image];
-//        [uc updateAvatar:image];
-    }];
+    [imageUploader showSelectionView:self
+                  selectedImageBlock:^(UIImage *image) {
+                      [uc uploadUserAvatar:image];
+                  }
+                  didSetDefaultBlock:nil
+                               title:nil
+                     hasRemoveOption:NO];
+    
+    
 }
-
-// -Dbg_upload.local=/Library/WebServer/Documents/upload/ -Dbg_upload.remote=http://192.168.1.198/upload/
 
 - (IBAction)clickBackButton:(id)sender {
     

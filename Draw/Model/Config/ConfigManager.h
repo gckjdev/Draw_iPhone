@@ -30,6 +30,8 @@ typedef enum{
 
 @interface ConfigManager : NSObject
 
++ (int)getHomeDisplayOpusNumber;
+
 + (int)getBalanceDeviation;
 
 //+ (int)getGuessRewardNormal;

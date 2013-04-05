@@ -73,13 +73,14 @@
 #define DISPLAY_SIZE (self.displayScrollView.frame.size)
 #define SCROLL_INTERVAL 10
 
-#define TOP_DRAW_NUMBER 9
+#define TOP_DRAW_NUMBER [ConfigManager getHomeDisplayOpusNumber]
 
 #define REFRESH_INTERVAL (3600 * 2)
 
 - (void)updateDisplayView
 {
     PPDebug(@"updateDisplayView");
+    
     [[FeedService defaultService] getFeedList:FeedListTypeHot
                                        offset:0
                                         limit:TOP_DRAW_NUMBER + 3
