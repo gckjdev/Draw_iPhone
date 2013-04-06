@@ -408,22 +408,13 @@ static DrawGameService* _defaultService;
         PPDebug(@"<handleGameTurnCompleteNotification> Game Turn[%d] Completed! Reason[%d][%@]",
                 [message round], [message completeReason], [self reasonDescription:[message completeReason]]);
         
-//        int serverRoundId = [message round];
-//        if (serverRoundId != [[_session currentTurn] round]){
-//            PPDebug(@"<handleGameTurnCompleteNotification> server round id(%d) not the same as session one(%d)",
-//                    serverRoundId, [[_session currentTurn] round]);
-//            return;
-//        }
-        
         [_session setStatus:SESSION_WAITING];
         [[_session currentTurn] updateLastWord];
         [self updateOnlineUserCount:message];
         
         // update session data
         [self.session updateByGameNotification:[message notification]];
-//        [self.session removeAllDrawActions];
         [self.session.currentTurn resetData];
-//        self.canvasSize = CGSizeZero;
 
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
@@ -451,7 +442,7 @@ static DrawGameService* _defaultService;
 
         PBDrawAction* drawAction = [[message sendDrawDataRequest] drawAction];
 
-        if ([[message sendDrawDataRequest] hasDrawAction]) {
+        if ([[message sendDrawDataRequest] hasDrawAction] && drawAction != nil) {
             [[self session] addDrawAction:[DrawAction drawActionWithPBDrawAction:drawAction]];
         }
         
@@ -526,19 +517,19 @@ static DrawGameService* _defaultService;
             }            
         }
 
-        if ([[[message notification] pointsList] count] > 0){
-            PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
-            if ([_showDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
-                [_showDelegate didReceiveDrawData:message];
-            }
-//            NSArray* array = [[message notification] pointsList];
-//            int color = [[message notification] color];
-//            int penType = [[message notification] penType];
-//            float width = [[message notification] width];
-//            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
-//            [self saveDrawActionType:DrawActionTypePaint paint:paint];
-//            [paint release];
-        }
+//        if ([[[message notification] pointsList] count] > 0){
+//            PPDebug(@"handleNewDrawDataNotification <Receive Draw Data>");
+//            if ([_showDelegate respondsToSelector:@selector(didReceiveDrawData:)]) {
+//                [_showDelegate didReceiveDrawData:message];
+//            }
+////            NSArray* array = [[message notification] pointsList];
+////            int color = [[message notification] color];
+////            int penType = [[message notification] penType];
+////            float width = [[message notification] width];
+////            Paint* paint = [[Paint alloc] initWithWidth:width intColor:color numberPointList:array penType:penType];
+////            [self saveDrawActionType:DrawActionTypePaint paint:paint];
+////            [paint release];
+//        }
         
         
     });

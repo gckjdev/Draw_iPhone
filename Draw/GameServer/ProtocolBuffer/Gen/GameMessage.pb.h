@@ -390,11 +390,13 @@ BOOL BetTypeIsValidValue(BetType value);
 @interface CreateRoomRequest : PBGeneratedMessage {
 @private
   BOOL hasRuleType_:1;
+  BOOL hasVersion_:1;
   BOOL hasGameId_:1;
   BOOL hasRoomName_:1;
   BOOL hasPassword_:1;
   BOOL hasUser_:1;
   int32_t ruleType;
+  int32_t version;
   NSString* gameId;
   NSString* roomName;
   NSString* password;
@@ -405,11 +407,13 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasRoomName;
 - (BOOL) hasPassword;
 - (BOOL) hasRuleType;
+- (BOOL) hasVersion;
 @property (readonly, retain) NSString* gameId;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly, retain) NSString* roomName;
 @property (readonly, retain) NSString* password;
 @property (readonly) int32_t ruleType;
+@property (readonly) int32_t version;
 
 + (CreateRoomRequest*) defaultInstance;
 - (CreateRoomRequest*) defaultInstance;
@@ -471,6 +475,11 @@ BOOL BetTypeIsValidValue(BetType value);
 - (int32_t) ruleType;
 - (CreateRoomRequest_Builder*) setRuleType:(int32_t) value;
 - (CreateRoomRequest_Builder*) clearRuleType;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (CreateRoomRequest_Builder*) setVersion:(int32_t) value;
+- (CreateRoomRequest_Builder*) clearVersion;
 @end
 
 @interface CreateRoomResponse : PBGeneratedMessage {
@@ -4412,15 +4421,17 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface DataQueryResponse : PBGeneratedMessage {
 @private
-  BOOL hasResultCode_:1;
-  BOOL hasTotalCount_:1;
   BOOL hasUserRelation_:1;
+  BOOL hasVersion_:1;
+  BOOL hasTotalCount_:1;
+  BOOL hasResultCode_:1;
   BOOL hasBbsDrawData_:1;
   BOOL hasWall_:1;
   BOOL hasUser_:1;
-  int32_t resultCode;
-  int32_t totalCount;
   int32_t userRelation;
+  int32_t version;
+  int32_t totalCount;
+  int32_t resultCode;
   PBBBSDraw* bbsDrawData;
   PBWall* wall;
   PBGameUser* user;
@@ -4437,12 +4448,14 @@ BOOL BetTypeIsValidValue(BetType value);
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
+- (BOOL) hasVersion;
 - (BOOL) hasBbsDrawData;
 - (BOOL) hasWall;
 - (BOOL) hasUser;
 - (BOOL) hasUserRelation;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
+@property (readonly) int32_t version;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
 @property (readonly, retain) PBWall* wall;
 @property (readonly, retain) PBGameUser* user;
@@ -4511,6 +4524,11 @@ BOOL BetTypeIsValidValue(BetType value);
 - (int32_t) totalCount;
 - (DataQueryResponse_Builder*) setTotalCount:(int32_t) value;
 - (DataQueryResponse_Builder*) clearTotalCount;
+
+- (BOOL) hasVersion;
+- (int32_t) version;
+- (DataQueryResponse_Builder*) setVersion:(int32_t) value;
+- (DataQueryResponse_Builder*) clearVersion;
 
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;

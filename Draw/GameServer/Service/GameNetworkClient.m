@@ -487,6 +487,7 @@ static GameNetworkClient* _defaultGameNetworkClient;
     [requestBuilder setRoomName:roomName];
     [requestBuilder setGameId:gameId];
     [requestBuilder setPassword:password];
+    [requestBuilder setVersion:1];
     CreateRoomRequest* request = [requestBuilder build];
     [messageBuilder setCreateRoomRequest:request];
     

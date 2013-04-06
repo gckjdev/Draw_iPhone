@@ -30,6 +30,7 @@ message CreateRoomRequest {
     optional string password = 4;                         // 房间密码
     
     optional int32 ruleType = 5;                            // 房间规则类型
+    optional int32 version = 6;                 // version for new interface
 }
 
 message CreateRoomResponse {
@@ -189,7 +190,7 @@ message JoinGameRequest {
 
   optional PBGameUser user = 100;                   // 统一协议接口
   optional int32 ruleType = 101;                    // 加入游戏的规则类型
-  optional int32 version = 102[default=1];          // force default value to new version
+  optional int32 version = 102;                     // force default value to new version
   
 }
 
@@ -466,6 +467,7 @@ message GameMessage {
 message DataQueryResponse {
   required int32 resultCode = 1;
   optional int32 totalCount = 2;
+  optional int32 version = 3;
 
   // for draw data
   repeated PBDraw drawData = 21;
@@ -492,4 +494,5 @@ message DataQueryResponse {
   
   optional PBGameUser user = 85;
   optional int32 userRelation = 86;             // 用户和用户之间的关系
+  
 }

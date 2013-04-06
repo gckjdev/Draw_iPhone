@@ -2019,6 +2019,9 @@
         
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:maxCount];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+
+        str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];
+        
         
         // TOOD add other parameters
         
@@ -2058,6 +2061,7 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];            
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:maxCount];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];
         
         // TOOD add other parameters
         
@@ -2116,6 +2120,7 @@
         }
         
         // TOOD add other parameters
+        str = [str stringByAddQueryParameter:PARA_VERSION intValue:1];        
         
         return str;
     };

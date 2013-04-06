@@ -816,7 +816,7 @@
                       drawWord:self.word
                       language:languageType
                       size:drawView.bounds.size
-                      isCompressed:YES];
+                      isCompressed:NO];
     return pbDraw;
 }
 
