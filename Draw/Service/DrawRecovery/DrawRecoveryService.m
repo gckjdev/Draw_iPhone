@@ -25,6 +25,12 @@
 @implementation DrawRecoveryService
 
 
+- (void)changeCanvasSize:(CGSize)canvasSize
+{
+    self.canvasSize = canvasSize;
+    [self backup:[NSMutableArray arrayWithCapacity:1]];
+}
+
 - (void)dealloc
 {
     PPRelease(_drawToUser);
@@ -87,6 +93,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                        language:language];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
+        [self backup:[NSMutableArray arrayWithCapacity:1]];
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);

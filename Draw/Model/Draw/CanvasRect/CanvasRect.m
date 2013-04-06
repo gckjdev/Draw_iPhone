@@ -48,6 +48,24 @@
     return [[[CanvasRect alloc] initWithCanvasStyle:style] autorelease];
 }
 
++ (CanvasRect *)canvasRectWithRect:(CGRect)rect
+{
+    for (CanvasRectStyle style = CanvasRectNo + 1; style < CanvasRectStyleCount; ++ style) {
+        CGRect r = [CanvasRect rectForCanvasRectStype:style];
+        if (CGRectEqualToRect(rect, r)) {
+            return [CanvasRect canvasRectWithStyle:style];
+        }
+    }
+    if (CGRectEqualToRect(rect, [CanvasRect deprecatedIPadRect])) {
+        return [CanvasRect canvasRectWithStyle:iPadDeprecatedRect];
+    }
+    if (CGRectEqualToRect(rect, [CanvasRect deprecatedIPhoneRect])) {
+        return [CanvasRect canvasRectWithStyle:iPhoneDeprecatedRect];
+    }
+    
+    return nil;
+}
+
 + (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style
 {
     switch (style) {
@@ -112,6 +130,12 @@
 {
     return IPHONE_DEPRECATED_RECT;
 }
+
++ (CGRect)deprecatedIPadRect
+{
+    return IPAD_DEPRECATED_RECT;
+}
+
 
 + (CanvasRectStyle)defaultCanvasRectStyle
 {

@@ -8,7 +8,7 @@
 
 #import "CanvasSizeCommand.h"
 #import "CommonMessageCenter.h"
-
+#import "DrawRecoveryService.h"
 
 @interface CanvasSizeCommand ()
 
@@ -30,9 +30,6 @@
 {
     CanvasRectBox *rectBox = [CanvasRectBox canvasRectBoxWithDelegate:self];
     CanvasRectStyle style = self.toolHandler.canvasRect.style;
-    if (style == 0) {
-        style = [CanvasRect defaultCanvasRectStyle];
-    }
     [rectBox setSelectedRect:style];
     return rectBox;
 }
@@ -46,6 +43,7 @@
 {
     if ([self.toolHandler changeCanvasRect:canvasRect]) {
         [self hidePopTipView];
+        [[DrawRecoveryService defaultService] changeCanvasSize:canvasRect.rect.size];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kChangeCanvasFailed") delayTime:1.5];
     }

@@ -24,7 +24,7 @@ typedef enum{
 
     iPhone5HorizontalRect,
     iPhone5VerticalRect,
-    
+    CanvasRectStyleCount,
     iPhoneDeprecatedRect = 10000,
     iPadDeprecatedRect = 10001,
 }CanvasRectStyle;
@@ -34,6 +34,8 @@ typedef enum{
 @property(nonatomic, assign)CGRect rect;
 @property(nonatomic, assign)CanvasRectStyle style;
 
+
++ (CanvasRect *)canvasRectWithRect:(CGRect)rect;
 + (CanvasRect *)canvasRectWithStyle:(CanvasRectStyle)style;
 + (CGRect)rectForCanvasRectStype:(CanvasRectStyle)style;
 + (CGRect)deprecatedRect;
