@@ -114,7 +114,7 @@
 + (void)askRebindQQ:(UIViewController*)viewController
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_QQ succ:^{
+        [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
         } failure:^{
             //
@@ -128,7 +128,7 @@
 + (void)askRebindSina:(UIViewController*)viewController
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_SINA succ:^{
+        [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
         } failure:^{
             //
@@ -142,7 +142,7 @@
 + (void)askRebindFacebook:(UIViewController*)viewController
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
         } failure:^{
             

@@ -24,6 +24,7 @@
 #import "UserDetailRoundButton.h"
 #import "ChangeAvatar.h"
 #import "ChargeController.h"
+#import "UserService.h"
 
 @interface SelfUserDetail() {
     ChangeAvatar* _changeAvatar;
@@ -167,38 +168,44 @@
     
 }
 
-- (void)clickSina:(UIViewController*)viewController
+- (void)clickSina:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
         [GameSNSService askRebindSina:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_SINA succ:^{
+        [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
+            [viewController.dataTableView reloadData];
         } failure:^{
             //
         }];
     }
          
 }
-- (void)clickQQ:(UIViewController*)viewController
+- (void)clickQQ:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
         [GameSNSService askRebindQQ:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_QQ succ:^{
+        [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
+            [viewController.dataTableView reloadData];
         } failure:^{
             //
         }];
     }
 }
-- (void)clickFacebook:(UIViewController*)viewController
+- (void)clickFacebook:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
         [GameSNSService askRebindFacebook:viewController];
     } else {
-        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+            [[UserService defaultService] updateUserWithSNSUserInfo:[self getUserId] userInfo:userInfo viewController:nil];
+            [viewController.dataTableView reloadData];
         } failure:^{
             
         }];
@@ -364,5 +371,6 @@
 {
     return YES;
 }
+
 
 @end
