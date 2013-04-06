@@ -184,10 +184,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            image:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:10
-                                        currency:PBGameCurrencyIngot
-                                  promotionPrice:5
-                                       startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+                                        currency:PBGameCurrencyIngot]];
+//                                  promotionPrice:10
+//                                       startDate:[NSDate date]
+//                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     
     
@@ -449,7 +449,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
 
     //write to file
-    NSString *filePath = @"/Users/Linruin/gitdata/shop_item_Draw.pb";
+    NSString *filePath = @"/game/shop_item_Draw.pb";
     if (![[list data] writeToFile:filePath atomically:YES]) {
     PPDebug(@"<createTestDataFile> error");
     } else {

@@ -119,7 +119,7 @@
 "kFailed" = "失败";
 "kTurnResult" = "本轮结果";
 "kColor" = "颜色";
-"kColorDesc" = "各种颜色组合，为你精心搭配好，使用起来更加得心应手";
+"kColorDesc" = "精心搭配好的各种颜色组合，使用起来更加得心应手";
 "kColorShop" = "购买颜色";
 
 "kConnectionRecover" = "连接恢复";
@@ -774,10 +774,10 @@
 
 
 
-"kFlowerDescription" = "看到好的作品就送些鲜花！赠人玫瑰，手有余香。";
+"kFlowerDescription" = "看到好的作品就送些鲜花，赠人玫瑰，手有余香。鲜花还具有帮对方增加金币等效果";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。仅用于在线游戏。";
 "kRemoveAdDescription" = "拦截并且不显示所有广告";
-"kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时更换词语，威力无穷！";
+"kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时选择热门词汇，让你猜画的时候更快快捷方便";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
 "kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
 "kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
@@ -821,14 +821,14 @@
 "kDrawBgRegulus" = "轩辕";
 "kDrawBgMirfak" = "天船";
 
-"kDrawBgAntaresDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgAdharaDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgElnathDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgAliothDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgMimosaDesc" = "绘画背景，让你的画画更加生动漂亮, 大小768*1024";
-"kDrawBgArcturusDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgPolluxDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
-"kDrawBgRegulusDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
+"kDrawBgAntaresDesc" = "一套素雅的肌理背景，给你的画面增添别样的乐趣";
+"kDrawBgAdharaDesc" = "水彩效果的绘画背景，让你的画面更加丰富灵动";
+"kDrawBgElnathDesc" = "信纸？相框？怎么用的妙趣横生？尽情发挥你的想象吧";
+"kDrawBgAliothDesc" = "一套五彩缤纷的可爱背景，让这些小萌物把你的作品变的更加可爱吧";
+"kDrawBgMimosaDesc" = "清新竖版背景，可爱画风轻松hold住";
+"kDrawBgArcturusDesc" = "一套独特有趣的图形背景，让你的作品更加独树一帜";
+"kDrawBgPolluxDesc" = "一套渐变背景，帮你更轻松的绘制出长河落日星空大海";
+"kDrawBgRegulusDesc" = "一套中国风背景，为你的画面增添浓浓墨韵";
 "kDrawBgMirfakDesc" = "绘画背景，让你的画画更加生动漂亮, 大小700*700";
 
 "kPickToolTitle" = "使用道具";
@@ -1077,10 +1077,10 @@
 "kMoreColor" = "更多";
 "kDonotSave" = "不保存";
 
-"kPaletteItem" = "调色板";
+"kPaletteItem" = "调色盘";
 "kColorAlphaItem" = "透明笔";
-"kPaletteItemDescription" = "买了这个，你可以自已调出任何颜色！";
-"kColorAlphaItemDescription" = "买了它，可以画出半透明的笔画。";
+"kPaletteItemDescription" = "有了它，可以调制出千变万化的颜色";
+"kColorAlphaItemDescription" = "有了它，可以画出半透明的美丽笔画";
 
 "kDraftsBox" = "草稿箱";
 "kIWantToDraw..." = "我想画...";
@@ -1130,8 +1130,8 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暂无版主";
 "kBuffering" = "正在缓冲...";
-"kPaintPlayerItemDescription" = "这是一个作品播放器。你可以在播放绘画过程中调速，还可以跳到任意进度。";
-"kPaintPlayerItem" = "作品播放器";
+"kPaintPlayerItemDescription" = "绘画作品播放器，可以在播放绘画过程中调速，还可以暂停、结束播放，以及调节到任意进度";
+"kPaintPlayerItem" = "播放器";
 "kStraw" = "吸管";
 "kStrawDescription" = "吸管可以用来获取作品指定位置的颜色。";
 "kCannotRevoke" = "不能撤销了";

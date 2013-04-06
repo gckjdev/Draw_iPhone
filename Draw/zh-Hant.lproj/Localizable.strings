@@ -1061,11 +1061,10 @@
 "kMoreColor" = "更多";
 "kDonotSave" = "不保存";
 
-
-"kPaletteItem" = "調色板";
+"kPaletteItem" = "調色盤";
 "kColorAlphaItem" = "透明筆";
-"kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
-"kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
+"kPaletteItemDescription" = "有了它，可以調製出千變萬化的顏色";
+"kColorAlphaItemDescription" = "有了它，可以畫出半透明的美麗筆劃";
 
 
 "kAddOpusDesc" = "為你的作品添加一段描述";
@@ -1113,7 +1112,7 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暫無版主";
 "kBuffering" = "正在緩沖...";
-"kPaintPlayerItemDescription" = "這是一個作品播放器。你可以在播放繪畫過程中調速，還可以跳到任意進度。";
+"kPaintPlayerItemDescription" = "繪畫作品播放器，可以在播放繪畫過程中調速，還可以暫停、結束播放，以及調節到任意進度";
 "kPaintPlayerItem" = "作品播放器";
 "kStraw" = "吸管";
 "kStrawDescription" = "吸管可以用來在獲取作品指定位置的顏色。";

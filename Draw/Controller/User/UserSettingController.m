@@ -1336,9 +1336,10 @@ enum {
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
 	self.currentPlacemark = placemark;
-	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.locality]];
+	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.subAdministrativeArea]];
     hasEdited = YES;
-    PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
+//    PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
+    PPDebug(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.subAdministrativeArea, placemark.thoroughfare, placemark.subThoroughfare);
     [self.dataTableView reloadData];
 }
 
