@@ -290,26 +290,29 @@
 
 - (IBAction)clickOk:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
-        [_delegate clickOk:self];
-    }
     if (_clickOkBlock != nil) {
         _clickOkBlock();
         self.clickOkBlock = nil;
     }
     [self disappear];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
+        [_delegate clickOk:self];
+    }
 }
 
 - (IBAction)clickBack:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
-        [_delegate clickBack:self];
-    }
     if (_clickBackBlock != nil) {
         _clickBackBlock();
         self.clickBackBlock = nil;
     }
     [self disappear];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
+        [_delegate clickBack:self];
+    }
+
 }
 
 - (IBAction)clickMask:(id)sender {
