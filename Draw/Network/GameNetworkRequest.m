@@ -3233,5 +3233,34 @@
     
 }
 
++ (CommonNetworkOutput*)queryGeocodeWithLatitude:(double)latitude
+                                       longitude:(double)longitude
+                                        language:(NSString *)language
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL)  {
+        NSString* str = [NSString stringWithString:baseURL];
+        NSString *latLngStr = [NSString stringWithFormat:@"%f,%f", latitude, longitude];
+        str = [str stringByAddQueryParameter:PARA_GOOGLE_LATLNG value:latLngStr];
+        str = [str stringByAddQueryParameter:PARA_GOOGLE_LANGUAGE value:language];
+        str = [str stringByAddQueryParameter:PARA_GOOGLE_SENSOR value:@"true"];
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = dict;
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:URL_GOOGLE_GEOCODE_JSON
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_JSON
+                                  output:output];
+}
+
+
+
 
 @end
