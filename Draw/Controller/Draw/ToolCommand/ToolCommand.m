@@ -22,15 +22,6 @@
 
 - (BOOL)hasItem:(ItemType)type
 {
-//    static int itemType[] = {ItemTypeNo, Pencil, Eraser, CanvasRectiPadDefault, CanvasRectiPhoneDefault, -1};
-//    int *item = itemType;
-//    while (*item != -1) {
-//        if (*item == type) {
-//            return YES;
-//        }
-//        item ++;
-//    }
-//    
     return [[UserGameItemManager defaultManager] hasItem:type];
 }
 
@@ -51,8 +42,6 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
-
-//    return YES;     //TODO remove the code after test.
     if ([self hasItem:type]) {
         return YES;
     }
@@ -65,7 +54,6 @@
             [cp buyItemSuccessfully:type];
         }
     }];
-
     
     return NO;
 }
