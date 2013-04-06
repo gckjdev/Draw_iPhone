@@ -1158,7 +1158,7 @@
 "kRewardWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kFreeIngot" = "免费元宝";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
-"kCleaning" = "清理缓存中...";
+"kCleaning" = "清理缓存中，时间可能比较长，请耐心等待";
 
 "kDetectFakeIAP" = "充值失败，请勿使用越狱充值插件";
 "kVerifyIAPFail" = "充值失败，请稍后再试验，并确保未使用越狱充值插件。";

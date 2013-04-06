@@ -1144,7 +1144,7 @@
 "kRewardWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取元寶";
 "kFreeIngot" = "免費元寶";
 "kGoToBBS4Help" = "逛逛論壇尋求幫助";
-"kCleaning" = "清理緩存中...";
+"kCleaning" = "清理緩存中，時間可能比較長，請耐心等待";
 
 "kDetectFakeIAP" = "充值失敗，請勿使用越獄充值插件";
 "kVerifyIAPFail" = "充值失敗，請稍後再試驗，並確保未使用越獄充值插件。";
