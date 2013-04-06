@@ -1356,13 +1356,14 @@ enum {
 {
 
     [self hideActivity];
-    NSString* provinceStr = (provinceName != nil)?provinceName:@"";
-    NSString* cityStr = (city != nil)?city:@"";
-    
-    [_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", provinceStr, cityStr]];
-    hasEdited = YES;
-    PPDebug(@"<UserSettingController>update location succ, new location is %@", cityStr);
-
+    if (result == 0) {
+        NSString* provinceStr = (provinceName != nil)?provinceName:@"";
+        NSString* cityStr = (city != nil)?city:@"";
+        
+        [_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", provinceStr, cityStr]];
+        hasEdited = YES;
+        PPDebug(@"<UserSettingController>update location succ, new location is %@", cityStr);
+    }
     [self.dataTableView reloadData];
 }
 
