@@ -131,6 +131,14 @@
     return self;
 }
 
++ (void)presentUserDetail:(NSObject<UserDetailProtocol>*)detail inViewController:(PPViewController*)viewController
+{
+    if ([detail shouldShow]) {
+        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
+        [viewController.navigationController pushViewController:uc animated:YES];
+    }
+}
+
 
 #pragma mark - user detail cell delegate
 - (void)didClickEdit

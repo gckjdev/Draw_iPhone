@@ -352,8 +352,9 @@ typedef enum{
 //                                        avatar:player.avatar
 //                                        gender:genderString
 //                                         level:1];
-    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName]] autorelease];
-    [self.navigationController pushViewController:uc animated:YES];
+//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName]] autorelease];
+//    [self.navigationController pushViewController:uc animated:YES];
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
 }
 
 @end

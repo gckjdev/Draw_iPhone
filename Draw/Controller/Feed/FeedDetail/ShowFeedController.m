@@ -313,8 +313,10 @@ enum{
 //                                                gender:feedUser.genderString
 //                                                 level:1];
 //            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
-            [self.navigationController pushViewController:uc animated:YES];
+//            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
+//            [self.navigationController pushViewController:uc animated:YES];
+            
+            [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName] inViewController:self];
             
         }
             break;
@@ -413,8 +415,10 @@ enum{
 //                                        gender:@"m"
 //                                         level:1];
 //    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
-    [self.navigationController pushViewController:uc animated:YES];
+//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
+//    [self.navigationController pushViewController:uc animated:YES];
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -662,8 +666,10 @@ enum{
 }
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
-    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName]] autorelease];
-    [self.navigationController pushViewController:uc animated:YES];
+//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName]] autorelease];
+//    [self.navigationController pushViewController:uc animated:YES];
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName] inViewController:self];
 }
 
 #pragma mark draw data service delegate
