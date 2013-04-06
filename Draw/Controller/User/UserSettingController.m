@@ -36,6 +36,7 @@
 #import "UIImageView+WebCache.h"
 #import "CommonMessageCenter.h"
 #import "InputAlertView.h"
+#import "GeographyService.h"
 
 enum{
     SECTION_USER = 0,
@@ -826,6 +827,7 @@ enum {
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
         [uc startUpdatingLocation];
         [uc showActivityWithText:NSLS(@"kGetingLocation")];
+
     } clickCancelBlock:^{
         //
     }];
@@ -1323,30 +1325,46 @@ enum {
 
 - (void)reverseGeocodeCurrentLocation:(CLLocation *)location
 {
-    self.reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:location.coordinate] autorelease];
-    reverseGeocoder.delegate = self;
-    [reverseGeocoder start];
+//    self.reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:location.coordinate] autorelease];
+//    reverseGeocoder.delegate = self;
+//    [reverseGeocoder start];
+    [[GeographyService defaultService] findCityWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude delegate:self];
+    
 }
 
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
-{
-    NSLog(@"MKReverseGeocoder has failed.");
-}
-
-- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
-{
-	self.currentPlacemark = placemark;
-	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.subAdministrativeArea]];
-    hasEdited = YES;
+//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+//{
+//    NSLog(@"MKReverseGeocoder has failed.");
+//}
+//
+//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+//{
+//	self.currentPlacemark = placemark;
+//	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.locality]];
+//    hasEdited = YES;
 //    PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
-    PPDebug(@"current country is %@, province is %@, city is %@, street is %@%@", self.currentPlacemark.country, currentPlacemark.administrativeArea, currentPlacemark.subAdministrativeArea, placemark.thoroughfare, placemark.subThoroughfare);
-    [self.dataTableView reloadData];
-}
+//    [self.dataTableView reloadData];
+//}
 
 - (void)didImageSelected:(UIImage *)image
 {
     
 }
+
+- (void)findCityDone:(int)result cityName:(NSString*)city provinceName:(NSString*)provinceName countryCode:(int)countryCode
+{
+
+    [self hideActivity];
+    NSString* provinceStr = (provinceName != nil)?provinceName:@"";
+    NSString* cityStr = (city != nil)?city:@"";
+    
+    [_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", provinceStr, cityStr]];
+    hasEdited = YES;
+    PPDebug(@"<UserSettingController>update location succ, new location is %@", cityStr);
+
+    [self.dataTableView reloadData];
+}
+
 /*
  
 功能

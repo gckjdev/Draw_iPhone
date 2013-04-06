@@ -12,7 +12,6 @@
 
 @class CommonNetworkOutput;
 
-
 @interface GameNetworkRequest : NSObject
 
 + (CommonNetworkOutput*)registerUserByEmail:(NSString*)baseURL
@@ -604,4 +603,15 @@
                              userId:(NSString*)userId
                                 exp:(long)addExp;
 
+#define URL_GOOGLE_GEOCODE_JSON     @"http://maps.googleapis.com/maps/api/geocode/json?"
+#define PARA_GOOGLE_LATLNG          @"latlng"
+#define PARA_GOOGLE_SENSOR          @"sensor"
+#define PARA_GOOGLE_LANGUAGE        @"language"
+
+#define GOOGLE_LANGUAGE_EN                 @"en"
+
+
++ (CommonNetworkOutput*)queryGeocodeWithLatitude:(double)latitude
+                                       longitude:(double)longitude
+                                        language:(NSString *)language;
 @end

@@ -14,10 +14,11 @@
 #import "UserManager.h"
 #import "CommonDialog.h"
 #import "ConfigManager.h"
+#import "GeographyService.h"
 
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate>
 {    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;

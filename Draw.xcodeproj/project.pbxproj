@@ -532,6 +532,11 @@
 		C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
+		C214A621170FCD6400492393 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A620170FCD6400492393 /* GoogleAddressComponent.m */; };
+		C214A62A170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
+		C214A62B170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
+		C214A62C170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
+		C214A62D170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
 		C2160C7E16AE7508008C2A3E /* CommonRoomListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2160C7C16AE7508008C2A3E /* CommonRoomListController.xib */; };
 		C2160C7F16AE7508008C2A3E /* CommonRoomListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2160C7D16AE7508008C2A3E /* CommonRoomListController~ipad.xib */; };
 		C2160C8816AE7B9C008C2A3E /* room_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2160C8116AE7B9C008C2A3E /* room_item@2x.png */; };
@@ -746,6 +751,8 @@
 		C252DCF216B75F1E0007D240 /* OpusSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D1744C16B1089C00958355 /* OpusSelectController.m */; };
 		C252DCF816B7773E0007D240 /* DiceHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252DCF416B776760007D240 /* DiceHomeHeaderPanel.xib */; };
 		C252DCFD16B7774C0007D240 /* DiceHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252DCF316B7766D0007D240 /* DiceHomeHeaderPanel~ipad.xib */; };
+		C25BD98D1710068B00EF219F /* user_detail_seperator_line3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */; };
+		C25BD98E1710068B00EF219F /* user_detail_seperator_line3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */; };
 		C25C079E15D5F11700E8DD8D /* UIImage+Filtrr.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */; };
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
@@ -8050,6 +8057,10 @@
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
+		C214A61F170FCD6400492393 /* GoogleAddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressComponent.h; sourceTree = "<group>"; };
+		C214A620170FCD6400492393 /* GoogleAddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressComponent.m; sourceTree = "<group>"; };
+		C214A628170FE8A900492393 /* GeographyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeographyService.h; sourceTree = "<group>"; };
+		C214A629170FE8A900492393 /* GeographyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeographyService.m; sourceTree = "<group>"; };
 		C2160C7C16AE7508008C2A3E /* CommonRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonRoomListController.xib; sourceTree = "<group>"; };
 		C2160C7D16AE7508008C2A3E /* CommonRoomListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonRoomListController~ipad.xib"; sourceTree = "<group>"; };
 		C2160C8116AE7B9C008C2A3E /* room_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_item@2x.png"; sourceTree = "<group>"; };
@@ -8142,6 +8153,7 @@
 		C250AD101653A7F400003E15 /* ZJHRoomListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHRoomListController.m; sourceTree = "<group>"; };
 		C252DCF316B7766D0007D240 /* DiceHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
 		C252DCF416B776760007D240 /* DiceHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceHomeHeaderPanel.xib; sourceTree = "<group>"; };
+		C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_seperator_line3@2x.png"; sourceTree = "<group>"; };
 		C25C079815D5F11700E8DD8D /* UIImage+Filtrr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filtrr.h"; sourceTree = "<group>"; };
 		C25C079915D5F11700E8DD8D /* UIImage+Filtrr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filtrr.m"; sourceTree = "<group>"; };
 		C25C079A15D5F11700E8DD8D /* UIImage+FiltrrCompositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FiltrrCompositions.h"; sourceTree = "<group>"; };
@@ -12326,6 +12338,24 @@
 			path = DiceColorManager;
 			sourceTree = "<group>";
 		};
+		C214A61E170FCD6400492393 /* GoogleAddress */ = {
+			isa = PBXGroup;
+			children = (
+				C214A61F170FCD6400492393 /* GoogleAddressComponent.h */,
+				C214A620170FCD6400492393 /* GoogleAddressComponent.m */,
+			);
+			path = GoogleAddress;
+			sourceTree = "<group>";
+		};
+		C214A627170FE88300492393 /* Geography */ = {
+			isa = PBXGroup;
+			children = (
+				C214A628170FE8A900492393 /* GeographyService.h */,
+				C214A629170FE8A900492393 /* GeographyService.m */,
+			);
+			path = Geography;
+			sourceTree = "<group>";
+		};
 		C2160C8016AE7B9C008C2A3E /* Common_roomList */ = {
 			isa = PBXGroup;
 			children = (
@@ -12811,6 +12841,7 @@
 		C2B97A3916FAA5E90037B15B /* userDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */,
 				C2E04FEC170997140009F2A9 /* user_detail_round_avatar_bg@2x.png */,
 				C2E04FDD170991870009F2A9 /* user_detail_basic_bg_ipad@2x.png */,
 				C2E04FDE170991870009F2A9 /* user_detail_avatar_bg_ipad@2x.png */,
@@ -13025,6 +13056,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				C214A627170FE88300492393 /* Geography */,
 				A42AB81016E83A4C007AD01E /* Ingot */,
 				A41D2B5316B910E30094BA7C /* Wall */,
 				CA29EB0316A69E6A003B1434 /* DrawRecovery */,
@@ -13153,6 +13185,7 @@
 		CA103CE61509A56100F60C03 /* Core-Components-Service */ = {
 			isa = PBXGroup;
 			children = (
+				C214A61E170FCD6400492393 /* GoogleAddress */,
 				CA12507B1667397F00AFCC04 /* PPConfigData */,
 				CA7AFCF1164E05A10039E07F /* PPResource */,
 				A43E85DE16227E06003A57F1 /* SDWebImage */,
@@ -22234,6 +22267,7 @@
 				A44E6CC8170D75410067B647 /* item_taobao_icon@2x.png in Resources */,
 				A44E6CC9170D75410067B647 /* item_taobao_select_icon@2x.png in Resources */,
 				CAFFDFCF170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				C25BD98D1710068B00EF219F /* user_detail_seperator_line3@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23156,6 +23190,7 @@
 				C2E04FEE170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837476170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD0170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				C25BD98E1710068B00EF219F /* user_detail_seperator_line3@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23972,6 +24007,7 @@
 				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				C214A62C170FE8A900492393 /* GeographyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24769,6 +24805,7 @@
 				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				C214A62D170FE8A900492393 /* GeographyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25570,6 +25607,8 @@
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
+				C214A621170FCD6400492393 /* GoogleAddressComponent.m in Sources */,
+				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26375,6 +26414,7 @@
 				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				C214A62B170FE8A900492393 /* GeographyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
