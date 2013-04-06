@@ -423,7 +423,7 @@ static DrawGameService* _defaultService;
         [self.session updateByGameNotification:[message notification]];
 //        [self.session removeAllDrawActions];
         [self.session.currentTurn resetData];
-        self.canvasSize = CGSizeZero;
+//        self.canvasSize = CGSizeZero;
 
        [self notifyGameObserver:@selector(didGameTurnComplete:) message:message];
     }); 
