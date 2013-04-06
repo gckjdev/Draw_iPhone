@@ -129,15 +129,20 @@
         [view setCenter:orgPoint];
     }
 }
-
+#define MAX_HEIGHT (ISIPAD?81:36)
+#define MAX_CONSTRAIN_HEIGHT 99999
+#define MAX_SIGN_FRAME (ISIPAD?CGRectMake(84, 70, 600, 81):CGRectMake(46, 31, 229, 36))
 - (void)adjustSignatureLabel:(UILabel*)label WithText:(NSString*)signatureText
 {
     [label setText:signatureText];
-    CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:label.frame.size lineBreakMode:NSLineBreakByWordWrapping];
-    if (size.height < label.frame.size.height) {
+    CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
+    if (size.height < MAX_HEIGHT) {
         [label setFrame:CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height)];
+    } else {
+        [label setFrame:MAX_SIGN_FRAME];
     }
-
+    
+    
 }
 
 + (float)getCellHeight
