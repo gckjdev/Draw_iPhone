@@ -1009,17 +1009,17 @@
 {
     
 //    [self showActivityWithText:NSLS(@"kSending")];
+    UIImage *image = [drawView createImage];
+    
+    if(image == nil){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
+        return;
+    }
     
     [self showProgressViewWithMessage:NSLS(@"kSending")];
     
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
-    UIImage *image = [drawView createImage];
-
-    if(image == nil){
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
-        return;
-    }
     // create temp file for weibo sharing
     [self writeTempFile:image];
     [self setShareWeiboSet:share];    
