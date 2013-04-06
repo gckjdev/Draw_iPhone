@@ -24,6 +24,7 @@ typedef void(^DidSetDefaultBlock)(void);
 @property (nonatomic, retain) PPViewController<ChangeAvatarDelegate> *superViewController;
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) BOOL autoRoundRect;
+@property (assign, nonatomic) BOOL isCompressImage;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
 @property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
