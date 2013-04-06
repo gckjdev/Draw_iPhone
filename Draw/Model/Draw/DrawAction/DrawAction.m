@@ -133,7 +133,7 @@
                                                             size:(CGSize)size
                                                       drawToUser:(PBUserBasicInfo *)drawToUser
 {
-    if ([drawActionList count] != 0) {
+//    if ([drawActionList count] != 0) {
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         
         for (DrawAction *drawAction in drawActionList) {
@@ -152,8 +152,8 @@
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
         return nData;
-    }
-    return nil;
+//    }
+//    return nil;
 }
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList

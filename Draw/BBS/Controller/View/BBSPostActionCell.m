@@ -51,7 +51,9 @@
     [self.option setImage:[imageManager bbsDetailOptionUp]];
     [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
     [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
-    
+    self.useContentLabel = NO;
+    self.content.hidden = YES;
+    [self.content removeFromSuperview];
 }
 
 + (id)createCell:(id)delegate
@@ -169,15 +171,24 @@
         self.image.hidden = YES;
     }
     
-    [self.contentTextView setFont:[[BBSFontManager defaultManager] postContentFont]];
+//    [self.contentTextView setFont:[[BBSFontManager defaultManager] postContentFont]];
     
     if ([DeviceDetection isOS6] && [action isReply]) {
         NSInteger length = [text length];
         NSInteger contentLength = [[action.content text] length];
         NSInteger loc = length - contentLength;
         if (loc > 0) {
+            
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text];
-            [attr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(0, loc)];            
+            
+            [attr addAttribute:NSFontAttributeName
+                         value:[[BBSFontManager defaultManager] postContentFont]
+                         range:NSMakeRange(0, length)];
+            
+            [attr addAttribute:NSForegroundColorAttributeName
+                         value:[UIColor darkGrayColor]
+                         range:NSMakeRange(0, loc)];
+            
             if (self.useContentLabel) {
                 [self.content setAttributedText:attr];
             }else{

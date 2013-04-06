@@ -179,7 +179,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 
                 if (resultCode == ERROR_SUCCESS){
                     [cusInfoView dismiss];
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:1.2 isHappy:YES];
 //                    if (itemId == ItemTypeRemoveAd) {
 //                        [[AdService defaultService] disableAd];
 //                    }else if(itemId == ItemTypePurse){
@@ -191,7 +191,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 }else{
                     [cusInfoView hideActivity];
                     [button setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:YES];
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:1.2 isHappy:YES];
                 }
                 
                 EXECUTE_BLOCK(resultHandler, resultCode, itemId, count, toUserId);

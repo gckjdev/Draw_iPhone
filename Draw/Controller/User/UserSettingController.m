@@ -1353,6 +1353,7 @@ enum {
 
 - (void)findCityDone:(int)result cityName:(NSString*)city provinceName:(NSString*)provinceName countryCode:(int)countryCode
 {
+
     [self hideActivity];
     NSString* provinceStr = (provinceName != nil)?provinceName:@"";
     NSString* cityStr = (city != nil)?city:@"";
@@ -1360,6 +1361,7 @@ enum {
     [_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", provinceStr, cityStr]];
     hasEdited = YES;
     PPDebug(@"<UserSettingController>update location succ, new location is %@", cityStr);
+
     [self.dataTableView reloadData];
 }
 

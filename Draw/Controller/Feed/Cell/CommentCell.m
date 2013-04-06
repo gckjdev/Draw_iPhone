@@ -158,6 +158,11 @@ UIColor * color(int red, int green, int blue)
             //set attributed
             PPDebug(@"comment = %@,length = %d,loc = %d",comment,length,loc);
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:comment];
+
+            [attr addAttribute:NSFontAttributeName
+                         value:self.commentLabel.font
+                         range:NSMakeRange(0, length)];
+            
             [attr addAttribute:NSForegroundColorAttributeName value:COMMENT_REPLY_COLOR range:NSMakeRange(0, loc)];
             [self.commentLabel setText:nil];
             [self.commentLabel setAttributedText:attr];

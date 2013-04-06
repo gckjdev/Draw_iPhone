@@ -38,6 +38,9 @@
     NSInteger _bonus;
     
     BBSManager *_bbsManager;
+    
+    
+    BOOL canCommit;
 }
 @property(nonatomic, retain)PBBBSBoard *bbsBoard;
 @property(nonatomic, retain)ChangeAvatar *imagePicker;
@@ -159,6 +162,7 @@
     if (self) {
         // Custom initialization
         _bbsManager = [BBSManager defaultManager];
+        canCommit = YES;
     }
     return self;
 }
@@ -312,6 +316,12 @@
 - (IBAction)clickSubmitButton:(id)sender {
 
     //if has source post, then send an action, or create a new post
+    if (!canCommit) {
+        PPDebug(@"Cannot Commit!!! it is sending!!!");
+        return;
+    }
+    canCommit = NO;
+    
     self.text = self.textView.text;
     [self showActivityWithText:NSLS(@"kSending")];
     if ([self.postId length] != 0) {
@@ -517,6 +527,7 @@
            resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
+    canCommit = YES;
     if (resultCode == 0) {
         PPDebug(@"<didCreatePost>create post successful!");
         if (self.delegate && [self.delegate
@@ -540,6 +551,7 @@
              resultCode:(NSInteger)resultCode
 {
     [self hideActivity];
+    canCommit = YES;    
     if (resultCode == 0) {
         PPDebug(@"<didCreateAction>create action successful!");
         if (self.delegate && [self.delegate

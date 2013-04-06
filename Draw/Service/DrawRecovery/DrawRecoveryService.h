@@ -28,7 +28,7 @@
 //@property (nonatomic, retain) MyPaint* currentPaint;
 
 + (DrawRecoveryService*)defaultService;
-
+- (void)changeCanvasSize:(CGSize)canvasSize;
 - (int)recoveryDrawCount;
 
 - (void)start:(NSString *)targetUid
