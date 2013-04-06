@@ -398,8 +398,8 @@
         }else{
             [self setButton:button title:title enabled:YES];
         }
-        [self.view bringSubviewToFront:button];
-        PPDebug(@"<updateCandidateViewsWithText> superView = %@, title = %@, frame = %@, hide = %d",button.superview, title, NSStringFromCGRect(button.frame), button.isHidden);
+//        [self.view bringSubviewToFront:button];
+//        PPDebug(@"<updateCandidateViewsWithText> superView = %@, title = %@, frame = %@, hide = %d",button.superview, title, NSStringFromCGRect(button.frame), button.isHidden);
         
     }
     for (; tag <= CANDIDATE_END_TAG; ++ tag) {
