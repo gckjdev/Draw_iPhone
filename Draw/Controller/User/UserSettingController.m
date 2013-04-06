@@ -700,6 +700,7 @@ enum {
             if (imageUploader == nil) {
                 imageUploader = [[ChangeAvatar alloc] init];
                 imageUploader.autoRoundRect = NO;
+                imageUploader.isCompressImage = NO;
             }
             [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
                 [uc uploadCustomBg:image];

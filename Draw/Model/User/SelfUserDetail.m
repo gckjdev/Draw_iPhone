@@ -346,6 +346,7 @@
     if (_changeAvatar == nil) {
         _changeAvatar = [[ChangeAvatar alloc] init];
         _changeAvatar.autoRoundRect = NO;
+        _changeAvatar.isCompressImage = NO;
     }
     [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
         EXECUTE_BLOCK(aBlock, image);

@@ -32,6 +32,7 @@
     self = [super init];
     self.imageSize = CGSizeMake(DEFAULT_AVATAR_SIZE, DEFAULT_AVATAR_SIZE);
     self.autoRoundRect = YES;
+    self.isCompressImage = NO;
     return self;
 }
 
@@ -95,7 +96,9 @@
                     image = [UIImage createRoundedRectImage:image size:_imageSize];
                 }
                 else{
-                    image = [image imageByScalingAndCroppingForSize:_imageSize];
+                    if (self.isCompressImage){
+                        image = [image imageByScalingAndCroppingForSize:_imageSize];
+                    }
                 }
             }
             
