@@ -185,6 +185,6 @@
 //    [_superViewController.navigationController pushViewController:uc animated:YES];
 //    return;
     
-    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil] inViewController:self];
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil] inViewController:_superViewController];
 }
 @end
