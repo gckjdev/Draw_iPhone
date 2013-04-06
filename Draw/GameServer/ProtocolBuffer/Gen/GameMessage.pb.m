@@ -6690,7 +6690,7 @@ static ChangeCardResponse* defaultChangeCardResponseInstance = nil;
     self.userLevel = 0;
     self.user = [PBGameUser defaultInstance];
     self.ruleType = 0;
-    self.version = 0;
+    self.version = 1;
   }
   return self;
 }
@@ -7459,7 +7459,7 @@ static JoinGameRequest* defaultJoinGameRequestInstance = nil;
 }
 - (JoinGameRequest_Builder*) clearVersion {
   result.hasVersion = NO;
-  result.version = 0;
+  result.version = 1;
   return self;
 }
 @end

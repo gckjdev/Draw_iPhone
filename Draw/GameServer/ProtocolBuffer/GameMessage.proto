@@ -189,7 +189,7 @@ message JoinGameRequest {
 
   optional PBGameUser user = 100;                   // 统一协议接口
   optional int32 ruleType = 101;                    // 加入游戏的规则类型
-  optional int32 version = 102;                     //
+  optional int32 version = 102[default=1];          // force default value to new version
   
 }
 
