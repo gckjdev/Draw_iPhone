@@ -485,7 +485,7 @@
 {
     if (![self supportRecovery])
         return;
-    
+
     [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
