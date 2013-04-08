@@ -78,6 +78,18 @@
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
 		A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
+		A4274569171261D900E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A427456A171261DA00E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A427456B171261DB00E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A427456C171261E900E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A427456D171261EA00E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A427456E171261EB00E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A427456F171261F000E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A4274570171261F100E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A4274571171261F200E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A42745721712620600E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A42745731712620700E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A42745741712620900E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
@@ -20312,6 +20324,8 @@
 				C2E04FEF170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837477170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD1170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				A427456D171261EA00E43037 /* TaoBaoController.xib in Resources */,
+				A4274570171261F100E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21227,6 +21241,8 @@
 				C2E04FF0170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837478170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD2170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				A427456E171261EB00E43037 /* TaoBaoController.xib in Resources */,
+				A4274571171261F200E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23156,6 +23172,8 @@
 				C2E04FEE170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837476170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD0170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				A427456C171261E900E43037 /* TaoBaoController.xib in Resources */,
+				A427456F171261F000E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23972,6 +23990,8 @@
 				CAF95E3417068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				A427456A171261DA00E43037 /* TaoBaoController.m in Sources */,
+				A42745731712620700E43037 /* TomatoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24769,6 +24789,8 @@
 				CAF95E3517068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				A427456B171261DB00E43037 /* TaoBaoController.m in Sources */,
+				A42745741712620900E43037 /* TomatoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26375,6 +26397,8 @@
 				CAF95E3317068C4D00B7526C /* UndoCommand.m in Sources */,
 				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
+				A4274569171261D900E43037 /* TaoBaoController.m in Sources */,
+				A42745721712620600E43037 /* TomatoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
