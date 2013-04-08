@@ -1145,7 +1145,7 @@
 "kUnblackUserSuccess" = "解除黑名单成功!";
 "kBlackList" = "黑名单";
 "kBlackListNumber" = "黑名单(%d)";
-"kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存, 应用即将重启！";
+"kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存！";
 "kCleanCache" = "清理缓存";
 
 

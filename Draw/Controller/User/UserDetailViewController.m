@@ -79,7 +79,6 @@
     if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
         [self didClickTabAtIndex:currentTabIndex];
     }
-
 }
 
 - (void)didReceiveMemoryWarning
