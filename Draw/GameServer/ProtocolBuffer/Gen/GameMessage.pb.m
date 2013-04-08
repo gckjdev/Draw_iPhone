@@ -537,6 +537,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
 @property (retain) NSString* roomName;
 @property (retain) NSString* password;
 @property int32_t ruleType;
+@property int32_t version;
 @end
 
 @implementation CreateRoomRequest
@@ -576,6 +577,13 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
   hasRuleType_ = !!value;
 }
 @synthesize ruleType;
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 - (void) dealloc {
   self.gameId = nil;
   self.user = nil;
@@ -590,6 +598,7 @@ static GetRoomsResponse* defaultGetRoomsResponseInstance = nil;
     self.roomName = @"";
     self.password = @"";
     self.ruleType = 0;
+    self.version = 0;
   }
   return self;
 }
@@ -636,6 +645,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (self.hasRuleType) {
     [output writeInt32:5 value:self.ruleType];
   }
+  if (self.hasVersion) {
+    [output writeInt32:6 value:self.version];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -659,6 +671,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   }
   if (self.hasRuleType) {
     size += computeInt32Size(5, self.ruleType);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(6, self.version);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -750,6 +765,9 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
   if (other.hasRuleType) {
     [self setRuleType:other.ruleType];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -794,6 +812,10 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
       }
       case 40: {
         [self setRuleType:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setVersion:[input readInt32]];
         break;
       }
     }
@@ -891,6 +913,22 @@ static CreateRoomRequest* defaultCreateRoomRequestInstance = nil;
 - (CreateRoomRequest_Builder*) clearRuleType {
   result.hasRuleType = NO;
   result.ruleType = 0;
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (CreateRoomRequest_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (CreateRoomRequest_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 @end
@@ -17631,6 +17669,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @interface DataQueryResponse ()
 @property int32_t resultCode;
 @property int32_t totalCount;
+@property int32_t version;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property (retain) NSMutableArray* mutableMessageList;
 @property (retain) NSMutableArray* mutableMessageStatList;
@@ -17663,6 +17702,13 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasTotalCount_ = !!value;
 }
 @synthesize totalCount;
+- (BOOL) hasVersion {
+  return !!hasVersion_;
+}
+- (void) setHasVersion:(BOOL) value {
+  hasVersion_ = !!value;
+}
+@synthesize version;
 @synthesize mutableDrawDataList;
 @synthesize mutableMessageList;
 @synthesize mutableMessageStatList;
@@ -17721,6 +17767,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   if ((self = [super init])) {
     self.resultCode = 0;
     self.totalCount = 0;
+    self.version = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
     self.user = [PBGameUser defaultInstance];
@@ -17888,6 +17935,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasTotalCount) {
     [output writeInt32:2 value:self.totalCount];
   }
+  if (self.hasVersion) {
+    [output writeInt32:3 value:self.version];
+  }
   for (PBDraw* element in self.drawDataList) {
     [output writeMessage:21 value:element];
   }
@@ -17944,6 +17994,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasTotalCount) {
     size += computeInt32Size(2, self.totalCount);
+  }
+  if (self.hasVersion) {
+    size += computeInt32Size(3, self.version);
   }
   for (PBDraw* element in self.drawDataList) {
     size += computeMessageSize(21, element);
@@ -18068,6 +18121,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasTotalCount) {
     [self setTotalCount:other.totalCount];
   }
+  if (other.hasVersion) {
+    [self setVersion:other.version];
+  }
   if (other.mutableDrawDataList.count > 0) {
     if (result.mutableDrawDataList == nil) {
       result.mutableDrawDataList = [NSMutableArray array];
@@ -18167,6 +18223,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 16: {
         [self setTotalCount:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setVersion:[input readInt32]];
         break;
       }
       case 170: {
@@ -18293,6 +18353,22 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearTotalCount {
   result.hasTotalCount = NO;
   result.totalCount = 0;
+  return self;
+}
+- (BOOL) hasVersion {
+  return result.hasVersion;
+}
+- (int32_t) version {
+  return result.version;
+}
+- (DataQueryResponse_Builder*) setVersion:(int32_t) value {
+  result.hasVersion = YES;
+  result.version = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearVersion {
+  result.hasVersion = NO;
+  result.version = 0;
   return self;
 }
 - (NSArray*) drawDataList {

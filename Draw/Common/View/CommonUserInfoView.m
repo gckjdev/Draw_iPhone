@@ -302,8 +302,11 @@
            canChat:(BOOL)canChat
 {
     if (isDrawApp()) {
-        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName]] autorelease];
-        [superController.navigationController pushViewController:uc animated:YES];
+//        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName]] autorelease];
+//        [superController.navigationController pushViewController:uc animated:YES];
+//        return;
+        
+        [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
         return;
     }
     if (isDiceApp()) {

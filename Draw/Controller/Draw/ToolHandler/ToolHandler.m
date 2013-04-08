@@ -204,7 +204,10 @@
 - (CanvasRect *)canvasRect
 {
     if (_canvasRect == nil) {
-        self.canvasRect = [CanvasRect canvasRectWithStyle:[CanvasRect defaultCanvasRectStyle]];
+        self.canvasRect = [CanvasRect canvasRectWithRect:self.drawView.bounds];
+        if(self.canvasRect == nil){
+            self.canvasRect = [CanvasRect canvasRectWithStyle:[CanvasRect defaultCanvasRectStyle]];
+        }
     }
     return _canvasRect;
 }

@@ -382,7 +382,6 @@ enum {
                                                              style:CommonDialogStyleSingleButton
                                                           delegate:nil
                                                       clickOkBlock:^{
-                                                          exit(0);
                                                       }
                                                   clickCancelBlock:^{
                                                       //

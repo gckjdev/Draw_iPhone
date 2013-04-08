@@ -863,9 +863,11 @@
 //                                         level:1];
 //    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
     
-    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
-    [self.navigationController pushViewController:uc animated:YES];
-    return;
+//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
+//    [self.navigationController pushViewController:uc animated:YES];
+//    return;
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil] inViewController:self];
 
 }
 

@@ -23,6 +23,7 @@ typedef enum {
 @property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;
 
 - (id)initWithUserDetail:(id<UserDetailProtocol>)detail;
-
++ (void)presentUserDetail:(NSObject<UserDetailProtocol>*)detail
+         inViewController:(PPViewController*)viewController;
 
 @end

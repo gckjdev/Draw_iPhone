@@ -237,14 +237,14 @@
 }
 
 
-- (void)clickSina:(UIViewController*)viewController
+- (void)clickSina:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            [SNSUtils bindSNS:TYPE_SINA succ:^{
+            [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
             } failure:^{
                 //
@@ -256,14 +256,14 @@
     }
     
 }
-- (void)clickQQ:(UIViewController*)viewController
+- (void)clickQQ:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            [SNSUtils bindSNS:TYPE_QQ succ:^{
+            [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
             } failure:^{
                 //
@@ -274,14 +274,14 @@
         [dialog showInView:viewController.view];
     }
 }
-- (void)clickFacebook:(UIViewController*)viewController
+- (void)clickFacebook:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            [SNSUtils bindSNS:TYPE_FACEBOOK succ:^{
+            [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
             } failure:^{
                 //
@@ -511,6 +511,11 @@
 - (void)clickCustomBg:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
     // do nothing
+}
+
+- (BOOL)shouldShow
+{
+    return ![[UserManager defaultManager] isMe:[self getUserId]];
 }
 
 @end

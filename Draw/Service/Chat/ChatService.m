@@ -170,7 +170,7 @@ static ChatService *_chatService = nil;
                                                                 drawWord:nil 
                                                                 language:ChineseType
                                                                     size:[(DrawMessage *)message canvasSize]
-                                                                    isCompressed:YES];
+                                                            isCompressed:NO];
                     data = [draw data];
                 }
                 break;

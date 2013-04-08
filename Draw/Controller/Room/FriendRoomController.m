@@ -245,8 +245,10 @@
 //    MyFriend *friend = [MyFriend friendWithFid:roomUser.userId nickName:roomUser.nickName avatar:roomUser.avatar gender:roomUser.gender level:1];
 //    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
     
-    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:roomUser.userId avatar:roomUser.avatar nickName:roomUser.nickName]] autorelease];
-    [self.navigationController pushViewController:uc animated:YES];
+//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:roomUser.userId avatar:roomUser.avatar nickName:roomUser.nickName]] autorelease];
+//    [self.navigationController pushViewController:uc animated:YES];
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:roomUser.userId avatar:roomUser.avatar nickName:roomUser.nickName] inViewController:self];
 }
 
 

@@ -814,15 +814,15 @@
 "kDrawBgRegulus" = "軒轅";
 "kDrawBgMirfak" = "天船";
 
-"kDrawBgAntaresDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgAdharaDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgElnathDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgAliothDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgMimosaDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小768*1024";
-"kDrawBgArcturusDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgPolluxDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgRegulusDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
-"kDrawBgMirfakDesc" = "繪畫背景，讓妳的畫畫更加生動漂亮, 大小700*700";
+"kDrawBgAntaresDesc" = "一套素雅的肌理背景，給你​​的畫面增添別樣的樂趣";
+"kDrawBgAdharaDesc" = "水彩效果的繪畫背景，讓你的畫面更加豐富靈動";
+"kDrawBgElnathDesc" = "信紙？相框？怎麼用的妙趣橫生？盡情發揮你的想像吧";
+"kDrawBgAliothDesc" = "一套五彩繽紛的可愛背景，讓這些小萌物把你的作品變的更加可愛吧";
+"kDrawBgMimosaDesc" = "清新豎版背景，可愛畫風輕鬆hold住";
+"kDrawBgArcturusDesc" = "一套獨特有趣的圖形背景，讓你的作品更加獨樹一幟";
+"kDrawBgPolluxDesc" = "一套漸變背景，幫你更輕鬆的繪製出長河落日星空大海";
+"kDrawBgRegulusDesc" = "一套中國風背景，為你的畫面增添濃濃墨韻";
+"kDrawBgMirfakDesc" = "一套彩色相框，把你的作品集裝點的更加生動活潑";
 
 "kPickToolTitle" = "使用道具";
 
@@ -1061,11 +1061,10 @@
 "kMoreColor" = "更多";
 "kDonotSave" = "不保存";
 
-
-"kPaletteItem" = "調色板";
+"kPaletteItem" = "調色盤";
 "kColorAlphaItem" = "透明筆";
-"kPaletteItemDescription" = "買了這個，你可以自已調出任何顏色！";
-"kColorAlphaItemDescription" = "買了它，可以畫出半透明的筆劃。";
+"kPaletteItemDescription" = "有了它，可以調製出千變萬化的顏色";
+"kColorAlphaItemDescription" = "有了它，可以畫出半透明的美麗筆劃";
 
 
 "kAddOpusDesc" = "為你的作品添加一段描述";
@@ -1113,7 +1112,7 @@
 "kBoardAdmin" = "版主:";
 "kNoBoardAdmin" = "暫無版主";
 "kBuffering" = "正在緩沖...";
-"kPaintPlayerItemDescription" = "這是一個作品播放器。你可以在播放繪畫過程中調速，還可以跳到任意進度。";
+"kPaintPlayerItemDescription" = "繪畫作品播放器，可以在播放繪畫過程中調速，還可以暫停、結束播放，以及調節到任意進度";
 "kPaintPlayerItem" = "作品播放器";
 "kStraw" = "吸管";
 "kStrawDescription" = "吸管可以用來在獲取作品指定位置的顏色。";
@@ -1145,7 +1144,7 @@
 "kRewardWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取元寶";
 "kFreeIngot" = "免費元寶";
 "kGoToBBS4Help" = "逛逛論壇尋求幫助";
-"kCleaning" = "清理緩存中...";
+"kCleaning" = "清理緩存中，時間可能比較長，請耐心等待";
 
 "kDetectFakeIAP" = "充值失敗，請勿使用越獄充值插件";
 "kVerifyIAPFail" = "充值失敗，請稍後再試驗，並確保未使用越獄充值插件。";

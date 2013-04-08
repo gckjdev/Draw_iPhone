@@ -141,10 +141,8 @@
     
     if ([gestureRecognizer state] == UIGestureRecognizerStateBegan ||
         [gestureRecognizer state] == UIGestureRecognizerStateChanged) {
-        
-//        CGFloat currentScale = [[view.layer valueForKeyPath:@"transform.scale"] floatValue];
-        
-        // Constants to adjust the max/min values of zoom
+                
+// Constants to adjust the max/min values of zoom
         CGFloat guestureScale = [gestureRecognizer scale];
         CGFloat currentScale = guestureScale * lastScale;
         
@@ -154,19 +152,6 @@
 
         [sDrawView setScale:currentScale];
         PPDebug(@"Guesture Scale = %f, currentScale = %f, lastScale = %f",guestureScale, currentScale, lastScale);
-        
-//        CGFloat newScale = 1 -  (lastScale - [gestureRecognizer scale]) * (kSpeed);
-//        newScale = MIN(newScale, kMaxScale / currentScale);
-//        newScale = MAX(newScale, kMinScale / currentScale);
-        
-//        PPDebug(@"lastScale = %f, guestureScale =%f, newScale = %f", lastScale, guestureScale, newScale);
-        
-//        CGAffineTransform transform = CGAffineTransformScale([view transform], newScale, newScale);
-
-//        PPDebug(@"<Pinch>scale = %f, transform = %@", newScale, NSStringFromCGAffineTransform(transform));
-        
-//        [gestureRecognizer view].transform = transform;
-//        lastScale = [gestureRecognizer scale];  // Store the previous scale factor for the next pinch gesture call
     }else if([gestureRecognizer state] == UIGestureRecognizerStateEnded ||
              [gestureRecognizer state] == UIGestureRecognizerStateCancelled){
         [self adjustView:[gestureRecognizer view]];
@@ -258,6 +243,7 @@
         }
 //        [doubleTap.view setTransform:CGAffineTransformIdentity];
 //        [self adjustView:doubleTap.view];
+        _canMove = [self canMoveView:doubleTap.view];
     }
 }
 

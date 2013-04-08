@@ -75,9 +75,7 @@
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
 {
-//    [self dismissColorBoxPopTipView];
     [self hidePopTipView];
-//    [self selectPen];
 }
 
 

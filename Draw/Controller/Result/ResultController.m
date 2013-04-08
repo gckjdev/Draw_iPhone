@@ -658,7 +658,7 @@
                                             score:[ConfigManager offlineDrawMyWordScore]]
                       language:1
                       size:CGSizeMake(300, 300) //TODO should update the real size, here for test
-                      isCompressed:YES];
+                      isCompressed:NO];
     
     [[DrawDataService defaultService ] savePaintWithPBDraw:pbDraw
                                                      image:_image

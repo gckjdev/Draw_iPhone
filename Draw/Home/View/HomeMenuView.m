@@ -323,11 +323,11 @@ int *getDrawMainMenuTypeListWithFreeCoins()
     int static list[] = {
         HomeMenuTypeDrawDraw,
         HomeMenuTypeDrawGuess,
-        HomeMenuTypeDrawGame,
         HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawGame,
 //        HomeMenuTypeDrawTimeline,
-        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
 //        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
         HomeMenuTypeDrawFreeCoins,
@@ -343,11 +343,12 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
     int static list[] = {
         HomeMenuTypeDrawDraw,
         HomeMenuTypeDrawGuess,
-        HomeMenuTypeDrawGame,
 //        HomeMenuTypeDrawTimeline,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawGame,
         HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBBS,
+
 //        HomeMenuTypeDrawShop,
 //        HomeMenuTypeDrawApps,
 //        HomeMenuTypeDrawPlayWithFriend,

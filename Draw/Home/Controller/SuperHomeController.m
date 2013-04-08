@@ -250,6 +250,7 @@
 //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
+    
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel

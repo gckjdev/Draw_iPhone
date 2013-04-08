@@ -121,11 +121,22 @@
 
 - (id)initWithUserDetail:(NSObject<UserDetailProtocol>*)detail
 {
+//    if (![detail shouldShow]) {
+//        return nil;//TODO: temply fix bug:show self and follow self, should optimize later
+//    }
     self = [self init];
     if (self) {
         self.detail = detail;
     }
     return self;
+}
+
++ (void)presentUserDetail:(NSObject<UserDetailProtocol>*)detail inViewController:(PPViewController*)viewController
+{
+    if ([detail shouldShow]) {
+        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
+        [viewController.navigationController pushViewController:uc animated:YES];
+    }
 }
 
 
