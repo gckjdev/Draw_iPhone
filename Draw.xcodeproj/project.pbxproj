@@ -91,6 +91,9 @@
 		A427459A171266EA00E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
 		A427459B171266EC00E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
 		A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
@@ -24020,6 +24023,7 @@
 				C214A62C170FE8A900492393 /* GeographyService.m in Sources */,
 				A4274590171266C100E43037 /* TaoBaoController.m in Sources */,
 				A427459A171266EA00E43037 /* TomatoItem.m in Sources */,
+				A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24820,6 +24824,7 @@
 				C214A62D170FE8A900492393 /* GeographyService.m in Sources */,
 				A4274591171266C200E43037 /* TaoBaoController.m in Sources */,
 				A427459B171266EC00E43037 /* TomatoItem.m in Sources */,
+				A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26431,6 +26436,7 @@
 				C214A62B170FE8A900492393 /* GeographyService.m in Sources */,
 				A427458F171266C000E43037 /* TaoBaoController.m in Sources */,
 				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
+				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
