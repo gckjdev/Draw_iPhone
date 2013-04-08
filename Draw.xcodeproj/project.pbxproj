@@ -78,6 +78,22 @@
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
 		A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
+		A427458F171266C000E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A4274590171266C100E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A4274591171266C200E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
+		A4274593171266D100E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A4274594171266D200E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A4274595171266D200E43037 /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
+		A4274596171266D700E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A4274597171266D800E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A4274598171266D900E43037 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
+		A4274599171266E900E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A427459A171266EA00E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A427459B171266EC00E43037 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
+		A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
 		A42AB81316E83A65007AD01E /* IngotService.m in Sources */ = {isa = PBXBuildFile; fileRef = A42AB81216E83A65007AD01E /* IngotService.m */; };
 		A42C520615E614D2001D8208 /* CommonChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520315E614D2001D8208 /* CommonChatMessage.m */; };
 		A42C520715E614D2001D8208 /* DiceChatMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A42C520515E614D2001D8208 /* DiceChatMsgManager.m */; };
@@ -530,7 +546,6 @@
 		C2117BE5168EEEFB000F36EE /* draw_home_bulletin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2117BE4168EEEFB000F36EE /* draw_home_bulletin@2x.png */; };
 		C213091B15E349E20072A18E /* DiceUserInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */; };
 		C21309FB15E774390072A18E /* DiceColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21309FA15E774390072A18E /* DiceColorManager.m */; };
-		C214A621170FCD6400492393 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A620170FCD6400492393 /* GoogleAddressComponent.m */; };
 		C214A62A170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
 		C214A62B170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
 		C214A62C170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
@@ -9240,6 +9255,8 @@
 		A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBGameItem+Extend.m"; sourceTree = "<group>"; };
 		A422DB911693DD0C00914A48 /* HotWordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotWordManager.h; sourceTree = "<group>"; };
 		A422DB921693DD0D00914A48 /* HotWordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotWordManager.m; sourceTree = "<group>"; };
+		A427459C171267CE00E43037 /* GoogleAddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressComponent.h; sourceTree = "<group>"; };
+		A427459D171267CE00E43037 /* GoogleAddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressComponent.m; sourceTree = "<group>"; };
 		A42AB80716E8364B007AD01E /* ChargeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeController.h; sourceTree = "<group>"; };
 		A42AB80816E8364B007AD01E /* ChargeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeController.m; sourceTree = "<group>"; };
 		A42AB80916E8364C007AD01E /* ChargeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeController.xib; sourceTree = "<group>"; };
@@ -9691,8 +9708,6 @@
 		C213091A15E349E20072A18E /* DiceUserInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DiceUserInfoView~ipad.xib"; sourceTree = "<group>"; };
 		C21309F915E774390072A18E /* DiceColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceColorManager.h; sourceTree = "<group>"; };
 		C21309FA15E774390072A18E /* DiceColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceColorManager.m; sourceTree = "<group>"; };
-		C214A61F170FCD6400492393 /* GoogleAddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressComponent.h; sourceTree = "<group>"; };
-		C214A620170FCD6400492393 /* GoogleAddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressComponent.m; sourceTree = "<group>"; };
 		C214A628170FE8A900492393 /* GeographyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeographyService.h; sourceTree = "<group>"; };
 		C214A629170FE8A900492393 /* GeographyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeographyService.m; sourceTree = "<group>"; };
 		C2160C7C16AE7508008C2A3E /* CommonRoomListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonRoomListController.xib; sourceTree = "<group>"; };
@@ -14026,8 +14041,8 @@
 		C214A61E170FCD6400492393 /* GoogleAddress */ = {
 			isa = PBXGroup;
 			children = (
-				C214A61F170FCD6400492393 /* GoogleAddressComponent.h */,
-				C214A620170FCD6400492393 /* GoogleAddressComponent.m */,
+				A427459C171267CE00E43037 /* GoogleAddressComponent.h */,
+				A427459D171267CE00E43037 /* GoogleAddressComponent.m */,
 			);
 			path = GoogleAddress;
 			sourceTree = "<group>";
@@ -22855,6 +22870,8 @@
 				C2E04FEF170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837477170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD1170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				A4274594171266D200E43037 /* TaoBaoController.xib in Resources */,
+				A4274597171266D800E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23770,6 +23787,8 @@
 				C2E04FF0170997140009F2A9 /* user_detail_round_avatar_bg@2x.png in Resources */,
 				CA837478170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD2170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				A4274595171266D200E43037 /* TaoBaoController.xib in Resources */,
+				A4274598171266D900E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25699,6 +25718,8 @@
 				CA837476170B1D6100AE46ED /* draw_tool_button_bg@2x.png in Resources */,
 				CAFFDFD0170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png in Resources */,
 				C25BD98E1710068B00EF219F /* user_detail_seperator_line3@2x.png in Resources */,
+				A4274593171266D100E43037 /* TaoBaoController.xib in Resources */,
+				A4274596171266D700E43037 /* TaoBaoController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27319,6 +27340,9 @@
 				C2EB5D091709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E51709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				C214A62C170FE8A900492393 /* GeographyService.m in Sources */,
+				A4274590171266C100E43037 /* TaoBaoController.m in Sources */,
+				A427459A171266EA00E43037 /* TomatoItem.m in Sources */,
+				A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28117,6 +28141,9 @@
 				C2EB5D0A1709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				C214A62D170FE8A900492393 /* GeographyService.m in Sources */,
+				A4274591171266C200E43037 /* TaoBaoController.m in Sources */,
+				A427459B171266EC00E43037 /* TomatoItem.m in Sources */,
+				A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28918,8 +28945,8 @@
 				EA49C86417093CD300843B6B /* TaoBaoController.m in Sources */,
 				CAE4B0E31709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
-				C214A621170FCD6400492393 /* GoogleAddressComponent.m in Sources */,
 				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
+				A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29726,6 +29753,9 @@
 				C2EB5D081709335F004B7CCB /* UserDetailRoundButton.m in Sources */,
 				CAE4B0E41709643200B4AB90 /* ChangeBGImageAction.m in Sources */,
 				C214A62B170FE8A900492393 /* GeographyService.m in Sources */,
+				A427458F171266C000E43037 /* TaoBaoController.m in Sources */,
+				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
+				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
