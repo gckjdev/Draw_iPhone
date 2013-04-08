@@ -2147,7 +2147,7 @@
 		CA1204281712A98F00FEFB41 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
 		CA1204291712A98F00FEFB41 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
 		CA12042A1712A98F00FEFB41 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
-		CA12042B1712A98F00FEFB41 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A620170FCD6400492393 /* GoogleAddressComponent.m */; };
+		CA12042B1712A98F00FEFB41 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		CA12042C1712A98F00FEFB41 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
 		CA12042E1712A98F00FEFB41 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
 		CA12042F1712A98F00FEFB41 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -2991,6 +2991,7 @@
 		CA1208351712A98F00FEFB41 /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
 		CA1208451712AA5500FEFB41 /* draw_bg.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA485B2916E1F02C00AEE725 /* draw_bg.zip */; };
 		CA1208461712AA6D00FEFB41 /* wordbase.zip in Resources */ = {isa = PBXBuildFile; fileRef = CA7D41E4168D7588009F43F7 /* wordbase.zip */; };
+		CA1208501712AFAB00FEFB41 /* LearnDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA12084F1712AFAB00FEFB41 /* LearnDraw-Info.plist */; };
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
@@ -10495,7 +10496,7 @@
 		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
 		CA1208431712A98F00FEFB41 /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA1208441712A99000FEFB41 /* Draw copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Draw copy-Info.plist"; path = "/Place/Client/Draw_iPhone/Draw copy-Info.plist"; sourceTree = "<absolute>"; };
+		CA12084F1712AFAB00FEFB41 /* LearnDraw-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LearnDraw-Info.plist"; sourceTree = "<group>"; };
 		CA12507D1667399300AFCC04 /* PPSmartUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateData.h; sourceTree = "<group>"; };
 		CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateData.m; sourceTree = "<group>"; };
 		CA1250801667445300AFCC04 /* PPSmartUpdateDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateDataUtils.h; sourceTree = "<group>"; };
@@ -16901,7 +16902,6 @@
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
-				CA1208441712A99000FEFB41 /* Draw copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -16988,6 +16988,7 @@
 		CA745D291503B1B500600024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CA12084F1712AFAB00FEFB41 /* LearnDraw-Info.plist */,
 				CA1377F01525A7CB00B5790B /* Localizable.strings */,
 				CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */,
 				CA745D2A1503B1B500600024 /* Draw-Info.plist */,
@@ -21568,6 +21569,7 @@
 				CA1208331712A98F00FEFB41 /* DrawBgCell~ipad.xib in Resources */,
 				CA1208341712A98F00FEFB41 /* TaoBaoController.xib in Resources */,
 				CA1208351712A98F00FEFB41 /* TaoBaoController~ipad.xib in Resources */,
+				CA1208501712AFAB00FEFB41 /* LearnDraw-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26540,7 +26542,7 @@
 				CA1204281712A98F00FEFB41 /* TaoBaoController.m in Sources */,
 				CA1204291712A98F00FEFB41 /* ChangeBGImageAction.m in Sources */,
 				CA12042A1712A98F00FEFB41 /* TomatoItem.m in Sources */,
-				CA12042B1712A98F00FEFB41 /* GoogleAddressComponent.m in Sources */,
+				CA12042B1712A98F00FEFB41 /* (null) in Sources */,
 				CA12042C1712A98F00FEFB41 /* GeographyService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30011,7 +30013,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
-				INFOPLIST_FILE = "Draw copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Draw/LearnDraw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -30061,6 +30063,7 @@
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -30082,7 +30085,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
-				INFOPLIST_FILE = "Draw copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Draw/LearnDraw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -30132,6 +30135,7 @@
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
