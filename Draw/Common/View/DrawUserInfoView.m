@@ -457,8 +457,8 @@
 
 - (IBAction)clickSuperUserManageButton:(id)sender
 {
-    self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
-    [self.superUserManageAction showInController:_superViewController];
+//    self.superUserManageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:self.targetFriend.friendUserId nickName:self.targetFriend.nickName balance:self.targetFriend.coins] autorelease];
+//    [self.superUserManageAction showInController:_superViewController];
 }
 
 - (IBAction)clickBlackFriend:(id)sender
