@@ -12,10 +12,12 @@
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
 #import "UserService.h"
+#import "GameBasic.pb.h"
 
 typedef enum
 {
     SuperUserManageActionIndexCharge = 0,
+    SuperUserManageActionIndexChargeIngot,
     SuperUserManageActionIndexBlackUserId,
     SuperUserManageActionIndexBlackDevice,
     SuperUserManageActionIndexUnblackUserId,
@@ -38,9 +40,22 @@ typedef enum
     return self;
 }
 
+- (id)initWithPBGameUser:(PBGameUser *)pbUser
+{
+    self = [super init];
+    if (self) {
+        _targetUserId = pbUser.userId;
+        _targetUserNickName = pbUser.nickName;
+        _targetUserCurrentBalance = pbUser.coinBalance;
+        _targetUserCurrentIngot = pbUser.ingotBalance;
+        
+    }
+    return self;
+}
+
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"充值" otherButtonTitles:@"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -65,7 +80,7 @@ typedef enum
     
     switch (buttonIndex) {
         case SuperUserManageActionIndexCharge: {
-            InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的金额" clickOK:^(NSString *inputStr) {
+            InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的金币数" clickOK:^(NSString *inputStr) {
                 if ([self isInputValid:inputStr]) {
                     [[AccountService defaultService] chargeAccount:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
@@ -73,7 +88,19 @@ typedef enum
                 //
             }];
             dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
-            [dialog.targetTextField setPlaceholder:@"请输入要充值的金额"];
+            [dialog.targetTextField setPlaceholder:@"请输入要充值的金币数"];
+            [dialog showInView:_superController.view];
+        } break;
+        case SuperUserManageActionIndexChargeIngot: {
+            InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的元宝数" clickOK:^(NSString *inputStr) {
+                if ([self isInputValid:inputStr]) {
+                    [[AccountService defaultService] chargeIngot:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
+                }
+            } clickCancel:^(NSString *inputStr) {
+                //
+            }];
+            dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
+            [dialog.targetTextField setPlaceholder:@"请输入要充值的元宝数"];
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexBlackUserId: {
