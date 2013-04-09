@@ -56,7 +56,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         [bself updateItemsWithFile:dataFilePath];
         EXECUTE_BLOCK(tempHandler, YES);
         [bself.blockArray releaseBlock:tempHandler];
-        
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
         PPDebug(@"datafilepath = %@", bself.smartData.dataFilePath);
@@ -82,7 +81,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     
     return itemsList;
 }
-
 
 //************************************************************
 + (PBItemPriceInfo *)currency:(PBGameCurrency)currency

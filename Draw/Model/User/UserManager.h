@@ -64,7 +64,7 @@ typedef enum {
 - (NSInteger)followCount;
 - (NSInteger)fanCount;
 - (NSString*)signature;
-- (NSInteger)bloodGroup;
+- (NSString*)bloodGroup;
 - (int)level;
 - (long)experience;
 
