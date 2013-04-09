@@ -613,6 +613,9 @@ static UserManager* _defaultManager;
 
 - (void)setFollowCount:(NSInteger)followCount
 {
+    if (self.pbUser == nil)
+        return;
+    
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFollowCount:followCount];
     self.pbUser = [builder build];
@@ -620,6 +623,9 @@ static UserManager* _defaultManager;
 
 - (void)setFanCount:(NSInteger)fanCount
 {
+    if (self.pbUser == nil)
+        return;
+
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setFanCount:fanCount];
     self.pbUser = [builder build];

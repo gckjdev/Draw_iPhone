@@ -11,6 +11,7 @@
 #import "BuyItemView.h"
 #import "DrawSlider.h"
 #import "EditDescCommand.h"
+#import "UserService.h"
 
 @implementation ToolCommand
 
@@ -42,6 +43,10 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
+    if ([[UserService defaultService] checkAndAskLogin:[self.control theTopView]] == YES){
+        return NO;
+    }    
+    
     if ([self hasItem:type]) {
         return YES;
     }

@@ -35,6 +35,9 @@
 #import "GameBasic.pb.h"
 #import "SNSUtils.h"
 #import "UserGameItemManager.h"
+#import "RegisterUserController.h"
+#import "CommonDialog.h"
+#import "DrawAppDelegate.h"
 
 @implementation UserService
 
@@ -1463,5 +1466,33 @@ static UserService* _defaultUserService;
     });
 }
 
+- (BOOL)checkAndAskLogin:(UIView*)view
+{
+    if ([[UserManager defaultManager] hasUser] == NO){
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            
+            // goto RegisterUserController
+            RegisterUserController *ruc = [[RegisterUserController alloc] init];
+            UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
+            if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
+                // this warning is OK
+                [rootController pushViewController:ruc animated:YES];
+            }
+            else{
+                [rootController.navigationController pushViewController:ruc animated:YES];
+            }
+            [ruc release];
+            
+        } clickCancelBlock:^{
+            
+        }];
+        
+        [dialog showInView:view];
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
 
 @end
