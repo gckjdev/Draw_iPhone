@@ -29,7 +29,7 @@
 #import "StorageManager.h"
 #import "WordManager.h"
 #import "ConfigManager.h"
-
+#import "UIImageUtil.h"
 
 @interface ShareAction ()
 {
@@ -337,7 +337,10 @@
         WXMediaMessage *message = [WXMediaMessage message];
         message.title = _drawWord;
         UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
-        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
+        
+        CGFloat thumbRate = MIN(250.0f/image.size.width, 250.f/image.size.height);                        
+        UIImage *thumbImage = [UIImage shrinkImage:image withRate:thumbRate];
+        //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
         
         
         // compress image if it's too big, otherwize it will NOT be shared
@@ -345,7 +348,12 @@
         NSData  *shareData = nil;
         if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
             // compress image
-            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(MAX_WEIXIN_IMAGE_WIDTH, MAX_WEIXIN_IMAGE_WIDTH)];
+            CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
+            CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
+            compressImage = [UIImage shrinkImage:image withRate:compressRate];
+            
+//            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(MAX_WEIXIN_IMAGE_WIDTH, MAX_WEIXIN_IMAGE_WIDTH)];
+
             shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
         }
         else{

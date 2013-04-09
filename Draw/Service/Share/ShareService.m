@@ -220,12 +220,14 @@ static ShareService* _defaultService;
     [srcImage drawInRect:rect];
     
 //    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
+    
+    CGContextRestoreGState(ref);
+
     [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
     
 
     
     UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    CGContextRestoreGState(ref);
     return resultingImage;
 }
 
