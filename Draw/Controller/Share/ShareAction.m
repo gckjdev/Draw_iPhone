@@ -341,11 +341,11 @@
         CGFloat width = 250.f;
         CGFloat height = 250.f;
         CGFloat thumbRate = MAX(250.0f/image.size.width, 250.f/image.size.height);
-        width = 250.0f*thumbRate;
-        height = 250.f*thumbRate;
+        width = image.size.width*thumbRate;
+        height = image.size.height*thumbRate;
         
         PPDebug(@"<shareViaWeixin> thumb image widht=%f, height=%f", width, height);
-        UIImage *thumbImage = [UIImage shrinkImage:image withRate:thumbRate];
+        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];;
         //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];        
         
         // compress image if it's too big, otherwize it will NOT be shared
@@ -355,7 +355,7 @@
             // compress image
             CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
             CGFloat height = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat compressRate = MAX(width/image.size.width, width/image.size.height);
+            CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
             
             width = image.size.width * compressRate;
             height = image.size.height * compressRate;
