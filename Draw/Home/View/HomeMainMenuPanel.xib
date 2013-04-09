@@ -40,7 +40,7 @@
 					<object class="IBUIImageView" id="812848255">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 252}, {320, 9}}</string>
+						<string key="NSFrame">{{0, 248}, {320, 9}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="224844068"/>
@@ -75,7 +75,7 @@
 					<object class="IBUIButton" id="224844068">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{276, 205}, {64, 50}}</string>
+						<string key="NSFrame">{{276, 205}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -83,7 +83,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">28</double>
+						<double key="IBUIContentEdgeInsets.top">23</double>
 						<double key="IBUIContentEdgeInsets.bottom">4</double>
 						<double key="IBUIContentEdgeInsets.left">22</double>
 						<double key="IBUIContentEdgeInsets.right">22</double>
@@ -116,7 +116,7 @@
 					<object class="IBUIButton" id="808681202">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{-19.5, 205}, {64, 50}}</string>
+						<string key="NSFrame">{{-19.5, 205}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="792576939"/>
@@ -125,7 +125,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<double key="IBUIContentEdgeInsets.top">28</double>
+						<double key="IBUIContentEdgeInsets.top">23</double>
 						<double key="IBUIContentEdgeInsets.bottom">4</double>
 						<double key="IBUIContentEdgeInsets.left">22</double>
 						<double key="IBUIContentEdgeInsets.right">22</double>
