@@ -68,6 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
          word:(Word *)word
      language:(NSInteger)language
    canvasSize:(CGSize)canvasSize
+drawActionList:(NSArray*)drawActionList
 {
     
     self.canvasSize = canvasSize;
@@ -93,7 +94,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                        language:language];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
-        [self backup:[NSMutableArray arrayWithCapacity:1]];
+        [self backup:drawActionList];
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);
@@ -107,6 +108,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 {    
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
+    
+    if (drawActionList == nil){
+        drawActionList = [NSMutableArray arrayWithCapacity:1];
+    }
     
     NSMutableArray* arrayList=[[NSMutableArray alloc] initWithArray:drawActionList copyItems:NO];
     

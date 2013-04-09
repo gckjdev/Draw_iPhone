@@ -338,10 +338,15 @@
         message.title = _drawWord;
         UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
         
-        CGFloat thumbRate = MIN(250.0f/image.size.width, 250.f/image.size.height);                        
-        UIImage *thumbImage = [UIImage shrinkImage:image withRate:thumbRate];
-        //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];
+        CGFloat width = 250.f;
+        CGFloat height = 250.f;
+        CGFloat thumbRate = MAX(250.0f/image.size.width, 250.f/image.size.height);
+        width = 250.0f*thumbRate;
+        height = 250.f*thumbRate;
         
+        PPDebug(@"<shareViaWeixin> thumb image widht=%f, height=%f", width, height);
+        UIImage *thumbImage = [UIImage shrinkImage:image withRate:thumbRate];
+        //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];        
         
         // compress image if it's too big, otherwize it will NOT be shared
         UIImage *compressImage = image;
@@ -349,14 +354,18 @@
         if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
             // compress image
             CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
-            compressImage = [UIImage shrinkImage:image withRate:compressRate];
+            CGFloat height = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
+            CGFloat compressRate = MAX(width/image.size.width, width/image.size.height);
             
-//            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(MAX_WEIXIN_IMAGE_WIDTH, MAX_WEIXIN_IMAGE_WIDTH)];
+            width = image.size.width * compressRate;
+            height = image.size.height * compressRate;
 
+            PPDebug(@"<shareViaWeixin> compress image widht=%f, height=%f", width, height);
+            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];
             shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
         }
         else{
+            PPDebug(@"<shareViaWeixin> no compress image");
             shareData = [NSData dataWithContentsOfFile:_imageFilePath];
         }
         
