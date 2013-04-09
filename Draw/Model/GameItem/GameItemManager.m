@@ -11,6 +11,7 @@
 #import "GameBasic.pb.h"
 #import "PPSmartUpdateDataUtils.h"
 
+
 #define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
 #define SHOP_ITEM_FILE_TYPE @"pb"
 #define SHOP_ITEMS_FILE_VERSION @"1.0"
@@ -117,6 +118,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 {
     return [[[self itemWithItemId:itemId] priceInfo] currency];
 }
+
+
 
 
 

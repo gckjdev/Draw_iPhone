@@ -290,7 +290,7 @@ static UserManager* _defaultManager;
     return [_pbUser fanCount];
 }
 
-- (int)bloodGroup
+- (NSString*)bloodGroup
 {
     return [_pbUser bloodGroup];
 }
@@ -625,7 +625,7 @@ static UserManager* _defaultManager;
     self.pbUser = [builder build];
 }
 
-- (void)setBloodGroup:(NSInteger)bloodGroup
+- (void)setBloodGroup:(NSString*)bloodGroup
 {
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setBloodGroup:bloodGroup];

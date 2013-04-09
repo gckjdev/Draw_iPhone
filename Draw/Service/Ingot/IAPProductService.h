@@ -1,5 +1,5 @@
 //
-//  IngotService.h
+//  IAPProductService.h
 //  Draw
 //
 //  Created by 王 小涛 on 13-3-7.
@@ -10,11 +10,11 @@
 
 typedef void (^GetIngotsListResultHandler)(BOOL success, NSArray *ingotsList);
 
-@class PBSaleIngot;
+@class PBIAPProduct;
 
-@interface IngotService : NSObject
+@interface IAPProductService : NSObject
 
-+ (IngotService *)defaultService;
++ (IAPProductService *)defaultService;
 
 - (void)syncData:(GetIngotsListResultHandler)handler;
 

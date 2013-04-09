@@ -40,7 +40,7 @@
 {
     [[self viewWithTag:TAG_PRICE_VIEW] removeFromSuperview];
     
-    if (![_item hasPriceInfo]) {
+    if (![_item hasPriceInfo] || _item.priceInfo.price <= 0) {
         return;
     }
     

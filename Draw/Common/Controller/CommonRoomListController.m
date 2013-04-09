@@ -283,9 +283,9 @@
                                 if (message.resultCode == GameResultCodeSuccess) {
                                     [self didJoinGame];
                                 } else if (message.resultCode == GameResultCodeErrorSessionidFull) {
-                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:1.5 isHappy:NO];
+                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSessionFull") delayTime:2 isHappy:NO];
                                 } else {
-                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameError") delayTime:1.5 isHappy:NO];
+                                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kJoinGameError") delayTime:2 isHappy:NO];
                                 }
                             }];
     

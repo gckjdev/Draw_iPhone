@@ -643,7 +643,7 @@
 + (int)getBBSCommentMaxLength
 {
     return [MobClickUtils getIntValueByKey:@"BBS_COMMENT_MAX_LENGTH"
-                              defaultValue:500];
+                              defaultValue:6000];
 }
 
 #define BONUS_LIST_END (-1)
@@ -666,7 +666,7 @@
 + (int)getBBSPostMaxLength
 {
     return [MobClickUtils getIntValueByKey:@"BBS_POST_MAX_LENGTH"
-                              defaultValue:3000];
+                              defaultValue:6000];
 }
 + (int)getBBSTextMinLength
 {
@@ -861,24 +861,6 @@
 + (NSString*)getFeedbackPostId
 {
     return  [MobClickUtils getStringValueByKey:@"BBS_POST_ID_FEEDBACK" defaultValue:@"50eaa5e2e4b0fa7710d1a820"];
-}
-
-+ (NSString *)getDianRongBiName
-{
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_NAME" defaultValue:@"维锐魔法师电容笔"];
-}
-
-+ (NSString *)getDianRongBiDesc
-{
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_DESC" defaultValue:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"];
-}
-+ (NSString *)getDianRongBiImageURL
-{
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_ICON_URL" defaultValue:@"http://58.215.160.100:8080/icon/weirui_pen1.png"];
-}
-+ (NSString *)getDianRongBiTaoBaoURL
-{
-    return [MobClickUtils getStringValueByKey:@"DIAN_RONG_BI_TAOBAO_URL" defaultValue:@"http://a.m.taobao.com/i17538377874.htm"];
 }
 
 + (int)getCoinsIngotRate

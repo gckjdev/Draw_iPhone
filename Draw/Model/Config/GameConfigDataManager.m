@@ -222,5 +222,10 @@ static dispatch_once_t onceToken;
     return [self.defaultConfig rewardWallsList];
 }
 
+- (void)syncData
+{
+    PPDebug(@"sync config data");
+    [_defaultConfigData autoUpdate];
+}
 
 @end

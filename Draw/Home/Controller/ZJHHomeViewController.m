@@ -17,7 +17,6 @@
 #import "FriendController.h"
 #import "ChatListController.h"
 #import "FeedbackController.h"
-//#import "VendingController.h"
 #import "StoreController.h"
 
 #import "HelpView.h"

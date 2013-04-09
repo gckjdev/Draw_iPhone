@@ -7,7 +7,7 @@
 //
 
 #import "ChargeController.h"
-#import "IngotService.h"
+#import "IAPProductService.h"
 #import "AccountManager.h"
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
@@ -33,7 +33,46 @@
     [super viewDidUnload];
 }
 
-- (void)updateIngot
+- (id)init
+{
+    if (self = [super init]) {
+        _saleCurrency = PBGameCurrencyIngot;
+    }
+    
+    return self;
+}
+
+
+- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency
+{
+    if (self = [super init]) {
+        _saleCurrency = saleCurrency;
+    }
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    [self updateBalance];
+    
+    [self updateTaobaoLinkView];
+    
+    __block typeof(self) bself = self;
+    [[IAPProductService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
+        bself.dataList = ingotsList;
+        [bself.dataTableView reloadData];
+    }];
+    
+#ifdef DEBUG
+    [IAPProductService createTestDataFile];
+#endif
+}
+
+
+- (void)updateBalance
 {
     self.ingotCountLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
@@ -45,23 +84,6 @@
     } else {
         self.taobaoLinkView.hidden = YES;
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self updateIngot];
-    
-    [self updateTaobaoLinkView];
-    
-    __block typeof(self) bself = self;
-    [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
-        bself.dataList = ingotsList;
-        [bself.dataTableView reloadData];
-    }];
-    
-//    [IngotService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -90,8 +112,8 @@
         cell = [ChargeCell createCell:self];
     }
     
-    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
-    [cell setCellWith:saleIngot indexPath:indexPath];
+    PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
+    [cell setCellWith:product indexPath:indexPath];
     
     return cell;
 }
@@ -107,10 +129,10 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
-    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
+    PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     [self showActivityWithText:NSLS(@"kBuying")];
     [[AccountService defaultService] setDelegate:self];
-    [[AccountService defaultService] buyIngot:saleIngot];
+    [[AccountService defaultService] buyProduct:product];
 }
 
 - (void)didFinishBuyProduct:(int)resultCode
@@ -134,7 +156,7 @@
 {
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {
-        [self updateIngot];
+        [self updateBalance];
         [self popupMessage:NSLS(@"kChargIngotSuccess") title:nil];
     }else{
         [self popupMessage:NSLS(@"kChargIngotFailure") title:nil];

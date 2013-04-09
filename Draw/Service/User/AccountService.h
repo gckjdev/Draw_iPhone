@@ -46,8 +46,8 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler;
 
+- (void)buyCoin:(PriceModel *)price;
 
-- (void)buyCoin:(PriceModel*)price;
 
 // remove?
 - (void)buyRemoveAd;
@@ -73,9 +73,12 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)awardAccount:(int)amount 
               source:(BalanceSourceType)source;
 
+- (void)restoreIAPPurchase;
+
 #pragma mark - Charge Ingot
 
-- (void)buyIngot:(PBSaleIngot*)price;
+- (void)buyProduct:(PBIAPProduct*)product;
+
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source;

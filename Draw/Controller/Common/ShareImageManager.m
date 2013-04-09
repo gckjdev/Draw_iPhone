@@ -160,7 +160,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)coinImage
 {
-    return [UIImage imageNamed:@"coin.png"];
+    return [UIImage imageNamed:@"coin@2x.png"];
 }
 
 - (UIImage *)toolImage
@@ -540,7 +540,7 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)rewardCoin
 {
-    return [UIImage imageNamed:@"reward_coin.png"];
+    return [UIImage imageNamed:@"coin@2x.png"];
 }
 - (UIImage *)shopShelf
 {
@@ -552,7 +552,7 @@ static UIImage* _whitePaperImage;
 }
 - (UIImage *)smallCoin
 {
-    return [UIImage imageNamed:@"small_coin.png"];
+    return [UIImage imageNamed:@"coin@2x.png"];
 }
 
 //- (UIImage*)waterPen

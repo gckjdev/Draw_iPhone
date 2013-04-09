@@ -760,6 +760,7 @@ enum{
 {
     if (resultCode == 0) {
         feed.largeImage = self.feed.largeImage;
+        feed.wordText = self.feed.wordText;
         self.feed = feed;
         [self.dataTableView reloadData];
     }else{
@@ -817,10 +818,10 @@ enum{
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     if ([_feed isContestFeed]) {
-        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower};
         return tabIDs[index];
     }else{
-        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
         return tabIDs[index];
     }
     
