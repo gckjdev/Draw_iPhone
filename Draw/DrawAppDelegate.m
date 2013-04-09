@@ -214,12 +214,13 @@ NSString* GlobalGetBoardServerURL()
                  reportPolicy:BATCH
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
-    
-    
+        
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];    
 
-//    [GameConfigDataManager createTestConfigData];
+#ifdef DEBUG
+    [GameConfigDataManager createTestConfigData];
+#endif
 
     // load config data
     [GameConfigDataManager defaultManager];
