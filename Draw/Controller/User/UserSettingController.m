@@ -888,6 +888,7 @@ enum {
                                                               
                                                               [bc.dataTableView reloadData];
                                                           }];
+    [view.datePicker setMaximumDate:[NSDate dateWithTimeIntervalSinceNow:0]];
     [view showInView:self.view];
 }
 

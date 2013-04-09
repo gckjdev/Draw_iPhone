@@ -208,7 +208,7 @@
 - (void)superManageUser:(PPTableViewController*)viewController
 {
     if ([[UserManager defaultManager] isSuperUser]) {
-        self.manageAction = [[[SuperUserManageAction alloc] initWithTargetUserId:[self getUserId] nickName:[self getUser].nickName balance:[self getUser].coinBalance] autorelease];
+        self.manageAction = [[[SuperUserManageAction alloc] initWithPBGameUser:[self getUser]] autorelease];
         [self.manageAction showInController:viewController];
     }
 }

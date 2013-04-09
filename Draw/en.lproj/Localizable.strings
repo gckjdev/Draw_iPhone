@@ -1114,7 +1114,7 @@
 "kCNT:" = "CNT:";
 "kCost:" = "COST:";
 "kAlreadyBought" = "✓";
-"kCleanCacheSucc" = "Clear %.2f MB Caches, app is going to restart!";
+"kCleanCacheSucc" = "Clear %.2f MB Caches!";
 "kCleanCache" = "Clear Cache";
 "kGiveSuccess" = "Give Success!";
 
