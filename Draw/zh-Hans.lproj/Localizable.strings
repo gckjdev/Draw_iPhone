@@ -342,7 +342,7 @@
 "kWordLengthTip" = "温馨小提示：当前猜词的字数为［%d］";
 "kContentNull" = "搜索条件不能为空";
 
-"kNoDrawings" = "暂无本地保存的作品或者草稿";
+"kNoDrawings" = "暂无作品";
 "kAll" = "所有";
 "kMine" = "我的";
 "kDraft" = "草稿";

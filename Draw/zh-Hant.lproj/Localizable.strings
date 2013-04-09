@@ -350,7 +350,7 @@
 "kWordLengthTip" = "溫馨小提示：當前猜詞的字數為［%d］";
 "kContentNull" = "搜索條件不能為空";
 
-"kNoDrawings" = "暫無本地保存的作品或者草稿";
+"kNoDrawings" = "暫無作品";
 "kAll" = "所有";
 "kMine" = "我的";
 "kDraft" = "草稿";
