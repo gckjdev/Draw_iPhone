@@ -147,17 +147,20 @@
     if (index > [self.drawActionList count]) {
         index = [self.drawActionList count];
     }
+    
+    [self resetView];
+    
+    
+    
     if (_playingActionIndex > index || _playingActionIndex <= 0) {
         [self resetView];
     }else{
-        DrawAction *action = [_drawActionList objectAtIndex:_playingActionIndex];
-        _playingPointIndex = [action pointCount] - 1;
-        [self playCurrentFrame];
+        [self setStatus:Stop];
+        [[osManager enteryScreen] clear];
     }
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
-        [osManager addDrawAction:action];
-        _currentAction = action;
+        [[osManager bottomScreen] drawAction:action clear:NO];
     }
     if (index >= [self.drawActionList count]) {
         self.status = Stop;
