@@ -246,7 +246,7 @@
     [self.avatar.layer setMasksToBounds:YES];
     [self.avatar.layer setCornerRadius:(self.avatar.frame.size.width / 2)];
     [self.avatar.layer setBorderWidth:3];
-    UIColor *borderColor = [UIColor colorWithRed:131./225 green:200./225 blue:43./225 alpha:1];
+    UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
     [self.avatar.layer setBorderColor:borderColor.CGColor];
     [self.nickName setTextColor:borderColor];
     
@@ -296,8 +296,8 @@
             [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
         }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
-        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(-0.12, 0, 0, 1)];
-        [self.bulletinButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
+//        [self.chargeButton.layer setTransform:CATransform3DMakeRotation(-0.12, 0, 0, 1)];
+//        [self.bulletinButton.layer setTransform:CATransform3DMakeRotation(0.12, 0, 0, 1)];
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];

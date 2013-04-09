@@ -33,7 +33,9 @@
 - (UIImage *)drawHomeFriend;
 
 //
+- (UIImage *)drawHomeBG;
 - (UIImage *)drawHomeSplitline;
+- (UIImage *)drawHomeSplitline1;
 - (UIImage *)drawHomeDisplayBG;
 
 //ZJH Image

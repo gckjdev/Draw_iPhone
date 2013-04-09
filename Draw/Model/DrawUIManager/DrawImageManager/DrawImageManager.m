@@ -149,9 +149,21 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)drawHomeBG
+{
+    return [self stretchableImageWithImageName:@"draw_home_bg"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];
+
+}
+
 //stretcable
 - (UIImage *)drawHomeSplitline{
     return [self stretchableImageWithImageName:@"common_home_splitline"
+                             leftCapWidthScale:0.5 topCapHeightScale:0.5];
+}
+
+- (UIImage *)drawHomeSplitline1{
+    return [self stretchableImageWithImageName:@"draw_home_bottom_split"
                              leftCapWidthScale:0.5 topCapHeightScale:0.5];
 }
 

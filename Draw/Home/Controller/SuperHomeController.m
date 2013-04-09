@@ -24,6 +24,8 @@
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
 #import "HomeMenuView.h"
+#import "DrawImageManager.h"
+
 
 @interface SuperHomeController ()
 {
@@ -126,6 +128,10 @@
     
     [self registerNetworkDisconnectedNotification];
     
+//    if (isDrawApp()) {
+//        UIImageView *iv = [[UIImageView alloc] initWithImage:[[DrawImageManager defaultManager] drawHomeBG]];
+////        iv setFrame:[draw]
+//    }
     
 }
 
