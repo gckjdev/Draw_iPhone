@@ -112,8 +112,8 @@ typedef enum{
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
     [self updateItemData];
-
-//    [GameItemService createTestDataFile];
+    
+    [GameItemService createTestDataFile];
 }
 
 - (void)updateBalance
@@ -172,7 +172,7 @@ typedef enum{
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
-        if ([item hasUrl]) {
+        if (item.type == PBDrawItemTypeTaoBao) {
             TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:NSLS(@"kTaoBaoProductDetail")] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
@@ -249,27 +249,12 @@ typedef enum{
              break;
             
         case TabIDTaoBao:
-            [self finishLoadDataForTabID:tabID resultList:[self taoBaoItemList]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeTaoBao]];
             break;
             
         default:
             break;
     }
-}
-
-- (NSArray *)taoBaoItemList{
-    NSArray *arr = [NSArray arrayWithObjects:[self dianRongBi], nil];
-    return arr;
-}
-
-- (PBGameItem *)dianRongBi{
-    PBGameItem_Builder *builder = [[[PBGameItem_Builder alloc] init] autorelease];
-    [builder setItemId:ItemTypeTaoBao];
-    [builder setName:[ConfigManager getDianRongBiName]];
-    [builder setDesc:[ConfigManager getDianRongBiDesc]];
-    [builder setImage:[ConfigManager getDianRongBiImageURL]];
-    [builder setUrl:[ConfigManager getDianRongBiTaoBaoURL]];
-    return [builder build];
 }
 
 #pragma mark -

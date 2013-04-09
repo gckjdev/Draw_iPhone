@@ -231,11 +231,6 @@ typedef enum{
 + (NSString*)getBugReportPostId;
 + (NSString*)getFeedbackPostId;
 
-+ (NSString *)getDianRongBiName;
-+ (NSString *)getDianRongBiDesc;
-+ (NSString *)getDianRongBiImageURL;
-+ (NSString *)getDianRongBiTaoBaoURL;
-
 + (int)getCoinsIngotRate;
 
 + (int)getSignatureMaxLen;

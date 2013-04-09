@@ -409,7 +409,7 @@ static ZJHImageManager* shareInstance;
 
 - (UIImage*)moneyTreeCoinImage
 {
-    return [_resService imageByName:@"zjh_money_tree_coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
+    return [_resService imageByName:@"coin" inResourcePackage:RESOURCE_PACKAGE_ZJH];
 }
 
 - (UIImage*)betBtnBgImage

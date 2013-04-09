@@ -15,14 +15,15 @@
 
 @end
 
-@class PBSaleIngot;
+@class PBIAPProduct;
 
 @interface ChargeCell : PPTableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UILabel *priceLabel;
 @property (retain, nonatomic) IBOutlet UIButton *discountButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
+@property (retain, nonatomic) IBOutlet UIImageView *productImageView;
 
-- (void)setCellWith:(PBSaleIngot *)saleIngot indexPath:(NSIndexPath *)oneIndexPath;
+- (void)setCellWith:(PBIAPProduct *)saleIngot indexPath:(NSIndexPath *)oneIndexPath;
 
 @end

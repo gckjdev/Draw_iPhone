@@ -221,8 +221,9 @@ enum PBGameCurrency{
 }
 
 enum PBDrawItemType{
-  Nomal = 0;            // 普通道具
-  Tool = 1;             // 画画工具
+  Nomal = 0;                // 普通道具
+  Tool = 1;                 // 画画工具
+  TaoBao = 9999;            // 淘宝实物
 }
 
 message PBItemPriceInfo {
@@ -278,26 +279,28 @@ message PBGameItemList {
   repeated PBGameItem items = 1;
 }
 
-enum PBGameSaleProduct{
-  Coin = 1
-  Ingot = 2;
+enum PBIAPProductType{
+  IAPCoin = 1;
+  IAPIngot = 2;
 }
 
-message PBSaleProduct{
-  required int32 count = 1;                 // 个数
-  optional string totalPrice = 2;           // 总价格
-  optional string currency = 3;             // 货币符号
-  optional string country = 5;              // 适应国家，中国"CN"
+message PBIAPProduct{
+  required PBIAPProductType type = 1;           // 类型   
+  required string appleProductId = 2;           // Apple IAP购买ID
   
-  optional string saving = 10;              // 节省百分比，如"50%"
+  optional int32 count = 11[default = 1];       // 个数
+  optional string totalPrice = 12;              // 总价格
+  
 
-  optional string appleProductId = 20;      // Apple IAP购买ID
+  optional string currency = 21;                // 货币符号
+  optional string country = 22;                 // 适应国家，中国"CN"
+
+  optional string saving = 50;                  // 节省百分比，如"50%"
 }
 
-message PBSaleIngotList{
-  repeated PBSaleIngot ingots = 1;
+message PBIAPProductList{
+  repeated PBIAPProduct products = 1;
 }
-
 
 message PBUserItem {
   required int32 itemId = 1;

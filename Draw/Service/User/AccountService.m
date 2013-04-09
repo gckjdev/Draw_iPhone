@@ -27,7 +27,7 @@
 #import "LevelService.h"
 #import "AdService.h"
 #import "GameBasic.pb.h"
-#import "IngotManager.h"
+#import "IAPProductManager.h"
 #import "UserGameItemManager.h"
 #import "GameMessage.pb.h"
 #import "UserGameItemService.h"
@@ -87,7 +87,6 @@ static AccountService* _defaultAccountService;
 }
 
 
-
 #pragma mark - IAP transaction handling
 
 - (void)makeChargeIngotRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
@@ -99,19 +98,13 @@ static AccountService* _defaultAccountService;
    transactionRecepit:base64receipt];
 }
 
-- (void)makeChargeRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
+- (void)makeChargeCoinRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
 {
     NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
     [self chargeAccount:amount
                  source:PurchaseType
           transactionId:transaction.transactionIdentifier
      transactionRecepit:base64receipt];
-}
-
-- (void)makeBuyCoinsRequest:(PriceModel*)price transaction:(SKPaymentTransaction*)transaction
-{
-    int amount = [[price count] intValue];
-    [self makeChargeRequest:amount transaction:transaction];
 }
 
 - (void)recordTransaction:(SKPaymentTransaction*)transaction
@@ -121,22 +114,15 @@ static AccountService* _defaultAccountService;
             [transaction.transactionReceipt description]);
     
     NSString* productId  = transaction.payment.productIdentifier;
-    PBSaleIngot* saleIngot = [[IngotManager defaultManager] ingotWithProductId:productId];
-    if (saleIngot == nil){        
-        // use old, for compatibility
-        PriceModel* price = [[ShoppingManager defaultManager] findCoinPriceByProductId:productId];
-        if (price == nil){
-            PPDebug(@"<recordTransaction> but coin price is nil");
-            return;
-        }
+    PBIAPProduct* product = [[IAPProductManager defaultManager] productWithAppleProductId:productId];
+    if (product.type == PBIAPProductTypeIapcoin){
+        [self makeChargeCoinRequest:product.count transaction:transaction];
+    }
+    else if(product.type == PBIAPProductTypeIapingot) {
+        [self makeChargeIngotRequest:product.count transaction:transaction];
+    }else{
         
-        [self makeBuyCoinsRequest:price transaction:transaction];        
     }
-    else{
-        // new ingot price IAP
-        [self makeChargeIngotRequest:saleIngot.count transaction:transaction];
-    }
-
 }
 
 - (void)provideContent:(NSString*)productId
@@ -272,16 +258,11 @@ static AccountService* _defaultAccountService;
                 else{
                     PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                
                     [[TransactionReceiptManager defaultManager] verifyFailure:receipt errorCode:result];                    
-                    
-                    // reset account balance
-                    [self deductAccount:[receipt.amount intValue] source:RefundForVerifyReceiptFailure];
                 }
             });    
         });
     }
 }
-
-
 
 - (void)verifyReceiptWithAmount:(int)amount
                   transactionId:(NSString*)transactionId
@@ -307,9 +288,7 @@ static AccountService* _defaultAccountService;
                 PPDebug(@"<verifyReceiptWithAmount> OK");
             }
             else{
-                PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                      
-                // reset account balance
-                [self deductAccount:amount source:RefundForVerifyReceiptFailure];
+                PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);
 
                 [UIUtils alert:NSLS(@"kFakeIAPPurchase")];
             }
@@ -698,55 +677,23 @@ static AccountService* _defaultAccountService;
 }
 
 #pragma mark - Charge Ingot
-//- (void)buyCoin:(PriceModel*)price
-//{
-//    // send request to Apple IAP Server and wait for result
-//    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
-//    
-//    PPDebug(@"<buyCoin> on product %@ price productId=%@",
-//            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
-//            price.productId);
-//    
-//    SKPayment *payment = nil;
-//    if (selectedProduct == nil){
-//        payment = [SKPayment paymentWithProductIdentifier:price.productId];
-//    }
-//    else{
-//        payment = [SKPayment paymentWithProduct:selectedProduct];
-//    }
-//    [[SKPaymentQueue defaultQueue] addPayment:payment];
-//}
 
-
-// TODO: need delegate.
-- (void)buyCoin:(PBSaleIngot*)coin
-{
-    [self buyGameCurrency:coin currency:PBGameCurrencyCoin];
-}
-
-- (void)buyIngot:(PBSaleIngot*)ingot
-{
-    [self buyGameCurrency:ingot currency:PBGameCurrencyIngot];
-}
-
-- (void)buyGameCurrency:(PBSaleIngot*)ingot
-               currency:(PBGameCurrency)currency
+- (void)buyProduct:(PBIAPProduct*)product
 {
     // send request to Apple IAP Server and wait for result
-    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:ingot.appleProductId];
+    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:product.appleProductId];
     
-    PPDebug(@"<buyIngot> on product %@ price productId=%@",
-            selectedProduct == nil ? ingot.appleProductId : [selectedProduct productIdentifier],
-            ingot.appleProductId);
+    PPDebug(@"<buyProduct> on product %@ price productId=%@",
+            selectedProduct == nil ? product.appleProductId : [selectedProduct productIdentifier],
+            product.appleProductId);
     
     SKPayment *payment = nil;
     if (selectedProduct == nil){
-        payment = [SKPayment paymentWithProductIdentifier:ingot.appleProductId];
+        payment = [SKPayment paymentWithProductIdentifier:product.appleProductId];
     }
     else{
         payment = [SKPayment paymentWithProduct:selectedProduct];
     }
-    [payment setValue:@(currency) forKey:@"KEY_GAME_CURRENCY"];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 

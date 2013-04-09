@@ -71,7 +71,7 @@
 #import "DrawBgManager.h"
 #import "GameAdWallService.h"
 #import "GameItemService.h"
-#import "IngotService.h"
+#import "IAPProductService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -226,7 +226,7 @@ NSString* GlobalGetBoardServerURL()
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];
-    [[IngotService defaultService] syncData:NULL];
+    [[IAPProductService defaultService] syncData:NULL];
     
 //    [DrawBgManager scaleImages];
 

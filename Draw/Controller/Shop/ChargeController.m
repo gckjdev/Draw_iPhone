@@ -7,7 +7,7 @@
 //
 
 #import "ChargeController.h"
-#import "IngotService.h"
+#import "IAPProductService.h"
 #import "AccountManager.h"
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
@@ -55,16 +55,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+//    [IAPProductService createTestDataFile];
+
     [self updateBalance];
     
     [self updateTaobaoLinkView];
     
     __block typeof(self) bself = self;
-    [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
+    [[IAPProductService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
         bself.dataList = ingotsList;
         [bself.dataTableView reloadData];
     }];
+    
 }
 
 
@@ -108,8 +110,8 @@
         cell = [ChargeCell createCell:self];
     }
     
-    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
-    [cell setCellWith:saleIngot indexPath:indexPath];
+    PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
+    [cell setCellWith:product indexPath:indexPath];
     
     return cell;
 }
@@ -125,10 +127,10 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
-    PBSaleIngot *saleIngot = [dataList objectAtIndex:indexPath.row];
+    PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     [self showActivityWithText:NSLS(@"kBuying")];
     [[AccountService defaultService] setDelegate:self];
-    [[AccountService defaultService] buyIngot:saleIngot];
+    [[AccountService defaultService] buyProduct:product];
 }
 
 - (void)didFinishBuyProduct:(int)resultCode

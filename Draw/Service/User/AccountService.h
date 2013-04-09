@@ -47,7 +47,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler;
 
 
-- (void)buyCoin:(PBSaleIngot*)coin;
+- (void)buyCoin:(PBIAPProduct *)coin;
 
 // remove?
 - (void)buyRemoveAd;
@@ -75,7 +75,8 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 #pragma mark - Charge Ingot
 
-- (void)buyIngot:(PBSaleIngot*)price;
+- (void)buyProduct:(PBIAPProduct*)product;
+
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source;
