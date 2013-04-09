@@ -31,7 +31,7 @@
 {
     unsigned char* data = CGBitmapContextGetData (context);
     DrawColor *color = nil;
-    CGFloat w = CGRectGetWidth(self.drawView.bounds);
+    CGFloat w = (NSUInteger)CGRectGetWidth(self.drawView.bounds);
     if (data != NULL) {
         //offset locates the pixel in the data from x,y.
         //4 for 4 bytes of data per pixel, w is width of one row of data.
