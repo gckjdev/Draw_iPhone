@@ -370,13 +370,14 @@
     [self updateTempAction];
     if (self.status == Playing) {
         if (self.tempAction) {
-            if ([self.tempAction hasFinishAddPoint]) {
-                [self updateLastAction:self.tempAction show:YES];
-                [self callDidDrawPaintDelegate];
-            } else if([self.tempAction pointCount] == 1){
+            if([self.tempAction pointCount] == 1){
                 [self drawDrawAction:self.tempAction show:YES];
             }else{
                 [self updateLastAction:self.tempAction show:YES];
+            }
+            
+            if ([self.tempAction hasFinishAddPoint]) {
+                [self callDidDrawPaintDelegate];
             }
             
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
