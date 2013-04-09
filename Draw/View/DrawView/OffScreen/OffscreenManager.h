@@ -59,6 +59,7 @@
 
 
 - (Offscreen *)enteryScreen;
+- (Offscreen *)bottomScreen;
 
 //- (void)setStrokeColor:(DrawColor *)color width:(CGFloat)width;
 

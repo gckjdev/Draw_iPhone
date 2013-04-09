@@ -164,6 +164,13 @@
 {
     return [_offscreenList objectAtIndex:0];
 }
+
+
+- (Offscreen *)bottomScreen
+{
+    return [_offscreenList lastObject];
+}
+
 - (CGRect)updateLastAction:(DrawAction *)action
 {
     return [[self enteryScreen] drawAction:action clear:YES];

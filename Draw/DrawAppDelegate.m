@@ -405,8 +405,6 @@ NSString* GlobalGetBoardServerURL()
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
     
-//    [[FriendManager defaultManager] removeAllDeletedFriends];
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
