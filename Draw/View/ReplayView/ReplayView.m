@@ -223,7 +223,8 @@
 - (void)playEnd
 {
     [self.superController hideActivity];
-    [self.showView show];
+//    [self.showView show];
+    [self.showView showToIndex:[self.showView.drawActionList count]];
     [self endToPlay];
 }
 
