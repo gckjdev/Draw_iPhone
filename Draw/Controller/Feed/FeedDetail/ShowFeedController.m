@@ -760,6 +760,7 @@ enum{
 {
     if (resultCode == 0) {
         feed.largeImage = self.feed.largeImage;
+        feed.wordText = self.feed.wordText;
         self.feed = feed;
         [self.dataTableView reloadData];
     }else{

@@ -102,6 +102,7 @@
 						<reference key="NSSuperview" ref="49348215"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="953509852"/>
+						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
