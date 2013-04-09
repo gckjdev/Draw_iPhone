@@ -146,7 +146,7 @@
     }
     
     if (resultCode == ERROR_SUCCESS){
-        [self showActivityWithText:NSLS(@"kCharging")];
+        [self showActivityWithText:NSLS(@"kChargingIngot")];
     }
 }
 
@@ -155,9 +155,9 @@
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {
         [self updateBalance];
-        [self popupMessage:NSLS(@"kChargSuccess") title:nil];
+        [self popupMessage:NSLS(@"kChargIngotSuccess") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kChargFailure") title:nil];
+        [self popupMessage:NSLS(@"kChargIngotFailure") title:nil];
     }
 }
 

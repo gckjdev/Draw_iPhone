@@ -643,7 +643,7 @@
 + (int)getBBSCommentMaxLength
 {
     return [MobClickUtils getIntValueByKey:@"BBS_COMMENT_MAX_LENGTH"
-                              defaultValue:500];
+                              defaultValue:6000];
 }
 
 #define BONUS_LIST_END (-1)
@@ -666,7 +666,7 @@
 + (int)getBBSPostMaxLength
 {
     return [MobClickUtils getIntValueByKey:@"BBS_POST_MAX_LENGTH"
-                              defaultValue:3000];
+                              defaultValue:6000];
 }
 + (int)getBBSTextMinLength
 {
