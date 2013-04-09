@@ -395,7 +395,7 @@ NSString* GlobalGetBoardServerURL()
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];
-    [[IngotService defaultService] syncData:NULL];
+    [[IAPProductService defaultService] syncData:NULL];
     
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
