@@ -1128,7 +1128,7 @@
 "kUnblackUserSuccess" = "解除黑名單成功!";
 "kBlackList" = "黑名單";
 "kBlackListNumber" = "黑名單(%d)";
-"kCleanCacheSucc" = "奮力為你清理了%.2f MB 緩存, 應用即將重啓!";
+"kCleanCacheSucc" = "奮力為你清理了%.2f MB 緩存!";
 "kCleanCache" = "清理緩存";
 
 
@@ -1569,4 +1569,4 @@
 
 "kShareByEmailSuccess" = "郵件分享成功";
 
-"kJoinGameError"="無法加入房間，可能房間已滿或正在遊戲";
+"kJoinGameError" = "無法加入房間，可能房間已滿或正在遊戲，可點擊右下角的［​​快速加入］按鈕加入某個空閒的房間";

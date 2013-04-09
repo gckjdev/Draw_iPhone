@@ -1145,7 +1145,7 @@
 "kUnblackUserSuccess" = "解除黑名单成功!";
 "kBlackList" = "黑名单";
 "kBlackListNumber" = "黑名单(%d)";
-"kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存, 应用即将重启！";
+"kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存！";
 "kCleanCache" = "清理缓存";
 
 
@@ -1540,7 +1540,7 @@
 "kShareByEmailSuccess" = "邮件分享成功";
 "kNotBindMailMessage" = "您还没设置您的邮箱帐户，请在系统设置里面设置您的邮箱。";
 
-"kJoinGameError" = "无法加入房间，可能房间已满或正在游戏";
+"kJoinGameError" = "无法加入房间，可能房间已满或正在游戏，可点击右下角的［快速加入］按钮加入某个空闲的房间";
 
 "kPromotion:" = "促销:";
 "kPrice:" = "价格:";

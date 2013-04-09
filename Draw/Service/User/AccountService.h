@@ -73,6 +73,8 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)awardAccount:(int)amount 
               source:(BalanceSourceType)source;
 
+- (void)restoreIAPPurchase;
+
 #pragma mark - Charge Ingot
 
 - (void)buyProduct:(PBIAPProduct*)product;

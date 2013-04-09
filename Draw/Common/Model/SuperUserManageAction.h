@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@class PBGameUser;
+
 
 @interface SuperUserManageAction : NSObject <UIActionSheetDelegate> {
     NSString* _targetUserId;
     NSString* _targetUserNickName;
     int _targetUserCurrentBalance;
+    int _targetUserCurrentIngot;
     UIViewController* _superController;
 }
 
 - (id)initWithTargetUserId:(NSString*)userId
                     nickName:(NSString*)nickName
                      balance:(int)balance;
+- (id)initWithPBGameUser:(PBGameUser*)pbUser;
 
 - (void)showInController:(UIViewController*)controller;
 

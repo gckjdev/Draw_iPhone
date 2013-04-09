@@ -181,6 +181,11 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 
+- (void)restoreIAPPurchase
+{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 #pragma mark - IAP delegate methods
 
 // Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate.
@@ -201,6 +206,7 @@ static AccountService* _defaultAccountService;
                 break;
             case SKPaymentTransactionStateRestored:
                 [self restoreTransaction:transaction];
+                break;
             case SKPaymentTransactionStatePurchasing:
                 if ([_delegate respondsToSelector:@selector(didProcessingBuyProduct:)]){
                     [_delegate didProcessingBuyProduct];

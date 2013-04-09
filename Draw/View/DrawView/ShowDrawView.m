@@ -147,13 +147,25 @@
     if (index > [self.drawActionList count]) {
         index = [self.drawActionList count];
     }
-    [self resetView];
+    if (_playingActionIndex > index || _playingActionIndex <= 0) {
+        [self resetView];
+    }else{
+        DrawAction *action = [_drawActionList objectAtIndex:_playingActionIndex];
+        _playingPointIndex = [action pointCount] - 1;
+        [self playCurrentFrame];
+    }
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [osManager addDrawAction:action];
         _currentAction = action;
     }
-    [self setNeedsDisplay];
+    if (index >= [self.drawActionList count]) {
+        self.status = Stop;
+    }else{
+        self.status = Playing;
+    }
+    
+    [self setNeedsDisplay];            
 }
 
 
@@ -356,11 +368,58 @@
 
 - (void)delayShowAction:(DrawAction *)drawAction
 {
-    
-//    PPDebug(@"<delayShowAction>");
+    [self delayShowAction:drawAction stop:NO];
+}
+
+- (void)delayShowActionStop:(DrawAction *)drawAction
+{
+    [self delayShowAction:drawAction stop:YES];
+}
+
+- (void)delayShowAction:(DrawAction *)drawAction stop:(BOOL)stop
+{
     [self drawDrawAction:drawAction show:YES];
     [self callDidDrawPaintDelegate];
-    [self performSelector:@selector(playNextFrame) withObject:nil];    
+
+    if (!stop) {
+        [self performSelector:@selector(playNextFrame) withObject:nil];
+    }else{
+        [self setStatus:Stop];
+    }
+}
+
+- (void)playCurrentFrame:(BOOL)stop
+{
+    [self updateTempAction];
+    if (self.status == Playing) {
+        if (self.tempAction) {
+            if([self.tempAction pointCount] == 1){
+                [self drawDrawAction:self.tempAction show:YES];
+            }else{
+                [self updateLastAction:self.tempAction show:YES];
+            }
+            
+            if ([self.tempAction hasFinishAddPoint]) {
+                [self callDidDrawPaintDelegate];
+            }
+            if (!stop) {
+                [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
+            }else{
+                self.status = Stop;
+            }
+        }else{
+            SEL seletor = stop ? @selector(delayShowActionStop:) : @selector(delayShowAction:);
+            
+            if (![_currentAction isKindOfClass:[PaintAction class]]) {
+                [self performSelector:seletor withObject:_currentAction afterDelay:self.playSpeed * 30];
+            }else{
+                [self performSelector:seletor withObject:_currentAction];
+            }
+        }
+    }
+    if(!_showPenHidden){
+        [self movePen];
+    }
 }
 
 - (void)playCurrentFrame
@@ -370,13 +429,14 @@
     [self updateTempAction];
     if (self.status == Playing) {
         if (self.tempAction) {
-            if ([self.tempAction hasFinishAddPoint]) {
-                [self updateLastAction:self.tempAction show:YES];
-                [self callDidDrawPaintDelegate];
-            } else if([self.tempAction pointCount] == 1){
+            if([self.tempAction pointCount] == 1){
                 [self drawDrawAction:self.tempAction show:YES];
             }else{
                 [self updateLastAction:self.tempAction show:YES];
+            }
+            
+            if ([self.tempAction hasFinishAddPoint]) {
+                [self callDidDrawPaintDelegate];
             }
             
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];

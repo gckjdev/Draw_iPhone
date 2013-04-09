@@ -76,7 +76,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self didClickTabAtIndex:currentTabIndex];
+    if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
+        [self didClickTabAtIndex:currentTabIndex];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -165,7 +167,8 @@
 
 - (void)uploadCustomBg:(UIImage*)image
 {
-    [self showActivityWithText:NSLS(@"kSaving")];
+    [self showActivityWithText:NSLS(
+                                    @"kSaving")];
     [[UserService defaultService] uploadUserBackground:image resultBlock:^(int resultCode, NSString *imageRemoteURL) {
         [self hideActivity];
         if (resultCode == 0 && [imageRemoteURL length] > 0){

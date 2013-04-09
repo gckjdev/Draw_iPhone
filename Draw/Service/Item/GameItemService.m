@@ -46,6 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)syncData:(SyncItemsDataResultHandler)handler
 {
+    PPDebug(@"sync item data");
     SyncItemsDataResultHandler tempHandler = (SyncItemsDataResultHandler)[_blockArray copyBlock:handler];
     
     __block typeof(self) bself = self;

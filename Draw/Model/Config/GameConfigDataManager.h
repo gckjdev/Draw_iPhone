@@ -21,5 +21,6 @@
 
 - (NSArray*)appRewardList;
 - (NSArray*)rewardWallList;
+- (void)syncData;
 
 @end
