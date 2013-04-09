@@ -376,6 +376,7 @@
                                                    pbDrawData:self.feed.pbDrawData
                                                         image:self.image
                                                      delegate:self];
+        [self.superViewController hideActivity];
     }else{
         __block ShareAction *cp = self;
         [self.superViewController showProgressViewWithMessage:NSLS(@"kLoading")];
@@ -391,6 +392,7 @@
                 [cp.superViewController popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
             }
 
+            [cp.superViewController hideActivity];
             [cp.superViewController hideProgressView];
         }
          downloadDelegate:self];

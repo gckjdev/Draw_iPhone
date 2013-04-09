@@ -55,7 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [IAPProductService createTestDataFile];
 
     [self updateBalance];
     
@@ -67,6 +66,9 @@
         [bself.dataTableView reloadData];
     }];
     
+#ifdef DEBUG
+    [IAPProductService createTestDataFile];
+#endif
 }
 
 
