@@ -12,6 +12,8 @@
 
 #define WIDTH self.frame.size.width
 #define HEIGHT self.frame.size.height
+#define SPLIT_WIDTH (ISIPAD ? 12 : 6)
+
 
 @interface HomeBottomMenuPanel()
 {
@@ -113,16 +115,20 @@
     CGFloat space = WIDTH / _menuCount;
     for (NSInteger i = 0; i < count; ++ i) {
 
-        CGRect frame = CGRectMake(0, 0, 4, HEIGHT*0.5);
+        CGRect frame = CGRectMake(0, 0, SPLIT_WIDTH, HEIGHT*0.5);
         PPDebug(@"#%d: frame = %@",i, NSStringFromCGRect(frame));
         UIImageView *line = [[UIImageView alloc] initWithFrame:frame];
-        [self addSubview:line];
+
         
         CGFloat x = space * (i+1);
         CGFloat y = self.center.y;
         line.center = CGPointMake(x, y);
-        
-        line.image = imageManager.drawHomeSplitline;
+        if (isDrawApp()) {
+            line.image = imageManager.drawHomeSplitline1;
+        }else{
+            line.image = imageManager.drawHomeSplitline;
+        }
+        [self addSubview:line];
         [line release];
     }
 }

@@ -78,6 +78,7 @@
 						<string key="NSFrame">{{118, 362}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -102,16 +103,6 @@
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
-					</object>
-					<object class="IBUIImageView" id="897846913">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 193}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="412677603"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIButton" id="494102081">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -158,6 +149,20 @@
 						<reference key="IBUINormalTitleShadowColor" ref="401487945"/>
 						<reference key="IBUIFontDescription" ref="373337375"/>
 						<reference key="IBUIFont" ref="732199210"/>
+					</object>
+					<object class="IBUIImageView" id="897846913">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{320, 460}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="412677603"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">draw_home_bg@2x.png</string>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 406}</string>
@@ -264,8 +269,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="322962711"/>
 							<reference ref="418830712"/>
-							<reference ref="897846913"/>
 							<reference ref="494102081"/>
+							<reference ref="897846913"/>
 							<reference ref="412677603"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -331,6 +336,30 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">HomeController</string>
 					<string key="superclassName">SuperHomeController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickFacetime:">id</string>
+						<string key="clickRecommend:">id</string>
+						<string key="clickTestBulletin:">id</string>
+						<string key="clickWallButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickFacetime:">
+							<string key="name">clickFacetime:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRecommend:">
+							<string key="name">clickRecommend:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTestBulletin:">
+							<string key="name">clickTestBulletin:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickWallButton:">
+							<string key="name">clickWallButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="facetimeButton">UIButton</string>
 						<string key="recommendButton">UIButton</string>
@@ -393,10 +422,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">green_button@2x.png</string>
-			<string key="NS.object.0">{71, 84}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="draw_home_bg@2x.png">{640, 960}</string>
+			<string key="green_button@2x.png">{71, 84}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
