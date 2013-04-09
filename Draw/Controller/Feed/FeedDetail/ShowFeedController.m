@@ -818,10 +818,10 @@ enum{
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     if ([_feed isContestFeed]) {
-        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower};
         return tabIDs[index];
     }else{
-        NSInteger *tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
         return tabIDs[index];
     }
     
