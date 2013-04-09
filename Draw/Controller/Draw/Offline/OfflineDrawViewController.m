@@ -469,7 +469,8 @@
                                        nickName:[[UserManager defaultManager] nickName]
                                            word:_word
                                        language:languageType
-                                     canvasSize:drawView.bounds.size];
+                                     canvasSize:drawView.bounds.size
+                                 drawActionList:drawView.drawActionList];
 }
 
 - (void)stopRecovery

@@ -205,9 +205,7 @@ static ShareService* _defaultService;
     UIGraphicsBeginImageContext(CGSizeMake(srcImage.size.width+SHADOW_WIDTH*2, srcImage.size.height + SHADOW_WIDTH*3 + labelHeight));
 
     CGContextRef ref = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(ref);    
-
-   
+    CGContextSaveGState(ref);   
     
     //line of left
     CGContextSetShadowWithColor(ref, CGSizeMake(-SHADOW_WIDTH, 0), SHADOW_BLUR, imageShadowColor.CGColor);
@@ -219,13 +217,10 @@ static ShareService* _defaultService;
     CGRect rect = CGRectMake(SHADOW_WIDTH, 0, srcImage.size.width, srcImage.size.height);
     [srcImage drawInRect:rect];
     
-//    [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
-    
     CGContextRestoreGState(ref);
 
+    // draw text
     [label drawTextInRect:CGRectMake(0, srcImage.size.height+SHADOW_WIDTH*2, srcImage.size.width, labelHeight)];
-    
-
     
     UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
     return resultingImage;
