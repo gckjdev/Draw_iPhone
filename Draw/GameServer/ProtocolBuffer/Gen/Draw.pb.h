@@ -43,6 +43,10 @@
 @class PBHotWordList;
 @class PBHotWordList_Builder;
 @class PBHotWord_Builder;
+@class PBIAPProduct;
+@class PBIAPProductList;
+@class PBIAPProductList_Builder;
+@class PBIAPProduct_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -69,10 +73,6 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBSaleIngot;
-@class PBSaleIngotList;
-@class PBSaleIngotList_Builder;
-@class PBSaleIngot_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBUserBasicInfo;

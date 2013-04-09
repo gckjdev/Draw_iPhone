@@ -43,6 +43,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IngotService);
 
 - (void)syncData:(GetIngotsListResultHandler)handler
 {
+    PPDebug(@"sync ingot sale list data");
+
     GetIngotsListResultHandler tempHandler = (GetIngotsListResultHandler)[_blockArray copyBlock:handler];
 
     

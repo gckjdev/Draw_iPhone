@@ -10,8 +10,8 @@
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
 #import "GameItemManager.h"
-#import "ItemType.h"
 #import "BlockArray.h"
+#import "ItemType.h"
 #import "NSDate+TKCategory.h"
 
 @interface GameItemService()
@@ -46,6 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 - (void)syncData:(SyncItemsDataResultHandler)handler
 {
+    PPDebug(@"sync item data");
     SyncItemsDataResultHandler tempHandler = (SyncItemsDataResultHandler)[_blockArray copyBlock:handler];
     
     __block typeof(self) bself = self;
@@ -85,7 +86,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 //************************************************************
 + (PBItemPriceInfo *)currency:(PBGameCurrency)currency
-                    price:(int)price
+                        price:(int)price
 {
     PBItemPriceInfo_Builder *priceInfoBuilder = [[PBItemPriceInfo_Builder alloc] init];
     [priceInfoBuilder setCurrency:currency];
@@ -111,7 +112,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 #define URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.160.100:8080/app_res/smart_data/shop_item_images_Draw/%@", name]
 
 + (void)createTestDataFile
-{    
+{
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
     // 鲜花
@@ -124,15 +125,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:20
                                         currency:PBGameCurrencyCoin]];
     
-//    // 番茄
-//    [mutableArray addObject:[self itemWithItemId:ItemTypeTomato
-//                                            name:@"kTomato"
-//                                            desc:@"kTomatoDescription"
-//                                     consumeType:PBGameItemConsumeTypeAmountConsumable
-//                                           image:URL_ITEM_IMAGE(@"shop_item_tomato@2x.png")
-//                                            type:PBDrawItemTypeNomal
-//                                           price:20
-//                                        currency:PBGameCurrencyCoin]];
+    //    // 番茄
+    //    [mutableArray addObject:[self itemWithItemId:ItemTypeTomato
+    //                                            name:@"kTomato"
+    //                                            desc:@"kTomatoDescription"
+    //                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+    //                                           image:URL_ITEM_IMAGE(@"shop_item_tomato@2x.png")
+    //                                            type:PBDrawItemTypeNomal
+    //                                           price:20
+    //                                        currency:PBGameCurrencyCoin]];
     
     // 锦囊
     [mutableArray addObject:[self itemWithItemId:ItemTypeTips
@@ -153,17 +154,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeNomal
                                            price:100
                                         currency:PBGameCurrencyCoin]];
-
+    
     // 广告拦截器
     [mutableArray addObject:[self itemWithItemId:ItemTypeRemoveAd
-                                           name:@"kRemoveAd"
-                                           desc:@"kRemoveAdDescription"
-                                    consumeType:PBGameItemConsumeTypeNonConsumable
-                                          image:URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
-                                           type:PBDrawItemTypeNomal
-                                          price:1000
-                                       currency:PBGameCurrencyCoin]];
-
+                                            name:@"kRemoveAd"
+                                            desc:@"kRemoveAdDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:1000
+                                        currency:PBGameCurrencyCoin]];
+    
     // 钱箱
     [mutableArray addObject:[self itemWithItemId:ItemTypePurse
                                             name:@"kItemTypePurse"
@@ -185,9 +186,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeTool
                                            price:10
                                         currency:PBGameCurrencyIngot]];
-//                                  promotionPrice:10
-//                                       startDate:[NSDate date]
-//                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    //                                  promotionPrice:10
+    //                                       startDate:[NSDate date]
+    //                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     
     
@@ -235,7 +236,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:5
                                         currency:PBGameCurrencyIngot]];
     
-
+    
     
     
     // 网格参考线
@@ -368,7 +369,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
-    // 正方形画布（大）	
+    // 正方形画布（大）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadLarge
                                             name:@"kSquareCanvasLarge"
                                             desc:@"kSquareCanvasLargeDesc"
@@ -387,7 +388,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeTool
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
-
+    
     // 横版画布（中）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenHorizontal
                                             name:@"kHorizontalCanvas"
@@ -419,7 +420,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
     
-    // 竖版画布（中）		
+    // 竖版画布（中）
     [mutableArray addObject:[self itemWithItemId:CanvasRectiPadScreenVertical
                                             name:@"kVerticalCanvas"
                                             desc:@"kVerticalCanvasDesc"
@@ -439,24 +440,54 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:2
                                         currency:PBGameCurrencyIngot]];
     
-
     
-
-
-
+    // 维锐电容笔（大）
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
+                                            name:@"维锐魔法师电容笔"
+                                            desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"
+                                           image:URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
+                             
+                                            type:PBDrawItemTypeTaoBao
+                                             url:@"http://a.m.taobao.com/i17538377874.htm"]];
+    
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
     [listBuilder addAllItems:mutableArray];
     PBGameItemList *list = [listBuilder build];
-
+    
     //write to file
-    NSString *filePath = @"/game/shop_item_Draw.pb";
-    if (![[list data] writeToFile:filePath atomically:YES]) {
-    PPDebug(@"<createTestDataFile> error");
-    } else {
-    PPDebug(@"<createTestDataFile> succ");
-    }
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
 
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
     [listBuilder release];
+}
+
++ (PBGameItem *)itemWithItemId:(int)itemId
+                          name:(NSString *)name
+                          desc:(NSString *)desc
+                         image:(NSString *)image
+                          type:(PBDrawItemType)type
+                           url:(NSString *)url
+{
+    return [self itemWithItemId:itemId
+                           name:name
+                           desc:desc
+                    consumeType:0
+                          image:image
+                           type:type
+                            url:url
+                          price:0
+                       currency:0
+                 promotionPrice:0
+                      startDate:nil
+                     expireDate:nil
+               defaultSaleCount:0
+                  usageLifeUnit:0
+                      usageLife:0];
 }
 
 + (PBGameItem *)itemWithItemId:(int)itemId
@@ -469,7 +500,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                       currency:(PBGameCurrency)currency
               defaultSaleCount:(int)defaultSaleCount
 {
-    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:0 startDate:0 expireDate:0 defaultSaleCount:defaultSaleCount usageLifeUnit:0 usageLife:0];
+    return [self itemWithItemId:itemId
+                           name:name
+                           desc:desc
+                    consumeType:consumeType
+                          image:image
+                           type:type
+                            url:nil
+                          price:price
+                       currency:currency
+                 promotionPrice:0
+                      startDate:nil
+                     expireDate:nil
+               defaultSaleCount:defaultSaleCount
+                  usageLifeUnit:0
+                      usageLife:0];
 }
 
 + (PBGameItem *)itemWithItemId:(int)itemId
@@ -481,7 +526,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                          price:(int)price
                       currency:(PBGameCurrency)currency
 {
-    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:price startDate:nil expireDate:nil];
+    return [self itemWithItemId:itemId
+                           name:name
+                           desc:desc
+                    consumeType:consumeType
+                          image:image
+                           type:type
+                          price:price
+                       currency:currency
+                 promotionPrice:price
+                      startDate:nil
+                     expireDate:nil];
 }
 
 + (PBGameItem *)itemWithItemId:(int)itemId
@@ -501,7 +556,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         defaultSaleCount = 10;
     }
     
-    return [self itemWithItemId:itemId name:name desc:desc consumeType:consumeType image:image type:type price:price currency:currency promotionPrice:promotionPrice startDate:startDate expireDate:expireDate defaultSaleCount:defaultSaleCount usageLifeUnit:0 usageLife:0];
+    return [self itemWithItemId:itemId
+                           name:name
+                           desc:desc
+                    consumeType:consumeType
+                          image:image
+                           type:type
+                            url:nil
+                          price:price
+                       currency:currency
+                 promotionPrice:promotionPrice
+                      startDate:startDate
+                     expireDate:expireDate
+               defaultSaleCount:defaultSaleCount
+                  usageLifeUnit:0
+                      usageLife:0];
 }
 
 + (PBGameItem *)itemWithItemId:(int)itemId
@@ -510,6 +579,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                    consumeType:(PBGameItemConsumeType)consumeType
                          image:(NSString *)image
                           type:(PBDrawItemType)type
+                           url:(NSString *)url
                          price:(int)price
                       currency:(PBGameCurrency)currency
                 promotionPrice:(int)promotionPrice
@@ -526,6 +596,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [builder setConsumeType:consumeType];
     [builder setImage:image];
     [builder setType:type];
+    [builder setUrl:url];
     [builder setPriceInfo:[self currency:currency price:price]];
     [builder setPromotionInfo:[self price:promotionPrice startDate:startDate expireDate:expireDate]];
     [builder setDefaultSaleCount:defaultSaleCount];
@@ -533,9 +604,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [builder setUsageLife:usageLife];
     return [builder build];
 }
-
-
-
 
 
 @end

@@ -217,6 +217,7 @@
         for (DrawFeed *feed in feedList) {
             UIImageView *iv = [self imageForFeed:feed index:i];
             if (iv) {
+                iv.contentMode = UIViewContentModeScaleAspectFill;
                 ++i;
                 [self.displayScrollView addSubview:iv];
             }

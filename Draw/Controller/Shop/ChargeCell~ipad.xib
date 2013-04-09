@@ -273,6 +273,14 @@
 					<int key="connectionID">13</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">productImageView</string>
+						<reference key="source" ref="739138284"/>
+						<reference key="destination" ref="839680889"/>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBuyButton:</string>
 						<reference key="source" ref="580456081"/>
@@ -369,7 +377,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">40</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -377,10 +385,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="charge_bg@2x.png">{16, 16}</string>
-			<string key="charge_cell_bg@2x.png">{16, 16}</string>
-			<string key="green_bg@2x.png">{16, 16}</string>
-			<string key="ingot@2x.png">{16, 16}</string>
+			<string key="charge_bg@2x.png">{99, 50}</string>
+			<string key="charge_cell_bg@2x.png">{565, 111}</string>
+			<string key="green_bg@2x.png">{75, 31}</string>
+			<string key="ingot@2x.png">{64, 64}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

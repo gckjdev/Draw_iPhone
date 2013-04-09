@@ -71,7 +71,7 @@
 #import "DrawBgManager.h"
 #import "GameAdWallService.h"
 #import "GameItemService.h"
-#import "IngotService.h"
+#import "IAPProductService.h"
 
 
 NSString* GlobalGetServerURL()
@@ -226,7 +226,7 @@ NSString* GlobalGetBoardServerURL()
     
     // load item data
     [[GameItemService defaultService] syncData:NULL];
-    [[IngotService defaultService] syncData:NULL];
+    [[IAPProductService defaultService] syncData:NULL];
     
 //    [DrawBgManager scaleImages];
 
@@ -245,12 +245,6 @@ NSString* GlobalGetBoardServerURL()
         PPDebug(@"Init Weixin SDK");
         [WXApi registerApp:@"wx427a2f57bc4456d1"];
     }
-    
-    /* remove this due to online draw server changed
-    if (isDrawApp()){
-        [[RouterService defaultService] fetchServerListAtBackground];    
-    }
-    */
     
     // Push Setup
     BOOL isAskBindDevice = NO;
@@ -319,6 +313,7 @@ NSString* GlobalGetBoardServerURL()
     // Fetch Server List At Background
     if (isDrawApp() == NO){
         // no longer used for Draw App
+        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
         [[PriceService defaultService] syncShoppingListAtBackground];
     }
     
@@ -333,13 +328,7 @@ NSString* GlobalGetBoardServerURL()
     
 //    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
-    //sync level details
-    
-    // TODO merge to sync user account and item
-//    [[LevelService defaultService] syncExpAndLevel:SYNC];
-    
-
-    [[BBSService defaultService] getBBSPrivilegeList];//kira:get bbs permission first, for super user manage
+    [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
 
     return YES;
 }
@@ -369,12 +358,13 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    PPDebug(@"<applicationWillResignActive>");
+    
     /*
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
     
-    [[RouterService defaultService] stopUpdateTimer];
     [[DrawGameService defaultService] startDisconnectTimer];
     [[DiceGameService defaultService] startDisconnectTimer];
     [self.networkDetector stop];
@@ -387,6 +377,9 @@ NSString* GlobalGetBoardServerURL()
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
+    PPDebug(@"<applicationDidEnterBackground>");
+
+    
     UIApplication* app = [UIApplication sharedApplication];
     
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
@@ -394,6 +387,15 @@ NSString* GlobalGetBoardServerURL()
         bgTask = UIBackgroundTaskInvalid;
     }];
     
+    // update when enter background
+    [MobClick updateOnlineConfig];
+    
+    // load config data
+    [[GameConfigDataManager defaultManager] syncData];
+    
+    // load item data
+    [[GameItemService defaultService] syncData:NULL];
+    [[IAPProductService defaultService] syncData:NULL];
     
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -402,8 +404,6 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] stop];
 //    [[FacetimeService defaultService] disconnectServer];
-    
-//    [[FriendManager defaultManager] removeAllDeletedFriends];
     
 }
 
@@ -414,6 +414,8 @@ NSString* GlobalGetBoardServerURL()
      */
 //    [[AudioManager defaultManager] backgroundMusicStart];
 
+    PPDebug(@"<applicationWillEnterForeground>");
+    
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -422,12 +424,7 @@ NSString* GlobalGetBoardServerURL()
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-    
-//    [[BoardService defaultService] syncBoards];
-    
-//    if ([ConfigManager wallEnabled]){
-//        [[LmWallService defaultService] queryScore];            
-//    }
+    PPDebug(@"<applicationDidBecomeActive>");
     
     [[GameAdWallService defaultService] queryWallScore];
     
@@ -440,12 +437,13 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] start];
     
-    PPDebug(@"");
     
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    PPDebug(@"<applicationWillTerminate>");
+    
     /*
      Called when the application is about to terminate.
      Save data if appropriate.
@@ -461,6 +459,8 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)handleURL:(NSURL*)url
 {
+    PPDebug(@"<handleURL> url=%@", url.absoluteString);
+    
     if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }
@@ -562,12 +562,5 @@ NSString* GlobalGetBoardServerURL()
         }
     }
 }
-
-// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running);    }  });
-
-// db.currentOp().inprog.forEach(    function(d){      if(d.active && d.ns == "game.action" && (d.op == "query" || d.op == "getmore") && d.secs_running > 100)   {      printjson(d.opid); printjson(d.secs_running); db.killOp(d.opid);    }  });
-
-// db.currentOp().inprog.forEach(    function(d){      if(d.waitingForLock && (d.op == "query"  || d.op == "getmore") && d.ns == "game.action" && d.locks["^game"] == "R")         printjson(d)      });
-
 
 @end

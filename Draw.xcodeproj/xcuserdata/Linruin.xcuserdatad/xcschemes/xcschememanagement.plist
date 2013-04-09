@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>Draw 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Draw Pro.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -34,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>LearnDraw.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
 		<key>Zhajinhua.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -48,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>A4678BAF155114B70028DEEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA12010F1712A98F00FEFB41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
