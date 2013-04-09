@@ -129,9 +129,9 @@
 "kBuyCoinsSucc" = "购买金币成功";
 "kCongratulations" = "恭喜猜对了!";
 "kPity" = "请再接再厉!";
-"kChargingIngot" = "元宝充值中...";
-"kChargIngotSuccess" = "元宝充值成功!";
-"kChargIngotFailure" = "元宝充值失败!";
+"kChargingIngot" = "充值中...";
+"kChargIngotSuccess" = "充值成功!";
+"kChargIngotFailure" = "充值失败!";
 
 "kStartingGame" = "请求开始游戏中...";
 

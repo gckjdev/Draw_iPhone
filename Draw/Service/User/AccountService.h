@@ -47,7 +47,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler;
 
 
-- (void)buyCoin:(PriceModel*)price;
+- (void)buyCoin:(PBSaleIngot*)coin;
 
 // remove?
 - (void)buyRemoveAd;

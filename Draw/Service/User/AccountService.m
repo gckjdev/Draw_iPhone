@@ -86,24 +86,6 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] addPayment:payment];    
 }
 
-- (void)buyCoin:(PriceModel*)price
-{
-    // send request to Apple IAP Server and wait for result
-    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
-
-    PPDebug(@"<buyCoin> on product %@ price productId=%@", 
-            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
-            price.productId);    
-    
-    SKPayment *payment = nil;
-    if (selectedProduct == nil){
-        payment = [SKPayment paymentWithProductIdentifier:price.productId];
-    }
-    else{
-        payment = [SKPayment paymentWithProduct:selectedProduct];
-    }
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-}
 
 
 #pragma mark - IAP transaction handling
@@ -589,165 +571,6 @@ static AccountService* _defaultAccountService;
     return [_accountManager getBalanceWithCurrency:currency];
 }
 
-//- (void)syncAccount:(id<AccountServiceDelegate>)delegate forceServer:(BOOL)forceServer
-//{
-//    NSString* userId = [[UserManager defaultManager] userId];
-//    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-//    if (userId == nil){
-//        return;
-//    }
-//    
-//    dispatch_async(workingQueue, ^{
-//        CommonNetworkOutput* output = nil;        
-//        output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL 
-//                                                    userId:userId 
-//                                                  deviceId:deviceId]; 
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (output.resultCode == ERROR_SUCCESS) {                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                                        
-//                    int deviation = [ConfigManager getBalanceDeviation];
-//                    int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-//                    if (balance <= 0){
-//                        balance = 0;
-//                    }
-//
-//                    // sync ingot balance from server
-//                    int ingotBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-//                    [_accountManager updateBalance:ingotBalance currency:PBGameCurrencyIngot];
-//                    
-//                    if (forceServer){
-//                        [_accountManager updateBalance:balance];
-//                    }
-//                    else{
-//                        int localBalance = [_accountManager getBalance];
-//                        if (localBalance < balance){
-//                            // use server balance
-//                            [_accountManager updateBalance:balance];
-//                            PPDebug(@"<syncAccountAndItem> use server balance = %d", balance);                        
-//                        }
-//                        else if (localBalance > balance){
-//                            if ((localBalance - balance) <= deviation){
-//                                // valid range for using client balance
-//                                [self syncAccountBalanceToServer];                            
-//                                PPDebug(@"<syncAccountAndItem> use client balance = %d", localBalance);                        
-//                            }
-//                            else{
-//                                // maybe client is cheating, use server data
-//                                [_accountManager updateBalance:balance];
-//                                PPDebug(@"<syncAccountAndItem> client cheating (%d)??? use server balance = %d",
-//                                        localBalance, balance);                        
-//                            }
-//                        }
-//                        else{
-//                            PPDebug(@"<syncAccountAndItem> no change for balance = %d", balance);                        
-//                        }
-//                    }
-//                    
-//                    UserGameItemService* userGameItemService = [UserGameItemService defaultService];
-//                    [userGameItemService clearAllUserItems];
-//                    NSArray* itemTypeBalanceArray = [output.jsonDataDict objectForKey:PARA_ITEMS];
-//
-//                    [_itemManager clearAllItems];
-//                    for (NSDictionary* itemTypeBalance in itemTypeBalanceArray){
-//                        int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
-//                        int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
-//                        
-//                        // TODO write item into new user item structure
-//                        [userGameItemService setItem:itemType count:itemAmount];
-//                        
-//                        // update DB
-//                        UserItem* item = [_itemManager findUserItemByType:itemType];
-//                        if (item == nil){
-//                            [_itemManager addNewItem:itemType amount:itemAmount];
-//                            PPDebug(@"<syncAccountAndItem> add client item type[%d], amount[%d]", itemType, itemAmount);
-//                        }
-//                        else{
-//                            
-//                            if (forceServer){
-//                                // use server item amount
-//                                [item setAmount:[NSNumber numberWithInt:itemAmount]];
-//                            }
-//                            else if ([[item amount] intValue] < itemAmount){
-//                                // use server item amount
-//                                [item setAmount:[NSNumber numberWithInt:itemAmount]];
-//                                PPDebug(@"<syncAccountAndItem> update client item type[%d], amount[%d]", itemType, itemAmount);
-//                            }
-//                            else if ([[item amount] intValue] > itemAmount){
-//                                // use client item amount
-//                                [self syncItemRequest:item];
-//                                PPDebug(@"<syncAccountAndItem> update server item type[%d], amount[%d]", itemType, itemAmount);
-//                            }
-//                            else{
-//                                PPDebug(@"<syncAccountAndItem> no change for item type[%d], amount[%d]", itemType, itemAmount);
-//                                
-//                            }
-//                        }
-//                    }
-//                    //decrease the guess balance and add it to the account balance.
-//                    int awardBalance = [[output.jsonDataDict objectForKey:PARA_GUESS_BALANCE] intValue];
-//                    if (awardBalance != 0) {
-//                        PPDebug(@"<syncAccountAndItem> awardBalance=%d", awardBalance);
-//                        [self awardAccount:awardBalance source:AwardCoinType];
-//                    }
-//                    
-//                    int awardExp = [[output.jsonDataDict objectForKey:PARA_AWARD_EXP] intValue];
-//                    if (awardExp != 0) {
-//                        PPDebug(@"<syncAccountAndItem> award exp=%d", awardExp);
-//                        [[LevelService defaultService] awardExp:awardExp delegate:nil];
-//                    }
-//                    
-//                    if ([delegate respondsToSelector:@selector(didSyncFinish)]){
-//                        [delegate didSyncFinish];
-//                    }
-//                });                
-//
-//            }
-//            else{
-//                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
-//            }
-//        });      
-//    });    
-//}
-
-
-//- (void)syncAccount:(SyncAccountResultHandler)handler
-//{
-//    NSString* userId = [[UserManager defaultManager] userId];
-//    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-//    if (userId == nil){
-//        return;
-//    }
-//    
-//    dispatch_async(workingQueue, ^{
-//        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
-//                                                                         userId:userId
-//                                                                       deviceId:deviceId];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (output.resultCode == ERROR_SUCCESS) {
-//                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-//                PBGameUser *user = res.user;
-//                
-//                // sync balance from server
-//                [_accountManager updateBalance:user.coinBalance];
-//                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-//                
-//                // sync user item from server
-//                [[UserGameItemService defaultService] setUserItemList:user.itemsList];
-//            }
-//            else{
-//                PPDebug(@"<syncAccount> FAIL, resultCode = %d", output.resultCode);
-//            }
-//            
-//            if (handler != NULL) {
-//                handler(output.resultCode);
-//            }
-//        });
-//    });
-//}
-
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -875,25 +698,55 @@ static AccountService* _defaultAccountService;
 }
 
 #pragma mark - Charge Ingot
+//- (void)buyCoin:(PriceModel*)price
+//{
+//    // send request to Apple IAP Server and wait for result
+//    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:price.productId];
+//    
+//    PPDebug(@"<buyCoin> on product %@ price productId=%@",
+//            selectedProduct == nil ? price.productId : [selectedProduct productIdentifier],
+//            price.productId);
+//    
+//    SKPayment *payment = nil;
+//    if (selectedProduct == nil){
+//        payment = [SKPayment paymentWithProductIdentifier:price.productId];
+//    }
+//    else{
+//        payment = [SKPayment paymentWithProduct:selectedProduct];
+//    }
+//    [[SKPaymentQueue defaultQueue] addPayment:payment];
+//}
 
 
 // TODO: need delegate.
-- (void)buyIngot:(PBSaleIngot*)ingotPrice
+- (void)buyCoin:(PBSaleIngot*)coin
+{
+    [self buyGameCurrency:coin currency:PBGameCurrencyCoin];
+}
+
+- (void)buyIngot:(PBSaleIngot*)ingot
+{
+    [self buyGameCurrency:ingot currency:PBGameCurrencyIngot];
+}
+
+- (void)buyGameCurrency:(PBSaleIngot*)ingot
+               currency:(PBGameCurrency)currency
 {
     // send request to Apple IAP Server and wait for result
-    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:ingotPrice.appleProductId];
-
+    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:ingot.appleProductId];
+    
     PPDebug(@"<buyIngot> on product %@ price productId=%@",
-            selectedProduct == nil ? ingotPrice.appleProductId : [selectedProduct productIdentifier],
-            ingotPrice.appleProductId);
+            selectedProduct == nil ? ingot.appleProductId : [selectedProduct productIdentifier],
+            ingot.appleProductId);
     
     SKPayment *payment = nil;
     if (selectedProduct == nil){
-        payment = [SKPayment paymentWithProductIdentifier:ingotPrice.appleProductId];
+        payment = [SKPayment paymentWithProductIdentifier:ingot.appleProductId];
     }
     else{
         payment = [SKPayment paymentWithProduct:selectedProduct];
     }
+    [payment setValue:@(currency) forKey:@"KEY_GAME_CURRENCY"];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 

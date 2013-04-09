@@ -33,7 +33,42 @@
     [super viewDidUnload];
 }
 
-- (void)updateIngot
+- (id)init
+{
+    if (self = [super init]) {
+        _saleCurrency = PBGameCurrencyIngot;
+    }
+    
+    return self;
+}
+
+
+- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency
+{
+    if (self = [super init]) {
+        _saleCurrency = saleCurrency;
+    }
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self updateBalance];
+    
+    [self updateTaobaoLinkView];
+    
+    __block typeof(self) bself = self;
+    [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
+        bself.dataList = ingotsList;
+        [bself.dataTableView reloadData];
+    }];
+}
+
+
+- (void)updateBalance
 {
     self.ingotCountLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
 }
@@ -45,23 +80,6 @@
     } else {
         self.taobaoLinkView.hidden = YES;
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self updateIngot];
-    
-    [self updateTaobaoLinkView];
-    
-    __block typeof(self) bself = self;
-    [[IngotService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
-        bself.dataList = ingotsList;
-        [bself.dataTableView reloadData];
-    }];
-    
-//    [IngotService createTestDataFile];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -126,7 +144,7 @@
     }
     
     if (resultCode == ERROR_SUCCESS){
-        [self showActivityWithText:NSLS(@"kChargingIngot")];
+        [self showActivityWithText:NSLS(@"kCharging")];
     }
 }
 
@@ -134,10 +152,10 @@
 {
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {
-        [self updateIngot];
-        [self popupMessage:NSLS(@"kChargIngotSuccess") title:nil];
+        [self updateBalance];
+        [self popupMessage:NSLS(@"kChargSuccess") title:nil];
     }else{
-        [self popupMessage:NSLS(@"kChargIngotFailure") title:nil];
+        [self popupMessage:NSLS(@"kChargFailure") title:nil];
     }
 }
 

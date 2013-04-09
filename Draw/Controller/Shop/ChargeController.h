@@ -12,7 +12,14 @@
 #import "AccountService.h"
 
 @interface ChargeController : PPTableViewController<ChargeCellDelegate, AccountServiceDelegate>
-@property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
+{
+    PBGameCurrency _saleCurrency;
+}
 
+@property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
 @property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
+
+- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency;
+
+
 @end

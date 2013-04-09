@@ -278,8 +278,12 @@ message PBGameItemList {
   repeated PBGameItem items = 1;
 }
 
+enum PBGameSaleProduct{
+  Coin = 1
+  Ingot = 2;
+}
 
-message PBSaleIngot{
+message PBSaleProduct{
   required int32 count = 1;                 // 个数
   optional string totalPrice = 2;           // 总价格
   optional string currency = 3;             // 货币符号
