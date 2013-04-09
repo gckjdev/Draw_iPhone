@@ -112,8 +112,11 @@ typedef enum{
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
     [self updateItemData];
-    
+
+#ifdef DEBUG
     [GameItemService createTestDataFile];
+#endif
+    
 }
 
 - (void)updateBalance
