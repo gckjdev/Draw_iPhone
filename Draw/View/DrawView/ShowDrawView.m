@@ -147,7 +147,7 @@
     if (index > [self.drawActionList count]) {
         index = [self.drawActionList count];
     }
-    if (_playingActionIndex > index) {
+    if (_playingActionIndex > index || _playingActionIndex <= 0) {
         [self resetView];
     }else{
         DrawAction *action = [_drawActionList objectAtIndex:_playingActionIndex];

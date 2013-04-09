@@ -98,7 +98,7 @@
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
     
     if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", identifier);
+        PPDebug(@"create %@ but cannot find cell object from Nib", identifier);
         return nil;
     }
     
