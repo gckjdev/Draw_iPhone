@@ -359,8 +359,12 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setCreateDate:[NSDate date]];
     [newMyPaint setDrawWord:pbDraw.word];
     
-    [newMyPaint setLanguage:[NSNumber numberWithInt:pbDraw.word]];      // hard code here, some risk?
-    [newMyPaint setLevel:[NSNumber numberWithInt:pbDraw.language]];                   // hard code here, some risk?
+    // hard code here, some risk?
+    [newMyPaint setLanguage:[NSNumber numberWithInt:pbDraw.language]];
+    
+    // hard code here, some risk?
+    [newMyPaint setLevel:[NSNumber numberWithInt:pbDraw.level]];
+    
     
 }
 
