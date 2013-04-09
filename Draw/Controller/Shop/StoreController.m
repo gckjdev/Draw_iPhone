@@ -133,13 +133,6 @@ typedef enum{
     [controller release];
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-//    //TODO
-//    return count;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [StoreCell getCellHeight];
