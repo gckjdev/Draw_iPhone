@@ -41,6 +41,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{0, -1}, {160, 160}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="722032973"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -54,6 +55,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{8, 168.5}, {143, 28}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465915535"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -67,6 +69,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{8, 168.5}, {143, 28}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -98,7 +101,9 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{9.5, 11}, {140, 136}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="741618665"/>
+						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -107,6 +112,7 @@
 						<int key="NSvFlags">315</int>
 						<string key="NSFrame">{{123.5, 123}, {36, 38}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="974610835"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,6 +124,7 @@
 				</array>
 				<string key="NSFrameSize">{160, 202}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="64313860"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -245,7 +252,60 @@
 			<nil key="sourceID"/>
 			<int key="maxID">20</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">MyPaint</string>
+					<string key="superclassName">NSManagedObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MyPaint.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MyPaintButton</string>
+					<string key="superclassName">UIButton</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="background">UIImageView</string>
+						<string key="drawImage">UIImageView</string>
+						<string key="drawWord">UILabel</string>
+						<string key="myPrintTag">UIImageView</string>
+						<string key="paint">MyPaint</string>
+						<string key="wordsBackground">UIImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="background">
+							<string key="name">background</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawImage">
+							<string key="name">drawImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawWord">
+							<string key="name">drawWord</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="myPrintTag">
+							<string key="name">myPrintTag</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="paint">
+							<string key="name">paint</string>
+							<string key="candidateClassName">MyPaint</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="wordsBackground">
+							<string key="name">wordsBackground</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MyPaintButton.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
