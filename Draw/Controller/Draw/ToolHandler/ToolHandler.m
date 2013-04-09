@@ -102,7 +102,9 @@
 {
     [self.penColor setAlpha:alpha];
     if (self.drawView.penType != Eraser) {
-        [self.drawView.lineColor setAlpha:alpha];
+        DrawColor *color = [DrawColor colorWithColor:self.drawView.lineColor];
+        [color setAlpha:alpha];
+        self.drawView.lineColor = color;
     }
 }
 - (void)changeShape:(ShapeType)shape
