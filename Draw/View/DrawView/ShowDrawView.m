@@ -148,10 +148,8 @@
         index = [self.drawActionList count];
     }
     
-    [self resetView];
-    
-    
-    
+//    [self resetView];
+
     if (_playingActionIndex > index || _playingActionIndex <= 0) {
         [self resetView];
     }else{
