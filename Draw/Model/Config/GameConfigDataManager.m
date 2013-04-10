@@ -139,7 +139,7 @@ static dispatch_once_t onceToken;
 
 + (void)createTestConfigData
 {
-    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
 
@@ -148,6 +148,8 @@ static dispatch_once_t onceToken;
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
 
     PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
+    
+    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画" nameEn:@"Draw lively" descCn:@"这是一款给你带来欢乐，让你创作，追逐自己梦想的画画＋娱乐休闲应用" descEn:@"An awesome & fun draw tool for you" appId:DRAW_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png" rewardAmount:8];
     
     PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
                                                           enName:@"Li Mei"
@@ -168,10 +170,22 @@ static dispatch_once_t onceToken;
                                                             type:PBRewardWallTypeAder
                                                             logo:@"http://58.215.160.100:8080/icon/ad_renren.png"];
     
-    [builder addAppRewards:zjhApp];
-    [builder addAppRewards:diceApp];
+    if (isDrawApp()) {
+        [builder addAppRewards:zjhApp];
+        [builder addAppRewards:diceApp];
+    }else if(isZhajinhuaApp()){
+        [builder addAppRewards:drawApp];
+        [builder addAppRewards:diceApp];
+    }else if(isDiceApp()){
+        [builder addAppRewards:drawApp];
+        [builder addAppRewards:zjhApp];
+    }
+
     [builder addRewardWalls:limei];
-    [builder addRewardWalls:youmi];
+    
+    if (isDrawApp() || isDiceApp()) {
+        [builder addRewardWalls:youmi];
+    }
     [builder addRewardWalls:ader];
 //    [builder addRewardWalls:wanpu];
     

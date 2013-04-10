@@ -66,7 +66,6 @@ enum {
     [super viewDidLoad];
     self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
     self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
