@@ -42,6 +42,7 @@
 #import "NotificationName.h"
 #import "ZJHRoomListController.h"
 #import "BBSBoardController.h"
+#import "FreeIngotController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -421,8 +422,8 @@
 
         case HomeMenuTypeDiceFreeCoins:
         {
-            [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-            [[LmWallService defaultService] show:self];
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
 
@@ -515,8 +516,7 @@
             [controller release];
         }
             break;
-        case HomeMenuTypeDrawMore:
-        case HomeMenuTypeZJHMore:
+        case HomeMenuTypeDiceMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

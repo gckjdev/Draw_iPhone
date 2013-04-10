@@ -94,6 +94,10 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
+- (UIImage *)diceHomeShop{
+    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
 - (UIImage *)drawHomeMore
 {
     NSString *imageName = [self fixImageName:@"draw_home_more"];
@@ -197,6 +201,11 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 - (UIImage *)zjhHomeMore
+{
+    NSString *imageName = [self fixImageName:@"common_home_more"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)diceHomeMore
 {
     NSString *imageName = [self fixImageName:@"common_home_more"];
     return [UIImage imageNamed:imageName];

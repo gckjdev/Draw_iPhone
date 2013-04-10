@@ -49,4 +49,8 @@
 
 - (UIImage *)zjhHomeFreeCoinBG;
 
+- (UIImage *)diceHomeShop;
+- (UIImage *)diceHomeMore;
+
+
 @end
