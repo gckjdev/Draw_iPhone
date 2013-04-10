@@ -46,7 +46,7 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler;
 
-- (void)buyCoin:(PriceModel *)price;
+//- (void)buyCoin:(PriceModel *)price;
 
 
 // remove?

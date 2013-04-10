@@ -683,10 +683,10 @@ static AccountService* _defaultAccountService;
 }
 
 #pragma mark - Charge Ingot
-- (void)buyCoin:(PriceModel *)price
-{
-    
-}
+//- (void)buyCoin:(PriceModel *)price
+//{
+//    
+//}
 
 - (void)buyProduct:(PBIAPProduct*)product
 {
