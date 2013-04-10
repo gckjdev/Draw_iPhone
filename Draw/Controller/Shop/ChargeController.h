@@ -21,7 +21,4 @@
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
 
-- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency;
-
-
 @end

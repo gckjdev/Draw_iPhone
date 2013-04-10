@@ -58,7 +58,6 @@
             self.config = [PBConfig parseFromData:data];
             PPDebug(@"<readConfigData> parse config data %@ successfully", _smartData.name);
             PPDebug(@"test value = %d", _config.diceConfig.betAnteHighRoom);
-//            PPDebug(@"Config Price List = %@", [_config.coinPriceList description]);
         }
         else{
             PPDebug(@"[WARN] Init config data %@ data file empty", dataPath);
@@ -76,7 +75,6 @@
 {
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         if (!isAlreadyExisted){
-            // reload config data
             [self readConfigData];
         }
     } failureBlock:^(NSError *error) {

@@ -111,6 +111,48 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 + (void)createTestDataFile
 {
+    if (isDrawApp()) {
+        [self createDrawTestDataFile];
+    }else if(isDiceApp()){
+        [self createDiceTestDataFile];
+    }
+}
+
++ (void)createDiceTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    // 鲜花
+    [mutableArray addObject:[self itemWithItemId:ItemTypeFlower
+                                            name:@"kFlower"
+                                            desc:@"kFlowerDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:URL_ITEM_IMAGE(@"shop_item_flower@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
+    
+
+    
+    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    [listBuilder addAllItems:mutableArray];
+    PBGameItemList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
+
++ (void)createDrawTestDataFile
+{
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
     // 鲜花

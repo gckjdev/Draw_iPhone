@@ -25,7 +25,7 @@
         [controller.navigationController pushViewController:vc animated:YES];
     }];
     
-    [view.oKButton setTitle:NSLS(@"kGetFreeIngot") forState:UIControlStateNormal];
+    [view.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
     [view.backButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
 
     return view;

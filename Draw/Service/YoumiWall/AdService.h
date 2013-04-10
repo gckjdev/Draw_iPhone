@@ -41,7 +41,6 @@ typedef enum
 + (AdService*)defaultService;
 
 - (BOOL)isShowAd;
-- (void)requestRemoveAd:(PPViewController*)viewController;
 - (void)setAdDisable;
 - (void)disableAd;
 - (void)removeAdByIAP;
