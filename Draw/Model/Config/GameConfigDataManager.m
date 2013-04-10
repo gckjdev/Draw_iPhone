@@ -13,8 +13,6 @@
 #import "UIUtils.h"
 #import "GameApp.h"
 
-//#define DEFAULT_CONFIG_FILE     @"default_config.pb"
-
 @interface GameConfigDataManager()
 {
     GameConfigData* _defaultConfigData;
@@ -146,32 +144,6 @@ static dispatch_once_t onceToken;
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
 
     PBConfig_Builder* builder = [PBConfig builder];
-                                 
-    /*
-    NSArray* amount = @[@"10000", @"18000", @"66000", @"180000"];
-    NSArray* prices = @[@"1.99", @"2.99", @"9.99", @"24.99"];
-    NSArray* saves = @[@"0", @"15", @"33", @"50"];
-    NSArray* productIds = @[@"com.orange.dice.coins1200", @"com.orange.dice.coins2400", @"com.orange.dice.coins6000", @"com.orange.dice.coins20000"];
-    for (int i=0; i<amount.count; i++){
-        PBPrice_Builder* priceBuilder = [PBPrice builder];
-        [priceBuilder setAmount:[amount objectAtIndex:i]];
-        [priceBuilder setPrice:[prices objectAtIndex:i]];
-        [priceBuilder setSavePercent:[saves objectAtIndex:i]];
-        [priceBuilder setProductId:[productIds objectAtIndex:i]];
-        
-        [builder addCoinPrices:[priceBuilder build]];
-    }
-    
-    PBZJHConfig_Builder* zjhBuilder = [PBZJHConfig builder];
-    [builder setZjhConfig:[zjhBuilder build]];
-    
-    PBDiceConfig_Builder* diceBuilder = [PBDiceConfig builder];
-    [builder setDiceConfig:[diceBuilder build]];
-
-    PBDrawConfig_Builder* drawBuilder = [PBDrawConfig builder];
-    [builder setDrawConfig:[drawBuilder build]];
-    */
-    
 
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
 

@@ -46,6 +46,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{38, 26}, {564, 110}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="839680889"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -60,6 +61,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{62, 48}, {64, 64}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="605697858"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -72,8 +74,9 @@
 							<object class="IBUILabel" id="605697858">
 								<reference key="NSNextResponder" ref="445987130"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{136, 58}, {130, 42}}</string>
+								<string key="NSFrame">{{135, 59}, {135, 42}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="735692545"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="164906781">
@@ -85,7 +88,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">x8000</string>
+								<string key="IBUIText">x 180000</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
@@ -109,8 +112,9 @@
 							<object class="IBUILabel" id="735692545">
 								<reference key="NSNextResponder" ref="445987130"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{256, 60}, {84, 42}}</string>
+								<string key="NSFrame">{{273, 59}, {72, 42}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="531079884"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="164906781"/>
@@ -119,7 +123,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">¥12</string>
+								<string key="IBUIText">¥163</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC41NzI1NDkwMTk2IDAuMzEzNzI1NDkwMiAwAA</bytes>
@@ -141,8 +145,9 @@
 							<object class="IBUIButton" id="580456081">
 								<reference key="NSNextResponder" ref="445987130"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{490, 54}, {88, 50}}</string>
+								<string key="NSFrame">{{490, 55}, {88, 50}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="164906781"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -178,8 +183,9 @@
 							<object class="IBUIButton" id="531079884">
 								<reference key="NSNextResponder" ref="445987130"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{346, 64}, {102, 34}}</string>
+								<string key="NSFrame">{{351, 63}, {102, 34}}</string>
 								<reference key="NSSuperview" ref="445987130"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="580456081"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="164906781"/>
@@ -220,6 +226,7 @@
 						</array>
 						<string key="NSFrameSize">{640, 139}</string>
 						<reference key="NSSuperview" ref="739138284"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="468890857"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="164906781"/>
@@ -232,6 +239,7 @@
 				</array>
 				<string key="NSFrameSize">{640, 140}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="445987130"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -379,16 +387,64 @@
 			<nil key="sourceID"/>
 			<int key="maxID">40</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">ChargeCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="buyButton">UIButton</string>
+						<string key="countLabel">UILabel</string>
+						<string key="discountButton">UIButton</string>
+						<string key="priceLabel">UILabel</string>
+						<string key="productImageView">UIImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="buyButton">
+							<string key="name">buyButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="countLabel">
+							<string key="name">countLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="discountButton">
+							<string key="name">discountButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="priceLabel">
+							<string key="name">priceLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="productImageView">
+							<string key="name">productImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ChargeCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="charge_bg@2x.png">{16, 16}</string>
-			<string key="charge_cell_bg@2x.png">{16, 16}</string>
-			<string key="green_bg@2x.png">{16, 16}</string>
-			<string key="ingot@2x.png">{16, 16}</string>
+			<string key="charge_bg@2x.png">{99, 50}</string>
+			<string key="charge_cell_bg@2x.png">{565, 111}</string>
+			<string key="green_bg@2x.png">{75, 31}</string>
+			<string key="ingot@2x.png">{64, 64}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

@@ -774,7 +774,7 @@
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kLevelUpAwardMessage"), newLevel, [ConfigManager getLevelUpAward] * newLevel]
                                                    delayTime:2.5
                                                      isHappy:YES];
-    [[AccountService defaultService] chargeAccount:[ConfigManager getLevelUpAward] * newLevel
+    [[AccountService defaultService] chargeCoin:[ConfigManager getLevelUpAward] * newLevel
                                             source:LevelUpAward];
 }
 
@@ -1688,7 +1688,7 @@
 #pragma mark - money tree view delegate
 - (void)didGainMoney:(int)money fromTree:(MoneyTreeView *)treeView
 {
-    [_gameService chargeAccount:money source:MoneyTreeAward];
+    [_gameService chargeCoin:money source:MoneyTreeAward];
     [[self getMyAvatarView] update];
 }
 

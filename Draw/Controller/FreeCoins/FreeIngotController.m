@@ -113,10 +113,10 @@ enum {
 - (NSString*)titleForSection:(int)section
 {
     if (section == SECTION_FRIEND_APP) {
-        return NSLS(@"kDownloadRewardAppTips");
+        return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kDownloadRewardIngotAppTips") : NSLS(@"kDownloadRewardCoinAppTips"));
     }
     if (section == SECTION_WALL) {
-        return NSLS(@"kRewardWallTips");
+        return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kRewardIngotWallTips") : NSLS(@"kRewardCoinWallTips"));
     }
     return nil;
 }

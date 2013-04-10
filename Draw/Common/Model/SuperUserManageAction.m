@@ -82,7 +82,7 @@ typedef enum
         case SuperUserManageActionIndexCharge: {
             InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的金币数" clickOK:^(NSString *inputStr) {
                 if ([self isInputValid:inputStr]) {
-                    [[AccountService defaultService] chargeAccount:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
+                    [[AccountService defaultService] chargeCoin:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
             } clickCancel:^(NSString *inputStr) {
                 //

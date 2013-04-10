@@ -69,7 +69,7 @@
 - (BOOL)canIQuitGameDirectly;
 //- (NSString *)getRoomName;
 
-- (void)chargeAccount:(int)amount
+- (void)chargeCoin:(int)amount
                source:(BalanceSourceType)source;
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 

@@ -83,10 +83,9 @@
     }];
     
 #ifdef DEBUG
-    [IAPProductService createTestDataFile];
+    [IAPProductService createCoinTestDataFile];
 #endif
 }
-
 
 - (void)updateBalance
 {
@@ -168,7 +167,7 @@
     }
 }
 
-- (void)didFinishChargeIngot:(int)resultCode
+- (void)didFinishChargeCurrency:(PBGameCurrency)currency resultCode:(int)resultCode
 {
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {

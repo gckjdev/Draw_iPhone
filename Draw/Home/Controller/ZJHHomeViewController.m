@@ -35,7 +35,7 @@
 #import "ZJHSoundManager.h"
 #import "Reachability.h"
 #import "AnalyticsManager.h"
-#import "FreeCoinsControllerViewController.h"
+#import "FreeIngotController.h"
 #import "BulletinService.h"
 #import "AdService.h"
 
@@ -246,7 +246,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
             
         case HomeMenuTypeDrawFreeCoins:
         {            
-            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

@@ -266,10 +266,10 @@
 #pragma mark - Common Dialog Delegate
 - (void)clickOk:(CommonDialog *)dialog
 {
-    if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1]) {
+    if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1 currency:PBGameCurrencyCoin]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductAccount:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
+        [[AccountService defaultService] deductCoin:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
     }
@@ -305,7 +305,7 @@
     
     CommonDialogStyle style;
     NSString *message = nil;
-    if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN]) {
+    if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN currency:PBGameCurrencyCoin]) {
         style = CommonDialogStyleDoubleButton;
         message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getOnlineDrawFleeCoin]];
     }else{

@@ -1138,10 +1138,11 @@
 "kItemPromotion" = "促銷";
 "kItemTaoBao" = "淘寶";
 
-//"kDownloadRewardAppTips" = "下載兄弟應用可直接賺取元寶";
-//"kRewardWallTips" = "其他第三方免費應用，賺取元寶";
-"kDownloadRewardAppTips" = "下載兄弟應用(免費)，使用後可賺取元寶";
-"kRewardWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取元寶";
+"kDownloadRewardIngotAppTips" = "下載兄弟應用(免費)，使用後可賺取元寶";
+"kDownloadRewardCoinAppTips" = "下載兄弟應用(免費)，使用後可賺取金幣";
+"kRewardIngotWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取元寶";
+"kRewardCoinWallTips" = "下載第三方應用(免費)，註冊使用60秒以上可賺取金幣";
+
 "kFreeIngot" = "免費元寶";
 "kGoToBBS4Help" = "逛逛論壇尋求幫助";
 "kCleaning" = "清理緩存中，時間可能比較長，請耐心等待";

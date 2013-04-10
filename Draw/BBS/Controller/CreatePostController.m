@@ -535,7 +535,7 @@
             [self.delegate didController:self CreateNewPost:post];
         }
         if (self.bonus > 0) {
-            [[AccountService defaultService] deductAccount:self.bonus source:BBSReward];
+            [[AccountService defaultService] deductCoin:self.bonus source:BBSReward];
         }
         [self dismissModalViewControllerAnimated:YES];
     }else{
