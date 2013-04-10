@@ -75,7 +75,6 @@
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
 #import "UFPController.h"
-#import "FreeCoinsControllerViewController.h"
 #import "UMGridViewController.h"
 #import "DrawRoomListController.h"
 

@@ -41,7 +41,6 @@
 #import "PPResourceService.h"
 #import "NotificationName.h"
 #import "ZJHRoomListController.h"
-#import "FreeCoinsControllerViewController.h"
 #import "BBSBoardController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
