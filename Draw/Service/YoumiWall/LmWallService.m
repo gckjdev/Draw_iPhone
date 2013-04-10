@@ -150,7 +150,7 @@ static LmWallService* _defaultService;
     [self setUserInfo];
 
     // charge account
-    [[AccountService defaultService] chargeAccount:score source:LmAppReward];
+    [[AccountService defaultService] chargeCoin:score source:LmAppReward];
     
     NSString* userId = [[UserManager defaultManager] userId];
     

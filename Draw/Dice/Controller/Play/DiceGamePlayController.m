@@ -1373,7 +1373,7 @@
         return;
     }
     [self quitDiceGame];
-    [[AccountService defaultService] deductAccount:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
+    [[AccountService defaultService] deductCoin:[ConfigManager getDiceFleeCoin] source:LiarDiceFleeType];
 }
 
 - (void)clickBack:(CommonDialog *)dialog

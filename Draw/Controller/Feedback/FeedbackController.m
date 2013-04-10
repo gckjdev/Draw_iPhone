@@ -499,13 +499,13 @@ enum {
     BOOL hasRewardFollowQQ = [userDefaults boolForKey:FOLLOW_QQ_KEY];
     
     if ([[UserManager defaultManager] hasBindSinaWeibo] && hasRewardFollowSina == NO){
-        [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
         [userDefaults setBool:YES forKey:FOLLOW_SINA_KEY];
         [userDefaults synchronize];
     }
     
     if ([[UserManager defaultManager] hasBindQQWeibo] && hasRewardFollowQQ == NO){
-        [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];        
+        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];        
         [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
         [userDefaults synchronize];
     }

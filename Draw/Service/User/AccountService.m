@@ -75,110 +75,299 @@ static AccountService* _defaultAccountService;
     return self;
 }
 
+
+- (void)syncAccount:(id<AccountServiceDelegate>)delegate
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    if (userId == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
+                                                                         userId:userId
+                                                                       deviceId:deviceId];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                
+                // sync balance from server
+                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                
+                // sync user item from server
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                
+                // sync user level and exp
+                if ([user hasLevel] && [user hasExperience]){
+                    [[LevelService defaultService] setLevel:user.level];
+                    [[LevelService defaultService] setExperience:user.experience];
+                }
+                
+                // sync other user information, add by Benson 2013-04-02
+                [[UserManager defaultManager] storeUserData:user];
+            }
+            
+            if (output.resultCode == ERROR_SUCCESS) {
+                if ([delegate respondsToSelector:@selector(didSyncFinish)]){
+                    [delegate didSyncFinish];
+                }
+            }
+            else{
+                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
+            }
+        });
+    });
+    
+}
+
+- (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler
+{
+    SyncAccountResultHandler tempHandler = (SyncAccountResultHandler)[_blockArray copyBlock:resultHandler];
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    if (userId == nil){
+        EXECUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER);
+        [_blockArray releaseBlock:tempHandler];
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
+                                                                         userId:userId
+                                                                       deviceId:deviceId];
+        
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                PBGameUser *user = res.user;
+                
+                // sync balance from server
+                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                
+                // sync user item from server
+                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+            }
+            
+            EXECUTE_BLOCK(tempHandler, output.resultCode);
+            [_blockArray releaseBlock:tempHandler];
+        });
+    });
+}
+
 #pragma mark - methods for buy coins and items
+
+- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
+{
+    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
+}
+
+- (void)chargeCoin:(int)amount
+            source:(BalanceSourceType)source
+{
+    [self chargeCoin:amount
+              source:source
+       transactionId:nil
+        transactionRecepit:nil];
+}
+
+- (void)chargeCoin:(int)amount
+            toUser:(NSString *)userId
+            source:(BalanceSourceType)source
+{
+    
+    [self chargeCoin:amount
+              toUser:userId
+              source:source
+       transactionId:nil
+  transactionRecepit:nil
+            byUserId:[[UserManager defaultManager] userId]];
+    
+}
+
+- (void)chargeCoin:(int)amount
+            source:(BalanceSourceType)source
+     transactionId:(NSString*)transactionId
+transactionRecepit:(NSString*)transactionRecepit
+{
+    [self chargeCoin:amount
+              toUser:[[UserManager defaultManager] userId]
+              source:source
+       transactionId:transactionId
+  transactionRecepit:transactionRecepit
+            byUserId:[[UserManager defaultManager] userId]];
+}
+
+- (void)chargeCoin:(int)amount
+            toUser:(NSString*)userId
+            source:(BalanceSourceType)source
+     transactionId:(NSString*)transactionId
+transactionRecepit:(NSString*)transactionRecepit
+          byUserId:(NSString*)byUserId
+{
+    if (amount <= 0) {
+        return;
+    }
+    dispatch_async(workingQueue, ^{
+        
+        if ([self checkIAPReceiptBeforeCharge:transactionId
+                           transactionRecepit:transactionRecepit
+                                       source:source] == NO){
+            return;
+        }
+        
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest chargeCoin:SERVER_URL
+                                         userId:userId
+                                         amount:amount
+                                         source:source
+                                  transactionId:transactionId
+                             transactionReceipt:transactionRecepit
+                                         byUser:byUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+                int coinBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalance:coinBalance currency:PBGameCurrencyCoin];
+            }
+            else{
+                PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP, refund money");
+                }
+            }
+            
+            if ([_delegate respondsToSelector:@selector(didFinishChargeCurrency:resultCode:)]) {
+                [_delegate didFinishChargeCurrency:PBGameCurrencyCoin resultCode:output.resultCode];
+            }
+        });
+    });    
+}
+
+- (void)deductCoin:(int)amount
+               source:(BalanceSourceType)source
+{
+    if (amount <= 0) {
+        return;
+    }
+    NSString* userId = [[UserManager defaultManager] userId];
+        
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = nil;        
+        output = [GameNetworkRequest deductCoin:SERVER_URL
+                                            userId:userId 
+                                            amount:amount 
+                                            source:source];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                // update balance from server
+                int coinBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalance:coinBalance currency:PBGameCurrencyCoin];
+            }
+            else{
+                PPDebug(@"<deductCoin> failure, result=%d", output.resultCode);
+            }
+        });
+    });    
+}
+
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+{
+    [self chargeIngot:amount
+               toUser:[[UserManager defaultManager] userId]
+               source:source];
+}
+
+- (void)chargeIngot:(int)amount
+             toUser:(NSString*)userId
+             source:(BalanceSourceType)source
+{
+    [self chargeIngot:amount
+               source:source
+        transactionId:nil
+   transactionRecepit:nil
+             toUserId:userId
+             byUserId:[[UserManager defaultManager] userId]];
+}
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+      transactionId:(NSString*)transactionId
+ transactionRecepit:(NSString*)transactionRecepit
+{
+    [self chargeIngot:amount
+               source:source
+        transactionId:transactionId
+   transactionRecepit:transactionRecepit
+             toUserId:[[UserManager defaultManager] userId]
+             byUserId:[[UserManager defaultManager] userId]];
+}
+
+- (void)chargeIngot:(int)amount
+             source:(BalanceSourceType)source
+      transactionId:(NSString*)transactionId
+ transactionRecepit:(NSString*)transactionRecepit
+           toUserId:(NSString*)toUserId
+           byUserId:(NSString*)byUserId
+{
+    dispatch_async(workingQueue, ^{
+        
+        if ([self checkIAPReceiptBeforeCharge:transactionId transactionRecepit:transactionRecepit source:source] == NO){
+            return;
+        }
+        
+        CommonNetworkOutput* output = nil;
+        output = [GameNetworkRequest chargeIngot:SERVER_URL
+                                          userId:toUserId
+                                          amount:amount
+                                          source:source
+                                   transactionId:transactionId
+                              transactionReceipt:transactionRecepit
+                                          byUser:byUserId];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                int ingotBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
+                [[AccountManager defaultManager] updateBalance:ingotBalance currency:PBGameCurrencyIngot];
+            }
+            else{
+                PPDebug(@"<chargeIngot> failure, result=%d", output.resultCode);
+                if (output.resultCode == 70003 || output.resultCode == 70004){
+                    PPDebug(@"<chargeAccount> fake IAP");
+                }
+            }
+            
+            if ([_delegate respondsToSelector:@selector(didFinishChargeCurrency:resultCode:)]) {
+                [_delegate didFinishChargeCurrency:PBGameCurrencyIngot resultCode:output.resultCode];
+            }
+        });
+    });
+    
+}
+
 
 - (void)buyRemoveAd
 {
     // send request to Apple IAP Server and wait for result
     NSString* productId = [GameApp removeAdProductId];
-    PPDebug(@"<buyRemoveAd> on productId=%@", productId);        
+    PPDebug(@"<buyRemoveAd> on productId=%@", productId);
     SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];    
-}
-
-
-#pragma mark - IAP transaction handling
-
-- (void)makeChargeIngotRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
-{
-    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
-    [self chargeIngot:amount
-               source:PurchaseType
-        transactionId:transaction.transactionIdentifier
-   transactionRecepit:base64receipt];
-}
-
-- (void)makeChargeCoinRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
-{
-    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
-    [self chargeAccount:amount
-                 source:PurchaseType
-          transactionId:transaction.transactionIdentifier
-     transactionRecepit:base64receipt];
-}
-
-- (void)recordTransaction:(SKPaymentTransaction*)transaction
-{
-    PPDebug(@"<recordTransaction> transaction = %@ [%@]", 
-            transaction.transactionIdentifier,
-            [transaction.transactionReceipt description]);
-    
-    NSString* productId  = transaction.payment.productIdentifier;
-    PBIAPProduct* product = [[IAPProductManager defaultManager] productWithAppleProductId:productId];
-    if (product.type == PBIAPProductTypeIapcoin){
-        [self makeChargeCoinRequest:product.count transaction:transaction];
-    }
-    else if(product.type == PBIAPProductTypeIapingot) {
-        [self makeChargeIngotRequest:product.count transaction:transaction];
-    }else{
-        
-    }
-}
-
-- (void)provideContent:(NSString*)productId
-{
-    PPDebug(@"<provideContent> productId = %@", productId);    
-    
-    if ([productId isEqualToString:[GameApp removeAdProductId]]){
-        // Remove Ad IAP
-        [[AdService defaultService] setAdDisable];
-    }
-    
-    // update UI here    
-    int resultCode = PAYMENT_SUCCESS;
-    if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-        [_delegate didFinishBuyProduct:resultCode];
-    }
-}
-
-- (void) completeTransaction: (SKPaymentTransaction *)transaction
-{
-    PPDebug(@"<completeTransaction> transaction = %@", transaction.transactionIdentifier);
-    
-    // Your application should implement these two methods.
-    [self recordTransaction:transaction];
-    [self provideContent:transaction.payment.productIdentifier];
-    
-    // Remove the transaction from the payment queue.
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-}
-
-- (void) restoreTransaction: (SKPaymentTransaction *)transaction
-{
-    PPDebug(@"<restoreTransaction> transaction = %@", transaction.transactionIdentifier);
-    [self recordTransaction: transaction];
-    [self provideContent: transaction.originalTransaction.payment.productIdentifier];
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-}
-
-- (void) failedTransaction: (SKPaymentTransaction *)transaction
-{
-    PPDebug(@"<failedTransaction> error code = %d", transaction.error.code);
-    if (transaction.error.code != SKErrorPaymentCancelled) {
-        // TODO display an error here to UI
-        int resultCode = PAYMENT_FAILURE;
-        if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-            [_delegate didFinishBuyProduct:resultCode];
-        }        
-    }
-    else{
-        int resultCode = PAYMENT_CANCEL;
-        if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
-            [_delegate didFinishBuyProduct:resultCode];
-        }                
-    }
-    
-    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+    [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 - (void)restoreIAPPurchase
@@ -186,54 +375,6 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
-#pragma mark - IAP delegate methods
-
-// Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate.
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions 
-{
-    for (SKPaymentTransaction *transaction in transactions)
-    {
-        PPDebug(@"<updatedTransactions> productId=%@, transactionState=%d", 
-                transaction.payment.productIdentifier, transaction.transactionState);
-        
-        switch (transaction.transactionState)
-        {
-            case SKPaymentTransactionStatePurchased:
-                [self completeTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateFailed:
-                [self failedTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateRestored:
-                [self restoreTransaction:transaction];
-                break;
-            case SKPaymentTransactionStatePurchasing:
-                if ([_delegate respondsToSelector:@selector(didProcessingBuyProduct:)]){
-                    [_delegate didProcessingBuyProduct];
-                }
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-// Sent when transactions are removed from the queue (via finishTransaction:).
-- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions 
-{
-    PPDebug(@"<removedTransactions> %@", [transactions description]);
-}
-
-// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
-{
-    PPDebug(@"<restoreCompletedTransactionsFailedWithError> %@", [error description]);    
-}
-
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
-    PPDebug(@"<paymentQueueRestoreCompletedTransactionsFinished>");        
-}
 
 #pragma mark - Charge/Deduct Service to Server
 
@@ -255,17 +396,17 @@ static AccountService* _defaultAccountService;
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (result == VERIFY_UNKNOWN){
                     PPDebug(@"<verifyReceiptWithAmount> UNKNOWN, Maybe Network Failure");
-                    [[TransactionReceiptManager defaultManager] verifyUnknown:receipt];                    
+                    [[TransactionReceiptManager defaultManager] verifyUnknown:receipt];
                 }
                 else if (result == VERIFY_OK){
                     PPDebug(@"<verifyReceiptWithAmount> OK");
-                    [[TransactionReceiptManager defaultManager] verifySuccess:receipt];                    
+                    [[TransactionReceiptManager defaultManager] verifySuccess:receipt];
                 }
                 else{
-                    PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);                                
-                    [[TransactionReceiptManager defaultManager] verifyFailure:receipt errorCode:result];                    
+                    PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);
+                    [[TransactionReceiptManager defaultManager] verifyFailure:receipt errorCode:result];
                 }
-            });    
+            });
         });
     }
 }
@@ -285,9 +426,9 @@ static AccountService* _defaultAccountService;
             if (result == VERIFY_UNKNOWN){
                 PPDebug(@"<verifyReceiptWithAmount> UNKNOWN, Maybe Network Failure");
                 
-                [[TransactionReceiptManager defaultManager] createReceipt:transactionId 
-                                                                productId:nil 
-                                                                   amount:amount 
+                [[TransactionReceiptManager defaultManager] createReceipt:transactionId
+                                                                productId:nil
+                                                                   amount:amount
                                                        transactionReceipt:transactionRecepit];
             }
             else if (result == VERIFY_OK){
@@ -295,212 +436,15 @@ static AccountService* _defaultAccountService;
             }
             else{
                 PPDebug(@"<verifyReceiptWithAmount> FAIL, code=%d", result);
-
+                
                 [UIUtils alert:NSLS(@"kFakeIAPPurchase")];
             }
-        });        
-    });
-    
-}
-
-- (void)chargeAccount:(int)amount 
-               source:(BalanceSourceType)source 
-        transactionId:(NSString*)transactionId
-   transactionRecepit:(NSString*)transactionRecepit
-{
-    NSString* userId = [[UserManager defaultManager] userId];
-    [[AccountManager defaultManager] increaseBalance:amount sourceType:source];
-    
-    dispatch_async(workingQueue, ^{
-        
-        if ([self checkIAPReceiptBeforeCharge:transactionId
-                           transactionRecepit:transactionRecepit
-                                       source:source] == NO){
-            return;
-        }
-        
-        CommonNetworkOutput* output = nil;
-        output = [GameNetworkRequest chargeAccount:SERVER_URL
-                                            userId:userId
-                                            amount:amount
-                                            source:source
-                                     transactionId:transactionId
-                                transactionReceipt:transactionRecepit
-                                            byUser:userId];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                // update balance from server
-                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
-                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d",
-                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
-                }
-                
-            }
-            else{
-                PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
-                if (output.resultCode == 70003 || output.resultCode == 70004){
-                    PPDebug(@"<chargeAccount> fake IAP, refund money");
-                    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source];
-                }
-            }
         });
     });
-}
-
-- (void)chargeAccount:(int)amount
-               toUser:(NSString*)userId
-               source:(BalanceSourceType)source
-        transactionId:(NSString*)transactionId
-   transactionRecepit:(NSString*)transactionRecepit
-             byUserId:(NSString*)byUserId
-{
-    // update balance locally
-    
-    dispatch_async(workingQueue, ^{
-        
-        if ([self checkIAPReceiptBeforeCharge:transactionId
-                           transactionRecepit:transactionRecepit
-                                       source:source] == NO){
-            return;
-        }
-        
-        CommonNetworkOutput* output = nil;
-        output = [GameNetworkRequest chargeAccount:SERVER_URL
-                                            userId:userId
-                                            amount:amount
-                                            source:source
-                                     transactionId:transactionId
-                                transactionReceipt:transactionRecepit
-                                            byUser:byUserId];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-
-            }
-            else{
-                PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
-                if (output.resultCode == 70003 || output.resultCode == 70004){
-                    PPDebug(@"<chargeAccount> fake IAP, refund money");
-                }
-            }
-        });
-    });
-}
-
-- (void)awardAccount:(int)amount 
-               source:(BalanceSourceType)source
-{
-    [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];        
-}
-
-- (void)chargeAccount:(int)amount 
-               source:(BalanceSourceType)source
-{
-    if (amount > 0) {
-        [self chargeAccount:amount source:source transactionId:nil transactionRecepit:nil];
-    }
-}
-
-- (void)chargeAccount:(int)amount
-               toUser:(NSString *)userId
-               source:(BalanceSourceType)source
-{
-    
-    [self chargeAccount:amount toUser:userId source:source transactionId:nil transactionRecepit:nil byUserId:[[UserManager defaultManager] userId]];
     
 }
 
-- (void)deductAccount:(int)amount
-               source:(BalanceSourceType)source
-{
-    if (amount <= 0) {
-        return;
-    }
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    // update balance locally
-    [[AccountManager defaultManager] decreaseBalance:amount sourceType:source]; 
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest deductAccount:SERVER_URL 
-                                            userId:userId 
-                                            amount:amount 
-                                            source:source];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                // update balance from server
-                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
-                if (balance != [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin]){
-                    PPDebug(@"<deductAccount> balance not the same, local=%d, remote=%d", 
-                            [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin], balance);
-                }
-            }
-            else{
-                PPDebug(@"<deductAccount> failure, result=%d", output.resultCode);
-            }
-        });
-    });    
-}
 
-- (void)syncAccountBalanceToServer
-{
-    int balance = [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
-    PPDebug(@"<syncAccountBalanceToServer> balance=%d", balance);
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest updateBalance:SERVER_URL 
-                                            userId:userId 
-                                           balance:balance];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-            }
-            else{
-            }
-        });      
-    });
-}
-
-
-- (void)syncItemRequest:(UserItem*)userItem
-           targetUserId:(NSString*)targetUserId
-            awardAmount:(int)awardAmount
-               awardExp:(int)awardExp
-
-{
-    PPDebug(@"<syncItemRequest> item=%@ targetUserId=%@ awardAmount=%d awardExp=%d", 
-            [userItem description], targetUserId, awardAmount, awardExp);
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = nil;        
-        output = [GameNetworkRequest updateItemAmount:SERVER_URL 
-                                               userId:userId 
-                                             itemType:[[userItem itemType] intValue]
-                                               amount:[[userItem amount] intValue]
-                                         targetUserId:targetUserId
-                                          awardAmount:awardAmount 
-                                             awardExp:awardExp];
-        
-        PPDebug(@"<updateItemAmount> resultCode=%d", output.resultCode);
-    });
-}
-
-- (void)syncItemRequest:(UserItem*)userItem
-{
-    [self syncItemRequest:userItem targetUserId:nil awardAmount:0 awardExp:0];
-}
-
-- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency
-{
-    return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
-}
 
 #define KEY_LAST_CHECKIN_DATE   @"KEY_LAST_CHECKIN_DATE"
 #define MAX_CHECKIN_COINS       5
@@ -536,7 +480,7 @@ static AccountService* _defaultAccountService;
     // random get some coins
     int coins = rand() % maxReward + 1;
     PPDebug(@"<checkIn> got %d coins", coins);
-    [self chargeAccount:coins source:CheckInType]; 
+    [self chargeCoin:coins source:CheckInType];
     
     // update check in today flag
     [userDefaults setObject:[NSDate date] forKey:KEY_LAST_CHECKIN_DATE];
@@ -544,108 +488,10 @@ static AccountService* _defaultAccountService;
     return coins;
 }
 
-#define DEFAULT_DEVIATION       (5000)
-
-- (int)getBalance
-{
-    return [_accountManager getBalanceWithCurrency:PBGameCurrencyCoin];
-}
-
 - (int)getBalanceWithCurrency:(PBGameCurrency)currency
 {
     return [_accountManager getBalanceWithCurrency:currency];
 }
-
-- (void)syncAccount:(id<AccountServiceDelegate>)delegate
-{
-    NSString* userId = [[UserManager defaultManager] userId];
-    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-    if (userId == nil){
-        return;
-    }
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
-                                                                         userId:userId
-                                                                       deviceId:deviceId];
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                
-                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-                PBGameUser *user = res.user;
-                
-                // sync balance from server
-                [_accountManager updateBalance:user.coinBalance];
-                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                
-                // sync user item from server
-                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-                
-                // sync user level and exp
-                if ([user hasLevel] && [user hasExperience]){
-                    [[LevelService defaultService] setLevel:user.level];
-                    [[LevelService defaultService] setExperience:user.experience];
-                }
-                
-                // sync other user information, add by Benson 2013-04-02
-                [[UserManager defaultManager] storeUserData:user];
-            }
-            
-            if (output.resultCode == ERROR_SUCCESS) {
-                if ([delegate respondsToSelector:@selector(didSyncFinish)]){
-                    [delegate didSyncFinish];
-                }
-            }
-            else{
-                PPDebug(@"<syncAccountAndItem> FAIL, resultCode = %d", output.resultCode);
-            }
-        });
-    });
-
-}
-
-- (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler
-{
-    SyncAccountResultHandler tempHandler = (SyncAccountResultHandler)[_blockArray copyBlock:resultHandler];
-    
-    NSString* userId = [[UserManager defaultManager] userId];
-    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-    if (userId == nil){
-        EXECUTE_BLOCK(tempHandler, ERROR_BAD_PARAMETER);
-        [_blockArray releaseBlock:tempHandler];
-        return;
-    }
-    
-    dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
-                                                                         userId:userId
-                                                                       deviceId:deviceId];
-            
-
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-            
-                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-                PBGameUser *user = res.user;
-                
-                // sync balance from server
-                [_accountManager updateBalance:user.coinBalance];
-                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                
-                // sync user item from server
-                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-            }
-            
-            EXECUTE_BLOCK(tempHandler, output.resultCode);
-            [_blockArray releaseBlock:tempHandler];
-        });      
-    });    
-}
-
 
 #define SHARE_WEIBO_REWARD_COUNTER  @"SHARE_WEIBO_REWARD_COUNTER"
 #define MAX_REWARD_FOR_SHARE_WEIBO  10
@@ -658,7 +504,7 @@ static AccountService* _defaultAccountService;
     }
     
     // award user
-    [self chargeAccount:[ConfigManager getShareWeiboReward] source:ShareWeiboReward];
+    [self chargeCoin:[ConfigManager getShareWeiboReward] source:ShareWeiboReward];
     
     // update counter
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_WEIBO_REWARD_COUNTER];
@@ -677,7 +523,7 @@ static AccountService* _defaultAccountService;
         return;
     }
     
-    [self chargeAccount:[ConfigManager getShareFriendReward] source:ShareAppReward];
+    [self chargeCoin:[ConfigManager getShareFriendReward] source:ShareAppReward];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_APP_REWARD_COUNTER];
 }
@@ -707,19 +553,7 @@ static AccountService* _defaultAccountService;
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
-- (void)chargeIngot:(int)amount
-             source:(BalanceSourceType)source
-      transactionId:(NSString*)transactionId
- transactionRecepit:(NSString*)transactionRecepit
-{
-    NSString* userId = [[UserManager defaultManager] userId];
-    [self chargeIngot:amount
-               source:source
-        transactionId:transactionId
-   transactionRecepit:transactionRecepit
-             toUserId:userId
-             byUserId:userId];
-}
+
 
 - (BOOL)checkIAPReceiptBeforeCharge:(NSString*)transactionId
                  transactionRecepit:(NSString*)transactionRecepit
@@ -752,61 +586,152 @@ static AccountService* _defaultAccountService;
 
 }
 
-- (void)chargeIngot:(int)amount
-             source:(BalanceSourceType)source
-      transactionId:(NSString*)transactionId
- transactionRecepit:(NSString*)transactionRecepit
-           toUserId:(NSString*)toUserId
-           byUserId:(NSString*)byUserId
+
+
+
+
+#pragma mark - IAP transaction handling
+
+- (void)makeChargeCoinRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
 {
-    dispatch_async(workingQueue, ^{
-        
-        if ([self checkIAPReceiptBeforeCharge:transactionId transactionRecepit:transactionRecepit source:source] == NO){
-            return;
-        }
-        
-        CommonNetworkOutput* output = nil;
-        output = [GameNetworkRequest chargeIngot:SERVER_URL
-                                          userId:toUserId
-                                          amount:amount
-                                          source:source
-                                   transactionId:transactionId
-                              transactionReceipt:transactionRecepit
-                                          byUser:byUserId];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                int balance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_INGOT_BALANCE] intValue];
-                [[AccountManager defaultManager] updateBalance:balance currency:PBGameCurrencyIngot];
-            }
-            else{
-                PPDebug(@"<chargeIngot> failure, result=%d", output.resultCode);
-                if (output.resultCode == 70003 || output.resultCode == 70004){
-                    PPDebug(@"<chargeAccount> fake IAP");
-                }
-            }
-            
-            if ([_delegate respondsToSelector:@selector(didFinishChargeIngot:)]) {
-                [_delegate didFinishChargeIngot:output.resultCode];
-            }
-        });
-    });
+    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+    [self chargeCoin:amount
+              source:PurchaseType
+       transactionId:transaction.transactionIdentifier
+  transactionRecepit:base64receipt];
+}
+
+- (void)makeChargeIngotRequest:(int)amount transaction:(SKPaymentTransaction*)transaction
+{
+    NSString *base64receipt = [GTMBase64 stringByEncodingData:transaction.transactionReceipt];
+    [self chargeIngot:amount
+               source:PurchaseType
+        transactionId:transaction.transactionIdentifier
+   transactionRecepit:base64receipt];
+}
+
+
+- (void)recordTransaction:(SKPaymentTransaction*)transaction
+{
+    PPDebug(@"<recordTransaction> transaction = %@ [%@]",
+            transaction.transactionIdentifier,
+            [transaction.transactionReceipt description]);
     
+    NSString* productId  = transaction.payment.productIdentifier;
+    PBIAPProduct* product = [[IAPProductManager defaultManager] productWithAppleProductId:productId];
+    if (product.type == PBIAPProductTypeIapcoin){
+        [self makeChargeCoinRequest:product.count transaction:transaction];
+    }
+    else if(product.type == PBIAPProductTypeIapingot) {
+        [self makeChargeIngotRequest:product.count transaction:transaction];
+    }else{
+        
+    }
 }
 
-- (void)chargeIngot:(int)amount
-             source:(BalanceSourceType)source
+- (void)provideContent:(NSString*)productId
 {
-    NSString* myUserId = [[UserManager defaultManager] userId];
-    [self chargeIngot:amount toUser:myUserId source:source];
+    PPDebug(@"<provideContent> productId = %@", productId);
+    
+    if ([productId isEqualToString:[GameApp removeAdProductId]]){
+        // Remove Ad IAP
+        [[AdService defaultService] setAdDisable];
+    }
+    
+    // update UI here
+    int resultCode = PAYMENT_SUCCESS;
+    if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
+        [_delegate didFinishBuyProduct:resultCode];
+    }
 }
 
-- (void)chargeIngot:(int)amount
-             toUser:(NSString*)userId
-             source:(BalanceSourceType)source
+- (void) completeTransaction: (SKPaymentTransaction *)transaction
 {
-    NSString* myUserId = [[UserManager defaultManager] userId];
-    [self chargeIngot:amount source:source transactionId:nil transactionRecepit:nil toUserId:userId byUserId:myUserId];
+    PPDebug(@"<completeTransaction> transaction = %@", transaction.transactionIdentifier);
+    
+    // Your application should implement these two methods.
+    [self recordTransaction:transaction];
+    [self provideContent:transaction.payment.productIdentifier];
+    
+    // Remove the transaction from the payment queue.
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+- (void) restoreTransaction: (SKPaymentTransaction *)transaction
+{
+    PPDebug(@"<restoreTransaction> transaction = %@", transaction.transactionIdentifier);
+    [self recordTransaction: transaction];
+    [self provideContent: transaction.originalTransaction.payment.productIdentifier];
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+- (void) failedTransaction: (SKPaymentTransaction *)transaction
+{
+    PPDebug(@"<failedTransaction> error code = %d", transaction.error.code);
+    if (transaction.error.code != SKErrorPaymentCancelled) {
+        // TODO display an error here to UI
+        int resultCode = PAYMENT_FAILURE;
+        if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
+            [_delegate didFinishBuyProduct:resultCode];
+        }
+    }
+    else{
+        int resultCode = PAYMENT_CANCEL;
+        if ([_delegate respondsToSelector:@selector(didFinishBuyProduct:)]){
+            [_delegate didFinishBuyProduct:resultCode];
+        }
+    }
+    
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+#pragma mark - IAP delegate methods
+
+// Sent when the transaction array has changed (additions or state changes).  Client should check state of transactions and finish as appropriate.
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        PPDebug(@"<updatedTransactions> productId=%@, transactionState=%d",
+                transaction.payment.productIdentifier, transaction.transactionState);
+        
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored:
+                [self restoreTransaction:transaction];
+                break;
+            case SKPaymentTransactionStatePurchasing:
+                if ([_delegate respondsToSelector:@selector(didProcessingBuyProduct:)]){
+                    [_delegate didProcessingBuyProduct];
+                }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+// Sent when transactions are removed from the queue (via finishTransaction:).
+- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
+{
+    PPDebug(@"<removedTransactions> %@", [transactions description]);
+}
+
+// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    PPDebug(@"<restoreCompletedTransactionsFailedWithError> %@", [error description]);
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    PPDebug(@"<paymentQueueRestoreCompletedTransactionsFinished>");
 }
 
 @end

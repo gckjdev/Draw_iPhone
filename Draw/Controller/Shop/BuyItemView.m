@@ -183,7 +183,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 //                    if (itemId == ItemTypeRemoveAd) {
 //                        [[AdService defaultService] disableAd];
 //                    }else if(itemId == ItemTypePurse){
-//                        [[AccountService defaultService] chargeAccount:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
+//                        [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
 //                    }
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
@@ -252,7 +252,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                     if (itemId == ItemTypeRemoveAd) {
                         [[AdService defaultService] disableAd];
                     }else if(itemId == ItemTypePurse){
-                        [[AccountService defaultService] chargeAccount:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
+                        [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
                     }
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
                     [cusInfoView dismiss];
@@ -300,7 +300,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
                     if(itemId == ItemTypePurse){
-                        [[AccountService defaultService] chargeAccount:(([ConfigManager getCoinsIngotRate] * bself.item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
+                        [[AccountService defaultService] chargeCoin:(([ConfigManager getCoinsIngotRate] * bself.item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
                     }
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGiveSuccess") delayTime:2 isHappy:YES];
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){

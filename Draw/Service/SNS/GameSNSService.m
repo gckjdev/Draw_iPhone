@@ -37,7 +37,7 @@
                           
                           if (key == NO){
                               PPDebug(@"follow user %@ and reward success", snsService.officialWeiboId);
-                              [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+                              [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
                               [userDefaults setBool:YES forKey:followKey];
                               [userDefaults synchronize];
                           }
@@ -70,7 +70,7 @@
 {
     NSString* followKey = [self followKey:snsService];
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [[AccountService defaultService] chargeAccount:[ConfigManager getFollowReward] source:FollowReward];
+    [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
     [userDefaults setBool:YES forKey:followKey];
     [userDefaults synchronize];
     return;

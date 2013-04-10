@@ -164,7 +164,7 @@
 {
     int awardCoins = [self calCoinByPoint:_awardDicePoint];
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDailyAwardCoin"),awardCoins] delayTime:2 isHappy:YES];
-    [[AccountService defaultService] chargeAccount:awardCoins source:LiarDiceDailyAward];
+    [[AccountService defaultService] chargeCoin:awardCoins source:LiarDiceDailyAward];
 }
 
 - (void)clickAwardDice:(UITapGestureRecognizer*)sender

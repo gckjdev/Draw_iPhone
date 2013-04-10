@@ -168,7 +168,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardIngotMessage"), score];
             }
             else{
-                [[AccountService defaultService] chargeAccount:score source:LmAppReward];
+                [[AccountService defaultService] chargeCoin:score source:LmAppReward];
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
             }
             

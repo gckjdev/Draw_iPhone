@@ -276,6 +276,9 @@
 		A44B4A2217150E6F00404D73 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		A44B4A2317150E7000404D73 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		A44B4A251715146E00404D73 /* iap_product_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */; };
+		A44B4A26171516C500404D73 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
+		A44B4A27171516C600404D73 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
+		A44B4A28171516C800404D73 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
@@ -22981,6 +22984,7 @@
 				A44B49FC171506B100404D73 /* store_cell_ipad@2x.png in Resources */,
 				A44B49FD171506B100404D73 /* zhifubao@2x.png in Resources */,
 				A44B4A2217150E6F00404D73 /* ChargeController~ipad.xib in Resources */,
+				A44B4A27171516C600404D73 /* ChargeCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23930,6 +23934,7 @@
 				A44B4A20171506B300404D73 /* zhifubao@2x.png in Resources */,
 				A44B4A2317150E7000404D73 /* ChargeController~ipad.xib in Resources */,
 				A44B4A251715146E00404D73 /* iap_product_Zhajinhua.pb in Resources */,
+				A44B4A26171516C500404D73 /* ChargeCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25884,6 +25889,7 @@
 				A44B49D9171506AF00404D73 /* store_cell_ipad@2x.png in Resources */,
 				A44B49DA171506AF00404D73 /* zhifubao@2x.png in Resources */,
 				A44B4A2117150E6E00404D73 /* ChargeController~ipad.xib in Resources */,
+				A44B4A28171516C800404D73 /* ChargeCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

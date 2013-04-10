@@ -485,24 +485,24 @@
                                   output:output];
 }
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit
 {
-    return [GameNetworkRequest chargeAccount:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
+    return [GameNetworkRequest chargeCoin:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
     
 }
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
-                               byUser:(NSString*)byUserId
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit
+                            byUser:(NSString*)byUserId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -573,7 +573,7 @@
 }
 
 
-+ (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
++ (CommonNetworkOutput*)deductCoin:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
                                source:(int)source

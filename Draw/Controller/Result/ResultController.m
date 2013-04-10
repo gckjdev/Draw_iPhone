@@ -344,7 +344,7 @@
     if (self.score > 0) {
         PPDebug(@"<award guess> coins=%d", self.score);
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
-        [[AccountService defaultService] chargeAccount:self.score source:type];
+        [[AccountService defaultService] chargeCoin:self.score source:type];
         [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].congratulationsSound];
     }
 

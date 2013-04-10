@@ -704,7 +704,7 @@
             _changeRoomTimes ++;
             [self showActivityWithText:NSLS(@"kChangeRoom")];
             if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
-                [[AccountService defaultService] deductAccount:1 source:ChangeRoomType];
+                [[AccountService defaultService] deductCoin:1 source:ChangeRoomType];
             }
             [[DrawGameService defaultService] changeRoom];            
         }
@@ -713,7 +713,7 @@
         case ROOM_DIALOG_QUIT_ROOM:
         {
             [self quitRoom];
-            [[AccountService defaultService] deductAccount:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
+            [[AccountService defaultService] deductCoin:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         }
             break;
         
