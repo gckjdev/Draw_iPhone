@@ -17684,7 +17684,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBWall* wall;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
-@property (retain) NSMutableArray* mutableBoughtLearnDrawList;
+@property (retain) NSMutableArray* mutableIdListList;
 @end
 
 @implementation DataQueryResponse
@@ -17748,7 +17748,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUserRelation_ = !!value;
 }
 @synthesize userRelation;
-@synthesize mutableBoughtLearnDrawList;
+@synthesize mutableIdListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17763,7 +17763,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableWallListList = nil;
   self.wall = nil;
   self.user = nil;
-  self.mutableBoughtLearnDrawList = nil;
+  self.mutableIdListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17860,11 +17860,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableWallListList objectAtIndex:index];
   return value;
 }
-- (NSArray*) boughtLearnDrawList {
-  return mutableBoughtLearnDrawList;
+- (NSArray*) idListList {
+  return mutableIdListList;
 }
-- (NSString*) boughtLearnDrawAtIndex:(int32_t) index {
-  id value = [mutableBoughtLearnDrawList objectAtIndex:index];
+- (NSString*) idListAtIndex:(int32_t) index {
+  id value = [mutableIdListList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -17990,7 +17990,7 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUserRelation) {
     [output writeInt32:86 value:self.userRelation];
   }
-  for (NSString* element in self.mutableBoughtLearnDrawList) {
+  for (NSString* element in self.mutableIdListList) {
     [output writeString:90 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -18055,11 +18055,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   {
     int32_t dataSize = 0;
-    for (NSString* element in self.mutableBoughtLearnDrawList) {
+    for (NSString* element in self.mutableIdListList) {
       dataSize += computeStringSizeNoTag(element);
     }
     size += dataSize;
-    size += 2 * self.mutableBoughtLearnDrawList.count;
+    size += 2 * self.mutableIdListList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18217,11 +18217,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasUserRelation) {
     [self setUserRelation:other.userRelation];
   }
-  if (other.mutableBoughtLearnDrawList.count > 0) {
-    if (result.mutableBoughtLearnDrawList == nil) {
-      result.mutableBoughtLearnDrawList = [NSMutableArray array];
+  if (other.mutableIdListList.count > 0) {
+    if (result.mutableIdListList == nil) {
+      result.mutableIdListList = [NSMutableArray array];
     }
-    [result.mutableBoughtLearnDrawList addObjectsFromArray:other.mutableBoughtLearnDrawList];
+    [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18348,7 +18348,7 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         break;
       }
       case 722: {
-        [self addBoughtLearnDraw:[input readString]];
+        [self addIdList:[input readString]];
         break;
       }
     }
@@ -18798,35 +18798,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   result.userRelation = 0;
   return self;
 }
-- (NSArray*) boughtLearnDrawList {
-  if (result.mutableBoughtLearnDrawList == nil) {
+- (NSArray*) idListList {
+  if (result.mutableIdListList == nil) {
     return [NSArray array];
   }
-  return result.mutableBoughtLearnDrawList;
+  return result.mutableIdListList;
 }
-- (NSString*) boughtLearnDrawAtIndex:(int32_t) index {
-  return [result boughtLearnDrawAtIndex:index];
+- (NSString*) idListAtIndex:(int32_t) index {
+  return [result idListAtIndex:index];
 }
-- (DataQueryResponse_Builder*) replaceBoughtLearnDrawAtIndex:(int32_t) index with:(NSString*) value {
-  [result.mutableBoughtLearnDrawList replaceObjectAtIndex:index withObject:value];
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableIdListList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (DataQueryResponse_Builder*) addBoughtLearnDraw:(NSString*) value {
-  if (result.mutableBoughtLearnDrawList == nil) {
-    result.mutableBoughtLearnDrawList = [NSMutableArray array];
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value {
+  if (result.mutableIdListList == nil) {
+    result.mutableIdListList = [NSMutableArray array];
   }
-  [result.mutableBoughtLearnDrawList addObject:value];
+  [result.mutableIdListList addObject:value];
   return self;
 }
-- (DataQueryResponse_Builder*) addAllBoughtLearnDraw:(NSArray*) values {
-  if (result.mutableBoughtLearnDrawList == nil) {
-    result.mutableBoughtLearnDrawList = [NSMutableArray array];
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values {
+  if (result.mutableIdListList == nil) {
+    result.mutableIdListList = [NSMutableArray array];
   }
-  [result.mutableBoughtLearnDrawList addObjectsFromArray:values];
+  [result.mutableIdListList addObjectsFromArray:values];
   return self;
 }
-- (DataQueryResponse_Builder*) clearBoughtLearnDrawList {
-  result.mutableBoughtLearnDrawList = nil;
+- (DataQueryResponse_Builder*) clearIdListList {
+  result.mutableIdListList = nil;
   return self;
 }
 @end

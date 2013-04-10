@@ -4437,7 +4437,7 @@ BOOL BetTypeIsValidValue(BetType value);
   PBGameUser* user;
   PBWall* wall;
   PBBBSDraw* bbsDrawData;
-  NSMutableArray* mutableBoughtLearnDrawList;
+  NSMutableArray* mutableIdListList;
   NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
   NSMutableArray* mutableBbsBoardList;
@@ -4483,8 +4483,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 - (NSArray*) wallListList;
 - (PBWall*) wallListAtIndex:(int32_t) index;
-- (NSArray*) boughtLearnDrawList;
-- (NSString*) boughtLearnDrawAtIndex:(int32_t) index;
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4631,11 +4631,11 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
 - (DataQueryResponse_Builder*) clearUserRelation;
 
-- (NSArray*) boughtLearnDrawList;
-- (NSString*) boughtLearnDrawAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceBoughtLearnDrawAtIndex:(int32_t) index with:(NSString*) value;
-- (DataQueryResponse_Builder*) addBoughtLearnDraw:(NSString*) value;
-- (DataQueryResponse_Builder*) addAllBoughtLearnDraw:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearBoughtLearnDrawList;
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearIdListList;
 @end
 
