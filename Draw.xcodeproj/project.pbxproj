@@ -275,6 +275,7 @@
 		A44B4A2117150E6E00404D73 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		A44B4A2217150E6F00404D73 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		A44B4A2317150E7000404D73 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
+		A44B4A251715146E00404D73 /* iap_product_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
@@ -9400,6 +9401,7 @@
 		A43FF3261650E9EF00B490B7 /* DiceMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceMessageView.h; sourceTree = "<group>"; };
 		A43FF3271650E9EF00B490B7 /* DiceMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceMessageView.m; sourceTree = "<group>"; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
+		A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Zhajinhua.pb; sourceTree = "<group>"; };
 		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
 		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
 		A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommonGameNetworkClient+ZJHNetworkExtend.h"; sourceTree = "<group>"; };
@@ -17443,6 +17445,7 @@
 		CA7D433B168DBDB0009F43F7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */,
 				CA7D433C168DBDB0009F43F7 /* help */,
 				CA7D4343168DBDB0009F43F7 /* icon */,
 				CA7D4352168DBDB0009F43F7 /* Image */,
@@ -23926,6 +23929,7 @@
 				A44B4A1F171506B300404D73 /* store_cell_ipad@2x.png in Resources */,
 				A44B4A20171506B300404D73 /* zhifubao@2x.png in Resources */,
 				A44B4A2317150E7000404D73 /* ChargeController~ipad.xib in Resources */,
+				A44B4A251715146E00404D73 /* iap_product_Zhajinhua.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

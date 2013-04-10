@@ -83,10 +83,9 @@
     }];
     
 #ifdef DEBUG
-    [IAPProductService createTestDataFile];
+    [IAPProductService createCoinTestDataFile];
 #endif
 }
-
 
 - (void)updateBalance
 {
