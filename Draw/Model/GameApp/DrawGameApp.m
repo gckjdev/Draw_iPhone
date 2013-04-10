@@ -327,6 +327,11 @@
     return PBGameCurrencyIngot;
 }
 
+- (PBGameCurrency)saleCurrency
+{
+    return PBGameCurrencyIngot;
+}
+
 - (NSString*)youmiWallId
 {
     return @"c278f8dc80295b18";

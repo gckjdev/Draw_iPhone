@@ -12,7 +12,7 @@
 #import "StringUtil.h"
 #import "UserManager+DiceUserManager.h"
 #import "DiceGameService.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 #import "AdService.h"
 #import "TimeUtils.h"
 #import "AccountService.h"
@@ -382,7 +382,7 @@
     if ([ConfigManager wallEnabled]) {
         [self showWall];
     }else {
-        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES]; 
     }
 }
@@ -403,8 +403,7 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button
 {
-    //ENTER CHARGE PAGE 
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    ChargeController* controller = [[[ChargeController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

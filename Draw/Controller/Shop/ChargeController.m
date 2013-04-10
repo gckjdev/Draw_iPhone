@@ -40,17 +40,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        _saleCurrency = PBGameCurrencyIngot;
-    }
-    
-    return self;
-}
-
-
-- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency
-{
-    if (self = [super init]) {
-        _saleCurrency = saleCurrency;
+        _saleCurrency = [GameApp saleCurrency];
     }
     
     return self;

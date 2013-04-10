@@ -108,4 +108,6 @@
 - (NSString*)youmiWallSecret;
 - (NSString*)aderWallId;
 
+- (PBGameCurrency)saleCurrency;
+
 @end

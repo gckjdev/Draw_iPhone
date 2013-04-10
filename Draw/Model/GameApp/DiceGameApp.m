@@ -344,6 +344,12 @@
     return PBGameCurrencyCoin;
 }
 
+- (PBGameCurrency)saleCurrency
+{
+    return PBGameCurrencyCoin;
+}
+
+
 - (NSString*)youmiWallId
 {
     return @""; // TODO
