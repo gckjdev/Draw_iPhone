@@ -55,6 +55,8 @@
 @class PBLayoutList;
 @class PBLayoutList_Builder;
 @class PBLayout_Builder;
+@class PBLearnDraw;
+@class PBLearnDraw_Builder;
 @class PBLocalizeString;
 @class PBLocalizeString_Builder;
 @class PBMessage;
@@ -414,78 +416,155 @@
 - (PBCommentInfo_Builder*) clearActionSummary;
 @end
 
+@interface PBLearnDraw : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasPrice_:1;
+  BOOL hasBoughtCount_:1;
+  BOOL hasOpusId_:1;
+  int32_t type;
+  int32_t price;
+  int32_t boughtCount;
+  NSString* opusId;
+}
+- (BOOL) hasOpusId;
+- (BOOL) hasType;
+- (BOOL) hasPrice;
+- (BOOL) hasBoughtCount;
+@property (readonly, retain) NSString* opusId;
+@property (readonly) int32_t type;
+@property (readonly) int32_t price;
+@property (readonly) int32_t boughtCount;
+
++ (PBLearnDraw*) defaultInstance;
+- (PBLearnDraw*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLearnDraw_Builder*) builder;
++ (PBLearnDraw_Builder*) builder;
++ (PBLearnDraw_Builder*) builderWithPrototype:(PBLearnDraw*) prototype;
+
++ (PBLearnDraw*) parseFromData:(NSData*) data;
++ (PBLearnDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLearnDraw*) parseFromInputStream:(NSInputStream*) input;
++ (PBLearnDraw*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLearnDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLearnDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLearnDraw_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLearnDraw* result;
+}
+
+- (PBLearnDraw*) defaultInstance;
+
+- (PBLearnDraw_Builder*) clear;
+- (PBLearnDraw_Builder*) clone;
+
+- (PBLearnDraw*) build;
+- (PBLearnDraw*) buildPartial;
+
+- (PBLearnDraw_Builder*) mergeFrom:(PBLearnDraw*) other;
+- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBLearnDraw_Builder*) setOpusId:(NSString*) value;
+- (PBLearnDraw_Builder*) clearOpusId;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBLearnDraw_Builder*) setType:(int32_t) value;
+- (PBLearnDraw_Builder*) clearType;
+
+- (BOOL) hasPrice;
+- (int32_t) price;
+- (PBLearnDraw_Builder*) setPrice:(int32_t) value;
+- (PBLearnDraw_Builder*) clearPrice;
+
+- (BOOL) hasBoughtCount;
+- (int32_t) boughtCount;
+- (PBLearnDraw_Builder*) setBoughtCount:(int32_t) value;
+- (PBLearnDraw_Builder*) clearBoughtCount;
+@end
+
 @interface PBFeed : PBGeneratedMessage {
 @private
-  BOOL hasOpusCreatorGender_:1;
   BOOL hasIsCorrect_:1;
+  BOOL hasOpusCreatorGender_:1;
   BOOL hasGender_:1;
   BOOL hasContestScore_:1;
   BOOL hasHistoryScore_:1;
   BOOL hasOpusStatus_:1;
-  BOOL hasMatchTimes_:1;
   BOOL hasScore_:1;
-  BOOL hasActionType_:1;
-  BOOL hasDeviceType_:1;
+  BOOL hasMatchTimes_:1;
   BOOL hasCorrectTimes_:1;
   BOOL hasGuessTimes_:1;
   BOOL hasCommentTimes_:1;
+  BOOL hasDeviceType_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasActionType_:1;
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
-  BOOL hasUserId_:1;
   BOOL hasOpusCreatorAvatar_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
-  BOOL hasContestId_:1;
-  BOOL hasFeedId_:1;
   BOOL hasComment_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusId_:1;
+  BOOL hasFeedId_:1;
   BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
   BOOL hasTargetUserId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasDeviceName_:1;
   BOOL hasSignature_:1;
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
   BOOL hasGameId_:1;
-  BOOL hasDeviceName_:1;
-  BOOL hasCommentInfo_:1;
+  BOOL hasLearnDraw_:1;
   BOOL hasDrawData_:1;
-  BOOL opusCreatorGender_:1;
+  BOOL hasCommentInfo_:1;
   BOOL isCorrect_:1;
+  BOOL opusCreatorGender_:1;
   BOOL gender_:1;
   Float64 contestScore;
   Float64 historyScore;
   int32_t opusStatus;
-  int32_t matchTimes;
   int32_t score;
-  int32_t actionType;
-  int32_t deviceType;
+  int32_t matchTimes;
   int32_t correctTimes;
   int32_t guessTimes;
   int32_t commentTimes;
+  int32_t deviceType;
   int32_t createDate;
+  int32_t actionType;
   NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
-  NSString* userId;
   NSString* opusCreatorAvatar;
   NSString* opusWord;
   NSString* opusImage;
-  NSString* contestId;
-  NSString* feedId;
   NSString* comment;
+  NSString* contestId;
   NSString* opusId;
+  NSString* feedId;
   NSString* drawDataUrl;
   NSString* opusDesc;
   NSString* targetUserNickName;
   NSString* targetUserId;
+  NSString* userId;
+  NSString* deviceName;
   NSString* signature;
   NSString* avatar;
   NSString* nickName;
   NSString* gameId;
-  NSString* deviceName;
-  PBCommentInfo* commentInfo;
+  PBLearnDraw* learnDraw;
   PBDraw* drawData;
+  PBCommentInfo* commentInfo;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
 }
@@ -524,6 +603,7 @@
 - (BOOL) hasOpusImage;
 - (BOOL) hasContestId;
 - (BOOL) hasContestScore;
+- (BOOL) hasLearnDraw;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -559,6 +639,7 @@
 @property (readonly, retain) NSString* opusImage;
 @property (readonly, retain) NSString* contestId;
 @property (readonly) Float64 contestScore;
+@property (readonly, retain) PBLearnDraw* learnDraw;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
@@ -790,6 +871,13 @@
 - (Float64) contestScore;
 - (PBFeed_Builder*) setContestScore:(Float64) value;
 - (PBFeed_Builder*) clearContestScore;
+
+- (BOOL) hasLearnDraw;
+- (PBLearnDraw*) learnDraw;
+- (PBFeed_Builder*) setLearnDraw:(PBLearnDraw*) value;
+- (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
+- (PBFeed_Builder*) clearLearnDraw;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

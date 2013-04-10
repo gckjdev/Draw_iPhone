@@ -494,5 +494,7 @@ message DataQueryResponse {
   
   optional PBGameUser user = 85;
   optional int32 userRelation = 86;             // 用户和用户之间的关系
+
+  repeated string boughtLearnDraw = 90;              //for learn draw
   
 }

@@ -46,6 +46,14 @@ message PBCommentInfo
     optional string actionSummary = 6;   //action的简单摘要
 }
 
+
+message PBLearnDraw{
+    required string opusId = 1;
+    optional int32 type = 2;
+    optional int32 price = 3;
+    optional int32 boughtCount = 4;
+}
+
 message PBFeed {
   required string feedId = 1;
   required string userId = 2;
@@ -102,6 +110,8 @@ message PBFeed {
   optional string contestId = 91;
   optional double contestScore = 92;
 
+  //for learn Draw
+  optional PBLearnDraw learnDraw = 100;
 }
 
 
