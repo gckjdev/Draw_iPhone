@@ -47,7 +47,7 @@ typedef enum{
     HomeMenuTypeZJHShop,
     HomeMenuTypeZJHFreeCoins,
 
-    // ZJH button menu
+    // ZJH bottom menu
     HomeMenuTypeZJHMore,
 
     
@@ -59,7 +59,10 @@ typedef enum{
     HomeMenuTypeDiceHelp,
     HomeMenuTypeDiceShop,
     HomeMenuTypeDiceFreeCoins,
-    HomeMenuTypeDiceBottomBegin = 3500,
+    
+    // Dice bottom menu
+    HomeMenuTypeDiceMore,
+    
     
 }HomeMenuType;
 

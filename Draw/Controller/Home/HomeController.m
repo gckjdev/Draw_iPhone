@@ -585,10 +585,6 @@
         case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
-//
-//            VendingController* vc = [[VendingController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            [vc release];
             
             StoreController *vc = [[[StoreController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
@@ -626,17 +622,12 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_APPS];
             
-//            [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-//            [[LmWallService defaultService] show:self];
-            
             UMGridViewController *vc = [[[UMGridViewController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
-        case HomeMenuTypeDiceFreeCoins:
         case HomeMenuTypeDrawFreeCoins:
-        case HomeMenuTypeZJHFreeCoins:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
             FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
@@ -654,7 +645,6 @@
         }
             
         case HomeMenuTypeDrawMore:
-        case HomeMenuTypeZJHMore:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
             
@@ -735,7 +725,6 @@
         }
             break;
         case HomeMenuTypeDrawMore:
-        case HomeMenuTypeZJHMore:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
             

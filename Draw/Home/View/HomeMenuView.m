@@ -135,6 +135,9 @@
             return NSLS(@"kDiceMenuSuperHighRoom");
         case HomeMenuTypeDiceShop:
             return NSLS(@"kDiceMenuShop");
+        case HomeMenuTypeDiceMore:
+            return NSLS(@"kHomeMenuTypeDrawMore");
+            
 
         default:
         return nil;
@@ -238,7 +241,7 @@
         case HomeMenuTypeDiceStart:
             return [imageManager zjhHomeStart];
         case HomeMenuTypeDiceShop:
-            return [imageManager drawHomeShop];
+            return [imageManager diceHomeShop];
         case HomeMenuTypeDiceHelp:
             return [imageManager zjhHomeHelp];
         case HomeMenuTypeDiceHappyRoom:
@@ -249,6 +252,9 @@
             return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceFreeCoins:
             return [imageManager drawFreeCoins];
+        case HomeMenuTypeDiceMore:{
+            return [imageManager diceHomeMore];
+        }
         default:
             return nil;
     }
@@ -467,7 +473,7 @@ int *getDiceBottomMenuTypeList()
         HomeMenuTypeDrawMe,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawMore,
+        HomeMenuTypeDiceMore,
         HomeMenuTypeEnd
     };
     return list;

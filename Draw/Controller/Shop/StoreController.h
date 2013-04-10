@@ -17,6 +17,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coinBalanceLabel;
 @property (retain, nonatomic) IBOutlet UILabel *ingotBalanceLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *ingotBalanceBgImageView;
 
 
 @end
