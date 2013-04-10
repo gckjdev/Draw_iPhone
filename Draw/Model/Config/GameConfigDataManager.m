@@ -183,7 +183,7 @@ static dispatch_once_t onceToken;
 
     [builder addRewardWalls:limei];
     
-    if (isDrawApp() || isDiceApp()) {
+    if (isDrawApp()) {
         [builder addRewardWalls:youmi];
     }
     [builder addRewardWalls:ader];

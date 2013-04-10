@@ -65,6 +65,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     }];
 }
 
++ (void)createTestDataFile
+{
+    if (isDrawApp()) {
+        [self createIngotTestDataFile];
+    }else if (isDiceApp() || isZhajinhuaApp()){
+        [self createCoinTestDataFile];
+    }
+}
 
 + (void)createIngotTestDataFile
 {

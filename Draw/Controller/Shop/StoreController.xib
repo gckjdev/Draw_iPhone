@@ -657,6 +657,22 @@
 					<int key="connectionID">62</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ingotImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="368120566"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ingotBalanceBgImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="967553851"/>
+					</object>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBackButton:</string>
 						<reference key="source" ref="268529431"/>
@@ -912,7 +928,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">64</int>
+			<int key="maxID">66</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -920,28 +936,28 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{16, 16}</string>
-			<string key="balance_bg@2x.png">{16, 16}</string>
-			<string key="charge_bg@2x.png">{16, 16}</string>
-			<string key="coin@2x.png">{16, 16}</string>
-			<string key="coin_count_bg@2x.png">{16, 16}</string>
-			<string key="ingot@2x.png">{16, 16}</string>
-			<string key="ingot_count_bg@2x.png">{16, 16}</string>
-			<string key="item_normal@2x.png">{16, 16}</string>
+			<string key="back@2x.png">{67, 53}</string>
+			<string key="balance_bg@2x.png">{640, 73}</string>
+			<string key="charge_bg@2x.png">{99, 50}</string>
+			<string key="coin@2x.png">{64, 64}</string>
+			<string key="coin_count_bg@2x.png">{128, 34}</string>
+			<string key="ingot@2x.png">{64, 64}</string>
+			<string key="ingot_count_bg@2x.png">{102, 34}</string>
+			<string key="item_normal@2x.png">{133, 62}</string>
 			<string key="item_normal_icon.png">{16, 16}</string>
-			<string key="item_normal_select@2x.png">{16, 16}</string>
+			<string key="item_normal_select@2x.png">{133, 62}</string>
 			<string key="item_normal_select_icon.png">{16, 16}</string>
-			<string key="item_promotion@2x.png">{16, 16}</string>
+			<string key="item_promotion@2x.png">{133, 62}</string>
 			<string key="item_promotion_icon.png">{16, 16}</string>
 			<string key="item_promotion_select_icon.png">{16, 16}</string>
 			<string key="item_taobao_icon.png">{16, 16}</string>
 			<string key="item_taobao_select_icon.png">{16, 16}</string>
-			<string key="item_tool@2x.png">{16, 16}</string>
+			<string key="item_tool@2x.png">{133, 62}</string>
 			<string key="item_tool_icon.png">{16, 16}</string>
-			<string key="item_tool_select@2x.png">{16, 16}</string>
+			<string key="item_tool_select@2x.png">{133, 62}</string>
 			<string key="item_tool_select_icon.png">{16, 16}</string>
-			<string key="topwood@2x.jpg">{16, 16}</string>
-			<string key="wood_bg@2x.jpg">{16, 16}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

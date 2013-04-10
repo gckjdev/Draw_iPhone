@@ -284,6 +284,8 @@
 		A44B4A31171545A100404D73 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */; };
 		A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */; };
 		A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A331715505B00404D73 /* zjh_home_charge@2x.png */; };
+		A44B4A3517155BFF00404D73 /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
+		A44B4A3717156BB300404D73 /* iap_product_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A3617156BB300404D73 /* iap_product_Dice.pb */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
@@ -5504,7 +5506,6 @@
 		CA23521316EB0DDF00C88082 /* StoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415516E47ECF00106265 /* StoreCell.m */; };
 		CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415616E47ECF00106265 /* StoreCell.xib */; };
 		CA23521516EB0DDF00C88082 /* StoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491415816E47ECF00106265 /* StoreController.m */; };
-		CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491415916E47ECF00106265 /* StoreController.xib */; };
 		CA23522016EB0DDF00C88082 /* ColorShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF008152AF21900F0AC88 /* ColorShopCell.m */; };
 		CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA4FF009152AF21900F0AC88 /* ColorShopCell.xib */; };
 		CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */; };
@@ -9391,6 +9392,7 @@
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
 		A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua.pb; sourceTree = "<group>"; };
 		A44B4A331715505B00404D73 /* zjh_home_charge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_home_charge@2x.png"; sourceTree = "<group>"; };
+		A44B4A3617156BB300404D73 /* iap_product_Dice.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Dice.pb; sourceTree = "<group>"; };
 		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
 		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
 		A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommonGameNetworkClient+ZJHNetworkExtend.h"; sourceTree = "<group>"; };
@@ -17785,6 +17787,7 @@
 		CA7D4505168DBDCB009F43F7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A44B4A3617156BB300404D73 /* iap_product_Dice.pb */,
 				CA7D4506168DBDCB009F43F7 /* font */,
 				CA7D4508168DBDCB009F43F7 /* help */,
 				CA7D451B168DBDCB009F43F7 /* image */,
@@ -22965,6 +22968,8 @@
 				A44B4A2217150E6F00404D73 /* ChargeController~ipad.xib in Resources */,
 				A44B4A27171516C600404D73 /* ChargeCell~ipad.xib in Resources */,
 				A44B4A2A1715380C00404D73 /* more_words_btn@2x.png in Resources */,
+				A44B4A3517155BFF00404D73 /* StoreController~ipad.xib in Resources */,
+				A44B4A3717156BB300404D73 /* iap_product_Dice.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23814,7 +23819,6 @@
 				CA23521016EB0DDF00C88082 /* CustomInfoView.xib in Resources */,
 				CA23521216EB0DDF00C88082 /* PriceView.xib in Resources */,
 				CA23521416EB0DDF00C88082 /* StoreCell.xib in Resources */,
-				CA23521616EB0DDF00C88082 /* StoreController.xib in Resources */,
 				CA23522116EB0DDF00C88082 /* ColorShopCell.xib in Resources */,
 				CA23522216EB0DDF00C88082 /* ColorShopCell~ipad.xib in Resources */,
 				CA23522A16EB0DDF00C88082 /* GameItemDetailView.xib in Resources */,

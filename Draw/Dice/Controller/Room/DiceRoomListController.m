@@ -21,11 +21,12 @@
 #import "DiceColorManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 #import "LmWallService.h"
 #import "DiceUserInfoView.h"
 #import "PPResourceService.h"
 #import "FXLabel.h"
+#import "FreeIngotController.h"
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
 #define ROOMS_COUNT_PER_PAGE  20
@@ -294,9 +295,10 @@
 - (void)clickOk:(CommonDialog *)dialog
 {
     if ([ConfigManager wallEnabled]) {
-        [self showWall];
+        FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
     }else {
-        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES]; 
     }
 }
@@ -304,12 +306,6 @@
 - (void)clickBack:(CommonDialog *)dialog
 {
     
-}
-
-- (void)showWall
-{        
-    [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-    [[LmWallService defaultService] show:self];
 }
 
 #pragma mark - common room list delegate

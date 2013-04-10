@@ -566,6 +566,14 @@
 #define METHOD_CREATE_BBS_ACTION @"cba"
 
 
+// learn draw
+#define METHOD_GET_LEARNDRAW_LIST @"gldl"
+#define METHOD_GET_USER_LEARNDRAW_LIST @"guldl"
+#define METHOD_GET_USER_LEARDRAWID_LIST @"guldil"
+#define METHOD_BUY_LEARN_DRAW @"bld"
+#define METHOD_ADD_LEARN_DRAW @"ald"
+
+
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2
 #define REGISTER_TYPE_QQ        3
