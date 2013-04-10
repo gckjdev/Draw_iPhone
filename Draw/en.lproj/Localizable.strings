@@ -1131,8 +1131,10 @@
 "kItemTool" = "Tool";
 "kItemPromotion" = "Hot";
 "kItemTaoBao" = "Tao";
-"kDownloadRewardAppTips" = "Download our apps to earn ingots";
-"kRewardWallTips" = "Download third-party apps to earn ingots";
+"kDownloadRewardIngotAppTips" = "Download our apps to earn ingots";
+"kDownloadRewardCoinAppTips" = "Download our apps to earn coins";
+"kRewardIngotWallTips" = "Download third-party apps to earn ingots";
+"kRewardCoinWallTips" = "Download third-party apps to earn coins";
 "kFreeIngot" = "Free Ingot";
 "kGoToBBS4Help" = "For help? Go to BBS";
 

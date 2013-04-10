@@ -323,7 +323,7 @@
     return @"game_bg.mp3";
 }
 
-- (PBGameCurrency)wallRewardCoinType
+- (PBGameCurrency)wallRewardCurrencyType
 {
     return PBGameCurrencyCoin;
 }

@@ -102,7 +102,7 @@
 
 - (NSString*)getBackgroundMusicName;
 
-- (PBGameCurrency)wallRewardCoinType;
+- (PBGameCurrency)wallRewardCurrencyType;
 
 - (NSString*)youmiWallId;
 - (NSString*)youmiWallSecret;
