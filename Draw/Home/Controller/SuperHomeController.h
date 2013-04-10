@@ -33,4 +33,9 @@
 - (void)handleDisconnectWithError:(NSError*)error;
 - (float)getMainMenuOriginY;
 - (float)getBottomMenuOriginY;
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+   didClickAvatarButton:(UIButton *)button;
+
+
 @end

@@ -391,4 +391,11 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 }
 
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
+{
+    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+    UserSettingController* uc = [[[UserSettingController alloc] init] autorelease];
+    [self.navigationController pushViewController:uc animated:YES];
+}
+
 @end

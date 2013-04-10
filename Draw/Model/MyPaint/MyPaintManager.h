@@ -22,6 +22,9 @@
 - (void)didGetMyPaints:(NSArray *)paints;
 - (void)didGetAllDrafts:(NSArray *)paints;
 - (void)didSaveToAlbumSuccess:(BOOL)succ;
+- (void)didCountAllPaints:(NSInteger)count;
+- (void)didCountMyPaints:(NSInteger)count;
+- (void)didCountAllDrafts:(NSInteger)count;
 @end
 
 @class MyPaint;

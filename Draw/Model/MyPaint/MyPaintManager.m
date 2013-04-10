@@ -156,6 +156,7 @@ static MyPaintManager* _defaultManager;
     return array;
 }
 
+
 - (void)findAllPaintsFrom:(NSInteger)offset 
                         limit:(NSInteger)limit 
                      delegate:(id<MyPaintManagerDelegate>)delegate
@@ -180,6 +181,11 @@ static MyPaintManager* _defaultManager;
     if (delegate && [delegate respondsToSelector:@selector(didGetAllDrafts:)]) {
         [delegate didGetAllDrafts:array];
     } 
+}
+
+- (void)countAllDrafts
+{
+    //TODO:finish it later
 }
 
 
