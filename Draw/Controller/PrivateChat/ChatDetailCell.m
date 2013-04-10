@@ -71,7 +71,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(473.0):(198.0))
 #define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
-#define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(16.0):(8.0)) //文字和泡泡的y上的距离
+#define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(24.0):(12.0)) //文字和泡泡的y上的距离
 
 #define TIME_HEIGHT  (([DeviceDetection isIPAD])?(34):(17))//时间的高度
 
@@ -86,8 +86,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(150,150):CGSizeMake(67,67))
 
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(30):(17)) //尖尖的部分距离文字的距离
-#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(21):(10))//不尖部分和文字的距离
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(24):(12)) //尖尖的部分距离文字的距离
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(26):(13))//不尖部分和文字的距离
 
 
 
@@ -282,16 +282,18 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [cell.contentButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
     UIEdgeInsets sets;
     if (isRecevie) {
-        [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] leftBubbleImage] forState:UIControlStateNormal];        
+        [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] leftBubbleImage] forState:UIControlStateNormal];
         sets = UIEdgeInsetsMake(TEXT_VERTICAL_EDGE, BUBBLE_TIP_WIDTH, TEXT_VERTICAL_EDGE, BUBBLE_NOT_TIP_WIDTH);
+        [cell.contentButton setTitleColor:[UIColor colorWithRed:15/255.0 green:91/255.0 blue:13/255.0 alpha:1] forState:UIControlStateNormal];
     }else{
         [cell.contentButton setBackgroundImage:[[ShareImageManager defaultManager] rightBubbleImage] forState:UIControlStateNormal];
         sets = UIEdgeInsetsMake(TEXT_VERTICAL_EDGE, BUBBLE_NOT_TIP_WIDTH, TEXT_VERTICAL_EDGE, BUBBLE_TIP_WIDTH);
+        [cell.contentButton setTitleColor:[UIColor colorWithRed:14/255.0 green:17/255.0 blue:76/255.0 alpha:1] forState:UIControlStateNormal];
     }
     [cell.contentButton setImageEdgeInsets:sets];
     [cell.contentButton setTitleEdgeInsets:sets];
     
-    [cell.timeButton setTitleColor:[UIColor colorWithRed:237/255. green:93/255. blue:78/255. alpha:1] forState:UIControlStateNormal];
+    [cell.timeButton setTitleColor:[UIColor colorWithRed:194/255. green:144/255. blue:105/255. alpha:1] forState:UIControlStateNormal];
     cell.avatarView.userInteractionEnabled = NO;
     
     return cell;
