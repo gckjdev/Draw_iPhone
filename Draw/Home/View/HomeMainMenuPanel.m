@@ -130,6 +130,9 @@
 
     [self updatePageButton];
     [self performSelector:@selector(animatePageButtons) withObject:nil afterDelay:1];
+    if (isDrawApp()) {
+        [[self viewWithTag:1234] removeFromSuperview];
+    }
 }
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type
