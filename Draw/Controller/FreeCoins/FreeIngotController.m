@@ -43,6 +43,7 @@ enum {
 {
     [_friendAppArray release];
     [_wallArray release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -64,6 +65,7 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.titleLabel.text = [GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ? NSLS(@"kFreeIngots") : NSLS(@"kFreeCoins");
     self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
     self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
 }
@@ -181,4 +183,8 @@ enum {
 //    [bbs release];
 }
 
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

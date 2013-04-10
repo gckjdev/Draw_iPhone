@@ -514,10 +514,10 @@
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            //            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
         case HomeMenuTypeDrawMore:
+        case HomeMenuTypeZJHMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

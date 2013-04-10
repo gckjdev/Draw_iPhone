@@ -237,14 +237,13 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                 [self toRegister];
                 return;
             }
-//            VendingController* controller = [[[VendingController alloc] init] autorelease];
 
             StoreController *controller = [[[StoreController alloc] init] autorelease];            
             [self.navigationController pushViewController:controller animated:YES];
         }
             break;
             
-        case HomeMenuTypeDrawFreeCoins:
+        case HomeMenuTypeZJHFreeCoins:
         {            
             FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
@@ -292,7 +291,7 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 //            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
-        case HomeMenuTypeDrawMore:
+        case HomeMenuTypeZJHMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

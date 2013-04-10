@@ -79,9 +79,13 @@
             return NSLS(@"kMore_apps");
         }
         case HomeMenuTypeDrawFreeCoins:
+        {
+            return NSLS(@"kFreeIngots");
+        }
+        case HomeMenuTypeZJHFreeCoins:
         case HomeMenuTypeDiceFreeCoins:
         {
-            return NSLS(@"kFreeGetCoins");
+            return NSLS(@"kFreeCoins");
         }
         case HomeMenuTypeDrawPlayWithFriend:{
             return NSLS(@"kPlayWithFriend");
@@ -109,12 +113,15 @@
         case HomeMenuTypeZJHCharge:{
             return NSLS(@"kHomeMenuTypeZJHCharge");
         }
-            
         case HomeMenuTypeZJHShop:{
             return NSLS(@"kHomeMenuTypeZJHShop");
         }
+        case HomeMenuTypeZJHMore:
+        {
+            return NSLS(@"kHomeMenuTypeDrawMore");
+        }
             
-            
+        // Dice
         case HomeMenuTypeDiceStart:
             return NSLS(@"kDiceMenuStart");
         case HomeMenuTypeDiceHelp:
@@ -165,7 +172,8 @@
         case HomeMenuTypeDrawApps:{
             return [imageManager drawAppsRecommand];
         }
-        case HomeMenuTypeDrawFreeCoins:{
+        case HomeMenuTypeDrawFreeCoins:
+        {
             return [imageManager drawFreeCoins];
         }
         case HomeMenuTypeDrawPlayWithFriend:{
@@ -211,35 +219,35 @@
             return [imageManager zjhHomeVSSite];
         }
         case HomeMenuTypeZJHCharge:{
-            return [imageManager drawHomeShop];
+            return [imageManager zjhHomeCharge];
         }
         case HomeMenuTypeZJHShop:{
             return [imageManager drawHomeShop];
         }
-            
-            
-            
+        case HomeMenuTypeZJHFreeCoins:
+        {
+            return [imageManager drawFreeCoins];
+        }
+        case HomeMenuTypeZJHMore:
+        {
+            return [imageManager zjhHomeMore];
+        }
+
+     
         //dice
         case HomeMenuTypeDiceStart:
-//            return [shareImageManager diceStartMenuImage];
             return [imageManager zjhHomeStart];
         case HomeMenuTypeDiceShop:
-//            return [shareImageManager diceShopImage];
             return [imageManager drawHomeShop];
         case HomeMenuTypeDiceHelp:
-//            return [shareImageManager diceHelpMenuImage];
             return [imageManager zjhHomeHelp];
         case HomeMenuTypeDiceHappyRoom:
-//            return [shareImageManager normalRoomMenuImage];
             return [imageManager zjhHomeNormalSite];
         case HomeMenuTypeDiceHighRoom:
-//            return [shareImageManager highRoomMenuImage];
             return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceSuperHighRoom:
-//            return [shareImageManager superHighRoomMenuImage];
             return [imageManager zjhHomeRichSite];
         case HomeMenuTypeDiceFreeCoins:
-            //            return [shareImageManager diceShopImage];
             return [imageManager drawFreeCoins];
         default:
             return nil;
@@ -374,10 +382,10 @@ int *getZJHMainMenuTypeListWithFreeCoins()
         HomeMenuTypeZJHNormalSite,
         HomeMenuTypeZJHRichSite,
         HomeMenuTypeZJHVSSite,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeZJHFreeCoins,
         HomeMenuTypeZJHCharge,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeZJHShop,
+//        HomeMenuTypeZJHShop,
         HomeMenuTypeZJHHelp,
         HomeMenuTypeEnd
     };
@@ -411,7 +419,7 @@ int *getZJHBottomMenuTypeList()
         HomeMenuTypeDrawMe,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawMore,
+        HomeMenuTypeZJHMore,
         HomeMenuTypeEnd
     };
     return list;

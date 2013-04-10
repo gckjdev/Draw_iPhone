@@ -636,15 +636,8 @@
             break;
             
         case HomeMenuTypeDiceFreeCoins:
-        {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
-            
-            FreeCoinsControllerViewController *vc = [[[FreeCoinsControllerViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-            
         case HomeMenuTypeDrawFreeCoins:
+        case HomeMenuTypeZJHFreeCoins:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_FREE_COINS];
             FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
@@ -662,6 +655,7 @@
         }
             
         case HomeMenuTypeDrawMore:
+        case HomeMenuTypeZJHMore:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
             
@@ -742,6 +736,7 @@
         }
             break;
         case HomeMenuTypeDrawMore:
+        case HomeMenuTypeZJHMore:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
             

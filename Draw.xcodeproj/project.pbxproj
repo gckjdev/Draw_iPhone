@@ -283,6 +283,7 @@
 		A44B4A2A1715380C00404D73 /* more_words_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14131697DBA900841940 /* more_words_btn@2x.png */; };
 		A44B4A31171545A100404D73 /* default_config_Zhajinhua.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */; };
 		A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */; };
+		A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44B4A331715505B00404D73 /* zjh_home_charge@2x.png */; };
 		A44B621F163786D500A8045B /* ZJHGameService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B621E163786D500A8045B /* ZJHGameService.m */; };
 		A44B62221637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B62211637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.m */; };
 		A44B6226163787F500A8045B /* ZJHGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = A44B6224163787F500A8045B /* ZJHGameController.m */; };
@@ -9389,6 +9390,7 @@
 		A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Zhajinhua.pb; sourceTree = "<group>"; };
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
 		A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua.pb; sourceTree = "<group>"; };
+		A44B4A331715505B00404D73 /* zjh_home_charge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjh_home_charge@2x.png"; sourceTree = "<group>"; };
 		A44B621D163786D500A8045B /* ZJHGameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHGameService.h; sourceTree = "<group>"; };
 		A44B621E163786D500A8045B /* ZJHGameService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHGameService.m; sourceTree = "<group>"; };
 		A44B62201637870000A8045B /* CommonGameNetworkClient+ZJHNetworkExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommonGameNetworkClient+ZJHNetworkExtend.h"; sourceTree = "<group>"; };
@@ -16168,6 +16170,7 @@
 		CA12611116785F0D00DD96F4 /* Zhajinhua */ = {
 			isa = PBXGroup;
 			children = (
+				A44B4A331715505B00404D73 /* zjh_home_charge@2x.png */,
 				CA12611216785F0D00DD96F4 /* zjh_home_charge_bg@2x.png */,
 				CA12611316785F0D00DD96F4 /* zjh_home_freecoin_bg@2x.png */,
 				CA12611416785F0D00DD96F4 /* zjh_home_header_bg@2x.png */,
@@ -23909,6 +23912,7 @@
 				A44B4A291715380B00404D73 /* more_words_btn@2x.png in Resources */,
 				A44B4A31171545A100404D73 /* default_config_Zhajinhua.pb in Resources */,
 				A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */,
+				A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

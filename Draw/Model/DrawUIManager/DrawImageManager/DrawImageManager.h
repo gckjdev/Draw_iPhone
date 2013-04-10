@@ -44,8 +44,9 @@
 - (UIImage *)zjhHomeRichSite;
 - (UIImage *)zjhHomeStart;
 - (UIImage *)zjhHomeVSSite;
+- (UIImage *)zjhHomeCharge;
+- (UIImage *)zjhHomeMore;
 
-- (UIImage *)zjhHomeChargeBG;
 - (UIImage *)zjhHomeFreeCoinBG;
 
 @end
