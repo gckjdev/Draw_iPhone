@@ -55,7 +55,7 @@ typedef enum{
 
 }
 @property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
-- (void)loadPaintsOnlyMine:(BOOL)onlyMine shouldShowLoading:(BOOL)shouldShowLoading;
+- (void)loadPaintsOnlyMine:(BOOL)onlyMine;
 - (NSArray *)paints;
 - (void)reloadView;
 - (void)updateActionSheetIndexs;
@@ -110,11 +110,6 @@ typedef enum{
 - (void)didGetAllPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeAll resultList:paints];
-    TableTab *allTab = [_tabManager tabForID:TabTypeAll];
-
-    UIButton *fButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
-    NSString *fTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allTab.dataList.count];
-    [fButton setTitle:fTitle forState:UIControlStateNormal];
     
     [self hideActivity];
     [self reloadView];
@@ -123,11 +118,6 @@ typedef enum{
 - (void)didGetMyPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeMine resultList:paints];
-    TableTab *myTab = [_tabManager tabForID:TabTypeMine];
-    
-    UIButton *fButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-    NSString *fTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myTab.dataList.count];
-    [fButton setTitle:fTitle forState:UIControlStateNormal];
     
     [self hideActivity];
     [self reloadView];
@@ -137,16 +127,27 @@ typedef enum{
 - (void)didGetAllDrafts:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
-    TableTab *draftTab = [_tabManager tabForID:TabTypeDraft];
-    
-    UIButton *fButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
-    NSString *fTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftTab.dataList.count];
-    [fButton setTitle:fTitle forState:UIControlStateNormal];
-    
     
     [self hideActivity];
     [self reloadView];
     [self updateTab:paints];
+}
+
+- (void)didGetAllPaintCount:(NSInteger)allPaintCount
+               myPaintCount:(NSInteger)myPaintCount
+                 draftCount:(NSInteger)draftCount
+{
+    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
+    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
+    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
+    
+    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
+    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
+    [myButton setTitle:myTitle forState:UIControlStateNormal];
+    
+    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
+    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
+    [allButton setTitle:allTitle forState:UIControlStateNormal];
 }
 
 - (void)performLoadMyPaints
@@ -163,14 +164,7 @@ typedef enum{
 
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
 {
-    [self loadPaintsOnlyMine:onlyMine shouldShowLoading:YES];
-}
-
-- (void)loadPaintsOnlyMine:(BOOL)onlyMine shouldShowLoading:(BOOL)shouldShowLoading
-{
-    if (shouldShowLoading) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-    }
+    [self showActivityWithText:NSLS(@"kLoading")];
     if (onlyMine) {
         [self performSelector:@selector(performLoadMyPaints) withObject:nil afterDelay:0.3f];
     } else {
@@ -186,10 +180,10 @@ typedef enum{
 
 - (void)loadDrafts
 {
-    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-    if (tab.status == TableTabStatusLoading) {
-        return;
-    }
+//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
+//    if (tab.status == TableTabStatusLoading) {
+//        return;
+//    }
     [self showActivityWithText:NSLS(@"kLoading")];
     [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
 }
@@ -678,14 +672,8 @@ typedef enum{
 //    [self loadDrafts];
 //    [self loadPaintsOnlyMine:YES];
 //    [self loadPaintsOnlyMine:NO];
-    
-    for (int i = 0; i < [self tabCount]; i ++) {
-        int tabId = [self tabIDforIndex:i];
-        if (i != _defaultTabIndex) {
-            [self serviceLoadDataForTabID:tabId shouldShowLoading:NO];
-        }
-    }
     [super initTabButtons];
+    [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
 }
 
 
@@ -784,8 +772,8 @@ typedef enum{
     [self reloadView];
 }
 
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
-              shouldShowLoading:(BOOL)shouldShowLoading
 {
     [self reloadView];
     TableTab *tab = [_tabManager tabForID:tabID];
@@ -794,17 +782,17 @@ typedef enum{
         self.noDataTipLabl.hidden = YES;
         switch (tabID) {
             case TabTypeMine:
-                [self loadPaintsOnlyMine:YES shouldShowLoading:shouldShowLoading];
+                [self loadPaintsOnlyMine:YES];
                 break;
             case TabTypeAll:
             {
-                [self loadPaintsOnlyMine:NO shouldShowLoading:shouldShowLoading];
+                [self loadPaintsOnlyMine:NO];
                 break;
             }
                 
             case TabTypeDraft: //for test
             {
-                [self loadDraftsShouldShowLoading:shouldShowLoading];
+                [self loadDrafts];
                 break;
             }
             default:
@@ -814,10 +802,5 @@ typedef enum{
         }
         
     }
-}
-
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
-{
-    [self serviceLoadDataForTabID:tabID shouldShowLoading:YES];
 }
 @end

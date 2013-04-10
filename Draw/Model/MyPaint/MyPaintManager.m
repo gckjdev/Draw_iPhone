@@ -149,6 +149,16 @@ static MyPaintManager* _defaultManager;
     }
 }
 
+//- (void)countMyPaints:(id<MyPaintManagerDelegate>)delegate
+//{
+//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+//    NSArray *array = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+//
+//    if (delegate && [delegate respondsToSelector:@selector(didCountMyPaints::)]) {
+//        [delegate didCountMyPaints:[array count]];
+//    }
+//}
+
 - (NSArray*)findAllDraftForRecovery
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
@@ -170,6 +180,16 @@ static MyPaintManager* _defaultManager;
     }
 }
 
+//- (void)countAllPaints:(id<MyPaintManagerDelegate>)delegate
+//{
+//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+//    NSArray *array = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+//    
+//    if (delegate && [delegate respondsToSelector:@selector(didCountAllPaints:)]) {
+//        [delegate didCountAllPaints:[array count]];
+//    }
+//}
+
 - (void)findAllDraftsFrom:(NSInteger)offset 
                     limit:(NSInteger)limit 
                  delegate:(id<MyPaintManagerDelegate>)delegate
@@ -183,9 +203,25 @@ static MyPaintManager* _defaultManager;
     } 
 }
 
-- (void)countAllDrafts
+//- (void)countAllDrafts:(id<MyPaintManagerDelegate>)delegate
+//{
+//    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+//    NSArray *array = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+//    if (delegate && [delegate respondsToSelector:@selector(didCountAllDrafts:)]) {
+//        [delegate didCountAllDrafts:[array count]];
+//    }
+//}
+
+- (void)countAllPaintsAndDrafts:(id<MyPaintManagerDelegate>)delegate
 {
-    //TODO:finish it later
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    NSArray *draftArray = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+    NSArray *allArray = [dataManager execute:@"findAllMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+    NSArray *myArray = [dataManager execute:@"findOnlyMyPaints" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+    
+    if (delegate && [delegate respondsToSelector:@selector(didGetAllPaintCount:myPaintCount:draftCount:)]) {
+        [delegate didGetAllPaintCount:allArray.count myPaintCount:myArray.count draftCount:draftArray.count];
+    }
 }
 
 
