@@ -126,4 +126,6 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
             successBlock:(void (^)(void))successBlock;
 
 
+- (BOOL)checkAndAskLogin:(UIView*)view;
+
 @end

@@ -385,10 +385,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="charge_bg@2x.png">{99, 50}</string>
-			<string key="charge_cell_bg@2x.png">{565, 111}</string>
-			<string key="green_bg@2x.png">{75, 31}</string>
-			<string key="ingot@2x.png">{64, 64}</string>
+			<string key="charge_bg@2x.png">{16, 16}</string>
+			<string key="charge_cell_bg@2x.png">{16, 16}</string>
+			<string key="green_bg@2x.png">{16, 16}</string>
+			<string key="ingot@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

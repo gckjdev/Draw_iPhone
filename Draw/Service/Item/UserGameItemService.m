@@ -23,6 +23,8 @@
 #import "FlowerItem.h"
 #import "BlockArray.h"
 #import "GameItemManager.h"
+#import "UserService.h"
+#import "UserManager.h"
 
 #define KEY_USER_ITEM_INFO @"KEY_USER_ITEM_INFO"
 
@@ -165,6 +167,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
 {
+
+    if ([[UserManager defaultManager] hasUser] == NO){
+        EXECUTE_BLOCK(handler, ERROR_USERID_NOT_FOUND, itemId, NO);
+        return;
+    }
+    
     BOOL isBuy = NO;
     
     ConsumeItemResultHandler tempHandler = (ConsumeItemResultHandler)[_blockArray copyBlock:handler];

@@ -59,7 +59,7 @@
 #import "DrawHolderView.h"
 #import "GameItemManager.h"
 #import "CanvasRect.h"
-
+#import "UserManager.h"
 
 #import "ToolHandler.h"
 #import "ToolCommand.h"
@@ -469,7 +469,8 @@
                                        nickName:[[UserManager defaultManager] nickName]
                                            word:_word
                                        language:languageType
-                                     canvasSize:drawView.bounds.size];
+                                     canvasSize:drawView.bounds.size
+                                 drawActionList:drawView.drawActionList];
 }
 
 - (void)stopRecovery
@@ -913,6 +914,11 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
+    
+    if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
+        return;
+    }
+    
     [self showActivityWithText:NSLS(@"kSaving")];
     [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
     [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:DRAW_CLICK_DRAFT];
@@ -1057,6 +1063,10 @@
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
+    
+    if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
+        return;
+    }    
 
     [self stopRecovery];
 
@@ -1114,6 +1124,11 @@
 
 - (void)clickBackButton:(id)sender
 {
+    if ([[UserManager defaultManager] hasUser] == NO){
+        [self quit];
+        return;
+    }    
+    
     if (targetType == TypeGraffiti) {
         if (delegate && [delegate respondsToSelector:@selector(didControllerClickBack:)]) {
             [delegate didControllerClickBack:self];

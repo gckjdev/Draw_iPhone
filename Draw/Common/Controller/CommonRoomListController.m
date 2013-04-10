@@ -110,7 +110,7 @@
 - (void)handleUpdateOnlineUserCount
 {
 //    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
-    [self.titleLabel setText:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
+    [self.titleLabel setText:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
 }
 
 - (void)handleDidConnectServer

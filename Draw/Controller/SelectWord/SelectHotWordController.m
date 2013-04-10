@@ -157,7 +157,11 @@
             [OfflineDrawViewController startDraw:word fromController:bself startController:bself.superController targetUid:bself.targetUid ];
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH) {
             [BalanceNotEnoughAlertView showInController:self];
-        }else{
+        }else if (resultCode == ERROR_USERID_NOT_FOUND){
+            [[UserService defaultService] checkAndAskLogin:self.view];
+        }
+        else
+        {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkFailure") delayTime:1 isHappy:NO];
         }
     }];

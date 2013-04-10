@@ -541,7 +541,7 @@
                  menuType:(HomeMenuType)type
 {
     PPDebug(@"<homeMainMenuPanel>, click type = %d", type);
-    if ([self isRegistered] == NO) {
+    if (type != HomeMenuTypeDrawDraw && [self isRegistered] == NO) {
         [self toRegister];
         return;
     }
@@ -550,34 +550,6 @@
         case HomeMenuTypeDrawGame:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_ONLINE];
-            
-//            [self showActivityWithText:NSLS(@"kJoiningGame")];
-//            NSString* userId = [_userManager userId];
-//            NSString* nickName = [_userManager nickName];
-//            
-//            if (userId == nil){
-//                userId = [NSString GetUUID];
-//            }
-//            
-//            if (nickName == nil){
-//                nickName = NSLS(@"guest");
-//            }
-//            
-//            if ([[DrawGameService defaultService] isConnected]){
-//                [[DrawGameService defaultService] joinGame:userId
-//                                                  nickName:nickName
-//                                                    avatar:[_userManager avatarURL]
-//                                                    gender:[_userManager isUserMale]
-//                                                  location:[_userManager location]
-//                                                 userLevel:[[LevelService defaultService] level]
-//                                            guessDiffLevel:[ConfigManager guessDifficultLevel]
-//                                               snsUserData:[_userManager snsUserData]];
-//            }
-//            else{
-//                
-//                [self showActivityWithText:NSLS(@"kConnectingServer")];
-//                [[RouterService defaultService] tryFetchServerList:self];
-//            }
             UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
             [self.navigationController pushViewController:rc animated:YES];
             
@@ -588,10 +560,7 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
 
-//            SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
-            
             SelectHotWordController *sc = [[SelectHotWordController alloc] init];
-
             [self.navigationController pushViewController:sc animated:YES];
             sc.superController = self;
             [sc release];

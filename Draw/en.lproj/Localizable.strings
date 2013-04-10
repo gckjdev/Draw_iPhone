@@ -1243,6 +1243,10 @@
 "kLoginFail" = "Fail to login, please check your email or password";
 "kResetDefault" = "Reset Default";
 
+"kAskLoginTitle" = "Registration";
+"kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
+
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
