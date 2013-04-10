@@ -332,6 +332,11 @@
     return PBGameCurrencyIngot;
 }
 
+- (BOOL)hasIngotBalance
+{
+    return YES;
+}
+
 - (NSString*)youmiWallId
 {
     return @"c278f8dc80295b18";

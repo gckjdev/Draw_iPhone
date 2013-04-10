@@ -109,5 +109,6 @@
 - (NSString*)aderWallId;
 
 - (PBGameCurrency)saleCurrency;
+- (BOOL)hasIngotBalance;
 
 @end

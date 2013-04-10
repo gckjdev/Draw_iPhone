@@ -333,6 +333,11 @@
     return PBGameCurrencyCoin;
 }
 
+- (BOOL)hasIngotBalance
+{
+    return NO;
+}
+
 - (NSString*)youmiWallId
 {
     return @""; // TODO

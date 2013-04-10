@@ -24,6 +24,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "ConfigManager.h"
 #import "TaoBaoController.h"
+#import "UIViewUtils.h"
 
 typedef enum{
     TabIDNormal = 100,
@@ -50,6 +51,8 @@ typedef enum{
     [_chargeButton release];
     [_coinBalanceLabel release];
     [_ingotBalanceLabel release];
+    [_ingotImageView release];
+    [_ingotBalanceBgImageView release];
     [super dealloc];
 }
 
@@ -60,6 +63,8 @@ typedef enum{
     [self setChargeButton:nil];
     [self setCoinBalanceLabel:nil];
     [self setIngotBalanceLabel:nil];
+    [self setIngotImageView:nil];
+    [self setIngotBalanceBgImageView:nil];
     [super viewDidUnload];
 }
 
@@ -100,12 +105,25 @@ typedef enum{
     [self updateBalance];
 }
 
+#define ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON (ISIPAD ? 80 : 40)
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
 
+    self.ingotImageView.hidden = ![GameApp hasIngotBalance];
+    self.ingotBalanceLabel.hidden = ![GameApp hasIngotBalance];
+    self.ingotBalanceBgImageView.hidden = ![GameApp hasIngotBalance];
+
     [super viewDidLoad];
     [self initTabButtons];
+    
+    if (isDiceApp()) {
+        for (TableTab *tab in [_tabManager tabList]) {
+            [[self tabButtonWithTabID:tab.tabID] setHidden:YES];;
+        }
+        [self.dataTableView updateHeight:(self.dataTableView.frame.size.height + ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON)];
+        self.dataTableView.center = self.view.center;
+    }
     
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");

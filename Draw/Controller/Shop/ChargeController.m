@@ -73,7 +73,7 @@
     }];
     
 #ifdef DEBUG
-    [IAPProductService createCoinTestDataFile];
+    [IAPProductService createTestDataFile];
 #endif
 }
 
