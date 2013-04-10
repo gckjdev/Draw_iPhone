@@ -1365,6 +1365,301 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 }
 @end
 
+@interface PBLearnDraw ()
+@property (retain) NSString* opusId;
+@property int32_t type;
+@property int32_t price;
+@property int32_t boughtCount;
+@end
+
+@implementation PBLearnDraw
+
+- (BOOL) hasOpusId {
+  return !!hasOpusId_;
+}
+- (void) setHasOpusId:(BOOL) value {
+  hasOpusId_ = !!value;
+}
+@synthesize opusId;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
+- (BOOL) hasBoughtCount {
+  return !!hasBoughtCount_;
+}
+- (void) setHasBoughtCount:(BOOL) value {
+  hasBoughtCount_ = !!value;
+}
+@synthesize boughtCount;
+- (void) dealloc {
+  self.opusId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.opusId = @"";
+    self.type = 0;
+    self.price = 0;
+    self.boughtCount = 0;
+  }
+  return self;
+}
+static PBLearnDraw* defaultPBLearnDrawInstance = nil;
++ (void) initialize {
+  if (self == [PBLearnDraw class]) {
+    defaultPBLearnDrawInstance = [[PBLearnDraw alloc] init];
+  }
+}
++ (PBLearnDraw*) defaultInstance {
+  return defaultPBLearnDrawInstance;
+}
+- (PBLearnDraw*) defaultInstance {
+  return defaultPBLearnDrawInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasOpusId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasOpusId) {
+    [output writeString:1 value:self.opusId];
+  }
+  if (self.hasType) {
+    [output writeInt32:2 value:self.type];
+  }
+  if (self.hasPrice) {
+    [output writeInt32:3 value:self.price];
+  }
+  if (self.hasBoughtCount) {
+    [output writeInt32:4 value:self.boughtCount];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasOpusId) {
+    size += computeStringSize(1, self.opusId);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(2, self.type);
+  }
+  if (self.hasPrice) {
+    size += computeInt32Size(3, self.price);
+  }
+  if (self.hasBoughtCount) {
+    size += computeInt32Size(4, self.boughtCount);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBLearnDraw*) parseFromData:(NSData*) data {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromData:data] build];
+}
++ (PBLearnDraw*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBLearnDraw*) parseFromInputStream:(NSInputStream*) input {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromInputStream:input] build];
+}
++ (PBLearnDraw*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLearnDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromCodedInputStream:input] build];
+}
++ (PBLearnDraw*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLearnDraw*)[[[PBLearnDraw builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLearnDraw_Builder*) builder {
+  return [[[PBLearnDraw_Builder alloc] init] autorelease];
+}
++ (PBLearnDraw_Builder*) builderWithPrototype:(PBLearnDraw*) prototype {
+  return [[PBLearnDraw builder] mergeFrom:prototype];
+}
+- (PBLearnDraw_Builder*) builder {
+  return [PBLearnDraw builder];
+}
+@end
+
+@interface PBLearnDraw_Builder()
+@property (retain) PBLearnDraw* result;
+@end
+
+@implementation PBLearnDraw_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBLearnDraw alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBLearnDraw_Builder*) clear {
+  self.result = [[[PBLearnDraw alloc] init] autorelease];
+  return self;
+}
+- (PBLearnDraw_Builder*) clone {
+  return [PBLearnDraw builderWithPrototype:result];
+}
+- (PBLearnDraw*) defaultInstance {
+  return [PBLearnDraw defaultInstance];
+}
+- (PBLearnDraw*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBLearnDraw*) buildPartial {
+  PBLearnDraw* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBLearnDraw_Builder*) mergeFrom:(PBLearnDraw*) other {
+  if (other == [PBLearnDraw defaultInstance]) {
+    return self;
+  }
+  if (other.hasOpusId) {
+    [self setOpusId:other.opusId];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
+  }
+  if (other.hasBoughtCount) {
+    [self setBoughtCount:other.boughtCount];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBLearnDraw_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setOpusId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setPrice:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setBoughtCount:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasOpusId {
+  return result.hasOpusId;
+}
+- (NSString*) opusId {
+  return result.opusId;
+}
+- (PBLearnDraw_Builder*) setOpusId:(NSString*) value {
+  result.hasOpusId = YES;
+  result.opusId = value;
+  return self;
+}
+- (PBLearnDraw_Builder*) clearOpusId {
+  result.hasOpusId = NO;
+  result.opusId = @"";
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBLearnDraw_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBLearnDraw_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (int32_t) price {
+  return result.price;
+}
+- (PBLearnDraw_Builder*) setPrice:(int32_t) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBLearnDraw_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = 0;
+  return self;
+}
+- (BOOL) hasBoughtCount {
+  return result.hasBoughtCount;
+}
+- (int32_t) boughtCount {
+  return result.boughtCount;
+}
+- (PBLearnDraw_Builder*) setBoughtCount:(int32_t) value {
+  result.hasBoughtCount = YES;
+  result.boughtCount = value;
+  return self;
+}
+- (PBLearnDraw_Builder*) clearBoughtCount {
+  result.hasBoughtCount = NO;
+  result.boughtCount = 0;
+  return self;
+}
+@end
+
 @interface PBFeed ()
 @property (retain) NSString* feedId;
 @property (retain) NSString* userId;
@@ -1403,6 +1698,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
 @property (retain) NSString* opusImage;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
+@property (retain) PBLearnDraw* learnDraw;
 @end
 
 @implementation PBFeed
@@ -1669,6 +1965,13 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   hasContestScore_ = !!value;
 }
 @synthesize contestScore;
+- (BOOL) hasLearnDraw {
+  return !!hasLearnDraw_;
+}
+- (void) setHasLearnDraw:(BOOL) value {
+  hasLearnDraw_ = !!value;
+}
+@synthesize learnDraw;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -1693,6 +1996,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
   self.opusWord = nil;
   self.opusImage = nil;
   self.contestId = nil;
+  self.learnDraw = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1732,6 +2036,7 @@ static PBCommentInfo* defaultPBCommentInfoInstance = nil;
     self.opusImage = @"";
     self.contestId = @"";
     self.contestScore = 0;
+    self.learnDraw = [PBLearnDraw defaultInstance];
   }
   return self;
 }
@@ -1786,6 +2091,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   for (PBFeedTimes* element in self.feedTimesList) {
     if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasLearnDraw) {
+    if (!self.learnDraw.isInitialized) {
       return NO;
     }
   }
@@ -1902,6 +2212,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     [output writeDouble:92 value:self.contestScore];
+  }
+  if (self.hasLearnDraw) {
+    [output writeMessage:100 value:self.learnDraw];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2027,6 +2340,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     size += computeDoubleSize(92, self.contestScore);
+  }
+  if (self.hasLearnDraw) {
+    size += computeMessageSize(100, self.learnDraw);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2220,6 +2536,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasContestScore) {
     [self setContestScore:other.contestScore];
   }
+  if (other.hasLearnDraw) {
+    [self mergeLearnDraw:other.learnDraw];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2399,6 +2718,15 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 737: {
         [self setContestScore:[input readDouble]];
+        break;
+      }
+      case 802: {
+        PBLearnDraw_Builder* subBuilder = [PBLearnDraw builder];
+        if (self.hasLearnDraw) {
+          [subBuilder mergeFrom:self.learnDraw];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setLearnDraw:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3050,6 +3378,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearContestScore {
   result.hasContestScore = NO;
   result.contestScore = 0;
+  return self;
+}
+- (BOOL) hasLearnDraw {
+  return result.hasLearnDraw;
+}
+- (PBLearnDraw*) learnDraw {
+  return result.learnDraw;
+}
+- (PBFeed_Builder*) setLearnDraw:(PBLearnDraw*) value {
+  result.hasLearnDraw = YES;
+  result.learnDraw = value;
+  return self;
+}
+- (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue {
+  return [self setLearnDraw:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value {
+  if (result.hasLearnDraw &&
+      result.learnDraw != [PBLearnDraw defaultInstance]) {
+    result.learnDraw =
+      [[[PBLearnDraw builderWithPrototype:result.learnDraw] mergeFrom:value] buildPartial];
+  } else {
+    result.learnDraw = value;
+  }
+  result.hasLearnDraw = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearLearnDraw {
+  result.hasLearnDraw = NO;
+  result.learnDraw = [PBLearnDraw defaultInstance];
   return self;
 }
 @end
