@@ -8230,6 +8230,8 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @interface PBIAPProduct ()
 @property PBIAPProductType type;
 @property (retain) NSString* appleProductId;
+@property (retain) NSString* name;
+@property (retain) NSString* desc;
 @property int32_t count;
 @property (retain) NSString* totalPrice;
 @property (retain) NSString* currency;
@@ -8253,6 +8255,20 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   hasAppleProductId_ = !!value;
 }
 @synthesize appleProductId;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
 - (BOOL) hasCount {
   return !!hasCount_;
 }
@@ -8290,6 +8306,8 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @synthesize saving;
 - (void) dealloc {
   self.appleProductId = nil;
+  self.name = nil;
+  self.desc = nil;
   self.totalPrice = nil;
   self.currency = nil;
   self.country = nil;
@@ -8300,6 +8318,8 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   if ((self = [super init])) {
     self.type = PBIAPProductTypeIapcoin;
     self.appleProductId = @"";
+    self.name = @"";
+    self.desc = @"";
     self.count = 1;
     self.totalPrice = @"";
     self.currency = @"";
@@ -8336,6 +8356,12 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     [output writeString:2 value:self.appleProductId];
   }
+  if (self.hasName) {
+    [output writeString:5 value:self.name];
+  }
+  if (self.hasDesc) {
+    [output writeString:8 value:self.desc];
+  }
   if (self.hasCount) {
     [output writeInt32:11 value:self.count];
   }
@@ -8365,6 +8391,12 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   }
   if (self.hasAppleProductId) {
     size += computeStringSize(2, self.appleProductId);
+  }
+  if (self.hasName) {
+    size += computeStringSize(5, self.name);
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(8, self.desc);
   }
   if (self.hasCount) {
     size += computeInt32Size(11, self.count);
@@ -8462,6 +8494,12 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (other.hasAppleProductId) {
     [self setAppleProductId:other.appleProductId];
   }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
   if (other.hasCount) {
     [self setCount:other.count];
   }
@@ -8509,6 +8547,14 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
       }
       case 18: {
         [self setAppleProductId:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setDesc:[input readString]];
         break;
       }
       case 88: {
@@ -8564,6 +8610,38 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
 - (PBIAPProduct_Builder*) clearAppleProductId {
   result.hasAppleProductId = NO;
   result.appleProductId = @"";
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBIAPProduct_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBIAPProduct_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBIAPProduct_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBIAPProduct_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
   return self;
 }
 - (BOOL) hasCount {
