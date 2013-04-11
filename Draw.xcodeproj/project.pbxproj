@@ -30737,6 +30737,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LearnDraw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -30811,6 +30816,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LearnDraw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -30887,6 +30897,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Dice-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -30961,6 +30976,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Dice-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31037,6 +31057,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Zhajinhua-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31110,6 +31135,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Zhajinhua-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31241,6 +31271,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31314,6 +31349,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31441,6 +31481,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/DrawPro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31515,6 +31560,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Draw/Draw-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../Common_iPhone_20/Components/Component-Network/ProtocolBuffer/objectivec/Classes/**",
+					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
+					"../Common_iPhone_20/3PP-SDK/QWeiboSDK4iOS/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/DrawPro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
