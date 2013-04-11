@@ -218,4 +218,56 @@ static DrawImageManager * _staticDrawImageManager;
 }
 
 
+
+- (UIImage *)learnDrawBg
+{
+    NSString *imageName = [self fixImageName:@"learndraw_bg"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawBottomBar
+{
+    NSString *imageName = [self fixImageName:@"learndraw_bottom_bar"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawBottomSplit
+{
+    NSString *imageName = [self fixImageName:@"learndraw_bottom_split"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawBought
+{
+    NSString *imageName = [self fixImageName:@"learndraw_bought"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawDraft
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draft"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawDraw
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draw"];
+    return [UIImage imageNamed:imageName];
+}
+//- (UIImage *)learnDrawHome
+//{
+//    NSString *imageName = [self fixImageName:@"learndraw_home"];
+//    return [UIImage imageNamed:imageName];
+//}
+- (UIImage *)learnDrawMark
+{
+    NSString *imageName = [self fixImageName:@"learndraw_mark"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawMore
+{
+    NSString *imageName = [self fixImageName:@"learndraw_more"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)learnDrawShop
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
 @end

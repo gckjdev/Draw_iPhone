@@ -255,6 +255,19 @@
         case HomeMenuTypeDiceMore:{
             return [imageManager diceHomeMore];
         }
+        
+        case HomeMenuTypeLearnDrawDraw:
+            return [imageManager learnDrawDraw];
+            
+        case HomeMenuTypeLearnDrawDraft:
+            return [imageManager learnDrawDraft];
+            
+        case HomeMenuTypeLearnDrawShop:
+            return [imageManager learnDrawShop];
+            
+        case HomeMenuTypeLearnDrawMore:
+            return [imageManager learnDrawMore];
+            
         default:
             return nil;
     }
@@ -483,9 +496,9 @@ int *getLearnDrawBottomMenuTypeList()
 {
     int static list[] = {
         HomeMenuTypeLearnDrawDraw,
-        HomeMenuTypeDrawOpus,
-        HomeMenuTypeDrawShop,
-        HomeMenuTypeDrawMore,
+        HomeMenuTypeLearnDrawDraft,
+        HomeMenuTypeLearnDrawShop,
+        HomeMenuTypeLearnDrawMore,
         HomeMenuTypeEnd
     };
     return list;

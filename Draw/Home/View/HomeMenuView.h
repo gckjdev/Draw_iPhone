@@ -65,8 +65,9 @@ typedef enum{
     
     //Learn Draw Bottom Menu
     HomeMenuTypeLearnDrawDraw,
-    
-    
+    HomeMenuTypeLearnDrawDraft,
+    HomeMenuTypeLearnDrawShop,
+    HomeMenuTypeLearnDrawMore,
     
 }HomeMenuType;
 

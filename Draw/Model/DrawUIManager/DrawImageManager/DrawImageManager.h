@@ -52,5 +52,15 @@
 - (UIImage *)diceHomeShop;
 - (UIImage *)diceHomeMore;
 
-
+//learn draw
+- (UIImage *)learnDrawBg;
+- (UIImage *)learnDrawBottomBar;
+- (UIImage *)learnDrawBottomSplit;
+- (UIImage *)learnDrawBought;
+- (UIImage *)learnDrawDraft;
+- (UIImage *)learnDrawDraw;
+//- (UIImage *)learnDrawHome;
+- (UIImage *)learnDrawMark;
+- (UIImage *)learnDrawMore;
+- (UIImage *)learnDrawShop;
 @end
