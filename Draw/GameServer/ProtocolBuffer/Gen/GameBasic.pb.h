@@ -2010,6 +2010,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @private
   BOOL hasCount_:1;
   BOOL hasAppleProductId_:1;
+  BOOL hasName_:1;
+  BOOL hasDesc_:1;
   BOOL hasTotalPrice_:1;
   BOOL hasCurrency_:1;
   BOOL hasCountry_:1;
@@ -2017,6 +2019,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasType_:1;
   int32_t count;
   NSString* appleProductId;
+  NSString* name;
+  NSString* desc;
   NSString* totalPrice;
   NSString* currency;
   NSString* country;
@@ -2025,6 +2029,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 }
 - (BOOL) hasType;
 - (BOOL) hasAppleProductId;
+- (BOOL) hasName;
+- (BOOL) hasDesc;
 - (BOOL) hasCount;
 - (BOOL) hasTotalPrice;
 - (BOOL) hasCurrency;
@@ -2032,6 +2038,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasSaving;
 @property (readonly) PBIAPProductType type;
 @property (readonly, retain) NSString* appleProductId;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* desc;
 @property (readonly) int32_t count;
 @property (readonly, retain) NSString* totalPrice;
 @property (readonly, retain) NSString* currency;
@@ -2081,6 +2089,16 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) appleProductId;
 - (PBIAPProduct_Builder*) setAppleProductId:(NSString*) value;
 - (PBIAPProduct_Builder*) clearAppleProductId;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBIAPProduct_Builder*) setName:(NSString*) value;
+- (PBIAPProduct_Builder*) clearName;
+
+- (BOOL) hasDesc;
+- (NSString*) desc;
+- (PBIAPProduct_Builder*) setDesc:(NSString*) value;
+- (PBIAPProduct_Builder*) clearDesc;
 
 - (BOOL) hasCount;
 - (int32_t) count;

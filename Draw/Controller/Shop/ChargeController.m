@@ -158,8 +158,8 @@
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
     order.tradeNO = [NSString GetUUID];
-
-    
+    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
+    order.productDescription = product.desc;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
