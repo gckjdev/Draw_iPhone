@@ -94,6 +94,10 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
+- (UIImage *)diceHomeShop{
+    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
 - (UIImage *)drawHomeMore
 {
     NSString *imageName = [self fixImageName:@"draw_home_more"];
@@ -192,13 +196,21 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"zjh_home_vs_site"];
     return [UIImage imageNamed:imageName];
 }
-
-- (UIImage *)zjhHomeChargeBG
-{
-    return [self stretchableImageWithImageName:@"zjh_home_charge_bg"
-                             leftCapWidthScale:0.5 topCapHeightScale:0.5];
-
+- (UIImage *)zjhHomeCharge{
+    NSString *imageName = [self fixImageName:@"zjh_home_charge"];
+    return [UIImage imageNamed:imageName];
 }
+- (UIImage *)zjhHomeMore
+{
+    NSString *imageName = [self fixImageName:@"common_home_more"];
+    return [UIImage imageNamed:imageName];
+}
+- (UIImage *)diceHomeMore
+{
+    NSString *imageName = [self fixImageName:@"common_home_more"];
+    return [UIImage imageNamed:imageName];
+}
+
 - (UIImage *)zjhHomeFreeCoinBG
 {
     return [self stretchableImageWithImageName:@"zjh_home_freecoin_bg"

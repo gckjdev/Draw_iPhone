@@ -161,14 +161,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     AdWallCompleteHandler handler = ^(int resultCode, int score) {
         
         if (score > 0){
-            BOOL awardIngot = ([GameApp wallRewardCoinType] == PBGameCurrencyIngot);
+            BOOL awardIngot = ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot);
             NSString* message = nil;
             if (awardIngot){
                 [[AccountService defaultService] chargeIngot:score source:LmAppReward];
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardIngotMessage"), score];
             }
             else{
-                [[AccountService defaultService] chargeAccount:score source:LmAppReward];
+                [[AccountService defaultService] chargeCoin:score source:LmAppReward];
                 message = [NSString stringWithFormat:NSLS(@"kWallRewardCoinMessage"), score];
             }
             

@@ -43,6 +43,7 @@ enum {
 {
     [_friendAppArray release];
     [_wallArray release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -64,9 +65,9 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.titleLabel.text = [GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ? NSLS(@"kFreeIngots") : NSLS(@"kFreeCoins");
     self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
     self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,10 +114,10 @@ enum {
 - (NSString*)titleForSection:(int)section
 {
     if (section == SECTION_FRIEND_APP) {
-        return NSLS(@"kDownloadRewardAppTips");
+        return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kDownloadRewardIngotAppTips") : NSLS(@"kDownloadRewardCoinAppTips"));
     }
     if (section == SECTION_WALL) {
-        return NSLS(@"kRewardWallTips");
+        return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kRewardIngotWallTips") : NSLS(@"kRewardCoinWallTips"));
     }
     return nil;
 }
@@ -182,4 +183,8 @@ enum {
 //    [bbs release];
 }
 
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

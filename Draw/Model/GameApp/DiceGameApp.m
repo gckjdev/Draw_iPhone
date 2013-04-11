@@ -339,9 +339,19 @@
     return @"dice.m4a";
 }
 
-- (PBGameCurrency)wallRewardCoinType
+- (PBGameCurrency)wallRewardCurrencyType
 {
     return PBGameCurrencyCoin;
+}
+
+- (PBGameCurrency)saleCurrency
+{
+    return PBGameCurrencyCoin;
+}
+
+- (BOOL)hasIngotBalance
+{
+    return NO;
 }
 
 - (NSString*)youmiWallId

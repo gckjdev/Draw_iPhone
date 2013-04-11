@@ -14,7 +14,6 @@ typedef enum{
     HomeMenuTypeEnd = -1,
     
     //draw main menu
-    HomeMenuTypeDrawMainBegin = 1000,
     HomeMenuTypeDrawDraw = 1000,
     HomeMenuTypeDrawGuess,
     HomeMenuTypeDrawGame,
@@ -28,7 +27,6 @@ typedef enum{
     HomeMenuTypeDrawApps,
     
     //draw bottom menu
-    HomeMenuTypeDrawBottomBegin = 1500,
     HomeMenuTypeDrawHome = 1500,
     HomeMenuTypeDrawOpus,
     HomeMenuTypeDrawMessage,
@@ -37,8 +35,8 @@ typedef enum{
     HomeMenuTypeDrawMe,
     HomeMenuTypeDrawSetting,
     
-    //ZJH main menu start at 2000
-    HomeMenuTypeZJHMainBegin = 2000,
+    
+    // ZJH main menu
     HomeMenuTypeZJHHelp = 2000,
     HomeMenuTypeZJHStart,
 //    HomeMenuTypeZJHBBS,
@@ -47,16 +45,13 @@ typedef enum{
     HomeMenuTypeZJHVSSite,
     HomeMenuTypeZJHCharge,
     HomeMenuTypeZJHShop,
+    HomeMenuTypeZJHFreeCoins,
 
-    //ZJH bottom menu start at 2500
-    HomeMenuTypeZJHBottomBegin = 2500,
-//    HomeMenuTypeZJHHome = 2500,
-//    HomeMenuTypeZJHMessage,
-//    HomeMenuTypeZJHFriend,
-//    HomeMenuTypeZJHMore,
-//    HomeMenuTypeZJHMe,
-//    HomeMenuTypeZJHSetting,
+    // ZJH bottom menu
+    HomeMenuTypeZJHMore,
+
     
+    // Dice main menu
     HomeMenuTypeDiceStart = 3000,
     HomeMenuTypeDiceHappyRoom,
     HomeMenuTypeDiceHighRoom,
@@ -65,7 +60,9 @@ typedef enum{
     HomeMenuTypeDiceShop,
     HomeMenuTypeDiceFreeCoins,
     
-    HomeMenuTypeDiceBottomBegin = 3500,
+    // Dice bottom menu
+    HomeMenuTypeDiceMore,
+    
     
 }HomeMenuType;
 

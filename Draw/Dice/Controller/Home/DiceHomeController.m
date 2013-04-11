@@ -12,7 +12,7 @@
 #import "StringUtil.h"
 #import "UserManager+DiceUserManager.h"
 #import "DiceGameService.h"
-#import "CoinShopController.h"
+#import "ChargeController.h"
 #import "AdService.h"
 #import "TimeUtils.h"
 #import "AccountService.h"
@@ -41,8 +41,8 @@
 #import "PPResourceService.h"
 #import "NotificationName.h"
 #import "ZJHRoomListController.h"
-#import "FreeCoinsControllerViewController.h"
 #import "BBSBoardController.h"
+#import "FreeIngotController.h"
 
 #define KEY_LAST_AWARD_DATE     @"last_award_day"
 
@@ -164,7 +164,7 @@
 {
     int awardCoins = [self calCoinByPoint:_awardDicePoint];
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDailyAwardCoin"),awardCoins] delayTime:2 isHappy:YES];
-    [[AccountService defaultService] chargeAccount:awardCoins source:LiarDiceDailyAward];
+    [[AccountService defaultService] chargeCoin:awardCoins source:LiarDiceDailyAward];
 }
 
 - (void)clickAwardDice:(UITapGestureRecognizer*)sender
@@ -382,7 +382,7 @@
     if ([ConfigManager wallEnabled]) {
         [self showWall];
     }else {
-        CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES]; 
     }
 }
@@ -403,8 +403,7 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickChargeButton:(UIButton *)button
 {
-    //ENTER CHARGE PAGE 
-    CoinShopController* controller = [[[CoinShopController alloc] init] autorelease];
+    ChargeController* controller = [[[ChargeController alloc] init] autorelease];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -422,8 +421,8 @@
 
         case HomeMenuTypeDiceFreeCoins:
         {
-            [UIUtils alertWithTitle:@"免费金币获取提示" msg:@"下载免费应用即可获取金币！下载完应用一定要打开才可以获得奖励哦！"];
-            [[LmWallService defaultService] show:self];
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
 
@@ -514,10 +513,9 @@
             ChatListController *controller = [[ChatListController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
-            //            [[StatisticManager defaultManager] setMessageCount:0];
         }
             break;
-        case HomeMenuTypeDrawMore:
+        case HomeMenuTypeDiceMore:
         {
             FeedbackController* feedBack = [[FeedbackController alloc] init];
             [self.navigationController pushViewController:feedBack animated:YES];

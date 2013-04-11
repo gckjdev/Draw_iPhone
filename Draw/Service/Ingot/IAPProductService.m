@@ -65,46 +65,42 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     }];
 }
 
-
 + (void)createTestDataFile
+{
+    if (isDrawApp()) {
+        [self createIngotTestDataFile];
+    }else if (isDiceApp() || isZhajinhuaApp()){
+        [self createCoinTestDataFile];
+    }
+}
+
++ (void)createIngotTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
-    for (int index = 0 ; index < 4; index ++) {
-        
-        PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
-        
-        if (index == 0) {
-            [builder setType:PBIAPProductTypeIapingot];
-            [builder setAppleProductId:@"com.orange.draw.ingot_18"];
-            [builder setCount:18];
-            [builder setTotalPrice:@"18"];
-        } else if (index == 1){
-            [builder setType:PBIAPProductTypeIapingot];
-            [builder setAppleProductId:@"com.orange.draw.ingot_30"];
-            [builder setCount:32];
-            [builder setTotalPrice:@"30"];
-            [builder setSaving:@"6%"];
-        } else if (index == 2){
-            [builder setType:PBIAPProductTypeIapingot];
-            [builder setAppleProductId:@"com.orange.draw.ingot_68"];
-            [builder setCount:90];
-            [builder setTotalPrice:@"68"];
-            [builder setSaving:@"24%"];
-        } else if (index == 3){
-            [builder setType:PBIAPProductTypeIapingot];
-            [builder setAppleProductId:@"com.orange.draw.ingot_163"];
-            [builder setCount:250];
-            [builder setTotalPrice:@"163"];
-            [builder setSaving:@"35%"];
-        }
-        
-        [builder setCurrency:@"￥"];
-        [builder setCountry:@"CN"];
-        
-        PBIAPProduct *saleIngot = [builder build];
-        [mutableArray addObject:saleIngot];
-    }
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.draw.ingot_18"
+                                            count:18
+                                       totalPrice:@"18"
+                                           saving:nil]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.draw.ingot_30"
+                                            count:32
+                                       totalPrice:@"30"
+                                           saving:@"6%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.draw.ingot_68"
+                                            count:90
+                                       totalPrice:@"68"
+                                           saving:@"24%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.draw.ingot_163"
+                                            count:250
+                                       totalPrice:@"163"
+                                           saving:@"35%"]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
     [listBuilder addAllProducts:mutableArray];
@@ -120,5 +116,69 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [listBuilder release];
 }
+
+
++ (void)createCoinTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                  appleProductId:@"com.orange.zjh.coins1200"
+                                           count:10000
+                                      totalPrice:@"12"
+                                           saving:nil]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.zjh.coins2400"
+                                            count:18000
+                                       totalPrice:@"18"
+                                           saving:@"15%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.zjh.coins6000"
+                                            count:66000
+                                       totalPrice:@"68"
+                                           saving:@"33%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.zjh.coins20000"
+                                            count:180000
+                                       totalPrice:@"163"
+                                           saving:@"50%"]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
+
++ (PBIAPProduct *)productWithType:(PBIAPProductType)type
+                   appleProductId:(NSString *)appleProductId
+                            count:(int)count
+                       totalPrice:(NSString *)totalPrice
+                           saving:(NSString *)saving
+{
+    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    [builder setType:type];
+    [builder setAppleProductId:appleProductId];
+    [builder setCount:count];
+    [builder setTotalPrice:totalPrice];
+    [builder setSaving:saving];
+    [builder setCurrency:@"￥"];
+    [builder setCountry:@"CN"];
+    
+    return [builder build];
+}
+
 
 @end

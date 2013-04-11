@@ -28,14 +28,10 @@
 //#import "YoumiWallController.h"
 
 #define ASK_REMOVE_AD_BY_WALL       101
-#define ASK_REMOVE_AD_BY_IAP        102
 
 #define AD_VIEW_TAG                 201206281
 
 @interface AdService()
-
-- (void)gotoWall;
-- (void)buyCoins;
 
 @end
 
@@ -144,32 +140,6 @@ static AdService* _defaultService;
     _isShowAd = NO;
 }
 
-- (void)askRemoveAdByWall
-{
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"kRemoveAd") 
-                                                        message:@"下载免费应用即可移除广告！记住下载完应用一定要打开才可以成功移除广告哦！" 
-                                                       delegate:self 
-                                              cancelButtonTitle:NSLS(@"Cancel") 
-                                              otherButtonTitles:NSLS(@"OK"), nil];
-    
-    alertView.tag = ASK_REMOVE_AD_BY_WALL;
-    [alertView show];
-    [alertView release];
-}
-
-- (void)askRemoveAdByBuyCoins
-{
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"kRemoveAd") 
-                                                        message:NSLS(@"kRemoveAdByIAP") 
-                                                       delegate:self 
-                                              cancelButtonTitle:NSLS(@"Cancel") 
-                                              otherButtonTitles:NSLS(@"OK"), nil];
-    
-    alertView.tag = ASK_REMOVE_AD_BY_IAP;
-    [alertView show];
-    [alertView release];    
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0){
@@ -177,10 +147,6 @@ static AdService* _defaultService;
     }
     
     switch (alertView.tag) {
-        case ASK_REMOVE_AD_BY_IAP:
-            [self buyCoins];
-            break;
-            
         case ASK_REMOVE_AD_BY_WALL:
             [self gotoWall];
             break;
@@ -196,19 +162,6 @@ static AdService* _defaultService;
 {
     [MobClick event:@"BUY_REMOVE_AD"];
     [[AccountService defaultService] buyRemoveAd];
-}
-
-- (void)buyCoins
-{
-    [MobClick event:@"BUY_COINS"];
-    
-    NSArray* coinPriceList = [[ShoppingManager defaultManager] findCoinPriceList];
-    if ([coinPriceList count] > 0){
-        PriceModel* model = [coinPriceList objectAtIndex:0];
-        [_viewController showActivityWithText:NSLS(@"kBuying")];
-        [[AccountService defaultService] setDelegate:self];
-        [[AccountService defaultService] buyCoin:model];
-    }    
 }
 
 #pragma mark - Show Ad Wall
@@ -321,23 +274,8 @@ static AdService* _defaultService;
 
 #pragma mark - Methods For External
 
-- (void)requestRemoveAd:(PPViewController*)viewController
-{
-    self.viewController = viewController;
-    if ([ConfigManager wallEnabled] == YES && [ConfigManager removeAdByIAP] == NO){
-        [self askRemoveAdByWall];
-    }
-    else{
-        [self removeAdByIAP];
-//        [self askRemoveAdByBuyCoins];
-    }    
-}
-
 - (BOOL)isShowAd
-{    
-//    PPDebug(@"WARNING!!! isShowAd is forced to YES for testing!!!");
-//    return YES;    
-    
+{
     if ([ConfigManager isProVersion])
         return NO;
     

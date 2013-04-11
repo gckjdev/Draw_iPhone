@@ -16,10 +16,9 @@
     PBGameCurrency _saleCurrency;
 }
 
-@property (retain, nonatomic) IBOutlet UILabel *ingotCountLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *currencyImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *countBgImageView;
+@property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
-
-- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency;
-
 
 @end

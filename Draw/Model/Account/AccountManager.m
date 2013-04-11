@@ -26,7 +26,7 @@ AccountManager* GlobalGetAccountManager()
 
 
 #define ACCOUNT_DICT        @"ACCOUNT_DICT"
-#define KEY_BALANCE         @"KEY_BALANCE"
+#define KEY_COIN_BALANCE    @"KEY_BALANCE"
 #define KEY_INGOT_BALANCE   @"KEY_INGOT_BALANCE"
 
 - (id)init
@@ -52,7 +52,7 @@ AccountManager* GlobalGetAccountManager()
 {
     switch (currency) {
         case PBGameCurrencyCoin:
-            return [self getBalance];
+            return [self getCoinBalance];
             break;
             
         case PBGameCurrencyIngot:
@@ -85,10 +85,10 @@ AccountManager* GlobalGetAccountManager()
 }
 
 
-- (NSInteger)getBalance
+- (NSInteger)getCoinBalance
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber* balance = [defaults objectForKey:KEY_BALANCE];
+    NSNumber* balance = [defaults objectForKey:KEY_COIN_BALANCE];
     return [balance intValue];
 }
 
@@ -100,7 +100,7 @@ AccountManager* GlobalGetAccountManager()
         PPDebug(@"<updateAccount> but balance < 0, set to 0");
         balance = 0;
     }
-    [defaults setObject:[NSNumber numberWithInt:balance] forKey:KEY_BALANCE];
+    [defaults setObject:[NSNumber numberWithInt:balance] forKey:KEY_COIN_BALANCE];
     [defaults synchronize];
 }
 
@@ -139,28 +139,9 @@ AccountManager* GlobalGetAccountManager()
     }
 }
 
-
-- (void)increaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
+- (BOOL)hasEnoughCoins:(int)amount
 {
-    NSInteger result = [self getBalance] + balance;
-    [self updateAccount:result];    
-    PPDebug(@"<increaseBalance> add %d, blance=%d", balance, [self getBalance]);
-}
-
-
-- (void)decreaseBalance:(NSInteger)balance sourceType:(BalanceSourceType)type
-{
-    NSInteger result = [self getBalance] - balance;
-    if (result < 0){
-        result = 0;
-    }
-    [self updateAccount:result];    
-    PPDebug(@"<decreaseBalance> minus %d, blance=%d", balance, [self getBalance]);    
-}
-
-- (BOOL)hasEnoughBalance:(int)amount
-{
-    if ([self getBalance] < amount){
+    if ([self getCoinBalance] < amount){
         return NO;
     }
     else{
@@ -172,7 +153,7 @@ AccountManager* GlobalGetAccountManager()
 {
     switch (currency) {
         case PBGameCurrencyCoin:
-            return [self hasEnoughBalance:amount];
+            return [self hasEnoughCoins:amount];
             break;
             
         case PBGameCurrencyIngot:

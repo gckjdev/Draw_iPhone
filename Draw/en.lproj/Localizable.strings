@@ -542,7 +542,6 @@
 
 "kCurrentCoins" = "Coins ";
 "kCurrentItems" = "Items ";
-"kFreeGetCoins" = "Free Ingots";
 
 "kCustomWordManage" = "My Words";
 "kAddCustomWord" = "Add Word";
@@ -658,7 +657,6 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFreeCoins" = "Free Ingots";
 "kFeeds" = "Timeline";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
@@ -991,7 +989,6 @@
 "kHomeMenuTypeDrawTimeline" = "Timeline";
 "kHomeMenuTypeDrawRank" = "Top";
 "kHomeMenuTypeDrawApps" = "Apps";
-"kHomeMenuTypeDrawFreeCoins" = "Free Ingots";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
 "kHomeMenuTypeDrawHome" = "Home";
@@ -1004,7 +1001,7 @@
 "kCharge" = "Buy";
 "kChargeTitle" = "Charge";
 
-"kFreeCoin" = "Get Free";
+"kFreeCoins" = "Get Free";
 
 "kHomeMenuTypeZJHHelp" = "Help";
 "kHomeMenuTypeZJHStart" = "Play";
@@ -1131,9 +1128,11 @@
 "kItemTool" = "Tool";
 "kItemPromotion" = "Hot";
 "kItemTaoBao" = "Tao";
-"kDownloadRewardAppTips" = "Download our apps to earn ingots";
-"kRewardWallTips" = "Download third-party apps to earn ingots";
-"kFreeIngot" = "Free Ingot";
+"kDownloadRewardIngotAppTips" = "Download our apps to earn ingots";
+"kDownloadRewardCoinAppTips" = "Download our apps to earn coins";
+"kRewardIngotWallTips" = "Download third-party apps to earn ingots";
+"kRewardCoinWallTips" = "Download third-party apps to earn coins";
+"kFreeIngots" = "Get Free";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
 "kCleaning" = "Cleaning Cache...";
@@ -1156,7 +1155,6 @@
 
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
 "kBalanceNotEnoughDesc" = "Sorry，your balance is not enough，you can increase your balance via the way below:";
-"kGetFreeIngot" = "Get Free";
 
 "kDetectFakeIAP" = "Fail to complete purchase. You may use jail-broken IAP";
 "kVerifyIAPFail" = "Fail to complete purchase. Please try again later.";

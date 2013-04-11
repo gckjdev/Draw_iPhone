@@ -29,7 +29,8 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)didFinishBuyProduct:(int)resultCode;
 - (void)didProcessingBuyProduct;
 - (void)didSyncFinish;
-- (void)didFinishChargeIngot:(int)resultCode;
+- (void)didFinishChargeCurrency:(PBGameCurrency)currency
+                     resultCode:(int)resultCode;
 
 @end
 
@@ -46,39 +47,18 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate;
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler;
 
-- (void)buyCoin:(PriceModel *)price;
+- (BOOL)hasEnoughBalance:(int)amount
+                currency:(PBGameCurrency)currency;
 
+- (void)chargeCoin:(int)amount 
+            source:(BalanceSourceType)source;
 
-// remove?
-- (void)buyRemoveAd;
+- (void)chargeCoin:(int)amount
+            toUser:(NSString*)userId
+            source:(BalanceSourceType)source;
 
-- (void)chargeAccount:(int)amount 
-               source:(BalanceSourceType)source;
-
-- (void)chargeAccount:(int)amount
-               toUser:(NSString*)userId
-               source:(BalanceSourceType)source;
-
-- (void)deductAccount:(int)amount 
-               source:(BalanceSourceType)source;
-
-- (BOOL)hasEnoughBalance:(int)amount currency:(PBGameCurrency)currency;
-
-- (int)checkIn;
-
-- (void)retryVerifyReceiptAtBackground;
-
-- (int)rewardForShareWeibo;
-
-- (void)awardAccount:(int)amount 
-              source:(BalanceSourceType)source;
-
-- (void)restoreIAPPurchase;
-
-#pragma mark - Charge Ingot
-
-- (void)buyProduct:(PBIAPProduct*)product;
-
+- (void)deductCoin:(int)amount
+            source:(BalanceSourceType)source;
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source;
@@ -86,5 +66,18 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)chargeIngot:(int)amount
              toUser:(NSString*)userId
              source:(BalanceSourceType)source;
+
+- (void)buyProduct:(PBIAPProduct*)product;
+
+// remove?
+- (void)buyRemoveAd;
+
+- (int)checkIn;
+
+- (void)retryVerifyReceiptAtBackground;
+
+- (int)rewardForShareWeibo;
+
+- (void)restoreIAPPurchase;
 
 @end

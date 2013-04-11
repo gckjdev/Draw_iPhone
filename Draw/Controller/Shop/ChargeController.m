@@ -12,8 +12,8 @@
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
 #import "ConfigManager.h"
-
-
+#import "ShareImageManager.h"
+#import "UIViewUtils.h"
 
 @interface ChargeController ()
 
@@ -22,39 +22,45 @@
 @implementation ChargeController
 
 - (void)dealloc {
-    [_ingotCountLabel release];
+    [_countLabel release];
     [_taobaoLinkView release];
+    [_currencyImageView release];
+    [_countBgImageView release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
-    [self setIngotCountLabel:nil];
+    [self setCountLabel:nil];
     [self setTaobaoLinkView:nil];
+    [self setCurrencyImageView:nil];
+    [self setCountBgImageView:nil];
     [super viewDidUnload];
 }
 
 - (id)init
 {
     if (self = [super init]) {
-        _saleCurrency = PBGameCurrencyIngot;
+        _saleCurrency = [GameApp saleCurrency];
     }
     
     return self;
 }
 
-
-- (id)initWithSaleCurrency:(PBGameCurrency)saleCurrency
-{
-    if (self = [super init]) {
-        _saleCurrency = saleCurrency;
-    }
-    
-    return self;
-}
+#define COIN_COUNT_LABEL_WIDTH (ISIPAD ? 120 : 60)
+#define COIN_COUNT_BG_IMAGE_VIEW_WIDTH (ISIPAD ? 128 : 64)
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
+    
+    if (_saleCurrency == PBGameCurrencyCoin) {
+        [self.countLabel updateWidth:COIN_COUNT_LABEL_WIDTH];
+        [self.countBgImageView updateWidth:COIN_COUNT_BG_IMAGE_VIEW_WIDTH];
+        self.countLabel.center = self.countBgImageView.center;
+        self.countBgImageView.image = [UIImage imageNamed:@"coin_count_bg@2x.png"];
+    }
 
     [self updateBalance];
     
@@ -71,10 +77,9 @@
 #endif
 }
 
-
 - (void)updateBalance
 {
-    self.ingotCountLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot]];
+    self.countLabel.text = [NSString stringWithFormat:@"%d", [[AccountManager defaultManager] getBalanceWithCurrency:_saleCurrency]];
 }
 
 - (void)updateTaobaoLinkView
@@ -152,7 +157,7 @@
     }
 }
 
-- (void)didFinishChargeIngot:(int)resultCode
+- (void)didFinishChargeCurrency:(PBGameCurrency)currency resultCode:(int)resultCode
 {
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {

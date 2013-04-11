@@ -37,10 +37,11 @@
 #import "CommonMessageCenter.h"
 #import "InputAlertView.h"
 #import "GeographyService.h"
+#import "UserSettingCell.h"
 
 enum{
     SECTION_USER = 0,
-    SECTION_REMOVE_AD,
+//    SECTION_REMOVE_AD,
     SECTION_ACCOUNT,
     SECTION_GUESSWORD,
     SECTION_SOUND,
@@ -155,7 +156,7 @@ enum {
     } else if (isDiceApp()) {
         rowsInSectionGuessWord = 0;
         rowOfCustomDice = 3;
-        rowsInSectionUser = 4; //add custom dice 
+        rowsInSectionUser = 4; //add custom dice
     }
 
     
@@ -315,9 +316,9 @@ enum {
     } else if (section == SECTION_ACCOUNT){
         return rowsInSectionAccount;
     }
-    else if (section == SECTION_REMOVE_AD){
-        return (isDrawApp())?0:1;
-    }
+//    else if (section == SECTION_REMOVE_AD){
+//        return (isDrawApp())?0:1;
+//    }
     else{
         return 0;
     }
@@ -420,6 +421,22 @@ enum {
     return cell;
 }
 
+- (void)initCell:(UITableViewCell*)cell withIndexPath:(NSIndexPath*)indexPath
+{
+    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    if (rowNumber == 1) {
+        return;
+    }
+    if (indexPath.row == 0) {
+        return;
+    } else if (indexPath.row == rowNumber-1) {
+        return;
+    } else {
+        return;
+    }
+    
+    
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -427,7 +444,8 @@ enum {
     static NSString *cellIdentifier = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [self createCellByIdentifier:cellIdentifier];        
+        cell = [self createCellByIdentifier:cellIdentifier];
+        [self initCell:cell withIndexPath:indexPath];
     }else{
         [self clearSwitchInCell:cell];
     }
@@ -617,16 +635,16 @@ enum {
                 break;
         }
     }
-    else if (section == SECTION_REMOVE_AD) {
-        cell.textLabel.text = NSLS(@"kRemoveAd");
-        cell.detailTextLabel.hidden = NO;
-        if ([ConfigManager isProVersion]){
-            cell.detailTextLabel.text = @"N/A";
-        }
-        else{
-            cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
-        }
-    }
+//    else if (section == SECTION_REMOVE_AD) {
+//        cell.textLabel.text = NSLS(@"kRemoveAd");
+//        cell.detailTextLabel.hidden = NO;
+//        if ([ConfigManager isProVersion]){
+//            cell.detailTextLabel.text = @"N/A";
+//        }
+//        else{
+//            cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
+//        }
+//    }
     
     return cell;
 }
@@ -750,18 +768,6 @@ enum {
         } else if (row == rowOfVolumeSetting) {
             //no action
         } 
-        
-//        else if (row == rowOfChatVoice) {
-//            UIActionSheet *selectChatVoiceSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kChatVoice") 
-//                                                                              delegate:self 
-//                                                                     cancelButtonTitle:NSLS(@"kCancel") 
-//                                                                destructiveButtonTitle:NSLS(@"kEnableAlways") 
-//                                                                     otherButtonTitles:NSLS(@"kEnableWifi"), NSLS(@"kEnableNot"), nil];
-//            selectChatVoiceSheet.tag = CHAT_VOICE_TAG;
-//            [selectChatVoiceSheet setDestructiveButtonIndex:chatVoice - 1];
-//            [selectChatVoiceSheet showInView:self.view];
-//            [selectChatVoiceSheet release];
-//        }
     }
     else if (section == SECTION_ACCOUNT){
         
@@ -809,13 +815,12 @@ enum {
                 break;
         }
     }    
-    else if (section == SECTION_REMOVE_AD) {
-        if ([ConfigManager isProVersion]){            
-        }
-        else{
-            [[AdService defaultService] requestRemoveAd:self];
-        }
-    }
+//    else if (section == SECTION_REMOVE_AD) {
+//        if ([ConfigManager isProVersion]){            
+//        }
+//        else{
+//        }
+//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

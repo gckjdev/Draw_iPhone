@@ -990,79 +990,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [self setFacebookId:loginId nickName:nickName];
     
     [self storeUserData];
-    
-//    [userDefaults synchronize];     
 }
 
-//- (void)saveUserId:(NSString*)userId 
-//             email:(NSString*)email
-//          password:(NSString*)password
-//          nickName:(NSString*)nickName 
-//              qqId:(NSString*)qqId 
-//     qqAccessToken:(NSString*)qqAccessToken 
-//qqAccessTokenSecret:(NSString*)qqAccessTokenSecret 
-//            sinaId:(NSString*)sinaId 
-//   sinaAccessToken:(NSString*)sinaAccessToken 
-//sinaAccessTokenSecret:(NSString*)sinaAccessTokenSecret 
-//        facebookId:(NSString*)facebookId
-//         avatarURL:(NSString*)avatarURL 
-//           balance:(NSNumber*)balance 
-//             items:(NSArray *)items 
-//            gender:(NSString *)gender
-//{
-//    PPDebug(@"Save userId(%@), email(%@), nickName(%@)", userId, email, nickName);    
-//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-//
-//    //Email用户
-//    [self setUserId:userId];
-//    [self setNickName:nickName];
-//    [self setPassword:password];
-//    [self setAvatar:avatarURL];    
-//    if ([avatarURL length] > 0){
-//        [self avatarImage];
-//    }    
-//    [self setGender:gender];    
-//    [self setEmail:email];
-//
-//    //facebook用户
-//    if (facebookId != nil){
-//        [self setFacebookId:facebookId nickName:nickName];
-//    }
-//    
-//    //qq绑定用户
-//    if (qqId != nil){
-//        [self setQQId:qqId nickName:nickName accessToken:qqAccessToken accessTokenSecret:qqAccessTokenSecret];
-//    }
-//
-//    //新浪绑定用户
-//    if (sinaId != nil){
-//        [self setSinaId:sinaId nickName:nickName];
-//    }
-//    
-//    if ([avatarURL length] > 0){
-//        [userDefaults setObject:avatarURL forKey:KEY_AVATAR_URL];
-//        if (email == nil) {
-//            [self avatarImage];
-//        }
-//    }
-//    
-//    if (balance != nil) {
-//        [[AccountManager defaultManager] updateBalance:balance.intValue];
-//    }
-//    
-//    if (items != nil) {
-//        for (NSDictionary* itemTypeBalance in items){
-//            int itemType = [[itemTypeBalance objectForKey:PARA_ITEM_TYPE] intValue];
-//            int itemAmount = [[itemTypeBalance objectForKey:PARA_ITEM_AMOUNT] intValue];                    
-//            
-//            // update DB
-//            [[ItemManager defaultManager] addNewItem:itemType amount:itemAmount];
-//            PPDebug(@"<syncAccount> add client item type[%d], amount[%d]", itemType, itemAmount);
-//        }
-//    }
-//    
-//    [userDefaults synchronize];
-//}
 
 - (void)setLanguageType:(LanguageType)type
 {

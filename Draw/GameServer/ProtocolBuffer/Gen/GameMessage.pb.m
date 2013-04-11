@@ -17684,6 +17684,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBWall* wall;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
+@property (retain) NSMutableArray* mutableIdListList;
 @end
 
 @implementation DataQueryResponse
@@ -17747,6 +17748,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUserRelation_ = !!value;
 }
 @synthesize userRelation;
+@synthesize mutableIdListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17761,6 +17763,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableWallListList = nil;
   self.wall = nil;
   self.user = nil;
+  self.mutableIdListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17855,6 +17858,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 }
 - (PBWall*) wallListAtIndex:(int32_t) index {
   id value = [mutableWallListList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) idListList {
+  return mutableIdListList;
+}
+- (NSString*) idListAtIndex:(int32_t) index {
+  id value = [mutableIdListList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -17980,6 +17990,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUserRelation) {
     [output writeInt32:86 value:self.userRelation];
   }
+  for (NSString* element in self.mutableIdListList) {
+    [output writeString:90 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -18039,6 +18052,14 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasUserRelation) {
     size += computeInt32Size(86, self.userRelation);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableIdListList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableIdListList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18196,6 +18217,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasUserRelation) {
     [self setUserRelation:other.userRelation];
   }
+  if (other.mutableIdListList.count > 0) {
+    if (result.mutableIdListList == nil) {
+      result.mutableIdListList = [NSMutableArray array];
+    }
+    [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18318,6 +18345,10 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 688: {
         [self setUserRelation:[input readInt32]];
+        break;
+      }
+      case 722: {
+        [self addIdList:[input readString]];
         break;
       }
     }
@@ -18765,6 +18796,37 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearUserRelation {
   result.hasUserRelation = NO;
   result.userRelation = 0;
+  return self;
+}
+- (NSArray*) idListList {
+  if (result.mutableIdListList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableIdListList;
+}
+- (NSString*) idListAtIndex:(int32_t) index {
+  return [result idListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableIdListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value {
+  if (result.mutableIdListList == nil) {
+    result.mutableIdListList = [NSMutableArray array];
+  }
+  [result.mutableIdListList addObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values {
+  if (result.mutableIdListList == nil) {
+    result.mutableIdListList = [NSMutableArray array];
+  }
+  [result.mutableIdListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearIdListList {
+  result.mutableIdListList = nil;
   return self;
 }
 @end

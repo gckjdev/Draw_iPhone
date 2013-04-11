@@ -155,6 +155,8 @@
 @class PBLayoutList;
 @class PBLayoutList_Builder;
 @class PBLayout_Builder;
+@class PBLearnDraw;
+@class PBLearnDraw_Builder;
 @class PBLocalizeString;
 @class PBLocalizeString_Builder;
 @class PBMessage;
@@ -4421,30 +4423,31 @@ BOOL BetTypeIsValidValue(BetType value);
 
 @interface DataQueryResponse : PBGeneratedMessage {
 @private
-  BOOL hasUserRelation_:1;
-  BOOL hasVersion_:1;
-  BOOL hasTotalCount_:1;
   BOOL hasResultCode_:1;
-  BOOL hasBbsDrawData_:1;
-  BOOL hasWall_:1;
+  BOOL hasTotalCount_:1;
+  BOOL hasVersion_:1;
+  BOOL hasUserRelation_:1;
   BOOL hasUser_:1;
-  int32_t userRelation;
-  int32_t version;
-  int32_t totalCount;
+  BOOL hasWall_:1;
+  BOOL hasBbsDrawData_:1;
   int32_t resultCode;
-  PBBBSDraw* bbsDrawData;
-  PBWall* wall;
+  int32_t totalCount;
+  int32_t version;
+  int32_t userRelation;
   PBGameUser* user;
-  NSMutableArray* mutableDrawDataList;
-  NSMutableArray* mutableMessageList;
-  NSMutableArray* mutableMessageStatList;
-  NSMutableArray* mutableFeedList;
-  NSMutableArray* mutableBbsBoardList;
+  PBWall* wall;
+  PBBBSDraw* bbsDrawData;
+  NSMutableArray* mutableIdListList;
   NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
+  NSMutableArray* mutableBbsBoardList;
   NSMutableArray* mutableBbsPrivilegeListList;
   NSMutableArray* mutableBbsUserListList;
   NSMutableArray* mutableWallListList;
+  NSMutableArray* mutableFeedList;
+  NSMutableArray* mutableMessageStatList;
+  NSMutableArray* mutableMessageList;
+  NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasResultCode;
 - (BOOL) hasTotalCount;
@@ -4480,6 +4483,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 - (NSArray*) wallListList;
 - (PBWall*) wallListAtIndex:(int32_t) index;
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4625,5 +4630,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (int32_t) userRelation;
 - (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
 - (DataQueryResponse_Builder*) clearUserRelation;
+
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearIdListList;
 @end
 

@@ -323,9 +323,19 @@
     return @"game_bg.mp3";
 }
 
-- (PBGameCurrency)wallRewardCoinType
+- (PBGameCurrency)wallRewardCurrencyType
 {
     return PBGameCurrencyCoin;
+}
+
+- (PBGameCurrency)saleCurrency
+{
+    return PBGameCurrencyCoin;
+}
+
+- (BOOL)hasIngotBalance
+{
+    return NO;
 }
 
 - (NSString*)youmiWallId

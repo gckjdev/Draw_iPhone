@@ -615,10 +615,10 @@ static ZJHGameService *_defaultService;
     return [[self myPlayInfo] alreadFoldCard] || [[self myPlayInfo] alreadCompareLose];
 }
 
-- (void)chargeAccount:(int)amount
+- (void)chargeCoin:(int)amount
                source:(BalanceSourceType)source
 {
-    [_accountService chargeAccount:amount source:source];
+    [_accountService chargeCoin:amount source:source];
 }
 
 - (void)syncAccount:(id<AccountServiceDelegate>)delegate

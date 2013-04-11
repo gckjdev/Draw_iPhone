@@ -95,20 +95,20 @@
 
 + (CommonNetworkOutput*)getAllTrafficeServers:(NSString*)baseURL;
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit;
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit;
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
-                               byUser:(NSString*)byUserId;
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit
+                            byUser:(NSString*)byUserId;
 
 + (CommonNetworkOutput*)chargeIngot:(NSString*)baseURL
                              userId:(NSString*)userId
@@ -118,7 +118,7 @@
                  transactionReceipt:(NSString*)transactionRecepit
                              byUser:(NSString*)byUserId;
 
-+ (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
++ (CommonNetworkOutput*)deductCoin:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
                                source:(int)source;
@@ -602,6 +602,14 @@
                              gameId:(NSString*)gameId
                              userId:(NSString*)userId
                                 exp:(long)addExp;
+
+
++ (CommonNetworkOutput*)sendGetRequestWithBaseURL:(NSString*)baseURL
+                                           method:(NSString *)method
+                                       parameters:(NSDictionary *)parameters
+                                         returnPB:(BOOL)returnPB
+                                      returnArray:(BOOL)returnArray;
+
 
 #define URL_GOOGLE_GEOCODE_JSON     @"http://maps.googleapis.com/maps/api/geocode/json?"
 #define PARA_GOOGLE_LATLNG          @"latlng"

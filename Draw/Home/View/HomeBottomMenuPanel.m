@@ -134,6 +134,10 @@
 }
 - (void)updateView
 {
+    if (isDrawApp()) {
+        [[self viewWithTag:1234] removeFromSuperview];
+    }
+    
     //add menu views;
     [self addMenuViews];
     //add split lines

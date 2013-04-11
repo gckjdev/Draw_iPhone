@@ -107,9 +107,233 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     return promotionInfo;
 }
 
-#define URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.160.100:8080/app_res/smart_data/shop_item_images_Draw/%@", name]
+#define DRAW_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.160.100:8080/app_res/smart_data/shop_item_images_Draw/%@", name]
+#define DICE_URL_ITEM_IMAGE(name) [NSString stringWithFormat:@"http://58.215.160.100:8080/app_res/smart_data/shop_item_images_Dice/%@", name]
+
 
 + (void)createTestDataFile
+{
+    if (isDrawApp()) {
+        [self createDrawTestDataFile];
+    }else if(isDiceApp()){
+        [self createDiceTestDataFile];
+    }
+}
+
++ (void)createDiceTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    // 重摇
+    [mutableArray addObject:[self itemWithItemId:ItemTypeRollAgain
+                                            name:@"kItemRollAgain"
+                                            desc:@"kRollAgainDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_roll_again@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:200
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 劈
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCut
+                                            name:@"kItemCut"
+                                            desc:@"kCutDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_cut@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:100
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 看
+    [mutableArray addObject:[self itemWithItemId:ItemTypePeek
+                                            name:@"kItemPeek"
+                                            desc:@"kPeekDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_eye@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:50
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 延时
+    [mutableArray addObject:[self itemWithItemId:ItemTypeIncTime
+                                            name:@"kItemPostpone"
+                                            desc:@"kPostponeDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_delay@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:50
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 减时
+    [mutableArray addObject:[self itemWithItemId:ItemTypeDecTime
+                                            name:@"kItemUrge"
+                                            desc:@"kUrgeDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_hurryup@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:50
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 龟缩
+    [mutableArray addObject:[self itemWithItemId:ItemTypeSkip
+                                            name:@"kItemTurtle"
+                                            desc:@"kTurtleDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_tortoise@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:150
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 机器人
+    [mutableArray addObject:[self itemWithItemId:ItemTypeDiceRobot
+                                            name:@"kItemDiceRobot"
+                                            desc:@"kDiceRobotDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_robot@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:50
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 逆
+    [mutableArray addObject:[self itemWithItemId:ItemTypeReverse
+                                            name:@"kItemReverse"
+                                            desc:@"kReverseDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_reverse@2x.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:100
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 爱国骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDicePatriotDice
+                                            name:@"kItemPatriotDice"
+                                            desc:@"kPatriotDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_patriot_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 金色骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceGoldenDice
+                                            name:@"kItemGoldenDice"
+                                            desc:@"kGoldenDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_golden_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 木质骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceWoodDice
+                                            name:@"kItemWoodDice"
+                                            desc:@"kWoodDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_wood_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 蓝宝石骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceBlueCrystalDice
+                                            name:@"kItemBlueCrystalDice"
+                                            desc:@"kBlueCrystalDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_blue_crystal_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+
+    // 粉色宝石骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDicePinkCrystalDice
+                                            name:@"kItemPinkCrystalDice"
+                                            desc:@"kPinkCrystalDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_pink_crystal_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 绿宝石骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceGreenCrystalDice
+                                            name:@"kItemGreenCrystalDice"
+                                            desc:@"kGreenCrystalDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_green_crystal_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 紫宝石骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDicePurpleCrystalDice
+                                            name:@"kItemPurpleCrystalDice"
+                                            desc:@"kPurpleCrystalDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_green_purple_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 蓝钻骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceBlueDiamondDice
+                                            name:@"kItemBlueDiamondDice"
+                                            desc:@"kBlueDiamondDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_blue_diamond_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 粉钻骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDicePinkDiamondDice
+                                            name:@"kItemPinkDiamondDice"
+                                            desc:@"kPinkDiamondDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_pink_diamond_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 绿钻骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDiceGreenDiamondDice
+                                            name:@"kItemGreenDiamondDice"
+                                            desc:@"kGreenDiamondDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_green_diamond_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 紫钻骰子
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCustomDicePurpleDiamondDice
+                                            name:@"kItemPurpleDiamondDice"
+                                            desc:@"kPurpleDiamondDiceDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DICE_URL_ITEM_IMAGE(@"shop_item_purple_diamond_dice.png")
+                                            type:PBDrawItemTypeNomal
+                                           price:20000
+                                        currency:PBGameCurrencyCoin]];
+
+
+    
+    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    [listBuilder addAllItems:mutableArray];
+    PBGameItemList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
+
++ (void)createDrawTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
@@ -118,7 +342,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kFlower"
                                             desc:@"kFlowerDescription"
                                      consumeType:PBGameItemConsumeTypeAmountConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_flower@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_flower@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:20
                                         currency:PBGameCurrencyCoin]];
@@ -128,7 +352,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //                                            name:@"kTomato"
     //                                            desc:@"kTomatoDescription"
     //                                     consumeType:PBGameItemConsumeTypeAmountConsumable
-    //                                           image:URL_ITEM_IMAGE(@"shop_item_tomato@2x.png")
+    //                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_tomato@2x.png")
     //                                            type:PBDrawItemTypeNomal
     //                                           price:20
     //                                        currency:PBGameCurrencyCoin]];
@@ -138,7 +362,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kTips"
                                             desc:@"kTipsDescription"
                                      consumeType:PBGameItemConsumeTypeAmountConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_tipbag@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_tipbag@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:20
                                         currency:PBGameCurrencyCoin]];
@@ -148,7 +372,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kColor"
                                             desc:@"kColorDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_print_oil@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_print_oil@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:100
                                         currency:PBGameCurrencyCoin]];
@@ -158,7 +382,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kRemoveAd"
                                             desc:@"kRemoveAdDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
@@ -168,7 +392,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kItemTypePurse"
                                             desc:@"kItemTypePurseDesc"
                                      consumeType:PBGameItemConsumeTypeAmountConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
                                             type:PBDrawItemTypeNomal
                                            price:10
                                         currency:PBGameCurrencyIngot
@@ -180,7 +404,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kColorAlphaItem"
                                             desc:@"kColorAlphaItemDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:10
                                         currency:PBGameCurrencyIngot]];
@@ -195,7 +419,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kStraw"
                                             desc:@"kStrawDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_straw@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_straw@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:600
                                         currency:PBGameCurrencyCoin]];
@@ -205,7 +429,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kPaintPlayerItem"
                                             desc:@"kPaintPlayerItemDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_paint_player@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2000
                                         currency:PBGameCurrencyCoin]];
@@ -216,7 +440,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kPaletteItem"
                                             desc:@"kPaletteItemDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_palette@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_palette@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4000
                                         currency:PBGameCurrencyCoin
@@ -229,7 +453,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kBasicShape"
                                             desc:@"kBasicShapeDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_basic_shape@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_basic_shape@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:5
                                         currency:PBGameCurrencyIngot]];
@@ -242,7 +466,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kItemTypeGrid"
                                             desc:@"kItemTypeGridDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_grid@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_grid@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
@@ -252,7 +476,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgAntares"
                                             desc:@"kDrawBgAntaresDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_antares@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_antares@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -265,7 +489,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgAdhara"
                                             desc:@"kDrawBgAdharaDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_adhara@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_adhara@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -280,7 +504,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgElnath"
                                             desc:@"kDrawBgElnathDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_elnath@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_elnath@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -294,7 +518,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgAlioth"
                                             desc:@"kDrawBgAliothDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_alioth@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_alioth@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -307,7 +531,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgMimosa"
                                             desc:@"kDrawBgMimosaDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_mimosa@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_mimosa@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -320,7 +544,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgArcturus"
                                             desc:@"kDrawBgArcturusDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_arcturus@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_arcturus@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -333,7 +557,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgPollux"
                                             desc:@"kDrawBgPolluxDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_pollux@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_pollux@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -346,7 +570,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgRegulus"
                                             desc:@"kDrawBgRegulusDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_regulus@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_regulus@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -359,7 +583,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kDrawBgMirfak"
                                             desc:@"kDrawBgMirfakDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_draw_bg_mirfak@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_mirfak@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:4
                                         currency:PBGameCurrencyIngot
@@ -372,7 +596,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kSquareCanvasLarge"
                                             desc:@"kSquareCanvasLargeDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_square_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_square_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2
                                         currency:PBGameCurrencyIngot]];
@@ -382,7 +606,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kHorizontalCanvasSmall"
                                             desc:@"kHorizontalCanvasSmallDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
@@ -392,7 +616,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kHorizontalCanvas"
                                             desc:@"kHorizontalCanvasDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2
                                         currency:PBGameCurrencyIngot]];
@@ -402,7 +626,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kHorizontalCanvasLarge"
                                             desc:@"kHorizontalCanvasLargeDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2
                                         currency:PBGameCurrencyIngot]];
@@ -413,7 +637,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kVerticalCanvasSmall"
                                             desc:@"kVerticalCanvasSmallDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:1000
                                         currency:PBGameCurrencyCoin]];
@@ -423,7 +647,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kVerticalCanvas"
                                             desc:@"kVerticalCanvasDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2
                                         currency:PBGameCurrencyIngot]];
@@ -433,7 +657,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             name:@"kVerticalCanvasLarge"
                                             desc:@"kVerticalCanvasLargeDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeTool
                                            price:2
                                         currency:PBGameCurrencyIngot]];
@@ -443,7 +667,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
                                             desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"
-                                           image:URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
                              
                                             type:PBDrawItemTypeTaoBao
                                              url:@"http://a.m.taobao.com/i17538377874.htm"]];

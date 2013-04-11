@@ -485,24 +485,24 @@
                                   output:output];
 }
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit
 {
-    return [GameNetworkRequest chargeAccount:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
+    return [GameNetworkRequest chargeCoin:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
     
 }
 
-+ (CommonNetworkOutput*)chargeAccount:(NSString*)baseURL
-                               userId:(NSString*)userId
-                               amount:(int)amount
-                               source:(int)source
-                        transactionId:(NSString*)transactionId
-                   transactionReceipt:(NSString*)transactionRecepit
-                               byUser:(NSString*)byUserId
++ (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
+                            userId:(NSString*)userId
+                            amount:(int)amount
+                            source:(int)source
+                     transactionId:(NSString*)transactionId
+                transactionReceipt:(NSString*)transactionRecepit
+                            byUser:(NSString*)byUserId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -573,7 +573,7 @@
 }
 
 
-+ (CommonNetworkOutput*)deductAccount:(NSString*)baseURL
++ (CommonNetworkOutput*)deductCoin:(NSString*)baseURL
                                userId:(NSString*)userId
                                amount:(int)amount
                                source:(int)source
@@ -3266,6 +3266,47 @@
 }
 
 
+
+
+//when returnPB is YES, the returnArray has no sence.
++ (CommonNetworkOutput*)sendGetRequestWithBaseURL:(NSString*)baseURL
+                                           method:(NSString *)method
+                                      parameters:(NSDictionary *)parameters
+                                        returnPB:(BOOL)returnPB
+                                     returnArray:(BOOL)returnArray
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL)  {
+        NSString* str = [NSString stringWithString:baseURL];
+        str = [str stringByAddQueryParameter:METHOD value:method];
+        for (NSString *key in [parameters allKeys]) {
+            NSString *value = [parameters objectForKey:key];
+            str = [str stringByAddQueryParameter:key value:value];
+        }
+        if (returnPB) {
+            str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
+        }
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        if (returnArray && !returnPB) {
+            output.jsonDataArray = [dict objectForKey:RET_DATA];
+        }else{
+            output.jsonDataDict = [dict objectForKey:RET_DATA];
+        }
+        return;
+    };
+    
+    NSString *format = returnPB ? FORMAT_PB : FORMAT_JSON;
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:format
+                                  output:output];
+}
 
 
 @end

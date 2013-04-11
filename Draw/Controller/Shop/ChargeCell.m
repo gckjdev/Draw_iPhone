@@ -46,8 +46,12 @@
     self.indexPath = oneIndexPath;
     
     if (product.type == PBIAPProductTypeIapingot) {
-        self.productImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:(product.type == PBIAPProductTypeIapingot ? PBGameCurrencyIngot : PBGameCurrencyCoin)];
-    }
+        self.productImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:PBGameCurrencyIngot];
+    }else if(product.type == PBIAPProductTypeIapcoin){
+        self.productImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:PBGameCurrencyCoin];
+    }else{
+        self.productImageView.image = nil;
+    } 
     
     self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
     self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _product.currency, _product.totalPrice];
