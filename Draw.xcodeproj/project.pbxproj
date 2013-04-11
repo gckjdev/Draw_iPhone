@@ -1326,6 +1326,21 @@
 		CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
 		CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
 		CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
+		CA04CB4117169DF6002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
+		CA04CB4217169DF6002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
+		CA04CB4917169E2B002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
+		CA04CB4A17169E35002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
+		CA04CB4B17169E35002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
+		CA04CB4C17169E35002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
+		CA04CB4D17169E37002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
+		CA04CB4E17169E37002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
+		CA04CB4F17169E37002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
+		CA04CB5017169E38002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
+		CA04CB5117169E38002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
+		CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
+		CA04CB5317169E39002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
+		CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
+		CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
@@ -10267,6 +10282,10 @@
 		CA04CB2217166577002BF3C2 /* LearnDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawManager.m; sourceTree = "<group>"; };
 		CA04CB2F17169332002BF3C2 /* LearnDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawApp.h; sourceTree = "<group>"; };
 		CA04CB3017169333002BF3C2 /* LearnDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawApp.m; sourceTree = "<group>"; };
+		CA04CB3E17169DF6002BF3C2 /* LearnDrawHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawHomeController.h; sourceTree = "<group>"; };
+		CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawHomeController.m; sourceTree = "<group>"; };
+		CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawHomeController.xib; sourceTree = "<group>"; };
+		CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LearnDrawHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
@@ -16733,6 +16752,10 @@
 				CA12616E167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib */,
 				CA42706A1620028E00C6CCAE /* SuperHomeController.h */,
 				CA42706B1620028E00C6CCAE /* SuperHomeController.m */,
+				CA04CB3E17169DF6002BF3C2 /* LearnDrawHomeController.h */,
+				CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */,
+				CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */,
+				CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -21744,6 +21767,8 @@
 				CA1208351712A98F00FEFB41 /* TaoBaoController~ipad.xib in Resources */,
 				CA1208501712AFAB00FEFB41 /* LearnDraw-Info.plist in Resources */,
 				EAA8A3D317157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				CA04CB4217169DF6002BF3C2 /* LearnDrawHomeController.xib in Resources */,
+				CA04CB4917169E2B002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23091,6 +23116,8 @@
 				A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */,
+				CA04CB4E17169E37002BF3C2 /* LearnDrawHomeController.xib in Resources */,
+				CA04CB4F17169E37002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24049,6 +24076,8 @@
 				A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */,
+				CA04CB4B17169E35002BF3C2 /* LearnDrawHomeController.xib in Resources */,
+				CA04CB4C17169E35002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25050,6 +25079,8 @@
 				C2BD7A7917167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
 				C2BD7A7D17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
 				C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */,
+				CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26011,6 +26042,8 @@
 				A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */,
+				CA04CB5117169E38002BF3C2 /* LearnDrawHomeController.xib in Resources */,
+				CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26835,6 +26868,7 @@
 				CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */,
 				CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */,
 				CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */,
+				CA04CB4117169DF6002BF3C2 /* LearnDrawHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27639,6 +27673,7 @@
 				A4B1C4A517168124002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AC17168B21002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */,
+				CA04CB4D17169E37002BF3C2 /* LearnDrawHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28443,6 +28478,7 @@
 				A4B1C4A817168127002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AE17168B23002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */,
+				CA04CB4A17169E35002BF3C2 /* LearnDrawHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29250,6 +29286,7 @@
 				A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3117169333002BF3C2 /* LearnDrawApp.m in Sources */,
+				CA04CB5317169E39002BF3C2 /* LearnDrawHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30064,6 +30101,7 @@
 				A4B1C4A717168126002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AD17168B22002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3217169333002BF3C2 /* LearnDrawApp.m in Sources */,
+				CA04CB5017169E38002BF3C2 /* LearnDrawHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
