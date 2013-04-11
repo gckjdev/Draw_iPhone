@@ -7,6 +7,7 @@
 //
 
 #import "UserSettingCell.h"
+#import "AutoCreateViewByXib.h"
 
 @implementation UserSettingCell
 
@@ -18,6 +19,24 @@
     }
     return self;
 }
+
+AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
+
++ (id)createCell:(id)delegate
+{
+    return [UserSettingCell createView];
+}
+
++ (float)getCellHeight
+{
+    return 20;
+}
+
++ (NSString*)getCellIdentifier
+{
+    return @"UserSettingCell";
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
