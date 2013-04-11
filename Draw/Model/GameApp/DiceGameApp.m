@@ -369,4 +369,9 @@
     return @"661f38bed5974599abfad68e6ef402a3";
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaydice.gckj";
+}
+
 @end

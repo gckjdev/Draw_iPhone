@@ -73,13 +73,13 @@
 #import "GameItemService.h"
 #import "IAPProductService.h"
 #import "LearnDrawHomeController.h"
-
+#import "AliPayManager.h"
 
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.172.169:8000/api/i?";
-//    return @"http://192.168.1.123:8000/api/i?";
+//    return @"http://192.168.1.5:8000/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 }
 
@@ -470,8 +470,11 @@ NSString* GlobalGetBoardServerURL()
     
     if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
+    }else if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [[AliPayManager defaultManager] parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
     }
     else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
+        
     }
 
     return YES;
