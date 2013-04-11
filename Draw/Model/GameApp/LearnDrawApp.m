@@ -27,15 +27,20 @@
     return LEARN_DRAW_GAME_ID;
 }
 
-- (NSString*)umengId
-{
-    return DRAW_UMENG_ID;
-}
 
 - (BOOL)disableAd
 {
     return YES;
 }
+
+
+//Below to be changed
+
+- (NSString*)umengId
+{
+    return DRAW_UMENG_ID;
+}
+
 
 - (NSString*)background
 {

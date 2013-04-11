@@ -67,6 +67,7 @@ typedef enum{
                         animated:(BOOL)animated;
 
 - (void)initTabButtons;
+- (BOOL)isCurrentTabLoading;
 
 //used by the sub class.
 - (NSMutableArray *)tabDataList;
@@ -78,5 +79,6 @@ typedef enum{
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
 - (void)failLoadDataForTabID:(NSInteger)tabID;
 - (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
+
 //- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end
