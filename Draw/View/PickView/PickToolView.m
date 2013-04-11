@@ -67,34 +67,12 @@
     [self setHidden:YES animated:YES];
 }
 
-//- (void)sortTools
-//{
-//    [_toolArray sortUsingComparator:^(id obj1,id obj2){
-//        return NSOrderedAscending;
-//        ToolView *tool1 = (ToolView *)obj1;
-//        ToolView *tool2 = (ToolView *)obj2;
-//        NSInteger toolCount1 = [[ItemManager defaultManager] amountForItem:tool1.itemType];
-//        NSInteger toolCount2 = [[ItemManager defaultManager] amountForItem:tool2.itemType];
-//        NSInteger ret = toolCount2 - toolCount1;
-//        if (ret == 0) {
-//            return NSOrderedSame;
-//        }else if(ret < 0)
-//        {
-//            return NSOrderedDescending;
-//        }else{
-//            return NSOrderedDescending;
-//        }
-//    }];
-//    
-//}
-
 - (void)updateToolViews
 {
     NSInteger count = [_toolArray count];
     if (count == 0) {
         return;
     }
-//    [self sortTools];
     CGFloat toolWidth = [ToolView width]*0.8;
     CGFloat toolHeight = [ToolView height]*0.8;
     CGFloat toolX = (self.frame.size.width - toolWidth)/2;
@@ -104,10 +82,7 @@
     for (int i = 0; i < count; ++ i) {
         ToolView *tool = [_toolArray objectAtIndex:i];
         tool.frame = CGRectMake(toolX, y, toolWidth, toolHeight);
-//        [tool setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [tool.titleLabel setFont:[UIFont systemFontOfSize:TOOL_DESC_FONT_SIZE]];
-//        [tool setTitle:[Item actionNameForItemType:tool.itemType] forState:UIControlStateNormal];
-//        [tool centerImageAndTitle:-1];
+
         [tool addTarget:self action:@selector(clickToolView:)];
         [self addSubview:tool];
         y += ySpace + toolHeight;

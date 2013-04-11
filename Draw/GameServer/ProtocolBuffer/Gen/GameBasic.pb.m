@@ -40,9 +40,17 @@ BOOL PBGameCurrencyIsValidValue(PBGameCurrency value) {
 }
 BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value) {
   switch (value) {
-    case PBDrawItemTypeNomal:
-    case PBDrawItemTypeTool:
-    case PBDrawItemTypeTaoBao:
+    case PBDrawItemTypeDrawNomal:
+    case PBDrawItemTypeDrawTool:
+    case PBDrawItemTypeDrawTaoBao:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBDiceItemTypeIsValidValue(PBDiceItemType value) {
+  switch (value) {
+    case PBDiceItemTypeDiceNomal:
       return YES;
     default:
       return NO;

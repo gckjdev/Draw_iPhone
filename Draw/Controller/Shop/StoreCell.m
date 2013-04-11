@@ -54,6 +54,18 @@
     [self addSubview:priceView];
 }
 
+- (void)startAnimating
+{
+    self.indicatorView.hidden = NO;
+    [self.indicatorView startAnimating];
+}
+
+- (void)stopAnimating
+{
+    [self.indicatorView stopAnimating];
+    self.indicatorView.hidden = YES;
+}
+
 #define MAX_WITH_ITEM_NAME ([DeviceDetection isIPAD] ? (400) : (200))
 - (void)setCellInfo:(PBGameItem *)item
 {
@@ -66,8 +78,12 @@
         
     }
     
-    
-    [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
+    [self startAnimating];
+    [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        [self stopAnimating];
+    } failure:^(NSError *error) {
+        [self stopAnimating];
+    }];
     self.itemNameLabel.text = NSLS(item.name);
     
     CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
@@ -123,6 +139,7 @@
     [_itemDescLabel release];
     [_promotionImageView release];
     [_countButton release];
+    [_indicatorView release];
     [super dealloc];
 }
 @end

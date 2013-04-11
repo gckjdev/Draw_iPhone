@@ -76,7 +76,6 @@
 		A41D2B5116B910D10094BA7C /* FrameSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41D2B4B16B910D10094BA7C /* FrameSelectController.xib */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
-		A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A422DB931693DD0D00914A48 /* HotWordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A422DB921693DD0D00914A48 /* HotWordManager.m */; };
 		A427458F171266C000E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
 		A4274590171266C100E43037 /* TaoBaoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA49C86117093CD200843B6B /* TaoBaoController.m */; };
@@ -126,15 +125,6 @@
 		A44710B31705453A00428284 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
 		A44710B41705453B00428284 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
 		A44710B51705453C00428284 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
-		A44710B61705455400428284 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
-		A44710B71705455600428284 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
-		A44710B81705455600428284 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
-		A44710B91705456400428284 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
-		A44710BA1705456500428284 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
-		A44710BB1705456600428284 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
-		A44710BC1705456B00428284 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */; };
-		A44710BD1705456C00428284 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */; };
-		A44710BE1705456D00428284 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */; };
 		A44710BF1705458100428284 /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
 		A44710C01705458200428284 /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
 		A44710C11705458300428284 /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
@@ -340,6 +330,21 @@
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
+		A4834BC9171694FB00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCA171694FC00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCB171694FD00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCC1716957500190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCD1716957600190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCE1716957700190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
+		A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
+		A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
@@ -401,9 +406,6 @@
 		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
 		A491A1CD16F44D02003B638F /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
-		A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
-		A491A20C16F6EE65003B638F /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
-		A491A20D16F6EE65003B638F /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */; };
 		A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
 		A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20916F6EE65003B638F /* ShoppingCell.xib */; };
 		A491A21016F6EE65003B638F /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
@@ -421,6 +423,15 @@
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
+		A4B1C4A41716808D002C83C1 /* shop_item_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B1C4A21716807F002C83C1 /* shop_item_Dice.pb */; };
+		A4B1C4A517168124002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4A717168126002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4A817168127002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
+		A4B1C4AC17168B21002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
+		A4B1C4AD17168B22002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
+		A4B1C4AE17168B23002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
 		A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
@@ -1139,6 +1150,38 @@
 		C2B97A7A16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
 		C2B97A7B16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
 		C2BB4EBE16A7DCFA008D3004 /* auto_recovery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */; };
+		C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5117165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5217165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5317165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5B17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5C17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5D17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6517165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6617165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6717165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A7117167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		C2BD7A7217167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		C2BD7A7317167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		C2BD7A7417167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		C2BD7A7517167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		C2BD7A7617167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		C2BD7A7717167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		C2BD7A7817167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		C2BD7A7917167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		C2BD7A7A17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		C2BD7A7B17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		C2BD7A7C17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		C2BD7A7D17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		C2BD7A7E17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		C2BD7A7F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		C2BD7A8017167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
+		C2BD7A8217167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
+		C2BD7A8317167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
+		C2BD7A8417167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
 		C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
@@ -1272,6 +1315,17 @@
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
+		CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB1E1716652F002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB1F17166530002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB2317166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		CA04CB2417166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		CA04CB3117169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
+		CA04CB3217169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
+		CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
+		CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
+		CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
@@ -2202,7 +2256,6 @@
 		CA1203ED1712A98F00FEFB41 /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		CA1203EE1712A98F00FEFB41 /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
 		CA1203EF1712A98F00FEFB41 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
-		CA1203F01712A98F00FEFB41 /* CoinShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20416F6EE62003B638F /* CoinShopController.m */; };
 		CA1203F11712A98F00FEFB41 /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
 		CA1203F21712A98F00FEFB41 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250787516F710B7009B7ED2 /* UserDetailViewController.m */; };
 		CA1203F31712A98F00FEFB41 /* ViewUserDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C25078B316F71EB6009B7ED2 /* ViewUserDetail.m */; };
@@ -3026,8 +3079,6 @@
 		CA1207CC1712A98F00FEFB41 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
 		CA1207CD1712A98F00FEFB41 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
 		CA1207CE1712A98F00FEFB41 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
-		CA1207CF1712A98F00FEFB41 /* CoinShopController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20516F6EE62003B638F /* CoinShopController.xib */; };
-		CA1207D01712A98F00FEFB41 /* CoinShopController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */; };
 		CA1207D11712A98F00FEFB41 /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20916F6EE65003B638F /* ShoppingCell.xib */; };
 		CA1207D21712A98F00FEFB41 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
 		CA1207D31712A98F00FEFB41 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
@@ -9537,10 +9588,6 @@
 		A491A1CA16F44D02003B638F /* CommonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonItem.m; sourceTree = "<group>"; };
 		A491A1CB16F44D02003B638F /* FlowerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerItem.h; sourceTree = "<group>"; };
 		A491A1CC16F44D02003B638F /* FlowerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerItem.m; sourceTree = "<group>"; };
-		A491A20316F6EE61003B638F /* CoinShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinShopController.h; sourceTree = "<group>"; };
-		A491A20416F6EE62003B638F /* CoinShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinShopController.m; sourceTree = "<group>"; };
-		A491A20516F6EE62003B638F /* CoinShopController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinShopController.xib; sourceTree = "<group>"; };
-		A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CoinShopController~ipad.xib"; sourceTree = "<group>"; };
 		A491A20716F6EE64003B638F /* ShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCell.h; sourceTree = "<group>"; };
 		A491A20816F6EE64003B638F /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
 		A491A20916F6EE65003B638F /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
@@ -9567,6 +9614,9 @@
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
+		A4B1C4A21716807F002C83C1 /* shop_item_Dice.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Dice.pb; sourceTree = "<group>"; };
+		A4B1C4A9171688BE002C83C1 /* BuyItemSpecialHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemSpecialHandler.h; sourceTree = "<group>"; };
+		A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyItemSpecialHandler.m; sourceTree = "<group>"; };
 		A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Draw.pb; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
@@ -10121,6 +10171,15 @@
 		C2B97A4E16FAA5EA0037B15B /* user_detail_sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_sina@2x.png"; sourceTree = "<group>"; };
 		C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_yellow_btn_bg@2x.png"; sourceTree = "<group>"; };
 		C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_recovery@2x.png"; sourceTree = "<group>"; };
+		C2BD7A4E17165D790079B7F6 /* UserSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingCell.h; sourceTree = "<group>"; };
+		C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingCell.m; sourceTree = "<group>"; };
+		C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingCell.xib; sourceTree = "<group>"; };
+		C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingCell~ipad.xib"; sourceTree = "<group>"; };
+		C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_down@2x.png"; sourceTree = "<group>"; };
+		C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_middle@2x.png"; sourceTree = "<group>"; };
+		C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_one@2x.png"; sourceTree = "<group>"; };
+		C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_seperator_line@2x.png"; sourceTree = "<group>"; };
+		C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_up@2x.png"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C2A1B916FEB9970074A168 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
@@ -10202,6 +10261,12 @@
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
+		CA04CB1B17166522002BF3C2 /* LearnDrawService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawService.h; sourceTree = "<group>"; };
+		CA04CB1C17166522002BF3C2 /* LearnDrawService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawService.m; sourceTree = "<group>"; };
+		CA04CB2117166577002BF3C2 /* LearnDrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawManager.h; sourceTree = "<group>"; };
+		CA04CB2217166577002BF3C2 /* LearnDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawManager.m; sourceTree = "<group>"; };
+		CA04CB2F17169332002BF3C2 /* LearnDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawApp.h; sourceTree = "<group>"; };
+		CA04CB3017169333002BF3C2 /* LearnDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawApp.m; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
@@ -14657,6 +14722,18 @@
 			path = Draw/Draw/Resource/Images/userDetail;
 			sourceTree = SOURCE_ROOT;
 		};
+		C2BD7A6B17167A2F0079B7F6 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */,
+				C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */,
+				C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */,
+				C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */,
+				C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		C2C1BF4215A2A884001A2BFC /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -14751,8 +14828,28 @@
 				CA16410E16D72452001C615F /* GameItemService.m */,
 				CA16413716D7255D001C615F /* UserGameItemService.h */,
 				CA16413816D7255D001C615F /* UserGameItemService.m */,
+				A4B1C4A9171688BE002C83C1 /* BuyItemSpecialHandler.h */,
+				A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		CA04CB1517166500002BF3C2 /* LearnDraw */ = {
+			isa = PBXGroup;
+			children = (
+				CA04CB1B17166522002BF3C2 /* LearnDrawService.h */,
+				CA04CB1C17166522002BF3C2 /* LearnDrawService.m */,
+			);
+			path = LearnDraw;
+			sourceTree = "<group>";
+		};
+		CA04CB2017166559002BF3C2 /* LearnDraw */ = {
+			isa = PBXGroup;
+			children = (
+				CA04CB2117166577002BF3C2 /* LearnDrawManager.h */,
+				CA04CB2217166577002BF3C2 /* LearnDrawManager.m */,
+			);
+			path = LearnDraw;
 			sourceTree = "<group>";
 		};
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
@@ -14831,6 +14928,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA04CB1517166500002BF3C2 /* LearnDraw */,
 				C214A627170FE88300492393 /* Geography */,
 				A42AB81016E83A4C007AD01E /* Ingot */,
 				A41D2B5316B910E30094BA7C /* Wall */,
@@ -15794,10 +15892,6 @@
 			children = (
 				A41ECB7916F1D2C000248AEA /* VersionUpdateView.h */,
 				A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */,
-				A491A20316F6EE61003B638F /* CoinShopController.h */,
-				A491A20416F6EE62003B638F /* CoinShopController.m */,
-				A491A20516F6EE62003B638F /* CoinShopController.xib */,
-				A491A20616F6EE63003B638F /* CoinShopController~ipad.xib */,
 				A491A20716F6EE64003B638F /* ShoppingCell.h */,
 				A491A20816F6EE64003B638F /* ShoppingCell.m */,
 				A491A20916F6EE65003B638F /* ShoppingCell.xib */,
@@ -16480,6 +16574,10 @@
 				A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */,
 				C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */,
 				C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */,
+				C2BD7A4E17165D790079B7F6 /* UserSettingCell.h */,
+				C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */,
+				C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */,
+				C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -16967,6 +17065,8 @@
 				CA427063161FFEE800C6CCAE /* AvatarDrawApp.m */,
 				CA8A27ED166CE57500D1A2D6 /* ZJHGameApp.h */,
 				CA8A27EE166CE57500D1A2D6 /* ZJHGameApp.m */,
+				CA04CB2F17169332002BF3C2 /* LearnDrawApp.h */,
+				CA04CB3017169333002BF3C2 /* LearnDrawApp.m */,
 			);
 			path = GameApp;
 			sourceTree = "<group>";
@@ -17793,6 +17893,7 @@
 		CA7D4505168DBDCB009F43F7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A4B1C4A21716807F002C83C1 /* shop_item_Dice.pb */,
 				A44B4A3617156BB300404D73 /* iap_product_Dice.pb */,
 				CA7D4506168DBDCB009F43F7 /* font */,
 				CA7D4508168DBDCB009F43F7 /* help */,
@@ -19606,6 +19707,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA04CB2017166559002BF3C2 /* LearnDraw */,
 				CA16411E16D724B5001C615F /* GameItem */,
 				A4D174AF16B6222000958355 /* WallLayout */,
 				CA479465168E984A00D4AF55 /* Analytics */,
@@ -20510,6 +20612,7 @@
 		EA856C3315F0A65700178323 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C2BD7A6B17167A2F0079B7F6 /* settings */,
 				EAA8A3CE17157C2F00D8F67D /* chat_detail_bg@2x.jpg */,
 				A491423316E6E13500106265 /* gray_coin@2x.png */,
 				A491423416E6E13500106265 /* gray_ingot@2x.png */,
@@ -21566,8 +21669,6 @@
 				CA1207CC1712A98F00FEFB41 /* GameItemDetailView~ipad.xib in Resources */,
 				CA1207CD1712A98F00FEFB41 /* BuyItemView~ipad.xib in Resources */,
 				CA1207CE1712A98F00FEFB41 /* GiftDetailView~ipad.xib in Resources */,
-				CA1207CF1712A98F00FEFB41 /* CoinShopController.xib in Resources */,
-				CA1207D01712A98F00FEFB41 /* CoinShopController~ipad.xib in Resources */,
 				CA1207D11712A98F00FEFB41 /* ShoppingCell.xib in Resources */,
 				CA1207D21712A98F00FEFB41 /* ShoppingCell~ipad.xib in Resources */,
 				CA1207D31712A98F00FEFB41 /* UserDetailViewController.xib in Resources */,
@@ -22920,8 +23021,6 @@
 				C2B606881701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
 				CA189B091702B64900339D42 /* default_config_Dice_version.txt in Resources */,
 				CA189B0D1702B64900339D42 /* default_config_Dice.pb in Resources */,
-				A44710BA1705456500428284 /* CoinShopController.xib in Resources */,
-				A44710BD1705456C00428284 /* CoinShopController~ipad.xib in Resources */,
 				A44710C31705458800428284 /* FeedCarousel.xib in Resources */,
 				A44710C61705458E00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710D91705462900428284 /* ShoppingCell.xib in Resources */,
@@ -22979,6 +23078,19 @@
 				A44B4A3517155BFF00404D73 /* StoreController~ipad.xib in Resources */,
 				A44B4A3717156BB300404D73 /* iap_product_Dice.pb in Resources */,
 				EAA8A3D117157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5C17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6617165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
+				C2BD7A7317167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */,
+				C2BD7A7717167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */,
+				C2BD7A7B17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
+				C2BD7A7F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				C2BD7A8317167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				A4B1C4A41716808D002C83C1 /* shop_item_Dice.pb in Resources */,
+				A4834BCA171694FC00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCD1716957600190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23866,8 +23978,6 @@
 				CAF0DB5A17019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5E17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606891701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
-				A44710BB1705456600428284 /* CoinShopController.xib in Resources */,
-				A44710BC1705456B00428284 /* CoinShopController~ipad.xib in Resources */,
 				A44710C41705458900428284 /* FeedCarousel.xib in Resources */,
 				A44710C71705458F00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710D81705462800428284 /* ShoppingCell.xib in Resources */,
@@ -23927,6 +24037,18 @@
 				A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */,
 				A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */,
 				EAA8A3D217157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5D17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6717165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
+				C2BD7A7417167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */,
+				C2BD7A7817167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */,
+				C2BD7A7C17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
+				C2BD7A8017167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				C2BD7A8417167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				A4834BC9171694FB00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCC1716957500190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24811,8 +24933,6 @@
 				EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */,
 				EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */,
 				EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */,
-				A491A20C16F6EE65003B638F /* CoinShopController.xib in Resources */,
-				A491A20D16F6EE65003B638F /* CoinShopController~ipad.xib in Resources */,
 				A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */,
 				A491A21016F6EE65003B638F /* ShoppingCell~ipad.xib in Resources */,
 				C250787B16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */,
@@ -24923,6 +25043,13 @@
 				CA84BF1D17144C51009BB491 /* draw_home_bg@2x.png in Resources */,
 				CA84BF1F17144C51009BB491 /* draw_home_bottom_split@2x.png in Resources */,
 				EAA8A3CF17157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
+				C2BD7A7117167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */,
+				C2BD7A7517167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */,
+				C2BD7A7917167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
+				C2BD7A7D17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25814,8 +25941,6 @@
 				CAF0DB5817019AED009FE646 /* CanvasRectBox.xib in Resources */,
 				CAF0DB5C17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */,
 				C2B606871701A24400935B75 /* user_detail_unfollow_bg@2x.png in Resources */,
-				A44710B91705456400428284 /* CoinShopController.xib in Resources */,
-				A44710BE1705456D00428284 /* CoinShopController~ipad.xib in Resources */,
 				A44710C21705458700428284 /* FeedCarousel.xib in Resources */,
 				A44710C51705458D00428284 /* FeedCarousel~ipad.xib in Resources */,
 				A44710DA1705462A00428284 /* ShoppingCell.xib in Resources */,
@@ -25874,6 +25999,18 @@
 				A44B4A2117150E6E00404D73 /* ChargeController~ipad.xib in Resources */,
 				A44B4A28171516C800404D73 /* ChargeCell~ipad.xib in Resources */,
 				EAA8A3D017157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5B17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6517165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
+				C2BD7A7217167A2F0079B7F6 /* user_setting_cell_down@2x.png in Resources */,
+				C2BD7A7617167A2F0079B7F6 /* user_setting_cell_middle@2x.png in Resources */,
+				C2BD7A7A17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
+				C2BD7A7E17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				C2BD7A8217167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				A4834BCB171694FD00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCE1716957700190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26635,7 +26772,6 @@
 				CA1203ED1712A98F00FEFB41 /* CommonItem.m in Sources */,
 				CA1203EE1712A98F00FEFB41 /* FlowerItem.m in Sources */,
 				CA1203EF1712A98F00FEFB41 /* BlockArray.m in Sources */,
-				CA1203F01712A98F00FEFB41 /* CoinShopController.m in Sources */,
 				CA1203F11712A98F00FEFB41 /* ShoppingCell.m in Sources */,
 				CA1203F21712A98F00FEFB41 /* UserDetailViewController.m in Sources */,
 				CA1203F31712A98F00FEFB41 /* ViewUserDetail.m in Sources */,
@@ -26696,6 +26832,9 @@
 				CA12042A1712A98F00FEFB41 /* TomatoItem.m in Sources */,
 				CA12042B1712A98F00FEFB41 /* (null) in Sources */,
 				CA12042C1712A98F00FEFB41 /* GeographyService.m in Sources */,
+				CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */,
+				CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27482,7 +27621,6 @@
 				A44710AE1705450F00428284 /* VersionUpdateView.m in Sources */,
 				A44710B11705452800428284 /* BalanceNotEnoughAlertView.m in Sources */,
 				A44710B41705453B00428284 /* BlockArray.m in Sources */,
-				A44710B71705455600428284 /* CoinShopController.m in Sources */,
 				A44710C01705458200428284 /* FeedCarousel.m in Sources */,
 				A44710C9170545A100428284 /* FlowerItem.m in Sources */,
 				A44710CC170545B500428284 /* IAPProductManager.m in Sources */,
@@ -27497,6 +27635,10 @@
 				A4274590171266C100E43037 /* TaoBaoController.m in Sources */,
 				A427459A171266EA00E43037 /* TomatoItem.m in Sources */,
 				A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5217165D790079B7F6 /* UserSettingCell.m in Sources */,
+				A4B1C4A517168124002C83C1 /* PBGameItem+Extend.m in Sources */,
+				A4B1C4AC17168B21002C83C1 /* BuyItemSpecialHandler.m in Sources */,
+				CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28282,7 +28424,6 @@
 				C20ADECC1704334100BF1630 /* UIColor+UIColorExt.m in Sources */,
 				A44710AD1705450E00428284 /* VersionUpdateView.m in Sources */,
 				A44710B51705453C00428284 /* BlockArray.m in Sources */,
-				A44710B81705455600428284 /* CoinShopController.m in Sources */,
 				A44710C11705458300428284 /* FeedCarousel.m in Sources */,
 				A44710CA170545A200428284 /* FlowerItem.m in Sources */,
 				A44710CD170545B600428284 /* IAPProductManager.m in Sources */,
@@ -28298,6 +28439,10 @@
 				A4274591171266C200E43037 /* TaoBaoController.m in Sources */,
 				A427459B171266EC00E43037 /* TomatoItem.m in Sources */,
 				A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5317165D790079B7F6 /* UserSettingCell.m in Sources */,
+				A4B1C4A817168127002C83C1 /* PBGameItem+Extend.m in Sources */,
+				A4B1C4AE17168B23002C83C1 /* BuyItemSpecialHandler.m in Sources */,
+				CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29031,7 +29176,6 @@
 				C203C44D16EEC7790028A065 /* FreeIngotCell.m in Sources */,
 				CAB5325F16F0232B008FD307 /* GestureRecognizerManager.m in Sources */,
 				A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */,
-				A41ECB8416F2CD4400248AEA /* PBGameItem+Extend.m in Sources */,
 				CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */,
 				C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */,
 				CAADF61516F444C20097CFA1 /* CommonAdWallService.m in Sources */,
@@ -29040,7 +29184,6 @@
 				A491A1CD16F44D02003B638F /* CommonItem.m in Sources */,
 				A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */,
 				CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */,
-				A491A20B16F6EE65003B638F /* CoinShopController.m in Sources */,
 				A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */,
 				C250787716F710B7009B7ED2 /* UserDetailViewController.m in Sources */,
 				C25078B416F71EB6009B7ED2 /* ViewUserDetail.m in Sources */,
@@ -29101,6 +29244,12 @@
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
 				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
 				A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */,
+				CA04CB1E1716652F002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2317166577002BF3C2 /* LearnDrawManager.m in Sources */,
+				A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */,
+				A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */,
+				CA04CB3117169333002BF3C2 /* LearnDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29895,7 +30044,6 @@
 				A44710AF1705451200428284 /* VersionUpdateView.m in Sources */,
 				A44710B01705452700428284 /* BalanceNotEnoughAlertView.m in Sources */,
 				A44710B31705453A00428284 /* BlockArray.m in Sources */,
-				A44710B61705455400428284 /* CoinShopController.m in Sources */,
 				A44710BF1705458100428284 /* FeedCarousel.m in Sources */,
 				A44710C8170545A000428284 /* FlowerItem.m in Sources */,
 				A44710CB170545B400428284 /* IAPProductManager.m in Sources */,
@@ -29910,6 +30058,12 @@
 				A427458F171266C000E43037 /* TaoBaoController.m in Sources */,
 				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
 				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5117165D790079B7F6 /* UserSettingCell.m in Sources */,
+				CA04CB1F17166530002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2417166577002BF3C2 /* LearnDrawManager.m in Sources */,
+				A4B1C4A717168126002C83C1 /* PBGameItem+Extend.m in Sources */,
+				A4B1C4AD17168B22002C83C1 /* BuyItemSpecialHandler.m in Sources */,
+				CA04CB3217169333002BF3C2 /* LearnDrawApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
