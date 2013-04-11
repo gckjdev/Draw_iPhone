@@ -18,6 +18,7 @@ typedef enum{
 }ActionType;
 
 
+@class PBLearnDraw;
 @interface DrawFeed : Feed<NSCoding>
 {
     Draw *_drawData;
@@ -42,7 +43,7 @@ typedef enum{
 @property (nonatomic, assign) DeviceType deviceType;
 @property (nonatomic, retain) NSString *opusDesc;
 @property (nonatomic, retain) NSString *drawDataUrl;
-
+@property (nonatomic, retain) PBLearnDraw *learnDraw;
 
 //just an method
 - (NSURL *)thumbURL;
