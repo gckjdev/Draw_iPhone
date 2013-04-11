@@ -330,6 +330,21 @@
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A47FF99E15DB9ADB00EE8125 /* DiceItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = A47FF99D15DB9ADB00EE8125 /* DiceItemService.m */; };
+		A4834BC9171694FB00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCA171694FC00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCB171694FD00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4834BCC1716957500190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCD1716957600190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCE1716957700190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
+		A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
+		A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D916D4B03B00E974A6 /* common_dialog_head_bg@2x.png */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0983169E674D00B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
@@ -23071,6 +23086,11 @@
 				C2BD7A7F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
 				C2BD7A8317167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
 				A4B1C4A41716808D002C83C1 /* shop_item_Dice.pb in Resources */,
+				A4834BCA171694FC00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCD1716957600190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24024,6 +24044,11 @@
 				C2BD7A7C17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
 				C2BD7A8017167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
 				C2BD7A8417167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				A4834BC9171694FB00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCC1716957500190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25981,6 +26006,11 @@
 				C2BD7A7A17167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
 				C2BD7A7E17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
 				C2BD7A8217167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
+				A4834BCB171694FD00190347 /* StoreCell~ipad.xib in Resources */,
+				A4834BCE1716957700190347 /* common_dialog_bg@2x.png in Resources */,
+				A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */,
+				A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */,
+				A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
