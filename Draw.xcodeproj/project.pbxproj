@@ -30711,10 +30711,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "1741F668-7207-400F-937A-E5557F15D53B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1741F668-7207-400F-937A-E5557F15D53B";
@@ -30790,10 +30787,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "1741F668-7207-400F-937A-E5557F15D53B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1741F668-7207-400F-937A-E5557F15D53B";
@@ -30872,10 +30866,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Dice;
 				PROVISIONING_PROFILE = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
@@ -30951,10 +30942,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Dice;
 				PROVISIONING_PROFILE = "7365CD5A-B445-4B90-8DEA-D49A6A854DE8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7365CD5A-B445-4B90-8DEA-D49A6A854DE8";
@@ -31031,10 +31019,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Zhajinhua;
 				PROVISIONING_PROFILE = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CD3984EB-4737-4FFC-B8F0-CD685022B308";
@@ -31109,10 +31094,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Zhajinhua;
 				PROVISIONING_PROFILE = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1F663AF0-A956-4FB2-B213-7040F013FE0B";
@@ -31245,10 +31227,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
@@ -31323,10 +31302,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "71F47996-5EDE-4316-8BF3-4EA4DFF96536";
@@ -31456,10 +31432,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "18641C24-B7CE-4882-9BA9-65C1E07DA4A6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18641C24-B7CE-4882-9BA9-65C1E07DA4A6";
@@ -31535,10 +31508,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Draw copy";
 				PROVISIONING_PROFILE = "2DA1BA40-9B9E-47A6-B387-04A25F126E69";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DA1BA40-9B9E-47A6-B387-04A25F126E69";
