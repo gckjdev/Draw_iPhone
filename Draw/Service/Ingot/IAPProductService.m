@@ -68,13 +68,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 + (void)createTestDataFile
 {
     if (isDrawApp()) {
-        [self createIngotTestDataFile];
-    }else if (isDiceApp() || isZhajinhuaApp()){
-        [self createCoinTestDataFile];
+        [self createDrawIngotTestDataFile];
+    }else if (isZhajinhuaApp()){
+        [self createZJHCoinTestDataFile];
+    }else if(isDiceApp()){
+        [self createDiceCoinTestDataFile];
     }
 }
 
-+ (void)createIngotTestDataFile
++ (void)createDrawIngotTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
@@ -118,7 +120,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 }
 
 
-+ (void)createCoinTestDataFile
++ (void)createZJHCoinTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
@@ -160,6 +162,51 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [listBuilder release];
 }
+
+
++ (void)createDiceCoinTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.dice.coins1200"
+                                            count:10000
+                                       totalPrice:@"12"
+                                           saving:nil]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.dice.coins2400"
+                                            count:18000
+                                       totalPrice:@"18"
+                                           saving:@"15%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.dice.coins6000"
+                                            count:66000
+                                       totalPrice:@"68"
+                                           saving:@"33%"]];
+    
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.dice.coins20000"
+                                            count:180000
+                                       totalPrice:@"163"
+                                           saving:@"50%"]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
 
 
 + (PBIAPProduct *)productWithType:(PBIAPProductType)type
