@@ -11,8 +11,13 @@
 #import "ShareController.h"
 #import "FeedbackController.h"
 #import "StoreController.h"
+#import "HomeBottomMenuPanel.h"
+#import "UIViewUtils.h"
+#import "StatisticManager.h"
 
 @interface LearnDrawHomeController ()
+
+@property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 
 @end
 
@@ -27,10 +32,24 @@
     return self;
 }
 
+- (void)dealloc
+{
+    PPRelease(_homeBottomMenuPanel);
+    [super dealloc];
+}
+
+- (void)addBottomMenuView
+{
+    self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
+    [self.view addSubview:self.homeBottomMenuPanel];
+    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds)];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self addBottomMenuView];
 }
 
 - (void)didReceiveMemoryWarning
