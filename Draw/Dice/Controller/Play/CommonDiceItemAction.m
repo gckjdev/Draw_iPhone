@@ -19,6 +19,7 @@
 #import "CutItemAction.h"
 #import "ReverseItemAction.h"
 #import "UserGameItemService.h"
+#import "UserGameItemManager.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -241,7 +242,8 @@
 
 - (BOOL)meetUseScene
 {
-    NSNumber *count = [NSNumber numberWithInt:[_itemManager amountForItem:_itemType]];
+    NSNumber *count = @([[UserGameItemManager defaultManager] countOfItem:_itemType]);
+
     if ([count intValue] <= 0 || _gameService.diceSession.isMeAByStander ) {
         return NO;
     }
