@@ -9,8 +9,6 @@
 
 typedef enum
 {
-    
-    
     ItemTypeListEndFlag = -1000,
     
     ItemTypeTaoBao = -1,
@@ -83,6 +81,7 @@ typedef enum
     
     //custom dice start here
     ItemTypeCustomDiceStart = 2500,
+    ItemTypeCustomDiceDefaultDice = 2500,
     ItemTypeCustomDicePatriotDice = 2501,
     ItemTypeCustomDiceGoldenDice = 2502,
     ItemTypeCustomDiceWoodDice = 2503,

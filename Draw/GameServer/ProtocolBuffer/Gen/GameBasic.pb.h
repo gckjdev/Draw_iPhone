@@ -64,12 +64,18 @@ typedef enum {
 BOOL PBGameCurrencyIsValidValue(PBGameCurrency value);
 
 typedef enum {
-  PBDrawItemTypeNomal = 0,
-  PBDrawItemTypeTool = 1,
-  PBDrawItemTypeTaoBao = 9999,
+  PBDrawItemTypeDrawNomal = 0,
+  PBDrawItemTypeDrawTool = 1,
+  PBDrawItemTypeDrawTaoBao = 9999,
 } PBDrawItemType;
 
 BOOL PBDrawItemTypeIsValidValue(PBDrawItemType value);
+
+typedef enum {
+  PBDiceItemTypeDiceNomal = 0,
+} PBDiceItemType;
+
+BOOL PBDiceItemTypeIsValidValue(PBDiceItemType value);
 
 typedef enum {
   PBGameItemConsumeTypeNonConsumable = 1,

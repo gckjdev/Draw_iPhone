@@ -15,6 +15,7 @@
 + (UserGameItemManager *)defaultManager;
 
 - (void)setUserItemList:(NSArray *)itemsList;
+- (NSArray *)userItemsList;
 
 - (int)countOfItem:(int)itemId;
 - (BOOL)hasItem:(int)itemId;

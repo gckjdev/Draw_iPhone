@@ -18,6 +18,7 @@
 #import "DiceRobotItemAction.h"
 #import "CutItemAction.h"
 #import "ReverseItemAction.h"
+#import "UserGameItemService.h"
 
 @interface CommonDiceItemAction ()
 {
@@ -157,7 +158,7 @@
                       view:(UIView *)view 
                   response:(UseItemResponse*)response
 {
-    [_accountService consumeItem:_itemType amount:1]; 
+    [[UserGameItemService defaultService] consumeItem:_itemType count:1];
     
     [self showItemAnimation:_userManager.userId itemType:_itemType controller:controller view:view];
     
@@ -177,7 +178,7 @@
 - (void)handleItemResponse:(DiceGamePlayController *)controller
                       view:(UIView *)view 
 {
-    [_accountService consumeItem:_itemType amount:1]; 
+    [[UserGameItemService defaultService] consumeItem:_itemType count:1];
     
     [self showItemAnimation:_userManager.userId itemType:_itemType controller:controller view:view];
     

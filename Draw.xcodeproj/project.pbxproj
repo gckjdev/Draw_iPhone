@@ -421,6 +421,22 @@
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
 		A4AB18F415E359B90097CC7A /* ChatViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4AB18F215E359B90097CC7A /* ChatViewCell.xib */; };
 		A4AC51EB15C9111C0041DC86 /* DiceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */; };
+		A4B1C47417165FF6002C83C1 /* shop_item_Dice.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B1C47317165FF6002C83C1 /* shop_item_Dice.pb */; };
+		A4B1C4751716605B002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4761716605C002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C4771716605E002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
+		A4B1C47817166110002C83C1 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4B1C47917166112002C83C1 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4B1C47A17166113002C83C1 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
+		A4B1C47B17166196002C83C1 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4B1C47C17166197002C83C1 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4B1C47D17166198002C83C1 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		A4B1C47E17166286002C83C1 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4B1C47F17166287002C83C1 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4B1C48017166289002C83C1 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
+		A4B1C484171663A6002C83C1 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4B1C485171663A7002C83C1 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
+		A4B1C486171663A8002C83C1 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
 		A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */; };
 		A4B45F081678670C009EA231 /* CommonHelpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B45F071678670C009EA231 /* CommonHelpManager.m */; };
 		A4B45F6616787D82009EA231 /* ZJHRoomListCell_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B45F6416787D80009EA231 /* ZJHRoomListCell_dual.xib */; };
@@ -9567,6 +9583,7 @@
 		A4AB18F215E359B90097CC7A /* ChatViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewCell.xib; sourceTree = "<group>"; };
 		A4AC51E915C9111C0041DC86 /* DiceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceSelectedView.h; sourceTree = "<group>"; };
 		A4AC51EA15C9111C0041DC86 /* DiceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceSelectedView.m; sourceTree = "<group>"; };
+		A4B1C47317165FF6002C83C1 /* shop_item_Dice.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Dice.pb; sourceTree = "<group>"; };
 		A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Draw.pb; sourceTree = "<group>"; };
 		A4B45F061678670C009EA231 /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
 		A4B45F071678670C009EA231 /* CommonHelpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelpManager.m; sourceTree = "<group>"; };
@@ -17793,6 +17810,7 @@
 		CA7D4505168DBDCB009F43F7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A4B1C47317165FF6002C83C1 /* shop_item_Dice.pb */,
 				A44B4A3617156BB300404D73 /* iap_product_Dice.pb */,
 				CA7D4506168DBDCB009F43F7 /* font */,
 				CA7D4508168DBDCB009F43F7 /* help */,
@@ -22979,6 +22997,11 @@
 				A44B4A3517155BFF00404D73 /* StoreController~ipad.xib in Resources */,
 				A44B4A3717156BB300404D73 /* iap_product_Dice.pb in Resources */,
 				EAA8A3D117157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				A4B1C47417165FF6002C83C1 /* shop_item_Dice.pb in Resources */,
+				A4B1C47917166112002C83C1 /* StoreCell~ipad.xib in Resources */,
+				A4B1C47C17166197002C83C1 /* PriceView~ipad.xib in Resources */,
+				A4B1C47F17166287002C83C1 /* CustomInfoView~ipad.xib in Resources */,
+				A4B1C484171663A6002C83C1 /* common_dialog_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23927,6 +23950,10 @@
 				A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */,
 				A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */,
 				EAA8A3D217157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				A4B1C47817166110002C83C1 /* StoreCell~ipad.xib in Resources */,
+				A4B1C47D17166198002C83C1 /* PriceView~ipad.xib in Resources */,
+				A4B1C47E17166286002C83C1 /* CustomInfoView~ipad.xib in Resources */,
+				A4B1C485171663A7002C83C1 /* common_dialog_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25874,6 +25901,10 @@
 				A44B4A2117150E6E00404D73 /* ChargeController~ipad.xib in Resources */,
 				A44B4A28171516C800404D73 /* ChargeCell~ipad.xib in Resources */,
 				EAA8A3D017157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				A4B1C47A17166113002C83C1 /* StoreCell~ipad.xib in Resources */,
+				A4B1C47B17166196002C83C1 /* PriceView~ipad.xib in Resources */,
+				A4B1C48017166289002C83C1 /* CustomInfoView~ipad.xib in Resources */,
+				A4B1C486171663A8002C83C1 /* common_dialog_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27497,6 +27528,7 @@
 				A4274590171266C100E43037 /* TaoBaoController.m in Sources */,
 				A427459A171266EA00E43037 /* TomatoItem.m in Sources */,
 				A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */,
+				A4B1C4751716605B002C83C1 /* PBGameItem+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28298,6 +28330,7 @@
 				A4274591171266C200E43037 /* TaoBaoController.m in Sources */,
 				A427459B171266EC00E43037 /* TomatoItem.m in Sources */,
 				A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */,
+				A4B1C4761716605C002C83C1 /* PBGameItem+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29910,6 +29943,7 @@
 				A427458F171266C000E43037 /* TaoBaoController.m in Sources */,
 				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
 				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
+				A4B1C4771716605E002C83C1 /* PBGameItem+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
