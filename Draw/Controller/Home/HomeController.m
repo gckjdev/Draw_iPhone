@@ -50,7 +50,8 @@
 #import "BulletinService.h"
 #import "AnalyticsManager.h"
 #import "DrawRecoveryService.h"
-
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
 
 //#import "RecommendedAppsController.h"
 //#import "FacetimeMainController.h"
@@ -846,6 +847,15 @@
     Wall *wall = [[[Wall alloc] initWithPBWall:pbWall] autorelease];
     OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
+{
+    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    //    UserSettingController *us = [[UserSettingController alloc] init];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
 }
 
 @end

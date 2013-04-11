@@ -252,11 +252,6 @@
         return;
     }
     
-    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-//    UserSettingController *us = [[UserSettingController alloc] init];
-    [self.navigationController pushViewController:us animated:YES];
-    [us release];
-    
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel

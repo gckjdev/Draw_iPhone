@@ -110,6 +110,7 @@ typedef enum{
 - (void)didGetAllPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeAll resultList:paints];
+    
     [self hideActivity];
     [self reloadView];
     [self updateTab:paints];
@@ -117,6 +118,7 @@ typedef enum{
 - (void)didGetMyPaints:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeMine resultList:paints];
+    
     [self hideActivity];
     [self reloadView];
     [self updateTab:paints];
@@ -125,9 +127,27 @@ typedef enum{
 - (void)didGetAllDrafts:(NSArray *)paints
 {
     [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
+    
     [self hideActivity];
     [self reloadView];
     [self updateTab:paints];
+}
+
+- (void)didGetAllPaintCount:(NSInteger)allPaintCount
+               myPaintCount:(NSInteger)myPaintCount
+                 draftCount:(NSInteger)draftCount
+{
+    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
+    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
+    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
+    
+    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
+    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
+    [myButton setTitle:myTitle forState:UIControlStateNormal];
+    
+    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
+    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
+    [allButton setTitle:allTitle forState:UIControlStateNormal];
 }
 
 - (void)performLoadMyPaints
@@ -160,9 +180,18 @@ typedef enum{
 
 - (void)loadDrafts
 {
+//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
+//    if (tab.status == TableTabStatusLoading) {
+//        return;
+//    }
     [self showActivityWithText:NSLS(@"kLoading")];
     [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
 }
+
+//- (void)loadDrafts
+//{
+//    [self loadDraftsShouldShowLoading:YES];
+//}
 
 
 #pragma mark - Share Cell Delegate
@@ -629,6 +658,24 @@ typedef enum{
     [sheet showInView:self.view];
 }
 
+- (void)initTabButtons
+{
+    
+//    switch ([self currentTab].tabID) {
+//        case TabTypeDraft:
+//            //
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    [self loadDrafts];
+//    [self loadPaintsOnlyMine:YES];
+//    [self loadPaintsOnlyMine:NO];
+    [super initTabButtons];
+    [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
+}
+
 
 - (void)viewDidLoad
 {
@@ -637,6 +684,7 @@ typedef enum{
 
     [self initTabButtons];
     UIButton *allButton = [self tabButtonWithTabID:TabTypeAll];
+    
 
     if (self.isFromWeiXin) {
         [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
@@ -724,6 +772,7 @@ typedef enum{
     [self reloadView];
 }
 
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     [self reloadView];
@@ -733,7 +782,7 @@ typedef enum{
         self.noDataTipLabl.hidden = YES;
         switch (tabID) {
             case TabTypeMine:
-                [self loadPaintsOnlyMine:YES];                
+                [self loadPaintsOnlyMine:YES];
                 break;
             case TabTypeAll:
             {

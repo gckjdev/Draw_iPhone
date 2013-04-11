@@ -22,6 +22,9 @@
 - (void)didGetMyPaints:(NSArray *)paints;
 - (void)didGetAllDrafts:(NSArray *)paints;
 - (void)didSaveToAlbumSuccess:(BOOL)succ;
+- (void)didGetAllPaintCount:(NSInteger)allPaintCount
+               myPaintCount:(NSInteger)myPaintCount
+                 draftCount:(NSInteger)draftCount;
 @end
 
 @class MyPaint;
@@ -100,5 +103,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                     pbDrawData:(NSData*)pbDrawData
                           feed:(DrawFeed*)feed;
+
+- (void)countAllPaintsAndDrafts:(id<MyPaintManagerDelegate>)delegate;
+
 
 @end
