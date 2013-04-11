@@ -71,7 +71,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(473.0):(198.0))
 #define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
-#define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(24.0):(12.0)) //文字和泡泡的y上的距离
+#define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(22.0):(15.0)) //文字和泡泡的y上的距离
 
 #define TIME_HEIGHT  (([DeviceDetection isIPAD])?(34):(17))//时间的高度
 
@@ -86,8 +86,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(150,150):CGSizeMake(67,67))
 
-#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(24):(12)) //尖尖的部分距离文字的距离
-#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(26):(13))//不尖部分和文字的距离
+#define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(12)) //尖尖的部分距离文字的距离
+#define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(20):(11))//不尖部分和文字的距离
 
 
 

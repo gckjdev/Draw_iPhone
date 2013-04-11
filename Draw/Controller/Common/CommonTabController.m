@@ -361,6 +361,11 @@
     
 }
 
+- (BOOL)isCurrentTabLoading
+{
+    return ([[_tabManager currentTab] status] == TableTabStatusLoading);
+}
+
 #pragma mark - refresh header & footer delegate
 - (void)reloadTableViewDataSource
 {

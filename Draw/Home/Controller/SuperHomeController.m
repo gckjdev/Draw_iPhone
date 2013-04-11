@@ -103,35 +103,38 @@
 {
     PPDebug(@"SuperHomeController view did load");
     [super viewDidLoad];
+    
+
     if (!ISIPAD) {
         self.view.frame = CGRectMake(0, 0, 320, 460);
     }
-    [self addMainMenuView];
-    [self addHeaderView];
-    [self addBottomMenuView];
-    [self adjustView];
+
+    if (isLearnDrawApp()) {
+        [self addBottomMenuView];
+    }else{
+        [self addMainMenuView];
+        [self addHeaderView];
+        [self addBottomMenuView];
+        [self adjustView];
+        
+        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+            [self updateAllBadge];
+        }];
+
+        
+        [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+        
+        
+        [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+        if ([[AudioManager defaultManager] isMusicOn]) {
+            [[AudioManager defaultManager] backgroundMusicPlay];
+        }        
+    }
     
     if (!ISIPAD) {
         self.view.frame = [[UIScreen mainScreen] bounds];
     }
-    
-    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
-    
-    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        [self updateAllBadge];
-    }];
-    
-    [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
-    if ([[AudioManager defaultManager] isMusicOn]) {
-        [[AudioManager defaultManager] backgroundMusicPlay];
-    }
-    
     [self registerNetworkDisconnectedNotification];
-    
-//    if (isDrawApp()) {
-//        UIImageView *iv = [[UIImageView alloc] initWithImage:[[DrawImageManager defaultManager] drawHomeBG]];
-////        iv setFrame:[draw]
-//    }
     
 }
 

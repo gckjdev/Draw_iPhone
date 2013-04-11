@@ -17,6 +17,7 @@
 #define DICE_APP_BUNDLE_ID      @"com.orange.newdice"
 #define OLD_DICE_APP_BUNDLE_ID  @"com.orange.dice"
 #define ZJH_APP_BUNDLE_ID       @"com.orange.zhajinhua"
+#define LEARNDRAW_APP_BUNDLE_ID @"com.orange.learndraw"
 
 // App ID
 #define DRAW_APP_ID             @"513819630"
@@ -81,6 +82,7 @@ typedef enum {
     GameAppTypeDraw = 2,
     GameAppTypeDice = 3,
     GameAppTypeZJH = 4,
+    GameAppTypeLearnDraw = 5,
     
 }GameAppType;
 
@@ -90,6 +92,7 @@ extern NSObject<GameAppProtocol>* getGameApp();
 extern BOOL isDrawApp();
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
+extern BOOL isLearnDrawApp();
 extern GameAppType gameAppType();
 
 #endif
