@@ -145,27 +145,25 @@
     __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     
-//    @property(nonatomic, copy) NSString * partner;
-//    @property(nonatomic, copy) NSString * seller;
-//    @property(nonatomic, copy) NSString * tradeNO;
-//    @property(nonatomic, copy) NSString * productName;
-//    @property(nonatomic, copy) NSString * productDescription;
-//    @property(nonatomic, copy) NSString * amount;
-//    @property(nonatomic, copy) NSString * notifyURL;
-    
-    
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
     order.tradeNO = [NSString GetUUID];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
     order.productDescription = product.desc;
+    order.amount = product.totalPrice;
+    order.notifyURL = @"";
+    
+    
+    
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
             case 0:
-                // TODO: pay via zhifubao
-                
+                // pay via zhifubao
+                [[AliPayManager defaultManager] payWithOrder:order
+                                                   appScheme:[GameApp alipayCallBackScheme]
+                                               rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
                 break;
                 
             case 1:

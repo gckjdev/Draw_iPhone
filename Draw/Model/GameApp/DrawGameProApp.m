@@ -26,4 +26,9 @@
     return [MobClickUtils getStringValueByKey:@"AD_IAP_ID" defaultValue:@"com.orange.drawpro.removead"];
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaycchhpro.gckj";
+}
+
 @end

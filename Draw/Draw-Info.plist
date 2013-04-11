@@ -34,6 +34,7 @@
 			<string>com.orange.draw</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>alipaycchh.gckj</string>
 				<string>fb352182988165711</string>
 				<string>gckjcchh</string>
 				<string>wx427a2f57bc4456d1</string>

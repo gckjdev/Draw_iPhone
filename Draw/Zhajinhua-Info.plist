@@ -25,6 +25,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>alipayzjh.gckj</string>
 				<string>fb451387761588871</string>
 				<string>sinaweibosso.3580615797</string>
 			</array>
