@@ -46,12 +46,15 @@ typedef enum
 - (void)removeAdByIAP;
 
 - (void)clearAdView:(UIView*)adView;
+
+
+// Please call this method if you want to show Ad
 - (UIView*)createAdInView:(PPViewController*)superViewContoller
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
 
-
+// the following is used before, don't use them
 - (UIView*)createAdInView:(UIView*)superView
            adPlatformType:(AdPlatformType)adPlatformType
             adPublisherId:(NSString*)adPublisherId

@@ -7,6 +7,10 @@
 //
 
 #import "LearnDrawHomeController.h"
+#import "AnalyticsManager.h"
+#import "ShareController.h"
+#import "FeedbackController.h"
+#import "StoreController.h"
 
 @interface LearnDrawHomeController ()
 
