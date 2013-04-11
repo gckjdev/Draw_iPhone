@@ -479,6 +479,17 @@ int *getDiceBottomMenuTypeList()
     return list;
 }
 
+int *getLearnDrawBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeLearnDrawDraw,
+        HomeMenuTypeDrawOpus,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
 
 BOOL typeInList(HomeMenuType type, int *list)
 {
@@ -505,3 +516,30 @@ BOOL isMainMenuButton(HomeMenuType type)
     }
     return NO;
 }
+
+int *getBottomMenuTypeList()
+{
+    if (isDrawApp()) {
+        return getDrawBottomMenuTypeList();
+    }else if(isZhajinhuaApp()){
+        return getZJHBottomMenuTypeList();
+    }else if(isDiceApp()){
+        return getDiceBottomMenuTypeList();
+    }else if(isLearnDrawApp()){
+        return getLearnDrawBottomMenuTypeList();
+    }
+    return NULL;
+}
+int *getMainMenuTypeList()
+{
+    if (gameAppType() == GameAppTypeDraw) {
+        return getDrawMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeZJH){
+        return getZJHMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeDice){
+        return getDiceMainMenuTypeList();
+    }
+    return NULL;
+}
+
+

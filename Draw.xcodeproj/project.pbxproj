@@ -1341,6 +1341,8 @@
 		CA04CB5317169E39002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
 		CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
 		CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
+		CA04CB601716A81C002BF3C2 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
+		CA04CB611716A837002BF3C2 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
@@ -10660,7 +10662,7 @@
 		CA1041FF1509C06E00F60C03 /* RoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomController.h; sourceTree = "<group>"; };
 		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
-		CA1208431712A98F00FEFB41 /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1208431712A98F00FEFB41 /* LearnDraw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnDraw.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA12084F1712AFAB00FEFB41 /* LearnDraw-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LearnDraw-Info.plist"; sourceTree = "<group>"; };
 		CA12507D1667399300AFCC04 /* PPSmartUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateData.h; sourceTree = "<group>"; };
 		CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateData.m; sourceTree = "<group>"; };
@@ -12318,7 +12320,7 @@
 		CAB3DBDC1516DACD00E7DBC4 /* SelectWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWordCell.xib; sourceTree = "<group>"; };
 		CAB5325D16F0232B008FD307 /* GestureRecognizerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerManager.h; sourceTree = "<group>"; };
 		CAB5325E16F0232B008FD307 /* GestureRecognizerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerManager.m; sourceTree = "<group>"; };
-		CAB5CC9916994F0200A4CE3B /* Draw copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Draw copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAB5CC9916994F0200A4CE3B /* DrawPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5DE4B1669FF7600A23011 /* bbs_create_draw_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_disable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4C1669FF7600A23011 /* bbs_create_draw_enable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_draw_enable@2x.png"; sourceTree = "<group>"; };
 		CAB5DE4D1669FF7600A23011 /* bbs_create_image_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_create_image_disable@2x.png"; sourceTree = "<group>"; };
@@ -17111,8 +17113,8 @@
 				CA745D421503B1B500600024 /* DrawTests.octest */,
 				CA16BEE91682FAD900F81B47 /* Dice.app */,
 				CA16C46F1682FAE300F81B47 /* Zhajinhua.app */,
-				CAB5CC9916994F0200A4CE3B /* Draw copy.app */,
-				CA1208431712A98F00FEFB41 /* Draw copy.app */,
+				CAB5CC9916994F0200A4CE3B /* DrawPro.app */,
+				CA1208431712A98F00FEFB41 /* LearnDraw.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -20786,7 +20788,7 @@
 			);
 			name = LearnDraw;
 			productName = Draw;
-			productReference = CA1208431712A98F00FEFB41 /* Draw copy.app */;
+			productReference = CA1208431712A98F00FEFB41 /* LearnDraw.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CA16B9661682FAD900F81B47 /* Dice */ = {
@@ -20873,7 +20875,7 @@
 			);
 			name = DrawPro;
 			productName = Draw;
-			productReference = CAB5CC9916994F0200A4CE3B /* Draw copy.app */;
+			productReference = CAB5CC9916994F0200A4CE3B /* DrawPro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -26869,6 +26871,8 @@
 				CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */,
 				CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */,
 				CA04CB4117169DF6002BF3C2 /* LearnDrawHomeController.m in Sources */,
+				CA04CB601716A81C002BF3C2 /* BuyItemSpecialHandler.m in Sources */,
+				CA04CB611716A837002BF3C2 /* GoogleAddressComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30404,7 +30408,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Draw copy";
+				PRODUCT_NAME = LearnDraw;
 				PROVISIONING_PROFILE = "1741F668-7207-400F-937A-E5557F15D53B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1741F668-7207-400F-937A-E5557F15D53B";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -30476,7 +30480,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Draw copy";
+				PRODUCT_NAME = LearnDraw;
 				PROVISIONING_PROFILE = "1741F668-7207-400F-937A-E5557F15D53B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1741F668-7207-400F-937A-E5557F15D53B";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -31093,7 +31097,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Draw copy";
+				PRODUCT_NAME = DrawPro;
 				PROVISIONING_PROFILE = "18641C24-B7CE-4882-9BA9-65C1E07DA4A6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18641C24-B7CE-4882-9BA9-65C1E07DA4A6";
 				WRAPPER_EXTENSION = app;
@@ -31165,7 +31169,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "Draw copy";
+				PRODUCT_NAME = DrawPro;
 				PROVISIONING_PROFILE = "2DA1BA40-9B9E-47A6-B387-04A25F126E69";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DA1BA40-9B9E-47A6-B387-04A25F126E69";
 				VALIDATE_PRODUCT = YES;

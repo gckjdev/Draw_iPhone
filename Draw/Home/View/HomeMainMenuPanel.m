@@ -89,14 +89,8 @@
 
 - (void)updateView
 {
-    int *list = NULL;
-    if (gameAppType() == GameAppTypeDraw) {
-        list = getDrawMainMenuTypeList();
-    }else if(gameAppType() == GameAppTypeZJH){
-        list = getZJHMainMenuTypeList();
-    }else if(gameAppType() == GameAppTypeDice){
-        list = getDiceMainMenuTypeList();
-    }
+    int *list = getMainMenuTypeList();
+
 //    list = getZJHMainMenuTypeList();
     _pageCount = 0;
     _menuCount = 0;
