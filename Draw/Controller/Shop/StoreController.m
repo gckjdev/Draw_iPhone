@@ -122,7 +122,7 @@ typedef enum{
             [[self tabButtonWithTabID:tab.tabID] setHidden:YES];;
         }
         [self.dataTableView updateHeight:(self.dataTableView.frame.size.height + ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON)];
-        self.dataTableView.center = self.view.center;
+        [self.dataTableView updateCenterY:(self.dataTableView.center.y - ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON)];
     }
     
     // Do any additional setup after loading the view from its nib.
@@ -185,7 +185,7 @@ typedef enum{
     if (item.itemId == ItemTypeColor) {
         [self showColorShopView];
     }else{
-        if (item.type == PBDrawItemTypeTaoBao) {
+        if (item.type == PBDrawItemTypeDrawTaoBao) {
             TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:NSLS(@"kTaoBaoProductDetail")] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
@@ -251,10 +251,10 @@ typedef enum{
 {    
     switch (tabID) {
         case TabIDNormal:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeNomal]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeDrawNomal]];
             break;
         case TabIDTool:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeTool]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeDrawTool]];
             break;
             
         case TabIDPromotion:
@@ -262,7 +262,7 @@ typedef enum{
              break;
             
         case TabIDTaoBao:
-            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeTaoBao]];
+            [self finishLoadDataForTabID:tabID resultList:[[GameItemManager defaultManager] itemsListWithType:PBDrawItemTypeDrawTaoBao]];
             break;
             
         default:

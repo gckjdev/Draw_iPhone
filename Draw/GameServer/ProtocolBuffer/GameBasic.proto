@@ -221,9 +221,13 @@ enum PBGameCurrency{
 }
 
 enum PBDrawItemType{
-  Nomal = 0;                // 普通道具
-  Tool = 1;                 // 画画工具
-  TaoBao = 9999;            // 淘宝实物
+  DrawNomal = 0;                // 普通道具
+  DrawTool = 1;                 // 画画工具
+  DrawTaoBao = 9999;            // 淘宝实物
+}
+
+enum PBDiceItemType{
+  DiceNomal = 0;                // 普通道具
 }
 
 message PBItemPriceInfo {
