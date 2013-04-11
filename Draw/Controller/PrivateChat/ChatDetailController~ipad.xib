@@ -220,7 +220,7 @@
 							<object class="IBUIButton" id="805594119">
 								<reference key="NSNextResponder" ref="912043675"/>
 								<int key="NSvFlags">265</int>
-								<string key="NSFrame">{{682, 9}, {72, 72}}</string>
+								<string key="NSFrame">{{15, 9}, {72, 72}}</string>
 								<reference key="NSSuperview" ref="912043675"/>
 								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -241,7 +241,7 @@
 							<object class="IBUIImageView" id="740823595">
 								<reference key="NSNextResponder" ref="912043675"/>
 								<int key="NSvFlags">276</int>
-								<string key="NSFrame">{{15, 11}, {650, 68}}</string>
+								<string key="NSFrame">{{99, 11}, {650, 68}}</string>
 								<reference key="NSSuperview" ref="912043675"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1072517307"/>
@@ -256,7 +256,7 @@
 							<object class="IBUITextView" id="1072517307">
 								<reference key="NSNextResponder" ref="912043675"/>
 								<int key="NSvFlags">276</int>
-								<string key="NSFrame">{{20, 20}, {640, 50}}</string>
+								<string key="NSFrame">{{104, 20}, {640, 50}}</string>
 								<reference key="NSSuperview" ref="912043675"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="805594119"/>
@@ -288,7 +288,7 @@
 						<reference key="NSNextKeyView" ref="740823595"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yMDc4NDMxMzczIDAuMTAxOTYwNzg0MyAwLjAyNzQ1MDk4MDM5AA</bytes>
+							<bytes key="NSRGB">MC4zNTY4NjI3NDUxIDAuMjM1Mjk0MTE3NiAwLjA4NjI3NDUwOTgAA</bytes>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
