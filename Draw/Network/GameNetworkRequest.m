@@ -3299,7 +3299,7 @@
         return;
     };
     
-    NSString *format = returnPB ? FORMAT_PB : FORMAT_JSON;
+    int format = returnPB ? FORMAT_PB : FORMAT_JSON;
     
     return [PPNetworkRequest sendRequest:baseURL
                      constructURLHandler:constructURLHandler
