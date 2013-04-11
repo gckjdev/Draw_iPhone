@@ -883,22 +883,32 @@
     
 }
 
-/*
- 
- 心宿 Antares
- 弧矢 Adhara
- 五车 Elnath
- 玉衡 Alioth
- 十字架 Mimosa
- 大角 Arcturus
- 北河 Pollux
- 轩辕 Regulus
- 天船 Mirfak
+#define ALIPAY_PARTNER @"2088901423555415"
+#define ALIPAY_SELLER  ALIPAY_PARTNER
 
- 英仙 Mirfak
- 船帆 Regor
- 
- */
+#define ALIPAY_RSA_PRIVATE_KEY @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAL5KqMc4AL1URSC327Qy85E/iqBVaHD/ZPEyqKCJzImrytIiEECLbHqM6Yb9ZzApln0LppDRaXvViS4Z/59PJwewca0gvkwkc+HeyEe6jdrAgDNuTgxvGAgT9wyTIGynmqt5CMeZn15TOQpZ+xW9kf1ELWHeaygYpshcdAKMYnoxAgMBAAECgYBZue53cWq322J1GPyZrWS32lRNYbhLf8FjEdX9TLyLNdv+1V0Acj2GU6dRpW7ggNuavsGdi4DHiVqTyGKGBdaKsrtXR94BA7sOxWUWJxUppaKY2HLCDjOcHK2c4iFJKcnKK9BlTZGFmF7XDyN2APAy0+rD5tHaGtjY2n+T5aD1gQJBAPBXsKwrdqwUQxep/2JJ2cfrBbmthhOGy9ePqZm+8fv5fJ9qfmDXbYHbsXBiadLrnusI8tVKs8gjmZyZ7EmEuVkCQQDKsD7vTWvMaIvnDAchNtNmqXAWQIGT+CPDCrS96j3SbNfrHCXQsNnjTgJ1TDcJ/u3dGOdPVF9VPj5YhvFi4tSZAkEAwe7gPmzr2zqWULf5vMO+mVSJUCQ2tfbk8NGZlte+xwWvi6sQwu/SCyDM8tRWc71whFK6L2WR4ALp5rVFNqWEMQJAXyEfOKOGr7Z1yygLBJy91ZY6xEbcSj2RU05oDCavg16QbImWef83FIcdgj4WKvvaWgYBMmtwHwsKqfQTwQyjKQJAO2PMKq5Z7BulxRT80S0lzgcTvgrnY0XJ6eqOyEdadDctd4/0623L951EzG4ZP0zf4ftsQ+kbNK5NNY84z+2qOw=="
 
+#define ALIPAY_ALIPAY_PUBLIC_KEY @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRlOD4Xgor5mSAovA978ZQMMkIPGE5GYGRTxnF k1puI3N/EXwgiijARIxJs23psCI59vMxcE95lmVo0kyHBG9idAiC9/UebKSUJRGNpmrVa3SXk4Ca APH9fzo8HeagqfwldW0jbhBiiObG/yUb/PCexSw7QK4l7LwmJfekBBxGQQIDAQAB"
+
+
++ (NSString *)getAlipayPartner
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_PARTNER" defaultValue:ALIPAY_PARTNER];
+}
+
++ (NSString *)getAlipaySeller
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_SELLER" defaultValue:ALIPAY_SELLER];
+}
+
++ (NSString *)getAlipayRSAPrivateKey
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_RSA_PRIVATE_KEY" defaultValue:ALIPAY_RSA_PRIVATE_KEY];
+}
+
++ (NSString *)getAlipayAlipayPublicKey
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_ALIPAY_PUBLIC_KEY" defaultValue:ALIPAY_ALIPAY_PUBLIC_KEY];
+}
 
 @end
