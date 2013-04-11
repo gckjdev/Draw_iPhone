@@ -37,6 +37,7 @@
 #import "CommonMessageCenter.h"
 #import "InputAlertView.h"
 #import "GeographyService.h"
+#import "UserSettingCell.h"
 
 enum{
     SECTION_USER = 0,
@@ -155,7 +156,7 @@ enum {
     } else if (isDiceApp()) {
         rowsInSectionGuessWord = 0;
         rowOfCustomDice = 3;
-        rowsInSectionUser = 4; //add custom dice 
+        rowsInSectionUser = 4; //add custom dice
     }
 
     
@@ -420,6 +421,22 @@ enum {
     return cell;
 }
 
+- (void)initCell:(UITableViewCell*)cell withIndexPath:(NSIndexPath*)indexPath
+{
+    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    if (rowNumber == 1) {
+        return;
+    }
+    if (indexPath.row == 0) {
+        return;
+    } else if (indexPath.row == rowNumber-1) {
+        return;
+    } else {
+        return;
+    }
+    
+    
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -427,7 +444,8 @@ enum {
     static NSString *cellIdentifier = @"SettingCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [self createCellByIdentifier:cellIdentifier];        
+        cell = [self createCellByIdentifier:cellIdentifier];
+        [self initCell:cell withIndexPath:indexPath];
     }else{
         [self clearSwitchInCell:cell];
     }

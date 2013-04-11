@@ -603,6 +603,14 @@
                              userId:(NSString*)userId
                                 exp:(long)addExp;
 
+
++ (CommonNetworkOutput*)sendGetRequestWithBaseURL:(NSString*)baseURL
+                                           method:(NSString *)method
+                                       parameters:(NSDictionary *)parameters
+                                         returnPB:(BOOL)returnPB
+                                      returnArray:(BOOL)returnArray;
+
+
 #define URL_GOOGLE_GEOCODE_JSON     @"http://maps.googleapis.com/maps/api/geocode/json?"
 #define PARA_GOOGLE_LATLNG          @"latlng"
 #define PARA_GOOGLE_SENSOR          @"sensor"
