@@ -1139,6 +1139,18 @@
 		C2B97A7A16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
 		C2B97A7B16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
 		C2BB4EBE16A7DCFA008D3004 /* auto_recovery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */; };
+		C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5117165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5217165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5317165D790079B7F6 /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */; };
+		C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5B17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5C17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A5D17165D9D0079B7F6 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6517165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6617165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		C2BD7A6717165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
 		C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
 		C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
@@ -10121,6 +10133,10 @@
 		C2B97A4E16FAA5EA0037B15B /* user_detail_sina@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_sina@2x.png"; sourceTree = "<group>"; };
 		C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_detail_yellow_btn_bg@2x.png"; sourceTree = "<group>"; };
 		C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "auto_recovery@2x.png"; sourceTree = "<group>"; };
+		C2BD7A4E17165D790079B7F6 /* UserSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingCell.h; sourceTree = "<group>"; };
+		C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingCell.m; sourceTree = "<group>"; };
+		C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingCell.xib; sourceTree = "<group>"; };
+		C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserSettingCell~ipad.xib"; sourceTree = "<group>"; };
 		C2C1BF4315A2A9B6001A2BFC /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIManager.h; path = UI/UIManager.h; sourceTree = "<group>"; };
 		C2C1BF4415A2A9B6001A2BFC /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIManager.m; path = UI/UIManager.m; sourceTree = "<group>"; };
 		C2C2A1B916FEB9970074A168 /* CustomSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentedControl.h; sourceTree = "<group>"; };
@@ -16480,6 +16496,10 @@
 				A40EE88A1702A62B003B8FFC /* FeedCarousel~ipad.xib */,
 				C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */,
 				C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */,
+				C2BD7A4E17165D790079B7F6 /* UserSettingCell.h */,
+				C2BD7A4F17165D790079B7F6 /* UserSettingCell.m */,
+				C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */,
+				C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -22979,6 +22999,8 @@
 				A44B4A3517155BFF00404D73 /* StoreController~ipad.xib in Resources */,
 				A44B4A3717156BB300404D73 /* iap_product_Dice.pb in Resources */,
 				EAA8A3D117157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5C17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6617165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23927,6 +23949,8 @@
 				A44B4A321715460D00404D73 /* default_config_Zhajinhua_version.txt in Resources */,
 				A44B4A341715505F00404D73 /* zjh_home_charge@2x.png in Resources */,
 				EAA8A3D217157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5D17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6717165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24923,6 +24947,8 @@
 				CA84BF1D17144C51009BB491 /* draw_home_bg@2x.png in Resources */,
 				CA84BF1F17144C51009BB491 /* draw_home_bottom_split@2x.png in Resources */,
 				EAA8A3CF17157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5A17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25874,6 +25900,8 @@
 				A44B4A2117150E6E00404D73 /* ChargeController~ipad.xib in Resources */,
 				A44B4A28171516C800404D73 /* ChargeCell~ipad.xib in Resources */,
 				EAA8A3D017157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
+				C2BD7A5B17165D9D0079B7F6 /* UserSettingCell.xib in Resources */,
+				C2BD7A6517165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27497,6 +27525,7 @@
 				A4274590171266C100E43037 /* TaoBaoController.m in Sources */,
 				A427459A171266EA00E43037 /* TomatoItem.m in Sources */,
 				A42745A01712682600E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5217165D790079B7F6 /* UserSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28298,6 +28327,7 @@
 				A4274591171266C200E43037 /* TaoBaoController.m in Sources */,
 				A427459B171266EC00E43037 /* TomatoItem.m in Sources */,
 				A42745A11712682700E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5317165D790079B7F6 /* UserSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29101,6 +29131,7 @@
 				A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */,
 				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
 				A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29910,6 +29941,7 @@
 				A427458F171266C000E43037 /* TaoBaoController.m in Sources */,
 				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
 				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
+				C2BD7A5117165D790079B7F6 /* UserSettingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
