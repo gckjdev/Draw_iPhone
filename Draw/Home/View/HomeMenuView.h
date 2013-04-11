@@ -63,6 +63,10 @@ typedef enum{
     // Dice bottom menu
     HomeMenuTypeDiceMore,
     
+    //Learn Draw Bottom Menu
+    HomeMenuTypeLearnDrawDraw,
+    
+    
     
 }HomeMenuType;
 
@@ -104,6 +108,12 @@ int *getDiceMainMenuTypeList();
 int *getZJHBottomMenuTypeList();
 int *getDrawBottomMenuTypeList();
 int *getDiceBottomMenuTypeList();
+int *getLearnDrawBottomMenuTypeList();
+
+
+int *getBottomMenuTypeList();
+int *getMainMenuTypeList();
+
 
 BOOL isMainMenuButton(HomeMenuType type);
 

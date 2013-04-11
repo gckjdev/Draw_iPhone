@@ -66,15 +66,8 @@
 
 - (void)addMenuViews
 {
-    int *list = NULL;
-    if (gameAppType() == GameAppTypeDraw) {
-        list = getDrawBottomMenuTypeList();
-    }else if(gameAppType() == GameAppTypeZJH){
-        list = getZJHBottomMenuTypeList();
-    }else if(gameAppType() == GameAppTypeDice){
-        list = getDiceBottomMenuTypeList();
-    }
-//    list = getZJHBottomMenuTypeList();
+    int *list = getBottomMenuTypeList();
+
     _menuCount = 0;
     NSMutableArray *array = [NSMutableArray array];
 //    PPDebug(@"TypeList = (");
