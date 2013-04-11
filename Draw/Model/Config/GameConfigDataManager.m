@@ -149,7 +149,7 @@ static dispatch_once_t onceToken;
 
     PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
     
-    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画" nameEn:@"Draw lively" descCn:@"这是一款给你带来欢乐，让你创作，追逐自己梦想的画画＋娱乐休闲应用" descEn:@"An awesome & fun draw tool for you" appId:DRAW_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png" rewardAmount:8];
+    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画" nameEn:@"Draw lively" descCn:@"一款画画和你画我猜的休闲娱乐应用" descEn:@"An awesome & fun draw game for you" appId:DRAW_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png" rewardAmount:8];
     
     PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
                                                           enName:@"Li Mei"

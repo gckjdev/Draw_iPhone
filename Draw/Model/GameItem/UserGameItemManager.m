@@ -22,6 +22,9 @@ static int *getDefaultItemTypeList()
         Eraser,
         CanvasRectiPadDefault,
         CanvasRectiPhoneDefault,
+        
+        ItemTypeCustomDiceDefaultDice,
+        
         ItemTypeListEndFlag
     };
     
@@ -68,6 +71,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 //    self.itemsList = itemsList;
 }
 
+- (NSArray *)userItemsList
+{
+    return _itemsList;
+}
+
 - (void)save
 {
     PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
@@ -95,6 +103,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (BOOL)hasEnoughItem:(int)itemId amount:(int)amount
 {
+    if ([self isDefaultItem:itemId]) {
+        return YES;
+    }
     return [self countOfItem:itemId] >= amount;
 }
 
@@ -123,10 +134,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (BOOL)hasItem:(int)itemId
 {
-    if ([self isDefaultItem:itemId]) {
-        return YES;
-    }
-    
     if (![self hasEnoughItem:itemId amount:1]) {
         return NO;
     }

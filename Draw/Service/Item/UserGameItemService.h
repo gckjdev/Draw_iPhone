@@ -42,6 +42,9 @@ typedef void (^ConsumeItemResultHandler)(int resultCode, int itemId, BOOL isBuy)
           handler:(BuyItemResultHandler)handler;
 
 - (void)consumeItem:(int)itemId
+              count:(int)count;
+
+- (void)consumeItem:(int)itemId
               count:(int)count
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
