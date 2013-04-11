@@ -14,17 +14,14 @@
 #import "InputDialog.h"
 #import "UIViewUtils.h"
 #import "CustomInfoView.h"
-#import "AdService.h"
 #import "VersionUpdateView.h"
 #import "UserGameItemManager.h"
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "UIViewUtils.h"
-#import "AdService.h"
-#import "ItemType.h"
 #import "GiftDetailView.h"
-#import "ConfigManager.h"
+#import "BuyItemSpecialHandler.h"
 
 #define MAX_COUNT 9999
 #define MIN_COUNT 1
@@ -200,7 +197,6 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     }];
 }
 
-
 + (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
           resultHandler:(BuyItemResultHandler)resultHandler
@@ -249,11 +245,8 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:2 isHappy:YES];
-                    if (itemId == ItemTypeRemoveAd) {
-                        [[AdService defaultService] disableAd];
-                    }else if(itemId == ItemTypePurse){
-                        [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
-                    }
+                    [BuyItemSpecialHandler buySpecialHandle:itemId
+                                                      count:count];
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
                     [cusInfoView dismiss];
                     [BalanceNotEnoughAlertView showInController:[inView theViewController]];
@@ -299,9 +292,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 [cusInfoView hideActivity];
                 if (resultCode == ERROR_SUCCESS) {
                     [cusInfoView dismiss];
-                    if(itemId == ItemTypePurse){
-                        [[AccountService defaultService] chargeCoin:(([ConfigManager getCoinsIngotRate] * bself.item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
-                    }
+                    [BuyItemSpecialHandler giveSpecialHandle:itemId count:count toUserId:toUserId];
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGiveSuccess") delayTime:2 isHappy:YES];
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH){
                     [BalanceNotEnoughAlertView showInController:[self.inView theViewController]];
@@ -315,6 +306,5 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         }
     }];
 }
-
 
 @end
