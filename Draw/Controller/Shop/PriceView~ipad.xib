@@ -41,7 +41,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 4}, {22, 22}}</string>
 						<reference key="NSSuperview" ref="1052837139"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="144465942"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -56,7 +55,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{26, 6}, {38, 22}}</string>
 						<reference key="NSSuperview" ref="1052837139"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="739959744"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="1012867204">
@@ -91,7 +89,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 16}, {64, 2}}</string>
 						<reference key="NSSuperview" ref="1052837139"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="954568777"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -106,7 +103,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{70, 0}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="1052837139"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="590057740"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -121,7 +117,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{104, 0}, {92, 32}}</string>
 						<reference key="NSSuperview" ref="1052837139"/>
-						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -149,7 +145,6 @@
 				</array>
 				<string key="NSFrameSize">{198, 32}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="31123512"/>
 				<reference key="IBUIBackgroundColor" ref="1012867204"/>
 				<string key="IBUIRestorationIdentifier">PriceView</string>
@@ -280,55 +275,15 @@
 			<nil key="sourceID"/>
 			<int key="maxID">32</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">PriceView</string>
-					<string key="superclassName">UIView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="currencyImageView">UIImageView</string>
-						<string key="grayLineImageView">UIImageView</string>
-						<string key="priceLabel">UILabel</string>
-						<string key="promotionCurrencyImageView">UIImageView</string>
-						<string key="promotionPriceLabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="currencyImageView">
-							<string key="name">currencyImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="grayLineImageView">
-							<string key="name">grayLineImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="priceLabel">
-							<string key="name">priceLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="promotionCurrencyImageView">
-							<string key="name">promotionCurrencyImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="promotionPriceLabel">
-							<string key="name">promotionPriceLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PriceView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
-			<string key="gray_coin@2x.png">{64, 64}</string>
-			<string key="gray_line@2x.png">{51, 2}</string>
+			<string key="coin@2x.png">{16, 16}</string>
+			<string key="gray_coin@2x.png">{16, 16}</string>
+			<string key="gray_line@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

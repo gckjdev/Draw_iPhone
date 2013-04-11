@@ -14,6 +14,9 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 #import "UIViewUtils.h"
+#import "MKBlockActionSheet.h"
+#import "AliPayManager.h"
+#import "StringUtil.h"
 
 @interface ChargeController ()
 
@@ -22,6 +25,7 @@
 @implementation ChargeController
 
 - (void)dealloc {
+    [[AccountService defaultService] setDelegate:nil];
     [_countLabel release];
     [_taobaoLinkView release];
     [_currencyImageView release];
@@ -134,10 +138,48 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
+    [sheet showInView:self.view];
+    
+
+    __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
-    [self showActivityWithText:NSLS(@"kBuying")];
-    [[AccountService defaultService] setDelegate:self];
-    [[AccountService defaultService] buyProduct:product];
+    
+//    @property(nonatomic, copy) NSString * partner;
+//    @property(nonatomic, copy) NSString * seller;
+//    @property(nonatomic, copy) NSString * tradeNO;
+//    @property(nonatomic, copy) NSString * productName;
+//    @property(nonatomic, copy) NSString * productDescription;
+//    @property(nonatomic, copy) NSString * amount;
+//    @property(nonatomic, copy) NSString * notifyURL;
+    
+    
+    AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
+    order.partner = [ConfigManager getAlipayPartner];
+    order.seller = [ConfigManager getAlipaySeller];
+    order.tradeNO = [NSString GetUUID];
+    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
+    order.productDescription = product.desc;
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+                // TODO: pay via zhifubao
+                
+                break;
+                
+            case 1:
+                // pay via apple account
+                [bself showActivityWithText:NSLS(@"kBuying")];
+                [[AccountService defaultService] setDelegate:bself];
+                [[AccountService defaultService] buyProduct:product];
+                
+            default:
+                break;
+        }
+    }];
+    
+    [sheet release];
 }
 
 - (void)didFinishBuyProduct:(int)resultCode

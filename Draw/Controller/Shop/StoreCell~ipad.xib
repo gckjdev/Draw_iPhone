@@ -214,7 +214,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIActivityIndicatorView" id="951107189">
+					<object class="IBUIActivityIndicatorView" id="603429286">
 						<reference key="NSNextResponder" ref="436030701"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{100, 51}, {37, 37}}</string>
@@ -280,7 +280,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">indicatorView</string>
 						<reference key="source" ref="436030701"/>
-						<reference key="destination" ref="951107189"/>
+						<reference key="destination" ref="603429286"/>
 					</object>
 					<int key="connectionID">61</int>
 				</object>
@@ -316,7 +316,7 @@
 							<reference ref="978892233"/>
 							<reference ref="109347646"/>
 							<reference ref="743511693"/>
-							<reference ref="951107189"/>
+							<reference ref="603429286"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -362,7 +362,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">60</int>
-						<reference key="object" ref="951107189"/>
+						<reference key="object" ref="603429286"/>
 						<reference key="parent" ref="436030701"/>
 					</object>
 				</array>
@@ -395,12 +395,12 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="item_bg@2x.png">{124, 124}</string>
-			<string key="item_bound@2x.png">{100, 100}</string>
-			<string key="item_promotion_bg@2x.png">{126, 121}</string>
-			<string key="item_remaind@2x.png">{57, 27}</string>
-			<string key="store_cell_ipad@2x.png">{669, 127}</string>
-			<string key="tomato@2x.png">{122, 122}</string>
+			<string key="item_bg@2x.png">{16, 16}</string>
+			<string key="item_bound@2x.png">{16, 16}</string>
+			<string key="item_promotion_bg@2x.png">{16, 16}</string>
+			<string key="item_remaind@2x.png">{16, 16}</string>
+			<string key="store_cell_ipad@2x.png">{16, 16}</string>
+			<string key="tomato@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1926</string>
 	</data>

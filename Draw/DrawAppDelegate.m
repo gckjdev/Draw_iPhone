@@ -72,6 +72,7 @@
 #import "GameAdWallService.h"
 #import "GameItemService.h"
 #import "IAPProductService.h"
+#import "LearnDrawHomeController.h"
 
 
 NSString* GlobalGetServerURL()
@@ -118,6 +119,7 @@ NSString* GlobalGetBoardServerURL()
     PPRelease(_window);
     PPRelease(_viewController);
     PPRelease(_chatDetailController);
+    PPRelease(_learnDrawHomeController);
     [super dealloc];
 }
 
@@ -270,6 +272,10 @@ NSString* GlobalGetBoardServerURL()
     }else if (isZhajinhuaApp())
     {
         ZJHHomeViewController *controller = [[[ZJHHomeViewController alloc] init] autorelease];
+        rootController = controller;
+    }else if (isLearnDrawApp())
+    {
+        LearnDrawHomeController *controller = [[[LearnDrawHomeController alloc] init] autorelease];
         rootController = controller;
     }else{
         self.homeController = [[[HomeController alloc] init] autorelease];
