@@ -1284,6 +1284,12 @@
 		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		CA0378241553696100CF41E3 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
+		CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB1E1716652F002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB1F17166530002BF3C2 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
+		CA04CB2317166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		CA04CB2417166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
 		CA051DC31546802D00D0A00A /* DrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB01546802D00D0A00A /* DrawView.m */; };
 		CA051DC41546802D00D0A00A /* ShowDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB21546802D00D0A00A /* ShowDrawView.m */; };
 		CA051DC61546802D00D0A00A /* ColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DB91546802D00D0A00A /* ColorView.m */; };
@@ -10218,6 +10224,10 @@
 		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
 		CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordCell~ipad.xib"; sourceTree = "<group>"; };
 		CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectWordController~ipad.xib"; sourceTree = "<group>"; };
+		CA04CB1B17166522002BF3C2 /* LearnDrawService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawService.h; sourceTree = "<group>"; };
+		CA04CB1C17166522002BF3C2 /* LearnDrawService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawService.m; sourceTree = "<group>"; };
+		CA04CB2117166577002BF3C2 /* LearnDrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawManager.h; sourceTree = "<group>"; };
+		CA04CB2217166577002BF3C2 /* LearnDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawManager.m; sourceTree = "<group>"; };
 		CA051DAF1546802D00D0A00A /* DrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawView.h; sourceTree = "<group>"; };
 		CA051DB01546802D00D0A00A /* DrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawView.m; sourceTree = "<group>"; };
 		CA051DB11546802D00D0A00A /* ShowDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDrawView.h; sourceTree = "<group>"; };
@@ -14771,6 +14781,24 @@
 			path = Item;
 			sourceTree = "<group>";
 		};
+		CA04CB1517166500002BF3C2 /* LearnDraw */ = {
+			isa = PBXGroup;
+			children = (
+				CA04CB1B17166522002BF3C2 /* LearnDrawService.h */,
+				CA04CB1C17166522002BF3C2 /* LearnDrawService.m */,
+			);
+			path = LearnDraw;
+			sourceTree = "<group>";
+		};
+		CA04CB2017166559002BF3C2 /* LearnDraw */ = {
+			isa = PBXGroup;
+			children = (
+				CA04CB2117166577002BF3C2 /* LearnDrawManager.h */,
+				CA04CB2217166577002BF3C2 /* LearnDrawManager.m */,
+			);
+			path = LearnDraw;
+			sourceTree = "<group>";
+		};
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
@@ -14847,6 +14875,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CA04CB1517166500002BF3C2 /* LearnDraw */,
 				C214A627170FE88300492393 /* Geography */,
 				A42AB81016E83A4C007AD01E /* Ingot */,
 				A41D2B5316B910E30094BA7C /* Wall */,
@@ -19626,6 +19655,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CA04CB2017166559002BF3C2 /* LearnDraw */,
 				CA16411E16D724B5001C615F /* GameItem */,
 				A4D174AF16B6222000958355 /* WallLayout */,
 				CA479465168E984A00D4AF55 /* Analytics */,
@@ -26724,6 +26754,8 @@
 				CA12042A1712A98F00FEFB41 /* TomatoItem.m in Sources */,
 				CA12042B1712A98F00FEFB41 /* (null) in Sources */,
 				CA12042C1712A98F00FEFB41 /* GeographyService.m in Sources */,
+				CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29132,6 +29164,8 @@
 				C214A62A170FE8A900492393 /* GeographyService.m in Sources */,
 				A427459E171267CE00E43037 /* GoogleAddressComponent.m in Sources */,
 				C2BD7A5017165D790079B7F6 /* UserSettingCell.m in Sources */,
+				CA04CB1E1716652F002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2317166577002BF3C2 /* LearnDrawManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29942,6 +29976,8 @@
 				A4274599171266E900E43037 /* TomatoItem.m in Sources */,
 				A427459F1712682400E43037 /* GoogleAddressComponent.m in Sources */,
 				C2BD7A5117165D790079B7F6 /* UserSettingCell.m in Sources */,
+				CA04CB1F17166530002BF3C2 /* LearnDrawService.m in Sources */,
+				CA04CB2417166577002BF3C2 /* LearnDrawManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
