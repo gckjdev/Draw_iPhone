@@ -10,4 +10,10 @@
 
 @interface AddLearnDrawView : UIView
 
+- (NSInteger)price;
+- (NSInteger)type;
+
+- (void)showInView:(UIView *)view;
+//- (void)dismiss;
++ (id)createViewWithOpusId:(NSString *)opusId;
 @end
