@@ -92,4 +92,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
     return (BBS_PERMISSION & PermissionCharge) != 0;
 }
 
+- (BOOL)canPutDrawOnCell
+{
+    return (BBS_PERMISSION & PermissionPutDrawOnCell) != 0;
+}
+
 @end

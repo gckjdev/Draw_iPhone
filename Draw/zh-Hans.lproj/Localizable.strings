@@ -1251,6 +1251,12 @@
 "kAskLoginMessage" = "你尚未注册，无法使用此功能，马上注册吗？注册只需10秒";
 
 
+"kLearnDrawAll" = "全部";
+"kLearnDrawCartoon" = "动漫";
+"kLearnDrawCharater" = "人物";
+"kLearnDrawScenery" = "风景";
+"kLearnDrawOther" = "其他";
+"kLearnDrawWord" = "画";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

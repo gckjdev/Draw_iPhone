@@ -409,9 +409,16 @@
         [self.draftButton.titleLabel setFont:font];
     }
     
+    if (isLearnDrawApp()) {
+        self.draftButton.frame = self.submitButton.frame;
+        self.submitButton.hidden = YES;
+        return;
+    }
+    
     if (targetType == TypeGraffiti) {
         self.draftButton.hidden = YES;
     }
+    
 }
 
 #define STATUSBAR_HEIGHT 20.0
