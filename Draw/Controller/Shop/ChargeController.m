@@ -179,7 +179,7 @@
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
-    order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.appleProductId];
+    order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
     order.amount = @"0.01";
