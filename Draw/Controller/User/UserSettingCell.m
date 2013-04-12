@@ -8,6 +8,8 @@
 
 #import "UserSettingCell.h"
 #import "AutoCreateViewByXib.h"
+#import "PPTableViewController.h"
+#import "ShareImageManager.h"
 
 @implementation UserSettingCell
 
@@ -24,18 +26,62 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 
 + (id)createCell:(id)delegate
 {
-    return [UserSettingCell createView];
+    UserSettingCell* cell = [UserSettingCell createView];
+    cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
+    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
+    return cell;
 }
 
 + (float)getCellHeight
 {
-    return 20;
+    return ISIPAD?88:44;
 }
 
 + (NSString*)getCellIdentifier
 {
     return @"UserSettingCell";
 }
+
+#define Y_OFFSET (ISIPAD?12:6)
+
+- (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount
+{
+    ShareImageManager* imgManager = [ShareImageManager defaultManager];
+    if (rowCount == 1) {
+        [self.backgroundImageView setImage:[imgManager settingCellOneBgImage]];
+        return;
+    }
+    if (row == 0) {
+        [self.backgroundImageView setImage:[imgManager settingCellTopBgImage]];
+        [self.customAccessory setCenter:CGPointMake(self.customAccessory.center.x, self.bounds.size.height/2 + Y_OFFSET)];
+        [self.customTextLabel setCenter:CGPointMake(self.customTextLabel.center.x, self.bounds.size.height/2 + Y_OFFSET)];
+        [self.customDetailLabel setCenter:CGPointMake(self.customDetailLabel.center.x, self.bounds.size.height/2 + Y_OFFSET)];
+        return;
+    } else if (row == rowCount-1) {
+        [self.backgroundImageView setImage:[imgManager settingCellBottomBgImage]];
+        [self.customAccessory setCenter:CGPointMake(self.customAccessory.center.x, self.bounds.size.height/2 - Y_OFFSET)];
+        [self.customTextLabel setCenter:CGPointMake(self.customTextLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
+        [self.customDetailLabel setCenter:CGPointMake(self.customDetailLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
+        [self.customSeparatorLine setHidden:YES];
+        return;
+    } else {
+        [self.backgroundImageView setImage:[imgManager settingCellMiddleBgImage]];
+        return;
+    }
+    
+    
+}
+
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//    if (selected) {
+//        [self.backgroundImageView setBackgroundColor:[UIColor blueColor]];
+//    } else {
+//        [self.backgroundImageView setBackgroundColor:[UIColor clearColor]];
+//    }
+//}
+
 
 
 /*
@@ -47,4 +93,13 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 }
 */
 
+- (void)dealloc {
+
+    [_customDetailLabel release];
+    [_customTextLabel release];
+    [_backgroundImageView release];
+    [_customSeparatorLine release];
+    [_customAccessory release];
+    [super dealloc];
+}
 @end

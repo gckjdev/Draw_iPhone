@@ -297,12 +297,7 @@ enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([DeviceDetection isIPAD]) {
-        return 90;
-    }
-    else {
-        return 48;
-    }
+    return [UserSettingCell getCellHeight];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -365,18 +360,13 @@ enum {
 
 - (void)initSwitcher:(UIButton*)btn
 {
-    [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-    if ([DeviceDetection isIPAD]) {
-        btn.frame = CGRectMake(266*2, 3.5*2, 70*2, 37*2);
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:24]];
-    }
     [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
     [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
     [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
     [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected]; 
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
 }
 
 
@@ -390,145 +380,159 @@ enum {
     }
 }
 
-- (UIButton *)addSwitchButtonWithTag:(NSInteger)tag toCell:(UITableViewCell *)cell
+#define SW_FONT (ISIPAD?24:12)
+#define SW_FRAME (ISIPAD?CGRectMake(246*2, 3.5*2, 70*2, 37*2):CGRectMake(210, 3.5, 70, 37))
+
+- (UIButton *)addSwitchButtonWithTag:(NSInteger)tag toCell:(UserSettingCell *)cell
 {
     [self clearSwitchInCell:cell];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(220, 3.5, 70, 37)];
+    [cell.customAccessory setHidden:YES];
+    UIButton* btn = [[UIButton alloc] initWithFrame:SW_FRAME];
     [cell.contentView addSubview:btn];
     [self initSwitcher:btn];
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:SW_FONT]];
+    [btn setCenter:CGPointMake(cell.customAccessory.center.x - btn.frame.size.width/2, cell.customAccessory.center.y)];
     [btn setTag:tag];
     [btn release];
     return btn;
 }
 
 
-- (UITableViewCell*)createCellByIdentifier:(NSString*)cellIdentifier
-{
-    UITableViewCell* cell;
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    int fontSize = 15;
-    if ([DeviceDetection isIPAD]) {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
-        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
-    }else {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize]];
-        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize]];
-    }
-    [cell.textLabel setTextColor:[UIColor brownColor]];
-    return cell;
-}
+//- (UITableViewCell*)createCellByIdentifier:(NSString*)cellIdentifier
+//{
+//    UITableViewCell* cell;
+//    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier]autorelease];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    
+//    int fontSize = 15;
+//    if ([DeviceDetection isIPAD]) {
+//        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
+//        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize*2]];
+//    }else {
+//        [cell.textLabel setFont:[UIFont systemFontOfSize:fontSize]];
+//        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:fontSize]];
+//    }
+//    [cell.textLabel setTextColor:[UIColor brownColor]];
+//    return cell;
+//}
 
-- (void)initCell:(UITableViewCell*)cell withIndexPath:(NSIndexPath*)indexPath
-{
-    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
-    if (rowNumber == 1) {
-        return;
-    }
-    if (indexPath.row == 0) {
-        return;
-    } else if (indexPath.row == rowNumber-1) {
-        return;
-    } else {
-        return;
-    }
-    
-    
-}
+//- (void)initCell:(UserSettingCell*)cell withIndexPath:(NSIndexPath*)indexPath
+//{
+//    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+//    
+//    if (rowNumber == 1) {
+//        [cell.backgroundImageView setImage:[UIImage imageNamed:@"user_setting_cell_one.png"]];
+//        return;
+//    }
+//    if (indexPath.row == 0) {
+//        [cell.backgroundImageView setImage:[UIImage imageNamed:@"user_setting_cell_up.png"]];
+//        return;
+//    } else if (indexPath.row == rowNumber-1) {
+//        [cell.backgroundImageView setImage:[UIImage imageNamed:@"user_setting_cell_down.png"]];
+//        return;
+//    } else {
+//        [cell.backgroundImageView setImage:[UIImage imageNamed:@"user_setting_cell_middle.png"]];
+//        return;
+//    }
+//    
+//    
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"SettingCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString *cellIdentifier = [UserSettingCell getCellIdentifier];
+    UserSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [self createCellByIdentifier:cellIdentifier];
-        [self initCell:cell withIndexPath:indexPath];
+        cell = [UserSettingCell createCell:self];
+        
     }else{
         [self clearSwitchInCell:cell];
     }
-    [cell.detailTextLabel setText:nil];  
+//    [self initCell:cell withIndexPath:indexPath];
+    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
+    
+    [cell.customDetailLabel setText:nil];
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
-            [cell.textLabel setText:NSLS(@"kPassword")];      
+            [cell.customTextLabel setText:NSLS(@"kPassword")];      
             if ([_pbUserBuilder.password length] == 0) {
-                [cell.detailTextLabel setText:NSLS(@"kUnset")];
+                [cell.customDetailLabel setText:NSLS(@"kUnset")];
             }
             else{
-                [cell.detailTextLabel setText:NSLS(@"kPasswordSet")];
+                [cell.customDetailLabel setText:NSLS(@"kPasswordSet")];
             }
         }else if (row == rowOfGender){
-            [cell.textLabel setText:NSLS(@"kGender")];
+            [cell.customTextLabel setText:NSLS(@"kGender")];
             if ([_pbUserBuilder gender]) {
-                [cell.detailTextLabel setText:NSLS(@"kMale")];
+                [cell.customDetailLabel setText:NSLS(@"kMale")];
             }else{
-                [cell.detailTextLabel setText:NSLS(@"kFemale")];
+                [cell.customDetailLabel setText:NSLS(@"kFemale")];
             }
-            [cell.detailTextLabel setHidden:NO];
+            [cell.customDetailLabel setHidden:NO];
         }else if(row == rowOfNickName)
         {
-            [cell.textLabel setText:NSLS(@"kNickname")];           
-            [cell.detailTextLabel setText:nicknameLabel.text];            
+            [cell.customTextLabel setText:NSLS(@"kNickname")];           
+            [cell.customDetailLabel setText:nicknameLabel.text];            
         } else if (row == rowOfCustomDice) {
-            [cell.textLabel setText:NSLS(@"kCustomDice")];
+            [cell.customTextLabel setText:NSLS(@"kCustomDice")];
         } else if (row == rowOfLocation) {
-            [cell.textLabel setText:NSLS(@"kLocation")];
-            [cell.detailTextLabel setText:[_pbUserBuilder location]];
+            [cell.customTextLabel setText:NSLS(@"kLocation")];
+            [cell.customDetailLabel setText:[_pbUserBuilder location]];
         }else if (row == rowOfZodiac) {
-            [cell.textLabel setText:NSLS(@"kZodiac")];
+            [cell.customTextLabel setText:NSLS(@"kZodiac")];
             NSString* zodiac = [LocaleUtils getZodiacWithIndex:([_pbUserBuilder zodiac]-1)];
-            [cell.detailTextLabel setText:((zodiac == nil)?NSLS(@"kUnknown"):zodiac)];
+            [cell.customDetailLabel setText:((zodiac == nil)?NSLS(@"kUnknown"):zodiac)];
         }else if (row == rowOfBirthday) {
-            [cell.textLabel setText:NSLS(@"kBirthday")];
+            [cell.customTextLabel setText:NSLS(@"kBirthday")];
             if ([_pbUserBuilder hasBirthday]) {
-                [cell.detailTextLabel setText:_pbUserBuilder.birthday];
+                [cell.customDetailLabel setText:_pbUserBuilder.birthday];
             }
         }else if (row == rowOfBloodGroup) {
-            [cell.textLabel setText:NSLS(@"kBloodGroup")];
+            [cell.customTextLabel setText:NSLS(@"kBloodGroup")];
             NSString* bloodGroup = _pbUserBuilder.bloodGroup;
-            [cell.detailTextLabel setText:((bloodGroup == nil || bloodGroup.length <= 0)?NSLS(@"kUnknown"):bloodGroup)];
+            [cell.customDetailLabel setText:((bloodGroup == nil || bloodGroup.length <= 0)?NSLS(@"kUnknown"):bloodGroup)];
         } else if (row == rowOfSignature) {
-            [cell.textLabel setText:NSLS(@"kSignature")];
-            [cell.detailTextLabel setText:_pbUserBuilder.signature];
+            [cell.customTextLabel setText:NSLS(@"kSignature")];
+            [cell.customDetailLabel setText:_pbUserBuilder.signature];
         } else if (row == rowOfPrivacy) {
-            [cell.textLabel setText:NSLS(@"kPrivacy")];
-            [cell.detailTextLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
+            [cell.customTextLabel setText:NSLS(@"kPrivacy")];
+            [cell.customDetailLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
         } else if (row == rowOfCustomBg) {
-            [cell.textLabel setText:NSLS(@"kCustomBg")];
+            [cell.customTextLabel setText:NSLS(@"kCustomBg")];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
         {
-            [cell.textLabel setText:NSLS(@"kLanguageSettings")];
+            [cell.customTextLabel setText:NSLS(@"kLanguageSettings")];
             switch (_pbUserBuilder.guessWordLanguage){
                 case EnglishType:
-                    [cell.detailTextLabel setText:NSLS(@"kEnglish")];
+                    [cell.customDetailLabel setText:NSLS(@"kEnglish")];
                     break;
                 case ChineseType:
                 default:
-                    [cell.detailTextLabel setText:NSLS(@"kChinese")];
+                    [cell.customDetailLabel setText:NSLS(@"kChinese")];
                     break;
             }
         }else if(row == rowOfLevel){
-            [cell.textLabel setText:NSLS(@"kLevelSettings")];     
+            [cell.customTextLabel setText:NSLS(@"kLevelSettings")];     
             if (guessLevel == EasyLevel) {
-                [cell.detailTextLabel setText:NSLS(@"kEasyLevel")];
+                [cell.customDetailLabel setText:NSLS(@"kEasyLevel")];
             }else if(guessLevel == NormalLevel){
-                [cell.detailTextLabel setText:NSLS(@"kNormalLevel")];
+                [cell.customDetailLabel setText:NSLS(@"kNormalLevel")];
             }else{
-                [cell.detailTextLabel setText:NSLS(@"kHardLevel")];
+                [cell.customDetailLabel setText:NSLS(@"kHardLevel")];
             }
-            [cell.detailTextLabel setHidden:NO];
+            [cell.customDetailLabel setHidden:NO];
         }else if(row == rowOfCustomWord){
-            [cell.textLabel setText:NSLS(@"kCustomWordManage")]; 
+            [cell.customTextLabel setText:NSLS(@"kCustomWordManage")]; 
         }else if(row == rowOfAutoSave){
-            [cell.textLabel setText:NSLS(@"kAutoSave")]; 
-            [cell.detailTextLabel setText:nil];
+            [cell.customTextLabel setText:NSLS(@"kAutoSave")]; 
+            [cell.customDetailLabel setText:nil];
             UIButton *btn = [self addSwitchButtonWithTag:DRAW_AUTOSAVE_TAG toCell:cell];
             [btn addTarget:self action:@selector(clickAutoSaveSwitcher:) forControlEvents:UIControlEventTouchUpInside];
 //            [btn setSelected:!isAutoSave];            
@@ -537,18 +541,18 @@ enum {
     } else if (section == SECTION_SOUND) {
         if(row == rowOfSoundSwitcher) 
         {
-            [cell.textLabel setText:NSLS(@"kSound")];
-            [cell.detailTextLabel setText:nil];
+            [cell.customTextLabel setText:NSLS(@"kSound")];
+            [cell.customDetailLabel setText:nil];
             UIButton *btn = [self addSwitchButtonWithTag:SOUND_SWITCHER_TAG toCell:cell];
             [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
             [btn setSelected:!isSoundOn];            
 
         }else if (row == rowOfMusicSettings) {
-            [cell.textLabel setText:NSLS(@"kCustomMusic")];
-            [cell.detailTextLabel setHidden:YES];
+            [cell.customTextLabel setText:NSLS(@"kCustomMusic")];
+            [cell.customDetailLabel setHidden:YES];
         } else if (row == rowOfVolumeSetting) {
-            [cell.textLabel setText:NSLS(@"kBackgroundMusic")];
-            [cell.detailTextLabel setText:nil];
+            [cell.customTextLabel setText:NSLS(@"kBackgroundMusic")];
+            [cell.customDetailLabel setText:nil];
             UIButton *btn = [self addSwitchButtonWithTag:MUSIC_SWITCHER_TAG toCell:cell];
             [btn addTarget:self action:@selector(clickMusicSwitcher:) forControlEvents:UIControlEventTouchUpInside];
             [btn setSelected:!isMusicOn];            
@@ -567,66 +571,66 @@ enum {
     }
     else if (section == SECTION_ACCOUNT){
                         
-        [cell.detailTextLabel setHidden:NO];
+        [cell.customDetailLabel setHidden:NO];
         switch (row) {
             case ROW_EMAIL:
             {
-                [cell.textLabel setText:NSLS(@"kSetEmail")];
+                [cell.customTextLabel setText:NSLS(@"kSetEmail")];
                 if ([_pbUserBuilder.email length] > 0){
-                    [cell.detailTextLabel setText:_pbUserBuilder.email];
+                    [cell.customDetailLabel setText:_pbUserBuilder.email];
                 }
                 else{
-                    [cell.detailTextLabel setText:NSLS(@"kEmailNotSet")];
+                    [cell.customDetailLabel setText:NSLS(@"kEmailNotSet")];
                 }
             }
                 break;
             case ROW_SINA_WEIBO:
             {
-                [cell.textLabel setText:NSLS(@"kSetSinaWeibo")];
+                [cell.customTextLabel setText:NSLS(@"kSetSinaWeibo")];
                 if ([_userManager hasBindSinaWeibo]){
                     if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
                     }
                 }
                 else{
-                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }                
             }
                 break;
                 
             case ROW_QQ_WEIBO:
             {
-                [cell.textLabel setText:NSLS(@"kSetQQWeibo")];
+                [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
                 if ([_userManager hasBindQQWeibo]){
                     if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
                     }
                 }
                 else{
-                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }                
             }
                 break;
                 
             case ROW_FACEBOOK:
             {
-                [cell.textLabel setText:NSLS(@"kSetFacebook")];
+                [cell.customTextLabel setText:NSLS(@"kSetFacebook")];
                 if ([_userManager hasBindFacebook]){
                     if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboExpired")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
-                        [cell.detailTextLabel setText:NSLS(@"kWeiboSet")];
+                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
                     }
                 }
                 else{
-                    [cell.detailTextLabel setText:NSLS(@"kNotSet")];
+                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
                 }                
             }
                 break;

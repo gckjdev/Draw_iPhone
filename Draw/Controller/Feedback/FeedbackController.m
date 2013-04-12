@@ -25,6 +25,7 @@
 #import "ShareImageManager.h"
 #import "CacheManager.h"
 #import "CommonDialog.h"
+#import "UserSettingCell.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -117,49 +118,52 @@
     }
 }
 
-- (void)initCell:(UITableViewCell*)aCell withIndex:(int)anIndex
+- (void)initCell:(UserSettingCell*)aCell withIndex:(int)anIndex
 {
-    [aCell.textLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
+    CGRect rect = aCell.customTextLabel.frame;
+    rect.size.width = aCell.bounds.size.width;
+    [aCell.customTextLabel setFrame:rect];
+    [aCell.customTextLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     
     if (anIndex == rowOfShare) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];            
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
-        [aCell.textLabel setText:message];
+        [aCell.customTextLabel setText:message];
     } 
     else if (anIndex == rowOfFollow) {
         NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];            
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowUs"), message];
-        [aCell.textLabel setText:message];
+        [aCell.customTextLabel setText:message];
     } 
     else if (anIndex == rowOfAddWords) {
-        [aCell.textLabel setText:NSLS(@"kAddWords")];
+        [aCell.customTextLabel setText:NSLS(@"kAddWords")];
     } 
     else if (anIndex == rowOfReportBug) {
-        [aCell.textLabel setText:NSLS(@"kReport_problems")];
+        [aCell.customTextLabel setText:NSLS(@"kReport_problems")];
     } else if (anIndex == rowOfFeedback) {
-        [aCell.textLabel setText:NSLS(@"kGive_some_advice")];
+        [aCell.customTextLabel setText:NSLS(@"kGive_some_advice")];
     } else if (anIndex == rowOfMoreApp) {
-        [aCell.textLabel setText:NSLS(@"kMore_apps")];
+        [aCell.customTextLabel setText:NSLS(@"kMore_apps")];
     } else if (anIndex == rowOfGiveReview) {
-        [aCell.textLabel setText:NSLS(@"kGive_a_5-star_review")];
+        [aCell.customTextLabel setText:NSLS(@"kGive_a_5-star_review")];
     } else if (anIndex == rowOfAbout) {
-        [aCell.textLabel setText:NSLS(@"kAbout_us")];
+        [aCell.customTextLabel setText:NSLS(@"kAbout_us")];
     } else if (anIndex == rowOfAppUpdate){
-        [aCell.textLabel setText:[NSString stringWithFormat:NSLS(@"kAppUpdate"), [UIUtils getAppVersion]]];
+        [aCell.customTextLabel setText:[NSString stringWithFormat:NSLS(@"kAppUpdate"), [UIUtils getAppVersion]]];
         if ([UIUtils checkAppHasUpdateVersion]) {
             aCell.accessoryView = [self badgeView];
         }else{
             aCell.accessoryView = nil;
         }
     } else if (anIndex == rowOfCleanCache) {
-        [aCell.textLabel setText:NSLS(@"kCleanCache")];
+        [aCell.customTextLabel setText:NSLS(@"kCleanCache")];
     }
     
-    if ([DeviceDetection isIPAD]) {
-        [aCell.textLabel setFont:[UIFont systemFontOfSize:32]];
-    } else {
-        [aCell.textLabel setFont:[UIFont systemFontOfSize:17]];
-    }
+//    if ([DeviceDetection isIPAD]) {
+//        [aCell.customTextLabel setFont:[UIFont systemFontOfSize:32]];
+//    } else {
+//        [aCell.customTextLabel setFont:[UIFont systemFontOfSize:17]];
+//    }
 }
 enum {
     SHARE_VIA_SMS = 0,
@@ -398,25 +402,32 @@ enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([DeviceDetection isIPhone5]) {
-        return HEIGHT_FOR_IPHONE5;
-    }
-    if ([DeviceDetection isIPAD]) {
-        return HEIGHT_FOR_IPAD;
-    }
-    return HEIGHT_FOR_IPHONE;
+//    if ([DeviceDetection isIPhone5]) {
+//        return HEIGHT_FOR_IPHONE5;
+//    }
+//    if ([DeviceDetection isIPAD]) {
+//        return HEIGHT_FOR_IPAD;
+//    }
+//    return HEIGHT_FOR_IPHONE;
+    
+    return [UserSettingCell getCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"FeedBackCell"];
+    UserSettingCell* cell = [tableView dequeueReusableCellWithIdentifier:[UserSettingCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"FeedBackCell"] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [UserSettingCell createCell:self];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
     }
     [self initCell:cell withIndex:indexPath.row];
+    int rowNumber = [self tableView:self.dataTableView numberOfRowsInSection:indexPath.section];
+    [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
     return cell;
 }
+
+
 
 - (IBAction)clickBack:(id)sender
 {
