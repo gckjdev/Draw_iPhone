@@ -17,6 +17,12 @@
 #import "FeedService.h"
 #import "UIViewUtils.h"
 
+@interface RankView ()
+@property (retain, nonatomic) IBOutlet UILabel *costLabel;
+@property (retain, nonatomic) IBOutlet UILabel *boughtCountLabel;
+
+@end
+
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
@@ -41,6 +47,9 @@
             break;
         case RankViewTypeNormal:
             identifier = @"RankView";
+            break;
+        case RankViewTypeDrawOnCell:
+            identifier = @"DrawOnCell";
             break;
         default:
             return nil;
@@ -73,6 +82,8 @@
     PPRelease(_drawFlag);
     PPRelease(_maskButton);
     PPRelease(_cupFlag);
+    [_costLabel release];
+    [_boughtCountLabel release];
     [super dealloc];
 }
 
@@ -82,6 +93,12 @@
     [self.drawImage setImage:image];
 }
 
+- (void)updateLearnDraw:(PBLearnDraw *)learnDraw
+{
+    [self.costLabel setText:[NSString stringWithFormat:@"%d", learnDraw.price]];
+    [self.boughtCountLabel setText:[NSString stringWithFormat:@"%d", learnDraw.boughtCount]];
+}
+
 - (void)setViewInfo:(DrawFeed *)feed
 {
     if (feed == nil) {
@@ -89,6 +106,12 @@
         return;
     }
     self.feed = feed;
+    
+    if (feed.learnDraw) {
+        [self updateLearnDraw:feed.learnDraw];        
+    }
+
+    
    if ([feed.drawImageUrl length] != 0) {
         NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
 
@@ -182,15 +205,19 @@
 
 + (CGFloat)heightForRankViewType:(RankViewType)type
 {
+    //old height
+    
     switch (type) {
         case RankViewTypeFirst:
             return [DeviceDetection isIPAD] ? 268 : 123;
         case RankViewTypeSecond:
-            return [DeviceDetection isIPAD] ? 306 : 139;
-        case RankViewTypeNormal:
-            return [DeviceDetection isIPAD] ? 244 : 110;
+            return [DeviceDetection isIPAD] ? 300 : 130;
+//        case RankViewTypeNormal:
+//            return [DeviceDetection isIPAD] ? 244 : 110;
+//        case RankViewTypeDrawOnCell:
+//            return [DeviceDetection isIPAD] ? 220 : 99;
         default:
-            return 0;
+            return [RankView widthForRankViewType:type];
     }
 }
 
@@ -203,6 +230,8 @@
             return [DeviceDetection isIPAD] ? 384 : 159;
         case RankViewTypeNormal:
             return [DeviceDetection isIPAD] ? 256 : 106;
+        case RankViewTypeDrawOnCell:            
+            return [DeviceDetection isIPAD] ? 230 : 99;
         default:
             return 0;
     }

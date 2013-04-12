@@ -65,14 +65,10 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeBoth];
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
     self.gmButton.hidden = YES;
-    
-    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
-    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,14 +151,14 @@
 - (void)setNormalRankCell:(UITableViewCell *)cell
                 WithFeeds:(NSArray *)feeds
 {
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeDrawOnCell];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeDrawOnCell];
     
     CGFloat space =  WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeDrawOnCell];
         [rankView setViewInfo:feed];
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);

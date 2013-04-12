@@ -39,8 +39,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="897082785">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, -16}, {160, 168}}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrame">{{0, -16}, {160, 159}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="222187398"/>
@@ -49,7 +49,7 @@
 					</object>
 					<object class="IBUIImageView" id="85732061">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{128, 0}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
@@ -63,7 +63,7 @@
 					</object>
 					<object class="IBUIImageView" id="989735709">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">-2147483359</int>
 						<string key="NSFrame">{{128, 0}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
@@ -77,8 +77,8 @@
 					</object>
 					<object class="IBUILabel" id="604947316">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 103}, {159, 18}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 94}, {159, 18}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79997521"/>
@@ -117,10 +117,11 @@
 					</object>
 					<object class="IBUILabel" id="79997521">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 121}, {159, 18}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 112}, {159, 18}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="345453348"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -146,8 +147,8 @@
 					</object>
 					<object class="IBUIButton" id="222187398">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{159, 139}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{159, 130}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="85732061"/>
@@ -175,7 +176,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{159, 139}</string>
+				<string key="NSFrameSize">{159, 130}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="897082785"/>
@@ -351,6 +352,8 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="author">UILabel</string>
+						<string key="boughtCountLabel">UILabel</string>
+						<string key="costLabel">UILabel</string>
 						<string key="cupFlag">UIImageView</string>
 						<string key="drawFlag">UIImageView</string>
 						<string key="drawImage">UIImageView</string>
@@ -360,6 +363,14 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="author">
 							<string key="name">author</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="boughtCountLabel">
+							<string key="name">boughtCountLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="costLabel">
+							<string key="name">costLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cupFlag">

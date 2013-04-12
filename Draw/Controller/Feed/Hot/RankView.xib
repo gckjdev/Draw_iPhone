@@ -39,8 +39,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="1011238758">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{106, 110}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{106, 106}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1042696260"/>
@@ -50,7 +50,7 @@
 					</object>
 					<object class="IBUIImageView" id="755244241">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{80, 0}, {25, 28}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
@@ -64,8 +64,8 @@
 					</object>
 					<object class="IBUILabel" id="604947316">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 78}, {106, 16}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 74}, {106, 16}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79997521"/>
@@ -104,10 +104,11 @@
 					</object>
 					<object class="IBUILabel" id="79997521">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 94}, {106, 16}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 90}, {106, 16}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="756139186"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -133,8 +134,8 @@
 					</object>
 					<object class="IBUIButton" id="1042696260">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{106, 110}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{106, 106}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="755244241"/>
@@ -162,7 +163,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{106, 110}</string>
+				<string key="NSFrameSize">{106, 106}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1011238758"/>
@@ -323,6 +324,8 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="author">UILabel</string>
+						<string key="boughtCountLabel">UILabel</string>
+						<string key="costLabel">UILabel</string>
 						<string key="cupFlag">UIImageView</string>
 						<string key="drawFlag">UIImageView</string>
 						<string key="drawImage">UIImageView</string>
@@ -332,6 +335,14 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="author">
 							<string key="name">author</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="boughtCountLabel">
+							<string key="name">boughtCountLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="costLabel">
+							<string key="name">costLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cupFlag">
