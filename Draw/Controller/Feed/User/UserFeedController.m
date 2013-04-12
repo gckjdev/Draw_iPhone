@@ -17,6 +17,8 @@
 #import "ConfigManager.h"
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
+#import "AddLearnDrawView.h"
+
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -338,6 +340,7 @@ typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexDelete = 1,
     ActionSheetIndexUnFavorite = 1,
+    ActionSheetIndexAddToCell,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
 
@@ -364,6 +367,14 @@ typedef enum{
             [self enterDetailFeed:feed];
         }
             break;
+        case ActionSheetIndexAddToCell:
+        {
+            PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
+            AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
+            [ldView showInView:self.view];
+            break;
+        }
+        
         default:
         {
             
@@ -533,7 +544,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kDelete"), nil];
+                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), nil];
                 [actionSheet showInView:self.view];
                 [actionSheet release];
         }else{

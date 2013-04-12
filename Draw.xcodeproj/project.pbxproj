@@ -8877,6 +8877,41 @@
 		CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
 		CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
 		CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5AD411717CD48009BFDC1 /* user_detail_seperator_line3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */; };
+		CAE5AD421717CD48009BFDC1 /* user_detail_round_avatar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E04FEC170997140009F2A9 /* user_detail_round_avatar_bg@2x.png */; };
+		CAE5AD431717CD48009BFDC1 /* user_detail_basic_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E04FDD170991870009F2A9 /* user_detail_basic_bg_ipad@2x.png */; };
+		CAE5AD441717CD48009BFDC1 /* user_detail_avatar_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E04FDE170991870009F2A9 /* user_detail_avatar_bg_ipad@2x.png */; };
+		CAE5AD451717CD48009BFDC1 /* user_detail_gender_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD7C16FB0D14002A9CF5 /* user_detail_gender_male@2x.png */; };
+		CAE5AD461717CD48009BFDC1 /* user_detail_draw_to_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD6616FADEEA002A9CF5 /* user_detail_draw_to_bg@2x.png */; };
+		CAE5AD471717CD48009BFDC1 /* user_detail_follow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD6716FADEEA002A9CF5 /* user_detail_follow_bg@2x.png */; };
+		CAE5AD481717CD48009BFDC1 /* user_detail_message_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22EBD6816FADEEA002A9CF5 /* user_detail_message_bg@2x.png */; };
+		CAE5AD491717CD48009BFDC1 /* user_detail_avatar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3A16FAA5E90037B15B /* user_detail_avatar_bg@2x.png */; };
+		CAE5AD4A1717CD48009BFDC1 /* user_detail_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3B16FAA5E90037B15B /* user_detail_back@2x.png */; };
+		CAE5AD4B1717CD48009BFDC1 /* user_detail_basic_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3C16FAA5E90037B15B /* user_detail_basic_bg@2x.png */; };
+		CAE5AD4C1717CD48009BFDC1 /* user_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3D16FAA5E90037B15B /* user_detail_bg@2x.png */; };
+		CAE5AD4D1717CD48009BFDC1 /* user_detail_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3E16FAA5E90037B15B /* user_detail_btn_bg@2x.png */; };
+		CAE5AD4E1717CD48009BFDC1 /* user_detail_draw_to@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A3F16FAA5E90037B15B /* user_detail_draw_to@2x.png */; };
+		CAE5AD4F1717CD48009BFDC1 /* user_detail_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4016FAA5EA0037B15B /* user_detail_edit@2x.png */; };
+		CAE5AD501717CD48009BFDC1 /* user_detail_facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4116FAA5EA0037B15B /* user_detail_facebook@2x.png */; };
+		CAE5AD511717CD49009BFDC1 /* user_detail_follow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4216FAA5EA0037B15B /* user_detail_follow@2x.png */; };
+		CAE5AD521717CD49009BFDC1 /* user_detail_followandfan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4316FAA5EA0037B15B /* user_detail_followandfan@2x.png */; };
+		CAE5AD531717CD49009BFDC1 /* user_detail_gender_female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4416FAA5EA0037B15B /* user_detail_gender_female@2x.png */; };
+		CAE5AD541717CD49009BFDC1 /* user_detail_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4616FAA5EA0037B15B /* user_detail_message@2x.png */; };
+		CAE5AD551717CD49009BFDC1 /* user_detail_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4716FAA5EA0037B15B /* user_detail_more@2x.png */; };
+		CAE5AD561717CD49009BFDC1 /* user_detail_pull_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4816FAA5EA0037B15B /* user_detail_pull_down@2x.png */; };
+		CAE5AD571717CD49009BFDC1 /* user_detail_purple_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4916FAA5EA0037B15B /* user_detail_purple_btn_bg@2x.png */; };
+		CAE5AD581717CD49009BFDC1 /* user_detail_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4A16FAA5EA0037B15B /* user_detail_qq@2x.png */; };
+		CAE5AD591717CD49009BFDC1 /* user_detail_red_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4B16FAA5EA0037B15B /* user_detail_red_btn_bg@2x.png */; };
+		CAE5AD5A1717CD49009BFDC1 /* user_detail_seperator_line1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4C16FAA5EA0037B15B /* user_detail_seperator_line1@2x.png */; };
+		CAE5AD5B1717CD49009BFDC1 /* user_detail_seperator_line2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4D16FAA5EA0037B15B /* user_detail_seperator_line2@2x.png */; };
+		CAE5AD5C1717CD49009BFDC1 /* user_detail_sina@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4E16FAA5EA0037B15B /* user_detail_sina@2x.png */; };
+		CAE5AD5D1717CD49009BFDC1 /* user_detail_yellow_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2B97A4F16FAA5EA0037B15B /* user_detail_yellow_btn_bg@2x.png */; };
+		CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
+		CAE5AD651717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
+		CAE5AD661717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
+		CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
+		CAE5AD691717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
+		CAE5AD6A1717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -12657,6 +12692,8 @@
 		CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLearnDrawView.m; sourceTree = "<group>"; };
 		CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLearnDrawView.xib; sourceTree = "<group>"; };
 		CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddLearnDrawView~ipad.xib"; sourceTree = "<group>"; };
+		CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawOnCell.xib; sourceTree = "<group>"; };
+		CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawOnCell~ipad.xib"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
@@ -19155,6 +19192,8 @@
 				CA1656FC160C032500E433BE /* RankView.h */,
 				CA1656FD160C032600E433BE /* RankView.m */,
 				CA1656FE160C032700E433BE /* RankView.xib */,
+				CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */,
+				CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */,
 				CA165703160C037600E433BE /* RankFirstView.xib */,
 				CA165705160C044700E433BE /* RankSecondView.xib */,
 				CA0A2CAC1610473800F66400 /* TopPlayerView.h */,
@@ -21334,6 +21373,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE5AD411717CD48009BFDC1 /* user_detail_seperator_line3@2x.png in Resources */,
+				CAE5AD421717CD48009BFDC1 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CAE5AD431717CD48009BFDC1 /* user_detail_basic_bg_ipad@2x.png in Resources */,
+				CAE5AD441717CD48009BFDC1 /* user_detail_avatar_bg_ipad@2x.png in Resources */,
+				CAE5AD451717CD48009BFDC1 /* user_detail_gender_male@2x.png in Resources */,
+				CAE5AD461717CD48009BFDC1 /* user_detail_draw_to_bg@2x.png in Resources */,
+				CAE5AD471717CD48009BFDC1 /* user_detail_follow_bg@2x.png in Resources */,
+				CAE5AD481717CD48009BFDC1 /* user_detail_message_bg@2x.png in Resources */,
+				CAE5AD491717CD48009BFDC1 /* user_detail_avatar_bg@2x.png in Resources */,
+				CAE5AD4A1717CD48009BFDC1 /* user_detail_back@2x.png in Resources */,
+				CAE5AD4B1717CD48009BFDC1 /* user_detail_basic_bg@2x.png in Resources */,
+				CAE5AD4C1717CD48009BFDC1 /* user_detail_bg@2x.png in Resources */,
+				CAE5AD4D1717CD48009BFDC1 /* user_detail_btn_bg@2x.png in Resources */,
+				CAE5AD4E1717CD48009BFDC1 /* user_detail_draw_to@2x.png in Resources */,
+				CAE5AD4F1717CD48009BFDC1 /* user_detail_edit@2x.png in Resources */,
+				CAE5AD501717CD48009BFDC1 /* user_detail_facebook@2x.png in Resources */,
+				CAE5AD511717CD49009BFDC1 /* user_detail_follow@2x.png in Resources */,
+				CAE5AD521717CD49009BFDC1 /* user_detail_followandfan@2x.png in Resources */,
+				CAE5AD531717CD49009BFDC1 /* user_detail_gender_female@2x.png in Resources */,
+				CAE5AD541717CD49009BFDC1 /* user_detail_message@2x.png in Resources */,
+				CAE5AD551717CD49009BFDC1 /* user_detail_more@2x.png in Resources */,
+				CAE5AD561717CD49009BFDC1 /* user_detail_pull_down@2x.png in Resources */,
+				CAE5AD571717CD49009BFDC1 /* user_detail_purple_btn_bg@2x.png in Resources */,
+				CAE5AD581717CD49009BFDC1 /* user_detail_qq@2x.png in Resources */,
+				CAE5AD591717CD49009BFDC1 /* user_detail_red_btn_bg@2x.png in Resources */,
+				CAE5AD5A1717CD49009BFDC1 /* user_detail_seperator_line1@2x.png in Resources */,
+				CAE5AD5B1717CD49009BFDC1 /* user_detail_seperator_line2@2x.png in Resources */,
+				CAE5AD5C1717CD49009BFDC1 /* user_detail_sina@2x.png in Resources */,
+				CAE5AD5D1717CD49009BFDC1 /* user_detail_yellow_btn_bg@2x.png in Resources */,
 				CA1208461712AA6D00FEFB41 /* wordbase.zip in Resources */,
 				CA1208451712AA5500FEFB41 /* draw_bg.zip in Resources */,
 				CA1204591712A98F00FEFB41 /* InfoPlist.strings in Resources */,
@@ -22145,6 +22213,8 @@
 				CA04CB7E1716B6FD002BF3C2 /* learndraw_shop@2x.png in Resources */,
 				CAE5AD391717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
 				CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5AD661717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
+				CAE5AD6A1717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25459,6 +25529,8 @@
 				CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 				CAE5AD371717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
 				CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
+				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26424,6 +26496,8 @@
 				CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 				CAE5AD381717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
 				CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5AD651717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
+				CAE5AD691717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

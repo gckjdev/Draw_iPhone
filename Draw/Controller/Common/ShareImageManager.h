@@ -260,4 +260,9 @@
 - (UIImage*)customInfoViewMainBgImage;
 - (UIImage *)draftsBoxBgImage;
 
+- (UIImage*)settingCellTopBgImage;
+- (UIImage*)settingCellMiddleBgImage;
+- (UIImage*)settingCellBottomBgImage;
+- (UIImage*)settingCellOneBgImage;
+
 @end

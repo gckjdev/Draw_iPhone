@@ -1125,5 +1125,22 @@ static UIImage* _whitePaperImage;
     return [[self fixedImageNamed:@"all_my_words_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:240];
 }
 
+- (UIImage*)settingCellTopBgImage
+{
+    return [UIImage imageNamed:@"user_setting_cell_up.png"];
+}
+- (UIImage*)settingCellMiddleBgImage
+{
+    return [UIImage imageNamed:@"user_setting_cell_middle.png"];
+}
+- (UIImage*)settingCellBottomBgImage
+{
+    return [UIImage imageNamed:@"user_setting_cell_down.png"];
+}
+- (UIImage*)settingCellOneBgImage
+{
+    return [UIImage imageNamed:@"user_setting_cell_one.png"];
+}
+
 @end
 

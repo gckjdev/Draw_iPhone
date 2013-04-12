@@ -19,7 +19,7 @@
 #import "OfflineDrawViewController.h"
 #import "HotController.h"
 #import "BBSPermissionManager.h"
-
+#import "RankView.h"
 
 @interface LearnDrawHomeController ()
 
@@ -65,10 +65,14 @@
 
 - (void)viewDidLoad
 {
+    [self setPullRefreshType:PullRefreshTypeBoth];
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
     self.gmButton.hidden = YES;
+    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,6 +137,86 @@
 }
 
 
+//table view delegate
+
+
+
+
+
+#define NORMAL_CELL_VIEW_NUMBER 3
+#define WIDTH_SPACE 1
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    return  count / NORMAL_CELL_VIEW_NUMBER + (count % NORMAL_CELL_VIEW_NUMBER != 0);
+}
+
+- (void)setNormalRankCell:(UITableViewCell *)cell
+                WithFeeds:(NSArray *)feeds
+{
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+    
+    CGFloat space =  WIDTH_SPACE;
+    CGFloat x = 0;
+    CGFloat y = 0;
+    for (DrawFeed *feed in feeds) {
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+        [rankView setViewInfo:feed];
+        [cell.contentView addSubview:rankView];
+        rankView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
+
+- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+{
+    NSArray *list = [self tabDataList];
+    if (index < 0 || index >= [list count]) {
+        return nil;
+    }
+    return [list objectAtIndex:index];
+}
+
+- (void)clearCellSubViews:(UITableViewCell *)cell{
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[RankView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    TableTab *tab = [self currentTab];
+    
+    
+        
+        NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        }else{
+            [self clearCellSubViews:cell];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+        NSMutableArray *list = [NSMutableArray array];
+        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+            NSObject *object = [self saveGetObjectForIndex:i];
+            if (object) {
+                [list addObject:object];
+            }
+        }
+        [self setNormalRankCell:cell WithFeeds:list];
+        return cell;
+
+}
 
 //table tab manager
 
@@ -181,12 +265,21 @@
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     TableTab *tab = [_tabManager tabForID:tabID];
+    
+    __block LearnDrawHomeController *cp = self;
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[LearnDrawService defaultManager] getLearnDrawOpusListWithType:[self typeFromTabID:tabID]
                                                            sortType:SortTypeTime
                                                              offset:tab.offset
                                                               limit:tab.limit
                                                       ResultHandler:^(NSArray *array, NSInteger resultCode) {
-        PPDebug(@"array count = %d", [array count]);
+                                                          PPDebug(@"array count = %d", [array count]);
+                                                          if (resultCode == 0) {
+                                                              [cp finishLoadDataForTabID:tabID resultList:array];
+                                                          }else{
+                                                              [cp failLoadDataForTabID:tabID];
+                                                          }
+                                                    
     }];
 }
 - (void)viewDidUnload {
