@@ -16,6 +16,7 @@
 #import "FeedManager.h"
 #import "FeedService.h"
 #import "UIViewUtils.h"
+#import "LearnDrawManager.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -97,6 +98,7 @@
 {
     [self.costLabel setText:[NSString stringWithFormat:@"%d", learnDraw.price]];
     [self.boughtCountLabel setText:[NSString stringWithFormat:@"%d", learnDraw.boughtCount]];
+    [self.drawFlag setHidden:![[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]];
 }
 
 - (void)setViewInfo:(DrawFeed *)feed
@@ -107,9 +109,6 @@
     }
     self.feed = feed;
     
-    if (feed.learnDraw) {
-        [self updateLearnDraw:feed.learnDraw];        
-    }
 
     
    if ([feed.drawImageUrl length] != 0) {
@@ -163,6 +162,11 @@
     
     self.drawImage.center = self.center;
     self.maskButton.frame = self.bounds;
+    
+    if (feed.learnDraw) {
+        [self updateLearnDraw:feed.learnDraw];
+    }
+
 }
 
 - (void)updateViewInfoForMyOpus

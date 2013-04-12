@@ -1253,7 +1253,8 @@
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
-
+"kManageLearnDraw" = "Manage draw";
+"kRemoveLearnDraw" = "Remove draw";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

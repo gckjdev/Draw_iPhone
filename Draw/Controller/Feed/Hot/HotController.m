@@ -399,26 +399,12 @@ typedef enum{
         
     }
     
-//    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-//    [self.navigationController pushViewController:sc animated:YES];
-//    [sc release];
-    
 }
 
 
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
 {
     TopPlayer *player = topPlayerView.topPlayer;
-//    NSString* genderString = player.gender?@"m":@"f";
-//    MyFriend *friend = [MyFriend friendWithFid:player.userId
-//                                      nickName:player.nickName
-//                                        avatar:player.avatar
-//                                        gender:genderString 
-//                                         level:player.level];
-//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
 }

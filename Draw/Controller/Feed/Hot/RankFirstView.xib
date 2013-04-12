@@ -91,7 +91,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 103}, {320, 20}}</string>
 						<reference key="NSSuperview" ref="739775627"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwLjUAA</bytes>
@@ -341,8 +340,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="gold_cup@2x.png">{16, 16}</string>
-			<string key="guessed@2x.png">{16, 16}</string>
+			<string key="gold_cup@2x.png">{60, 60}</string>
+			<string key="guessed@2x.png">{46, 49}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

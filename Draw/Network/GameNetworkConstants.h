@@ -572,6 +572,7 @@
 #define METHOD_GET_USER_LEARDRAWID_LIST @"guldil"
 #define METHOD_BUY_LEARN_DRAW @"bld"
 #define METHOD_ADD_LEARN_DRAW @"ald"
+#define METHOD_REMOVE_LEARN_DRAW @"rld"
 
 
 #define REGISTER_TYPE_EMAIL     1

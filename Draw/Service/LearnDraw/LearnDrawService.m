@@ -62,7 +62,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
                                        TRAFFIC_SERVER_URL
-                                                                             method:METHOD_GET_USER_LEARDRAWID_LIST
+                                                                             method:METHOD_BUY_LEARN_DRAW
                                                                          parameters:dict
                                                                            returnPB:NO
                                                                         returnArray:NO];
@@ -77,6 +77,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
     });
 }
 
+
+- (void)removeLearnDraw:(NSString *)opusId
+          resultHandler:(RequestDictionaryResultHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *dict = @{PARA_OPUS_ID : opusId,
+                               PARA_USERID : [[UserManager defaultManager] userId],
+                               PARA_APPID : [ConfigManager appId],
+                               };
+        
+        CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
+                                       TRAFFIC_SERVER_URL
+                                                                             method:METHOD_REMOVE_LEARN_DRAW
+                                                                         parameters:dict
+                                                                           returnPB:NO
+                                                                        returnArray:NO];
+        
+        NSInteger resultCode = output.resultCode;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(handler,nil,resultCode);
+        });
+    });
+
+}
+
+
 - (void)getAllBoughtLearnDrawIdListWithResultHandler:(RequestArrayResultHandler)handler
 {
     dispatch_async(workingQueue, ^{
@@ -88,7 +115,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
                                        TRAFFIC_SERVER_URL
-                                                                             method:METHOD_BUY_LEARN_DRAW
+                                                                             method:METHOD_GET_USER_LEARDRAWID_LIST
                                                                          parameters:dict
                                                                            returnPB:YES
                                                                         returnArray:NO];
@@ -145,9 +172,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (resultCode == ERROR_SUCCESS) {
-                [[LearnDrawManager defaultManager] updateBoughtList:list];
-            }
             EXECUTE_BLOCK(handler,list,resultCode);
         });
     });
@@ -189,9 +213,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (resultCode == ERROR_SUCCESS) {
-                [[LearnDrawManager defaultManager] updateBoughtList:list];
-            }
+//            if (resultCode == ERROR_SUCCESS) {
+//
+//            }
             EXECUTE_BLOCK(handler,list,resultCode);
         });
     });

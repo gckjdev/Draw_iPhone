@@ -1237,6 +1237,8 @@
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "畫";
 "kAddLearnDraw" = "銷售此畫";
+"kManageLearnDraw" = "管理此畫";
+"kRemoveLearnDraw" = "下架";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

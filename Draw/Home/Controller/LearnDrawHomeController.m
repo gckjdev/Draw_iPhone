@@ -20,8 +20,16 @@
 #import "HotController.h"
 #import "BBSPermissionManager.h"
 #import "RankView.h"
+#import "MKBlockActionSheet.h"
+#import "AddLearnDrawView.h"
+#import "ReplayView.h"
+#import "Draw.h"
+
 
 @interface LearnDrawHomeController ()
+{
+    NSInteger  _tryTimes;
+}
 
 //@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *gmButton;
@@ -63,12 +71,28 @@
     }
 }
 
+#define MAX_TRYTIMES 3
+
+- (void)updateBoughtList
+{
+    
+    __block LearnDrawHomeController *cp = self;
+    [[LearnDrawService defaultService] getAllBoughtLearnDrawIdListWithResultHandler:^(NSArray *array, NSInteger resultCode) {
+        if (resultCode != 0 && (++_tryTimes)  < MAX_TRYTIMES) {
+            [cp updateBoughtList];
+        }
+    }];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateBoughtList];    
     [self addBottomMenuView];
     [self initTabButtons];
     self.gmButton.hidden = YES;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,6 +155,94 @@
     }
     [menu updateBadge:0];
 }
+
+
+//rank view delegate
+
+
+- (void)playFeed:(DrawFeed *)aFeed
+{
+    __block LearnDrawHomeController *cp = self;
+    
+    [[FeedService defaultService] getPBDrawByFeed:aFeed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
+        if (resultCode == 0 && pbDrawData) {
+            ReplayView *replay = [ReplayView createReplayView];
+            feed.pbDrawData = pbDrawData;
+            [feed parseDrawData];
+            [replay showInController:cp
+                      withActionList:feed.drawData.drawActionList
+                        isNewVersion:[feed.drawData isNewVersion]
+                                size:feed.drawData.canvasSize];
+            feed.drawData = nil;
+        }else{
+            //TODO show error message
+        }
+    } downloadDelegate:nil]; //TODO show download progress...
+
+}
+
+- (void)showFeed:(DrawFeed *)feed
+{
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId] || 1) {
+        [self playFeed:feed];
+    }else{
+        //TODO show image...
+    }
+}
+
+
+- (void)didClickRankView:(RankView *)rankView
+{
+    
+    if (![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
+        [self showFeed:rankView.feed];
+    }else{
+        MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]
+                                     initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
+                                     delegate:nil
+                                     cancelButtonTitle:NSLS(@"kCancel")
+                                     destructiveButtonTitle:NSLS(@"kOpusDetail")
+                                     otherButtonTitles:NSLS(@"kManageLearnDraw"),
+                                     NSLS(@"kRemoveLearnDraw"),
+                                     NSLS(@"Buy Test"), nil];
+        
+        __block LearnDrawHomeController *cp = self;
+        
+        [sheet setActionBlock:^(NSInteger buttonIndex){
+            PPDebug(@"click button index = %d", buttonIndex);
+            if (buttonIndex == 0) {
+                [cp showFeed:rankView.feed];
+            }else if(buttonIndex == 1){
+                AddLearnDrawView* alView = [AddLearnDrawView createViewWithOpusId:rankView.feed.feedId];
+                [alView showInView:cp.view];
+                [alView setPrice:rankView.feed.learnDraw.price];
+                [alView setType:rankView.feed.learnDraw.type];
+            }else if(buttonIndex == 2){
+                [[LearnDrawService defaultService] removeLearnDraw:rankView.feed.feedId
+                                                     resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+                                                        if (resultCode == 0) {
+                                                            [cp finishDeleteData:rankView.feed ForTabID:[cp currentTab].tabID];
+                                                        }else{
+                                                            [cp failLoadDataForTabID:[cp currentTab].tabID];
+                                                        }
+                }];
+            }else if(buttonIndex == 3){
+                [[LearnDrawService defaultService] buyLearnDraw:rankView.feed.feedId
+                                                  resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+                                                      if (resultCode == 0) {
+                                                          [cp.dataTableView reloadData];
+                                                      }
+                }];
+            }
+        }];
+        
+        [sheet showInView:self.view];
+        [sheet release];
+        
+    }
+    
+}
+
 
 
 //table view delegate

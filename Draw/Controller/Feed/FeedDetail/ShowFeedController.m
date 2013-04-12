@@ -615,7 +615,7 @@ enum{
 
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
-        [self.feed parseDrawData];
+        [cp.feed parseDrawData];
         [replay showInController:cp
                   withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
