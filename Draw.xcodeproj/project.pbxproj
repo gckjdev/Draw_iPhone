@@ -105,6 +105,16 @@
 		A42EA3341651F0220080BB95 /* ZJHGameController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */; };
 		A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */; };
 		A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */; };
+		A4348C311717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C321717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C331717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C341717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C351717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C381717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
+		A4348C391717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
+		A4348C3A1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
+		A4348C3B1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
+		A4348C3C1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
 		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
 		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
 		A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64D61609595700F35978 /* DiceBetView~ipad.xib */; };
@@ -9473,6 +9483,10 @@
 		A42EA46D165365690080BB95 /* ZJHScreenConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHScreenConfig.h; sourceTree = "<group>"; };
 		A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHScreenConfig.m; sourceTree = "<group>"; };
 		A42EA470165367270080BB95 /* ZJHConstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHConstance.h; sourceTree = "<group>"; };
+		A4348C2F1717B247004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
+		A4348C301717B247004AFB26 /* AlixPayOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrderManager.m; sourceTree = "<group>"; };
+		A4348C361717B80B004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
+		A4348C371717B80B004AFB26 /* NotificationCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenterManager.m; sourceTree = "<group>"; };
 		A43A64B716084E7E00F35978 /* DiceBetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceBetView.h; sourceTree = "<group>"; };
 		A43A64B816084E7E00F35978 /* DiceBetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceBetView.m; sourceTree = "<group>"; };
 		A43A64BA16084EA000F35978 /* DiceBetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceBetView.xib; sourceTree = "<group>"; };
@@ -13715,6 +13729,10 @@
 			children = (
 				A4834D641716AD5300190347 /* AliPayManager.h */,
 				A4834D651716AD5300190347 /* AliPayManager.m */,
+				A4348C2F1717B247004AFB26 /* AlixPayOrderManager.h */,
+				A4348C301717B247004AFB26 /* AlixPayOrderManager.m */,
+				A4348C361717B80B004AFB26 /* NotificationCenterManager.h */,
+				A4348C371717B80B004AFB26 /* NotificationCenterManager.m */,
 			);
 			path = AliPayManager;
 			sourceTree = "<group>";
@@ -27209,6 +27227,8 @@
 				A4834E081716AD5400190347 /* RSADataVerifier.m in Sources */,
 				CA04CB651716B641002BF3C2 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB6B1716B693002BF3C2 /* GoogleAddressComponent.m in Sources */,
+				A4348C351717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C3C1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28017,6 +28037,8 @@
 				A4834DFC1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E011716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E061716AD5400190347 /* RSADataVerifier.m in Sources */,
+				A4348C331717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C3A1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28825,6 +28847,8 @@
 				A4834DFD1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E021716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E071716AD5400190347 /* RSADataVerifier.m in Sources */,
+				A4348C341717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C3B1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29636,6 +29660,8 @@
 				A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */,
+				A4348C311717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C381717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30454,6 +30480,8 @@
 				A4834DFB1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E001716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E051716AD5400190347 /* RSADataVerifier.m in Sources */,
+				A4348C321717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C391717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
