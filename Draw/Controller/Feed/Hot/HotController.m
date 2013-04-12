@@ -18,6 +18,9 @@
 #import "ConfigManager.h"
 #import "UserManager.h"
 #import "CommonMessageCenter.h"
+#import "MKBlockActionSheet.h"
+#import "BBSPermissionManager.h"
+#import "AddLearnDrawView.h"
 
 typedef enum{
 
@@ -356,12 +359,49 @@ typedef enum{
 }
 
 #pragma mark Rank View delegate
+
+- (void)showFeed:(DrawFeed *)feed
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+
+}
+
 - (void)didClickRankView:(RankView *)rankView
 {
 
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    if (!isLearnDrawApp() || ![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
+        [self showFeed:rankView.feed];
+    }else{
+        MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]
+                                     initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
+                                     delegate:nil
+                                     cancelButtonTitle:NSLS(@"kCancel")
+                                     destructiveButtonTitle:NSLS(@"kOpusDetail")
+                                     otherButtonTitles:NSLS(@"kAddLearnDraw"), nil];
+        
+        __block HotController *cp = self;
+        
+        [sheet setActionBlock:^(NSInteger buttonIndex){
+            PPDebug(@"click button index = %d", buttonIndex);
+            if (buttonIndex == 0) {
+                [cp showFeed:rankView.feed];
+            }else if(buttonIndex == 1){
+                AddLearnDrawView* alView = [AddLearnDrawView createViewWithOpusId:rankView.feed.feedId];
+                [alView showInView:cp.view];
+            }
+
+        }];
+        
+        [sheet showInView:self.view];
+        [sheet release];
+        
+    }
+    
+//    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    [sc release];
     
 }
 
