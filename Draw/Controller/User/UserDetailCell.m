@@ -32,6 +32,9 @@
 #define USER_ACTION_BTN_INDEX_OFFSET    20130330
 #define USER_ACTION_BTN_COUNT 5
 
+#define SNS_BTN_INDEX_OFFSET 120130412
+#define SNS_COUNT 3
+
 @interface UserDetailCell ()
 
 @property (retain, nonatomic) CustomSegmentedControl* segmentedControl;
@@ -112,6 +115,30 @@
     
     [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
     [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
+    
+    [self adaptSNSButton];
+}
+
+
+#define SNS_BTN_CENTER_OFFSET (ISIPAD?75:33)
+- (void)adaptSNSButton
+{
+    NSMutableArray* tempArray = [[[NSMutableArray alloc] initWithCapacity:SNS_COUNT] autorelease];
+    for (int i = 0; i < SNS_COUNT; i ++) {
+        UIButton* btn = (UIButton*)[self viewWithTag:(SNS_BTN_INDEX_OFFSET + i)];
+        if (btn && !btn.hidden) {
+            [tempArray addObject:btn];
+        }
+    }
+    if (tempArray.count == 1) {
+        UIButton* btn = (UIButton*)[tempArray objectAtIndex:0];
+        [btn setCenter:CGPointMake(self.frame.size.width/2, btn.center.y)];
+    } else if (tempArray.count == 2) {
+        UIButton* btn1 = (UIButton*)[tempArray objectAtIndex:0];
+        UIButton* btn2 = (UIButton*)[tempArray objectAtIndex:1];
+        [btn1 setCenter:CGPointMake(self.frame.size.width/2 - SNS_BTN_CENTER_OFFSET, btn1.center.y)];
+        [btn2 setCenter:CGPointMake(self.frame.size.width/2 + SNS_BTN_CENTER_OFFSET, btn2.center.y)];
+    }
 }
 
 - (void)adjustView:(UIView*)view

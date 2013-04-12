@@ -21,6 +21,7 @@ typedef enum{
      RankViewTypeFirst = 1,
      RankViewTypeSecond = 2,
      RankViewTypeNormal = 3,
+     RankViewTypeDrawOnCell = 4,
 }RankViewType;
 
 @class DrawFeed;

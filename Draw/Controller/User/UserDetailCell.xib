@@ -687,7 +687,6 @@
 								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{224.5, 646.5}, {93, 33}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -737,6 +736,7 @@
 								<reference key="NSNextKeyView" ref="1040361067"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">120130412</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -761,6 +761,7 @@
 								<reference key="NSNextKeyView" ref="331007648"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">120130413</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -785,6 +786,7 @@
 								<reference key="NSNextKeyView" ref="277945030"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">120130414</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>

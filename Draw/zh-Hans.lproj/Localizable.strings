@@ -659,7 +659,7 @@
 
 
 "kNoCommentTips" = "还没有人评论";
-"kFeedDetail" = "猜画详情";
+"kFeedDetail" = "画画详情";
 "kOpusDetail" = "查看作品";
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";
@@ -1257,6 +1257,7 @@
 "kLearnDrawScenery" = "风景";
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "画";
+"kAddLearnDraw" = "销售此画";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

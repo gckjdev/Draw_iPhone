@@ -1245,12 +1245,15 @@
 "kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
 
 
+//learn draw
 "kLearnDrawAll" = "All";
 "kLearnDrawCartoon" = "Cartoon";
 "kLearnDrawCharater" = "Charater";
 "kLearnDrawScenery" = "Scenery";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
+"kAddLearnDraw" = "Sell the draw";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -80,8 +80,9 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIEditable">NO</bool>
 						<string type="base64-UTF8" key="IBUIText">UHJvZ3JhbSBCeQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUElQSSBQZW5nCkdhbXkgSHVh
-bmcKS2lyYSBPdQpYaWFvdGFvIFdhbmcKSGFvZG9uZyBRaXUKSmlhbnl1IFpoYW4KCkRlc2lnbmVkIEJ5
-Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvCg</string>
+bmcKS2lyYSBPdQpYaWFvdGFvIFdhbmcKSGFvZG9uZyBRaXUKSmlhbnl1IFpoYW4KWGlhb2t1biBMaXUK
+CkRlc2lnbmVkIEJ5Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1
+bm1pbmcgR3VvCg</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MjM1Mjk0MTE4IDAuMTkyMTU2ODYyNyAwLjAzMTM3MjU0OTAyAA</bytes>
@@ -103,14 +104,14 @@ Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KUm95IEhlCk9sZDEzClJ1bm1pbmcgR3VvCg</
 					<object class="IBUILabel" id="237823086">
 						<reference key="NSNextResponder" ref="502016194"/>
 						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{0, 429}, {320, 21}}</string>
+						<string key="NSFrame">{{0, 429}, {320, 22}}</string>
 						<reference key="NSSuperview" ref="502016194"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Copyright©2011-2012 Sunny Orange</string>
+						<string key="IBUIText">Copyright©2011-2013 Sunny Orange</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC40MjM1Mjk0MTE4IDAuMTkyMTU2ODYyNyAwLjAzMTM3MjU0OTAyAA</bytes>
