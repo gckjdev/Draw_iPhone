@@ -40,7 +40,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                 resultCode = response.resultCode;
             }
             @catch (NSException *exception) {
-                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+                PPDebug(@"<%s>exception = %@", __FUNCTION__, [exception debugDescription]);
             }
             @finally {
                 
@@ -77,7 +77,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                 resultCode = response.resultCode;
             }
             @catch (NSException *exception) {
-                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+                PPDebug(@"<%s>exception = %@", __FUNCTION__, [exception debugDescription]);
             }
             @finally {
                 
@@ -112,7 +112,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                 resultCode = response.resultCode;
             }
             @catch (NSException *exception) {
-                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+                PPDebug(@"<%s>exception = %@", __FUNCTION__, [exception debugDescription]);
             }
             @finally {
                 
@@ -146,7 +146,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
                 resultCode = response.resultCode;
             }
             @catch (NSException *exception) {
-                PPDebug(@"<%@>exception = %@", __FUNCTION__, [exception debugDescription]);
+                PPDebug(@"<%s>exception = %@", __FUNCTION__, [exception debugDescription]);
             }
             @finally {
                 

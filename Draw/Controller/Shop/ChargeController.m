@@ -20,6 +20,7 @@
 #import "AlixPayOrderManager.h"
 #import "NotificationCenterManager.h"
 #import "NotificationName.h"
+#import "StringUtil.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -155,30 +156,27 @@
 {
     MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
     [sheet showInView:self.view];
-    
 
     __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
-    
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
     order.tradeNO = [NSString GetUUID];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
-    order.productDescription = product.desc;
-    order.amount = product.totalPrice;
+    order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
+    order.amount = @"0.01";
+    order.notifyURL =  @"http://www.xxx.com"; //回调URL
     [order.extraParams setObject:product forKey:ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT];
     
     [[AlixPayOrderManager defaultManager] addOrder:order];
-    
-    NSString *scheme = [[GameApp alipayCallBackScheme] stringByAppendingString:@"://order?productType=xxxxx&count=xxx"];
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
             case 0:
                 // pay via zhifubao
                 [[AliPayManager defaultManager] payWithOrder:order
-                                                   appScheme:scheme
+                                                   appScheme:[GameApp alipayCallBackScheme]
                                                rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
                                                      handler:^(int errorCode, NSString *errorMsg) {
                      
