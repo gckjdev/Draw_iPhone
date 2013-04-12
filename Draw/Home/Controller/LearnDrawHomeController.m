@@ -1,0 +1,294 @@
+//
+//  LearnDrawHomeController.m
+//  Draw
+//
+//  Created by gamy on 13-4-11.
+//
+//
+
+#import "LearnDrawHomeController.h"
+#import "AnalyticsManager.h"
+#import "ShareController.h"
+#import "FeedbackController.h"
+#import "StoreController.h"
+#import "HomeBottomMenuPanel.h"
+#import "UIViewUtils.h"
+#import "StatisticManager.h"
+#import "LearnDrawManager.h"
+#import "LearnDrawService.h"
+#import "OfflineDrawViewController.h"
+#import "HotController.h"
+#import "BBSPermissionManager.h"
+#import "RankView.h"
+
+@interface LearnDrawHomeController ()
+
+//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *gmButton;
+@property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+- (IBAction)clickGMButton:(id)sender;
+
+@end
+
+@implementation LearnDrawHomeController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    PPRelease(_homeBottomMenuPanel);
+    [_gmButton release];
+    [super dealloc];
+}
+
+- (void)addBottomMenuView
+{
+    self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
+    [self.view addSubview:self.homeBottomMenuPanel];
+    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds)];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
+        [self.gmButton setHidden:NO];
+    }
+}
+
+- (void)viewDidLoad
+{
+    [self setPullRefreshType:PullRefreshTypeBoth];
+    [super viewDidLoad];
+    [self addBottomMenuView];
+    [self initTabButtons];
+    self.gmButton.hidden = YES;
+    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
+               didClickMenu:(HomeMenuView *)menu
+                   menuType:(HomeMenuType)type
+{
+    switch (type) {
+            
+        case HomeMenuTypeLearnDrawDraw:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_DRAFT];
+            
+            [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil];
+            break;
+        }
+        
+        case HomeMenuTypeLearnDrawDraft:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_DRAFT];
+            ShareController* share = [[ShareController alloc] init];
+            int count = [[StatisticManager defaultManager] recoveryCount];
+            if (count > 0) {
+                [share setDefaultTabIndex:2];
+                [[StatisticManager defaultManager] setRecoveryCount:0];
+            }
+            [self.navigationController pushViewController:share animated:YES];
+            [share release];
+            
+        }
+            break;
+        case HomeMenuTypeLearnDrawMore:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_MORE];
+            
+            FeedbackController* feedBack = [[FeedbackController alloc] init];
+            [self.navigationController pushViewController:feedBack animated:YES];
+            [feedBack release];
+        }
+            break;
+            
+            
+        case HomeMenuTypeLearnDrawShop:
+        {
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_BOTTOM_LEARN_DRAW_SHOP];
+            
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    [menu updateBadge:0];
+}
+
+
+//table view delegate
+
+
+
+
+
+#define NORMAL_CELL_VIEW_NUMBER 3
+#define WIDTH_SPACE 1
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    return  count / NORMAL_CELL_VIEW_NUMBER + (count % NORMAL_CELL_VIEW_NUMBER != 0);
+}
+
+- (void)setNormalRankCell:(UITableViewCell *)cell
+                WithFeeds:(NSArray *)feeds
+{
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
+    
+    CGFloat space =  WIDTH_SPACE;
+    CGFloat x = 0;
+    CGFloat y = 0;
+    for (DrawFeed *feed in feeds) {
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
+        [rankView setViewInfo:feed];
+        [cell.contentView addSubview:rankView];
+        rankView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
+
+- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+{
+    NSArray *list = [self tabDataList];
+    if (index < 0 || index >= [list count]) {
+        return nil;
+    }
+    return [list objectAtIndex:index];
+}
+
+- (void)clearCellSubViews:(UITableViewCell *)cell{
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[RankView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    TableTab *tab = [self currentTab];
+    
+    
+        
+        NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+        UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        }else{
+            [self clearCellSubViews:cell];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+        NSMutableArray *list = [NSMutableArray array];
+        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+            NSObject *object = [self saveGetObjectForIndex:i];
+            if (object) {
+                [list addObject:object];
+            }
+        }
+        [self setNormalRankCell:cell WithFeeds:list];
+        return cell;
+
+}
+
+//table tab manager
+
+
+#define OFFSET 100
+
+- (LearnDrawType)typeFromTabID:(int)tabID
+{
+    return tabID - OFFSET;
+}
+
+- (int)tabIDFromeType:(LearnDrawType)type
+{
+    return type + OFFSET;
+}
+
+- (NSInteger)tabCount //default 1
+{
+    return 5;
+}
+- (NSInteger)currentTabIndex //default 0
+{
+    return _defaultTabIndex;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
+{
+    return 15;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    
+    int types[] = {
+        LearnDrawTypeAll,
+        LearnDrawTypeCartoon,
+        LearnDrawTypeCharater,
+        LearnDrawTypeScenery,
+        LearnDrawTypeOther};
+    
+    return [self tabIDFromeType:types[index]];
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    NSString *titles[] = {NSLS(@"kLearnDrawAll"),NSLS(@"kLearnDrawCartoon"),NSLS(@"kLearnDrawCharater"),NSLS(@"kLearnDrawScenery"),NSLS(@"kLearnDrawOther")};
+    return titles[index];
+}
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    TableTab *tab = [_tabManager tabForID:tabID];
+    
+    __block LearnDrawHomeController *cp = self;
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[LearnDrawService defaultManager] getLearnDrawOpusListWithType:[self typeFromTabID:tabID]
+                                                           sortType:SortTypeTime
+                                                             offset:tab.offset
+                                                              limit:tab.limit
+                                                      ResultHandler:^(NSArray *array, NSInteger resultCode) {
+                                                          PPDebug(@"array count = %d", [array count]);
+                                                          if (resultCode == 0) {
+                                                              [cp finishLoadDataForTabID:tabID resultList:array];
+                                                          }else{
+                                                              [cp failLoadDataForTabID:tabID];
+                                                          }
+                                                    
+    }];
+}
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [self setGmButton:nil];
+    [super viewDidUnload];
+}
+- (IBAction)clickGMButton:(id)sender {
+    HotController *hot = [[HotController alloc] initWithDefaultTabIndex:2];
+    [self.navigationController pushViewController:hot animated:YES];
+}
+@end

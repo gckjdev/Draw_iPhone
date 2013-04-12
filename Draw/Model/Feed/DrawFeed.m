@@ -85,6 +85,10 @@
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;
         self.drawDataUrl = pbFeed.drawDataUrl;
+        if ([pbFeed hasLearnDraw]) {
+            self.learnDraw = pbFeed.learnDraw;    
+        }
+        
     }
     return self;
 }
@@ -469,6 +473,7 @@
     PPRelease(_largeImage);
     PPRelease(_opusDesc);
     PPRelease(_feedUser);
+    PPRelease(_learnDraw);
     [super dealloc];
 }
 

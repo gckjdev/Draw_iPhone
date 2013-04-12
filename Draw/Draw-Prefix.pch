@@ -17,6 +17,7 @@
     #import "GameApp.h"
     #import "GameResource.h"
     #import "BlockUtils.h"
+    #import "UIViewUtils.h"
     #define ISIPAD [DeviceDetection isIPAD]
     #define ISIPHONE5 [DeviceDetection isIPhone5]
 #endif

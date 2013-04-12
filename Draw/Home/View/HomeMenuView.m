@@ -255,6 +255,19 @@
         case HomeMenuTypeDiceMore:{
             return [imageManager diceHomeMore];
         }
+        
+        case HomeMenuTypeLearnDrawDraw:
+            return [imageManager learnDrawDraw];
+            
+        case HomeMenuTypeLearnDrawDraft:
+            return [imageManager learnDrawDraft];
+            
+        case HomeMenuTypeLearnDrawShop:
+            return [imageManager learnDrawShop];
+            
+        case HomeMenuTypeLearnDrawMore:
+            return [imageManager learnDrawMore];
+            
         default:
             return nil;
     }
@@ -479,6 +492,17 @@ int *getDiceBottomMenuTypeList()
     return list;
 }
 
+int *getLearnDrawBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeLearnDrawDraw,
+        HomeMenuTypeLearnDrawDraft,
+        HomeMenuTypeLearnDrawShop,
+        HomeMenuTypeLearnDrawMore,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
 
 BOOL typeInList(HomeMenuType type, int *list)
 {
@@ -505,3 +529,30 @@ BOOL isMainMenuButton(HomeMenuType type)
     }
     return NO;
 }
+
+int *getBottomMenuTypeList()
+{
+    if (isDrawApp()) {
+        return getDrawBottomMenuTypeList();
+    }else if(isZhajinhuaApp()){
+        return getZJHBottomMenuTypeList();
+    }else if(isDiceApp()){
+        return getDiceBottomMenuTypeList();
+    }else if(isLearnDrawApp()){
+        return getLearnDrawBottomMenuTypeList();
+    }
+    return NULL;
+}
+int *getMainMenuTypeList()
+{
+    if (gameAppType() == GameAppTypeDraw) {
+        return getDrawMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeZJH){
+        return getZJHMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeDice){
+        return getDiceMainMenuTypeList();
+    }
+    return NULL;
+}
+
+

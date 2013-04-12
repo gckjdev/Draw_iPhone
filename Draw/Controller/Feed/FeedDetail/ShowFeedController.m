@@ -424,7 +424,9 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self clickRefreshButton:nil];
+    if (![self isCurrentTabLoading]) {
+        [self clickRefreshButton:nil];
+    }
     [self updateTitle];
     [self updateActionButtons];
     [self.feed setDrawData:nil];
@@ -832,6 +834,8 @@ enum{
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    PPDebug(@"<ShowFeedController> load data with tab ID = %d", tabID);
+    
     TableTab *tab = [_tabManager tabForID:tabID];
     [[FeedService defaultService] getOpusCommentList:_feed.feedId
                                                 type:tab.tabID

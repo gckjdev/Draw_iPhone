@@ -633,6 +633,10 @@
 #define ERROR_BAD_PARAMETER             200003
 #define ERROR_ITEM_NOT_ENOUGH           200004
 
+#define ERROR_ALIPAY_NOT_INSTALLED      320001
+#define ERROR_SINATURE                  320002
+#define ERROR_PAY_ERROR                 320003
+
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

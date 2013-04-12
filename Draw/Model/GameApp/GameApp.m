@@ -4,6 +4,7 @@
 #import "DrawGameProApp.h"
 #import "DiceGameApp.h"
 #import "ZJHGameApp.h"
+#import "LearnDrawApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -27,6 +28,9 @@ NSObject<GameAppProtocol>* getGameApp()
     else if ([bundleId isEqualToString:ZJH_APP_BUNDLE_ID]){
         currentApp = [[ZJHGameApp alloc] init];
     }
+    else if ([bundleId isEqualToString:LEARNDRAW_APP_BUNDLE_ID]){
+        currentApp = [[LearnDrawApp alloc] init];
+    }
     else{
         PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
     }
@@ -49,6 +53,11 @@ BOOL isZhajinhuaApp()
     return ([[GameApp gameId] isEqualToString:ZHAJINHUA_GAME_ID]);
 }
 
+extern BOOL isLearnDrawApp()
+{
+    return ([[GameApp gameId] isEqualToString:LEARN_DRAW_GAME_ID]);
+}
+
 GameAppType gameAppType()
 {
     if ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]) {
@@ -62,6 +71,9 @@ GameAppType gameAppType()
     }
     if ([[GameApp gameId] isEqualToString:CANDY_GAME_ID]) {
         return GameAppTypeCandy;
-    } 
+    }
+    if ([[GameApp gameId] isEqualToString:LEARN_DRAW_GAME_ID]) {
+        return GameAppTypeLearnDraw;
+    }
     return GameAppTypeUnknow;
 }

@@ -66,15 +66,8 @@
 
 - (void)addMenuViews
 {
-    int *list = NULL;
-    if (gameAppType() == GameAppTypeDraw) {
-        list = getDrawBottomMenuTypeList();
-    }else if(gameAppType() == GameAppTypeZJH){
-        list = getZJHBottomMenuTypeList();
-    }else if(gameAppType() == GameAppTypeDice){
-        list = getDiceBottomMenuTypeList();
-    }
-//    list = getZJHBottomMenuTypeList();
+    int *list = getBottomMenuTypeList();
+
     _menuCount = 0;
     NSMutableArray *array = [NSMutableArray array];
 //    PPDebug(@"TypeList = (");
@@ -125,17 +118,30 @@
         line.center = CGPointMake(x, y);
         if (isDrawApp()) {
             line.image = imageManager.drawHomeSplitline1;
-        }else{
+        }else if(isLearnDrawApp()){
+            line.image = imageManager.learnDrawBottomSplit;
+        }
+        else{
             line.image = imageManager.drawHomeSplitline;
         }
         [self addSubview:line];
         [line release];
     }
 }
+
+- (UIImageView *)bgImageView
+{
+    return (id)[self viewWithTag:1234];
+}
+
 - (void)updateView
 {
     if (isDrawApp()) {
-        [[self viewWithTag:1234] removeFromSuperview];
+        [[self bgImageView] removeFromSuperview];
+    }
+    
+    if (isLearnDrawApp()) {
+        [[self bgImageView] setImage:[[DrawImageManager defaultManager] learnDrawBottomBar]];
     }
     
     //add menu views;

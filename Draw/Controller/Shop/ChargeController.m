@@ -14,6 +14,14 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 #import "UIViewUtils.h"
+#import "MKBlockActionSheet.h"
+#import "AliPayManager.h"
+#import "StringUtil.h"
+#import "AlixPayOrderManager.h"
+#import "NotificationCenterManager.h"
+#import "NotificationName.h"
+
+#define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
 @interface ChargeController ()
 
@@ -22,6 +30,8 @@
 @implementation ChargeController
 
 - (void)dealloc {
+    [[NotificationCenterManager defaultManager] unregisterNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK];
+    [[AccountService defaultService] setDelegate:nil];
     [_countLabel release];
     [_taobaoLinkView release];
     [_currencyImageView release];
@@ -29,18 +39,15 @@
     [super dealloc];
 }
 
-- (void)viewDidUnload {
-    [self setCountLabel:nil];
-    [self setTaobaoLinkView:nil];
-    [self setCurrencyImageView:nil];
-    [self setCountBgImageView:nil];
-    [super viewDidUnload];
-}
-
 - (id)init
 {
     if (self = [super init]) {
         _saleCurrency = [GameApp saleCurrency];
+        [[NotificationCenterManager defaultManager] registerNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK usingBlock:^(NSNotification *note) {
+            PPDebug(@"receive message: %@", NOTIFICATION_ALIPAY_PAY_CALLBACK);
+//            NSDictionary *userInfo = note.userInfo;
+            
+        }];
     }
     
     return self;
@@ -49,9 +56,12 @@
 #define COIN_COUNT_LABEL_WIDTH (ISIPAD ? 120 : 60)
 #define COIN_COUNT_BG_IMAGE_VIEW_WIDTH (ISIPAD ? 128 : 64)
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
     
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
@@ -75,6 +85,15 @@
 #ifdef DEBUG
     [IAPProductService createTestDataFile];
 #endif
+}
+
+
+- (void)viewDidUnload {
+    [self setCountLabel:nil];
+    [self setTaobaoLinkView:nil];
+    [self setCurrencyImageView:nil];
+    [self setCountBgImageView:nil];
+    [super viewDidUnload];
 }
 
 - (void)updateBalance
@@ -134,10 +153,50 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
+    [sheet showInView:self.view];
+    
+
+    __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
-    [self showActivityWithText:NSLS(@"kBuying")];
-    [[AccountService defaultService] setDelegate:self];
-    [[AccountService defaultService] buyProduct:product];
+    
+    AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
+    order.partner = [ConfigManager getAlipayPartner];
+    order.seller = [ConfigManager getAlipaySeller];
+    order.tradeNO = [NSString GetUUID];
+    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
+    order.productDescription = product.desc;
+    order.amount = product.totalPrice;
+    [order.extraParams setObject:product forKey:ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT];
+    
+    [[AlixPayOrderManager defaultManager] addOrder:order];
+    
+    NSString *scheme = [[GameApp alipayCallBackScheme] stringByAppendingString:@"://order?productType=xxxxx&count=xxx"];
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+                // pay via zhifubao
+                [[AliPayManager defaultManager] payWithOrder:order
+                                                   appScheme:scheme
+                                               rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
+                                                     handler:^(int errorCode, NSString *errorMsg) {
+                     
+                 }];
+                break;
+                
+            case 1:
+                // pay via apple account
+                [bself showActivityWithText:NSLS(@"kBuying")];
+                [[AccountService defaultService] setDelegate:bself];
+                [[AccountService defaultService] buyProduct:product];
+                
+            default:
+                break;
+        }
+    }];
+    
+    [sheet release];
 }
 
 - (void)didFinishBuyProduct:(int)resultCode

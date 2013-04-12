@@ -72,21 +72,22 @@
 #import "GameAdWallService.h"
 #import "GameItemService.h"
 #import "IAPProductService.h"
-
+#import "LearnDrawHomeController.h"
+#import "AliPayManager.h"
 
 NSString* GlobalGetServerURL()
 {    
     return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.172.169:8000/api/i?";
-//    return @"http://192.168.1.123:8000/api/i?";
+//    return @"http://192.168.1.5:8000/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 }
 
 NSString* GlobalGetTrafficServerURL()
 {
 //    return @"http://58.215.184.18:8188/api/i?";
-    return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://58.215.172.169:8100/api/i?";
+//    return [ConfigManager getTrafficAPIServerURL];
+    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -118,6 +119,7 @@ NSString* GlobalGetBoardServerURL()
     PPRelease(_window);
     PPRelease(_viewController);
     PPRelease(_chatDetailController);
+    PPRelease(_learnDrawHomeController);
     [super dealloc];
 }
 
@@ -270,6 +272,10 @@ NSString* GlobalGetBoardServerURL()
     }else if (isZhajinhuaApp())
     {
         ZJHHomeViewController *controller = [[[ZJHHomeViewController alloc] init] autorelease];
+        rootController = controller;
+    }else if (isLearnDrawApp())
+    {
+        LearnDrawHomeController *controller = [[[LearnDrawHomeController alloc] init] autorelease];
         rootController = controller;
     }else{
         self.homeController = [[[HomeController alloc] init] autorelease];
@@ -464,8 +470,11 @@ NSString* GlobalGetBoardServerURL()
     
     if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
+    }else if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [[AliPayManager defaultManager] parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
     }
     else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
+        
     }
 
     return YES;

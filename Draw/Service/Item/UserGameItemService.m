@@ -164,6 +164,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
 - (void)consumeItem:(int)itemId
               count:(int)count
+{
+    [self consumeItem:itemId count:count forceBuy:NO handler:NULL];
+}
+
+- (void)consumeItem:(int)itemId
+              count:(int)count
            forceBuy:(BOOL)forceBuy
             handler:(ConsumeItemResultHandler)handler;
 {

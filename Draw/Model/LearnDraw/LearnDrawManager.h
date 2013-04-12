@@ -7,7 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SynthesizeSingleton.h"
 
-@interface LearnDrawManager : NSObject
+typedef enum {
+    LearnDrawTypeAll = 0,
+    
+    LearnDrawTypeCartoon,
+    LearnDrawTypeCharater,
+    LearnDrawTypeScenery,
+    
+    LearnDrawTypeOther = 10000,
+    
+}LearnDrawType;
 
+typedef enum {
+    SortTypeTime = 1,
+    SortTypeBoughtCount,    
+}SortType;
+
+@interface LearnDrawManager : NSObject<SingletonProtocol>
+
+//@property(nonatomic, retain)NSArray *boughtList;
+
+- (void)updateBoughtList:(NSArray *)list;
+
+- (NSSet *)boughtDrawIdSet;
+- (void)addBoughtOpusId:(NSString *)opusId;
 @end

@@ -221,9 +221,13 @@ enum PBGameCurrency{
 }
 
 enum PBDrawItemType{
-  Nomal = 0;                // 普通道具
-  Tool = 1;                 // 画画工具
-  TaoBao = 9999;            // 淘宝实物
+  DrawNomal = 0;                // 普通道具
+  DrawTool = 1;                 // 画画工具
+  DrawTaoBao = 9999;            // 淘宝实物
+}
+
+enum PBDiceItemType{
+  DiceNomal = 0;                // 普通道具
 }
 
 message PBItemPriceInfo {
@@ -287,7 +291,10 @@ enum PBIAPProductType{
 message PBIAPProduct{
   required PBIAPProductType type = 1;           // 类型   
   required string appleProductId = 2;           // Apple IAP购买ID
-  
+
+  optional string name = 5;                     // 产品名称
+  optional string desc = 8;                     // 产品描述
+
   optional int32 count = 11[default = 1];       // 个数
   optional string totalPrice = 12;              // 总价格
   

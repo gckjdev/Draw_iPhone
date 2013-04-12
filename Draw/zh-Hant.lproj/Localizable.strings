@@ -1229,6 +1229,13 @@
 "kAskLoginTitle" = "註冊提示";
 "kAskLoginMessage" = "你尚未註冊，無法使用此功能，馬上註冊嗎？註冊只需10秒";
 
+
+"kLearnDrawAll" = "全部";
+"kLearnDrawCartoon" = "動漫";
+"kLearnDrawCharater" = "人物";
+"kLearnDrawScenery" = "風景";
+"kLearnDrawOther" = "其他";
+"kLearnDrawWord" = "畫";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
