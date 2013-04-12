@@ -82,24 +82,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_18"
+                                  alipayProductId:@"draw_ingot_18"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
                                             count:18
                                        totalPrice:@"18"
                                            saving:nil]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_30"
+                                  alipayProductId:@"draw_ingot_30"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
                                             count:32
                                        totalPrice:@"30"
                                            saving:@"6%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_68"
+                                  alipayProductId:@"draw_ingot_68"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
                                             count:90
                                        totalPrice:@"68"
                                            saving:@"24%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_163"
+                                  alipayProductId:@"draw_ingot_163"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
                                             count:250
                                        totalPrice:@"163"
                                            saving:@"35%"]];
@@ -126,24 +138,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                   appleProductId:@"com.orange.zjh.coins1200"
+                                  alipayProductId:@"zjh_coin_1200"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                            count:10000
                                       totalPrice:@"12"
                                            saving:nil]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins2400"
+                                  alipayProductId:@"zjh_coin_2400"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:18000
                                        totalPrice:@"18"
                                            saving:@"15%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins6000"
+                                  alipayProductId:@"zjh_coin_6000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:66000
                                        totalPrice:@"68"
                                            saving:@"33%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins20000"
+                                  alipayProductId:@"zjh_coin_20000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:180000
                                        totalPrice:@"163"
                                            saving:@"50%"]];
@@ -170,24 +194,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins1200"
+                                  alipayProductId:@"dice_coin_1200"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:10000
                                        totalPrice:@"12"
                                            saving:nil]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins2400"
+                                  alipayProductId:@"dice_coin_2400"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:18000
                                        totalPrice:@"18"
                                            saving:@"15%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins6000"
+                                  alipayProductId:@"dice_coin_6000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:66000
                                        totalPrice:@"68"
                                            saving:@"33%"]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins20000"
+                                  alipayProductId:@"dice_coin_20000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
                                             count:180000
                                        totalPrice:@"163"
                                            saving:@"50%"]];
@@ -211,6 +247,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
 + (PBIAPProduct *)productWithType:(PBIAPProductType)type
                    appleProductId:(NSString *)appleProductId
+                  alipayProductId:(NSString *)alipayProductId
+                             name:(NSString *)name
+                             desc:(NSString *)desc
                             count:(int)count
                        totalPrice:(NSString *)totalPrice
                            saving:(NSString *)saving
@@ -218,6 +257,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
     [builder setType:type];
     [builder setAppleProductId:appleProductId];
+    [builder setAlipayProductId:alipayProductId];
+    [builder setName:name];
+    [builder setDesc:desc];
     [builder setCount:count];
     [builder setTotalPrice:totalPrice];
     [builder setSaving:saving];

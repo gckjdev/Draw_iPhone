@@ -19,5 +19,6 @@
 + (NSString *)IAPProductFileVersion;
 
 - (PBIAPProduct *)productWithAppleProductId:(NSString *)appleProductId;
+- (PBIAPProduct *)productWithAlipayProductId:(NSString *)alipayProductId;
 
 @end

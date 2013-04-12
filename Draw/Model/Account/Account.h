@@ -39,7 +39,10 @@ typedef enum  {
     
     SuperUserCharge = 400,
     
-    ChargeAsAGift = 420
+    ChargeAsAGift = 420,
+    
+    ChargeViaAppleAccount = 430,
+    ChargeViaAlipay = 431,
     
 }BalanceSourceType;
 

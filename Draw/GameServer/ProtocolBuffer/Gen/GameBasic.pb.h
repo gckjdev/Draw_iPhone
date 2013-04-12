@@ -2010,6 +2010,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @private
   BOOL hasCount_:1;
   BOOL hasAppleProductId_:1;
+  BOOL hasAlipayProductId_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasTotalPrice_:1;
@@ -2019,6 +2020,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasType_:1;
   int32_t count;
   NSString* appleProductId;
+  NSString* alipayProductId;
   NSString* name;
   NSString* desc;
   NSString* totalPrice;
@@ -2029,6 +2031,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 }
 - (BOOL) hasType;
 - (BOOL) hasAppleProductId;
+- (BOOL) hasAlipayProductId;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
 - (BOOL) hasCount;
@@ -2038,6 +2041,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasSaving;
 @property (readonly) PBIAPProductType type;
 @property (readonly, retain) NSString* appleProductId;
+@property (readonly, retain) NSString* alipayProductId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
 @property (readonly) int32_t count;
@@ -2089,6 +2093,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) appleProductId;
 - (PBIAPProduct_Builder*) setAppleProductId:(NSString*) value;
 - (PBIAPProduct_Builder*) clearAppleProductId;
+
+- (BOOL) hasAlipayProductId;
+- (NSString*) alipayProductId;
+- (PBIAPProduct_Builder*) setAlipayProductId:(NSString*) value;
+- (PBIAPProduct_Builder*) clearAlipayProductId;
 
 - (BOOL) hasName;
 - (NSString*) name;

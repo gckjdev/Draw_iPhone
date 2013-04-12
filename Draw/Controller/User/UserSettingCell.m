@@ -62,7 +62,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
         [self.customAccessory setCenter:CGPointMake(self.customAccessory.center.x, self.bounds.size.height/2 - Y_OFFSET)];
         [self.customTextLabel setCenter:CGPointMake(self.customTextLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
         [self.customDetailLabel setCenter:CGPointMake(self.customDetailLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
-        [self.customSeparatorLine setHidden:YES];
+//        [self.customSeparatorLine setHidden:YES];
         return;
     } else {
         [self.backgroundImageView setImage:[imgManager settingCellMiddleBgImage]];

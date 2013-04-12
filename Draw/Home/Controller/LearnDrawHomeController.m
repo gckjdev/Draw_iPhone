@@ -163,7 +163,6 @@
 - (void)playFeed:(DrawFeed *)aFeed
 {
     __block LearnDrawHomeController *cp = self;
-    
     [[FeedService defaultService] getPBDrawByFeed:aFeed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
         if (resultCode == 0 && pbDrawData) {
             ReplayView *replay = [ReplayView createReplayView];

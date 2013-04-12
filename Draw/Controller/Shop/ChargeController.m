@@ -21,6 +21,7 @@
 #import "NotificationCenterManager.h"
 #import "NotificationName.h"
 #import "StringUtil.h"
+#import "IAPProductManager.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -44,10 +45,34 @@
 {
     if (self = [super init]) {
         _saleCurrency = [GameApp saleCurrency];
+        __block typeof (self)bself = self;
         [[NotificationCenterManager defaultManager] registerNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK usingBlock:^(NSNotification *note) {
             PPDebug(@"receive message: %@", NOTIFICATION_ALIPAY_PAY_CALLBACK);
-//            NSDictionary *userInfo = note.userInfo;
-            
+            NSDictionary *userInfo = note.userInfo;
+            int resultStatus = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_CODE] intValue];
+            if (resultStatus == 9000) {
+                AlixPayOrder *order = [userInfo objectForKey:ALIPAY_CALLBACK_RESULT_ORDER];
+                NSString *alipayProductId = [AlixPayOrderManager productIdFromTradeNo:order.tradeNO];
+                PBIAPProduct *product = [[IAPProductManager defaultManager] productWithAlipayProductId:alipayProductId];
+
+
+                switch (product.type) {
+                    case PBIAPProductTypeIapcoin:
+                        [bself showActivityWithText:NSLS(@"kCharging")];
+//                        [[AccountService defaultService] chargeCoin:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
+                        [[AccountService defaultService] chargeCoin:product.count source:ChargeAsAGift];
+                        break;
+                        
+                    case PBIAPProductTypeIapingot:
+                        [bself showActivityWithText:NSLS(@"kCharging")];
+//                        [[AccountService defaultService] chargeIngot:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
+                        [[AccountService defaultService] chargeIngot:product.count source:ChargeAsAGift];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
         }];
     }
     
@@ -61,9 +86,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-
-    
+        
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
     if (_saleCurrency == PBGameCurrencyCoin) {
@@ -83,11 +106,12 @@
         [bself.dataTableView reloadData];
     }];
     
+    [[AccountService defaultService] setDelegate:self];
+    
 #ifdef DEBUG
     [IAPProductService createTestDataFile];
 #endif
 }
-
 
 - (void)viewDidUnload {
     [self setCountLabel:nil];
@@ -162,12 +186,12 @@
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
-    order.tradeNO = [NSString GetUUID];
+    order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
     order.amount = @"0.01";
     order.notifyURL =  @"http://www.xxx.com"; //回调URL
-    [order.extraParams setObject:product forKey:ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT];
+    PPDebug(@"extraParams = %@", order.extraParams);
     
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
@@ -175,19 +199,13 @@
         switch (buttonIndex) {
             case 0:
                 // pay via zhifubao
-                [[AliPayManager defaultManager] payWithOrder:order
-                                                   appScheme:[GameApp alipayCallBackScheme]
-                                               rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
-                                                     handler:^(int errorCode, NSString *errorMsg) {
-                     
-                 }];
+                [bself alipayForOrder:order];
                 break;
                 
             case 1:
                 // pay via apple account
-                [bself showActivityWithText:NSLS(@"kBuying")];
-                [[AccountService defaultService] setDelegate:bself];
-                [[AccountService defaultService] buyProduct:product];
+                [bself applePayForProduct:product];
+                break;
                 
             default:
                 break;
@@ -196,6 +214,23 @@
     
     [sheet release];
 }
+
+- (void)alipayForOrder:(AlixPayOrder *)order
+{
+    [[AliPayManager defaultManager] payWithOrder:order
+                                       appScheme:[GameApp alipayCallBackScheme]
+                                   rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
+                                         handler:^(int errorCode, NSString *errorMsg) {
+                                             
+                                         }];
+}
+
+- (void)applePayForProduct:(PBIAPProduct *)product
+{
+    [self showActivityWithText:NSLS(@"kBuying")];
+    [[AccountService defaultService] buyProduct:product];
+}
+
 
 - (void)didFinishBuyProduct:(int)resultCode
 {
@@ -210,7 +245,7 @@
     }
     
     if (resultCode == ERROR_SUCCESS){
-        [self showActivityWithText:NSLS(@"kChargingIngot")];
+        [self showActivityWithText:NSLS(@"kCharging")];
     }
 }
 

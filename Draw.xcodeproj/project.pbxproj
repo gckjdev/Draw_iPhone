@@ -8919,6 +8919,18 @@
 		CAE5AD7817180347009BFDC1 /* detail_replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4234168D7588009F43F7 /* detail_replay@2x.png */; };
 		CAE5AD7917180347009BFDC1 /* detail_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4235168D7588009F43F7 /* detail_save@2x.png */; };
 		CAE5AD7A17180347009BFDC1 /* detail_tomato@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4236168D7588009F43F7 /* detail_tomato@2x.png */; };
+		CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6416B6595A00BB9060 /* draw_player_bg@2x.png */; };
+		CAE5AD8117184732009BFDC1 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6516B6595A00BB9060 /* draw_player_close@2x.png */; };
+		CAE5AD8217184732009BFDC1 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6616B6595A00BB9060 /* draw_player_end@2x.png */; };
+		CAE5AD8317184732009BFDC1 /* draw_player_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6716B6595A00BB9060 /* draw_player_pause@2x.png */; };
+		CAE5AD8417184732009BFDC1 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6816B6595A00BB9060 /* draw_player_play@2x.png */; };
+		CAE5AD8517184732009BFDC1 /* draw_player_progress_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6916B6595A00BB9060 /* draw_player_progress_load@2x.png */; };
+		CAE5AD8617184732009BFDC1 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6A16B6595A00BB9060 /* draw_player_progress_point@2x.png */; };
+		CAE5AD8717184732009BFDC1 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6B16B6595A00BB9060 /* draw_player_progress@2x.png */; };
+		CAE5AD8817184732009BFDC1 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6C16B6595A00BB9060 /* draw_player_reset@2x.png */; };
+		CAE5AD8917184732009BFDC1 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6D16B6595A00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CAE5AD8A17184732009BFDC1 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6E16B6595A00BB9060 /* draw_player_speed_button@2x.png */; };
+		CAE5AD8B17184732009BFDC1 /* draw_player_speed_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -21380,6 +21392,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */,
+				CAE5AD8117184732009BFDC1 /* draw_player_close@2x.png in Resources */,
+				CAE5AD8217184732009BFDC1 /* draw_player_end@2x.png in Resources */,
+				CAE5AD8317184732009BFDC1 /* draw_player_pause@2x.png in Resources */,
+				CAE5AD8417184732009BFDC1 /* draw_player_play@2x.png in Resources */,
+				CAE5AD8517184732009BFDC1 /* draw_player_progress_load@2x.png in Resources */,
+				CAE5AD8617184732009BFDC1 /* draw_player_progress_point@2x.png in Resources */,
+				CAE5AD8717184732009BFDC1 /* draw_player_progress@2x.png in Resources */,
+				CAE5AD8817184732009BFDC1 /* draw_player_reset@2x.png in Resources */,
+				CAE5AD8917184732009BFDC1 /* draw_player_speed_bar@2x.png in Resources */,
+				CAE5AD8A17184732009BFDC1 /* draw_player_speed_button@2x.png in Resources */,
+				CAE5AD8B17184732009BFDC1 /* draw_player_speed_load@2x.png in Resources */,
 				CAE5AD7517180347009BFDC1 /* detail_comment@2x.png in Resources */,
 				CAE5AD7617180347009BFDC1 /* detail_flower@2x.png in Resources */,
 				CAE5AD7717180347009BFDC1 /* detail_guess@2x.png in Resources */,
