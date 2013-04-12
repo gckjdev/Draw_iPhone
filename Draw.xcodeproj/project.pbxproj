@@ -8931,6 +8931,13 @@
 		CAE5AD8917184732009BFDC1 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6D16B6595A00BB9060 /* draw_player_speed_bar@2x.png */; };
 		CAE5AD8A17184732009BFDC1 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6E16B6595A00BB9060 /* draw_player_speed_button@2x.png */; };
 		CAE5AD8B17184732009BFDC1 /* draw_player_speed_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */; };
+		CAE5AD8D17184AD8009BFDC1 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		CAE5AD8E17184AD8009BFDC1 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		CAE5AD8F17184B52009BFDC1 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		CAE5AD9017184B52009BFDC1 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		CAE5AD9117184B52009BFDC1 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		CAE5AD9217184B52009BFDC1 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		CAE5AD9317184B52009BFDC1 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -21392,6 +21399,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE5AD8D17184AD8009BFDC1 /* UserSettingCell.xib in Resources */,
+				CAE5AD8E17184AD8009BFDC1 /* UserSettingCell~ipad.xib in Resources */,
 				CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */,
 				CAE5AD8117184732009BFDC1 /* draw_player_close@2x.png in Resources */,
 				CAE5AD8217184732009BFDC1 /* draw_player_end@2x.png in Resources */,
@@ -22252,6 +22261,11 @@
 				CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 				CAE5AD661717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD6A1717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
+				CAE5AD8F17184B52009BFDC1 /* user_setting_cell_down@2x.png in Resources */,
+				CAE5AD9017184B52009BFDC1 /* user_setting_cell_middle@2x.png in Resources */,
+				CAE5AD9117184B52009BFDC1 /* user_setting_cell_one@2x.png in Resources */,
+				CAE5AD9217184B52009BFDC1 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				CAE5AD9317184B52009BFDC1 /* user_setting_cell_up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
