@@ -118,6 +118,7 @@
 		A4348C661717C2EA004AFB26 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
 		A4348C671717C2EB004AFB26 /* LearnDrawService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB1C17166522002BF3C2 /* LearnDrawService.m */; };
 		A4348C681717C31E004AFB26 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
+		A4348C6A1717C344004AFB26 /* LearnDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB2217166577002BF3C2 /* LearnDrawManager.m */; };
 		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
 		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
 		A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64D61609595700F35978 /* DiceBetView~ipad.xib */; };
@@ -28879,6 +28880,7 @@
 				A4348C5F1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
 				A4348C641717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				A4348C671717C2EB004AFB26 /* LearnDrawService.m in Sources */,
+				A4348C6A1717C344004AFB26 /* LearnDrawManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
