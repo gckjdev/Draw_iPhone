@@ -21,6 +21,7 @@
 #import "NotificationCenterManager.h"
 #import "NotificationName.h"
 #import "StringUtil.h"
+#import "IAPProductManager.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -46,8 +47,27 @@
         _saleCurrency = [GameApp saleCurrency];
         [[NotificationCenterManager defaultManager] registerNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK usingBlock:^(NSNotification *note) {
             PPDebug(@"receive message: %@", NOTIFICATION_ALIPAY_PAY_CALLBACK);
-//            NSDictionary *userInfo = note.userInfo;
-            
+            NSDictionary *userInfo = note.userInfo;
+            int resultStatus = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_CODE] intValue];
+            if (resultStatus == 9000) {
+                AlixPayOrder *order = [userInfo objectForKey:ALIPAY_CALLBACK_RESULT_ORDER];
+                NSString *appleProductId = [AlixPayOrderManager productIdFromTradeNo:order.tradeNO];
+                PBIAPProduct *product = [[IAPProductManager defaultManager] productWithAppleProductId:appleProductId];
+                switch (product.type) {
+                    case PBIAPProductTypeIapcoin:
+//                        [[AccountService defaultService] chargeCoin:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
+                        [[AccountService defaultService] chargeCoin:product.count source:ChargeViaAlipay];
+                        break;
+                        
+                    case PBIAPProductTypeIapingot:
+//                        [[AccountService defaultService] chargeIngot:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
+                        [[AccountService defaultService] chargeIngot:product.count source:ChargeViaAlipay];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
         }];
     }
     
@@ -61,9 +81,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-
-    
+        
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
     if (_saleCurrency == PBGameCurrencyCoin) {
@@ -87,7 +105,6 @@
     [IAPProductService createTestDataFile];
 #endif
 }
-
 
 - (void)viewDidUnload {
     [self setCountLabel:nil];
@@ -162,12 +179,12 @@
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
-    order.tradeNO = [NSString GetUUID];
+    order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.appleProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
     order.amount = @"0.01";
     order.notifyURL =  @"http://www.xxx.com"; //回调URL
-    [order.extraParams setObject:product forKey:ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT];
+    PPDebug(@"extraParams = %@", order.extraParams);
     
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
