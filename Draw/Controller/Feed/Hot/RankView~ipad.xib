@@ -39,18 +39,21 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="91722497">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{256, 244}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{256, 256}</string>
 						<reference key="NSSuperview" ref="438232853"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1042696260"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIImageView" id="755244241">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{219, 0}, {37, 39}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="604947316"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -62,8 +65,9 @@
 					<object class="IBUILabel" id="604947316">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 174}, {256, 35}}</string>
+						<string key="NSFrame">{{0, 186}, {256, 35}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79997521"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="756139186">
 							<int key="NSColorSpace">3</int>
@@ -101,8 +105,10 @@
 					<object class="IBUILabel" id="79997521">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{0, 209}, {256, 35}}</string>
+						<string key="NSFrame">{{0, 221}, {256, 35}}</string>
 						<reference key="NSSuperview" ref="438232853"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="756139186"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -128,9 +134,10 @@
 					</object>
 					<object class="IBUIButton" id="1042696260">
 						<reference key="NSNextResponder" ref="438232853"/>
-						<int key="NSvFlags">289</int>
-						<string key="NSFrameSize">{255, 244}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{255, 256}</string>
 						<reference key="NSSuperview" ref="438232853"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="755244241"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -156,8 +163,10 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{256, 244}</string>
+				<string key="NSFrameSize">{256, 256}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="91722497"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -297,7 +306,73 @@
 			<nil key="sourceID"/>
 			<int key="maxID">17</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">RankView</string>
+					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickMaskView:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickMaskView:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickMaskView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="author">UILabel</string>
+						<string key="boughtCountLabel">UILabel</string>
+						<string key="costLabel">UILabel</string>
+						<string key="cupFlag">UIImageView</string>
+						<string key="drawFlag">UIImageView</string>
+						<string key="drawImage">UIImageView</string>
+						<string key="maskButton">UIButton</string>
+						<string key="title">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="author">
+							<string key="name">author</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="boughtCountLabel">
+							<string key="name">boughtCountLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="costLabel">
+							<string key="name">costLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="cupFlag">
+							<string key="name">cupFlag</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawFlag">
+							<string key="name">drawFlag</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="drawImage">
+							<string key="name">drawImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="maskButton">
+							<string key="name">maskButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="title">
+							<string key="name">title</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/RankView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
