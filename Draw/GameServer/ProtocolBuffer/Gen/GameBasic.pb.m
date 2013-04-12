@@ -8230,6 +8230,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @interface PBIAPProduct ()
 @property PBIAPProductType type;
 @property (retain) NSString* appleProductId;
+@property (retain) NSString* alipayProductId;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
 @property int32_t count;
@@ -8255,6 +8256,13 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   hasAppleProductId_ = !!value;
 }
 @synthesize appleProductId;
+- (BOOL) hasAlipayProductId {
+  return !!hasAlipayProductId_;
+}
+- (void) setHasAlipayProductId:(BOOL) value {
+  hasAlipayProductId_ = !!value;
+}
+@synthesize alipayProductId;
 - (BOOL) hasName {
   return !!hasName_;
 }
@@ -8306,6 +8314,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @synthesize saving;
 - (void) dealloc {
   self.appleProductId = nil;
+  self.alipayProductId = nil;
   self.name = nil;
   self.desc = nil;
   self.totalPrice = nil;
@@ -8318,6 +8327,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   if ((self = [super init])) {
     self.type = PBIAPProductTypeIapcoin;
     self.appleProductId = @"";
+    self.alipayProductId = @"";
     self.name = @"";
     self.desc = @"";
     self.count = 1;
@@ -8356,6 +8366,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasAppleProductId) {
     [output writeString:2 value:self.appleProductId];
   }
+  if (self.hasAlipayProductId) {
+    [output writeString:3 value:self.alipayProductId];
+  }
   if (self.hasName) {
     [output writeString:5 value:self.name];
   }
@@ -8391,6 +8404,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   }
   if (self.hasAppleProductId) {
     size += computeStringSize(2, self.appleProductId);
+  }
+  if (self.hasAlipayProductId) {
+    size += computeStringSize(3, self.alipayProductId);
   }
   if (self.hasName) {
     size += computeStringSize(5, self.name);
@@ -8494,6 +8510,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (other.hasAppleProductId) {
     [self setAppleProductId:other.appleProductId];
   }
+  if (other.hasAlipayProductId) {
+    [self setAlipayProductId:other.alipayProductId];
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -8547,6 +8566,10 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
       }
       case 18: {
         [self setAppleProductId:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setAlipayProductId:[input readString]];
         break;
       }
       case 42: {
@@ -8610,6 +8633,22 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
 - (PBIAPProduct_Builder*) clearAppleProductId {
   result.hasAppleProductId = NO;
   result.appleProductId = @"";
+  return self;
+}
+- (BOOL) hasAlipayProductId {
+  return result.hasAlipayProductId;
+}
+- (NSString*) alipayProductId {
+  return result.alipayProductId;
+}
+- (PBIAPProduct_Builder*) setAlipayProductId:(NSString*) value {
+  result.hasAlipayProductId = YES;
+  result.alipayProductId = value;
+  return self;
+}
+- (PBIAPProduct_Builder*) clearAlipayProductId {
+  result.hasAlipayProductId = NO;
+  result.alipayProductId = @"";
   return self;
 }
 - (BOOL) hasName {
