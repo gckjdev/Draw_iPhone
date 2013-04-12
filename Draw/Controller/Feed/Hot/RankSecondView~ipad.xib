@@ -40,10 +40,11 @@
 					<object class="IBUIImageView" id="958871290">
 						<reference key="NSNextResponder" ref="438232853"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, -32}, {384, 361}}</string>
+						<string key="NSFrameSize">{384, 300}</string>
 						<reference key="NSSuperview" ref="438232853"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="222187398"/>
+						<int key="IBUIContentMode">2</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -352,8 +353,6 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="author">UILabel</string>
-						<string key="boughtCountLabel">UILabel</string>
-						<string key="costLabel">UILabel</string>
 						<string key="cupFlag">UIImageView</string>
 						<string key="drawFlag">UIImageView</string>
 						<string key="drawImage">UIImageView</string>
@@ -363,14 +362,6 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="author">
 							<string key="name">author</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="boughtCountLabel">
-							<string key="name">boughtCountLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="costLabel">
-							<string key="name">costLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cupFlag">

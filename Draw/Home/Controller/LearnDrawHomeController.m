@@ -183,6 +183,11 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [RankView heightForRankViewType:RankViewTypeDrawOnCell] + 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 //    TableTab *tab = [self currentTab];

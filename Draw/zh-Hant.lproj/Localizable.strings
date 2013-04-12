@@ -1236,6 +1236,7 @@
 "kLearnDrawScenery" = "風景";
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "畫";
+"kAddLearnDraw" = "銷售此畫";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
