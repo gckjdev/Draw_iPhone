@@ -27,8 +27,8 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 + (id)createCell:(id)delegate
 {
     UserSettingCell* cell = [UserSettingCell createView];
-    cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
-    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
+//    cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
+//    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
     return cell;
 }
 

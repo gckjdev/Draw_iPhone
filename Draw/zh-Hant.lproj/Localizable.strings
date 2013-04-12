@@ -653,7 +653,7 @@
 "kSendingProgress" = "正在發送中 (%3.f%%)";
 
 "kNoCommentTips" = "還沒有人評論";
-"kFeedDetail" = "猜畫詳情";
+"kFeedDetail" = "畫畫詳情";
 "kOpusDetail" = "查看作品";
 
 "kCommentFail" = "評論失敗";
