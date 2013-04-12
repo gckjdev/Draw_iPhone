@@ -129,7 +129,7 @@
 "kStartingGame" = "Starting Game...";
 "kProcessingIAP" = "Processing purchasing request...";
 
-"kChargingIngot" = "Charging...";
+"kCharging" = "Charging...";
 "kChargIngotSuccess" = "Charge succeed!";
 "kChargIngotFailure" = "Charge failed!";
 
