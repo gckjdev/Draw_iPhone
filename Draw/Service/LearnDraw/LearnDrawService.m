@@ -23,7 +23,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 
 - (void)addOpusToLearnDrawPool:(NSString *)opusId
                          price:(NSInteger)price
-                          type:(NSInteger)type
+                          type:(LearnDrawType)type
                  resultHandler:(RequestDictionaryResultHandler)handler
 {
     dispatch_async(workingQueue, ^{
@@ -69,6 +69,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         NSInteger resultCode = output.resultCode;
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (resultCode == ERROR_SUCCESS) {
+                [[LearnDrawManager defaultManager] addBoughtOpusId:opusId];
+            }
             EXECUTE_BLOCK(handler,nil,resultCode);
         });
     });

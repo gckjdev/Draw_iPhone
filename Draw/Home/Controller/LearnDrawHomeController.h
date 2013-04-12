@@ -6,8 +6,9 @@
 //
 //
 
-#import "SuperHomeController.h"
+#import "HomeBottomMenuPanel.h"
+#import "CommonTabController.h"
 
-@interface LearnDrawHomeController : SuperHomeController
+@interface LearnDrawHomeController : CommonTabController<HomeBottomMenuPanelDelegate>
 
 @end

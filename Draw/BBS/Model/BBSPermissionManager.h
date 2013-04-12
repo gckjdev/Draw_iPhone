@@ -17,8 +17,8 @@ typedef enum{
     PermissionToTop = 0x1 << 4, // 置顶
     PermissionForbidUser = 0x1 << 5, // 封禁用户, Board
     PermissionBlackUserList = 0x1 << 6, // 封禁用户, System black user list
-    PermissionCharge = 0x1 << 7, // 封禁用户
-    
+    PermissionCharge = 0x1 << 7, // 充值
+    PermissionPutDrawOnCell = 0x1 << 8, //将画加入销售池
     PermissionAll = (0x1<<31)-1,
     
     PermissionDefault = PermissionRead | PermissionWrite,//PermissionAll,//
@@ -36,4 +36,5 @@ typedef enum{
 - (BOOL)canForbidUser:(PBBBSUser *)user;
 - (BOOL)canCharge;
 - (BOOL)canForbidUserIntoBlackUserList;
+- (BOOL)canPutDrawOnCell;
 @end

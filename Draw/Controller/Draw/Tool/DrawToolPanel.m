@@ -340,7 +340,11 @@
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
     [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
-
+    
+    
+    if (isLearnDrawApp()) {
+        self.drawToUser.hidden = self.opusDesc.hidden = YES;
+    }
 }
 
 

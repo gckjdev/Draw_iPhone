@@ -27,8 +27,10 @@ typedef enum {
 
 @interface LearnDrawManager : NSObject<SingletonProtocol>
 
-@property(nonatomic, retain)NSArray *boughtList;
+//@property(nonatomic, retain)NSArray *boughtList;
 
 - (void)updateBoughtList:(NSArray *)list;
 
+- (NSSet *)boughtDrawIdSet;
+- (void)addBoughtOpusId:(NSString *)opusId;
 @end

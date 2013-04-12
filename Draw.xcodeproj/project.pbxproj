@@ -105,16 +105,16 @@
 		A42EA3341651F0220080BB95 /* ZJHGameController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA3331651F0220080BB95 /* ZJHGameController~ipad.xib */; };
 		A42EA43A1653415F0080BB95 /* ZJHGameController~ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42EA4391653415F0080BB95 /* ZJHGameController~ip5.xib */; };
 		A42EA46F1653656A0080BB95 /* ZJHScreenConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */; };
-		A4348C311717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
-		A4348C321717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
-		A4348C331717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
-		A4348C341717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
-		A4348C351717B247004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C301717B247004AFB26 /* AlixPayOrderManager.m */; };
-		A4348C381717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
-		A4348C391717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
-		A4348C3A1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
-		A4348C3B1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
-		A4348C3C1717B80C004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C371717B80B004AFB26 /* NotificationCenterManager.m */; };
+		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C5D1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C5E1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C5F1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C601717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
+		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
+		A4348C621717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
+		A4348C631717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
+		A4348C641717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
+		A4348C651717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
 		A43A64B916084E7E00F35978 /* DiceBetView.m in Sources */ = {isa = PBXBuildFile; fileRef = A43A64B816084E7E00F35978 /* DiceBetView.m */; };
 		A43A64BB16084EA000F35978 /* DiceBetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64BA16084EA000F35978 /* DiceBetView.xib */; };
 		A43A64D71609595700F35978 /* DiceBetView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43A64D61609595700F35978 /* DiceBetView~ipad.xib */; };
@@ -8864,6 +8864,15 @@
 		CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
+		CAE5AD2E1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5AD2F1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5AD301717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5AD371717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5AD381717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5AD391717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -9483,10 +9492,10 @@
 		A42EA46D165365690080BB95 /* ZJHScreenConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJHScreenConfig.h; sourceTree = "<group>"; };
 		A42EA46E1653656A0080BB95 /* ZJHScreenConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJHScreenConfig.m; sourceTree = "<group>"; };
 		A42EA470165367270080BB95 /* ZJHConstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJHConstance.h; sourceTree = "<group>"; };
-		A4348C2F1717B247004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
-		A4348C301717B247004AFB26 /* AlixPayOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrderManager.m; sourceTree = "<group>"; };
-		A4348C361717B80B004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
-		A4348C371717B80B004AFB26 /* NotificationCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenterManager.m; sourceTree = "<group>"; };
+		A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
+		A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlixPayOrderManager.m; sourceTree = "<group>"; };
+		A4348C5A1717C0FA004AFB26 /* NotificationCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenterManager.h; sourceTree = "<group>"; };
+		A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenterManager.m; sourceTree = "<group>"; };
 		A43A64B716084E7E00F35978 /* DiceBetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceBetView.h; sourceTree = "<group>"; };
 		A43A64B816084E7E00F35978 /* DiceBetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceBetView.m; sourceTree = "<group>"; };
 		A43A64BA16084EA000F35978 /* DiceBetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiceBetView.xib; sourceTree = "<group>"; };
@@ -12640,6 +12649,10 @@
 		CAE51897165CCB55006157CC /* BBSPostActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionCell.xib; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CAE5AD2C1717B84F009BFDC1 /* AddLearnDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLearnDrawView.h; sourceTree = "<group>"; };
+		CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLearnDrawView.m; sourceTree = "<group>"; };
+		CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLearnDrawView.xib; sourceTree = "<group>"; };
+		CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddLearnDrawView~ipad.xib"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
@@ -13727,12 +13740,12 @@
 		A4834D631716AD5300190347 /* AliPayManager */ = {
 			isa = PBXGroup;
 			children = (
+				A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */,
+				A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */,
+				A4348C5A1717C0FA004AFB26 /* NotificationCenterManager.h */,
+				A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */,
 				A4834D641716AD5300190347 /* AliPayManager.h */,
 				A4834D651716AD5300190347 /* AliPayManager.m */,
-				A4348C2F1717B247004AFB26 /* AlixPayOrderManager.h */,
-				A4348C301717B247004AFB26 /* AlixPayOrderManager.m */,
-				A4348C361717B80B004AFB26 /* NotificationCenterManager.h */,
-				A4348C371717B80B004AFB26 /* NotificationCenterManager.m */,
 			);
 			path = AliPayManager;
 			sourceTree = "<group>";
@@ -19101,6 +19114,10 @@
 				CA8974081607230E003A95F7 /* UserInfoCell.m */,
 				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
 				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
+				CAE5AD2C1717B84F009BFDC1 /* AddLearnDrawView.h */,
+				CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */,
+				CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */,
+				CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -22122,6 +22139,8 @@
 				CA04CB7C1716B6FD002BF3C2 /* learndraw_mark@2x.png in Resources */,
 				CA04CB7D1716B6FD002BF3C2 /* learndraw_more@2x.png in Resources */,
 				CA04CB7E1716B6FD002BF3C2 /* learndraw_shop@2x.png in Resources */,
+				CAE5AD391717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25434,6 +25453,8 @@
 				C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
 				CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */,
 				CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5AD371717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26397,6 +26418,8 @@
 				A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */,
 				CA04CB5117169E38002BF3C2 /* LearnDrawHomeController.xib in Resources */,
 				CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5AD381717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27227,8 +27250,9 @@
 				A4834E081716AD5400190347 /* RSADataVerifier.m in Sources */,
 				CA04CB651716B641002BF3C2 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB6B1716B693002BF3C2 /* GoogleAddressComponent.m in Sources */,
-				A4348C351717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
-				A4348C3C1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
+				CAE5AD301717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
+				A4348C601717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C651717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28037,8 +28061,8 @@
 				A4834DFC1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E011716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E061716AD5400190347 /* RSADataVerifier.m in Sources */,
-				A4348C331717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
-				A4348C3A1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
+				A4348C5E1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C631717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28847,8 +28871,8 @@
 				A4834DFD1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E021716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E071716AD5400190347 /* RSADataVerifier.m in Sources */,
-				A4348C341717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
-				A4348C3B1717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
+				A4348C5F1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C641717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29660,8 +29684,9 @@
 				A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */,
-				A4348C311717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
-				A4348C381717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
+				CAE5AD2E1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
+				A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30480,8 +30505,9 @@
 				A4834DFB1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E001716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E051716AD5400190347 /* RSADataVerifier.m in Sources */,
-				A4348C321717B247004AFB26 /* AlixPayOrderManager.m in Sources */,
-				A4348C391717B80C004AFB26 /* NotificationCenterManager.m in Sources */,
+				CAE5AD2F1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
+				A4348C5D1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
+				A4348C621717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
