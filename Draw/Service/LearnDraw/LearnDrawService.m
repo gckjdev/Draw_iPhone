@@ -62,7 +62,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
                                        TRAFFIC_SERVER_URL
-                                                                             method:METHOD_BUY_LEARN_DRAW
+                                                                             method:METHOD_GET_USER_LEARDRAWID_LIST
                                                                          parameters:dict
                                                                            returnPB:NO
                                                                         returnArray:NO];
@@ -128,7 +128,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
                                        TRAFFIC_SERVER_URL
-                                                                             method:METHOD_BUY_LEARN_DRAW
+                                                                             method:METHOD_GET_USER_LEARNDRAW_LIST
                                                                          parameters:dict
                                                                            returnPB:YES
                                                                         returnArray:NO];
@@ -172,7 +172,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
                                        TRAFFIC_SERVER_URL
-                                                                             method:METHOD_BUY_LEARN_DRAW
+                                                                             method:METHOD_GET_LEARNDRAW_LIST
                                                                          parameters:dict
                                                                            returnPB:YES
                                                                         returnArray:NO];
