@@ -32,8 +32,6 @@
 @implementation ChargeController
 
 - (void)dealloc {
-    [[NotificationCenterManager defaultManager] unregisterNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK];
-    [[AccountService defaultService] setDelegate:nil];
     [_countLabel release];
     [_taobaoLinkView release];
     [_currencyImageView release];
@@ -100,8 +98,10 @@
     
     [self updateTaobaoLinkView];
     
+    [self showActivityWithText:NSLS(@"kLoading")];
     __block typeof(self) bself = self;
     [[IAPProductService defaultService] syncData:^(BOOL success, NSArray *ingotsList){
+        [bself hideActivity];
         bself.dataList = ingotsList;
         [bself.dataTableView reloadData];
     }];
@@ -136,6 +136,8 @@
 }
 
 - (IBAction)clickBackButton:(id)sender {
+    [[AccountService defaultService] setDelegate:nil];
+    [[NotificationCenterManager defaultManager] unregisterNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -43,7 +43,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 - (void)syncData:(GetIngotsListResultHandler)handler
 {
     GetIngotsListResultHandler tempHandler = (GetIngotsListResultHandler)[_blockArray copyBlock:handler];
-
     
     __block typeof(self) bself = self;
 

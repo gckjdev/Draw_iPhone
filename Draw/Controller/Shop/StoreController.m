@@ -144,6 +144,7 @@ typedef enum{
 }
 
 - (IBAction)clickBackButton:(id)sender {
+    [[AccountService defaultService] setDelegate:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -189,7 +190,9 @@ typedef enum{
             TaoBaoController *vc = [[[TaoBaoController alloc] initWithURL:[item url] title:NSLS(@"kTaoBaoProductDetail")] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
+            
             __block typeof (self) bself = self;
+            [[AccountService defaultService] setDelegate:bself];
             
             [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 [bself updateBalance];
@@ -199,7 +202,7 @@ typedef enum{
     }
 }
 
-- (NSInteger)tabCount //default 1
+- (NSInteger)tabCount
 {
     return 4;
 }
@@ -273,6 +276,11 @@ typedef enum{
 #pragma mark -
 #pragma ColorShopViewDelegate method
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
+{
+    [self updateBalance];
+}
+
+- (void)didFinishChargeCurrency:(PBGameCurrency)currency resultCode:(int)resultCode
 {
     [self updateBalance];
 }
