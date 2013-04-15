@@ -75,6 +75,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     }
 }
 
+#define DRAW_INGOT_18_TAOBAO_URL @"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"
+#define DRAW_INGOT_32_TAOBAO_URL @"http://a.m.taobao.com/i23762488264.htm?v=0&mz_key=0"
+#define DRAW_INGOT_90_TAOBAO_URL @"http://a.m.taobao.com/i17800321867.htm?v=0&mz_key=0"
+#define DRAW_INGOT_250_TAOBAO_URL @"http://a.m.taobao.com/i19665779806.htm?v=0&mz_key=0"
+
+#define ZJH_COIN_10000_TAOBAO_URL @"http://a.m.taobao.com/i23758468517.htm?v=0&mz_key=0"
+#define ZJH_COIN_18000_TAOBAO_URL @"http://a.m.taobao.com/i17798661047.htm?v=0&mz_key=0"
+#define ZJH_COIN_66000_TAOBAO_URL @"http://a.m.taobao.com/i17798661364.htm?v=0&mz_key=0"
+#define ZJH_COIN_180000_TAOBAO_URL @"http://a.m.taobao.com/i19663543354.htm?v=0&mz_key=0"
+
 + (void)createDrawIngotTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
@@ -86,7 +96,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kIngot"
                                             count:18
                                        totalPrice:@"18"
-                                           saving:nil]];
+                                           saving:nil
+                                        taobaoUrl:DRAW_INGOT_18_TAOBAO_URL]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_30"
@@ -95,7 +106,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kIngot"
                                             count:32
                                        totalPrice:@"30"
-                                           saving:@"6%"]];
+                                           saving:@"6%"
+                                        taobaoUrl:DRAW_INGOT_32_TAOBAO_URL]];
+
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_68"
@@ -104,7 +117,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kIngot"
                                             count:90
                                        totalPrice:@"68"
-                                           saving:@"24%"]];
+                                           saving:@"24%"
+                                        taobaoUrl:DRAW_INGOT_90_TAOBAO_URL]];
+
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_163"
@@ -113,7 +128,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kIngot"
                                             count:250
                                        totalPrice:@"163"
-                                           saving:@"35%"]];
+                                           saving:@"35%"
+                                        taobaoUrl:DRAW_INGOT_250_TAOBAO_URL]];
+
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
     [listBuilder addAllProducts:mutableArray];
@@ -142,7 +159,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                            count:10000
                                       totalPrice:@"12"
-                                           saving:nil]];
+                                           saving:nil
+                                        taobaoUrl:ZJH_COIN_10000_TAOBAO_URL]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins2400"
@@ -151,7 +169,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:18000
                                        totalPrice:@"18"
-                                           saving:@"15%"]];
+                                           saving:@"15%"
+                                        taobaoUrl:ZJH_COIN_18000_TAOBAO_URL]];
+
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins6000"
@@ -160,7 +180,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:66000
                                        totalPrice:@"68"
-                                           saving:@"33%"]];
+                                           saving:@"33%"
+                                        taobaoUrl:ZJH_COIN_66000_TAOBAO_URL]];
+
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins20000"
@@ -169,7 +191,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:180000
                                        totalPrice:@"163"
-                                           saving:@"50%"]];
+                                           saving:@"50%"
+                                        taobaoUrl:ZJH_COIN_180000_TAOBAO_URL]];
+
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
     [listBuilder addAllProducts:mutableArray];
@@ -252,6 +276,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                             count:(int)count
                        totalPrice:(NSString *)totalPrice
                            saving:(NSString *)saving
+                        taobaoUrl:(NSString *)taobaoUrl
 {
     PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
     [builder setType:type];
@@ -264,6 +289,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [builder setSaving:saving];
     [builder setCurrency:@"￥"];
     [builder setCountry:@"CN"];
+    [builder setTaobaoUrl:taobaoUrl];
     
     return [builder build];
 }

@@ -173,6 +173,114 @@ static AccountService* _defaultAccountService;
     return [[AccountManager defaultManager] hasEnoughBalance:amount currency:currency];
 }
 
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               source:(BalanceSourceType)source
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            [self chargeCoin:count
+                      source:source
+                      toUser:[[UserManager defaultManager] userId]
+                      byUser:[[UserManager defaultManager] userId]
+               transactionId:nil
+          transactionRecepit:nil
+                   alixOrder:nil];
+            break;
+            
+        case PBGameCurrencyIngot:
+            [self chargeIngot:count
+                       source:source
+                       toUser:[[UserManager defaultManager] userId]
+                       byUser:[[UserManager defaultManager] userId]
+                transactionId:nil
+           transactionRecepit:nil
+                    alixOrder:nil];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               toUser:(NSString *)toUserId
+               source:(BalanceSourceType)source
+{
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            [self chargeCoin:count
+                      source:source
+                      toUser:toUserId
+                      byUser:[[UserManager defaultManager] userId]
+               transactionId:nil
+          transactionRecepit:nil
+                   alixOrder:nil];
+            break;
+            
+        case PBGameCurrencyIngot:
+            [self chargeIngot:count
+                       source:source
+                       toUser:toUserId
+                       byUser:[[UserManager defaultManager] userId]
+                transactionId:nil
+           transactionRecepit:nil
+             
+                    alixOrder:nil];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               source:(BalanceSourceType)source
+                order:(AlixPayOrder *)order
+{
+    [self chargeBalance:currency
+                  count:count
+                 toUser:[[UserManager defaultManager] userId]
+                 source:source
+                  order:order];
+}
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               toUser:(NSString *)toUserId
+               source:(BalanceSourceType)source
+                order:(AlixPayOrder *)order
+{
+    NSString *alixOrder = order.description;
+    
+    switch (currency) {
+        case PBGameCurrencyCoin:
+            [self chargeCoin:count
+                      source:source
+                      toUser:toUserId
+                      byUser:[[UserManager defaultManager] userId]
+               transactionId:nil
+          transactionRecepit:nil
+                   alixOrder:alixOrder];
+            break;
+            
+        case PBGameCurrencyIngot:
+            [self chargeIngot:count
+                       source:source
+                       toUser:toUserId
+                       byUser:[[UserManager defaultManager] userId]
+                transactionId:nil
+           transactionRecepit:nil
+                    alixOrder:order.description];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)chargeCoin:(int)amount
             source:(BalanceSourceType)source
 {
@@ -188,12 +296,12 @@ static AccountService* _defaultAccountService;
 {
     
     [self chargeCoin:amount
-              toUser:userId
               source:source
+              toUser:userId
+              byUser:[[UserManager defaultManager] userId]
        transactionId:nil
   transactionRecepit:nil
-            byUserId:[[UserManager defaultManager] userId]];
-    
+           alixOrder:nil];
 }
 
 - (void)chargeCoin:(int)amount
@@ -202,19 +310,21 @@ static AccountService* _defaultAccountService;
 transactionRecepit:(NSString*)transactionRecepit
 {
     [self chargeCoin:amount
-              toUser:[[UserManager defaultManager] userId]
               source:source
+              toUser:[[UserManager defaultManager] userId]
+              byUser:[[UserManager defaultManager] userId]
        transactionId:transactionId
   transactionRecepit:transactionRecepit
-            byUserId:[[UserManager defaultManager] userId]];
+           alixOrder:nil];
 }
 
 - (void)chargeCoin:(int)amount
-            toUser:(NSString*)userId
             source:(BalanceSourceType)source
+            toUser:(NSString*)toUserId
+            byUser:(NSString*)byUserId
      transactionId:(NSString*)transactionId
 transactionRecepit:(NSString*)transactionRecepit
-          byUserId:(NSString*)byUserId
+         alixOrder:(NSString*)alixOrder
 {
     if (amount <= 0) {
         return;
@@ -229,12 +339,13 @@ transactionRecepit:(NSString*)transactionRecepit
         
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest chargeCoin:SERVER_URL
-                                         userId:userId
+                                         userId:toUserId
                                          amount:amount
                                          source:source
                                   transactionId:transactionId
                              transactionReceipt:transactionRecepit
-                                         byUser:byUserId];
+                                         byUser:byUserId
+                                      alixOrder:alixOrder];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
@@ -299,10 +410,11 @@ transactionRecepit:(NSString*)transactionRecepit
 {
     [self chargeIngot:amount
                source:source
+               toUser:userId
+               byUser:[[UserManager defaultManager] userId]
         transactionId:nil
    transactionRecepit:nil
-             toUserId:userId
-             byUserId:[[UserManager defaultManager] userId]];
+            alixOrder:nil];
 }
 
 - (void)chargeIngot:(int)amount
@@ -312,18 +424,20 @@ transactionRecepit:(NSString*)transactionRecepit
 {
     [self chargeIngot:amount
                source:source
+               toUser:[[UserManager defaultManager] userId]
+               byUser:[[UserManager defaultManager] userId]
         transactionId:transactionId
    transactionRecepit:transactionRecepit
-             toUserId:[[UserManager defaultManager] userId]
-             byUserId:[[UserManager defaultManager] userId]];
+            alixOrder:nil];
 }
 
 - (void)chargeIngot:(int)amount
              source:(BalanceSourceType)source
+             toUser:(NSString*)toUserId
+             byUser:(NSString*)byUserId
       transactionId:(NSString*)transactionId
  transactionRecepit:(NSString*)transactionRecepit
-           toUserId:(NSString*)toUserId
-           byUserId:(NSString*)byUserId
+          alixOrder:(NSString *)alixOrder
 {
     dispatch_async(workingQueue, ^{
         
@@ -338,7 +452,8 @@ transactionRecepit:(NSString*)transactionRecepit
                                           source:source
                                    transactionId:transactionId
                               transactionReceipt:transactionRecepit
-                                          byUser:byUserId];
+                                          byUser:byUserId
+                                       alixOrder:alixOrder];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
@@ -716,6 +831,9 @@ transactionRecepit:(NSString*)transactionRecepit
         }
     }
 }
+
+
+
 
 // Sent when transactions are removed from the queue (via finishTransaction:).
 - (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions

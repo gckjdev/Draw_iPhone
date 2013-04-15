@@ -8238,6 +8238,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @property (retain) NSString* currency;
 @property (retain) NSString* country;
 @property (retain) NSString* saving;
+@property (retain) NSString* taobaoUrl;
 @end
 
 @implementation PBIAPProduct
@@ -8312,6 +8313,13 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   hasSaving_ = !!value;
 }
 @synthesize saving;
+- (BOOL) hasTaobaoUrl {
+  return !!hasTaobaoUrl_;
+}
+- (void) setHasTaobaoUrl:(BOOL) value {
+  hasTaobaoUrl_ = !!value;
+}
+@synthesize taobaoUrl;
 - (void) dealloc {
   self.appleProductId = nil;
   self.alipayProductId = nil;
@@ -8321,6 +8329,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   self.currency = nil;
   self.country = nil;
   self.saving = nil;
+  self.taobaoUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -8335,6 +8344,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
     self.currency = @"";
     self.country = @"";
     self.saving = @"";
+    self.taobaoUrl = @"";
   }
   return self;
 }
@@ -8390,6 +8400,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasSaving) {
     [output writeString:50 value:self.saving];
   }
+  if (self.hasTaobaoUrl) {
+    [output writeString:61 value:self.taobaoUrl];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -8428,6 +8441,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   }
   if (self.hasSaving) {
     size += computeStringSize(50, self.saving);
+  }
+  if (self.hasTaobaoUrl) {
+    size += computeStringSize(61, self.taobaoUrl);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -8534,6 +8550,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (other.hasSaving) {
     [self setSaving:other.saving];
   }
+  if (other.hasTaobaoUrl) {
+    [self setTaobaoUrl:other.taobaoUrl];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -8598,6 +8617,10 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
       }
       case 402: {
         [self setSaving:[input readString]];
+        break;
+      }
+      case 490: {
+        [self setTaobaoUrl:[input readString]];
         break;
       }
     }
@@ -8761,6 +8784,22 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
 - (PBIAPProduct_Builder*) clearSaving {
   result.hasSaving = NO;
   result.saving = @"";
+  return self;
+}
+- (BOOL) hasTaobaoUrl {
+  return result.hasTaobaoUrl;
+}
+- (NSString*) taobaoUrl {
+  return result.taobaoUrl;
+}
+- (PBIAPProduct_Builder*) setTaobaoUrl:(NSString*) value {
+  result.hasTaobaoUrl = YES;
+  result.taobaoUrl = value;
+  return self;
+}
+- (PBIAPProduct_Builder*) clearTaobaoUrl {
+  result.hasTaobaoUrl = NO;
+  result.taobaoUrl = @"";
   return self;
 }
 @end

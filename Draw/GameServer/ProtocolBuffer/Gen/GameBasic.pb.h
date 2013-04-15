@@ -2017,6 +2017,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasCurrency_:1;
   BOOL hasCountry_:1;
   BOOL hasSaving_:1;
+  BOOL hasTaobaoUrl_:1;
   BOOL hasType_:1;
   int32_t count;
   NSString* appleProductId;
@@ -2027,6 +2028,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   NSString* currency;
   NSString* country;
   NSString* saving;
+  NSString* taobaoUrl;
   PBIAPProductType type;
 }
 - (BOOL) hasType;
@@ -2039,6 +2041,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasCurrency;
 - (BOOL) hasCountry;
 - (BOOL) hasSaving;
+- (BOOL) hasTaobaoUrl;
 @property (readonly) PBIAPProductType type;
 @property (readonly, retain) NSString* appleProductId;
 @property (readonly, retain) NSString* alipayProductId;
@@ -2049,6 +2052,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly, retain) NSString* currency;
 @property (readonly, retain) NSString* country;
 @property (readonly, retain) NSString* saving;
+@property (readonly, retain) NSString* taobaoUrl;
 
 + (PBIAPProduct*) defaultInstance;
 - (PBIAPProduct*) defaultInstance;
@@ -2133,6 +2137,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) saving;
 - (PBIAPProduct_Builder*) setSaving:(NSString*) value;
 - (PBIAPProduct_Builder*) clearSaving;
+
+- (BOOL) hasTaobaoUrl;
+- (NSString*) taobaoUrl;
+- (PBIAPProduct_Builder*) setTaobaoUrl:(NSString*) value;
+- (PBIAPProduct_Builder*) clearTaobaoUrl;
 @end
 
 @interface PBIAPProductList : PBGeneratedMessage {
