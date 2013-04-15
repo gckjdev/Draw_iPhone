@@ -265,6 +265,7 @@
                       delegate:(id<ShowDrawViewDelegate>)delegate
 {
     ShowDrawView *showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
+    
     if ([actionList isKindOfClass:[NSMutableArray class]]) {
         showView.drawActionList = (NSMutableArray *)actionList;
     }else{
