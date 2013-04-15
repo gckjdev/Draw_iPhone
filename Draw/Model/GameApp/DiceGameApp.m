@@ -374,4 +374,9 @@
     return @"alipaydice.gckj";
 }
 
+- (BOOL)isAutoRegister
+{
+    return NO;
+}
+
 @end

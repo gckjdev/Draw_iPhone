@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) PBConfig* defaultConfig;
 
 + (void)createTestConfigData;
++ (void)createLearnDrawTestConfigData;
 
 - (NSArray*)appRewardList;
 - (NSArray*)rewardWallList;

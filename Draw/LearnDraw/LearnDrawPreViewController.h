@@ -7,7 +7,12 @@
 //
 
 #import "PPViewController.h"
+#import "DrawFeed.h"
 
 @interface LearnDrawPreViewController : PPViewController
+
++ (LearnDrawPreViewController *)presentLearnDrawPreviewControllerFrom:(UIViewController *)fromController
+                                                             drawFeed:(DrawFeed *)drawFeed
+                                                     placeHolderImage:(UIImage *)image;
 
 @end

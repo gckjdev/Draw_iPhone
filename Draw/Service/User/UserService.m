@@ -730,47 +730,30 @@ static UserService* _defaultUserService;
 }
 
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
+                           autoRegister:(BOOL)autoRegister
+                            resultBlock:(AutoResgistrationResultBlock)resultBlock
 {
     NSString* appId = [ConfigManager appId];
     NSString* gameId = [ConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-
+    
     [homeController showActivityWithText:NSLS(@"kConnectingServer")];
     dispatch_async(workingQueue, ^{
-
+        
         CommonNetworkOutput* output =
         [GameNetworkRequest newLoginUser:SERVER_URL
-                                appId:appId
-                               gameId:gameId
-                             deviceId:deviceId
-                          deviceToken:deviceToken];
-
+                                   appId:appId
+                                  gameId:gameId
+                                deviceId:deviceId
+                             deviceToken:deviceToken
+                            autoRegister:autoRegister];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-
+            
             [homeController hideActivity];
-            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
-                
+            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){                
                 [self createLocalUserAccount:output.responseData appId:appId];
-
-//                DataQueryResponse* response = [DataQueryResponse parseFromData:output.responseData];
-//                PBGameUser* user = response.user;
-//
-//                if (user != nil){
-//                    [[UserManager defaultManager] storeUserData:user];
-//                }
-//
-//                [[LevelService defaultService] setLevel:user.level];
-//                [[LevelService defaultService] setExperience:user.experience];
-//
-//                if ([ConfigManager isProVersion]){
-//                    // update new appId of user
-//                    [self updateNewAppId:appId];
-//                }
-//
-//                // TODO : combine them?
-//                [[AccountService defaultService] syncAccount:nil];
-
             }
             else if (output.resultCode == ERROR_NETWORK) {
                 [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
@@ -784,8 +767,51 @@ static UserService* _defaultUserService;
                 // @"登录失败，稍后尝试"
                 [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
             }
+            
+            EXECUTE_BLOCK(resultBlock, NO, 0, [[UserManager defaultManager] pbUser]);
         });
     });
+
+}
+
+- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+{
+    [self loginByDeviceWithViewController:homeController autoRegister:NO resultBlock:nil];
+    
+//    NSString* appId = [ConfigManager appId];
+//    NSString* gameId = [ConfigManager gameId];
+//    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+//    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+//
+//    [homeController showActivityWithText:NSLS(@"kConnectingServer")];
+//    dispatch_async(workingQueue, ^{
+//
+//        CommonNetworkOutput* output =
+//        [GameNetworkRequest newLoginUser:SERVER_URL
+//                                appId:appId
+//                               gameId:gameId
+//                             deviceId:deviceId
+//                          deviceToken:deviceToken];
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//
+//            [homeController hideActivity];
+//            if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+//                
+//                [self createLocalUserAccount:output.responseData appId:appId];
+//            }
+//            else if (output.resultCode == ERROR_NETWORK) {
+//                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+//            }
+//            else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
+//                // @"设备未绑定任何用户"
+//            }
+//            else {
+//                // @"登录失败，稍后尝试"
+//                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+//            }
+//        });
+//    });
 
 }
 
@@ -1345,6 +1371,12 @@ static UserService* _defaultUserService;
 - (BOOL)checkAndAskLogin:(UIView*)view
 {
     if ([[UserManager defaultManager] hasUser] == NO){
+        
+        if ([GameApp isAutoRegister] == YES){
+            [self autoRegisteration:nil];
+            return NO;
+        }
+        
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             
             // goto RegisterUserController
@@ -1369,6 +1401,19 @@ static UserService* _defaultUserService;
     else{
         return NO;
     }
+}
+
+
+- (BOOL)autoRegisteration:(AutoResgistrationResultBlock)resultBlock
+{
+    // already has user
+    if ([[UserManager defaultManager] hasUser]){
+        EXECUTE_BLOCK(resultBlock, YES, 0, [[UserManager defaultManager] pbUser]);
+        return YES;
+    }
+    
+    [self loginByDeviceWithViewController:nil autoRegister:YES resultBlock:resultBlock];
+    return NO;
 }
 
 @end

@@ -112,8 +112,15 @@
 
     
    if ([feed.drawImageUrl length] != 0) {
-        NSURL *url = [NSURL URLWithString:feed.drawImageUrl];
+       NSURL *url = nil;//[NSURL URLWithString:feed.drawImageUrl];
 
+       if (CGRectGetWidth(self.bounds) > 301) {
+           url = feed.largeImageURL;
+       }else{
+           url = feed.thumbURL;
+       }
+       
+       
         UIImage *defaultImage = nil;
        
         if(feed.largeImage){
