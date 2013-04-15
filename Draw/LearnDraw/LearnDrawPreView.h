@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LearnDrawPreView : NSObject
+
+@class DrawFeed;
+
+@interface LearnDrawPreView : UIView
+
+@property(nonatomic, retain)UIImage *placeHolderImage;
+
++ (LearnDrawPreView *)learnDrawPreViewWithDrawFeed:(DrawFeed *)feed
+                                  placeHolderImage:(UIImage *)image;
+- (void)showInView:(UIView *)view;
+- (void)dismiss;
 
 @end

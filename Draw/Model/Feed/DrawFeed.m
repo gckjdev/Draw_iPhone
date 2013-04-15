@@ -457,6 +457,19 @@
     return [NSURL URLWithString:url];
 }
 
+- (NSURL *)largeImageURL
+{
+    NSString *url =  self.drawImageUrl;
+    if ([self.drawImageUrl hasSuffix:THUMB_IMAGE_SUFFIX]) {
+        NSUInteger loc = [self.drawImageUrl rangeOfString:THUMB_IMAGE_SUFFIX].location;
+        if (loc != NSNotFound) {
+            url = [self.drawImageUrl substringToIndex:loc];
+            url = [url stringByAppendingString:IMAGE_SUFFIX];
+        }
+    }
+    return [NSURL URLWithString:url];
+}
+
 //- (BOOL)hasDrawActions
 //{
 //    return [self.pbDraw.drawDataList count] != 0;

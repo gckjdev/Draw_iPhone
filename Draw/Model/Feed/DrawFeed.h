@@ -47,6 +47,7 @@ typedef enum{
 
 //just an method
 - (NSURL *)thumbURL;
+- (NSURL *)largeImageURL;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 
