@@ -33,6 +33,7 @@ typedef enum{
 + (int)getHomeDisplayOpusNumber;
 
 + (int)getBalanceDeviation;
++ (int)getPreviewActionCount;
 
 //+ (int)getGuessRewardNormal;
 

@@ -8944,11 +8944,6 @@
 		CAE5ADC6171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
 		CAE5ADC7171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
 		CAE5ADC8171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
-		CAE5ADCB171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */; };
-		CAE5ADCC171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */; };
-		CAE5ADCD171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */; };
-		CAE5ADCE171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */; };
-		CAE5ADCF171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */; };
 		CAE5ADD3171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
 		CAE5ADD4171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
 		CAE5ADD5171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
@@ -12746,8 +12741,6 @@
 		CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawHomeController.m; sourceTree = "<group>"; };
 		CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawHomeController.xib; sourceTree = "<group>"; };
 		CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LearnDrawHomeController~ipad.xib"; sourceTree = "<group>"; };
-		CAE5ADC9171B9CD5009BFDC1 /* LearnDrawPreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawPreView.h; sourceTree = "<group>"; };
-		CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawPreView.m; sourceTree = "<group>"; };
 		CAE5ADD0171BABBA009BFDC1 /* LearnDrawPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawPreViewController.h; sourceTree = "<group>"; };
 		CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawPreViewController.m; sourceTree = "<group>"; };
 		CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawPreViewController.xib; sourceTree = "<group>"; };
@@ -20136,8 +20129,6 @@
 				CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */,
 				CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */,
 				CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */,
-				CAE5ADC9171B9CD5009BFDC1 /* LearnDrawPreView.h */,
-				CAE5ADCA171B9CD5009BFDC1 /* LearnDrawPreView.m */,
 				CAE5ADD0171BABBA009BFDC1 /* LearnDrawPreViewController.h */,
 				CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */,
 				CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */,
@@ -27443,7 +27434,6 @@
 				C22BF2851717F7B7009BBD72 /* UserSettingCell.m in Sources */,
 				CAE5ADAF171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
 				CAE5ADBE171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
-				CAE5ADCF171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */,
 				CAE5ADD7171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -28258,7 +28248,6 @@
 				A4348C681717C31E004AFB26 /* LearnDrawManager.m in Sources */,
 				CAE5ADAD171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
 				CAE5ADBC171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
-				CAE5ADCD171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */,
 				CAE5ADD5171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -29073,7 +29062,6 @@
 				A4348C6A1717C344004AFB26 /* LearnDrawManager.m in Sources */,
 				CAE5ADAE171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
 				CAE5ADBD171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
-				CAE5ADCE171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */,
 				CAE5ADD6171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -29889,7 +29877,6 @@
 				A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				CAE5ADAB171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
 				CAE5ADBA171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
-				CAE5ADCB171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */,
 				CAE5ADD3171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30712,7 +30699,6 @@
 				A4348C621717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				CAE5ADAC171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
 				CAE5ADBB171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
-				CAE5ADCC171B9CD5009BFDC1 /* LearnDrawPreView.m in Sources */,
 				CAE5ADD4171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

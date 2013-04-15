@@ -28,6 +28,8 @@ typedef void (^RequestDictionaryResultHandler)(NSDictionary* dict, NSInteger res
 
 // Customer methods
 - (void)buyLearnDraw:(NSString *)opusId
+               price:(int)price
+            fromView:(UIView *)fromView
        resultHandler:(RequestDictionaryResultHandler)handler;
 
 

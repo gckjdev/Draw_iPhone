@@ -24,7 +24,7 @@
 #import "AddLearnDrawView.h"
 #import "ReplayView.h"
 #import "Draw.h"
-#import "LearnDrawPreView.h"
+#import "LearnDrawPreViewController.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -185,12 +185,9 @@
     if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId]) {
         [self playFeed:feed];
     }else{
-        //TODO show image...
-        LearnDrawPreView *ldp = [LearnDrawPreView learnDrawPreViewWithDrawFeed:feed placeHolderImage:placeHolder];
-        [ldp showInView:self.view];
+        [LearnDrawPreViewController presentLearnDrawPreviewControllerFrom:self drawFeed:feed placeHolderImage:placeHolder];
     }
 }
-
 
 - (void)didClickRankView:(RankView *)rankView
 {
@@ -228,11 +225,16 @@
                                                         }
                 }];
             }else if(buttonIndex == 3){
-                [[LearnDrawService defaultService] buyLearnDraw:rankView.feed.feedId
-                                                  resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+                
+                DrawFeed *feed = rankView.feed;
+                
+                [[LearnDrawService defaultService] buyLearnDraw:feed.feedId price:feed.learnDraw.price fromView:self.view resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
                                                       if (resultCode == 0) {
                                                           [cp.dataTableView reloadData];
+                                                      }else{
+                                                          //TODO deal with the error result.
                                                       }
+
                 }];
             }
         }];

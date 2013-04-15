@@ -18,6 +18,8 @@
 }
 
 
+@property(nonatomic, assign)NSUInteger endIndex;
+
 + (id)createReplayView;
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
