@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CommonTabController.h"
 #import "ColorShopView.h"
+#import "AccountService.h"
 
-@interface StoreController : CommonTabController <ColorShopViewDelegate>
+@interface StoreController : CommonTabController <ColorShopViewDelegate, AccountServiceDelegate>
 
 //@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;

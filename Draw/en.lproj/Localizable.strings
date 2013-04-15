@@ -129,7 +129,7 @@
 "kStartingGame" = "Starting Game...";
 "kProcessingIAP" = "Processing purchasing request...";
 
-"kChargingIngot" = "Charging...";
+"kCharging" = "Charging...";
 "kChargIngotSuccess" = "Charge succeed!";
 "kChargIngotFailure" = "Charge failed!";
 
@@ -884,6 +884,7 @@
 "kGuessTimes" = "Guess(%d)";
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
+"kCollectTimes" = "Collection(%d)";
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";
@@ -1214,6 +1215,11 @@
 "kTaoBaoCharge" = "Taobao Charge";
 "kTaoBaoChargeTitle" = "Taobao Charge";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
+
+"kSelectPaymentWay" = "Choose to buy the way";
+"kPayViaZhiFuBao" = "Use Alipay to buy";
+"kPayViaAppleAccount" = "Use Apple account to buy";
+
 "kHim" = "him";
 "kHer" = "her";
 "kDetailDrawTo" = "Draw sth.";
@@ -1245,6 +1251,7 @@
 "kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
 
 
+
 //learn draw
 "kLearnDrawAll" = "All";
 "kLearnDrawCartoon" = "Cartoon";
@@ -1253,7 +1260,8 @@
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
-
+"kManageLearnDraw" = "Manage draw";
+"kRemoveLearnDraw" = "Remove draw";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

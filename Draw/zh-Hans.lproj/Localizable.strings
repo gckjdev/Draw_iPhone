@@ -129,7 +129,7 @@
 "kBuyCoinsSucc" = "购买金币成功";
 "kCongratulations" = "恭喜猜对了!";
 "kPity" = "请再接再厉!";
-"kChargingIngot" = "充值中...";
+"kCharging" = "充值中...";
 "kChargIngotSuccess" = "充值成功!";
 "kChargIngotFailure" = "充值失败!";
 
@@ -907,6 +907,7 @@
 "kGuessTimes" = "猜画 (%d)";
 "kFlowerTimes" = "鲜花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
+"kCollectTimes" = "收藏 (%d)";
 
 "kNoComments" = "咦！还没人评论，赶紧抢沙发！";
 "kNoGuesses" = "咦！还没人猜，赶紧抢沙发！";
@@ -1217,6 +1218,10 @@
 "kTaoBaoChargeTitle" = "淘宝店充值";
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
+"kSelectPaymentWay" = "选择购买方式";
+"kPayViaZhiFuBao" = "使用支付宝购买";
+"kPayViaAppleAccount" = "使用Apple账户购买";
+
 "kEditOpusDesc" = "编辑作品描述";
 "kHim" = "他";
 "kHer" = "她";
@@ -1258,6 +1263,8 @@
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "画";
 "kAddLearnDraw" = "销售此画";
+"kManageLearnDraw" = "管理此画";
+"kRemoveLearnDraw" = "下架";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

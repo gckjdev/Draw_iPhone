@@ -154,6 +154,8 @@
         CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
         orgPoint.x += (label.frame.size.width - size.width)/2;
         [view setCenter:orgPoint];
+    } else {
+        [view setCenter:CGPointMake(label.frame.origin.x-view.frame.size.width/2, view.center.y)];
     }
 }
 #define MAX_HEIGHT (ISIPAD?81:36)

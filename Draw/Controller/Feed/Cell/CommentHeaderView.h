@@ -22,6 +22,7 @@ typedef enum{
     CommentTypeComment = 3,
     CommentTypeFlower = 6,
     CommentTypeTomato = 7,
+    CommentTypeSave = 8,
 }CommentType;
 
 

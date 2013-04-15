@@ -1401,21 +1401,6 @@
 		CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
 		CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
 		CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3017169333002BF3C2 /* LearnDrawApp.m */; };
-		CA04CB4117169DF6002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
-		CA04CB4217169DF6002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
-		CA04CB4917169E2B002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
-		CA04CB4A17169E35002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
-		CA04CB4B17169E35002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
-		CA04CB4C17169E35002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
-		CA04CB4D17169E37002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
-		CA04CB4E17169E37002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
-		CA04CB4F17169E37002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
-		CA04CB5017169E38002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
-		CA04CB5117169E38002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
-		CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
-		CA04CB5317169E39002BF3C2 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */; };
-		CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */; };
-		CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */; };
 		CA04CB651716B641002BF3C2 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
 		CA04CB6B1716B693002BF3C2 /* GoogleAddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = A427459D171267CE00E43037 /* GoogleAddressComponent.m */; };
 		CA04CB761716B6FD002BF3C2 /* learndraw_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA04CB6D1716B6FD002BF3C2 /* learndraw_bg@2x.png */; };
@@ -8869,15 +8854,6 @@
 		CAE4B0E61709643200B4AB90 /* ChangeBGImageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE4B0E21709643100B4AB90 /* ChangeBGImageAction.m */; };
 		CAE51896165CCB33006157CC /* BBSPostActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE51895165CCB33006157CC /* BBSPostActionCell.m */; };
 		CAE51898165CCB55006157CC /* BBSPostActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE51897165CCB55006157CC /* BBSPostActionCell.xib */; };
-		CAE5AD2E1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
-		CAE5AD2F1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
-		CAE5AD301717B84F009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */; };
-		CAE5AD371717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
-		CAE5AD381717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
-		CAE5AD391717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */; };
-		CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
-		CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
-		CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */; };
 		CAE5AD411717CD48009BFDC1 /* user_detail_seperator_line3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C25BD98C1710068B00EF219F /* user_detail_seperator_line3@2x.png */; };
 		CAE5AD421717CD48009BFDC1 /* user_detail_round_avatar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E04FEC170997140009F2A9 /* user_detail_round_avatar_bg@2x.png */; };
 		CAE5AD431717CD48009BFDC1 /* user_detail_basic_bg_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E04FDD170991870009F2A9 /* user_detail_basic_bg_ipad@2x.png */; };
@@ -8919,6 +8895,70 @@
 		CAE5AD7817180347009BFDC1 /* detail_replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4234168D7588009F43F7 /* detail_replay@2x.png */; };
 		CAE5AD7917180347009BFDC1 /* detail_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4235168D7588009F43F7 /* detail_save@2x.png */; };
 		CAE5AD7A17180347009BFDC1 /* detail_tomato@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA7D4236168D7588009F43F7 /* detail_tomato@2x.png */; };
+		CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6416B6595A00BB9060 /* draw_player_bg@2x.png */; };
+		CAE5AD8117184732009BFDC1 /* draw_player_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6516B6595A00BB9060 /* draw_player_close@2x.png */; };
+		CAE5AD8217184732009BFDC1 /* draw_player_end@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6616B6595A00BB9060 /* draw_player_end@2x.png */; };
+		CAE5AD8317184732009BFDC1 /* draw_player_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6716B6595A00BB9060 /* draw_player_pause@2x.png */; };
+		CAE5AD8417184732009BFDC1 /* draw_player_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6816B6595A00BB9060 /* draw_player_play@2x.png */; };
+		CAE5AD8517184732009BFDC1 /* draw_player_progress_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6916B6595A00BB9060 /* draw_player_progress_load@2x.png */; };
+		CAE5AD8617184732009BFDC1 /* draw_player_progress_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6A16B6595A00BB9060 /* draw_player_progress_point@2x.png */; };
+		CAE5AD8717184732009BFDC1 /* draw_player_progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6B16B6595A00BB9060 /* draw_player_progress@2x.png */; };
+		CAE5AD8817184732009BFDC1 /* draw_player_reset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6C16B6595A00BB9060 /* draw_player_reset@2x.png */; };
+		CAE5AD8917184732009BFDC1 /* draw_player_speed_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6D16B6595A00BB9060 /* draw_player_speed_bar@2x.png */; };
+		CAE5AD8A17184732009BFDC1 /* draw_player_speed_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6E16B6595A00BB9060 /* draw_player_speed_button@2x.png */; };
+		CAE5AD8B17184732009BFDC1 /* draw_player_speed_load@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD6F16B6595A00BB9060 /* draw_player_speed_load@2x.png */; };
+		CAE5AD8D17184AD8009BFDC1 /* UserSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A5917165D9D0079B7F6 /* UserSettingCell.xib */; };
+		CAE5AD8E17184AD8009BFDC1 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
+		CAE5AD8F17184B52009BFDC1 /* user_setting_cell_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6C17167A2F0079B7F6 /* user_setting_cell_down@2x.png */; };
+		CAE5AD9017184B52009BFDC1 /* user_setting_cell_middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6D17167A2F0079B7F6 /* user_setting_cell_middle@2x.png */; };
+		CAE5AD9117184B52009BFDC1 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
+		CAE5AD9217184B52009BFDC1 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
+		CAE5AD9317184B52009BFDC1 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
+		CAE5ADAB171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5ADAC171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5ADAD171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5ADAE171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5ADAF171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */; };
+		CAE5ADB0171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5ADB1171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5ADB2171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5ADB3171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5ADB4171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */; };
+		CAE5ADB5171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5ADB6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5ADB7171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5ADB8171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5ADB9171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */; };
+		CAE5ADBA171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */; };
+		CAE5ADBB171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */; };
+		CAE5ADBC171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */; };
+		CAE5ADBD171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */; };
+		CAE5ADBE171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */; };
+		CAE5ADBF171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */; };
+		CAE5ADC0171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */; };
+		CAE5ADC1171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */; };
+		CAE5ADC2171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */; };
+		CAE5ADC3171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */; };
+		CAE5ADC4171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
+		CAE5ADC5171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
+		CAE5ADC6171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
+		CAE5ADC7171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
+		CAE5ADC8171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */; };
+		CAE5ADD3171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
+		CAE5ADD4171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
+		CAE5ADD5171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
+		CAE5ADD6171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
+		CAE5ADD7171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */; };
+		CAE5ADD8171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */; };
+		CAE5ADD9171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */; };
+		CAE5ADDA171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */; };
+		CAE5ADDB171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */; };
+		CAE5ADDC171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */; };
+		CAE5ADDE171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
+		CAE5ADDF171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
+		CAE5ADE0171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
+		CAE5ADE1171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
+		CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -10499,10 +10539,6 @@
 		CA04CB2217166577002BF3C2 /* LearnDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawManager.m; sourceTree = "<group>"; };
 		CA04CB2F17169332002BF3C2 /* LearnDrawApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawApp.h; sourceTree = "<group>"; };
 		CA04CB3017169333002BF3C2 /* LearnDrawApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawApp.m; sourceTree = "<group>"; };
-		CA04CB3E17169DF6002BF3C2 /* LearnDrawHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawHomeController.h; sourceTree = "<group>"; };
-		CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawHomeController.m; sourceTree = "<group>"; };
-		CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawHomeController.xib; sourceTree = "<group>"; };
-		CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LearnDrawHomeController~ipad.xib"; sourceTree = "<group>"; };
 		CA04CB6D1716B6FD002BF3C2 /* learndraw_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "learndraw_bg@2x.png"; sourceTree = "<group>"; };
 		CA04CB6E1716B6FD002BF3C2 /* learndraw_bottom_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "learndraw_bottom_bar@2x.png"; sourceTree = "<group>"; };
 		CA04CB6F1716B6FD002BF3C2 /* learndraw_bottom_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "learndraw_bottom_split@2x.png"; sourceTree = "<group>"; };
@@ -12695,12 +12731,20 @@
 		CAE51897165CCB55006157CC /* BBSPostActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBSPostActionCell.xib; sourceTree = "<group>"; };
 		CAE57D27153BD77F00C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CAE57D2B153BD7B000C4C63A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		CAE5AD2C1717B84F009BFDC1 /* AddLearnDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLearnDrawView.h; sourceTree = "<group>"; };
-		CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLearnDrawView.m; sourceTree = "<group>"; };
-		CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLearnDrawView.xib; sourceTree = "<group>"; };
-		CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddLearnDrawView~ipad.xib"; sourceTree = "<group>"; };
 		CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawOnCell.xib; sourceTree = "<group>"; };
 		CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawOnCell~ipad.xib"; sourceTree = "<group>"; };
+		CAE5ADA3171B9CB3009BFDC1 /* AddLearnDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLearnDrawView.h; sourceTree = "<group>"; };
+		CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLearnDrawView.m; sourceTree = "<group>"; };
+		CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddLearnDrawView.xib; sourceTree = "<group>"; };
+		CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AddLearnDrawView~ipad.xib"; sourceTree = "<group>"; };
+		CAE5ADA7171B9CB3009BFDC1 /* LearnDrawHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawHomeController.h; sourceTree = "<group>"; };
+		CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawHomeController.m; sourceTree = "<group>"; };
+		CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawHomeController.xib; sourceTree = "<group>"; };
+		CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LearnDrawHomeController~ipad.xib"; sourceTree = "<group>"; };
+		CAE5ADD0171BABBA009BFDC1 /* LearnDrawPreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnDrawPreViewController.h; sourceTree = "<group>"; };
+		CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnDrawPreViewController.m; sourceTree = "<group>"; };
+		CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnDrawPreViewController.xib; sourceTree = "<group>"; };
+		CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "LearnDrawPreViewController~ipad.xib"; sourceTree = "<group>"; };
 		CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "BoardPanel~ipad.xib"; path = "Draw/Board/Controller/BoardPanel~ipad.xib"; sourceTree = SOURCE_ROOT; };
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
@@ -17156,10 +17200,6 @@
 				CA12616E167880CE00DD96F4 /* ZJHHomeViewController~ipad.xib */,
 				CA42706A1620028E00C6CCAE /* SuperHomeController.h */,
 				CA42706B1620028E00C6CCAE /* SuperHomeController.m */,
-				CA04CB3E17169DF6002BF3C2 /* LearnDrawHomeController.h */,
-				CA04CB3F17169DF6002BF3C2 /* LearnDrawHomeController.m */,
-				CA04CB4017169DF6002BF3C2 /* LearnDrawHomeController.xib */,
-				CA04CB4817169E2A002BF3C2 /* LearnDrawHomeController~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -17561,6 +17601,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CAE5ADA2171B9CB2009BFDC1 /* LearnDraw */,
 				C2974CF9167F1BB100E012FC /* Bulletin */,
 				C2B537E31677712300725802 /* Common */,
 				CAFEFBE816606FC100441D77 /* Components */,
@@ -19162,10 +19203,6 @@
 				CA8974081607230E003A95F7 /* UserInfoCell.m */,
 				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
 				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
-				CAE5AD2C1717B84F009BFDC1 /* AddLearnDrawView.h */,
-				CAE5AD2D1717B84F009BFDC1 /* AddLearnDrawView.m */,
-				CAE5AD361717B86E009BFDC1 /* AddLearnDrawView.xib */,
-				CAE5AD3A1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -20079,6 +20116,25 @@
 				CA639119152FEA4F007564C6 /* PriceModel.m */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		CAE5ADA2171B9CB2009BFDC1 /* LearnDraw */ = {
+			isa = PBXGroup;
+			children = (
+				CAE5ADA3171B9CB3009BFDC1 /* AddLearnDrawView.h */,
+				CAE5ADA4171B9CB3009BFDC1 /* AddLearnDrawView.m */,
+				CAE5ADA5171B9CB3009BFDC1 /* AddLearnDrawView.xib */,
+				CAE5ADA6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib */,
+				CAE5ADA7171B9CB3009BFDC1 /* LearnDrawHomeController.h */,
+				CAE5ADA8171B9CB3009BFDC1 /* LearnDrawHomeController.m */,
+				CAE5ADA9171B9CB3009BFDC1 /* LearnDrawHomeController.xib */,
+				CAE5ADAA171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib */,
+				CAE5ADD0171BABBA009BFDC1 /* LearnDrawPreViewController.h */,
+				CAE5ADD1171BABBA009BFDC1 /* LearnDrawPreViewController.m */,
+				CAE5ADD2171BABBB009BFDC1 /* LearnDrawPreViewController.xib */,
+				CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */,
+			);
+			path = LearnDraw;
 			sourceTree = "<group>";
 		};
 		CAE9A9FF16D632C9008392F9 /* Dice */ = {
@@ -21380,6 +21436,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE5AD8D17184AD8009BFDC1 /* UserSettingCell.xib in Resources */,
+				CAE5AD8E17184AD8009BFDC1 /* UserSettingCell~ipad.xib in Resources */,
+				CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */,
+				CAE5AD8117184732009BFDC1 /* draw_player_close@2x.png in Resources */,
+				CAE5AD8217184732009BFDC1 /* draw_player_end@2x.png in Resources */,
+				CAE5AD8317184732009BFDC1 /* draw_player_pause@2x.png in Resources */,
+				CAE5AD8417184732009BFDC1 /* draw_player_play@2x.png in Resources */,
+				CAE5AD8517184732009BFDC1 /* draw_player_progress_load@2x.png in Resources */,
+				CAE5AD8617184732009BFDC1 /* draw_player_progress_point@2x.png in Resources */,
+				CAE5AD8717184732009BFDC1 /* draw_player_progress@2x.png in Resources */,
+				CAE5AD8817184732009BFDC1 /* draw_player_reset@2x.png in Resources */,
+				CAE5AD8917184732009BFDC1 /* draw_player_speed_bar@2x.png in Resources */,
+				CAE5AD8A17184732009BFDC1 /* draw_player_speed_button@2x.png in Resources */,
+				CAE5AD8B17184732009BFDC1 /* draw_player_speed_load@2x.png in Resources */,
 				CAE5AD7517180347009BFDC1 /* detail_comment@2x.png in Resources */,
 				CAE5AD7617180347009BFDC1 /* detail_flower@2x.png in Resources */,
 				CAE5AD7717180347009BFDC1 /* detail_guess@2x.png in Resources */,
@@ -22213,8 +22283,6 @@
 				CA1208351712A98F00FEFB41 /* TaoBaoController~ipad.xib in Resources */,
 				CA1208501712AFAB00FEFB41 /* LearnDraw-Info.plist in Resources */,
 				EAA8A3D317157C2F00D8F67D /* chat_detail_bg@2x.jpg in Resources */,
-				CA04CB4217169DF6002BF3C2 /* LearnDrawHomeController.xib in Resources */,
-				CA04CB4917169E2B002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
 				CA04CB761716B6FD002BF3C2 /* learndraw_bg@2x.png in Resources */,
 				CA04CB771716B6FD002BF3C2 /* learndraw_bottom_bar@2x.png in Resources */,
 				CA04CB781716B6FD002BF3C2 /* learndraw_bottom_split@2x.png in Resources */,
@@ -22224,10 +22292,19 @@
 				CA04CB7C1716B6FD002BF3C2 /* learndraw_mark@2x.png in Resources */,
 				CA04CB7D1716B6FD002BF3C2 /* learndraw_more@2x.png in Resources */,
 				CA04CB7E1716B6FD002BF3C2 /* learndraw_shop@2x.png in Resources */,
-				CAE5AD391717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
-				CAE5AD3D1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 				CAE5AD661717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD6A1717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
+				CAE5AD8F17184B52009BFDC1 /* user_setting_cell_down@2x.png in Resources */,
+				CAE5AD9017184B52009BFDC1 /* user_setting_cell_middle@2x.png in Resources */,
+				CAE5AD9117184B52009BFDC1 /* user_setting_cell_one@2x.png in Resources */,
+				CAE5AD9217184B52009BFDC1 /* user_setting_cell_seperator_line@2x.png in Resources */,
+				CAE5AD9317184B52009BFDC1 /* user_setting_cell_up@2x.png in Resources */,
+				CAE5ADB4171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5ADB9171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5ADC3171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */,
+				CAE5ADC8171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADDC171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
+				CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23575,8 +23652,12 @@
 				A4834BD01716958E00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD31716962800190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF11716969200190347 /* common_dialog_head_bg@2x.png in Resources */,
-				CA04CB4E17169E37002BF3C2 /* LearnDrawHomeController.xib in Resources */,
-				CA04CB4F17169E37002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADB2171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5ADB7171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5ADC1171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */,
+				CAE5ADC6171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADDA171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
+				CAE5ADE0171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24535,8 +24616,12 @@
 				A4834BCF1716958C00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD41716962900190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF01716969100190347 /* common_dialog_head_bg@2x.png in Resources */,
-				CA04CB4B17169E35002BF3C2 /* LearnDrawHomeController.xib in Resources */,
-				CA04CB4C17169E35002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADB3171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5ADB8171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5ADC2171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */,
+				CAE5ADC7171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADDB171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
+				CAE5ADE1171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25538,12 +25623,14 @@
 				C2BD7A7917167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */,
 				C2BD7A7D17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */,
 				C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */,
-				CA04CB5417169E39002BF3C2 /* LearnDrawHomeController.xib in Resources */,
-				CA04CB5517169E39002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
-				CAE5AD371717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
-				CAE5AD3B1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
+				CAE5ADB0171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5ADB5171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5ADBF171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */,
+				CAE5ADC4171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADD8171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
+				CAE5ADDE171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26505,12 +26592,14 @@
 				A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */,
 				A4834BD21716962700190347 /* CustomInfoView~ipad.xib in Resources */,
 				A4834BF21716969400190347 /* common_dialog_head_bg@2x.png in Resources */,
-				CA04CB5117169E38002BF3C2 /* LearnDrawHomeController.xib in Resources */,
-				CA04CB5217169E38002BF3C2 /* LearnDrawHomeController~ipad.xib in Resources */,
-				CAE5AD381717B86E009BFDC1 /* AddLearnDrawView.xib in Resources */,
-				CAE5AD3C1717B88D009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
 				CAE5AD651717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD691717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
+				CAE5ADB1171B9CB3009BFDC1 /* AddLearnDrawView.xib in Resources */,
+				CAE5ADB6171B9CB3009BFDC1 /* AddLearnDrawView~ipad.xib in Resources */,
+				CAE5ADC0171B9CB3009BFDC1 /* LearnDrawHomeController.xib in Resources */,
+				CAE5ADC5171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
+				CAE5ADD9171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
+				CAE5ADDF171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27329,7 +27418,6 @@
 				CA04CB1D17166522002BF3C2 /* LearnDrawService.m in Sources */,
 				CA04CB2517166577002BF3C2 /* LearnDrawManager.m in Sources */,
 				CA04CB3517169333002BF3C2 /* LearnDrawApp.m in Sources */,
-				CA04CB4117169DF6002BF3C2 /* LearnDrawHomeController.m in Sources */,
 				A4834DD11716AD5400190347 /* AliPayManager.m in Sources */,
 				A4834DDB1716AD5400190347 /* DataSigner.m in Sources */,
 				A4834DE01716AD5400190347 /* DataVerifier.m in Sources */,
@@ -27341,10 +27429,12 @@
 				A4834E081716AD5400190347 /* RSADataVerifier.m in Sources */,
 				CA04CB651716B641002BF3C2 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB6B1716B693002BF3C2 /* GoogleAddressComponent.m in Sources */,
-				CAE5AD301717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
 				A4348C601717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
 				A4348C651717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				C22BF2851717F7B7009BBD72 /* UserSettingCell.m in Sources */,
+				CAE5ADAF171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
+				CAE5ADBE171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
+				CAE5ADD7171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28143,7 +28233,6 @@
 				A4B1C4A517168124002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AC17168B21002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3317169333002BF3C2 /* LearnDrawApp.m in Sources */,
-				CA04CB4D17169E37002BF3C2 /* LearnDrawHomeController.m in Sources */,
 				A4834DCF1716AD5400190347 /* AliPayManager.m in Sources */,
 				A4834DD91716AD5400190347 /* DataSigner.m in Sources */,
 				A4834DDE1716AD5400190347 /* DataVerifier.m in Sources */,
@@ -28157,6 +28246,9 @@
 				A4348C631717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				A4348C661717C2EA004AFB26 /* LearnDrawService.m in Sources */,
 				A4348C681717C31E004AFB26 /* LearnDrawManager.m in Sources */,
+				CAE5ADAD171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
+				CAE5ADBC171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
+				CAE5ADD5171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28955,7 +29047,6 @@
 				A4B1C4A817168127002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AE17168B23002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3417169333002BF3C2 /* LearnDrawApp.m in Sources */,
-				CA04CB4A17169E35002BF3C2 /* LearnDrawHomeController.m in Sources */,
 				A4834DD01716AD5400190347 /* AliPayManager.m in Sources */,
 				A4834DDA1716AD5400190347 /* DataSigner.m in Sources */,
 				A4834DDF1716AD5400190347 /* DataVerifier.m in Sources */,
@@ -28969,6 +29060,9 @@
 				A4348C641717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
 				A4348C671717C2EB004AFB26 /* LearnDrawService.m in Sources */,
 				A4348C6A1717C344004AFB26 /* LearnDrawManager.m in Sources */,
+				CAE5ADAE171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
+				CAE5ADBD171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
+				CAE5ADD6171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -29770,7 +29864,6 @@
 				A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3117169333002BF3C2 /* LearnDrawApp.m in Sources */,
-				CA04CB5317169E39002BF3C2 /* LearnDrawHomeController.m in Sources */,
 				A4834DCD1716AD5400190347 /* AliPayManager.m in Sources */,
 				A4834DD71716AD5400190347 /* DataSigner.m in Sources */,
 				A4834DDC1716AD5400190347 /* DataVerifier.m in Sources */,
@@ -29780,9 +29873,11 @@
 				A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */,
-				CAE5AD2E1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
 				A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
 				A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
+				CAE5ADAB171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
+				CAE5ADBA171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
+				CAE5ADD3171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30591,7 +30686,6 @@
 				A4B1C4A717168126002C83C1 /* PBGameItem+Extend.m in Sources */,
 				A4B1C4AD17168B22002C83C1 /* BuyItemSpecialHandler.m in Sources */,
 				CA04CB3217169333002BF3C2 /* LearnDrawApp.m in Sources */,
-				CA04CB5017169E38002BF3C2 /* LearnDrawHomeController.m in Sources */,
 				A4834DCE1716AD5400190347 /* AliPayManager.m in Sources */,
 				A4834DD81716AD5400190347 /* DataSigner.m in Sources */,
 				A4834DDD1716AD5400190347 /* DataVerifier.m in Sources */,
@@ -30601,9 +30695,11 @@
 				A4834DFB1716AD5400190347 /* openssl_wrapper.m in Sources */,
 				A4834E001716AD5400190347 /* RSADataSigner.m in Sources */,
 				A4834E051716AD5400190347 /* RSADataVerifier.m in Sources */,
-				CAE5AD2F1717B84F009BFDC1 /* AddLearnDrawView.m in Sources */,
 				A4348C5D1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
 				A4348C621717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
+				CAE5ADAC171B9CB3009BFDC1 /* AddLearnDrawView.m in Sources */,
+				CAE5ADBB171B9CB3009BFDC1 /* LearnDrawHomeController.m in Sources */,
+				CAE5ADD4171BABBB009BFDC1 /* LearnDrawPreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

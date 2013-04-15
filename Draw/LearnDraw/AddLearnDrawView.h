@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LearnDrawService.h"
 
 @interface AddLearnDrawView : UIView
 
 - (NSInteger)price;
 - (NSInteger)type;
+
+
+- (void)setPrice:(NSInteger)price;
+- (void)setType:(LearnDrawType)type;
 
 - (void)showInView:(UIView *)view;
 //- (void)dismiss;

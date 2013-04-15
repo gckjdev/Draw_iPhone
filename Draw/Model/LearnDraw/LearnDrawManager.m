@@ -49,9 +49,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawManager)
 - (void)addBoughtOpusId:(NSString *)opusId
 {
     if ([opusId length] != 0) {
-        [_boughtSet addObject:_boughtSet];
+        [_boughtSet addObject:opusId];
         [self updateLocalSet];        
     }
+}
+
+- (BOOL)hasBoughtDraw:(NSString *)drawId
+{
+    return [self.boughtDrawIdSet containsObject:drawId];
 }
 
 - (void)updateBoughtList:(NSArray *)list

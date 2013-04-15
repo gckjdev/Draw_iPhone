@@ -46,8 +46,6 @@ typedef enum{
 }
 
 
-
-
 - (UIButton *)currentButtonForTabType:(TabType)type
 {
     for (UIButton *button in self.subviews) {
@@ -174,6 +172,24 @@ typedef enum{
 - (NSInteger)type
 {
     return [self currentButtonForTabType:TabTypeCategory].tag;
+}
+
+- (void)selectButtonWithTag:(NSInteger)tag
+{
+    UIButton *button = (id)[self viewWithTag:tag];
+    if ([button isKindOfClass:[UIButton class]]) {
+        [self selectButton:button];
+    }
+}
+
+- (void)setPrice:(NSInteger)price
+{
+    NSInteger tabID = price + OFFSET;
+    [self selectButtonWithTag:tabID];
+}
+- (void)setType:(LearnDrawType)type
+{
+    [self selectButtonWithTag:type];
 }
 
 - (void)showInView:(UIView *)view

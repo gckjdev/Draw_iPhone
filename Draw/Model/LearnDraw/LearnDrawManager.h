@@ -33,4 +33,6 @@ typedef enum {
 
 - (NSSet *)boughtDrawIdSet;
 - (void)addBoughtOpusId:(NSString *)opusId;
+- (BOOL)hasBoughtDraw:(NSString *)drawId;
+
 @end

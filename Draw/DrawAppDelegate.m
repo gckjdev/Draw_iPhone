@@ -208,7 +208,7 @@ NSString* GlobalGetBoardServerURL()
     
 //    [DrawBgManager createTestData:0];
     srand(time(0));
-    
+        
     application.applicationIconBadgeNumber = 0;
 
     // init mob click

@@ -615,7 +615,7 @@ enum{
 
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
-        [self.feed parseDrawData];
+        [cp.feed parseDrawData];
         [replay showInController:cp
                   withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
@@ -820,10 +820,10 @@ enum{
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     if ([_feed isContestFeed]) {
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeSave};
         return tabIDs[index];
     }else{
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave};
         return tabIDs[index];
     }
     

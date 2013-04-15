@@ -417,6 +417,11 @@
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
+    if (isLearnDrawApp() && actionIndex > self.endIndex) {
+        [showDrawView stop];
+        
+        //TODO 
+    }
     //move progress
     if (curPlayIndex != actionIndex) {
         curPlayIndex = actionIndex;
