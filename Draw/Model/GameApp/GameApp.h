@@ -27,7 +27,7 @@
 #define OLD_DICE_APP_ID         @"557072001"
 #define ZJH_APP_ID              @"585525675"
 #define CANDY_APP_ID            @"test"
-#define LEARN_DRAW_APP_ID       @"LearnDraw" //TO BE CHANGED
+#define LEARN_DRAW_APP_ID       @"635820146" 
 
 // game ID
 #define DRAW_GAME_ID            @"Draw"
