@@ -896,6 +896,7 @@
 "kGuessTimes" = "猜畫 (%d)";
 "kFlowerTimes" = "鮮花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
+"kCollectTimes" = "收藏 (%d)";
 
 "kNoComments" = "咦！還沒人評論，趕緊搶沙發！";
 "kNoGuesses" = "咦！還沒人猜，趕緊搶沙發！";

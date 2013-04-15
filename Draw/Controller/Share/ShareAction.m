@@ -612,7 +612,9 @@
     [self.superViewController hideActivity];
     if (succ) {
          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
-        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
+        
+        // remove due to it's reported now
+//        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
     }
 }
 
