@@ -52,7 +52,7 @@
 - (void)dealloc
 {
     PPRelease(_homeBottomMenuPanel);
-    [_gmButton release];
+    PPRelease(_gmButton);
     [super dealloc];
 }
 

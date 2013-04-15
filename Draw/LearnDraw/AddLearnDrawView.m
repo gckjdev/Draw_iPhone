@@ -240,8 +240,8 @@ typedef enum{
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
-    [_categoryLabel release];
-    [_priceLabel release];
+    PPRelease(_categoryLabel);
+    PPRelease(_priceLabel);
     [super dealloc];
 }
 @end

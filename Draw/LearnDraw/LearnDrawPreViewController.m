@@ -18,8 +18,8 @@
 
 @interface LearnDrawPreViewController ()
 
-@property (assign, nonatomic) UIImage* placeHolderImage;
-@property (assign, nonatomic) DrawFeed* feed;
+@property (retain, nonatomic) UIImage* placeHolderImage;
+@property (retain, nonatomic) DrawFeed* feed;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *contentImageView;
@@ -78,10 +78,13 @@
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
-    [_titleLabel release];
-    [_contentImageView release];
-    [_previewButton release];
-    [_buyButton release];
+    PPRelease(_placeHolderImage);
+    PPRelease(_feed);
+    
+    PPRelease(_titleLabel);
+    PPRelease(_contentImageView);
+    PPRelease(_previewButton);
+    PPRelease(_buyButton);
     _feed.drawData = nil;
     PPRelease(_feed);
     [super dealloc];
