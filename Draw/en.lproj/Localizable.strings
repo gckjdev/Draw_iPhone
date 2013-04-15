@@ -1214,6 +1214,11 @@
 "kTaoBaoCharge" = "Taobao Charge";
 "kTaoBaoChargeTitle" = "Taobao Charge";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
+
+"kSelectPaymentWay" = "Choose to buy the way";
+"kPayViaZhiFuBao" = "Use Alipay to buy";
+"kPayViaAppleAccount" = "Use Apple account to buy";
+
 "kHim" = "him";
 "kHer" = "her";
 "kDetailDrawTo" = "Draw sth.";
@@ -1243,6 +1248,7 @@
 
 "kAskLoginTitle" = "Registration";
 "kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
+
 
 
 //learn draw

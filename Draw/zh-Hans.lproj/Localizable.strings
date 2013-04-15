@@ -1217,6 +1217,10 @@
 "kTaoBaoChargeTitle" = "淘宝店充值";
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
+"kSelectPaymentWay" = "选择购买方式";
+"kPayViaZhiFuBao" = "使用支付宝购买";
+"kPayViaAppleAccount" = "使用Apple账户购买";
+
 "kEditOpusDesc" = "编辑作品描述";
 "kHim" = "他";
 "kHer" = "她";

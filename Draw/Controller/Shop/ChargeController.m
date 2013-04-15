@@ -22,6 +22,7 @@
 #import "NotificationName.h"
 #import "StringUtil.h"
 #import "IAPProductManager.h"
+#import "PPNetworkConstants.h"
 
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
@@ -142,12 +143,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)clickTaoBaoButton:(id)sender {
+- (void)pushTaobao
+{
     NSString *urlString = [ConfigManager getTaobaoChargeURL];
     
     TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:urlString title:NSLS(@"kTaoBaoChargeTitle")];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+}
+
+- (IBAction)clickTaoBaoButton:(id)sender {
+    [self pushTaobao];
 }
 
 #pragma mark -
@@ -181,6 +187,12 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
+    if ([LocaleUtils isChina] == NO) {
+        PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
+        [self applePayForProduct:product];
+        return;
+    }
+    
     MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
     [sheet showInView:self.view];
 
@@ -220,11 +232,14 @@
 
 - (void)alipayForOrder:(AlixPayOrder *)order
 {
+    __block typeof (self)bself = self;
     [[AliPayManager defaultManager] payWithOrder:order
                                        appScheme:[GameApp alipayCallBackScheme]
                                    rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
                                          handler:^(int errorCode, NSString *errorMsg) {
-                                             
+                                             if (errorCode != ERROR_SUCCESS){
+                                                 [bself pushTaobao];
+                                             }
                                          }];
 }
 

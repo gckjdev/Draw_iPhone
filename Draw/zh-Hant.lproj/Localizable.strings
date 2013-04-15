@@ -1197,6 +1197,10 @@
 "kTaoBaoChargeTitle" = "淘寶店充值";
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
+"kSelectPaymentWay" = "選擇購買方式";
+"kPayViaZhiFuBao" = "使用支付寶購買";
+"kPayViaAppleAccount" = "使用Apple賬戶購買";
+
 "kEditOpusDesc" = "編輯作品描述";
 "kHim" = "他";
 "kHer" = "她";
