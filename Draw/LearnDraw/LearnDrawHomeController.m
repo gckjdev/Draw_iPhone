@@ -24,7 +24,7 @@
 #import "AddLearnDrawView.h"
 #import "ReplayView.h"
 #import "Draw.h"
-
+#import "LearnDrawPreView.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -180,12 +180,14 @@
 
 }
 
-- (void)showFeed:(DrawFeed *)feed
+- (void)showFeed:(DrawFeed *)feed placeHolder:(UIImage *)placeHolder
 {
-    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId] || 1) {
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId]) {
         [self playFeed:feed];
     }else{
         //TODO show image...
+        LearnDrawPreView *ldp = [LearnDrawPreView learnDrawPreViewWithDrawFeed:feed placeHolderImage:placeHolder];
+        [ldp showInView:self.view];
     }
 }
 
@@ -194,7 +196,7 @@
 {
     
     if (![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
-        [self showFeed:rankView.feed];
+        [self showFeed:rankView.feed placeHolder:rankView.drawImage.image];
     }else{
         MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]
                                      initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
@@ -210,7 +212,7 @@
         [sheet setActionBlock:^(NSInteger buttonIndex){
             PPDebug(@"click button index = %d", buttonIndex);
             if (buttonIndex == 0) {
-                [cp showFeed:rankView.feed];
+                [cp showFeed:rankView.feed placeHolder:rankView.drawImage.image];
             }else if(buttonIndex == 1){
                 AddLearnDrawView* alView = [AddLearnDrawView createViewWithOpusId:rankView.feed.feedId];
                 [alView showInView:cp.view];
