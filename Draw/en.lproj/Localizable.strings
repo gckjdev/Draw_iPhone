@@ -1255,8 +1255,8 @@
 //learn draw
 "kLearnDrawAll" = "All";
 "kLearnDrawCartoon" = "Cartoon";
-"kLearnDrawCharater" = "Charater";
-"kLearnDrawScenery" = "Scenery";
+"kLearnDrawCharater" = "Human";
+"kLearnDrawScenery" = "Scence";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
