@@ -86,8 +86,8 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
 //    return @"http://58.215.184.18:8188/api/i?";
-//    return [ConfigManager getTrafficAPIServerURL];
-    return @"http://58.215.172.169:8100/api/i?";
+    return [ConfigManager getTrafficAPIServerURL];
+//    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -222,6 +222,7 @@ NSString* GlobalGetBoardServerURL()
 
 #ifdef DEBUG
     [GameConfigDataManager createTestConfigData];
+    [GameConfigDataManager createLearnDrawTestConfigData];
 #endif
 
     // load config data
@@ -295,7 +296,10 @@ NSString* GlobalGetBoardServerURL()
 
     // Try Fetch User Data By Device Id
     if ([[UserManager defaultManager] hasUser] == NO){
-        [[UserService defaultService] loginByDeviceWithViewController:rootController];
+        BOOL autoRegister = [GameApp isAutoRegister];
+        [[UserService defaultService] loginByDeviceWithViewController:rootController
+                                                         autoRegister:autoRegister
+                                                          resultBlock:nil];
     }
 
     // Check Whether App Has Update
@@ -403,6 +407,10 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     [[IAPProductService defaultService] syncData:NULL];
+    
+    if ([GameApp isAutoRegister]){
+        [[UserService defaultService] autoRegisteration:nil];
+    }
     
     // Start the long-running task and return immediately.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
