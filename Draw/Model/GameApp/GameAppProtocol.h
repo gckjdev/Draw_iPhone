@@ -113,4 +113,6 @@
 
 - (NSString *)alipayCallBackScheme;
 
+- (BOOL)isAutoRegister;
+
 @end

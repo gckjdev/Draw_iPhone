@@ -61,18 +61,22 @@ typedef enum
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame;
 
+// the following is used before, don't use them
 - (UIView*)createAdInView:(UIView*)superView
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame;
 
+// the following is used before, don't use them
 - (UIView*)createLmAdInView:(UIView*)superView
                       frame:(CGRect)frame 
                   iPadFrame:(CGRect)iPadFrame;
 
+// the following is used before, don't use them
 - (UIView*)createWanpuAdInView:(UIView*)superView
                          frame:(CGRect)frame 
                      iPadFrame:(CGRect)iPadFrame;
 
+// the following is used before, don't use them
 - (UIView*)createAdmobAdInView:(UIView*)superView
                          frame:(CGRect)frame
                      iPadFrame:(CGRect)iPadFrame;

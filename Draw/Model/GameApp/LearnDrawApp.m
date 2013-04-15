@@ -364,5 +364,10 @@
     return @"alipaylearndraw.gckj";
 }
 
+- (BOOL)isAutoRegister
+{
+    return YES;
+}
+
 
 @end

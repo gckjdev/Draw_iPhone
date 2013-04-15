@@ -249,6 +249,7 @@
 #define PARA_DEVICETOKEN @"dto"
 #define PARA_NICKNAME @"nn"
 #define PARA_SIGNATURE @"sig"
+#define PARA_AUTO_REG @"are"
 
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"

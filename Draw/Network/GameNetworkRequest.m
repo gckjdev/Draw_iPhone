@@ -839,8 +839,7 @@
                            gameId:(NSString*)gameId
                          deviceId:(NSString*)deviceId
                       deviceToken:(NSString*)deviceToken
-
-
+                        autoRegister:(BOOL)autoRegister
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -854,6 +853,16 @@
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
+
+        // add by Benson, 2013-04-15
+        NSString* deviceOS = [DeviceDetection deviceOS];
+        str = [str stringByAddQueryParameter:PARA_AUTO_REG intValue:autoRegister];
+        str = [str stringByAddQueryParameter:PARA_COUNTRYCODE value:[LocaleUtils getCountryCode]];
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE value:[LocaleUtils getLanguageCode]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
+        str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
         
         return str;
