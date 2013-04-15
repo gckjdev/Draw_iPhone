@@ -23,6 +23,7 @@
 #import "DrawHolderView.h"
 #import "CommonDialog.h"
 #import "LearnDrawService.h"
+#import "ShareAction.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
@@ -36,7 +37,6 @@
 @interface ReplayView()
 {
     NSInteger curPlayIndex;
-    ShowDrawView *_showView;
     UIView *_maskView;
 }
 
@@ -112,11 +112,15 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    [self.showView stop];
     [_maskView removeFromSuperview];
     self.showView.delegate = nil;
     [self.showView removeFromSuperview];
     self.showView = nil;
     self.superController = nil;
+    [self.holderView setContentView:nil];
+    [self.holderView removeFromSuperview];
+    self.holderView = nil;
     [self removeFromSuperview];
 }
 
@@ -153,6 +157,7 @@
     [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
 }
 
+
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
@@ -164,7 +169,10 @@
 }
 
 - (void)dealloc {
+
+    
     PPDebug(@"dealloc %@", [self description]);
+    _drawFeed.drawImage = nil;
     PPRelease(_drawFeed);
     PPRelease(_holderView);
     PPRelease(_showView);
@@ -177,6 +185,7 @@
     PPRelease(_speedPoint);
     PPRelease(_maskView);
     PPRelease(_playerToolMask);
+    
     [super dealloc];
 }
 
@@ -388,13 +397,16 @@
 
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
-    if (![self hasBounghtPlayer]) {
+    if (![self hasBounghtPlayer] && !isLearnDrawApp()) {
             [BuyItemView showOnlyBuyItemView:PaintPlayerItem inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == ERROR_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }
         }];
+    }else{
+        [self.playerToolMask removeFromSuperview];
+        self.playerToolMask = nil;        
     }
 }
 
@@ -419,14 +431,23 @@
 
 - (void)buyAndPlayDraw:(DrawFeed *)feed
 {
+    __block ReplayView *cp = self;
     [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
                                               price:self.drawFeed.learnDraw.price
                                            fromView:self
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
         if (resultCode == 0) {
-            [self setEndIndex:0];
-            [self setPlayControlsDisable:NO];
-            [self clickPlay:self.playButton];
+            [cp setEndIndex:0];
+            [cp setPlayControlsDisable:NO];
+            [cp clickPlay:cp.playButton];
+
+            ShareAction *share = [[ShareAction alloc]
+                                  initWithFeed:cp.drawFeed
+                                        image:cp.drawFeed.drawImage];
+            [share saveToLocal];
+            [share release];
+
+            
         }else{
             //TODO show error message
         }

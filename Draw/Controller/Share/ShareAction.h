@@ -34,4 +34,6 @@
              image:(UIImage*)image;
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
+
+- (void)saveToLocal;
 @end

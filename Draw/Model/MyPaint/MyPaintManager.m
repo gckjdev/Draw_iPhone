@@ -21,6 +21,7 @@
 #import "DrawAction.h"
 #import "DrawFeed.h"
 #import "CanvasRect.h"
+#import "TimeUtils.h"
 
 
 #define SUFFIX_NUMBER 100
@@ -371,8 +372,13 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawUserId:feed.feedUser.userId];
     [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
     [newMyPaint setCreateDate:[NSDate date]];
-    [newMyPaint setDrawWord:feed.wordText];
-
+    
+    if (isLearnDrawApp()) {
+        NSString *word = dateToLocaleStringWithFormat([NSDate date], DATE_FORMAT);
+        [newMyPaint setDrawWord:word];
+    }else{
+        [newMyPaint setDrawWord:feed.wordText];
+    }
     [newMyPaint setLanguage:[NSNumber numberWithInt:ChineseType]];      // hard code here, some risk?
     [newMyPaint setLevel:[NSNumber numberWithInt:1]];                   // hard code here, some risk?
 

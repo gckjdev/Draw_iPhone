@@ -14,7 +14,7 @@
 #import "Draw.h"
 #import "ConfigManager.h"
 #import "BalanceNotEnoughAlertView.h"
-
+#import "ShareAction.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -124,6 +124,7 @@
         [replay setPlayControlsDisable:YES];
         [replay setDrawFeed:self.feed];
     }
+    self.feed.drawImage = self.contentImageView.image;
     [replay showInController:self
               withActionList:drawData.drawActionList
                 isNewVersion:[drawData isNewVersion]
@@ -134,7 +135,8 @@
 - (void)playDrawToEnd:(BOOL)end
 {
     if (self.feed.drawData) {
-        [self playDrawdata:self.feed.drawData endIndex:index];
+        [self playDrawdata:self.feed.drawData
+                  endIndex:[self previewActionCountOfFeed:self.feed]];
         return;
     }
     
@@ -149,6 +151,14 @@
                 index = [self previewActionCountOfFeed:cp.feed];
             }
             [cp playDrawdata:feed.drawData endIndex:index];
+            
+            if (end) {
+                ShareAction *share = [[ShareAction alloc] initWithFeed:cp.feed
+                                                                 image:cp.contentImageView.image];
+                [share saveToLocal];
+                [share release];
+            }
+            
         }else{
             //TODO show error message
         }
@@ -187,6 +197,7 @@
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
         if (resultCode == 0) {
             [cp playDrawToEnd:YES];
+            
         }else{
             //TODO deal with the error result.
         }

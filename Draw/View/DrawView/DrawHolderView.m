@@ -16,6 +16,8 @@
 @implementation DrawHolderView
 
 - (void)dealloc{
+    PPDebug(@"<DrawHolderView> dealloc");
+    [_contentView removeFromSuperview];
     PPRelease(_contentView);
     [super dealloc];
 }
@@ -45,6 +47,7 @@
     
 }
 - (void)setContentView:(SuperDrawView *)contentView{
+    
     if (_contentView != contentView) {
         [_contentView removeFromSuperview];
         PPRelease(_contentView);
