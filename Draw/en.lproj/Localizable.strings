@@ -1262,6 +1262,13 @@
 "kAddLearnDraw" = "Sell the draw";
 "kManageLearnDraw" = "Manage draw";
 "kRemoveLearnDraw" = "Remove draw";
+
+
+"kLearnDrawPreviewTitle" = "Draw Image";
+"kLearnDrawPreview" = "Preview";
+"kLearnDrawBuy" = "Buy & Play";
+"kBuyToPlayTitle" = "Buy It";
+"kBuyToPlayMesaage" = "Buy and play it to the end?";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

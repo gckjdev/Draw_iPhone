@@ -11,6 +11,8 @@
 #import "PPViewController.h"
 //#import "CommonItemInfoView.h"
 #import "DrawBgManager.h"
+#import "DrawFeed.h"
+
 
 @interface ReplayView : UIView<ShowDrawViewDelegate>
 {
@@ -19,8 +21,10 @@
 
 
 @property(nonatomic, assign)NSUInteger endIndex;
+@property(nonatomic, retain)DrawFeed *drawFeed;
 
 + (id)createReplayView;
+
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion;
@@ -30,5 +34,7 @@
             isNewVersion:(BOOL)isNewVersion
                     size:(CGSize)size;
 
+
+- (void)setPlayControlsDisable:(BOOL)disable;
 
 @end

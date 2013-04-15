@@ -21,6 +21,8 @@
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
+#import "CommonDialog.h"
+#import "LearnDrawService.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
@@ -44,7 +46,7 @@
 @property (retain, nonatomic) IBOutlet UIControl *playerToolMask;
 
 
-@property (retain, nonatomic) IBOutlet UIView *toolPanel;
+@property (retain, nonatomic) IBOutlet UIControl *toolPanel;
 @property (retain, nonatomic) IBOutlet UIImageView *playProgressLoader;
 @property (retain, nonatomic) IBOutlet UIButton *playProgressPoint;
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
@@ -163,6 +165,7 @@
 
 - (void)dealloc {
     PPDebug(@"dealloc %@", [self description]);
+    PPRelease(_drawFeed);
     PPRelease(_holderView);
     PPRelease(_showView);
     PPRelease(_toolPanel);
@@ -413,14 +416,44 @@
     [self endToPlay];
 }
 
+
+- (void)buyAndPlayDraw:(DrawFeed *)feed
+{
+    [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
+                                              price:self.drawFeed.learnDraw.price
+                                           fromView:self
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+        if (resultCode == 0) {
+            [self setEndIndex:0];
+            [self setPlayControlsDisable:NO];
+            [self clickPlay:self.playButton];
+        }else{
+            //TODO show error message
+        }
+    }];
+}
+
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
-    if (isLearnDrawApp() && actionIndex > self.endIndex) {
-        [showDrawView stop];
+    if (isLearnDrawApp() && actionIndex > self.endIndex && self.endIndex != 0) {
+//        [showDrawView stop];
+        [self.playButton setEnabled:YES];
+        [self clickPlay:self.playButton];
+        [self.playButton setEnabled:NO];
+        __block ReplayView *cp = self;
         
-        //TODO 
+        [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
+                                       style:CommonDialogStyleDoubleButton
+                                    delegate:nil
+                                clickOkBlock:^{
+                                    [cp buyAndPlayDraw:cp.drawFeed];
+            
+        } clickCancelBlock:^{
+            
+        }] showInView:[self theTopView]];
+         
     }
     //move progress
     if (curPlayIndex != actionIndex) {
@@ -435,5 +468,16 @@
     [self.speedPanel setHidden:YES];
 }
 
+- (void)setPlayControlsDisable:(BOOL)disable
+{
+    for (UIControl *control in self.subviews) {
+        if ([control isKindOfClass:[UIControl class]] && control.tag != 123) {
+            [control setEnabled:!disable];
+            for (UIControl *control2 in control.subviews) {
+                [control2 setEnabled:!disable];
+            }
+        }
+    }
 
+}
 @end

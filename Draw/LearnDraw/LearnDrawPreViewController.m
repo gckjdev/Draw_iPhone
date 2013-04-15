@@ -35,14 +35,14 @@
 @implementation LearnDrawPreViewController
 
 
-+ (LearnDrawPreViewController *)presentLearnDrawPreviewControllerFrom:(UIViewController *)fromController
++ (LearnDrawPreViewController *)enterLearnDrawPreviewControllerFrom:(UIViewController *)fromController
                                                              drawFeed:(DrawFeed *)drawFeed
                                                      placeHolderImage:(UIImage *)image
 {
     LearnDrawPreViewController *ldp = [[[LearnDrawPreViewController alloc] init] autorelease];
     [ldp setFeed:drawFeed];
     [ldp setPlaceHolderImage:image];
-    [fromController presentModalViewController:ldp animated:YES];
+    [fromController.navigationController pushViewController:ldp animated:YES];
     return ldp;
 }
 
@@ -65,6 +65,9 @@
     
     [self.contentImageView setImageWithURL:url
                           placeholderImage:self.placeHolderImage];
+    [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
+    [self.previewButton setTitle:NSLS(@"kLearnDrawPreview") forState:UIControlStateNormal];
+    [self.buyButton setTitle:NSLS(@"kLearnDrawBuy") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,7 +95,8 @@
 }
 
 - (IBAction)clickClose:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -109,31 +113,63 @@
     return 0;
 }
 
-- (IBAction)clickPreview:(id)sender {
-    PPDebug(@"clickPreview");
+- (void)playDrawdata:(Draw *)drawData endIndex:(NSInteger)endIndex
+{
+    ReplayView *replay = [ReplayView createReplayView];
+    if(endIndex != 0){
+        [replay setEndIndex:endIndex];
+        [replay setPlayControlsDisable:YES];
+        [replay setDrawFeed:self.feed];
+    }
+    [replay showInController:self
+              withActionList:drawData.drawActionList
+                isNewVersion:[drawData isNewVersion]
+                        size:drawData.canvasSize];
+
+}
+
+- (void)playDrawToEnd:(BOOL)end
+{
+    if (self.feed.drawData) {
+        [self playDrawdata:self.feed.drawData endIndex:index];
+        return;
+    }
+    
     __block LearnDrawPreViewController *cp = self;
     [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
         if (resultCode == 0 && pbDrawData) {
-            ReplayView *replay = [ReplayView createReplayView];
-            feed.pbDrawData = pbDrawData;
-            if (feed.drawData == nil) {
-                [feed parseDrawData];
+            cp.feed.pbDrawData = pbDrawData;
+            [cp.feed parseDrawData];
+            NSInteger index = 0;
+            if (!end) {
+                index = [self previewActionCountOfFeed:cp.feed];
             }
-            [replay setEndIndex:[cp previewActionCountOfFeed:feed]];
-            [replay showInController:cp
-                      withActionList:feed.drawData.drawActionList
-                        isNewVersion:[feed.drawData isNewVersion]
-                                size:feed.drawData.canvasSize];
+            [cp playDrawdata:feed.drawData endIndex:index];
         }else{
             //TODO show error message
         }
     } downloadDelegate:nil]; //TODO show download progress...
+
+}
+
+- (IBAction)clickPreview:(id)sender {
+    PPDebug(@"clickPreview");
+    [self playDrawToEnd:NO];
 }
 
 - (IBAction)clickBuyButton:(id)sender {
     
-    
-//    BalanceNotEnoughAlertView *view = []
-//    PPDebug(@"clickBuyButton");
+    __block LearnDrawPreViewController *cp = self;
+    [[LearnDrawService defaultService] buyLearnDraw:cp.feed.feedId
+                                              price:cp.feed.learnDraw.price
+                                           fromView:self.view
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+        if (resultCode == 0) {
+            [cp playDrawToEnd:YES];
+        }else{
+            //TODO deal with the error result.
+        }
+        
+    }];
 }
 @end

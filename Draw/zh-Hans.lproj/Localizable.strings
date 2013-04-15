@@ -1265,6 +1265,12 @@
 "kAddLearnDraw" = "销售此画";
 "kManageLearnDraw" = "管理此画";
 "kRemoveLearnDraw" = "下架";
+
+"kLearnDrawPreviewTitle" = "作品详情";
+"kLearnDrawPreview" = "试看";
+"kLearnDrawBuy" = "购买";
+"kBuyToPlayTitle" = "购买作品";
+"kBuyToPlayMesaage" = "购买该作品继续观看全过程？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

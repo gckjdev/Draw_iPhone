@@ -11,7 +11,7 @@
 
 @interface LearnDrawPreViewController : PPViewController
 
-+ (LearnDrawPreViewController *)presentLearnDrawPreviewControllerFrom:(UIViewController *)fromController
++ (LearnDrawPreViewController *)enterLearnDrawPreviewControllerFrom:(UIViewController *)fromController
                                                              drawFeed:(DrawFeed *)drawFeed
                                                      placeHolderImage:(UIImage *)image;
 

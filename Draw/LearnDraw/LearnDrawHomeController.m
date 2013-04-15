@@ -185,7 +185,7 @@
     if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId]) {
         [self playFeed:feed];
     }else{
-        [LearnDrawPreViewController presentLearnDrawPreviewControllerFrom:self drawFeed:feed placeHolderImage:placeHolder];
+        [LearnDrawPreViewController enterLearnDrawPreviewControllerFrom:self drawFeed:feed placeHolderImage:placeHolder];
     }
 }
 

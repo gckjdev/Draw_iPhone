@@ -1244,6 +1244,13 @@
 "kAddLearnDraw" = "銷售此畫";
 "kManageLearnDraw" = "管理此畫";
 "kRemoveLearnDraw" = "下架";
+
+
+"kLearnDrawPreviewTitle" = "作品詳情";
+"kLearnDrawPreview" = "試看";
+"kLearnDrawBuy" = "購買";
+"kBuyToPlayTitle" = "購買作品";
+"kBuyToPlayMesaage" = "購買該作品繼續觀看全過程？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -18,6 +18,8 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountService.h"
 #import "UIViewUtils.h"
+//#import "<#header#>"
+
 
 @implementation LearnDrawService
 
@@ -83,6 +85,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (resultCode == ERROR_SUCCESS) {
                 [[LearnDrawManager defaultManager] addBoughtOpusId:opusId];
+                [[AccountService defaultService] chargeIngot:-price source:ChargeLearnDraw];
             }
             EXECUTE_BLOCK(handler,nil,resultCode);
         });

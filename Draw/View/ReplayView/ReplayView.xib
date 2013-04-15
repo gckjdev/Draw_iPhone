@@ -74,6 +74,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="355539151"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">123</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -316,7 +317,6 @@
 								<string key="NSFrame">{{11, 51}, {6, 28}}</string>
 								<reference key="NSSuperview" ref="556998278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -841,7 +841,7 @@
 						<string key="speedLoader">UIImageView</string>
 						<string key="speedPanel">UIView</string>
 						<string key="speedPoint">UIButton</string>
-						<string key="toolPanel">UIView</string>
+						<string key="toolPanel">UIControl</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="holderView">
@@ -878,7 +878,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="toolPanel">
 							<string key="name">toolPanel</string>
-							<string key="candidateClassName">UIView</string>
+							<string key="candidateClassName">UIControl</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
