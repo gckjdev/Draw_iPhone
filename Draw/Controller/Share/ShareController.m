@@ -221,7 +221,7 @@ typedef enum{
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
     
     
-    NSString *shareString = ([GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
+    NSString *shareString = (![GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
     
     if ([LocaleUtils isChina]){
         

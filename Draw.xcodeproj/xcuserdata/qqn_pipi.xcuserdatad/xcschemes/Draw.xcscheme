@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
-            BuildableName = "LearnDraw.app"
-            BlueprintName = "LearnDraw"
+            BlueprintIdentifier = "CA745D1D1503B1B400600024"
+            BuildableName = "Draw.app"
+            BlueprintName = "Draw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
-            BuildableName = "LearnDraw.app"
-            BlueprintName = "LearnDraw"
+            BlueprintIdentifier = "CA745D1D1503B1B400600024"
+            BuildableName = "Draw.app"
+            BlueprintName = "Draw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

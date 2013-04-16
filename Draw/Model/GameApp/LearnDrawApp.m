@@ -38,7 +38,7 @@
 
 - (NSString*)umengId
 {
-    return DRAW_UMENG_ID;
+    return LEARN_DRAW_UMENG_ID;
 }
 
 

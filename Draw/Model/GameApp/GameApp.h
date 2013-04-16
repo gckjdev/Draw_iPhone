@@ -42,6 +42,8 @@
 #define CANDY_UMENG_ID          @"4f83980852701565c500003a" // TO BE CHANGED
 #define ZJH_UMENG_ID            @"50c1883752701537100000af" 
 
+#define LEARN_DRAW_UMENG_ID     @"516d181256240b096c000a83"
+
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
 #define DRAW_LM_WALL_ID         @"f86cc23b710f1e4d9603dcde84474588" // New, Add By Benson 2013-03-13

@@ -80,7 +80,7 @@
 
 + (NSArray *)getLearnDrawFeedbackEmailList
 {
-    NSString *string = [MobClickUtils getIntValueByKey:@"LEARN_DRAW_FEEDBACK_EMAILS" defaultValue:@"gckjdev@sina.com;hguangm2009@gmail.com"];
+    NSString *string = [MobClickUtils getStringValueByKey:@"LEARN_DRAW_FEEDBACK_EMAILS" defaultValue:@"gckjdev@sina.com;hguangm2009@gmail.com"];
     return [string componentsSeparatedByString:@";"];
 }
 

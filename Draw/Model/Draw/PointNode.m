@@ -29,7 +29,7 @@
     if (!CGRectContainsPoint(rect, _point)){
 
         if (![self spanRect:rect ContainsPoint:_point]) {
-            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(_point));
+//            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(_point));
             return NO;
         }
         _point.x = MAX(_point.x, 0);
