@@ -44,10 +44,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawManager)
 {
     NSMutableArray *list = [NSMutableArray arrayWithCapacity:[_boughtSet count]];
     for (NSString *value in _boughtSet) {
-        [list addObject:value];
+        [list addObject:[value description]];
     }
     if ([list count] != 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:_boughtSet forKey:KEY_BOUGHT_LEARNDRAW_LIST];
+        [[NSUserDefaults standardUserDefaults] setObject:list forKey:KEY_BOUGHT_LEARNDRAW_LIST];
         [[NSUserDefaults standardUserDefaults] synchronize];        
     }
 }
