@@ -833,7 +833,7 @@
 
 "kPrice" = "价格";
 "kCost" = "花费";
-"kCoins" = "金币";
+"kCoin" = "金币";
 "kIngot" = "元宝";
 "kExp" = "经验";
 

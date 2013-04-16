@@ -281,7 +281,7 @@
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailBalanceBtnBg] forState:UIControlStateNormal];
             int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
             [button.upLabel setText:[NSString stringWithFormat:@"%d", balance]];
-            [button.downLabel setText:NSLS(@"kCoins")];
+            [button.downLabel setText:NSLS(@"kCoin")];
         } break;
         case SelfDetailActionExp: {
             [button setBackgroundImage:[[ShareImageManager defaultManager] selfDetailExpBtnBg] forState:UIControlStateNormal];

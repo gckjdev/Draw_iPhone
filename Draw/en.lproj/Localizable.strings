@@ -819,7 +819,7 @@
 
 "kPrice" = "Price";
 "kCost" = "Cost";
-"kCoins" = "coins";
+"kCoin" = "coins";
 "kIngot" = "ingots";
 "kExp" = "exp";
 

@@ -827,7 +827,7 @@
 
 "kPrice" = "價格";
 "kCost" = "花費";
-"kCoins" = "金幣";
+"kCoin" = "金幣";
 "kIngot" = "元寶";
 "kExp" = "經驗";
 "kTaoBaoProductDetail" = "淘寶商品詳情";
