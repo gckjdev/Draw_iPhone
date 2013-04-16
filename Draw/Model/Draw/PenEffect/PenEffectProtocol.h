@@ -14,7 +14,7 @@
 
 @protocol PenEffectProtocol <NSObject>
 
-- (void)constructPath:(NSArray*)pointList;
+- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect;
 - (CGPathRef)penPath;
 - (BOOL)hasPoint;
 

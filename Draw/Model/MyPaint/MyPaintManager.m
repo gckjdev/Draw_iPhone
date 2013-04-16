@@ -609,7 +609,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             }else{
                 paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
             }
-            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw];
+            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
         }else if ([self saveDataAsPBDraw:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];

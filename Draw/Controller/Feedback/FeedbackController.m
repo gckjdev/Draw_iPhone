@@ -378,8 +378,10 @@ enum {
 {
     __block FeedbackController* fc = self;
     
+    NSMutableArray* array = [NSMutableArray arrayWithArray:[GameApp cacheArray]];
+    [array addObject:NSTemporaryDirectory()];
     
-    [[CacheManager defaultManager] removeCachePathsArray:[GameApp cacheArray] succBlock:^(long long fileSize) {
+    [[CacheManager defaultManager] removeCachePathsArray:array succBlock:^(long long fileSize) {
         [fc hideActivity];
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
                                                            message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]

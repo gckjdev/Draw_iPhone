@@ -19,6 +19,8 @@
 
 @property(nonatomic, assign)CGPoint point;
 
+
+- (BOOL)pointInRect:(CGRect)rect;
 - (CGFloat)x;
 - (CGFloat)y;
 - (void)setX:(CGFloat)x;

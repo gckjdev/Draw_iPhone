@@ -17,6 +17,12 @@
 
 @implementation PaintAction
 
+
+- (void)setCanvasSize:(CGSize)canvasSize
+{
+    self.paint.canvasRect = CGRectFromCGSize(canvasSize);
+}
+
 - (id)initWithWithPaint:(Paint *)paint
 {
     self = [super init];

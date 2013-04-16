@@ -158,6 +158,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     if ([userId length] == 0)
         return;
     
+    if ([ConfigManager wallEnabled] == NO){
+        return;
+    }
+    
     AdWallCompleteHandler handler = ^(int resultCode, int score) {
         
         if (score > 0){

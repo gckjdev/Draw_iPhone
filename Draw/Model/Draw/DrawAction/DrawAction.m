@@ -18,6 +18,12 @@
 
 @implementation DrawAction
 
+
+- (void)setCanvasSize:(CGSize)canvasSize
+{
+    
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -112,18 +118,22 @@
 
 #pragma mark-- Common Methods
 
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data
++ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize
 {
     NSMutableArray *drawActionList = [NSMutableArray array];
     if ([[data drawActionList2List] count] != 0) {
         for (PBDrawAction *action in [data drawActionList2List]) {
             DrawAction *at = [DrawAction drawActionWithPBDrawAction:action];
+
+            [at setCanvasSize:canvasSize];
+
             [drawActionList addObject:at];
             at = nil;
         }
     }else if([[data drawActionListList] count] != 0)
         for (PBNoCompressDrawAction *action in [data drawActionListList]) {
             DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawAction:action];
+            [dAction setCanvasSize:canvasSize];
             [drawActionList addObject:dAction];
             dAction = nil;
         }

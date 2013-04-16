@@ -92,7 +92,7 @@
     [self addBottomMenuView];
     [self initTabButtons];
     self.gmButton.hidden = YES;
-
+    self.unReloadDataWhenViewDidAppear = NO;
 }
 
 - (void)didReceiveMemoryWarning

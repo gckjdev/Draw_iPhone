@@ -30,6 +30,8 @@
     id<PenEffectProtocol> _pen;
     
 }
+
+@property(nonatomic, assign)CGRect canvasRect;
 @property(nonatomic, assign)CGFloat width;
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, retain)DrawColor* color;
@@ -46,6 +48,7 @@
                color:(DrawColor *)color
              penType:(ItemType)penType
            pointList:(NSMutableArray *)pointNodeList;
+
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;
 
