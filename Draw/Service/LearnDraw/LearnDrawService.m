@@ -15,6 +15,11 @@
 #import "GameMessage.pb.h"
 #import "LearnDrawManager.h"
 #import "FeedManager.h"
+#import "BalanceNotEnoughAlertView.h"
+#import "AccountService.h"
+#import "UIViewUtils.h"
+//#import "<#header#>"
+
 
 @implementation LearnDrawService
 
@@ -51,8 +56,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 
 
 - (void)buyLearnDraw:(NSString *)opusId
+               price:(int)price
+            fromView:(UIView *)fromView
        resultHandler:(RequestDictionaryResultHandler)handler
 {
+    
+    if (![[AccountService defaultService] hasEnoughBalance:price
+                                                 currency:PBGameCurrencyIngot]) {
+        [BalanceNotEnoughAlertView showInController:[fromView theViewController]];
+        return;
+    }
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{PARA_OPUS_ID : opusId,
@@ -71,6 +85,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         dispatch_async(dispatch_get_main_queue(), ^{
             if (resultCode == ERROR_SUCCESS) {
                 [[LearnDrawManager defaultManager] addBoughtOpusId:opusId];
+                [[AccountService defaultService] chargeIngot:-price source:ChargeLearnDraw];
             }
             EXECUTE_BLOCK(handler,nil,resultCode);
         });

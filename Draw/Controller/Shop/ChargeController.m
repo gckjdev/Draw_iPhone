@@ -143,7 +143,8 @@
 
 - (void)updateTaobaoLinkView
 {
-    if ([LocaleUtils isChina] && [ConfigManager isInReviewVersion] == NO) {
+    if (([LocaleUtils isChina] || [LocaleUtils isChinese])
+        && [ConfigManager isInReviewVersion] == NO) {
         self.taobaoLinkView.hidden = NO;
     } else {
         self.taobaoLinkView.hidden = YES;

@@ -357,4 +357,9 @@
     return @"alipaycchh.gckj";
 }
 
+- (BOOL)isAutoRegister
+{
+    return NO;
+}
+
 @end

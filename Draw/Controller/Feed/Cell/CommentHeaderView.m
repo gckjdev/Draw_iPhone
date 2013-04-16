@@ -86,7 +86,7 @@
             return [self buttonWithType:CommentTypeComment];
         case CommentTypeFlower:
             return [self buttonWithType:CommentTypeGuess];
-        case CommentTypeTomato:
+        case CommentTypeSave:
             return [self buttonWithType:CommentTypeFlower];
         case CommentTypeComment:
         default:
@@ -130,9 +130,9 @@
     line = [self splitLineWithType:CommentTypeFlower];
     [line setCenter:[self splitLineCenter:CommentTypeFlower]];
     
-    //update flower | tomato
-    line = [self splitLineWithType:CommentTypeTomato];
-    [line setCenter:[self splitLineCenter:CommentTypeTomato]];
+    //update flower | save
+    line = [self splitLineWithType:CommentTypeSave];
+    [line setCenter:[self splitLineCenter:CommentTypeSave]];
 }
 
 - (void)updateButtonWithType:(CommentType)type 
@@ -180,9 +180,13 @@
                          times:feed.flowerTimes 
                         format:NSLS(@"kFlowerTimes")];
     
-    [self updateButtonWithType:CommentTypeTomato
-                         times:feed.tomatoTimes 
-                        format:NSLS(@"kTomatoTimes")];
+    [self updateButtonWithType:CommentTypeSave
+                         times:feed.saveTimes
+                        format:NSLS(@"kCollectTimes")];
+    
+//    [self updateButtonWithType:CommentTypeTomato
+//                         times:feed.tomatoTimes 
+//                        format:NSLS(@"kTomatoTimes")];
 }
 
 @end

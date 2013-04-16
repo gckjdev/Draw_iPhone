@@ -74,6 +74,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="355539151"/>
 						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">123</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>

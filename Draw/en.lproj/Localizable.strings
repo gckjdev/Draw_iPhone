@@ -884,6 +884,7 @@
 "kGuessTimes" = "Guess(%d)";
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
+"kCollectTimes" = "Collection(%d)";
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";
@@ -1254,13 +1255,20 @@
 //learn draw
 "kLearnDrawAll" = "All";
 "kLearnDrawCartoon" = "Cartoon";
-"kLearnDrawCharater" = "Charater";
-"kLearnDrawScenery" = "Scenery";
+"kLearnDrawCharater" = "Human";
+"kLearnDrawScenery" = "Scence";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
 "kManageLearnDraw" = "Manage draw";
 "kRemoveLearnDraw" = "Remove draw";
+
+
+"kLearnDrawPreviewTitle" = "Draw Image";
+"kLearnDrawPreview" = "Preview";
+"kLearnDrawBuy" = "Buy & Play";
+"kBuyToPlayTitle" = "Buy It";
+"kBuyToPlayMesaage" = "Buy and play it to the end?";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -31,6 +31,8 @@
 #import "ConfigManager.h"
 #import "UIImageUtil.h"
 
+#import "TimeUtils.h"
+
 @interface ShareAction ()
 {
     NSInteger buttonIndexAlbum;
@@ -387,6 +389,8 @@
 
 - (void)saveToLocal
 {
+    
+    
     [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     if (self.feed.pbDrawData) {
         [[DrawDataService defaultService] savePaintWithPBDraw:self.feed
@@ -612,7 +616,9 @@
     [self.superViewController hideActivity];
     if (succ) {
          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
-        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
+        
+        // remove due to it's reported now
+//        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
     }
 }
 

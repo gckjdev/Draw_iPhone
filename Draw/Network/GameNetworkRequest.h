@@ -163,7 +163,8 @@
                                appId:(NSString*)appId
                               gameId:(NSString*)gameId
                             deviceId:(NSString*)deviceId
-                         deviceToken:(NSString*)deviceToken;
+                         deviceToken:(NSString*)deviceToken
+                        autoRegister:(BOOL)autoRegister;
 
 + (CommonNetworkOutput*)newLoginUser:(NSString*)baseURL
                                appId:(NSString*)appId

@@ -93,13 +93,13 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">coin@2x.png</string>
+									<string key="NSResourceName">ingot@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="372626250">
 								<reference key="NSNextResponder" ref="748572441"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20.5, -0.5}, {26, 25}}</string>
+								<string key="NSFrame">{{21.5, -0.5}, {26, 25}}</string>
 								<reference key="NSSuperview" ref="748572441"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="581931353"/>
@@ -391,8 +391,6 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="author">UILabel</string>
-						<string key="boughtCountLabel">UILabel</string>
-						<string key="costLabel">UILabel</string>
 						<string key="cupFlag">UIImageView</string>
 						<string key="drawFlag">UIImageView</string>
 						<string key="drawImage">UIImageView</string>
@@ -402,14 +400,6 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="author">
 							<string key="name">author</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="boughtCountLabel">
-							<string key="name">boughtCountLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="costLabel">
-							<string key="name">costLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cupFlag">
@@ -445,7 +435,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
+			<string key="ingot@2x.png">{64, 64}</string>
 			<string key="learndraw_bought@2x.png">{45, 53}</string>
 			<string key="learndraw_mark@2x.png">{22, 22}</string>
 		</dictionary>

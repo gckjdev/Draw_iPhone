@@ -21,6 +21,9 @@
 #import "UserGameItemManager.h"
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
+#import "CommonDialog.h"
+#import "LearnDrawService.h"
+#import "ShareAction.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
@@ -34,7 +37,6 @@
 @interface ReplayView()
 {
     NSInteger curPlayIndex;
-    ShowDrawView *_showView;
     UIView *_maskView;
 }
 
@@ -44,7 +46,7 @@
 @property (retain, nonatomic) IBOutlet UIControl *playerToolMask;
 
 
-@property (retain, nonatomic) IBOutlet UIView *toolPanel;
+@property (retain, nonatomic) IBOutlet UIControl *toolPanel;
 @property (retain, nonatomic) IBOutlet UIImageView *playProgressLoader;
 @property (retain, nonatomic) IBOutlet UIButton *playProgressPoint;
 @property (retain, nonatomic) IBOutlet UIButton *playButton;
@@ -110,11 +112,15 @@
 }
 
 - (IBAction)clickCloseButton:(id)sender {
+    [self.showView stop];
     [_maskView removeFromSuperview];
     self.showView.delegate = nil;
     [self.showView removeFromSuperview];
     self.showView = nil;
     self.superController = nil;
+    [self.holderView setContentView:nil];
+    [self.holderView removeFromSuperview];
+    self.holderView = nil;
     [self removeFromSuperview];
 }
 
@@ -151,6 +157,7 @@
     [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
 }
 
+
 - (void)showInController:(PPViewController *)controller
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
@@ -162,7 +169,11 @@
 }
 
 - (void)dealloc {
+
+    
     PPDebug(@"dealloc %@", [self description]);
+    _drawFeed.drawImage = nil;
+    PPRelease(_drawFeed);
     PPRelease(_holderView);
     PPRelease(_showView);
     PPRelease(_toolPanel);
@@ -174,6 +185,7 @@
     PPRelease(_speedPoint);
     PPRelease(_maskView);
     PPRelease(_playerToolMask);
+    
     [super dealloc];
 }
 
@@ -385,13 +397,16 @@
 
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
-    if (![self hasBounghtPlayer]) {
+    if (![self hasBounghtPlayer] && !isLearnDrawApp()) {
             [BuyItemView showOnlyBuyItemView:PaintPlayerItem inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == ERROR_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
                 self.playerToolMask = nil;
             }
         }];
+    }else{
+        [self.playerToolMask removeFromSuperview];
+        self.playerToolMask = nil;        
     }
 }
 
@@ -413,10 +428,54 @@
     [self endToPlay];
 }
 
+
+- (void)buyAndPlayDraw:(DrawFeed *)feed
+{
+    __block ReplayView *cp = self;
+    [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
+                                              price:self.drawFeed.learnDraw.price
+                                           fromView:self
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+        if (resultCode == 0) {
+            [cp setEndIndex:0];
+            [cp setPlayControlsDisable:NO];
+            [cp clickPlay:cp.playButton];
+
+            ShareAction *share = [[ShareAction alloc]
+                                  initWithFeed:cp.drawFeed
+                                        image:cp.drawFeed.drawImage];
+            [share saveToLocal];
+            [share release];
+
+            
+        }else{
+            //TODO show error message
+        }
+    }];
+}
+
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
+    if (isLearnDrawApp() && actionIndex > self.endIndex && self.endIndex != 0) {
+//        [showDrawView stop];
+        [self.playButton setEnabled:YES];
+        [self clickPlay:self.playButton];
+        [self.playButton setEnabled:NO];
+        __block ReplayView *cp = self;
+        
+        [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
+                                       style:CommonDialogStyleDoubleButton
+                                    delegate:nil
+                                clickOkBlock:^{
+                                    [cp buyAndPlayDraw:cp.drawFeed];
+            
+        } clickCancelBlock:^{
+            
+        }] showInView:[self theTopView]];
+         
+    }
     //move progress
     if (curPlayIndex != actionIndex) {
         curPlayIndex = actionIndex;
@@ -430,5 +489,16 @@
     [self.speedPanel setHidden:YES];
 }
 
+- (void)setPlayControlsDisable:(BOOL)disable
+{
+    for (UIControl *control in self.subviews) {
+        if ([control isKindOfClass:[UIControl class]] && control.tag != 123) {
+            [control setEnabled:!disable];
+            for (UIControl *control2 in control.subviews) {
+                [control2 setEnabled:!disable];
+            }
+        }
+    }
 
+}
 @end

@@ -148,18 +148,19 @@
         index = [self.drawActionList count];
     }
     
-//    [self resetView];
+    [self resetView];
 
-    if (_playingActionIndex > index || _playingActionIndex <= 0) {
-        [self resetView];
-    }else{
-        [self setStatus:Stop];
-        [[osManager enteryScreen] clear];
-        _playingPointIndex = 0;
-        self.tempAction = nil;
-        _currentAction = nil;
-        pen.hidden = YES;
-    }
+//    if (_playingActionIndex > index || _playingActionIndex <= 0) {
+//        [self resetView];
+//    }else{
+//        [self setStatus:Stop];
+//        [[osManager enteryScreen] clear];
+//        _playingPointIndex = 0;
+//        self.tempAction = nil;
+//        _currentAction = nil;
+//        pen.hidden = YES;
+//    }
+
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [[osManager bottomScreen] drawAction:action clear:NO];
@@ -264,6 +265,7 @@
                       delegate:(id<ShowDrawViewDelegate>)delegate
 {
     ShowDrawView *showView = [[[ShowDrawView alloc] initWithFrame:frame] autorelease];
+    
     if ([actionList isKindOfClass:[NSMutableArray class]]) {
         showView.drawActionList = (NSMutableArray *)actionList;
     }else{

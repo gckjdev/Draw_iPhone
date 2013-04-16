@@ -73,6 +73,11 @@
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
 }
 
++ (int)getPreviewActionCount
+{
+    return [MobClickUtils getIntValueByKey:@"PREVIEW_ACTION_COUNT" defaultValue:50];
+}
+
 + (NSString*)getTrafficAPIServerURL
 {
     if ([LocaleUtils isChina]){

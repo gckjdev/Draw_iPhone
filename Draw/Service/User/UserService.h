@@ -22,6 +22,7 @@ typedef enum {
 @class MyFriend;
 @class PBGameUser;
 
+typedef void(^AutoResgistrationResultBlock)(BOOL isAlreadyRegistered, int resultCode, PBGameUser* user);
 typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user, int relation);
 typedef void(^UpdateUserResultBlock)(int resultCode);
 typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
@@ -127,5 +128,11 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 
 - (BOOL)checkAndAskLogin:(UIView*)view;
+
+- (BOOL)autoRegisteration:(AutoResgistrationResultBlock)resultBlock;
+
+- (void)loginByDeviceWithViewController:(PPViewController*)homeController
+                           autoRegister:(BOOL)autoRegister
+                            resultBlock:(AutoResgistrationResultBlock)resultBlock;
 
 @end

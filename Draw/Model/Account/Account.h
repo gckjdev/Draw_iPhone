@@ -44,6 +44,8 @@ typedef enum  {
     ChargeViaAppleAccount = 430,
     ChargeViaAlipay = 431,
     
+    ChargeLearnDraw = 450,
+    
 }BalanceSourceType;
 
 @interface UserAccount : NSObject
