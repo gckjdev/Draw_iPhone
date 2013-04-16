@@ -8961,6 +8961,8 @@
 		CAE5ADE0171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
 		CAE5ADE1171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
 		CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5ADDD171BABDA009BFDC1 /* LearnDrawPreViewController~ipad.xib */; };
+		CAE5ADE6171D214C009BFDC1 /* draw_tool_button_selected_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFFDFCE170EFD5100976D80 /* draw_tool_button_selected_bg@2x.png */; };
+		CAE5ADE7171D214C009BFDC1 /* draw_tool_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837474170B1D6100AE46ED /* draw_tool_button_bg@2x.png */; };
 		CAE8B15115E4A24F0098A565 /* BoardPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE8B15015E4A24E0098A565 /* BoardPanel~ipad.xib */; };
 		CAE9AA0216D632CB008392F9 /* dice_home_header_foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */; };
 		CAE9AA0316D632CB008392F9 /* dice_home_header_man@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */; };
@@ -21440,6 +21442,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE5ADE6171D214C009BFDC1 /* draw_tool_button_selected_bg@2x.png in Resources */,
+				CAE5ADE7171D214C009BFDC1 /* draw_tool_button_bg@2x.png in Resources */,
 				CAE5AD8D17184AD8009BFDC1 /* UserSettingCell.xib in Resources */,
 				CAE5AD8E17184AD8009BFDC1 /* UserSettingCell~ipad.xib in Resources */,
 				CAE5AD8017184732009BFDC1 /* draw_player_bg@2x.png in Resources */,

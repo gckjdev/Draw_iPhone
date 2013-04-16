@@ -26,10 +26,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawManager)
     self = [super init];
     if (self) {
         NSArray *list = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_BOUGHT_LEARNDRAW_LIST];
-        if (_boughtSet == nil) {
-            _boughtSet = [NSMutableSet set];
+        _boughtSet = [[NSMutableSet set] retain];
+        if ([list count] != 0) {
+            [_boughtSet addObjectsFromArray:list];
         }
-        [_boughtSet retain];
     }
     return self;
 }
