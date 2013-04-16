@@ -10,6 +10,7 @@
 #import "LocaleUtils.h"
 #import "PPApplication.h"
 #import "UserManager.h"
+#import "UIUtils.h"
 
 #define KEY_GUESS_DIFF_LEVEL    @"KEY_GUESS_DIFF_LEVEL"
 #define KEY_CHAT_VOICE_ENABLE   @"KEY_CHAT_VOICE_ENABLE"
@@ -919,5 +920,20 @@
 {
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL" defaultValue:@"http://www.xxx.com"];
 }
+
++ (NSString *)getLastAppVersion
+{
+    return [MobClickUtils getStringValueByKey:@"APP_LAST_VERSION" defaultValue:[UIUtils getAppVersion]];
+}
+
++ (NSString *)getLastAppVersionUpdateLog
+{
+    if ([LocaleUtils isChina] || [LocaleUtils isChinese]) {
+        return [MobClickUtils getStringValueByKey:@"APP_LAST_VERSION_UPDATE_LOG_CHINESE" defaultValue:@""];
+    }else{
+        return [MobClickUtils getStringValueByKey:@"APP_LAST_VERSION_UPDATE_LOG_ENGLISH" defaultValue:@""];
+    }
+}
+
 
 @end

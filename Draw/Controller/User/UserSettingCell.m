@@ -100,6 +100,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
     [_backgroundImageView release];
     [_customSeparatorLine release];
     [_customAccessory release];
+    [_badgeHolderView release];
     [super dealloc];
 }
 @end

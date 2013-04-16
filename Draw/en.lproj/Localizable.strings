@@ -258,9 +258,12 @@
 
 "kNewVersionMessage" = "Found new version %@, do you want to upgrade?";
 "kNewVersionTitle" = "New Version";
+"kFindNewVersion" = "There is a new version ";
+
 
 "Remind Later" = "Later";
-"Upgrade Now" = "Upgrade";
+"kIgnoreThisVersion" = "Ignore";
+"kUpgradeNow" = "Upgrade";
 "OK" = "OK";
 "Cancel" = "Cancel";
 

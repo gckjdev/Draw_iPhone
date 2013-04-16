@@ -151,9 +151,9 @@
     } else if (anIndex == rowOfAppUpdate){
         [aCell.customTextLabel setText:[NSString stringWithFormat:NSLS(@"kAppUpdate"), [UIUtils getAppVersion]]];
         if ([UIUtils checkAppHasUpdateVersion]) {
-            aCell.accessoryView = [self badgeView];
+            [aCell.badgeHolderView addSubview:[self badgeView]];
         }else{
-            aCell.accessoryView = nil;
+            [aCell.badgeHolderView removeAllSubviews];
         }
     } else if (anIndex == rowOfCleanCache) {
         [aCell.customTextLabel setText:NSLS(@"kCleanCache")];

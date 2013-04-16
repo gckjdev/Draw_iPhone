@@ -210,7 +210,7 @@ NSString* GlobalGetBoardServerURL()
 #ifdef DEBUG
     [MobClick setLogEnabled:YES];
 #endif
-    
+        
     // clear all badges
     application.applicationIconBadgeNumber = 0;
 
@@ -222,8 +222,6 @@ NSString* GlobalGetBoardServerURL()
         
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];
-    
-    
 
 
 #ifdef DEBUG
@@ -333,8 +331,10 @@ NSString* GlobalGetBoardServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-    
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
+    
+    [UIUtils checkAppVersion];
+    
     return YES;
 }
 

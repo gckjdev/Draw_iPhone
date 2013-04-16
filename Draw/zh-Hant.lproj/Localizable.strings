@@ -263,10 +263,12 @@
 "kInvalidEmail" = "輸入的電子郵件地址不合法，請重新輸入。";
 
 "kNewVersionMessage" = "檢測到有新版本[%@]，是否要升級到最新版本？";
-"kNewVersionTitle" = "版本升級";
+"kNewVersionTitle" = "發現新版本";
+"kFindNewVersion" = "发现新版本";
 
 "Remind Later" = "下次提醒";
-"Upgrade Now" = "馬上升級";
+"kIgnoreThisVersion" = "忽略此版本";
+"kUpgradeNow" = "馬上升級";
 "OK" = "確定";
 "Cancel" = "取消";
 
