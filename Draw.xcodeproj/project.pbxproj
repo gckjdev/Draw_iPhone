@@ -2461,7 +2461,6 @@
 		CA12046F1712A98F00FEFB41 /* ReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E662601521B91900487601 /* ReportController.xib */; };
 		CA1204701712A98F00FEFB41 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		CA1204711712A98F00FEFB41 /* ShareEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6629E152463B900487601 /* ShareEditController.xib */; };
-		CA1204721712A98F00FEFB41 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		CA1204731712A98F00FEFB41 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		CA1204741712A98F00FEFB41 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8D602C1531C98400E016ED /* Default@2x.png */; };
 		CA1204751712A98F00FEFB41 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
@@ -21522,7 +21521,6 @@
 				CA12046F1712A98F00FEFB41 /* ReportController.xib in Resources */,
 				CA1204701712A98F00FEFB41 /* ShareController.xib in Resources */,
 				CA1204711712A98F00FEFB41 /* ShareEditController.xib in Resources */,
-				CA1204721712A98F00FEFB41 /* Localizable.strings in Resources */,
 				CA1204731712A98F00FEFB41 /* ShareCell.xib in Resources */,
 				CA1204741712A98F00FEFB41 /* Default@2x.png in Resources */,
 				CA1204751712A98F00FEFB41 /* AboutUsController.xib in Resources */,
