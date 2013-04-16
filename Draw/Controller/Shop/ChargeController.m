@@ -208,7 +208,9 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
-    if ([LocaleUtils isChina] == NO) {
+    if (!(([LocaleUtils isChina] || [LocaleUtils isChinese])
+        && [ConfigManager isInReviewVersion] == NO)) {
+                
         PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
         [self applePayForProduct:product];
         return;
