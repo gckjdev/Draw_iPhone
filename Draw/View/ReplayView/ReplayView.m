@@ -128,7 +128,6 @@
     if (pop) {
         controller = [self theViewController];
     }
-    [self theViewController];
     [self removeFromSuperview];
     
     if (pop) {
