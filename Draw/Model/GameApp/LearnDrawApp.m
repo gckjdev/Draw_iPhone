@@ -190,7 +190,7 @@
 
 - (BOOL)supportWeixin
 {
-    return YES;
+    return NO;
 }
 
 - (NSString*)homeHeaderViewId
