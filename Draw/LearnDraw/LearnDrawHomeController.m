@@ -26,6 +26,7 @@
 #import "Draw.h"
 #import "LearnDrawPreViewController.h"
 
+
 @interface LearnDrawHomeController ()
 {
     NSInteger  _tryTimes;
@@ -75,7 +76,6 @@
 
 - (void)updateBoughtList
 {
-    
     __block LearnDrawHomeController *cp = self;
     [[LearnDrawService defaultService] getAllBoughtLearnDrawIdListWithResultHandler:^(NSArray *array, NSInteger resultCode) {
         if (resultCode != 0 && (++_tryTimes)  < MAX_TRYTIMES) {

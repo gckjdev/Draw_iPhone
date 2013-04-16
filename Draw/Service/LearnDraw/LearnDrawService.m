@@ -26,11 +26,19 @@
 SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 
 
+- (NSString *)userId
+{
+    return [[UserManager defaultManager] userId];
+}
+
 - (void)addOpusToLearnDrawPool:(NSString *)opusId
                          price:(NSInteger)price
                           type:(LearnDrawType)type
                  resultHandler:(RequestDictionaryResultHandler)handler
 {
+    if ([[self userId] length] == 0) {
+        return;
+    }
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{PARA_OPUS_ID : opusId,
@@ -60,7 +68,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
             fromView:(UIView *)fromView
        resultHandler:(RequestDictionaryResultHandler)handler
 {
-    
+    if ([[self userId] length] == 0) {
+        return;
+    }
+
     if (![[AccountService defaultService] hasEnoughBalance:price
                                                  currency:PBGameCurrencyIngot]) {
         [BalanceNotEnoughAlertView showInController:[fromView theViewController]];
@@ -96,6 +107,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 - (void)removeLearnDraw:(NSString *)opusId
           resultHandler:(RequestDictionaryResultHandler)handler
 {
+    if ([[self userId] length] == 0) {
+        return;
+    }
+
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{PARA_OPUS_ID : opusId,
@@ -121,6 +136,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 
 - (void)getAllBoughtLearnDrawIdListWithResultHandler:(RequestArrayResultHandler)handler
 {
+    if ([[self userId] length] == 0) {
+        return;
+    }
+
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{
@@ -159,6 +178,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
                                        limit:(NSInteger)limit
                                ResultHandler:(RequestArrayResultHandler)handler
 {
+    if ([[self userId] length] == 0) {
+        return;
+    }
+
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{
@@ -198,10 +221,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
                                limit:(NSInteger)limit
                        ResultHandler:(RequestArrayResultHandler)handler
 {
+    NSString *userId = [self userId];
+    if ([userId length] == 0) {
+        userId = @""
+    }
+
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary *dict = @{
-                               PARA_USERID : [[UserManager defaultManager] userId],
+                               PARA_USERID : userId,
                                PARA_APPID : [ConfigManager appId],
                                PARA_OFFSET: [@(offset) stringValue],
                                PARA_LIMIT : [@(limit) stringValue],
