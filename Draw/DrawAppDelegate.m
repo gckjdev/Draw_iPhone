@@ -210,7 +210,7 @@ NSString* GlobalGetBoardServerURL()
 #ifdef DEBUG
     [MobClick setLogEnabled:YES];
 #endif
-    
+        
     // clear all badges
     application.applicationIconBadgeNumber = 0;
 
@@ -222,8 +222,6 @@ NSString* GlobalGetBoardServerURL()
         
     [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];
-    
-    
 
 
 #ifdef DEBUG
@@ -248,7 +246,7 @@ NSString* GlobalGetBoardServerURL()
         [DiceFontManager unZipFiles];
     }
 
-    if (!isDrawApp()){
+    if (!isDrawApp() && !isLearnDrawApp()){
         [[CommonHelpManager defaultManager] unzipHelpFiles];
     }
     
@@ -313,12 +311,12 @@ NSString* GlobalGetBoardServerURL()
     self.window.rootViewController = navigationController;
     
     // Init SNS service
-    [self initSNSService];    
+    [self initSNSService];
     
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    if (isDrawApp() == NO){
+    if (isDrawApp() == NO && isLearnDrawApp() == NO){
         // no longer used for Draw App
         // TODO can be removed after ZJH and DICE is used new item & shop design PB files
         [[PriceService defaultService] syncShoppingListAtBackground];
@@ -333,8 +331,10 @@ NSString* GlobalGetBoardServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-    
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
+    
+    [UIUtils checkAppVersion];
+    
     return YES;
 }
 
