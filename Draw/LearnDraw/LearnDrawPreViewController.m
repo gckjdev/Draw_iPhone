@@ -141,6 +141,7 @@
     }
     
     __block LearnDrawPreViewController *cp = self;
+    [self showProgressViewWithMessage:NSLS(@"kLoading")];
     [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
         if (resultCode == 0 && pbDrawData) {
             cp.feed.pbDrawData = pbDrawData;
@@ -161,9 +162,26 @@
         }else{
             //TODO show error message
         }
-    } downloadDelegate:nil]; //TODO show download progress...
+        
+        [cp hideProgressView];
+        
+    } downloadDelegate:self];
 
 }
+
+// progress download delegate
+- (void)setProgress:(CGFloat)progress
+{
+    if (progress == 1.0f){
+        // make this because after uploading data, it takes server sometime to process
+        progress = 0.99;
+    }
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+    [self.progressView setLabelText:progressText];
+    [self.progressView setProgress:progress];
+}
+
 
 - (IBAction)clickPreview:(id)sender {
     PPDebug(@"clickPreview");
