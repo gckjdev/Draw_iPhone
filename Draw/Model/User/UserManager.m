@@ -141,6 +141,11 @@ static UserManager* _defaultManager;
     else{
         PPDebug(@"<loadUserData> success, userId=%@, nickName=%@", [_pbUser userId], [_pbUser nickName]);
     }
+    
+    // set device token if needed
+    if ([[self.pbUser deviceToken] length] == 0){
+        [self setDeviceToken:[self deviceTokenFromOldStorage]];
+    }
 }
 
 - (void)storeUserData
@@ -213,12 +218,7 @@ static UserManager* _defaultManager;
 
 - (NSString*)deviceToken
 {
-//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSString* value = [userDefaults objectForKey:KEY_DEVICE_TOKEN];
-//    return value;    
-
     return [_pbUser deviceToken];
-
 }
 
 - (NSString*)deviceTokenFromOldStorage
@@ -504,20 +504,22 @@ static UserManager* _defaultManager;
 
 - (void)setLocation:(NSString*)location
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (location == nil)
         return;
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setLocation:location];
     self.pbUser = [builder build];
-    
-//    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setObject:location forKey:KEY_LOCATION];    
-//    [userDefaults synchronize];        
 }
 
 - (void)setGender:(NSString*)gender
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (gender == nil)
         return;
     
@@ -532,6 +534,9 @@ static UserManager* _defaultManager;
 
 - (void)setNickName:(NSString *)nickName
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (nickName == nil)
         return;
     
@@ -548,6 +553,9 @@ static UserManager* _defaultManager;
 
 - (void)setExperience:(long)exp
 {
+    if (self.pbUser == nil)
+        return;
+    
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setExperience:exp];
     self.pbUser = [builder build];
@@ -556,6 +564,9 @@ static UserManager* _defaultManager;
 
 - (void)setLevel:(int)level
 {
+    if (self.pbUser == nil)
+        return;
+
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setLevel:level];
     self.pbUser = [builder build];
@@ -564,6 +575,9 @@ static UserManager* _defaultManager;
 
 - (void)setEmail:(NSString *)email
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (email == nil)
         return;
     
@@ -579,6 +593,9 @@ static UserManager* _defaultManager;
 
 - (void)setFacetimeId:(NSString *)facetimeId
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (facetimeId == nil)
         return;
     
@@ -594,6 +611,9 @@ static UserManager* _defaultManager;
 
 - (void)setBirthday:(NSString *)birthdayString
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (birthdayString == nil)
         return;
     
@@ -605,6 +625,8 @@ static UserManager* _defaultManager;
 
 - (void)setZodiac:(NSInteger)zodiac
 {
+    if (self.pbUser == nil)
+        return;    
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setZodiac:zodiac];
@@ -633,6 +655,9 @@ static UserManager* _defaultManager;
 
 - (void)setBloodGroup:(NSString*)bloodGroup
 {
+    if (self.pbUser == nil)
+        return;
+    
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setBloodGroup:bloodGroup];
     self.pbUser = [builder build];
@@ -640,13 +665,16 @@ static UserManager* _defaultManager;
 
 - (void)setSignature:(NSString *)signature
 {
+    if (self.pbUser == nil)
+        return;
+
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setSignature:signature];
     self.pbUser = [builder build];
 }
 
 - (void)setUserId:(NSString *)userId
-{
+{    
     if (userId == nil)
         return;
     
@@ -675,6 +703,14 @@ static UserManager* _defaultManager;
 {
     if (deviceToken == nil)
         return;
+
+    if (self.pbUser == nil){
+        PPDebug(@"<setDeviceToken> but user not found, store into user defaults");
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:deviceToken forKey:KEY_DEVICE_TOKEN];
+        [userDefaults synchronize];
+        return;
+    }
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setDeviceToken:deviceToken];
@@ -684,6 +720,9 @@ static UserManager* _defaultManager;
 
 - (void)setPassword:(NSString*)password
 {
+    if (self.pbUser == nil)
+        return;
+    
     if (password == nil)
         return;
     
@@ -700,6 +739,9 @@ static UserManager* _defaultManager;
 
 - (void)setAvatar:(NSString*)avatarURL
 {
+    if (self.pbUser == nil)
+        return;
+    
     if ([avatarURL length] == 0)
         return;
     
@@ -717,6 +759,9 @@ static UserManager* _defaultManager;
 
 - (void)setBackground:(NSString*)url
 {
+    if (self.pbUser == nil)
+        return;
+    
     if ([url length] == 0)
         return;
     
@@ -833,6 +878,9 @@ static UserManager* _defaultManager;
     else{
         [newData addObject:user];
     }
+    
+    if (self.pbUser == nil)
+        return;
     
     // update sns user list
     PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
@@ -995,6 +1043,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setLanguageType:(LanguageType)type
 {
+    if (self.pbUser == nil)
+        return;
+    
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setGuessWordLanguage:type];
     self.pbUser = [builder build];
@@ -1288,13 +1339,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     
     // return a PBGame User structure here
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
-//    [builder setUserId:[self userId]];
-//    [builder setNickName:[self nickName]];    
-//    [builder setAvatar:[self avatarURL]];
-//    
-//    [builder setLocation:[self location]];
-//    [builder setGender:[self.gender isEqualToString:@"m"]];
-//    [builder setFacetimeId:[self facetimeId]];
     for (PBKeyValue* kValue in keyValueArray) {
         [builder addAttributes:kValue];
     }
