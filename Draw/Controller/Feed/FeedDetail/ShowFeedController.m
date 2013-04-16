@@ -615,12 +615,14 @@ enum{
 
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
-        [cp.feed parseDrawData];
+        if (self.feed.drawData == nil) {
+            [cp.feed parseDrawData];
+        }
         [replay showInController:cp
                   withActionList:cp.feed.drawData.drawActionList
                     isNewVersion:[cp.feed.drawData isNewVersion]
                             size:cp.feed.drawData.canvasSize];
-        self.feed.drawData = nil;
+//        self.feed.drawData = nil;
     }];
     
 }
