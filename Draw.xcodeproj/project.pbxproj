@@ -434,7 +434,6 @@
 		A48B0988169E675700B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B098D169E97DB00B56975 /* FreeCoinsControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B098B169E97DB00B56975 /* FreeCoinsControllerViewController.m */; };
 		A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
-		A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
 		A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
@@ -696,7 +695,6 @@
 		A4FA549216A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA549316A7ABC0001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		A4FA549416A7ABC1001883CC /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
-		A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */; };
 		A4FA550216A8FA3B001883CC /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
 		A4FA550316A8FA3B001883CC /* free_coins_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550016A8FA3B001883CC /* free_coins_title_bg@2x.png */; };
 		A4FA550416A8FA3B001883CC /* money_tree_note_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA550116A8FA3B001883CC /* money_tree_note_bg@2x.png */; };
@@ -2975,7 +2973,6 @@
 		CA1206E31712A98F00FEFB41 /* iOS-shengmeng-SDK-help.html in Resources */ = {isa = PBXBuildFile; fileRef = A4D4ECCE169C154200079C88 /* iOS-shengmeng-SDK-help.html */; };
 		CA1206E41712A98F00FEFB41 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		CA1206E51712A98F00FEFB41 /* FreeCoinsControllerViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A48B098C169E97DB00B56975 /* FreeCoinsControllerViewController~ipad.xib */; };
-		CA1206E61712A98F00FEFB41 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		CA1206E71712A98F00FEFB41 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		CA1206E81712A98F00FEFB41 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		CA1206E91712A98F00FEFB41 /* shop_item_alpha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDE169ED04500E00258 /* shop_item_alpha@2x.png */; };
@@ -3006,7 +3003,6 @@
 		CA1207051712A98F00FEFB41 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = CA98890D16A6B7E40050AC78 /* README.mdown */; };
 		CA1207061712A98F00FEFB41 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA98892516A6B7E50050AC78 /* MWPhotoBrowser.bundle */; };
 		CA1207071712A98F00FEFB41 /* auto_recovery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BB4EBD16A7DCFA008D3004 /* auto_recovery@2x.png */; };
-		CA1207081712A98F00FEFB41 /* draw_home_play_with_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54C916A7EE0B001883CC /* draw_home_play_with_friend@2x.png */; };
 		CA12070E1712A98F00FEFB41 /* free_coins_remain_time_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4FA54FF16A8FA3B001883CC /* free_coins_remain_time_bg@2x.png */; };
 		CA1207121712A98F00FEFB41 /* DrawRoomListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B416AE2D090076064D /* DrawRoomListCell.xib */; };
 		CA1207131712A98F00FEFB41 /* DrawRoomListCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F310B616AE2D240076064D /* DrawRoomListCell~ipad.xib */; };
@@ -3256,13 +3252,11 @@
 		CA12612A16785F0D00DD96F4 /* common_home_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610216785F0D00DD96F4 /* common_home_shop@2x.png */; };
 		CA12612B16785F0D00DD96F4 /* common_home_splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610316785F0D00DD96F4 /* common_home_splitline@2x.png */; };
 		CA12612D16785F0D00DD96F4 /* draw_home_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610616785F0D00DD96F4 /* draw_home_banner@2x.png */; };
-		CA12612E16785F0D00DD96F4 /* draw_home_charge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610716785F0D00DD96F4 /* draw_home_charge@2x.png */; };
 		CA12612F16785F0D00DD96F4 /* draw_home_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610816785F0D00DD96F4 /* draw_home_contest@2x.png */; };
 		CA12613016785F0D00DD96F4 /* draw_home_displaybg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610916785F0D00DD96F4 /* draw_home_displaybg@2x.png */; };
 		CA12613116785F0D00DD96F4 /* draw_home_draw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610A16785F0D00DD96F4 /* draw_home_draw@2x.png */; };
 		CA12613216785F0D00DD96F4 /* draw_home_guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610B16785F0D00DD96F4 /* draw_home_guess@2x.png */; };
 		CA12613416785F0D00DD96F4 /* draw_home_online_guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610D16785F0D00DD96F4 /* draw_home_online_guess@2x.png */; };
-		CA12613516785F0D00DD96F4 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610E16785F0D00DD96F4 /* draw_home_task@2x.png */; };
 		CA12613616785F0D00DD96F4 /* draw_home_timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610F16785F0D00DD96F4 /* draw_home_timeline@2x.png */; };
 		CA12613716785F0D00DD96F4 /* draw_home_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611016785F0D00DD96F4 /* draw_home_top@2x.png */; };
 		CA12613D16785F0D00DD96F4 /* zjh_home_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611716785F0D00DD96F4 /* zjh_home_help@2x.png */; };
@@ -5658,7 +5652,6 @@
 		CA25C42A16899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		CA25C42B16899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		CA29EA8416A526BB003B1434 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
-		CA29EA8516A526CE003B1434 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		CA29EA8616A526CE003B1434 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		CA29EA8716A526CF003B1434 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		CA29EA8816A526D4003B1434 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
@@ -8442,13 +8435,11 @@
 		CAB5CBA316994F0200A4CE3B /* common_home_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610216785F0D00DD96F4 /* common_home_shop@2x.png */; };
 		CAB5CBA416994F0200A4CE3B /* common_home_splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610316785F0D00DD96F4 /* common_home_splitline@2x.png */; };
 		CAB5CBA616994F0200A4CE3B /* draw_home_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610616785F0D00DD96F4 /* draw_home_banner@2x.png */; };
-		CAB5CBA716994F0200A4CE3B /* draw_home_charge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610716785F0D00DD96F4 /* draw_home_charge@2x.png */; };
 		CAB5CBA816994F0200A4CE3B /* draw_home_contest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610816785F0D00DD96F4 /* draw_home_contest@2x.png */; };
 		CAB5CBA916994F0200A4CE3B /* draw_home_displaybg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610916785F0D00DD96F4 /* draw_home_displaybg@2x.png */; };
 		CAB5CBAA16994F0200A4CE3B /* draw_home_draw@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610A16785F0D00DD96F4 /* draw_home_draw@2x.png */; };
 		CAB5CBAB16994F0200A4CE3B /* draw_home_guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610B16785F0D00DD96F4 /* draw_home_guess@2x.png */; };
 		CAB5CBAD16994F0200A4CE3B /* draw_home_online_guess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610D16785F0D00DD96F4 /* draw_home_online_guess@2x.png */; };
-		CAB5CBAE16994F0200A4CE3B /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610E16785F0D00DD96F4 /* draw_home_task@2x.png */; };
 		CAB5CBAF16994F0200A4CE3B /* draw_home_timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12610F16785F0D00DD96F4 /* draw_home_timeline@2x.png */; };
 		CAB5CBB016994F0200A4CE3B /* draw_home_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611016785F0D00DD96F4 /* draw_home_top@2x.png */; };
 		CAB5CBB616994F0200A4CE3B /* zjh_home_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA12611716785F0D00DD96F4 /* zjh_home_help@2x.png */; };
@@ -22035,7 +22026,6 @@
 				CA1206E31712A98F00FEFB41 /* iOS-shengmeng-SDK-help.html in Resources */,
 				CA1206E41712A98F00FEFB41 /* UMUFP.bundle in Resources */,
 				CA1206E51712A98F00FEFB41 /* FreeCoinsControllerViewController~ipad.xib in Resources */,
-				CA1206E61712A98F00FEFB41 /* draw_home_apps@2x.png in Resources */,
 				CA1206E71712A98F00FEFB41 /* draw_home_free_coins@2x.png in Resources */,
 				CA1206E81712A98F00FEFB41 /* TapjoyResources.bundle in Resources */,
 				CA1206E91712A98F00FEFB41 /* shop_item_alpha@2x.png in Resources */,
@@ -22066,7 +22056,6 @@
 				CA1207051712A98F00FEFB41 /* README.mdown in Resources */,
 				CA1207061712A98F00FEFB41 /* MWPhotoBrowser.bundle in Resources */,
 				CA1207071712A98F00FEFB41 /* auto_recovery@2x.png in Resources */,
-				CA1207081712A98F00FEFB41 /* draw_home_play_with_friend@2x.png in Resources */,
 				CA12070E1712A98F00FEFB41 /* free_coins_remain_time_bg@2x.png in Resources */,
 				CA1207121712A98F00FEFB41 /* DrawRoomListCell.xib in Resources */,
 				CA1207131712A98F00FEFB41 /* DrawRoomListCell~ipad.xib in Resources */,
@@ -25074,13 +25063,11 @@
 				CA12612A16785F0D00DD96F4 /* common_home_shop@2x.png in Resources */,
 				CA12612B16785F0D00DD96F4 /* common_home_splitline@2x.png in Resources */,
 				CA12612D16785F0D00DD96F4 /* draw_home_banner@2x.png in Resources */,
-				CA12612E16785F0D00DD96F4 /* draw_home_charge@2x.png in Resources */,
 				CA12612F16785F0D00DD96F4 /* draw_home_contest@2x.png in Resources */,
 				CA12613016785F0D00DD96F4 /* draw_home_displaybg@2x.png in Resources */,
 				CA12613116785F0D00DD96F4 /* draw_home_draw@2x.png in Resources */,
 				CA12613216785F0D00DD96F4 /* draw_home_guess@2x.png in Resources */,
 				CA12613416785F0D00DD96F4 /* draw_home_online_guess@2x.png in Resources */,
-				CA12613516785F0D00DD96F4 /* draw_home_task@2x.png in Resources */,
 				CA12613616785F0D00DD96F4 /* draw_home_timeline@2x.png in Resources */,
 				CA12613716785F0D00DD96F4 /* draw_home_top@2x.png in Resources */,
 				CA12613D16785F0D00DD96F4 /* zjh_home_help@2x.png in Resources */,
@@ -25284,7 +25271,6 @@
 				A4D4ECD2169C154200079C88 /* iOS-shengmeng-SDK-help.html in Resources */,
 				A48B0982169E664600B56975 /* UMUFP.bundle in Resources */,
 				A48B098E169E97DC00B56975 /* FreeCoinsControllerViewController~ipad.xib in Resources */,
-				A48B0991169E9C0A00B56975 /* draw_home_apps@2x.png in Resources */,
 				A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */,
 				A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */,
 				C297BFE0169ED04500E00258 /* shop_item_alpha@2x.png in Resources */,
@@ -25318,7 +25304,6 @@
 				CA988AD016A6B7E70050AC78 /* README.mdown in Resources */,
 				CA988AFC16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */,
 				C2BB4EBE16A7DCFA008D3004 /* auto_recovery@2x.png in Resources */,
-				A4FA54CA16A7EE0B001883CC /* draw_home_play_with_friend@2x.png in Resources */,
 				C2ACA16F16A7FCEE00125936 /* zjh_money_tree@2x.png in Resources */,
 				C2ACA17016A7FCEE00125936 /* zjh_money_tree_big@2x.png in Resources */,
 				C2ACA17216A7FCEE00125936 /* zjh_money_tree_coin_shining_light@2x.png in Resources */,
@@ -26092,13 +26077,11 @@
 				CAB5CBA316994F0200A4CE3B /* common_home_shop@2x.png in Resources */,
 				CAB5CBA416994F0200A4CE3B /* common_home_splitline@2x.png in Resources */,
 				CAB5CBA616994F0200A4CE3B /* draw_home_banner@2x.png in Resources */,
-				CAB5CBA716994F0200A4CE3B /* draw_home_charge@2x.png in Resources */,
 				CAB5CBA816994F0200A4CE3B /* draw_home_contest@2x.png in Resources */,
 				CAB5CBA916994F0200A4CE3B /* draw_home_displaybg@2x.png in Resources */,
 				CAB5CBAA16994F0200A4CE3B /* draw_home_draw@2x.png in Resources */,
 				CAB5CBAB16994F0200A4CE3B /* draw_home_guess@2x.png in Resources */,
 				CAB5CBAD16994F0200A4CE3B /* draw_home_online_guess@2x.png in Resources */,
-				CAB5CBAE16994F0200A4CE3B /* draw_home_task@2x.png in Resources */,
 				CAB5CBAF16994F0200A4CE3B /* draw_home_timeline@2x.png in Resources */,
 				CAB5CBB016994F0200A4CE3B /* draw_home_top@2x.png in Resources */,
 				CAB5CBB616994F0200A4CE3B /* zjh_home_help@2x.png in Resources */,
@@ -26315,7 +26298,6 @@
 				C235C62116A3F46100D80BA4 /* maleImage.png in Resources */,
 				A4F5BF8116A40526000A503F /* FreeCoinsControllerViewController~ipad.xib in Resources */,
 				CA29EA8416A526BB003B1434 /* draw_home_free_coins@2x.png in Resources */,
-				CA29EA8516A526CE003B1434 /* draw_home_apps@2x.png in Resources */,
 				A4F5BFDF16A64808000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE016A64808000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFE116A64808000A503F /* coin_tree@2x.png in Resources */,
