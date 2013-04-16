@@ -8994,6 +8994,8 @@
 		CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
+		CAEE48F2171D32C800EF2380 /* default_config_Learndraw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */; };
+		CAEE48F3171D32CB00EF2380 /* default_config_Learndraw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
@@ -12774,6 +12776,8 @@
 		CAE9AA7916D72F15008392F9 /* SuperPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
+		CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw_version.txt; sourceTree = "<group>"; };
+		CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw.pb; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -16667,6 +16671,8 @@
 		CA1250EB1669EDD800AFCC04 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */,
+				CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */,
 				A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */,
 				A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */,
 				CA189B011702B64900339D42 /* default_config_Dice_version.txt */,
@@ -22309,6 +22315,8 @@
 				CAE5ADC8171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
 				CAE5ADDC171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
 				CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
+				CAEE48F2171D32C800EF2380 /* default_config_Learndraw_version.txt in Resources */,
+				CAEE48F3171D32CB00EF2380 /* default_config_Learndraw.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
