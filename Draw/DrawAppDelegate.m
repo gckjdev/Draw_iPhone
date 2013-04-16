@@ -204,11 +204,10 @@ NSString* GlobalGetBoardServerURL()
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
-//    [DrawBgManager createTestData:0];
+{    
     srand(time(0));
-        
+    
+    // clear all badges
     application.applicationIconBadgeNumber = 0;
 
     // init mob click
@@ -221,6 +220,7 @@ NSString* GlobalGetBoardServerURL()
     [PPSmartUpdateDataUtils initPaths];    
 
 #ifdef DEBUG
+//    [DrawBgManager createTestData:0];
     [GameConfigDataManager createTestConfigData];
     [GameConfigDataManager createLearnDrawTestConfigData];
 #endif
@@ -302,19 +302,8 @@ NSString* GlobalGetBoardServerURL()
                                                           resultBlock:nil];
     }
 
-    // Check Whether App Has Update
-    if ([DeviceDetection isOS5]){
-        [UIUtils checkAppVersion:[ConfigManager appId]];
-    }
-    else if (isAskBindDevice == NO){        
-        [UIUtils checkAppVersion:[ConfigManager appId]];
-    }
-    
     // Show Root View
     self.window.rootViewController = navigationController;
-    
-    // Init Resource Service
-//    [self initResourceService];
     
     // Init SNS service
     [self initSNSService];    
@@ -337,10 +326,8 @@ NSString* GlobalGetBoardServerURL()
     // Show News If Exists
     [self performSelector:@selector(showNews) withObject:nil afterDelay:1.5];
     
-//    [HomeController defaultInstance].hasRemoveNotification = YES;//(obj != nil);
     
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
-
     return YES;
 }
 

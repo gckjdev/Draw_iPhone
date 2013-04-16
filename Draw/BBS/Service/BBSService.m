@@ -472,6 +472,10 @@ BBSService *_staticBBSService;
 
 - (void)getBBSPrivilegeList
 {
+    if ([[UserManager defaultManager] hasUser] == NO){
+        return;
+    }
+    
     NSString *userId = [[UserManager defaultManager] userId];
     NSString *appId = [ConfigManager appId];
     NSInteger deviceType = [DeviceDetection deviceType];
