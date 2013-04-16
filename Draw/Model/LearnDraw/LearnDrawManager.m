@@ -19,17 +19,17 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawManager)
 
-#define KEY_BOUGHT_LEARNDRAW_SET @"KEY_BOUGHT_LEARNDRAW_SET"
+#define KEY_BOUGHT_LEARNDRAW_LIST @"KEY_BOUGHT_LEARNDRAW_LIST"
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        _boughtSet = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_BOUGHT_LEARNDRAW_SET];
-        if (_boughtSet == nil) {
-            _boughtSet = [NSMutableSet set];
+        NSArray *list = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_BOUGHT_LEARNDRAW_LIST];
+        _boughtSet = [[NSMutableSet set] retain];
+        if ([list count] != 0) {
+            [_boughtSet addObjectsFromArray:list];
         }
-        [_boughtSet retain];
     }
     return self;
 }
@@ -42,8 +42,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawManager)
 
 - (void)updateLocalSet
 {
-    [[NSUserDefaults standardUserDefaults] setObject:_boughtSet forKey:KEY_BOUGHT_LEARNDRAW_SET];
-    [[NSUserDefaults standardUserDefaults] synchronize];    
+    NSMutableArray *list = [NSMutableArray arrayWithCapacity:[_boughtSet count]];
+    for (NSString *value in _boughtSet) {
+        [list addObject:[value description]];
+    }
+    if ([list count] != 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:list forKey:KEY_BOUGHT_LEARNDRAW_LIST];
+        [[NSUserDefaults standardUserDefaults] synchronize];        
+    }
 }
 
 - (void)addBoughtOpusId:(NSString *)opusId

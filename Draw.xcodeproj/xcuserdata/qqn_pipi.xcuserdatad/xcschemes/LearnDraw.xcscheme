@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
-               BuildableName = "Draw copy.app"
+               BuildableName = "LearnDraw.app"
                BlueprintName = "LearnDraw"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
-            BuildableName = "Draw copy.app"
+            BuildableName = "LearnDraw.app"
             BlueprintName = "LearnDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
-            BuildableName = "Draw copy.app"
+            BuildableName = "LearnDraw.app"
             BlueprintName = "LearnDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -66,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
+            BuildableName = "LearnDraw.app"
+            BlueprintName = "LearnDraw"
+            ReferencedContainer = "container:Draw.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
