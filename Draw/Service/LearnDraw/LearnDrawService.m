@@ -224,7 +224,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
     NSString *userId = [self userId];
     if ([userId length] == 0) {
         // if user doesn't exist, use system user id
-        userId = [UserManager getSystemUserId];
+        userId = [ConfigManager getSystemUserId];
     }
 
     
