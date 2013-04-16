@@ -207,6 +207,10 @@ NSString* GlobalGetBoardServerURL()
 {    
     srand(time(0));
     
+#ifdef DEBUG
+    [MobClick setLogEnabled:YES];
+#endif
+    
     // clear all badges
     application.applicationIconBadgeNumber = 0;
 
@@ -217,7 +221,10 @@ NSString* GlobalGetBoardServerURL()
     [MobClick updateOnlineConfig];
         
     [self initImageCacheManager];
-    [PPSmartUpdateDataUtils initPaths];    
+    [PPSmartUpdateDataUtils initPaths];
+    
+    
+
 
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];

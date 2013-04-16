@@ -208,17 +208,21 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
-    if (!(([LocaleUtils isChina] || [LocaleUtils isChinese])
-        && [ConfigManager isInReviewVersion] == NO)) {
-                
+    if (([LocaleUtils isChina] || [LocaleUtils isChinese])
+        && [ConfigManager isInReviewVersion] == NO) {
+        [self showBuyActionSheetWithIndex:indexPath];
+    }else{
         PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
         [self applePayForProduct:product];
-        return;
     }
-    
+}
+
+
+- (void)showBuyActionSheetWithIndex:(NSIndexPath *)indexPath
+{
     MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
     [sheet showInView:self.view];
-
+    
     __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
@@ -229,7 +233,6 @@
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
     order.amount = @"0.01";//product.totalPrice;
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
-    
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
     [sheet setActionBlock:^(NSInteger buttonIndex){

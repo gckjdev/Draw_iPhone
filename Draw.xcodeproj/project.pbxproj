@@ -170,6 +170,12 @@
 		A44710DB1705462E00428284 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
 		A44710DC1705462F00428284 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
 		A44710DD1705463000428284 /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
+		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
+		A44B38A6171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
+		A44B38A7171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
+		A44B38A8171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
+		A44B38A9171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
+		A44B38AB171CFF24001968E2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38AA171CFF23001968E2 /* libz.dylib */; };
 		A44B48FD1713EFAC00404D73 /* iap_product_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */; };
 		A44B49B8171506AF00404D73 /* item_taobao_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44E6CC6170D75410067B647 /* item_taobao_icon@2x.png */; };
 		A44B49B9171506AF00404D73 /* item_taobao_select_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44E6CC7170D75410067B647 /* item_taobao_select_icon@2x.png */; };
@@ -2424,7 +2430,6 @@
 		CA12044D1712A98F00FEFB41 /* libAderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8BD16606E4800441D77 /* libAderSDK.a */; };
 		CA12044E1712A98F00FEFB41 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CA12044F1712A98F00FEFB41 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
-		CA1204501712A98F00FEFB41 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
 		CA1204511712A98F00FEFB41 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CA1204521712A98F00FEFB41 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CA1204531712A98F00FEFB41 /* libshengmengsdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D4ECCF169C154200079C88 /* libshengmengsdk_1.1.0.a */; };
@@ -3936,7 +3941,6 @@
 		CA16BC081682FAD900F81B47 /* libAderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8BD16606E4800441D77 /* libAderSDK.a */; };
 		CA16BC091682FAD900F81B47 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CA16BC0A1682FAD900F81B47 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
-		CA16BC0B1682FAD900F81B47 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
 		CA16BC0D1682FAD900F81B47 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CA16BC101682FAD900F81B47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -5021,7 +5025,6 @@
 		CA16C18E1682FAE300F81B47 /* libAderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8BD16606E4800441D77 /* libAderSDK.a */; };
 		CA16C18F1682FAE300F81B47 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CA16C1901682FAE300F81B47 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
-		CA16C1911682FAE300F81B47 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
 		CA16C1931682FAE300F81B47 /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CA16C1961682FAE300F81B47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -8004,7 +8007,6 @@
 		CAB5C9B316994F0200A4CE3B /* libAderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8BD16606E4800441D77 /* libAderSDK.a */; };
 		CAB5C9B416994F0200A4CE3B /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF8DE16606E4800441D77 /* libGoogleAdMobAds.a */; };
 		CAB5C9B516994F0200A4CE3B /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
-		CAB5C9B616994F0200A4CE3B /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
 		CAB5C9B816994F0200A4CE3B /* WapsOffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD516606E4800441D77 /* WapsOffer.framework */; };
 		CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
 		CAB5C9BB16994F0200A4CE3B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -9233,7 +9235,6 @@
 		CAFEFB7116606E4900441D77 /* AdMoGoWebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF9EE16606E4800441D77 /* AdMoGoWebBrowser.xib */; };
 		CAFEFB7216606E4900441D77 /* libAdMoGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F216606E4800441D77 /* libAdMoGo.a */; };
 		CAFEFB7316606E4900441D77 /* d5d65eff49774712aa2aeef656b4c600.config in Resources */ = {isa = PBXBuildFile; fileRef = CAFEF9F316606E4800441D77 /* d5d65eff49774712aa2aeef656b4c600.config */; };
-		CAFEFB7516606E4900441D77 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */; };
 		CAFEFB7616606E4900441D77 /* MobClickUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEF9F916606E4800441D77 /* MobClickUtils.m */; };
 		CAFEFBC216606E4900441D77 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFA9716606E4800441D77 /* JSONKit.m */; };
 		CAFEFBC316606E4900441D77 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAFEFA9816606E4800441D77 /* SinaWeibo.bundle */; };
@@ -9608,6 +9609,9 @@
 		A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		A43FF3261650E9EF00B490B7 /* DiceMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceMessageView.h; sourceTree = "<group>"; };
 		A43FF3271650E9EF00B490B7 /* DiceMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceMessageView.m; sourceTree = "<group>"; };
+		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		A44B38AA171CFF23001968E2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
 		A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Zhajinhua.pb; sourceTree = "<group>"; };
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
@@ -12934,8 +12938,6 @@
 		CAFEF9F116606E4800441D77 /* AMNetworkReachabilityWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNetworkReachabilityWrapper.h; sourceTree = "<group>"; };
 		CAFEF9F216606E4800441D77 /* libAdMoGo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMoGo.a; sourceTree = "<group>"; };
 		CAFEF9F316606E4800441D77 /* d5d65eff49774712aa2aeef656b4c600.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = d5d65eff49774712aa2aeef656b4c600.config; sourceTree = "<group>"; };
-		CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		CAFEF9F716606E4800441D77 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		CAFEF9F816606E4800441D77 /* MobClickUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickUtils.h; sourceTree = "<group>"; };
 		CAFEF9F916606E4800441D77 /* MobClickUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobClickUtils.m; sourceTree = "<group>"; };
 		CAFEFA9616606E4800441D77 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -13214,7 +13216,6 @@
 				CA12044D1712A98F00FEFB41 /* libAderSDK.a in Frameworks */,
 				CA12044E1712A98F00FEFB41 /* libGoogleAdMobAds.a in Frameworks */,
 				CA12044F1712A98F00FEFB41 /* libAdMoGo.a in Frameworks */,
-				CA1204501712A98F00FEFB41 /* libMobClickLibrary.a in Frameworks */,
 				CA1204511712A98F00FEFB41 /* WapsOffer.framework in Frameworks */,
 				CA1204521712A98F00FEFB41 /* libWeChatSDK.a in Frameworks */,
 				CA1204531712A98F00FEFB41 /* libshengmengsdk_1.1.0.a in Frameworks */,
@@ -13225,6 +13226,7 @@
 				A4834DD61716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE51716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DEA1716AD5400190347 /* libssl.a in Frameworks */,
+				A44B38A9171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13266,7 +13268,6 @@
 				CA16BC081682FAD900F81B47 /* libAderSDK.a in Frameworks */,
 				CA16BC091682FAD900F81B47 /* libGoogleAdMobAds.a in Frameworks */,
 				CA16BC0A1682FAD900F81B47 /* libAdMoGo.a in Frameworks */,
-				CA16BC0B1682FAD900F81B47 /* libMobClickLibrary.a in Frameworks */,
 				CA16BC0D1682FAD900F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16BC0E1682FAD900F81B47 /* libWeChatSDK.a in Frameworks */,
 				CA6877B0169D1B9D0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
@@ -13277,6 +13278,7 @@
 				A4834DD41716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE31716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DE81716AD5400190347 /* libssl.a in Frameworks */,
+				A44B38A7171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13318,7 +13320,6 @@
 				CA16C18E1682FAE300F81B47 /* libAderSDK.a in Frameworks */,
 				CA16C18F1682FAE300F81B47 /* libGoogleAdMobAds.a in Frameworks */,
 				CA16C1901682FAE300F81B47 /* libAdMoGo.a in Frameworks */,
-				CA16C1911682FAE300F81B47 /* libMobClickLibrary.a in Frameworks */,
 				CA16C1931682FAE300F81B47 /* WapsOffer.framework in Frameworks */,
 				CA16C1941682FAE300F81B47 /* libWeChatSDK.a in Frameworks */,
 				CA6877B1169D1B9E0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
@@ -13329,6 +13330,7 @@
 				A4834DD51716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE41716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DE91716AD5400190347 /* libssl.a in Frameworks */,
+				A44B38A8171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13336,6 +13338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A44B38AB171CFF24001968E2 /* libz.dylib in Frameworks */,
 				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
@@ -13370,7 +13373,6 @@
 				CAFEFB0716606E4900441D77 /* libAderSDK.a in Frameworks */,
 				CAFEFB1016606E4900441D77 /* libGoogleAdMobAds.a in Frameworks */,
 				CAFEFB7216606E4900441D77 /* libAdMoGo.a in Frameworks */,
-				CAFEFB7516606E4900441D77 /* libMobClickLibrary.a in Frameworks */,
 				CAFEFBD916606E4900441D77 /* WapsOffer.framework in Frameworks */,
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
 				A4D4ECD3169C154200079C88 /* libshengmengsdk_1.1.0.a in Frameworks */,
@@ -13381,6 +13383,7 @@
 				A4834DD21716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE11716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DE61716AD5400190347 /* libssl.a in Frameworks */,
+				A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13432,7 +13435,6 @@
 				CAB5C9B316994F0200A4CE3B /* libAderSDK.a in Frameworks */,
 				CAB5C9B416994F0200A4CE3B /* libGoogleAdMobAds.a in Frameworks */,
 				CAB5C9B516994F0200A4CE3B /* libAdMoGo.a in Frameworks */,
-				CAB5C9B616994F0200A4CE3B /* libMobClickLibrary.a in Frameworks */,
 				CAB5C9B816994F0200A4CE3B /* WapsOffer.framework in Frameworks */,
 				CAB5C9B916994F0200A4CE3B /* libWeChatSDK.a in Frameworks */,
 				CA6877AF169D1B9C0006E489 /* libshengmengsdk_1.1.0.a in Frameworks */,
@@ -13443,6 +13445,7 @@
 				A4834DD31716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE21716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DE71716AD5400190347 /* libssl.a in Frameworks */,
+				A44B38A6171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17541,6 +17544,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				A44B38AA171CFF23001968E2 /* libz.dylib */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -20670,8 +20674,8 @@
 		CAFEF9F416606E4800441D77 /* MobClick */ = {
 			isa = PBXGroup;
 			children = (
-				CAFEF9F616606E4800441D77 /* libMobClickLibrary.a */,
-				CAFEF9F716606E4800441D77 /* MobClick.h */,
+				A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */,
+				A44B38A4171CFE13001968E2 /* MobClick.h */,
 				CAFEF9F816606E4800441D77 /* MobClickUtils.h */,
 				CAFEF9F916606E4800441D77 /* MobClickUtils.m */,
 			);
@@ -31004,6 +31008,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LearnDraw;
@@ -31080,6 +31085,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LearnDraw;
@@ -31159,6 +31165,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Dice;
@@ -31235,6 +31242,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Dice;
@@ -31312,6 +31320,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Zhajinhua;
@@ -31387,6 +31396,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Zhajinhua;
@@ -31520,6 +31530,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -31595,6 +31606,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -31725,6 +31737,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DrawPro;
@@ -31801,6 +31814,7 @@
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/aderwall-ios-sdk/AderWallSDKPackageRelease/Sample/Sample/lib\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/libs\"",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/AliPaySDK/Utilities\"",
+					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/Analytics_iOS_SDK_2.2.0.OpenUDID/UMAnalytics_Sdk_2.2.0.OpenUDID\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DrawPro;
