@@ -1269,6 +1269,9 @@
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Buy It";
 "kBuyToPlayMesaage" = "Buy and play it to the end?";
+
+"kJailBrokenUserIAPTips" = "Your device is jail broken, which make it risk when purchase, do you want to continue?";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

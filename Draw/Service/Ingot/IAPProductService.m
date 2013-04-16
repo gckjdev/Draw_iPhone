@@ -85,6 +85,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 #define ZJH_COIN_66000_TAOBAO_URL @"http://a.m.taobao.com/i17798661364.htm?v=0&mz_key=0"
 #define ZJH_COIN_180000_TAOBAO_URL @"http://a.m.taobao.com/i19663543354.htm?v=0&mz_key=0"
 
+#define DICE_COIN_10000_TAOBAO_URL @"http://a.m.taobao.com/i19955183025.htm?v=0&mz_key=0"
+#define DICE_COIN_18000_TAOBAO_URL @"http://a.m.taobao.com/i18015757670.htm?v=0&mz_key=0"
+#define DICE_COIN_66000_TAOBAO_URL @"http://a.m.taobao.com/i18015793674.htm?v=0&mz_key=0"
+#define DICE_COIN_180000_TAOBAO_URL @"http://a.m.taobao.com/i24207916662.htm?v=0&mz_key=0"
+
 + (void)createDrawIngotTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
@@ -222,7 +227,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:10000
                                        totalPrice:@"12"
-                                           saving:nil]];
+                                           saving:nil
+                                        taobaoUrl:DICE_COIN_10000_TAOBAO_URL]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins2400"
@@ -231,7 +237,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:18000
                                        totalPrice:@"18"
-                                           saving:@"15%"]];
+                                           saving:@"15%"
+                                        taobaoUrl:DICE_COIN_18000_TAOBAO_URL]];
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins6000"
@@ -240,7 +247,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:66000
                                        totalPrice:@"68"
-                                           saving:@"33%"]];
+                                           saving:@"33%"
+                                        taobaoUrl:DICE_COIN_66000_TAOBAO_URL]];
+
     
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.dice.coins20000"
@@ -249,7 +258,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                              desc:@"kCoin"
                                             count:180000
                                        totalPrice:@"163"
-                                           saving:@"50%"]];
+                                           saving:@"50%"
+                                        taobaoUrl:DICE_COIN_180000_TAOBAO_URL]];
+
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
     [listBuilder addAllProducts:mutableArray];

@@ -14,8 +14,6 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(AnalyticsManager)
 
-
-
 - (void)reportClickHomeMenu:(NSString*)menuName
 {
     [MobClick event:HOME_CLICK label:menuName acc:1];
