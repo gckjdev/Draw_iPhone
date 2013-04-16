@@ -28,12 +28,13 @@
 }
 
 
-- (NSArray *)drawActionListFromPBActions:(NSArray *)array
+- (NSArray *)drawActionListFromPBActions:(NSArray *)array canvasSize:(CGSize)canvasSize
 {
     if (array) {
         NSMutableArray *list = [NSMutableArray array];
         for (PBDrawAction *action in array) {
             DrawAction *drawAction = [DrawAction drawActionWithPBDrawAction:action];
+            [drawAction setCanvasSize:canvasSize];
             [list addObject:drawAction];
         }
         return list;
@@ -51,13 +52,14 @@
         self.avatar = pbDraw.avatar;
         self.languageType = pbDraw.language;
         self.date = [NSDate dateWithTimeIntervalSince1970: pbDraw.createDate];
-        self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList]];
+
         self.version = pbDraw.version;
         if ([pbDraw hasCanvasSize]) {
             self.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
         }else{
             self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
         }
+        self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList canvasSize:self.canvasSize]];
     }
     return self;
 }

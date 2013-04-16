@@ -12,6 +12,34 @@
 
 @implementation PointNode
 
+
+#define RECT_SPAN_WIDTH 10
+- (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
+{
+    rect.origin.x -= RECT_SPAN_WIDTH;
+    rect.origin.y -= RECT_SPAN_WIDTH;
+    rect.size.width += RECT_SPAN_WIDTH*2;
+    rect.size.height += RECT_SPAN_WIDTH*2;
+    return CGRectContainsPoint(rect, point);
+}
+
+
+- (BOOL)pointInRect:(CGRect)rect
+{
+    if (!CGRectContainsPoint(rect, _point)){
+
+        if (![self spanRect:rect ContainsPoint:_point]) {
+            PPDebug(@"<addPoint> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(_point));
+            return NO;
+        }
+        _point.x = MAX(_point.x, 0);
+        _point.y = MAX(_point.y, 0);
+        _point.x = MIN(_point.x, CGRectGetWidth(rect));
+        _point.y = MIN(_point.y, CGRectGetHeight(rect));
+    }
+    return YES;
+}
+
 - (void)dealloc
 {
     [super dealloc];

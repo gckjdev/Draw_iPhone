@@ -336,6 +336,7 @@
 
 - (void)updateTempAction
 {
+    
     if ([_currentAction isKindOfClass:[PaintAction class]]) {
 //        PaintAction *paintAction = (PaintAction *)_currentAction;
         Paint *currentPaint = [(PaintAction *)_currentAction paint];
@@ -355,6 +356,9 @@
     }else{
         self.tempAction = nil;//_currentAction;
     }
+    
+//    PPDebug(@"<updateTempAction>actionIndex = %d, pointIndex = %d, currentAction = %@, tempAction = %@", _playingActionIndex, _playingPointIndex,_currentAction,_tempAction);
+//    
 }
 
 
@@ -385,49 +389,23 @@
 
 - (void)delayShowAction:(DrawAction *)drawAction stop:(BOOL)stop
 {
+    
+    
     [self drawDrawAction:drawAction show:YES];
+    
+//    PPDebug(@"<delayShowAction>actionIndex = %d, pointIndex = %d, currentAction = %@, tempAction = %@", _playingActionIndex, _playingPointIndex,_currentAction,_tempAction);
+
+    
     [self callDidDrawPaintDelegate];
 
     if (!stop) {
-        [self performSelector:@selector(playNextFrame) withObject:nil];
+        [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
     }else{
         [self setStatus:Stop];
     }
 }
 
-- (void)playCurrentFrame:(BOOL)stop
-{
-    [self updateTempAction];
-    if (self.status == Playing) {
-        if (self.tempAction) {
-            if([self.tempAction pointCount] == 1){
-                [self drawDrawAction:self.tempAction show:YES];
-            }else{
-                [self updateLastAction:self.tempAction show:YES];
-            }
-            
-            if ([self.tempAction hasFinishAddPoint]) {
-                [self callDidDrawPaintDelegate];
-            }
-            if (!stop) {
-                [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
-            }else{
-                self.status = Stop;
-            }
-        }else{
-            SEL seletor = stop ? @selector(delayShowActionStop:) : @selector(delayShowAction:);
-            
-            if (![_currentAction isKindOfClass:[PaintAction class]]) {
-                [self performSelector:seletor withObject:_currentAction afterDelay:self.playSpeed * 30];
-            }else{
-                [self performSelector:seletor withObject:_currentAction];
-            }
-        }
-    }
-    if(!_showPenHidden){
-        [self movePen];
-    }
-}
+
 
 - (void)playCurrentFrame
 {
@@ -446,11 +424,16 @@
                 [self callDidDrawPaintDelegate];
             }
             
-            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:self.playSpeed];
+            double delay = (CACurrentMediaTime() - _playFrameTime - self.playSpeed);
+            delay = MIN(self.playSpeed, delay);
+            delay = MAX(0, self.playSpeed);
+            
+            [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
 
         }else{
             if (![_currentAction isKindOfClass:[PaintAction class]]) {
-                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
+                [self delayShowAction:_currentAction];
+//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
             }else{
                 [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
             }
