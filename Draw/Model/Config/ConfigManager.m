@@ -75,7 +75,7 @@
 
 + (int)getPreviewActionCount
 {
-    return [MobClickUtils getIntValueByKey:@"PREVIEW_ACTION_COUNT" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"PREVIEW_ACTION_COUNT" defaultValue:200];
 }
 
 + (NSArray *)getLearnDrawFeedbackEmailList

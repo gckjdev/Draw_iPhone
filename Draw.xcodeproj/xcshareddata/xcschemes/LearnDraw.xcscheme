@@ -7,6 +7,20 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA745D1D1503B1B400600024"
+               BuildableName = "Draw.app"
+               BlueprintName = "Draw"
+               ReferencedContainer = "container:Draw.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
@@ -14,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA745D1D1503B1B400600024"
-               BuildableName = "Draw.app"
-               BlueprintName = "Draw"
+               BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
+               BuildableName = "Draw copy.app"
+               BlueprintName = "LearnDraw"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA745D1D1503B1B400600024"
-            BuildableName = "Draw.app"
-            BlueprintName = "Draw"
+            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
+            BuildableName = "Draw copy.app"
+            BlueprintName = "LearnDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +77,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA745D1D1503B1B400600024"
-            BuildableName = "Draw.app"
-            BlueprintName = "Draw"
+            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
+            BuildableName = "Draw copy.app"
+            BlueprintName = "LearnDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -100,9 +114,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA745D1D1503B1B400600024"
-            BuildableName = "Draw.app"
-            BlueprintName = "Draw"
+            BlueprintIdentifier = "CA12010F1712A98F00FEFB41"
+            BuildableName = "Draw copy.app"
+            BlueprintName = "LearnDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
