@@ -54,6 +54,8 @@ typedef enum{
     [_ingotBalanceLabel release];
     [_ingotImageView release];
     [_ingotBalanceBgImageView release];
+    [_coinHolderView release];
+    [_ingotHolderView release];
     [super dealloc];
 }
 
@@ -66,6 +68,8 @@ typedef enum{
     [self setIngotBalanceLabel:nil];
     [self setIngotImageView:nil];
     [self setIngotBalanceBgImageView:nil];
+    [self setCoinHolderView:nil];
+    [self setIngotHolderView:nil];
     [super viewDidUnload];
 }
 
@@ -111,9 +115,14 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeNone];
 
-    self.ingotImageView.hidden = ![GameApp hasIngotBalance];
-    self.ingotBalanceLabel.hidden = ![GameApp hasIngotBalance];
-    self.ingotBalanceBgImageView.hidden = ![GameApp hasIngotBalance];
+    if (![GameApp hasCoinBalance]) {
+        self.coinHolderView.hidden = YES;
+        [self.ingotHolderView updateOriginX:self.coinHolderView.frame.origin.x];
+    }
+    
+    if (![GameApp hasIngotBalance]) {
+        self.ingotHolderView.hidden = YES;
+    }
 
     [super viewDidLoad];
     [self initTabButtons];
@@ -131,11 +140,34 @@ typedef enum{
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
     [self updateItemData];
+    
+    if ([ConfigManager isInReviewVersion] ||
+        ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
+        [self hideTaoBaoTab];
+    }
 
 #ifdef DEBUG
     [GameItemService createTestDataFile];
 #endif
 }
+
+- (void)hideTaoBaoTab
+{
+    UIButton *normalButton = [self tabButtonWithTabID:TabIDNormal];
+    UIButton *toolButton = [self tabButtonWithTabID:TabIDTool];
+    UIButton *promotionButton = [self tabButtonWithTabID:TabIDPromotion];
+    UIButton *taoBaoButton = [self tabButtonWithTabID:TabIDTaoBao];
+    
+    [promotionButton setBackgroundImage:[taoBaoButton backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
+    [promotionButton setBackgroundImage:[taoBaoButton backgroundImageForState:UIControlStateSelected] forState:UIControlStateSelected];
+    
+    [toolButton updateCenterX:self.view.center.x];
+    [normalButton updateOriginX:toolButton.frame.origin.x - normalButton.frame.size.width];
+    [promotionButton updateOriginX:toolButton.frame.origin.x + toolButton.frame.size.width];
+    
+    taoBaoButton.hidden = YES;
+}
+
 
 - (void)updateBalance
 {

@@ -614,7 +614,7 @@
 - (void)didSaveOpus:(BOOL)succ
 {
     [self.superViewController hideActivity];
-    if (succ) {
+    if (succ && !isLearnDrawApp()) {
          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
         
         // remove due to it's reported now

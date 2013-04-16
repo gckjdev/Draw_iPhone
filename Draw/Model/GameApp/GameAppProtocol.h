@@ -110,9 +110,13 @@
 
 - (PBGameCurrency)saleCurrency;
 - (BOOL)hasIngotBalance;
+- (BOOL)hasCoinBalance;
+
 
 - (NSString *)alipayCallBackScheme;
 
 - (BOOL)isAutoRegister;
+
+- (BOOL)canShareViaSNS;
 
 @end

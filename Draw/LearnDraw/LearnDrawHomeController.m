@@ -25,6 +25,8 @@
 #import "ReplayView.h"
 #import "Draw.h"
 #import "LearnDrawPreViewController.h"
+#import "CommonMessageCenter.h"
+#import "ConfigManager.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -75,7 +77,6 @@
 
 - (void)updateBoughtList
 {
-    
     __block LearnDrawHomeController *cp = self;
     [[LearnDrawService defaultService] getAllBoughtLearnDrawIdListWithResultHandler:^(NSArray *array, NSInteger resultCode) {
         if (resultCode != 0 && (++_tryTimes)  < MAX_TRYTIMES) {
@@ -93,6 +94,7 @@
     [self initTabButtons];
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
+    [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,11 +134,17 @@
             break;
         case HomeMenuTypeLearnDrawMore:
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_MORE];
-            
-            FeedbackController* feedBack = [[FeedbackController alloc] init];
-            [self.navigationController pushViewController:feedBack animated:YES];
-            [feedBack release];
+            NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
+            if ([list count] == 0) {
+                break;
+            }
+            [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
+
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_FEEDBACK];
+//
+//            FeedbackController* feedBack = [[FeedbackController alloc] init];
+//            [self.navigationController pushViewController:feedBack animated:YES];
+//            [feedBack release];
         }
             break;
             
@@ -175,11 +183,11 @@
                                 size:feed.drawData.canvasSize];
             feed.drawData = nil;
         }else{
-            //TODO show error message
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
         }
         
         [cp hideProgressView];
-    } downloadDelegate:self]; //TODO show download progress...
+    } downloadDelegate:self]; 
 
 }
 
@@ -249,7 +257,7 @@
                                                       if (resultCode == 0) {
                                                           [cp.dataTableView reloadData];
                                                       }else{
-                                                          //TODO deal with the error result.
+                                                          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
                                                       }
 
                 }];

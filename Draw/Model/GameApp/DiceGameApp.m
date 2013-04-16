@@ -354,6 +354,11 @@
     return NO;
 }
 
+- (BOOL)hasCoinBalance
+{
+    return YES;
+}
+
 - (NSString*)youmiWallId
 {
     return @""; // TODO
@@ -378,5 +383,11 @@
 {
     return NO;
 }
+
+- (BOOL)canShareViaSNS
+{
+    return YES;
+}
+
 
 @end

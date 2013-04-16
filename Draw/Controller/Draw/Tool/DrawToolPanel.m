@@ -343,6 +343,13 @@
     
     
     if (isLearnDrawApp()) {
+
+        if(!ISIPAD){
+            self.paintBucket.center = self.drawToUser.center;
+        }else{
+            self.shape.center = self.opusDesc.center;
+            self.paintBucket.center = self.drawToUser.center;
+        }
         self.drawToUser.hidden = self.opusDesc.hidden = YES;
     }
 }

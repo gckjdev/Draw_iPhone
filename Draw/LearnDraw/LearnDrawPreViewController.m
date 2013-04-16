@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "ShareAction.h"
+#import "CommonMessageCenter.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -162,7 +163,8 @@
             }
             
         }else{
-            //TODO show error message
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+
         }
         
         [cp hideProgressView];
@@ -199,9 +201,9 @@
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
         if (resultCode == 0) {
             [cp playDrawToEnd:YES];
-            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
         }else{
-            //TODO deal with the error result.
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
         }
         
     }];

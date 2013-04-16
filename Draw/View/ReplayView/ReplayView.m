@@ -24,6 +24,7 @@
 #import "CommonDialog.h"
 #import "LearnDrawService.h"
 #import "ShareAction.h"
+#import "CommonMessageCenter.h"
 
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
@@ -449,6 +450,10 @@
                                            fromView:self
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
         if (resultCode == 0) {
+            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
+
+            
             [cp setEndIndex:0];
             [cp setPlayControlsDisable:NO];
             [cp clickPlay:cp.playButton];
@@ -458,7 +463,6 @@
                                         image:cp.drawFeed.drawImage];
             [share saveToLocal];
             [share release];
-
             
         }else{
             //TODO show error message

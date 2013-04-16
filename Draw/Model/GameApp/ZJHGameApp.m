@@ -338,6 +338,11 @@
     return NO;
 }
 
+- (BOOL)hasCoinBalance
+{
+    return YES;
+}
+
 - (NSString*)youmiWallId
 {
     return @""; // TODO
@@ -361,6 +366,11 @@
 - (BOOL)isAutoRegister
 {
     return NO;
+}
+
+- (BOOL)canShareViaSNS
+{
+    return YES;
 }
 
 @end

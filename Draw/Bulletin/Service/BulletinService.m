@@ -36,6 +36,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 
 - (void)syncBulletins:(BulletinServiceCallbackBlock)block
 {
+    if ([[UserManager defaultManager] hasUser] == NO){
+        return;
+    }
+    
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
         NSString *gameId = [ConfigManager gameId];

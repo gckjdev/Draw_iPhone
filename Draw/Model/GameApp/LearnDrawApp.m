@@ -344,6 +344,11 @@
     return YES;
 }
 
+- (BOOL)hasCoinBalance
+{
+    return NO;
+}
+
 - (NSString*)youmiWallId
 {
     return @"c278f8dc80295b18";
@@ -369,5 +374,8 @@
     return YES;
 }
 
-
+- (BOOL)canShareViaSNS
+{
+    return NO;
+}
 @end

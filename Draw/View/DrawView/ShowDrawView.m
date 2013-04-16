@@ -409,7 +409,8 @@
 
 - (void)playCurrentFrame
 {
-
+    _playFrameTime = CACurrentMediaTime();
+    
 //    [self updateTempPaint];
     [self updateTempAction];
     if (self.status == Playing) {
@@ -435,7 +436,8 @@
                 [self delayShowAction:_currentAction];
 //                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
             }else{
-                [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
+                [self delayShowActionStop:_currentAction];
+//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
             }
         }
     }
@@ -447,9 +449,16 @@
 - (void)playNextFrame
 {
     if (Playing == self.status) {
+//        BOOL slow = ![_currentAction isKindOfClass:[PaintAction class]];
+        
         [self updateNextPlayIndex];
-        _playFrameTime = CACurrentMediaTime();
         [self playCurrentFrame];
+        
+//        if (slow) {
+//            [self performSelector:@selector(playCurrentFrame) withObject:nil afterDelay:0.4];
+//        }else{
+//            [self playCurrentFrame];
+//        }
     }
 }
 
