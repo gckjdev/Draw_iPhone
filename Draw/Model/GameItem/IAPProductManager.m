@@ -79,4 +79,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
     return IAP_PRODUCT_FILE_VERSION;
 }
 
++ (PBGameCurrency)currencyWithIAPProductType:(PBIAPProductType)type
+{
+    switch (type) {
+        case PBIAPProductTypeIapcoin:
+            return PBGameCurrencyCoin;
+            break;
+
+        case PBIAPProductTypeIapingot:
+            return PBGameCurrencyIngot;
+            break;
+            
+        default:
+            return -9999;
+            break;
+    }
+}
+
 @end
