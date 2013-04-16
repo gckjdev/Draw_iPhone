@@ -220,6 +220,9 @@ typedef enum{
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
     
+    
+    NSString *shareString = ([GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
+    
     if ([LocaleUtils isChina]){
         
         if (self.isDraftTab) {
@@ -227,12 +230,12 @@ typedef enum{
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
         }else{        
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                           delegate:self 
                                                  cancelButtonTitle:NSLS(@"kCancel") 
-                                            destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                            destructiveButtonTitle:shareString 
                                                  otherButtonTitles:
                                                         NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }
@@ -243,13 +246,13 @@ typedef enum{
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:NSLS(@"kShareAsPhoto"),
+                                      otherButtonTitles:shareString,
                     NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
         }else{           
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
-                                 destructiveButtonTitle:NSLS(@"kShareAsPhoto") 
+                                 destructiveButtonTitle:shareString 
                                       otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }
         
@@ -357,13 +360,22 @@ typedef enum{
     MyPaint* currentPaint = _selectedPaint;
     
     if (buttonIndex == SHARE_AS_PHOTO) {
-        self.shareAction = [[[ShareAction alloc]
-                             initWithDrawImageFile:currentPaint.imageFilePath
-                             isGIF:NO
-                             drawWord:currentPaint.drawWord
-                             drawUserId:currentPaint.drawUserId] autorelease];
         
-        [_shareAction displayWithViewController:self];
+        if (![GameApp canShareViaSNS]) {
+            
+            [self showActivityWithText:NSLS(@"kSaving")];
+            [[MyPaintManager defaultManager] savePhoto:currentPaint.imageFilePath delegate:nil];
+            [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+            
+        }else{
+            self.shareAction = [[[ShareAction alloc]
+                                 initWithDrawImageFile:currentPaint.imageFilePath
+                                 isGIF:NO
+                                 drawWord:currentPaint.drawWord
+                                 drawUserId:currentPaint.drawUserId] autorelease];
+            
+            [_shareAction displayWithViewController:self];
+        }
     }
 //    else if (buttonIndex == SHARE_AS_GIF)
 //    {

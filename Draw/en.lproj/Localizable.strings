@@ -1268,6 +1268,9 @@
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Buy It";
+"kLearnDrawTitle" = "Learn Draw";
+"kBuyLearnDrawSuccess" = "Got it successfully!";
+
 "kBuyToPlayMesaage" = "Buy and play it to the end?";
 
 "kJailBrokenUserIAPTips" = "Your device is jail broken, which make it risk when purchase(Please do not use plug-in IAP utils), do you want to continue?";

@@ -201,7 +201,7 @@
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
         if (resultCode == 0) {
             [cp playDrawToEnd:YES];
-            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
         }else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
         }

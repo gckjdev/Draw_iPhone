@@ -115,4 +115,6 @@
 
 - (BOOL)isAutoRegister;
 
+- (BOOL)canShareViaSNS;
+
 @end

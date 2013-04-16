@@ -26,6 +26,7 @@
 #import "Draw.h"
 #import "LearnDrawPreViewController.h"
 #import "CommonMessageCenter.h"
+#import "ConfigManager.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -93,6 +94,7 @@
     [self initTabButtons];
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
+    [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,11 +134,17 @@
             break;
         case HomeMenuTypeLearnDrawMore:
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_MORE];
-            
-            FeedbackController* feedBack = [[FeedbackController alloc] init];
-            [self.navigationController pushViewController:feedBack animated:YES];
-            [feedBack release];
+            NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
+            if ([list count] == 0) {
+                break;
+            }
+            [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
+
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_FEEDBACK];
+//
+//            FeedbackController* feedBack = [[FeedbackController alloc] init];
+//            [self.navigationController pushViewController:feedBack animated:YES];
+//            [feedBack release];
         }
             break;
             

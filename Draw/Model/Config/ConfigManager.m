@@ -78,6 +78,12 @@
     return [MobClickUtils getIntValueByKey:@"PREVIEW_ACTION_COUNT" defaultValue:50];
 }
 
++ (NSArray *)getLearnDrawFeedbackEmailList
+{
+    NSString *string = [MobClickUtils getIntValueByKey:@"LEARN_DRAW_FEEDBACK_EMAILS" defaultValue:@"gckjdev@sina.com;hguangm2009@gmail.com"];
+    return [string componentsSeparatedByString:@";"];
+}
+
 + (NSString*)getTrafficAPIServerURL
 {
     if ([LocaleUtils isChina]){

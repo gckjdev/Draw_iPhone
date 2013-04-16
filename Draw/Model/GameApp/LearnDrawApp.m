@@ -369,5 +369,9 @@
     return YES;
 }
 
+- (BOOL)canShareViaSNS
+{
+    return NO;
+}
 
 @end

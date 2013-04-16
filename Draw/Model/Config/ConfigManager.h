@@ -35,6 +35,8 @@ typedef enum{
 + (int)getBalanceDeviation;
 + (int)getPreviewActionCount;
 
++ (NSArray *)getLearnDrawFeedbackEmailList;
+
 //+ (int)getGuessRewardNormal;
 
 + (NSInteger)historyRankNumber;
