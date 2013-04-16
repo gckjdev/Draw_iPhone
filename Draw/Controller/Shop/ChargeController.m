@@ -56,7 +56,7 @@
         PBGameCurrency currency = [IAPProductManager currencyWithIAPProductType:product.type];
         [[AccountService defaultService] chargeBalance:currency count:product.count source:ChargeViaAlipay order:order];
     }else{
-        [CommonDialog createDialogWithTitle:@"kGifTips" message:msg style:CommonDialogStyleSingleButton delegate:nil];
+        [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:msg style:CommonDialogStyleSingleButton delegate:nil];
     }
 }
 
@@ -208,8 +208,10 @@
 #pragma ChargeCellDelegate method
 - (void)didClickBuyButton:(NSIndexPath *)indexPath
 {
-    if (([LocaleUtils isChina] || [LocaleUtils isChinese])
-        && [ConfigManager isInReviewVersion] == NO) {
+    BOOL isChina = [LocaleUtils isChina];
+    BOOL isChinese = [LocaleUtils isChinese];
+    BOOL isInReviewVersion = [ConfigManager isInReviewVersion];
+    if ((isChina || isChinese) && isInReviewVersion == NO) {
         [self showBuyActionSheetWithIndex:indexPath];
     }else{
         PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
@@ -231,7 +233,13 @@
     order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
+
+#ifdef DEBUG
+    order.amount = @"0.01";
+#else
     order.amount = product.totalPrice;
+#endif
+    
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
@@ -264,8 +272,22 @@
 
 - (void)applePayForProduct:(PBIAPProduct *)product
 {
-    [self showActivityWithText:NSLS(@"kBuying")];
-    [[AccountService defaultService] buyProduct:product];
+    if ([MobClick isJailbroken]) {
+        
+        __block typeof (self)bself = self;
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kJailBrokenUserIAPTips") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            [bself showActivityWithText:NSLS(@"kBuying")];
+            [[AccountService defaultService] buyProduct:product];
+        } clickCancelBlock:^{
+        }];
+        
+        [dialog showInView:self.view];
+        
+    }else{
+        [self showActivityWithText:NSLS(@"kBuying")];
+        [[AccountService defaultService] buyProduct:product];
+    }
 }
 
 

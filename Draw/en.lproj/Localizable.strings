@@ -568,8 +568,8 @@
 "kInputWordEmpty" = "Word can not be empty";
 "kSubmitFailure" = "Sorry. Submit failure.";
 
-"kSubmitSuccTitle" = "Submit Successfully";
-"kSubmitSuccMsg" = "Congratulations! Submit Successfully! One more?";
+"kSubmitSuccTitle" = "Result";
+"kSubmitSuccMsg" = "Congratulations! Submit drawing successfully! One more?";
 
 "kContestSubmitSuccMsg" = "Thank you for your participation, you can submit other %d works, one more?";
 "kContestSubmitSuccQuitMsg" = "Thank you for your participation!";
@@ -642,7 +642,7 @@
 "kReply" = "Reply";
 "kCorrect" = "Correct!";
 "kSending" = "Sending...";
-"kSending" = "Sending... (%3.f%%)";
+"kSendingProgress" = "Sending... (%3.f%%)";
 
 "kNoCommentTips" = "No Comments";
 "kFeedDetail" = "Drawing Detail";
@@ -1042,7 +1042,7 @@
 "kDraftsBox" = "Drafts Box";
 "kIWantToDraw..." = "I want to draw...";
 
-"kDonotSave" = "Don't Save";
+"kDonotSave" = "No";
 
 "kDefaultWaterMark" = "@Draw Lively";
 
@@ -1180,29 +1180,29 @@
 "kPasswordSet" = "Password Set";
 "kUploading" = "Uploading data...";
 "kUnknown" = "Unknown";
-"kInputSignature" = "Input Your Signature";
+"kInputSignature" = "Enter Your Signature";
 "kGetLocationTitle" = "Locating";
 "kGetLocationMsg" = "Are you sure to enable the location service?";
 "kSNSAccount" = "SNS";
-"kSpecial" = "Extra Option";
+"kSpecial" = "More Options";
 
 "kDownloadAppTitle" = "Download Apps";
-"kDownloadAppMessage" = "Go to AppStore and download this app to earn ingots now?";
+"kDownloadAppMessage" = "Go to App Store and download this app to earn ingots now?";
 
-"kChangeCanvasFailed" = "Cann't change canvas size when the paint is not blank.";
+"kChangeCanvasFailed" = "Cannot change canvas size when the drawing is not blank.";
 "kAskFollowSNSUserTitle" = "%@ Following";
 "kAskFollowSNSUserMessage" = "It's going to follow he/her via %@, are you sure?";
 "kFollowSNSSucc" = "Follow friend via %@ successfully!";
 
 "kUndoing" = "Undoing...";
 "kRedoing" = "Redoing...";
-"kFavoriting" = "Favoriting";
+"kFavoriting" = "Saving...";
 
 "kNoSupportViewFollow" = "Not support to view other user's followers";
 "kNoSupportViewFan" = "Not support to view other user's fans";
 
-"KSaveToLocalTitle" = "Favor successfully";
-"kSaveToLocalMsg" = "Favor successfully!Do you want to save this opus to local?";
+"KSaveToLocalTitle" = "Result";
+"kSaveToLocalMsg" = "Add into favorite successfully! Do you want to save this drawing locally?";
 "kNoSNSTips" = "He/She hasn't bind any SNS account yet.";
 
 "kPrivacy" = "Privacy";
@@ -1212,13 +1212,13 @@
 "kInvisable" = "(Invisable)";
 "kEditOpusDesc" = "Opus description";
 
-"kTaoBaoCharge" = "Taobao Charge";
-"kTaoBaoChargeTitle" = "Taobao Charge";
+"kTaoBaoCharge" = "Taobao Store";
+"kTaoBaoChargeTitle" = "Taobao Store";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
 
-"kSelectPaymentWay" = "Choose to buy the way";
-"kPayViaZhiFuBao" = "Use Alipay to buy";
-"kPayViaAppleAccount" = "Use Apple account to buy";
+"kSelectPaymentWay" = "Select payment method";
+"kPayViaZhiFuBao" = "Alipay";
+"kPayViaAppleAccount" = "Apple iTunes Account";
 
 "kHim" = "him";
 "kHer" = "her";
@@ -1231,17 +1231,17 @@
 
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
-"kUpdateBackgroundFail" = "Update backtround fail, try later.";
-"kBlackUserMsg" = "Do you want to put this player into black list? He/She can no longer talk to you or draw to you.";
+"kUpdateBackgroundFail" = "Fail to update background. Please try later.";
+"kBlackUserMsg" = "Do you want to put this player into black list? He/She can neither talk to you or draw to you.";
 "kUnblackUserMsg" = "Do you want to remove this player from black list?";
 "kBlackUserTitle" = "Black List";
 
 "kGestureExplain" = "Gestures";
-"kGestureExplainContent" = "Zoom in — Two-finger kneading out\n\nZoom out — Two-finger kneading inward\n\nMove — Two-finger Move\n\nReset — Two-finger double taps";
+"kGestureExplainContent" = "Zoom in - Two-finger Pinch\n\nZoom out — Two-finger Spread\n\nMove — Two-finger Drag\n\nReset — Two-finger Double Tap";
 "kHisOpus" = "Opus";
-"kNicknameOutofRange" = "Nickname out of range! The length of nickname should not above %d letters.";
+"kNicknameOutofRange" = "Nick name out of range! The length of nickname should not above %d letters.";
 "kSignatureOutofRange" = "Signature out of range! The length of signature should not above %d letters.";
-"kNoBindNoFollow" = "You can follow player only if you have bind %@. Do you want to bind it now?";
+"kNoBindNoFollow" = "You can follow player only if you have connect %@. Do you want to connect now?";
 
 "kLoginSucc" = "Login successfully";
 "kLoginFail" = "Fail to login, please check your email or password";
@@ -1264,13 +1264,13 @@
 "kRemoveLearnDraw" = "Remove draw";
 
 
-"kLearnDrawPreviewTitle" = "Draw Image";
+"kLearnDrawPreviewTitle" = "View Drawing";
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Buy It";
 "kBuyToPlayMesaage" = "Buy and play it to the end?";
 
-"kJailBrokenUserIAPTips" = "Your device is jail broken, which make it risk when purchase, do you want to continue?";
+"kJailBrokenUserIAPTips" = "Your device is Jail-Broken. It's risky to continue IAP purchasing. Do you want to continue?";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

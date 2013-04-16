@@ -25,6 +25,7 @@
 #import "ReplayView.h"
 #import "Draw.h"
 #import "LearnDrawPreViewController.h"
+#import "CommonMessageCenter.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -75,7 +76,6 @@
 
 - (void)updateBoughtList
 {
-    
     __block LearnDrawHomeController *cp = self;
     [[LearnDrawService defaultService] getAllBoughtLearnDrawIdListWithResultHandler:^(NSArray *array, NSInteger resultCode) {
         if (resultCode != 0 && (++_tryTimes)  < MAX_TRYTIMES) {
@@ -175,11 +175,11 @@
                                 size:feed.drawData.canvasSize];
             feed.drawData = nil;
         }else{
-            //TODO show error message
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
         }
         
         [cp hideProgressView];
-    } downloadDelegate:self]; //TODO show download progress...
+    } downloadDelegate:self]; 
 
 }
 
@@ -249,7 +249,7 @@
                                                       if (resultCode == 0) {
                                                           [cp.dataTableView reloadData];
                                                       }else{
-                                                          //TODO deal with the error result.
+                                                          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
                                                       }
 
                 }];

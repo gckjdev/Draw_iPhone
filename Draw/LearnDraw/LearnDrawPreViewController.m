@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "ShareAction.h"
+#import "CommonMessageCenter.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -162,7 +163,8 @@
             }
             
         }else{
-            //TODO show error message
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+
         }
         
         [cp hideProgressView];
@@ -201,7 +203,7 @@
             [cp playDrawToEnd:YES];
             
         }else{
-            //TODO deal with the error result.
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
         }
         
     }];

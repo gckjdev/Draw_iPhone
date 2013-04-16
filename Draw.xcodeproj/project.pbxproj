@@ -175,7 +175,6 @@
 		A44B38A7171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44B38A8171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44B38A9171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
-		A44B38AB171CFF24001968E2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38AA171CFF23001968E2 /* libz.dylib */; };
 		A44B48FD1713EFAC00404D73 /* iap_product_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */; };
 		A44B49B8171506AF00404D73 /* item_taobao_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44E6CC6170D75410067B647 /* item_taobao_icon@2x.png */; };
 		A44B49B9171506AF00404D73 /* item_taobao_select_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A44E6CC7170D75410067B647 /* item_taobao_select_icon@2x.png */; };
@@ -8995,6 +8994,8 @@
 		CAE9AA7C16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAE9AA7D16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
+		CAEE48F2171D32C800EF2380 /* default_config_Learndraw_version.txt in Resources */ = {isa = PBXBuildFile; fileRef = CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */; };
+		CAEE48F3171D32CB00EF2380 /* default_config_Learndraw.pb in Resources */ = {isa = PBXBuildFile; fileRef = CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */; };
 		CAEECDAA15DDEEF700FA5A2A /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9715DDEEF700FA5A2A /* Board.m */; };
 		CAEECDAB15DDEEF700FA5A2A /* BoardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9915DDEEF700FA5A2A /* BoardManager.m */; };
 		CAEECDAC15DDEEF700FA5A2A /* BoardNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEECD9C15DDEEF700FA5A2A /* BoardNetwork.m */; };
@@ -9613,7 +9614,6 @@
 		A43FF3271650E9EF00B490B7 /* DiceMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceMessageView.m; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		A44B38AA171CFF23001968E2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
 		A44B4A241715146E00404D73 /* iap_product_Zhajinhua.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Zhajinhua.pb; sourceTree = "<group>"; };
 		A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_Zhajinhua_version.txt; sourceTree = "<group>"; };
@@ -12776,6 +12776,8 @@
 		CAE9AA7916D72F15008392F9 /* SuperPen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPen.m; sourceTree = "<group>"; };
 		CAEE45E3165F5590001E02F1 /* GameSNSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSNSService.h; sourceTree = "<group>"; };
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
+		CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw_version.txt; sourceTree = "<group>"; };
+		CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw.pb; sourceTree = "<group>"; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECD9615DDEEF700FA5A2A /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
@@ -13340,7 +13342,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A44B38AB171CFF24001968E2 /* libz.dylib in Frameworks */,
 				C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */,
 				C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */,
 				CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */,
@@ -16670,6 +16671,8 @@
 		CA1250EB1669EDD800AFCC04 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */,
+				CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */,
 				A44B4A2B1715457B00404D73 /* default_config_Zhajinhua_version.txt */,
 				A44B4A2C1715457D00404D73 /* default_config_Zhajinhua.pb */,
 				CA189B011702B64900339D42 /* default_config_Dice_version.txt */,
@@ -17546,7 +17549,6 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
-				A44B38AA171CFF23001968E2 /* libz.dylib */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -22313,6 +22315,8 @@
 				CAE5ADC8171B9CB3009BFDC1 /* LearnDrawHomeController~ipad.xib in Resources */,
 				CAE5ADDC171BABBB009BFDC1 /* LearnDrawPreViewController.xib in Resources */,
 				CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
+				CAEE48F2171D32C800EF2380 /* default_config_Learndraw_version.txt in Resources */,
+				CAEE48F3171D32CB00EF2380 /* default_config_Learndraw.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

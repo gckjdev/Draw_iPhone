@@ -33,7 +33,6 @@
 #import "UserGameItemService.h"
 #import "CommonMessageCenter.h"
 #import "BlockArray.h"
-#import "CommonDialog.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -649,19 +648,6 @@ transactionRecepit:(NSString*)transactionRecepit
 - (void)buyProduct:(PBIAPProduct*)product
 {
     // send request to Apple IAP Server and wait for result
-    if ([MobClick isJailbroken]) {
-        
-        __block BOOL cancel = NO;
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kJailBrokenUserIAPTips") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            cancel = NO;
-        } clickCancelBlock:^{
-            cancel = YES;
-        }];
-        
-        if (cancel == YES) {
-            return;
-        }
-    }
     
     SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:product.appleProductId];
     
