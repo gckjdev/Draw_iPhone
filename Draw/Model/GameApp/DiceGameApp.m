@@ -354,6 +354,11 @@
     return NO;
 }
 
+- (BOOL)hasCoinBalance
+{
+    return YES;
+}
+
 - (NSString*)youmiWallId
 {
     return @""; // TODO

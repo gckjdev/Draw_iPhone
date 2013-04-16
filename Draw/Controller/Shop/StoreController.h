@@ -20,6 +20,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *ingotBalanceLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *ingotBalanceBgImageView;
-
+@property (retain, nonatomic) IBOutlet UIView *coinHolderView;
+@property (retain, nonatomic) IBOutlet UIView *ingotHolderView;
 
 @end

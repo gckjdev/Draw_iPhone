@@ -231,7 +231,7 @@
     order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
-    order.amount = @"0.01";//product.totalPrice;
+    order.amount = product.totalPrice;
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
