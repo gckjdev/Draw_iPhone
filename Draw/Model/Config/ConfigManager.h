@@ -237,11 +237,11 @@ typedef enum{
 + (int)getSignatureMaxLen;
 + (int)getNicknameMaxLen;
 
-+ (NSString *)getTaobaoChargeURL;
++ (NSString *)getTaobaoHomeUrl;
 
 + (NSString *)getAlipayPartner;
 + (NSString *)getAlipaySeller;
 + (NSString *)getAlipayRSAPrivateKey;
 + (NSString *)getAlipayAlipayPublicKey;
-
++ (NSString *)getAlipayNotifyUrl;
 @end

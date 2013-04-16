@@ -882,10 +882,9 @@
     return  [MobClickUtils getIntValueByKey:@"NICKNAME_MAX_LEN" defaultValue:60];
 }
 
-+ (NSString *)getTaobaoChargeURL
++ (NSString *)getTaobaoHomeUrl
 {
-    return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"];
-    
+    return [MobClickUtils getStringValueByKey:@"TAOBAO_CHARGE_URL" defaultValue:@"http://shop102713732.m.taobao.com"];
 }
 
 #define ALIPAY_PARTNER @"2088901423555415"
@@ -914,6 +913,11 @@
 + (NSString *)getAlipayAlipayPublicKey
 {
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_ALIPAY_PUBLIC_KEY" defaultValue:ALIPAY_ALIPAY_PUBLIC_KEY];
+}
+
++ (NSString *)getAlipayNotifyUrl
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_NOTIFY_URL" defaultValue:@"http://www.xxx.com"];
 }
 
 @end

@@ -305,6 +305,8 @@ message PBIAPProduct{
   optional string country = 22;                 // 适应国家，中国"CN"
 
   optional string saving = 50;                  // 节省百分比，如"50%"
+  
+  optional string taobaoUrl = 61;               // 对应的淘宝链接
 }
 
 message PBIAPProductList{

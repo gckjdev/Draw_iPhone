@@ -23,7 +23,7 @@
 #import "StringUtil.h"
 #import "IAPProductManager.h"
 #import "PPNetworkConstants.h"
-
+#import "CommonDialog.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -41,38 +41,51 @@
     [super dealloc];
 }
 
+- (void)handleAlipayCallBack:(NSNotification *)note
+{
+    PPDebug(@"receive message: %@", NOTIFICATION_ALIPAY_PAY_CALLBACK);
+    NSDictionary *userInfo = note.userInfo;
+    int resultCode = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_CODE] intValue];
+    NSString *msg = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_MESSAGE] intValue];
+    AlixPayOrder *order = [userInfo objectForKey:ALIPAY_CALLBACK_RESULT_ORDER];
+    NSString *alipayProductId = [AlixPayOrderManager productIdFromTradeNo:order.tradeNO];
+    PBIAPProduct *product = [[IAPProductManager defaultManager] productWithAlipayProductId:alipayProductId];
+    
+    if (resultCode == ERROR_SUCCESS) {
+        [self showActivityWithText:NSLS(@"kCharging")];
+
+        [[AccountService defaultService] chargeBalance:product.type count:product.count source:ChargeViaAlipay order:order];
+    }else{
+        [CommonDialog createDialogWithTitle:@"kGifTips" message:msg style:CommonDialogStyleSingleButton delegate:nil];
+    }
+}
+
+- (void)handleJumpToAlipayClient:(NSNotification *)note
+{
+    PPDebug(@"receive message: %@", NOTIFICATION_JUMP_TO_ALIPAY_CLIENT);
+    NSDictionary *userInfo = note.userInfo;
+    int resultCode = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_CODE] intValue];
+//    NSString *msg = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_MESSAGE] intValue];
+    AlixPayOrder *order = [userInfo objectForKey:ALIPAY_CALLBACK_RESULT_ORDER];
+    NSString *alipayProductId = [AlixPayOrderManager productIdFromTradeNo:order.tradeNO];
+    PBIAPProduct *product = [[IAPProductManager defaultManager] productWithAlipayProductId:alipayProductId];
+    
+    if (resultCode != ERROR_SUCCESS) {
+        [self pushTaobao:product.taobaoUrl];
+    }
+}
+
 - (id)init
 {
     if (self = [super init]) {
         _saleCurrency = [GameApp saleCurrency];
         __block typeof (self)bself = self;
         [[NotificationCenterManager defaultManager] registerNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK usingBlock:^(NSNotification *note) {
-            PPDebug(@"receive message: %@", NOTIFICATION_ALIPAY_PAY_CALLBACK);
-            NSDictionary *userInfo = note.userInfo;
-            int resultStatus = [[userInfo objectForKey:ALIPAY_CALLBACK_RESULT_STATUS_CODE] intValue];
-            if (resultStatus == 9000) {
-                AlixPayOrder *order = [userInfo objectForKey:ALIPAY_CALLBACK_RESULT_ORDER];
-                NSString *alipayProductId = [AlixPayOrderManager productIdFromTradeNo:order.tradeNO];
-                PBIAPProduct *product = [[IAPProductManager defaultManager] productWithAlipayProductId:alipayProductId];
-
-
-                switch (product.type) {
-                    case PBIAPProductTypeIapcoin:
-                        [bself showActivityWithText:NSLS(@"kCharging")];
-//                        [[AccountService defaultService] chargeCoin:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
-                        [[AccountService defaultService] chargeCoin:product.count source:ChargeAsAGift];
-                        break;
-                        
-                    case PBIAPProductTypeIapingot:
-                        [bself showActivityWithText:NSLS(@"kCharging")];
-//                        [[AccountService defaultService] chargeIngot:product.count source:ChargeViaAlipay alipayOrder:(AlixPayOrder *)order];
-                        [[AccountService defaultService] chargeIngot:product.count source:ChargeAsAGift];
-                        break;
-                        
-                    default:
-                        break;
-                }
-            }
+            [bself handleAlipayCallBack:note];
+        }];
+        
+        [[NotificationCenterManager defaultManager] registerNotificationWithName:NOTIFICATION_JUMP_TO_ALIPAY_CLIENT usingBlock:^(NSNotification *note) {
+            [bself handleJumpToAlipayClient:note];
         }];
     }
     
@@ -141,20 +154,27 @@
 - (IBAction)clickBackButton:(id)sender {
     [[AccountService defaultService] setDelegate:nil];
     [[NotificationCenterManager defaultManager] unregisterNotificationWithName:NOTIFICATION_ALIPAY_PAY_CALLBACK];
+    [[NotificationCenterManager defaultManager] unregisterNotificationWithName:NOTIFICATION_JUMP_TO_ALIPAY_CLIENT];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)pushTaobao
-{
-    NSString *urlString = [ConfigManager getTaobaoChargeURL];
-    
-    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:urlString title:NSLS(@"kTaoBaoChargeTitle")];
+- (void)pushTaobao:(NSString *)taobaoUrl
+{    
+    TaoBaoController *controller = [[TaoBaoController alloc] initWithURL:taobaoUrl title:NSLS(@"kTaoBaoChargeTitle")];
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
 
 - (IBAction)clickTaoBaoButton:(id)sender {
-    [self pushTaobao];
+    
+    NSString *taobaoUrl = nil;
+    if ([dataList count] > 0) {
+        PBIAPProduct *product = [dataList objectAtIndex:0];
+        taobaoUrl = product.taobaoUrl;
+    }else{
+        taobaoUrl = [ConfigManager getTaobaoHomeUrl];
+    }
+    [self pushTaobao:taobaoUrl];
 }
 
 #pragma mark -
@@ -203,11 +223,10 @@
     order.partner = [ConfigManager getAlipayPartner];
     order.seller = [ConfigManager getAlipaySeller];
     order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
-    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, product.name];
+    order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
-    order.amount = @"0.01";
-    order.notifyURL =  @"http://www.xxx.com"; //回调URL
-    PPDebug(@"extraParams = %@", order.extraParams);
+    order.amount = product.totalPrice;
+    order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
     
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
@@ -233,15 +252,9 @@
 
 - (void)alipayForOrder:(AlixPayOrder *)order
 {
-    __block typeof (self)bself = self;
-    [[AliPayManager defaultManager] payWithOrder:order
-                                       appScheme:[GameApp alipayCallBackScheme]
-                                   rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]
-                                         handler:^(int errorCode, NSString *errorMsg) {
-                                             if (errorCode != ERROR_SUCCESS){
-                                                 [bself pushTaobao];
-                                             }
-                                         }];
+    [AliPayManager payWithOrder:order
+                      appScheme:[GameApp alipayCallBackScheme]
+                  rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
 }
 
 - (void)applePayForProduct:(PBIAPProduct *)product

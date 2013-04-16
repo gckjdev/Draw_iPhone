@@ -466,7 +466,7 @@ NSString* GlobalGetBoardServerURL()
     if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }else if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [[AliPayManager defaultManager] parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
+        return [AliPayManager parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
     }
     else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
         

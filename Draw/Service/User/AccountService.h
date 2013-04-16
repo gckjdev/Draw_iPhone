@@ -11,6 +11,7 @@
 #import "Account.h"
 #import "GameBasic.pb.h"
 #import "GameNetworkConstants.h"
+#import "AlixPayOrder.h"
 
 #define PAYMENT_SUCCESS 0
 #define PAYMENT_FAILURE 1
@@ -49,6 +50,26 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 - (BOOL)hasEnoughBalance:(int)amount
                 currency:(PBGameCurrency)currency;
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               source:(BalanceSourceType)source;
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               toUser:(NSString *)toUserId
+               source:(BalanceSourceType)source;
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               source:(BalanceSourceType)source
+                order:(AlixPayOrder *)order;
+
+- (void)chargeBalance:(PBGameCurrency)currency
+                count:(int)count
+               toUser:(NSString *)toUserId
+               source:(BalanceSourceType)source
+                order:(AlixPayOrder *)order;
 
 - (void)chargeCoin:(int)amount 
             source:(BalanceSourceType)source;

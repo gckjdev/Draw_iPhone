@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GameConstants.pb.h"
 #import "GameBasic.pb.h"
+#import "AlixPayOrder.h"
 
 @class CommonNetworkOutput;
 
@@ -108,7 +109,8 @@
                             source:(int)source
                      transactionId:(NSString*)transactionId
                 transactionReceipt:(NSString*)transactionRecepit
-                            byUser:(NSString*)byUserId;
+                            byUser:(NSString*)byUserId
+                         alixOrder:(NSString *)alixOrder;
 
 + (CommonNetworkOutput*)chargeIngot:(NSString*)baseURL
                              userId:(NSString*)userId
@@ -116,7 +118,8 @@
                              source:(int)source
                       transactionId:(NSString*)transactionId
                  transactionReceipt:(NSString*)transactionRecepit
-                             byUser:(NSString*)byUserId;
+                             byUser:(NSString*)byUserId
+                          alixOrder:(NSString *)alixOrder;
 
 + (CommonNetworkOutput*)deductCoin:(NSString*)baseURL
                                userId:(NSString*)userId

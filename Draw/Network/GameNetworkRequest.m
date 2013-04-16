@@ -492,8 +492,7 @@
                      transactionId:(NSString*)transactionId
                 transactionReceipt:(NSString*)transactionRecepit
 {
-    return [GameNetworkRequest chargeCoin:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId];
-    
+    return [GameNetworkRequest chargeCoin:baseURL userId:userId amount:amount source:source transactionId:transactionId transactionReceipt:transactionRecepit byUser:userId alixOrder:nil];
 }
 
 + (CommonNetworkOutput*)chargeCoin:(NSString*)baseURL
@@ -503,6 +502,7 @@
                      transactionId:(NSString*)transactionId
                 transactionReceipt:(NSString*)transactionRecepit
                             byUser:(NSString*)byUserId
+                         alixOrder:(NSString *)alixOrder
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -517,6 +517,8 @@
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
+        
+        str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
         
         return str;
     };
@@ -541,6 +543,7 @@
                       transactionId:(NSString*)transactionId
                  transactionReceipt:(NSString*)transactionRecepit
                              byUser:(NSString*)byUserId
+                          alixOrder:(NSString *)alixOrder
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -556,6 +559,8 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
+        str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
+
         return str;
     };
     

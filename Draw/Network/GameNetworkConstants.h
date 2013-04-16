@@ -221,6 +221,10 @@
 #define PARA_FORWARD @"fw"
 #define PARA_RET_COUNT @"cnt"
 
+
+// alix pay order parameters
+#define PARA_ALIPAY_ORDER  @"alixorder"
+
 // request parameters
 #define METHOD_GET_MYCOMMENT_LIST @"gmcl"
 #define PARA_USERS @"users"
