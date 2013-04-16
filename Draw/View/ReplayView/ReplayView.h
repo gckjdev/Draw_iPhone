@@ -22,6 +22,7 @@
 
 @property(nonatomic, assign)NSUInteger endIndex;
 @property(nonatomic, retain)DrawFeed *drawFeed;
+@property(nonatomic, assign)BOOL popControllerWhenClose;
 
 + (id)createReplayView;
 

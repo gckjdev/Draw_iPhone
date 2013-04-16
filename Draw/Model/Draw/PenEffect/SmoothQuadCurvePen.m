@@ -71,9 +71,11 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     _hasPoint = NO;
 }
 
-- (void)constructPath:(NSArray*)pointList
+- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect
 {
-//    PPDebug(@"<constructPath> point count=%d", [pointList count]);
+
+    BOOL checkPoint = !CGRectEqualToRect(rect, CGRectZero);
+
     [self startAddPoint];
     
     int pointCount = [pointList count];
@@ -81,10 +83,11 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     if (pointCount > 0) {
                 
         for (int i=0; i<pointCount; i++){
-//            NSValue *value = [pointList objectAtIndex:i];
-//            CGPoint point  = [value CGPointValue];
             PointNode *node = [pointList objectAtIndex:i];
-            [self addPointIntoPath:node.point];
+            if (!checkPoint || [node pointInRect:rect]) {
+                [self addPointIntoPath:node.point];
+            }
+        
         }
         
     }

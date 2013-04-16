@@ -123,6 +123,8 @@
         [replay setEndIndex:endIndex];
         [replay setPlayControlsDisable:YES];
         [replay setDrawFeed:self.feed];
+    }else{
+        replay.popControllerWhenClose = YES;
     }
     self.feed.drawImage = self.contentImageView.image;
     [replay showInController:self

@@ -121,7 +121,17 @@
     [self.holderView setContentView:nil];
     [self.holderView removeFromSuperview];
     self.holderView = nil;
+    UIViewController *controller = nil;
+    if (self.popControllerWhenClose) {
+        controller = [self theViewController];
+    }
+    [self theViewController];
     [self removeFromSuperview];
+    
+    if (self.popControllerWhenClose) {
+        [controller.navigationController popToRootViewControllerAnimated:NO];
+    }
+
 }
 
 - (void)updateMaskViewWithFrame:(CGRect)frame
@@ -440,7 +450,7 @@
             [cp setEndIndex:0];
             [cp setPlayControlsDisable:NO];
             [cp clickPlay:cp.playButton];
-
+            cp.popControllerWhenClose = YES;
             ShareAction *share = [[ShareAction alloc]
                                   initWithFeed:cp.drawFeed
                                         image:cp.drawFeed.drawImage];

@@ -29,13 +29,14 @@ typedef enum {
 
 @property(nonatomic, assign)DrawActionType type;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
+//@property(nonatomic, assign)CGSize canvasSize;
 
-
+- (void)setCanvasSize:(CGSize)canvasSize;
 
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
 
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data;
++ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize;
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size

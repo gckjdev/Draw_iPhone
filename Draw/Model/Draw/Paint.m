@@ -42,7 +42,7 @@
 
 - (void)constructPath
 {
-    [[self getPen] constructPath:self.pointNodeList];
+    [[self getPen] constructPath:self.pointNodeList inRect:self.canvasRect];
     return;
 }
 
@@ -182,7 +182,7 @@
 {
     id<PenEffectProtocol> pen = [self getPen];
     if (![pen hasPoint]){
-        [pen constructPath:self.pointNodeList];
+        [pen constructPath:self.pointNodeList inRect:self.canvasRect];
     }
     
     return [pen penPath];
