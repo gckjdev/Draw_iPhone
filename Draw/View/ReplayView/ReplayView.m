@@ -96,6 +96,7 @@
         [self.playerToolMask removeFromSuperview];
         self.playerToolMask = nil;
     }
+    self.popControllerWhenClose = NO;
 }
 
 + (id)createReplayView
@@ -122,13 +123,15 @@
     [self.holderView removeFromSuperview];
     self.holderView = nil;
     UIViewController *controller = nil;
-    if (self.popControllerWhenClose) {
+    BOOL pop = self.popControllerWhenClose;
+    
+    if (pop) {
         controller = [self theViewController];
     }
     [self theViewController];
     [self removeFromSuperview];
     
-    if (self.popControllerWhenClose) {
+    if (pop) {
         [controller.navigationController popToRootViewControllerAnimated:NO];
     }
 
