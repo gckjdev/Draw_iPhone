@@ -10,11 +10,12 @@
 
 @interface UserSettingCell : PPTableViewCell
 
+@property (retain, nonatomic) IBOutlet UIView *badgeHolderView;
 @property (retain, nonatomic) IBOutlet UILabel *customDetailLabel;
 @property (retain, nonatomic) IBOutlet UILabel *customTextLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *customSeparatorLine;
-@property (retain, nonatomic) IBOutlet UIImageView *customAccessory;
+@property (retain, nonatomic) IBOutlet UIView *customAccessory;
 
 - (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount;
 

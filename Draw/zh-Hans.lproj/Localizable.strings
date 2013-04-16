@@ -264,9 +264,10 @@
 
 "kNewVersionMessage" = "检测到有新版本[%@]，是否要升级到最新版本？";
 "kNewVersionTitle" = "版本升级";
-
+"kFindNewVersion" = "发现新版本";
 "Remind Later" = "下次提醒";
-"Upgrade Now" = "马上升级";
+"kIgnoreThisVersion" = "忽略此版本";
+"kUpgradeNow" = "马上升级";
 "OK" = "确定";
 "Cancel" = "取消";
 
