@@ -223,7 +223,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
 {
     NSString *userId = [self userId];
     if ([userId length] == 0) {
-        userId = @""
+        userId = @"";
     }
 
     
