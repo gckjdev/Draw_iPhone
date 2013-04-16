@@ -242,7 +242,7 @@
         case RankViewTypeNormal:
             return [DeviceDetection isIPAD] ? 256 : 106;
         case RankViewTypeDrawOnCell:            
-            return [DeviceDetection isIPAD] ? 230 : 99;
+            return [DeviceDetection isIPAD] ? 245 : 99;
         default:
             return 0;
     }

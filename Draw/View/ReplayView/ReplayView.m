@@ -121,7 +121,11 @@
     [self.holderView setContentView:nil];
     [self.holderView removeFromSuperview];
     self.holderView = nil;
-    UIViewController *controller = [self theViewController];
+    UIViewController *controller = nil;
+    if (self.popControllerWhenClose) {
+        controller = [self theViewController];
+    }
+    [self theViewController];
     [self removeFromSuperview];
     
     if (self.popControllerWhenClose) {
