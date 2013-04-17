@@ -229,7 +229,7 @@
 					<object class="IBUILabel" id="795360296">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{80, 37}, {60, 23}}</string>
+						<string key="NSFrame">{{80, 37}, {64, 23}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="41678693"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -253,7 +253,7 @@
 					<object class="IBUIImageView" id="536620801">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{63, 41}, {16, 15}}</string>
+						<string key="NSFrame">{{63, 40.5}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="893143396"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -261,7 +261,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">common_home_coin@2x.png</string>
+							<string key="NSResourceName">coin@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="218733648">
@@ -513,8 +513,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="coin@2x.png">{64, 64}</string>
 			<string key="common_home_badge@2x.png">{36, 38}</string>
-			<string key="common_home_coin@2x.png">{16, 16}</string>
 			<string key="dice_home_header_bg@2x.png">{640, 365}</string>
 			<string key="dice_home_header_foot@2x.png">{317, 107}</string>
 			<string key="dice_home_header_man@2x.png">{357, 399}</string>
