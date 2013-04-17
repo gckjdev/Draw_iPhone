@@ -121,4 +121,6 @@
 
 - (BOOL)hasBBS;
 
+- (BOOL)hasAllColorGroups;
+
 @end

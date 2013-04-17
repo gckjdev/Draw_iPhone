@@ -119,6 +119,12 @@
     
     [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     [self.moreButton setTitle:NSLS(@"kMoreColor") forState:UIControlStateNormal];
+    
+    
+    if ([GameApp hasAllColorGroups]) {
+        [self.moreButton setHidden:YES];
+        self.closeButton.center = self.moreButton.center;
+    }
 }
 
 + (id)createViewWithdelegate:(id)delegate

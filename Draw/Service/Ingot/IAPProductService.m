@@ -72,6 +72,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         [self createZJHCoinTestDataFile];
     }else if(isDiceApp()){
         [self createDiceCoinTestDataFile];
+    }else if (isLearnDrawApp()){
+        [self createLearnDrawIngotTestDataFile];
     }
 }
 
@@ -136,6 +138,85 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                            saving:@"35%"
                                         taobaoUrl:DRAW_INGOT_250_TAOBAO_URL]];
 
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
++ (void)createLearnDrawIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_6"
+                                    alipayProductId:@"learn_draw_ingot_6"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:6
+                                         totalPrice:@"0.99"
+                                             saving:nil
+                                          taobaoUrl:nil]];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_22"
+                                    alipayProductId:@"learn_draw_ingot_22"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:22
+                                         totalPrice:@"2.99"
+                                             saving:@"18%"
+                                          taobaoUrl:nil]];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_39"
+                                    alipayProductId:@"learn_draw_ingot_39"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:39
+                                         totalPrice:@"4.99"
+                                             saving:@"23%"
+                                          taobaoUrl:nil]];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_84"
+                                    alipayProductId:@"learn_draw_ingot_84"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:84
+                                         totalPrice:@"9.99"
+                                             saving:@"28%"
+                                          taobaoUrl:nil]];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_225"
+                                    alipayProductId:@"learn_draw_ingot_225"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:225
+                                         totalPrice:@"24.99"
+                                             saving:@"33%"
+                                          taobaoUrl:nil]];
+    
+    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.learndraw.ingot_600"
+                                    alipayProductId:@"learn_draw_ingot_600"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:600
+                                         totalPrice:@"49.99"
+                                             saving:@"50%"
+                                          taobaoUrl:nil]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
     [listBuilder addAllProducts:mutableArray];
@@ -278,6 +359,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 }
 
 
++ (PBIAPProduct *)enProductWithType:(PBIAPProductType)type
+                     appleProductId:(NSString *)appleProductId
+                    alipayProductId:(NSString *)alipayProductId
+                               name:(NSString *)name
+                               desc:(NSString *)desc
+                              count:(int)count
+                         totalPrice:(NSString *)totalPrice
+                             saving:(NSString *)saving
+                          taobaoUrl:(NSString *)taobaoUrl
+{
+    PBIAPProduct_Builder *builder = [[[PBIAPProduct_Builder alloc] init] autorelease];
+    [builder setType:type];
+    [builder setAppleProductId:appleProductId];
+    [builder setAlipayProductId:alipayProductId];
+    [builder setName:name];
+    [builder setDesc:desc];
+    [builder setCount:count];
+    [builder setTotalPrice:totalPrice];
+    [builder setSaving:saving];
+    [builder setCurrency:@"$"];
+    [builder setCountry:@"EN"];
+    [builder setTaobaoUrl:taobaoUrl];
+    
+    return [builder build];
+}
 
 + (PBIAPProduct *)productWithType:(PBIAPProductType)type
                    appleProductId:(NSString *)appleProductId

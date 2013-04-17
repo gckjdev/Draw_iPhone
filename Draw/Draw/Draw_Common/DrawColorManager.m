@@ -92,9 +92,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
 - (void)updateBoughtColorList
 {
     self.ownColorList = [NSMutableArray array];
-    
     for (NSInteger i = GRADUAL_START; i < GRADUAL_END; ++ i) {
-        if ([[UserGameItemManager defaultManager] hasItem:i]) {
+        if ([GameApp hasAllColorGroups] ||[[UserGameItemManager defaultManager] hasItem:i]) {
             NSArray *list = [ColorGroup colorListForGroupId:i];
             if([list count] != 0){
                 [self.ownColorList addObjectsFromArray:list];
@@ -103,7 +102,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     }
 
     for (NSInteger i = PACKAGE_START; i < PACKAGE_END; ++ i) {
-        if ([[UserGameItemManager defaultManager] hasItem:i]) {
+        if ([GameApp hasAllColorGroups] ||[[UserGameItemManager defaultManager] hasItem:i]) {
             NSArray *list = [ColorGroup colorListForGroupId:i];
             if([list count] != 0){
                 [self.ownColorList addObjectsFromArray:list];

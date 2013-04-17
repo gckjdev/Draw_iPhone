@@ -31,5 +31,10 @@
     return @"alipaycchhpro.gckj";
 }
 
+- (BOOL)hasAllColorGroups
+{
+    return NO;
+}
+
 
 @end

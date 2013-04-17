@@ -394,4 +394,9 @@
     return YES;
 }
 
+- (BOOL)hasAllColorGroups
+{
+    return NO;
+}
+
 @end
