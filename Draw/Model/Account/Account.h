@@ -41,7 +41,7 @@ typedef enum  {
     
     ChargeAsAGift = 420,
     
-    ChargeViaAppleAccount = 430,
+    ChargeViaBuyPurseItem = 430,
     ChargeViaAlipay = 431,
     
     ChargeLearnDraw = 450,
