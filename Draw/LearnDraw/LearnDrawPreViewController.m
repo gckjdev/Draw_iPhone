@@ -80,12 +80,11 @@
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_placeHolderImage);
-    PPRelease(_feed);
-    
     PPRelease(_titleLabel);
     PPRelease(_contentImageView);
     PPRelease(_previewButton);
     PPRelease(_buyButton);
+    _feed.pbDrawData = nil;
     _feed.drawData = nil;
     PPRelease(_feed);
     [super dealloc];
