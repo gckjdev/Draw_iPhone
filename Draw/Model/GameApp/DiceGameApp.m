@@ -389,5 +389,9 @@
     return YES;
 }
 
+- (BOOL)hasBBS
+{
+    return YES;
+}
 
 @end

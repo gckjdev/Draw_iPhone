@@ -44,6 +44,7 @@ enum {
     [_friendAppArray release];
     [_wallArray release];
     [_titleLabel release];
+    [_toBBSHolderView release];
     [super dealloc];
 }
 
@@ -68,6 +69,8 @@ enum {
     self.titleLabel.text = [GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ? NSLS(@"kFreeIngots") : NSLS(@"kFreeCoins");
     self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
     self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
+    
+    self.toBBSHolderView.hidden = ![GameApp hasBBS];
 }
 
 - (void)didReceiveMemoryWarning
@@ -185,6 +188,7 @@ enum {
 
 - (void)viewDidUnload {
     [self setTitleLabel:nil];
+    [self setToBBSHolderView:nil];
     [super viewDidUnload];
 }
 @end

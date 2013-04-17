@@ -11,4 +11,5 @@
 @interface FreeIngotController : PPTableViewController
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (retain, nonatomic) IBOutlet UIView *toBBSHolderView;
 @end

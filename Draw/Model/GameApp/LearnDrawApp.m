@@ -378,4 +378,10 @@
 {
     return NO;
 }
+
+- (BOOL)hasBBS
+{
+    return NO;
+}
+
 @end

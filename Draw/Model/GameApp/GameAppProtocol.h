@@ -119,4 +119,6 @@
 
 - (BOOL)canShareViaSNS;
 
+- (BOOL)hasBBS;
+
 @end
