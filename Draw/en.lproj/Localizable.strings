@@ -884,10 +884,10 @@
 
 
 "kCommentTimes" = "Comment(%d)";
-"kGuessTimes" = "Guess(%d)";
+"kGuessTimes" = "Guessed(%d)";
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
-"kCollectTimes" = "Collection(%d)";
+"kCollectTimes" = "Favorite(%d)";
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";

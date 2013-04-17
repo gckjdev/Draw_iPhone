@@ -5656,15 +5656,6 @@
 		CA29EA8716A526CF003B1434 /* draw_home_apps@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B098F169E9C0A00B56975 /* draw_home_apps@2x.png */; };
 		CA29EA8816A526D4003B1434 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
 		CA29EA8916A526D4003B1434 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
-		CA29EA8A16A52721003B1434 /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1473166706BB00ADBE2E /* light.png */; };
-		CA29EA8B16A52721003B1434 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE1474166706BB00ADBE2E /* star.png */; };
-		CA29EA8C16A52721003B1434 /* dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141C1664CB3600ADBE2E /* dialog_bg@2x.png */; };
-		CA29EA8D16A52721003B1434 /* dialog_frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141D1664CB3600ADBE2E /* dialog_frame@2x.png */; };
-		CA29EA8E16A52721003B1434 /* dialog_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141E1664CB3600ADBE2E /* dialog_no@2x.png */; };
-		CA29EA8F16A52721003B1434 /* dialog_smallbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE141F1664CB3600ADBE2E /* dialog_smallbg@2x.png */; };
-		CA29EA9016A52721003B1434 /* dialog_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14201664CB3600ADBE2E /* dialog_yes@2x.png */; };
-		CA29EA9116A52721003B1434 /* loading_planet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14231664CB3600ADBE2E /* loading_planet@2x.png */; };
-		CA29EA9216A52721003B1434 /* starryBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EE14241664CB3600ADBE2E /* starryBg.png */; };
 		CA29EB0616A69E7D003B1434 /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
@@ -24358,15 +24349,6 @@
 				A4F5BF9316A4055D000A503F /* new_wood_bg@2x.png in Resources */,
 				CA29EA8716A526CF003B1434 /* draw_home_apps@2x.png in Resources */,
 				CA29EA8916A526D4003B1434 /* draw_home_free_coins@2x.png in Resources */,
-				CA29EA8A16A52721003B1434 /* light.png in Resources */,
-				CA29EA8B16A52721003B1434 /* star.png in Resources */,
-				CA29EA8C16A52721003B1434 /* dialog_bg@2x.png in Resources */,
-				CA29EA8D16A52721003B1434 /* dialog_frame@2x.png in Resources */,
-				CA29EA8E16A52721003B1434 /* dialog_no@2x.png in Resources */,
-				CA29EA8F16A52721003B1434 /* dialog_smallbg@2x.png in Resources */,
-				CA29EA9016A52721003B1434 /* dialog_yes@2x.png in Resources */,
-				CA29EA9116A52721003B1434 /* loading_planet@2x.png in Resources */,
-				CA29EA9216A52721003B1434 /* starryBg.png in Resources */,
 				A4F5BFE816A64809000A503F /* wood_paper_big@2x.png in Resources */,
 				A4F5BFE916A64809000A503F /* wood_paper_small@2x.png in Resources */,
 				A4F5BFEA16A648B1000A503F /* select_word_back_btn@2x.png in Resources */,
