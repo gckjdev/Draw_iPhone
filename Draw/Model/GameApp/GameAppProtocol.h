@@ -119,6 +119,8 @@
 
 - (BOOL)canShareViaSNS;
 
+- (BOOL)hasBBS;
+
 - (BOOL)hasAllColorGroups;
 
 @end

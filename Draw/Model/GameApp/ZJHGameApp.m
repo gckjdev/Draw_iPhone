@@ -373,10 +373,14 @@
     return YES;
 }
 
+- (BOOL)hasBBS
+{
+    return YES;
+}
+
 - (BOOL)hasAllColorGroups
 {
     return NO;
 }
-
 
 @end
