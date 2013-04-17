@@ -80,8 +80,6 @@
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_placeHolderImage);
-    PPRelease(_feed);
-    
     PPRelease(_titleLabel);
     PPRelease(_contentImageView);
     PPRelease(_previewButton);
