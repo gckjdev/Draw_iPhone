@@ -137,30 +137,37 @@
 
 - (void)playDrawToEnd:(BOOL)end
 {
-    if (self.feed.drawData) {
-        [self playDrawdata:self.feed.drawData
-                  endIndex:[self previewActionCountOfFeed:self.feed]];
-        return;
-    }
     
     __block LearnDrawPreViewController *cp = self;
+
+    
+    dispatch_block_t playBlock = ^{
+        NSInteger index = 0;
+        if (!end) {
+            index = [cp previewActionCountOfFeed:cp.feed];
+        }
+        [cp playDrawdata:cp.feed.drawData endIndex:index];
+        
+        if (end) {
+            ShareAction *share = [[ShareAction alloc] initWithFeed:cp.feed
+                                                             image:cp.contentImageView.image];
+            [share saveToLocal];
+            [share release];
+        }
+    };
+    
+    
+    if (self.feed.drawData) {
+        playBlock();
+        return;
+    }
+
     [self showProgressViewWithMessage:NSLS(@"kLoading")];
     [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
         if (resultCode == 0 && pbDrawData) {
             cp.feed.pbDrawData = pbDrawData;
             [cp.feed parseDrawData];
-            NSInteger index = 0;
-            if (!end) {
-                index = [self previewActionCountOfFeed:cp.feed];
-            }
-            [cp playDrawdata:feed.drawData endIndex:index];
-            
-            if (end) {
-                ShareAction *share = [[ShareAction alloc] initWithFeed:cp.feed
-                                                                 image:cp.contentImageView.image];
-                [share saveToLocal];
-                [share release];
-            }
+            playBlock();
             
         }else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
