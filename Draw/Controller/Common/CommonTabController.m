@@ -370,6 +370,10 @@
 - (void)reloadTableViewDataSource
 {
     TableTab *tab = self.currentTab;
+    if (tab.status == TableTabStatusLoading) {
+        return;
+    }
+    
     tab.status = TableTabStatusUnload;
     tab.offset = 0;
     [self startToLoadDataForTabID:tab.tabID];

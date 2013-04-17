@@ -274,7 +274,7 @@
 "kCleanDrawMessage" = "Clean the draw? All the paints will dismiss.";
 "kSavePercent" = "SAVE %02d%%";
 
-"kShareTitle" = "Local Drawings";
+"kShareTitle" = "My Drawings";
 
 "kNickNameEmpty" = "Nick name cannot be empty.";
 "Nick" = "Nick";
@@ -867,7 +867,7 @@
 "kNotEnoughCoin" = "Coins not enough";
 "kNotEnoughCoinOrItem" = "No enough coin or item";
 
-"kParsingData" = "Parsing data...";
+//"kParsingData" = "Parsing data...";
 
 "kLatestFeed" = "Latest";
 
@@ -884,10 +884,10 @@
 
 
 "kCommentTimes" = "Comment(%d)";
-"kGuessTimes" = "Guess(%d)";
+"kGuessTimes" = "Guessed(%d)";
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
-"kCollectTimes" = "Collection(%d)";
+"kCollectTimes" = "Favorite(%d)";
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";
@@ -1005,7 +1005,7 @@
 "kCharge" = "Buy";
 "kChargeTitle" = "Charge";
 
-"kFreeCoins" = "Get Free";
+"kFreeCoins" = "Free";
 
 "kHomeMenuTypeZJHHelp" = "Help";
 "kHomeMenuTypeZJHStart" = "Play";
@@ -1136,7 +1136,7 @@
 "kDownloadRewardCoinAppTips" = "Download our apps to earn coins";
 "kRewardIngotWallTips" = "Download third-party apps to earn ingots";
 "kRewardCoinWallTips" = "Download third-party apps to earn coins";
-"kFreeIngots" = "Get Free";
+"kFreeIngots" = "Free Apps";
 "kGoToBBS4Help" = "For help? Go to BBS";
 
 "kCleaning" = "Cleaning Cache...";
@@ -1158,7 +1158,7 @@
 "kBalance" = "Balance:";
 
 "kBalanceNotEnoughTitle" = "Balance Not Enough";
-"kBalanceNotEnoughDesc" = "Sorry，your balance is not enough，you can increase your balance via the way below:";
+"kBalanceNotEnoughDesc" = "Sorry, your balance is not enough. You can charge your account by IAP purchasing or download our other free apps.";
 
 "kDetectFakeIAP" = "Fail to complete purchase. You may use jail-broken IAP";
 "kVerifyIAPFail" = "Fail to complete purchase. Please try again later.";
@@ -1169,7 +1169,7 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
-"kParsingData" = "Prepare to show...";
+"kParsingData" = "Parsing data...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";
 "kBloodGroup" = "Blood Group";
@@ -1259,7 +1259,7 @@
 "kLearnDrawAll" = "All";
 "kLearnDrawCartoon" = "Cartoon";
 "kLearnDrawCharater" = "Human";
-"kLearnDrawScenery" = "Scence";
+"kLearnDrawScenery" = "Scene";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
@@ -1270,11 +1270,11 @@
 "kLearnDrawPreviewTitle" = "View Drawing";
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
-"kBuyToPlayTitle" = "Buy It";
-"kLearnDrawTitle" = "Learn Draw";
-"kBuyLearnDrawSuccess" = "Got it successfully!";
+"kBuyToPlayTitle" = "Preview";
+"kLearnDrawTitle" = "Watch & Learn How to Draw";
+"kBuyLearnDrawSuccess" = "Drawing bought successfully";
 
-"kBuyToPlayMesaage" = "Buy and play it to the end?";
+"kBuyToPlayMesaage" = "Complete preview. Do you want to purchase this drawing and continue to play?";
 
 "kJailBrokenUserIAPTips" = "Your device is Jail-Broken. It's risky to continue IAP purchasing. Do you want to continue?";
 

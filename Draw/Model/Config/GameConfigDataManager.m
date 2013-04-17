@@ -144,12 +144,16 @@ static dispatch_once_t onceToken;
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
     PBConfig_Builder* builder = [PBConfig builder];
+
+    NSString* oldDiceAppId = @"557072001";
+    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰" nameEn:@"Happy Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:oldDiceAppId appLogoURL:@"http://58.215.160.100:8080/icon/dice_old.jpg" rewardAmount:5];
     
-    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
     
-    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
+//    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
+//    
+//    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
     
-    [builder addAppRewards:zjhApp];
+//    [builder addAppRewards:zjhApp];
     [builder addAppRewards:diceApp];
     
     PBConfig* config = [builder build];
@@ -157,7 +161,7 @@ static dispatch_once_t onceToken;
     
     [data writeToFile:path atomically:YES];
     
-    NSString* version = @"1.00002";
+    NSString* version = @"1.00003";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 

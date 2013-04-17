@@ -276,7 +276,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUITintColor" ref="306038565"/>
 						<string key="IBUITitleShadowOffset">{2, 2}</string>
 						<string key="IBUINormalTitle">GM</string>
 						<reference key="IBUIHighlightedTitleColor" ref="306038565"/>
