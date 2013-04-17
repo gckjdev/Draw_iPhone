@@ -84,6 +84,7 @@
     PPRelease(_contentImageView);
     PPRelease(_previewButton);
     PPRelease(_buyButton);
+    _feed.pbDrawData = nil;
     _feed.drawData = nil;
     PPRelease(_feed);
     [super dealloc];
