@@ -867,7 +867,7 @@
 "kNotEnoughCoin" = "Coins not enough";
 "kNotEnoughCoinOrItem" = "No enough coin or item";
 
-"kParsingData" = "Parsing data...";
+//"kParsingData" = "Parsing data...";
 
 "kLatestFeed" = "Latest";
 
@@ -1169,7 +1169,7 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
-"kParsingData" = "Prepare to show...";
+"kParsingData" = "Parsing data...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";
 "kBloodGroup" = "Blood Group";

@@ -874,7 +874,7 @@
 "kNotEnoughCoin" = "金幣不足";
 "kNotEnoughCoinOrItem" = "道具和金幣都不夠了，充充值吧";
 
-"kParsingData" = "解析數據中...";
+//"kParsingData" = "解析數據中...";
 
 "kLatestFeed" = "最新";
 
