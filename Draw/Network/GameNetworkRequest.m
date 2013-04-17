@@ -783,10 +783,10 @@
         
         if ([feedback length] > 0){
             NSString* completeFeedback = [feedback stringByAppendingString:basicInfo];
-            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:[completeFeedback stringByURLEncode]];            
+            str = [str stringByAddQueryParameter:PARA_FEEDBACK value:completeFeedback];
         }
         if ([contact length] > 0) {
-            str = [str stringByAddQueryParameter:PARA_CONTACT value:[contact stringByURLEncode]];  
+            str = [str stringByAddQueryParameter:PARA_CONTACT value:contact];
         }
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         
@@ -822,7 +822,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         
         if (words && [words length] > 0){
-            str = [str stringByAddQueryParameter:PARA_NEW_WORDS value:[words stringByURLEncode]];            
+            str = [str stringByAddQueryParameter:PARA_NEW_WORDS value:words];
         }
         return str;
     };
