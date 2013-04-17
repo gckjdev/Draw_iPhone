@@ -94,8 +94,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 
 - (BOOL)canPutDrawOnCell
 {
-//    return NO;
-    return (BBS_PERMISSION & PermissionPutDrawOnCell) != 0;
+    return NO;
+//    return (BBS_PERMISSION & PermissionPutDrawOnCell) != 0;
 }
 
 @end
