@@ -496,6 +496,7 @@
 		A4A0CED016D8A2A6004AC167 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
 		A4A132651650E86900665109 /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A132641650E86900665109 /* MessageView.m */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
+		A4A3070A171E3C82008DC08D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		A4A4F8EA1671982B00EFC465 /* ZJHGameController_dual.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A4F8E71671982A00EFC465 /* ZJHGameController_dual.xib */; };
 		A4A4F8EB1671982B00EFC465 /* ZJHUserPosInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A4F8E91671982B00EFC465 /* ZJHUserPosInfo.m */; };
 		A4AB18F315E359B90097CC7A /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4AB18F115E359B90097CC7A /* ChatViewCell.m */; };
@@ -22295,6 +22296,7 @@
 				CAE5ADE2171BABDB009BFDC1 /* LearnDrawPreViewController~ipad.xib in Resources */,
 				CAEE48F2171D32C800EF2380 /* default_config_Learndraw_version.txt in Resources */,
 				CAEE48F3171D32CB00EF2380 /* default_config_Learndraw.pb in Resources */,
+				A4A3070A171E3C82008DC08D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
