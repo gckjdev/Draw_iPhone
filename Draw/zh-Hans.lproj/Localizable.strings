@@ -1280,6 +1280,14 @@
 "kRestore" = "恢复";
 "kNoSaveList" = "收藏列表是不会让你看到的！";
 
+
+"kLearnDrawSortTypeOption" = "请选择排序方式";
+"kSortedByTime" = "上架时间";
+"kSortedByBoughtTimes" = "销售数量";
+"kSortedByPrice" = "作品价格";
+"kTime" = "时间";
+"kBought" = "销量";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

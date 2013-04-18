@@ -1280,6 +1280,13 @@
 
 "kNoSaveList" = "No saving message to show...";
 
+"kLearnDrawSortTypeOption" = "Sort Option";
+"kSortedByTime" = "Added Time";
+"kSortedByBoughtTimes" = "Bought Times";
+"kSortedByPrice" = "Price";
+"kTime" = "Time";
+"kBought" = "Bought";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
