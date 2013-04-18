@@ -108,7 +108,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{72, 7}, {176, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="603935066"/>
+						<reference key="NSNextKeyView" ref="409339385"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -346,10 +346,10 @@
 						<reference key="IBUIBackgroundColor" ref="341843207"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIButton" id="603935066">
+					<object class="IBUIButton" id="409339385">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{251, 4.5}, {60, 30}}</string>
+						<int key="NSvFlags">289</int>
+						<string key="NSFrame">{{251, 5}, {60, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="346031464"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -467,7 +467,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">restoreButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="603935066"/>
+						<reference key="destination" ref="409339385"/>
 					</object>
 					<int key="connectionID">47</int>
 				</object>
@@ -508,7 +508,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickRestoreButton:</string>
-						<reference key="source" ref="603935066"/>
+						<reference key="source" ref="409339385"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -538,7 +538,7 @@
 							<reference ref="737639320"/>
 							<reference ref="927023678"/>
 							<reference ref="583419829"/>
-							<reference ref="603935066"/>
+							<reference ref="409339385"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -638,7 +638,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
-						<reference key="object" ref="603935066"/>
+						<reference key="object" ref="409339385"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
