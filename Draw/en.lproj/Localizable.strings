@@ -1603,4 +1603,7 @@
 
 "kJoinGameError" = "Fail to join room, maybe the room is full or it's playing";
 "kImageNull" = "Failed to create image, try it again.";
+
+"kRestore" = "Restore";
+
 /*********************** BBS国际化字符串结束 *************************/

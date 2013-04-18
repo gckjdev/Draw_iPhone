@@ -20,5 +20,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *countBgImageView;
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
+@property (retain, nonatomic) IBOutlet UIButton *restoreButton;
 
 @end
