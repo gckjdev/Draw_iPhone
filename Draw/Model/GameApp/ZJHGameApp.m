@@ -383,4 +383,10 @@
     return NO;
 }
 
+- (UIColor *)homeMenuColor
+{
+    return [UIColor whiteColor];
+}
+
+
 @end

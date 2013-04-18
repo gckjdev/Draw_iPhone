@@ -123,4 +123,6 @@
 
 - (BOOL)hasAllColorGroups;
 
+- (UIColor *)homeMenuColor;
+
 @end

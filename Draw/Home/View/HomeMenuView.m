@@ -294,6 +294,7 @@
     HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
 //    [view updateView];
+    
     return view;
 }
 
@@ -324,6 +325,7 @@
         [menu updateBadge:badge];
         [menu setType:type];
         [menu updateView];
+        [menu.title setTextColor:[GameApp homeMenuColor]];
         return menu;
     }
     return nil;
