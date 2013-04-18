@@ -488,7 +488,7 @@
                                     [cp buyAndPlayDraw:cp.drawFeed];
             
         } clickCancelBlock:^{
-            
+            [cp clickCloseButton:nil];
         }] showInView:[self theTopView]];
          
     }

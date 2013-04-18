@@ -27,7 +27,7 @@
             break;
             
         case ItemTypePurse:
-            [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeViaAppleAccount];
+            [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeViaBuyPurseItem];
             break;
             
         case ItemTypeCustomDicePatriotDice:

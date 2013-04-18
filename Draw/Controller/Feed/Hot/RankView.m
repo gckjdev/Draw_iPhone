@@ -132,7 +132,10 @@
         [self.drawImage setImageWithURL:url
                        placeholderImage:defaultImage
                                 success:^(UIImage *image, BOOL cached) {
-            self.drawImage.alpha = 0;
+            if (!cached) {
+                self.drawImage.alpha = 0;
+            }
+
             [UIView animateWithDuration:1 animations:^{
                 self.drawImage.alpha = 1.0;
             }];

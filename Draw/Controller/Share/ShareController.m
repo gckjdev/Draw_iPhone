@@ -89,7 +89,8 @@ typedef enum{
 {
     [self.dataTableView reloadData];
     if ([self.paints count] != 0) {
-        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
+//        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
+        self.awardCoinTips.text = @"";
         [self.clearButton setHidden:NO];
     }else{
         self.awardCoinTips.text = NSLS(@"kNoDrawings");
