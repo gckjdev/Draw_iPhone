@@ -11,6 +11,7 @@
 #import "ShareImageManager.h"
 #import "CustomInfoView.h"
 #import "PPViewController.h"
+#import "Draw.pb.h"
 
 typedef enum{
     TabTypeCategory = 1,
@@ -192,6 +193,26 @@ typedef enum{
     [self selectButtonWithTag:type];
 }
 
+
+- (void)updateLearnDrawWithPrice:(NSInteger)price type:(LearnDrawType)type
+{
+    if (self.feed) {
+        PBLearnDraw_Builder *builder = nil;
+        if (self.feed.learnDraw) {
+            builder = [PBLearnDraw builderWithPrototype:self.feed.learnDraw];
+            [builder setOpusId:self.feed.feedId];
+            [builder setPrice:price];
+            [builder setType:type];
+            self.feed.learnDraw = [builder build];
+            
+            UIViewController *vc = [self theViewController];
+            if ([vc respondsToSelector:@selector(reloadTableView)]) {
+                [vc performSelector:@selector(reloadTableView)];
+            }
+        }
+    }
+}
+
 - (void)showInView:(UIView *)view
 {
     CustomInfoView *customInfoView = [CustomInfoView createWithTitle:NSLS(@"kAddLearnDraw")
@@ -221,7 +242,8 @@ typedef enum{
                                                             if (resultCode == 0) {
                                                                 [customInfoView dismiss];
                                                                 customInfoView.infoView = nil;
-                                                                [customInfoView setActionBlock:nil];                                                                
+                                                                [customInfoView setActionBlock:nil];
+                                                                [ldView updateLearnDrawWithPrice:ldView.price type:ldView.type];
                                                             }else{
                                                                 [vc popupHappyMessage:NSLS(@"kFailAdd") title:nil];
                                                             }
@@ -242,6 +264,7 @@ typedef enum{
     PPDebug(@"%@ dealloc",self);
     PPRelease(_categoryLabel);
     PPRelease(_priceLabel);
+    PPRelease(_feed);
     [super dealloc];
 }
 @end
