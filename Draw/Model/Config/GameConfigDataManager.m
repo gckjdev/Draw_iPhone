@@ -71,6 +71,7 @@ static dispatch_once_t onceToken;
                           appId:(NSString*)appId
                      appLogoURL:(NSString*)appLogoURL
                    rewardAmount:(int)rewardAmount
+                 rewardCurrency:(PBGameCurrency)rewardCurrency
 {
     // set name
     PBLocalizeString_Builder *str1 = [PBLocalizeString builder];
@@ -107,7 +108,7 @@ static dispatch_once_t onceToken;
     PBAppReward_Builder* appRewardBuilder = [PBAppReward builder];
     [appRewardBuilder setApp:[appBuilder build]];
     [appRewardBuilder setRewardAmount:rewardAmount];
-    [appRewardBuilder setRewardCurrency:PBGameCurrencyIngot];
+    [appRewardBuilder setRewardCurrency:rewardCurrency];
     
     return [appRewardBuilder build];;
 }
@@ -137,6 +138,208 @@ static dispatch_once_t onceToken;
     return [builder1 build];
 }
 
+
++ (void)createTestConfigData
+{
+    if (isDrawApp()) {
+        [self createDrawTestConfigData];
+    }else if(isZhajinhuaApp()){
+        [self createZJHTestConfigData];
+    }else if(isDiceApp()){
+        [self createDiceTestConfigData];
+    }else if(isLearnDrawApp()){
+        [self createLearnDrawTestConfigData];
+    }
+}
+
++ (PBAppReward*)drawAppWithRewardAmount:rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency{
+    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画"
+                                                           nameEn:@"Draw lively"
+                                                           descCn:@"一款画画和你画我猜的休闲娱乐应用"
+                                                           descEn:@"An awesome & fun draw game for you"
+                                                            appId:DRAW_APP_ID
+                                                       appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png"
+                                                     rewardAmount:rewardAmount
+                                                   rewardCurrency:rewardCurrency];
+    
+    return drawApp;
+}
+
++ (PBAppReward*)diceAppWithRewardAmount:rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency{
+    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰"
+                                                           nameEn:@"Liar Dice"
+                                                           descCn:@"在线多人趣味大话骰子游戏"
+                                                           descEn:@"Online liar dice game"
+                                                            appId:DICE_APP_ID
+                                                       appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png"
+                                                     rewardAmount:rewardAmount
+                                                   rewardCurrency:rewardCurrency];
+    
+    return diceApp;
+}
+
+
+
++ (PBAppReward*)zjhAppWithRewardAmount:rewardAmount
+                        rewardCurrency:(PBGameCurrency)rewardCurrency{
+    
+    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花"
+                                                          nameEn:@"Awesome Three Card Poker"
+                                                          descCn:@"刺激好玩的多人在线诈金花扑克牌游戏"
+                                                          descEn:@"Online three card porker game"
+                                                           appId:ZJH_APP_ID
+                                                      appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png"
+                                                    rewardAmount:rewardAmount
+                                                  rewardCurrency:rewardCurrency];
+    return zjhApp;
+}
+
++ (PBAppReward*)oldDiceAppWithRewardAmount:rewardAmount
+                            rewardCurrency:(PBGameCurrency)rewardCurrency{
+    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰"
+                                                           nameEn:@"Happy Liar Dice"
+                                                           descCn:@"在线多人趣味大话骰子游戏"
+                                                           descEn:@"Online liar dice game"
+                                                            appId:OLD_DICE_APP_ID
+                                                       appLogoURL:@"http://58.215.160.100:8080/icon/dice_old.jpg"
+                                                     rewardAmount:rewardAmount
+                                                   rewardCurrency:rewardCurrency];
+    
+    return diceApp;
+}
+
++ (PBRewardWall*)limeiWall{
+    PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
+                                                          enName:@"Li Mei"
+                                                            type:PBRewardWallTypeLimei
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_limei.png"];
+    
+    return limei;
+}
+
++ (PBRewardWall*)wanpuWall{
+    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
+                                                          enName:@"Wan Pu"
+                                                            type:PBRewardWallTypeWanpu
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
+    return wanpu;
+}
+
++ (PBRewardWall*)youmiWall{
+    
+    PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
+                                                          enName:@"You Mi"
+                                                            type:PBRewardWallTypeYoumi
+                                                            logo:@"http://58.215.160.100:8080/icon/ad_youmi.png"];
+    
+    return youmi;
+}
+
++ (PBRewardWall*)aderWall{
+    
+    PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人 推荐应用"
+                                                         enName:@"Ren Ren Ader"
+                                                           type:PBRewardWallTypeAder
+                                                           logo:@"http://58.215.160.100:8080/icon/ad_renren.png"];
+    
+    return ader;
+}
+
+
++ (void)createDrawTestConfigData
+{
+    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+
+    PBConfig_Builder* builder = [PBConfig builder];
+
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+//    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    
+    PBRewardWall* limei = [self limeiWall];
+    PBRewardWall* youmi = [self youmiWall];
+    PBRewardWall* ader = [self aderWall];
+    
+    
+    [builder addAppRewards:zjhApp];
+    [builder addAppRewards:diceApp];
+
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:youmi];
+    [builder addRewardWalls:ader];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
++ (void)createZJHTestConfigData
+{
+    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+    
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
+    
+    PBRewardWall* limei = [self limeiWall];
+    PBRewardWall* ader = [self aderWall];
+    
+    
+    [builder addAppRewards:drawApp];
+    [builder addAppRewards:diceApp];
+    
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:ader];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
++ (void)createDiceTestConfigData
+{
+    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+    
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:2500 rewardCurrency:PBGameCurrencyCoin];
+    
+    PBRewardWall* limei = [self limeiWall];
+    PBRewardWall* ader = [self aderWall];
+    
+    [builder addAppRewards:drawApp];
+    [builder addAppRewards:zjhApp];
+    
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:ader];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
 + (void)createLearnDrawTestConfigData
 {
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
@@ -145,15 +348,8 @@ static dispatch_once_t onceToken;
     
     PBConfig_Builder* builder = [PBConfig builder];
 
-    NSString* oldDiceAppId = @"557072001";
-    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰" nameEn:@"Happy Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:oldDiceAppId appLogoURL:@"http://58.215.160.100:8080/icon/dice_old.jpg" rewardAmount:5];
-    
-    
-//    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
-//    
-//    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
-    
-//    [builder addAppRewards:zjhApp];
+    PBAppReward* diceApp = [self oldDiceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+
     [builder addAppRewards:diceApp];
     
     PBConfig* config = [builder build];
@@ -161,69 +357,7 @@ static dispatch_once_t onceToken;
     
     [data writeToFile:path atomically:YES];
     
-    NSString* version = @"1.00003";
-    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-}
-
-
-+ (void)createTestConfigData
-{
-    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
-
-    PBConfig_Builder* builder = [PBConfig builder];
-
-    PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰" nameEn:@"Liar Dice" descCn:@"在线多人趣味大话骰子游戏" descEn:@"Online liar dice game" appId:DICE_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/dice_114.png" rewardAmount:5];
-
-    PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花" nameEn:@"Awesome Three Card Poker" descCn:@"刺激好玩的多人在线诈金花扑克牌游戏" descEn:@"Online three card porker game" appId:ZJH_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/zjh_512.png" rewardAmount:8];
-    
-    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画" nameEn:@"Draw lively" descCn:@"一款画画和你画我猜的休闲娱乐应用" descEn:@"An awesome & fun draw game for you" appId:DRAW_APP_ID appLogoURL:@"http://58.215.160.100:8080/icon/draw_512.png" rewardAmount:8];
-    
-    PBRewardWall* limei = [GameConfigDataManager creatRewardWall:@"力美 推荐应用"
-                                                          enName:@"Li Mei"
-                                                            type:PBRewardWallTypeLimei
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_limei.png"];
-//    PBRewardWall* wanpu = [GameConfigDataManager creatRewardWall:@"万普 推荐应用"
-//                                                          enName:@"Wan Pu"
-//                                                            type:PBRewardWallTypeWanpu
-//                                                            logo:@"http://58.215.160.100:8080/icon/ad_wanpu.png"];
-    
-    PBRewardWall* youmi = [GameConfigDataManager creatRewardWall:@"有米 推荐应用"
-                                                          enName:@"You Mi"
-                                                            type:PBRewardWallTypeYoumi
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_youmi.png"];
-    
-    PBRewardWall* ader = [GameConfigDataManager creatRewardWall:@"人人 推荐应用"
-                                                          enName:@"Ren Ren Ader"
-                                                            type:PBRewardWallTypeAder
-                                                            logo:@"http://58.215.160.100:8080/icon/ad_renren.png"];
-    
-    if (isDrawApp()) {
-        [builder addAppRewards:zjhApp];
-        [builder addAppRewards:diceApp];
-    }else if(isZhajinhuaApp()){
-        [builder addAppRewards:drawApp];
-        [builder addAppRewards:diceApp];
-    }else if(isDiceApp()){
-        [builder addAppRewards:drawApp];
-        [builder addAppRewards:zjhApp];
-    }
-
-    [builder addRewardWalls:limei];
-    
-    if (isDrawApp()) {
-        [builder addRewardWalls:youmi];
-    }
-    [builder addRewardWalls:ader];
-//    [builder addRewardWalls:wanpu];
-    
-    PBConfig* config = [builder build];
-    NSData* data = [config data];
-
-    [data writeToFile:path atomically:YES];
-    
-    NSString* version = @"1.00002";
+    NSString* version = @"1.0";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
