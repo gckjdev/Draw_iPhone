@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -293,7 +293,7 @@
 							<object class="IBUIImageView" id="406985250">
 								<reference key="NSNextResponder" ref="424986992"/>
 								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{48, 254}, {32, 36}}</string>
+								<string key="NSFrame">{{47, 255}, {34, 34}}</string>
 								<reference key="NSSuperview" ref="424986992"/>
 								<reference key="NSNextKeyView" ref="972294120"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -301,7 +301,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">coins@2x.png</string>
+									<string key="NSResourceName">coin@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUIView" id="457657266">
@@ -665,72 +665,13 @@
 			<nil key="sourceID"/>
 			<int key="maxID">36</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">CommonInfoView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CommonInfoView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CommonRoundAvatarView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CommonRoundAvatarView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CommonUserInfoView</string>
-					<string key="superclassName">CommonInfoView</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickFollowButton:">id</string>
-						<string key="clickMask:">id</string>
-						<string key="clickSuperUserManageButton:">id</string>
-						<string key="talkToHim:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickFollowButton:">
-							<string key="name">clickFollowButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickMask:">
-							<string key="name">clickMask:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSuperUserManageButton:">
-							<string key="name">clickSuperUserManageButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="talkToHim:">
-							<string key="name">talkToHim:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CommonUserInfoView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ZJHUserInfoView</string>
-					<string key="superclassName">CommonUserInfoView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ZJHUserInfoView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coins@2x.png">{50, 57}</string>
+			<string key="coin@2x.png">{64, 64}</string>
 			<string key="dice_help_bg@2x.png">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
