@@ -22,7 +22,8 @@ typedef enum {
 
 typedef enum {
     SortTypeTime = 1,
-    SortTypeBoughtCount,    
+    SortTypeBoughtCount,
+    SortTypePrice,
 }SortType;
 
 @interface LearnDrawManager : NSObject<SingletonProtocol>
