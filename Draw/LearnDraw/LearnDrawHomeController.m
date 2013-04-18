@@ -253,6 +253,7 @@
                 [alView setPrice:rankView.feed.learnDraw.price];
                 [alView setType:rankView.feed.learnDraw.type];
                 [alView setFeed:rankView.feed];
+                alView.delegate = cp;
             }else if(buttonIndex == 2){
                 [[LearnDrawService defaultService] removeLearnDraw:rankView.feed.feedId
                                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {

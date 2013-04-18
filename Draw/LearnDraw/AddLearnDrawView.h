@@ -14,6 +14,8 @@
 
 
 @property(nonatomic, retain)DrawFeed *feed;
+@property(nonatomic, assign)id delegate;
+
 
 - (NSInteger)price;
 - (NSInteger)type;

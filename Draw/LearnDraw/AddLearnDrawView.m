@@ -205,9 +205,8 @@ typedef enum{
             [builder setType:type];
             self.feed.learnDraw = [builder build];
             
-            UIViewController *vc = [self theViewController];
-            if ([vc respondsToSelector:@selector(reloadTableView)]) {
-                [vc performSelector:@selector(reloadTableView)];
+            if (self.delegate && [self.delegate respondsToSelector:@selector(reloadTableView)]) {
+                [self.delegate performSelector:@selector(reloadTableView)];
             }
         }
     }
@@ -262,6 +261,7 @@ typedef enum{
 
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    self.delegate = nil;
     PPRelease(_categoryLabel);
     PPRelease(_priceLabel);
     PPRelease(_feed);
