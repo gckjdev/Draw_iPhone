@@ -1278,6 +1278,8 @@
 
 "kJailBrokenUserIAPTips" = "Your device is Jail-Broken. It's risky to continue IAP purchasing. Do you want to continue?";
 
+"kNoSaveList" = "No saving message to show...";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
