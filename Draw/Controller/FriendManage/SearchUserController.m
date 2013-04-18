@@ -60,7 +60,7 @@
     inputTextField.delegate = self;
     inputTextField.returnKeyType = UIReturnKeyDone;
     
-    [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+//    [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     searchButton.tag = SEARCH_BUTTON_TAG;
     

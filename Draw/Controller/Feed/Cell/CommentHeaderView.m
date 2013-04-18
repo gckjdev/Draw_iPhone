@@ -7,6 +7,7 @@
 //
 
 #import "CommentHeaderView.h"
+#import "PPViewController.h"
 
 @implementation CommentHeaderView
 @synthesize delegate = _delegate;
@@ -61,6 +62,11 @@
 - (void)setSeletType:(CommentType)type
 {
     if (_currentType == type) {
+        return;
+    }
+    
+    if (type == CommentTypeSave) {
+        [(PPViewController *)[self theViewController] popupHappyMessage:NSLS(@"kNoSaveList") title:nil];
         return;
     }
     UIButton *button = [self buttonWithType:type];

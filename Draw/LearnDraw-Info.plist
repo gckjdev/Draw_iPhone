@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
+		<string>LearnDraw_57.png</string>
+		<string>LearnDraw_114.png</string>
+		<string>LearnDraw_50.png</string>
+		<string>LearnDraw_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.learndraw</string>
@@ -64,7 +64,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>UILaunchImageFile</key>
-	<string>Default</string>
+	<string>LearnDrawDefault</string>
 	<key>CFResourceTest</key>
 	<true/>
 	<key>CFServerTest</key>
