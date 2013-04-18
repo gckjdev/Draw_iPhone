@@ -83,8 +83,13 @@
         PaintAction *paintAction = (PaintAction *)_currentAction;
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
-            [pen setPenType:paintAction.paint.penType];
-            PPDebug(@"Update Pen, pen frame = %@, trasform = %@", NSStringFromCGRect(pen.frame), NSStringFromCGAffineTransform(pen.transform));
+            ItemType penType = paintAction.paint.penType;
+            if (isLearnDrawApp()) {
+                if (penType != Eraser) {
+                    penType = Pencil;
+                }
+            }
+            [pen setPenType:penType];
         }
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
 //        CGRect rect = CGRectZero;
