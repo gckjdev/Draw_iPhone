@@ -102,15 +102,15 @@
 							<object class="IBUIImageView" id="790207047">
 								<reference key="NSNextResponder" ref="625174196"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{96.5, 15.5}, {42, 48}}</string>
+								<string key="NSFrame">{{96.5, 18.5}, {42, 42}}</string>
 								<reference key="NSSuperview" ref="625174196"/>
 								<reference key="NSNextKeyView" ref="1035475748"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
+								<object class="NSCustomResource" key="IBUIImage" id="1019926317">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">coins@2x.png</string>
+									<string key="NSResourceName">coin@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="1035475748">
@@ -939,10 +939,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">coin@2x.png</string>
-						</object>
+						<reference key="IBUIImage" ref="1019926317"/>
 					</object>
 					<object class="IBUILabel" id="494374391">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -1933,7 +1930,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="coin@2x.png">{64, 64}</string>
-			<string key="coins@2x.png">{50, 57}</string>
 			<string key="dice_bell@2x.png">{69, 86}</string>
 			<string key="dice_runaway@2x.png">{72, 71}</string>
 			<string key="dice_setting@2x.png">{72, 71}</string>
