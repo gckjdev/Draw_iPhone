@@ -31063,8 +31063,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (4JW9JNLMWA)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (29PXR98EM6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (29PXR98EM6)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -31129,8 +31129,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LearnDraw;
-				PROVISIONING_PROFILE = "1741F668-7207-400F-937A-E5557F15D53B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1741F668-7207-400F-937A-E5557F15D53B";
+				PROVISIONING_PROFILE = "E5937BD1-DB81-40DF-A51C-27C63A9D558A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E5937BD1-DB81-40DF-A51C-27C63A9D558A";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
