@@ -2,12 +2,12 @@
 //  PhotoDrawApp.h
 //  Draw
 //
-//  Created by qqn_pipi on 12-10-6.
+//  Created by haodong on 13-4-19.
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "SimpleDrawApp.h"
 
-@interface PhotoDrawApp : NSObject
+@interface PhotoDrawApp : SimpleDrawApp
 
 @end

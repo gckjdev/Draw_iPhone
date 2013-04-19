@@ -12,12 +12,16 @@
 #import "GameAppProtocol.h"
 
 // Bundle ID
-#define DRAW_APP_BUNDLE_ID      @"com.orange.draw"
-#define DRAW_APP_PRO_BUNDLE_ID  @"com.orange.drawpro"
-#define DICE_APP_BUNDLE_ID      @"com.orange.newdice"
-#define OLD_DICE_APP_BUNDLE_ID  @"com.orange.dice"
-#define ZJH_APP_BUNDLE_ID       @"com.orange.zhajinhua"
-#define LEARNDRAW_APP_BUNDLE_ID @"com.orange.learndraw"
+#define DRAW_APP_BUNDLE_ID              @"com.orange.draw"
+#define DRAW_APP_PRO_BUNDLE_ID          @"com.orange.drawpro"
+#define DICE_APP_BUNDLE_ID              @"com.orange.newdice"
+#define OLD_DICE_APP_BUNDLE_ID          @"com.orange.dice"
+#define ZJH_APP_BUNDLE_ID               @"com.orange.zhajinhua"
+#define LEARNDRAW_APP_BUNDLE_ID         @"com.orange.learndraw"
+#define PUREDRAW_APP_BUNDLE_ID          @"com.orange.puredraw"
+#define PUREDRAWFREE_APP_BUNDLE_ID      @"com.orange.puredrawfree"
+#define PHOTODRAW_APP_BUNDLE_ID         @"com.orange.photodraw"
+#define PHOTODRAWFREE_APP_BUNDLE_ID     @"com.orange.photodrawfree"
 
 // App ID
 #define DRAW_APP_ID             @"513819630"
@@ -35,6 +39,10 @@
 #define CANDY_GAME_ID           @"Candy"
 #define ZHAJINHUA_GAME_ID       @"Zhajinhua"
 #define LEARN_DRAW_GAME_ID      @"Learndraw"
+#define PURE_DRAW_GAME_ID       @"Puredraw"
+#define PURE_DRAW_FREE_GAME_ID  @"Puredrawfree"
+#define PHOTO_DRAW_GAME_ID      @"Photodraw"
+#define PHOTO_DRAW_FREE_GAME_ID @"Photodrawfree"
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"
@@ -85,7 +93,10 @@ typedef enum {
     GameAppTypeDice = 3,
     GameAppTypeZJH = 4,
     GameAppTypeLearnDraw = 5,
-    
+    GameAppTypePureDraw = 6,
+    GameAppTypePureDrawFree = 7,
+    GameAppTypePhotoDraw = 8,
+    GameAppTypePhotoDrawFree = 9,
 }GameAppType;
 
 #define GameApp                 (getGameApp())
@@ -95,6 +106,11 @@ extern BOOL isDrawApp();
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
 extern BOOL isLearnDrawApp();
+extern BOOL isPureDrawApp();
+extern BOOL isPureDrawFreeApp();
+extern BOOL isPhotoDrawApp();
+extern BOOL isPhotoDrawFreeApp();
+
 extern GameAppType gameAppType();
 
 #endif

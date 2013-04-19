@@ -2,7 +2,7 @@
 //  PhotoDrawApp.m
 //  Draw
 //
-//  Created by qqn_pipi on 12-10-6.
+//  Created by haodong on 13-4-19.
 //
 //
 

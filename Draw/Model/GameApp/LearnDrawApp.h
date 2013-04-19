@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameApp.h"
+//#import "GameApp.h"
+#import "SimpleDrawApp.h"
 
-@interface LearnDrawApp : NSObject<GameAppProtocol>
+@interface LearnDrawApp : SimpleDrawApp
 
 @end
