@@ -11,4 +11,6 @@
 
 @interface LearnDrawHomeController : CommonTabController<HomeBottomMenuPanelDelegate>
 
+- (void)reloadTableView;
+
 @end

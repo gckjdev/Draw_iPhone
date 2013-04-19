@@ -38,6 +38,7 @@
     [_taobaoLinkView release];
     [_currencyImageView release];
     [_countBgImageView release];
+    [_restoreButton release];
     [super dealloc];
 }
 
@@ -99,6 +100,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (isZhajinhuaApp()) {
+        self.restoreButton.hidden = NO;
+        [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
+    }else{
+        [self.restoreButton removeFromSuperview];
+    }
         
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
@@ -133,6 +141,7 @@
     [self setTaobaoLinkView:nil];
     [self setCurrencyImageView:nil];
     [self setCountBgImageView:nil];
+    [self setRestoreButton:nil];
     [super viewDidUnload];
 }
 
@@ -323,6 +332,10 @@
 {
     [self hideActivity];
     [self showActivityWithText:NSLS(@"kProcessingIAP")];
+}
+
+- (IBAction)clickRestoreButton:(id)sender {
+    [[AccountService defaultService] restoreIAPPurchase];
 }
 
 @end

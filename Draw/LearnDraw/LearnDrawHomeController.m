@@ -31,22 +31,32 @@
 @interface LearnDrawHomeController ()
 {
     NSInteger  _tryTimes;
+    SortType _sortType;
+
 }
 
 //@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *gmButton;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 - (IBAction)clickGMButton:(id)sender;
+- (IBAction)clickSortButton:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UIButton *sortButton;
 @end
 
 @implementation LearnDrawHomeController
+
+- (void)reloadTableView
+{
+    [self.dataTableView reloadData];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        _sortType = SortTypeTime;
     }
     return self;
 }
@@ -55,6 +65,7 @@
 {
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_gmButton);
+    [_sortButton release];
     [super dealloc];
 }
 
@@ -95,6 +106,7 @@
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
     [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    [_sortButton setTitle:NSLS(@"kTime") forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -227,7 +239,7 @@
                                      destructiveButtonTitle:NSLS(@"kOpusDetail")
                                      otherButtonTitles:NSLS(@"kManageLearnDraw"),
                                      NSLS(@"kRemoveLearnDraw"),
-                                     NSLS(@"Buy Test"), nil];
+                                    /* NSLS(@"Buy Test"),*/ nil];
         
         __block LearnDrawHomeController *cp = self;
         
@@ -240,6 +252,8 @@
                 [alView showInView:cp.view];
                 [alView setPrice:rankView.feed.learnDraw.price];
                 [alView setType:rankView.feed.learnDraw.type];
+                [alView setFeed:rankView.feed];
+                alView.delegate = cp;
             }else if(buttonIndex == 2){
                 [[LearnDrawService defaultService] removeLearnDraw:rankView.feed.feedId
                                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
@@ -249,7 +263,7 @@
                                                             [cp failLoadDataForTabID:[cp currentTab].tabID];
                                                         }
                 }];
-            }else if(buttonIndex == 3){
+            }/*else if(buttonIndex == 3){
                 
                 DrawFeed *feed = rankView.feed;
                 
@@ -261,7 +275,8 @@
                                                       }
 
                 }];
-            }
+            }*/
+            [sheet setActionBlock:NULL];
         }];
         
         [sheet showInView:self.view];
@@ -410,7 +425,7 @@
     __block LearnDrawHomeController *cp = self;
     [self showActivityWithText:NSLS(@"kLoading")];
     [[LearnDrawService defaultManager] getLearnDrawOpusListWithType:[self typeFromTabID:tabID]
-                                                           sortType:SortTypeTime
+                                                           sortType:_sortType
                                                              offset:tab.offset
                                                               limit:tab.limit
                                                       ResultHandler:^(NSArray *array, NSInteger resultCode) {
@@ -426,10 +441,56 @@
 - (void)viewDidUnload {
     [self setTitleLabel:nil];
     [self setGmButton:nil];
+    [self setSortButton:nil];
     [super viewDidUnload];
 }
 - (IBAction)clickGMButton:(id)sender {
     HotController *hot = [[HotController alloc] initWithDefaultTabIndex:2];
     [self.navigationController pushViewController:hot animated:YES];
+}
+
+
+- (IBAction)clickSortButton:(id)sender {
+    
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kLearnDrawSortTypeOption") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kSortedByTime") otherButtonTitles:NSLS(@"kSortedByBoughtTimes"), NSLS(@"kSortedByPrice"), nil];
+    [sheet setDestructiveButtonIndex:_sortType - 1];
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        buttonIndex += 1;
+        NSString *title = nil;
+        switch (buttonIndex) {
+            case SortTypeTime:
+            {
+                title = NSLS(@"kTime");
+            }
+                break;
+            case SortTypeBoughtCount:
+            {
+                title = NSLS(@"kBought");
+                break;
+            }
+            case SortTypePrice:
+            {
+                title = NSLS(@"kPrice");
+            }
+                break;
+                
+            default:
+            {
+                [sheet setActionBlock:NULL];
+            }
+                return;
+        }
+        
+        if (_sortType != buttonIndex) {
+            _sortType = buttonIndex;
+            [_sortButton setTitle:title forState:UIControlStateNormal];
+            [self clickRefreshButton:nil];            
+        }
+        [sheet setActionBlock:NULL];
+    }];
+    [sheet showInView:self.view];
+    [sheet release];
+    
 }
 @end
