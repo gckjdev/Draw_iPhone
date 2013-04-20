@@ -74,6 +74,7 @@
 #import "IAPProductService.h"
 #import "LearnDrawHomeController.h"
 #import "AliPayManager.h"
+#import "PureDrawHomeController.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -281,6 +282,9 @@ NSString* GlobalGetBoardServerURL()
     }else if (isLearnDrawApp())
     {
         LearnDrawHomeController *controller = [[[LearnDrawHomeController alloc] init] autorelease];
+        rootController = controller;
+    }else if(isPureDrawApp() || isPureDrawFreeApp()){
+        PureDrawHomeController *controller = [[[PureDrawHomeController alloc] init] autorelease];
         rootController = controller;
     }else{
         self.homeController = [[[HomeController alloc] init] autorelease];

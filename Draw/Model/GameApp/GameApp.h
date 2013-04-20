@@ -105,6 +105,7 @@ extern NSObject<GameAppProtocol>* getGameApp();
 extern BOOL isDrawApp();
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
+extern BOOL isSimpleDrawApp();
 extern BOOL isLearnDrawApp();
 extern BOOL isPureDrawApp();
 extern BOOL isPureDrawFreeApp();

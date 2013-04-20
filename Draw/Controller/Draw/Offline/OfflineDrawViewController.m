@@ -409,7 +409,7 @@
         [self.draftButton.titleLabel setFont:font];
     }
     
-    if (isLearnDrawApp()) {
+    if ([GameApp canSubmitDraw] == NO) {
         self.draftButton.frame = self.submitButton.frame;
         self.submitButton.hidden = YES;
         return;

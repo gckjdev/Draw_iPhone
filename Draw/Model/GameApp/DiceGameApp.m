@@ -404,4 +404,9 @@
     return [UIColor whiteColor];
 }
 
+- (BOOL)canSubmitDraw
+{
+    return NO;
+}
+
 @end

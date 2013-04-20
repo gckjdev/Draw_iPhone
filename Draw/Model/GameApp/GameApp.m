@@ -58,6 +58,15 @@ BOOL isZhajinhuaApp()
     return ([[GameApp gameId] isEqualToString:ZHAJINHUA_GAME_ID]);
 }
 
+extern BOOL isSimpleDrawApp()
+{
+    return (isLearnDrawApp() ||
+            isPureDrawApp() ||
+            isPureDrawFreeApp() ||
+            isPhotoDrawApp() ||
+            isPhotoDrawFreeApp());
+}
+
 extern BOOL isLearnDrawApp()
 {
     return ([[GameApp gameId] isEqualToString:LEARN_DRAW_GAME_ID]);

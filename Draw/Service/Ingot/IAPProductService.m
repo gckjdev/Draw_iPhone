@@ -72,7 +72,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         [self createZJHCoinTestDataFile];
     }else if(isDiceApp()){
         [self createDiceCoinTestDataFile];
-    }else if (isLearnDrawApp()){
+    }else if (isSimpleDrawApp()){
         [self createLearnDrawIngotTestDataFile];
     }
 }

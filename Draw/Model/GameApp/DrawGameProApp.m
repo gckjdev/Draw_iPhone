@@ -41,4 +41,9 @@
     return [UIColor colorWithRed:61.0/255.0 green:43.0/255.0 blue:23.0/255.0 alpha:1];
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 @end
