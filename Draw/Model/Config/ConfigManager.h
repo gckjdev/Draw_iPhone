@@ -250,4 +250,7 @@ typedef enum{
 + (NSString *)getLastAppVersion;
 + (NSString *)getLastAppVersionUpdateLog;
 
++ (NSString*)getSNSShareSubject;
++ (NSString*)getDrawAppLink;
+
 @end

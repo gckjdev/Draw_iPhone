@@ -30,7 +30,7 @@
 #import "WordManager.h"
 #import "ConfigManager.h"
 #import "UIImageUtil.h"
-
+#import "StringUtil.h"
 #import "TimeUtils.h"
 
 @interface ShareAction ()
@@ -290,19 +290,20 @@
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
     if (self.feed != nil) {
-        if (_isDrawByMe){
-            _drawWord = self.feed.wordText;            
-        }
-        else{
-            _drawWord = [self.feed hasGuessed]?self.feed.wordText:@"";
-        }        
+        _drawWord = self.feed.wordText;
     }
     if (_isDrawByMe){
         if (_isGIF){
             text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareMeText"), snsOfficialNick, _drawWord];
+             
+            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+            } else {
+                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+            }
+            
         }
     }
     else{
@@ -310,7 +311,14 @@
             text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
         }
         else{
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
+            NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+
+            } else {
+                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+            }
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }
     }
     // removed by Benson 2013-4-5

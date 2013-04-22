@@ -312,6 +312,10 @@
 
 "kShareMeText" = "我在玩%@，快来围观我画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kShareMeTextWithComment" = "%@，看看我用 %@ 画的［%@］ #猜猜画画美图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kShareMyOpusWithDescriptionText" = "%@ ，看看我用%@ 画的[%@] #%@# %@";
+"kShareMyOpusWithoutDescriptionText" = "我用%@ 画了一幅[%@] #%@# %@";
+"kShareOtherOpusWithDescriptionText" = "%@ ，看看%@用%@ 画的[%@] #%@# %@ ";
+"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 画的[%@] #%@# %@ ";
 
 "kShareGIFOtherText" = "我在玩@猜猜画画手机版，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#猜猜画画动画炫图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kShareGIFMeText" = "我在玩@猜猜画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#猜猜画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
@@ -1287,7 +1291,9 @@
 "kSortedByPrice" = "作品价格";
 "kTime" = "时间";
 "kBought" = "销量";
-
+"kSNSSubject" = "猜猜画画美图分享";
+"kDrawAppLink" = "http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
+"kPaintVia" = "(作品来自 %@)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

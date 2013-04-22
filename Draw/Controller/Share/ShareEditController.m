@@ -525,26 +525,28 @@ enum {
 {
     
     [self hideActivity];
+    NSString* authorName = user.nickName;
     NSString* publishText = self.text;
     if (user.isQQUser 
         && [[UserManager defaultManager] hasBindQQWeibo]
         && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired] == NO
         && _snsType == QQ_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" (via@%@)",user.qqId];       
+        authorName = [NSString stringWithFormat:@"@%@",user.qqId];
     }
     
     if (user.isSinaUser 
         && [[UserManager defaultManager] hasBindSinaWeibo]
         && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired] == NO
         && _snsType == SINA_WEIBO){
-        publishText = [publishText stringByAppendingFormat:@" (via@%@)",user.sinaNick];
+        authorName = [NSString stringWithFormat:@"@%@",user.sinaNick];
     }
     
     if (user.isFacebookUser 
         && [[UserManager defaultManager] hasBindFacebook]        
         && _snsType == FACEBOOK){
-        //publishText = [publishText stringByAppendingString:facebookId];          
+        //publishText = [publishText stringByAppendingString:facebookId];
     }
+    publishText = [publishText stringByAppendingFormat:NSLS(@"kPaintVia"), authorName];
     self.shareTextField.text = publishText;
 }
 

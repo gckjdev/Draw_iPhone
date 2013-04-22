@@ -321,6 +321,11 @@
 //"kShareOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫美圖分享# http://caicaihuahua.me";
 //"kShareMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫美圖分享# http://caicaihuahua.me";
 
+"kShareMyOpusWithDescriptionText" = "%@ ，看看我用%@ 畫的[%@] #%@# %@";
+"kShareMyOpusWithoutDescriptionText" = "我用%@ 畫了一幅[%@] #%@# %@";
+"kShareOtherOpusWithDescriptionText" = "%@ ，看看%@用%@ 畫的[%@] #%@# %@ ";
+"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 畫的[%@] #%@# %@ ";
+
 
 "kShareGIFOtherText" = "我在玩@猜猜畫畫手機版，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
 "kShareGIFMeText" = "我在玩@猜猜畫畫手機版，快來圍觀我的動畫炫圖！畫的詞是［%@］，看來我畫工還不錯！#猜猜畫畫動畫炫圖分享# http://caicaihuahua.me";
@@ -1267,7 +1272,9 @@
 "kSortedByPrice" = "作品價格";
 "kTime" = "時間";
 "kBought" = "銷量";
-
+"kSNSSubject" = "猜猜畫畫美圖分享";
+"kDrawAppLink" = "http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
+"kPaintVia" = "(作品來自 %@)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
