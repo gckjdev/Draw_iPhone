@@ -17,7 +17,7 @@
 
 - (NSString*)gameId
 {
-    return LEARN_DRAW_GAME_ID;
+    return PURE_DRAW_GAME_ID;
 }
 
 

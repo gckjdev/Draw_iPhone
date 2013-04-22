@@ -117,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         [self createDrawTestDataFile];
     }else if(isDiceApp()){
         [self createDiceTestDataFile];
-    }else if (isLearnDrawApp()){
+    }else if (isSimpleDrawApp()){
         [self createLearnDrawTestDataFile];
     }
 }

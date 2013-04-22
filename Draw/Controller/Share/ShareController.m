@@ -687,6 +687,18 @@ typedef enum{
 //    [self loadPaintsOnlyMine:NO];
     [super initTabButtons];
     [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
+    
+    if (isSimpleDrawApp() && isLearnDrawApp() == NO){
+        UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
+        UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
+        UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
+        mineButton.hidden = YES;
+        allButton.hidden = YES;
+        draftButton.hidden = YES;
+        
+        [self.dataTableView updateOriginY:self.dataTableView.frame.origin.y - mineButton.frame.size.height];
+        [self.dataTableView updateHeight:self.dataTableView.frame.size.height + mineButton.frame.size.height];
+    }
 }
 
 

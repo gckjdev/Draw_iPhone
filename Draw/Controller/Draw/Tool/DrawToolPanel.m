@@ -328,22 +328,9 @@
 
 }
 
-- (void)updateView
+- (void)updateViewsForSimpleDraw
 {
-    
-    [self updateSliders];
-    
-    [self registerToolCommands];
-        
-    [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
-
-    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
-    [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
-    [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
-    
-    
-    if (isLearnDrawApp()) {
-
+    if (isSimpleDrawApp()) {
         if(!ISIPAD){
             self.paintBucket.center = self.drawToUser.center;
         }else{
@@ -354,6 +341,20 @@
     }
 }
 
+- (void)updateView
+{
+    [self updateSliders];
+    
+    [self registerToolCommands];
+        
+    [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
+
+    [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
+    [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
+    [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
+    
+    [self updateViewsForSimpleDraw];
+}
 
 + (id)createViewWithdelegate:(id)delegate
 {

@@ -125,4 +125,6 @@
 
 - (UIColor *)homeMenuColor;
 
+- (BOOL)canSubmitDraw;
+
 @end
