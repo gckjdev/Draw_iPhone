@@ -6,6 +6,9 @@
 #import "ZJHGameApp.h"
 #import "LearnDrawApp.h"
 #import "PureDrawApp.h"
+#import "PureDrawFreeApp.h"
+#import "PhotoDrawApp.h"
+#import "PhotoDrawFreeApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -34,6 +37,15 @@ NSObject<GameAppProtocol>* getGameApp()
     }
     else if ([bundleId isEqualToString:PUREDRAW_APP_BUNDLE_ID]){
         currentApp = [[PureDrawApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PUREDRAWFREE_APP_BUNDLE_ID]){
+        currentApp = [[PureDrawFreeApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PHOTODRAW_APP_BUNDLE_ID]){
+        currentApp = [[PhotoDrawApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PHOTODRAWFREE_APP_BUNDLE_ID]){
+        currentApp = [[PhotoDrawFreeApp alloc] init];
     }
     
     else{

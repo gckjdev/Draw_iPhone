@@ -180,7 +180,9 @@
     if ([dataList count] > 0) {
         PBIAPProduct *product = [dataList objectAtIndex:0];
         taobaoUrl = product.taobaoUrl;
-    }else{
+    }
+    
+    if (taobaoUrl == nil || [taobaoUrl length] == 0) {
         taobaoUrl = [ConfigManager getTaobaoHomeUrl];
     }
     [self pushTaobao:taobaoUrl];
