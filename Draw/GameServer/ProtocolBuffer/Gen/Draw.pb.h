@@ -1198,10 +1198,12 @@
 @private
   BOOL hasVersion_:1;
   BOOL hasOpusDesc_:1;
+  BOOL hasBgImageLocalPath_:1;
   BOOL hasCanvasSize_:1;
   BOOL hasDrawToUser_:1;
   int32_t version;
   NSString* opusDesc;
+  NSString* bgImageLocalPath;
   PBSize* canvasSize;
   PBUserBasicInfo* drawToUser;
   NSMutableArray* mutableDrawActionListList;
@@ -1211,10 +1213,12 @@
 - (BOOL) hasCanvasSize;
 - (BOOL) hasDrawToUser;
 - (BOOL) hasOpusDesc;
+- (BOOL) hasBgImageLocalPath;
 @property (readonly) int32_t version;
 @property (readonly, retain) PBSize* canvasSize;
 @property (readonly, retain) PBUserBasicInfo* drawToUser;
 @property (readonly, retain) NSString* opusDesc;
+@property (readonly, retain) NSString* bgImageLocalPath;
 - (NSArray*) drawActionListList;
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 - (NSArray*) drawActionList2List;
@@ -1291,6 +1295,11 @@
 - (NSString*) opusDesc;
 - (PBNoCompressDrawData_Builder*) setOpusDesc:(NSString*) value;
 - (PBNoCompressDrawData_Builder*) clearOpusDesc;
+
+- (BOOL) hasBgImageLocalPath;
+- (NSString*) bgImageLocalPath;
+- (PBNoCompressDrawData_Builder*) setBgImageLocalPath:(NSString*) value;
+- (PBNoCompressDrawData_Builder*) clearBgImageLocalPath;
 @end
 
 @interface PBDrawBgGroup : PBGeneratedMessage {
