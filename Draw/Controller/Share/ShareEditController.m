@@ -531,7 +531,7 @@ enum {
         && [[UserManager defaultManager] hasBindQQWeibo]
         && [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired] == NO
         && _snsType == QQ_WEIBO){
-        authorName = [NSString stringWithFormat:@"@%@",user.qqId];
+        authorName = [NSString stringWithFormat:@"@%54@",user.qqId];
     }
     
     if (user.isSinaUser 

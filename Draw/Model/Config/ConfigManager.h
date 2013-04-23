@@ -252,5 +252,4 @@ typedef enum{
 
 + (NSString*)getSNSShareSubject;
 + (NSString*)getDrawAppLink;
-
 @end

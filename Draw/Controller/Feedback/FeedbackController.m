@@ -77,7 +77,9 @@
     int count = 0;
     if (isDrawApp()) {
         rowOfShare = count++;
-        rowOfFollow = count++;
+        if ([LocaleUtils isChina] || [LocaleUtils isOtherChina]) {
+            rowOfFollow = count++;
+        }
         rowOfCleanCache = count++;
         rowOfAddWords = count++;
         rowOfReportBug = count++;
