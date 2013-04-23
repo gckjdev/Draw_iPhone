@@ -63,7 +63,7 @@
 
 #import "ToolHandler.h"
 #import "ToolCommand.h"
-
+#import "StringUtil.h"
 
 @interface OfflineDrawViewController()
 {
@@ -95,6 +95,8 @@
 
     BOOL _commitAsNormal;
     
+
+    
 }
 
 @property(nonatomic, retain)MyPaint *draft;
@@ -113,6 +115,8 @@
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
+@property (retain, nonatomic) UIImage *bgImage;
+@property (retain, nonatomic) NSString *bgImageName;
 
 //@property (assign, nonatomic) CGRect canvasRect;
 
@@ -188,6 +192,8 @@
     PPRelease(draftButton);
     PPRelease(_submitButton);
     PPRelease(_opusDesc);
+    PPRelease(_bgImage);
+    PPRelease(_bgImageName);
     [super dealloc];
 }
 
@@ -540,6 +546,25 @@
     }
 }
 
+- (void)startSelectPhoto
+{
+    if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
+        if (self.draft == nil) {
+            [self selectPhoto];
+        } else {
+            self.bgImageName = _draft.bgImagePath;
+            
+            PPDebug(@"path:%@",_draft.bgImagePath);
+            
+            NSString *imagePath = [[MyPaintManager defaultManager] bgImagePathForPaint:_draft];
+            NSData *data = [NSData dataWithContentsOfFile:imagePath];
+            self.bgImage = [UIImage imageWithData:data];
+            
+            [self setDrawBGImage:_bgImage];
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -553,9 +578,18 @@
 
     [self updateTargetFriend];
 
-    [self initRecovery];    
+    [self initRecovery];
+    
+    [self startSelectPhoto];
 }
 
+
+- (void)setDrawBGImage:(UIImage *)image
+{
+    CGRect rect = CGRectFromCGSize(image.size);
+    [drawView changeRect:rect];
+    [drawView setBGImage:image];
+}
 
 
 - (void)viewDidUnload
@@ -833,7 +867,8 @@
     PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
                                                                                size:drawView.bounds.size
                                                                            opusDesc:self.opusDesc
-                                                                         drawToUser:nil];
+                                                                         drawToUser:nil
+                                                                    bgImageFileName:_bgImageName];
     return data;
 }
 
@@ -881,7 +916,8 @@
                                         userId:[userManager userId]
                                       nickName:[userManager nickName]
                                           word:_word
-                                      language:languageType];
+                                      language:languageType
+                                       bgImage:_bgImage];
             
             
             if (self.draft) {
@@ -1175,5 +1211,40 @@
     }
 }
 
+
+
+
+
+#pragma mark -- UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    if (image != nil){
+        PPDebug(@"didFinishPickingImage");
+        [self setDrawBGImage:image];
+        self.bgImage = image;
+        self.bgImageName = [NSString GetUUID];
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image != nil){
+        PPDebug(@"didFinishPickingMediaWithInfo");
+        [self setDrawBGImage:image];
+        self.bgImage = image;
+        self.bgImageName = [NSString GetUUID];
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [super imagePickerControllerDidCancel:picker];
+    [self quit];
+}
 
 @end

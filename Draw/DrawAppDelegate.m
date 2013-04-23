@@ -287,7 +287,7 @@ NSString* GlobalGetBoardServerURL()
     }else if(isPureDrawApp() || isPureDrawFreeApp()){
         PureDrawHomeController *controller = [[[PureDrawHomeController alloc] init] autorelease];
         rootController = controller;
-    }else if (isPhotoDrawApp() || isPureDrawFreeApp()){
+    }else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
         PhotoDrawHomeController *controller = [[[PhotoDrawHomeController alloc] init] autorelease];
         rootController = controller;
     } else{

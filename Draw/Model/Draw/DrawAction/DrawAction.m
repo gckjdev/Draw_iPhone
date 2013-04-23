@@ -14,7 +14,7 @@
 #import "PaintAction.h"
 #import "CleanAction.h"
 #import "ChangeBGImageAction.h"
-
+#import "StringUtil.h"
 
 @implementation DrawAction
 
@@ -170,6 +170,7 @@
                                                             size:(CGSize)size
                                                         opusDesc:(NSString *)opusDesc
                                                       drawToUser:(PBUserBasicInfo *)drawToUser
+                                                 bgImageFileName:(NSString *)bgImageFileName
 {
     if ([drawActionList count] != 0) {
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
@@ -189,8 +190,18 @@
         }
         [builder setCanvasSize:CGSizeToPBSize(size)];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
+        [builder setBgImageLocalPath:bgImageFileName];
+
+        
+        //TODO save the draw bg image and set the image name.
+        [NSString GetUUID];
+
+        //TODO set the bg image in to pbnocompressdrawdata
         
         PBNoCompressDrawData *nData = [builder build];
+        
+
+        
         PPRelease(builder);
         return nData;
     }

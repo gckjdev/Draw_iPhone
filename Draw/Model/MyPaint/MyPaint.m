@@ -35,6 +35,8 @@
 @synthesize drawDataVersion = _drawDataVersion;
 @synthesize canvasSize = _canvasSize;
 @synthesize opusDesc = _opusDesc;
+@synthesize bgImagePath = _bgImagePath;
+
 
 - (NSString *)imageFilePath
 {
@@ -73,6 +75,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_bgImagePath);
     PPRelease(_thumbImage);
     PPRelease(_drawActionList);
     PPRelease(_imageFilePath);
