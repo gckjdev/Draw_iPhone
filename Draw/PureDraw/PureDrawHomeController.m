@@ -11,16 +11,36 @@
 #import "OfflineDrawViewController.h"
 #import "ShareController.h"
 #import "StoreController.h"
+#import "AdService.h"
 
 @interface PureDrawHomeController ()
-
+@property (retain, nonatomic) UIView  *adView;
 @end
 
 @implementation PureDrawHomeController
 
+- (void)dealloc
+{
+    [_adView release];
+    [super dealloc];
+}
+
+- (void)viewDidUnload
+{
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+    [super viewDidUnload];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    PPDebug(@"view height:%f", self.view.frame.size.height);
+    
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
+                                                   iPadFrame:CGRectMake(224, 954, 320, 50)
+                                                     useLmAd:YES];
 }
 
 - (void)didReceiveMemoryWarning
