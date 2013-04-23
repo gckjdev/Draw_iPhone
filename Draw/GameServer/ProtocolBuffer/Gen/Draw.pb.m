@@ -4790,6 +4790,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) NSMutableArray* mutableDrawActionList2List;
 @property (retain) PBUserBasicInfo* drawToUser;
 @property (retain) NSString* opusDesc;
+@property (retain) NSString* bgImageLocalPath;
 @end
 
 @implementation PBNoCompressDrawData
@@ -4824,12 +4825,20 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasOpusDesc_ = !!value;
 }
 @synthesize opusDesc;
+- (BOOL) hasBgImageLocalPath {
+  return !!hasBgImageLocalPath_;
+}
+- (void) setHasBgImageLocalPath:(BOOL) value {
+  hasBgImageLocalPath_ = !!value;
+}
+@synthesize bgImageLocalPath;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.canvasSize = nil;
   self.mutableDrawActionList2List = nil;
   self.drawToUser = nil;
   self.opusDesc = nil;
+  self.bgImageLocalPath = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4838,6 +4847,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
     self.canvasSize = [PBSize defaultInstance];
     self.drawToUser = [PBUserBasicInfo defaultInstance];
     self.opusDesc = @"";
+    self.bgImageLocalPath = @"";
   }
   return self;
 }
@@ -4904,6 +4914,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (self.hasOpusDesc) {
     [output writeString:7 value:self.opusDesc];
   }
+  if (self.hasBgImageLocalPath) {
+    [output writeString:8 value:self.bgImageLocalPath];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -4930,6 +4943,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasOpusDesc) {
     size += computeStringSize(7, self.opusDesc);
+  }
+  if (self.hasBgImageLocalPath) {
+    size += computeStringSize(8, self.bgImageLocalPath);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5030,6 +5046,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasOpusDesc) {
     [self setOpusDesc:other.opusDesc];
   }
+  if (other.hasBgImageLocalPath) {
+    [self setBgImageLocalPath:other.bgImageLocalPath];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5087,6 +5106,10 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
       }
       case 58: {
         [self setOpusDesc:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setBgImageLocalPath:[input readString]];
         break;
       }
     }
@@ -5240,6 +5263,22 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 - (PBNoCompressDrawData_Builder*) clearOpusDesc {
   result.hasOpusDesc = NO;
   result.opusDesc = @"";
+  return self;
+}
+- (BOOL) hasBgImageLocalPath {
+  return result.hasBgImageLocalPath;
+}
+- (NSString*) bgImageLocalPath {
+  return result.bgImageLocalPath;
+}
+- (PBNoCompressDrawData_Builder*) setBgImageLocalPath:(NSString*) value {
+  result.hasBgImageLocalPath = YES;
+  result.bgImageLocalPath = value;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearBgImageLocalPath {
+  result.hasBgImageLocalPath = NO;
+  result.bgImageLocalPath = @"";
   return self;
 }
 @end

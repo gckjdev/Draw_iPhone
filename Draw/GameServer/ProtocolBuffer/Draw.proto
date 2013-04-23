@@ -181,6 +181,7 @@ message PBNoCompressDrawData
     repeated PBDrawAction drawActionList2 = 5; //use after version 2.0
     optional PBUserBasicInfo drawToUser = 6;
     optional string opusDesc = 7;
+    optional string bgImageLocalPath = 8;
 }
 
 
