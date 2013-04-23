@@ -7,6 +7,7 @@
 //
 
 #import "PPViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface PureDrawHomeController : PPViewController
 
