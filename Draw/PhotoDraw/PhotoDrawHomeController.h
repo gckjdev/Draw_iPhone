@@ -10,4 +10,10 @@
 
 @interface PhotoDrawHomeController : PPViewController
 
+
+- (IBAction)clickDrawButton:(id)sender;
+- (IBAction)clickShopButton:(id)sender;
+- (IBAction)clickOpusButton:(id)sender;
+- (IBAction)clickFeedbackButton:(id)sender;
+
 @end
