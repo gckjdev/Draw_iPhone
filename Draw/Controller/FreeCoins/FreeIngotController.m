@@ -57,7 +57,7 @@ enum {
             _sectionCount = 2;
         }
         else{
-            _sectionCount = 1;
+            _sectionCount = 0;
         }
     }
     return self;

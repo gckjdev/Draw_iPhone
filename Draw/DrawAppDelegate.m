@@ -87,7 +87,6 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
-//    return @"http://58.215.184.18:8188/api/i?";
     return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
@@ -287,7 +286,7 @@ NSString* GlobalGetBoardServerURL()
     }else if(isPureDrawApp() || isPureDrawFreeApp()){
         PureDrawHomeController *controller = [[[PureDrawHomeController alloc] init] autorelease];
         rootController = controller;
-    }else if (isPhotoDrawApp() || isPureDrawFreeApp()){
+    }else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
         PhotoDrawHomeController *controller = [[[PhotoDrawHomeController alloc] init] autorelease];
         rootController = controller;
     } else{

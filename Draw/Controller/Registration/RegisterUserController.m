@@ -82,7 +82,7 @@
     
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     
-    if ([LocaleUtils isChina]){
+    if ([LocaleUtils isChina] || [LocaleUtils isChinese]){
         sinaButton.hidden = NO;
         qqButton.hidden = NO;
         facebookButton.hidden = YES;
@@ -90,7 +90,10 @@
     else{
         sinaButton.hidden = YES;
         qqButton.hidden = YES;
-        facebookButton.hidden = NO;        
+        
+        // disable facebook due to facebook status
+        facebookButton.hidden = YES;
+        self.promptLabel.hidden = YES;
     }
     
 //    [self addRemoteDraw];    

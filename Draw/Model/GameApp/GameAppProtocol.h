@@ -128,4 +128,6 @@
 
 - (BOOL)canSubmitDraw;
 
+- (BOOL)hasBGOffscreen;
+
 @end

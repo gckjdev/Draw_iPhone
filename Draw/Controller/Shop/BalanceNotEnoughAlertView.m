@@ -10,6 +10,7 @@
 #import "CommonDialog.h"
 #import "FreeIngotController.h"
 #import "ChargeController.h"
+#import "ConfigManager.h"
 
 @implementation BalanceNotEnoughAlertView
 
@@ -17,15 +18,25 @@
 + (id)createView:(UIViewController *)controller;
 {
     CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
-        FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
-        [controller.navigationController pushViewController:vc animated:YES];
         
+        if (![ConfigManager isInReviewVersion]) {
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [controller.navigationController pushViewController:vc animated:YES];
+        }
+
     } clickCancelBlock:^{
+        
         ChargeController *vc = [[[ChargeController alloc] init] autorelease];
         [controller.navigationController pushViewController:vc animated:YES];
+        
     }];
     
-    [view.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
+    if ([ConfigManager isInReviewVersion]) {
+        [view.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    }else{
+        [view.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
+    }
+    
     [view.backButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
 
     return view;

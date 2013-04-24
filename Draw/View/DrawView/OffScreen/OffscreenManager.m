@@ -85,20 +85,29 @@
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
     [manager addGridOffscreen:rect];
 
-    //DONOT REMOVE BY GAMY
-//    [manager addBgOffscreen:rect];
+    if ([GameApp hasBGOffscreen]) {
+        [manager addBgOffscreen:rect];
+    }
+    
     return manager;
 }
 + (id)showViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
     
-        //DONOT REMOVE BY GAMY
-//    [manager addBgOffscreen:rect];
+    if ([GameApp hasBGOffscreen]) {
+        [manager addBgOffscreen:rect];
+    }
     
     return manager;
 }
 
+- (void)setBGOffscreenImage:(UIImage *)image
+{
+    if (image && self.bgOffscreen) {
+        [self.bgOffscreen showImage:image];
+    }
+}
 
 - (void)dealloc
 {

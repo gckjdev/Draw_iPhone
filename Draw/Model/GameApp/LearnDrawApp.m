@@ -37,5 +37,9 @@
     return LEARN_DRAW_UMENG_ID;
 }
 
+- (BOOL)hasBGOffscreen
+{
+    return NO;
+}
 
 @end

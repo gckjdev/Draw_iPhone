@@ -75,7 +75,7 @@ typedef enum{
 + (NSInteger)getTimelineCountOnce;
 + (BOOL)showOpusCount;
 
-+ (BOOL)isInReview;
+//+ (BOOL)isInReview;
 + (BOOL)isInReviewVersion;
 
 + (BOOL)wallEnabled;

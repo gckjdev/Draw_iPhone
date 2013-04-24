@@ -234,7 +234,7 @@ static AdService* _defaultService;
  *YES  当前广告可用
  *NO   当前广告不可用
  */
-- (void) immobViewDidReceiveAd:(BOOL)AdReady{    
+- (void) immobViewDidReceiveAd:(immobView *)immobView{
     //[adView_AdWall immobViewDisplay];
     PPDebug(@"<immobViewDidReceiveAd>");    
 }

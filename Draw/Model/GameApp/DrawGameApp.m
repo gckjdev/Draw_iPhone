@@ -397,4 +397,9 @@
     return YES;
 }
 
+- (BOOL)hasBGOffscreen
+{
+    return NO;
+}
+
 @end

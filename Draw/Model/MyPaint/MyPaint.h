@@ -41,6 +41,9 @@
 @property (nonatomic, assign) NSInteger drawDataVersion;
 @property (nonatomic, assign) CGSize canvasSize;
 @property (nonatomic, retain) NSString *opusDesc;
+
+@property (nonatomic, retain) NSString *bgImagePath;
+
 - (void)updateDrawData;
 
 @end

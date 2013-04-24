@@ -30,6 +30,8 @@
 + (id)showViewOffscreenManagerWithRect:(CGRect)rect; //default OffscreenManager
 
 
+- (void)setBGOffscreenImage:(UIImage *)image;
+
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action;
 

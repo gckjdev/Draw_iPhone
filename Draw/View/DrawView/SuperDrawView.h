@@ -61,6 +61,8 @@
 
 - (void)resetTransform;
 - (void)changeRect:(CGRect)rect;
+- (void)setBGImage:(UIImage *)image;
+
 @end
 
 
