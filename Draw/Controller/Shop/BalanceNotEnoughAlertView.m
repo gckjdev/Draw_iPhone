@@ -19,7 +19,7 @@
 {
     CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
         
-        if (![ConfigManager isInReview]) {
+        if (![ConfigManager isInReviewVersion]) {
             FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
             [controller.navigationController pushViewController:vc animated:YES];
         }
@@ -31,7 +31,7 @@
         
     }];
     
-    if ([ConfigManager isInReview]) {
+    if ([ConfigManager isInReviewVersion]) {
         [view.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     }else{
         [view.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
