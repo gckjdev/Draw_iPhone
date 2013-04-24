@@ -5,6 +5,10 @@
 #import "DiceGameApp.h"
 #import "ZJHGameApp.h"
 #import "LearnDrawApp.h"
+#import "PureDrawApp.h"
+#import "PureDrawFreeApp.h"
+#import "PhotoDrawApp.h"
+#import "PhotoDrawFreeApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -31,6 +35,19 @@ NSObject<GameAppProtocol>* getGameApp()
     else if ([bundleId isEqualToString:LEARNDRAW_APP_BUNDLE_ID]){
         currentApp = [[LearnDrawApp alloc] init];
     }
+    else if ([bundleId isEqualToString:PUREDRAW_APP_BUNDLE_ID]){
+        currentApp = [[PureDrawApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PUREDRAWFREE_APP_BUNDLE_ID]){
+        currentApp = [[PureDrawFreeApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PHOTODRAW_APP_BUNDLE_ID]){
+        currentApp = [[PhotoDrawApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:PHOTODRAWFREE_APP_BUNDLE_ID]){
+        currentApp = [[PhotoDrawFreeApp alloc] init];
+    }
+    
     else{
         PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
     }
@@ -53,9 +70,38 @@ BOOL isZhajinhuaApp()
     return ([[GameApp gameId] isEqualToString:ZHAJINHUA_GAME_ID]);
 }
 
+extern BOOL isSimpleDrawApp()
+{
+    return (isLearnDrawApp() ||
+            isPureDrawApp() ||
+            isPureDrawFreeApp() ||
+            isPhotoDrawApp() ||
+            isPhotoDrawFreeApp());
+}
+
 extern BOOL isLearnDrawApp()
 {
     return ([[GameApp gameId] isEqualToString:LEARN_DRAW_GAME_ID]);
+}
+
+extern BOOL isPureDrawApp()
+{
+    return ([[GameApp gameId] isEqualToString:PURE_DRAW_GAME_ID]);
+}
+
+extern BOOL isPureDrawFreeApp()
+{
+    return ([[GameApp gameId] isEqualToString:PURE_DRAW_FREE_GAME_ID]);
+}
+
+extern BOOL isPhotoDrawApp()
+{
+    return ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]);
+}
+
+extern BOOL isPhotoDrawFreeApp()
+{
+    return ([[GameApp gameId] isEqualToString:PHOTO_DRAW_FREE_GAME_ID]);
 }
 
 GameAppType gameAppType()
@@ -74,6 +120,18 @@ GameAppType gameAppType()
     }
     if ([[GameApp gameId] isEqualToString:LEARN_DRAW_GAME_ID]) {
         return GameAppTypeLearnDraw;
+    }
+    if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]) {
+        return GameAppTypePureDraw;
+    }
+    if ([[GameApp gameId] isEqualToString:PURE_DRAW_FREE_GAME_ID]) {
+        return GameAppTypePureDrawFree;
+    }
+    if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]) {
+        return GameAppTypePhotoDraw;
+    }
+    if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_FREE_GAME_ID]) {
+        return GameAppTypePhotoDrawFree;
     }
     return GameAppTypeUnknow;
 }

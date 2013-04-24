@@ -209,7 +209,7 @@ static LmWallService* _defaultService;
  *YES  当前广告可用
  *NO   当前广告不可用
  */
-- (void) immobViewDidReceiveAd{
+- (void) immobViewDidReceiveAd:(immobView *)immobView{
     PPDebug(@"<immobViewDidReceiveAd>");
     if ([self.adWallView isAdReady]){
         [_viewController.view addSubview:self.adWallView];

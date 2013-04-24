@@ -404,4 +404,13 @@
     return [UIColor whiteColor];
 }
 
+- (BOOL)canSubmitDraw
+{
+    return NO;
+}
+- (BOOL)hasBGOffscreen
+{
+    return NO;
+}
+
 @end

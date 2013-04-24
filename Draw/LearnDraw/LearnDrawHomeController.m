@@ -46,6 +46,11 @@
 
 @implementation LearnDrawHomeController
 
+- (void)reloadTableView
+{
+    [self.dataTableView reloadData];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -234,7 +239,7 @@
                                      destructiveButtonTitle:NSLS(@"kOpusDetail")
                                      otherButtonTitles:NSLS(@"kManageLearnDraw"),
                                      NSLS(@"kRemoveLearnDraw"),
-                                     NSLS(@"Buy Test"), nil];
+                                    /* NSLS(@"Buy Test"),*/ nil];
         
         __block LearnDrawHomeController *cp = self;
         
@@ -247,6 +252,8 @@
                 [alView showInView:cp.view];
                 [alView setPrice:rankView.feed.learnDraw.price];
                 [alView setType:rankView.feed.learnDraw.type];
+                [alView setFeed:rankView.feed];
+                alView.delegate = cp;
             }else if(buttonIndex == 2){
                 [[LearnDrawService defaultService] removeLearnDraw:rankView.feed.feedId
                                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
@@ -256,7 +263,7 @@
                                                             [cp failLoadDataForTabID:[cp currentTab].tabID];
                                                         }
                 }];
-            }else if(buttonIndex == 3){
+            }/*else if(buttonIndex == 3){
                 
                 DrawFeed *feed = rankView.feed;
                 
@@ -268,7 +275,7 @@
                                                       }
 
                 }];
-            }
+            }*/
             [sheet setActionBlock:NULL];
         }];
         

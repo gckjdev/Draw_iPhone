@@ -36,41 +36,42 @@ static ShareService* _defaultService;
 
 
 - (NSString*)getWeiboText:(int)snsType
-         drawUserNickName:(NSString*)drawUserNickName 
+         drawUserNickName:(NSString*)drawUserNickName
+          drawUserSNSNick:(NSString*)drawUserSNSNick
                isDrawByMe:(BOOL)isDrawByMe 
                  drawWord:(NSString*)drawWord
+           drawUserGender:(BOOL)gender
 {
 //    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:snsType];
-    NSArray* wordArray = [[WordManager defaultManager] randDrawWordList];
-    NSMutableArray* array2 = [NSMutableArray arrayWithArray:wordArray];
-    [array2 insertObject:[Word wordWithText:drawWord level:0] atIndex:(rand()%3)];
-    NSString* appNick = [GameSNSService snsOfficialNick:snsType];    
+//    NSArray* wordArray = [[WordManager defaultManager] randDrawWordList];
+//    NSMutableArray* array2 = [NSMutableArray arrayWithArray:wordArray];
+//    [array2 insertObject:[Word wordWithText:drawWord level:0] atIndex:(rand()%3)];
+    NSString* heStr = gender?NSLS(@"kHim"):NSLS(@"kHer");
+    NSString* appNick = [GameSNSService snsOfficialNick:snsType];
     if (appNick == nil)
         appNick = @"";
-    
-    if (drawUserNickName == nil)
-        drawUserNickName = @"";     
     
     if (drawWord == nil)
         drawWord = @"";
     
     NSString* text = @"";
     if (isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareMeTextAuto"), appNick, drawWord];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"),  appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
     }
     else{
         NSString* nick = nil;
-        if ([drawUserNickName length] > 0){
-            nick = [NSString stringWithFormat:@"@%@", drawUserNickName];
+        if (drawUserSNSNick && [drawUserSNSNick length] > 0){
+            nick = [NSString stringWithFormat:@"@%@", drawUserSNSNick];
         }
         else{
-            nick = @"";
+            nick = drawUserNickName;
         }
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherTextAuto"), appNick, nick];
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"), heStr, appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [text stringByAppendingFormat:NSLS(@"kPaintVia"), nick];
     }
 //    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
     
-    PPDebug(@"Share Weibo Text=%@", text); 
+    PPDebug(@"Share Weibo Text=%@, user nick = %@, sns nick = %@", text, drawUserNickName, drawUserSNSNick);
     return text;
 }
 
@@ -102,21 +103,26 @@ static ShareService* _defaultService;
 //                                                                   ByUserId:drawUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* nickName = nil;
             NSString* sinaNick = nil;
             NSString* qqId = nil;
+            BOOL gender;
             
             if (output.resultCode == ERROR_SUCCESS) {
                 sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
                 qqId = [output.jsonDataDict objectForKey:PARA_QQ_ID];
+                nickName = [output.jsonDataDict objectForKey:PARA_NICKNAME];
+                NSString* genderStr = [output.jsonDataDict objectForKey:PARA_GENDER];
+                gender = [@"m" isEqualToString:genderStr];
             }
             
-            NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:qqId isDrawByMe:isDrawByMe drawWord:drawWord];
+            NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:nickName drawUserSNSNick:qqId isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
-            NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord];
+            NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:nickName drawUserSNSNick:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
-            NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:@"" isDrawByMe:isDrawByMe drawWord:drawWord];
+            NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:nickName drawUserSNSNick:nil isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
 
             /*

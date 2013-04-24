@@ -941,5 +941,14 @@
     }
 }
 
++ (NSString*)getSNSShareSubject
+{
+    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:NSLS(@"kSNSSubject")];
+}
++ (NSString*)getDrawAppLink
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_APP_LINK" defaultValue:NSLS(@"kDrawAppLink")];
+}
+
 
 @end

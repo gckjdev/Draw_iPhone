@@ -117,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         [self createDrawTestDataFile];
     }else if(isDiceApp()){
         [self createDiceTestDataFile];
-    }else if (isLearnDrawApp()){
+    }else if (isSimpleDrawApp()){
         [self createLearnDrawTestDataFile];
     }
 }
@@ -694,7 +694,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 + (void)createLearnDrawTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
-    
+
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
                                             name:@"kColorAlphaItem"

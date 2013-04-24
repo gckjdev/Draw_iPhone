@@ -309,6 +309,11 @@
 "kShareMeText" = "My Awesome Drawing for %@ %@";
 "kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";
 
+"kShareMyOpusWithDescriptionText" = "%@ ，I just used %@ to draw a paint [%@] #%@# %@";
+"kShareMyOpusWithoutDescriptionText" = "I just used%@ to draw a paint[%@] #%@# %@";
+"kShareOtherOpusWithDescriptionText" = "%@ ，look at %@ use %@ to draw a [%@] #%@# %@ ";
+"kShareOtherOpusWithoutDescriptionText" = "Look at %@ use %@ to draw a [%@] #%@# %@";
+
 "kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
 "kShareGIFMeText" = "My Awesome Drawing for %@ ";
 "kShareSend" = "Send";
@@ -1286,7 +1291,9 @@
 "kSortedByPrice" = "Price";
 "kTime" = "Time";
 "kBought" = "Bought";
-
+"kSNSSubject" = "Share Paints";
+"kDrawAppLink" = "http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
+"kPaintVia" = "(via %@)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

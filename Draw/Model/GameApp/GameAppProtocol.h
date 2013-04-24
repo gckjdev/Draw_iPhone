@@ -125,4 +125,8 @@
 
 - (UIColor *)homeMenuColor;
 
+- (BOOL)canSubmitDraw;
+
+- (BOOL)hasBGOffscreen;
+
 @end

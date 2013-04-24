@@ -12,12 +12,16 @@
 #import "GameAppProtocol.h"
 
 // Bundle ID
-#define DRAW_APP_BUNDLE_ID      @"com.orange.draw"
-#define DRAW_APP_PRO_BUNDLE_ID  @"com.orange.drawpro"
-#define DICE_APP_BUNDLE_ID      @"com.orange.newdice"
-#define OLD_DICE_APP_BUNDLE_ID  @"com.orange.dice"
-#define ZJH_APP_BUNDLE_ID       @"com.orange.zhajinhua"
-#define LEARNDRAW_APP_BUNDLE_ID @"com.orange.learndraw"
+#define DRAW_APP_BUNDLE_ID              @"com.orange.draw"
+#define DRAW_APP_PRO_BUNDLE_ID          @"com.orange.drawpro"
+#define DICE_APP_BUNDLE_ID              @"com.orange.newdice"
+#define OLD_DICE_APP_BUNDLE_ID          @"com.orange.dice"
+#define ZJH_APP_BUNDLE_ID               @"com.orange.zhajinhua"
+#define LEARNDRAW_APP_BUNDLE_ID         @"com.orange.learndraw"
+#define PUREDRAW_APP_BUNDLE_ID          @"com.orange.puredraw"
+#define PUREDRAWFREE_APP_BUNDLE_ID      @"com.orange.puredrawfree"
+#define PHOTODRAW_APP_BUNDLE_ID         @"com.orange.photodraw"
+#define PHOTODRAWFREE_APP_BUNDLE_ID     @"com.orange.photodrawfree"
 
 // App ID
 #define DRAW_APP_ID             @"513819630"
@@ -28,6 +32,10 @@
 #define ZJH_APP_ID              @"585525675"
 #define CANDY_APP_ID            @"test"
 #define LEARN_DRAW_APP_ID       @"635820146" 
+#define PURE_DRAW_APP_ID        @"639593519"
+#define PURE_DRAW_FREE_APP_ID   @"639593939"
+#define PHOTO_DRAW_APP_ID       @"639595333"
+#define PHOTO_DRAW_FREE_APP_ID  @"639596045"
 
 // game ID
 #define DRAW_GAME_ID            @"Draw"
@@ -35,6 +43,10 @@
 #define CANDY_GAME_ID           @"Candy"
 #define ZHAJINHUA_GAME_ID       @"Zhajinhua"
 #define LEARN_DRAW_GAME_ID      @"Learndraw"
+#define PURE_DRAW_GAME_ID       @"Puredraw"
+#define PURE_DRAW_FREE_GAME_ID  @"Puredrawfree"
+#define PHOTO_DRAW_GAME_ID      @"Photodraw"
+#define PHOTO_DRAW_FREE_GAME_ID @"Photodrawfree"
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"
@@ -43,6 +55,11 @@
 #define ZJH_UMENG_ID            @"50c1883752701537100000af" 
 
 #define LEARN_DRAW_UMENG_ID     @"516d181256240b096c000a83"
+
+#define PURE_DRAW_UMENG_ID          @"5175fd3356240b501600f6d0"
+#define PURE_DRAW_FREE_UMENG_ID     PURE_DRAW_UMENG_ID
+#define PHOTO_DRAW_UMENG_ID        @"5175fd6e56240ba4260002d3"
+#define PHOTO_DRAW_FREE_UMENG_ID    PHOTO_DRAW_UMENG_ID
 
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
@@ -85,7 +102,10 @@ typedef enum {
     GameAppTypeDice = 3,
     GameAppTypeZJH = 4,
     GameAppTypeLearnDraw = 5,
-    
+    GameAppTypePureDraw = 6,
+    GameAppTypePureDrawFree = 7,
+    GameAppTypePhotoDraw = 8,
+    GameAppTypePhotoDrawFree = 9,
 }GameAppType;
 
 #define GameApp                 (getGameApp())
@@ -94,7 +114,13 @@ extern NSObject<GameAppProtocol>* getGameApp();
 extern BOOL isDrawApp();
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
+extern BOOL isSimpleDrawApp();
 extern BOOL isLearnDrawApp();
+extern BOOL isPureDrawApp();
+extern BOOL isPureDrawFreeApp();
+extern BOOL isPhotoDrawApp();
+extern BOOL isPhotoDrawFreeApp();
+
 extern GameAppType gameAppType();
 
 #endif

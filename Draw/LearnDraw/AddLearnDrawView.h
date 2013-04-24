@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "LearnDrawService.h"
+#import "DrawFeed.h"
 
 @interface AddLearnDrawView : UIView
+
+
+@property(nonatomic, retain)DrawFeed *feed;
+@property(nonatomic, assign)id delegate;
+
 
 - (NSInteger)price;
 - (NSInteger)type;
