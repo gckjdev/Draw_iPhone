@@ -12,7 +12,7 @@
 
 - (NSString*)appId
 {
-    return LEARN_DRAW_APP_ID;
+    return PHOTO_DRAW_FREE_APP_ID;
 }
 
 - (NSString*)gameId
@@ -29,7 +29,13 @@
 
 - (NSString*)umengId
 {
-    return LEARN_DRAW_UMENG_ID;
+    return PHOTO_DRAW_FREE_UMENG_ID;
 }
+
+- (BOOL)hasBGOffscreen
+{
+    return YES;
+}
+
 
 @end

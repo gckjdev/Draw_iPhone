@@ -408,5 +408,9 @@
 {
     return NO;
 }
+- (BOOL)hasBGOffscreen
+{
+    return NO;
+}
 
 @end

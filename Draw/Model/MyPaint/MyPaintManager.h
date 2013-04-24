@@ -35,6 +35,7 @@
 {
     StorageManager *_imageManager;
     StorageManager *_drawDataManager;
+    StorageManager *_bgImgeManager;
 }
 
 
@@ -82,7 +83,8 @@
                   userId:(NSString *)userId
                 nickName:(NSString *)nickName
                     word:(Word *)word
-                language:(NSInteger)language;
+                language:(NSInteger)language
+                 bgImage:(UIImage *)bgImage;
 
 - (MyPaint *)createDraftForRecovery:(NSString *)targetUid
                    contestId:(NSString *)contestId
@@ -93,10 +95,11 @@
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
-pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData;
+pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData;
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
+- (NSString *)bgImagePathForPaint:(MyPaint *)paint;
 
 - (NSString*)fullDataPath:(NSString*)dataFileName;
 

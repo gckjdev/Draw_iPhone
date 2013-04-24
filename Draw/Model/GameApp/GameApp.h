@@ -32,6 +32,10 @@
 #define ZJH_APP_ID              @"585525675"
 #define CANDY_APP_ID            @"test"
 #define LEARN_DRAW_APP_ID       @"635820146" 
+#define PURE_DRAW_APP_ID        @"639593519"
+#define PURE_DRAW_FREE_APP_ID   @"639593939"
+#define PHOTO_DRAW_APP_ID       @"639595333"
+#define PHOTO_DRAW_FREE_APP_ID  @"639596045"
 
 // game ID
 #define DRAW_GAME_ID            @"Draw"
@@ -51,6 +55,11 @@
 #define ZJH_UMENG_ID            @"50c1883752701537100000af" 
 
 #define LEARN_DRAW_UMENG_ID     @"516d181256240b096c000a83"
+
+#define PURE_DRAW_UMENG_ID          @"5175fd3356240b501600f6d0"
+#define PURE_DRAW_FREE_UMENG_ID     PURE_DRAW_UMENG_ID
+#define PHOTO_DRAW_UMENG_ID        @"5175fd6e56240ba4260002d3"
+#define PHOTO_DRAW_FREE_UMENG_ID    PHOTO_DRAW_UMENG_ID
 
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"

@@ -45,7 +45,8 @@ typedef enum {
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size
                                                         opusDesc:(NSString *)opusDesc
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser;
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser
+                                                 bgImageFileName:(NSString *)bgImageFileName;
 
 
 //new Method should overload by sub classes..

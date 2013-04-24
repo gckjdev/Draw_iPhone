@@ -40,6 +40,7 @@
 static MyPaintManager* _defaultManager;
 #define PIANT_IMAGE_DIR @"Paints"
 #define PIANT_DATA_DIR @"PaintData"
+#define PAINT_BG_IMAGE_DIR  @"PaintBgs"
 
 #define DRAW_ACTION_DATA_SUFFIX @".dat"
 #define PBDRAW_DATA_SUFFIX @"_pb.dat"
@@ -95,7 +96,7 @@ static MyPaintManager* _defaultManager;
     if (self) {
         _imageManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PIANT_IMAGE_DIR];
         _drawDataManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PIANT_DATA_DIR];
-        
+        _bgImgeManager = [[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAINT_BG_IMAGE_DIR];
     }
     return self;
 }
@@ -104,6 +105,7 @@ static MyPaintManager* _defaultManager;
 {
     PPRelease(_imageManager);
     PPRelease(_drawDataManager);
+    PPRelease(_bgImgeManager);
     [super dealloc];
 }
 
@@ -423,6 +425,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
            nickName:(NSString *)nickName
                word:(Word *)word
            language:(NSInteger)language
+            bgImage:(UIImage *)bgImage
 
 {
     NSString *imageFileName = [self imageFileName];
@@ -431,10 +434,14 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     if (image != nil){
         [_imageManager saveImage:image forKey:imageFileName];
     }
-    
+        
     if (pbNoCompressDrawData != nil){
         [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
     }    
+    
+    if (bgImage != nil) {
+        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageLocalPath];
+    }
     
     [newMyPaint setDataFilePath:pbDataFileName];
     [newMyPaint setImage:imageFileName];
@@ -448,6 +455,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setDrawWord:word.text];
     [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
     [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
+    [newMyPaint setBgImagePath:pbNoCompressDrawData.bgImageLocalPath];
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
@@ -500,6 +508,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                 nickName:(NSString *)nickName
                     word:(Word *)word
                 language:(NSInteger)language
+                 bgImage:(UIImage *)bgImage
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -509,7 +518,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                userId:userId
              nickName:nickName
                  word:word
-             language:language];
+             language:language
+              bgImage:bgImage];
     [newMyPaint setTargetUserId:targetUid];
     [newMyPaint setContestId:contestId];
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
@@ -534,7 +544,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                userId:userId
              nickName:nickName
                  word:word
-             language:language];
+             language:language
+              bgImage:nil];
     [newMyPaint setTargetUserId:targetUid];
     [newMyPaint setContestId:contestId];
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
@@ -547,7 +558,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
-    pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
+pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
     BOOL needSave = NO;
     if (draft) {
@@ -562,6 +573,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             [draft setImage:imageFileName];
             needSave = YES;
         }
+        
         //update draw data.
         if ([pbDataFileName length] != 0) {
             if ([self saveDataAsPBNOCompressDrawData:draft]) {
@@ -583,6 +595,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             [draft setDataFilePath:pbDataFileName];
             needSave = YES;
         }
+        
         if (needSave) {
             [draft setIsRecovery:[NSNumber numberWithBool:NO]];
             [self save];            
@@ -609,6 +622,11 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
             }else{
                 paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
             }
+            
+            //TODO get the image path.nDraw
+            
+            //nDraw.bgImageLocalPath =
+            
             return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
         }else if ([self saveDataAsPBDraw:paint]) {
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
@@ -654,4 +672,20 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     }
     return nil;
 }
+
+- (NSString *)bgImagePathForPaint:(MyPaint *)paint
+{
+    NSString *path = [_bgImgeManager pathWithKey:paint.bgImagePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        return path;
+    }else{
+        NSString* imageName = [FileUtil getFileNameByFullPath:paint.bgImagePath];
+        NSString* imagePath = [FileUtil getFileFullPath:imageName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
+            return imagePath;
+        }
+    }
+    return nil;
+}
+
 @end

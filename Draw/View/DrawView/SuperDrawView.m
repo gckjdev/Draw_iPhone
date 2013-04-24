@@ -137,6 +137,11 @@
     
 }
 
+- (void)setBGImage:(UIImage *)image
+{
+    [osManager setBGOffscreenImage:image];
+}
+
 //- (void)setScale:(CGFloat)scale
 //{
 //    _scale = scale;
