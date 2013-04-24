@@ -101,13 +101,9 @@
 {
     [super viewDidLoad];
     
-    if (isZhajinhuaApp()) {
-        self.restoreButton.hidden = NO;
-        [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
-    }else{
-        [self.restoreButton removeFromSuperview];
-    }
-        
+    self.restoreButton.hidden = NO;
+    [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
+    
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
     if (_saleCurrency == PBGameCurrencyCoin) {
