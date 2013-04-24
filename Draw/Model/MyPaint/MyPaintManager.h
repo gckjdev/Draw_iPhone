@@ -91,7 +91,8 @@
                       userId:(NSString *)userId
                     nickName:(NSString *)nickName
                         word:(Word *)word
-                    language:(NSInteger)language;
+                    language:(NSInteger)language
+                 bgImageName:(NSString *)bgImageName;
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
@@ -99,7 +100,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData;
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;
-- (NSString *)bgImagePathForPaint:(MyPaint *)paint;
+- (UIImage *)bgImageForPaint:(MyPaint *)paint;
+- (void)saveBgImage:(UIImage *)image name:(NSString *)name;
 
 - (NSString*)fullDataPath:(NSString*)dataFileName;
 

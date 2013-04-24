@@ -64,6 +64,7 @@
 #import "ToolHandler.h"
 #import "ToolCommand.h"
 #import "StringUtil.h"
+#import "MKBlockActionSheet.h"
 
 @interface OfflineDrawViewController()
 {
@@ -378,9 +379,17 @@
     drawView.delegate = self;
     _isNewDraft = YES;
     if (self.draft) {
+        
+        [self.draft drawActionList];
+        if ([GameApp hasBGOffscreen]) {
+            [self setDrawBGImage:self.draft.bgImage];
+        }
+
+
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
+        
     }else{
         //Test
 //        [self addTestActions];
@@ -483,7 +492,8 @@
                                            word:_word
                                        language:languageType
                                      canvasSize:drawView.bounds.size
-                                 drawActionList:drawView.drawActionList];
+                                 drawActionList:drawView.drawActionList
+                                    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
 }
 
 - (void)stopRecovery
@@ -500,7 +510,7 @@
     if (![self supportRecovery])
         return;
 
-    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
+    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList bgImage:_bgImage];
 }
 
 - (void)startBackupTimer
@@ -546,21 +556,31 @@
     }
 }
 
-- (void)startSelectPhoto
+- (void)initPhoto
 {
     if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
         if (self.draft == nil) {
-            [self selectPhoto];
+            MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:nil
+                                                                         delegate:nil
+                                                                cancelButtonTitle:NSLS(@"kCancel")
+                                                           destructiveButtonTitle:nil otherButtonTitles:NSLS(@"choice"), NSLS(@"take"),nil];
+            __block typeof (self)bself = self;
+            [sheet setActionBlock:^(NSInteger buttonIndex){
+                switch (buttonIndex) {
+                    case 0:
+                        [bself selectPhoto];
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        break;
+                }
+            }];
+            [sheet showInView:self.view];
+            [sheet release];
         } else {
-            self.bgImageName = _draft.bgImagePath;
-            
-            PPDebug(@"path:%@",_draft.bgImagePath);
-            
-            NSString *imagePath = [[MyPaintManager defaultManager] bgImagePathForPaint:_draft];
-            NSData *data = [NSData dataWithContentsOfFile:imagePath];
-            self.bgImage = [UIImage imageWithData:data];
-            
-            [self setDrawBGImage:_bgImage];
+            self.bgImageName = _draft.bgImageName;
+            self.bgImage = _draft.bgImage;
         }
     }
 }
@@ -578,9 +598,9 @@
 
     [self updateTargetFriend];
 
-    [self initRecovery];
+    [self initPhoto];
     
-    [self startSelectPhoto];
+    [self initRecovery];
 }
 
 
@@ -763,7 +783,7 @@
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList bgImage:_bgImage];
 
     return;
 }
@@ -1212,17 +1232,18 @@
 }
 
 
-
-
+- (void)useSelectedBgImage:(UIImage *)image
+{
+    [self setDrawBGImage:image];
+    self.bgImage = image;
+    self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+}
 
 #pragma mark -- UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     if (image != nil){
-        PPDebug(@"didFinishPickingImage");
-        [self setDrawBGImage:image];
-        self.bgImage = image;
-        self.bgImageName = [NSString GetUUID];
+        [self useSelectedBgImage:image];
     }
     
     [self dismissModalViewControllerAnimated:YES];
@@ -1232,10 +1253,7 @@
 {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image != nil){
-        PPDebug(@"didFinishPickingMediaWithInfo");
-        [self setDrawBGImage:image];
-        self.bgImage = image;
-        self.bgImageName = [NSString GetUUID];
+        [self useSelectedBgImage:image];
     }
     
     [self dismissModalViewControllerAnimated:YES];
