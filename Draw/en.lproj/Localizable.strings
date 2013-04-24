@@ -841,7 +841,7 @@
 "kFollowWeibo" = "Follow Weibo";
 "kGetCoinsByShareToFriends" = "Share successfully. Very good! You got %d coins!";
 
-"kSendAFlower" = "Send a flower!";
+"kSendAFlower" = "Sent a flower!";
 "kThrowATomato" = "Throw a tomato!";
 
 "kShareAwardCoinTips" = "Share these draws to SNS and get %d reward coins!";
@@ -1276,7 +1276,7 @@
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Preview";
-"kLearnDrawTitle" = "Watch & Learn How to Draw";
+"kLearnDrawTitle" = "Watch & Draw";
 "kBuyLearnDrawSuccess" = "Drawing bought successfully";
 
 "kBuyToPlayMesaage" = "Complete preview. Do you want to purchase this drawing and continue to play?";
@@ -1285,12 +1285,12 @@
 
 "kNoSaveList" = "No saving message to show...";
 
-"kLearnDrawSortTypeOption" = "Sort Option";
-"kSortedByTime" = "Added Time";
-"kSortedByBoughtTimes" = "Bought Times";
+"kLearnDrawSortTypeOption" = "Sort By";
+"kSortedByTime" = "Latest";
+"kSortedByBoughtTimes" = "Sold";
 "kSortedByPrice" = "Price";
-"kTime" = "Time";
-"kBought" = "Bought";
+"kTime" = "Latest";
+"kBought" = "Sold";
 "kSNSSubject" = "Share Paints";
 "kDrawAppLink" = "http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(via %@)";

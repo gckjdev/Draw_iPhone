@@ -82,7 +82,7 @@
     
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     
-    if ([LocaleUtils isChina]){
+    if ([LocaleUtils isChina] || [LocaleUtils isChinese]){
         sinaButton.hidden = NO;
         qqButton.hidden = NO;
         facebookButton.hidden = YES;
