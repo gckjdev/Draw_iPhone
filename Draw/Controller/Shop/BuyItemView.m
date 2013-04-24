@@ -155,10 +155,18 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
     
     CustomInfoView *cusInfoView;
     
-    cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
-                                         infoView:infoView
-                                   hasCloseButton:YES
-                                     buttonTitles:[NSArray arrayWithObjects:NSLS(@"kBuy"), nil]];
+    if ([[UserGameItemManager defaultManager] canBuyItemNow:infoView.item]) {
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
+                                             infoView:infoView
+                                       hasCloseButton:YES
+                                         buttonTitles:[NSArray arrayWithObjects:NSLS(@"kBuy"), nil]];
+    }else{
+        cusInfoView = [CustomInfoView createWithTitle:NSLS(infoView.item.name)
+                                             infoView:infoView
+                                       hasCloseButton:YES
+                                         buttonTitles:[NSArray arrayWithObjects:nil, nil]];
+    }
+
     
     
     [cusInfoView showInView:inView];
@@ -177,11 +185,6 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
                 if (resultCode == ERROR_SUCCESS){
                     [cusInfoView dismiss];
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuySuccess") delayTime:1.2 isHappy:YES];
-//                    if (itemId == ItemTypeRemoveAd) {
-//                        [[AdService defaultService] disableAd];
-//                    }else if(itemId == ItemTypePurse){
-//                        [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeAsAGift];
-//                    }
                 }else if(resultCode == ERROR_BALANCE_NOT_ENOUGH) {
                     [cusInfoView dismiss];
                     [BalanceNotEnoughAlertView showInController:[inView theViewController]];
