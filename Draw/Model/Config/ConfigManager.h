@@ -228,6 +228,7 @@ typedef enum{
 + (BOOL)isEnableAderWall;
 + (BOOL)isEnableTapjoyWall;
 + (BOOL)isEnableYoumiWall;
++ (BOOL)isEnableDomodWall;
 + (NSInteger)getDefaultDetailOpusCount;
 
 + (NSString*)getFreeIngotPostId;
@@ -252,4 +253,5 @@ typedef enum{
 
 + (NSString*)getSNSShareSubject;
 + (NSString*)getDrawAppLink;
+
 @end

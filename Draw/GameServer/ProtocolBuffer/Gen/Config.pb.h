@@ -71,7 +71,7 @@ typedef enum {
   PBRewardWallTypeAder = 3,
   PBRewardWallTypeYoumi = 4,
   PBRewardWallTypeTapjoy = 5,
-  PBRewardWallTypeDomob = 6,
+  PBRewardWallTypeDomod = 6,
 } PBRewardWallType;
 
 BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value);

@@ -855,6 +855,11 @@
     return [MobClickUtils getBoolValueByKey:@"ENABLE_TAPJOY_WALL" defaultValue:YES];
 }
 
++ (BOOL)isEnableDomodWall
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_DOMOD_WALL" defaultValue:YES];
+}
+
 + (NSInteger)getDefaultDetailOpusCount
 {
     return  [MobClickUtils getIntValueByKey:@"DEFAULT_DETAIL_OPUS_COUNT" defaultValue:10];

@@ -28,7 +28,7 @@
 - (void)changeCanvasSize:(CGSize)canvasSize
 {
     self.canvasSize = canvasSize;
-    [self backup:[NSMutableArray arrayWithCapacity:1]];
+    [self backup:[NSMutableArray arrayWithCapacity:1] bgImage:nil];
 }
 
 - (void)dealloc
@@ -69,6 +69,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
      language:(NSInteger)language
    canvasSize:(CGSize)canvasSize
 drawActionList:(NSArray*)drawActionList
+  bgImageName:(NSString *)bgImageName
 {
     
     self.canvasSize = canvasSize;
@@ -91,10 +92,11 @@ drawActionList:(NSArray*)drawActionList
                                                                          userId:userId
                                                                        nickName:nickName
                                                                            word:word
-                                                                       language:language];
+                                                                       language:language
+                                                                        bgImageName:bgImageName];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
-        [self backup:drawActionList];
+        [self backup:drawActionList bgImage:nil];
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);
@@ -104,10 +106,12 @@ drawActionList:(NSArray*)drawActionList
     
 }
 
-- (void)backup:(NSArray*)drawActionList
+- (void)backup:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
 {    
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
+    
+    [[MyPaintManager defaultManager] saveBgImage:bgImage name:_currentPaint.bgImageName];
     
     if (drawActionList == nil){
         drawActionList = [NSMutableArray arrayWithCapacity:1];
@@ -128,7 +132,7 @@ drawActionList:(NSArray*)drawActionList
         
         PBNoCompressDrawData *drawData = [DrawAction pbNoCompressDrawDataFromDrawActionList:arrayList
                                                                                        size:cp.canvasSize
-                                                                                 drawToUser:cp.drawToUser];
+                                                                                 drawToUser:cp.drawToUser bgImageFileName:cp.currentPaint.bgImageName];
         
         NSData* data = [drawData data];
 
@@ -206,22 +210,22 @@ drawActionList:(NSArray*)drawActionList
     }
 }
 
-- (void)handleNewPaintDrawed:(NSArray*)drawActionList
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
 {
 //    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
     if ([self needBackup]){
-        [self backup:drawActionList];
+        [self backup:drawActionList bgImage:bgImage];
     }
     else{
         _newPaintCount ++;
     }
 }
 
-- (void)handleTimer:(NSArray*)drawActionList
+- (void)handleTimer:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
 {
 //    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
     if ([self needBackup]){
-        [self backup:drawActionList];
+        [self backup:drawActionList bgImage:bgImage];
     }
 }
 

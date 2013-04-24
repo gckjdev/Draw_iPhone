@@ -38,15 +38,16 @@
           word:(Word *)word
       language:(NSInteger)language
    canvasSize:(CGSize)canvasSize
-drawActionList:(NSArray*)drawActionList;
+drawActionList:(NSArray*)drawActionList
+  bgImageName:(NSString *)bgImageName;
 
 //- (void)backup:(PBNoCompressDrawData*)drawData;
-- (void)backup:(NSArray*)drawActionList;
+- (void)backup:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
 - (void)stop;
 
 - (int)backupInterval;
 
-- (void)handleTimer:(NSArray*)drawActionList;
-- (void)handleNewPaintDrawed:(NSArray*)drawActionList;
+- (void)handleTimer:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
 
 @end

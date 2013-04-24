@@ -35,8 +35,8 @@
 @synthesize drawDataVersion = _drawDataVersion;
 @synthesize canvasSize = _canvasSize;
 @synthesize opusDesc = _opusDesc;
-@synthesize bgImagePath = _bgImagePath;
-
+@synthesize bgImageName = _bgImageName;
+@synthesize bgImage = _bgImage;
 
 - (NSString *)imageFilePath
 {
@@ -59,6 +59,15 @@
     return _thumbImage;
 }
 
+- (UIImage *)bgImage
+{
+//    return [[MyPaintManager defaultManager] bgImageForPaint:self];
+    if (_bgImage == nil) {
+        _bgImage = [[[MyPaintManager defaultManager] bgImageForPaint:self] retain];
+    }
+    return _bgImage;
+}
+
 - (NSMutableArray *)drawActionList
 {
     //set draw action list and set the draw data version
@@ -75,10 +84,11 @@
 
 - (void)dealloc
 {
-    PPRelease(_bgImagePath);
     PPRelease(_thumbImage);
     PPRelease(_drawActionList);
     PPRelease(_imageFilePath);
+    PPRelease(_bgImageName);
+    PPRelease(_bgImage);
     [super dealloc];
 }
 

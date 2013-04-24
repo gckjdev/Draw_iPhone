@@ -40,7 +40,8 @@ typedef enum {
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser;
+                                                      drawToUser:(PBUserBasicInfo *)drawToUser
+                                                 bgImageFileName:(NSString *)bgImageFileName;
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size
