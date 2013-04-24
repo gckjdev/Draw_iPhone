@@ -107,6 +107,7 @@
 - (NSString*)youmiWallId;
 - (NSString*)youmiWallSecret;
 - (NSString*)aderWallId;
+- (NSString*)domodWallId;
 
 - (PBGameCurrency)saleCurrency;
 - (BOOL)hasIngotBalance;

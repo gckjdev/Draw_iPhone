@@ -374,6 +374,11 @@
     return @"661f38bed5974599abfad68e6ef402a3";
 }
 
+- (NSString*)domodWallId
+{
+    return @"";//TODO
+}
+
 - (NSString *)alipayCallBackScheme
 {
     return @"alipaydice.gckj";

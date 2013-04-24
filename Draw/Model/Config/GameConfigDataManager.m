@@ -247,10 +247,20 @@ static dispatch_once_t onceToken;
     return ader;
 }
 
++ (PBRewardWall*)domodWall{
+    
+    PBRewardWall* domod = [GameConfigDataManager creatRewardWall:@"多盟 推荐应用"
+                                                         enName:@"DoMod"
+                                                           type:PBRewardWallTypeDomod
+                                                           logo:@""];
+    
+    return domod;
+}
 
 + (void)createDrawTestConfigData
 {
-    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+//    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/"; 
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
 
@@ -263,6 +273,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* limei = [self limeiWall];
     PBRewardWall* youmi = [self youmiWall];
     PBRewardWall* ader = [self aderWall];
+    PBRewardWall* domod = [self domodWall];
     
     
     [builder addAppRewards:zjhApp];
@@ -271,6 +282,7 @@ static dispatch_once_t onceToken;
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
     [builder addRewardWalls:ader];
+    [builder addRewardWalls:domod];
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
