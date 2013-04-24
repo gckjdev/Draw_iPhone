@@ -86,19 +86,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (output.resultCode == ERROR_SUCCESS) {
-                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                
+            if (res != nil && res.resultCode == ERROR_SUCCESS) {
                 PBGameUser *user = res.user;
-                
                 if (user != nil) {
-                    [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];                    
+                    [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
                 }
-                
-                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
             }
             
-            int result = output.resultCode;
+            int result = res.resultCode;
             EXECUTE_BLOCK(tempHandler, result, itemId, count, toUserId);
             [bself.blockArray releaseBlock:tempHandler];
         });
@@ -216,32 +215,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest consumeItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count forceBuy:forceBuy price:totalPrice currency:item.priceInfo.currency];
         
         dispatch_async(dispatch_get_main_queue(), ^{            
-            
-            if (output.resultCode == 0) {
-                @try {
-                    if ([output.responseData length] > 0){
-                        DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-                        PBGameUser *user = res.user;
-                        
-                        if (user != nil) {
-                            [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
-                            [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                        }
-                        
-                        [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-                    }
-                    else{
-                        PPDebug(@"<consumeItem> response data nil");                        
-                    }
-                }
-                @catch (NSException *exception) {
-                    PPDebug(@"<consumeItem> catch exception=%@", [exception description]);
-                }
-                @finally {
+            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+
+            if (res!=nil && res.resultCode==ERROR_SUCCESS){
+                PBGameUser *user = res.user;
+                if (user != nil) {
+                    [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                    [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
                 }
             }
+            else{
+                PPDebug(@"<consumeItem> response data nil");                        
+            }
+
             
-            int result = output.resultCode;
+            int result = res.resultCode;
             
             PPDebug(@"<execBlock> block=0x%X", tempHandler);
             EXECUTE_BLOCK(tempHandler, result, itemId, isBuy);

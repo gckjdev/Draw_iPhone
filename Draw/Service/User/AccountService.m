@@ -97,6 +97,7 @@ static AccountService* _defaultAccountService;
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                 PBGameUser *user = res.user;
                 
+                
                 // sync balance from server
                 [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                 [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
