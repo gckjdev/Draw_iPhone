@@ -16,6 +16,7 @@
 #import "ConfigManager.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
+#import "DomobAdWallService.h"
 
 @implementation GameAdWallService
 
@@ -76,7 +77,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                 
                 return wallService;
             }
-        
+        case PBRewardWallTypeDomod:
+            if ([ConfigManager isEnableDomodWall]){
+                CommonAdWallService* wallService = [self createDomodWall];
+                if (wallService)
+                    [_wallServiceArray addObject:wallService];
+                
+                return wallService;
+            }
         default:
             break;
     }
@@ -134,6 +142,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                                               adUnitId:adUnitId
                                           adUnitSecret:nil
                                                  type:PBRewardWallTypeAder] autorelease];
+}
+
+- (CommonAdWallService*)createDomodWall
+{
+    NSString* adUnitId = [GameApp domodWallId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    return [[[DomobAdWallService alloc] initWithUserId:userId
+                                             adUnitId:adUnitId
+                                         adUnitSecret:nil
+                                                 type:PBRewardWallTypeDomod] autorelease];
 }
 
 - (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type forceShowWall:(BOOL)forceShowWall
