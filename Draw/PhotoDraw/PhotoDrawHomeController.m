@@ -31,7 +31,8 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil];
+    [self takePhoto];
+    //[OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil];
 }
 
 - (IBAction)clickShopButton:(id)sender {

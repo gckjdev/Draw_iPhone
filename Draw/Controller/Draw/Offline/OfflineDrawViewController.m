@@ -559,6 +559,9 @@
 - (void)initPhoto
 {
     if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
+        [self takePhoto];
+        
+        /*
         if (self.draft == nil) {
             MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:nil
                                                                          delegate:nil
@@ -571,6 +574,7 @@
                         [bself selectPhoto];
                         break;
                     case 1:
+                        [bself takePhoto];
                         break;
                     default:
                         break;
@@ -582,6 +586,8 @@
             self.bgImageName = _draft.bgImageName;
             self.bgImage = _draft.bgImage;
         }
+         
+         */
     }
 }
 

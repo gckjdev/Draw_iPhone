@@ -692,7 +692,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
     if (name && image) {
         [_bgImgeManager saveImage:image forKey:name];
-        PPDebug(@"bgImageName:%@", name);
+        PPDebug(@"bgImagePath:%@", [_imageManager pathWithKey:name]);
     }
 }
 
