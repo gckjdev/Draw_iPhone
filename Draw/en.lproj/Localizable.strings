@@ -1301,6 +1301,12 @@
 "kPureDrawOpus" = "WORKS";
 "kPureDrawFeedback" = "FEEDBACK";
 
+//photo draw
+"kPhotoDrawDraw" = "DRAW ON PHOTO";
+"kPhotoDrawShop" = "SHOP";
+"kPhotoeDrawOpus" = "WORKS";
+"kPhotoDrawFeedback" = "FEEDBACK";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

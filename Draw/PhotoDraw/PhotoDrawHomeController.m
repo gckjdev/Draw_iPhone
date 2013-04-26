@@ -14,7 +14,7 @@
 #import "AdService.h"
 
 @interface PhotoDrawHomeController ()
-
+@property (retain, nonatomic) UIView  *adView;
 @end
 
 @implementation PhotoDrawHomeController
@@ -22,7 +22,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.drawButton setTitle:NSLS(@"kPhotoDrawDraw") forState:UIControlStateNormal];
+    [self.shopButton setTitle:NSLS(@"kPhotoDrawShop") forState:UIControlStateNormal];
+    [self.opusButton setTitle:NSLS(@"kPhotoDrawOpus") forState:UIControlStateNormal];
+    [self.feedbackButton setTitle:NSLS(@"kPhotoDrawFeedback") forState:UIControlStateNormal];
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
+                                                   iPadFrame:CGRectMake(224, 954, 320, 50)
+                                                     useLmAd:YES];
+}
+
+- (void)viewDidUnload
+{
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
+    [self setBgImageView:nil];
+    [self setPaperImageView:nil];
+    [self setTopImageView:nil];
+    [self setClipImageView:nil];
+    [self setDrawButton:nil];
+    [self setShopButton:nil];
+    [self setOpusButton:nil];
+    [self setFeedbackButton:nil];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,8 +53,7 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-    [self takePhoto];
-    //[OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil];
+    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil];
 }
 
 - (IBAction)clickShopButton:(id)sender {
@@ -55,4 +76,16 @@
     [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
 }
 
+- (void)dealloc {
+    [_adView release];
+    [_bgImageView release];
+    [_paperImageView release];
+    [_topImageView release];
+    [_clipImageView release];
+    [_drawButton release];
+    [_shopButton release];
+    [_opusButton release];
+    [_feedbackButton release];
+    [super dealloc];
+}
 @end

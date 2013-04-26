@@ -559,14 +559,11 @@
 - (void)initPhoto
 {
     if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
-        [self takePhoto];
-        
-        /*
         if (self.draft == nil) {
             MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:nil
                                                                          delegate:nil
                                                                 cancelButtonTitle:NSLS(@"kCancel")
-                                                           destructiveButtonTitle:nil otherButtonTitles:NSLS(@"choice"), NSLS(@"take"),nil];
+                                                           destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"),nil];
             __block typeof (self)bself = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){
                 switch (buttonIndex) {
@@ -577,6 +574,7 @@
                         [bself takePhoto];
                         break;
                     default:
+                        [bself quit];
                         break;
                 }
             }];
@@ -586,8 +584,6 @@
             self.bgImageName = _draft.bgImageName;
             self.bgImage = _draft.bgImage;
         }
-         
-         */
     }
 }
 

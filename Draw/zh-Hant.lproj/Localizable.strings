@@ -1282,6 +1282,12 @@
 "kPureDrawOpus" = "作品";
 "kPureDrawFeedback" = "反饋";
 
+//photo draw
+"kPhotoDrawDraw" = "照片塗鴉";
+"kPhotoDrawShop" = "商店";
+"kPhotoeDrawOpus" = "作品";
+"kPhotoDrawFeedback" = "反饋";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

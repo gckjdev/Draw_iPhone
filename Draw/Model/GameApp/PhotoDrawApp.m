@@ -37,4 +37,9 @@
     return YES;
 }
 
+- (BOOL)canPayWithAlipay
+{
+    return NO;
+}
+
 @end

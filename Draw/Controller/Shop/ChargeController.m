@@ -218,7 +218,7 @@
     BOOL isChina = [LocaleUtils isChina];
     BOOL isChinese = [LocaleUtils isChinese];
     BOOL isInReviewVersion = [ConfigManager isInReviewVersion];
-    if ((isChina || isChinese) && isInReviewVersion == NO) {
+    if ((isChina || isChinese) && isInReviewVersion == NO && [GameApp canPayWithAlipay]) {
         [self showBuyActionSheetWithIndex:indexPath];
     }else{
         PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
