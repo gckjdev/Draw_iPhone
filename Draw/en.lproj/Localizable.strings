@@ -1306,6 +1306,7 @@
 "kPhotoDrawShop" = "SHOP";
 "kPhotoeDrawOpus" = "WORKS";
 "kPhotoDrawFeedback" = "FEEDBACK";
+"kBlank" = "Blank";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
 

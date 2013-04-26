@@ -24,5 +24,4 @@
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
 @property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
 
-
 @end
