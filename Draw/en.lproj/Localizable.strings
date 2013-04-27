@@ -1299,13 +1299,13 @@
 "kPureDrawDraw" = "DRAW";
 "kPureDrawShop" = "SHOP";
 "kPureDrawOpus" = "WORKS";
-"kPureDrawFeedback" = "FEEDBACK";
+"kPureDrawFeedback" = "SUPPORT";
 
 //photo draw
 "kPhotoDrawDraw" = "DRAW ON PHOTO";
 "kPhotoDrawShop" = "SHOP";
-"kPhotoeDrawOpus" = "WORKS";
-"kPhotoDrawFeedback" = "FEEDBACK";
+"kPhotoDrawOpus" = "WORKS";
+"kPhotoDrawFeedback" = "SUPPORT";
 "kBlank" = "Blank";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
