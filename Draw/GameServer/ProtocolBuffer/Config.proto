@@ -102,6 +102,7 @@ enum PBRewardWallType{
     ADER  = 3;
     YOUMI = 4;
     TAPJOY = 5;
+    DOMOD = 6;
 }
 
 message PBRewardWall {

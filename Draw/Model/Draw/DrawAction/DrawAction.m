@@ -142,6 +142,7 @@
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size
                                                       drawToUser:(PBUserBasicInfo *)drawToUser
+                                                 bgImageFileName:(NSString *)bgImageFileName
 {
 //    if ([drawActionList count] != 0) {
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
@@ -158,6 +159,7 @@
         }
         [builder setCanvasSize:CGSizeToPBSize(size)];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
+        [builder setBgImageName:bgImageFileName];
 
         PBNoCompressDrawData *nData = [builder build];
         PPRelease(builder);
@@ -190,7 +192,7 @@
         }
         [builder setCanvasSize:CGSizeToPBSize(size)];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setBgImageLocalPath:bgImageFileName];
+        [builder setBgImageName:bgImageFileName];
 
         
         //TODO save the draw bg image and set the image name.

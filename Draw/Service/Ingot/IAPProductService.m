@@ -246,8 +246,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_6"
-                                    alipayProductId:@"pure_draw_ingot_6"
+                                     appleProductId:@"com.orange.puredrawpro.ingot_6"
+                                    alipayProductId:@"puredrawpro_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:6
@@ -256,8 +256,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_22"
-                                    alipayProductId:@"pure_draw_ingot_22"
+                                     appleProductId:@"com.orange.puredrawpro.ingot_22"
+                                    alipayProductId:@"puredrawpro_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:22
@@ -266,8 +266,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_39"
-                                    alipayProductId:@"pure_draw_ingot_39"
+                                     appleProductId:@"com.orange.puredrawpro.ingot_39"
+                                    alipayProductId:@"puredrawpro_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:39
@@ -276,33 +276,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_84"
-                                    alipayProductId:@"pure_draw_ingot_84"
+                                     appleProductId:@"com.orange.puredrawpro.ingot_84"
+                                    alipayProductId:@"puredrawpro_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:84
                                          totalPrice:@"9.99"
                                              saving:@"28%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_225"
-                                    alipayProductId:@"pure_draw_ingot_225"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:225
-                                         totalPrice:@"24.99"
-                                             saving:@"33%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredraw.ingot_600"
-                                    alipayProductId:@"pure_draw_ingot_600"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:600
-                                         totalPrice:@"49.99"
-                                             saving:@"50%"
                                           taobaoUrl:nil]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -327,7 +307,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
                                      appleProductId:@"com.orange.puredrawfree.ingot_6"
-                                    alipayProductId:@"pure_draw_free_ingot_6"
+                                    alipayProductId:@"puredrawfree_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:6
@@ -337,7 +317,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
                                      appleProductId:@"com.orange.puredrawfree.ingot_22"
-                                    alipayProductId:@"pure_draw_free_ingot_22"
+                                    alipayProductId:@"puredrawfree_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:22
@@ -347,7 +327,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
                                      appleProductId:@"com.orange.puredrawfree.ingot_39"
-                                    alipayProductId:@"pure_draw_free_ingot_39"
+                                    alipayProductId:@"puredrawfree_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:39
@@ -357,32 +337,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
                                      appleProductId:@"com.orange.puredrawfree.ingot_84"
-                                    alipayProductId:@"pure_draw_free_ingot_84"
+                                    alipayProductId:@"puredrawfree_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:84
                                          totalPrice:@"9.99"
                                              saving:@"28%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawfree.ingot_225"
-                                    alipayProductId:@"pure_draw_free_ingot_225"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:225
-                                         totalPrice:@"24.99"
-                                             saving:@"33%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.puredrawfree.ingot_600"
-                                    alipayProductId:@"pure_draw_free_ingot_600"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:600
-                                         totalPrice:@"49.99"
-                                             saving:@"50%"
                                           taobaoUrl:nil]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -405,8 +365,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_6"
-                                    alipayProductId:@"photo_draw_ingot_6"
+                                     appleProductId:@"com.orange.photodrawpro.ingot_6"
+                                    alipayProductId:@"photodrawpro_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:6
@@ -415,8 +375,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_22"
-                                    alipayProductId:@"photo_draw_ingot_22"
+                                     appleProductId:@"com.orange.photodrawpro.ingot_22"
+                                    alipayProductId:@"photodrawpro_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:22
@@ -425,8 +385,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_39"
-                                    alipayProductId:@"photo_draw_ingot_39"
+                                     appleProductId:@"com.orange.photodrawpro.ingot_39"
+                                    alipayProductId:@"photodrawpro_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:39
@@ -435,33 +395,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_84"
-                                    alipayProductId:@"photo_draw_ingot_84"
+                                     appleProductId:@"com.orange.photodrawpro.ingot_84"
+                                    alipayProductId:@"photodrawpro_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:84
                                          totalPrice:@"9.99"
                                              saving:@"28%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_225"
-                                    alipayProductId:@"photo_draw_ingot_225"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:225
-                                         totalPrice:@"24.99"
-                                             saving:@"33%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodraw.ingot_600"
-                                    alipayProductId:@"photo_draw_ingot_600"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:600
-                                         totalPrice:@"49.99"
-                                             saving:@"50%"
                                           taobaoUrl:nil]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -484,8 +424,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_6"
-                                    alipayProductId:@"photo_draw_free_ingot_6"
+                                     appleProductId:@"com.orange.photodraw.ingot_6"
+                                    alipayProductId:@"photodraw_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:6
@@ -494,8 +434,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_22"
-                                    alipayProductId:@"photo_draw_free_ingot_22"
+                                     appleProductId:@"com.orange.photodraw.ingot_22"
+                                    alipayProductId:@"photodraw_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:22
@@ -504,8 +444,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_39"
-                                    alipayProductId:@"photo_draw_free_ingot_39"
+                                     appleProductId:@"com.orange.photodraw.ingot_39"
+                                    alipayProductId:@"photodraw_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:39
@@ -514,33 +454,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                           taobaoUrl:nil]];
     
     [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_84"
-                                    alipayProductId:@"photo_draw_free_ingot_84"
+                                     appleProductId:@"com.orange.photodraw.ingot_84"
+                                    alipayProductId:@"photodraw_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:84
                                          totalPrice:@"9.99"
                                              saving:@"28%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_225"
-                                    alipayProductId:@"photo_draw_free_ingot_225"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:225
-                                         totalPrice:@"24.99"
-                                             saving:@"33%"
-                                          taobaoUrl:nil]];
-    
-    [mutableArray addObject:[self enProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.photodrawfree.ingot_600"
-                                    alipayProductId:@"photo_draw_free_ingot_600"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:600
-                                         totalPrice:@"49.99"
-                                             saving:@"50%"
                                           taobaoUrl:nil]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];

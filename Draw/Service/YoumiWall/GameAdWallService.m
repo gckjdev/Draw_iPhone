@@ -9,13 +9,15 @@
 #import "GameAdWallService.h"
 #import "SynthesizeSingleton.h"
 #import "LimeiAdWallService.h"
-#import "WanpuAdWallService.h"
+//#import "WanpuAdWallService.h"
 #import "YoumiAdWallService.h"
 #import "AderAdWallService.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
+#import "DomobAdWallService.h"
+#import "TapjoyAdWallService.h"
 
 @implementation GameAdWallService
 
@@ -52,11 +54,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             
         case PBRewardWallTypeWanpu:
             if ([ConfigManager isEnableWanpuWall]){
-                CommonAdWallService* wallService = [self createWanpuWall];
-                if (wallService)
-                    [_wallServiceArray addObject:wallService];
-
-                return wallService;
+//                CommonAdWallService* wallService = [self createWanpuWall];
+//                if (wallService)
+//                    [_wallServiceArray addObject:wallService];
+//
+//                return wallService;
             }
             
         case PBRewardWallTypeYoumi:
@@ -76,7 +78,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                 
                 return wallService;
             }
-        
+        case PBRewardWallTypeDomod:
+            if ([ConfigManager isEnableDomodWall]){
+                CommonAdWallService* wallService = [self createDomodWall];
+                if (wallService)
+                    [_wallServiceArray addObject:wallService];
+                
+                return wallService;
+            }
+        case PBRewardWallTypeTapjoy:
+            if ([ConfigManager isEnableTapjoyWall]){
+                CommonAdWallService* wallService = [self createTapjoyWall];
+                if (wallService)
+                    [_wallServiceArray addObject:wallService];
+                
+                return wallService;
+            }
         default:
             break;
     }
@@ -101,16 +118,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                                                   type:PBRewardWallTypeLimei] autorelease];
 }
 
-- (CommonAdWallService*)createWanpuWall
-{
-    NSString* adUnitId = [GameApp wanpuAdPublisherId];
-    NSString* userId = [[UserManager defaultManager] userId];
-    
-    return [[[WanpuAdWallService alloc] initWithUserId:userId
-                                              adUnitId:adUnitId
-                                          adUnitSecret:nil
-                                                  type:PBRewardWallTypeWanpu] autorelease];
-}
+//- (CommonAdWallService*)createWanpuWall
+//{
+//    NSString* adUnitId = [GameApp wanpuAdPublisherId];
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    
+//    return [[[WanpuAdWallService alloc] initWithUserId:userId
+//                                              adUnitId:adUnitId
+//                                          adUnitSecret:nil
+//                                                  type:PBRewardWallTypeWanpu] autorelease];
+//}
 
 - (CommonAdWallService*)createYoumiWall
 {
@@ -134,6 +151,29 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                                               adUnitId:adUnitId
                                           adUnitSecret:nil
                                                  type:PBRewardWallTypeAder] autorelease];
+}
+
+- (CommonAdWallService*)createDomodWall
+{
+    NSString* adUnitId = [GameApp domodWallId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    return [[[DomobAdWallService alloc] initWithUserId:userId
+                                             adUnitId:adUnitId
+                                         adUnitSecret:nil
+                                                 type:PBRewardWallTypeDomod] autorelease];
+}
+
+- (CommonAdWallService*)createTapjoyWall
+{
+    NSString* adUnitId = @"13b0ae6a-8516-4405-9dcf-fe4e526486b2";
+    NSString* secret = @"XHdOwPa8de7p4aseeYP0";
+    NSString* userId = [[UserManager defaultManager] userId];
+    
+    return [[[TapjoyAdWallService alloc] initWithUserId:userId
+                                              adUnitId:adUnitId
+                                          adUnitSecret:secret
+                                                  type:PBRewardWallTypeTapjoy] autorelease];
 }
 
 - (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type forceShowWall:(BOOL)forceShowWall

@@ -64,6 +64,7 @@
 #import "ToolHandler.h"
 #import "ToolCommand.h"
 #import "StringUtil.h"
+#import "MKBlockActionSheet.h"
 
 @interface OfflineDrawViewController()
 {
@@ -166,8 +167,21 @@
                          startController:(UIViewController*)startController
                                targetUid:(NSString *)targetUid
 {
+    return [OfflineDrawViewController startDraw:word
+                                 fromController:fromController
+                                startController:startController
+                                      targetUid:targetUid
+                                          photo:nil];
+}
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
+                                   photo:(UIImage *)photo
+{
     LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid photo:photo];
     [fromController.navigationController pushViewController:vc animated:YES];
     vc.startController = startController;
     PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
@@ -264,8 +278,17 @@
 }
 
 - (id)initWithWord:(Word *)word
-              lang:(LanguageType)lang 
+              lang:(LanguageType)lang
         targetUid:(NSString *)targetUid
+{
+    self = [self initWithWord:word lang:lang targetUid:targetUid photo:nil];
+    return self;
+}
+
+- (id)initWithWord:(Word *)word
+              lang:(LanguageType)lang
+         targetUid:(NSString *)targetUid
+             photo:(UIImage *)photo
 {
     self = [super init];
     if (self) {
@@ -273,9 +296,13 @@
         languageType = lang;
         shareImageManager = [ShareImageManager defaultManager];
         self.targetUid = targetUid;
+        
+        if (photo) {
+            self.bgImage = photo;
+            self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+        }
     }
     return self;
-    
 }
 
 
@@ -378,9 +405,17 @@
     drawView.delegate = self;
     _isNewDraft = YES;
     if (self.draft) {
+        
+        [self.draft drawActionList];
+        if ([GameApp hasBGOffscreen]) {
+            [self setDrawBGImage:self.draft.bgImage];
+        }
+
+
         [drawView showDraft:self.draft];
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
+        
     }else{
         //Test
 //        [self addTestActions];
@@ -483,7 +518,8 @@
                                            word:_word
                                        language:languageType
                                      canvasSize:drawView.bounds.size
-                                 drawActionList:drawView.drawActionList];
+                                 drawActionList:drawView.drawActionList
+                                    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
 }
 
 - (void)stopRecovery
@@ -500,7 +536,7 @@
     if (![self supportRecovery])
         return;
 
-    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
+    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList bgImage:_bgImage];
 }
 
 - (void)startBackupTimer
@@ -546,21 +582,14 @@
     }
 }
 
-- (void)startSelectPhoto
+- (void)initBgImage
 {
     if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
-        if (self.draft == nil) {
-            [self selectPhoto];
-        } else {
-            self.bgImageName = _draft.bgImagePath;
-            
-            PPDebug(@"path:%@",_draft.bgImagePath);
-            
-            NSString *imagePath = [[MyPaintManager defaultManager] bgImagePathForPaint:_draft];
-            NSData *data = [NSData dataWithContentsOfFile:imagePath];
-            self.bgImage = [UIImage imageWithData:data];
-            
+        if (self.draft == nil && _bgImage) {
             [self setDrawBGImage:_bgImage];
+        } else {
+            self.bgImageName = _draft.bgImageName;
+            self.bgImage = _draft.bgImage;
         }
     }
 }
@@ -578,9 +607,9 @@
 
     [self updateTargetFriend];
 
-    [self initRecovery];
+    [self initBgImage];
     
-    [self startSelectPhoto];
+    [self initRecovery];
 }
 
 
@@ -763,7 +792,7 @@
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList bgImage:_bgImage];
 
     return;
 }
@@ -1212,39 +1241,5 @@
 }
 
 
-
-
-
-#pragma mark -- UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    if (image != nil){
-        PPDebug(@"didFinishPickingImage");
-        [self setDrawBGImage:image];
-        self.bgImage = image;
-        self.bgImageName = [NSString GetUUID];
-    }
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if (image != nil){
-        PPDebug(@"didFinishPickingMediaWithInfo");
-        [self setDrawBGImage:image];
-        self.bgImage = image;
-        self.bgImageName = [NSString GetUUID];
-    }
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [super imagePickerControllerDidCancel:picker];
-    [self quit];
-}
 
 @end

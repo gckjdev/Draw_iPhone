@@ -249,6 +249,10 @@
 
 - (void)changeRect:(CGRect)rect
 {
+    if (CGRectEqualToRect(rect, self.bounds)) {
+        return;
+    }
+    
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;

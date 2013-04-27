@@ -361,6 +361,21 @@
     return @"3b47607e44f94d7c948c83b7e6eb800e";
 }
 
+- (NSString*)domodWallId
+{
+    return @"";//TODO
+}
+
+- (NSString*)tapjoyWallId
+{
+    return @"";//TODO
+}
+
+- (NSString*)tapjoyWallSecret
+{
+    return @"";//TODO
+}
+
 - (NSString *)alipayCallBackScheme
 {
     return @"alipaylearndraw.gckj";
@@ -392,6 +407,20 @@
 }
 
 - (BOOL)canSubmitDraw
+{
+    return NO;
+}
+
+- (BOOL)hasBGOffscreen{
+    return NO;
+}
+
+- (BOOL)canPayWithAlipay
+{
+    return NO;
+}
+
+- (BOOL)canGift
 {
     return NO;
 }

@@ -28,6 +28,7 @@ BOOL PBRewardWallTypeIsValidValue(PBRewardWallType value) {
     case PBRewardWallTypeAder:
     case PBRewardWallTypeYoumi:
     case PBRewardWallTypeTapjoy:
+    case PBRewardWallTypeDomod:
       return YES;
     default:
       return NO;

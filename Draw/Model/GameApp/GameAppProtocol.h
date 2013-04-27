@@ -107,6 +107,9 @@
 - (NSString*)youmiWallId;
 - (NSString*)youmiWallSecret;
 - (NSString*)aderWallId;
+- (NSString*)domodWallId;
+- (NSString*)tapjoyWallId;
+- (NSString*)tapjoyWallSecret;
 
 - (PBGameCurrency)saleCurrency;
 - (BOOL)hasIngotBalance;
@@ -128,5 +131,9 @@
 - (BOOL)canSubmitDraw;
 
 - (BOOL)hasBGOffscreen;
+
+- (BOOL)canPayWithAlipay;
+
+- (BOOL)canGift;
 
 @end

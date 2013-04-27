@@ -265,6 +265,7 @@ static MyPaintManager* _defaultManager;
     NSArray* array = [dataManager execute:requestName];
     for (MyPaint* paint in array){
         [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+        [self deleteBgImage:paint.bgImageName];
     }
     [dataManager save];    
     return YES;
@@ -290,9 +291,16 @@ static MyPaintManager* _defaultManager;
     [_drawDataManager removeDataForKey:path];
 }
 
+- (void)deleteBgImage:(NSString *)imageName
+{
+    if (imageName) {
+        [_bgImgeManager removeDataForKey:imageName];
+    }
+}
 
 - (BOOL)deleteMyPaint:(MyPaint*)paint
 {
+    [self deleteBgImage:paint.bgImageName];
     CoreDataManager* dataManager =[CoreDataManager defaultManager];
     [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
     BOOL result = [dataManager save];
@@ -426,7 +434,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                word:(Word *)word
            language:(NSInteger)language
             bgImage:(UIImage *)bgImage
-
 {
     NSString *imageFileName = [self imageFileName];
     NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
@@ -440,7 +447,8 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     }    
     
     if (bgImage != nil) {
-        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageLocalPath];
+//        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageName];
+        [_bgImgeManager saveImage:bgImage forKey:pbNoCompressDrawData.bgImageName];
     }
     
     [newMyPaint setDataFilePath:pbDataFileName];
@@ -455,7 +463,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setDrawWord:word.text];
     [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
     [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
-    [newMyPaint setBgImagePath:pbNoCompressDrawData.bgImageLocalPath];
+    [newMyPaint setBgImageName:pbNoCompressDrawData.bgImageName];
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
@@ -535,6 +543,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
                            nickName:(NSString *)nickName
                                word:(Word *)word
                            language:(NSInteger)language
+                        bgImageName:(NSString *)bgImageName
 {
     CoreDataManager* dataManager = GlobalGetCoreDataManager();
     MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
@@ -551,6 +560,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
     [newMyPaint setDrawWordData:[word data]];
     [newMyPaint setIsRecovery:[NSNumber numberWithBool:YES]];
+    [newMyPaint setBgImageName:bgImageName];
     PPDebug(@"<createDraftForRecovery> %@", [newMyPaint description]);
     [dataManager save];
     return newMyPaint;
@@ -623,9 +633,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
             }
             
-            //TODO get the image path.nDraw
-            
-            //nDraw.bgImageLocalPath =
+            if ([nDraw hasBgImageName]) {
+                paint.bgImageName = nDraw.bgImageName;
+            }
             
             return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
         }else if ([self saveDataAsPBDraw:paint]) {
@@ -673,19 +683,17 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
     return nil;
 }
 
-- (NSString *)bgImagePathForPaint:(MyPaint *)paint
+- (UIImage *)bgImageForPaint:(MyPaint *)paint
 {
-    NSString *path = [_bgImgeManager pathWithKey:paint.bgImagePath];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        return path;
-    }else{
-        NSString* imageName = [FileUtil getFileNameByFullPath:paint.bgImagePath];
-        NSString* imagePath = [FileUtil getFileFullPath:imageName];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:imagePath]) {
-            return imagePath;
-        }
+    return [_bgImgeManager imageForKey:paint.bgImageName];
+}
+
+- (void)saveBgImage:(UIImage *)image name:(NSString *)name;
+{
+    if (name && image) {
+        [_bgImgeManager saveImage:image forKey:name];
+        PPDebug(@"bgImagePath:%@", [_imageManager pathWithKey:name]);
     }
-    return nil;
 }
 
 @end

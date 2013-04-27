@@ -1274,6 +1274,20 @@
 "kSNSSubject" = "猜猜畫畫美圖分享";
 "kDrawAppLink" = "http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(作品來自 %@)";
+
+//pure draw
+"kPureDrawDraw" = "畫畫";
+"kPureDrawShop" = "商店";
+"kPureDrawOpus" = "作品";
+"kPureDrawFeedback" = "反饋";
+
+//photo draw
+"kPhotoDrawDraw" = "照片塗鴉";
+"kPhotoDrawShop" = "商店";
+"kPhotoeDrawOpus" = "作品";
+"kPhotoDrawFeedback" = "反饋";
+"kBlank" = "空白";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

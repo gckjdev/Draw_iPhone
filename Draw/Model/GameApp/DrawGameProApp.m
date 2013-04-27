@@ -51,4 +51,14 @@
     return NO;
 }
 
+- (BOOL)canPayWithAlipay
+{
+    return YES;
+}
+
+- (BOOL)canGift
+{
+    return YES;
+}
+
 @end

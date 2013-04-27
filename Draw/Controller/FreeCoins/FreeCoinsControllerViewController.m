@@ -7,7 +7,7 @@
 //
 
 #import "FreeCoinsControllerViewController.h"
-#import "shengmengsdk.h"
+//#import "shengmengsdk.h"
 #import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "AnalyticsManager.h"
@@ -22,8 +22,8 @@
 #import "FreeIngotController.h"
 #import "UserGameItemService.h"
 
-//#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
-//#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
+#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
+#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
 //#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
 //#define TAPJOY_APP_SECRET_KEY_TEST @"JWxgS26URM0XotaghqGn"
 
@@ -113,7 +113,7 @@
     
     // shengmeng sdk
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-    [shengmengsdk playad:[GameApp shengmengAppId]];
+//    [shengmengsdk playad:[GameApp shengmengAppId]];
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
@@ -194,7 +194,7 @@
 }
 
 - (void)timeout:(id)sender {
-    [shengmengsdk playad:[GameApp shengmengAppId]];
+//    [shengmengsdk playad:[GameApp shengmengAppId]];
 }
 
 - (IBAction)clickBackButton:(id)sender {
