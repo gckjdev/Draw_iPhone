@@ -82,7 +82,11 @@
                          startController:(UIViewController*)startController
                                targetUid:(NSString *)targetUid;
 
-
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
+                                   photo:(UIImage *)photo;
 
 /*
 + (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController;

@@ -411,4 +411,13 @@
     return NO;
 }
 
+- (BOOL)hasBGOffscreen{
+    return NO;
+}
+
+- (BOOL)canPayWithAlipay
+{
+    return NO;
+}
+
 @end

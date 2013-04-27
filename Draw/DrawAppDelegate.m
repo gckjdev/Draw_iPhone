@@ -78,7 +78,9 @@
 #import "PhotoDrawHomeController.h"
 
 NSString* GlobalGetServerURL()
-{    
+{
+//    return @"http://58.215.160.100:8002/api/i?";
+    
     return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
@@ -87,6 +89,7 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
+//    return @"http://58.215.184.18:8102/api/i?";
     return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
@@ -271,6 +274,7 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
+    // TODO refactor the following code into GameApp
     PPViewController* rootController = nil;
     if (isDiceApp()){
         self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
@@ -322,11 +326,11 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     // Fetch Server List At Background
-    if (isDrawApp() == NO && isLearnDrawApp() == NO){
-        // no longer used for Draw App
-        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
-        [[PriceService defaultService] syncShoppingListAtBackground];
-    }
+//    if (isDrawApp() == NO && isLearnDrawApp() == NO){
+//        // no longer used for Draw App
+//        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
+//        [[PriceService defaultService] syncShoppingListAtBackground];
+//    }
     
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     

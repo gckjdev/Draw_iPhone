@@ -167,8 +167,21 @@
                          startController:(UIViewController*)startController
                                targetUid:(NSString *)targetUid
 {
+    return [OfflineDrawViewController startDraw:word
+                                 fromController:fromController
+                                startController:startController
+                                      targetUid:targetUid
+                                          photo:nil];
+}
+
++ (OfflineDrawViewController *)startDraw:(Word *)word
+                          fromController:(UIViewController*)fromController
+                         startController:(UIViewController*)startController
+                               targetUid:(NSString *)targetUid
+                                   photo:(UIImage *)photo
+{
     LanguageType language = [[UserManager defaultManager] getLanguageType];
-    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid];
+    OfflineDrawViewController *vc = [[OfflineDrawViewController alloc] initWithWord:word lang:language targetUid:targetUid photo:photo];
     [fromController.navigationController pushViewController:vc animated:YES];
     vc.startController = startController;
     PPDebug(@"<StartDraw>: word = %@, targetUid = %@", word.text, targetUid);
@@ -265,8 +278,17 @@
 }
 
 - (id)initWithWord:(Word *)word
-              lang:(LanguageType)lang 
+              lang:(LanguageType)lang
         targetUid:(NSString *)targetUid
+{
+    self = [self initWithWord:word lang:lang targetUid:targetUid photo:nil];
+    return self;
+}
+
+- (id)initWithWord:(Word *)word
+              lang:(LanguageType)lang
+         targetUid:(NSString *)targetUid
+             photo:(UIImage *)photo
 {
     self = [super init];
     if (self) {
@@ -274,9 +296,13 @@
         languageType = lang;
         shareImageManager = [ShareImageManager defaultManager];
         self.targetUid = targetUid;
+        
+        if (photo) {
+            self.bgImage = photo;
+            self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+        }
     }
     return self;
-    
 }
 
 
@@ -556,28 +582,11 @@
     }
 }
 
-- (void)initPhoto
+- (void)initBgImage
 {
     if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
-        if (self.draft == nil) {
-            MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:nil
-                                                                         delegate:nil
-                                                                cancelButtonTitle:NSLS(@"kCancel")
-                                                           destructiveButtonTitle:nil otherButtonTitles:NSLS(@"choice"), NSLS(@"take"),nil];
-            __block typeof (self)bself = self;
-            [sheet setActionBlock:^(NSInteger buttonIndex){
-                switch (buttonIndex) {
-                    case 0:
-                        [bself selectPhoto];
-                        break;
-                    case 1:
-                        break;
-                    default:
-                        break;
-                }
-            }];
-            [sheet showInView:self.view];
-            [sheet release];
+        if (self.draft == nil && _bgImage) {
+            [self setDrawBGImage:_bgImage];
         } else {
             self.bgImageName = _draft.bgImageName;
             self.bgImage = _draft.bgImage;
@@ -598,7 +607,7 @@
 
     [self updateTargetFriend];
 
-    [self initPhoto];
+    [self initBgImage];
     
     [self initRecovery];
 }
@@ -1232,37 +1241,5 @@
 }
 
 
-- (void)useSelectedBgImage:(UIImage *)image
-{
-    [self setDrawBGImage:image];
-    self.bgImage = image;
-    self.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-}
-
-#pragma mark -- UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    if (image != nil){
-        [self useSelectedBgImage:image];
-    }
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if (image != nil){
-        [self useSelectedBgImage:image];
-    }
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [super imagePickerControllerDidCancel:picker];
-    [self quit];
-}
 
 @end

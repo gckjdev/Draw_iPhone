@@ -428,4 +428,9 @@
     return NO;
 }
 
+- (BOOL)canPayWithAlipay
+{
+    return YES;
+}
+
 @end

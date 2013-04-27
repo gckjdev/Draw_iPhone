@@ -22,6 +22,11 @@
 - (void)dealloc
 {
     [_adView release];
+    [_drawButton release];
+    [_shopButton release];
+    [_opusButton release];
+    [_feedbackButton release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -29,13 +34,22 @@
 {
     [[AdService defaultService] clearAdView:_adView];
     [self setAdView:nil];
+    [self setDrawButton:nil];
+    [self setShopButton:nil];
+    [self setOpusButton:nil];
+    [self setFeedbackButton:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    PPDebug(@"view height:%f", self.view.frame.size.height);
+    [self.titleLabel setText:[UIUtils getAppName]];
+    [self.drawButton setTitle:NSLS(@"kPureDrawDraw") forState:UIControlStateNormal];
+    [self.shopButton setTitle:NSLS(@"kPureDrawShop") forState:UIControlStateNormal];
+    [self.opusButton setTitle:NSLS(@"kPureDrawOpus") forState:UIControlStateNormal];
+    [self.feedbackButton setTitle:NSLS(@"kPureDrawFeedback") forState:UIControlStateNormal];
     
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
