@@ -13,6 +13,7 @@
 #import "StoreController.h"
 #import "AdService.h"
 #import "MKBlockActionSheet.h"
+#import "UIImage+fixOrientation.h"
 
 @interface PhotoDrawHomeController ()
 @property (retain, nonatomic) UIView  *adView;
@@ -130,9 +131,7 @@
     NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
     UIImage *image = [info objectForKey:infoKey];
     if (image != nil){
-//        if (image.imageOrientation) {   
-//        }
-        [self useSelectedBgImage:image];
+        [self useSelectedBgImage:[image fixOrientation]];
     }
     [self dismissModalViewControllerAnimated:YES];
 }
