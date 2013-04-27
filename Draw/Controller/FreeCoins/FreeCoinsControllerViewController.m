@@ -22,8 +22,8 @@
 #import "FreeIngotController.h"
 #import "UserGameItemService.h"
 
-//#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
-//#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
+#define TAPJOY_APP_ID @"54f9ea4b-beee-4fac-84ee-a34522e67b34"
+#define TAPJOY_APP_SECRET_KEY @"huXKYqkwpxlKbgrIxOIT"
 //#define TAPJOY_APP_ID_TEST @"93e78102-cbd7-4ebf-85cc-315ba83ef2d5"
 //#define TAPJOY_APP_SECRET_KEY_TEST @"JWxgS26URM0XotaghqGn"
 
