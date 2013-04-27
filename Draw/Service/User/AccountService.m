@@ -8,7 +8,7 @@
 
 #import "AccountService.h"
 #import "PPDebug.h"
-#import "ShoppingManager.h"
+//#import "ShoppingManager.h"
 #import "AccountManager.h"
 #import "GameNetworkConstants.h"
 #import "GameNetworkRequest.h"
@@ -34,6 +34,7 @@
 #import "CommonMessageCenter.h"
 #import "BlockArray.h"
 #import "UIUtils.h"
+#import "SKProductManager.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -640,7 +641,8 @@ transactionRecepit:(NSString*)transactionRecepit
 {
     // send request to Apple IAP Server and wait for result
     
-    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:product.appleProductId];
+    SKProduct *selectedProduct = [[SKProductManager defaultManager] productWithId:product.appleProductId];
+
     
     PPDebug(@"<buyProduct> on product %@ price productId=%@",
             selectedProduct == nil ? product.appleProductId : [selectedProduct productIdentifier],
