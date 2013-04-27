@@ -76,6 +76,7 @@
 #import "AliPayManager.h"
 #import "PureDrawHomeController.h"
 #import "PhotoDrawHomeController.h"
+#import "SKProductService.h"
 
 NSString* GlobalGetServerURL()
 {    
@@ -321,12 +322,14 @@ NSString* GlobalGetBoardServerURL()
     
     [self.window makeKeyAndVisible];
     
+    [[SKProductService defaultService] syncDataFromIAPService];
+    
     // Fetch Server List At Background
-    if (isDrawApp() == NO && isLearnDrawApp() == NO){
-        // no longer used for Draw App
-        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
-        [[PriceService defaultService] syncShoppingListAtBackground];
-    }
+//    if (isDrawApp() == NO && isLearnDrawApp() == NO){
+//        // no longer used for Draw App
+//        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
+//        [[PriceService defaultService] syncShoppingListAtBackground];
+//    }
     
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     

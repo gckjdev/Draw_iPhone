@@ -33,6 +33,7 @@
 #import "UserGameItemService.h"
 #import "CommonMessageCenter.h"
 #import "BlockArray.h"
+#import "UIUtils.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -68,7 +69,6 @@ static AccountService* _defaultAccountService;
     self = [super init];
     
     self.blockArray = [[[BlockArray alloc] init] autorelease];
-    _itemManager = [ItemManager defaultManager];
     _accountManager = [AccountManager defaultManager];
     
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
@@ -474,16 +474,6 @@ transactionRecepit:(NSString*)transactionRecepit
         });
     });
     
-}
-
-
-- (void)buyRemoveAd
-{
-    // send request to Apple IAP Server and wait for result
-    NSString* productId = [GameApp removeAdProductId];
-    PPDebug(@"<buyRemoveAd> on productId=%@", productId);
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 - (void)restoreIAPPurchase

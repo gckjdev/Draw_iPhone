@@ -36,12 +36,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 {
     if (self = [super init]) {
         NSBundle *bundle = [NSBundle mainBundle];
-        NSString *path = [bundle pathForResource:[GameItemManager shopItemsFileName] ofType:SHOP_ITEM_FILE_TYPE];
+        NSString *path = [bundle pathForResource:[GameItemManager shopItemsFileNameWithoutSuffix] ofType:SHOP_ITEM_FILE_TYPE];
         NSData *data = [NSData dataWithContentsOfFile:path];
         self.items = [[PBGameItemList parseFromData:data] itemsList];
     }
     
     return self;
+}
+
++ (NSString *)shopItemsFileNameWithoutSuffix
+{
+    return [[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]];
 }
 
 + (NSString *)shopItemsFileName

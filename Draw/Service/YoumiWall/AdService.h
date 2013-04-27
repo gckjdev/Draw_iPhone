@@ -43,7 +43,6 @@ typedef enum
 - (BOOL)isShowAd;
 - (void)setAdDisable;
 - (void)disableAd;
-- (void)removeAdByIAP;
 
 - (void)clearAdView:(UIView*)adView;
 

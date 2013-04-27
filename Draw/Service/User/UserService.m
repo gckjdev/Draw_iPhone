@@ -114,7 +114,6 @@ static UserService* _defaultUserService;
                 [viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
             }
         });
-        
     });    
 }
 

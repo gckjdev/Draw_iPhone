@@ -721,7 +721,6 @@
 "kHisFriend" = "TA好友";
 
 "kRemoveAd" = "广告拦截器";
-"kRemoveAdByIAP" = "你只需要购买400个金币即可直接移除广告，确认吗？";
 "kMessage" = "消息";
 "kAdRemoved" = "已移除";
 "kAdNotRemoved" = "待移除";

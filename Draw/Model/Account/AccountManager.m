@@ -174,17 +174,4 @@ AccountManager* GlobalGetAccountManager()
     }
 }
 
-#pragma mark - Price Delegate
-
-- (void)didFinishFetchAccountBalance:(NSInteger)balance resultCode:(int)resultCode
-{
-    if (resultCode == 0) {
-        PPDebug(@"get balance : %d", balance);
-        [self updateAccount:balance];
-    }
-}
-
-
-
-
 @end

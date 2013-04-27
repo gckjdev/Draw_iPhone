@@ -278,13 +278,6 @@
 {
     //2012-6-22 update: default without voice
     return EnableNot;
-    
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    NSNumber *number = [userDefault objectForKey:KEY_CHAT_VOICE_ENABLE];
-//    if (number == nil) {
-//        return EnableWifi;
-//    }
-//    return [number intValue];
 }
 
 + (void)setChatVoiceEnable:(ChatVoiceEnable)enable
@@ -327,11 +320,6 @@
 {
     return [MobClickUtils getIntValueByKey:@"GRID_LINE_SPACE" defaultValue:15];
 };
-
-+ (BOOL)removeAdByIAP
-{
-    return ([MobClickUtils getIntValueByKey:@"DEL_AD_TYPE" defaultValue:0] == 1);
-}
 
 + (int)getTomatoAwardExp
 {

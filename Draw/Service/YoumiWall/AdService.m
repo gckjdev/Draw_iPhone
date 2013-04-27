@@ -156,14 +156,6 @@ static AdService* _defaultService;
     }
 }
 
-#pragma mark - Buy Coins By IAP
-
-- (void)removeAdByIAP
-{
-    [MobClick event:@"BUY_REMOVE_AD"];
-    [[AccountService defaultService] buyRemoveAd];
-}
-
 #pragma mark - Show Ad Wall
 
 - (void)gotoWall
