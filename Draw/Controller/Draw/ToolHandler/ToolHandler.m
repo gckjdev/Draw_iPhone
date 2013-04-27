@@ -207,7 +207,7 @@
 {
     if (_canvasRect == nil) {
         self.canvasRect = [CanvasRect canvasRectWithRect:self.drawView.bounds];
-        if(self.canvasRect == nil){
+        if(_canvasRect == nil){
             self.canvasRect = [CanvasRect canvasRectWithStyle:[CanvasRect defaultCanvasRectStyle]];
         }
     }
