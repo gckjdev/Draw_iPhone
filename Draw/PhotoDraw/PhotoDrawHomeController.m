@@ -13,6 +13,7 @@
 #import "StoreController.h"
 #import "AdService.h"
 #import "MKBlockActionSheet.h"
+#import "UIImage+fixOrientation.h"
 
 @interface PhotoDrawHomeController ()
 @property (retain, nonatomic) UIView  *adView;
@@ -111,7 +112,6 @@
     [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
 }
 
-
 - (void)useSelectedBgImage:(UIImage *)image
 {
     [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil photo:image];
@@ -123,17 +123,16 @@
     if (image != nil){
         [self useSelectedBgImage:image];
     }
-    
     [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
+    UIImage *image = [info objectForKey:infoKey];
     if (image != nil){
-        [self useSelectedBgImage:image];
+        [self useSelectedBgImage:[image fixOrientation]];
     }
-    
     [self dismissModalViewControllerAnimated:YES];
 }
 
