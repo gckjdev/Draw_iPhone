@@ -7,7 +7,7 @@
 //
 
 #import "FreeCoinsControllerViewController.h"
-#import "shengmengsdk.h"
+//#import "shengmengsdk.h"
 #import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "AnalyticsManager.h"
@@ -113,7 +113,7 @@
     
     // shengmeng sdk
     self.timer = [NSTimer scheduledTimerWithTimeInterval:80 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-    [shengmengsdk playad:[GameApp shengmengAppId]];
+//    [shengmengsdk playad:[GameApp shengmengAppId]];
     
     // NOTE: This must be replaced by your App ID. It is Retrieved from the Tapjoy website, in your account.
     
@@ -194,7 +194,7 @@
 }
 
 - (void)timeout:(id)sender {
-    [shengmengsdk playad:[GameApp shengmengAppId]];
+//    [shengmengsdk playad:[GameApp shengmengAppId]];
 }
 
 - (IBAction)clickBackButton:(id)sender {

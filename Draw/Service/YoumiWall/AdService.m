@@ -14,10 +14,10 @@
 #import "PPViewController.h"
 #import "DeviceDetection.h"
 #import "LmWallService.h"
-#import "AdMoGoView.h"
+//#import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import "GADBannerView.h"
+//#import "GADBannerView.h"
 
 #import "UserGameItemManager.h"
 #import "GameItemService.h"
@@ -47,13 +47,13 @@ static AdService* _defaultService;
     [super dealloc];
 }
 
-- (void)initWappuAdSDK
-{
-    // init Wanpu Ad
-//    [AppConnect getConnect:[GameApp wanpuAdPublisherId] pid:[ConfigManager getChannelId]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectSuccess:) name:WAPS_CONNECT_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectFailed:) name:WAPS_CONNECT_FAILED object:nil];        
-}
+//- (void)initWappuAdSDK
+//{
+//    // init Wanpu Ad
+////    [AppConnect getConnect:[GameApp wanpuAdPublisherId] pid:[ConfigManager getChannelId]];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectSuccess:) name:WAPS_CONNECT_SUCCESS object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectFailed:) name:WAPS_CONNECT_FAILED object:nil];        
+//}
 
 - (id)init
 {
@@ -252,20 +252,20 @@ static AdService* _defaultService;
     return [[UIApplication sharedApplication] delegate].window.rootViewController;    
 }
 
-- (void)adMoGoDidReceiveAd:(AdMoGoView *)adMoGoView
-{
-    PPDebug(@"<adMoGoDidReceiveAd>");
-}
-
-- (void)adMoGoDeleteAd:(AdMoGoView *)adMoGoView
-{
-    PPDebug(@"<adMoGoDeleteAd>");    
-}
-
-- (void)adMoGoDidFailToReceiveAd:(AdMoGoView *)adMoGoView usingBackup:(BOOL)yesOrNo
-{
-    PPDebug(@"<adMoGoDidFailToReceiveAd> usingBackup=%d", yesOrNo);    
-}
+//- (void)adMoGoDidReceiveAd:(AdMoGoView *)adMoGoView
+//{
+//    PPDebug(@"<adMoGoDidReceiveAd>");
+//}
+//
+//- (void)adMoGoDeleteAd:(AdMoGoView *)adMoGoView
+//{
+//    PPDebug(@"<adMoGoDeleteAd>");    
+//}
+//
+//- (void)adMoGoDidFailToReceiveAd:(AdMoGoView *)adMoGoView usingBackup:(BOOL)yesOrNo
+//{
+//    PPDebug(@"<adMoGoDidFailToReceiveAd> usingBackup=%d", yesOrNo);    
+//}
 
 - (NSString *)gender
 {
@@ -286,38 +286,38 @@ static AdService* _defaultService;
     return ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
 }
 
-- (UIView*)createMangoAdInView:(UIView*)superView
-                         frame:(CGRect)frame 
-                     iPadFrame:(CGRect)iPadFrame
-{
-    if ([self isShowAd] == NO){
-        return nil;
-    }
-        
-    AdMoGoView* adView = nil;
-    
-    // create view
-    adView = [AdMoGoView requestAdMoGoViewWithDelegate:self 
-                                             AndAdType:AdViewTypeNormalBanner
-                                           ExpressMode:YES];
-    
-    // set view frame
-    if ([DeviceDetection isIPAD]){
-        [adView setFrame:iPadFrame];
-    }
-    else{
-        [adView setFrame:frame];
-    }
-    
-    // set view data
-    adView.tag = AD_VIEW_TAG;
-    adView.delegate = self;
-    
-    // add to super view
-    [superView addSubview:adView];
-    [adView resumeAdRequest];
-    return adView;
-}
+//- (UIView*)createMangoAdInView:(UIView*)superView
+//                         frame:(CGRect)frame 
+//                     iPadFrame:(CGRect)iPadFrame
+//{
+//    if ([self isShowAd] == NO){
+//        return nil;
+//    }
+//        
+//    AdMoGoView* adView = nil;
+//    
+//    // create view
+//    adView = [AdMoGoView requestAdMoGoViewWithDelegate:self 
+//                                             AndAdType:AdViewTypeNormalBanner
+//                                           ExpressMode:YES];
+//    
+//    // set view frame
+//    if ([DeviceDetection isIPAD]){
+//        [adView setFrame:iPadFrame];
+//    }
+//    else{
+//        [adView setFrame:frame];
+//    }
+//    
+//    // set view data
+//    adView.tag = AD_VIEW_TAG;
+//    adView.delegate = self;
+//    
+//    // add to super view
+//    [superView addSubview:adView];
+//    [adView resumeAdRequest];
+//    return adView;
+//}
 
 
 - (void)clearAdView:(UIView*)adView
@@ -330,11 +330,11 @@ static AdService* _defaultService;
         PPDebug(@"<clearAdView>");
         [adView removeFromSuperview];
         
-        if ([adView isKindOfClass:[AdMoGoView class]]){
-            [((AdMoGoView*)adView) pauseAdRequest];
-            ((AdMoGoView*)adView).delegate = nil;
-        }
-        else if ([adView isKindOfClass:[immobView class]]){
+//        if ([adView isKindOfClass:[AdMoGoView class]]){
+//            [((AdMoGoView*)adView) pauseAdRequest];
+//            ((AdMoGoView*)adView).delegate = nil;
+//        }
+        if ([adView isKindOfClass:[immobView class]]){
             ((immobView*)adView).delegate = nil;  
         }        
     }
@@ -346,75 +346,75 @@ static AdService* _defaultService;
 
 }
 
-- (void)pauseAdView:(UIView*)adView
-{
-    if ([adView isKindOfClass:[AdMoGoView class]]){
-        [((AdMoGoView*)adView) pauseAdRequest];
-    }
-    else if ([adView isKindOfClass:[immobView class]]){
-        // Do Nothing For Lmmob, because of not support
-    }
-    
-    [AderSDK pauseAdService:YES];
-}
-
-- (void)resumeAdView:(UIView*)adView
-{
-    if ([adView isKindOfClass:[AdMoGoView class]]){
-        [((AdMoGoView*)adView) resumeAdRequest];
-    }
-    else if ([adView isKindOfClass:[immobView class]]){
-        // Do Nothing For Lmmob, because of not support
-    }    
-    
-    [AderSDK pauseAdService:NO];
-}
-
-- (UIView*)createAderAdInView:(UIView*)superView
-                        appId:(NSString*)appId
-                        frame:(CGRect)frame 
-                    iPadFrame:(CGRect)iPadFrame
-{
-    PPDebug(@"<createAderAdInView>");
-    [AderSDK setDelegate:self];    
-    if ([DeviceDetection isIPAD]){
-        [AderSDK startAdService:superView
-                          appID:appId
-                        adFrame:iPadFrame 
-                          model:MODEL_RELEASE];
-    }
-    else{
-        [AderSDK startAdService:superView
-                          appID:appId
-                        adFrame:frame 
-                          model:MODEL_RELEASE];
-    }
-    
-    return nil;
-}
-
-
-- (UIView*)createAderAdInView:(UIView*)superView
-                        frame:(CGRect)frame 
-                    iPadFrame:(CGRect)iPadFrame
-{
-    PPDebug(@"<createAderAdInView>");
-    [AderSDK setDelegate:self];    
-    if ([DeviceDetection isIPAD]){
-        [AderSDK startAdService:superView
-                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
-                        adFrame:iPadFrame 
-                          model:MODEL_RELEASE];
-    }
-    else{
-        [AderSDK startAdService:superView
-                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
-                        adFrame:frame 
-                          model:MODEL_RELEASE];
-    }
-    
-    return nil;
-}
+//- (void)pauseAdView:(UIView*)adView
+//{
+////    if ([adView isKindOfClass:[AdMoGoView class]]){
+////        [((AdMoGoView*)adView) pauseAdRequest];
+////    }
+//    if ([adView isKindOfClass:[immobView class]]){
+//        // Do Nothing For Lmmob, because of not support
+//    }
+//    
+////    [AderSDK pauseAdService:YES];
+//}
+//
+//- (void)resumeAdView:(UIView*)adView
+//{
+////    if ([adView isKindOfClass:[AdMoGoView class]]){
+////        [((AdMoGoView*)adView) resumeAdRequest];
+////    }
+//    if ([adView isKindOfClass:[immobView class]]){
+//        // Do Nothing For Lmmob, because of not support
+//    }    
+//    
+//    [AderSDK pauseAdService:NO];
+//}
+//
+//- (UIView*)createAderAdInView:(UIView*)superView
+//                        appId:(NSString*)appId
+//                        frame:(CGRect)frame 
+//                    iPadFrame:(CGRect)iPadFrame
+//{
+//    PPDebug(@"<createAderAdInView>");
+//    [AderSDK setDelegate:self];    
+//    if ([DeviceDetection isIPAD]){
+//        [AderSDK startAdService:superView
+//                          appID:appId
+//                        adFrame:iPadFrame 
+//                          model:MODEL_RELEASE];
+//    }
+//    else{
+//        [AderSDK startAdService:superView
+//                          appID:appId
+//                        adFrame:frame 
+//                          model:MODEL_RELEASE];
+//    }
+//    
+//    return nil;
+//}
+//
+//
+//- (UIView*)createAderAdInView:(UIView*)superView
+//                        frame:(CGRect)frame 
+//                    iPadFrame:(CGRect)iPadFrame
+//{
+//    PPDebug(@"<createAderAdInView>");
+//    [AderSDK setDelegate:self];    
+//    if ([DeviceDetection isIPAD]){
+//        [AderSDK startAdService:superView
+//                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:iPadFrame 
+//                          model:MODEL_RELEASE];
+//    }
+//    else{
+//        [AderSDK startAdService:superView
+//                          appID:[GameApp aderAdPublisherId] // @"3b47607e44f94d7c948c83b7e6eb800e" 
+//                        adFrame:frame 
+//                          model:MODEL_RELEASE];
+//    }
+//    
+//    return nil;
+//}
 
 - (UIView*)createLmAdInView:(UIView*)superView
                       appId:(NSString*)appId
@@ -446,37 +446,37 @@ static AdService* _defaultService;
     return adView;    
 }
 
-- (UIView*)createWanpuAdInView:(UIView*)superView
-                      appId:(NSString*)appId
-                      frame:(CGRect)frame 
-                  iPadFrame:(CGRect)iPadFrame
-{    
-    PPDebug(@"<createWanpuAdInView> at view %@", [superView description]);
-    
-    UIView* view = [AppConnect getDisplayAdView];
-    [view removeFromSuperview];
-    
-    if ([DeviceDetection isIPAD]){
-        [AppConnect displayAd:_viewController showX:0 showY:iPadFrame.origin.y-1];
-    }
-    else{
-        [AppConnect displayAd:_viewController showX:frame.origin.x showY:frame.origin.y-1];
-    }
-        
-    // hack Wanpu Ad View here, remove it from its super view and add into the right view we want
-    view = [AppConnect getDisplayAdView];
+//- (UIView*)createWanpuAdInView:(UIView*)superView
+//                      appId:(NSString*)appId
+//                      frame:(CGRect)frame 
+//                  iPadFrame:(CGRect)iPadFrame
+//{    
+//    PPDebug(@"<createWanpuAdInView> at view %@", [superView description]);
+//    
+////    UIView* view = [AppConnect getDisplayAdView];
 //    [view removeFromSuperview];
-    
-    if ([DeviceDetection isIPAD]){
-        view.frame = iPadFrame;
-    }
-    else{
-        view.frame = frame;
-    }
-    
-    [superView addSubview:view];    
-    return view;
-}
+//    
+//    if ([DeviceDetection isIPAD]){
+//        [AppConnect displayAd:_viewController showX:0 showY:iPadFrame.origin.y-1];
+//    }
+//    else{
+//        [AppConnect displayAd:_viewController showX:frame.origin.x showY:frame.origin.y-1];
+//    }
+//        
+//    // hack Wanpu Ad View here, remove it from its super view and add into the right view we want
+//    view = [AppConnect getDisplayAdView];
+////    [view removeFromSuperview];
+//    
+//    if ([DeviceDetection isIPAD]){
+//        view.frame = iPadFrame;
+//    }
+//    else{
+//        view.frame = frame;
+//    }
+//    
+//    [superView addSubview:view];    
+//    return view;
+//}
 
 - (UIView*)createAdInView:(UIView*)superView
                     frame:(CGRect)frame 
@@ -488,19 +488,19 @@ static AdService* _defaultService;
         return nil;
     }
     
-    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
+//    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
+//    
+//    if ([self isShowWanpuAd] == YES){
+//        return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
+//    }        
     
-    if ([self isShowWanpuAd] == YES){
-        return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
-    }        
-    
-    if ([self isShowAderAd] == YES){
-        return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
-    }
-    
-    if ([self isShowLmAd] == NO){
-        return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
-    }
+//    if ([self isShowAderAd] == YES){
+//        return [self createAderAdInView:superView frame:frame iPadFrame:iPadFrame];
+//    }
+//    
+//    if ([self isShowLmAd] == NO){
+//        return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
+//    }
     
     return [self createLmAdInView:superView
                             appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
@@ -521,20 +521,20 @@ static AdService* _defaultService;
     }
     
     PPDebug(@"<createAdView>");
-    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+//    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+//
+//    if ([self isShowWanpuAd] == YES){
+//        return [self createWanpuAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+//    }
 
-    if ([self isShowWanpuAd] == YES){
-        return [self createWanpuAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-    }
-
-    if ([self isShowAderAd] == YES){
-        return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-    }
-    
-    
-    if (useLmAd == NO || [self isShowLmAd] == NO){
-        return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-    }
+//    if ([self isShowAderAd] == YES){
+//        return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+//    }
+//    
+//    
+//    if (useLmAd == NO || [self isShowLmAd] == NO){
+//        return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
+//    }
     
     return [self createLmAdInView:superViewContoller.view 
                             appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
@@ -549,18 +549,18 @@ static AdService* _defaultService;
                   iPadFrame:(CGRect)iPadFrame
 {
     switch (adPlatformType) {
-        case AdPlatformAder:
-            return [self createAderAdInView:superView appId:adPublisherId frame:frame iPadFrame:iPadFrame];
+//        case AdPlatformAder:
+//            return [self createAderAdInView:superView appId:adPublisherId frame:frame iPadFrame:iPadFrame];
             
         case AdPlatformLm:
             return [self createLmAdInView:superView appId:adPublisherId frame:frame iPadFrame:iPadFrame];
 
-        case AdPlatformMango:
-            return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
-            
-        case AdPlatformWanpu:
-            return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
-            
+//        case AdPlatformMango:
+//            return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
+//            
+//        case AdPlatformWanpu:
+//            return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
+//            
         default:
             break;
     }
@@ -578,102 +578,102 @@ static AdService* _defaultService;
                         iPadFrame:iPadFrame];
 }
 
-- (UIView*)createWanpuAdInView:(UIView*)superView
-                         frame:(CGRect)frame 
-                     iPadFrame:(CGRect)iPadFrame
-{
-    return [self createWanpuAdInView:superView
-                            appId:[GameApp wanpuAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
-                            frame:frame 
-                        iPadFrame:iPadFrame];
-}
+//- (UIView*)createWanpuAdInView:(UIView*)superView
+//                         frame:(CGRect)frame 
+//                     iPadFrame:(CGRect)iPadFrame
+//{
+//    return [self createWanpuAdInView:superView
+//                            appId:[GameApp wanpuAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+//                            frame:frame 
+//                        iPadFrame:iPadFrame];
+//}
 
-- (void)loadAdmobView:(GADBannerView*)adView
-{
-    GADRequest* request = [[GADRequest alloc] init];
-    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
-    if ([[UserManager defaultManager] hasUser]){
-        [adView loadRequest:request];
-    }
-    else{
-        [adView loadRequest:nil];
-    }
-    [request release];
-}
+//- (void)loadAdmobView:(GADBannerView*)adView
+//{
+//    GADRequest* request = [[GADRequest alloc] init];
+//    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
+//    if ([[UserManager defaultManager] hasUser]){
+//        [adView loadRequest:request];
+//    }
+//    else{
+//        [adView loadRequest:nil];
+//    }
+//    [request release];
+//}
 
-- (UIView*)createAdmobAdInView:(UIView*)superView
-                         frame:(CGRect)frame
-                     iPadFrame:(CGRect)iPadFrame
-{
-    if ([self isShowAd] == NO){
-        return nil;
-    }
-    
-    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
-        return nil;
-    }
-    
+//- (UIView*)createAdmobAdInView:(UIView*)superView
+//                         frame:(CGRect)frame
+//                     iPadFrame:(CGRect)iPadFrame
+//{
+//    if ([self isShowAd] == NO){
+//        return nil;
+//    }
+//    
+//    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
+//        return nil;
+//    }
+
     // Create LM Ad View
-    GADBannerView* adView = nil;
-    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    
-    if ([DeviceDetection isIPAD]){
-        [adView setFrame:iPadFrame];
-    }
-    else{
-        [adView setFrame:frame];
-    }
-    
-              //   GADBannerView *adView =
-              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-              //   adView.rootViewController = self;
-              //   adView.adUnitID = @"ID created when registering my app";
-              //
-              //   // Place the ad view onto the screen.
-              //   [self.view addSubview:adView];
-              //   [adView release];
-              //
-              //   // Request an ad without any additional targeting information.
-              //   [adView loadRequest:nil];
-              
-    adView.tag = AD_VIEW_TAG;
-    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    adView.adUnitID = [ConfigManager getAdMobId];
-    adView.delegate = self;
-    
-    [self loadAdmobView:adView];
-              
-    [superView addSubview:adView];
-    return adView;
-
-}
+//    GADBannerView* adView = nil;
+//    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//    
+//    if ([DeviceDetection isIPAD]){
+//        [adView setFrame:iPadFrame];
+//    }
+//    else{
+//        [adView setFrame:frame];
+//    }
+//    
+//              //   GADBannerView *adView =
+//              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+//              //   adView.rootViewController = self;
+//              //   adView.adUnitID = @"ID created when registering my app";
+//              //
+//              //   // Place the ad view onto the screen.
+//              //   [self.view addSubview:adView];
+//              //   [adView release];
+//              //
+//              //   // Request an ad without any additional targeting information.
+//              //   [adView loadRequest:nil];
+//              
+//    adView.tag = AD_VIEW_TAG;
+//    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+//    adView.adUnitID = [ConfigManager getAdMobId];
+//    adView.delegate = self;
+//    
+//    [self loadAdmobView:adView];
+//              
+//    [superView addSubview:adView];
+//    return adView;
+//
+//}
 
 #pragma mark - Wanpu Delegates
 
-- (void)onWanpuConnectSuccess:(id)sender
-{
-    PPDebug(@"<onWanpuConnectSuccess>");
-}
-
-- (void)onWanpuConnectFailed:(id)sender
-{
-    PPDebug(@"<onWanpuConnectFailed>");    
-}
+//- (void)onWanpuConnectSuccess:(id)sender
+//{
+//    PPDebug(@"<onWanpuConnectSuccess>");
+//}
+//
+//- (void)onWanpuConnectFailed:(id)sender
+//{
+//    PPDebug(@"<onWanpuConnectFailed>");    
+//}
 
 #pragma mark - AdMob Delegate
 
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    PPDebug(@"<adViewDidReceiveAd> success");
-    
-}
-
-- (void)adView:(GADBannerView *)view
-didFailToReceiveAdWithError:(GADRequestError *)error;
-{
-    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
-//    [self loadAdmobView:view];
-}
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    PPDebug(@"<adViewDidReceiveAd> success");
+//    
+//}
+//
+//- (void)adView:(GADBannerView *)view
+//didFailToReceiveAdWithError:(GADRequestError *)error;
+//{
+//    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
+////    [self loadAdmobView:view];
+//}
 
 #pragma mark Click-Time Lifecycle Notifications
 
@@ -687,31 +687,31 @@ didFailToReceiveAdWithError:(GADRequestError *)error;
 // 4.0+ the next method called will be applicationWillResignActive: of your
 // UIViewController (UIApplicationWillResignActiveNotification).  Immediately
 // after that adViewWillLeaveApplication: is called.
-- (void)adViewWillPresentScreen:(GADBannerView *)adView
-{
-    PPDebug(@"<adViewWillPresentScreen>");      
-}
-
-// Sent just before dismissing a full screen view.
-- (void)adViewWillDismissScreen:(GADBannerView *)adView
-{
-    PPDebug(@"<adViewWillDismissScreen>");      
-}
-
-// Sent just after dismissing a full screen view.  Use this opportunity to
-// restart anything you may have stopped as part of adViewWillPresentScreen:.
-- (void)adViewDidDismissScreen:(GADBannerView *)adView
-{
-    PPDebug(@"<adViewDidDismissScreen>");    
-}
-
-// Sent just before the application will background or terminate because the
-// user clicked on an ad that will launch another application (such as the App
-// Store).  The normal UIApplicationDelegate methods, like
-// applicationDidEnterBackground:, will be called immediately before this.
-- (void)adViewWillLeaveApplication:(GADBannerView *)adView
-{
-    PPDebug(@"<adViewWillLeaveApplication>");
-}
+//- (void)adViewWillPresentScreen:(GADBannerView *)adView
+//{
+//    PPDebug(@"<adViewWillPresentScreen>");      
+//}
+//
+//// Sent just before dismissing a full screen view.
+//- (void)adViewWillDismissScreen:(GADBannerView *)adView
+//{
+//    PPDebug(@"<adViewWillDismissScreen>");      
+//}
+//
+//// Sent just after dismissing a full screen view.  Use this opportunity to
+//// restart anything you may have stopped as part of adViewWillPresentScreen:.
+//- (void)adViewDidDismissScreen:(GADBannerView *)adView
+//{
+//    PPDebug(@"<adViewDidDismissScreen>");    
+//}
+//
+//// Sent just before the application will background or terminate because the
+//// user clicked on an ad that will launch another application (such as the App
+//// Store).  The normal UIApplicationDelegate methods, like
+//// applicationDidEnterBackground:, will be called immediately before this.
+//- (void)adViewWillLeaveApplication:(GADBannerView *)adView
+//{
+//    PPDebug(@"<adViewWillLeaveApplication>");
+//}
 
 @end
