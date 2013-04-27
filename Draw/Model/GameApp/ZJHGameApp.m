@@ -363,6 +363,16 @@
     return @"";//TODO
 }
 
+- (NSString*)tapjoyWallId
+{
+    return @"";//TODO
+}
+
+- (NSString*)tapjoyWallSecret
+{
+    return @"";//TODO
+}
+
 - (NSString *)alipayCallBackScheme
 {
     return @"alipayzjh.gckj";

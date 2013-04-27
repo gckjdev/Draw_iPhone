@@ -362,6 +362,16 @@
     return @"96ZJ06UgzeimTwTAs3";
 }
 
+- (NSString*)tapjoyWallId
+{
+    return @"9df947d7-f864-4e2c-85c5-b6b73200ee7a";
+}
+
+- (NSString*)tapjoyWallSecret
+{
+    return @"5y0b3iTlsJJdOUu1JmhJ";
+}
+
 - (NSString *)alipayCallBackScheme
 {
     return @"alipaycchh.gckj";
@@ -406,5 +416,6 @@
 {
     return YES;
 }
+
 
 @end

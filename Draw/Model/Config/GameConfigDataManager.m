@@ -257,6 +257,16 @@ static dispatch_once_t onceToken;
     return domod;
 }
 
++ (PBRewardWall*)tapjoyWall{
+    
+    PBRewardWall* tapjoy = [GameConfigDataManager creatRewardWall:@"Tapjoy 推荐应用"
+                                                          enName:@"Tapjoy"
+                                                            type:PBRewardWallTypeTapjoy
+                                                            logo:@""];
+    
+    return tapjoy;
+}
+
 + (void)createDrawTestConfigData
 {
 //    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/"; 
@@ -274,7 +284,7 @@ static dispatch_once_t onceToken;
     PBRewardWall* youmi = [self youmiWall];
     PBRewardWall* ader = [self aderWall];
     PBRewardWall* domod = [self domodWall];
-    
+    PBRewardWall* tapjoy = [self tapjoyWall];
     
     [builder addAppRewards:zjhApp];
     [builder addAppRewards:diceApp];
@@ -283,13 +293,14 @@ static dispatch_once_t onceToken;
     [builder addRewardWalls:youmi];
     [builder addRewardWalls:ader];
     [builder addRewardWalls:domod];
+    [builder addRewardWalls:tapjoy];
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
 
     [data writeToFile:path atomically:YES];
     
-    NSString* version = @"1.0";
+    NSString* version = @"1.1";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
