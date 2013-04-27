@@ -134,4 +134,6 @@
 
 - (BOOL)canPayWithAlipay;
 
+- (BOOL)canGift;
+
 @end
