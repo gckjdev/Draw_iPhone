@@ -130,4 +130,6 @@
 
 - (BOOL)hasBGOffscreen;
 
+- (BOOL)canPayWithAlipay;
+
 @end

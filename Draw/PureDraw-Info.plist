@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>LearnDraw_57.png</string>
-		<string>LearnDraw_114.png</string>
-		<string>LearnDraw_50.png</string>
-		<string>LearnDraw_72.png</string>
+		<string>PureDraw_57.png</string>
+		<string>PureDraw_114.png</string>
+		<string>PureDraw_50.png</string>
+		<string>PureDraw_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.puredraw</string>
@@ -46,12 +46,22 @@
 	<string>1.0</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
+	<key>CFResourceTest</key>
+	<true/>
+	<key>CFServerTest</key>
+	<false/>
 	<key>CFWordBaseVersion</key>
 	<integer>2</integer>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UILaunchImageFile</key>
+	<string>PureDrawDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
@@ -61,15 +71,5 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>UILaunchImageFile</key>
-	<string>LearnDrawDefault</string>
-	<key>CFResourceTest</key>
-	<true/>
-	<key>CFServerTest</key>
-	<false/>
-	<key>CFConfigVersion</key>
-	<string>1.0</string>
 </dict>
 </plist>
