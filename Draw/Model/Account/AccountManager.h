@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PriceService.h"
 #import "Account.h"
 #import "GameBasic.pb.h"
 
 @class UserAccount;
-@interface AccountManager : NSObject<PriceServiceDelegate>
+@interface AccountManager : NSObject
 {
     UserAccount *_account;
 }

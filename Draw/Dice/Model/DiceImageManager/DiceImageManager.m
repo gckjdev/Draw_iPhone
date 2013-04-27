@@ -296,44 +296,11 @@ static DiceImageManager *_defaultManager = nil;
 - (UIImage *)diceToolCutImage
 {
     return [UIImage imageNamed:@"cut@2x.png"];
-
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80]
-//                              autorelease];
-//    
-//    [label setText:NSLS(@"kToolCut")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-//    
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolRollAgainImage
 {
     return [UIImage imageNamed:@"rollAgain@2x.png"];
-
-//    UIImage* backgroundImage = [UIImage imageNamed:@"tools_bell_bg@2x.png"];
-//    float width = backgroundImage.size.width;
-//    float height = backgroundImage.size.height;
-//    HKGirlFontLabel* label = [[[HKGirlFontLabel alloc] initWithFrame:CGRectMake(width*0.2, 
-//                                                                                width*0.1, 
-//                                                                                width*0.6, 
-//                                                                                height*0.6) 
-//                                                           pointSize:80] //here just need a big big pointsize
-//                              autorelease];
-//    
-//
-//    [label setText:NSLS(@"kToolRollAgain")];
-//    [label setShadowColor:[UIColor whiteColor]];
-//    [label setShadowOffset:CGSizeMake(0, 1)];
-//
-//    return [UIImage creatImageByImage:backgroundImage withLabel:label];
 }
 
 - (UIImage *)diceToolCutImageForShop
@@ -461,21 +428,6 @@ static DiceImageManager *_defaultManager = nil;
     }
 }
 
-//- (UIImage *)diceNormalRoomBgImage
-//{
-//    return [UIImage imageNamed:@"normal_room_bg.png"];
-//}
-//
-//- (UIImage *)diceHighRoomBgImage
-//{
-//    return [UIImage imageNamed:@"high_room_bg.png"];
-//}
-//
-//- (UIImage *)diceSuperHighRoomBgImage
-//{
-//    return [UIImage imageNamed:@"super_high_room_bg.png"];
-//}
-
 - (UIImage *)diceNormalRoomTableImage
 {
     return [UIImage imageNamed:@"normal_room_table.jpg"];
@@ -494,8 +446,6 @@ static DiceImageManager *_defaultManager = nil;
 - (UIImage *)inputTextBgImage
 {
     return [UIImage strectchableImageName:@"input_text_bg.png"];
-
-//    return [UIImage strectchableImageName:@"input_text_bg.png" leftCapWidth:8 topCapHeight:8];
 }
 
 #pragma mark - dialog image manager protocol

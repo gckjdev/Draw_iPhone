@@ -15,6 +15,7 @@
 @interface GameItemManager : NSObject
 
 + (GameItemManager *)defaultManager;
+
 + (NSString *)shopItemsFileName;
 + (NSString *)shopItemsFileBundlePath;
 + (NSString *)shopItemsFileVersion;

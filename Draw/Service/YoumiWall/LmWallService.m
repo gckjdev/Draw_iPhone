@@ -50,8 +50,8 @@ static LmWallService* _defaultService;
     [AdService defaultService]; // Call This To Init WANPU SDK
 
     // init WANPU SDK Wall Notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPoints:) name:WAPS_GET_POINTS_SUCCESS object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPointsFailed:) name:WAPS_GET_POINTS_FAILED object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPoints:) name:WAPS_GET_POINTS_SUCCESS object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPointsFailed:) name:WAPS_GET_POINTS_FAILED object:nil];
     
     PPDebug(@"<LmmobAdWallSDK> init with ID %@", [GameApp lmwallId]);
 
@@ -90,8 +90,8 @@ static LmWallService* _defaultService;
         [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
     }
     else{
-        PPDebug(@"<WanpuWall> getPoints");    
-        [AppConnect getPoints];        
+//        PPDebug(@"<WanpuWall> getPoints");    
+//        [AppConnect getPoints];        
     }
 }
 
@@ -112,8 +112,8 @@ static LmWallService* _defaultService;
         case WallTypeWanpu:
         default:
         {
-            [MobClick event:@"SHOW_WP_WALL"];    
-            [AppConnect showOffers];            
+//            [MobClick event:@"SHOW_WP_WALL"];    
+//            [AppConnect showOffers];            
         }
             break;
     }
@@ -158,7 +158,7 @@ static LmWallService* _defaultService;
         [self.adWallView immobViewReduceScore:score WithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
     }
     else{
-        [AppConnect spendPoints:score];
+//        [AppConnect spendPoints:score];
     }
     
     BOOL isForRemoveAd = NO;
@@ -243,23 +243,23 @@ static LmWallService* _defaultService;
 }
 
 #pragma mark - Wap Pu Wall For Query Points
-//获取积分成功处理方法:
--(void)getUpdatedPoints:(NSNotification*)notifyObj{
-    WapsUserPoints *userPoints = notifyObj.object;
-    NSString *pointsName=[userPoints getPointsName];
-    int pointsValue=[userPoints getPointsValue];
-    
-    PPDebug(@"Wappu SDK <getUpdatedPoints> success, name=%@, points=%d", 
-            pointsName, pointsValue);
-    if (pointsValue <= 0)
-        return;
-
-    [self handleScoreAdded:pointsValue wallType:WallTypeWanpu];
-}
-//获取积分失败处理方法:
--(void)getUpdatedPointsFailed:(NSNotification*)notifyObj{
-    PPDebug(@"Wappu SDK <getUpdatedPoints> failure, info=%@", [notifyObj.object description]);
-}
+////获取积分成功处理方法:
+//-(void)getUpdatedPoints:(NSNotification*)notifyObj{
+//    WapsUserPoints *userPoints = notifyObj.object;
+//    NSString *pointsName=[userPoints getPointsName];
+//    int pointsValue=[userPoints getPointsValue];
+//    
+//    PPDebug(@"Wappu SDK <getUpdatedPoints> success, name=%@, points=%d", 
+//            pointsName, pointsValue);
+//    if (pointsValue <= 0)
+//        return;
+//
+//    [self handleScoreAdded:pointsValue wallType:WallTypeWanpu];
+//}
+////获取积分失败处理方法:
+//-(void)getUpdatedPointsFailed:(NSNotification*)notifyObj{
+//    PPDebug(@"Wappu SDK <getUpdatedPoints> failure, info=%@", [notifyObj.object description]);
+//}
 
 + (void)showWallOnController:(UIViewController*)controller
 {

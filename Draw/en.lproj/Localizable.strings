@@ -710,7 +710,6 @@
 "kRebindFacebook" = "You have connected to Facebook. Do you want to connect again?";
 
 "kRemoveAd" = "Remove Ad";
-"kRemoveAdByIAP" = "You just need to buy 400 coins to remove Ad";
 "kMessage" = "Message";
 "kAdRemoved" = "Removed";
 "kAdNotRemoved" = "Not Removed";

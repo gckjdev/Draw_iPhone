@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AccountService.h"
 #import <immobSDK/immobView.h>
-#import "AderSDK.h"
-#import "AderDelegateProtocal.h"
-#import "AdMoGoView.h"
-#import "WapsOffer/AppConnect.h"
-#import "GADBannerViewDelegate.h"
+//#import "AderSDK.h"
+//#import "AderDelegateProtocal.h"
+//#import "AdMoGoView.h"
+//#import "WapsOffer/AppConnect.h"
+//#import "GADBannerViewDelegate.h"
 
 typedef enum
 {
@@ -33,7 +33,7 @@ typedef enum
 
 @end
 
-@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate, AdMoGoDelegate, AderDelegateProtocal, GADBannerViewDelegate>
+@interface AdService : NSObject<UIAlertViewDelegate, AccountServiceDelegate, immobViewDelegate/*, AdMoGoDelegate, AderDelegateProtocal, GADBannerViewDelegate*/>
 {
     BOOL _isShowAd;
 }
@@ -43,7 +43,6 @@ typedef enum
 - (BOOL)isShowAd;
 - (void)setAdDisable;
 - (void)disableAd;
-- (void)removeAdByIAP;
 
 - (void)clearAdView:(UIView*)adView;
 
@@ -54,32 +53,32 @@ typedef enum
                 iPadFrame:(CGRect)iPadFrame
                   useLmAd:(BOOL)useLmAd;
 
-// the following is used before, don't use them
+//// the following is used before, don't use them
+//- (UIView*)createAdInView:(UIView*)superView
+//           adPlatformType:(AdPlatformType)adPlatformType
+//            adPublisherId:(NSString*)adPublisherId
+//                    frame:(CGRect)frame 
+//                iPadFrame:(CGRect)iPadFrame;
+//
+//// the following is used before, don't use them
 - (UIView*)createAdInView:(UIView*)superView
-           adPlatformType:(AdPlatformType)adPlatformType
-            adPublisherId:(NSString*)adPublisherId
                     frame:(CGRect)frame 
                 iPadFrame:(CGRect)iPadFrame;
-
-// the following is used before, don't use them
-- (UIView*)createAdInView:(UIView*)superView
-                    frame:(CGRect)frame 
-                iPadFrame:(CGRect)iPadFrame;
-
-// the following is used before, don't use them
-- (UIView*)createLmAdInView:(UIView*)superView
-                      frame:(CGRect)frame 
-                  iPadFrame:(CGRect)iPadFrame;
-
-// the following is used before, don't use them
-- (UIView*)createWanpuAdInView:(UIView*)superView
-                         frame:(CGRect)frame 
-                     iPadFrame:(CGRect)iPadFrame;
-
-// the following is used before, don't use them
-- (UIView*)createAdmobAdInView:(UIView*)superView
-                         frame:(CGRect)frame
-                     iPadFrame:(CGRect)iPadFrame;
+//
+//// the following is used before, don't use them
+//- (UIView*)createLmAdInView:(UIView*)superView
+//                      frame:(CGRect)frame 
+//                  iPadFrame:(CGRect)iPadFrame;
+//
+//// the following is used before, don't use them
+//- (UIView*)createWanpuAdInView:(UIView*)superView
+//                         frame:(CGRect)frame 
+//                     iPadFrame:(CGRect)iPadFrame;
+//
+//// the following is used before, don't use them
+//- (UIView*)createAdmobAdInView:(UIView*)superView
+//                         frame:(CGRect)frame
+//                     iPadFrame:(CGRect)iPadFrame;
 
 @property (nonatomic, retain) PPViewController* viewController;
 

@@ -163,32 +163,11 @@
 - (void)didConnected
 {
     [self postNotification:NOTIFICATION_NETWORK_CONNECTED message:nil];
-        
-/*    if (_connectionDelegate == nil)
-        return;
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        if ([_connectionDelegate respondsToSelector:@selector(didConnected)]){
-            [_connectionDelegate didConnected];
-        }
-    });*/
 }
 
 - (void)didBroken:(NSError *)error
 {
     [self postNotification:NOTIFICATION_NETWORK_DISCONNECTED error:error];
-    
-    /*
-    if (_connectionDelegate == nil)
-        return;
-    
-    dispatch_sync(dispatch_get_main_queue(), ^{                
-                
-        if (_connectionDelegate && [_connectionDelegate respondsToSelector:@selector(didBroken)]){
-            [_connectionDelegate didBroken];
-        }
-    });
-     */
 }
 
 #pragma mark Online User Count

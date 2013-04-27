@@ -378,8 +378,6 @@
     UIButton *button = (UIButton *)[self.view viewWithTag:TAG_TOOL_BUTTON];
     button.selected = NO;
     [CommonDiceItemAction useItem:item.type controller:self view:self.view];
-    
-//    [self useItem:item.type itemName:item.shortName userId:_userManager.userId];
 }
 
 - (NSArray *)getSortedUserIdListBeginWithOpenUser

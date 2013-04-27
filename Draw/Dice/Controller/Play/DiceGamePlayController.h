@@ -22,7 +22,6 @@
 #import "ChatView.h"
 #import "ExpressionManager.h"
 #import "DiceSoundManager.h"
-#import "DiceItemManager.h"
 #import "DiceRobotManager.h"
 #import "DiceBetView.h"
 #import "CommonInfoView.h"
