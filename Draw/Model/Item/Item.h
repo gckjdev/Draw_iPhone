@@ -8,17 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemType.h"
-//typedef enum {
-//    Bomb = 1, 
-//    Kit = 2
-//}ItemType;
+
 
 #define MATCH_SECECE
-
-//typedef enum {
-//    MyTurn = 0x1, 
-//    GamePlaying = 0x11
-//}UseScene;
 
 @interface Item : NSObject<NSCoding>
 {

@@ -76,6 +76,7 @@
 #import "AliPayManager.h"
 #import "PureDrawHomeController.h"
 #import "PhotoDrawHomeController.h"
+#import "SKProductService.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -324,6 +325,8 @@ NSString* GlobalGetBoardServerURL()
     [self initSNSService];
     
     [self.window makeKeyAndVisible];
+    
+    [[SKProductService defaultService] syncDataFromIAPService];
     
     // Fetch Server List At Background
 //    if (isDrawApp() == NO && isLearnDrawApp() == NO){

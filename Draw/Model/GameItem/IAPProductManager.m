@@ -29,7 +29,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
 - (id)init{
     if (self = [super init]) {
         NSBundle *bundle = [NSBundle mainBundle];
-        NSString *path = [bundle pathForResource:[IAPProductManager IAPProductFileName] ofType:IAP_PRODUCT_FILE_TYPE];
+        NSString *path = [bundle pathForResource:[IAPProductManager IAPProductFileNameWithoutSuffix] ofType:IAP_PRODUCT_FILE_TYPE];
         NSData *data = [NSData dataWithContentsOfFile:path];
         self.productList = [[PBIAPProductList parseFromData:data] productsList];
     }
@@ -57,6 +57,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
     }
     
     return nil;
+}
+
++ (NSString *)IAPProductFileNameWithoutSuffix
+{
+    return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]];
 }
 
 + (NSString *)IAPProductFileName

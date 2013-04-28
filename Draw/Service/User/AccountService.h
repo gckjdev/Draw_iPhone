@@ -17,8 +17,6 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
-@class PriceModel;
-@class ItemManager;
 @class AccountManager;
 
 typedef void (^SyncAccountResultHandler)(int resultCode);
@@ -37,7 +35,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 @interface AccountService : CommonService<SKPaymentTransactionObserver>
 {
-    ItemManager *_itemManager;
     AccountManager *_accountManager;
 }
 
@@ -91,7 +88,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 - (void)buyProduct:(PBIAPProduct*)product;
 
 // remove?
-- (void)buyRemoveAd;
 
 - (int)checkIn;
 

@@ -710,7 +710,6 @@
 "kRebindFacebook" = "You have connected to Facebook. Do you want to connect again?";
 
 "kRemoveAd" = "Remove Ad";
-"kRemoveAdByIAP" = "You just need to buy 400 coins to remove Ad";
 "kMessage" = "Message";
 "kAdRemoved" = "Removed";
 "kAdNotRemoved" = "Not Removed";
@@ -1299,13 +1298,13 @@
 "kPureDrawDraw" = "DRAW";
 "kPureDrawShop" = "SHOP";
 "kPureDrawOpus" = "WORKS";
-"kPureDrawFeedback" = "FEEDBACK";
+"kPureDrawFeedback" = "SUPPORT";
 
 //photo draw
 "kPhotoDrawDraw" = "DRAW ON PHOTO";
 "kPhotoDrawShop" = "SHOP";
-"kPhotoeDrawOpus" = "WORKS";
-"kPhotoDrawFeedback" = "FEEDBACK";
+"kPhotoDrawOpus" = "WORKS";
+"kPhotoDrawFeedback" = "SUPPORT";
 "kBlank" = "Blank";
 
 /*********************** 猜猜画画国际化字符串结束 *************************/
