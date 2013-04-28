@@ -17,7 +17,7 @@
 //#import "AdMoGoView.h"
 #import "UserManager.h"
 #import "HomeController.h"
-//#import "GADBannerView.h"
+#import "GADBannerView.h"
 
 #import "UserGameItemManager.h"
 #import "GameItemService.h"
