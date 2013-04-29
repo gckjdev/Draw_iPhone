@@ -18,7 +18,7 @@
 
 - (NSString*)gameId
 {
-    return PHOTO_DRAW_GAME_ID;
+    return PHOTO_DRAW_FREE_GAME_ID;
 }
 
 
