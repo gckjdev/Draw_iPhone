@@ -9,8 +9,7 @@
 #import "ChargeCell.h"
 #import "GameBasic.pb.h"
 #import "ShareImageManager.h"
-#import "SKProductManager.h"
-#import "SKProduct+LocalizedPrice.h"
+#import "PBIAPProduct+Utils.h"
 
 @interface ChargeCell()
 @property (retain, nonatomic) PBIAPProduct *product;
@@ -55,14 +54,8 @@
         self.productImageView.image = nil;
     } 
     
+    self.priceLabel.text = [product localizedPrice];
     
-    SKProduct *skProduct = [[SKProductManager defaultManager] productWithId:product.appleProductId];
-    NSString *localizePrice = skProduct.localizedPrice;
-    if ([localizePrice length] > 0) {
-        self.priceLabel.text = [NSString stringWithFormat:@"%@", localizePrice];
-    }else{
-        self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _product.currency, _product.totalPrice];
-    }
     self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
 
     

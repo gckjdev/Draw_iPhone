@@ -8239,6 +8239,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
 @property (retain) NSString* country;
 @property (retain) NSString* saving;
 @property (retain) NSString* taobaoUrl;
+@property (retain) NSMutableArray* mutablePricesList;
 @end
 
 @implementation PBIAPProduct
@@ -8320,6 +8321,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   hasTaobaoUrl_ = !!value;
 }
 @synthesize taobaoUrl;
+@synthesize mutablePricesList;
 - (void) dealloc {
   self.appleProductId = nil;
   self.alipayProductId = nil;
@@ -8330,6 +8332,7 @@ static PBGameItemList* defaultPBGameItemListInstance = nil;
   self.country = nil;
   self.saving = nil;
   self.taobaoUrl = nil;
+  self.mutablePricesList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -8359,6 +8362,13 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
 }
 - (PBIAPProduct*) defaultInstance {
   return defaultPBIAPProductInstance;
+}
+- (NSArray*) pricesList {
+  return mutablePricesList;
+}
+- (PBIAPProductPrice*) pricesAtIndex:(int32_t) index {
+  id value = [mutablePricesList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
   if (!self.hasType) {
@@ -8403,6 +8413,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (self.hasTaobaoUrl) {
     [output writeString:61 value:self.taobaoUrl];
   }
+  for (PBIAPProductPrice* element in self.pricesList) {
+    [output writeMessage:99 value:element];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -8444,6 +8457,9 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   }
   if (self.hasTaobaoUrl) {
     size += computeStringSize(61, self.taobaoUrl);
+  }
+  for (PBIAPProductPrice* element in self.pricesList) {
+    size += computeMessageSize(99, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -8553,6 +8569,12 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
   if (other.hasTaobaoUrl) {
     [self setTaobaoUrl:other.taobaoUrl];
   }
+  if (other.mutablePricesList.count > 0) {
+    if (result.mutablePricesList == nil) {
+      result.mutablePricesList = [NSMutableArray array];
+    }
+    [result.mutablePricesList addObjectsFromArray:other.mutablePricesList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -8621,6 +8643,12 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
       }
       case 490: {
         [self setTaobaoUrl:[input readString]];
+        break;
+      }
+      case 794: {
+        PBIAPProductPrice_Builder* subBuilder = [PBIAPProductPrice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addPrices:[subBuilder buildPartial]];
         break;
       }
     }
@@ -8800,6 +8828,330 @@ static PBIAPProduct* defaultPBIAPProductInstance = nil;
 - (PBIAPProduct_Builder*) clearTaobaoUrl {
   result.hasTaobaoUrl = NO;
   result.taobaoUrl = @"";
+  return self;
+}
+- (NSArray*) pricesList {
+  if (result.mutablePricesList == nil) { return [NSArray array]; }
+  return result.mutablePricesList;
+}
+- (PBIAPProductPrice*) pricesAtIndex:(int32_t) index {
+  return [result pricesAtIndex:index];
+}
+- (PBIAPProduct_Builder*) replacePricesAtIndex:(int32_t) index with:(PBIAPProductPrice*) value {
+  [result.mutablePricesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBIAPProduct_Builder*) addAllPrices:(NSArray*) values {
+  if (result.mutablePricesList == nil) {
+    result.mutablePricesList = [NSMutableArray array];
+  }
+  [result.mutablePricesList addObjectsFromArray:values];
+  return self;
+}
+- (PBIAPProduct_Builder*) clearPricesList {
+  result.mutablePricesList = nil;
+  return self;
+}
+- (PBIAPProduct_Builder*) addPrices:(PBIAPProductPrice*) value {
+  if (result.mutablePricesList == nil) {
+    result.mutablePricesList = [NSMutableArray array];
+  }
+  [result.mutablePricesList addObject:value];
+  return self;
+}
+@end
+
+@interface PBIAPProductPrice ()
+@property (retain) NSString* price;
+@property (retain) NSString* currency;
+@property (retain) NSString* country;
+@property (retain) NSString* saving;
+@end
+
+@implementation PBIAPProductPrice
+
+- (BOOL) hasPrice {
+  return !!hasPrice_;
+}
+- (void) setHasPrice:(BOOL) value {
+  hasPrice_ = !!value;
+}
+@synthesize price;
+- (BOOL) hasCurrency {
+  return !!hasCurrency_;
+}
+- (void) setHasCurrency:(BOOL) value {
+  hasCurrency_ = !!value;
+}
+@synthesize currency;
+- (BOOL) hasCountry {
+  return !!hasCountry_;
+}
+- (void) setHasCountry:(BOOL) value {
+  hasCountry_ = !!value;
+}
+@synthesize country;
+- (BOOL) hasSaving {
+  return !!hasSaving_;
+}
+- (void) setHasSaving:(BOOL) value {
+  hasSaving_ = !!value;
+}
+@synthesize saving;
+- (void) dealloc {
+  self.price = nil;
+  self.currency = nil;
+  self.country = nil;
+  self.saving = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.price = @"";
+    self.currency = @"";
+    self.country = @"";
+    self.saving = @"";
+  }
+  return self;
+}
+static PBIAPProductPrice* defaultPBIAPProductPriceInstance = nil;
++ (void) initialize {
+  if (self == [PBIAPProductPrice class]) {
+    defaultPBIAPProductPriceInstance = [[PBIAPProductPrice alloc] init];
+  }
+}
++ (PBIAPProductPrice*) defaultInstance {
+  return defaultPBIAPProductPriceInstance;
+}
+- (PBIAPProductPrice*) defaultInstance {
+  return defaultPBIAPProductPriceInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasPrice) {
+    [output writeString:1 value:self.price];
+  }
+  if (self.hasCurrency) {
+    [output writeString:2 value:self.currency];
+  }
+  if (self.hasCountry) {
+    [output writeString:11 value:self.country];
+  }
+  if (self.hasSaving) {
+    [output writeString:99 value:self.saving];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasPrice) {
+    size += computeStringSize(1, self.price);
+  }
+  if (self.hasCurrency) {
+    size += computeStringSize(2, self.currency);
+  }
+  if (self.hasCountry) {
+    size += computeStringSize(11, self.country);
+  }
+  if (self.hasSaving) {
+    size += computeStringSize(99, self.saving);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBIAPProductPrice*) parseFromData:(NSData*) data {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromData:data] build];
+}
++ (PBIAPProductPrice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBIAPProductPrice*) parseFromInputStream:(NSInputStream*) input {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromInputStream:input] build];
+}
++ (PBIAPProductPrice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIAPProductPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromCodedInputStream:input] build];
+}
++ (PBIAPProductPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIAPProductPrice*)[[[PBIAPProductPrice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIAPProductPrice_Builder*) builder {
+  return [[[PBIAPProductPrice_Builder alloc] init] autorelease];
+}
++ (PBIAPProductPrice_Builder*) builderWithPrototype:(PBIAPProductPrice*) prototype {
+  return [[PBIAPProductPrice builder] mergeFrom:prototype];
+}
+- (PBIAPProductPrice_Builder*) builder {
+  return [PBIAPProductPrice builder];
+}
+@end
+
+@interface PBIAPProductPrice_Builder()
+@property (retain) PBIAPProductPrice* result;
+@end
+
+@implementation PBIAPProductPrice_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBIAPProductPrice alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBIAPProductPrice_Builder*) clear {
+  self.result = [[[PBIAPProductPrice alloc] init] autorelease];
+  return self;
+}
+- (PBIAPProductPrice_Builder*) clone {
+  return [PBIAPProductPrice builderWithPrototype:result];
+}
+- (PBIAPProductPrice*) defaultInstance {
+  return [PBIAPProductPrice defaultInstance];
+}
+- (PBIAPProductPrice*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBIAPProductPrice*) buildPartial {
+  PBIAPProductPrice* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBIAPProductPrice_Builder*) mergeFrom:(PBIAPProductPrice*) other {
+  if (other == [PBIAPProductPrice defaultInstance]) {
+    return self;
+  }
+  if (other.hasPrice) {
+    [self setPrice:other.price];
+  }
+  if (other.hasCurrency) {
+    [self setCurrency:other.currency];
+  }
+  if (other.hasCountry) {
+    [self setCountry:other.country];
+  }
+  if (other.hasSaving) {
+    [self setSaving:other.saving];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBIAPProductPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBIAPProductPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setPrice:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setCurrency:[input readString]];
+        break;
+      }
+      case 90: {
+        [self setCountry:[input readString]];
+        break;
+      }
+      case 794: {
+        [self setSaving:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasPrice {
+  return result.hasPrice;
+}
+- (NSString*) price {
+  return result.price;
+}
+- (PBIAPProductPrice_Builder*) setPrice:(NSString*) value {
+  result.hasPrice = YES;
+  result.price = value;
+  return self;
+}
+- (PBIAPProductPrice_Builder*) clearPrice {
+  result.hasPrice = NO;
+  result.price = @"";
+  return self;
+}
+- (BOOL) hasCurrency {
+  return result.hasCurrency;
+}
+- (NSString*) currency {
+  return result.currency;
+}
+- (PBIAPProductPrice_Builder*) setCurrency:(NSString*) value {
+  result.hasCurrency = YES;
+  result.currency = value;
+  return self;
+}
+- (PBIAPProductPrice_Builder*) clearCurrency {
+  result.hasCurrency = NO;
+  result.currency = @"";
+  return self;
+}
+- (BOOL) hasCountry {
+  return result.hasCountry;
+}
+- (NSString*) country {
+  return result.country;
+}
+- (PBIAPProductPrice_Builder*) setCountry:(NSString*) value {
+  result.hasCountry = YES;
+  result.country = value;
+  return self;
+}
+- (PBIAPProductPrice_Builder*) clearCountry {
+  result.hasCountry = NO;
+  result.country = @"";
+  return self;
+}
+- (BOOL) hasSaving {
+  return result.hasSaving;
+}
+- (NSString*) saving {
+  return result.saving;
+}
+- (PBIAPProductPrice_Builder*) setSaving:(NSString*) value {
+  result.hasSaving = YES;
+  result.saving = value;
+  return self;
+}
+- (PBIAPProductPrice_Builder*) clearSaving {
+  result.hasSaving = NO;
+  result.saving = @"";
   return self;
 }
 @end
