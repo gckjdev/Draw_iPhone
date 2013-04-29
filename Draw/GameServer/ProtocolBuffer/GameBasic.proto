@@ -298,9 +298,8 @@ message PBIAPProduct{
   optional string desc = 8;                     // 产品描述
 
   optional int32 count = 11[default = 1];       // 个数
-  optional string totalPrice = 12;              // 总价格
-  
 
+  optional string totalPrice = 12;              // 总价格
   optional string currency = 21;                // 货币符号
   optional string country = 22;                 // 适应国家，中国"CN"
 
