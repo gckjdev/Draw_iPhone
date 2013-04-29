@@ -154,6 +154,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
     priceCN = [self cnPriceWithPrice:@"163" saving:@"35%"];
     priceUS = [self usPriceWithPrice:@"24.99" saving:@"35%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
                                    appleProductId:@"com.orange.draw.ingot_163"
                                   alipayProductId:@"draw_ingot_163"
@@ -624,7 +625,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:DICE_COIN_66000_TAOBAO_URL
                                         priceList:priceList]];
 
-    priceCN = [self cnPriceWithPrice:@"68" saving:@"50%"];
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"50%"];
     priceUS = [self usPriceWithPrice:@"24.99" saving:@"50%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
