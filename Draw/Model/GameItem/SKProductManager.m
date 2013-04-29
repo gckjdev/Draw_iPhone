@@ -8,6 +8,9 @@
 
 #import "SKProductManager.h"
 #import "SynthesizeSingleton.h"
+#import "SKProduct+LocalizedPrice.h"
+
+#define KEY_SKPRODUCT_LIST @"KEY_SKPRODUCT_LIST"
 
 @interface SKProductManager()
 
@@ -22,16 +25,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SKProductManager);
     [super dealloc];
 }
 
+- (id)init
+{
+    if (self = [super init]) {
+
+    }
+    
+    return self;
+}
+
 - (SKProduct *)productWithId:(NSString *)productId
 {
     for (SKProduct *product in _productList) {
-        if (product.productIdentifier == productId) {
+        NSString *productIdentifier = product.productIdentifier;
+        if ([productIdentifier isEqualToString:productId]) {
             return product;
         }
     }
     return nil;
 }
-
 
 
 @end

@@ -9,6 +9,8 @@
 #import "ChargeCell.h"
 #import "GameBasic.pb.h"
 #import "ShareImageManager.h"
+#import "SKProductManager.h"
+#import "SKProduct+LocalizedPrice.h"
 
 @interface ChargeCell()
 @property (retain, nonatomic) PBIAPProduct *product;
@@ -53,8 +55,16 @@
         self.productImageView.image = nil;
     } 
     
+    
+    SKProduct *skProduct = [[SKProductManager defaultManager] productWithId:product.appleProductId];
+    NSString *localizePrice = skProduct.localizedPrice;
+    if ([localizePrice length] > 0) {
+        self.priceLabel.text = [NSString stringWithFormat:@"%@", localizePrice];
+    }else{
+        self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _product.currency, _product.totalPrice];
+    }
     self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
-    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _product.currency, _product.totalPrice];
+
     
     if ([_product hasSaving] && [_product.saving length] != 0) {
         self.discountButton.hidden = NO;
