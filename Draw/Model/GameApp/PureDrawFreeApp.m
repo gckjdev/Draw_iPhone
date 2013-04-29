@@ -7,6 +7,7 @@
 //
 
 #import "PureDrawFreeApp.h"
+#import "PureDrawHomeController.h"
 
 @implementation PureDrawFreeApp
 
@@ -38,6 +39,16 @@
 }
 
 - (BOOL)canPayWithAlipay
+{
+    return NO;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[PureDrawHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }

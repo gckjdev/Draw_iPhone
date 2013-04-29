@@ -174,7 +174,7 @@
                                                       drawToUser:(PBUserBasicInfo *)drawToUser
                                                  bgImageFileName:(NSString *)bgImageFileName
 {
-    if ([drawActionList count] != 0) {
+    if ([drawActionList count] != 0 || [GameApp forceSaveDraft]) {
         PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         
         for (DrawAction *drawAction in drawActionList) {
@@ -193,16 +193,8 @@
         [builder setCanvasSize:CGSizeToPBSize(size)];
         [builder setVersion:[ConfigManager currentDrawDataVersion]];
         [builder setBgImageName:bgImageFileName];
-
-        
-        //TODO save the draw bg image and set the image name.
-        [NSString GetUUID];
-
-        //TODO set the bg image in to pbnocompressdrawdata
         
         PBNoCompressDrawData *nData = [builder build];
-        
-
         
         PPRelease(builder);
         return nData;

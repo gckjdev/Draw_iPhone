@@ -12,6 +12,7 @@
 #import "ConfigManager.h"
 #import "ZJHImageManager.h"
 #import "ZJHGameJumpHandler.h"
+#import "ZJHHomeViewController.H"
 
 @implementation ZJHGameApp
 
@@ -419,6 +420,16 @@
 }
 
 - (BOOL)canGift
+{
+    return NO;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[ZJHHomeViewController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }
