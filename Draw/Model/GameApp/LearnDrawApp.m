@@ -11,9 +11,7 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 #import "DrawGameJumpHandler.h"
-
-
-//Copy From DrawGameApp.m
+#import "LearnDrawHomeController.h"
 
 @implementation LearnDrawApp
 
@@ -45,6 +43,16 @@
 - (BOOL)canPayWithAlipay
 {
     return YES;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[LearnDrawHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
+{
+    return NO;
 }
 
 @end

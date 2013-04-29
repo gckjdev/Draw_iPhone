@@ -149,6 +149,19 @@
           withActionList:(NSMutableArray *)actionList
             isNewVersion:(BOOL)isNewVersion
                     size:(CGSize)size
+{
+    return [self showInController:controller
+                   withActionList:actionList
+                     isNewVersion:isNewVersion
+                             size:size
+                          bgImage:nil];
+}
+
+- (void)showInController:(PPViewController *)controller
+          withActionList:(NSMutableArray *)actionList
+            isNewVersion:(BOOL)isNewVersion
+                    size:(CGSize)size
+                 bgImage:(UIImage *)bgImage
 {    
     self.superController = controller;
     UIView *view = controller.view;
@@ -158,6 +171,10 @@
     self.center = view.center;
     
     self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(size) drawActionList:actionList delegate:self];
+    
+    if (bgImage) {
+        [self.showView setBGImage:bgImage];
+    }
     
     [self.showView setPressEnable:YES];
 

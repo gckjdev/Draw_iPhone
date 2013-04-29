@@ -11,6 +11,7 @@
 #import "ImageManagerProtocol.h"
 #import "GameJumpHandlerProtocol.h"
 #import "GameBasic.pb.h"
+#import "PPViewController.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -135,5 +136,9 @@
 - (BOOL)canPayWithAlipay;
 
 - (BOOL)canGift;
+
+- (PPViewController *)homeController;
+
+- (BOOL)forceSaveDraft;
 
 @end

@@ -47,8 +47,8 @@
     [self.feedbackButton setTitle:NSLS(@"kPhotoDrawFeedback") forState:UIControlStateNormal];
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
-                                                   iPadFrame:CGRectMake(0, 914, 320, 50)
-                                                     useLmAd:YES];
+                                                   iPadFrame:CGRectMake((768-320)/2, 914, 320, 50)
+                                                     useLmAd:NO];
 }
 
 - (void)viewDidUnload

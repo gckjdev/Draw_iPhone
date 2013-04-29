@@ -7,6 +7,7 @@
 //
 
 #import "PhotoDrawFreeApp.h"
+#import "PhotoDrawHomeController.h"
 
 @implementation PhotoDrawFreeApp
 
@@ -38,6 +39,16 @@
 }
 
 - (BOOL)canPayWithAlipay
+{
+    return YES;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[PhotoDrawHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }

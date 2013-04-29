@@ -35,6 +35,11 @@
             isNewVersion:(BOOL)isNewVersion
                     size:(CGSize)size;
 
+- (void)showInController:(PPViewController *)controller
+          withActionList:(NSMutableArray *)actionList
+            isNewVersion:(BOOL)isNewVersion
+                    size:(CGSize)size
+                 bgImage:(UIImage *)bgImage;
 
 - (void)setPlayControlsDisable:(BOOL)disable;
 

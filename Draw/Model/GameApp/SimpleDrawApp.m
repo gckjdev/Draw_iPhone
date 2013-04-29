@@ -425,4 +425,14 @@
     return NO;
 }
 
+- (PPViewController *)homeController
+{
+    return [[[PPViewController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
+{
+    return NO;
+}
+
 @end

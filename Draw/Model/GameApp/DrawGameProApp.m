@@ -8,6 +8,7 @@
 
 #import "DrawGameProApp.h"
 #import "MobClickUtils.h"
+#import "HomeController.h"
 
 @implementation DrawGameProApp
 
@@ -59,6 +60,16 @@
 - (BOOL)canGift
 {
     return YES;
+}
+
+- (PPViewController *)homeController;
+{
+    return [[[HomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
+{
+    return NO;
 }
 
 @end

@@ -337,9 +337,12 @@ typedef enum{
     ReplayView *replayView = [ReplayView createReplayView];
     NSMutableArray *actionList = [currentPaint drawActionList];
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    UIImage *bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];;
+    
     [replayView showInController:self withActionList:actionList
                     isNewVersion:isNewVersion
-                            size:currentPaint.canvasSize];
+                            size:currentPaint.canvasSize
+                         bgImage:bgImage];
     [self hideActivity];
 }
 
