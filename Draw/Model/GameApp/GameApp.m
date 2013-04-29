@@ -91,7 +91,7 @@ extern BOOL isPureDrawApp()
 
 extern BOOL isPureDrawFreeApp()
 {
-    return ([[GameApp gameId] isEqualToString:PURE_DRAW_FREE_GAME_ID]);
+    return ([[GameApp appId] isEqualToString:PURE_DRAW_FREE_APP_ID]);
 }
 
 extern BOOL isPhotoDrawApp()
@@ -101,7 +101,7 @@ extern BOOL isPhotoDrawApp()
 
 extern BOOL isPhotoDrawFreeApp()
 {
-    return ([[GameApp gameId] isEqualToString:PHOTO_DRAW_FREE_GAME_ID]);
+    return ([[GameApp appId] isEqualToString:PHOTO_DRAW_FREE_APP_ID]);
 }
 
 GameAppType gameAppType()
@@ -124,13 +124,13 @@ GameAppType gameAppType()
     if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]) {
         return GameAppTypePureDraw;
     }
-    if ([[GameApp gameId] isEqualToString:PURE_DRAW_FREE_GAME_ID]) {
+    if ([[GameApp appId] isEqualToString:PURE_DRAW_FREE_APP_ID]) {
         return GameAppTypePureDrawFree;
     }
     if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]) {
         return GameAppTypePhotoDraw;
     }
-    if ([[GameApp gameId] isEqualToString:PHOTO_DRAW_FREE_GAME_ID]) {
+    if ([[GameApp appId] isEqualToString:PHOTO_DRAW_FREE_APP_ID]) {
         return GameAppTypePhotoDrawFree;
     }
     return GameAppTypeUnknow;

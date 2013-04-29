@@ -44,9 +44,7 @@
 #define ZHAJINHUA_GAME_ID       @"Zhajinhua"
 #define LEARN_DRAW_GAME_ID      @"Learndraw"
 #define PURE_DRAW_GAME_ID       @"Puredraw"
-#define PURE_DRAW_FREE_GAME_ID  @"Puredrawfree"
 #define PHOTO_DRAW_GAME_ID      @"Photodraw"
-#define PHOTO_DRAW_FREE_GAME_ID @"Photodrawfree"
 
 // Umeng ID
 #define DRAW_UMENG_ID           @"4f83980852701565c500003a"

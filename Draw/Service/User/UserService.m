@@ -1383,6 +1383,7 @@ static UserService* _defaultUserService;
             UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
             if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
                 // this warning is OK
+                // leave this warning to check when home controller is changed
                 [rootController pushViewController:ruc animated:YES];
             }
             else{
