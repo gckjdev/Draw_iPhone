@@ -299,7 +299,7 @@ NSString* GlobalGetBoardServerURL()
     
     [self.window makeKeyAndVisible];
     
-//    [[SKProductService defaultService] syncDataFromIAPService];
+    [[SKProductService defaultService] syncDataFromIAPService];
     
     // Fetch Server List At Background
 //    if (isDrawApp() == NO && isLearnDrawApp() == NO){
