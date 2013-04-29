@@ -513,25 +513,13 @@ static AdService* _defaultService;
     }
     
     PPDebug(@"<createAdView>");
-//    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-//
-//    if ([self isShowWanpuAd] == YES){
-//        return [self createWanpuAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-//    }
+    return [self createAdmobAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
 
-//    if ([self isShowAderAd] == YES){
-//        return [self createAderAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-//    }
-//    
-//    
-//    if (useLmAd == NO || [self isShowLmAd] == NO){
-//        return [self createMangoAdInView:superViewContoller.view frame:frame iPadFrame:iPadFrame];
-//    }
     
-    return [self createLmAdInView:superViewContoller.view 
-                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
-                            frame:frame 
-                        iPadFrame:iPadFrame];            
+//    return [self createLmAdInView:superViewContoller.view 
+//                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+//                            frame:frame 
+//                        iPadFrame:iPadFrame];            
 }
 
 - (UIView*)createAdInView:(UIView*)superView
@@ -580,65 +568,64 @@ static AdService* _defaultService;
 //                        iPadFrame:iPadFrame];
 //}
 
-//- (void)loadAdmobView:(GADBannerView*)adView
-//{
-//    GADRequest* request = [[GADRequest alloc] init];
-//    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
-//    if ([[UserManager defaultManager] hasUser]){
-//        [adView loadRequest:request];
-//    }
-//    else{
-//        [adView loadRequest:nil];
-//    }
-//    [request release];
-//}
+- (void)loadAdmobView:(GADBannerView*)adView
+{
+    GADRequest* request = [[GADRequest alloc] init];
+    [request setGender:[[UserManager defaultManager] isUserMale] ? kGADGenderMale : kGADGenderFemale];
+    if ([[UserManager defaultManager] hasUser]){
+        [adView loadRequest:request];
+    }
+    else{
+        [adView loadRequest:nil];
+    }
+    [request release];
+}
 
-//- (UIView*)createAdmobAdInView:(UIView*)superView
-//                         frame:(CGRect)frame
-//                     iPadFrame:(CGRect)iPadFrame
-//{
-//    if ([self isShowAd] == NO){
-//        return nil;
-//    }
-//    
-//    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
-//        return nil;
-//    }
+- (UIView*)createAdmobAdInView:(UIView*)superView
+                         frame:(CGRect)frame
+                     iPadFrame:(CGRect)iPadFrame
+{
+    if ([self isShowAd] == NO){
+        return nil;
+    }
+    
+    if (frame.size.height == 0 && frame.size.width == 0 && [DeviceDetection isIPAD] == NO){
+        return nil;
+    }
 
-    // Create LM Ad View
-//    GADBannerView* adView = nil;
-//    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-//    
-//    if ([DeviceDetection isIPAD]){
-//        [adView setFrame:iPadFrame];
-//    }
-//    else{
-//        [adView setFrame:frame];
-//    }
-//    
-//              //   GADBannerView *adView =
-//              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-//              //   adView.rootViewController = self;
-//              //   adView.adUnitID = @"ID created when registering my app";
-//              //
-//              //   // Place the ad view onto the screen.
-//              //   [self.view addSubview:adView];
-//              //   [adView release];
-//              //
-//              //   // Request an ad without any additional targeting information.
-//              //   [adView loadRequest:nil];
-//              
-//    adView.tag = AD_VIEW_TAG;
-//    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-//    adView.adUnitID = [ConfigManager getAdMobId];
-//    adView.delegate = self;
-//    
-//    [self loadAdmobView:adView];
-//              
-//    [superView addSubview:adView];
-//    return adView;
-//
-//}
+    GADBannerView* adView = nil;
+    adView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    
+    if ([DeviceDetection isIPAD]){
+        [adView setFrame:iPadFrame];
+    }
+    else{
+        [adView setFrame:frame];
+    }
+    
+              //   GADBannerView *adView =
+              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+              //   adView.rootViewController = self;
+              //   adView.adUnitID = @"ID created when registering my app";
+              //
+              //   // Place the ad view onto the screen.
+              //   [self.view addSubview:adView];
+              //   [adView release];
+              //
+              //   // Request an ad without any additional targeting information.
+              //   [adView loadRequest:nil];
+              
+    adView.tag = AD_VIEW_TAG;
+    adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
+    adView.adUnitID = [ConfigManager getAdMobId];
+    adView.delegate = self;
+    
+    [self loadAdmobView:adView];
+              
+    [superView addSubview:adView];
+    return adView;
+
+}
 
 #pragma mark - Wanpu Delegates
 
@@ -654,18 +641,17 @@ static AdService* _defaultService;
 
 #pragma mark - AdMob Delegate
 
-//- (void)adViewDidReceiveAd:(GADBannerView *)view
-//{
-//    PPDebug(@"<adViewDidReceiveAd> success");
-//    
-//}
-//
-//- (void)adView:(GADBannerView *)view
-//didFailToReceiveAdWithError:(GADRequestError *)error;
-//{
-//    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
-////    [self loadAdmobView:view];
-//}
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    PPDebug(@"<adViewDidReceiveAd> success");
+    
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error;
+{
+    PPDebug(@"<didFailToReceiveAdWithError> error=%@", [error description]);
+//    [self loadAdmobView:view];
+}
 
 #pragma mark Click-Time Lifecycle Notifications
 
