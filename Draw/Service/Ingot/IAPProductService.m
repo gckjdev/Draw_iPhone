@@ -483,12 +483,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
     PBIAPProductPrice *priceCN;
-    PBIAPProductPrice *priceEN;
+    PBIAPProductPrice *priceUS;
     NSArray *priceList;
     
     priceCN = [self cnPriceWithPrice:@"12" saving:nil];
-    priceEN = [self usPriceWithPrice:@"1.99" saving:nil];
-    priceList = [NSArray arrayWithObjects:priceCN, priceEN, nil];
+    priceUS = [self usPriceWithPrice:@"1.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins1200"
                                   alipayProductId:@"zjh_coin_1200"
@@ -501,8 +501,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"15%"];
-    priceEN = [self usPriceWithPrice:@"2.99" saving:@"15%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceEN, nil];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"15%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins2400"
                                   alipayProductId:@"zjh_coin_2400"
@@ -514,8 +514,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         taobaoUrl:ZJH_COIN_18000_TAOBAO_URL                                        priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"33%"];
-    priceEN = [self usPriceWithPrice:@"9.99" saving:@"33%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceEN, nil];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"33%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins6000"
                                   alipayProductId:@"zjh_coin_6000"
@@ -528,8 +528,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                         priceList:priceList]];
 
     priceCN = [self cnPriceWithPrice:@"163" saving:@"50%"];
-    priceEN = [self usPriceWithPrice:@"24.99" saving:@"50%"];
-    priceList = [NSArray arrayWithObjects:priceCN, priceEN, nil];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"50%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
                                    appleProductId:@"com.orange.zjh.coins20000"
                                   alipayProductId:@"zjh_coin_20000"
