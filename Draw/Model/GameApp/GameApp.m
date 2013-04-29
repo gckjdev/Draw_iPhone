@@ -86,7 +86,7 @@ extern BOOL isLearnDrawApp()
 
 extern BOOL isPureDrawApp()
 {
-    return ([[GameApp gameId] isEqualToString:PURE_DRAW_GAME_ID]);
+    return ([[GameApp appId] isEqualToString:PURE_DRAW_APP_ID]);
 }
 
 extern BOOL isPureDrawFreeApp()
@@ -96,7 +96,7 @@ extern BOOL isPureDrawFreeApp()
 
 extern BOOL isPhotoDrawApp()
 {
-    return ([[GameApp gameId] isEqualToString:PHOTO_DRAW_GAME_ID]);
+    return ([[GameApp appId] isEqualToString:PHOTO_DRAW_APP_ID]);
 }
 
 extern BOOL isPhotoDrawFreeApp()
