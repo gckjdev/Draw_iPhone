@@ -150,6 +150,12 @@ static dispatch_once_t onceToken;
     }else if(isLearnDrawApp()){
         [self createLearnDrawTestConfigData];
     }
+    else if (isPureDrawApp() || isPureDrawFreeApp()){
+        [self createPureDrawTestConfigData];
+    }
+    else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
+        [self createPhotoDrawTestConfigData];
+    }
 }
 
 + (PBAppReward*)drawAppWithRewardAmount:rewardAmount
@@ -370,10 +376,12 @@ static dispatch_once_t onceToken;
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
     PBConfig_Builder* builder = [PBConfig builder];
-
-    PBAppReward* diceApp = [self oldDiceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-
+    
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    
     [builder addAppRewards:diceApp];
+    [builder addAppRewards:zjhApp];
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
@@ -383,6 +391,53 @@ static dispatch_once_t onceToken;
     NSString* version = @"1.0";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
++ (void)createPureDrawTestConfigData
+{
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+    
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    
+    [builder addAppRewards:diceApp];
+    [builder addAppRewards:zjhApp];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
++ (void)createPhotoDrawTestConfigData
+{
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+    
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    
+    [builder addAppRewards:diceApp];
+    [builder addAppRewards:zjhApp];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
 
 - (NSArray*)appRewardList
 {
