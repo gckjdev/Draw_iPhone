@@ -8,7 +8,7 @@
 
 #import "AccountService.h"
 #import "PPDebug.h"
-#import "ShoppingManager.h"
+//#import "ShoppingManager.h"
 #import "AccountManager.h"
 #import "GameNetworkConstants.h"
 #import "GameNetworkRequest.h"
@@ -33,6 +33,8 @@
 #import "UserGameItemService.h"
 #import "CommonMessageCenter.h"
 #import "BlockArray.h"
+#import "UIUtils.h"
+#import "SKProductManager.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -68,7 +70,6 @@ static AccountService* _defaultAccountService;
     self = [super init];
     
     self.blockArray = [[[BlockArray alloc] init] autorelease];
-    _itemManager = [ItemManager defaultManager];
     _accountManager = [AccountManager defaultManager];
     
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
@@ -476,16 +477,6 @@ transactionRecepit:(NSString*)transactionRecepit
     
 }
 
-
-- (void)buyRemoveAd
-{
-    // send request to Apple IAP Server and wait for result
-    NSString* productId = [GameApp removeAdProductId];
-    PPDebug(@"<buyRemoveAd> on productId=%@", productId);
-    SKPayment *payment = [SKPayment paymentWithProductIdentifier:productId];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-}
-
 - (void)restoreIAPPurchase
 {
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
@@ -650,7 +641,8 @@ transactionRecepit:(NSString*)transactionRecepit
 {
     // send request to Apple IAP Server and wait for result
     
-    SKProduct *selectedProduct = [[ShoppingManager defaultManager] productWithId:product.appleProductId];
+    SKProduct *selectedProduct = [[SKProductManager defaultManager] productWithId:product.appleProductId];
+
     
     PPDebug(@"<buyProduct> on product %@ price productId=%@",
             selectedProduct == nil ? product.appleProductId : [selectedProduct productIdentifier],

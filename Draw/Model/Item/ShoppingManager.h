@@ -21,7 +21,6 @@
 
 
 // coin price handling
-- (PriceModel*)findCoinPriceByProductId:(NSString*)productId;
 - (void)updateCoinSKProduct:(SKProduct*)product;
 
 - (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type;

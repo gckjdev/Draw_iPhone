@@ -420,4 +420,9 @@
     return NO;
 }
 
+- (BOOL)canGift
+{
+    return NO;
+}
+
 @end

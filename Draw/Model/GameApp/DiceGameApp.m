@@ -433,4 +433,9 @@
     return YES;
 }
 
+- (BOOL)canGift
+{
+    return NO;
+}
+
 @end

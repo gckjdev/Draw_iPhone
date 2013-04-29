@@ -56,4 +56,9 @@
     return YES;
 }
 
+- (BOOL)canGift
+{
+    return YES;
+}
+
 @end

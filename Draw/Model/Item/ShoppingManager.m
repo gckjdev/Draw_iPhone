@@ -62,18 +62,6 @@ static ShoppingManager *staticShoppingManager = nil;
     return [self findPriceListByType:SHOPPING_ITEM_TYPE];
 }
 
-- (PriceModel*)findCoinPriceByProductId:(NSString*)productId
-{
-    NSArray* coinPriceList = [self findCoinPriceList];        
-    for (PriceModel* price in coinPriceList){
-        if ([[price productId] isEqualToString:productId]){
-            return price;
-        }
-    }    
-    
-    return nil;
-}
-
 - (void)updateCoinSKProduct:(SKProduct*)product
 {
     if (product == nil)
@@ -86,33 +74,6 @@ static ShoppingManager *staticShoppingManager = nil;
 {
     return [self findPriceListByType:type];
 }
-
-//- (NSArray *)getShoppingListByType:(SHOPPING_MODEL_TYPE)type
-//{
-//    // TODO, read data locally
-//    
-//    
-//    // Test, simulate data here, shall read from local storage
-//    NSMutableArray *array = [[[NSMutableArray alloc] init]autorelease];
-//
-//    ShoppingModel *model1 = [[[ShoppingModel alloc] initWithType:type 
-//                                                         count:400 
-//                                                         price:0
-//                                                    savePercen:0
-//                                                     productId:@"com.orange.draw.coins_400"] autorelease];
-//    
-//    ShoppingModel *model2 = [[[ShoppingModel alloc] initWithType:type 
-//                                                           count:1200 
-//                                                           price:0
-//                                                      savePercen:0
-//                                                       productId:@"com.orange.draw.coins_1200"] autorelease];
-//
-//    [array addObject:model1];
-//    [array addObject:model2]; 
-//    
-//    self.coinPriceList = array;    
-//    return array;
-//}
 
 - (void)createPriceModel:(int)type
                    price:(double)price
@@ -158,8 +119,6 @@ static ShoppingManager *staticShoppingManager = nil;
         NSNumber * value = [dictionary objectForKey:PARA_SHOPPING_VALUE];
         NSString * productId = [dictionary objectForKey:PARA_APPLE_IAP_PRODUCT_ID];
         NSNumber * savePercent = [dictionary objectForKey:PARA_SAVE_PERCENT];
-//        ShoppingModel *model = [[ShoppingModel alloc] initWithType:type count:amount.integerValue price:value.floatValue savePercen:0 productId:productId];
-//        [array addObject:model];
         
         [self createPriceModel:type
                          price:value.floatValue
@@ -168,7 +127,6 @@ static ShoppingManager *staticShoppingManager = nil;
                      productId:productId
                            seq:seq];
         seq ++;
-//        [model release];
     }
     return array;
 }

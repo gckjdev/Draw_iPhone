@@ -720,7 +720,6 @@
 
 "kRemoveAd" = "廣告攔截器";
 
-"kRemoveAdByIAP" = "你只需要購買400個金幣即可直接移除廣告，確認嗎？";
 "kMessage" = "消息";
 "kAdRemoved" = "已移除";
 "kAdNotRemoved" = "待移除";

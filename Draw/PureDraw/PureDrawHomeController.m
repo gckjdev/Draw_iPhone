@@ -53,7 +53,7 @@
     
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
-                                                   iPadFrame:CGRectMake(224, 954, 320, 50)
+                                                   iPadFrame:CGRectMake(0, 914, 320, 50)
                                                      useLmAd:YES];
 }
 
@@ -83,7 +83,8 @@
     if ([list count] == 0) {
         return;
     }
-    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
+    NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
+    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
 }
 
 @end
