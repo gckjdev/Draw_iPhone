@@ -602,19 +602,7 @@ static AdService* _defaultService;
     else{
         [adView setFrame:frame];
     }
-    
-              //   GADBannerView *adView =
-              //       [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-              //   adView.rootViewController = self;
-              //   adView.adUnitID = @"ID created when registering my app";
-              //
-              //   // Place the ad view onto the screen.
-              //   [self.view addSubview:adView];
-              //   [adView release];
-              //
-              //   // Request an ad without any additional targeting information.
-              //   [adView loadRequest:nil];
-              
+                  
     adView.tag = AD_VIEW_TAG;
     adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
     adView.adUnitID = [ConfigManager getAdMobId];
