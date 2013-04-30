@@ -12,6 +12,9 @@
 #import "GameJumpHandlerProtocol.h"
 #import "GameBasic.pb.h"
 #import "PPViewController.h"
+#import "GameConfigDataManager.h"
+#import "PPSmartUpdateDataUtils.h"
+#import "Config.pb.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -140,5 +143,9 @@
 - (PPViewController *)homeController;
 
 - (BOOL)forceSaveDraft;
+
+- (void)HandleWithDidFinishLaunching;
+
+- (void)createConfigData;
 
 @end

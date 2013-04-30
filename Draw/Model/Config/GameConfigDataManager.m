@@ -141,24 +141,25 @@ static dispatch_once_t onceToken;
 
 + (void)createTestConfigData
 {
-    if (isDrawApp()) {
-        [self createDrawTestConfigData];
-    }else if(isZhajinhuaApp()){
-        [self createZJHTestConfigData];
-    }else if(isDiceApp()){
-        [self createDiceTestConfigData];
-    }else if(isLearnDrawApp()){
-        [self createLearnDrawTestConfigData];
-    }
-    else if (isPureDrawApp() || isPureDrawFreeApp()){
-        [self createPureDrawTestConfigData];
-    }
-    else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
-        [self createPhotoDrawTestConfigData];
-    }
+    [GameApp createConfigData];
+//    if (isDrawApp()) {
+//        [self createDrawTestConfigData];
+//    }else if(isZhajinhuaApp()){
+//        [self createZJHTestConfigData];
+//    }else if(isDiceApp()){
+//        [self createDiceTestConfigData];
+//    }else if(isLearnDrawApp()){
+//        [self createLearnDrawTestConfigData];
+//    }
+//    else if (isPureDrawApp() || isPureDrawFreeApp()){
+//        [self createPureDrawTestConfigData];
+//    }
+//    else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
+//        [self createPhotoDrawTestConfigData];
+//    }
 }
 
-+ (PBAppReward*)drawAppWithRewardAmount:rewardAmount
++ (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画"
                                                            nameEn:@"Draw lively"
@@ -172,7 +173,7 @@ static dispatch_once_t onceToken;
     return drawApp;
 }
 
-+ (PBAppReward*)diceAppWithRewardAmount:rewardAmount
++ (PBAppReward*)diceAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰"
                                                            nameEn:@"Liar Dice"
@@ -188,7 +189,7 @@ static dispatch_once_t onceToken;
 
 
 
-+ (PBAppReward*)zjhAppWithRewardAmount:rewardAmount
++ (PBAppReward*)zjhAppWithRewardAmount:(int)rewardAmount
                         rewardCurrency:(PBGameCurrency)rewardCurrency{
     
     PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花"
@@ -202,7 +203,7 @@ static dispatch_once_t onceToken;
     return zjhApp;
 }
 
-+ (PBAppReward*)oldDiceAppWithRewardAmount:rewardAmount
++ (PBAppReward*)oldDiceAppWithRewardAmount:(int)rewardAmount
                             rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰"
                                                            nameEn:@"Happy Liar Dice"

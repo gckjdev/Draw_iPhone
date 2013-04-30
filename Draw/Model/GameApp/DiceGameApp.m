@@ -15,6 +15,7 @@
 #import "FileUtil.h"
 #import "DiceGameJumpHandler.h"
 #import "DiceHomeController.h"
+#import "CommonHelpManager.h"
 
 @implementation DiceGameApp
 
@@ -441,6 +442,42 @@
 - (BOOL)forceSaveDraft
 {
     return NO;
+}
+
+- (void)HandleWithDidFinishLaunching
+{
+    [DiceFontManager unZipFiles];
+    
+    [[CommonHelpManager defaultManager] unzipHelpFiles];
+}
+
+- (void)createConfigData
+{
+    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
+    
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* drawApp = [GameConfigDataManager drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
+    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:2500 rewardCurrency:PBGameCurrencyCoin];
+    
+    PBRewardWall* limei = [GameConfigDataManager limeiWall];
+    PBRewardWall* ader = [GameConfigDataManager aderWall];
+    
+    [builder addAppRewards:drawApp];
+    [builder addAppRewards:zjhApp];
+    
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:ader];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 @end
