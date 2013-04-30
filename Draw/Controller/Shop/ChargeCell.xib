@@ -85,7 +85,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">x 180000</string>
+								<string key="IBUIText">x18000</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40IDAuMjYyNzQ1MDk4IDAuMDk4MDM5MjE1NjkAA</bytes>
@@ -96,11 +96,11 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumScaleFactor">0.5</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="376107132">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="344942685">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
@@ -109,7 +109,7 @@
 							<object class="IBUILabel" id="243298934">
 								<reference key="NSNextResponder" ref="349553001"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{125, 30}, {56, 21}}</string>
+								<string key="NSFrame">{{125, 30}, {60, 21}}</string>
 								<reference key="NSSuperview" ref="349553001"/>
 								<reference key="NSNextKeyView" ref="76260091"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -119,7 +119,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">CN¥180.00</string>
+								<string key="IBUIText">$12.00</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC41NzI1NDkwMTk2IDAuMzEzNzI1NDkwMiAwAA</bytes>
@@ -128,15 +128,8 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumScaleFactor">0.5</float>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">12</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">12</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="376107132"/>
+								<reference key="IBUIFont" ref="344942685"/>
 							</object>
 							<object class="IBUIButton" id="109221860">
 								<reference key="NSNextResponder" ref="349553001"/>
