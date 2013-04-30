@@ -21,12 +21,16 @@
 + (NSString *)shopItemsFileVersion;
 
 - (void)setItemsList:(NSArray *)itemsList;
-- (NSArray *)itemsList;
 
+
+- (NSArray *)itemsList;
 - (NSArray *)itemsListWithType:(int)type;
 - (NSArray *)promotingItemsList;
-- (PBGameItem *)itemWithItemId:(int)itemId;
 
+
+
+
+- (PBGameItem *)itemWithItemId:(int)itemId;
 - (int)priceWithItemId:(int)itemId;
 - (PBGameCurrency)currencyWithItemId:(int)itemId;
 
