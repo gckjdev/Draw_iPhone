@@ -55,7 +55,25 @@
 
 - (void)HandleWithDidFinishLaunching
 {
+    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
+    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
+    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
     
+    PBConfig_Builder* builder = [PBConfig builder];
+    
+    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    
+    [builder addAppRewards:diceApp];
+    [builder addAppRewards:zjhApp];
+    
+    PBConfig* config = [builder build];
+    NSData* data = [config data];
+    
+    [data writeToFile:path atomically:YES];
+    
+    NSString* version = @"1.0";
+    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 @end
