@@ -169,6 +169,9 @@
 
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel
 {
+    color = [DrawColor colorWithColor:color];
+    color.alpha = 1;
+    
     if (updateModel) {
         [[DrawColorManager sharedDrawColorManager] updateColorListWithColor:color];
     }
