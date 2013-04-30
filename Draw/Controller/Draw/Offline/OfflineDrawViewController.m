@@ -519,7 +519,8 @@
                                        language:languageType
                                      canvasSize:drawView.bounds.size
                                  drawActionList:drawView.drawActionList
-                                    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
+                                    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]
+                                        bgImage:_bgImage];
 }
 
 - (void)stopRecovery
@@ -536,7 +537,7 @@
     if (![self supportRecovery])
         return;
 
-    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList bgImage:_bgImage];
+    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
 - (void)startBackupTimer
@@ -792,7 +793,7 @@
         return;
     }
     
-    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList bgImage:_bgImage];
+    [[DrawRecoveryService defaultService] handleNewPaintDrawed:view.drawActionList];
 
     return;
 }

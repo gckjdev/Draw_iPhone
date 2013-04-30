@@ -12,6 +12,18 @@
 
 static NSObject<GameAppProtocol>* currentApp;
 
+NSObject<ContentGameAppProtocol>* getContentGameApp()
+{
+    NSObject<GameAppProtocol>* app = getGameApp();
+    if ([app conformsToProtocol:@protocol(ContentGameAppProtocol)]){
+        return (NSObject<ContentGameAppProtocol>*)app;
+    }
+    else{
+        PPDebug(@"WANRING, get content game app but app is not content game!!!");
+        return nil;
+    }
+}
+
 NSObject<GameAppProtocol>* getGameApp()
 {
     if (currentApp != nil)
