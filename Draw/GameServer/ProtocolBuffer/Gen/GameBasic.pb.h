@@ -21,6 +21,8 @@
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
+@class PBIAPProductPrice;
+@class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
@@ -2030,6 +2032,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   NSString* saving;
   NSString* taobaoUrl;
   PBIAPProductType type;
+  NSMutableArray* mutablePricesList;
 }
 - (BOOL) hasType;
 - (BOOL) hasAppleProductId;
@@ -2053,6 +2056,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly, retain) NSString* country;
 @property (readonly, retain) NSString* saving;
 @property (readonly, retain) NSString* taobaoUrl;
+- (NSArray*) pricesList;
+- (PBIAPProductPrice*) pricesAtIndex:(int32_t) index;
 
 + (PBIAPProduct*) defaultInstance;
 - (PBIAPProduct*) defaultInstance;
@@ -2142,6 +2147,88 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) taobaoUrl;
 - (PBIAPProduct_Builder*) setTaobaoUrl:(NSString*) value;
 - (PBIAPProduct_Builder*) clearTaobaoUrl;
+
+- (NSArray*) pricesList;
+- (PBIAPProductPrice*) pricesAtIndex:(int32_t) index;
+- (PBIAPProduct_Builder*) replacePricesAtIndex:(int32_t) index with:(PBIAPProductPrice*) value;
+- (PBIAPProduct_Builder*) addPrices:(PBIAPProductPrice*) value;
+- (PBIAPProduct_Builder*) addAllPrices:(NSArray*) values;
+- (PBIAPProduct_Builder*) clearPricesList;
+@end
+
+@interface PBIAPProductPrice : PBGeneratedMessage {
+@private
+  BOOL hasPrice_:1;
+  BOOL hasCurrency_:1;
+  BOOL hasCountry_:1;
+  BOOL hasSaving_:1;
+  NSString* price;
+  NSString* currency;
+  NSString* country;
+  NSString* saving;
+}
+- (BOOL) hasPrice;
+- (BOOL) hasCurrency;
+- (BOOL) hasCountry;
+- (BOOL) hasSaving;
+@property (readonly, retain) NSString* price;
+@property (readonly, retain) NSString* currency;
+@property (readonly, retain) NSString* country;
+@property (readonly, retain) NSString* saving;
+
++ (PBIAPProductPrice*) defaultInstance;
+- (PBIAPProductPrice*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBIAPProductPrice_Builder*) builder;
++ (PBIAPProductPrice_Builder*) builder;
++ (PBIAPProductPrice_Builder*) builderWithPrototype:(PBIAPProductPrice*) prototype;
+
++ (PBIAPProductPrice*) parseFromData:(NSData*) data;
++ (PBIAPProductPrice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIAPProductPrice*) parseFromInputStream:(NSInputStream*) input;
++ (PBIAPProductPrice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIAPProductPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBIAPProductPrice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBIAPProductPrice_Builder : PBGeneratedMessage_Builder {
+@private
+  PBIAPProductPrice* result;
+}
+
+- (PBIAPProductPrice*) defaultInstance;
+
+- (PBIAPProductPrice_Builder*) clear;
+- (PBIAPProductPrice_Builder*) clone;
+
+- (PBIAPProductPrice*) build;
+- (PBIAPProductPrice*) buildPartial;
+
+- (PBIAPProductPrice_Builder*) mergeFrom:(PBIAPProductPrice*) other;
+- (PBIAPProductPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBIAPProductPrice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasPrice;
+- (NSString*) price;
+- (PBIAPProductPrice_Builder*) setPrice:(NSString*) value;
+- (PBIAPProductPrice_Builder*) clearPrice;
+
+- (BOOL) hasCurrency;
+- (NSString*) currency;
+- (PBIAPProductPrice_Builder*) setCurrency:(NSString*) value;
+- (PBIAPProductPrice_Builder*) clearCurrency;
+
+- (BOOL) hasCountry;
+- (NSString*) country;
+- (PBIAPProductPrice_Builder*) setCountry:(NSString*) value;
+- (PBIAPProductPrice_Builder*) clearCountry;
+
+- (BOOL) hasSaving;
+- (NSString*) saving;
+- (PBIAPProductPrice_Builder*) setSaving:(NSString*) value;
+- (PBIAPProductPrice_Builder*) clearSaving;
 @end
 
 @interface PBIAPProductList : PBGeneratedMessage {

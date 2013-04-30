@@ -9,6 +9,7 @@
 #import "ChargeCell.h"
 #import "GameBasic.pb.h"
 #import "ShareImageManager.h"
+#import "PBIAPProduct+Utils.h"
 
 @interface ChargeCell()
 @property (retain, nonatomic) PBIAPProduct *product;
@@ -53,8 +54,10 @@
         self.productImageView.image = nil;
     } 
     
+    self.priceLabel.text = [product localizedPrice];
+    
     self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
-    self.priceLabel.text = [NSString stringWithFormat:@"%@%@", _product.currency, _product.totalPrice];
+
     
     if ([_product hasSaving] && [_product.saving length] != 0) {
         self.discountButton.hidden = NO;

@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>PureDraw_57.png</string>
-		<string>PureDraw_114.png</string>
-		<string>PureDraw_50.png</string>
-		<string>PureDraw_72.png</string>
+		<string>PureDrawFree_57.png</string>
+		<string>PureDrawFree_114.png</string>
+		<string>PureDrawFree_50.png</string>
+		<string>PureDrawFree_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.puredrawfree</string>

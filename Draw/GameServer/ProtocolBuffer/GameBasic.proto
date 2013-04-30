@@ -298,15 +298,23 @@ message PBIAPProduct{
   optional string desc = 8;                     // 产品描述
 
   optional int32 count = 11[default = 1];       // 个数
-  optional string totalPrice = 12;              // 总价格
-  
 
-  optional string currency = 21;                // 货币符号
-  optional string country = 22;                 // 适应国家，中国"CN"
+  optional string totalPrice = 12;              // 总价格(default，默认的，必须要有这个字段)
+  optional string currency = 21;                // 货币符号(default，默认的，必须要有这个字段)
+  optional string country = 22;                 // 适应国家，如中国"CN"(default，默认的，必须要有这个字段)
+  optional string saving = 50;                  // 节省百分比，如"50%"(default，默认的，必须要有这个字段)
 
-  optional string saving = 50;                  // 节省百分比，如"50%"
-  
   optional string taobaoUrl = 61;               // 对应的淘宝链接
+  
+  repeated PBIAPProductPrice prices = 99;       // 总价格
+}
+
+message PBIAPProductPrice{
+  optional string price = 1;                   // 总价格
+  optional string currency = 2;                // 货币符号
+  optional string country = 11;                // 适应国家，中国"CN"
+  
+  optional string saving = 99;                 // 节省百分比，如"50%"
 }
 
 message PBIAPProductList{

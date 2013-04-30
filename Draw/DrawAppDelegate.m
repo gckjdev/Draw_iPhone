@@ -46,7 +46,6 @@
 #import "WordManager.h"
 #import "DiceFontManager.h"
 #import "DiceSoundManager.h"
-#import "DiceHomeController.h"
 #import "CommonHelpManager.h"
 #import "BoardService.h"
 
@@ -63,7 +62,6 @@
 #import "PPFacebookService.h"
 
 #import "GameConfigDataManager.h"
-#import "ZJHHomeViewController.h"
 #import "BulletinService.h"
 #import "PPSmartUpdateDataUtils.h"
 
@@ -72,10 +70,7 @@
 #import "GameAdWallService.h"
 #import "GameItemService.h"
 #import "IAPProductService.h"
-#import "LearnDrawHomeController.h"
 #import "AliPayManager.h"
-#import "PureDrawHomeController.h"
-#import "PhotoDrawHomeController.h"
 #import "SKProductService.h"
 
 NSString* GlobalGetServerURL()
@@ -113,18 +108,15 @@ NSString* GlobalGetBoardServerURL()
 @synthesize reviewRequest = _reviewRequest;
 @synthesize networkDetector = _networkDetector;
 @synthesize chatDetailController = _chatDetailController;
-@synthesize diceHomeController = _diceHomeController;
 
 - (void)dealloc
 {
-    PPRelease(_diceHomeController);
     PPRelease(_reviewRequest);
     PPRelease(_homeController);
     PPRelease(_roomController);
     PPRelease(_window);
     PPRelease(_viewController);
     PPRelease(_chatDetailController);
-    PPRelease(_learnDrawHomeController);
     [super dealloc];
 }
 
@@ -275,35 +267,16 @@ NSString* GlobalGetBoardServerURL()
     }
 
     // Init Home Controller As Root View Controller
-    // TODO refactor the following code into GameApp
-    PPViewController* rootController = nil;
-    if (isDiceApp()){
-        self.diceHomeController = [[[DiceHomeController alloc] init] autorelease];
-        rootController = _diceHomeController;
-    }else if (isZhajinhuaApp())
-    {
-        ZJHHomeViewController *controller = [[[ZJHHomeViewController alloc] init] autorelease];
-        rootController = controller;
-    }else if (isLearnDrawApp())
-    {
-        LearnDrawHomeController *controller = [[[LearnDrawHomeController alloc] init] autorelease];
-        rootController = controller;
-    }else if(isPureDrawApp() || isPureDrawFreeApp()){
-        PureDrawHomeController *controller = [[[PureDrawHomeController alloc] init] autorelease];
-        rootController = controller;
-    }else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
-        PhotoDrawHomeController *controller = [[[PhotoDrawHomeController alloc] init] autorelease];
-        rootController = controller;
-    } else{
-        self.homeController = [[[HomeController alloc] init] autorelease];
-        rootController = _homeController;
+    PPViewController* rootController = [GameApp homeController];
+    if (isDrawApp()) {
+        self.homeController = (HomeController *)rootController;
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NotificationType type = [NotificationManager typeForUserInfo:userInfo];
     
     PPDebug(@"<AppDelegate> notification type = %d", type);
-    self.homeController.notificationType = type;
+    _homeController.notificationType = type;
     
     UINavigationController* navigationController = [[[UINavigationController alloc] 
                                                      initWithRootViewController:rootController] 
@@ -327,13 +300,6 @@ NSString* GlobalGetBoardServerURL()
     [self.window makeKeyAndVisible];
     
     [[SKProductService defaultService] syncDataFromIAPService];
-    
-    // Fetch Server List At Background
-//    if (isDrawApp() == NO && isLearnDrawApp() == NO){
-//        // no longer used for Draw App
-//        // TODO can be removed after ZJH and DICE is used new item & shop design PB files
-//        [[PriceService defaultService] syncShoppingListAtBackground];
-//    }
     
     [[AccountService defaultService] retryVerifyReceiptAtBackground];
     
@@ -414,7 +380,7 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     [[IAPProductService defaultService] syncData:NULL];
-    
+        
     if ([GameApp isAutoRegister]){
         [[UserService defaultService] autoRegisteration:nil];
     }

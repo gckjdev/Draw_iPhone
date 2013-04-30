@@ -7,6 +7,7 @@
 //
 
 #import "PhotoDrawFreeApp.h"
+#import "PhotoDrawHomeController.h"
 
 @implementation PhotoDrawFreeApp
 
@@ -17,7 +18,7 @@
 
 - (NSString*)gameId
 {
-    return PHOTO_DRAW_GAME_ID;
+    return PHOTO_DRAW_FREE_GAME_ID;
 }
 
 
@@ -38,6 +39,16 @@
 }
 
 - (BOOL)canPayWithAlipay
+{
+    return YES;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[PhotoDrawHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }

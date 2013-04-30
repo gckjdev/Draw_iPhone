@@ -11,7 +11,7 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 #import "DrawGameJumpHandler.h"
-
+#import "HomeController.h"
 
 @implementation DrawGameApp
 
@@ -420,6 +420,16 @@
 - (BOOL)canGift
 {
     return YES;
+}
+
+- (PPViewController *)homeController;
+{
+    return [[[HomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
+{
+    return NO;
 }
 
 @end

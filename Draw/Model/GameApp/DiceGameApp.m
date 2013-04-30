@@ -9,17 +9,12 @@
 #import "DiceGameApp.h"
 #import "MobClickUtils.h"
 #import "DiceChatMsgManager.h"
-
-
 #import "DiceImageManager.h"
-
 #import "DiceFontManager.h"
 #import "ConfigManager.h"
-
 #import "FileUtil.h"
 #import "DiceGameJumpHandler.h"
-
-
+#import "DiceHomeController.h"
 
 @implementation DiceGameApp
 
@@ -434,6 +429,16 @@
 }
 
 - (BOOL)canGift
+{
+    return NO;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[DiceHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }

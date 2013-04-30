@@ -23,6 +23,8 @@
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
+@class PBIAPProductPrice;
+@class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;

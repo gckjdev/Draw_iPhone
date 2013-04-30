@@ -7,6 +7,7 @@
 //
 
 #import "PureDrawFreeApp.h"
+#import "PureDrawHomeController.h"
 
 @implementation PureDrawFreeApp
 
@@ -17,7 +18,7 @@
 
 - (NSString*)gameId
 {
-    return PURE_DRAW_GAME_ID;
+    return PURE_DRAW_FREE_GAME_ID;
 }
 
 
@@ -38,6 +39,16 @@
 }
 
 - (BOOL)canPayWithAlipay
+{
+    return NO;
+}
+
+- (PPViewController *)homeController
+{
+    return [[[PureDrawHomeController alloc] init] autorelease];
+}
+
+- (BOOL)forceSaveDraft
 {
     return NO;
 }
