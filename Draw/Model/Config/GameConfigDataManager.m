@@ -141,18 +141,10 @@ static dispatch_once_t onceToken;
 
 + (void)createTestConfigData
 {
-    if (isDrawApp()) {
-        [self createDrawTestConfigData];
-    }else if(isZhajinhuaApp()){
-        [self createZJHTestConfigData];
-    }else if(isDiceApp()){
-        [self createDiceTestConfigData];
-    }else if(isLearnDrawApp()){
-        [self createLearnDrawTestConfigData];
-    }
+    [GameApp createConfigData];
 }
 
-+ (PBAppReward*)drawAppWithRewardAmount:rewardAmount
++ (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画"
                                                            nameEn:@"Draw lively"
@@ -166,7 +158,7 @@ static dispatch_once_t onceToken;
     return drawApp;
 }
 
-+ (PBAppReward*)diceAppWithRewardAmount:rewardAmount
++ (PBAppReward*)diceAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"夜店大话骰"
                                                            nameEn:@"Liar Dice"
@@ -182,7 +174,7 @@ static dispatch_once_t onceToken;
 
 
 
-+ (PBAppReward*)zjhAppWithRewardAmount:rewardAmount
++ (PBAppReward*)zjhAppWithRewardAmount:(int)rewardAmount
                         rewardCurrency:(PBGameCurrency)rewardCurrency{
     
     PBAppReward* zjhApp = [GameConfigDataManager createAppReward:@"诈金花"
@@ -196,7 +188,7 @@ static dispatch_once_t onceToken;
     return zjhApp;
 }
 
-+ (PBAppReward*)oldDiceAppWithRewardAmount:rewardAmount
++ (PBAppReward*)oldDiceAppWithRewardAmount:(int)rewardAmount
                             rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* diceApp = [GameConfigDataManager createAppReward:@"欢乐大话骰"
                                                            nameEn:@"Happy Liar Dice"
@@ -265,123 +257,6 @@ static dispatch_once_t onceToken;
                                                             logo:@""];
     
     return tapjoy;
-}
-
-+ (void)createDrawTestConfigData
-{
-//    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/"; 
-    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
-
-    PBConfig_Builder* builder = [PBConfig builder];
-
-    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
-//    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
-    
-    PBRewardWall* limei = [self limeiWall];
-    PBRewardWall* youmi = [self youmiWall];
-    PBRewardWall* ader = [self aderWall];
-    PBRewardWall* domod = [self domodWall];
-    PBRewardWall* tapjoy = [self tapjoyWall];
-    
-    [builder addAppRewards:zjhApp];
-    [builder addAppRewards:diceApp];
-
-    [builder addRewardWalls:limei];
-    [builder addRewardWalls:youmi];
-    [builder addRewardWalls:ader];
-    [builder addRewardWalls:domod];
-    [builder addRewardWalls:tapjoy];
-    
-    PBConfig* config = [builder build];
-    NSData* data = [config data];
-
-    [data writeToFile:path atomically:YES];
-    
-    NSString* version = @"1.1";
-    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-}
-
-+ (void)createZJHTestConfigData
-{
-    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
-    
-    PBConfig_Builder* builder = [PBConfig builder];
-    
-    PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
-    PBAppReward* diceApp = [self diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
-    
-    PBRewardWall* limei = [self limeiWall];
-    PBRewardWall* ader = [self aderWall];
-    
-    
-    [builder addAppRewards:drawApp];
-    [builder addAppRewards:diceApp];
-    
-    [builder addRewardWalls:limei];
-    [builder addRewardWalls:ader];
-    
-    PBConfig* config = [builder build];
-    NSData* data = [config data];
-    
-    [data writeToFile:path atomically:YES];
-    
-    NSString* version = @"1.0";
-    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-}
-
-+ (void)createDiceTestConfigData
-{
-    NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
-    
-    PBConfig_Builder* builder = [PBConfig builder];
-    
-    PBAppReward* drawApp = [self drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
-    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:2500 rewardCurrency:PBGameCurrencyCoin];
-    
-    PBRewardWall* limei = [self limeiWall];
-    PBRewardWall* ader = [self aderWall];
-    
-    [builder addAppRewards:drawApp];
-    [builder addAppRewards:zjhApp];
-    
-    [builder addRewardWalls:limei];
-    [builder addRewardWalls:ader];
-    
-    PBConfig* config = [builder build];
-    NSData* data = [config data];
-    
-    [data writeToFile:path atomically:YES];
-    
-    NSString* version = @"1.0";
-    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-}
-
-+ (void)createLearnDrawTestConfigData
-{
-    NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
-    NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
-    NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
-    
-    PBConfig_Builder* builder = [PBConfig builder];
-
-    PBAppReward* diceApp = [self oldDiceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-
-    [builder addAppRewards:diceApp];
-    
-    PBConfig* config = [builder build];
-    NSData* data = [config data];
-    
-    [data writeToFile:path atomically:YES];
-    
-    NSString* version = @"1.0";
-    [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (NSArray*)appRewardList

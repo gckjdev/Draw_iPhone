@@ -53,4 +53,9 @@
     return YES;
 }
 
+- (void)HandleWithDidFinishLaunching
+{
+    
+}
+
 @end

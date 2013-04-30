@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class PBConfig;
+@class PBAppReward;
+@class PBRewardWall;
 
 @interface GameConfigDataManager : NSObject
 
@@ -18,7 +20,27 @@
 @property (nonatomic, readonly) PBConfig* defaultConfig;
 
 + (void)createTestConfigData;
-+ (void)createLearnDrawTestConfigData;
+
++ (NSString*)configFileName;
+
++ (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency;
+
++ (PBAppReward*)diceAppWithRewardAmount:(int)rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency;
+
++ (PBAppReward*)zjhAppWithRewardAmount:(int)rewardAmount
+                        rewardCurrency:(PBGameCurrency)rewardCurrency;
+
++ (PBAppReward*)oldDiceAppWithRewardAmount:(int)rewardAmount
+                            rewardCurrency:(PBGameCurrency)rewardCurrency;
+
++ (PBRewardWall*)limeiWall;
++ (PBRewardWall*)wanpuWall;
++ (PBRewardWall*)youmiWall;
++ (PBRewardWall*)aderWall;
++ (PBRewardWall*)domodWall;
++ (PBRewardWall*)tapjoyWall;
 
 - (NSArray*)appRewardList;
 - (NSArray*)rewardWallList;
