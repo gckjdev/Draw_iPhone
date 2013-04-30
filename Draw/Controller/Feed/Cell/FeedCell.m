@@ -169,7 +169,8 @@
             
             [self.drawImageView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
                 if (!cached) {
-                    [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
+//                    self.drawImageView setImageW
+//                    [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
                     self.drawImageView.alpha = 0;
                     [UIView animateWithDuration:1 animations:^{
                     self.drawImageView.alpha = 1.0;
@@ -182,7 +183,7 @@
             }];
             drawFeed.drawImage = nil;
         }else if(image){
-            [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];            
+//            [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];            
             [self.drawImageView setImage:image];
         }else {
             
