@@ -76,7 +76,9 @@ static BBSFontManager* _staticBBSFontManager;
    return ISIPHONE ? FONT(15) : FONT(15*2); 
 }
 - (UIFont *)postContentFont{
-    return ISIPHONE ? FONT(11) : FONT(11*2);
+
+    return ISIPHONE ? FONT(14) : FONT(11*2);
+
 }
 - (UIFont *)postDateFont{
     return ISIPHONE ? FONT(9) : FONT(9*2);

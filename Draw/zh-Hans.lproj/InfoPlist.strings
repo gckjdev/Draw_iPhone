@@ -1,5 +1,9 @@
 /* Localized versions of Info.plist keys */
 
+//"CFBundleDisplayName" = "画照片";
+
+//"CFBundleDisplayName" = "爱画画";
+
 "CFBundleDisplayName" = "猜猜画画";
 
 //"CFBundleDisplayName" = "大话骰";

@@ -10,7 +10,8 @@
 #import "SynthesizeSingleton.h"
 #import "GameBasic.pb.h"
 #import "PPSmartUpdateDataUtils.h"
-
+#import "ItemType.h"
+#import "ConfigManager.h"
 
 #define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
 #define SHOP_ITEM_FILE_TYPE @"pb"
@@ -74,8 +75,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
     self.items = itemsList;
 }
 
+- (NSArray *)removeAdAndPurseItemInItems:(NSArray *)items
+{
+    NSMutableArray *itemList = [NSMutableArray array];
+    for (PBGameItem *item in items) {
+        if (item.itemId != ItemTypeRemoveAd && item.itemId != ItemTypePurse) {
+            [itemList addObject:item];
+        }
+    }
+    
+    return itemList;
+}
+
 - (NSArray *)itemsList
 {
+    if ([ConfigManager isInReviewVersion]) {
+        return [self removeAdAndPurseItemInItems:_items];
+    }
+    
     return _items;
 }
 
@@ -88,6 +105,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
         }
     }
     
+    if ([ConfigManager isInReviewVersion]) {
+        return [self removeAdAndPurseItemInItems:array];
+    }
+    
     return array;
 }
 
@@ -98,6 +119,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
         if ([item isPromoting]) {
             [array addObject:item];
         }
+    }
+    
+    if ([ConfigManager isInReviewVersion]) {
+        return [self removeAdAndPurseItemInItems:array];
     }
     
     return array;

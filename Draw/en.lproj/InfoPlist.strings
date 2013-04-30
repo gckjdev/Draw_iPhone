@@ -1,5 +1,9 @@
 /* Localized versions of Info.plist keys */
 
+//"CFBundleDisplayName" = "Draw Photo";
+
+//"CFBundleDisplayName" = "Awesome Draw";
+
 "CFBundleDisplayName" = "Draw Lively";
 
 //"CFBundleDisplayName" = "Watch Draw";

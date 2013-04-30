@@ -379,26 +379,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:100
                                         currency:PBGameCurrencyCoin]];
     
-//    // 广告拦截器
-//    [mutableArray addObject:[self itemWithItemId:ItemTypeRemoveAd
-//                                            name:@"kRemoveAd"
-//                                            desc:@"kRemoveAdDescription"
-//                                     consumeType:PBGameItemConsumeTypeNonConsumable
-//                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
-//                                            type:PBDrawItemTypeDrawNomal
-//                                           price:1000
-//                                        currency:PBGameCurrencyCoin]];
-//    
-//    // 钱箱
-//    [mutableArray addObject:[self itemWithItemId:ItemTypePurse
-//                                            name:@"kItemTypePurse"
-//                                            desc:@"kItemTypePurseDesc"
-//                                     consumeType:PBGameItemConsumeTypeAmountConsumable
-//                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
-//                                            type:PBDrawItemTypeDrawNomal
-//                                           price:10
-//                                        currency:PBGameCurrencyIngot
-//                                defaultSaleCount:1]];
+    // 广告拦截器
+    [mutableArray addObject:[self itemWithItemId:ItemTypeRemoveAd
+                                            name:@"kRemoveAd"
+                                            desc:@"kRemoveAdDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:1000
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 钱箱
+    [mutableArray addObject:[self itemWithItemId:ItemTypePurse
+                                            name:@"kItemTypePurse"
+                                            desc:@"kItemTypePurseDesc"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:10
+                                        currency:PBGameCurrencyIngot
+                                defaultSaleCount:1]];
     
     
     // 透明笔
@@ -668,7 +668,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
-                                            desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"
+                                            desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送5个元宝。"
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
                              
                                             type:PBDrawItemTypeDrawTaoBao
