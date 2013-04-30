@@ -235,16 +235,7 @@ NSString* GlobalGetBoardServerURL()
     
 //    [DrawBgManager scaleImages];
 
-    if (isDrawApp()) {
-        [WordManager defaultManager];
-        [DrawBgManager defaultManager];        
-    } else if (isDiceApp()){
-        [DiceFontManager unZipFiles];
-    }
-
-    if (!isDrawApp() && !isLearnDrawApp()){
-        [[CommonHelpManager defaultManager] unzipHelpFiles];
-    }
+    [GameApp HandleWithDidFinishLaunching];
     
     if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK");

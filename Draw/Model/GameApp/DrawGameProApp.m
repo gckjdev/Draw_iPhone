@@ -72,4 +72,14 @@
     return NO;
 }
 
+- (void)HandleWithDidFinishLaunching
+{
+    
+}
+
+- (void)createConfigData
+{
+    
+}
+
 @end

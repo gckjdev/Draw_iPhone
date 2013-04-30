@@ -56,8 +56,11 @@
     
     self.priceLabel.text = [product localizedPrice];
     
-    self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
-
+    if (_product.count < 10000) {
+        self.countLabel.text = [NSString stringWithFormat:@"x %d", _product.count];
+    }else{
+        self.countLabel.text = [NSString stringWithFormat:@"x%d", _product.count];
+    }
     
     if ([_product hasSaving] && [_product.saving length] != 0) {
         self.discountButton.hidden = NO;
