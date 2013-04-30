@@ -111,7 +111,7 @@ typedef enum {
 
 typedef enum {
     SellContentTypeUnknow = 0,
-    SellContentTypeLearnDraw = 1;
+    SellContentTypeLearnDraw = 1,
 }SellContentType;
 
 
