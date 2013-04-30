@@ -81,4 +81,9 @@
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+- (int)sellContentType
+{
+    return SellContentTypeLearnDraw;
+}
+
 @end

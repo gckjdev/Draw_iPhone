@@ -293,6 +293,7 @@
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"
+#define PARA_SELL_CONTENT_TYPE @"sct"
 
 #define PARA_NEED_RETURN_USER           @"r"
 #define PARA_AVATAR                     @"av"

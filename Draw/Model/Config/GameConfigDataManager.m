@@ -440,7 +440,6 @@ static dispatch_once_t onceToken;
 }
 
 
->>>>>>> origin/master
 - (NSArray*)appRewardList
 {
     return [self.defaultConfig appRewardsList];
