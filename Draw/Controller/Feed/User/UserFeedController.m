@@ -369,10 +369,12 @@ typedef enum{
             break;
         case ActionSheetIndexAddToCell:
         {
-            PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
-            AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
-            [ldView showInView:self.view];
-            break;
+            if (isLearnDrawApp()) {
+                PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
+                AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
+                [ldView showInView:self.view];
+                break;                
+            }
         }
         
         default:

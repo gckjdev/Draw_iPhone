@@ -16,9 +16,8 @@
 
 
 @interface DrawRecoveryService()
-{
-    
-}
+
+@property (retain, nonatomic) UIImage *bgImage;
 
 @end
 
@@ -28,12 +27,13 @@
 - (void)changeCanvasSize:(CGSize)canvasSize
 {
     self.canvasSize = canvasSize;
-    [self backup:[NSMutableArray arrayWithCapacity:1] bgImage:nil];
+    [self backup:[NSMutableArray arrayWithCapacity:1]];
 }
 
 - (void)dealloc
 {
     PPRelease(_drawToUser);
+    PPRelease(_bgImage);
     [super dealloc];
 }
 
@@ -70,8 +70,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
    canvasSize:(CGSize)canvasSize
 drawActionList:(NSArray*)drawActionList
   bgImageName:(NSString *)bgImageName
+      bgImage:(UIImage *)bgImage
 {
-    
     self.canvasSize = canvasSize;
     
     if (_currentPaint != nil){
@@ -96,7 +96,9 @@ drawActionList:(NSArray*)drawActionList
                                                                         bgImageName:bgImageName];
 
         PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
-        [self backup:drawActionList bgImage:nil];
+        [self backup:drawActionList];
+        
+        [[MyPaintManager defaultManager] saveBgImage:_bgImage name:_currentPaint.bgImageName];
     }
     @catch (NSException *exception) {
         PPDebug(@"<start> but catch exception=%@", [exception description]);
@@ -106,12 +108,10 @@ drawActionList:(NSArray*)drawActionList
     
 }
 
-- (void)backup:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
+- (void)backup:(NSArray*)drawActionList
 {    
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
-    
-    [[MyPaintManager defaultManager] saveBgImage:bgImage name:_currentPaint.bgImageName];
     
     if (drawActionList == nil){
         drawActionList = [NSMutableArray arrayWithCapacity:1];
@@ -210,22 +210,22 @@ drawActionList:(NSArray*)drawActionList
     }
 }
 
-- (void)handleNewPaintDrawed:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList
 {
 //    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
     if ([self needBackup]){
-        [self backup:drawActionList bgImage:bgImage];
+        [self backup:drawActionList];
     }
     else{
         _newPaintCount ++;
     }
 }
 
-- (void)handleTimer:(NSArray*)drawActionList bgImage:(UIImage *)bgImage
+- (void)handleTimer:(NSArray*)drawActionList
 {
 //    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
     if ([self needBackup]){
-        [self backup:drawActionList bgImage:bgImage];
+        [self backup:drawActionList];
     }
 }
 
