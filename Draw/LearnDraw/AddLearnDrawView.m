@@ -214,9 +214,9 @@ typedef enum{
 
 - (void)showInView:(UIView *)view
 {
-    if (!isLearnDrawApp()) {
-        return;
-    }
+//    if (!isLearnDrawApp()) {
+//        return;
+//    }
     CustomInfoView *customInfoView = [CustomInfoView createWithTitle:NSLS(@"kAddLearnDraw")
                                                             infoView:self
                                                       hasCloseButton:NO

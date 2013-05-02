@@ -29,6 +29,7 @@ typedef enum{
 @interface UserFeedController () {
     RankView* _selectedRankView;
     DrawFeed* _selectedFeed;
+    BOOL canSellOpus;
 }
 
 @end
@@ -369,7 +370,7 @@ typedef enum{
             break;
         case ActionSheetIndexAddToCell:
         {
-            if (isLearnDrawApp()) {
+            if (canSellOpus) {
                 PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
                 AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
                 [ldView showInView:self.view];
@@ -538,6 +539,7 @@ typedef enum{
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){
+                canSellOpus = NO;
                 [bself handleActionSheetForOpus:buttonIndex];
             }];
         }else if([[UserManager defaultManager] isSuperUser]) {
@@ -547,6 +549,7 @@ typedef enum{
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
                                               otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), nil];
+                canSellOpus = YES;
                 [actionSheet showInView:self.view];
                 [actionSheet release];
         }else{

@@ -79,8 +79,8 @@
     if (type == Eraser) {
         self.drawView.lineColor = [DrawColor colorWithColor:self.eraserColor];
     }else{
-        self.penType = type;        
-        self.drawView.lineColor = self.penColor;
+        self.penType = type;
+        self.drawView.lineColor = [DrawColor colorWithColor:self.penColor];
     }
 }
 
@@ -100,6 +100,7 @@
 }
 - (void)changeAlpha:(CGFloat)alpha
 {
+    self.penColor = [DrawColor colorWithColor:self.penColor];
     [self.penColor setAlpha:alpha];
     if (self.drawView.penType != Eraser) {
         DrawColor *color = [DrawColor colorWithColor:self.drawView.lineColor];
