@@ -35,6 +35,33 @@
     return self;
 }
 
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeChangeBGImage;
+        if (action->drawbg != NULL){
+            PBDrawBg_Builder* builder = [PBDrawBg builder];
+            [builder setBgId:[NSString stringWithUTF8String:action->drawbg->bgid]];
+            if (action->drawbg->localurl != NULL){
+                [builder setLocalUrl:[NSString stringWithUTF8String:action->drawbg->localurl]];
+            }
+            
+            if (action->drawbg->remoteurl != NULL){
+                [builder setRemoteUrl:[NSString stringWithUTF8String:action->drawbg->remoteurl]];
+            }
+            
+            if (action->drawbg->has_showstyle){
+                [builder setShowStyle:action->drawbg->showstyle];
+            }
+            
+            self.drawBg = [builder build];
+        }
+        
+    }
+    return self;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];
@@ -44,10 +71,16 @@
     }
     return self;
 }
+
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
     //old data model has no chang draw bg image action
     
+    return nil;
+}
+
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
     return nil;
 }
 

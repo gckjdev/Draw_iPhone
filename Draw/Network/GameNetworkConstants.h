@@ -293,6 +293,7 @@
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"
+#define PARA_SELL_CONTENT_TYPE @"sct"
 
 #define PARA_NEED_RETURN_USER           @"r"
 #define PARA_AVATAR                     @"av"
@@ -631,6 +632,7 @@
 #define ERROR_BBS_TEXT_TOO_LONG         30002
 #define ERROR_BBS_TEXT_TOO_FREQUENT     30003
 #define ERROR_BBS_POST_SUPPORT_TIMES_LIMIT 30004
+#define ERROR_BBS_TEXT_REPEAT     30005
 
 //contest
 #define ERROR_CONTEST_END               110004

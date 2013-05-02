@@ -243,7 +243,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_SINA]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
             } failure:^{
@@ -262,7 +262,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_QQ]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
             } failure:^{
@@ -280,7 +280,7 @@
         PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
         [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
     } else {
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow")] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_FACEBOOK]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
             } failure:^{

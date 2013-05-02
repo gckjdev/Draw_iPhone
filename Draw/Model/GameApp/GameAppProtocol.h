@@ -149,3 +149,9 @@
 - (void)createConfigData;
 
 @end
+
+@protocol ContentGameAppProtocol <GameAppProtocol>
+
+- (int)sellContentType;
+
+@end

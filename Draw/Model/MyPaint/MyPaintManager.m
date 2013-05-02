@@ -22,6 +22,7 @@
 #import "DrawFeed.h"
 #import "CanvasRect.h"
 #import "TimeUtils.h"
+#import "Draw.pb-c.h"
 
 
 #define SUFFIX_NUMBER 100
@@ -621,35 +622,121 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
     if ([paint.dataFilePath length] != 0) {
         //save file data
         if ([self saveDataAsPBNOCompressDrawData:paint]) {
+            
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
-            PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
-            paint.drawDataVersion = nDraw.version;
-            if ([nDraw hasOpusDesc]) {
-                paint.opusDesc = nDraw.opusDesc;
+            
+            // refactor by using C lib
+            Game__PBNoCompressDrawData* nDrawC = NULL;
+            int dataLen = [drawData length];
+            if (dataLen == 0)
+                return nil;
+            
+            uint8_t* buf = malloc(dataLen);
+            if (buf == NULL)
+                return nil;
+            
+            // TODO PBDRAWC to be optimized since this will duplicate data , double size of memory
+            [drawData getBytes:buf length:dataLen];
+            nDrawC = game__pbno_compress_draw_data__unpack(NULL, dataLen, buf);
+            free(buf);
+            
+            if (nDrawC == NULL)
+                return nil;
+            
+            paint.drawDataVersion = nDrawC->version;
+            if (nDrawC->opusdesc != NULL) {
+                paint.opusDesc = [NSString stringWithUTF8String:nDrawC->opusdesc];
             }
-            if (![nDraw hasCanvasSize]) {
-                paint.canvasSize = [CanvasRect deprecatedRect].size;
+            
+            if (nDrawC->canvassize == NULL) {
+                paint.canvasSize = [CanvasRect deprecatedRect].size;                
             }else{
-                paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
+                paint.canvasSize = CGSizeFromPBSizeC(nDrawC->canvassize);
             }
             
-            if ([nDraw hasBgImageName]) {
-                paint.bgImageName = nDraw.bgImageName;
+            if (nDrawC->bgimagename != NULL) {
+                paint.bgImageName = [NSString stringWithUTF8String:nDrawC->bgimagename];
             }
             
-            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
+            NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
+                                                                          canvasSize:paint.canvasSize];
+            game__pbno_compress_draw_data__free_unpacked(nDrawC, NULL);
+            
+            return list;
+            
+            // old implementation, keep here for later check
+//            drawData = [_drawDataManager dataForKey:paint.dataFilePath];
+//            PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
+//            paint.drawDataVersion = nDraw.version;
+//            if ([nDraw hasOpusDesc]) {
+//                paint.opusDesc = nDraw.opusDesc;
+//            }
+//            if (![nDraw hasCanvasSize]) {
+//                
+//                paint.canvasSize = [CanvasRect deprecatedRect].size;
+//
+//            }else{
+//                paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
+//            }
+//            
+//            if ([nDraw hasBgImageName]) {
+//                paint.bgImageName = nDraw.bgImageName;
+//            }
+//            
+//            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
         }else if ([self saveDataAsPBDraw:paint]) {
+                                    
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
-            PBDraw *pbDraw = [PBDraw parseFromData:drawData];
-            paint.drawDataVersion = pbDraw.version;
-            if (![pbDraw hasCanvasSize]) {
-                paint.canvasSize = [CanvasRect deprecatedRect].size;
-            }else{
-                paint.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
+            // refactor by using C lib
+            Game__PBDraw* pbDrawC = NULL;
+            int dataLen = [drawData length];
+            if (dataLen > 0){
+                uint8_t* buf = malloc(dataLen);
+                if (buf != NULL){
+                    
+                    // TODO PBDRAWC to be optimized since this will duplicate data , double size of memory
+                    [drawData getBytes:buf length:dataLen];
+                    pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
+                    free(buf);
+                    
+                    Draw* draw = [[[Draw alloc] initWithPBDrawC:pbDrawC] autorelease];
+                    
+                    paint.drawDataVersion = pbDrawC->version;
+                    if (pbDrawC->canvassize == NULL) {
+                        if (paint.draft.intValue == 1) {
+                            paint.canvasSize = [CanvasRect deprecatedRect].size;
+                        }else{
+                            paint.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+                        }
+                        
+                    }else{
+                        paint.canvasSize = CGSizeFromPBSizeC(pbDrawC->canvassize);
+                    }
+                    
+                    game__pbdraw__free_unpacked(pbDrawC, NULL);                    
+                    return draw.drawActionList;
+                    
+                }
             }
-
-            Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];
-            return draw.drawActionList;
+                        
+            // old implementation, keep here for later check
+//            drawData = [_drawDataManager dataForKey:paint.dataFilePath];
+//            PBDraw *pbDraw = [PBDraw parseFromData:drawData];
+//            paint.drawDataVersion = pbDraw.version;
+//            if (![pbDraw hasCanvasSize]) {
+//                // paint.canvasSize = [CanvasRect deprecatedRect].size;
+//                if (paint.draft.intValue == 1) {
+//                    paint.canvasSize = [CanvasRect deprecatedRect].size;
+//                }else{
+//                    paint.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+//                }
+//
+//            }else{
+//                paint.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
+//            }
+//
+//            Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];
+//            return draw.drawActionList;
         }else{
             NSString *fullPath = [_drawDataManager pathWithKey:paint.dataFilePath];
             drawData = [NSData dataWithContentsOfFile:fullPath];

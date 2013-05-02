@@ -39,15 +39,19 @@
       language:(NSInteger)language
    canvasSize:(CGSize)canvasSize
 drawActionList:(NSArray*)drawActionList
-  bgImageName:(NSString *)bgImageName;
+  bgImageName:(NSString *)bgImageName
+      bgImage:(UIImage *)bgImage;
 
 //- (void)backup:(PBNoCompressDrawData*)drawData;
-- (void)backup:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
+- (void)backup:(NSArray*)drawActionList;
 - (void)stop;
 
 - (int)backupInterval;
 
-- (void)handleTimer:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
-- (void)handleNewPaintDrawed:(NSArray*)drawActionList bgImage:(UIImage *)bgImage;
+- (void)handleTimer:(NSArray*)drawActionList;
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList;
+
+- (void)updateTargetUid:(NSString *)tUid;
+
 
 @end

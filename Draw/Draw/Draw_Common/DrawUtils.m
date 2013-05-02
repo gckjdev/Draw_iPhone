@@ -12,6 +12,8 @@
 
 @implementation DrawUtils
 
+
+
 + (BOOL)isNotVersion1:(int)dataVersion
 {
     return (dataVersion > 1);
@@ -383,7 +385,21 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return layer;
 }
 
-
++ (DrawColor*)drawColorFromPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action
+{
+    DrawColor* drawColor = nil;
+    if (action->has_rgbcolor){
+        drawColor = [DrawColor colorWithBetterCompressColor:action->rgbcolor];
+    }
+    if (action->color != NULL) {
+        drawColor = [[[DrawColor alloc] initWithPBColorC:action->color] autorelease];
+    }
+    else{
+        drawColor = [DrawColor colorWithRed:action->red green:action->green blue:action->blue alpha:action->alpha];
+    }
+    
+    return drawColor;
+}
 
 @end
 
@@ -439,6 +455,18 @@ CGSize CGSizeFromPBSize(PBSize *size)
     return s;
 }
 
+CGSize CGSizeFromPBSizeC(Game__PBSize *size)
+{
+    if (size == NULL)
+        return CGSizeZero;
+    
+    CGSize s = CGSizeZero;
+    s.width = size->width;
+    s.height = size->height;
+    return s;
+}
+
+
 CGRect CGRectFromCGSize(CGSize size)
 {
     return CGRectMake(0, 0, size.width, size.height);
@@ -451,3 +479,12 @@ PBSize *CGSizeToPBSize(CGSize size)
     [builder setHeight:size.height];
     return [builder build];
 }
+
+void CGSizeToPBSizeC(CGSize size, Game__PBSize* pbSizeC)
+{
+    pbSizeC->has_height = 1;
+    pbSizeC->height = size.height;
+    pbSizeC->has_width = 1;
+    pbSizeC->width = size.width;
+}
+

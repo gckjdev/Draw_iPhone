@@ -45,7 +45,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
                                PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
                                PARA_PRICE : [@(price) stringValue],
-                               PARA_TYPE : [@(type) stringValue]
+                               PARA_TYPE : [@(type) stringValue],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
@@ -83,6 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         NSDictionary *dict = @{PARA_OPUS_ID : opusId,
                                PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
@@ -116,6 +118,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         NSDictionary *dict = @{PARA_OPUS_ID : opusId,
                                PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]                               
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
@@ -145,6 +148,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         NSDictionary *dict = @{
                                PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
@@ -188,7 +192,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
                                PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
                                PARA_OFFSET: [@(offset) stringValue],
-                               PARA_LIMIT : [@(limit) stringValue]
+                               PARA_LIMIT : [@(limit) stringValue],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:
@@ -236,7 +241,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
                                PARA_OFFSET: [@(offset) stringValue],
                                PARA_LIMIT : [@(limit) stringValue],
                                PARA_TYPE : [@(type) stringValue],
-                               PARA_SORT_BY : [@(sortType) stringValue]
+                               PARA_SORT_BY : [@(sortType) stringValue],
+                               PARA_SELL_CONTENT_TYPE : [@([ContentGameApp sellContentType]) stringValue]
+                               
                                };
         
         CommonNetworkOutput *output = [GameNetworkRequest sendGetRequestWithBaseURL:

@@ -49,6 +49,46 @@
 {
     return [self.paint drawInContext:context inRect:rect];
 }
+
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        NSMutableArray *pointList = nil;
+        NSInteger count = action->n_pointsx; 
+        if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
+            pointList = [NSMutableArray arrayWithCapacity:count];            
+            for (NSInteger i = 0; i < count; ++ i) {
+                PointNode *node = [PointNode pointWithCGPoint:CGPointMake(action->pointsx[i], action->pointsy[i])];
+                [pointList addObject:node];
+            }
+        }else{
+            //old point data paser
+            count = action->n_points;
+            if (count > 0 && action->points != NULL) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (int i=0; i<count; i++){
+                    CGPoint point = [DrawUtils decompressIntPoint:action->points[i]];
+                    PointNode *node = [PointNode pointWithCGPoint:point];
+                    [pointList addObject:node];
+                    
+                }
+            }
+        }
+        self.type = DrawActionTypePaint;
+        self.paint = [Paint paintWithWidth:action->width
+                                     color:nil
+                                   penType:action->pentype
+                                 pointList:pointList];
+        if (action->has_bettercolor) {
+            self.paint.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
+        }else{
+            self.paint.color  = [DrawUtils decompressIntDrawColor:action->color];
+        }
+    }
+    return self;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];
@@ -124,6 +164,50 @@
         self.paint = [Paint paintWithWidth:action.width
                                      color:[action drawColor]
                                    penType:action.penType
+                                 pointList:pointList];
+    }
+    return self;
+}
+
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
+    self = [super initWithPBNoCompressDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypePaint;
+        
+        NSMutableArray *pointList = nil;
+        NSInteger count = 0;
+        BOOL usePBPoint = action->n_point > 0;
+        if (usePBPoint) {
+            count = action->n_point;
+            if (count > 0) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (NSInteger i = 0; i < count; ++ i) {
+//                    PBPoint *pbPoint = [action.pointList objectAtIndex:i];
+//                    PointNode *node = [PointNode pointWithPBPoint:pbPoint];
+                    Game__PBPoint* point = action->point[i];
+                    if (point != NULL){
+                        PointNode *node = [PointNode pointWithCGPoint:CGPointMake(point->x, point->y)];
+                        [pointList addObject:node];
+                    }
+                }
+            }
+        }else{
+            count = action->n_pointx; //[[action pointXList] count];
+            if (count > 0) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (NSInteger i = 0; i < count; ++ i) {
+//                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
+//                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
+                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(action->pointx[i], action->pointy[i])];
+                    [pointList addObject:node];
+                }
+            }
+        }
+        
+        self.paint = [Paint paintWithWidth:action->width
+                                     color:[DrawUtils drawColorFromPBNoCompressDrawActionC:action]  //[action drawColor]
+                                   penType:action->pentype
                                  pointList:pointList];
     }
     return self;

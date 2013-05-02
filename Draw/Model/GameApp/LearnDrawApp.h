@@ -10,6 +10,6 @@
 //#import "GameApp.h"
 #import "SimpleDrawApp.h"
 
-@interface LearnDrawApp : SimpleDrawApp
+@interface LearnDrawApp : SimpleDrawApp <ContentGameAppProtocol>
 
 @end

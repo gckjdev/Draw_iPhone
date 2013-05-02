@@ -57,19 +57,19 @@ static LevelService* _defaultLevelService;
 
 - (void)initLevelDict
 {
-    int exp = 0;
+    double exp = 0;
     //int baseExp = self.level1Exp.text.intValue;
-    int lastLevelUpExp = 0.0;
+    double lastLevelUpExp = 0.0;
     
     for (int i = 0; i <= MAX_LEVEL; i++) {
         if (i <= 5) {            
             lastLevelUpExp = FIRST_LEVEL_EXP*i;
             exp = exp+lastLevelUpExp;
         } else if (i > 90) {
-            lastLevelUpExp = (int)lastLevelUpExp*2;
+            lastLevelUpExp = lastLevelUpExp*2;
             exp = exp+lastLevelUpExp;
         } else {
-            lastLevelUpExp = (int)lastLevelUpExp*EXP_INC_RATE;
+            lastLevelUpExp = lastLevelUpExp*EXP_INC_RATE;
             exp = exp+lastLevelUpExp;
         }
 //        PPDebug(@"current level--%d, level up need %f day，totally has play %f day", i, lastLevelUpExp/(LIAR_DICE_EXP*2*120.0), exp/(LIAR_DICE_EXP*2*120.0));
@@ -189,7 +189,7 @@ static LevelService* _defaultLevelService;
                     DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                     PBGameUser *user = res.user;
                     
-                    if (user != nil && [user hasLevel] && [user hasExperience]){
+                    if (res.resultCode == 0 && user != nil && [user hasLevel] && [user hasExperience]){
                         [self setLevel:user.level];
                         [self setExperience:user.experience];
                     }
@@ -292,6 +292,12 @@ static LevelService* _defaultLevelService;
     int level = [self level];
     NSNumber* num = (NSNumber*)[self.levelMap objectAtIndex:level];
     return num.longValue;
+}
+
+- (long)getExpByLevel:(int)level
+{
+    NSNumber* val = [self.levelMap objectAtIndex:(level)];
+    return val.longValue;
 }
 
 

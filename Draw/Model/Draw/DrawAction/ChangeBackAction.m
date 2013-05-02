@@ -51,6 +51,20 @@
     return self;
 }
 
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeChangeBack;
+        if (action->has_bettercolor) {
+            self.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
+        }else{
+            self.color = [DrawUtils decompressIntDrawColor:action->color];
+        }
+    }
+    return self;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];
@@ -75,6 +89,18 @@
     return self;
 }
 
+
+
+
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action
+{
+    self = [super initWithPBNoCompressDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeChangeBack;                
+        self.color = [DrawUtils drawColorFromPBNoCompressDrawActionC:action];
+    }
+    return self;
+}
 
 - (PBDrawAction *)toPBDrawAction
 {

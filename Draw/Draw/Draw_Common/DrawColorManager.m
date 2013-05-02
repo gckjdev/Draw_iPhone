@@ -87,6 +87,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawColorManager)
     }
     [self.colorList replaceObjectAtIndex:0 withObject:[DrawColor blackColor]];
     [self.colorList replaceObjectAtIndex:1 withObject:[DrawColor whiteColor]];
+    
+    BOOL needUpdate = NO;
+    for (DrawColor *color in self.colorList) {
+        if (color.alpha < 1) {
+            [color setAlpha:1];
+            needUpdate = YES;
+        }
+    
+    }
+    if (needUpdate) {
+        [self syncRecentList];
+    }
+    
 }
 
 - (void)updateBoughtColorList

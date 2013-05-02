@@ -108,9 +108,19 @@ typedef enum {
     GameAppTypePhotoDrawFree = 9,
 }GameAppType;
 
+
+typedef enum {
+    SellContentTypeUnknow = 0,
+    SellContentTypeLearnDraw = 1,
+}SellContentType;
+
+
 #define GameApp                 (getGameApp())
+#define ContentGameApp          (getContentGameApp())
 
 extern NSObject<GameAppProtocol>* getGameApp();
+extern NSObject<ContentGameAppProtocol>* getContentGameApp();
+
 extern BOOL isDrawApp();
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
