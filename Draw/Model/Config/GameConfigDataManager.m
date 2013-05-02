@@ -145,7 +145,7 @@ static dispatch_once_t onceToken;
 {
     [GameApp createConfigData];
 //    [self testProtocolCCreateData];
-    [self testProtocolCReadData];
+//    [self testProtocolCReadData];
 //    if (isDrawApp()) {
 //        [self createDrawTestConfigData];
 //    }else if(isZhajinhuaApp()){
