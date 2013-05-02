@@ -179,7 +179,7 @@
         NSInteger count = 0;
         BOOL usePBPoint = action->n_point > 0;
         if (usePBPoint) {
-            count = action->point;
+            count = action->n_point
             if (count > 0) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
@@ -197,9 +197,9 @@
             if (count > 0) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
-                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
-                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
-                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(x, y)];
+//                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
+//                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
+                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(action->pointx[i], action->pointy[i])];
                     [pointList addObject:node];
                 }
             }
