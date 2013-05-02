@@ -1280,7 +1280,7 @@
 
 "kBuyToPlayMesaage" = "Complete preview. Do you want to purchase this drawing and continue to play?";
 
-"kJailBrokenUserIAPTips" = "Your device is Jail-Broken. It's risky to continue IAP purchasing. Do you want to continue?";
+"kJailBrokenUserIAPTips" = "Your device is Jail-Broken. Please don't use any IAP cracker. Click OK to continue.";
 
 "kNoSaveList" = "No saving message to show...";
 

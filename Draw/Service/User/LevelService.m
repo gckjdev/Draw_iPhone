@@ -189,7 +189,7 @@ static LevelService* _defaultLevelService;
                     DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
                     PBGameUser *user = res.user;
                     
-                    if (user != nil && [user hasLevel] && [user hasExperience]){
+                    if (res.resultCode == 0 && user != nil && [user hasLevel] && [user hasExperience]){
                         [self setLevel:user.level];
                         [self setExperience:user.experience];
                     }

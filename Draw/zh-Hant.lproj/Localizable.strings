@@ -1259,7 +1259,8 @@
 "kBuyToPlayMesaage" = "購買該作品繼續觀看全過程？";
 "kBuyLearnDrawSuccess" = "購買成功!";
 
-"kJailBrokenUserIAPTips" = "你使用的設備已經越獄，在購買過程中可能存在風險(請不要使用越獄IAP插件)，是否繼續購買？";
+//"kJailBrokenUserIAPTips" = "你使用的設備已經越獄，在購買過程中可能存在風險(請不要使用越獄IAP插件)，是否繼續購買？";
+"kJailBrokenUserIAPTips" = "你的設備已經越獄(請注意不要使用越獄IAP插件)，點擊是繼續購買";
 
 "kRestore" = "恢復";
 "kNoSaveList" = "收藏列表是不會讓妳看到的！";
