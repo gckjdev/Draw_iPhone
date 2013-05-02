@@ -307,6 +307,9 @@ NSString* GlobalGetBoardServerURL()
     
     [UIUtils checkAppVersion];
     
+//    PPDebug(@"level=%d exp=%ld", 39, [[LevelService defaultService] getExpByLevel:39]);
+//    PPDebug(@"level=%d exp=%ld", 40, [[LevelService defaultService] getExpByLevel:40]);
+    
     return YES;
 }
 

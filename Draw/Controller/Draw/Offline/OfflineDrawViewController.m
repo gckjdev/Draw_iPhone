@@ -910,6 +910,10 @@
         if (self.draft) {
             [self.draft setTargetUserId:targetUid];
         }
+        
+        if ([self supportRecovery]){
+            [[DrawRecoveryService defaultService] updateTargetUid:targetUid];
+        }
     }
 }
 

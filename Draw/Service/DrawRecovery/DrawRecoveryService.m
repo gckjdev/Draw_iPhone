@@ -13,7 +13,7 @@
 #import "Draw.pb.h"
 #import "ConfigManager.h"
 #import "DrawAction.h"
-
+#import "CoreDataUtil.h"
 
 @interface DrawRecoveryService()
 
@@ -229,5 +229,14 @@ drawActionList:(NSArray*)drawActionList
     }
 }
 
+
+- (void)updateTargetUid:(NSString *)tUid
+{
+    if (self.currentPaint) {
+        CoreDataManager* dataManager = GlobalGetCoreDataManager();
+        [self.currentPaint setTargetUserId:tUid];
+        [dataManager save];
+    }
+}
 
 @end
