@@ -43,6 +43,26 @@
     [self.shape drawInContext:context];
     return self.shape.redrawRect;
 }
+
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeShape;
+        self.shape = [ShapeInfo shapeWithType:action->shapetype
+                                      penType:action->pentype
+                                        width:action->width
+                                        color:nil];
+        [self.shape setPointsWithPointComponentC:action->rectcomponent listCount:action->n_rectcomponent];
+        if (action->has_bettercolor) {
+            self.shape.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
+        }else{
+            self.shape.color  = [DrawUtils decompressIntDrawColor:action->color];
+        }
+    }
+    return self;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];

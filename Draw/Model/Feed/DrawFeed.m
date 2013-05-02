@@ -12,6 +12,8 @@
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 #import "FeedManager.h"
+#import "Draw.pb-c.h"
+#import "GameBasic.pb-c.h"
 
 @implementation DrawFeed
 
@@ -128,6 +130,8 @@
     }
 }
 
+#define MAX_DRAW_DATA_SIZE 1024*1024*10
+
 - (void)parseDrawData
 {
 //    if (self.drawData == nil && self.pbDraw != nil) {
@@ -142,10 +146,33 @@
         
         PPDebug(@"<parseDrawData> start to parse DrawData......");
         int start = time(0);
-        PBDraw* pbDraw = [PBDraw parseFromData:self.pbDrawData];
-        Draw* drawData = [[Draw alloc] initWithPBDraw:pbDraw];
-        self.drawData = drawData;
-        [drawData release];
+        
+        // refactor by using C lib        
+        Game__PBDraw* pbDrawC = NULL;
+    
+        int dataLen = [self.pbDrawData length];
+        if (dataLen > 0){
+            uint8_t* buf = malloc(dataLen);
+            if (buf != NULL){
+                
+                // TODO to be optimized since this will duplicate data , double size of memory
+                [self.pbDrawData getBytes:buf length:dataLen];
+                pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
+                free(buf);
+                
+                Draw* drawData = [[Draw alloc] initWithPBDrawC:pbDrawC];
+                self.drawData = drawData;
+                [drawData release];
+                
+                game__pbdraw__free_unpacked(pbDrawC, NULL);
+            }
+        }
+        
+//        PBDraw* pbDraw = [PBDraw parseFromData:self.pbDrawData];
+//        Draw* drawData = [[Draw alloc] initWithPBDraw:pbDraw];
+//        self.drawData = drawData;
+//        [drawData release];
+        
         int end = time(0);
         PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);
         

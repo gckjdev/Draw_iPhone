@@ -43,6 +43,7 @@ typedef enum{
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent;
+- (void)setPointsWithPointComponentC:(float*)floatList listCount:(int)listCount;
 - (NSArray *)rectComponent;
 - (CGRect)redrawRect;
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;

@@ -144,6 +144,8 @@ static dispatch_once_t onceToken;
 + (void)createTestConfigData
 {
     [GameApp createConfigData];
+//    [self testProtocolCCreateData];
+    [self testProtocolCReadData];
 //    if (isDrawApp()) {
 //        [self createDrawTestConfigData];
 //    }else if(isZhajinhuaApp()){
@@ -166,20 +168,69 @@ static dispatch_once_t onceToken;
     Game__PBSNSUser user = GAME__PBSNSUSER__INIT;
     void* buf;
     unsigned int len;
+    FILE *destFile;
     
     user.nickname = "test_nickname";
     user.type = 1;
     user.userid = "test_user_id";
     
     len = game__pbsnsuser__get_packed_size(&user);
-    
+    printf("user size = %d",len);
     buf = malloc(len);
     
-    game__pbsnsuser__pack_to_buffer(&user, buf);
+    game__pbsnsuser__pack(&user, buf);
     
+    destFile = fopen("/gitdata/Draw_iPhone/Draw/CommonResource/Config/testFile1", "wb");
+    if (destFile == NULL) {
+        printf("file open error\n");
+    }
+    if(fwrite(buf, len,1,destFile)!=1)
+        printf("file write error\n");
     
+    fclose(destFile);
     
     free(buf);
+    
+}
+
+#define MAX_MSG_SIZE 31
+
++ (void)testProtocolCReadData
+{
+    Game__PBSNSUser *user;
+    FILE *fileReader;
+    
+    
+    // Read packed message from standard-input.
+    uint8_t buf[MAX_MSG_SIZE];
+    memset(&buf, 0, MAX_MSG_SIZE);
+//    size_t msg_len = read_buffer (MAX_MSG_SIZE, buf);
+    fileReader = fopen("/gitdata/Draw_iPhone/Draw/CommonResource/Config/testFile1", "rb");
+    if (fileReader == NULL) {
+        printf("file open error\n");
+    }
+    if (fread(&buf,MAX_MSG_SIZE,1,fileReader) != 0)
+        printf("file read error\n");
+    int len = sizeof(buf);
+
+    
+    // Unpack the message using protobuf-c.
+    user = game__pbsnsuser__unpack(NULL, len, buf);
+    if (user == NULL)
+    {
+        fprintf(stderr, "error unpacking incoming message\n");
+        exit(1);
+    }
+    
+    // display the message's fields.
+    printf("test_user: userid=%s\n\n",user->userid);  // required field
+//    if (user->has_)                   // handle optional field
+    printf("test_user: user_nickname =%s\n\n",user->nickname);
+    printf("test_user: user_type =%d\n\n",user->type);
+    
+    // Free the unpacked message
+    game__pbsnsuser__free_unpacked(user, NULL);
+    fclose(fileReader);
     
 }
 

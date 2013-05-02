@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
+#import "GameBasic.pb-c.h"
+#import "Draw.pb-c.h"
 
 @class PBDrawAction;
 @class DrawAction;
@@ -44,7 +46,11 @@
                 word:(Word *)word
           canvasSize:(CGSize)size;
 
+
+
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
+- (id)initWithPBDrawC:(Game__PBDraw*)pbDrawC;
+
 - (BOOL)isNewVersion;
 - (PBDraw *)toPBDraw;
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Draw.pb.h"
 #import "DrawUtils.h"
-
+#import "Draw.pb-c.h"
 
 typedef enum {
     
@@ -34,7 +34,9 @@ typedef enum {
 - (void)setCanvasSize:(CGSize)canvasSize;
 
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
++ (id)drawActionWithPBDrawActionC:(Game__PBDrawAction *)action;
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+
 
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize;
 
@@ -53,6 +55,7 @@ typedef enum {
 //new Method should overload by sub classes..
 
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action;
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
 
 

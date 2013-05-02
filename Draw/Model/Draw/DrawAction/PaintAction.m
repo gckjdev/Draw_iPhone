@@ -49,6 +49,55 @@
 {
     return [self.paint drawInContext:context inRect:rect];
 }
+
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        NSMutableArray *pointList = nil;
+        NSInteger count = action->n_pointsx; // [action.pointsXList count];
+        if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
+            pointList = [NSMutableArray arrayWithCapacity:count];            
+            for (NSInteger i = 0; i < count; ++ i) {
+                CGFloat x = action->pointsx[i]; //[[action.pointsXList objectAtIndex:i] floatValue];
+                CGFloat y = action->pointsy[i]; // [[action.pointsYList objectAtIndex:i] floatValue];
+                PointNode *node = [PointNode pointWithCGPoint:CGPointMake(x, y)];
+                [pointList addObject:node];
+            }
+        }else{
+            //old point data paser
+            count = action->n_points;
+//            count = [action.pointsList count];
+            if (count > 0 && action->points != NULL) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (int i=0; i<count; i++){
+                    CGPoint point = [DrawUtils decompressIntPoint:action->points[i]];
+                    PointNode *node = [PointNode pointWithCGPoint:point];
+                    [pointList addObject:node];
+                    
+                }
+                
+//                for (NSNumber *p in action.pointsList) {
+//                    CGPoint point = [DrawUtils decompressIntPoint:[p integerValue]];
+//                    PointNode *node = [PointNode pointWithCGPoint:point];
+//                    [pointList addObject:node];
+//                }
+            }
+        }
+        self.type = DrawActionTypePaint;
+        self.paint = [Paint paintWithWidth:action->width
+                                     color:nil
+                                   penType:action->pentype
+                                 pointList:pointList];
+        if (action->has_bettercolor) {
+            self.paint.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];
+        }else{
+            self.paint.color  = [DrawUtils decompressIntDrawColor:action->color];
+        }
+    }
+    return self;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];

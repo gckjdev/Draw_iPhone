@@ -29,6 +29,29 @@
     [super dealloc];
 }
 
++ (id)drawActionWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    switch (action->type) {
+        case DrawActionTypeClean:
+            return [[[CleanAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypeShape:
+            return [[[ShapeAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypePaint:
+            if (action->width >= BACK_GROUND_WIDTH / 10) {
+                return [[[ChangeBackAction alloc] initWithPBDrawActionC:action] autorelease];
+            }
+            return [[[PaintAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypeChangeBack:
+            return [[[ChangeBackAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypeChangeBGImage:
+            return [[[ChangeBGImageAction alloc] initWithPBDrawActionC:action] autorelease];
+            
+        default:
+            return nil;
+    }
+    
+}
+
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action
 {
     switch (action.type) {
@@ -96,6 +119,16 @@
     }
     return self;
 }
+
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super init];
+    if (self) {
+        self.type = action->type;
+    }
+    return self;
+}
+
 - (PBDrawAction *)toPBDrawAction
 {
     return nil;

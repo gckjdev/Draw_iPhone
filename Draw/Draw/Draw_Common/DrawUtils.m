@@ -439,6 +439,18 @@ CGSize CGSizeFromPBSize(PBSize *size)
     return s;
 }
 
+CGSize CGSizeFromPBSizeC(Game__PBSize *size)
+{
+    if (size == NULL)
+        return CGSizeZero;
+    
+    CGSize s = CGSizeZero;
+    s.width = size->width;
+    s.height = size->height;
+    return s;
+}
+
+
 CGRect CGRectFromCGSize(CGSize size)
 {
     return CGRectMake(0, 0, size.width, size.height);

@@ -71,6 +71,22 @@
     return [shapeInfo autorelease];
 }
 
+- (void)setPointsWithPointComponentC:(float*)floatList listCount:(int)listCount
+{
+    if (listCount < 4){
+        PPDebug(@"ERROR <setPointsWithPointComponentC> but list count is NOT 4");
+        return;
+    }
+    
+    CGFloat startX = floatList[0];
+    CGFloat startY = floatList[1];
+    self.startPoint = CGPointMake(startX, startY);
+    
+    CGFloat endX = floatList[2];
+    CGFloat endY = floatList[3];
+    self.endPoint = CGPointMake(endX, endY);
+    
+}
 
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent
 {

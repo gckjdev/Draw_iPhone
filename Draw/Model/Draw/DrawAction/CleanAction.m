@@ -22,6 +22,16 @@
     return rect;
 }
 
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeClean;
+    }
+    return self;
+}
+
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];
