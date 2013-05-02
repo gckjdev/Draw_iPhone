@@ -588,6 +588,7 @@ enum{
             cp.feed.pbDrawData = pbDrawData;
             handler();
         }else{
+            
             [cp popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
         }
 

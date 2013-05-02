@@ -281,6 +281,8 @@ NSString* GlobalGetBoardServerURL()
                                                          autoRegister:autoRegister
                                                           resultBlock:nil];
     }
+    
+    
 
     // Show Root View
     self.window.rootViewController = navigationController;
