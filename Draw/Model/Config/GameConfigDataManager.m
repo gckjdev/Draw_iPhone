@@ -283,8 +283,8 @@ static dispatch_once_t onceToken;
 
     PBConfig_Builder* builder = [PBConfig builder];
 
-    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
 //    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
     
     PBRewardWall* limei = [self limeiWall];
