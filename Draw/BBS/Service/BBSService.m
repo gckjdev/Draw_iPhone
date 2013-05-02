@@ -27,7 +27,19 @@
 
 BBSService *_staticBBSService;
 
+@interface BBSService()
+
+@property(nonatomic, retain)NSString *lastPostText;
+
+@end
+
 @implementation BBSService
+
+- (void)dealloc
+{
+    PPRelease(_lastPostText);
+    [super dealloc];
+}
 
 + (id)defaultService
 {
@@ -49,6 +61,18 @@ BBSService *_staticBBSService;
         return ERROR_SUCCESS;
     }
 }
+
+
+- (NSInteger)checkContentRepeated:(NSString *)text
+{
+    if ([text isEqualToString:self.lastPostText]) {
+        PPDebug(@"<checkContentRepeat> Content Repeat!!!");
+        return ERROR_BBS_TEXT_REPEAT;
+    }else{
+        return ERROR_SUCCESS;
+    }
+}
+
 
 - (NSInteger)checkCanSupportPost:(NSString *)postId
 {
@@ -339,6 +363,8 @@ BBSService *_staticBBSService;
 
 
 
+#define CREATE_POST_QUEUE @"CREATE_POST_QUEUE"
+
 
 #pragma mark - bbs post methods
 
@@ -367,6 +393,15 @@ BBSService *_staticBBSService;
         if (resultCode == ERROR_SUCCESS){
             resultCode = [self checkWithText:text contentType:type isPost:YES];
         }
+
+        NSString *nText = text;
+        if ([text length] == 0) {
+            nText = [self defaultTextForContentType:type];
+        }
+
+        if (resultCode == ERROR_SUCCESS) {
+            resultCode = [self checkContentRepeated:nText];
+        }
     
         if (resultCode != ERROR_SUCCESS) {
             if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
@@ -375,11 +410,11 @@ BBSService *_staticBBSService;
             return;
         }
 
-        dispatch_async(workingQueue, ^{
-            NSString *nText = text;
-            if ([text length] == 0) {
-                nText = [self defaultTextForContentType:type];
-            }
+        NSOperationQueue *queue = [self getOperationQueue:CREATE_POST_QUEUE];
+        [queue cancelAllOperations];
+    
+    
+        [queue addOperationWithBlock: ^{
             NSInteger deviceType = [DeviceDetection deviceType];
             NSString *appId = [ConfigManager appId];
             
@@ -427,6 +462,7 @@ BBSService *_staticBBSService;
                                                drawImageThumbUrl:drawThumbURL
                                                            bonus:bonus];
                 [[BBSManager defaultManager] updateLastCreationDate];
+                self.lastPostText = nText;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (delegate && [delegate respondsToSelector:@selector(didCreatePost:resultCode:)]) {
@@ -434,7 +470,7 @@ BBSService *_staticBBSService;
                 }
 
             });
-        });  
+        }];
 }
 
 #pragma mark - bbs privilege methods
@@ -620,10 +656,22 @@ BBSService *_staticBBSService;
                                  contentType:contentType
                                       isPost:NO];
         }
+    
+    
+        NSString *nText = text;
+        if ([text length] == 0) {
+            nText = [self defaultTextForContentType:type];
+        }
         
+        if (resultCode == ERROR_SUCCESS) {
+            resultCode = [self checkContentRepeated:nText];
+        }
+
+    
         if (resultCode != ERROR_SUCCESS) {
             if (delegate && [delegate respondsToSelector:@selector(didCreateAction:atPost:replyAction:resultCode:)]) {
-                    [delegate didCreateAction:nil atPost:postId
+                    [delegate didCreateAction:nil
+                                       atPost:postId
                                   replyAction:sourceAction
                                    resultCode:resultCode];
                 }
@@ -634,12 +682,15 @@ BBSService *_staticBBSService;
             [[BBSManager defaultManager] increasePostSupportTimes:postId];
         }
     
-        dispatch_async(workingQueue, ^{
-            NSString *nText = text;
-            
-            if ([text length] == 0) {
-                nText = [self defaultTextForContentType:contentType];
-            }
+        NSOperationQueue *queue = [self getOperationQueue:CREATE_POST_QUEUE];
+        [queue cancelAllOperations];
+
+        [queue addOperationWithBlock: ^{
+//            NSString *nText = text;
+//            
+//            if ([text length] == 0) {
+//                nText = [self defaultTextForContentType:contentType];
+//            }
             NSInteger deviceType = [DeviceDetection deviceType];
             NSString *appId = [ConfigManager appId];
             NSString *userId = [[UserManager defaultManager] userId];
@@ -690,6 +741,9 @@ BBSService *_staticBBSService;
                         [[BBSManager defaultManager] decreasePostSupportTimes:postId];
                     }
                 }else if (resultCode == ERROR_SUCCESS) {
+                    
+                    self.lastPostText = nText;
+                    
                     NSString *actionId = [output.jsonDataDict objectForKey:PARA_ACTIONID];
                     NSString *imageURL = [output.jsonDataDict objectForKey:PARA_IMAGE];
                     NSString *thumbURL = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
@@ -727,7 +781,7 @@ BBSService *_staticBBSService;
                                    resultCode:resultCode];
                 }
             });
-        });
+        }];
     
 }
 
