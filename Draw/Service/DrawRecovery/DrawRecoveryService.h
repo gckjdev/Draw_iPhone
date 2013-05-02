@@ -51,4 +51,7 @@ drawActionList:(NSArray*)drawActionList
 - (void)handleTimer:(NSArray*)drawActionList;
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList;
 
+- (void)updateTargetUid:(NSString *)tUid;
+
+
 @end

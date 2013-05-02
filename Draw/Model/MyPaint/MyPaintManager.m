@@ -628,7 +628,9 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 paint.opusDesc = nDraw.opusDesc;
             }
             if (![nDraw hasCanvasSize]) {
+                
                 paint.canvasSize = [CanvasRect deprecatedRect].size;
+
             }else{
                 paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
             }
@@ -643,7 +645,13 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
             PBDraw *pbDraw = [PBDraw parseFromData:drawData];
             paint.drawDataVersion = pbDraw.version;
             if (![pbDraw hasCanvasSize]) {
-                paint.canvasSize = [CanvasRect deprecatedRect].size;
+//                paint.canvasSize = [CanvasRect deprecatedRect].size;
+                if (paint.draft.intValue == 1) {
+                    paint.canvasSize = [CanvasRect deprecatedRect].size;
+                }else{
+                    paint.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+                }
+
             }else{
                 paint.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
             }
