@@ -161,9 +161,9 @@
                 
                 Draw* drawData = [[Draw alloc] initWithPBDrawC:pbDrawC];
                 self.drawData = drawData;
-                [drawData release];
                 
                 game__pbdraw__free_unpacked(pbDrawC, NULL);
+                [drawData release];
             }
         }
         

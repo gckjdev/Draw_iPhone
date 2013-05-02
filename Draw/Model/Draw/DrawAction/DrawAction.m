@@ -185,21 +185,20 @@
     if (data->n_drawactionlist2 > 0) {
         
         for (int i=0; i<data->n_drawactionlist2; i++){
-//        for (PBDrawAction *action in [data drawActionList2List]) {
             DrawAction *at = [DrawAction drawActionWithPBDrawActionC:data->drawactionlist2[i]];
             [at setCanvasSize:canvasSize];
             [drawActionList addObject:at];
             at = nil;
         }
-    }else if(data->n_drawactionlist > 0)
+    }else if(data->n_drawactionlist > 0){
         for (int i=0; i<data->n_drawactionlist; i++){
-//        for (PBNoCompressDrawAction *action in [data drawActionListList]) {
-//            DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawAction:action];
             DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawActionC:data->drawactionlist[i]];
             [dAction setCanvasSize:canvasSize];
             [drawActionList addObject:dAction];
             dAction = nil;
         }
+    }
+    
     return drawActionList;
 }
 

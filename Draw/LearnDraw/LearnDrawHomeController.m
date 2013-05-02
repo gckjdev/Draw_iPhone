@@ -438,15 +438,18 @@
                                                     
     }];
 }
+
 - (void)viewDidUnload {
     [self setTitleLabel:nil];
     [self setGmButton:nil];
     [self setSortButton:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)clickGMButton:(id)sender {
     HotController *hot = [[HotController alloc] initWithDefaultTabIndex:2];
     [self.navigationController pushViewController:hot animated:YES];
+    [hot release];
 }
 
 

@@ -713,7 +713,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                         paint.canvasSize = CGSizeFromPBSizeC(pbDrawC->canvassize);
                     }
                     
-                    [drawData release];
                     game__pbdraw__free_unpacked(pbDrawC, NULL);                    
                     return draw.drawActionList;
                     
