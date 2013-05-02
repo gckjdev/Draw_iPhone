@@ -13,6 +13,8 @@
 #import "UIUtils.h"
 #import "GameApp.h"
 
+#include "GameBasic.pb-c.h"
+
 @interface GameConfigDataManager()
 {
     GameConfigData* _defaultConfigData;
@@ -157,6 +159,28 @@ static dispatch_once_t onceToken;
 //    else if (isPhotoDrawApp() || isPhotoDrawFreeApp()){
 //        [self createPhotoDrawTestConfigData];
 //    }
+}
+
++ (void)testProtocolCCreateData
+{
+    Game__PBSNSUser user = GAME__PBSNSUSER__INIT;
+    void* buf;
+    unsigned int len;
+    
+    user.nickname = "test_nickname";
+    user.type = 1;
+    user.userid = "test_user_id";
+    
+    len = game__pbsnsuser__get_packed_size(&user);
+    
+    buf = malloc(len);
+    
+    game__pbsnsuser__pack_to_buffer(&user, buf);
+    
+    
+    
+    free(buf);
+    
 }
 
 + (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
