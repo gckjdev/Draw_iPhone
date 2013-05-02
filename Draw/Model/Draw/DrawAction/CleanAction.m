@@ -58,6 +58,14 @@
     return self;
 }
 
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
+    self = [super initWithPBNoCompressDrawActionC:action];
+    if (self) {
+        
+    }
+    return self;
+}
 
 - (PBDrawAction *)toPBDrawAction
 {

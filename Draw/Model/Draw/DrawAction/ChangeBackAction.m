@@ -90,6 +90,18 @@
 }
 
 
+
+
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action
+{
+    self = [super initWithPBNoCompressDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypeChangeBack;                
+        self.color = [DrawUtils drawColorFromPBNoCompressDrawActionC:action];
+    }
+    return self;
+}
+
 - (PBDrawAction *)toPBDrawAction
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

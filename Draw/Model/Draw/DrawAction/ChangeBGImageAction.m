@@ -71,10 +71,16 @@
     }
     return self;
 }
+
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
     //old data model has no chang draw bg image action
     
+    return nil;
+}
+
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
     return nil;
 }
 

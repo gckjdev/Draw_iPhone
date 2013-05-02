@@ -9,6 +9,7 @@
 #import "DrawColor.h"
 #import "Draw.pb.h"
 #import "DrawUtils.h"
+#import "Draw.pb-c.h"
 
 @implementation DrawColor
 @synthesize red = _red;
@@ -91,6 +92,22 @@
         _green = color.green;
         _blue = color.blue;
         _alpha = color.alpha;
+        self.color = [UIColor colorWithRed:_red
+                                     green:_green
+                                      blue:_blue
+                                     alpha:_alpha];
+    }
+    return self;
+}
+
+- (id)initWithPBColorC:(Game__PBColor *)color
+{
+    self = [super init];
+    if(self){
+        _red = color->red;
+        _green = color->green;
+        _blue = color->blue;
+        _alpha = color->alpha;
         self.color = [UIColor colorWithRed:_red
                                      green:_green
                                       blue:_blue

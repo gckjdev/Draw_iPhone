@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Draw.pb-c.h"
 
 @class PBColor;
 @interface DrawColor : NSObject <NSCoding>
@@ -30,6 +30,7 @@
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (id)initWithPBColor:(PBColor *)color;
+- (id)initWithPBColorC:(Game__PBColor *)color;
 - (PBColor *)toPBColor;
 
 - (BOOL)isEqual:(id)object;

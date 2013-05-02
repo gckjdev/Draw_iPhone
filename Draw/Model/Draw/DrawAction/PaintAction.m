@@ -178,6 +178,50 @@
     return self;
 }
 
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
+    self = [super initWithPBNoCompressDrawActionC:action];
+    if (self) {
+        self.type = DrawActionTypePaint;
+        
+        NSMutableArray *pointList = nil;
+        NSInteger count = 0;
+        BOOL usePBPoint = action->n_point > 0;
+        if (usePBPoint) {
+            count = action->point;
+            if (count > 0) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (NSInteger i = 0; i < count; ++ i) {
+//                    PBPoint *pbPoint = [action.pointList objectAtIndex:i];
+//                    PointNode *node = [PointNode pointWithPBPoint:pbPoint];
+                    Game__PBPoint* point = action->point[i];
+                    if (point != NULL){
+                        PointNode *node = [PointNode pointWithCGPoint:CGPointMake(point->x, point->y)];
+                        [pointList addObject:node];
+                    }
+                }
+            }
+        }else{
+            count = action->n_pointx; //[[action pointXList] count];
+            if (count > 0) {
+                pointList = [NSMutableArray arrayWithCapacity:count];
+                for (NSInteger i = 0; i < count; ++ i) {
+                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
+                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
+                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(x, y)];
+                    [pointList addObject:node];
+                }
+            }
+        }
+        
+        self.paint = [Paint paintWithWidth:action->width
+                                     color:[DrawUtils drawColorFromPBNoCompressDrawActionC:action]  //[action drawColor]
+                                   penType:action->pentype
+                                 pointList:pointList];
+    }
+    return self;
+}
+
 - (PBDrawAction *)toPBDrawAction
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

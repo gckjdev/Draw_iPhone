@@ -148,14 +148,13 @@
         int start = time(0);
         
         // refactor by using C lib        
-        Game__PBDraw* pbDrawC = NULL;
-    
+        Game__PBDraw* pbDrawC = NULL;    
         int dataLen = [self.pbDrawData length];
         if (dataLen > 0){
             uint8_t* buf = malloc(dataLen);
             if (buf != NULL){
                 
-                // TODO to be optimized since this will duplicate data , double size of memory
+                // TODO PBDRAWC to be optimized since this will duplicate data , double size of memory
                 [self.pbDrawData getBytes:buf length:dataLen];
                 pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
                 free(buf);

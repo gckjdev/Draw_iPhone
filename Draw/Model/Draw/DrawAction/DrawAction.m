@@ -74,6 +74,26 @@
     }
 }
 
++ (id)drawActionWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
+    switch (action->type) {
+        case DrawActionTypeClean:
+            return [[[CleanAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+        case DrawActionTypeShape:
+            return [[[CleanAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+        case DrawActionTypePaint:
+            if (action->width >= BACK_GROUND_WIDTH / 10) {
+                return [[[ChangeBackAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+            }
+            return [[[PaintAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+        case DrawActionTypeChangeBack:
+            return [[[ChangeBackAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+        case DrawActionTypeChangeBGImage:
+            return [[[ChangeBGImageAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+        default:
+            return nil;
+    }
+}
 
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
@@ -106,6 +126,14 @@
     return self;
 }
 
+- (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
@@ -150,6 +178,30 @@
 }
 
 #pragma mark-- Common Methods
+
++ (NSMutableArray *)pbNoCompressDrawDataCToDrawActionList:(Game__PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize
+{
+    NSMutableArray *drawActionList = [NSMutableArray array];
+    if (data->n_drawactionlist2 > 0) {
+        
+        for (int i=0; i<data->n_drawactionlist2; i++){
+//        for (PBDrawAction *action in [data drawActionList2List]) {
+            DrawAction *at = [DrawAction drawActionWithPBDrawActionC:data->drawactionlist2[i]];
+            [at setCanvasSize:canvasSize];
+            [drawActionList addObject:at];
+            at = nil;
+        }
+    }else if(data->n_drawactionlist > 0)
+        for (int i=0; i<data->n_drawactionlist; i++){
+//        for (PBNoCompressDrawAction *action in [data drawActionListList]) {
+//            DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawAction:action];
+            DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawActionC:data->drawactionlist[i]];
+            [dAction setCanvasSize:canvasSize];
+            [drawActionList addObject:dAction];
+            dAction = nil;
+        }
+    return drawActionList;
+}
 
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize
 {
@@ -235,6 +287,75 @@
     return nil;
 }
 
+
+
+
++ (Game__PBNoCompressDrawData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList
+                                                                   size:(CGSize)size
+                                                               opusDesc:(NSString *)opusDesc
+                                                             drawToUser:(PBUserBasicInfo *)drawToUser
+                                                        bgImageFileName:(NSString *)bgImageFileName
+{
+    if ([drawActionList count] != 0 || [GameApp forceSaveDraft]) {
+        
+//        PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
+        
+        Game__PBNoCompressDrawData pbNoCompressDrawDataC = GAME__PBNO_COMPRESS_DRAW_DATA__INIT;
+        
+        int count = [drawActionList count];
+        pbNoCompressDrawDataC.drawactionlist2 = malloc(sizeof(Game__PBNoCompressDrawAction)*count);
+        pbNoCompressDrawDataC.n_drawactionlist2 = count;
+        
+        int i=0;
+        for (DrawAction *drawAction in drawActionList) {
+//            PBDrawAction *pbd = [drawAction toPBDrawAction];
+//            if (pbd) {
+//                [builder addDrawActionList2:pbd];
+//            }
+            
+            pbNoCompressDrawDataC.drawactionlist2[i] = [drawAction toPBDrawActionC];
+            i++;
+        }
+        
+        if (drawToUser) {
+//            [builder setDrawToUser:drawToUser];
+            pbNoCompressDrawDataC.drawtouser = malloc(sizeof(Game__PBUserBasicInfo));            
+            pbNoCompressDrawDataC.drawtouser->avatar = [drawToUser.avatar copyToCString];
+            pbNoCompressDrawDataC.drawtouser->nickname = [drawToUser.nickName copyToCString];
+            pbNoCompressDrawDataC.drawtouser->userid = [drawToUser.userId copyToCString];
+            pbNoCompressDrawDataC.drawtouser->gender = [drawToUser.gender copyToCString];
+        }
+        
+        if (opusDesc) {
+//            [builder setOpusDesc:opusDesc];
+            pbNoCompressDrawDataC.opusdesc = [opusDesc copyToCString];
+        }
+        
+        pbNoCompressDrawDataC.canvassize = malloc(sizeof(Game__PBSize));
+        CGSizeToPBSizeC(size, pbNoCompressDrawDataC.canvassize);
+        
+//        [builder setCanvasSize:CGSizeToPBSize(size)];
+        
+        pbNoCompressDrawDataC.version = [ConfigManager currentDrawDataVersion];
+        pbNoCompressDrawDataC.has_version = 1;
+
+        pbNoCompressDrawDataC.bgimagename = [bgImageFileName copyToCString];
+        
+        void* ret = malloc(sizeof(Game__PBNoCompressDrawData));
+        memcpy(ret, &pbNoCompressDrawDataC, sizeof(Game__PBNoCompressDrawData));
+        return ret;
+        
+//        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+//        [builder setBgImageName:bgImageFileName];
+        
+//        PBNoCompressDrawData *nData = [builder build];
+//        
+//        PPRelease(builder);
+//        return nData;
+    }
+    return nil;
+}
+
 @end
 
 
@@ -253,3 +374,6 @@
 }
 
 @end
+
+
+

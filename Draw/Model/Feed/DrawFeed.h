@@ -49,7 +49,7 @@ typedef enum{
 - (NSURL *)thumbURL;
 - (NSURL *)largeImageURL;
 
-- (id)initWithPBFeed:(PBFeed *)pbFeed;
+//- (id)initWithPBFeed:(PBFeed *)pbFeed;
 
 - (id)initWithFeedId:(NSString *)feedId
               userId:(NSString *)userId 

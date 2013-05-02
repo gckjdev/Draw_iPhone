@@ -92,6 +92,8 @@
 + (void)addSmoothPath2:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 + (void)addSmoothPath1:(CGMutablePathRef)pathRef startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint;
 */
+
++ (DrawColor*)drawColorFromPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction*)action;
  
 @end
 
@@ -103,6 +105,7 @@ CGRect CGRectWithPoints(CGPoint p1, CGPoint p2);
 CGRect CGRectWithPointsAndWidth(CGPoint p1, CGPoint p2, CGFloat width);
 CGSize CGSizeFromPBSize(PBSize *size);
 PBSize *CGSizeToPBSize(CGSize size);
+void CGSizeToPBSizeC(CGSize size, Game__PBSize* pbSizeC);
 CGSize CGSizeFromPBSizeC(Game__PBSize *size);
 CGRect CGRectFromCGSize(CGSize size);
 
