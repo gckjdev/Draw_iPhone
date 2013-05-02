@@ -63,6 +63,8 @@ typedef enum {
 
 - (long)expRequiredForNextLevel;
 
+- (long)getExpByLevel:(int)level;
+
 //- (void)syncExpAndLevel:(PPViewController*)viewController 
 //                   type:(int)type;
 //- (void)syncExpAndLevel:(int)type;

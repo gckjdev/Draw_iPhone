@@ -13,6 +13,8 @@
 #import "UIUtils.h"
 #import "GameApp.h"
 
+#include "GameBasic.pb-c.h"
+
 @interface GameConfigDataManager()
 {
     GameConfigData* _defaultConfigData;
@@ -159,6 +161,28 @@ static dispatch_once_t onceToken;
 //    }
 }
 
++ (void)testProtocolCCreateData
+{
+    Game__PBSNSUser user = GAME__PBSNSUSER__INIT;
+    void* buf;
+    unsigned int len;
+    
+    user.nickname = "test_nickname";
+    user.type = 1;
+    user.userid = "test_user_id";
+    
+    len = game__pbsnsuser__get_packed_size(&user);
+    
+    buf = malloc(len);
+    
+    game__pbsnsuser__pack_to_buffer(&user, buf);
+    
+    
+    
+    free(buf);
+    
+}
+
 + (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
     PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画"
@@ -283,8 +307,8 @@ static dispatch_once_t onceToken;
 
     PBConfig_Builder* builder = [PBConfig builder];
 
-    PBAppReward* diceApp = [self diceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* diceApp = [self diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [self zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
 //    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
     
     PBRewardWall* limei = [self limeiWall];

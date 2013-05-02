@@ -281,6 +281,8 @@ NSString* GlobalGetBoardServerURL()
                                                          autoRegister:autoRegister
                                                           resultBlock:nil];
     }
+    
+    
 
     // Show Root View
     self.window.rootViewController = navigationController;
@@ -304,6 +306,9 @@ NSString* GlobalGetBoardServerURL()
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
     
     [UIUtils checkAppVersion];
+    
+//    PPDebug(@"level=%d exp=%ld", 39, [[LevelService defaultService] getExpByLevel:39]);
+//    PPDebug(@"level=%d exp=%ld", 40, [[LevelService defaultService] getExpByLevel:40]);
     
     return YES;
 }
