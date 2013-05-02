@@ -1626,4 +1626,6 @@
 
 "kRestore" = "Restore";
 
+"kContentRepeatedError" = "Can't send repeated content.";
+
 /*********************** BBS国际化字符串结束 *************************/

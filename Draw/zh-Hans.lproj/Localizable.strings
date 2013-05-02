@@ -1643,5 +1643,6 @@
 "kNoSupportViewFollow" = "暂不支持查看其他用户的粉丝";
 "kNoSupportViewFan" = "暂不支持查看其他用户的关注";
 
+"kContentRepeatedError" = "请不要发重复的帖子。";
 
 /*********************** BBS国际化字符串结束 *************************/
