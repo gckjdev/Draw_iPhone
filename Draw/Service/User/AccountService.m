@@ -89,9 +89,7 @@ static AccountService* _defaultAccountService;
         CommonNetworkOutput* output = [GameNetworkRequest syncUserAccontAndItem:SERVER_URL
                                                                          userId:userId
                                                                        deviceId:deviceId];
-        
-        
-        
+                
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
@@ -99,7 +97,6 @@ static AccountService* _defaultAccountService;
                 PBGameUser *user = res.user;
                 
                 if (res.resultCode == ERROR_SUCCESS && user != nil) {
-                
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
@@ -120,7 +117,6 @@ static AccountService* _defaultAccountService;
                     output.resultCode = res.resultCode;
                 }
             }
-            
             if (output.resultCode == ERROR_SUCCESS) {
                 if ([delegate respondsToSelector:@selector(didSyncFinish)]){
                     [delegate didSyncFinish];
@@ -156,30 +152,20 @@ static AccountService* _defaultAccountService;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-<<<<<<< HEAD
                 output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
                 
                 if (res.resultCode == ERROR_SUCCESS && user != nil) {
-=======
                 
-                if (res.resultCode == 0){
-                    PBGameUser *user = res.user;
-                    
->>>>>>> 6b9d702046c34aef158e1f309954c5124114b9d0
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     
                     // sync user item from server
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-                }
-<<<<<<< HEAD
-=======
-                else{
+                }else{
                     output.resultCode = res.resultCode;
                 }
->>>>>>> 6b9d702046c34aef158e1f309954c5124114b9d0
             }
             
             EXECUTE_BLOCK(tempHandler, output.resultCode);
