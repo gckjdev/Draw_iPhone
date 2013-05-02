@@ -86,19 +86,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-                
-            if (res != nil && res.resultCode == ERROR_SUCCESS) {
+            if (output.resultCode == ERROR_SUCCESS) {
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
-                if (user != nil) {
+
+                if (res.resultCode == ERROR_SUCCESS && user != nil) {
                     [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
                 }
             }
             
-            int result = res.resultCode;
-            EXECUTE_BLOCK(tempHandler, result, itemId, count, toUserId);
+            EXECUTE_BLOCK(tempHandler, output.resultCode, itemId, count, toUserId);
             [bself.blockArray releaseBlock:tempHandler];
         });
     });
@@ -214,26 +214,23 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
         
         CommonNetworkOutput* output = [GameNetworkRequest consumeItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count forceBuy:forceBuy price:totalPrice currency:item.priceInfo.currency];
         
-        dispatch_async(dispatch_get_main_queue(), ^{            
-            DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
-
-            if (res!=nil && res.resultCode==ERROR_SUCCESS){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS ) {
+                DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
-                if (user != nil) {
+
+                if (res.resultCode==ERROR_SUCCESS && user != nil){
                     [[AccountManager defaultManager] updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [[AccountManager defaultManager] updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                }else{
+                    PPDebug(@"<consumeItem> response resultCode is not ERROR_SUCCESS");
                 }
             }
-            else{
-                PPDebug(@"<consumeItem> response data nil");                        
-            }
-
-            
-            int result = res.resultCode;
             
             PPDebug(@"<execBlock> block=0x%X", tempHandler);
-            EXECUTE_BLOCK(tempHandler, result, itemId, isBuy);
+            EXECUTE_BLOCK(tempHandler, output.resultCode, itemId, isBuy);
             [bself.blockArray releaseBlock:tempHandler];
         });
     });

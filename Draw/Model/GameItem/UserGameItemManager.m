@@ -68,7 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     if (itemsList != nil){
         [_itemsList addObjectsFromArray:itemsList];
     }
-//    self.itemsList = itemsList;
+    [self save];
 }
 
 - (NSArray *)userItemsList

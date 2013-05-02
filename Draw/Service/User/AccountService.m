@@ -94,26 +94,27 @@ static AccountService* _defaultAccountService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
-                
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
                 
-                
-                // sync balance from server
-                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
-                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                
-                // sync user item from server
-                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-                
-                // sync user level and exp
-                if ([user hasLevel] && [user hasExperience]){
-                    [[LevelService defaultService] setLevel:user.level];
-                    [[LevelService defaultService] setExperience:user.experience];
+                if (res.resultCode == ERROR_SUCCESS && user != nil) {
+                    // sync balance from server
+                    [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                    [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                    
+                    // sync user item from server
+                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    
+                    // sync user level and exp
+                    if ([user hasLevel] && [user hasExperience]){
+                        [[LevelService defaultService] setLevel:user.level];
+                        [[LevelService defaultService] setExperience:user.experience];
+                    }
+                    
+                    // sync other user information, add by Benson 2013-04-02
+                    [[UserManager defaultManager] storeUserData:user];
                 }
-                
-                // sync other user information, add by Benson 2013-04-02
-                [[UserManager defaultManager] storeUserData:user];
             }
             
             if (output.resultCode == ERROR_SUCCESS) {
@@ -150,16 +151,18 @@ static AccountService* _defaultAccountService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
-                
                 DataQueryResponse *res = [DataQueryResponse parseFromData:output.responseData];
+                output.resultCode = res.resultCode;
                 PBGameUser *user = res.user;
                 
-                // sync balance from server
-                [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
-                [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
-                
-                // sync user item from server
-                [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                if (res.resultCode == ERROR_SUCCESS && user != nil) {
+                    // sync balance from server
+                    [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+                    [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+                    
+                    // sync user item from server
+                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                }
             }
             
             EXECUTE_BLOCK(tempHandler, output.resultCode);
