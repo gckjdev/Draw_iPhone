@@ -113,9 +113,6 @@ static AccountService* _defaultAccountService;
                     // sync other user information, add by Benson 2013-04-02
                     [[UserManager defaultManager] storeUserData:user];
                 }
-                else{
-                    output.resultCode = res.resultCode;
-                }
             }
             if (output.resultCode == ERROR_SUCCESS) {
                 if ([delegate respondsToSelector:@selector(didSyncFinish)]){
@@ -163,11 +160,8 @@ static AccountService* _defaultAccountService;
                     
                     // sync user item from server
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
-                }else{
-                    output.resultCode = res.resultCode;
                 }
-            }
-            
+            }            
             EXECUTE_BLOCK(tempHandler, output.resultCode);
             [_blockArray releaseBlock:tempHandler];
         });
