@@ -179,7 +179,7 @@
         NSInteger count = 0;
         BOOL usePBPoint = action->n_point > 0;
         if (usePBPoint) {
-            count = action->n_point
+            count = action->n_point;
             if (count > 0) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {

@@ -660,7 +660,7 @@ BBSService *_staticBBSService;
     
         NSString *nText = text;
         if ([text length] == 0) {
-            nText = [self defaultTextForContentType:type];
+            nText = [self defaultTextForContentType:contentType];
         }
         
         if (resultCode == ERROR_SUCCESS) {
