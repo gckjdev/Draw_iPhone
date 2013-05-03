@@ -126,6 +126,7 @@
         
         
         [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+        [[AudioManager defaultManager] setVolume:[ConfigManager getBGMVolume]];
         if ([[AudioManager defaultManager] isMusicOn]) {
             [[AudioManager defaultManager] backgroundMusicPlay];
         }        

@@ -948,4 +948,8 @@
     return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:50];
 }
 
++ (double)getBGMVolume
+{
+    return [MobClickUtils getDoubleValueByKey:@"BGM_VOLUME" defaultValue:0.2];
+}
 @end
