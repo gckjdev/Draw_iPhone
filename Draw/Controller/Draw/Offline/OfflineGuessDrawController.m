@@ -622,6 +622,20 @@
 #define ESCAPE_DEDUT_COIN 1
 #define ITEM_TAG_OFFSET 20120728
 
+- (void)quitGameDirectly
+{
+    if ([_guessWords count] != 0) {
+        [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_authorId isCorrect:NO score:0 delegate:nil];
+        [self updateFeed:NO];
+    }
+    UIViewController *showFeed = [self superViewControllerForClass:[ShowFeedController class]];
+    if (showFeed) {
+        [self.navigationController popToViewController:showFeed animated:YES];
+    }else{
+        [HomeController returnRoom:self];
+    }
+}
+
 - (void)clickOk:(CommonDialog *)dialog
 {
     switch (dialog.tag) {
@@ -637,16 +651,7 @@
         case QUIT_DIALOG_TAG:
         default:
             //if have no words, don't send the action.
-            if ([_guessWords count] != 0) {
-                [[DrawDataService defaultService] guessDraw:_guessWords opusId:_opusId opusCreatorUid:_authorId isCorrect:NO score:0 delegate:nil];            
-                [self updateFeed:NO];
-            }
-            UIViewController *showFeed = [self superViewControllerForClass:[ShowFeedController class]];
-            if (showFeed) {
-                [self.navigationController popToViewController:showFeed animated:YES];
-            }else{
-                [HomeController returnRoom:self];        
-            }
+            [self quitGameDirectly];
             break;
     }
 
@@ -658,6 +663,58 @@
 
 #pragma mark - Actions
 
+- (void)commitCorrectAnswer
+{
+    if (_feed) {
+        self.draw = self.feed.drawData;
+    }
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
+    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
+    [self setWordButtonsEnabled:NO];
+    
+    // rem by Benson
+    // NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
+    
+    UIImage *image = self.feed.largeImage;
+    if (image == nil) {
+        [self.showView show];
+        image = [showView createImage];
+        
+        // Don't compress data
+        /*
+         NSData *data = [image data];
+         image = [UIImage imageWithData:data];
+         */
+    }
+    
+    int guessScore = [ConfigManager offlineGuessAwardScore];
+    ResultController *result = [[ResultController alloc] initWithImage:image
+                                                            drawUserId:_draw.userId
+                                                      drawUserNickName:_draw.nickName
+                                                              wordText:_draw.word.text
+                                                                 score:guessScore
+                                                               correct:YES
+                                                             isMyPaint:NO
+                                                        drawActionList:_draw.drawActionList
+                                                                  feed:self.feed
+                                                                 scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
+    
+    //send http request.
+    [[DrawDataService defaultService] guessDraw:_guessWords
+                                         opusId:_opusId
+                                 opusCreatorUid:_draw.userId
+                                      isCorrect:YES
+                                          score:_draw.word.score
+                                       delegate:nil];
+    [self updateFeed:YES];
+    
+    //store locally.
+    [[UserManager defaultManager] guessCorrectOpus:_opusId];
+    [self.navigationController pushViewController:result animated:YES];
+    [result release];
+    [self.showView stop];
+}
+
 - (void)commitAnswer:(NSString *)answer
 {
     [_guessWords addObject:answer];
@@ -667,54 +724,7 @@
 //        if ([self.showView status] != Stop) {
 
 //        }
-        if (_feed) {
-            self.draw = self.feed.drawData;            
-        }
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
-        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
-        [self setWordButtonsEnabled:NO];
-
-        // rem by Benson
-        // NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
-        
-        UIImage *image = self.feed.largeImage;
-        if (image == nil) {
-            [self.showView show];            
-            image = [showView createImage];
-
-            // Don't compress data
-            /*
-            NSData *data = [image data];
-            image = [UIImage imageWithData:data];
-            */
-        }
-        
-        int guessScore = [ConfigManager offlineGuessAwardScore];
-        ResultController *result = [[ResultController alloc] initWithImage:image
-                                                                drawUserId:_draw.userId
-                                                          drawUserNickName:_draw.nickName
-                                                                  wordText:_draw.word.text
-                                                                     score:guessScore
-                                                                   correct:YES
-                                                                 isMyPaint:NO
-                                                            drawActionList:_draw.drawActionList
-                                                                      feed:self.feed
-                                                                     scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
-        
-        //send http request.
-        [[DrawDataService defaultService] guessDraw:_guessWords
-                                             opusId:_opusId
-                                     opusCreatorUid:_draw.userId
-                                          isCorrect:YES
-                                              score:_draw.word.score
-                                           delegate:nil];
-        [self updateFeed:YES];
-        
-        //store locally.
-        [[UserManager defaultManager] guessCorrectOpus:_opusId];
-        [self.navigationController pushViewController:result animated:YES];
-        [result release];
-        [self.showView stop];
+        [self commitCorrectAnswer];
 
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
@@ -798,8 +808,16 @@
 }
 
 - (IBAction)clickRunAway:(id)sender {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
-    dialog.tag = QUIT_DIALOG_TAG;
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    __block OfflineGuessDrawController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
+        [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+        [self commitCorrectAnswer];
+    } clickCancelBlock:^{
+        [cp quitGameDirectly];
+    }];
+    [dialog.backButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+//    dialog.tag = QUIT_DIALOG_TAG;
     [dialog showInView:self.view];
 }
 

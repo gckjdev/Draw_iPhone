@@ -361,7 +361,7 @@
 
 - (NSString*)domodWallId
 {
-    return @"56OJz8QIuMyvO2LjPI";
+    return @"96ZJ3ySQze+vLwTAqZ";
 }
 
 - (NSString*)tapjoyWallId
@@ -455,7 +455,7 @@
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
     PBRewardWall* youmi = [GameConfigDataManager youmiWall];
     PBRewardWall* ader = [GameConfigDataManager aderWall];
-//    PBRewardWall* domod = [GameConfigDataManager domodWall];
+    PBRewardWall* domod = [GameConfigDataManager domodWall];
 //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
     
     [builder addAppRewards:zjhApp];
@@ -464,7 +464,7 @@
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
     [builder addRewardWalls:ader];
-//    [builder addRewardWalls:domod];
+    [builder addRewardWalls:domod];
 //    [builder addRewardWalls:tapjoy];
     
     PBConfig* config = [builder build];
@@ -473,7 +473,7 @@
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createConfigFile> data file result=%d, file=%@", result, path);
     
-    NSString* version = @"1.1";
+    NSString* version = @"1.2";
     NSError* error = nil;
     result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     PPDebug(@"<createConfigFile> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);

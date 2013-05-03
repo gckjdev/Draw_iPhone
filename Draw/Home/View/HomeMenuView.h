@@ -69,6 +69,13 @@ typedef enum{
     HomeMenuTypeLearnDrawShop,
     HomeMenuTypeLearnDrawMore,
     
+    //DreamAvatar Bottom Munu
+    HomeMenuTypeDreamAvatarDraw,
+    HomeMenuTypeDreamAvatarDraft,
+    HomeMenuTypeDreamAvatarShop,
+    HomeMenuTypeDreamAvatarFreeIngot,
+    HomeMenuTypeDreamAvatarMore,
+    
 }HomeMenuType;
 
 @protocol HomeMenuViewDelegate <HomeCommonViewDelegate>

@@ -428,6 +428,11 @@ CGPoint CGPointVector(CGPoint p1, CGPoint p2)
     return CGPointMake(p2.x - p1.x, p2.y - p1.y);
 }
 
+CGPoint CGPointRand(NSUInteger maxX, NSUInteger maxY)
+{
+    return CGPointMake(rand()%maxX, rand()%maxY);
+}
+
 CGRect CGRectWithPoints(CGPoint p1, CGPoint p2)
 {
     

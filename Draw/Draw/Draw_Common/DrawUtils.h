@@ -101,6 +101,7 @@
 CGFloat CGPointDistance(CGPoint p1, CGPoint p2);
 CGFloat CGPointRadian(CGPoint p1, CGPoint p2);
 CGPoint CGPointVector(CGPoint p1, CGPoint p2);
+CGPoint CGPointRand(NSUInteger maxX, NSUInteger maxY);
 CGRect CGRectWithPoints(CGPoint p1, CGPoint p2);
 CGRect CGRectWithPointsAndWidth(CGPoint p1, CGPoint p2, CGFloat width);
 CGSize CGSizeFromPBSize(PBSize *size);
