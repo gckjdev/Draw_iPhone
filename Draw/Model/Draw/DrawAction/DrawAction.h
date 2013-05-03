@@ -11,6 +11,8 @@
 #import "DrawUtils.h"
 #import "Draw.pb-c.h"
 
+@class Word;
+
 typedef enum {
     
     DrawActionTypePaint,//0
@@ -56,6 +58,21 @@ typedef enum {
                                                  bgImageFileName:(NSString *)bgImageFileName;
 
 
++ (NSData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList
+                                               size:(CGSize)size
+                                           opusDesc:(NSString *)opusDesc
+                                         drawToUser:(PBUserBasicInfo *)drawToUser
+                                    bgImageFileName:(NSString *)bgImageFileName;
+
++ (NSData*)buildPBDrawData:(NSString*)userId
+                      nick:(NSString *)nick
+                    avatar:(NSString *)avatar
+            drawActionList:(NSArray*)drawActionList
+                  drawWord:(Word*)drawWord
+                  language:(int)language
+                      size:(CGSize)size
+              isCompressed:(BOOL)isCompressed;
+
 //new Method should overload by sub classes..
 
 - (id)initWithPBDrawAction:(PBDrawAction *)action;
@@ -65,6 +82,7 @@ typedef enum {
 
 
 - (PBDrawAction *)toPBDrawAction;
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect;

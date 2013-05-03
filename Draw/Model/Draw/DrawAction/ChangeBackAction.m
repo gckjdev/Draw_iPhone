@@ -115,6 +115,29 @@
     return [builder build];
 }
 
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->type = DrawActionTypeChangeBack;
+
+    pbDrawActionC->width = BACK_GROUND_WIDTH;
+    pbDrawActionC->has_width = 1;
+    
+    pbDrawActionC->pointsx = malloc(sizeof(float)*2);
+    pbDrawActionC->n_pointsx = 2;
+    pbDrawActionC->pointsx[0] = 0;
+    pbDrawActionC->pointsx[1] = 0;    
+    
+    pbDrawActionC->pointsy = malloc(sizeof(float)*2);
+    pbDrawActionC->n_pointsy = 2;
+    pbDrawActionC->pointsy[0] = 0;
+    pbDrawActionC->pointsy[1] = BACK_GROUND_WIDTH;
+    
+    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    pbDrawActionC->has_bettercolor = 1;
+    
+    return;
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     [super addPoint:point inRect:rect];

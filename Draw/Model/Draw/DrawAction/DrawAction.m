@@ -15,6 +15,7 @@
 #import "CleanAction.h"
 #import "ChangeBGImageAction.h"
 #import "StringUtil.h"
+#import "Word.h"
 
 @implementation DrawAction
 
@@ -162,6 +163,11 @@
     return nil;
 }
 
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    return;
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     
@@ -286,72 +292,233 @@
     return nil;
 }
 
++ (void)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList
+{
+    int i=0;
+    for (DrawAction *drawAction in drawActionList) {
+        pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
+        game__pbdraw_action__init(pbDrawActionC[i]);
+        [drawAction toPBDrawActionC:pbDrawActionC[i]];
+        i++;
+    }
+}
+
++ (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count
+{
+    // free malloc memory in structs
+    for (int i=0; i<count; i++){
+        
+        // be careful to free sub message inside draw action
+        if (pbDrawActionC[i]->rectcomponent != NULL){
+            free(pbDrawActionC[i]->rectcomponent);
+        }
+        
+        // free point x
+        if (pbDrawActionC[i]->pointsx != NULL){
+            free(pbDrawActionC[i]->pointsx);
+        }
+        
+        // free point y
+        if (pbDrawActionC[i]->pointsy != NULL){
+            free(pbDrawActionC[i]->pointsy);
+        }
+        
+        if (pbDrawActionC[i]->drawbg != NULL){
+            free(pbDrawActionC[i]->drawbg);
+        }
+        
+        // free draw action
+        free(pbDrawActionC[i]);
+    }
+    
+}
+
++ (NSData*)buildPBDrawData:(NSString*)userId
+                      nick:(NSString *)nick
+                    avatar:(NSString *)avatar
+            drawActionList:(NSArray*)drawActionList
+                  drawWord:(Word*)drawWord
+                  language:(int)language
+                      size:(CGSize)size
+              isCompressed:(BOOL)isCompressed
+{
+    Game__PBDraw pbDrawC = GAME__PBDRAW__INIT;
+    
+    pbDrawC.userid = (char*)[userId UTF8String];
+    pbDrawC.nickname = (char*)[nick UTF8String];
+    pbDrawC.avatar = (char*)[avatar UTF8String];
+    pbDrawC.word = (char*)[[drawWord text] UTF8String];
+    
+    pbDrawC.language = language;
+    pbDrawC.level = [drawWord level];
+    pbDrawC.score = [drawWord score];
+    pbDrawC.has_score = 1;
+    
+    Game__PBSize canvasSize = GAME__PBSIZE__INIT;
+    pbDrawC.canvassize = &canvasSize;
+    pbDrawC.canvassize->has_height = 1;
+    pbDrawC.canvassize->has_width = 1;
+    pbDrawC.canvassize->height = size.height;
+    pbDrawC.canvassize->width = size.width;
+    
+    pbDrawC.version = [ConfigManager currentDrawDataVersion];
+    pbDrawC.has_version = 1;
+    
+    pbDrawC.iscompressed = isCompressed;
+    pbDrawC.has_iscompressed = 1;
+    
+    int count = [drawActionList count];
+    if (count > 0){
+        pbDrawC.drawdata = malloc(sizeof(Game__PBDrawAction*)*count);
+        pbDrawC.n_drawdata = count;
+    }
+    
+    // set data
+    [DrawAction createPBDrawActionC:pbDrawC.drawdata drawActionList:drawActionList];
+    
+    void *buf = NULL;
+    unsigned len = 0;
+    NSData* data = nil;
+    
+    len = game__pbdraw__get_packed_size (&pbDrawC);    // This is the calculated packing length
+    buf = malloc (len);                                                 // Allocate memory
+    if (buf != NULL){
+        game__pbdraw__pack (&pbDrawC, buf);                // Pack msg, including submessages
+        
+        // create data object
+        data = [NSData dataWithBytesNoCopy:buf length:len];
+    }
+    
+    // free memory
+    [DrawAction freePBDrawActionC:pbDrawC.drawdata count:pbDrawC.n_drawdata];
+    free(pbDrawC.drawdata);
+    
+    return data;
+    
+    //    PBDraw_Builder* builder = [[PBDraw_Builder alloc] init];
+    //    [builder setUserId:userId];
+    //    [builder setNickName:nick];
+    //    [builder setAvatar:avatar];
+    //    [builder setWord:[drawWord text]];
+    //    [builder setLevel:[drawWord level]];
+    //    [builder setLanguage:language];
+    //    [builder setScore:[drawWord score]];
+    //
+    //    [builder setCanvasSize:CGSizeToPBSize(size)];
+    //
+    //    for (DrawAction* drawAction in drawActionList){
+    //        PBDrawAction *action = [drawAction toPBDrawAction];
+    //        [builder addDrawData:action];
+    //    }
+    //    [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    //    [builder setIsCompressed:isCompressed];
+    //
+    //    PBDraw* draw = [builder build];
+    //    [builder release];
+    //    
+    //    return draw;
+}
 
 
 
-+ (Game__PBNoCompressDrawData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList
-                                                                   size:(CGSize)size
-                                                               opusDesc:(NSString *)opusDesc
-                                                             drawToUser:(PBUserBasicInfo *)drawToUser
-                                                        bgImageFileName:(NSString *)bgImageFileName
++ (NSData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList
+                                               size:(CGSize)size
+                                           opusDesc:(NSString *)opusDesc
+                                         drawToUser:(PBUserBasicInfo *)drawToUser
+                                    bgImageFileName:(NSString *)bgImageFileName
 {
     if ([drawActionList count] != 0 || [GameApp forceSaveDraft]) {
-        
-//        PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
         
         Game__PBNoCompressDrawData pbNoCompressDrawDataC = GAME__PBNO_COMPRESS_DRAW_DATA__INIT;
         
         int count = [drawActionList count];
-        pbNoCompressDrawDataC.drawactionlist2 = malloc(sizeof(Game__PBNoCompressDrawAction)*count);
-        pbNoCompressDrawDataC.n_drawactionlist2 = count;
-        
-        int i=0;
-        for (DrawAction *drawAction in drawActionList) {
-//            PBDrawAction *pbd = [drawAction toPBDrawAction];
-//            if (pbd) {
-//                [builder addDrawActionList2:pbd];
-//            }
-            
-            pbNoCompressDrawDataC.drawactionlist2[i] = [drawAction toPBDrawActionC];
-            i++;
+        if (count > 0){
+            pbNoCompressDrawDataC.drawactionlist2 = malloc(sizeof(Game__PBDrawAction*)*count);
+            pbNoCompressDrawDataC.n_drawactionlist2 = count;
+
+            [DrawAction createPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 drawActionList:drawActionList];
         }
+
+        
+//        int i=0;
+//        for (DrawAction *drawAction in drawActionList) {            
+//            pbNoCompressDrawDataC.drawactionlist2[i] = malloc (sizeof(Game__PBDrawAction));
+//            game__pbdraw_action__init(pbNoCompressDrawDataC.drawactionlist2[i]);
+//            [drawAction toPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2[i]];
+//            i++;
+//        }
         
         if (drawToUser) {
-//            [builder setDrawToUser:drawToUser];
-            pbNoCompressDrawDataC.drawtouser = malloc(sizeof(Game__PBUserBasicInfo));            
-            pbNoCompressDrawDataC.drawtouser->avatar = [drawToUser.avatar copyToCString];
-            pbNoCompressDrawDataC.drawtouser->nickname = [drawToUser.nickName copyToCString];
-            pbNoCompressDrawDataC.drawtouser->userid = [drawToUser.userId copyToCString];
-            pbNoCompressDrawDataC.drawtouser->gender = [drawToUser.gender copyToCString];
+            Game__PBUserBasicInfo pbDrawToUserC = GAME__PBUSER_BASIC_INFO__INIT;
+            pbNoCompressDrawDataC.drawtouser = &pbDrawToUserC;
+            pbNoCompressDrawDataC.drawtouser->avatar = (char*)[drawToUser.avatar UTF8String];
+            pbNoCompressDrawDataC.drawtouser->nickname = (char*)[drawToUser.nickName UTF8String];
+            pbNoCompressDrawDataC.drawtouser->userid = (char*)[drawToUser.userId UTF8String];
+            pbNoCompressDrawDataC.drawtouser->gender = (char*)[drawToUser.gender UTF8String];
         }
         
+        // set opus desc
         if (opusDesc) {
-//            [builder setOpusDesc:opusDesc];
-            pbNoCompressDrawDataC.opusdesc = [opusDesc copyToCString];
-        }
+            pbNoCompressDrawDataC.opusdesc = (char*)[opusDesc UTF8String];
+        }        
         
-        pbNoCompressDrawDataC.canvassize = malloc(sizeof(Game__PBSize));
+        // set canvas size
+        Game__PBSize pbCanvasSize = GAME__PBSIZE__INIT;
+        pbNoCompressDrawDataC.canvassize = &pbCanvasSize;
         CGSizeToPBSizeC(size, pbNoCompressDrawDataC.canvassize);
-        
-//        [builder setCanvasSize:CGSizeToPBSize(size)];
-        
+
+        // set version
         pbNoCompressDrawDataC.version = [ConfigManager currentDrawDataVersion];
         pbNoCompressDrawDataC.has_version = 1;
 
-        pbNoCompressDrawDataC.bgimagename = [bgImageFileName copyToCString];
+        // set bg image name
+        pbNoCompressDrawDataC.bgimagename = (char*)[bgImageFileName UTF8String];
+
+        void *buf = NULL;
+        unsigned len = 0;
+        NSData* data = nil;
         
-        void* ret = malloc(sizeof(Game__PBNoCompressDrawData));
-        memcpy(ret, &pbNoCompressDrawDataC, sizeof(Game__PBNoCompressDrawData));
-        return ret;
+        len = game__pbno_compress_draw_data__get_packed_size (&pbNoCompressDrawDataC);    // This is the calculated packing length
+        buf = malloc (len);                                             // Allocate memory
+        if (buf != NULL){
+            game__pbno_compress_draw_data__pack (&pbNoCompressDrawDataC, buf);                // Pack msg, including submessages
+            
+            // create data object
+            data = [NSData dataWithBytesNoCopy:buf length:len];
+        }
         
-//        [builder setVersion:[ConfigManager currentDrawDataVersion]];
-//        [builder setBgImageName:bgImageFileName];
+        // free malloc memory in structs
+//        for (int i=0; i<count; i++){
+//            
+//            // be careful to free sub message inside draw action
+//            if (pbNoCompressDrawDataC.drawactionlist2[i]->rectcomponent != NULL){
+//                free(pbNoCompressDrawDataC.drawactionlist2[i]->rectcomponent);
+//            }
+//            
+//            // free point x
+//            if (pbNoCompressDrawDataC.drawactionlist2[i]->pointsx != NULL){
+//                free(pbNoCompressDrawDataC.drawactionlist2[i]->pointsx);
+//            }
+//            
+//            // free point y
+//            if (pbNoCompressDrawDataC.drawactionlist2[i]->pointsy != NULL){
+//                free(pbNoCompressDrawDataC.drawactionlist2[i]->pointsy);
+//            }
+//            
+//            if (pbNoCompressDrawDataC.drawactionlist2[i]->drawbg != NULL){
+//                free(pbNoCompressDrawDataC.drawactionlist2[i]->drawbg);
+//            }
+//
+//            // free draw action
+//            free(pbNoCompressDrawDataC.drawactionlist2[i]);
+//        }
+
+        [DrawAction freePBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 count:pbNoCompressDrawDataC.n_drawactionlist2];
+        free(pbNoCompressDrawDataC.drawactionlist2);
         
-//        PBNoCompressDrawData *nData = [builder build];
-//        
-//        PPRelease(builder);
-//        return nData;
+        return data;
     }
+    
     return nil;
 }
 

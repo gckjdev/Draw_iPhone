@@ -106,7 +106,7 @@ static ShareService* _defaultService;
             NSString* nickName = nil;
             NSString* sinaNick = nil;
             NSString* qqId = nil;
-            BOOL gender;
+            BOOL gender = YES;
             
             if (output.resultCode == ERROR_SUCCESS) {
                 sinaNick = [output.jsonDataDict objectForKey:PARA_SINA_NICKNAME];
