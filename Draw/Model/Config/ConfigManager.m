@@ -943,5 +943,9 @@
     return [MobClickUtils getStringValueByKey:@"DRAW_APP_LINK" defaultValue:NSLS(@"kDrawAppLink")];
 }
 
++ (int)getBuyAnswerPrice
+{
+    return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:50];
+}
 
 @end
