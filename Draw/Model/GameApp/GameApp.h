@@ -12,54 +12,69 @@
 #import "GameAppProtocol.h"
 
 // Bundle ID
-#define DRAW_APP_BUNDLE_ID              @"com.orange.draw"
-#define DRAW_APP_PRO_BUNDLE_ID          @"com.orange.drawpro"
-#define DICE_APP_BUNDLE_ID              @"com.orange.newdice"
-#define OLD_DICE_APP_BUNDLE_ID          @"com.orange.dice"
-#define ZJH_APP_BUNDLE_ID               @"com.orange.zhajinhua"
-#define LEARNDRAW_APP_BUNDLE_ID         @"com.orange.learndraw"
-#define PUREDRAW_APP_BUNDLE_ID          @"com.orange.puredraw"
-#define PUREDRAWFREE_APP_BUNDLE_ID      @"com.orange.puredrawfree"
-#define PHOTODRAW_APP_BUNDLE_ID         @"com.orange.photodraw"
-#define PHOTODRAWFREE_APP_BUNDLE_ID     @"com.orange.photodrawfree"
+#define DRAW_APP_BUNDLE_ID                  @"com.orange.draw"
+#define DRAW_APP_PRO_BUNDLE_ID              @"com.orange.drawpro"
+#define DICE_APP_BUNDLE_ID                  @"com.orange.newdice"
+#define OLD_DICE_APP_BUNDLE_ID              @"com.orange.dice"
+#define ZJH_APP_BUNDLE_ID                   @"com.orange.zhajinhua"
+#define LEARNDRAW_APP_BUNDLE_ID             @"com.orange.learndraw"
+#define PUREDRAW_APP_BUNDLE_ID              @"com.orange.puredraw"
+#define PUREDRAWFREE_APP_BUNDLE_ID          @"com.orange.puredrawfree"
+#define PHOTODRAW_APP_BUNDLE_ID             @"com.orange.photodraw"
+#define PHOTODRAWFREE_APP_BUNDLE_ID         @"com.orange.photodrawfree"
+#define DREAMAVATAR_APP_BUNDLE_ID           @"com.orange.dreamavatar"
+#define DREAMAVATARFREE_APP_BUNDLE_ID       @"com.orange.dreamavatarfree"
+#define DREAMLOCKSCREEN_APP_BUNDLE_ID       @"com.orange.dreamlockscreen"
+#define DREAMLOCKSCREENFREE_APP_BUNDLE_ID   @"com.orange.dreamlockscreenfree"
 
 // App ID
-#define DRAW_APP_ID             @"513819630"
-#define DRAW_PRO_APP_ID         @"541354772"
-#define DICE_PRO_APP_ID         @"606131564"
-#define DICE_APP_ID             @"606131564"
-#define OLD_DICE_APP_ID         @"557072001"
-#define ZJH_APP_ID              @"585525675"
-#define CANDY_APP_ID            @"test"
-#define LEARN_DRAW_APP_ID       @"635820146" 
-#define PURE_DRAW_APP_ID        @"639593519"
-#define PURE_DRAW_FREE_APP_ID   @"639593939"
-#define PHOTO_DRAW_APP_ID       @"639595333"
-#define PHOTO_DRAW_FREE_APP_ID  @"639596045"
+#define DRAW_APP_ID                     @"513819630"
+#define DRAW_PRO_APP_ID                 @"541354772"
+#define DICE_PRO_APP_ID                 @"606131564"
+#define DICE_APP_ID                     @"606131564"
+#define OLD_DICE_APP_ID                 @"557072001"
+#define ZJH_APP_ID                      @"585525675"
+#define CANDY_APP_ID                    @"test"
+#define LEARN_DRAW_APP_ID               @"635820146" 
+#define PURE_DRAW_APP_ID                @"639593519"
+#define PURE_DRAW_FREE_APP_ID           @"639593939"
+#define PHOTO_DRAW_APP_ID               @"639595333"
+#define PHOTO_DRAW_FREE_APP_ID          @"639596045"
+#define DREAM_AVATAR_APP_ID             @"1234567890"// TO BE CHANGED
+#define DREAM_AVATAR_FREE_APP_ID        @"1234567891"// TO BE CHANGED
+#define DREAM_LOCKSCREEN_APP_ID         @"1234567892"// TO BE CHANGED
+#define DREAM_LOCKSCREEN_FREE_APP_ID    @"1234567893"// TO BE CHANGED
 
 // game ID
-#define DRAW_GAME_ID            @"Draw"
-#define DICE_GAME_ID            @"Dice"
-#define CANDY_GAME_ID           @"Candy"
-#define ZHAJINHUA_GAME_ID       @"Zhajinhua"
-#define LEARN_DRAW_GAME_ID      @"Learndraw"
-#define PURE_DRAW_GAME_ID       @"Puredraw"
-#define PURE_DRAW_FREE_GAME_ID  @"Puredrawfree"
-#define PHOTO_DRAW_GAME_ID      @"Photodraw"
-#define PHOTO_DRAW_FREE_GAME_ID @"Photodrawfree"
+#define DRAW_GAME_ID                    @"Draw"
+#define DICE_GAME_ID                    @"Dice"
+#define CANDY_GAME_ID                   @"Candy"
+#define ZHAJINHUA_GAME_ID               @"Zhajinhua"
+#define LEARN_DRAW_GAME_ID              @"Learndraw"
+#define PURE_DRAW_GAME_ID               @"Puredraw"
+#define PURE_DRAW_FREE_GAME_ID          @"Puredrawfree"
+#define PHOTO_DRAW_GAME_ID              @"Photodraw"
+#define PHOTO_DRAW_FREE_GAME_ID         @"Photodrawfree"
+#define DREAM_AVATAR_GAME_ID            @"DreamAvatar"
+#define DREAM_AVATAR_FREE_GAME_ID       @"DreamAvatarFree"
+#define DREAM_LOCKSCREEN_GAME_ID        @"DreamLockscreen"
+#define DREAM_LOCKSCREEN_FREE_GAME_ID   @"DreamLockscreenFree"
 
 // Umeng ID
-#define DRAW_UMENG_ID           @"4f83980852701565c500003a"
-#define DICE_UMENG_ID           @"503b13225270150f45000059"
-#define CANDY_UMENG_ID          @"4f83980852701565c500003a" // TO BE CHANGED
-#define ZJH_UMENG_ID            @"50c1883752701537100000af" 
+#define DRAW_UMENG_ID                   @"4f83980852701565c500003a"
+#define DICE_UMENG_ID                   @"503b13225270150f45000059"
+#define CANDY_UMENG_ID                  @"4f83980852701565c500003a" // TO BE CHANGED
+#define ZJH_UMENG_ID                    @"50c1883752701537100000af"
+#define LEARN_DRAW_UMENG_ID             @"516d181256240b096c000a83"
+#define PURE_DRAW_UMENG_ID              @"5175fd3356240b501600f6d0"
+#define PURE_DRAW_FREE_UMENG_ID         PURE_DRAW_UMENG_ID
+#define PHOTO_DRAW_UMENG_ID             @"5175fd6e56240ba4260002d3"
+#define PHOTO_DRAW_FREE_UMENG_ID        PHOTO_DRAW_UMENG_ID
+#define DREAM_AVATAR_UMENG_ID           @"516d181256240b096c000a83"// TO BE CHANGED
+#define DREAM_AVATAR_FREE_UMENG_ID      DREAM_AVATAR_UMENG_ID
+#define DREAM_LOCKSCREEN_UMENG_ID       @"516d181256240b096c000a83"// TO BE CHANGED
+#define DREAM_LOCKSCREEN_FREE_UMENG_ID  DREAM_LOCKSCREEN_UMENG_ID
 
-#define LEARN_DRAW_UMENG_ID     @"516d181256240b096c000a83"
-
-#define PURE_DRAW_UMENG_ID          @"5175fd3356240b501600f6d0"
-#define PURE_DRAW_FREE_UMENG_ID     PURE_DRAW_UMENG_ID
-#define PHOTO_DRAW_UMENG_ID        @"5175fd6e56240ba4260002d3"
-#define PHOTO_DRAW_FREE_UMENG_ID    PHOTO_DRAW_UMENG_ID
 
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
@@ -106,6 +121,10 @@ typedef enum {
     GameAppTypePureDrawFree = 7,
     GameAppTypePhotoDraw = 8,
     GameAppTypePhotoDrawFree = 9,
+    GameAppTypeDreamAvatar = 10,
+    GameAppTypeDreamAvatarFree = 11,
+    GameAppTypeDreamLockscreen = 12,
+    GameAppTypeDreamLockscreenFree = 13
 }GameAppType;
 
 
@@ -130,6 +149,10 @@ extern BOOL isPureDrawApp();
 extern BOOL isPureDrawFreeApp();
 extern BOOL isPhotoDrawApp();
 extern BOOL isPhotoDrawFreeApp();
+extern BOOL isDreamAvatarApp();
+extern BOOL isDreamAvatarFreeApp();
+extern BOOL isDreamLockscreenApp();
+extern BOOL isDreamLockscreenFreeApp();
 
 extern GameAppType gameAppType();
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EAB85E5617336A0000FC29FA"
-               BuildableName = "DreamLockscreen.app"
+               BuildableName = "DreamLockscreenFree.app"
                BlueprintName = "DreamLockscreenFree"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAB85E5617336A0000FC29FA"
-            BuildableName = "DreamLockscreen.app"
+            BuildableName = "DreamLockscreenFree.app"
             BlueprintName = "DreamLockscreenFree"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAB85E5617336A0000FC29FA"
-            BuildableName = "DreamLockscreen.app"
+            BuildableName = "DreamLockscreenFree.app"
             BlueprintName = "DreamLockscreenFree"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAB85E5617336A0000FC29FA"
-            BuildableName = "DreamLockscreen.app"
+            BuildableName = "DreamLockscreenFree.app"
             BlueprintName = "DreamLockscreenFree"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
