@@ -54,7 +54,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         _itemsList = [[NSMutableArray alloc] init];
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_USER_ITEM_INFO];
         if (data != nil) {
-            [self.itemsList addObjectsFromArray:[[PBUserItemList parseFromData:data] userItemsList]];
+            @try {
+                [self.itemsList addObjectsFromArray:[[PBUserItemList parseFromData:data] userItemsList]];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"catch exception while init item, exception = %@", [exception description]);
+            }
+            @finally {
+            }
         }
     }
     
@@ -68,7 +75,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     if (itemsList != nil){
         [_itemsList addObjectsFromArray:itemsList];
     }
-//    self.itemsList = itemsList;
+    [self save];
 }
 
 - (NSArray *)userItemsList
@@ -79,7 +86,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 - (void)save
 {
     PBUserItemList_Builder *builder = [[[PBUserItemList_Builder alloc] init] autorelease];
-    [builder addAllUserItems:self.itemsList];
+    if (self.itemsList != nil){
+        [builder addAllUserItems:self.itemsList];
+    }
     PBUserItemList *itemList = [builder build];
     [[NSUserDefaults standardUserDefaults] setObject:[itemList data] forKey:KEY_USER_ITEM_INFO];
     [[NSUserDefaults standardUserDefaults] synchronize];

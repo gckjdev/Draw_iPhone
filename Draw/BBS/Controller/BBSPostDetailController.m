@@ -528,6 +528,9 @@ typedef enum{
                 msg = [NSString stringWithFormat:NSLS(@"kSupportTimesLimit"),
                        [[BBSManager defaultManager] supportMaxTimes]];
                 break;
+            case ERROR_BBS_TEXT_REPEAT:
+                msg = NSLS(@"kContentRepeatedError");
+                break;
             default:
                 msg = NSLS(@"kNetworkError");
                 break;

@@ -33,7 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         PBWall *pbWall;
         NSInteger resultCode = output.resultCode;
 
-        if (resultCode == 0) {
+        if (resultCode == ERROR_SUCCESS) {
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 pbWall = response.wall;
@@ -70,7 +70,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         PBWall *pbWall;
         NSInteger resultCode = output.resultCode;
 
-        if (resultCode == 0) {
+        if (resultCode == ERROR_SUCCESS) {
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 pbWall = response.wall;
@@ -105,7 +105,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         NSArray *wallList;
         NSInteger resultCode = output.resultCode;
 
-        if (resultCode == 0) {
+        if (resultCode == ERROR_SUCCESS) {
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 wallList = response.wallListList;
@@ -139,7 +139,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
         
         PBWall *wall = nil;
         NSInteger resultCode = output.resultCode;
-        if (resultCode == 0) {
+        if (resultCode == ERROR_SUCCESS) {
             @try {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 wall = response.wall;

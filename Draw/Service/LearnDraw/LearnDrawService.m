@@ -265,9 +265,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LearnDrawService)
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-//            if (resultCode == ERROR_SUCCESS) {
-//
-//            }
             EXECUTE_BLOCK(handler,list,resultCode);
         });
     });

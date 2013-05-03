@@ -55,19 +55,16 @@
     self = [super initWithPBDrawActionC:action];
     if (self) {
         NSMutableArray *pointList = nil;
-        NSInteger count = action->n_pointsx; // [action.pointsXList count];
+        NSInteger count = action->n_pointsx; 
         if (count > 0 && action->pointsx != NULL && action->pointsy != NULL) {
             pointList = [NSMutableArray arrayWithCapacity:count];            
             for (NSInteger i = 0; i < count; ++ i) {
-                CGFloat x = action->pointsx[i]; //[[action.pointsXList objectAtIndex:i] floatValue];
-                CGFloat y = action->pointsy[i]; // [[action.pointsYList objectAtIndex:i] floatValue];
-                PointNode *node = [PointNode pointWithCGPoint:CGPointMake(x, y)];
+                PointNode *node = [PointNode pointWithCGPoint:CGPointMake(action->pointsx[i], action->pointsy[i])];
                 [pointList addObject:node];
             }
         }else{
             //old point data paser
             count = action->n_points;
-//            count = [action.pointsList count];
             if (count > 0 && action->points != NULL) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (int i=0; i<count; i++){
@@ -76,12 +73,6 @@
                     [pointList addObject:node];
                     
                 }
-                
-//                for (NSNumber *p in action.pointsList) {
-//                    CGPoint point = [DrawUtils decompressIntPoint:[p integerValue]];
-//                    PointNode *node = [PointNode pointWithCGPoint:point];
-//                    [pointList addObject:node];
-//                }
             }
         }
         self.type = DrawActionTypePaint;
@@ -188,7 +179,7 @@
         NSInteger count = 0;
         BOOL usePBPoint = action->n_point > 0;
         if (usePBPoint) {
-            count = action->point;
+            count = action->n_point;
             if (count > 0) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
@@ -206,9 +197,9 @@
             if (count > 0) {
                 pointList = [NSMutableArray arrayWithCapacity:count];
                 for (NSInteger i = 0; i < count; ++ i) {
-                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
-                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
-                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(x, y)];
+//                    CGFloat x = action->pointx[i]; //[[action.pointXList objectAtIndex:i] floatValue];
+//                    CGFloat y = action->pointy[i]; //[[action.pointYList objectAtIndex:i] floatValue];
+                    PointNode *node = [PointNode pointWithCGPoint:CGPointMake(action->pointx[i], action->pointy[i])];
                     [pointList addObject:node];
                 }
             }
