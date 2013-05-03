@@ -1288,6 +1288,9 @@
 "kPhotoDrawFeedback" = "反饋";
 "kBlank" = "空白";
 
+"kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
+"kQuitDirectly" = "直接退出";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

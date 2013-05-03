@@ -24,6 +24,8 @@ typedef enum  {
     FollowReward = 12,
     LevelUpAward = 13,
     
+    BuyAnswer = 14,
+    
     AwardCoinType = 10001,
     DirectAwardCoinType = 10002,
     

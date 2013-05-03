@@ -1307,6 +1307,8 @@
 "kPhotoDrawFeedback" = "SUPPORT";
 "kBlank" = "Blank";
 
+"kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
+"kQuitDirectly" = "NO, Thanks";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
