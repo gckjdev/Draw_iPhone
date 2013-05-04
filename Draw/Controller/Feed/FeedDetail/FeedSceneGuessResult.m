@@ -19,10 +19,10 @@
 - (void)initNavitgatorRightBtn:(UIButton*)btn
 {
     [btn setImage:nil forState:UIControlStateNormal];
-    [btn setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
+    [btn setTitle:NSLS(@"kGoOnGuess") forState:UIControlStateNormal];
     [btn setBackgroundImage:[[ShareImageManager defaultManager] navigatorRightBtnImage] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setFrame:CGRectMake(btn.frame.origin.x - 1.5*btn.frame.size.width, btn.frame.origin.y, btn.frame.size.width*2.5, btn.frame.size.height)];
+    [btn setFrame:CGRectMake(btn.frame.origin.x - btn.frame.size.width, btn.frame.origin.y, btn.frame.size.width*2, btn.frame.size.height)];
     [btn setTitleColor:OPAQUE_COLOR(62, 43, 23) forState:UIControlStateNormal];
     
 }

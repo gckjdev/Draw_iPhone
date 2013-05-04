@@ -1311,6 +1311,7 @@
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接要答案吗?";
 "kQuitDirectly" = "直接退出";
 "kGuessResult" = "猜画结果";
+"kGoOnGuess" = "继续猜";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
