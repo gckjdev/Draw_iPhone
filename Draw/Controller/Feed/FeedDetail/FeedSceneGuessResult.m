@@ -33,7 +33,7 @@
 }
 - (void)didClickBackBtn:(PPViewController*)controller
 {
-    [HomeController returnRoom:controller];
+    [controller.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
 }
 #define LABEL_HEIGHT (ISIPAD?40:20)
 #define LABEL_FONT_SIZE  (ISIPAD?30:15)
