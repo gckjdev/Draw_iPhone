@@ -270,4 +270,35 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+//dream avatar
+- (UIImage *)dreamAvatarDraw
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draw"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarDraft
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draft"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarShop
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarFreeIngot
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarMore
+{
+    NSString *imageName = [self fixImageName:@"learndraw_more"];
+    return [UIImage imageNamed:imageName];
+}
+
 @end

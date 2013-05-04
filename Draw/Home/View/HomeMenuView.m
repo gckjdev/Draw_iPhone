@@ -268,6 +268,23 @@
         case HomeMenuTypeLearnDrawMore:
             return [imageManager learnDrawMore];
             
+        
+        //dream avatar
+        case HomeMenuTypeDreamAvatarDraw:
+            return [imageManager dreamAvatarDraw];
+            
+        case HomeMenuTypeDreamAvatarDraft:
+            return [imageManager dreamAvatarDraft];
+        
+        case HomeMenuTypeDreamAvatarShop:
+            return [imageManager dreamAvatarShop];
+            
+        case HomeMenuTypeDreamAvatarFreeIngot:
+            return [imageManager dreamAvatarFreeIngot];
+        
+        case HomeMenuTypeDreamAvatarMore:
+            return [imageManager dreamAvatarMore];
+            
         default:
             return nil;
     }
@@ -506,6 +523,38 @@ int *getLearnDrawBottomMenuTypeList()
     return list;
 }
 
+
+
+int *getDreamAvatarBottomMenuTypeListtWithFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamAvatarDraw,
+        HomeMenuTypeDreamAvatarDraft,
+        HomeMenuTypeDreamAvatarShop,
+        HomeMenuTypeDreamAvatarFreeIngot,
+        HomeMenuTypeDreamAvatarMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamAvatarDraw,
+        HomeMenuTypeDreamAvatarDraft,
+        HomeMenuTypeDreamAvatarShop,
+        HomeMenuTypeDreamAvatarMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamAvatarBottomMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
+}
+
 BOOL typeInList(HomeMenuType type, int *list)
 {
     int *l = list;
@@ -542,6 +591,8 @@ int *getBottomMenuTypeList()
         return getDiceBottomMenuTypeList();
     }else if(isLearnDrawApp()){
         return getLearnDrawBottomMenuTypeList();
+    }else if(isDreamAvatarApp()){
+        return getDreamAvatarBottomMenuTypeList();
     }
     return NULL;
 }

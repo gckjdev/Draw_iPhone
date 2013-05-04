@@ -67,8 +67,28 @@
     [self.contentImageView setImageWithURL:url
                           placeholderImage:self.placeHolderImage];
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
-    [self.previewButton setTitle:NSLS(@"kLearnDrawPreview") forState:UIControlStateNormal];
-    [self.buyButton setTitle:NSLS(@"kLearnDrawBuy") forState:UIControlStateNormal];
+    
+    NSString *leftTitle = nil;
+    NSString *rightTitle = nil;
+    SEL leftSelector;
+    SEL rightSelector;
+    if (isLearnDrawApp()) {
+        leftTitle = NSLS(@"kLearnDrawPreview");
+        rightTitle = NSLS(@"kLearnDrawBuy");
+        leftSelector = @selector(clickPreview:);
+        rightSelector = @selector(clickBuyButton:);
+    } else if (isDreamAvatarApp() || isDreamAvatarFreeApp()){
+        leftTitle = NSLS(@"kDreamAvatarSaveTo");
+        rightTitle = NSLS(@"kDreamAvatar");
+        leftSelector = @selector(clickSaveToAlbum:);
+        rightSelector = @selector(clickSaveToAvatar:);
+    }
+    
+    [self.previewButton setTitle:leftTitle forState:UIControlStateNormal];
+    [self.buyButton setTitle:rightTitle forState:UIControlStateNormal];
+    
+    [self.previewButton addTarget:self action:leftSelector forControlEvents:UIControlEventTouchUpInside];
+    [self.buyButton addTarget:self action:rightSelector forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,6 +212,73 @@
     [self.progressView setProgress:progress];
 }
 
+
+- (void)clickSaveToAlbum:(id)sender
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    if (queue == NULL){
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    }
+    dispatch_async(queue, ^{
+        UIImageWriteToSavedPhotosAlbum(_contentImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    });
+    [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error
+  contextInfo:(void *)contextInfo
+{
+    if (error != NULL){
+        // Show error message...
+    } else{
+        // Show message image successfully saved
+    }
+}
+
+- (void)clickSaveToAvatar:(id)sender
+{
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+	[self presentModalViewController:picker animated:YES];
+    [picker release];
+}
+
+#pragma mark - ABPeoplePickerNavigationControllerDelegate
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    PPDebug(@"shouldContinueAfterSelectingPerson");
+    
+    [self showActivityWithText:NSLS(@"kSaving")];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    if (queue == NULL){
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    }
+    dispatch_async(queue, ^{
+        UIImage *image = _contentImageView.image;
+        NSData *data=UIImagePNGRepresentation(image);
+        ABPersonRemoveImageData(person, NULL);
+        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
+        ABAddressBookSave(peoplePicker.addressBook, nil);
+        CFDataRef cfData=CFDataCreate(NULL, [data bytes], [data length]);
+        ABPersonSetImageData(person, cfData, nil);
+        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
+        ABAddressBookSave(peoplePicker.addressBook, nil);
+    });
+    [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+    
+    [peoplePicker dismissModalViewControllerAnimated:YES];
+    return NO;
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    return NO;
+}
 
 - (IBAction)clickPreview:(id)sender {
     PPDebug(@"clickPreview");
