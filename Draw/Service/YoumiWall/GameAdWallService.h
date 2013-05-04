@@ -14,6 +14,7 @@
 
 {
     NSMutableArray* _wallServiceArray;
+    BOOL _isQueryingScore;
 }
 
 

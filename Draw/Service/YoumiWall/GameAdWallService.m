@@ -218,7 +218,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             
             [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
         }
+        
+        
     };
+    
     
     for (CommonAdWallService* wallService in _wallServiceArray){
         [wallService queryScore:userId completeHandler:handler];

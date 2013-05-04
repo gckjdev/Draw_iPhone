@@ -182,6 +182,8 @@ typedef enum{
     [self hideActivity];
 }
 
+// db.bulletin.insert({"date":new Date(), "type":0, "game_id":"Draw","function":"","content":"[公告] 近期发现部分用户反复使用草稿发同一副作品，影响画榜。先明令禁止此种行为，发现一律直接删除，严重违反者直接封号"});
+
 - (void)loadDrafts
 {
 //    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
