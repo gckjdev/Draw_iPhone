@@ -41,8 +41,9 @@
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
-#import "FeedSceneFeedDetail.h"
 #import "FeedSceneGuessResult.h"
+#import "FeedSceneDetailGuessResult.h"
+#import "FeedSceneFeedDetail.h"
 #import "HomeController.h"
 
 
@@ -445,7 +446,7 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![self isCurrentTabLoading]) {
+    if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
         [self reloadTableViewDataSource];
     }
     
