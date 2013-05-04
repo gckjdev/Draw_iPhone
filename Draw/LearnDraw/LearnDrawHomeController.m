@@ -169,6 +169,37 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        
+        //dream avatar
+        case HomeMenuTypeDreamAvatarDraw:
+        {
+            
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarDraft:
+        {
+            
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarShop:
+        {
+            
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarFreeIngot:
+        {
+            
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarMore:
+        {
+            
+        }
+            break;
             
         default:
             break;

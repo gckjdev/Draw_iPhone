@@ -63,4 +63,12 @@
 - (UIImage *)learnDrawMark;
 - (UIImage *)learnDrawMore;
 - (UIImage *)learnDrawShop;
+
+//dream avatar
+- (UIImage *)dreamAvatarDraw;
+- (UIImage *)dreamAvatarDraft;
+- (UIImage *)dreamAvatarShop;
+- (UIImage *)dreamAvatarFreeIngot;
+- (UIImage *)dreamAvatarMore;
+
 @end

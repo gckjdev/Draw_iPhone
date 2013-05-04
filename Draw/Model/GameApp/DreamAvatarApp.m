@@ -12,12 +12,12 @@
 
 - (NSString*)appId
 {
-    return DREAM_AVATAR_FREE_APP_ID;
+    return DREAM_AVATAR_APP_ID;
 }
 
 - (NSString*)gameId
 {
-    return DREAM_AVATAR_FREE_GAME_ID;
+    return DREAM_AVATAR_GAME_ID;
 }
 
 - (BOOL)disableAd
@@ -27,7 +27,7 @@
 
 - (NSString*)umengId
 {
-    return DREAM_AVATAR_FREE_UMENG_ID;
+    return DREAM_AVATAR_UMENG_ID;
 }
 
 @end

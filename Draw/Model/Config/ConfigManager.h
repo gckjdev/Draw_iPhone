@@ -254,4 +254,5 @@ typedef enum{
 + (NSString*)getDrawAppLink;
 
 + (int)getBuyAnswerPrice;
++ (double)getBGMVolume;
 @end

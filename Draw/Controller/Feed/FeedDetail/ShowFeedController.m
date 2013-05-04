@@ -41,6 +41,11 @@
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "FeedSceneGuessResult.h"
+#import "FeedSceneDetailGuessResult.h"
+#import "FeedSceneFeedDetail.h"
+#import "HomeController.h"
+
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -52,6 +57,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *commentButton;
 @property (retain, nonatomic) IBOutlet UIButton *flowerButton;
 @property (retain, nonatomic) IBOutlet UIButton *replayButton;
+@property (retain, nonatomic) IBOutlet UIButton *navigatorRightButton;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 
 @property(nonatomic, retain) UserInfoCell *userCell;
@@ -59,6 +66,7 @@
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
 @property(nonatomic, retain) DrawFeed *feed;
 @property (nonatomic, retain) UseItemScene* useItemScene;
+
 
 - (IBAction)clickActionButton:(id)sender;
 
@@ -96,6 +104,9 @@ typedef enum{
     PPRelease(_flowerButton);
     PPRelease(_replayButton);
     PPRelease(_useItemScene);
+    PPRelease(_feedScene);
+    PPRelease(_navigatorRightButton);
+    PPRelease(_backButton);
     [super dealloc];
 }
 
@@ -112,11 +123,19 @@ typedef enum{
 - (id)initWithFeed:(DrawFeed *)feed
              scene:(UseItemScene *)scene
 {
+    return [self initWithFeed:feed scene:scene feedScene:[[[FeedSceneFeedDetail alloc] init] autorelease]];
+}
+
+- (id)initWithFeed:(DrawFeed *)feed
+             scene:(UseItemScene *)scene
+         feedScene:(NSObject<ShowFeedSceneProtocol>*)feedScene
+{
     self = [super init];
     if(self)
     {
         self.feed = feed;
         self.useItemScene = scene;
+        self.feedScene = feedScene;
     }
     return self;
 }
@@ -169,7 +188,7 @@ enum{
         self.drawCell = [DrawInfoCell createCell:self];
         self.drawCell.delegate = self;
     }
-    [self.drawCell setCellInfo:self.feed];
+    [self.drawCell setCellInfo:self.feed feedScene:self.feedScene];
     return self.drawCell;
 
 }
@@ -383,12 +402,15 @@ enum{
     NSString *title = nil;
     if ([self.feed isContestFeed]) {
         title = [NSString stringWithFormat:NSLS(@"kContestFeedDetail")];        
+    }else if ([self.feedScene showFeedTitle] != nil) {
+        title = [self.feedScene showFeedTitle];
     }else if ([self.feed showAnswer] && [self.feed.wordText length] != 0) {
         title = [NSString stringWithFormat:NSLS(@"[%@]"),
                  self.feed.wordText];        
-    }else{
+    }else {
         title = [NSString stringWithFormat:NSLS(@"kFeedDetail")];
     }
+    
     [self.titleLabel setText:title];
 }
 
@@ -424,9 +446,10 @@ enum{
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![self isCurrentTabLoading]) {
-        [self clickRefreshButton:nil];
+    if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
+        [self reloadTableViewDataSource];
     }
+    
     [self updateTitle];
     [self updateActionButtons];
     [self.feed setDrawData:nil];
@@ -654,10 +677,18 @@ enum{
         [self throwItem:ItemTypeFlower];
     }else if(button == self.replayButton){
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
-    }else{
+    }else if (button == self.navigatorRightButton) {
+        [self.feedScene didClickNaviatorRightBtn:self];
+    }else {
         //NO action
     }
     
+}
+
+//override super clickBlackButton method
+- (IBAction)clickBackButton:(id)sender
+{
+    [self.feedScene didClickBackBtn:self];
 }
 
 
@@ -734,6 +765,8 @@ enum{
     [self initTabButtons];
     [self updateActionButtons];
     [self updateTitle];
+    [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
+//    [self.feedScene initContentImageView:self.con withWord:<#(NSString *)#>]
     [[FeedService defaultService] getFeedByFeedId:_feed.feedId
                                          delegate:self];
 }
@@ -847,5 +880,15 @@ enum{
                                             delegate:self];
 }
 
-
+#pragma mark - draw data service delegate
+- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0 && feed) {
+        [HomeController startOfflineGuessDraw:feed from:self];
+    }else{
+        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
+        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
+    }
+}
 @end

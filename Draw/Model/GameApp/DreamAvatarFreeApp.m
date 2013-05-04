@@ -17,7 +17,7 @@
 
 - (NSString*)gameId
 {
-    return DREAM_AVATAR_GAME_ID;
+    return DREAM_AVATAR_FREE_GAME_ID;
 }
 
 - (BOOL)disableAd
