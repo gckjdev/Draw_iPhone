@@ -48,6 +48,8 @@
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "FeedSceneGuessResult.h"
+#import "FeedSceneDetailGuessResult.h"
 
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
@@ -663,6 +665,21 @@
 
 #pragma mark - Actions
 
+- (void)jumpToFeedController
+{
+    PPDebug(@"word text = %@",self.feed.wordText);
+    if ([self.superController isKindOfClass:[ShowFeedController class]]) {
+        
+        ShowFeedController* superController = (ShowFeedController*)self.superController;
+        superController.feedScene = [[[FeedSceneDetailGuessResult alloc] init] autorelease];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        ShowFeedController* resultFeed = [[ShowFeedController alloc] initWithFeed:self.feed scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed] feedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
+        [self.navigationController pushViewController:resultFeed animated:YES];
+    }
+    
+}
+
 - (void)commitCorrectAnswer
 {
     if (_feed) {
@@ -687,17 +704,19 @@
          */
     }
     
-    int guessScore = [ConfigManager offlineGuessAwardScore];
-    ResultController *result = [[ResultController alloc] initWithImage:image
-                                                            drawUserId:_draw.userId
-                                                      drawUserNickName:_draw.nickName
-                                                              wordText:_draw.word.text
-                                                                 score:guessScore
-                                                               correct:YES
-                                                             isMyPaint:NO
-                                                        drawActionList:_draw.drawActionList
-                                                                  feed:self.feed
-                                                                 scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
+    
+    
+//    int guessScore = [ConfigManager offlineGuessAwardScore];
+//    ResultController *result = [[ResultController alloc] initWithImage:image
+//                                                            drawUserId:_draw.userId
+//                                                      drawUserNickName:_draw.nickName
+//                                                              wordText:_draw.word.text
+//                                                                 score:guessScore
+//                                                               correct:YES
+//                                                             isMyPaint:NO
+//                                                        drawActionList:_draw.drawActionList
+//                                                                  feed:self.feed
+//                                                                 scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
     
     //send http request.
     [[DrawDataService defaultService] guessDraw:_guessWords
@@ -710,8 +729,9 @@
     
     //store locally.
     [[UserManager defaultManager] guessCorrectOpus:_opusId];
-    [self.navigationController pushViewController:result animated:YES];
-    [result release];
+//    [self.navigationController pushViewController:result animated:YES];
+//    [result release];
+    [self jumpToFeedController];
     [self.showView stop];
 }
 

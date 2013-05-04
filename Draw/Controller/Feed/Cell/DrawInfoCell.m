@@ -222,7 +222,7 @@
     }
 }
 
-- (void)setCellInfo:(DrawFeed *)feed
+- (void)setCellInfo:(DrawFeed *)feed feedScene:(id<ShowFeedSceneProtocol>)scene
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
@@ -232,6 +232,12 @@
     [self updateTime:feed];
     [self updateDesc:feed.opusDesc];
     [self updateDrawToUserInfo:feed];
+    [self updateDrawWithScene:scene];
+}
+
+- (void)updateDrawWithScene:(id<ShowFeedSceneProtocol>)scene
+{
+    [scene initContentImageView:self.drawImage withFeed:self.feed];
 }
 
 

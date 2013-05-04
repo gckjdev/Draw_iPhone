@@ -10,6 +10,7 @@
 #import "PPTableViewCell.h"
 #import "DrawFeed.h"
 #import "FeedService.h"
+#import "ShowFeedSceneProtocol.h"
 
 //#im
 //#import "HJManagedImageV.h"
@@ -38,7 +39,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *drawToButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 @property (retain, nonatomic) IBOutlet UILabel *opusDesc;
-- (void)setCellInfo:(DrawFeed *)feed;
+- (void)setCellInfo:(DrawFeed *)feed feedScene:(id<ShowFeedSceneProtocol>)scene;
 + (NSString*)getCellIdentifier;
 + (CGFloat)cellHeightWithDesc:(NSString *)desc;
 @end

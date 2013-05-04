@@ -16,7 +16,7 @@
 #import "DrawInfoCell.h"
 #import "UserService.h"
 #import "CommonTabController.h"
-
+#import "ShowFeedSceneProtocol.h"
 
 @class Feed;
 @class DrawFeed;
@@ -36,4 +36,9 @@
 - (id)initWithFeed:(DrawFeed *)feed;
 - (id)initWithFeed:(DrawFeed *)feed
              scene:(UseItemScene*)scene;
+- (id)initWithFeed:(DrawFeed *)feed
+             scene:(UseItemScene *)scene
+         feedScene:(NSObject<ShowFeedSceneProtocol>*)feedScene;
+
+@property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
 @end
