@@ -28,6 +28,8 @@
     self.bulletinsTableView.dataSource = self;
     self.bulletinsTableView.delegate = self;
     
+    [self.noBulletinTips setHidden:([BulletinService defaultService].bulletins.count != 0)];
+    
     [self.titleLabel setText:NSLS(@"kBulletin")];
     [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
 }
@@ -108,6 +110,7 @@
     [_closeButton release];
     [_topImageView release];
     [_downImageView release];
+    [_noBulletinTips release];
     [super dealloc];
 }
 @end
