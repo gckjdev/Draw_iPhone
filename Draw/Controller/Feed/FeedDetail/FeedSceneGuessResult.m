@@ -9,6 +9,8 @@
 #import "FeedSceneGuessResult.h"
 #import "HomeController.h"
 #import "Draw.h"
+#import "ShareImageManager.h"
+#import "UIColor+UIColorExt.h"
 
 #define LABEL_TAG 20130504
 
@@ -18,6 +20,11 @@
 {
     [btn setImage:nil forState:UIControlStateNormal];
     [btn setTitle:NSLS(@"kOneMore") forState:UIControlStateNormal];
+    [btn setBackgroundImage:[[ShareImageManager defaultManager] navigatorRightBtnImage] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setFrame:CGRectMake(btn.frame.origin.x - 1.5*btn.frame.size.width, btn.frame.origin.y, btn.frame.size.width*2.5, btn.frame.size.height)];
+    [btn setTitleColor:OPAQUE_COLOR(62, 43, 23) forState:UIControlStateNormal];
+    
 }
 - (void)didClickNaviatorRightBtn:(PPTableViewController<DrawDataServiceDelegate>*)controller
 {
@@ -29,6 +36,7 @@
     [HomeController returnRoom:controller];
 }
 #define LABEL_HEIGHT (ISIPAD?40:20)
+#define LABEL_FONT_SIZE  (ISIPAD?30:15)
 - (void)initContentImageView:(UIImageView*)view withFeed:(DrawFeed*)feed
 {
     UILabel* label = (UILabel*)[view viewWithTag:LABEL_TAG];
@@ -41,6 +49,7 @@
         [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
         label.tag = LABEL_TAG;
         [label setText:feed.drawData.word.text];
+        [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
         [view addSubview:label];
     }
     

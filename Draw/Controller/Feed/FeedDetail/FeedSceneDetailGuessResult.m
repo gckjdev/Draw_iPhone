@@ -27,6 +27,7 @@
     [controller.navigationController popViewControllerAnimated:YES];
 }
 #define LABEL_HEIGHT (ISIPAD?40:20)
+#define LABEL_FONT_SIZE  (ISIPAD?30:15)
 - (void)initContentImageView:(UIImageView*)view withFeed:(DrawFeed*)feed
 {
     UILabel* label = (UILabel*)[view viewWithTag:LABEL_TAG];
@@ -38,6 +39,7 @@
         [label setTextColor:[UIColor whiteColor]];
         [label setTextAlignment:UITextAlignmentCenter];
         [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
+        [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
         label.tag = LABEL_TAG;
         
         [view addSubview:label];
