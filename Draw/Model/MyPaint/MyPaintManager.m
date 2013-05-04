@@ -429,12 +429,13 @@ static MyPaintManager* _defaultManager;
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
               image:(UIImage*)image
-pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
+           drawData:(NSData*)drawData
              userId:(NSString *)userId
            nickName:(NSString *)nickName
                word:(Word *)word
            language:(NSInteger)language
             bgImage:(UIImage *)bgImage
+        bgImageName:(NSString *)bgImageName
 {
     NSString *imageFileName = [self imageFileName];
     NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
@@ -442,14 +443,14 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     if (image != nil){
         [_imageManager saveImage:image forKey:imageFileName];
     }
-        
-    if (pbNoCompressDrawData != nil){
-        [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
-    }    
+    
+    if (drawData != nil){
+        [_drawDataManager saveData:drawData forKey:pbDataFileName];
+    }
     
     if (bgImage != nil) {
-//        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageName];
-        [_bgImgeManager saveImage:bgImage forKey:pbNoCompressDrawData.bgImageName];
+        //        [_bgImgeManager saveData:[bgImage data] forKey:pbNoCompressDrawData.bgImageName];
+        [_bgImgeManager saveImage:bgImage forKey:bgImageName];
     }
     
     [newMyPaint setDataFilePath:pbDataFileName];
@@ -464,7 +465,57 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [newMyPaint setDrawWord:word.text];
     [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
     [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
-    [newMyPaint setBgImageName:pbNoCompressDrawData.bgImageName];
+    [newMyPaint setBgImageName:bgImageName];
+}
+
+
+- (void)initMyPaint:(MyPaint *)newMyPaint
+              image:(UIImage*)image
+pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
+             userId:(NSString *)userId
+           nickName:(NSString *)nickName
+               word:(Word *)word
+           language:(NSInteger)language
+            bgImage:(UIImage *)bgImage
+{
+    [self initMyPaint:newMyPaint
+                image:image
+             drawData:[pbNoCompressDrawData data]
+               userId:userId
+             nickName:nickName
+                 word:word
+             language:language
+              bgImage:bgImage
+          bgImageName:pbNoCompressDrawData.bgImageName];
+    
+//    NSString *imageFileName = [self imageFileName];
+//    NSString *pbDataFileName = [self pbNoCompressDrawDataFileName];
+//    
+//    if (image != nil){
+//        [_imageManager saveImage:image forKey:imageFileName];
+//    }
+//        
+//    if (pbNoCompressDrawData != nil){
+//        [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+//    }    
+//    
+//    if (bgImage != nil) {
+//        [_bgImgeManager saveImage:bgImage forKey:pbNoCompressDrawData.bgImageName];
+//    }
+//    
+//    [newMyPaint setDataFilePath:pbDataFileName];
+//    [newMyPaint setImage:imageFileName];
+//    
+//    BOOL drawByMe = [[UserManager defaultManager] isMe:userId];
+//    
+//    [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
+//    [newMyPaint setDrawUserId:userId];
+//    [newMyPaint setDrawUserNickName:nickName];
+//    [newMyPaint setCreateDate:[NSDate date]];
+//    [newMyPaint setDrawWord:word.text];
+//    [newMyPaint setLevel:[NSNumber numberWithInt:word.level]];
+//    [newMyPaint setLanguage:[NSNumber numberWithInt:language]];
+//    [newMyPaint setBgImageName:pbNoCompressDrawData.bgImageName];
 }
 
 - (BOOL)createMyPaintWithImage:(UIImage*)image
@@ -538,6 +589,37 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     return newMyPaint;
 }
 
+- (MyPaint *)createDraft:(UIImage *)image
+                drawData:(NSData *)drawData
+               targetUid:(NSString *)targetUid
+               contestId:(NSString *)contestId
+                  userId:(NSString *)userId
+                nickName:(NSString *)nickName
+                    word:(Word *)word
+                language:(NSInteger)language
+                 bgImage:(UIImage *)bgImage
+             bgImageName:(NSString*)bgImageName
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    [self initMyPaint:newMyPaint
+                image:image
+             drawData:drawData
+               userId:userId
+             nickName:nickName
+                 word:word
+             language:language
+              bgImage:bgImage
+          bgImageName:bgImageName];
+    [newMyPaint setTargetUserId:targetUid];
+    [newMyPaint setContestId:contestId];
+    [newMyPaint setDraft:[NSNumber numberWithBool:YES]];
+    [newMyPaint setDrawWordData:[word data]];
+    PPDebug(@"<createDraft> %@", [newMyPaint description]);
+    [dataManager save];
+    return newMyPaint;    
+}
+
 - (MyPaint *)createDraftForRecovery:(NSString *)targetUid
                           contestId:(NSString *)contestId
                              userId:(NSString *)userId
@@ -571,6 +653,57 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
               image:(UIImage *)image
 pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 {
+    return [self updateDraft:draft image:image drawData:[pbNoCompressDrawData data]];
+    
+//    BOOL needSave = NO;
+//    if (draft) {
+//        NSString *imageFileName = [draft image];
+//        NSString *pbDataFileName = [draft dataFilePath];
+//        //update image
+//        if ([imageFileName length] != 0) {
+//            [_imageManager saveImage:image forKey:imageFileName];
+//        }else{
+//            NSString *imageFileName = [self imageFileName];
+//            [_imageManager saveImage:image forKey:imageFileName];
+//            [draft setImage:imageFileName];
+//            needSave = YES;
+//        }
+//        
+//        //update draw data.
+//        if ([pbDataFileName length] != 0) {
+//            if ([self saveDataAsPBNOCompressDrawData:draft]) {
+//                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+//            }else{
+//                //if old data save as action list, remove old data
+//                [_drawDataManager removeDataForKey:pbDataFileName];
+//                
+//                //save and rename path.
+//                pbDataFileName = [self pbNoCompressDrawDataFileName];
+//                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+//                [draft setDataFilePath:pbDataFileName];
+//                needSave = YES;
+//            }
+//
+//        }else{
+//            pbDataFileName = [self pbNoCompressDrawDataFileName];
+//            [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+//            [draft setDataFilePath:pbDataFileName];
+//            needSave = YES;
+//        }
+//        
+//        if (needSave) {
+//            [draft setIsRecovery:[NSNumber numberWithBool:NO]];
+//            [self save];            
+//        }
+//
+//    }
+//    return YES;
+}
+
+- (BOOL)updateDraft:(MyPaint *)draft
+              image:(UIImage *)image
+           drawData:(NSData *)drawData
+{
     BOOL needSave = NO;
     if (draft) {
         NSString *imageFileName = [draft image];
@@ -588,33 +721,34 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
         //update draw data.
         if ([pbDataFileName length] != 0) {
             if ([self saveDataAsPBNOCompressDrawData:draft]) {
-                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+                [_drawDataManager saveData:drawData forKey:pbDataFileName];
             }else{
                 //if old data save as action list, remove old data
                 [_drawDataManager removeDataForKey:pbDataFileName];
                 
                 //save and rename path.
                 pbDataFileName = [self pbNoCompressDrawDataFileName];
-                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+                [_drawDataManager saveData:drawData forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
                 needSave = YES;
             }
-
+            
         }else{
             pbDataFileName = [self pbNoCompressDrawDataFileName];
-            [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
+            [_drawDataManager saveData:drawData forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
             needSave = YES;
         }
         
         if (needSave) {
             [draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            [self save];            
+            [self save];
         }
-
+        
     }
     return YES;
 }
+
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint
 {

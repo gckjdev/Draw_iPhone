@@ -74,6 +74,13 @@
     return [builder build];
 }
 
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->type = DrawActionTypeClean;
+    return;
+}
+
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     

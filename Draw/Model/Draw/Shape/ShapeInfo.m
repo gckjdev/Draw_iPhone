@@ -169,6 +169,36 @@
     [builder setWidth:self.width];
 }
 
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    pbDrawActionC->has_bettercolor = 1;
+    
+    pbDrawActionC->pentype = self.penType;
+    pbDrawActionC->has_pentype = 1;
+    
+    pbDrawActionC->shapetype = self.type;
+    pbDrawActionC->has_shapetype = 1;
+    
+    const int LEN_RECT = 4;
+    if ([self.rectComponent count] >= LEN_RECT){
+        pbDrawActionC->rectcomponent = malloc(sizeof(float)*LEN_RECT); // 4 points in rect
+        pbDrawActionC->n_rectcomponent = LEN_RECT;
+        for (int i=0; i<LEN_RECT; i++){
+            pbDrawActionC->rectcomponent[i] = [[self.rectComponent objectAtIndex:i] floatValue];
+        }
+    }
+    
+    pbDrawActionC->width = self.width;
+    pbDrawActionC->has_width = 1;
+    
+//    [builder setBetterColor:[self.color toBetterCompressColor]];
+//    [builder setPenType:self.penType];
+//    [builder setShapeType:self.type];
+//    [builder addAllRectComponent:self.rectComponent];
+//    [builder setWidth:self.width];
+}
+
 + (UIImage *)shapeImageForShapeType:(ShapeType)type
 {
     ShareImageManager *manager = [ShareImageManager defaultManager];

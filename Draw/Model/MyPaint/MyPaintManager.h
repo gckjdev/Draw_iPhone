@@ -86,6 +86,18 @@
                 language:(NSInteger)language
                  bgImage:(UIImage *)bgImage;
 
+- (MyPaint *)createDraft:(UIImage *)image
+                drawData:(NSData *)drawData
+               targetUid:(NSString *)targetUid
+               contestId:(NSString *)contestId
+                  userId:(NSString *)userId
+                nickName:(NSString *)nickName
+                    word:(Word *)word
+                language:(NSInteger)language
+                 bgImage:(UIImage *)bgImage
+             bgImageName:(NSString*)bgImageName;
+
+
 - (MyPaint *)createDraftForRecovery:(NSString *)targetUid
                    contestId:(NSString *)contestId
                       userId:(NSString *)userId
@@ -97,6 +109,11 @@
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
 pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData;
+
+- (BOOL)updateDraft:(MyPaint *)draft
+              image:(UIImage *)image
+           drawData:(NSData *)drawData;
+
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;
 - (NSString *)imagePathForPaint:(MyPaint *)paint;

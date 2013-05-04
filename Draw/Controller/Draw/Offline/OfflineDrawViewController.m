@@ -902,6 +902,23 @@
     return data;
 }
 
+- (NSData *)newDrawDataSnapshot
+{
+//    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
+//                                                                               size:drawView.bounds.size
+//                                                                           opusDesc:self.opusDesc
+//                                                                         drawToUser:nil
+//                                                                    bgImageFileName:_bgImageName];
+    
+    NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
+                                                                  size:drawView.bounds.size
+                                                              opusDesc:self.opusDesc
+                                                            drawToUser:nil
+                                                       bgImageFileName:_bgImageName];
+    return data;
+}
+
+
 - (void)setTargetUid:(NSString *)targetUid
 {
     if(_targetUid != targetUid){
@@ -937,21 +954,35 @@
             PPDebug(@"<saveDraft> save draft");
             [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
             [self.draft setOpusDesc:self.opusDesc];
+//            result = [pManager updateDraft:self.draft
+//                                     image:image
+//                      pbNoCompressDrawData:[self drawDataSnapshot]];
             result = [pManager updateDraft:self.draft
                                      image:image
-                      pbNoCompressDrawData:[self drawDataSnapshot]];
+                                  drawData:[self newDrawDataSnapshot]];
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
+//            self.draft = [pManager createDraft:image
+//                          pbNoCompressDrawData:[self drawDataSnapshot]
+//                                     targetUid:_targetUid
+//                                     contestId:self.contest.contestId
+//                                        userId:[userManager userId]
+//                                      nickName:[userManager nickName]
+//                                          word:_word
+//                                      language:languageType
+//                                       bgImage:_bgImage];
+
             self.draft = [pManager createDraft:image
-                          pbNoCompressDrawData:[self drawDataSnapshot]
+                                      drawData:[self newDrawDataSnapshot]
                                      targetUid:_targetUid
                                      contestId:self.contest.contestId
                                         userId:[userManager userId]
                                       nickName:[userManager nickName]
                                           word:_word
                                       language:languageType
-                                       bgImage:_bgImage];
+                                       bgImage:_bgImage
+                                   bgImageName:_bgImageName];
             
             
             if (self.draft) {

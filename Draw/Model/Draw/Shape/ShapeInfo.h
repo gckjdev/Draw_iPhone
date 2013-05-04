@@ -47,4 +47,6 @@ typedef enum{
 - (NSArray *)rectComponent;
 - (CGRect)redrawRect;
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
+
 @end

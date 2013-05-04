@@ -155,12 +155,14 @@ typedef enum{
 {
     TableTab *tab = [_tabManager tabForID:TabTypeMine];
     [_myPaintManager findMyPaintsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
 
 - (void)performLoadAllPaints
 {
     TableTab *tab = [_tabManager tabForID:TabTypeAll];
     [_myPaintManager findAllPaintsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
 
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
@@ -177,6 +179,7 @@ typedef enum{
 {
     TableTab *tab = [_tabManager tabForID:TabTypeDraft];
     [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
 
 - (void)loadDrafts

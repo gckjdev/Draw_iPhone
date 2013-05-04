@@ -106,6 +106,18 @@
     return [builder build];
 }
 
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->type = DrawActionTypeShape;
+    [self.shape updatePBDrawActionC:pbDrawActionC];
+    return;
+    
+//    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+//    [builder setType:DrawActionTypeShape];
+//    [self.shape updatePBDrawActionBuilder:builder];
+//    return [builder build];
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     self.shape.endPoint = point;

@@ -95,6 +95,28 @@
     return [builder build];
   
 }
+
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->type = DrawActionTypeChangeBGImage;
+    if (self.drawBg) {
+//        [builder setDrawBg:self.drawBg];
+        
+        pbDrawActionC->drawbg = malloc(sizeof(Game__PBDrawBg));
+        game__pbdraw_bg__init(pbDrawActionC->drawbg);
+        
+        pbDrawActionC->drawbg->bgid = (char*)[self.drawBg.bgId UTF8String];
+        pbDrawActionC->drawbg->localurl = (char*)[self.drawBg.localUrl UTF8String];
+        pbDrawActionC->drawbg->remoteurl = (char*)[self.drawBg.remoteUrl UTF8String];
+        
+        pbDrawActionC->drawbg->showstyle = self.drawBg.showStyle;
+        pbDrawActionC->drawbg->has_showstyle = 1;        
+    }
+    return;
+
+}
+
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     

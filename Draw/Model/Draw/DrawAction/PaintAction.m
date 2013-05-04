@@ -221,6 +221,13 @@
     return [builder build];
 }
 
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->type = DrawActionTypePaint;
+    [self.paint updatePBDrawActionC:pbDrawActionC];
+    return;
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     [super addPoint:point inRect:rect];
