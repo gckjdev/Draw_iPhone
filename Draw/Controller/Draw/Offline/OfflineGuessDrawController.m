@@ -829,15 +829,25 @@
 }
 
 - (IBAction)clickRunAway:(id)sender {
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+    CommonDialog* dialog;
     __block OfflineGuessDrawController* cp = self;
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
-        [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
-        [self commitCorrectAnswer];
-    } clickCancelBlock:^{
-        [cp quitGameDirectly];
-    }];
-    [dialog.backButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+    if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
+            [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+            [self commitCorrectAnswer];
+        } clickCancelBlock:^{
+            [cp quitGameDirectly];
+        }];
+        [dialog.backButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+    } else {
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self clickOkBlock:^{
+            [cp quitGameDirectly];
+        } clickCancelBlock:^{
+            //
+        }];
+    }
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+   
 //    dialog.tag = QUIT_DIALOG_TAG;
     [dialog showInView:self.view];
 }
