@@ -1292,7 +1292,7 @@
 "kBought" = "销量";
 "kSNSSubject" = "猜猜画画美图分享";
 "kDrawAppLink" = "http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
-"kPaintVia" = "(作品来自 %@)";
+"kPaintVia" = "(作品来自 %@ )";
 
 
 //pure draw
@@ -1308,9 +1308,9 @@
 "kPhotoDrawFeedback" = "反馈";
 "kBlank" = "空白";
 
-"kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接要答案吗?";
+"kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";
-"kGuessResult" = "猜画结果";
+"kGuessResult" = "猜中了！";
 "kGoOnGuess" = "继续猜";
 "kNoBulletin" = "暂无公告";
 /*********************** 猜猜画画国际化字符串结束 *************************/

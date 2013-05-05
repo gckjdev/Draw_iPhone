@@ -1274,7 +1274,7 @@
 "kBought" = "銷量";
 "kSNSSubject" = "猜猜畫畫美圖分享";
 "kDrawAppLink" = "http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
-"kPaintVia" = "(作品來自 %@)";
+"kPaintVia" = "(作品來自 %@ )";
 
 //pure draw
 "kPureDrawDraw" = "畫畫";

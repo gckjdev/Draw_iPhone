@@ -1292,7 +1292,7 @@
 "kBought" = "Sold";
 "kSNSSubject" = "Share Paints";
 "kDrawAppLink" = "http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
-"kPaintVia" = "(via %@)";
+"kPaintVia" = "(via %@ )";
 
 //pure draw
 "kPureDrawDraw" = "DRAW";
