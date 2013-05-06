@@ -92,6 +92,7 @@
 
 #import "VersionUpdateView.h"
 #import "GameAdWallService.h"
+#import "ChargeController.h"
 
 @interface HomeController()
 {
@@ -583,7 +584,8 @@
             [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
-        case HomeMenuTypeDrawShop:
+        case HomeMenuTypeDrawBigShop:
+//        case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
             
@@ -654,7 +656,10 @@
             [feedBack release];
         }
             break;
-            
+        case HomeMenuTypeDrawCharge: {
+            ChargeController *vc = [[[ChargeController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        } break;
         default:
             break;
     }
@@ -743,7 +748,6 @@
             [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
-            
         case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];

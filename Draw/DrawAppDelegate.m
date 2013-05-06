@@ -224,6 +224,7 @@ NSString* GlobalGetBoardServerURL()
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
     [GameConfigDataManager createTestConfigData];
+//    [GameItemService createDrawTestDataFile];
 #endif
 
     // load config data
