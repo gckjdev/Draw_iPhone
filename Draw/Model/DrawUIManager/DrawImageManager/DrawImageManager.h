@@ -17,6 +17,7 @@
 - (UIImage *)drawHomeGuess;
 - (UIImage *)drawHomeOnlineGuess;
 - (UIImage *)drawHomeShop;
+- (UIImage*)drawHomeBigShop;
 - (UIImage *)drawHomeTimeline;
 - (UIImage *)drawHomeTop;
 - (UIImage *)drawAppsRecommand;

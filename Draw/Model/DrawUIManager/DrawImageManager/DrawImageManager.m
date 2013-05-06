@@ -94,6 +94,11 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
+- (UIImage*)drawHomeBigShop
+{
+    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
 - (UIImage *)diceHomeShop{
     NSString *imageName = [self fixImageName:@"common_home_shop"];
     return [UIImage imageNamed:imageName];

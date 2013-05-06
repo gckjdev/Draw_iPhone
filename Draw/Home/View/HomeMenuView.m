@@ -72,6 +72,7 @@
         case HomeMenuTypeDrawBBS:{
             return NSLS(@"kHomeMenuTypeDrawBBS");
         }
+        case HomeMenuTypeDrawBigShop:
         case HomeMenuTypeDrawShop:{
             return NSLS(@"kHomeMenuTypeDrawShop");
         }
@@ -90,9 +91,12 @@
         case HomeMenuTypeDrawPlayWithFriend:{
             return NSLS(@"kPlayWithFriend");
         }
-
+            
         case HomeMenuTypeDrawMore:
             return NSLS(@"kHomeMenuTypeDrawMore");
+        case HomeMenuTypeDrawCharge: {
+            return NSLS(@"kChargeTitle");
+        }
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -120,6 +124,7 @@
         {
             return NSLS(@"kHomeMenuTypeDrawMore");
         }
+        
             
         // Dice
         case HomeMenuTypeDiceStart:
@@ -172,6 +177,9 @@
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
         }
+        case HomeMenuTypeDrawBigShop: {
+            return [imageManager drawHomeBigShop];
+        }
         case HomeMenuTypeDrawApps:{
             return [imageManager drawAppsRecommand];
         }
@@ -203,6 +211,9 @@
         }
         case HomeMenuTypeDrawFriend:{
             return [imageManager drawHomeFriend];
+        }
+        case HomeMenuTypeDrawCharge: {
+            return [imageManager zjhHomeCharge];
         }
             
         //ZJH
@@ -374,6 +385,8 @@ int *getDrawMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawBigShop,
+//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -389,6 +402,8 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawBigShop,
+//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
