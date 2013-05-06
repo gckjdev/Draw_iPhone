@@ -955,7 +955,7 @@
 
 + (BOOL)showRestoreButton
 {
-    return [MobClickUtils getBoolValueByKey:@"SHOW_RESTORE_BUTTON" defaultValue:YES];
+    return [MobClickUtils getBoolValueByKey:@"SHOW_RESTORE_BUTTON" defaultValue:NO];
 }
 
 @end
