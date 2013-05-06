@@ -16,6 +16,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "ShareAction.h"
 #import "CommonMessageCenter.h"
+#import "LearnDrawManager.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -26,6 +27,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (retain, nonatomic) IBOutlet UIButton *previewButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
+@property (retain, nonatomic) IBOutlet UILabel *priceLabel;
+@property (retain, nonatomic) IBOutlet UIView *priceHolderView;
+@property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
 
 - (IBAction)clickPreview:(id)sender;
 - (IBAction)clickBuyButton:(id)sender;
@@ -68,6 +72,13 @@
                           placeholderImage:self.placeHolderImage];
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
     
+    [self.priceHolderView updateOriginX:self.contentImageView.frame.origin.x];
+    [self.priceHolderView updateOriginY:self.contentImageView.frame.origin.y + self.contentImageView.frame.size.height - self.priceHolderView.frame.size.height];
+    [self.priceHolderView updateWidth:self.contentImageView.frame.size.width];    
+    [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
+    [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
+    self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
+    
     NSString *leftTitle = nil;
     NSString *rightTitle = nil;
     SEL leftSelector;
@@ -78,8 +89,8 @@
         leftSelector = @selector(clickPreview:);
         rightSelector = @selector(clickBuyButton:);
     } else if (isDreamAvatarApp() || isDreamAvatarFreeApp()){
-        leftTitle = NSLS(@"kDreamAvatarSaveTo");
-        rightTitle = NSLS(@"kDreamAvatar");
+        leftTitle = NSLS(@"kDreamAvatarSaveToAlbum");
+        rightTitle = NSLS(@"kDreamAvatarSaveToContact");
         leftSelector = @selector(clickSaveToAlbum:);
         rightSelector = @selector(clickSaveToAvatar:);
     }
@@ -107,6 +118,9 @@
     _feed.pbDrawData = nil;
     _feed.drawData = nil;
     PPRelease(_feed);
+    [_priceLabel release];
+    [_priceHolderView release];
+    [_ingotImageView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -114,6 +128,9 @@
     [self setContentImageView:nil];
     [self setPreviewButton:nil];
     [self setBuyButton:nil];
+    [self setPriceLabel:nil];
+    [self setPriceHolderView:nil];
+    [self setIngotImageView:nil];
     [super viewDidUnload];
 }
 
@@ -212,8 +229,74 @@
     [self.progressView setProgress:progress];
 }
 
+- (IBAction)clickPreview:(id)sender {
+    PPDebug(@"clickPreview");
+    [self playDrawToEnd:NO];
+}
+
+- (IBAction)clickBuyButton:(id)sender {
+    
+    __block LearnDrawPreViewController *cp = self;
+    [[LearnDrawService defaultService] buyLearnDraw:cp.feed.feedId
+                                              price:cp.feed.learnDraw.price
+                                           fromView:self.view
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+        if (resultCode == 0) {
+            [cp playDrawToEnd:YES];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
+        }else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+        }
+        
+    }];
+}
+
+//dream avatar
+#pragma mark - dream avatar
 
 - (void)clickSaveToAlbum:(id)sender
+{
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]) {
+        [self saveToAlbum];
+        return;
+    }
+    
+    __block LearnDrawPreViewController *cp = self;
+    [[LearnDrawService defaultService] buyLearnDraw:cp.feed.feedId
+                                              price:cp.feed.learnDraw.price
+                                           fromView:self.view
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+                                          if (resultCode == 0) {
+                                              [cp saveToAlbum];
+                                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
+                                          }else{
+                                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+                                          }
+                                      }];
+}
+
+- (void)clickSaveToAvatar:(id)sender
+{
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]) {
+        [self saveToAvatar];
+        return;
+    }
+    
+    __block LearnDrawPreViewController *cp = self;
+    [[LearnDrawService defaultService] buyLearnDraw:cp.feed.feedId
+                                              price:cp.feed.learnDraw.price
+                                           fromView:self.view
+                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
+                                          if (resultCode == 0) {
+                                              [cp saveToAvatar];
+                                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
+                                          }else{
+                                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+                                          }
+                                      }];
+}
+
+- (void)saveToAlbum
 {
     [self showActivityWithText:NSLS(@"kSaving")];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
@@ -236,7 +319,7 @@
     }
 }
 
-- (void)clickSaveToAvatar:(id)sender
+- (void)saveToAvatar
 {
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
@@ -280,25 +363,4 @@
     return NO;
 }
 
-- (IBAction)clickPreview:(id)sender {
-    PPDebug(@"clickPreview");
-    [self playDrawToEnd:NO];
-}
-
-- (IBAction)clickBuyButton:(id)sender {
-    
-    __block LearnDrawPreViewController *cp = self;
-    [[LearnDrawService defaultService] buyLearnDraw:cp.feed.feedId
-                                              price:cp.feed.learnDraw.price
-                                           fromView:self.view
-                                      resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
-        if (resultCode == 0) {
-            [cp playDrawToEnd:YES];
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
-        }else{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
-        }
-        
-    }];
-}
 @end

@@ -35,6 +35,7 @@
 #define IMAGE_OPTION            20120407
 #define FROM_WEIXIN_OPTION      20130116
 
+#define DREAM_AVATAR_OPTION     20130506
 
 #define LOAD_PAINT_LIMIT 20
 
@@ -199,6 +200,30 @@ typedef enum{
 //    [self loadDraftsShouldShowLoading:YES];
 //}
 
+#define DREAM_AVATAR_TITLES  NSLS(@"kDreamAvatarSaveToAlbum"),NSLS(@"kDreamAvatarSaveToContact"),NSLS(@"kDelete"),nil
+- (void)didSelectPaintInDreamAvatar
+{
+    NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
+    
+    UIActionSheet *sheet;
+    if (self.isDraftTab) {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:editString, DREAM_AVATAR_TITLES];
+    } else {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:DREAM_AVATAR_TITLES];
+    }
+
+    sheet.tag = DREAM_AVATAR_OPTION;
+    [sheet showInView:self.view];
+    [sheet release];
+}
 
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
@@ -222,6 +247,14 @@ typedef enum{
         return;
     }
     self.selectedPaint = paint;
+    
+    
+    if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
+        [self didSelectPaintInDreamAvatar];
+        return;
+    }
+    
+    
     UIActionSheet* tips = nil;
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
@@ -232,7 +265,7 @@ typedef enum{
     if ([LocaleUtils isChina]){
         
         if (self.isDraftTab) {
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 

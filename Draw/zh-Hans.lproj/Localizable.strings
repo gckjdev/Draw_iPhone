@@ -1308,6 +1308,10 @@
 "kPhotoDrawFeedback" = "反馈";
 "kBlank" = "空白";
 
+//dream avatar
+"kDreamAvatarSaveToAlbum" = "保存到相册";
+"kDreamAvatarSaveToContact" = "保存到联系人";
+
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";
 "kGuessResult" = "猜中了！";

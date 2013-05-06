@@ -27,21 +27,22 @@
 #import "LearnDrawPreViewController.h"
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
+#import "PhotoDrawSheet.h"
 
 @interface LearnDrawHomeController ()
 {
     NSInteger  _tryTimes;
     SortType _sortType;
-
 }
 
-//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *gmButton;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+@property (retain, nonatomic) IBOutlet UIButton *sortButton;
+@property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
+
 - (IBAction)clickGMButton:(id)sender;
 - (IBAction)clickSortButton:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *sortButton;
 @end
 
 @implementation LearnDrawHomeController
@@ -66,6 +67,7 @@
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_gmButton);
     [_sortButton release];
+    [_photoDrawSheet release];
     [super dealloc];
 }
 
@@ -133,15 +135,7 @@
         case HomeMenuTypeLearnDrawDraft:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_DRAFT];
-            ShareController* share = [[ShareController alloc] init];
-            int count = [[StatisticManager defaultManager] recoveryCount];
-            if (count > 0) {
-                [share setDefaultTabIndex:2];
-                [[StatisticManager defaultManager] setRecoveryCount:0];
-            }
-            [self.navigationController pushViewController:share animated:YES];
-            [share release];
-            
+            [self openDrawDraft];
         }
             break;
         case HomeMenuTypeLearnDrawMore:
@@ -173,13 +167,13 @@
         //dream avatar
         case HomeMenuTypeDreamAvatarDraw:
         {
-            
+            [self drawAvatar];
         }
             break;
             
         case HomeMenuTypeDreamAvatarDraft:
         {
-            
+            [self openDrawDraft];
         }
             break;
             
@@ -208,9 +202,19 @@
 }
 
 
+- (void)openDrawDraft
+{
+    ShareController* share = [[ShareController alloc] init];
+    int count = [[StatisticManager defaultManager] recoveryCount];
+    if (count > 0) {
+        [share setDefaultTabIndex:2];
+        [[StatisticManager defaultManager] setRecoveryCount:0];
+    }
+    [self.navigationController pushViewController:share animated:YES];
+    [share release];
+}
+
 //rank view delegate
-
-
 - (void)playFeed:(DrawFeed *)aFeed
 {
     __block LearnDrawHomeController *cp = self;
@@ -527,4 +531,17 @@
     [sheet release];
     
 }
+
+
+//dream avatar
+#pragma mark - dream avatar
+- (void)drawAvatar
+{
+    self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
+    [_photoDrawSheet showSheet];
+}
+
+
+
+
 @end

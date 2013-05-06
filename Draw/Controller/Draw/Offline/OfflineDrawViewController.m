@@ -585,7 +585,7 @@
 
 - (void)initBgImage
 {
-    if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
+    if ([GameApp hasBGOffscreen]) {
         if (self.draft == nil && _bgImage) {
             [self setDrawBGImage:_bgImage];
         } else {

@@ -1307,6 +1307,10 @@
 "kPhotoDrawFeedback" = "SUPPORT";
 "kBlank" = "Blank";
 
+//dream avatar
+"kDreamAvatarSaveToAlbum" = "Album";
+"kDreamAvatarSaveToContact" = "Contact";
+
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";
 "kGuessResult" = "Result";
