@@ -255,4 +255,7 @@ typedef enum{
 
 + (int)getBuyAnswerPrice;
 + (double)getBGMVolume;
+
++ (BOOL)showRestoreButton;
+
 @end

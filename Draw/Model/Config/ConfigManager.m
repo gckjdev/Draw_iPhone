@@ -952,4 +952,10 @@
 {
     return [MobClickUtils getDoubleValueByKey:@"BGM_VOLUME" defaultValue:0.2];
 }
+
++ (BOOL)showRestoreButton
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_RESTORE_BUTTON" defaultValue:NO];
+}
+
 @end
