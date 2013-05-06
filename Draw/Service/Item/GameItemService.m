@@ -446,7 +446,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4000
                                         currency:PBGameCurrencyCoin
-                                  promotionPrice:2000
+                                  promotionPrice:4000
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -482,7 +482,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -495,7 +495,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -537,7 +537,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -550,7 +550,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -563,7 +563,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -576,7 +576,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot
-                                  promotionPrice:2
+                                  promotionPrice:4
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -679,7 +679,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+//    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
 
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
@@ -946,7 +947,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
-                                            desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送3999猜猜画画金币"
+                                            desc:@"知名品牌，原装正品，包邮79元，全网最平价格，额外赠送5个元宝"
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
                              
                                             type:PBDrawItemTypeDrawTaoBao
@@ -1103,7 +1104,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [builder setType:type];
     [builder setUrl:url];
     [builder setPriceInfo:[self currency:currency price:price]];
-    [builder setPromotionInfo:[self price:promotionPrice startDate:startDate expireDate:expireDate]];
+    if (promotionPrice < price || promotionPrice < 0){
+        [builder setPromotionInfo:[self price:promotionPrice startDate:startDate expireDate:expireDate]];
+    }
     [builder setDefaultSaleCount:defaultSaleCount];
     [builder setUsageLifeUnit:usageLifeUnit];
     [builder setUsageLife:usageLife];
