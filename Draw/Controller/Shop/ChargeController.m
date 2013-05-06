@@ -101,7 +101,11 @@
 {
     [super viewDidLoad];
     
-    self.restoreButton.hidden = NO;
+    if ([ConfigManager showRestoreButton]) {
+        self.restoreButton.hidden = NO;
+    } else {
+        self.restoreButton.hidden = YES;
+    }
     [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
     
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
