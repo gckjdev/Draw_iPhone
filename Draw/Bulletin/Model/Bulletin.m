@@ -28,6 +28,17 @@
 
 @implementation Bulletin
 
+- (void)dealloc
+{
+    PPRelease(_date);
+    PPRelease(_bulletinId);
+    PPRelease(_message);
+    PPRelease(_gameId);
+    PPRelease(_function);
+    PPRelease(_url);
+    [super dealloc];
+}
+
 - (id)initWithDict:(NSDictionary*)dict
 {
     self = [super init];
