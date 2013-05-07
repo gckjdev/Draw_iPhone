@@ -110,6 +110,9 @@
     }
     ReplayView *view = [topLevelObjects objectAtIndex:0];
     [view updateView];
+    view.adView = [[AdService defaultService] createAdInView:view
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-10-50-20, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 1024-50-20-20-10, 320, 50)];
     return view;
 }
 
@@ -200,6 +203,8 @@
 
 - (void)dealloc {
 
+    [[AdService defaultService] clearAdView:self.adView];
+    PPRelease(self.adView);
     
     PPDebug(@"dealloc %@", [self description]);
     _drawFeed.drawImage = nil;

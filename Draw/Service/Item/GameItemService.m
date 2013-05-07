@@ -386,8 +386,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
                                             type:PBDrawItemTypeDrawNomal
-                                           price:1000
-                                        currency:PBGameCurrencyCoin]];
+                                           price:10
+                                        currency:PBGameCurrencyIngot]];
     
     // 钱箱
     [mutableArray addObject:[self itemWithItemId:ItemTypePurse

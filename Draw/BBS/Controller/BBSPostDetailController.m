@@ -85,6 +85,9 @@ typedef enum{
 
 - (void)dealloc
 {
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+    
     PPRelease(_post);
     PPRelease(_backButton);
     PPRelease(_bgImageView);
@@ -209,6 +212,12 @@ typedef enum{
     }
     [self initViews];
     [self loadPost];
+    
+//    self.adView = [[AdService defaultService] createAdInView:self
+//                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
+//                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
+//                                                     useLmAd:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning
