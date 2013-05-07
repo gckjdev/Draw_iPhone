@@ -86,6 +86,7 @@
 
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜对了!";
+"kOfflineGuessCorrect" = "猜对了!金币+%d, 经验+%d";
 "kGuessWrong" = "猜错了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";

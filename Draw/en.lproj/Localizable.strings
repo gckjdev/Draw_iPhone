@@ -84,6 +84,7 @@
 
 "kRunAway" = "%@ run away!";
 "kGuessCorrect" = "Correct!";
+"kOfflineGuessCorrect" = "Correct! Coins+%d, Exp+%d";
 "kGuessWrong" = "Wrong!";
 "kAllUserQuit" = "All users quit! Game Over!";
 
