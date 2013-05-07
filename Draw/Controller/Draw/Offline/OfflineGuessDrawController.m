@@ -686,7 +686,7 @@
     if (_feed) {
         self.draw = self.feed.drawData;
     }
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kOfflineGuessCorrect"), [ConfigManager offlineGuessAwardScore] ,[ConfigManager getOffLineDrawExp]] delayTime:1 isHappy:YES];
     [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
     [self setWordButtonsEnabled:NO];
     

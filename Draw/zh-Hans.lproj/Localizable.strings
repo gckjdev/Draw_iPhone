@@ -86,6 +86,7 @@
 
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜对了!";
+"kOfflineGuessCorrect" = "猜对了!金币+%d, 经验+%d";
 "kGuessWrong" = "猜错了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
@@ -1307,6 +1308,10 @@
 "kPhotoDrawOpus" = "作品";
 "kPhotoDrawFeedback" = "反馈";
 "kBlank" = "空白";
+
+//dream avatar
+"kDreamAvatarSaveToAlbum" = "保存到相册";
+"kDreamAvatarSaveToContact" = "保存到联系人";
 
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";

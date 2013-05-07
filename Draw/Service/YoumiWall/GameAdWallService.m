@@ -238,4 +238,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     [[self wallServiceByType:wallType forceShowWall:forceShowWall] show:superController userId:userId];
 }
 
+- (void)showInsertWall:(UIViewController*)superController
+              wallType:(PBRewardWallType)wallType
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    if ([userId length] == 0)
+        return;
+    CommonAdWallService* service = [self wallServiceByType:wallType forceShowWall:YES];
+    
+    if ([service respondsToSelector:@selector(showInsert:userId:)]) {
+        [service showInsert:superController userId:userId];
+    } else {
+        PPDebug(@"<showInsertWall> wall type %d doesn't support insert wall", wallType);
+    }
+}
+
 @end

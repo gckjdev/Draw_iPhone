@@ -361,6 +361,7 @@
 
 - (NSString*)domodWallId
 {
+//    return @"96ZJ06UgzeimTwTAs3"; // official test ID
     return @"96ZJ3ySQze+vLwTAqZ";
 }
 

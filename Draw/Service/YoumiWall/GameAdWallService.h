@@ -32,6 +32,7 @@
         wallType:(PBRewardWallType)wallType
    forceShowWall:(BOOL)forceShowWall;
 
-
+- (void)showInsertWall:(UIViewController*)superController
+              wallType:(PBRewardWallType)wallType;
 
 @end

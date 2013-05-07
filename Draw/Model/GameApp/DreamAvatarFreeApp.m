@@ -30,5 +30,9 @@
     return DREAM_AVATAR_FREE_UMENG_ID;
 }
 
+- (BOOL)hasBGOffscreen{
+    return YES;
+}
+
 
 @end

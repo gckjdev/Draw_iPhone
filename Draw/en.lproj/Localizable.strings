@@ -84,6 +84,7 @@
 
 "kRunAway" = "%@ run away!";
 "kGuessCorrect" = "Correct!";
+"kOfflineGuessCorrect" = "Correct! Coins+%d, Exp+%d";
 "kGuessWrong" = "Wrong!";
 "kAllUserQuit" = "All users quit! Game Over!";
 
@@ -1306,6 +1307,10 @@
 "kPhotoDrawOpus" = "WORKS";
 "kPhotoDrawFeedback" = "SUPPORT";
 "kBlank" = "Blank";
+
+//dream avatar
+"kDreamAvatarSaveToAlbum" = "Album";
+"kDreamAvatarSaveToContact" = "Contact";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";

@@ -28,6 +28,7 @@
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
 #import "ReplayView.h"
+#import "SaveToContactPickerView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -35,6 +36,7 @@
 #define IMAGE_OPTION            20120407
 #define FROM_WEIXIN_OPTION      20130116
 
+#define DREAM_AVATAR_OPTION     20130506
 
 #define LOAD_PAINT_LIMIT 20
 
@@ -55,6 +57,7 @@ typedef enum{
 
 }
 @property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
+@property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine;
 - (NSArray *)paints;
 - (void)reloadView;
@@ -80,7 +83,7 @@ typedef enum{
     PPRelease(clearButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
-
+    PPRelease(_saveToContactPickerView);
     [super dealloc];
 }
 
@@ -199,6 +202,36 @@ typedef enum{
 //    [self loadDraftsShouldShowLoading:YES];
 //}
 
+#define TITLE_RECOVERY        NSLS(@"kRecovery")
+#define TITLE_EDIT            NSLS(@"kEdit")
+#define TITLE_SAVE_TO_ALBUM   NSLS(@"kDreamAvatarSaveToAlbum")
+#define TITLE_SAVE_TO_CONTACT NSLS(@"kDreamAvatarSaveToContact")
+#define TITLE_DELETE          NSLS(@"kDelete")
+
+#define DREAM_AVATAR_TITLES  TITLE_SAVE_TO_ALBUM, TITLE_SAVE_TO_CONTACT, TITLE_DELETE, nil
+- (void)didSelectPaintInDreamAvatar
+{
+    NSString* editString = ([[self.selectedPaint isRecovery] boolValue]? TITLE_RECOVERY : TITLE_EDIT);
+    
+    UIActionSheet *sheet;
+    if (self.isDraftTab) {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:editString, DREAM_AVATAR_TITLES];
+    } else {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:DREAM_AVATAR_TITLES];
+    }
+
+    sheet.tag = DREAM_AVATAR_OPTION;
+    [sheet showInView:self.view];
+    [sheet release];
+}
 
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
@@ -222,6 +255,14 @@ typedef enum{
         return;
     }
     self.selectedPaint = paint;
+    
+    
+    if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
+        [self didSelectPaintInDreamAvatar];
+        return;
+    }
+    
+    
     UIActionSheet* tips = nil;
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
@@ -232,7 +273,7 @@ typedef enum{
     if ([LocaleUtils isChina]){
         
         if (self.isDraftTab) {
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
@@ -417,6 +458,38 @@ typedef enum{
     }
 }
 
+- (void)dreamAvatarActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:TITLE_RECOVERY] ||
+        [buttonTitle isEqualToString:TITLE_EDIT]) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
+        [self showActivityWithText:NSLS(@"kSaving")];
+        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
+        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_CONTACT]) {
+        if (_saveToContactPickerView == nil) {
+            self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
+        }
+        
+        UIImage* image = [[UIImage alloc] initWithContentsOfFile:_selectedPaint.imageFilePath];
+        [_saveToContactPickerView saveToContact:image];
+    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        
+        dialog.tag = DELETE;
+        
+        [dialog showInView:self.view];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -430,8 +503,9 @@ typedef enum{
         [self imageActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
         return;
     }
-   
-    
+    if (actionSheet.tag == DREAM_AVATAR_OPTION) {
+        [self dreamAvatarActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    }
 }
 
 
