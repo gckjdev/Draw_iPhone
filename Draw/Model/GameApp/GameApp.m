@@ -104,7 +104,12 @@ extern BOOL isSimpleDrawApp()
             isPureDrawApp() ||
             isPureDrawFreeApp() ||
             isPhotoDrawApp() ||
-            isPhotoDrawFreeApp());
+            isPhotoDrawFreeApp() ||
+            isDreamAvatarApp() ||
+            isDreamAvatarFreeApp() ||
+            isDreamLockscreenApp() ||
+            isDreamLockscreenApp() ||
+            isDreamLockscreenFreeApp());
 }
 
 extern BOOL isLearnDrawApp()

@@ -140,11 +140,7 @@
             break;
         case HomeMenuTypeLearnDrawMore:
         {
-            NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
-            if ([list count] == 0) {
-                break;
-            }
-            [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
+            [self clickFeedback];
 
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_FEEDBACK];
 //
@@ -179,7 +175,8 @@
             
         case HomeMenuTypeDreamAvatarShop:
         {
-            
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -191,7 +188,7 @@
             
         case HomeMenuTypeDreamAvatarMore:
         {
-            
+            [self clickFeedback];
         }
             break;
             
@@ -201,6 +198,15 @@
     [menu updateBadge:0];
 }
 
+- (void)clickFeedback
+{
+    NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
+    if ([list count] == 0) {
+        return;
+    }
+    NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
+    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
+}
 
 - (void)openDrawDraft
 {
@@ -254,7 +260,7 @@
 
 - (void)showFeed:(DrawFeed *)feed placeHolder:(UIImage *)placeHolder
 {
-    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId]) {
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId] && isLearnDrawApp()) {
         [self playFeed:feed];
     }else{
         [LearnDrawPreViewController enterLearnDrawPreviewControllerFrom:self drawFeed:feed placeHolderImage:placeHolder];

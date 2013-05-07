@@ -17,6 +17,7 @@
 #import "ShareAction.h"
 #import "CommonMessageCenter.h"
 #import "LearnDrawManager.h"
+#import "SaveToContactPickerView.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -30,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *priceLabel;
 @property (retain, nonatomic) IBOutlet UIView *priceHolderView;
 @property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
+@property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 
 - (IBAction)clickPreview:(id)sender;
 - (IBAction)clickBuyButton:(id)sender;
@@ -118,9 +120,10 @@
     _feed.pbDrawData = nil;
     _feed.drawData = nil;
     PPRelease(_feed);
-    [_priceLabel release];
-    [_priceHolderView release];
-    [_ingotImageView release];
+    PPRelease(_priceLabel);
+    PPRelease(_priceHolderView);
+    PPRelease(_ingotImageView);
+    PPRelease(_saveToContactPickerView);
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -251,6 +254,28 @@
     }];
 }
 
+- (void)saveDrawToLocal
+{
+    __block LearnDrawPreViewController *cp = self;
+    [self showProgressViewWithMessage:NSLS(@"kLoading")];
+    [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
+        if (resultCode == 0 && pbDrawData) {
+            cp.feed.pbDrawData = pbDrawData;
+            [cp.feed parseDrawData];
+            
+            ShareAction *share = [[ShareAction alloc] initWithFeed:cp.feed
+                                                             image:cp.contentImageView.image];
+            [share saveToLocal];
+            [share release];
+        }else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
+        }
+        
+        [cp hideProgressView];
+        
+    } downloadDelegate:self];
+}
+
 //dream avatar
 #pragma mark - dream avatar
 
@@ -268,6 +293,7 @@
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
                                           if (resultCode == 0) {
                                               [cp saveToAlbum];
+                                              [cp saveDrawToLocal];
                                               [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
                                           }else{
                                               [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
@@ -289,6 +315,7 @@
                                       resultHandler:^(NSDictionary *dict, NSInteger resultCode) {
                                           if (resultCode == 0) {
                                               [cp saveToAvatar];
+                                              [cp saveDrawToLocal];
                                               [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBuyLearnDrawSuccess") delayTime:1.5 isSuccessful:YES];
                                           }else{
                                               [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNetworkError") delayTime:1.5 isSuccessful:NO];
@@ -321,46 +348,10 @@
 
 - (void)saveToAvatar
 {
-    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-	[self presentModalViewController:picker animated:YES];
-    [picker release];
-}
-
-#pragma mark - ABPeoplePickerNavigationControllerDelegate
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker{
-    [peoplePicker dismissModalViewControllerAnimated:YES];
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
-{
-    PPDebug(@"shouldContinueAfterSelectingPerson");
-    
-    [self showActivityWithText:NSLS(@"kSaving")];
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    if (queue == NULL){
-        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+    if (_saveToContactPickerView == nil) {
+        self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
     }
-    dispatch_async(queue, ^{
-        UIImage *image = _contentImageView.image;
-        NSData *data=UIImagePNGRepresentation(image);
-        ABPersonRemoveImageData(person, NULL);
-        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
-        ABAddressBookSave(peoplePicker.addressBook, nil);
-        CFDataRef cfData=CFDataCreate(NULL, [data bytes], [data length]);
-        ABPersonSetImageData(person, cfData, nil);
-        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
-        ABAddressBookSave(peoplePicker.addressBook, nil);
-    });
-    [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
-    
-    [peoplePicker dismissModalViewControllerAnimated:YES];
-    return NO;
-}
-
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-{
-    return NO;
+    [_saveToContactPickerView saveToContact:_contentImageView.image];
 }
 
 @end

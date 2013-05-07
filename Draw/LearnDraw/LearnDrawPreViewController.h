@@ -8,10 +8,8 @@
 
 #import "PPViewController.h"
 #import "DrawFeed.h"
-#import <AddressBook/AddressBook.h>
-#import <AddressBookUI/AddressBookUI.h>
 
-@interface LearnDrawPreViewController : PPViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface LearnDrawPreViewController : PPViewController
 
 + (LearnDrawPreViewController *)enterLearnDrawPreviewControllerFrom:(UIViewController *)fromController
                                                              drawFeed:(DrawFeed *)drawFeed

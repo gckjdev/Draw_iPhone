@@ -82,6 +82,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         [self createPhotoDrawIngotTestDataFile];
     }else if(isPhotoDrawFreeApp()){
         [self createPhotoDrawFreeIngotTestDataFile];
+    }else if(isDreamAvatarApp()) {
+        [self createDreamAvatarIngotTestDataFile];
+    }else if(isDreamAvatarFreeApp()) {
+        [self createDreamAvatarFreeIngotTestDataFile];
     }
 }
 
@@ -601,6 +605,190 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [listBuilder release];
 }
 
+
++ (void)createDreamAvatarIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    PBIAPProductPrice *priceCN;
+    PBIAPProductPrice *priceUS;
+    NSArray *priceList;
+    
+    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
+    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatar.ingo_6"
+                                    alipayProductId:@"dreamavatar_ingot_6"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:6
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatar.ingo_22"
+                                    alipayProductId:@"dreamavatar_ingot_22"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:22
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
+    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatar.ingo_39"
+                                    alipayProductId:@"dreamavatar_ingot_39"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:39
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatar.ingo_84"
+                                    alipayProductId:@"dreamavatar_ingot_84"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:84
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatar.ingo_225"
+                                    alipayProductId:@"dreamavatar_ingot_225"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:225
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
++ (void)createDreamAvatarFreeIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    PBIAPProductPrice *priceCN;
+    PBIAPProductPrice *priceUS;
+    NSArray *priceList;
+    
+    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
+    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatarfree.ingot_6"
+                                    alipayProductId:@"dreamavatar_ingot_6"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:6
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatarfree.ingot_22"
+                                    alipayProductId:@"dreamavatar_ingot_22"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:22
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
+    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatarfree.ingot_39"
+                                    alipayProductId:@"dreamavatar_ingot_39"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:39
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatarfree.ingot_84"
+                                    alipayProductId:@"dreamavatar_ingot_84"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:84
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamavatarfree.ingot_225"
+                                    alipayProductId:@"dreamavatar_ingot_225"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:225
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
 
 + (void)createZJHCoinTestDataFile
 {

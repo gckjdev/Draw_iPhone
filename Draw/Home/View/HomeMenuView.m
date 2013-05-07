@@ -606,7 +606,7 @@ int *getBottomMenuTypeList()
         return getDiceBottomMenuTypeList();
     }else if(isLearnDrawApp()){
         return getLearnDrawBottomMenuTypeList();
-    }else if(isDreamAvatarApp()){
+    }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
     }
     return NULL;
