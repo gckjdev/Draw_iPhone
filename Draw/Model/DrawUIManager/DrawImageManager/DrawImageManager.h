@@ -72,4 +72,10 @@
 - (UIImage *)dreamAvatarFreeIngot;
 - (UIImage *)dreamAvatarMore;
 
+//dream lockscreen
+- (UIImage *)dreamLockscreenDraft;
+- (UIImage *)dreamLockscreenShop;
+- (UIImage *)dreamLockscreenFreeIngot;
+- (UIImage *)dreamLockscreenMore;
+
 @end

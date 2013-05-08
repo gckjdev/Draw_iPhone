@@ -306,4 +306,30 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+
+//dream lockscreen
+- (UIImage *)dreamLockscreenDraft
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draft"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenShop
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenFreeIngot
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenMore
+{
+    NSString *imageName = [self fixImageName:@"learndraw_more"];
+    return [UIImage imageNamed:imageName];
+}
+
 @end

@@ -296,6 +296,20 @@
         case HomeMenuTypeDreamAvatarMore:
             return [imageManager dreamAvatarMore];
             
+            
+        //dream lockscreen
+        case HomeMenuTypeDreamLockscreenDraft:
+            return [imageManager dreamLockscreenDraft];
+            
+        case HomeMenuTypeDreamLockscreenShop:
+            return [imageManager dreamLockscreenShop];
+            
+        case HomeMenuTypeDreamLockscreenFreeIngot:
+            return [imageManager dreamLockscreenFreeIngot];
+            
+        case HomeMenuTypeDreamLockscreenMore:
+            return [imageManager dreamLockscreenMore];
+            
         default:
             return nil;
     }
@@ -571,6 +585,34 @@ int *getDreamAvatarBottomMenuTypeList()
     //return getDreamAvatarBottomMenuTypeListtWithFreeIngots();
 }
 
+int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenFreeIngot,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDreamLockscreenBottomMenuTypeListtWithFreeIngots() : getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots());
+}
+
 BOOL typeInList(HomeMenuType type, int *list)
 {
     int *l = list;
@@ -609,6 +651,8 @@ int *getBottomMenuTypeList()
         return getLearnDrawBottomMenuTypeList();
     }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
+    }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        return getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots();
     }
     return NULL;
 }
