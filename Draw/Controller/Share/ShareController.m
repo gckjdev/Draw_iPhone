@@ -242,7 +242,7 @@ typedef enum{
         [message setThumbImage:paint.thumbImage];
         WXImageObject *ext = [WXImageObject object];
         message.title = NSLS(@"kWXShareImageName");
-        ext.imageData = [paint.thumbImage data] ;
+        ext.imageData = [paint.paintImage data] ;
         message.mediaObject = ext;
         
         GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
@@ -252,6 +252,7 @@ typedef enum{
         if (flag) {
             [self.navigationController popViewControllerAnimated:NO];
         }
+        paint.paintImage = nil;
         return;
     }
     self.selectedPaint = paint;
@@ -277,7 +278,7 @@ typedef enum{
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }else{        
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                           delegate:self 

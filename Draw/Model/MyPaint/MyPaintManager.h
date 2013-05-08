@@ -67,6 +67,8 @@
 - (BOOL)save;
 - (BOOL)deleteMyPaint:(MyPaint *)paint;
 
+- (UIImage *)saveImageAsThumb:(UIImage *)largeImage path:(NSString *)path;
+
 //real remove.
 - (void)removeAlldeletedPaints;
 
