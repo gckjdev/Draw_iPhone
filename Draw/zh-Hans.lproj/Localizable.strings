@@ -1265,6 +1265,7 @@
 "kLearnDrawCartoon" = "动漫";
 "kLearnDrawCharater" = "人物";
 "kLearnDrawScenery" = "风景";
+"kLearnDrawAnimal" = "动物";
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "画";
 "kAddLearnDraw" = "销售此画";

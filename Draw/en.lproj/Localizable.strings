@@ -1265,6 +1265,7 @@
 "kLearnDrawCartoon" = "Cartoon";
 "kLearnDrawCharater" = "Human";
 "kLearnDrawScenery" = "Scene";
+"kLearnDrawAnimal" = "Animal";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";

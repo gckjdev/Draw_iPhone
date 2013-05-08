@@ -770,7 +770,7 @@ typedef enum{
     [super initTabButtons];
     [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
     
-    if (isSimpleDrawApp() && isLearnDrawApp() == NO){
+    if ([GameApp showPaintCategory] == NO){
         UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
         UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
         UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];

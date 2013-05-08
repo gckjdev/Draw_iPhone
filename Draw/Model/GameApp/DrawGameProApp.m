@@ -82,4 +82,10 @@
     
 }
 
+- (BOOL)showPaintCategory
+{
+    return YES;
+}
+
+
 @end

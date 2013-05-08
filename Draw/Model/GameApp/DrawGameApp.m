@@ -480,4 +480,9 @@
     PPDebug(@"<createConfigFile> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
+- (BOOL)showPaintCategory
+{
+    return YES;
+}
+
 @end

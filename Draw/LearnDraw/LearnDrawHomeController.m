@@ -28,6 +28,7 @@
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
 #import "PhotoDrawSheet.h"
+#import "FreeIngotController.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -109,7 +110,17 @@
     self.unReloadDataWhenViewDidAppear = NO;
     [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
     [_sortButton setTitle:NSLS(@"kTime") forState:UIControlStateNormal];
+    
+    if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
+        UIButton *sceneryButton = [self tabButtonWithTabID:[self tabIDFromeType:LearnDrawTypeScenery]];
+        sceneryButton.hidden= YES;
+    } else {
+        UIButton *animalButton = [self tabButtonWithTabID:[self tabIDFromeType:LearnDrawTypeAnimal]];
+        animalButton.hidden= YES;
+    }
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -182,7 +193,8 @@
             
         case HomeMenuTypeDreamAvatarFreeIngot:
         {
-            
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -444,21 +456,19 @@
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
+    NSArray *types = [ContentGameApp homeTabIDList];
     
-    int types[] = {
-        LearnDrawTypeAll,
-        LearnDrawTypeCartoon,
-        LearnDrawTypeCharater,
-        LearnDrawTypeScenery,
-        LearnDrawTypeOther};
+    int type = [[types objectAtIndex:index] intValue];
     
-    return [self tabIDFromeType:types[index]];
+    return [self tabIDFromeType:type];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kLearnDrawAll"),NSLS(@"kLearnDrawCartoon"),NSLS(@"kLearnDrawCharater"),NSLS(@"kLearnDrawScenery"),NSLS(@"kLearnDrawOther")};
+    NSArray *titles = [ContentGameApp homeTabTitleList];
+    
     return titles[index];
 }
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     TableTab *tab = [_tabManager tabForID:tabID];

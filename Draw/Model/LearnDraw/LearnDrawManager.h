@@ -15,6 +15,7 @@ typedef enum {
     LearnDrawTypeCartoon,
     LearnDrawTypeCharater,
     LearnDrawTypeScenery,
+    LearnDrawTypeAnimal,
     
     LearnDrawTypeOther = 10000,
     
