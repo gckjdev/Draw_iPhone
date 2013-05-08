@@ -10,4 +10,9 @@
 
 @implementation LittleGeeDrawApp
 
+- (PPViewController*)homeController
+{
+    
+}
+
 @end

@@ -466,7 +466,7 @@
 
 - (void)buyAndPlayDraw:(DrawFeed *)feed
 {
-    __block ReplayView *cp = self;
+    ReplayView *cp = self;
     [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
                                               price:self.drawFeed.learnDraw.price
                                            fromView:self
