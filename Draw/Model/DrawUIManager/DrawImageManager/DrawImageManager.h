@@ -78,4 +78,7 @@
 - (UIImage *)dreamLockscreenFreeIngot;
 - (UIImage *)dreamLockscreenMore;
 
+//little gee
+- (UIImage*)littleGeeBottomSplit;
+
 @end

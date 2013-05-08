@@ -466,7 +466,7 @@
 
 - (void)buyAndPlayDraw:(DrawFeed *)feed
 {
-    __block ReplayView *cp = self;
+    ReplayView *cp = self;
     [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
                                               price:self.drawFeed.learnDraw.price
                                            fromView:self
@@ -501,7 +501,7 @@
         [self.playButton setEnabled:YES];
         [self clickPlay:self.playButton];
         [self.playButton setEnabled:NO];
-        __block ReplayView *cp = self;
+        ReplayView *cp = self;
         
         [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
                                        style:CommonDialogStyleDoubleButton

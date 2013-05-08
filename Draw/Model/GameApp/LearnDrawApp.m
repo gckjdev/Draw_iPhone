@@ -69,9 +69,19 @@
     
     PBConfig_Builder* builder = [PBConfig builder];
     
-    PBAppReward* diceApp = [GameConfigDataManager oldDiceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-    
+    PBAppReward* diceApp = [GameConfigDataManager oldDiceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
     [builder addAppRewards:diceApp];
+    
+    PBRewardWall* limei = [GameConfigDataManager limeiWall];
+    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
+    PBRewardWall* ader = [GameConfigDataManager aderWall];
+//    PBRewardWall* domod = [GameConfigDataManager domodWall];
+    
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:ader];
+    [builder addRewardWalls:youmi];
+//    [builder addRewardWalls:domod];
+    
     
     PBConfig* config = [builder build];
     NSData* data = [config data];

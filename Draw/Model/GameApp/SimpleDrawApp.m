@@ -46,7 +46,7 @@
 
 - (NSString*)lmwallId
 {
-    return DRAW_LM_WALL_ID;
+    return @"b1d2438bd176a2c59d5bc51d92f55e76";     // NEW LM WALL ID
 }
 
 - (NSString*)lmAdPublisherId

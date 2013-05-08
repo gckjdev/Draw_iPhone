@@ -120,6 +120,8 @@
             line.image = imageManager.drawHomeSplitline1;
         }else if(isLearnDrawApp()){
             line.image = imageManager.learnDrawBottomSplit;
+        }else if (isLittleGeeAPP()) {
+            line.image = [imageManager littleGeeBottomSplit];
         }
         else{
             line.image = imageManager.drawHomeSplitline;
@@ -136,7 +138,7 @@
 
 - (void)updateView
 {
-    if (isDrawApp()) {
+    if (isDrawApp() || isLittleGeeAPP()) {
         [[self bgImageView] removeFromSuperview];
     }
     

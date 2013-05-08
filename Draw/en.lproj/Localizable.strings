@@ -1277,7 +1277,7 @@
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Preview";
-"kLearnDrawTitle" = "Watch & Draw";
+"kLearnDrawTitle" = "Learn How To Draw";
 "kBuyLearnDrawSuccess" = "Drawing bought successfully";
 
 "kBuyToPlayMesaage" = "Complete preview. Do you want to purchase this drawing and continue to play?";
@@ -1644,3 +1644,7 @@
 "kContentRepeatedError" = "Can't send repeated content.";
 
 /*********************** BBS国际化字符串结束 *************************/
+
+/*********************小吉画画国际化字符串开始 ************************/
+"kLittleGeeRecommend" = "Recommend";
+/*********************小吉画画国际化字符串结束 ************************/
