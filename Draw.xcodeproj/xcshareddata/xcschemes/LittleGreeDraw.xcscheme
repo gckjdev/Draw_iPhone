@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C28A99641738F04B007A819F"
-               BuildableName = "Draw copy.app"
+               BuildableName = "LittleGeeDraw.app"
                BlueprintName = "LittleGeeDraw"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C28A99641738F04B007A819F"
-            BuildableName = "Draw copy.app"
+            BuildableName = "LittleGeeDraw.app"
             BlueprintName = "LittleGeeDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C28A99641738F04B007A819F"
-            BuildableName = "Draw copy.app"
+            BuildableName = "LittleGeeDraw.app"
             BlueprintName = "LittleGeeDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C28A99641738F04B007A819F"
-            BuildableName = "Draw copy.app"
+            BuildableName = "LittleGeeDraw.app"
             BlueprintName = "LittleGeeDraw"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
