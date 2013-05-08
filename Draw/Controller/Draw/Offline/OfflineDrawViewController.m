@@ -413,6 +413,7 @@
 
 
         [drawView showDraft:self.draft];
+        self.draft.paintImage = nil;
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
         

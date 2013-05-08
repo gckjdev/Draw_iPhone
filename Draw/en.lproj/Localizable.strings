@@ -1265,6 +1265,7 @@
 "kLearnDrawCartoon" = "Cartoon";
 "kLearnDrawCharater" = "Human";
 "kLearnDrawScenery" = "Scene";
+"kLearnDrawAnimal" = "Animal";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
 "kAddLearnDraw" = "Sell the draw";
@@ -1276,7 +1277,7 @@
 "kLearnDrawPreview" = "Preview";
 "kLearnDrawBuy" = "Buy & Play";
 "kBuyToPlayTitle" = "Preview";
-"kLearnDrawTitle" = "Watch & Draw";
+"kLearnDrawTitle" = "Learn How To Draw";
 "kBuyLearnDrawSuccess" = "Drawing bought successfully";
 
 "kBuyToPlayMesaage" = "Complete preview. Do you want to purchase this drawing and continue to play?";

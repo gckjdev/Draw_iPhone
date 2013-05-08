@@ -23,7 +23,7 @@
 #import "CanvasRect.h"
 #import "TimeUtils.h"
 #import "Draw.pb-c.h"
-
+#import "UIImageUtil.h"
 
 #define SUFFIX_NUMBER 100
 @interface MyPaintManager()
@@ -47,6 +47,7 @@ static MyPaintManager* _defaultManager;
 #define PBDRAW_DATA_SUFFIX @"_pb.dat"
 #define PBNOCOMPRESS_DRAWDATA_SUFFIX @"_npb.dat"
 #define IMAGE_SUFFIX @".png"
+#define THUMB_IMAGE_SUFFIX @"_m.png"
 
 - (BOOL)saveDataAsPBDraw:(MyPaint *)paint
 {
@@ -243,6 +244,10 @@ static MyPaintManager* _defaultManager;
             //delete image
             [FileUtil removeFile:paint.imageFilePath];
             
+            //delete thumb
+            
+            [FileUtil removeFile:[self thumbPathFromImagePath:paint.imageFilePath]];
+            
             //delete data        
             [self deletePaintData:paint.dataFilePath];
             
@@ -403,6 +408,8 @@ static MyPaintManager* _defaultManager;
     NSString *pbDataFileName = [self pbDataFileName];
     
     [_imageManager saveImage:image forKey:imageFileName];
+    [self saveImageAsThumb:image path:[self thumbPathFromImagePath:imageFileName]];
+    
     [_drawDataManager saveData:[pbDraw data] forKey:pbDataFileName];
     //    [_drawDataManager saveData:[pbDrawData data] forKey:pbDataFileName];
     
@@ -442,6 +449,7 @@ static MyPaintManager* _defaultManager;
     
     if (image != nil){
         [_imageManager saveImage:image forKey:imageFileName];
+        [self saveImageAsThumb:image path:[self thumbPathFromImagePath:imageFileName]];
     }
     
     if (drawData != nil){
@@ -700,6 +708,20 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 //    return YES;
 }
 
+- (NSString *)thumbPathFromImagePath:(NSString *)imagePath
+{
+    NSString *path = imagePath;
+    if ([path length] != 0) {
+        if ([path hasSuffix:IMAGE_SUFFIX]) {
+            path = [path substringToIndex:path.length - IMAGE_SUFFIX.length];
+//            path = [path stringByAppendingString:THUMB_IMAGE_SUFFIX];
+        }
+        path = [path stringByAppendingString:THUMB_IMAGE_SUFFIX];
+    }
+    return path;
+
+}
+
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
            drawData:(NSData *)drawData
@@ -712,11 +734,13 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
         if ([imageFileName length] != 0) {
             [_imageManager saveImage:image forKey:imageFileName];
         }else{
-            NSString *imageFileName = [self imageFileName];
+            imageFileName = [self imageFileName];
             [_imageManager saveImage:image forKey:imageFileName];
             [draft setImage:imageFileName];
             needSave = YES;
         }
+        
+        [self saveImageAsThumb:image path:[self thumbPathFromImagePath:imageFileName]];
         
         //update draw data.
         if ([pbDataFileName length] != 0) {
@@ -903,6 +927,21 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
     }
     return nil;
 }
+
+#define MAX_SIZE 150.0
+
+- (UIImage *)saveImageAsThumb:(UIImage *)largeImage path:(NSString *)path
+{
+    NSString *key = [FileUtil getFileNameByFullPath:path];
+    CGSize size = largeImage.size;
+    CGFloat r = MIN(size.width, size.height) / MAX_SIZE;
+    size = CGSizeMake(size.width / r, size.height / r);
+    UIImage *thumb = [largeImage imageByScalingAndCroppingForSize:size];
+    [_imageManager saveImage:thumb forKey:key];
+    PPDebug(@"<saveImageAsThumb> path = %@", path);
+    return thumb;
+}
+
 
 - (UIImage *)bgImageForPaint:(MyPaint *)paint
 {

@@ -148,10 +148,15 @@
 
 - (void)createConfigData;
 
+- (BOOL)showPaintCategory;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>
 
 - (int)sellContentType;
+
+- (NSArray *)homeTabIDList;
+- (NSArray *)homeTabTitleList;
 
 @end

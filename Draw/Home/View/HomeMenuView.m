@@ -593,6 +593,7 @@ int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
 int *getDreamAvatarBottomMenuTypeList()
 {
     return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
+    //return getDreamAvatarBottomMenuTypeListtWithFreeIngots();
 }
 
 BOOL typeInList(HomeMenuType type, int *list)

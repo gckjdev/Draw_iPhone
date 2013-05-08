@@ -7,6 +7,7 @@
 //
 
 #import "DreamAvatarApp.h"
+#import "LearnDrawManager.h"
 
 @implementation DreamAvatarApp
 
@@ -32,6 +33,24 @@
 
 - (BOOL)hasBGOffscreen{
     return YES;
+}
+
+- (NSArray *)homeTabIDList
+{
+    return [NSArray arrayWithObjects:[NSNumber numberWithInt:LearnDrawTypeAll],
+            [NSNumber numberWithInt:LearnDrawTypeCartoon],
+            [NSNumber numberWithInt:LearnDrawTypeCharater],
+            [NSNumber numberWithInt:LearnDrawTypeAnimal],
+            [NSNumber numberWithInt:LearnDrawTypeOther],nil];
+}
+
+- (NSArray *)homeTabTitleList
+{
+    return [NSArray arrayWithObjects:NSLS(@"kLearnDrawAll"),
+            NSLS(@"kLearnDrawCartoon"),
+            NSLS(@"kLearnDrawCharater"),
+            NSLS(@"kLearnDrawAnimal"),
+            NSLS(@"kLearnDrawOther"), nil];
 }
 
 @end

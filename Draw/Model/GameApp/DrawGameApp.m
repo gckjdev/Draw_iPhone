@@ -480,4 +480,15 @@
     PPDebug(@"<createConfigFile> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
 }
 
+
+- (int)sellContentType
+{
+    return SellContentTypeLearnDraw;
+}
+
+- (BOOL)showPaintCategory
+{
+    return YES;
+}
+
 @end
