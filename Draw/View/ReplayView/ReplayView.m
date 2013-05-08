@@ -501,7 +501,7 @@
         [self.playButton setEnabled:YES];
         [self clickPlay:self.playButton];
         [self.playButton setEnabled:NO];
-        __block ReplayView *cp = self;
+        ReplayView *cp = self;
         
         [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
                                        style:CommonDialogStyleDoubleButton
