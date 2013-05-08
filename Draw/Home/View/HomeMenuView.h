@@ -78,6 +78,14 @@ typedef enum{
     HomeMenuTypeDreamAvatarFreeIngot,
     HomeMenuTypeDreamAvatarMore,
     
+    //LittleGee Bottom Menu
+    HomeMenuTypeLittleGeeOptions,
+    HomeMenuTypeLittleGeeFriend,
+    HomeMenuTypeLittleGeeChat,
+    HomeMenuTypeLittleGeeFeed,
+    HomeMenuTypeLittleGeePlaceholder,
+    
+    
 }HomeMenuType;
 
 @protocol HomeMenuViewDelegate <HomeCommonViewDelegate>

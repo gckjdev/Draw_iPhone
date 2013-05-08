@@ -306,4 +306,9 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage*)littleGeeBottomSplit
+{
+    return nil;
+}
+
 @end

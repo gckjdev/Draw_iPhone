@@ -7,7 +7,17 @@
 //
 
 #import "CommonTabController.h"
+#import "HomeBottomMenuPanel.h"
 
-@interface LittleGeeHomeController : CommonTabController
+typedef enum {
+    LittleGeeHomeGalleryTypeAnnual = 0,
+    LittleGeeHomeGalleryTypeWeekly,
+    LittleGeeHomeGalleryTypeLatest,
+    LittleGeeHomeGalleryTypeRecommend,
+    LittleGeeHomeGalleryTypeFriend
+    
+}LittleGeeHomeGalleryType;
+
+@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate>
 
 @end

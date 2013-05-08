@@ -72,4 +72,6 @@
 - (UIImage *)dreamAvatarFreeIngot;
 - (UIImage *)dreamAvatarMore;
 
+//little gee
+- (UIImage*)littleGeeBottomSplit;
 @end

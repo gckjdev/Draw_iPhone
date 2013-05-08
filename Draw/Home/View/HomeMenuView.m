@@ -296,6 +296,17 @@
         case HomeMenuTypeDreamAvatarMore:
             return [imageManager dreamAvatarMore];
             
+        //little gee
+        case HomeMenuTypeLittleGeeOptions:
+            return [imageManager drawHomeSetting];
+        case HomeMenuTypeLittleGeeFriend:
+            return [imageManager drawHomeFriend];
+        case HomeMenuTypeLittleGeePlaceholder:
+            return nil;
+        case HomeMenuTypeLittleGeeChat:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeLittleGeeFeed:
+            return [imageManager drawHomeTimeline];
         default:
             return nil;
     }
@@ -538,6 +549,20 @@ int *getLearnDrawBottomMenuTypeList()
     return list;
 }
 
+int *getLittleGeeBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeLittleGeeOptions,
+        HomeMenuTypeLittleGeeFriend,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeeChat,
+        HomeMenuTypeLittleGeeFeed,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
 
 
 int *getDreamAvatarBottomMenuTypeListtWithFreeIngots()
@@ -608,6 +633,8 @@ int *getBottomMenuTypeList()
         return getLearnDrawBottomMenuTypeList();
     }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
+    }else if (isLittleGeeAPP()) {
+        return getLittleGeeBottomMenuTypeList();
     }
     return NULL;
 }
