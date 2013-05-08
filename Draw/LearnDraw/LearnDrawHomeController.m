@@ -29,6 +29,7 @@
 #import "ConfigManager.h"
 #import "PhotoDrawSheet.h"
 #import "FreeIngotController.h"
+#import "ChargeController.h"
 
 @interface LearnDrawHomeController ()
 {
@@ -199,6 +200,35 @@
             break;
             
         case HomeMenuTypeDreamAvatarMore:
+        {
+            [self clickFeedback];
+        }
+            break;
+          
+            
+        //dream lockscreen
+        case HomeMenuTypeDreamLockscreenDraft:
+        {
+            [self openDrawDraft];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenShop:
+        {
+            ChargeController *controller = [[ChargeController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenFreeIngot:
+        {
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenMore:
         {
             [self clickFeedback];
         }

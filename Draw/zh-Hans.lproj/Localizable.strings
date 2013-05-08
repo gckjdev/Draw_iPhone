@@ -1311,8 +1311,12 @@
 "kBlank" = "空白";
 
 //dream avatar
-"kDreamAvatarSaveToAlbum" = "保存到相册";
-"kDreamAvatarSaveToContact" = "保存到联系人";
+"kDreamAvatarSaveToAlbum" = "保存到相冊";
+"kDreamAvatarSaveToContact" = "保存到聯繫人";
+
+//dream lockscreen
+"kDreamLockscreenPreview" = "预览";
+"kDreamLockscreenBuy" = "购买 & 观看";
 
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";
@@ -1657,3 +1661,7 @@
 "kContentRepeatedError" = "请不要发重复的帖子。";
 
 /*********************** BBS国际化字符串结束 *************************/
+
+/*********************小吉画画国际化字符串开始 ************************/
+"kLittleGeeRecommend" = "推荐";
+/*********************小吉画画国际化字符串结束 ************************/

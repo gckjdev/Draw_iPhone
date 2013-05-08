@@ -296,6 +296,33 @@
         case HomeMenuTypeDreamAvatarMore:
             return [imageManager dreamAvatarMore];
             
+            
+        //dream lockscreen
+        case HomeMenuTypeDreamLockscreenDraft:
+            return [imageManager dreamLockscreenDraft];
+            
+        case HomeMenuTypeDreamLockscreenShop:
+            return [imageManager dreamLockscreenShop];
+            
+        case HomeMenuTypeDreamLockscreenFreeIngot:
+            return [imageManager dreamLockscreenFreeIngot];
+            
+        case HomeMenuTypeDreamLockscreenMore:
+            return [imageManager dreamLockscreenMore];
+            
+
+        //little gee
+        case HomeMenuTypeLittleGeeOptions:
+            return [imageManager drawHomeSetting];
+        case HomeMenuTypeLittleGeeFriend:
+            return [imageManager drawHomeFriend];
+        case HomeMenuTypeLittleGeePlaceholder:
+            return nil;
+        case HomeMenuTypeLittleGeeChat:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeLittleGeeFeed:
+            return [imageManager drawHomeTimeline];
+            
         default:
             return nil;
     }
@@ -538,6 +565,20 @@ int *getLearnDrawBottomMenuTypeList()
     return list;
 }
 
+int *getLittleGeeBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeLittleGeeOptions,
+        HomeMenuTypeLittleGeeFriend,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeeChat,
+        HomeMenuTypeLittleGeeFeed,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
 
 
 int *getDreamAvatarBottomMenuTypeListtWithFreeIngots()
@@ -569,6 +610,34 @@ int *getDreamAvatarBottomMenuTypeList()
 {
     return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
     //return getDreamAvatarBottomMenuTypeListtWithFreeIngots();
+}
+
+int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenFreeIngot,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDreamLockscreenBottomMenuTypeListtWithFreeIngots() : getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots());
 }
 
 BOOL typeInList(HomeMenuType type, int *list)
@@ -609,6 +678,10 @@ int *getBottomMenuTypeList()
         return getLearnDrawBottomMenuTypeList();
     }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
+    }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        return getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots();
+    }else if (isLittleGeeAPP()) {
+        return getLittleGeeBottomMenuTypeList();
     }
     return NULL;
 }

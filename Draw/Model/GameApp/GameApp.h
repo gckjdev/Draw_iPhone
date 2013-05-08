@@ -127,7 +127,8 @@ typedef enum {
     GameAppTypeDreamAvatar = 10,
     GameAppTypeDreamAvatarFree = 11,
     GameAppTypeDreamLockscreen = 12,
-    GameAppTypeDreamLockscreenFree = 13
+    GameAppTypeDreamLockscreenFree = 13,
+    GameAppTypeLittleGee = 14
 }GameAppType;
 
 
@@ -156,6 +157,7 @@ extern BOOL isDreamAvatarApp();
 extern BOOL isDreamAvatarFreeApp();
 extern BOOL isDreamLockscreenApp();
 extern BOOL isDreamLockscreenFreeApp();
+extern BOOL isLittleGeeAPP();
 
 extern GameAppType gameAppType();
 

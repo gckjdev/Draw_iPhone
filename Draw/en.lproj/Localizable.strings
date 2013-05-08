@@ -1313,6 +1313,10 @@
 "kDreamAvatarSaveToAlbum" = "Album";
 "kDreamAvatarSaveToContact" = "Contact";
 
+//dream lockscreen
+"kDreamLockscreenPreview" = "Preview";
+"kDreamLockscreenBuy" = "Buy & Watch";
+
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";
 "kGuessResult" = "Result";
@@ -1640,3 +1644,7 @@
 "kContentRepeatedError" = "Can't send repeated content.";
 
 /*********************** BBS国际化字符串结束 *************************/
+
+/*********************小吉画画国际化字符串开始 ************************/
+"kLittleGeeRecommend" = "Recommend";
+/*********************小吉画画国际化字符串结束 ************************/

@@ -18,6 +18,7 @@
 #import "CommonMessageCenter.h"
 #import "LearnDrawManager.h"
 #import "SaveToContactPickerView.h"
+#import "LockscreenPreview.h"
 
 @interface LearnDrawPreViewController ()
 
@@ -95,7 +96,13 @@
         rightTitle = NSLS(@"kDreamAvatarSaveToContact");
         leftSelector = @selector(clickSaveToAlbum:);
         rightSelector = @selector(clickSaveToAvatar:);
+    } else if (isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        leftTitle = NSLS(@"kDreamLockscreenPreview");
+        rightTitle = NSLS(@"kDreamLockscreenBuy");
+        leftSelector = @selector(clickLockscreenPreview:);
+        rightSelector = @selector(clickSaveToAlbum:);
     }
+    
     
     [self.previewButton setTitle:leftTitle forState:UIControlStateNormal];
     [self.buyButton setTitle:rightTitle forState:UIControlStateNormal];
@@ -352,6 +359,14 @@
         self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
     }
     [_saveToContactPickerView saveToContact:_contentImageView.image];
+}
+
+
+//dream lockscreen
+- (void)clickLockscreenPreview:(id)sender
+{
+    LockscreenPreview *lockView = [LockscreenPreview createWithImage:_contentImageView.image];
+    [lockView showInView:self.view];
 }
 
 @end

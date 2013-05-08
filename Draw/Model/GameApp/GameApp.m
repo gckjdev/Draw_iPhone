@@ -161,6 +161,11 @@ extern BOOL isDreamLockscreenFreeApp()
     return ([[ContentGameApp appId] isEqualToString:DREAM_LOCKSCREEN_FREE_APP_ID]);
 }
 
+extern BOOL isLittleGeeAPP()
+{
+    return ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]);
+}
+
 GameAppType gameAppType()
 {
     if ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]) {
@@ -189,6 +194,9 @@ GameAppType gameAppType()
     }
     if ([[GameApp appId] isEqualToString:PHOTO_DRAW_FREE_APP_ID]) {
         return GameAppTypePhotoDrawFree;
+    }
+    if ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]) {
+        return GameAppTypeLittleGee;
     }
     return GameAppTypeUnknow;
 }
