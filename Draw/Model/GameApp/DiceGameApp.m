@@ -480,4 +480,9 @@
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+- (BOOL)showPaintCategory
+{
+    return NO;
+}
+
 @end

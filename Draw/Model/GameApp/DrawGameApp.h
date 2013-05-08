@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "GameApp.h"
 
-@interface DrawGameApp : NSObject<GameAppProtocol>
+@interface DrawGameApp : NSObject<ContentGameAppProtocol>
 
 @end

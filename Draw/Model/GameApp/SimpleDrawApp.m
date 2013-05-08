@@ -445,4 +445,9 @@
     
 }
 
+- (BOOL)showPaintCategory
+{
+    return NO;
+}
+
 @end

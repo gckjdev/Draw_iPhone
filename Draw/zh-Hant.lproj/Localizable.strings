@@ -1246,6 +1246,7 @@
 "kLearnDrawCartoon" = "動漫";
 "kLearnDrawCharater" = "人物";
 "kLearnDrawScenery" = "風景";
+"kLearnDrawAnimal" = "動物";
 "kLearnDrawOther" = "其他";
 "kLearnDrawWord" = "畫";
 "kAddLearnDraw" = "銷售此畫";
