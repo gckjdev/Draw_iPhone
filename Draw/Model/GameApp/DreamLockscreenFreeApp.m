@@ -30,4 +30,9 @@
     return DREAM_LOCKSCREEN_FREE_UMENG_ID;
 }
 
+- (BOOL)showPaintCategory
+{
+    return NO;
+}
+
 @end
