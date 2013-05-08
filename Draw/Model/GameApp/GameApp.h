@@ -26,7 +26,7 @@
 #define DREAMAVATARFREE_APP_BUNDLE_ID       @"com.orange.dreamavatarfree"
 #define DREAMLOCKSCREEN_APP_BUNDLE_ID       @"com.orange.dreamlockscreen"
 #define DREAMLOCKSCREENFREE_APP_BUNDLE_ID   @"com.orange.dreamlockscreenfree"
-#define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegeedraw"
+#define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegee"
 
 // App ID
 #define DRAW_APP_ID                     @"513819630"
@@ -45,7 +45,7 @@
 #define DREAM_AVATAR_FREE_APP_ID        @"1234567891"// TO BE CHANGED
 #define DREAM_LOCKSCREEN_APP_ID         @"1234567892"// TO BE CHANGED
 #define DREAM_LOCKSCREEN_FREE_APP_ID    @"1234567893"// TO BE CHANGED
-#define LITTLE_GEE_DRAW_APP_ID          @"1234567894"// TO BE CHANGED
+#define LITTLE_GEE_APP_ID               @"645475970"
 
 // game ID
 #define DRAW_GAME_ID                    @"Draw"
@@ -61,7 +61,7 @@
 #define DREAM_AVATAR_FREE_GAME_ID       @"DreamAvatarFree"
 #define DREAM_LOCKSCREEN_GAME_ID        @"DreamLockscreen"
 #define DREAM_LOCKSCREEN_FREE_GAME_ID   @"DreamLockscreenFree"
-#define LITTLE_GEE_DRAW_GAME_ID         @"LittleGeeDraw"
+#define LITTLE_GEE_GAME_ID              @"LittleGeeDraw"
 
 // Umeng ID
 #define DRAW_UMENG_ID                   @"4f83980852701565c500003a"
@@ -77,7 +77,7 @@
 #define DREAM_AVATAR_FREE_UMENG_ID      DREAM_AVATAR_UMENG_ID
 #define DREAM_LOCKSCREEN_UMENG_ID       @"516d181256240b096c000a83"// TO BE CHANGED
 #define DREAM_LOCKSCREEN_FREE_UMENG_ID  DREAM_LOCKSCREEN_UMENG_ID
-#define LITTLE_GEE_UMENG_ID             @"4f83980852701565c500003a" //TO BE CHANGED
+#define LITTLE_GEE_UMENG_ID             @"518902cb56240b0c2600c457"
 
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
