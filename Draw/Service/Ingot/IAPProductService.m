@@ -86,6 +86,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         [self createDreamAvatarIngotTestDataFile];
     }else if(isDreamAvatarFreeApp()) {
         [self createDreamAvatarFreeIngotTestDataFile];
+    }else if(isDreamLockscreenApp()) {
+        [self createDreamLockscreenIngotTestDataFile];
+    }else if(isDreamLockscreenFreeApp()) {
+        [self createDreamLockscreenFreeIngotTestDataFile];
     }
 }
 
@@ -767,6 +771,190 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
                                      appleProductId:@"com.orange.dreamavatarfree.ingot_225"
                                     alipayProductId:@"dreamavatar_ingot_225"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:225
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
++ (void)createDreamLockscreenIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    PBIAPProductPrice *priceCN;
+    PBIAPProductPrice *priceUS;
+    NSArray *priceList;
+    
+    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
+    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreen.ingot_6"
+                                    alipayProductId:@"lockscreen_ingot_6"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:6
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreen.ingot_22"
+                                    alipayProductId:@"lockscreen_ingot_22"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:22
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
+    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreen.ingot_39"
+                                    alipayProductId:@"lockscreen_ingot_39"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:39
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreen.ingot_84"
+                                    alipayProductId:@"lockscreen_ingot_84"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:84
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreen.ingot_225"
+                                    alipayProductId:@"lockscreen_ingot_225"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:225
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
++ (void)createDreamLockscreenFreeIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    PBIAPProductPrice *priceCN;
+    PBIAPProductPrice *priceUS;
+    NSArray *priceList;
+    
+    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
+    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_6"
+                                    alipayProductId:@"lockscreen_ingot_6"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:6
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_22"
+                                    alipayProductId:@"lockscreen_ingot_22"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:22
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
+    priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_39"
+                                    alipayProductId:@"lockscreen_ingot_39"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:39
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_84"
+                                    alipayProductId:@"lockscreen_ingot_84"
+                                               name:@"kIngot"
+                                               desc:@"kIngot"
+                                              count:84
+                                         totalPrice:priceUS.price
+                                             saving:priceUS.saving
+                                          taobaoUrl:nil
+                                          priceList:priceList]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_225"
+                                    alipayProductId:@"lockscreen_ingot_225"
                                                name:@"kIngot"
                                                desc:@"kIngot"
                                               count:225

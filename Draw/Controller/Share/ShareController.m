@@ -37,6 +37,7 @@
 #define FROM_WEIXIN_OPTION      20130116
 
 #define DREAM_AVATAR_OPTION     20130506
+#define DREAM_LOCKSCREEN_OPTION 20130509
 
 #define LOAD_PAINT_LIMIT 20
 
@@ -233,6 +234,18 @@ typedef enum{
     [sheet release];
 }
 
+- (void)didSelectPaintInDreamLockscreen
+{    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLS(@"kCancel")
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:TITLE_SAVE_TO_ALBUM, TITLE_DELETE, nil];
+    sheet.tag = DREAM_LOCKSCREEN_OPTION;
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
 {
@@ -260,6 +273,9 @@ typedef enum{
     
     if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
         [self didSelectPaintInDreamAvatar];
+        return;
+    } else if (isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        [self didSelectPaintInDreamLockscreen];
         return;
     }
     
@@ -491,6 +507,26 @@ typedef enum{
     }
 }
 
+
+- (void)dreamLockscreenActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
+        [self showActivityWithText:NSLS(@"kSaving")];
+        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
+        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        
+        dialog.tag = DELETE;
+        [dialog showInView:self.view];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -506,6 +542,9 @@ typedef enum{
     }
     if (actionSheet.tag == DREAM_AVATAR_OPTION) {
         [self dreamAvatarActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    }
+    if (actionSheet.tag == DREAM_LOCKSCREEN_OPTION) {
+        [self dreamLockscreenActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
     }
 }
 
