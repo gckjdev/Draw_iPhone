@@ -8,6 +8,8 @@
 
 #import "CommonTabController.h"
 #import "HomeBottomMenuPanel.h"
+#import "FeedService.h"
+#import "UserService.h"
 
 typedef enum {
     LittleGeeHomeGalleryTypeAnnual = 0,
@@ -18,6 +20,6 @@ typedef enum {
     
 }LittleGeeHomeGalleryType;
 
-@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate>
+@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate>
 
 @end
