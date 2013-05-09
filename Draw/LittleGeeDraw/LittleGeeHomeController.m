@@ -165,14 +165,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RankView heightForRankViewType:RankViewTypeDrawOnCell] + 1;
+    return [RankView heightForRankViewType:RankViewTypeNormal] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //    TableTab *tab = [self currentTab];
-    
-    
     
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -188,6 +184,7 @@
     
     NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
     NSMutableArray *list = [NSMutableArray array];
+    //        PPDebug(@"startIndex = %d",startIndex);
     for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
         NSObject *object = [self saveGetObjectForIndex:i];
         if (object) {
@@ -195,6 +192,7 @@
         }
     }
     [self setNormalRankCell:cell WithFeeds:list];
+    
     return cell;
     
 }
@@ -209,9 +207,27 @@
     return tabID - OFFSET;
 }
 
-- (int)tabIDFromeType:(LittleGeeHomeGalleryType)type
+- (int)tabIDFromType:(LittleGeeHomeGalleryType)type
 {
     return type + OFFSET;
+}
+
+- (LittleGeeHomeGalleryType)littleGeeTypeFromFeedListType:(FeedListType)type
+{
+    int littleGeeType = 0;
+    switch (type) {
+        case FeedListTypeHistoryRank:
+            littleGeeType = LittleGeeHomeGalleryTypeAnnual;
+            break;
+        case FeedListTypeHot:
+            littleGeeType = LittleGeeHomeGalleryTypeWeekly;
+            break;
+        case FeedListTypeLatest:
+            littleGeeType = LittleGeeHomeGalleryTypeLatest;
+        default:
+            break;
+    }
+    return littleGeeType;
 }
 
 - (NSInteger)tabCount //default 1
@@ -236,7 +252,7 @@
         LittleGeeHomeGalleryTypeRecommend,
         LittleGeeHomeGalleryTypeFriend};
     
-    return [self tabIDFromeType:types[index]];
+    return [self tabIDFromType:types[index]];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
@@ -252,14 +268,15 @@
         if (type == LittleGeeHomeGalleryTypeLatest) {
             [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];
         }else if(type == LittleGeeHomeGalleryTypeFriend){
-            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+//            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeAnnual) {
             [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeWeekly) {
             [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
         }
-        else{
-            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
+        else if (type == LittleGeeHomeGalleryTypeRecommend){
+            [self hideActivity];
+//            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }
         
     }
@@ -278,23 +295,26 @@
         for (DrawFeed *feed in feedList) {
             //            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
         }
-        [self finishLoadDataForTabID:type resultList:feedList];
+        [self finishLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]] resultList:feedList];
     }else{
-        [self failLoadDataForTabID:type];
+        [self failLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]]];
     }
+    UIImage* image;
+    
+
 }
 
-- (void)didGetTopPlayerList:(NSArray *)playerList
-                 resultCode:(NSInteger)resultCode
-{
-    PPDebug(@"<didGetTopPlayerList> list count = %d ", [playerList count]);
-    [self hideActivity];
-    if (resultCode == 0) {
-        [self finishLoadDataForTabID:LittleGeeHomeGalleryTypeFriend resultList:playerList];
-    }else{
-        [self failLoadDataForTabID:LittleGeeHomeGalleryTypeFriend];
-    }
-}
+//- (void)didGetTopPlayerList:(NSArray *)playerList
+//                 resultCode:(NSInteger)resultCode
+//{
+//    PPDebug(@"<didGetTopPlayerList> list count = %d ", [playerList count]);
+//    [self hideActivity];
+//    if (resultCode == 0) {
+//        [self finishLoadDataForTabID:LittleGeeHomeGalleryTypeFriend resultList:playerList];
+//    }else{
+//        [self failLoadDataForTabID:LittleGeeHomeGalleryTypeFriend];
+//    }
+//}
 
 
 
