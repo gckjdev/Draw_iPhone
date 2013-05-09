@@ -11,6 +11,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 
+
 @interface LittleGeeHomeController ()
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
@@ -46,6 +47,7 @@
 {
     [super viewDidLoad];
     [self addBottomMenuView];
+    [self initTabButtons];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -129,14 +131,14 @@
 - (void)setNormalRankCell:(UITableViewCell *)cell
                 WithFeeds:(NSArray *)feeds
 {
-    CGFloat width = [RankView widthForRankViewType:RankViewTypeDrawOnCell];
-    CGFloat height = [RankView heightForRankViewType:RankViewTypeDrawOnCell];
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
     
     CGFloat space =  WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
-        RankView *rankView = [RankView createRankView:self type:RankViewTypeDrawOnCell];
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeNormal];
         [rankView setViewInfo:feed];
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
@@ -243,8 +245,57 @@
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-//    TableTab *tab = [_tabManager tabForID:tabID];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    int type = [self typeFromTabID:tabID];
+    if (tab) {
+        if (type == LittleGeeHomeGalleryTypeLatest) {
+            [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];
+        }else if(type == LittleGeeHomeGalleryTypeFriend){
+            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+        }else if (type == LittleGeeHomeGalleryTypeAnnual) {
+            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
+        }else if (type == LittleGeeHomeGalleryTypeWeekly) {
+            [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
+        }
+        else{
+            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
+        }
+        
+    }
     
 }
+
+#pragma mark - feed service delegate
+
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        for (DrawFeed *feed in feedList) {
+            //            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
+        }
+        [self finishLoadDataForTabID:type resultList:feedList];
+    }else{
+        [self failLoadDataForTabID:type];
+    }
+}
+
+- (void)didGetTopPlayerList:(NSArray *)playerList
+                 resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetTopPlayerList> list count = %d ", [playerList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:LittleGeeHomeGalleryTypeFriend resultList:playerList];
+    }else{
+        [self failLoadDataForTabID:LittleGeeHomeGalleryTypeFriend];
+    }
+}
+
+
 
 @end
