@@ -78,6 +78,12 @@ typedef enum{
     HomeMenuTypeDreamAvatarFreeIngot,
     HomeMenuTypeDreamAvatarMore,
     
+    //DreamAvatar Bottom Munu
+    HomeMenuTypeDreamLockscreenDraft,
+    HomeMenuTypeDreamLockscreenShop,
+    HomeMenuTypeDreamLockscreenFreeIngot,
+    HomeMenuTypeDreamLockscreenMore,
+    
     //LittleGee Bottom Menu
     HomeMenuTypeLittleGeeOptions,
     HomeMenuTypeLittleGeeFriend,

@@ -72,6 +72,13 @@
 - (UIImage *)dreamAvatarFreeIngot;
 - (UIImage *)dreamAvatarMore;
 
+//dream lockscreen
+- (UIImage *)dreamLockscreenDraft;
+- (UIImage *)dreamLockscreenShop;
+- (UIImage *)dreamLockscreenFreeIngot;
+- (UIImage *)dreamLockscreenMore;
+
 //little gee
 - (UIImage*)littleGeeBottomSplit;
+
 @end

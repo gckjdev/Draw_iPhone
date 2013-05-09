@@ -1313,6 +1313,10 @@
 "kDreamAvatarSaveToAlbum" = "Album";
 "kDreamAvatarSaveToContact" = "Contact";
 
+//dream lockscreen
+"kDreamLockscreenPreview" = "Preview";
+"kDreamLockscreenBuy" = "Buy & Watch";
+
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";
 "kGuessResult" = "Result";
