@@ -1315,7 +1315,7 @@
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "Preview";
-"kDreamLockscreenBuy" = "Buy & Watch";
+"kDreamLockscreenBuy" = "Buy & Save";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";

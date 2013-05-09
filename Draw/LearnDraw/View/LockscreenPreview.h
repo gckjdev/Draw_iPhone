@@ -11,7 +11,9 @@
 @interface LockscreenPreview : UIView
 
 @property (retain, nonatomic) IBOutlet UIImageView *contentImageView;
-
+@property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *dateLabel;
+@property (retain, nonatomic) IBOutlet UILabel *slideLabel;
 
 + (LockscreenPreview *)createWithImage:(UIImage *)image;
 

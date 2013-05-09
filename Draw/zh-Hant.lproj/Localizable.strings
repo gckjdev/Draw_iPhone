@@ -1297,7 +1297,7 @@
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "預覽";
-"kDreamLockscreenBuy" = "購買 & 觀看";
+"kDreamLockscreenBuy" = "購買 & 保存";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";
