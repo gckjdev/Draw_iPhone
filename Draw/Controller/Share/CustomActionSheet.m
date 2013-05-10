@@ -28,6 +28,13 @@
 
 @implementation CustomActionSheet
 
+- (id)init {
+    self = [super init];
+    if (self) {
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [_buttonImagesDict release];
@@ -147,6 +154,7 @@
                                    columns:(int)columns
                                 showTitles:(BOOL)shouldShowTitles
                                   itemSize:(CGSize)itemSize
+                           backgroundImage:(UIImage*)backgroundImage
 {
     UIView* showView = [[[UIView alloc] initWithFrame:self.frame] autorelease];
     showView.backgroundColor = [UIColor clearColor];
@@ -210,16 +218,41 @@
         viewFrame.size.width = totalWidth;
         showView.frame = viewFrame;
     }
+    if (backgroundImage) {
+        UIImageView* view = [[UIImageView alloc] initWithFrame:showView.frame];
+        [view setImage:backgroundImage];
+        [showView addSubview:view];
+        [showView sendSubviewToBack:view];
+    }
     
     return showView;
 }
 
-- (void)showInView:(UIView *)view onView:(UIView*)onView
+- (void)showInView:(UIView *)view
+            onView:(UIView*)onView
+ WithContainerSize:(CGSize)size
+           columns:(int)columns
+        showTitles:(BOOL)shouldShowTitles
+          itemSize:(CGSize)itemSize
+   backgroundImage:(UIImage*)backgroundImage
+{
+    
+    if (_popView == nil) {
+        _popView = [[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]];
+//        [_popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
+    }
+    _popView.hidden = NO;
+    [_popView presentPointingAtView:onView inView:view animated:YES];
+    self.isVisable = YES;
+    
+}
+
+- (void)showInView:(UIView *)view onView:(UIView*)onView 
 {
     
     if (_popView == nil) {
         _popView = [[CMPopTipView alloc] initWithCustomView:[self createShowView] needBubblePath:NO];
-        [_popView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+        
     }
     _popView.hidden = NO;
     [_popView presentPointingAtView:onView inView:view animated:YES];

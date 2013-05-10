@@ -10,12 +10,13 @@
 #import "RankView.h"
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
+#import "CMPopTipView.h"
 
 
 @interface LittleGeeHomeController ()
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
-
+@property (nonatomic, retain) CustomActionSheet* actionSheet;
 
 @end
 
@@ -24,6 +25,7 @@
 - (void)dealloc
 {
     PPRelease(_homeBottomMenuPanel);
+    PPRelease(_actionSheet);
     [super dealloc];
 }
 
@@ -62,14 +64,29 @@
                    menuType:(HomeMenuType)type
 {
     switch (type) {
-        case HomeMenuTypeLittleGeeOptions:
-            //
-            break;
+        case HomeMenuTypeLittleGeeOptions: {
+            if (!_actionSheet) {
+                self.actionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], nil] autorelease];
+//                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
+            }
+            if ([_actionSheet isVisable]) {
+                [_actionSheet hideActionSheet];
+            } else {
+                [_actionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(40, 400) columns:1 showTitles:NO itemSize:CGSizeMake(30, 30) backgroundImage:[UIImage imageNamed:@"wood_bg.jpg"]];
+            }
+            
+        }break;
             
         default:
             break;
     }
      [menu updateBadge:0];
+}
+
+#pragma mark - custom action sheet delegate
+- (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 
@@ -299,7 +316,6 @@
     }else{
         [self failLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]]];
     }
-    UIImage* image;
     
 
 }
