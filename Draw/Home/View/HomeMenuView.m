@@ -609,7 +609,6 @@ int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
 int *getDreamAvatarBottomMenuTypeList()
 {
     return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
-    //return getDreamAvatarBottomMenuTypeListtWithFreeIngots();
 }
 
 int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
@@ -679,7 +678,7 @@ int *getBottomMenuTypeList()
     }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
     }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
-        return getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots();
+        return getDreamLockscreenBottomMenuTypeList();
     }else if (isLittleGeeAPP()) {
         return getLittleGeeBottomMenuTypeList();
     }
