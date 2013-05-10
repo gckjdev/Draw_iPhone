@@ -27,6 +27,9 @@
 - (id)initWithTitle:(NSString *)title
            delegate:(id<CustomActionSheetDelegate>)delegate
        buttonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithTitle:(NSString *)title
+           delegate:(id<CustomActionSheetDelegate>)delegate
+         imageArray:(UIImage *)otherBtnImages, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (NSInteger)addButtonWithTitle:(NSString *)title image:(UIImage*)image;    // returns index of button. 0 based.
 - (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
