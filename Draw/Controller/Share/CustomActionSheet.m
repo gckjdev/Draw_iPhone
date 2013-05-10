@@ -11,6 +11,8 @@
 #import "CMPopTipView.h"
 #import "StringUtil.h"
 
+#import "HGQuadCurveMenuItem.h"
+
 #define DEFAULT_COLUMN 3
 #define ACTION_BTN_TAG_OFFSET   20121226
 #define DEFAULT_WIDTH   280
@@ -23,6 +25,7 @@
 @property (retain, nonatomic) NSMutableDictionary* buttonImagesDict;
 @property (retain, nonatomic) NSMutableArray* buttonTitles;
 @property (retain, nonatomic) CMPopTipView* popView;
+@property (retain, nonatomic) HGQuadCurveMenu* menu;
 
 @end
 
@@ -39,6 +42,8 @@
 {
     [_buttonImagesDict release];
     [_buttonTitles release];
+    PPRelease(_popView);
+    PPRelease(_menu);
     [super dealloc];
 }
 
@@ -247,7 +252,32 @@
     
 }
 
-- (void)showInView:(UIView *)view onView:(UIView*)onView 
+- (void)expandInView:(UIView *)view
+              onView:(UIView*)onView
+           fromAngle:(float)fromAngle
+             toAngle:(float)toAngle
+              radius:(float)radius
+          
+{
+    if (_menu == nil) {
+        NSMutableArray* itemArray = [[[NSMutableArray alloc] init] autorelease];
+        for (NSString* title in self.buttonTitles) {
+            UIImage* image = (UIImage*)[self.buttonImagesDict objectForKey:title];
+            HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithImage:image highlightedImage:image contentImage:image highlightedContentImage:image title:title] autorelease];
+            [itemArray addObject:item];
+        }
+        self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height/2) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
+        _menu.delegate = self;
+        [view addSubview:_menu];
+    }
+    
+    [view insertSubview:_menu belowSubview:onView];
+    [self.menu expandItems];
+    self.isVisable = YES;
+    
+}
+
+- (void)showInView:(UIView *)view onView:(UIView*)onView
 {
     
     if (_popView == nil) {
@@ -263,6 +293,9 @@
 - (void)hideActionSheet
 {
     _popView.hidden = YES;
+    if (_menu && _menu.isExpanding) {
+        [_menu closeItems];
+    }
     self.isVisable = NO;
 }
 
@@ -329,6 +362,26 @@
         }
     }
     return self;
+}
+
+#pragma mark - HGQuadCurveMenu Delegate
+- (void)quadCurveMenu:(HGQuadCurveMenu *)menu didSelectIndex:(NSInteger)anIndex
+{
+    self.isVisable = NO;
+    if (_delegate && [_delegate respondsToSelector:@selector(customActionSheet:clickedButtonAtIndex:)]) {
+        [_delegate customActionSheet:self clickedButtonAtIndex:anIndex];
+        PPDebug(@"<quadCurveMenu>did click button at index %d", anIndex);
+    }
+    
+}
+
+- (void)quadCurveMenuDidExpand
+{
+    self.isVisable = YES;
+}
+- (void)quadCurveMenuDidClose
+{
+    self.isVisable = NO;
 }
 
 /*

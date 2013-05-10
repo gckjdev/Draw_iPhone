@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HGQuadCurveMenu.h"
 @class CustomActionSheet;
 @class CMPopTipView;
 
@@ -18,7 +19,7 @@
 @end
 
 
-@interface CustomActionSheet : UIView
+@interface CustomActionSheet : UIView <HGQuadCurveMenuDelegate>
 
 @property(nonatomic,assign) id<CustomActionSheetDelegate> delegate;    // weak reference
 //@property(nonatomic,copy) NSString *title;
@@ -51,6 +52,11 @@
         showTitles:(BOOL)shouldShowTitles
           itemSize:(CGSize)itemSize
    backgroundImage:(UIImage*)backgroundImage;
+- (void)expandInView:(UIView *)view
+              onView:(UIView*)onView
+           fromAngle:(float)fromAngle
+             toAngle:(float)toAngle
+              radius:(float)radius;
 - (void)hideActionSheet;
 - (void)setImage:(UIImage*)image
         forTitle:(NSString*)title;

@@ -10,4 +10,11 @@
 
 @interface LittleGeeImageManager : NSObject
 
+- (UIImage*)drawToBtnBackgroundImage;
+- (UIImage*)draftBtnBackgroundImage;
+- (UIImage*)beginBtnBackgroundImage;
+- (UIImage*)contestBtnBackgroundImage;
+
++ (LittleGeeImageManager*)defaultManager;
+
 @end
