@@ -16,7 +16,8 @@
 @interface LittleGeeHomeController ()
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
-@property (nonatomic, retain) CustomActionSheet* actionSheet;
+@property (nonatomic, retain) CustomActionSheet* optionSheet;
+@property (nonatomic, retain) CustomActionSheet* drawActionSheet;
 
 @end
 
@@ -25,7 +26,8 @@
 - (void)dealloc
 {
     PPRelease(_homeBottomMenuPanel);
-    PPRelease(_actionSheet);
+    PPRelease(_optionSheet);
+    PPRelease(_drawActionSheet);
     [super dealloc];
 }
 
@@ -50,7 +52,17 @@
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
+    [self initDrawActions];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)initDrawActions
+{
+    self.drawActionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:nil];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDraft") image:nil];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kBegin") image:nil];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kContest") image:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,14 +77,14 @@
 {
     switch (type) {
         case HomeMenuTypeLittleGeeOptions: {
-            if (!_actionSheet) {
-                self.actionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], nil] autorelease];
+            if (!_optionSheet) {
+                self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], nil] autorelease];
 //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
             }
-            if ([_actionSheet isVisable]) {
-                [_actionSheet hideActionSheet];
+            if ([_optionSheet isVisable]) {
+                [_optionSheet hideActionSheet];
             } else {
-                [_actionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(40, 400) columns:1 showTitles:NO itemSize:CGSizeMake(30, 30) backgroundImage:[UIImage imageNamed:@"wood_bg.jpg"]];
+                [_optionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(40, 400) columns:1 showTitles:NO itemSize:CGSizeMake(30, 30) backgroundImage:[UIImage imageNamed:@"wood_bg.jpg"]];
             }
             
         }break;
