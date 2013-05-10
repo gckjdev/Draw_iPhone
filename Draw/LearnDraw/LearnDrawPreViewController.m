@@ -79,7 +79,7 @@
     
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
-                                                   iPadFrame:CGRectMake((768-320)/2, 914, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 954, 320, 50)
                                                      useLmAd:NO];
     
     
