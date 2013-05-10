@@ -34,6 +34,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
 @property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 
+@property (retain, nonatomic) UIView  *adView;
+
 - (IBAction)clickPreview:(id)sender;
 - (IBAction)clickBuyButton:(id)sender;
 - (IBAction)clickClose:(id)sender;
@@ -68,6 +70,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([[AdService defaultService] isShowAd]) {
+        [self.contentImageView updateOriginY:self.contentImageView.frame.origin.y - 20];
+        [self.previewButton updateOriginY:self.view.frame.size.height - 50 - self.previewButton.frame.size.height - 8];
+        [self.buyButton updateOriginY:self.previewButton.frame.origin.y];
+    }
+    
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 914, 320, 50)
+                                                     useLmAd:NO];
+    
     
     NSURL *url = ISIPAD ? self.feed.largeImageURL : self.feed.thumbURL;
     
@@ -118,6 +132,7 @@
 }
 
 - (void)dealloc {
+    PPRelease(_adView);
     PPDebug(@"%@ dealloc", self);
     PPRelease(_placeHolderImage);
     PPRelease(_titleLabel);
@@ -134,6 +149,8 @@
     [super dealloc];
 }
 - (void)viewDidUnload {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
     [self setTitleLabel:nil];
     [self setContentImageView:nil];
     [self setPreviewButton:nil];

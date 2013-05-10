@@ -149,6 +149,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     
+    if (item == nil) {
+        return NO;
+    }
+    
     switch (item.consumeType) {
         case PBGameItemConsumeTypeNonConsumable:
         case PBGameItemConsumeTypeAmountConsumable:
