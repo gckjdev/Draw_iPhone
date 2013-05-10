@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>LearnDraw_57.png</string>
-		<string>LearnDraw_114.png</string>
-		<string>LearnDraw_50.png</string>
-		<string>LearnDraw_72.png</string>
+		<string>DreamAvatarFree_57.png</string>
+		<string>DreamAvatarFree_114.png</string>
+		<string>DreamAvatarFree_50.png</string>
+		<string>DreamAvatarFree_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.dreamavatarfree</string>
@@ -61,7 +61,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile</key>
-	<string>LearnDrawDefault</string>
+	<string>DreamAvatarDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
