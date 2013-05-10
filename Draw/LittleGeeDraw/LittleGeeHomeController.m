@@ -11,6 +11,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 #import "CMPopTipView.h"
+#import "LittleGeeImageManager.h"
 
 
 @interface LittleGeeHomeController ()
@@ -53,16 +54,21 @@
     [self addBottomMenuView];
     [self initTabButtons];
     [self initDrawActions];
+    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(124, 400, 73, 73)];
+    [btn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    [btn setBackgroundColor:[UIColor greenColor]];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)initDrawActions
 {
+    LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     self.drawActionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:nil];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDraft") image:nil];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kBegin") image:nil];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kContest") image:nil];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:[imgManager drawToBtnBackgroundImage]];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kBegin") image:[imgManager beginBtnBackgroundImage]];
+    [self.drawActionSheet addButtonWithTitle:NSLS(@"kContest") image:[imgManager contestBtnBackgroundImage]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -330,6 +336,16 @@
     }
     
 
+}
+
+- (IBAction)clickDrawActionBtn:(id)sender
+{
+    if ([self.drawActionSheet isVisable]) {
+        [self.drawActionSheet hideActionSheet];
+    } else {
+        UIButton* btn = (UIButton*)sender;
+        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:100];
+    }
 }
 
 //- (void)didGetTopPlayerList:(NSArray *)playerList
