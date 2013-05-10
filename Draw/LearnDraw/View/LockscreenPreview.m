@@ -40,6 +40,7 @@ AUTO_CREATE_VIEW_BY_XIB(LockscreenPreview);
     NSString *weekStr = dateToLocaleStringWithFormat(date, @"cccc");
     
     self.dateLabel.text = [NSString stringWithFormat:@"%@%@", monAndDayStr, weekStr];
+    self.slideLabel.text = NSLS(@"kDreamLockscreenSlider");
     
     self.alpha = 0.0f;
     [UIView beginAnimations:@"showLockView" context:nil];
