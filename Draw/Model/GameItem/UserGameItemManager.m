@@ -143,16 +143,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 
 - (BOOL)hasItem:(int)itemId
 {
+    
     if (![self hasEnoughItem:itemId amount:1]) {
         return NO;
     }
     
-    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
-    
-    if (item == nil) {
-        return NO;
-    }
-    
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];    
     switch (item.consumeType) {
         case PBGameItemConsumeTypeNonConsumable:
         case PBGameItemConsumeTypeAmountConsumable:

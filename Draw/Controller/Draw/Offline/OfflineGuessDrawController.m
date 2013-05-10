@@ -50,6 +50,8 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "FeedSceneGuessResult.h"
 #import "FeedSceneDetailGuessResult.h"
+#import "AccountService.h"
+#import "LevelService.h"
 
 #define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
 #define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
@@ -686,7 +688,9 @@
     if (_feed) {
         self.draw = self.feed.drawData;
     }
-    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kOfflineGuessCorrect"), [ConfigManager offlineGuessAwardScore] ,[ConfigManager getOffLineDrawExp]] delayTime:1 isHappy:YES];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kOfflineGuessCorrect"), [ConfigManager offlineGuessAwardScore] ,[ConfigManager getOffLineGuessExp]] delayTime:1 isHappy:YES];
+    [[LevelService defaultService] addExp:[ConfigManager getOffLineGuessExp] delegate:nil];
+    [[AccountService defaultService] chargeCoin:[ConfigManager offlineGuessAwardScore] source:GuessRewardType];
     [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
     [self setWordButtonsEnabled:NO];
     
