@@ -32,7 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LittleGeeImageManager)
 }
 - (UIImage*)popOptionsBackgroundImage
 {
-    return [UIImage strectchableImageName:@"little_gee_pop_options_bg.png"];
+    return [UIImage imageNamed:@"little_gee_pop_options_bg.png"];
 }
 
 - (UIImage*)popOptionsBbsImage

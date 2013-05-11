@@ -78,7 +78,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(40,40))
+#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(40,400))
 - (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
                didClickMenu:(HomeMenuView *)menu
                    menuType:(HomeMenuType)type
@@ -93,7 +94,7 @@
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [_optionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(80, 400) columns:1 showTitles:NO itemSize:CGSizeMake(40, 40) backgroundImage:[imgManager popOptionsBackgroundImage]];
+                [_optionSheet showInView:self.view onView:menu WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
             }
             
         }break;
@@ -341,13 +342,14 @@
 
 }
 
+#define ITEM_SIZE (ISIPAD?CGSizeMake(100, 100):CGSizeMake(60,60))
 - (IBAction)clickDrawActionBtn:(id)sender
 {
     if ([self.drawActionSheet isVisable]) {
         [self.drawActionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:100];
+        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:(ISIPAD?150:100) itemSize:ITEM_SIZE];
     }
 }
 
