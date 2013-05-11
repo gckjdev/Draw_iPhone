@@ -23,7 +23,7 @@
 
 - (BOOL)disableAd
 {
-    return NO;
+    return YES;
 }
 
 - (NSString*)umengId
@@ -33,6 +33,12 @@
 
 - (BOOL)hasBGOffscreen{
     return YES;
+}
+
+//ContentGameAppProtocol
+- (int)sellContentType
+{
+    return SellContentTypeDreamAvatar;
 }
 
 - (NSArray *)homeTabIDList

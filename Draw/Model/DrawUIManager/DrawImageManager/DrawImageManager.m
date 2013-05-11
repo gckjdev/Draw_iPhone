@@ -296,7 +296,7 @@ static DrawImageManager * _staticDrawImageManager;
 
 - (UIImage *)dreamAvatarFreeIngot
 {
-    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    NSString *imageName = [self fixImageName:@"Learndraw_ingot"];
     return [UIImage imageNamed:imageName];
 }
 
@@ -322,7 +322,7 @@ static DrawImageManager * _staticDrawImageManager;
 
 - (UIImage *)dreamLockscreenFreeIngot
 {
-    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    NSString *imageName = [self fixImageName:@"Learndraw_ingot"];
     return [UIImage imageNamed:imageName];
 }
 
@@ -335,6 +335,11 @@ static DrawImageManager * _staticDrawImageManager;
 - (UIImage*)littleGeeBottomSplit
 {
     return nil;
+}
+
+- (UIImage*)littleGeeMoreOptionsImage
+{
+    return [UIImage imageNamed:@"little_gee_home_options.png"];
 }
 
 @end

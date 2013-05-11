@@ -131,11 +131,11 @@
 							<object class="IBUIView" id="733172068">
 								<reference key="NSNextResponder" ref="251079309"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{700, 60}</string>
+								<string key="NSFrameSize">{700, 80}</string>
 								<reference key="NSSuperview" ref="251079309"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="265405535">
+								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
@@ -145,7 +145,7 @@
 							<object class="IBUIImageView" id="88095114">
 								<reference key="NSNextResponder" ref="251079309"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{306, 8}, {44, 44}}</string>
+								<string key="NSFrame">{{306, 18}, {44, 44}}</string>
 								<reference key="NSSuperview" ref="251079309"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -159,7 +159,7 @@
 							<object class="IBUILabel" id="243928609">
 								<reference key="NSNextResponder" ref="251079309"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{365, 8}, {74, 44}}</string>
+								<string key="NSFrame">{{365, 18}, {74, 44}}</string>
 								<reference key="NSSuperview" ref="251079309"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -190,13 +190,12 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
-						<string key="NSFrame">{{34, 770}, {700, 60}}</string>
+						<string key="NSFrame">{{34, 748}, {700, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="88095114"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="265405535"/>
-						<float key="IBUIAlpha">0.5</float>
+						<reference key="IBUIBackgroundColor" ref="701093306"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIButton" id="81919248">

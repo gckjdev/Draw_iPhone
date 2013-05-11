@@ -34,6 +34,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
 @property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 
+@property (retain, nonatomic) UIView  *adView;
+
 - (IBAction)clickPreview:(id)sender;
 - (IBAction)clickBuyButton:(id)sender;
 - (IBAction)clickClose:(id)sender;
@@ -69,18 +71,25 @@
 {
     [super viewDidLoad];
     
+    if ([[AdService defaultService] isShowAd]) {
+        [self.contentImageView updateOriginY:self.contentImageView.frame.origin.y - 20];
+        [self.previewButton updateOriginY:self.view.frame.size.height - 50 - self.previewButton.frame.size.height - 8];
+        [self.buyButton updateOriginY:self.previewButton.frame.origin.y];
+    }
+    
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 954, 320, 50)
+                                                     useLmAd:NO];
+    
+    
     NSURL *url = ISIPAD ? self.feed.largeImageURL : self.feed.thumbURL;
     
     [self.contentImageView setImageWithURL:url
                           placeholderImage:self.placeHolderImage];
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
     
-    [self.priceHolderView updateOriginX:self.contentImageView.frame.origin.x];
-    [self.priceHolderView updateOriginY:self.contentImageView.frame.origin.y + self.contentImageView.frame.size.height - self.priceHolderView.frame.size.height];
-    [self.priceHolderView updateWidth:self.contentImageView.frame.size.width];    
-    [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
-    [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
-    self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
+    [self updatePirceView];
     
     NSString *leftTitle = nil;
     NSString *rightTitle = nil;
@@ -111,6 +120,32 @@
     [self.buyButton addTarget:self action:rightSelector forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)updatePirceView
+{
+    CGSize imageSize = self.contentImageView.image.size;
+    CGSize imageShowSize;
+    CGFloat scl;
+    if (imageSize.width > imageSize.height) {
+        scl = _contentImageView.frame.size.width / imageSize.width;
+        imageShowSize = CGSizeMake(_contentImageView.frame.size.width, imageSize.height * scl);
+    } else {
+        scl = _contentImageView.frame.size.height / imageSize.height;
+        imageShowSize = CGSizeMake(imageSize.width * scl, _contentImageView.frame.size.height);
+    }
+    
+    PPDebug(@"image showSize:%f,%f", imageShowSize.width, imageShowSize.height);
+    
+    [self.priceHolderView updateOriginX:self.contentImageView.center.x - 0.5 * imageShowSize.width];
+    [self.priceHolderView updateOriginY:self.contentImageView.center.y + 0.5 * imageShowSize.height - self.priceHolderView.frame.size.height];
+    
+    [self.priceHolderView updateWidth:imageShowSize.width];
+    
+    [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
+    [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
+    
+    self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -118,6 +153,7 @@
 }
 
 - (void)dealloc {
+    PPRelease(_adView);
     PPDebug(@"%@ dealloc", self);
     PPRelease(_placeHolderImage);
     PPRelease(_titleLabel);
@@ -131,9 +167,12 @@
     PPRelease(_priceHolderView);
     PPRelease(_ingotImageView);
     PPRelease(_saveToContactPickerView);
+//    [_placeHolderImage size]
     [super dealloc];
 }
 - (void)viewDidUnload {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
     [self setTitleLabel:nil];
     [self setContentImageView:nil];
     [self setPreviewButton:nil];

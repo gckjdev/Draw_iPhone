@@ -313,7 +313,7 @@
 
         //little gee
         case HomeMenuTypeLittleGeeOptions:
-            return [imageManager drawHomeSetting];
+            return [imageManager littleGeeMoreOptionsImage];
         case HomeMenuTypeLittleGeeFriend:
             return [imageManager drawHomeFriend];
         case HomeMenuTypeLittleGeePlaceholder:
@@ -572,6 +572,7 @@ int *getLittleGeeBottomMenuTypeList()
         HomeMenuTypeLittleGeeFriend,
         HomeMenuTypeLittleGeePlaceholder,
         HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
         HomeMenuTypeLittleGeeChat,
         HomeMenuTypeLittleGeeFeed,
         HomeMenuTypeEnd
@@ -609,7 +610,6 @@ int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
 int *getDreamAvatarBottomMenuTypeList()
 {
     return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
-    //return getDreamAvatarBottomMenuTypeListtWithFreeIngots();
 }
 
 int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
@@ -679,7 +679,7 @@ int *getBottomMenuTypeList()
     }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
         return getDreamAvatarBottomMenuTypeList();
     }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
-        return getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots();
+        return getDreamLockscreenBottomMenuTypeList();
     }else if (isLittleGeeAPP()) {
         return getLittleGeeBottomMenuTypeList();
     }

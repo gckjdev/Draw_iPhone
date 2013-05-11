@@ -8,10 +8,10 @@
 
 #import "LockscreenPreview.h"
 #import "AutoCreateViewByXib.h"
+#import "TimeUtils.h"
 
 @interface LockscreenPreview()
 
-@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 @end
 
@@ -28,6 +28,20 @@ AUTO_CREATE_VIEW_BY_XIB(LockscreenPreview);
 
 - (void)showInView:(UIView *)superView
 {
+    NSDate *date = [NSDate date];
+    self.timeLabel.text = dateToLocaleStringWithFormat(date, @"HH:mm");
+    
+    NSString *monAndDayStr = nil;
+    if ([LocaleUtils isChinese]) {
+        monAndDayStr = dateToLocaleStringWithFormat(date, @"M月d日");
+    } else {
+        monAndDayStr = dateToLocaleStringWithFormat(date, @"d LLL");
+    }
+    NSString *weekStr = dateToLocaleStringWithFormat(date, @"cccc");
+    
+    self.dateLabel.text = [NSString stringWithFormat:@"%@%@", monAndDayStr, weekStr];
+    self.slideLabel.text = NSLS(@"kDreamLockscreenSlider");
+    
     self.alpha = 0.0f;
     [UIView beginAnimations:@"showLockView" context:nil];
     [superView addSubview:self];
@@ -36,17 +50,15 @@ AUTO_CREATE_VIEW_BY_XIB(LockscreenPreview);
     [UIView commitAnimations];
 }
 
-- (IBAction)clickCloseButton:(id)sender {
-    [self removeFromSuperview];
-}
-
 - (IBAction)touchDown:(id)sender {
-    self.closeButton.hidden = !self.closeButton.hidden ;
+    [self removeFromSuperview];
 }
 
 - (void)dealloc {
     [_contentImageView release];
-    [_closeButton release];
+    [_timeLabel release];
+    [_dateLabel release];
+    [_slideLabel release];
     [super dealloc];
 }
 

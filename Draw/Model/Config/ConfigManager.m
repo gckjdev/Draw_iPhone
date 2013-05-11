@@ -505,7 +505,8 @@
 }
 
 + (NSString*)getZJHServerListStringWithNormal
-{    
+{
+//    return @"192.168.1.5:8080";
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
     

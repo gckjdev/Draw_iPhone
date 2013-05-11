@@ -24,6 +24,7 @@
 #import "IAPProductManager.h"
 #import "PPNetworkConstants.h"
 #import "CommonDialog.h"
+#import "PBIAPProduct+Utils.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -248,7 +249,7 @@
 #ifdef DEBUG
     order.amount = @"0.01";
 #else
-    order.amount = product.totalPrice;
+    order.amount = [product priceInRMB];
 #endif
     
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
