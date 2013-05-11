@@ -752,6 +752,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                            price:1
                                         currency:PBGameCurrencyIngot]];
     
+    // 广告拦截器
+    [mutableArray addObject:[self itemWithItemId:ItemTypeRemoveAd
+                                            name:@"kRemoveAd"
+                                            desc:@"kRemoveAdDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:10
+                                        currency:PBGameCurrencyIngot]];    
+    
     // 背景1
     [mutableArray addObject:[self itemWithItemId:DrawBackground1
                                             name:@"kDrawBgAntares"
@@ -958,7 +968,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     PBGameItemList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
     
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");

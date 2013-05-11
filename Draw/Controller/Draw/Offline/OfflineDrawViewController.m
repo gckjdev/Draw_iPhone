@@ -958,9 +958,16 @@
 //            result = [pManager updateDraft:self.draft
 //                                     image:image
 //                      pbNoCompressDrawData:[self drawDataSnapshot]];
-            result = [pManager updateDraft:self.draft
-                                     image:image
-                                  drawData:[self newDrawDataSnapshot]];
+            
+            NSData* data = [self newDrawDataSnapshot];
+            if ([data length] == 0){
+                result = NO;
+            }
+            else{
+                result = [pManager updateDraft:self.draft
+                                         image:image
+                                      drawData:data];
+            }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];

@@ -247,7 +247,8 @@
         return;
     }
     NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
-    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
+    NSString *body = [ConfigManager getFeedbackBody];
+    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:body isHTML:NO delegate:nil];
 }
 
 - (void)openDrawDraft

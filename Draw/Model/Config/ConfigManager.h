@@ -257,5 +257,6 @@ typedef enum{
 + (double)getBGMVolume;
 
 + (BOOL)showRestoreButton;
++ (NSString*)getFeedbackBody;
 
 @end
