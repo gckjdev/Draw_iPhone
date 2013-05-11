@@ -15,7 +15,17 @@
 #import "UserManager.h"
 #import "OfflineDrawViewController.h"
 #import "Word.h"
-
+#import "ShareController.h"
+#import "ContestController.h"
+#import "StatisticManager.h"
+#import "ChatListController.h"
+#import "MyFeedController.h"
+#import "BulletinView.h"
+#import "FreeIngotController.h"
+#import "BBSBoardController.h"
+#import "StoreController.h"
+#import "ShowFeedController.h"
+#import "UseItemScene.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -150,6 +160,15 @@ typedef enum {
             FriendController* vc = [[[FriendController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         } break;
+        case HomeMenuTypeLittleGeeChat: {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        } break;
+        case HomeMenuTypeLittleGeeFeed: {
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [[StatisticManager defaultManager] setFeedCount:0];
+        } break;
         default:
             break;
     }
@@ -166,20 +185,63 @@ typedef enum {
                 [self.navigationController pushViewController:vc animated:YES];
             } break;
             case DrawOptionIndexDraft: {
-                
+                ShareController* share = [[ShareController alloc] init];
+                int count = [[StatisticManager defaultManager] recoveryCount];
+                if (count > 0) {
+                    [share setDefaultTabIndex:2];
+                    [[StatisticManager defaultManager] setRecoveryCount:0];
+                }
+                [self.navigationController pushViewController:share animated:YES];
+                [share release];
             } break;
             case DrawOptionIndexBegin: {
                 [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:nil];
             } break;
             case DrawOptionIndexContest: {
-                
+                ContestController *cc = [[ContestController alloc] init];
+                [self.navigationController pushViewController:cc animated:YES];
+                [cc release];
             } break;
             default:
                 break;
         }
     }
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
-        //
+        switch (buttonIndex) {
+            case PopOptionIndexPK: {
+                
+            } break;
+            case PopOptionIndexSearch: {
+                
+            } break;
+            case PopOptionIndexNotice: {
+                [BulletinView showBulletinInController:self];
+            } break;
+            case PopOptionIndexBbs: {
+                BBSBoardController *bbs = [[BBSBoardController alloc] init];
+                [self.navigationController pushViewController:bbs animated:YES];
+                [bbs release];
+            } break;
+            case PopOptionIndexIngot: {
+                FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
+                [self.navigationController pushViewController:fc animated:YES];
+            } break;
+            case PopOptionIndexContest: {
+                ContestController *cc = [[ContestController alloc] init];
+                [self.navigationController pushViewController:cc animated:YES];
+                [cc release];
+            } break;
+            case PopOptionIndexShop: {
+                StoreController *vc = [[[StoreController alloc] init] autorelease];
+                [self.navigationController pushViewController:vc animated:YES];
+            } break;
+            case PopOptionIndexMore: {
+                //
+            } break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -205,21 +267,17 @@ typedef enum {
 }
 
 
-- (void)showFeed:(DrawFeed *)feed placeHolder:(UIImage *)placeHolder
+- (void)showFeed:(DrawFeed *)feed
 {
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
     
 }
 
 - (void)didClickRankView:(RankView *)rankView
 {
-    
-    if (![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
-        [self showFeed:rankView.feed placeHolder:rankView.drawImage.image];
-    }else{
-        
-        
-    }
-    
+    [self showFeed:rankView.feed];
 }
 
 
