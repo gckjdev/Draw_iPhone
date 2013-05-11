@@ -12,14 +12,15 @@
 #import "BBSPermissionManager.h"
 #import "CMPopTipView.h"
 #import "LittleGeeImageManager.h"
-
+#import "UserManager.h"
 
 @interface LittleGeeHomeController ()
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 @property (nonatomic, retain) CustomActionSheet* optionSheet;
 @property (nonatomic, retain) CustomActionSheet* drawActionSheet;
-
+@property (retain, nonatomic) IBOutlet UIButton *drawActionBtn;
+@property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 @end
 
 @implementation LittleGeeHomeController
@@ -29,7 +30,31 @@
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_optionSheet);
     PPRelease(_drawActionSheet);
+    [_drawActionBtn release];
+    [_bigPen release];
     [super dealloc];
+}
+
+- (void)hideOptionSheet
+{
+    if (self.optionSheet && [self.optionSheet isVisable]) {
+        [self.optionSheet hideActionSheet];
+    }
+}
+
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(40,40))
+#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(40,400))
+- (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
+{
+    LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
+    if (!_optionSheet) {
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsBbsImage], [imgManager popOptionsContestImage], [imgManager popOptionsGameImage], [imgManager popOptionsIngotImage], [imgManager popOptionsMoreImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsSearchImage], [imgManager popOptionsShopImage], nil] autorelease];
+        //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
+    }
+    UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
+    [_optionSheet showInView:self.view onView:menu
+ WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
+    [self performSelector:@selector(hideOptionSheet) withObject:nil afterDelay:timeInterval];
 }
 
 - (void)addBottomMenuView
@@ -54,10 +79,12 @@
     [self addBottomMenuView];
     [self initTabButtons];
     [self initDrawActions];
-    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(124, 400, 73, 73)];
-    [btn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    [btn setBackgroundColor:[UIColor greenColor]];
+    [self.view bringSubviewToFront:self.drawActionBtn];
+    [self.view bringSubviewToFront:self.bigPen];
+    [self.drawActionBtn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
+    if ([[UserManager defaultManager] hasUser]) {
+        [self showOptionSheetForTime:6];
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -83,14 +110,10 @@
 {
     switch (type) {
         case HomeMenuTypeLittleGeeOptions: {
-            if (!_optionSheet) {
-                self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], nil] autorelease];
-//                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
-            }
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [_optionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(40, 400) columns:1 showTitles:NO itemSize:CGSizeMake(30, 30) backgroundImage:[UIImage imageNamed:@"wood_bg.jpg"]];
+                [self showOptionSheetForTime:15];
             }
             
         }break;
@@ -338,13 +361,16 @@
 
 }
 
+#define ITEM_SIZE (ISIPAD?CGSizeMake(100, 100):CGSizeMake(60,60))
+#define DRAW_ACTION_SHEET_RADIUS (ISIPAD?150:100)
 - (IBAction)clickDrawActionBtn:(id)sender
 {
+    [self hideOptionSheet];
     if ([self.drawActionSheet isVisable]) {
         [self.drawActionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:100];
+        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:DRAW_ACTION_SHEET_RADIUS itemSize:ITEM_SIZE];
     }
 }
 
@@ -360,6 +386,16 @@
 //    }
 //}
 
+#pragma mark - tableView delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self hideOptionSheet];
+}
 
 
+- (void)viewDidUnload {
+    [self setDrawActionBtn:nil];
+    [self setBigPen:nil];
+    [super viewDidUnload];
+}
 @end

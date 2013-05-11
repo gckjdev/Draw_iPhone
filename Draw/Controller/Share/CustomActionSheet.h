@@ -56,7 +56,8 @@
               onView:(UIView*)onView
            fromAngle:(float)fromAngle
              toAngle:(float)toAngle
-              radius:(float)radius;
+              radius:(float)radius
+            itemSize:(CGSize)size;
 - (void)hideActionSheet;
 - (void)setImage:(UIImage*)image
         forTitle:(NSString*)title;

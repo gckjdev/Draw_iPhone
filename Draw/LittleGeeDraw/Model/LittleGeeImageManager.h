@@ -15,6 +15,16 @@
 - (UIImage*)beginBtnBackgroundImage;
 - (UIImage*)contestBtnBackgroundImage;
 
+- (UIImage*)popOptionsBackgroundImage;
+- (UIImage*)popOptionsBbsImage;
+- (UIImage*)popOptionsContestImage;
+- (UIImage*)popOptionsGameImage;
+- (UIImage*)popOptionsIngotImage;
+- (UIImage*)popOptionsMoreImage;
+- (UIImage*)popOptionsNoticeImage;
+- (UIImage*)popOptionsSearchImage;
+- (UIImage*)popOptionsShopImage;
+
 + (LittleGeeImageManager*)defaultManager;
 
 @end
