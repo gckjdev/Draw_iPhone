@@ -35,4 +35,11 @@
     return NO;
 }
 
+
+//ContentGameAppProtocol
+- (int)sellContentType
+{
+    return SellContentTypeDreamLockscreen;
+}
+
 @end

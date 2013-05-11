@@ -1292,8 +1292,8 @@
 "kBlank" = "空白";
 
 //dream avatar
-"kDreamAvatarSaveToAlbum" = "相冊";
-"kDreamAvatarSaveToContact" = "聯繫人";
+"kDreamAvatarSaveToAlbum" = "保存到相冊";
+"kDreamAvatarSaveToContact" = "保存到聯繫人";
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "預覽";

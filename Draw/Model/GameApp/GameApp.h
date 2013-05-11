@@ -135,6 +135,8 @@ typedef enum {
 typedef enum {
     SellContentTypeUnknow = 0,
     SellContentTypeLearnDraw = 1,
+    SellContentTypeDreamAvatar = 2,
+    SellContentTypeDreamLockscreen = 3
 }SellContentType;
 
 

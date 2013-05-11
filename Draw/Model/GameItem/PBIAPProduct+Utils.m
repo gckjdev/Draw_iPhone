@@ -37,6 +37,12 @@
     }
 }
 
+- (NSString *)priceInRMB
+{
+    return [[self priceInCountry:@"CN"] price];
+}
+
+
 - (PBIAPProductPrice *)priceInCountry:(NSString *)countryCode
 {
     for (PBIAPProductPrice *price in self.pricesList) {

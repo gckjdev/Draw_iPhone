@@ -12,4 +12,6 @@
 
 - (NSString *)localizedPrice;
 
+- (NSString *)priceInRMB;
+
 @end

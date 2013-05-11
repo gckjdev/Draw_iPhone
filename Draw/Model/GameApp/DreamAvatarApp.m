@@ -35,6 +35,12 @@
     return YES;
 }
 
+//ContentGameAppProtocol
+- (int)sellContentType
+{
+    return SellContentTypeDreamAvatar;
+}
+
 - (NSArray *)homeTabIDList
 {
     return [NSArray arrayWithObjects:[NSNumber numberWithInt:LearnDrawTypeAll],
