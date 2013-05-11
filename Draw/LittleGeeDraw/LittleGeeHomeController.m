@@ -123,6 +123,7 @@ typedef enum {
     if ([[UserManager defaultManager] hasUser]) {
         [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
     }
+    [self.titleLabel setText:NSLS(@"kLittleGee")];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -131,10 +132,10 @@ typedef enum {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
     self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:[imgManager drawToBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeDrawTo") image:[imgManager drawToBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kBegin") image:[imgManager beginBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kContest") image:[imgManager contestBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
 }
 
 - (void)didReceiveMemoryWarning
