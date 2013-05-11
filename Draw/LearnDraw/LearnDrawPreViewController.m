@@ -88,13 +88,8 @@
     [self.contentImageView setImageWithURL:url
                           placeholderImage:self.placeHolderImage];
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
-    
-    [self.priceHolderView updateOriginX:self.contentImageView.frame.origin.x];
-    [self.priceHolderView updateOriginY:self.contentImageView.frame.origin.y + self.contentImageView.frame.size.height - self.priceHolderView.frame.size.height];
-    [self.priceHolderView updateWidth:self.contentImageView.frame.size.width];    
-    [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
-    [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
     self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
+    [self updatePirceHolderViewFrame];
     
     NSString *leftTitle = nil;
     NSString *rightTitle = nil;
@@ -125,6 +120,20 @@
     [self.buyButton addTarget:self action:rightSelector forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)updatePirceHolderViewFrame
+{
+    CGSize imageSize = self.contentImageView.image.size;
+    PPDebug(@"image size:%f,%f", imageSize.width, imageSize.height);
+    
+    [self.priceHolderView updateOriginX:self.contentImageView.center.x - 0.5 * imageSize.width];
+    [self.priceHolderView updateOriginY:self.contentImageView.center.y + 0.5 * imageSize.height - self.priceHolderView.frame.size.height];
+    
+    [self.priceHolderView updateWidth:imageSize.width];
+    
+    [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
+    [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -146,6 +155,7 @@
     PPRelease(_priceHolderView);
     PPRelease(_ingotImageView);
     PPRelease(_saveToContactPickerView);
+//    [_placeHolderImage size]
     [super dealloc];
 }
 - (void)viewDidUnload {
