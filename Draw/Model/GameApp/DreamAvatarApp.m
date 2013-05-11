@@ -23,7 +23,7 @@
 
 - (BOOL)disableAd
 {
-    return NO;
+    return YES;
 }
 
 - (NSString*)umengId

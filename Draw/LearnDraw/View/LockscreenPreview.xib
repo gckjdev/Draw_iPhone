@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="986713299">
 						<reference key="NSNextResponder" ref="303154367"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 460}</string>
+						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="303154367"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="93431641"/>
@@ -54,7 +54,7 @@
 						<string key="NSFrameSize">{320, 98}</string>
 						<reference key="NSSuperview" ref="303154367"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="582027996"/>
+						<reference key="NSNextKeyView" ref="727827822"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="329526187">
 							<int key="NSColorSpace">3</int>
@@ -64,7 +64,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Lockscreen_iphone_top@2x.png</string>
+							<string key="NSResourceName">lockscreen_iphone_top@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="128023273">
@@ -80,7 +80,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Lockscreen_iphone_bottom@2x.png</string>
+							<string key="NSResourceName">lockscreen_iphone_bottom@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="582027996">
@@ -189,7 +189,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="303154367"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="986713299"/>
+						<reference key="NSNextKeyView" ref="582027996"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="329526187"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -198,7 +198,7 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="727827822"/>
+				<reference key="NSNextKeyView" ref="986713299"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -341,7 +341,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">24</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -384,8 +384,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Lockscreen_iphone_bottom@2x.png">{640, 199}</string>
-			<string key="Lockscreen_iphone_top@2x.png">{640, 197}</string>
+			<string key="lockscreen_iphone_bottom@2x.png">{640, 199}</string>
+			<string key="lockscreen_iphone_top@2x.png">{640, 197}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

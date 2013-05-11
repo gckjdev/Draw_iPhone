@@ -110,6 +110,35 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return [[self userItemWithItemId:itemId] count];
 }
 
+// 判断是否拥有1个道具(包括时间消耗品)
+- (BOOL)hasItem:(int)itemId
+{
+    if ([self isDefaultItem:itemId]) {
+        return YES;
+    }
+    
+    if (![self countOfItem:itemId] >= 1) {
+        return NO;
+    }
+    
+    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
+    switch (item.consumeType) {
+        case PBGameItemConsumeTypeNonConsumable:
+        case PBGameItemConsumeTypeAmountConsumable:
+            return YES;
+            break;
+            
+        case PBGameItemConsumeTypeTimeConsumable:
+            return ![self isItemExpire:[self userItemWithItemId:itemId]];
+            break;
+            
+        default:
+            return NO;
+            break;
+    }
+}
+
+// 判断是否拥有非时间消耗道具
 - (BOOL)hasEnoughItem:(int)itemId amount:(int)amount
 {
     if ([self isDefaultItem:itemId]) {
@@ -141,31 +170,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
     return NO;
 }
 
-- (BOOL)hasItem:(int)itemId
-{
-    
-    if (![self hasEnoughItem:itemId amount:1]) {
-        return NO;
-    }
-    
-    PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];    
-    switch (item.consumeType) {
-        case PBGameItemConsumeTypeNonConsumable:
-        case PBGameItemConsumeTypeAmountConsumable:
-            return YES;
-            break;
-            
-        case PBGameItemConsumeTypeTimeConsumable:
-            return ![self isItemExpire:[self userItemWithItemId:itemId]];
-            break;
-            
-        default:
-            return YES;
-            break;
-    }
-    
-    return NO;
-}
+
 
 - (BOOL)canBuyItemNow:(PBGameItem *)item
 {
