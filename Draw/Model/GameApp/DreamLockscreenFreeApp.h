@@ -6,8 +6,8 @@
 //
 //
 
-#import "LearnDrawApp.h"
+#import "DreamLockscreenApp.h"
 
-@interface DreamLockscreenFreeApp : LearnDrawApp
+@interface DreamLockscreenFreeApp : DreamLockscreenApp
 
 @end

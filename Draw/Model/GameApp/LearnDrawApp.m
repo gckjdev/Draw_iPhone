@@ -97,11 +97,14 @@
     return YES;
 }
 
+
+
+
+//ContentGameAppProtocol
 - (int)sellContentType
 {
     return SellContentTypeLearnDraw;
 }
-
 
 - (NSArray *)homeTabIDList
 {

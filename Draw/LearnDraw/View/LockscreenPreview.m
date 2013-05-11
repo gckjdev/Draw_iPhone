@@ -32,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(LockscreenPreview);
     self.timeLabel.text = dateToLocaleStringWithFormat(date, @"HH:mm");
     
     NSString *monAndDayStr = nil;
-    if ([LocaleUtils isChina]) {
+    if ([LocaleUtils isChinese]) {
         monAndDayStr = dateToLocaleStringWithFormat(date, @"M月d日");
     } else {
         monAndDayStr = dateToLocaleStringWithFormat(date, @"d LLL");
