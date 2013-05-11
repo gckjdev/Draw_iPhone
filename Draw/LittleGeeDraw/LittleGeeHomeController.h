@@ -11,6 +11,7 @@
 #import "FeedService.h"
 #import "UserService.h"
 #import "CustomActionSheet.h"
+#import "FriendController.h"
 
 typedef enum {
     LittleGeeHomeGalleryTypeAnnual = 0,
@@ -21,7 +22,7 @@ typedef enum {
     
 }LittleGeeHomeGalleryType;
 
-@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate, CustomActionSheetDelegate>
+@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate, CustomActionSheetDelegate, FriendControllerDelegate>
 
 
 @end

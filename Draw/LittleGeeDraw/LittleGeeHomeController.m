@@ -13,13 +13,50 @@
 #import "CMPopTipView.h"
 #import "LittleGeeImageManager.h"
 #import "UserManager.h"
+#import "OfflineDrawViewController.h"
+#import "Word.h"
+#import "ShareController.h"
+#import "ContestController.h"
+#import "StatisticManager.h"
+#import "ChatListController.h"
+#import "MyFeedController.h"
+#import "BulletinView.h"
+#import "FreeIngotController.h"
+#import "BBSBoardController.h"
+#import "StoreController.h"
+#import "ShowFeedController.h"
+#import "UseItemScene.h"
+
+#define OPTION_SHEET_FIRST_SHOW_DURATION 6
+#define OPTION_SHEET_SHOW_DURATION  60
+
+#define POP_OPTION_SHEET_TAG    120130511
+#define DRAW_OPTION_SHEET_TAG   220130511
+
+typedef enum {
+    DrawOptionIndexDrawTo = 0,
+    DrawOptionIndexDraft,
+    DrawOptionIndexBegin,
+    DrawOptionIndexContest,
+}DrawOptionIndex;
+
+typedef enum {
+    PopOptionIndexPK = 0,
+    PopOptionIndexSearch,
+    PopOptionIndexNotice,
+    PopOptionIndexBbs,
+    PopOptionIndexIngot,
+    PopOptionIndexContest,
+    PopOptionIndexShop,
+    PopOptionIndexMore
+}PopOptionIndex;
 
 @interface LittleGeeHomeController ()
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 @property (nonatomic, retain) CustomActionSheet* optionSheet;
-@property (nonatomic, retain) CustomActionSheet* drawActionSheet;
-@property (retain, nonatomic) IBOutlet UIButton *drawActionBtn;
+@property (nonatomic, retain) CustomActionSheet* drawOptionSheet;
+@property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 @end
 
@@ -29,8 +66,8 @@
 {
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_optionSheet);
-    PPRelease(_drawActionSheet);
-    [_drawActionBtn release];
+    PPRelease(_drawOptionSheet);
+    [_drawOptionBtn release];
     [_bigPen release];
     [super dealloc];
 }
@@ -48,7 +85,8 @@
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsBbsImage], [imgManager popOptionsContestImage], [imgManager popOptionsGameImage], [imgManager popOptionsIngotImage], [imgManager popOptionsMoreImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsSearchImage], [imgManager popOptionsShopImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSearchImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
@@ -78,24 +116,25 @@
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
-    [self initDrawActions];
-    [self.view bringSubviewToFront:self.drawActionBtn];
+    [self initDrawOptions];
+    [self.view bringSubviewToFront:self.drawOptionBtn];
     [self.view bringSubviewToFront:self.bigPen];
-    [self.drawActionBtn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.drawOptionBtn addTarget:self action:@selector(clickDrawOptionBtn:) forControlEvents:UIControlEventTouchUpInside];
     if ([[UserManager defaultManager] hasUser]) {
-        [self showOptionSheetForTime:6];
+        [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
     }
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)initDrawActions
+- (void)initDrawOptions
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
-    self.drawActionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:[imgManager drawToBtnBackgroundImage]];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kBegin") image:[imgManager beginBtnBackgroundImage]];
-    [self.drawActionSheet addButtonWithTitle:NSLS(@"kContest") image:[imgManager contestBtnBackgroundImage]];
+    self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
+    self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:[imgManager drawToBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kBegin") image:[imgManager beginBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kContest") image:[imgManager contestBtnBackgroundImage]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,11 +152,23 @@
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [self showOptionSheetForTime:15];
+                [self showOptionSheetForTime:OPTION_SHEET_SHOW_DURATION];
             }
             
         }break;
-            
+        case HomeMenuTypeLittleGeeFriend: {
+            FriendController* vc = [[[FriendController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        } break;
+        case HomeMenuTypeLittleGeeChat: {
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        } break;
+        case HomeMenuTypeLittleGeeFeed: {
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [[StatisticManager defaultManager] setFeedCount:0];
+        } break;
         default:
             break;
     }
@@ -127,7 +178,71 @@
 #pragma mark - custom action sheet delegate
 - (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    if (actionSheet.tag == DRAW_OPTION_SHEET_TAG) {
+        switch (buttonIndex) {
+            case DrawOptionIndexDrawTo: {
+                FriendController* vc = [[[FriendController alloc] initWithDelegate:self] autorelease];
+                [self.navigationController pushViewController:vc animated:YES];
+            } break;
+            case DrawOptionIndexDraft: {
+                ShareController* share = [[ShareController alloc] init];
+                int count = [[StatisticManager defaultManager] recoveryCount];
+                if (count > 0) {
+                    [share setDefaultTabIndex:2];
+                    [[StatisticManager defaultManager] setRecoveryCount:0];
+                }
+                [self.navigationController pushViewController:share animated:YES];
+                [share release];
+            } break;
+            case DrawOptionIndexBegin: {
+                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:nil];
+            } break;
+            case DrawOptionIndexContest: {
+                ContestController *cc = [[ContestController alloc] init];
+                [self.navigationController pushViewController:cc animated:YES];
+                [cc release];
+            } break;
+            default:
+                break;
+        }
+    }
+    if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
+        switch (buttonIndex) {
+            case PopOptionIndexPK: {
+                
+            } break;
+            case PopOptionIndexSearch: {
+                
+            } break;
+            case PopOptionIndexNotice: {
+                [BulletinView showBulletinInController:self];
+            } break;
+            case PopOptionIndexBbs: {
+                BBSBoardController *bbs = [[BBSBoardController alloc] init];
+                [self.navigationController pushViewController:bbs animated:YES];
+                [bbs release];
+            } break;
+            case PopOptionIndexIngot: {
+                FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
+                [self.navigationController pushViewController:fc animated:YES];
+            } break;
+            case PopOptionIndexContest: {
+                ContestController *cc = [[ContestController alloc] init];
+                [self.navigationController pushViewController:cc animated:YES];
+                [cc release];
+            } break;
+            case PopOptionIndexShop: {
+                StoreController *vc = [[[StoreController alloc] init] autorelease];
+                [self.navigationController pushViewController:vc animated:YES];
+            } break;
+            case PopOptionIndexMore: {
+                //
+            } break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 
@@ -152,21 +267,17 @@
 }
 
 
-- (void)showFeed:(DrawFeed *)feed placeHolder:(UIImage *)placeHolder
+- (void)showFeed:(DrawFeed *)feed
 {
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
     
 }
 
 - (void)didClickRankView:(RankView *)rankView
 {
-    
-    if (![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
-        [self showFeed:rankView.feed placeHolder:rankView.drawImage.image];
-    }else{
-        
-        
-    }
-    
+    [self showFeed:rankView.feed];
 }
 
 
@@ -362,15 +473,15 @@
 }
 
 #define ITEM_SIZE (ISIPAD?CGSizeMake(100, 100):CGSizeMake(60,60))
-#define DRAW_ACTION_SHEET_RADIUS (ISIPAD?150:100)
-- (IBAction)clickDrawActionBtn:(id)sender
+#define DRAW_OPTION_SHEET_RADIUS (ISIPAD?150:100)
+- (IBAction)clickDrawOptionBtn:(id)sender
 {
     [self hideOptionSheet];
-    if ([self.drawActionSheet isVisable]) {
-        [self.drawActionSheet hideActionSheet];
+    if ([self.drawOptionSheet isVisable]) {
+        [self.drawOptionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        [self.drawActionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:DRAW_ACTION_SHEET_RADIUS itemSize:ITEM_SIZE];
+        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:DRAW_OPTION_SHEET_RADIUS itemSize:ITEM_SIZE];
     }
 }
 
@@ -393,8 +504,15 @@
 }
 
 
+#pragma mark - friend controller delegate
+- (void)friendController:(FriendController *)controller
+         didSelectFriend:(MyFriend *)aFriend
+{
+    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:aFriend.friendUserId];
+}
+
 - (void)viewDidUnload {
-    [self setDrawActionBtn:nil];
+    [self setDrawOptionBtn:nil];
     [self setBigPen:nil];
     [super viewDidUnload];
 }

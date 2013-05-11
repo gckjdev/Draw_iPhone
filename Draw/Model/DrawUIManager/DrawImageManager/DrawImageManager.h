@@ -80,5 +80,5 @@
 
 //little gee
 - (UIImage*)littleGeeBottomSplit;
-
+- (UIImage*)littleGeeMoreOptionsImage;
 @end

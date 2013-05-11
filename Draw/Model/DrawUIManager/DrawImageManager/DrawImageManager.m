@@ -337,4 +337,9 @@ static DrawImageManager * _staticDrawImageManager;
     return nil;
 }
 
+- (UIImage*)littleGeeMoreOptionsImage
+{
+    return [UIImage imageNamed:@"little_gee_home_options.png"];
+}
+
 @end
