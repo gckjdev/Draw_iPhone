@@ -1648,4 +1648,8 @@
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Recommend";
+"kLittleGeeDrawTo" = "Draw To";
+"kLittleGeeBegin" = "Draw";
+"kLittleGeeContest" = "Contest";
+"kLittleGee" = "Little Gee";
 /*********************小吉画画国际化字符串结束 ************************/

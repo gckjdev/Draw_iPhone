@@ -46,7 +46,7 @@ typedef enum {
     PopOptionIndexNotice,
     PopOptionIndexBbs,
     PopOptionIndexIngot,
-    PopOptionIndexContest,
+//    PopOptionIndexContest,
     PopOptionIndexShop,
     PopOptionIndexMore
 }PopOptionIndex;
@@ -79,13 +79,13 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(40,40))
-#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(40,400))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(50,50))
+#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(60,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSearchImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSearchImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
@@ -123,6 +123,7 @@ typedef enum {
     if ([[UserManager defaultManager] hasUser]) {
         [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
     }
+    [self.titleLabel setText:NSLS(@"kLittleGee")];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -131,10 +132,10 @@ typedef enum {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
     self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDrawTo") image:[imgManager drawToBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeDrawTo") image:[imgManager drawToBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kBegin") image:[imgManager beginBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kContest") image:[imgManager contestBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
+    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -186,11 +187,9 @@ typedef enum {
             } break;
             case DrawOptionIndexDraft: {
                 ShareController* share = [[ShareController alloc] init];
-                int count = [[StatisticManager defaultManager] recoveryCount];
-                if (count > 0) {
-                    [share setDefaultTabIndex:2];
-                    [[StatisticManager defaultManager] setRecoveryCount:0];
-                }
+//                int count = [[StatisticManager defaultManager] recoveryCount];
+                [share setDefaultTabIndex:2];
+                [[StatisticManager defaultManager] setRecoveryCount:0];
                 [self.navigationController pushViewController:share animated:YES];
                 [share release];
             } break;
@@ -226,11 +225,11 @@ typedef enum {
                 FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
                 [self.navigationController pushViewController:fc animated:YES];
             } break;
-            case PopOptionIndexContest: {
-                ContestController *cc = [[ContestController alloc] init];
-                [self.navigationController pushViewController:cc animated:YES];
-                [cc release];
-            } break;
+//            case PopOptionIndexContest: {
+//                ContestController *cc = [[ContestController alloc] init];
+//                [self.navigationController pushViewController:cc animated:YES];
+//                [cc release];
+//            } break;
             case PopOptionIndexShop: {
                 StoreController *vc = [[[StoreController alloc] init] autorelease];
                 [self.navigationController pushViewController:vc animated:YES];
