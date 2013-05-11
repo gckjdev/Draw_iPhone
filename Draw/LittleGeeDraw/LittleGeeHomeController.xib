@@ -107,7 +107,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 79}, {320, 341}}</string>
 						<reference key="NSSuperview" ref="45802666"/>
-						<reference key="NSNextKeyView" ref="970066382"/>
+						<reference key="NSNextKeyView" ref="742631987"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -266,7 +266,7 @@
 						<reference key="IBUIFontDescription" ref="406948703"/>
 						<reference key="IBUIFont" ref="106436531"/>
 					</object>
-					<object class="IBUIImageView" id="970066382">
+					<object class="IBUIImageView" id="742631987">
 						<reference key="NSNextResponder" ref="45802666"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{148, 401}, {25, 60}}</string>
@@ -327,19 +327,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">drawActionBtn</string>
+						<string key="label">bigPen</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="446578210"/>
+						<reference key="destination" ref="742631987"/>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">34</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">bigPen</string>
+						<string key="label">drawOptionBtn</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="970066382"/>
+						<reference key="destination" ref="446578210"/>
 					</object>
-					<int key="connectionID">34</int>
+					<int key="connectionID">35</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -436,7 +436,7 @@
 							<reference ref="374272984"/>
 							<reference ref="446578210"/>
 							<reference ref="11009881"/>
-							<reference ref="970066382"/>
+							<reference ref="742631987"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -492,7 +492,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="970066382"/>
+						<reference key="object" ref="742631987"/>
 						<reference key="parent" ref="45802666"/>
 					</object>
 				</array>
@@ -520,7 +520,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">34</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -568,17 +568,28 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">LittleGeeHomeController</string>
 					<string key="superclassName">CommonTabController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickDrawOptionBtn:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickDrawOptionBtn:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickDrawOptionBtn:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bigPen">UIImageView</string>
-						<string key="drawActionBtn">UIButton</string>
+						<string key="drawOptionBtn">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="bigPen">
 							<string key="name">bigPen</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="drawActionBtn">
-							<string key="name">drawActionBtn</string>
+						<object class="IBToOneOutletInfo" key="drawOptionBtn">
+							<string key="name">drawOptionBtn</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>

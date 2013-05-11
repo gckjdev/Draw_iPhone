@@ -313,7 +313,7 @@
 
         //little gee
         case HomeMenuTypeLittleGeeOptions:
-            return [imageManager drawHomeSetting];
+            return [imageManager littleGeeMoreOptionsImage];
         case HomeMenuTypeLittleGeeFriend:
             return [imageManager drawHomeFriend];
         case HomeMenuTypeLittleGeePlaceholder:
