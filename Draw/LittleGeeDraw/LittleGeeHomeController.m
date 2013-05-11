@@ -19,7 +19,8 @@
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 @property (nonatomic, retain) CustomActionSheet* optionSheet;
 @property (nonatomic, retain) CustomActionSheet* drawActionSheet;
-
+@property (retain, nonatomic) IBOutlet UIButton *drawActionBtn;
+@property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 @end
 
 @implementation LittleGeeHomeController
@@ -29,6 +30,8 @@
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_optionSheet);
     PPRelease(_drawActionSheet);
+    [_drawActionBtn release];
+    [_bigPen release];
     [super dealloc];
 }
 
@@ -54,10 +57,9 @@
     [self addBottomMenuView];
     [self initTabButtons];
     [self initDrawActions];
-    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(124, 400, 73, 73)];
-    [btn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    [btn setBackgroundColor:[UIColor greenColor]];
+    [self.view bringSubviewToFront:self.drawActionBtn];
+    [self.view bringSubviewToFront:self.bigPen];
+    [self.drawActionBtn addTarget:self action:@selector(clickDrawActionBtn:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -81,16 +83,17 @@
                didClickMenu:(HomeMenuView *)menu
                    menuType:(HomeMenuType)type
 {
+    LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     switch (type) {
         case HomeMenuTypeLittleGeeOptions: {
             if (!_optionSheet) {
-                self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], [UIImage imageNamed:@"bm_chat.png"], nil] autorelease];
+                self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsBbsImage], [imgManager popOptionsContestImage], [imgManager popOptionsGameImage], [imgManager popOptionsIngotImage], [imgManager popOptionsMoreImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsSearchImage], [imgManager popOptionsShopImage], nil] autorelease];
 //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
             }
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [_optionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(40, 400) columns:1 showTitles:NO itemSize:CGSizeMake(30, 30) backgroundImage:[UIImage imageNamed:@"wood_bg.jpg"]];
+                [_optionSheet showInView:self.view onView:menu WithContainerSize:CGSizeMake(80, 400) columns:1 showTitles:NO itemSize:CGSizeMake(40, 40) backgroundImage:[imgManager popOptionsBackgroundImage]];
             }
             
         }break;
@@ -362,4 +365,9 @@
 
 
 
+- (void)viewDidUnload {
+    [self setDrawActionBtn:nil];
+    [self setBigPen:nil];
+    [super viewDidUnload];
+}
 @end

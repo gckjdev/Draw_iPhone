@@ -572,6 +572,7 @@ int *getLittleGeeBottomMenuTypeList()
         HomeMenuTypeLittleGeeFriend,
         HomeMenuTypeLittleGeePlaceholder,
         HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
         HomeMenuTypeLittleGeeChat,
         HomeMenuTypeLittleGeeFeed,
         HomeMenuTypeEnd

@@ -23,4 +23,5 @@ typedef enum {
 
 @interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate, CustomActionSheetDelegate>
 
+
 @end
