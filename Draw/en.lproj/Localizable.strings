@@ -1316,7 +1316,7 @@
 //dream lockscreen
 "kDreamLockscreenPreview" = "Preview";
 "kDreamLockscreenBuy" = "Buy & Save";
-"kDreamLockscreenSlider" = "Slide to unlock";
+"kDreamLockscreenSlider" = "slide to unlock";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";
