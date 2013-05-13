@@ -258,5 +258,5 @@ typedef enum{
 
 + (BOOL)showRestoreButton;
 + (NSString*)getFeedbackBody;
-
++ (int)maxDrawTitleLen;
 @end

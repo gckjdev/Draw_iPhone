@@ -213,11 +213,11 @@
             self.center = view.center;
             
         } completion:^(BOOL finished) {
-            [self.content becomeFirstResponder];
+            [(self.subject.hidden?self.content:self.subject) becomeFirstResponder];
         }];
     }else{
         self.center = view.center;
-        [self.content becomeFirstResponder];
+        [(self.subject.hidden?self.content:self.subject) becomeFirstResponder];
     }
 }
 
@@ -255,9 +255,19 @@
     return set;
 }
 
+- (BOOL)isTitlelegal
+{
+    //TODO:check title legal
+    return YES;
+}
+
 - (IBAction)clickConfirm:(id)sender {
     if (!_subject.hidden && [_subject.text length] == 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMustHaveTitle") delayTime:1.5];
+        return;
+    }
+    if (![self isTitlelegal]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5];
         return;
     }
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
@@ -383,6 +393,14 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if (self.maxInputLen > 0 && range.location >= self.maxInputLen)
+        return NO; // return NO to not change text
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    int maxTitleLen = [ConfigManager maxDrawTitleLen];
+    if (range.location >= maxTitleLen)
         return NO; // return NO to not change text
     return YES;
 }

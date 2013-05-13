@@ -964,4 +964,9 @@
     return [NSString stringWithFormat:@"UserId :　%@", [[UserManager defaultManager] userId]];
 }
 
++ (int)maxDrawTitleLen
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN" defaultValue:7];
+}
+
 @end
