@@ -19,6 +19,7 @@
 #import "GameSNSService.h"
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
+#import "StringUtil.h"
 
 @interface InputAlertView ()
 {
@@ -258,16 +259,20 @@
 - (BOOL)isTitlelegal
 {
     //TODO:check title legal
-    return YES;
+    if ([LocaleUtils isChinese]) {
+        return NSStringIsValidChinese(self.subject.text);
+    } else {
+        return NSStringISValidEnglish(self.subject.text);
+    }
 }
 
 - (IBAction)clickConfirm:(id)sender {
     if (!_subject.hidden && [_subject.text length] == 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMustHaveTitle") delayTime:1.5];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kMustHaveTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
         return;
     }
     if (![self isTitlelegal]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
         return;
     }
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
