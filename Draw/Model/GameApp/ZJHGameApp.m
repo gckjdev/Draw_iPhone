@@ -452,8 +452,7 @@
     PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
-    PBRewardWall* ader = [GameConfigDataManager aderWall];
-    
+    PBRewardWall* ader = [GameConfigDataManager aderWall];    
     
     [builder addAppRewards:drawApp];
     [builder addAppRewards:diceApp];

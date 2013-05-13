@@ -363,7 +363,7 @@
 
 - (NSString*)domodWallId
 {
-    return @"";//TODO
+    return @"96ZJ3Oowze+vLwTA1l";
 }
 
 - (NSString*)tapjoyWallId
