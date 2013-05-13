@@ -423,7 +423,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_straw@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:600
+                                           price:1500
                                         currency:PBGameCurrencyCoin]];
     
     // 作品播放器
@@ -470,7 +470,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_grid@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:1000
+                                           price:1500
                                         currency:PBGameCurrencyCoin]];
     
     // 背景1
@@ -610,7 +610,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:1000
+                                           price:2000
                                         currency:PBGameCurrencyCoin]];
     
     // 横版画布（中）
@@ -641,7 +641,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:1000
+                                           price:2000
                                         currency:PBGameCurrencyCoin]];
     
     // 竖版画布（中）
