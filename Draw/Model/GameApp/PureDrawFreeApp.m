@@ -58,4 +58,10 @@
     
 }
 
+- (NSString*)domodWallId
+{
+    return @"96ZJ2rhAze+vLwTA1k";
+}
+
+
 @end

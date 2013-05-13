@@ -76,4 +76,9 @@
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+- (NSString*)domodWallId
+{
+    return @"96ZJ2rhAze+vLwTA1k";
+}
+
 @end
