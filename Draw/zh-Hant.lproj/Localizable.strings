@@ -1299,6 +1299,7 @@
 "kDreamLockscreenPreview" = "預覽";
 "kDreamLockscreenBuy" = "購買 & 保存";
 "kDreamLockscreenSlider" = "滑動來解鎖";
+"kSetContactAvatarSucc" = "已經成功保存為通訊錄聯繫人頭像";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";

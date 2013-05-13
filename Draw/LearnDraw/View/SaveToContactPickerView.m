@@ -8,6 +8,8 @@
 
 #import "SaveToContactPickerView.h"
 #import "PPViewController.h"
+#import "AddressBookUtils.h"
+#import "CommonMessageCenter.h"
 
 @interface SaveToContactPickerView()
 
@@ -59,22 +61,19 @@
     if (queue == NULL){
         queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
     }
-    dispatch_async(queue, ^{
-        NSData *data=UIImagePNGRepresentation(_avatar);
-        ABPersonRemoveImageData(person, NULL);
-        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
-        ABAddressBookSave(peoplePicker.addressBook, nil);
-        CFDataRef cfData=CFDataCreate(NULL, [data bytes], [data length]);
-        ABPersonSetImageData(person, cfData, nil);
-        ABAddressBookAddRecord(peoplePicker.addressBook, person, nil);
-        ABAddressBookSave(peoplePicker.addressBook, nil);
-    });
-    
+//    dispatch_async(queue, ^{
+
+    [AddressBookUtils addImage:person image:_avatar];
+    ABAddressBookSave(peoplePicker.addressBook, nil);
+        
     if ([_superController isKindOfClass:[PPViewController class]]) {
-        [(PPViewController *)_superController performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+        [(PPViewController *)_superController performSelector:@selector(hideActivity)];
     }
     
     [peoplePicker dismissModalViewControllerAnimated:YES];
+    
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSetContactAvatarSucc") delayTime:1.5];
+    
     return NO;
 }
 

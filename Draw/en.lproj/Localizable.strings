@@ -1317,6 +1317,7 @@
 "kDreamLockscreenPreview" = "Preview";
 "kDreamLockscreenBuy" = "Buy & Save";
 "kDreamLockscreenSlider" = "slide to unlock";
+"kSetContactAvatarSucc" = "Save as contact avatar successfully";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO, Thanks";

@@ -456,7 +456,7 @@
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
     PBRewardWall* youmi = [GameConfigDataManager youmiWall];
     PBRewardWall* ader = [GameConfigDataManager aderWall];
-    PBRewardWall* domod = [GameConfigDataManager domodWall];
+//    PBRewardWall* domod = [GameConfigDataManager domodWall];
 //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
     
     [builder addAppRewards:zjhApp];
@@ -465,7 +465,7 @@
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
     [builder addRewardWalls:ader];
-    [builder addRewardWalls:domod];
+//    [builder addRewardWalls:domod];
 //    [builder addRewardWalls:tapjoy];
     
     PBConfig* config = [builder build];
