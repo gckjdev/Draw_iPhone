@@ -24,6 +24,7 @@
 
 @property (retain, nonatomic) NSMutableDictionary* buttonImagesDict;
 @property (retain, nonatomic) NSMutableArray* buttonTitles;
+@property (retain, nonatomic) NSMutableDictionary* badgeCountDict;
 @property (retain, nonatomic) CMPopTipView* popView;
 @property (retain, nonatomic) HGQuadCurveMenu* menu;
 
@@ -42,6 +43,7 @@
 {
     [_buttonImagesDict release];
     [_buttonTitles release];
+    [_badgeCountDict release];
     PPRelease(_popView);
     PPRelease(_menu);
     [super dealloc];
@@ -206,11 +208,20 @@
                                                  blue:204/255.0
                                                 alpha:1.0];
                 lbl.font = [UIFont systemFontOfSize:12.0f];
-                [lbl setTextAlignment:UITextAlignmentCenter];
-                [lbl setTextColor:[UIColor whiteColor]];
                 lbl.backgroundColor = [UIColor clearColor];
                 lbl.text = (NSString*)[self.buttonTitles objectAtIndex:i];
                 [actionView addSubview:lbl];
+            }
+            
+            int badgeCount = [self badgeCountForIndex:i];
+            if (badgeCount > 0) {
+                UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.4, actionViewWidth*0.4)] autorelease];
+                badge.titleLabel.textAlignment = UITextAlignmentCenter;
+                badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/5];
+                [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
+                [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
+                [actionView addSubview:badge];
             }
             
             
@@ -242,10 +253,7 @@
    backgroundImage:(UIImage*)backgroundImage
 {
     
-    if (_popView == nil) {
-        _popView = [[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]];
-//        [_popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
-    }
+    self.popView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]] autorelease];
     _popView.hidden = NO;
     [_popView presentPointingAtView:onView inView:view animated:YES];
     self.isVisable = YES;
@@ -306,8 +314,8 @@
     if (_delegate && [_delegate respondsToSelector:@selector(customActionSheet:clickedButtonAtIndex:)]) {
         [_delegate customActionSheet:self
           clickedButtonAtIndex:btn.tag - ACTION_BTN_TAG_OFFSET];
-        
     }
+    [self setBadgeCount:0 forIndex:btn.tag-ACTION_BTN_TAG_OFFSET];
     [self hideActionSheet];
 }
 
@@ -383,6 +391,29 @@
 - (void)quadCurveMenuDidClose
 {
     self.isVisable = NO;
+}
+
+- (void)setBadgeCount:(int)count
+             forIndex:(int)index
+{
+    NSString* title = [self buttonTitleAtIndex:index];
+    if (title == nil) {
+        return;
+    }
+    if (_badgeCountDict == nil) {
+        self.badgeCountDict = [[[NSMutableDictionary alloc] init] autorelease];
+    }
+    [self.badgeCountDict setObject:@(count) forKey:title];
+    
+}
+- (int)badgeCountForIndex:(int)index
+{
+    NSString* title = [self buttonTitleAtIndex:index];
+    NSNumber* number = ((NSNumber*)[self.badgeCountDict objectForKey:title]);
+    if (number) {
+        return number.intValue;
+    }
+    return 0;
 }
 
 /*

@@ -301,7 +301,7 @@
         needUpdate:(BOOL)needUpdate
            canChat:(BOOL)canChat
 {
-    if (isDrawApp()) {
+    if (isDrawApp() || isLittleGeeAPP()) {
 //        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName]] autorelease];
 //        [superController.navigationController pushViewController:uc animated:YES];
 //        return;

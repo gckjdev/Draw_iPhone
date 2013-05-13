@@ -61,6 +61,9 @@
 - (void)hideActionSheet;
 - (void)setImage:(UIImage*)image
         forTitle:(NSString*)title;
+
+- (void)setBadgeCount:(int)count
+             forIndex:(int)index;
 @end
 
 
