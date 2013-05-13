@@ -108,6 +108,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 #define DICE_COIN_66000_TAOBAO_URL @"http://a.m.taobao.com/i18015793674.htm?v=0&mz_key=0"
 #define DICE_COIN_180000_TAOBAO_URL @"http://a.m.taobao.com/i24207916662.htm?v=0&mz_key=0"
 
+
+#define INGOT_6_TAOBAO_URL  @"http://a.m.taobao.com/i25015596629.htm?v=0&mz_key=0"
+#define INGOT_22_TAOBAO_URL  @"http://a.m.taobao.com/i25015396557.htm?v=0&mz_key=0"
+#define INGOT_39_TAOBAO_URL  @"http://a.m.taobao.com/i20479207896.htm?v=0&mz_key=0"
+#define INGOT_84_TAOBAO_URL  @"http://a.m.taobao.com/i25015568861.htm?v=0&mz_key=0"
+#define INGOT_225_TAOBAO_URL  @"http://a.m.taobao.com/i25015808160.htm?v=0&mz_key=0"
+#define INGOT_600_TAOBAO_URL  @"http://a.m.taobao.com/i18392618241.htm?v=0&mz_key=0"
+
 + (void)createDrawIngotTestDataFile
 {
     NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
@@ -314,7 +322,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -328,7 +336,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -342,7 +350,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -356,7 +364,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -393,7 +401,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -407,7 +415,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -421,7 +429,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -435,7 +443,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -471,7 +479,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -485,7 +493,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -499,7 +507,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -513,7 +521,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -549,7 +557,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -563,7 +571,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -577,7 +585,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -591,7 +599,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -628,7 +636,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -642,7 +650,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -656,7 +664,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -670,7 +678,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
@@ -684,7 +692,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:225
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -720,7 +728,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -734,7 +742,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -748,7 +756,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -762,7 +770,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
@@ -776,7 +784,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:225
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -812,7 +820,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -826,7 +834,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -840,7 +848,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -854,7 +862,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
@@ -868,7 +876,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:225
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
@@ -904,7 +912,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:6
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_6_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
@@ -918,7 +926,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:22
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_22_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"30" saving:@"23%"];
@@ -932,7 +940,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:39
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_39_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"68" saving:@"28%"];
@@ -946,7 +954,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:84
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_84_TAOBAO_URL
                                           priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"163" saving:@"33%"];
@@ -960,7 +968,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
                                               count:225
                                          totalPrice:priceUS.price
                                              saving:priceUS.saving
-                                          taobaoUrl:nil
+                                          taobaoUrl:INGOT_225_TAOBAO_URL
                                           priceList:priceList]];
     
     PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
