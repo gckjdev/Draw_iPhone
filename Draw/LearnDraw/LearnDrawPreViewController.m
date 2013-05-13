@@ -84,6 +84,10 @@
 {
     [super viewDidLoad];
     
+    if (isLearnDrawApp()) {
+        self.watermarkLabel.hidden = YES;
+    }
+    
     if ([[AdService defaultService] isShowAd]) {
         if ([DeviceDetection isIPAD]) {
             [self.previewButton updateOriginY:Y_BUY_BUTTON_IPAD];
@@ -133,7 +137,6 @@
         leftSelector = @selector(clickLockscreenPreview:);
         rightSelector = @selector(clickSaveToAlbum:);
     }
-    
     
     [self.previewButton setTitle:leftTitle forState:UIControlStateNormal];
     [self.buyButton setTitle:rightTitle forState:UIControlStateNormal];
