@@ -1656,4 +1656,7 @@
 "kLittleGeeBegin" = "開始";
 "kLittleGeeContest" = "比賽";
 "kLittleGee" = "小吉畫畫";
+"kLittleGeeDrawTitle" = "輸入作品標題";
+"kMustHaveTitle" = "作品標題不能為空!";
+"kIllegalTitle" = "標題含有非法字符串!";
 /*********************小吉画画国际化字符串结束 ************************/
