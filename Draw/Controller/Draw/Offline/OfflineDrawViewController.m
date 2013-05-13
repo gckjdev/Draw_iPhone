@@ -1172,7 +1172,14 @@
 - (void)showInputAlertView
 {
     if (self.inputAlert == nil) {
-        self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
+        if (isLittleGeeAPP()) {
+            BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
+
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+        } else {
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
+        }
+        
     }
     self.inputAlert.contentText = self.opusDesc;
     [self.inputAlert showInView:self.view animated:YES];

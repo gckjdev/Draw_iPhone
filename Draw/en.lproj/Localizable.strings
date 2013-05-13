@@ -1311,7 +1311,7 @@
 
 //dream avatar
 "kDreamAvatarSaveToAlbum" = "Album";
-"kDreamAvatarSaveToContact" = "Contact";
+"kDreamAvatarSaveToContact" = "Contact Avatar";
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "Preview";
@@ -1652,4 +1652,7 @@
 "kLittleGeeBegin" = "Draw";
 "kLittleGeeContest" = "Contest";
 "kLittleGee" = "Little Gee";
+"kLittleGeeDrawTitle" = "Input title for paint";
+"kMustHaveTitle" = "Title must not be empty!";
+"kIllegalTitle" = "Illegal Title!";
 /*********************小吉画画国际化字符串结束 ************************/
