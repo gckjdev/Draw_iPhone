@@ -28,6 +28,9 @@
 #import "UseItemScene.h"
 #import "DrawRoomListController.h"
 #import "FeedbackController.h"
+#import "BulletinService.h"
+#import "NotificationName.h"
+#import "DrawGameService.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -94,6 +97,7 @@ typedef enum {
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
+    int count = [[StatisticManager defaultManager] bulletinCount];
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [self performSelector:@selector(hideOptionSheet) withObject:nil afterDelay:timeInterval];
@@ -124,11 +128,16 @@ typedef enum {
     [self.view bringSubviewToFront:self.drawOptionBtn];
     [self.view bringSubviewToFront:self.bigPen];
     [self.drawOptionBtn addTarget:self action:@selector(clickDrawOptionBtn:) forControlEvents:UIControlEventTouchUpInside];
-    if ([[UserManager defaultManager] hasUser]) {
-        [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
-    }
+    
     [self.titleLabel setText:NSLS(@"kLittleGee")];
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+        if ([[UserManager defaultManager] hasUser]) {
+            [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
+        }
+    }];
+    [self registerNetworkDisconnectedNotification];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -226,9 +235,11 @@ typedef enum {
 //                
 //            } break;
             case PopOptionIndexNotice: {
+                
                 [BulletinView showBulletinInController:self];
             } break;
             case PopOptionIndexBbs: {
+                [[StatisticManager defaultManager] setBbsActionCount:0];
                 BBSBoardController *bbs = [[BBSBoardController alloc] init];
                 [self.navigationController pushViewController:bbs animated:YES];
                 [bbs release];
@@ -574,6 +585,28 @@ typedef enum {
     if (resultCode == 0) {
         [self updateAllBadge];
     }
+}
+
+- (void)handleDisconnectWithError:(NSError *)error
+{
+    PPDebug(@"diconnect error: %@", [error description]);
+    
+//    _isTryJoinGame = NO;
+    [self hideActivity];
+    
+    if (error != nil) {
+        [[DrawGameService defaultService] setSession:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+    }
+}
+
+- (void)registerNetworkDisconnectedNotification
+{
+    [self registerNotificationWithName:NOTIFICATION_NETWORK_DISCONNECTED
+                            usingBlock:^(NSNotification *note) {
+                                [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
+                            }];
 }
 
 @end

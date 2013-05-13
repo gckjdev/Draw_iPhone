@@ -253,10 +253,7 @@
    backgroundImage:(UIImage*)backgroundImage
 {
     
-    if (_popView == nil) {
-        _popView = [[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]];
-//        [_popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
-    }
+    self.popView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]] autorelease];
     _popView.hidden = NO;
     [_popView presentPointingAtView:onView inView:view animated:YES];
     self.isVisable = YES;
@@ -317,8 +314,8 @@
     if (_delegate && [_delegate respondsToSelector:@selector(customActionSheet:clickedButtonAtIndex:)]) {
         [_delegate customActionSheet:self
           clickedButtonAtIndex:btn.tag - ACTION_BTN_TAG_OFFSET];
-        
     }
+    [self setBadgeCount:0 forIndex:btn.tag-ACTION_BTN_TAG_OFFSET];
     [self hideActionSheet];
 }
 
