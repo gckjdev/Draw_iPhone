@@ -268,9 +268,9 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {
-//#ifdef DEBUG
-//    return YES;
-//#endif
+#ifdef DEBUG
+    return YES;
+#endif
     
     if ([ConfigManager isProVersion])
         return NO;

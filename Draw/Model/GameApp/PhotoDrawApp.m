@@ -55,6 +55,7 @@
 
 - (void)HandleWithDidFinishLaunching
 {
+#ifdef DEBUG
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
     NSString* path = [root stringByAppendingString:[GameConfigDataManager configFileName]];
     NSString* versionPath = [root stringByAppendingString:[PPSmartUpdateDataUtils getVersionFileName:[GameConfigDataManager configFileName]]];
@@ -74,6 +75,7 @@
     
     NSString* version = @"1.0";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+#endif
 }
 
 @end

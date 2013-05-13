@@ -88,8 +88,8 @@
     [self.contentImageView setImageWithURL:url
                           placeholderImage:self.placeHolderImage];
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
-    self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
-    [self updatePirceHolderViewFrame];
+    
+    [self updatePirceView];
     
     NSString *leftTitle = nil;
     NSString *rightTitle = nil;
@@ -120,18 +120,30 @@
     [self.buyButton addTarget:self action:rightSelector forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)updatePirceHolderViewFrame
+- (void)updatePirceView
 {
     CGSize imageSize = self.contentImageView.image.size;
-    PPDebug(@"image size:%f,%f", imageSize.width, imageSize.height);
+    CGSize imageShowSize;
+    CGFloat scl;
+    if (imageSize.width > imageSize.height) {
+        scl = _contentImageView.frame.size.width / imageSize.width;
+        imageShowSize = CGSizeMake(_contentImageView.frame.size.width, imageSize.height * scl);
+    } else {
+        scl = _contentImageView.frame.size.height / imageSize.height;
+        imageShowSize = CGSizeMake(imageSize.width * scl, _contentImageView.frame.size.height);
+    }
     
-    [self.priceHolderView updateOriginX:self.contentImageView.center.x - 0.5 * imageSize.width];
-    [self.priceHolderView updateOriginY:self.contentImageView.center.y + 0.5 * imageSize.height - self.priceHolderView.frame.size.height];
+    PPDebug(@"image showSize:%f,%f", imageShowSize.width, imageShowSize.height);
     
-    [self.priceHolderView updateWidth:imageSize.width];
+    [self.priceHolderView updateOriginX:self.contentImageView.center.x - 0.5 * imageShowSize.width];
+    [self.priceHolderView updateOriginY:self.contentImageView.center.y + 0.5 * imageShowSize.height - self.priceHolderView.frame.size.height];
+    
+    [self.priceHolderView updateWidth:imageShowSize.width];
     
     [self.ingotImageView updateOriginX: 0.5 * self.priceHolderView.frame.size.width - self.ingotImageView.frame.size.width];
     [self.priceLabel updateOriginX:self.ingotImageView.frame.origin.x + 1.5 * self.ingotImageView.frame.size.width];
+    
+    self.priceLabel.text =  [NSString stringWithFormat:@"%d", self.feed.learnDraw.price];
 }
 
 - (void)didReceiveMemoryWarning

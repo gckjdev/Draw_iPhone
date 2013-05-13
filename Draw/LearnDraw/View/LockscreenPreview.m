@@ -31,17 +31,21 @@ AUTO_CREATE_VIEW_BY_XIB(LockscreenPreview);
     NSDate *date = [NSDate date];
     self.timeLabel.text = dateToLocaleStringWithFormat(date, @"HH:mm");
     
+    NSString *weekStr = dateToLocaleStringWithFormat(date, @"cccc");
     NSString *monAndDayStr = nil;
     if ([LocaleUtils isChinese]) {
         monAndDayStr = dateToLocaleStringWithFormat(date, @"M月d日");
+        self.dateLabel.text = [NSString stringWithFormat:@"%@%@", monAndDayStr, weekStr];
     } else {
-        monAndDayStr = dateToLocaleStringWithFormat(date, @"d LLL");
+        monAndDayStr = dateToLocaleStringWithFormat(date, @"d MMM");
+        self.dateLabel.text = [NSString stringWithFormat:@"%@, %@",weekStr,  monAndDayStr];
     }
-    NSString *weekStr = dateToLocaleStringWithFormat(date, @"cccc");
     
-    self.dateLabel.text = [NSString stringWithFormat:@"%@%@", monAndDayStr, weekStr];
+    
+    
     self.slideLabel.text = NSLS(@"kDreamLockscreenSlider");
     
+    self.frame = superView.bounds;
     self.alpha = 0.0f;
     [UIView beginAnimations:@"showLockView" context:nil];
     [superView addSubview:self];

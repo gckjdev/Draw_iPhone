@@ -959,4 +959,9 @@
     return [MobClickUtils getBoolValueByKey:@"SHOW_RESTORE_BUTTON" defaultValue:NO];
 }
 
++ (NSString*)getFeedbackBody
+{
+    return [NSString stringWithFormat:@"UserId :　%@", [[UserManager defaultManager] userId]];
+}
+
 @end

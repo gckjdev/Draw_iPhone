@@ -109,7 +109,8 @@
     [self initTabButtons];
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
-    [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    //[self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    self.titleLabel.text = [UIUtils getAppName];
     [_sortButton setTitle:NSLS(@"kTime") forState:UIControlStateNormal];
     
     if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
@@ -247,7 +248,8 @@
         return;
     }
     NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
-    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
+    NSString *body = [ConfigManager getFeedbackBody];
+    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:body isHTML:NO delegate:nil];
 }
 
 - (void)openDrawDraft
