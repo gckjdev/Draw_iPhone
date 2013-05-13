@@ -59,4 +59,9 @@
             NSLS(@"kLearnDrawOther"), nil];
 }
 
+- (NSString*)domodWallId
+{
+    return @"96ZJ2j3gze+vLwTA1n";
+}
+
 @end

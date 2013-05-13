@@ -389,7 +389,7 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
     [newMyPaint setCreateDate:[NSDate date]];
     
-    if (isLearnDrawApp()) {
+    if (isSimpleDrawApp()) {
         NSString *word = dateToLocaleStringWithFormat([NSDate date], DATE_FORMAT);
         [newMyPaint setDrawWord:word];
     }else{
