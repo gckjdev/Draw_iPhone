@@ -12,7 +12,7 @@
 //return yes to dismiss the view, and no to stay the view.
 
 
-@interface InputAlertView : UIControl<UITextViewDelegate>
+@interface InputAlertView : UIControl<UITextViewDelegate, UITextFieldDelegate>
 {
     
 }
@@ -31,6 +31,13 @@
            commitSeletor:(SEL)commitSeletor
            cancelSeletor:(SEL)cancelSeletor
                   hasSNS:(BOOL)hasSNS;
++ (id)inputAlertViewWith:(NSString *)title
+                 content:(NSString *)content
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
+                  hasSNS:(BOOL)hasSNS
+              hasSubject:(BOOL)hasSubject;
 
 - (NSString *)contentText;
 - (NSString *)setContentText:(NSString *)text;
