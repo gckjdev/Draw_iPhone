@@ -33,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UIView *priceHolderView;
 @property (retain, nonatomic) IBOutlet UIImageView *ingotImageView;
 @property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
+@property (retain, nonatomic) IBOutlet UILabel *watermarkLabel;
 
 @property (retain, nonatomic) UIView  *adView;
 
@@ -67,26 +68,47 @@
     return self;
 }
 
+#define Y_BUY_BUTTON_IPAD 850.0
+#define Y_BUY_BUTTON_IHONE 357.0
+
+#define ACTIVITY_TAG 123
+
+
+- (UIActivityIndicatorView *)activityView
+{
+    return (id)[self.view viewWithTag:ACTIVITY_TAG];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     if ([[AdService defaultService] isShowAd]) {
-        [self.contentImageView updateOriginY:self.contentImageView.frame.origin.y - 20];
-        [self.previewButton updateOriginY:self.view.frame.size.height - 50 - self.previewButton.frame.size.height - 8];
-        [self.buyButton updateOriginY:self.previewButton.frame.origin.y];
+        if ([DeviceDetection isIPAD]) {
+            [self.previewButton updateOriginY:Y_BUY_BUTTON_IPAD];
+            [self.buyButton updateOriginY:Y_BUY_BUTTON_IPAD];
+        } else if ([DeviceDetection isIPhone5] == NO){
+            [self.contentImageView updateOriginY:self.contentImageView.frame.origin.y - 20];
+            [self.previewButton updateOriginY:Y_BUY_BUTTON_IHONE];
+            [self.buyButton updateOriginY:Y_BUY_BUTTON_IHONE];
+        }
     }
-    
+    self.watermarkLabel.center = self.contentImageView.center;
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
                                                    iPadFrame:CGRectMake((768-320)/2, 954, 320, 50)
                                                      useLmAd:NO];
     
     
-    NSURL *url = ISIPAD ? self.feed.largeImageURL : self.feed.thumbURL;
+    NSURL *url = self.feed.largeImageURL;
     
-    [self.contentImageView setImageWithURL:url
-                          placeholderImage:self.placeHolderImage];
+    
+    [self.contentImageView setImageWithURL:url placeholderImage:self.placeHolderImage success:^(UIImage *image, BOOL cached) {            [[self activityView] stopAnimating];
+    } failure:^(NSError *error) {
+        [[self activityView] stopAnimating];
+    }];
+    
     [self.titleLabel setText:NSLS(@"kLearnDrawPreviewTitle")];
     
     [self updatePirceView];
@@ -168,6 +190,7 @@
     PPRelease(_ingotImageView);
     PPRelease(_saveToContactPickerView);
 //    [_placeHolderImage size]
+    [_watermarkLabel release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -180,6 +203,7 @@
     [self setPriceLabel:nil];
     [self setPriceHolderView:nil];
     [self setIngotImageView:nil];
+    [self setWatermarkLabel:nil];
     [super viewDidUnload];
 }
 
@@ -307,8 +331,6 @@
     [[FeedService defaultService] getPBDrawByFeed:self.feed handler:^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache) {
         if (resultCode == 0 && pbDrawData) {
             cp.feed.pbDrawData = pbDrawData;
-            [cp.feed parseDrawData];
-            
             ShareAction *share = [[ShareAction alloc] initWithFeed:cp.feed
                                                              image:cp.contentImageView.image];
             [share saveToLocal];
