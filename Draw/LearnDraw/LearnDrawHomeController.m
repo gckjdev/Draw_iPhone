@@ -109,7 +109,8 @@
     [self initTabButtons];
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
-    [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    //[self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    self.titleLabel.text = [UIUtils getAppName];
     [_sortButton setTitle:NSLS(@"kTime") forState:UIControlStateNormal];
     
     if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
