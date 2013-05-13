@@ -1311,7 +1311,7 @@
 
 //dream avatar
 "kDreamAvatarSaveToAlbum" = "Album";
-"kDreamAvatarSaveToContact" = "Contact";
+"kDreamAvatarSaveToContact" = "Contact Avatar";
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "Preview";

@@ -180,7 +180,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -197,19 +197,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductPrice *priceUS;
     NSArray *priceList;
     
-    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
-    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
-    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
-    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.learndraw.ingot_6"
-                                    alipayProductId:@"learn_draw_ingot_6"
-                                               name:@"kIngot"
-                                               desc:@"kIngot"
-                                              count:6
-                                         totalPrice:priceUS.price
-                                             saving:priceUS.saving
-                                          taobaoUrl:nil
-                                          priceList:priceList]];
+//    priceCN = [self cnPriceWithPrice:@"6" saving:nil];
+//    priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
+//    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+//    [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
+//                                     appleProductId:@"com.orange.learndraw.ingot_6"
+//                                    alipayProductId:@"learn_draw_ingot_6"
+//                                               name:@"kIngot"
+//                                               desc:@"kIngot"
+//                                              count:6
+//                                         totalPrice:priceUS.price
+//                                             saving:priceUS.saving
+//                                          taobaoUrl:nil
+//                                          priceList:priceList]];
     
     priceCN = [self cnPriceWithPrice:@"18" saving:@"18%"];
     priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
@@ -286,7 +286,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
