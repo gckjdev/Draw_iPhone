@@ -26,6 +26,8 @@
 #import "StoreController.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
+#import "DrawRoomListController.h"
+#import "FeedbackController.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -42,7 +44,7 @@ typedef enum {
 
 typedef enum {
     PopOptionIndexPK = 0,
-    PopOptionIndexSearch,
+//    PopOptionIndexSearch,
     PopOptionIndexNotice,
     PopOptionIndexBbs,
     PopOptionIndexIngot,
@@ -85,11 +87,13 @@ typedef enum {
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSearchImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [self performSelector:@selector(hideOptionSheet) withObject:nil afterDelay:timeInterval];
@@ -124,7 +128,14 @@ typedef enum {
         [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
     }
     [self.titleLabel setText:NSLS(@"kLittleGee")];
+    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[UserService defaultService] getStatistic:self];
 }
 
 - (void)initDrawOptions
@@ -208,11 +219,12 @@ typedef enum {
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
         switch (buttonIndex) {
             case PopOptionIndexPK: {
-                
+                UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
+                [self.navigationController pushViewController:rc animated:YES];
             } break;
-            case PopOptionIndexSearch: {
-                
-            } break;
+//            case PopOptionIndexSearch: {
+//                
+//            } break;
             case PopOptionIndexNotice: {
                 [BulletinView showBulletinInController:self];
             } break;
@@ -235,7 +247,9 @@ typedef enum {
                 [self.navigationController pushViewController:vc animated:YES];
             } break;
             case PopOptionIndexMore: {
-                //
+                FeedbackController* feedBack = [[FeedbackController alloc] init];
+                [self.navigationController pushViewController:feedBack animated:YES];
+                [feedBack release];
             } break;
                 
             default:
@@ -515,4 +529,51 @@ typedef enum {
     [self setBigPen:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - get && update statistic
+- (void)handleStaticTimer:(NSTimer *)theTimer
+{
+    PPDebug(@"<handleStaticTimer>: get static");
+    [[UserService defaultService] getStatistic:self];
+}
+
+
+- (HomeCommonView *)panelForType:(HomeMenuType)type
+{
+    return self.homeBottomMenuPanel;
+}
+
+- (void)updateBadgeWithType:(HomeMenuType)type badge:(NSInteger)badge
+{
+    HomeCommonView *panel = [self panelForType:type];
+    [panel updateMenu:type badge:badge];
+}
+
+- (void)updateAllBadge
+{
+    StatisticManager *manager = [StatisticManager defaultManager];
+    
+    [self updateBadgeWithType:HomeMenuTypeLittleGeeChat badge:manager.messageCount];
+    [self updateBadgeWithType:HomeMenuTypeLittleGeeFriend badge:manager.fanCount];
+    //    [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
+    
+    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
+    
+    PPDebug(@"<LittleGee-updateAllBadge> update feed count = %d, comment count = %d, draw to me count = %d", manager.feedCount, manager.commentCount, manager.drawToMeCount);
+    
+    [self updateBadgeWithType:HomeMenuTypeLittleGeeFeed badge:timelineCount];
+    
+    int optionCount = manager.bbsActionCount + manager.bulletinCount;
+    [self updateBadgeWithType:HomeMenuTypeLittleGeeOptions badge:optionCount];
+//    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
+    
+}
+
+- (void)didSyncStatisticWithResultCode:(int)resultCode
+{
+    if (resultCode == 0) {
+        [self updateAllBadge];
+    }
+}
+
 @end
