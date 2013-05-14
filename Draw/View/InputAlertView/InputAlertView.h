@@ -11,6 +11,12 @@
 
 //return yes to dismiss the view, and no to stay the view.
 
+@protocol InputAlertViewDelegate <NSObject>
+@optional
+- (BOOL)isSubjectValid:(NSString*)subjectText;
+
+@end
+
 
 @interface InputAlertView : UIControl<UITextViewDelegate, UITextFieldDelegate>
 {
@@ -18,6 +24,7 @@
 }
 
 @property (assign, nonatomic) NSInteger maxInputLen;
+@property (assign, nonatomic) id<InputAlertViewDelegate>delegate;
 
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content

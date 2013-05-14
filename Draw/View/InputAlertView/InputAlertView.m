@@ -268,12 +268,8 @@
 
 - (BOOL)isTitlelegal
 {
-    if ([self canEditSubject]) {
-        if ([LocaleUtils isChinese]) {
-            return NSStringIsValidChinese(self.subject.text);
-        } else {
-            return NSStringISValidEnglish(self.subject.text);
-        }
+    if (_delegate && [_delegate respondsToSelector:@selector(isSubjectValid:)]) {
+        return [_delegate isSubjectValid:self.subjectText];
     }
     return YES;
     

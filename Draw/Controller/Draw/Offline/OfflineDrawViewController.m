@@ -1180,6 +1180,7 @@
             BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
 
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+            self.inputAlert.delegate = self;
             
         } else {
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
@@ -1299,6 +1300,17 @@
     }
 }
 
-
+#pragma mark - input alert view delegate
+- (BOOL)isSubjectValid:(NSString *)subjectText
+{
+    if (isLittleGeeAPP()) {
+        if ([LocaleUtils isChinese]) {
+            return NSStringIsValidChinese(subjectText);
+        } else {
+            return NSStringISValidEnglish(subjectText);
+        }
+    }
+    return YES;
+}
 
 @end
