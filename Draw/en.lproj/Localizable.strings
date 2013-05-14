@@ -1656,4 +1656,5 @@
 "kLittleGeeDrawTitle" = "Input title for paint";
 "kMustHaveTitle" = "Title must not be empty!";
 "kIllegalTitle" = "Illegal Title!";
+"kDefaultDrawWord" = "MyPaint";
 /*********************小吉画画国际化字符串结束 ************************/

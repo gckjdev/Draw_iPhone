@@ -214,7 +214,7 @@ typedef enum {
                 [share release];
             } break;
             case DrawOptionIndexBegin: {
-                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:nil];
+                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:nil];
             } break;
             case DrawOptionIndexContest: {
                 ContestController *cc = [[ContestController alloc] init];
@@ -533,7 +533,7 @@ typedef enum {
 - (void)friendController:(FriendController *)controller
          didSelectFriend:(MyFriend *)aFriend
 {
-    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:aFriend.friendUserId];
+    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:aFriend.friendUserId];
 }
 
 - (void)viewDidUnload {

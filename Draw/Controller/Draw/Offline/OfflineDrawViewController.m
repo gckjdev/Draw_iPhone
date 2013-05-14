@@ -1148,6 +1148,10 @@
 
     NSString *text = self.opusDesc;
     
+    if (isLittleGeeAPP() && [self.inputAlert hasSubjectText]) {
+        [self.word setText:self.inputAlert.subjectText];
+    }
+    
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
     
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
