@@ -143,7 +143,6 @@
         case HomeMenuTypeDiceMore:
             return NSLS(@"kHomeMenuTypeDrawMore");
             
-
         default:
         return nil;
     }

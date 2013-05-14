@@ -339,7 +339,8 @@ static DrawImageManager * _staticDrawImageManager;
 
 - (UIImage*)littleGeeMoreOptionsImage
 {
-    return [UIImage imageNamed:@"little_gee_home_options.png"];
+    NSString *imageName = [self fixImageName:@"little_gee_home_options"];
+    return [UIImage imageNamed:imageName];
 }
 
 @end
