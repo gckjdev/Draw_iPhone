@@ -372,7 +372,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -451,7 +451,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -529,7 +529,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -607,7 +607,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -629,7 +629,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamavatar.ingo_6"
+                                     appleProductId:@"com.orange.dreamavatar.ingot_6"
                                     alipayProductId:@"dreamavatar_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -643,7 +643,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamavatar.ingo_22"
+                                     appleProductId:@"com.orange.dreamavatar.ingot_22"
                                     alipayProductId:@"dreamavatar_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -657,7 +657,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamavatar.ingo_39"
+                                     appleProductId:@"com.orange.dreamavatar.ingot_39"
                                     alipayProductId:@"dreamavatar_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -671,7 +671,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamavatar.ingo_84"
+                                     appleProductId:@"com.orange.dreamavatar.ingot_84"
                                     alipayProductId:@"dreamavatar_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -685,7 +685,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamavatar.ingo_225"
+                                     appleProductId:@"com.orange.dreamavatar.ingot_225"
                                     alipayProductId:@"dreamavatar_ingot_225"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -700,7 +700,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -792,7 +792,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -884,7 +884,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -905,7 +905,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"0.99" saving:nil];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_6"
+                                     appleProductId:@"com.orange.dreamlockscreenfree.new_ingot_6"
                                     alipayProductId:@"lockscreen_ingot_6"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -919,7 +919,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"2.99" saving:@"18%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_22"
+                                     appleProductId:@"com.orange.dreamlockscreenfree.new_ingot_22"
                                     alipayProductId:@"lockscreen_ingot_22"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -933,7 +933,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"4.99" saving:@"23%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_39"
+                                     appleProductId:@"com.orange.dreamlockscreenfree.new_ingot_39"
                                     alipayProductId:@"lockscreen_ingot_39"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -947,7 +947,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"9.99" saving:@"28%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_84"
+                                     appleProductId:@"com.orange.dreamlockscreenfree.new_ingot_84"
                                     alipayProductId:@"lockscreen_ingot_84"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -961,7 +961,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     priceUS = [self usPriceWithPrice:@"24.99" saving:@"33%"];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
     [mutableArray addObject:[self usProductWithType:PBIAPProductTypeIapingot
-                                     appleProductId:@"com.orange.dreamlockscreenfree.ingot_225"
+                                     appleProductId:@"com.orange.dreamlockscreenfree.new_ingot_225"
                                     alipayProductId:@"lockscreen_ingot_225"
                                                name:@"kIngot"
                                                desc:@"kIngot"
@@ -976,7 +976,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -1053,7 +1053,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {
@@ -1131,7 +1131,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {

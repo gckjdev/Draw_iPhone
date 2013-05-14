@@ -36,15 +36,15 @@
 #define OLD_DICE_APP_ID                 @"557072001"
 #define ZJH_APP_ID                      @"585525675"
 #define CANDY_APP_ID                    @"test"
-#define LEARN_DRAW_APP_ID               @"635820146" 
+#define LEARN_DRAW_APP_ID               @"635820146"
 #define PURE_DRAW_APP_ID                @"639593519"
 #define PURE_DRAW_FREE_APP_ID           @"639593939"
 #define PHOTO_DRAW_APP_ID               @"639595333"
 #define PHOTO_DRAW_FREE_APP_ID          @"639596045"
-#define DREAM_AVATAR_APP_ID             @"645412087"
+#define DREAM_AVATAR_APP_ID             @"648176144" //@"645412087"
 #define DREAM_AVATAR_FREE_APP_ID        @"645413029"
 #define DREAM_LOCKSCREEN_APP_ID         @"645413042"
-#define DREAM_LOCKSCREEN_FREE_APP_ID    @"645413811"
+#define DREAM_LOCKSCREEN_FREE_APP_ID    @"648179189" // @"645413811"
 #define LITTLE_GEE_APP_ID               @"645475970"
 
 // game ID
