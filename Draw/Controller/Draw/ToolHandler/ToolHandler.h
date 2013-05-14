@@ -67,6 +67,9 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)handleUndo;
 - (void)handleChat;
 
+//only use for little gee
+- (void)changeDrawWord:(NSString*)wordText;
+
 - (TouchActionType)setTouchActionType:(TouchActionType)type;
 - (TouchActionType)touchActionType;
 

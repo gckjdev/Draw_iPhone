@@ -46,4 +46,9 @@
 - (void)adjustWithKeyBoardRect:(CGRect)rect;
 - (void)setCanClickCommitButton:(BOOL)can;
 - (void)clickConfirm;
+
+- (BOOL)hasSubjectText;
+- (NSString*)subjectText;
+- (NSString*)setSubjectText:(NSString*)text;
+- (BOOL)canEditSubject;
 @end

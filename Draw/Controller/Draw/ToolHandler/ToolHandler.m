@@ -121,6 +121,12 @@
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     oc.opusDesc = desc;
 }
+- (void)changeDrawWord:(NSString*)wordText
+{
+    PPDebug(@"<changeDrawWord> desc = %@", wordText);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+    oc.word = [Word wordWithText:wordText level:0];
+}
 - (void)changeDrawToFriend:(MyFriend *)aFriend
 {
     PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);

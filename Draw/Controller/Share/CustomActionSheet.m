@@ -275,12 +275,12 @@
             HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) image:image highlightedImage:image contentImage:nil highlightedContentImage:nil title:title] autorelease];
             [itemArray addObject:item];
         }
-        self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height/2) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
+        self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height+size.height) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
         _menu.delegate = self;
         [view addSubview:_menu];
     }
     
-    [view insertSubview:_menu belowSubview:onView];
+    [view insertSubview:_menu aboveSubview:onView];
     [self.menu expandItems];
     self.isVisable = YES;
     
