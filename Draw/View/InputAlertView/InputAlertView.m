@@ -268,12 +268,15 @@
 
 - (BOOL)isTitlelegal
 {
-    //TODO:check title legal
-    if ([LocaleUtils isChinese]) {
-        return NSStringIsValidChinese(self.subject.text);
-    } else {
-        return NSStringISValidEnglish(self.subject.text);
+    if ([self canEditSubject]) {
+        if ([LocaleUtils isChinese]) {
+            return NSStringIsValidChinese(self.subject.text);
+        } else {
+            return NSStringISValidEnglish(self.subject.text);
+        }
     }
+    return YES;
+    
 }
 
 - (IBAction)clickConfirm:(id)sender {
