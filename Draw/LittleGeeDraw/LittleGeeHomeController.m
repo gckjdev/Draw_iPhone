@@ -51,7 +51,7 @@ typedef enum {
     PopOptionIndexNotice,
     PopOptionIndexBbs,
     PopOptionIndexIngot,
-//    PopOptionIndexContest,
+    PopOptionIndexContest,
     PopOptionIndexShop,
     PopOptionIndexMore
 }PopOptionIndex;
@@ -90,16 +90,16 @@ typedef enum {
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
-    int count = [[StatisticManager defaultManager] bulletinCount];
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideOptionSheet) object:nil];
     [self performSelector:@selector(hideOptionSheet) withObject:nil afterDelay:timeInterval];
 }
 
@@ -248,11 +248,11 @@ typedef enum {
                 FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
                 [self.navigationController pushViewController:fc animated:YES];
             } break;
-//            case PopOptionIndexContest: {
-//                ContestController *cc = [[ContestController alloc] init];
-//                [self.navigationController pushViewController:cc animated:YES];
-//                [cc release];
-//            } break;
+            case PopOptionIndexContest: {
+                ContestController *cc = [[ContestController alloc] init];
+                [self.navigationController pushViewController:cc animated:YES];
+                [cc release];
+            } break;
             case PopOptionIndexShop: {
                 StoreController *vc = [[[StoreController alloc] init] autorelease];
                 [self.navigationController pushViewController:vc animated:YES];
