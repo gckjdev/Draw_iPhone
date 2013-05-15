@@ -15,7 +15,6 @@
 #import "MKBlockActionSheet.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImageExt.h"
-#import "PhotoDrawSheet.h"
 
 @interface PhotoDrawHomeController ()
 @property (retain, nonatomic) UIView  *adView;
@@ -76,6 +75,7 @@
 
 - (IBAction)clickDrawButton:(id)sender {
     self.photoDrawSheet =[PhotoDrawSheet createSheetWithSuperController:self];
+    _photoDrawSheet.delegate = self;
     [_photoDrawSheet showSheet];
 }
 
@@ -98,6 +98,13 @@
     }
     NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
     [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
+}
+
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
+{
+    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self
+                               targetUid:nil photo:image];
 }
 
 @end

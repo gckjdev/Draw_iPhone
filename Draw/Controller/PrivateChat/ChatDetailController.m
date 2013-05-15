@@ -28,6 +28,7 @@
 #import "CommonUserInfoView.h"
 #import "ReplayView.h"
 #import "CanvasRect.h"
+#import "StringUtil.h"
 
 @interface ChatDetailController ()
 {
@@ -46,6 +47,7 @@
 @property (retain, nonatomic) PPMessage *selectedMessage;
 @property (retain, nonatomic) MessageStat *messageStat;
 @property (retain, nonatomic) NSMutableArray *messageList;
+@property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
 - (IBAction)clickBack:(id)sender;
 - (NSInteger)loadNewDataCount;
 - (NSInteger)loadMoreDataCount;
@@ -140,6 +142,7 @@
     PPRelease(_selectedMessage);
     PPRelease(_messageStat);
     PPRelease(_messageList);
+    PPRelease(_photoDrawSheet);
     [super dealloc];
 }
 
@@ -376,6 +379,12 @@
 {
     [self showGraffitiView];
 //    [inputTextView resignFirstResponder];
+}
+
+- (IBAction)clickPhotoButton:(id)sender {
+    self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
+    _photoDrawSheet.delegate = self;
+    [_photoDrawSheet showSheet];
 }
 
 //设定view底部，整个view往上移位
@@ -774,6 +783,16 @@
         return;
     }
     [self loadMoreMessage];
+}
+
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
+{
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypePhoto delegate:self];
+    odc.bgImage = image;
+    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+    [self presentModalViewController:odc animated:YES];
+    [odc release];
 }
 
 @end

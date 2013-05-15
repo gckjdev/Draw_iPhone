@@ -116,8 +116,7 @@
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
-@property (retain, nonatomic) UIImage *bgImage;
-@property (retain, nonatomic) NSString *bgImageName;
+
 
 //@property (assign, nonatomic) CGRect canvasRect;
 
@@ -316,6 +315,7 @@
     }
     return self;
 }
+
 
 #pragma mark - Update Data
 
@@ -586,7 +586,7 @@
 
 - (void)initBgImage
 {
-    if ([GameApp hasBGOffscreen]) {
+    if ([GameApp hasBGOffscreen] || targetType == TypePhoto) {
         if (self.draft == nil && _bgImage) {
             [self setDrawBGImage:_bgImage];
         } else {

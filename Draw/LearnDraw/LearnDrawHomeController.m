@@ -27,7 +27,6 @@
 #import "LearnDrawPreViewController.h"
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
-#import "PhotoDrawSheet.h"
 #import "FreeIngotController.h"
 #import "ChargeController.h"
 
@@ -586,10 +585,16 @@
 - (void)drawAvatar
 {
     self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
+    self.photoDrawSheet.delegate = self;
     [_photoDrawSheet showSheet];
 }
 
-
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
+{
+    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self
+                               targetUid:nil photo:image];
+}
 
 
 @end

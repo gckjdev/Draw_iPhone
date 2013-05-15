@@ -24,8 +24,9 @@ typedef enum {
 
 typedef enum{
     TypeDraw = 0,       //画画给别人猜
-    TypeGraffiti = 1,    //涂鸦
-    TypeContest = 2    //参赛
+    TypeGraffiti = 1,   //涂鸦
+    TypeContest = 2,    //参赛
+    TypePhoto = 3       //照片
 }TargetType;
 
 #define YOUMI_APP_ID    @"c278f8dc80295b18"

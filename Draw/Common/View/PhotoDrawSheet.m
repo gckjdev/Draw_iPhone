@@ -35,7 +35,9 @@
 
 - (void)useSelectedBgImage:(UIImage *)image
 {
-    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:_superViewController startController:_superViewController targetUid:nil photo:image];
+    if ([_delegate respondsToSelector:@selector(didSelectImage:)]) {
+        [_delegate didSelectImage:image];
+    }
 }
 
 
