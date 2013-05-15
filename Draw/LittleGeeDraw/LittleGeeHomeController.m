@@ -90,8 +90,8 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(50,50))
-#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(60,480))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(120,100):CGSizeMake(60,50))
+#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];

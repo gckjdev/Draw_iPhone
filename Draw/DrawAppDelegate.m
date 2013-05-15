@@ -262,7 +262,7 @@ NSString* GlobalGetBoardServerURL()
     // Init Home Controller As Root View Controller
     PPViewController* rootController = [GameApp homeController];
     if ([rootController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
-        self.homeController = rootController;
+        self.homeController = (PPViewController<DrawHomeControllerProtocol>*)rootController;
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
