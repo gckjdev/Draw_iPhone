@@ -871,15 +871,26 @@ typedef enum{
 }
 
 
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.isDraftTab) {
-        TableTab *tab = [self currentTab];
-        tab.offset = 0;
-        [tab.dataList removeAllObjects];
-        [self loadDrafts];
-    }
+//    if (self.isDraftTab) {
+//        TableTab *tab = [self currentTab];
+//        tab.offset = 0;
+//        [tab.dataList removeAllObjects];
+//        [self loadDrafts];
+//    }
     [super viewDidAppear:animated];
+    [self clickRefreshButton:nil];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [_tabManager reset];
+    [self.dataTableView reloadData];
 }
 
 #pragma mark common tab controller

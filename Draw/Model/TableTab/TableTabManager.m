@@ -127,4 +127,13 @@
     PPDebug(@"<TableTabManager>: cleanData");
 }
 
+- (void)reset
+{
+    for (TableTab *tab in _tabList) {
+        [tab.dataList removeAllObjects];
+        tab.offset = 0;
+        tab.status = TableTabStatusUnload;
+    }
+}
+
 @end
