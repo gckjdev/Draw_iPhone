@@ -24,6 +24,7 @@
 - (UIImage*)popOptionsNoticeImage;
 - (UIImage*)popOptionsSearchImage;
 - (UIImage*)popOptionsShopImage;
+- (UIImage*)popOptionsSelfImage;
 
 + (LittleGeeImageManager*)defaultManager;
 

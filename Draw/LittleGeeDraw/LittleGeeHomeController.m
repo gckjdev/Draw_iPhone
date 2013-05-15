@@ -32,6 +32,11 @@
 #import "NotificationName.h"
 #import "DrawGameService.h"
 #import "UIColor+UIColorExt.h"
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
+#import "CommonMessageCenter.h"
+#import "Contest.h"
+#import "StatementController.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -48,6 +53,7 @@ typedef enum {
 
 typedef enum {
     PopOptionIndexPK = 0,
+    PopOptionIndexSelf,
 //    PopOptionIndexSearch,
     PopOptionIndexNotice,
     PopOptionIndexBbs,
@@ -90,13 +96,13 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(50,50))
-#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(80,1000):CGSizeMake(60,480))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(50,40))
+#define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSelfImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
@@ -245,9 +251,7 @@ typedef enum {
                 [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:nil];
             } break;
             case DrawOptionIndexContest: {
-                ContestController *cc = [[ContestController alloc] init];
-                [self.navigationController pushViewController:cc animated:YES];
-                [cc release];
+                [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:1 delegate:self];
             } break;
             default:
                 break;
@@ -259,9 +263,12 @@ typedef enum {
                 UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
                 [self.navigationController pushViewController:rc animated:YES];
             } break;
-//            case PopOptionIndexSearch: {
-//                
-//            } break;
+            case PopOptionIndexSelf: {
+                UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+                //    UserSettingController *us = [[UserSettingController alloc] init];
+                [self.navigationController pushViewController:us animated:YES];
+                [us release];
+            } break;
             case PopOptionIndexNotice: {
                 
                 [BulletinView showBulletinInController:self];
@@ -646,6 +653,24 @@ typedef enum {
 - (void)toRegister
 {
     
+}
+
+#pragma mark - contest service delegate
+- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
+{
+    if (contestList == nil || contestList.count == 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
+        return;
+    }
+    Contest* contest = [contestList objectAtIndex:0];
+    if ([contest joined]) {
+        [OfflineDrawViewController startDrawWithContest:contest fromController:self startController:self animated:YES];
+    } else {
+        StatementController *sc = [[StatementController alloc] initWithContest:contest];
+        sc.superController = self;
+        [self.navigationController pushViewController:sc animated:YES];
+        [sc release];
+    }
 }
 
 @end

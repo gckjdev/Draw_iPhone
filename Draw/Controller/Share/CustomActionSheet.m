@@ -189,14 +189,14 @@
             actionView.backgroundColor = [UIColor clearColor];
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             
-            btn.frame = CGRectMake(0.1*actionViewWidth, 0.1*actionViewHeight, itemSize.width*0.8, itemSize.height*0.8);
+            btn.frame = CGRectMake(0.2*actionViewWidth, 0.2*actionViewHeight, itemSize.width*0.6, itemSize.height*0.6);
             btn.tag = i + ACTION_BTN_TAG_OFFSET;
             [btn addTarget:self
                     action:@selector(subCateBtnAction:)
           forControlEvents:UIControlEventTouchUpInside];
 //            [btn setCenter:CGPointMake(actionViewWidth/2, actionViewHeight/2)];
             
-            [btn setBackgroundImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
+            [btn setImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
                            forState:UIControlStateNormal];
             
             [actionView addSubview:btn];
@@ -223,9 +223,7 @@
                 [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
                 [actionView addSubview:badge];
             }
-            
-            
-            
+
             [showView addSubview:actionView];
         }
         
