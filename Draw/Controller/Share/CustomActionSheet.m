@@ -196,7 +196,7 @@
           forControlEvents:UIControlEventTouchUpInside];
 //            [btn setCenter:CGPointMake(actionViewWidth/2, actionViewHeight/2)];
             
-            [btn setBackgroundImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
+            [btn setImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
                            forState:UIControlStateNormal];
             
             [actionView addSubview:btn];
@@ -223,9 +223,7 @@
                 [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
                 [actionView addSubview:badge];
             }
-            
-            
-            
+
             [showView addSubview:actionView];
         }
         

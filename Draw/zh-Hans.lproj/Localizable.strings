@@ -1674,4 +1674,5 @@
 "kMustHaveTitle" = "作品标题不能为空!";
 "kIllegalTitle" = "标题含有非法字符串!";
 "kDefaultDrawWord" = "画";
+"kNoRunningContest" = "没有正在进行的比赛!";
 /*********************小吉画画国际化字符串结束 ************************/

@@ -9,6 +9,7 @@
 #import "LittleGeeImageManager.h"
 #import "SynthesizeSingleton.h"
 #import "UIImageUtil.h"
+#import "UIImageUtil.h"
 
 @implementation LittleGeeImageManager
 
@@ -37,36 +38,41 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LittleGeeImageManager)
 
 - (UIImage*)popOptionsBbsImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_bbs.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_bbs"]];
 }
 - (UIImage*)popOptionsContestImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_contest.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_contest"]];
 }
 - (UIImage*)popOptionsGameImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_game.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_game"]];
 }
 - (UIImage*)popOptionsIngotImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_ingot.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_ingot"]];
 }
 - (UIImage*)popOptionsMoreImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_more.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_more"]];
 }
 - (UIImage*)popOptionsNoticeImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_notice.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_notice"]];
 }
 - (UIImage*)popOptionsSearchImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_search.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_search"]];
 }
 - (UIImage*)popOptionsShopImage
 {
-    return [UIImage imageNamed:@"little_gee_pop_options_shop.png"];
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_shop"]];
     
+}
+
+- (UIImage*)popOptionsSelfImage
+{
+    return [UIImage imageNamed:[UIImage fixImageName:@"little_gee_pop_options_self"]];
 }
 
 @end

@@ -116,7 +116,7 @@
         CGFloat x = space * (i+1);
         CGFloat y = self.center.y;
         line.center = CGPointMake(x, y);
-        if (isDrawApp()) {
+        if (isDrawApp() && !isLittleGeeAPP()) {
             line.image = imageManager.drawHomeSplitline1;
         }else if(isLearnDrawApp()){
             line.image = imageManager.learnDrawBottomSplit;
