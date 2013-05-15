@@ -87,6 +87,11 @@ AUTO_CREATE_VIEW_BY_XIB(DraftsView);
     if([_delegate respondsToSelector:@selector(didSelectDraft:)])
     {
         [_delegate didSelectDraft:draft];
+
+        self.drafts = nil;
+        self.tableView = nil;
+        [self removeFromSuperview];
+
     }
 }
 

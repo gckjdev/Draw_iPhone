@@ -61,7 +61,7 @@
 #define DREAM_AVATAR_FREE_GAME_ID       @"DreamAvatarFree"
 #define DREAM_LOCKSCREEN_GAME_ID        @"DreamLockscreen"
 #define DREAM_LOCKSCREEN_FREE_GAME_ID   @"DreamLockscreenFree"
-#define LITTLE_GEE_GAME_ID              @"LittleGeeDraw"
+#define LITTLE_GEE_GAME_ID              @"Draw"
 
 // Umeng ID
 #define DRAW_UMENG_ID                   @"4f83980852701565c500003a"

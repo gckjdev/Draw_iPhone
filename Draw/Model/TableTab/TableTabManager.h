@@ -34,4 +34,7 @@
 - (void)setDataList:(NSArray *)list ForTabID:(NSInteger)tabID;
 - (void)addDataList:(NSArray *)list toTab:(NSInteger)tabID;
 - (void)cleanData;
+
+- (void)reset;
+
 @end
