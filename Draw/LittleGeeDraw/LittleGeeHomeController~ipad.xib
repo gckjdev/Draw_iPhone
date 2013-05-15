@@ -108,7 +108,7 @@
 					<object class="IBUITableView" id="668413066">
 						<reference key="NSNextResponder" ref="1069125866"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{15.5, 178}, {737, 742}}</string>
+						<string key="NSFrame">{{0, 178}, {768, 742}}</string>
 						<reference key="NSSuperview" ref="1069125866"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="934069572"/>
@@ -564,6 +564,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">LittleGeeHomeController</string>
 					<string key="superclassName">CommonTabController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickDrawOptionBtn:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickDrawOptionBtn:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickDrawOptionBtn:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bigPen">UIImageView</string>
 						<string key="drawOptionBtn">UIButton</string>

@@ -178,6 +178,16 @@
     return self.content.text;
 }
 
+- (NSString*)subjectText
+{
+    return self.subject.text;
+}
+- (NSString*)setSubjectText:(NSString*)text
+{
+    [self.subject setText:text];
+    return self.content.text;
+}
+
 - (void)dealloc {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_title);
@@ -258,12 +268,11 @@
 
 - (BOOL)isTitlelegal
 {
-    //TODO:check title legal
-    if ([LocaleUtils isChinese]) {
-        return NSStringIsValidChinese(self.subject.text);
-    } else {
-        return NSStringISValidEnglish(self.subject.text);
+    if (_delegate && [_delegate respondsToSelector:@selector(isSubjectValid:)]) {
+        return [_delegate isSubjectValid:self.subjectText];
     }
+    return YES;
+    
 }
 
 - (IBAction)clickConfirm:(id)sender {
@@ -408,6 +417,16 @@
     if (range.location >= maxTitleLen)
         return NO; // return NO to not change text
     return YES;
+}
+
+- (BOOL)hasSubjectText
+{
+    return [self canEditSubject] && (self.subjectText != nil) && self.subjectText.length > 0;
+}
+
+- (BOOL)canEditSubject
+{
+    return !self.subject.hidden;
 }
 
 @end

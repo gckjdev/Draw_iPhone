@@ -1660,4 +1660,5 @@
 "kLittleGeeDrawTitle" = "輸入作品標題";
 "kMustHaveTitle" = "作品標題不能為空!";
 "kIllegalTitle" = "標題含有非法字符串!";
+"kDefaultDrawWord" = "畫";
 /*********************小吉画画国际化字符串结束 ************************/

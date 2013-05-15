@@ -214,7 +214,7 @@ typedef enum {
                 [share release];
             } break;
             case DrawOptionIndexBegin: {
-                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:nil];
+                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:nil];
             } break;
             case DrawOptionIndexContest: {
                 ContestController *cc = [[ContestController alloc] init];
@@ -497,7 +497,7 @@ typedef enum {
 }
 
 #define ITEM_SIZE (ISIPAD?CGSizeMake(100, 100):CGSizeMake(60,60))
-#define DRAW_OPTION_SHEET_RADIUS (ISIPAD?150:100)
+#define DRAW_OPTION_SHEET_RADIUS (ISIPAD?180:100)
 - (IBAction)clickDrawOptionBtn:(id)sender
 {
     [self hideOptionSheet];
@@ -505,7 +505,8 @@ typedef enum {
         [self.drawOptionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.35) toAngle:(M_PI*0.35) radius:DRAW_OPTION_SHEET_RADIUS itemSize:ITEM_SIZE];
+        float radius = sqrtf((btn.frame.size.height*btn.frame.size.height) + (0.5*btn.frame.size.width*0.5*btn.frame.size.width)) + MAX(ITEM_SIZE.width, ITEM_SIZE.height);
+        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.2) toAngle:(M_PI*0.2) radius:radius itemSize:ITEM_SIZE];
     }
 }
 
@@ -532,7 +533,7 @@ typedef enum {
 - (void)friendController:(FriendController *)controller
          didSelectFriend:(MyFriend *)aFriend
 {
-    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:1] fromController:self startController:self targetUid:aFriend.friendUserId];
+    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:aFriend.friendUserId];
 }
 
 - (void)viewDidUnload {

@@ -1148,6 +1148,10 @@
 
     NSString *text = self.opusDesc;
     
+    if (isLittleGeeAPP() && [self.inputAlert hasSubjectText]) {
+        [self.word setText:self.inputAlert.subjectText];
+    }
+    
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
     
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
@@ -1176,10 +1180,15 @@
             BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
 
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+            self.inputAlert.delegate = self;
+            
         } else {
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
         }
         
+    }
+    if ([self.inputAlert canEditSubject]) {
+        [self.inputAlert setSubjectText:self.word.text];
     }
     self.inputAlert.contentText = self.opusDesc;
     [self.inputAlert showInView:self.view animated:YES];
@@ -1291,6 +1300,17 @@
     }
 }
 
-
+#pragma mark - input alert view delegate
+- (BOOL)isSubjectValid:(NSString *)subjectText
+{
+    if (isLittleGeeAPP()) {
+        if ([LocaleUtils isChinese]) {
+            return NSStringIsValidChinese(subjectText);
+        } else {
+            return NSStringISValidEnglish(subjectText);
+        }
+    }
+    return YES;
+}
 
 @end

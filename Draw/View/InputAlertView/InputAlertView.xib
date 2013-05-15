@@ -276,7 +276,7 @@
 							</object>
 							<object class="IBUITextField" id="624309432">
 								<reference key="NSNextResponder" ref="590426723"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{27, 45}, {202, 30}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -314,7 +314,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{25, 47}, {206, 95}}</string>
 								<reference key="NSSuperview" ref="590426723"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="154676462">
 									<int key="NSColorSpace">3</int>
