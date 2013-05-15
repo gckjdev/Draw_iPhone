@@ -961,4 +961,11 @@ typedef enum{
         
     }
 }
+
++ (void)shareFromWeiXin:(UIViewController *)superController
+{
+    ShareController* share = [[[ShareController alloc] init ] autorelease];
+    [share setFromWeiXin:YES];
+    [superController.navigationController pushViewController:share animated:YES];
+}
 @end

@@ -17,12 +17,13 @@
 #import "SuperHomeController.h"
 
 #import "WallService.h"
+#import "DrawHomeControllerProtocol.h"
 
 @class UserManager;
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate>
+@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate, DrawHomeControllerProtocol>
 {
     BOOL        _isTryJoinGame;  
     UserManager *_userManager;

@@ -72,6 +72,7 @@
 #import "IAPProductService.h"
 #import "AliPayManager.h"
 #import "SKProductService.h"
+#import "ShareController.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -261,7 +262,7 @@ NSString* GlobalGetBoardServerURL()
     // Init Home Controller As Root View Controller
     PPViewController* rootController = [GameApp homeController];
     if (isDrawApp()) {
-        self.homeController = (HomeController *)rootController;
+        self.homeController = (UIViewController<DrawHomeControllerProtocol> *)rootController;
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -535,7 +536,12 @@ NSString* GlobalGetBoardServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    [self.homeController enterShareFromWeixin];
+    if ([self.homeController isRegistered]) {
+        [self.homeController toRegister];
+    } else {
+        [ShareController shareFromWeiXin:self.homeController];
+    }
+    
 }
 
 -(void) onResp:(BaseResp*)resp

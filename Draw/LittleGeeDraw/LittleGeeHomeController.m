@@ -57,16 +57,21 @@ typedef enum {
     PopOptionIndexMore
 }PopOptionIndex;
 
-@interface LittleGeeHomeController ()
+@interface LittleGeeHomeController () {
+    
+}
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
 @property (nonatomic, retain) CustomActionSheet* optionSheet;
 @property (nonatomic, retain) CustomActionSheet* drawOptionSheet;
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
+
+
 @end
 
 @implementation LittleGeeHomeController
+@synthesize notificationType;
 
 - (void)dealloc
 {
@@ -96,8 +101,8 @@ typedef enum {
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
-    [_optionSheet setBadgeCount:3 forIndex:PopOptionIndexNotice];
-    [_optionSheet setBadgeCount:2 forIndex:PopOptionIndexBbs];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideOptionSheet) object:nil];
@@ -628,6 +633,16 @@ typedef enum {
                             usingBlock:^(NSNotification *note) {
                                 [self handleDisconnectWithError:[CommonGameNetworkService userInfoToError:note.userInfo]];
                             }];
+}
+
+#pragma mark - draw home controller protocol
+- (BOOL)isRegistered
+{
+    return YES;
+}
+- (void)toRegister
+{
+    
 }
 
 @end

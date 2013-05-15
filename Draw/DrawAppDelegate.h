@@ -11,6 +11,7 @@
 #import "PPApplication.h"
 #import "ReviewRequest.h"
 #import "WXApi.h"
+#import "DrawHomeControllerProtocol.h"
 
 //#define DRAW_APP_ID      @"513819630"
 
@@ -30,7 +31,7 @@
 @property (nonatomic, retain) ReviewRequest *reviewRequest; 
 
 @property (nonatomic, retain) RoomController *roomController;
-@property (nonatomic, retain) HomeController *homeController;
+@property (nonatomic, retain) UIViewController<DrawHomeControllerProtocol> *homeController;
 @property (nonatomic, retain) NetworkDetector *networkDetector;
 
 @property (nonatomic, retain) ChatDetailController *chatDetailController;

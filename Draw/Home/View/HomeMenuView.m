@@ -667,7 +667,7 @@ BOOL isMainMenuButton(HomeMenuType type)
 
 int *getBottomMenuTypeList()
 {
-    if (isDrawApp()) {
+    if (isDrawApp() && !isLittleGeeAPP()) {
         return getDrawBottomMenuTypeList();
     }else if(isZhajinhuaApp()){
         return getZJHBottomMenuTypeList();

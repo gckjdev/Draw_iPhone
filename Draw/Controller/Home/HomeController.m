@@ -421,14 +421,14 @@
 }
 
 
-+ (HomeController *)defaultInstance
++ (HomeController*)defaultInstance
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.homeController == nil){    
         app.homeController = [[[HomeController alloc] init] autorelease];
     }
     
-    return app.homeController;
+    return (HomeController*)app.homeController;
 }
 
 + (void)returnRoom:(UIViewController*)superController
