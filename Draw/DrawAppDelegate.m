@@ -261,8 +261,8 @@ NSString* GlobalGetBoardServerURL()
 
     // Init Home Controller As Root View Controller
     PPViewController* rootController = [GameApp homeController];
-    if (isDrawApp()) {
-        self.homeController = (UIViewController<DrawHomeControllerProtocol> *)rootController;
+    if ([rootController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
+        self.homeController = rootController;
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -536,10 +536,12 @@ NSString* GlobalGetBoardServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    if ([self.homeController isRegistered]) {
-        [self.homeController toRegister];
-    } else {
-        [ShareController shareFromWeiXin:self.homeController];
+    if (self.homeController && [self.homeController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
+        if ([self.homeController isRegistered]) {
+            [self.homeController toRegister];
+        } else {
+            [ShareController shareFromWeiXin:self.homeController];
+        }
     }
     
 }

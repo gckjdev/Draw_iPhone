@@ -147,6 +147,7 @@ typedef enum {
     // Do any additional setup after loading the view from its nib.
 }
 
+#define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
 - (void)initTabButtons
 {
     [super initTabButtons];
@@ -161,6 +162,8 @@ typedef enum {
         //bg image
         [button setBackgroundImage:nil forState:UIControlStateSelected];
         [button setBackgroundImage:nil forState:UIControlStateNormal];
+        
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:TAB_BTN_FONT_SIZE]];
         
         index++;
     }
