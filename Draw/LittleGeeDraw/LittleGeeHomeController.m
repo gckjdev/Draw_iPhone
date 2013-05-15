@@ -31,6 +31,7 @@
 #import "BulletinService.h"
 #import "NotificationName.h"
 #import "DrawGameService.h"
+#import "UIColor+UIColorExt.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -95,8 +96,8 @@ typedef enum {
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
+    [_optionSheet setBadgeCount:3 forIndex:PopOptionIndexNotice];
+    [_optionSheet setBadgeCount:2 forIndex:PopOptionIndexBbs];
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideOptionSheet) object:nil];
@@ -139,6 +140,25 @@ typedef enum {
     }];
     [self registerNetworkDisconnectedNotification];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)initTabButtons
+{
+    [super initTabButtons];
+    NSArray* tabList = [_tabManager tabList];
+    NSInteger index = 0;
+    for(TableTab *tab in tabList){
+        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+        
+        //text color
+        [button setTitleColor:OPAQUE_COLOR(37, 161, 126) forState:UIControlStateSelected];
+        
+        //bg image
+        [button setBackgroundImage:nil forState:UIControlStateSelected];
+        [button setBackgroundImage:nil forState:UIControlStateNormal];
+        
+        index++;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
