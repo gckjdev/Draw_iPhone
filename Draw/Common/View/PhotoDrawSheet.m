@@ -116,6 +116,14 @@
 {
     NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
     UIImage *image = [info objectForKey:infoKey];
+    
+    
+    if (_photoPopoverController != nil) {
+        [_photoPopoverController dismissPopoverAnimated:YES];
+    }else{
+        [picker dismissModalViewControllerAnimated:NO];
+    }
+    
     if (image != nil){
         image = [image fixOrientation];
         
@@ -134,12 +142,6 @@
         }
         
         [self useSelectedBgImage:image];
-    }
-    
-    if (_photoPopoverController != nil) {
-        [_photoPopoverController dismissPopoverAnimated:YES];
-    }else{
-        [picker dismissModalViewControllerAnimated:YES];
     }
 }
 

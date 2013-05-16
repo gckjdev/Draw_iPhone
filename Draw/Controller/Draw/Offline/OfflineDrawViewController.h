@@ -37,6 +37,8 @@
      submitActionList:(NSMutableArray*)drawActionList
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage;
+- (void)didController:(OfflineDrawViewController *)controller
+          submitImage:(UIImage *)image;
 
 @end
 

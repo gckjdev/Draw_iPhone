@@ -17,6 +17,7 @@
 #import "LocaleUtils.h"
 #import "PPMessage.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 //#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameApp.h"
@@ -196,7 +197,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
         [self.showDrawView setPressEnable:YES];
         
-        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];        
+        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
         [self addSubview:holder];
     }
     if (!message.thumbImage) {
@@ -205,6 +206,21 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     [self.showDrawView showImage:message.thumbImage];
 }
+
+- (void)updateImageMessageView:(ImageMessage *)message
+{
+    [self updateContentButtonFrame];
+    NSURL *url = [NSURL URLWithString:message.thumbImageUrl];
+    [self.contentButton setImageWithURL:url
+                       placeholderImage:nil
+                                success:^(UIImage *image, BOOL cached) {
+                                    
+                                }
+                                failure:^(NSError *error) {
+                                    
+                                }];
+}
+
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickMessage:withDrawActionList:)]) {
@@ -400,6 +416,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         
     }else if(message.messageType == MessageTypeDraw){
         [self updateDrawMessageView:(DrawMessage *)message];
+    } else if(message.messageType == MessageTypeImage){
+        [self updateImageMessageView:(ImageMessage*)message];
     }
     
     //如果是发送的消息就靠右

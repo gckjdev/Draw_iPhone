@@ -507,11 +507,26 @@
 }
 
 
+- (void)sendImage:(UIImage *)image
+{
+    [self loadNewMessage:NO];
+    
+    ImageMessage *message = [[[ImageMessage alloc] init] autorelease];
+    [self constructMessage:message];
+    [message setMessageType:MessageTypeImage];
+    [message setImage:image];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
     [controller dismissModalViewControllerAnimated:YES];
 }
+
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray *)drawActionList
            canvasSize:(CGSize)size
@@ -522,6 +537,12 @@
     [self tableViewScrollToBottom];
 }
 
+- (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
+{
+    [controller dismissModalViewControllerAnimated:YES];
+    [self sendImage:image];
+    [self tableViewScrollToBottom];
+}
 
 - (void)showFriendProfile:(MyFriend *)aFriend
 {
@@ -792,6 +813,7 @@
     odc.bgImage = image;
     odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
     [self presentModalViewController:odc animated:YES];
+    //[self.navigationController pushViewController:odc animated:YES];
     [odc release];
 }
 

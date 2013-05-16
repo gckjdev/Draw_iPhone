@@ -85,9 +85,9 @@
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
     [manager addGridOffscreen:rect];
 
-    if ([GameApp hasBGOffscreen]) {
+//    if ([GameApp hasBGOffscreen]) {
         [manager addBgOffscreen:rect];
-    }
+//    }
     
     return manager;
 }
@@ -95,9 +95,9 @@
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
     
-    if ([GameApp hasBGOffscreen]) {
+//    if ([GameApp hasBGOffscreen]) {
         [manager addBgOffscreen:rect];
-    }
+//    }
     
     return manager;
 }

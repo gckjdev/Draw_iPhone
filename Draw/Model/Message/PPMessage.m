@@ -402,7 +402,8 @@
 {
     self = [super initWithPBMessage:pbMessage];
     if (self) {
-        //TODO set image url
+        self.imageUrl = pbMessage.imageUrl;
+        self.thumbImageUrl = pbMessage.thumbImageUrl;
     }
     return self;
 }
@@ -412,6 +413,8 @@
 {
     PPRelease(_imageUrl);
     PPRelease(_image);
+    PPRelease(_thumbImage);
+    PPRelease(_thumbImageUrl);
     [super dealloc];
 }
 //- (void)encodeWithCoder:(NSCoder *)aCoder
