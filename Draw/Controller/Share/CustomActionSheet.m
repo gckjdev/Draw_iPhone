@@ -17,6 +17,7 @@
 #define ACTION_BTN_TAG_OFFSET   20121226
 #define DEFAULT_WIDTH   280
 #define DEFAULT_ROWHEIHT 80
+#define ACTION_IMAGE_OFFSET 20130509
 
 @interface CustomActionSheet () {
     UIImage* _defaultImage;
@@ -72,6 +73,14 @@
     if (title != nil) {
         [self.buttonTitles addObject:title];
         [self.buttonImagesDict setObject:anImage forKey:title];
+    }
+    return self.buttonTitles.count;
+}
+
+- (NSInteger)addButtonWithImage:(UIImage*)image
+{
+    if (image) {
+        [self addButtonWithTitle:[NSString stringWithInt:(ACTION_IMAGE_OFFSET+self.buttonTitles.count)] image:image];
     }
     return self.buttonTitles.count;
 }
@@ -355,7 +364,7 @@
         _buttonImagesDict = [[NSMutableDictionary alloc] initWithCapacity:30];
         _buttonTitles = [[NSMutableArray alloc] initWithCapacity:30];
         
-        int i = 20130509;
+        int i = ACTION_IMAGE_OFFSET;
         if (otherBtnImages) // The first argument isn't part of the varargs list,
         {                                   // so we'll handle it separately.
             [self addButtonWithTitle:[NSString stringWithInt:i] image:otherBtnImages];

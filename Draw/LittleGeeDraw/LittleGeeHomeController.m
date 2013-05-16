@@ -38,6 +38,7 @@
 #import "Contest.h"
 #import "StatementController.h"
 #import "RegisterUserController.h"
+#import "StringUtil.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -53,15 +54,15 @@ typedef enum {
 }DrawOptionIndex;
 
 typedef enum {
-    PopOptionIndexPK = 0,
-    PopOptionIndexSelf,
-//    PopOptionIndexSearch,
-    PopOptionIndexNotice,
+    PopOptionIndexContest = 0,
+    PopOptionIndexPK,
     PopOptionIndexBbs,
-    PopOptionIndexIngot,
-    PopOptionIndexContest,
+    PopOptionIndexNotice,
+    PopOptionIndexSelf,
     PopOptionIndexShop,
-    PopOptionIndexMore
+    PopOptionIndexIngot,
+    PopOptionIndexMore,
+    PopOptionCount,
 }PopOptionIndex;
 
 @interface LittleGeeHomeController () {
@@ -90,6 +91,41 @@ typedef enum {
     [super dealloc];
 }
 
+- (UIImage*)imageForPopOption:(PopOptionIndex)index
+{
+    LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
+    switch (index) {
+        case PopOptionIndexPK: {
+            return imgManager.popOptionsGameImage;
+        } break;
+        case PopOptionIndexSelf: {
+            return imgManager.popOptionsSelfImage;
+        } break;
+        case PopOptionIndexNotice: {
+            return imgManager.popOptionsNoticeImage;
+        } break;
+        case PopOptionIndexBbs: {
+            return imgManager.popOptionsBbsImage;
+        } break;
+        case PopOptionIndexIngot: {
+            return imgManager.popOptionsIngotImage;
+        } break;
+        case PopOptionIndexContest: {
+            return imgManager.popOptionsContestImage;
+        } break;
+        case PopOptionIndexShop: {
+            return imgManager.popOptionsShopImage;
+        } break;
+        case PopOptionIndexMore: {
+            return imgManager.popOptionsMoreImage;
+        } break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (void)hideOptionSheet
 {
     if (self.optionSheet && [self.optionSheet isVisable]) {
@@ -103,8 +139,12 @@ typedef enum {
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSelfImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
+        for (int i = 0; i < PopOptionCount; i ++) {
+            UIImage* image = [self imageForPopOption:(PopOptionIndexContest+i)];
+            [self.optionSheet addButtonWithImage:image];
+        }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
@@ -120,7 +160,7 @@ typedef enum {
 {
     self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
     [self.view addSubview:self.homeBottomMenuPanel];
-    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds)];
+    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds) + (ISIPAD?10:0)];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
