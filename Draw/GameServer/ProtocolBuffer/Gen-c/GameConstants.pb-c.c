@@ -493,3 +493,39 @@ const ProtobufCEnumDescriptor game__pbwall_type__descriptor =
   game__pbwall_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
+const ProtobufCEnumValue game__pbmessage_type__enum_values_by_number[6] =
+{
+  { "Text", "GAME__PBMESSAGE_TYPE__TEXT", 0 },
+  { "LocationRequest", "GAME__PBMESSAGE_TYPE__LOCATIONREQUEST", 1 },
+  { "LocationResponse", "GAME__PBMESSAGE_TYPE__LOCATIONRESPONSE", 2 },
+  { "Draw", "GAME__PBMESSAGE_TYPE__DRAW", 4 },
+  { "Image", "GAME__PBMESSAGE_TYPE__IMAGE", 5 },
+  { "Voice", "GAME__PBMESSAGE_TYPE__VOICE", 6 },
+};
+static const ProtobufCIntRange game__pbmessage_type__value_ranges[] = {
+{0, 0},{4, 3},{0, 6}
+};
+const ProtobufCEnumValueIndex game__pbmessage_type__enum_values_by_name[6] =
+{
+  { "Draw", 3 },
+  { "Image", 4 },
+  { "LocationRequest", 1 },
+  { "LocationResponse", 2 },
+  { "Text", 0 },
+  { "Voice", 5 },
+};
+const ProtobufCEnumDescriptor game__pbmessage_type__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBMessageType",
+  "PBMessageType",
+  "Game__PBMessageType",
+  "game",
+  6,
+  game__pbmessage_type__enum_values_by_number,
+  6,
+  game__pbmessage_type__enum_values_by_name,
+  2,
+  game__pbmessage_type__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};
