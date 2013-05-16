@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
+		<string>little_gee_icon_57.png</string>
+		<string>little_gee_icon_114.png</string>
+		<string>little_gee_icon_50.png</string>
+		<string>little_gee_icon_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.littlegee</string>
@@ -35,10 +35,10 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>alipaycchh.gckj</string>
-				<string>fb352182988165711</string>
+				<string>fb507044062701075</string>
 				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
-				<string>sinaweibosso.4285743836</string>
+				<string>wx90e5b16de6688114</string>
+				<string>sinaweibosso.138708649</string>
 			</array>
 		</dict>
 	</array>
@@ -61,7 +61,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile</key>
-	<string>Default</string>
+	<string>LittleGeeDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
