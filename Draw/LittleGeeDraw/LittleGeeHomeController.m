@@ -497,14 +497,18 @@ typedef enum {
 {
     int littleGeeType = 0;
     switch (type) {
-        case FeedListTypeHistoryRank:
+        case FeedListTypeHistoryRank: {
             littleGeeType = LittleGeeHomeGalleryTypeAnnual;
-            break;
-        case FeedListTypeHot:
+        } break;
+        case FeedListTypeHot: {
             littleGeeType = LittleGeeHomeGalleryTypeWeekly;
-            break;
-        case FeedListTypeLatest:
+        } break;
+        case FeedListTypeLatest: {
             littleGeeType = LittleGeeHomeGalleryTypeLatest;
+        } break;
+        case FeedListTypeRecommend: {
+            littleGeeType = LittleGeeHomeGalleryTypeRecommend;
+        } break;
         default:
             break;
     }
@@ -517,7 +521,7 @@ typedef enum {
 }
 - (NSInteger)currentTabIndex //default 0
 {
-    return _defaultTabIndex;
+    return LittleGeeHomeGalleryTypeWeekly;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
 {
@@ -556,7 +560,7 @@ typedef enum {
             [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
         }
         else if (type == LittleGeeHomeGalleryTypeRecommend){
-            [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
+            [[FeedService defaultService] getFeedList:FeedListTypeRecommend offset:tab.offset limit:tab.limit delegate:self];
 //            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }
         
