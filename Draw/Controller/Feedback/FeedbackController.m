@@ -81,7 +81,9 @@
             rowOfFollow = count++;
         }
         rowOfCleanCache = count++;
-        rowOfAddWords = count++;
+        if (!isLittleGeeAPP()) {
+            rowOfAddWords = count++;
+        }
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         

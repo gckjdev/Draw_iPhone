@@ -37,6 +37,7 @@
 #import "CommonMessageCenter.h"
 #import "Contest.h"
 #import "StatementController.h"
+#import "RegisterUserController.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -202,6 +203,10 @@ typedef enum {
                didClickMenu:(HomeMenuView *)menu
                    menuType:(HomeMenuType)type
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     switch (type) {
         case HomeMenuTypeLittleGeeOptions: {
             if ([_optionSheet isVisable]) {
@@ -233,6 +238,10 @@ typedef enum {
 #pragma mark - custom action sheet delegate
 - (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     if (actionSheet.tag == DRAW_OPTION_SHEET_TAG) {
         switch (buttonIndex) {
             case DrawOptionIndexDrawTo: {
@@ -336,6 +345,10 @@ typedef enum {
 
 - (void)didClickRankView:(RankView *)rankView
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     [self showFeed:rankView.feed];
 }
 
@@ -503,7 +516,7 @@ typedef enum {
             [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
         }
         else if (type == LittleGeeHomeGalleryTypeRecommend){
-            [self hideActivity];
+            [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
 //            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }
         
@@ -648,11 +661,14 @@ typedef enum {
 #pragma mark - draw home controller protocol
 - (BOOL)isRegistered
 {
-    return YES;
+    return [[UserManager defaultManager] hasUser];
 }
+
 - (void)toRegister
 {
-    
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
 }
 
 #pragma mark - contest service delegate
