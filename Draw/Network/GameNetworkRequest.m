@@ -19,6 +19,7 @@
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
 #import "UIUtils.h"
+#import "PPMessage.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -2145,12 +2146,30 @@
         return;
     }; 
     
-    return [PPNetworkRequest sendPostRequest:baseURL
-                                        data:data
-                         constructURLHandler:constructURLHandler
-                             responseHandler:responseHandler
-                                outputFormat:FORMAT_JSON
-                                      output:output];
+    if (type == MessageTypeImage){
+
+        NSMutableDictionary *imageDict = nil;
+        if (data) {
+            imageDict = [NSMutableDictionary dictionary];
+            [imageDict setObject:data forKey:PARA_IMAGE];
+        }
+        
+        return [PPNetworkRequest uploadRequest:baseURL
+                                 imageDataDict:imageDict
+                                  postDataDict:nil
+                           constructURLHandler:constructURLHandler
+                               responseHandler:responseHandler
+                                  outputFormat:FORMAT_JSON
+                                        output:output];        
+    }
+    else{
+        return [PPNetworkRequest sendPostRequest:baseURL
+                                            data:data
+                             constructURLHandler:constructURLHandler
+                                 responseHandler:responseHandler
+                                    outputFormat:FORMAT_JSON
+                                          output:output];
+    }
     
 }
 
