@@ -100,6 +100,8 @@ typedef enum {
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSString *imageUrl;
+@property (nonatomic, retain) UIImage *thumbImage;
+@property (nonatomic, retain) NSString *thumbImageUrl;
 
 @end
 

@@ -429,7 +429,7 @@
 
 - (void)initWordLabel
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.wordLabel.hidden = YES;
     }else {
         self.wordLabel.hidden = NO;
@@ -457,7 +457,7 @@
         return;
     }
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.draftButton.hidden = YES;
     }
     
@@ -500,7 +500,7 @@
 
 - (BOOL)supportRecovery
 {
-    if (targetType == TypeGraffiti){
+    if (targetType == TypeGraffiti || targetType == TypePhoto){
         return NO;
     }
     
@@ -937,7 +937,7 @@
 
 - (void)saveDraft:(BOOL)showResult
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
@@ -1218,6 +1218,11 @@
                          canvasSize:drawView.bounds.size
                           drawImage:image];
         }
+    }else if (targetType == TypePhoto) {
+        if ([delegate respondsToSelector:@selector(didController:submitImage:)]) {
+            UIImage *image = [drawView createImage];
+            [delegate didController:self submitImage:image];
+        }
     }else {
         if(self.contest){
             if ([self.contest commitCountEnough]) {
@@ -1261,7 +1266,7 @@
         return;
     }    
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         if (delegate && [delegate respondsToSelector:@selector(didControllerClickBack:)]) {
             [delegate didControllerClickBack:self];
         }
