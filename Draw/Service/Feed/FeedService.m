@@ -814,6 +814,14 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+- (void)recommendOpus:(NSString *)opusId
+          resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_RECOMMEND_OPUS
+              actionName:@""
+             resultBlock:resultBlock];    
+}
 
 #define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"
 
