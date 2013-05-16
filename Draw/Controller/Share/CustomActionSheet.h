@@ -35,6 +35,7 @@
          imageArray:(UIImage *)otherBtnImages, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (NSInteger)addButtonWithTitle:(NSString *)title image:(UIImage*)image;    // returns index of button. 0 based.
+- (NSInteger)addButtonWithImage:(UIImage*)image;
 - (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
 - (UIImage*)buttonImageAtIndex:(NSInteger)buttonIndex;
 

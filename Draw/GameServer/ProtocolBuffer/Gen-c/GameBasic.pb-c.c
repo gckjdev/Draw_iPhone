@@ -737,6 +737,49 @@ void   game__pbiapproduct__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbiapproduct__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pbiapproduct_price__init
+                     (Game__PBIAPProductPrice         *message)
+{
+  static Game__PBIAPProductPrice init_value = GAME__PBIAPPRODUCT_PRICE__INIT;
+  *message = init_value;
+}
+size_t game__pbiapproduct_price__get_packed_size
+                     (const Game__PBIAPProductPrice *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbiapproduct_price__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbiapproduct_price__pack
+                     (const Game__PBIAPProductPrice *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbiapproduct_price__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbiapproduct_price__pack_to_buffer
+                     (const Game__PBIAPProductPrice *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbiapproduct_price__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBIAPProductPrice *
+       game__pbiapproduct_price__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBIAPProductPrice *)
+     protobuf_c_message_unpack (&game__pbiapproduct_price__descriptor,
+                                allocator, len, data);
+}
+void   game__pbiapproduct_price__free_unpacked
+                     (Game__PBIAPProductPrice *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbiapproduct_price__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbiapproduct_list__init
                      (Game__PBIAPProductList         *message)
 {
@@ -2297,7 +2340,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 };
 static const int32_t game__pbmessage__type__default_value = 0;
 static const int32_t game__pbmessage__draw_data_version__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[14] =
+static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[16] =
 {
   {
     "messageId",
@@ -2467,6 +2510,30 @@ static const ProtobufCFieldDescriptor game__pbmessage__field_descriptors[14] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "imageURL",
+    41,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, imageurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "thumbImageURL",
+    42,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBMessage, thumbimageurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbmessage__field_indices_by_name[] = {
   9,   /* field[9] = canvasSize */
@@ -2474,6 +2541,7 @@ static const unsigned game__pbmessage__field_indices_by_name[] = {
   6,   /* field[6] = drawData */
   8,   /* field[8] = drawDataVersion */
   1,   /* field[1] = from */
+  14,   /* field[14] = imageURL */
   11,   /* field[11] = latitude */
   10,   /* field[10] = longitude */
   0,   /* field[0] = messageId */
@@ -2481,15 +2549,17 @@ static const unsigned game__pbmessage__field_indices_by_name[] = {
   12,   /* field[12] = reqMessageId */
   3,   /* field[3] = status */
   5,   /* field[5] = text */
+  15,   /* field[15] = thumbImageURL */
   2,   /* field[2] = to */
   4,   /* field[4] = type */
 };
-static const ProtobufCIntRange game__pbmessage__number_ranges[3 + 1] =
+static const ProtobufCIntRange game__pbmessage__number_ranges[4 + 1] =
 {
   { 1, 0 },
   { 20, 5 },
   { 31, 10 },
-  { 0, 14 }
+  { 41, 14 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbmessage__descriptor =
 {
@@ -2499,10 +2569,10 @@ const ProtobufCMessageDescriptor game__pbmessage__descriptor =
   "Game__PBMessage",
   "game",
   sizeof(Game__PBMessage),
-  14,
+  16,
   game__pbmessage__field_descriptors,
   game__pbmessage__field_indices_by_name,
-  3,  game__pbmessage__number_ranges,
+  4,  game__pbmessage__number_ranges,
   (ProtobufCMessageInit) game__pbmessage__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
@@ -3236,7 +3306,7 @@ const ProtobufCMessageDescriptor game__pbgame_item_list__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbiapproduct__count__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbiapproduct__field_descriptors[11] =
+static const ProtobufCFieldDescriptor game__pbiapproduct__field_descriptors[12] =
 {
   {
     "type",
@@ -3370,6 +3440,18 @@ static const ProtobufCFieldDescriptor game__pbiapproduct__field_descriptors[11] 
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "prices",
+    99,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProduct, n_prices),
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProduct, prices),
+    &game__pbiapproduct_price__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbiapproduct__field_indices_by_name[] = {
   2,   /* field[2] = alipayProductId */
@@ -3379,12 +3461,13 @@ static const unsigned game__pbiapproduct__field_indices_by_name[] = {
   7,   /* field[7] = currency */
   4,   /* field[4] = desc */
   3,   /* field[3] = name */
+  11,   /* field[11] = prices */
   9,   /* field[9] = saving */
   10,   /* field[10] = taobaoUrl */
   6,   /* field[6] = totalPrice */
   0,   /* field[0] = type */
 };
-static const ProtobufCIntRange game__pbiapproduct__number_ranges[7 + 1] =
+static const ProtobufCIntRange game__pbiapproduct__number_ranges[8 + 1] =
 {
   { 1, 0 },
   { 5, 3 },
@@ -3393,7 +3476,8 @@ static const ProtobufCIntRange game__pbiapproduct__number_ranges[7 + 1] =
   { 21, 7 },
   { 50, 9 },
   { 61, 10 },
-  { 0, 11 }
+  { 99, 11 },
+  { 0, 12 }
 };
 const ProtobufCMessageDescriptor game__pbiapproduct__descriptor =
 {
@@ -3403,11 +3487,90 @@ const ProtobufCMessageDescriptor game__pbiapproduct__descriptor =
   "Game__PBIAPProduct",
   "game",
   sizeof(Game__PBIAPProduct),
-  11,
+  12,
   game__pbiapproduct__field_descriptors,
   game__pbiapproduct__field_indices_by_name,
-  7,  game__pbiapproduct__number_ranges,
+  8,  game__pbiapproduct__number_ranges,
   (ProtobufCMessageInit) game__pbiapproduct__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbiapproduct_price__field_descriptors[4] =
+{
+  {
+    "price",
+    1,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProductPrice, price),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "currency",
+    2,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProductPrice, currency),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "country",
+    11,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProductPrice, country),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "saving",
+    99,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBIAPProductPrice, saving),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbiapproduct_price__field_indices_by_name[] = {
+  2,   /* field[2] = country */
+  1,   /* field[1] = currency */
+  0,   /* field[0] = price */
+  3,   /* field[3] = saving */
+};
+static const ProtobufCIntRange game__pbiapproduct_price__number_ranges[3 + 1] =
+{
+  { 1, 0 },
+  { 11, 2 },
+  { 99, 3 },
+  { 0, 4 }
+};
+const ProtobufCMessageDescriptor game__pbiapproduct_price__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBIAPProductPrice",
+  "PBIAPProductPrice",
+  "Game__PBIAPProductPrice",
+  "game",
+  sizeof(Game__PBIAPProductPrice),
+  4,
+  game__pbiapproduct_price__field_descriptors,
+  game__pbiapproduct_price__field_indices_by_name,
+  3,  game__pbiapproduct_price__number_ranges,
+  (ProtobufCMessageInit) game__pbiapproduct_price__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const ProtobufCFieldDescriptor game__pbiapproduct_list__field_descriptors[1] =

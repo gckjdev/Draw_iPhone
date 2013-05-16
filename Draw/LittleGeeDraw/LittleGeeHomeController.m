@@ -37,6 +37,10 @@
 #import "CommonMessageCenter.h"
 #import "Contest.h"
 #import "StatementController.h"
+#import "RegisterUserController.h"
+#import "StringUtil.h"
+#import "EGORefreshTableHeaderView.h"
+#import "EGORefreshTableFooterView.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -52,15 +56,15 @@ typedef enum {
 }DrawOptionIndex;
 
 typedef enum {
-    PopOptionIndexPK = 0,
-    PopOptionIndexSelf,
-//    PopOptionIndexSearch,
-    PopOptionIndexNotice,
+    PopOptionIndexContest = 0,
+    PopOptionIndexPK,
     PopOptionIndexBbs,
-    PopOptionIndexIngot,
-    PopOptionIndexContest,
+    PopOptionIndexNotice,
+    PopOptionIndexSelf,
     PopOptionIndexShop,
-    PopOptionIndexMore
+    PopOptionIndexIngot,
+    PopOptionIndexMore,
+    PopOptionCount,
 }PopOptionIndex;
 
 @interface LittleGeeHomeController () {
@@ -89,6 +93,41 @@ typedef enum {
     [super dealloc];
 }
 
+- (UIImage*)imageForPopOption:(PopOptionIndex)index
+{
+    LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
+    switch (index) {
+        case PopOptionIndexPK: {
+            return imgManager.popOptionsGameImage;
+        } break;
+        case PopOptionIndexSelf: {
+            return imgManager.popOptionsSelfImage;
+        } break;
+        case PopOptionIndexNotice: {
+            return imgManager.popOptionsNoticeImage;
+        } break;
+        case PopOptionIndexBbs: {
+            return imgManager.popOptionsBbsImage;
+        } break;
+        case PopOptionIndexIngot: {
+            return imgManager.popOptionsIngotImage;
+        } break;
+        case PopOptionIndexContest: {
+            return imgManager.popOptionsContestImage;
+        } break;
+        case PopOptionIndexShop: {
+            return imgManager.popOptionsShopImage;
+        } break;
+        case PopOptionIndexMore: {
+            return imgManager.popOptionsMoreImage;
+        } break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (void)hideOptionSheet
 {
     if (self.optionSheet && [self.optionSheet isVisable]) {
@@ -102,8 +141,12 @@ typedef enum {
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
-        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:[imgManager popOptionsGameImage], [imgManager popOptionsSelfImage], [imgManager popOptionsNoticeImage], [imgManager popOptionsBbsImage],  [imgManager popOptionsIngotImage], [imgManager popOptionsContestImage], [imgManager popOptionsShopImage], [imgManager popOptionsMoreImage], nil] autorelease];
+        self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
+        for (int i = 0; i < PopOptionCount; i ++) {
+            UIImage* image = [self imageForPopOption:(PopOptionIndexContest+i)];
+            [self.optionSheet addButtonWithImage:image];
+        }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
@@ -119,7 +162,7 @@ typedef enum {
 {
     self.homeBottomMenuPanel = [HomeBottomMenuPanel createView:self];
     [self.view addSubview:self.homeBottomMenuPanel];
-    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds)];
+    [self.homeBottomMenuPanel updateOriginY:CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.homeBottomMenuPanel.bounds) + (ISIPAD?10:0)];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -202,6 +245,10 @@ typedef enum {
                didClickMenu:(HomeMenuView *)menu
                    menuType:(HomeMenuType)type
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     switch (type) {
         case HomeMenuTypeLittleGeeOptions: {
             if ([_optionSheet isVisable]) {
@@ -233,6 +280,10 @@ typedef enum {
 #pragma mark - custom action sheet delegate
 - (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     if (actionSheet.tag == DRAW_OPTION_SHEET_TAG) {
         switch (buttonIndex) {
             case DrawOptionIndexDrawTo: {
@@ -336,6 +387,10 @@ typedef enum {
 
 - (void)didClickRankView:(RankView *)rankView
 {
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    }
     [self showFeed:rankView.feed];
 }
 
@@ -444,14 +499,18 @@ typedef enum {
 {
     int littleGeeType = 0;
     switch (type) {
-        case FeedListTypeHistoryRank:
+        case FeedListTypeHistoryRank: {
             littleGeeType = LittleGeeHomeGalleryTypeAnnual;
-            break;
-        case FeedListTypeHot:
+        } break;
+        case FeedListTypeHot: {
             littleGeeType = LittleGeeHomeGalleryTypeWeekly;
-            break;
-        case FeedListTypeLatest:
+        } break;
+        case FeedListTypeLatest: {
             littleGeeType = LittleGeeHomeGalleryTypeLatest;
+        } break;
+        case FeedListTypeRecommend: {
+            littleGeeType = LittleGeeHomeGalleryTypeRecommend;
+        } break;
         default:
             break;
     }
@@ -464,7 +523,7 @@ typedef enum {
 }
 - (NSInteger)currentTabIndex //default 0
 {
-    return _defaultTabIndex;
+    return LittleGeeHomeGalleryTypeWeekly;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
 {
@@ -503,7 +562,7 @@ typedef enum {
             [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
         }
         else if (type == LittleGeeHomeGalleryTypeRecommend){
-            [self hideActivity];
+            [[FeedService defaultService] getFeedList:FeedListTypeRecommend offset:tab.offset limit:tab.limit delegate:self];
 //            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }
         
@@ -520,9 +579,9 @@ typedef enum {
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        for (DrawFeed *feed in feedList) {
+//        for (DrawFeed *feed in feedList) {
             //            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
-        }
+//        }
         [self finishLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]] resultList:feedList];
     }else{
         [self failLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]]];
@@ -648,11 +707,14 @@ typedef enum {
 #pragma mark - draw home controller protocol
 - (BOOL)isRegistered
 {
-    return YES;
+    return [[UserManager defaultManager] hasUser];
 }
+
 - (void)toRegister
 {
-    
+    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+    [self.navigationController pushViewController:ruc animated:YES];
+    [ruc release];
 }
 
 #pragma mark - contest service delegate
@@ -671,6 +733,17 @@ typedef enum {
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
+}
+
+#pragma mark - customize refresh header and footer
+- (EGORefreshTableHeaderView*)createRefreshHeaderView
+{
+    return [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)] autorelease];
+}
+
+- (EGORefreshTableFooterView*)createRefreshFooterView
+{
+    return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)];
 }
 
 @end

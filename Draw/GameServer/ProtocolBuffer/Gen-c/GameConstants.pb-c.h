@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameConstants_2eproto__INCLUDED
 #define PROTOBUF_C_GameConstants_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include "google/protobuf-c/protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -186,6 +186,14 @@ typedef enum _Game__PBWordType {
 typedef enum _Game__PBWallType {
   GAME__PBWALL_TYPE__Opuses = 1
 } Game__PBWallType;
+typedef enum _Game__PBMessageType {
+  GAME__PBMESSAGE_TYPE__Text = 0,
+  GAME__PBMESSAGE_TYPE__LocationRequest = 1,
+  GAME__PBMESSAGE_TYPE__LocationResponse = 2,
+  GAME__PBMESSAGE_TYPE__Draw = 4,
+  GAME__PBMESSAGE_TYPE__Image = 5,
+  GAME__PBMESSAGE_TYPE__Voice = 6
+} Game__PBMessageType;
 
 /* --- messages --- */
 
@@ -204,6 +212,7 @@ extern const ProtobufCEnumDescriptor    game__game_chat_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__dice_game_rule_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbword_type__descriptor;
 extern const ProtobufCEnumDescriptor    game__pbwall_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbmessage_type__descriptor;
 
 PROTOBUF_C_END_DECLS
 
