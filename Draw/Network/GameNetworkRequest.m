@@ -20,6 +20,7 @@
 #import "ConfigManager.h"
 #import "UIUtils.h"
 #import "PPMessage.h"
+#import "UserManager.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -1991,7 +1992,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusId];        
         str = [str stringByAddQueryParameter:PARA_ACTION_NAME value:actionName];
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
-        
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];        
         return str;
     };
     

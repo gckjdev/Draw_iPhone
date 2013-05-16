@@ -152,6 +152,7 @@
 #define ACTION_TYPE_SAVE                    100
 #define ACTION_TYPE_ADD_FAVORITE            (ACTION_TYPE_SAVE)
 #define ACTION_TYPE_REMOVE_FAVORITE         101
+#define ACTION_TYPE_RECOMMEND_OPUS          102
 
 // for item
 #define METHOD_BUY_ITEM @"buyItem"

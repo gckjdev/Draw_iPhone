@@ -167,6 +167,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 
 - (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
+- (void)recommendOpus:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId
