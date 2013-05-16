@@ -277,6 +277,13 @@ enum PBWallType{
   Opuses = 1;
 }
 
-
+enum PBMessageType{
+    Text = 0;
+    LocationRequest = 1;
+    LocationResponse = 2;
+    Draw = 4;
+    Image = 5;
+    Voice = 6;
+}
 
 

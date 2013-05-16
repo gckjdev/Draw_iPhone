@@ -27,6 +27,7 @@
 #import "PPMessageManager.h"
 #import "MessageStat.h"
 #import "DrawUtils.h"
+#import "UIImageExt.h"
 
 static ChatService *_chatService = nil;
 
@@ -193,6 +194,11 @@ static ChatService *_chatService = nil;
                 replyResult = laMessage.replyResult;
                 hasLocation = (replyResult == ACCEPT_ASK_LOCATION);
                 break;
+            }
+            case MessageTypeImage:
+            {
+                UIImage *image = [(ImageMessage *)message image];
+                data = [image data];
             }
 
             default:

@@ -57,6 +57,8 @@
 @property (retain, nonatomic) Contest *contest;
 @property (assign, nonatomic) UIViewController *startController;
 @property (retain, nonatomic) NSString *opusDesc;
+@property (retain, nonatomic) UIImage *bgImage;
+@property (retain, nonatomic) NSString *bgImageName;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;

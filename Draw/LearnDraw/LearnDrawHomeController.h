@@ -8,8 +8,9 @@
 
 #import "HomeBottomMenuPanel.h"
 #import "CommonTabController.h"
+#import "PhotoDrawSheet.h"
 
-@interface LearnDrawHomeController : CommonTabController<HomeBottomMenuPanelDelegate>
+@interface LearnDrawHomeController : CommonTabController<HomeBottomMenuPanelDelegate, PhotoDrawSheetDelegate>
 
 - (void)reloadTableView;
 
