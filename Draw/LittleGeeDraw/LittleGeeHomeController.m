@@ -39,6 +39,8 @@
 #import "StatementController.h"
 #import "RegisterUserController.h"
 #import "StringUtil.h"
+#import "EGORefreshTableHeaderView.h"
+#import "EGORefreshTableFooterView.h"
 
 #define OPTION_SHEET_FIRST_SHOW_DURATION 6
 #define OPTION_SHEET_SHOW_DURATION  60
@@ -577,9 +579,9 @@ typedef enum {
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        for (DrawFeed *feed in feedList) {
+//        for (DrawFeed *feed in feedList) {
             //            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
-        }
+//        }
         [self finishLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]] resultList:feedList];
     }else{
         [self failLoadDataForTabID:[self tabIDFromType:[self littleGeeTypeFromFeedListType:type]]];
@@ -731,6 +733,17 @@ typedef enum {
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
+}
+
+#pragma mark - customize refresh header and footer
+- (EGORefreshTableHeaderView*)createRefreshHeaderView
+{
+    return [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)] autorelease];
+}
+
+- (EGORefreshTableFooterView*)createRefreshFooterView
+{
+    return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)];
 }
 
 @end
