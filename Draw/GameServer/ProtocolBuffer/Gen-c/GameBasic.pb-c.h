@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameBasic_2eproto__INCLUDED
 #define PROTOBUF_C_GameBasic_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include "google/protobuf-c/protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -25,6 +25,7 @@ typedef struct _Game__PBPromotionInfo Game__PBPromotionInfo;
 typedef struct _Game__PBGameItem Game__PBGameItem;
 typedef struct _Game__PBGameItemList Game__PBGameItemList;
 typedef struct _Game__PBIAPProduct Game__PBIAPProduct;
+typedef struct _Game__PBIAPProductPrice Game__PBIAPProductPrice;
 typedef struct _Game__PBIAPProductList Game__PBIAPProductList;
 typedef struct _Game__PBUserItem Game__PBUserItem;
 typedef struct _Game__PBUserItemList Game__PBUserItemList;
@@ -291,10 +292,12 @@ struct  _Game__PBMessage
   char *reqmessageid;
   protobuf_c_boolean has_replyresult;
   int32_t replyresult;
+  char *imageurl;
+  char *thumbimageurl;
 };
 #define GAME__PBMESSAGE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbmessage__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,0, NULL, 0,NULL, 0,0, 0,0, NULL, 0,0, 0,0, NULL, 0,0 }
+    , NULL, NULL, NULL, 0,0, 0,0, NULL, 0,NULL, 0,0, 0,0, NULL, 0,0, 0,0, NULL, 0,0, NULL, NULL }
 
 
 struct  _Game__PBMessageStat
@@ -433,10 +436,25 @@ struct  _Game__PBIAPProduct
   char *country;
   char *saving;
   char *taobaourl;
+  size_t n_prices;
+  Game__PBIAPProductPrice **prices;
 };
 #define GAME__PBIAPPRODUCT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbiapproduct__descriptor) \
-    , 0, NULL, NULL, NULL, NULL, 0,1, NULL, NULL, NULL, NULL, NULL }
+    , 0, NULL, NULL, NULL, NULL, 0,1, NULL, NULL, NULL, NULL, NULL, 0,NULL }
+
+
+struct  _Game__PBIAPProductPrice
+{
+  ProtobufCMessage base;
+  char *price;
+  char *currency;
+  char *country;
+  char *saving;
+};
+#define GAME__PBIAPPRODUCT_PRICE__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbiapproduct_price__descriptor) \
+    , NULL, NULL, NULL, NULL }
 
 
 struct  _Game__PBIAPProductList
@@ -843,6 +861,25 @@ Game__PBIAPProduct *
 void   game__pbiapproduct__free_unpacked
                      (Game__PBIAPProduct *message,
                       ProtobufCAllocator *allocator);
+/* Game__PBIAPProductPrice methods */
+void   game__pbiapproduct_price__init
+                     (Game__PBIAPProductPrice         *message);
+size_t game__pbiapproduct_price__get_packed_size
+                     (const Game__PBIAPProductPrice   *message);
+size_t game__pbiapproduct_price__pack
+                     (const Game__PBIAPProductPrice   *message,
+                      uint8_t             *out);
+size_t game__pbiapproduct_price__pack_to_buffer
+                     (const Game__PBIAPProductPrice   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBIAPProductPrice *
+       game__pbiapproduct_price__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbiapproduct_price__free_unpacked
+                     (Game__PBIAPProductPrice *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBIAPProductList methods */
 void   game__pbiapproduct_list__init
                      (Game__PBIAPProductList         *message);
@@ -1010,6 +1047,9 @@ typedef void (*Game__PBGameItemList_Closure)
 typedef void (*Game__PBIAPProduct_Closure)
                  (const Game__PBIAPProduct *message,
                   void *closure_data);
+typedef void (*Game__PBIAPProductPrice_Closure)
+                 (const Game__PBIAPProductPrice *message,
+                  void *closure_data);
 typedef void (*Game__PBIAPProductList_Closure)
                  (const Game__PBIAPProductList *message,
                   void *closure_data);
@@ -1058,6 +1098,7 @@ extern const ProtobufCMessageDescriptor game__pbpromotion_info__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_item__descriptor;
 extern const ProtobufCMessageDescriptor game__pbgame_item_list__descriptor;
 extern const ProtobufCMessageDescriptor game__pbiapproduct__descriptor;
+extern const ProtobufCMessageDescriptor game__pbiapproduct_price__descriptor;
 extern const ProtobufCMessageDescriptor game__pbiapproduct_list__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_item__descriptor;
 extern const ProtobufCMessageDescriptor game__pbuser_item_list__descriptor;
