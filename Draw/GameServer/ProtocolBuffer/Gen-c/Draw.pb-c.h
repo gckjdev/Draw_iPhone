@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Draw_2eproto__INCLUDED
 #define PROTOBUF_C_Draw_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include "google/protobuf-c/protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
