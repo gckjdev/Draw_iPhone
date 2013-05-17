@@ -35,6 +35,10 @@
     return NO;
 }
 
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
 
 //ContentGameAppProtocol
 - (int)sellContentType

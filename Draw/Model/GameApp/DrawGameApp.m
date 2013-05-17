@@ -491,4 +491,9 @@
     return YES;
 }
 
+- (NSString*)getDefaultSNSSubject
+{
+    return NSLS(@"kSNSSubject");
+}
+
 @end
