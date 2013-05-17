@@ -1064,7 +1064,7 @@
     NSString* text = nil;
     
     if ([[self getOpusComment] length] > 0){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [UIUtils getAppLink:[ConfigManager appId]]];
     }
     else{
         text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
