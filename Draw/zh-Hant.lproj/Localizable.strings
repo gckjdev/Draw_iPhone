@@ -1654,12 +1654,13 @@
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推薦";
 "kLittleGeeDrawTo" = "送畫";
-"kLittleGeeBegin" = "開始";
-"kLittleGeeContest" = "比賽";
+"kLittleGeeBegin" = "畫畫";
+"kLittleGeeContest" = "參賽";
 "kLittleGee" = "小吉畫畫";
 "kLittleGeeDrawTitle" = "輸入作品標題";
 "kMustHaveTitle" = "作品標題不能為空!";
 "kIllegalTitle" = "標題含有非法字符串!";
 "kDefaultDrawWord" = "畫";
 "kNoRunningContest" = "沒有正在進行的比賽!";
+"kPainter" = "畫家";
 /*********************小吉画画国际化字符串结束 ************************/
