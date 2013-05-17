@@ -941,7 +941,7 @@
 
 + (NSString*)getSNSShareSubject
 {
-    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:NSLS(@"kSNSSubject")];
+    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:[GameApp getDefaultSNSSubject]];
 }
 + (NSString*)getDrawAppLink
 {

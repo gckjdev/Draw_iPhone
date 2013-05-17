@@ -450,4 +450,9 @@
     return NO;
 }
 
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
+
 @end

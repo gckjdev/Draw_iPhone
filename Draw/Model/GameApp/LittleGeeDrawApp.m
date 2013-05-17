@@ -92,4 +92,14 @@
     return @"alipayxjhh.gckj";
 }
 
+- (NSString*)feedbackTips
+{
+    return NSLS(@"kLittleGeeFeedbackTips");
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return NSLS(@"kLittleGeeSNSSubject");
+}
+
 @end

@@ -150,6 +150,8 @@
 
 - (BOOL)showPaintCategory;
 
+- (NSString*)getDefaultSNSSubject;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>
