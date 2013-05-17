@@ -76,6 +76,8 @@
 }
 
 - (void)dealloc {
+    PPDebug(@"<RankView> = %@, dealloc", self);
+    
     PPRelease(_feed);
     PPRelease(_title);
     PPRelease(_author);

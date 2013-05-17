@@ -169,9 +169,29 @@ typedef enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
+}
+
+- (void)showCachedFeedList:(int)tabID
+{
+    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
+    FeedListType type = [self feedListTypeForTabID:tabID];
+    NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
+    if ([feedList count] != 0) {
+        [self finishLoadDataForTabID:tabID resultList:feedList];
+    }
+}
+
+- (void)clickTabButton:(id)sender
+{
+    int tabID = [(UIButton *)sender tag];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    if ([tab.dataList count] == 0) {
+        [self showCachedFeedList:tabID];
+    }
+    [super clickTabButton:sender];
 }
 
 - (void)viewDidLoad
@@ -194,6 +214,7 @@ typedef enum {
     }];
     [self registerNetworkDisconnectedNotification];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 #define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
@@ -391,7 +412,8 @@ typedef enum {
         [self toRegister];
         return;
     }
-    [self showFeed:rankView.feed];
+    [self cleanFrontData];
+    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.01];
 }
 
 
@@ -527,7 +549,7 @@ typedef enum {
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
 {
-    return 15;
+    return [ConfigManager getHotOpusCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -546,28 +568,40 @@ typedef enum {
     NSString *titles[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"),NSLS(@"kLittleGeeRecommend"),NSLS(@"kFriend")};
     return titles[index];
 }
+
+- (FeedListType)feedListTypeForTabID:(int)tabID
+{
+    int type = [self typeFromTabID:tabID];
+    switch (type) {
+        case LittleGeeHomeGalleryTypeLatest:
+            return FeedListTypeLatest;
+
+        case LittleGeeHomeGalleryTypeAnnual:
+            return FeedListTypeHistoryRank;
+
+        case LittleGeeHomeGalleryTypeWeekly:
+            return FeedListTypeHot;
+
+        case LittleGeeHomeGalleryTypeRecommend:
+            return FeedListTypeRecommend;
+
+        default:
+            return tabID;
+    }
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
-    int type = [self typeFromTabID:tabID];
     if (tab) {
-        if (type == LittleGeeHomeGalleryTypeLatest) {
-            [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];
-        }else if(type == LittleGeeHomeGalleryTypeFriend){
-//            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
-        }else if (type == LittleGeeHomeGalleryTypeAnnual) {
-            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
-        }else if (type == LittleGeeHomeGalleryTypeWeekly) {
-            [[FeedService defaultService] getFeedList:FeedListTypeHot offset:tab.offset limit:tab.limit delegate:self];
+        int type = [self typeFromTabID:tabID];
+        if(type == LittleGeeHomeGalleryTypeFriend){
+            
+        }else {
+            [[FeedService defaultService] getFeedList:[self feedListTypeForTabID:tabID] offset:tab.offset limit:tab.limit delegate:self];
         }
-        else if (type == LittleGeeHomeGalleryTypeRecommend){
-            [[FeedService defaultService] getFeedList:FeedListTypeRecommend offset:tab.offset limit:tab.limit delegate:self];
-//            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
-        }
-        
     }
-    
 }
 
 #pragma mark - feed service delegate
