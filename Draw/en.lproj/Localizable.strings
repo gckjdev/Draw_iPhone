@@ -1324,6 +1324,9 @@
 "kGuessResult" = "Result";
 "kGoOnGuess" = "Go On";
 "kNoBulletin" = "No bulletin";
+
+"kLookLargeImage" = "Large Image";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

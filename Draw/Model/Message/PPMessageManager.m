@@ -117,6 +117,10 @@
     NSArray *list = [PPMessageManager subArrayWithArray:messageList
                                               maxLength:MESSAGE_MAX_COUNT
                                               isReverse:YES];
+    for (PPMessage *message in list) {
+        PPDebug(@"message type:%d", message.messageType);
+    }
+    
     StorageManager *manager = [PPMessageManager messageStorageManager];
     NSData *data = [PPMessageManager dataFromMessageList:list];
 //    return [manager saveObject:list forKey:MESSAGE_KEY1(friendId)];
@@ -127,6 +131,10 @@
     StorageManager *manager = [PPMessageManager messageStorageManager];
     NSData *data = [manager dataForKey:MESSAGE_KEY1(friendId)];
     NSArray *list = [PPMessageManager messageListFromData:data];
+    for (PPMessage *message in list) {
+        PPDebug(@"message type:%d", message.messageType);
+    }
+    
     return list;
 }
 
