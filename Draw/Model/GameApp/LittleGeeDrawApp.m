@@ -102,6 +102,15 @@
     return NSLS(@"kLittleGeeSNSSubject");
 }
 
+- (NSString*)appItuneLink
+{
+    return NSLS(@"kLittleGeeAppLink");
+}
+- (NSString*)appLinkUmengKey
+{
+    return @"LITTLE_GEE_APP_LINK";
+}
+
 - (NSString*)sinaWeiboId
 {
     return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_WEIBO_NICKNAME" defaultValue:@"小吉画画"];

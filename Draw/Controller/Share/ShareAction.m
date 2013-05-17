@@ -299,9 +299,9 @@
         else{
              
             if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
             } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
             }
             
         }
@@ -313,10 +313,10 @@
         else{
             NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
             if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
 
             } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
             }
 //            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }

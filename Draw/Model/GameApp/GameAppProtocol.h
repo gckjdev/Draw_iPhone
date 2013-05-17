@@ -152,6 +152,9 @@
 
 - (NSString*)getDefaultSNSSubject;
 
+- (NSString*)appItuneLink;
+- (NSString*)appLinkUmengKey;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

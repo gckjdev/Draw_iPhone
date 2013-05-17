@@ -56,7 +56,7 @@ static ShareService* _defaultService;
     
     NSString* text = @"";
     if (isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"),  appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"),  appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
     }
     else{
         NSString* nick = nil;
@@ -66,7 +66,7 @@ static ShareService* _defaultService;
         else{
             nick = drawUserNickName;
         }
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"), heStr, appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"), heStr, appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
         text = [text stringByAppendingFormat:NSLS(@"kPaintVia"), nick];
     }
 //    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];

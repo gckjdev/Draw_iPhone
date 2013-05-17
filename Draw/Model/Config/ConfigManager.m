@@ -948,6 +948,11 @@
     return [MobClickUtils getStringValueByKey:@"DRAW_APP_LINK" defaultValue:NSLS(@"kDrawAppLink")];
 }
 
++ (NSString*)getAppItuneLink
+{
+    return [MobClickUtils getStringValueByKey:[GameApp appLinkUmengKey] defaultValue:[GameApp appItuneLink]];
+}
+
 + (int)getBuyAnswerPrice
 {
     return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:50];

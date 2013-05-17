@@ -479,4 +479,13 @@
     return nil;
 }
 
+- (NSString*)appItuneLink
+{
+    return nil;
+}
+- (NSString*)appLinkUmengKey
+{
+    return nil;
+}
+
 @end

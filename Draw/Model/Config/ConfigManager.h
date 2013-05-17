@@ -262,4 +262,6 @@ typedef enum{
 
 + (float)littleGeeFirstShowOptionsDuration;
 + (float)littleGeeShowOptionsDuration;
+
++ (NSString*)getAppItuneLink;
 @end

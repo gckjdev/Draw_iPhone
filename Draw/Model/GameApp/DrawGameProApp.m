@@ -92,5 +92,12 @@
     return NSLS(@"kSNSSubject");
 }
 
-
+- (NSString*)appItuneLink
+{
+    return NSLS(@"kDrawAppLink");
+}
+- (NSString*)appLinkUmengKey
+{
+    return @"DRAW_APP_LINK";
+}
 @end
