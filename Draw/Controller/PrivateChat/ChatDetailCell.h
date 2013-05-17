@@ -23,8 +23,7 @@
 - (void)clickMessage:(PPMessage *)message 
          withDrawActionList:(NSArray *)drawActionList;
 
-- (void)clickMessage:(PPMessage *)message 
-         withImageURL:(NSString *)imageURL;
+- (void)clickMessage:(PPMessage *)message;
 
 - (void)didLongClickMessage:(PPMessage *)message;
 

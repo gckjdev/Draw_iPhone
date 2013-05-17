@@ -1204,7 +1204,7 @@
 
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     
-    if (isBlank) {
+    if (isBlank && targetType != TypePhoto) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];
         [dialog showInView:self.view];
         return;

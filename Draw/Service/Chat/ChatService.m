@@ -219,10 +219,20 @@ static ChatService *_chatService = nil;
                                                              latitude:latitude
                                                          reqMessageId:reqMessageId
                                                           replyResult:replyResult];
+        
+        NSString *imageUrl = nil;
+        NSString *thumbImageUrl = nil;
+        
         if (output.resultCode == ERROR_SUCCESS){
             NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
             message.messageId = messageId;
-            message.status = MessageStatusSent;  
+            message.status = MessageStatusSent;
+            
+            if (type == MessageTypeImage) {
+                imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            }
+            
             
             NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
             if (timeValue != 0) {
@@ -237,10 +247,17 @@ static ChatService *_chatService = nil;
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [message release];
+            
             if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
-                [delegate didSendMessage:message resultCode:output.resultCode];
+                if (type == MessageTypeImage) {
+                    ImageMessage *imageMessage = (ImageMessage *)message;
+                    imageMessage.imageUrl = imageUrl;
+                    imageMessage.thumbImageUrl = thumbImageUrl;
+                    [delegate didSendMessage:imageMessage resultCode:output.resultCode];
+                } else {
+                    [delegate didSendMessage:message resultCode:output.resultCode];
+                }
             }
         }); 
     });

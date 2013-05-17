@@ -38,6 +38,7 @@
     
     NSInteger _asIndexDelete;
     NSInteger _asIndexReplay;
+    NSInteger _asIndexLookLarge;
     NSInteger _asIndexCopy;
     NSInteger _asIndexResend;
 //    BOOL _noData;
@@ -281,6 +282,7 @@
 
 - (void)didSendMessage:(PPMessage *)message resultCode:(int)resultCode
 {
+    PPDebug(@"type:%d", message.messageType);
     [self.dataTableView reloadData];
     if (resultCode == 0) {
         if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
@@ -516,6 +518,7 @@
     [message setMessageType:MessageTypeImage];
     [message setImage:image];
     [[ChatService defaultService] sendMessage:message delegate:self];
+    PPDebug(@"message type:%d", message.messageType);
     [self.messageList addObject:message];
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
@@ -596,6 +599,7 @@
     _asIndexDelete = -1;
     _asIndexCopy = -1;
     _asIndexReplay = -1;
+    _asIndexLookLarge = -1;
     _asIndexResend = -1;
     NSInteger start = 0;
     _asIndexDelete = start++;
@@ -603,6 +607,8 @@
         _asIndexReplay = start++;
     }else if(message.messageType == MessageTypeText){
         _asIndexCopy = start++;
+    }else if(message.messageType == MessageTypeImage){
+        _asIndexLookLarge = start ++;
     }
     if (message.status == MessageStatusFail) {
         _asIndexResend = start++;
@@ -627,10 +633,52 @@
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
     [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion size:message.canvasSize];
 }
+
+- (void)enterLargeImage:(PPMessage *)message
+{
+    _selectedMessage = message;
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.canSave = YES;
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
+}
+
+#pragma mark - mwPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (_selectedMessage.messageType == MessageTypeImage)
+    {
+        ImageMessage *imageMessage  = (ImageMessage *)_selectedMessage;
+        return [MWPhoto photoWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
+    }
+    return nil;
+}
+
+
+#pragma mark - 
 - (void)clickMessage:(PPMessage *)message 
   withDrawActionList:(NSArray *)drawActionList
 {
     [self enterReplayController:(DrawMessage *)message];
+}
+
+
+- (void)clickMessage:(PPMessage *)message
+{
+    switch (message.messageType) {
+        case MessageTypeImage:
+            [self enterLargeImage:message];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark options action.
@@ -652,7 +700,12 @@
             tag = ACTION_SHEET_TAG_TEXT;
             otherOperation = NSLS(@"kCopy");            
             break;
+        case MessageTypeImage:
+            tag = ACTION_SHEET_TAG_IMAGE;
+            otherOperation = NSLS(@"kLookLargeImage");
+            break;
         default:
+            _showingActionSheet = NO;
             return;
     }
     [self resetASIndexesOfMessage:message];
@@ -683,7 +736,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
     _showingActionSheet = NO;
     if (_asIndexDelete == buttonIndex) {
         [[ChatService defaultService] deleteMessage:self
@@ -701,6 +753,8 @@
         pasteboard.string = _selectedMessage.text;         
     }else if(_asIndexReplay == buttonIndex && _selectedMessage.messageType == MessageTypeDraw){
         [self enterReplayController:(DrawMessage *)_selectedMessage];
+    }else if(_asIndexLookLarge == buttonIndex && _selectedMessage.messageType == MessageTypeImage){
+        [self enterLargeImage:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
         [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
         [_selectedMessage setCreateDate:[NSDate date]];

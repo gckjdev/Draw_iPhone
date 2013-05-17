@@ -312,6 +312,11 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [cell.timeButton setTitleColor:[UIColor colorWithRed:194/255. green:144/255. blue:105/255. alpha:1] forState:UIControlStateNormal];
     cell.avatarView.userInteractionEnabled = NO;
     
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:cell action:@selector(longPressContentButton:)];
+    longPress.minimumPressDuration = 0.8; //定义按的时间
+    [cell.contentButton addGestureRecognizer:longPress];
+    [longPress release];
+    
     return cell;
 }
 
@@ -332,9 +337,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     PPDebug(@"height1 = %f", height);
 
     switch (message.messageType) {
+            
         case MessageTypeDraw:
             height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
             PPDebug(@"height2.1 = %f", height);
+            break;
+        case MessageTypeImage:
+            height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
             break;
         case MessageTypeText:
         case MessageTypeLocationRequest:
@@ -451,6 +460,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 }
 
 - (IBAction)clickContentButton:(id)sender {
+    if ([delegate respondsToSelector:@selector(clickMessage:)]) {
+        [delegate clickMessage:self.message];
+    }
+}
+
+- (void)longPressContentButton:(id)sender
+{
     //show the action sheet to show the options
     if (delegate && [delegate respondsToSelector:@selector(didLongClickMessage:)]) {
         [delegate didLongClickMessage:self.message];

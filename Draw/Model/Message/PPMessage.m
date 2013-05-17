@@ -56,7 +56,9 @@
 
 + (id)messageWithPBMessage:(PBMessage *)pbMessage
 {
-    return [PPMessage oldMessageWithPBMessage:pbMessage];
+    if ([pbMessage hasType] == NO) {
+        return [PPMessage oldMessageWithPBMessage:pbMessage];
+    }
     
     switch (pbMessage.type) {
         case MessageTypeText:
@@ -407,6 +409,17 @@
     }
     return self;
 }
+
+
+- (PBMessage *)toPBMessage
+{
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [super updatePBMessageBuilder:builder];
+    [builder setImageUrl:self.imageUrl];
+    [builder setThumbImageUrl:self.thumbImageUrl];
+    return [builder build];
+}
+
 
 
 - (void)dealloc
