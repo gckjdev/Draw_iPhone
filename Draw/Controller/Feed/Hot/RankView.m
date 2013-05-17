@@ -17,6 +17,7 @@
 #import "FeedService.h"
 #import "UIViewUtils.h"
 #import "LearnDrawManager.h"
+#import "UIImageExt.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -76,6 +77,8 @@
 }
 
 - (void)dealloc {
+    PPDebug(@"<RankView> = %@, dealloc", self);
+    
     PPRelease(_feed);
     PPRelease(_title);
     PPRelease(_author);
@@ -91,6 +94,18 @@
 
 - (void)updateImage:(UIImage *)image
 {
+    /*
+    if (MIN(image.size.width, image.size.height) > MAX(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))) {
+        
+        CGFloat r = MIN(image.size.width / CGRectGetWidth(self.bounds),
+                        image.size.height / CGRectGetHeight(self.bounds));
+        if (r > 1) {
+            CGSize size = CGSizeMake(image.size.width / r, image.size.height / r);
+            image = [image imageByScalingAndCroppingForSize:size];
+        }
+    }
+    PPDebug(@"<updateImage> image size = %@", NSStringFromCGSize(image.size));
+     */
     [self.drawImage setImage:image];
 }
 
@@ -123,12 +138,12 @@
        
         UIImage *defaultImage = nil;
        
-        if(feed.largeImage){
-            defaultImage = feed.largeImage;
-        }
-        else{
-            defaultImage = [[ShareImageManager defaultManager] unloadBg];
-        }
+//        if(feed.largeImage){
+//            defaultImage = feed.largeImage;
+//        }
+//        else{
+        defaultImage = [[ShareImageManager defaultManager] unloadBg];
+//        }
         [self.drawImage setImageWithURL:url
                        placeholderImage:defaultImage
                                 success:^(UIImage *image, BOOL cached) {
@@ -139,7 +154,7 @@
             [UIView animateWithDuration:1 animations:^{
                 self.drawImage.alpha = 1.0;
             }];
-            feed.largeImage = image;
+//            feed.largeImage = image;
             [self updateImage:image];
         } failure:^(NSError *error) {
             self.drawImage.alpha = 1;

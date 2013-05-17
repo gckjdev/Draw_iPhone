@@ -97,7 +97,10 @@
     return YES;
 }
 
-
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
 
 
 //ContentGameAppProtocol

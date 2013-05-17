@@ -386,7 +386,7 @@
 "kNoFollow" = "No follower yet. Click 'Search User' button below to follow your friends.";
 "kNoFans" = "No fan";
 "kEdit" = "Edit";
-"kSearchUser" = "Search User";
+"kSearchUser" = "Search";
 "kSMSInvite" = "SMS Invite";
 "kWeixinInvite" = "Weixin Invite";
 "kSelectInvitation" = "Select the invitation";
@@ -860,7 +860,7 @@
 "kGroupBuyDescription" = "";
 
 "kRecommendApps" = "App Recommend";
-"kRecommend" = "More";
+"kRecommend" = "Feature";
 
 "kChangeBackgroundTitle" = "Change Background";
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
@@ -874,7 +874,7 @@
 
 //"kParsingData" = "Parsing data...";
 
-"kLatestFeed" = "Latest";
+"kLatestFeed" = "Newest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
 "kWXShareImageName" = "Drawlively Image";
@@ -917,9 +917,9 @@
 "kNoData" = "No data";
 
 "kRankPlayer" = "Player";
-"kRankHistory" = "Annually";
-"kRankHot" = "Weekly";
-"kRankNew" = "Latest";
+"kRankHistory" = "All Time";
+"kRankHot" = "Hot Now";
+"kRankNew" = "Newest";
 "kDrawToMe" = "@Me";
 
 "kNoMyFeed" = "No Feeds. Try to draw and guess?";
@@ -1097,8 +1097,8 @@
 "kAskSureRefuse" = "Are you sure to reject this paint?";
 "kRefuseOpusSuccess" = "Refuse this opus successfully!";
 "kRefuseOpusFail" = "Fail to refuse this opus, try later.";
-"kBlackFriend" = "Black friend";
-"kUnblackFriend" = "Unblack friend";
+"kBlackFriend" = "Black Him/Her";
+"kUnblackFriend" = "Unblack Him/Her";
 "kBlackUserSuccess" = "Add friend to black list successfully!";
 "kUnblackUserSuccess" = "Remove friend from black list successfully!";
 "kBlackList" = "Black";
@@ -1120,8 +1120,8 @@
 "kCNT:" = "CNT:";
 "kCost:" = "COST:";
 "kAlreadyBought" = "✓";
-"kCleanCacheSucc" = "Clear %.2f MB Caches!";
-"kCleanCache" = "Clear Cache";
+"kCleanCacheSucc" = "Clean %.2f MB Caches!";
+"kCleanCache" = "Clean cache";
 "kGiveSuccess" = "Give Success!";
 
 "kNoSaleItemNormal" = "No normal items";
@@ -1177,7 +1177,7 @@
 "kParsingData" = "Parsing data...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";
-"kBloodGroup" = "Blood Group";
+"kBloodGroup" = "Blood";
 "kLocation" = "Location";
 "kOther" = "Other";
 "kInputLocation" = "Location";
@@ -1192,7 +1192,7 @@
 "kGetLocationTitle" = "Locating";
 "kGetLocationMsg" = "Are you sure to enable the location service?";
 "kSNSAccount" = "SNS";
-"kSpecial" = "More Options";
+"kSpecial" = "More";
 
 "kDownloadAppTitle" = "Download Apps";
 "kDownloadAppMessage" = "Go to App Store and download this app to earn ingots now?";
@@ -1268,7 +1268,7 @@
 "kLearnDrawAnimal" = "Animal";
 "kLearnDrawOther" = "Other";
 "kLearnDrawWord" = "Paint";
-"kAddLearnDraw" = "Sell the draw";
+"kAddLearnDraw" = "Sell";
 "kManageLearnDraw" = "Manage draw";
 "kRemoveLearnDraw" = "Remove draw";
 
@@ -1284,13 +1284,13 @@
 
 "kJailBrokenUserIAPTips" = "Your device is Jail-Broken. Please don't use any IAP cracker. Click OK to continue.";
 
-"kNoSaveList" = "No saving message to show...";
+"kNoSaveList" = "Favorite information is not open to others.";
 
 "kLearnDrawSortTypeOption" = "Sort By";
-"kSortedByTime" = "Latest";
+"kSortedByTime" = "Newest";
 "kSortedByBoughtTimes" = "Sold";
 "kSortedByPrice" = "Price";
-"kTime" = "Latest";
+"kTime" = "Newest";
 "kBought" = "Sold";
 "kSNSSubject" = "Share Paints";
 "kDrawAppLink" = "http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
@@ -1320,7 +1320,7 @@
 "kSetContactAvatarSucc" = "Save as contact avatar successfully";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
-"kQuitDirectly" = "NO, Thanks";
+"kQuitDirectly" = "NO";
 "kGuessResult" = "Result";
 "kGoOnGuess" = "Go On";
 "kNoBulletin" = "No bulletin";
@@ -1549,7 +1549,7 @@
 "kCanotSendItemToContestOpus" = "You can't send the same item more than %d times on the same contest opus.";
 "kOpusMy" = "Mine";
 "kOpusRank" = "Top";
-"kOpusNew" = "Latest";
+"kOpusNew" = "Newest";
 "kOnlineUser" = "%d online";
 
 "kZJHFreeCoinsAwardNote" = "Got %d Coins";
@@ -1651,14 +1651,17 @@
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
-"kLittleGeeRecommend" = "Recommend";
+"kLittleGeeRecommend" = "Featured";
 "kLittleGeeDrawTo" = "Draw To";
 "kLittleGeeBegin" = "Draw";
 "kLittleGeeContest" = "Contest";
-"kLittleGee" = "Little Gee";
+"kLittleGee" = "LITTLEGEE";
 "kLittleGeeDrawTitle" = "Input title for paint";
 "kMustHaveTitle" = "Title must not be empty!";
 "kIllegalTitle" = "Illegal Title!";
 "kDefaultDrawWord" = "MyPaint";
 "kNoRunningContest" = "No contest is running!";
+"kPainter" = "Painter";
+"kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
+"kLittleGeeSNSSubject" = "Share Paints";
 /*********************小吉画画国际化字符串结束 ************************/

@@ -20,7 +20,7 @@ typedef enum {
     LittleGeeHomeGalleryTypeWeekly,
     LittleGeeHomeGalleryTypeLatest,
     LittleGeeHomeGalleryTypeRecommend,
-    LittleGeeHomeGalleryTypeFriend
+    LittleGeeHomeGalleryTypePainter
     
 }LittleGeeHomeGalleryType;
 

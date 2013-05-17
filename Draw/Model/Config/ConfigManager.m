@@ -941,7 +941,7 @@
 
 + (NSString*)getSNSShareSubject
 {
-    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:NSLS(@"kSNSSubject")];
+    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:[GameApp getDefaultSNSSubject]];
 }
 + (NSString*)getDrawAppLink
 {
@@ -973,4 +973,13 @@
     return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN" defaultValue:7];
 }
 
++ (float)littleGeeFirstShowOptionsDuration
+{
+    return [MobClickUtils getFloatValueByKey:@"LITTLE_GEE_FIRST_SHOW_OPTIONS_DURATION" defaultValue:15.0];
+}
+
++ (float)littleGeeShowOptionsDuration
+{
+    return [MobClickUtils getFloatValueByKey:@"LITTLE_GEE_SHOW_OPTIONS_DURATION" defaultValue:60.0];
+}
 @end

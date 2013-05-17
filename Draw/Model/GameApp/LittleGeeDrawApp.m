@@ -87,4 +87,31 @@
     //    return @"51c65d7fbef9858a5d8bc60014d33ce2";
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipayxjhh.gckj";
+}
+
+- (NSString*)feedbackTips
+{
+    return NSLS(@"kLittleGeeFeedbackTips");
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return NSLS(@"kLittleGeeSNSSubject");
+}
+
+- (NSString*)sinaWeiboId
+{
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_WEIBO_NICKNAME" defaultValue:@"小吉画画"];
+    //    return @"猜猜画画手机版";
+}
+
+- (NSString*)qqWeiboId
+{
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_WEIBO_ID" defaultValue:@"littleGee"];
+    //    return @"drawlively";
+}
+
 @end

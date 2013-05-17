@@ -161,6 +161,22 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ([_tabManager needResetFrontData]) {
+        [_tabManager resetFrontData];
+        [self.dataTableView reloadData];        
+    }
+
+    [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
@@ -388,4 +404,13 @@
     [self startToLoadDataForTabID:tab.tabID];
     [self serviceLoadDataForTabID:tab.tabID];
 }
+
+- (void)cleanFrontData
+{
+//    if (self.cleanFrontDataWhenViewDisappear) {
+        [_tabManager cleanFrontData];
+        [self.dataTableView reloadData];
+//    }
+}
+
 @end

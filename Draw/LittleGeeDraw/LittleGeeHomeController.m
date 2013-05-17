@@ -41,9 +41,9 @@
 #import "StringUtil.h"
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
-
-#define OPTION_SHEET_FIRST_SHOW_DURATION 6
-#define OPTION_SHEET_SHOW_DURATION  60
+#import "TopPlayer.h"
+#import "TopPlayerView.h"
+#import "ViewUserDetail.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511
@@ -135,10 +135,13 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(50,40))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(60,50))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
+    if (timeInterval == 0) {
+        return;
+    }
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
     if (!_optionSheet) {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
@@ -169,9 +172,29 @@ typedef enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
+}
+
+- (void)showCachedFeedList:(int)tabID
+{
+    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
+    FeedListType type = [self feedListTypeForTabID:tabID];
+    NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
+    if ([feedList count] != 0) {
+        [self finishLoadDataForTabID:tabID resultList:feedList];
+    }
+}
+
+- (void)clickTabButton:(id)sender
+{
+    int tabID = [(UIButton *)sender tag];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    if ([tab.dataList count] == 0) {
+        [self showCachedFeedList:tabID];
+    }
+    [super clickTabButton:sender];
 }
 
 - (void)viewDidLoad
@@ -189,11 +212,12 @@ typedef enum {
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
         if ([[UserManager defaultManager] hasUser]) {
-            [self showOptionSheetForTime:OPTION_SHEET_FIRST_SHOW_DURATION];
+            [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
         }
     }];
     [self registerNetworkDisconnectedNotification];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 #define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
@@ -254,7 +278,7 @@ typedef enum {
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [self showOptionSheetForTime:OPTION_SHEET_SHOW_DURATION];
+                [self showOptionSheetForTime:[ConfigManager littleGeeShowOptionsDuration]];
             }
             
         }break;
@@ -280,7 +304,7 @@ typedef enum {
 #pragma mark - custom action sheet delegate
 - (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (![self isRegistered]) {
+    if (![self isRegistered] && !(actionSheet.tag == DRAW_OPTION_SHEET_TAG && buttonIndex == DrawOptionIndexBegin)) {
         [self toRegister];
         return;
     }
@@ -391,7 +415,10 @@ typedef enum {
         [self toRegister];
         return;
     }
-    [self showFeed:rankView.feed];
+    
+//    [self cleanFrontData];
+    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
+
 }
 
 
@@ -429,6 +456,28 @@ typedef enum {
     }
 }
 
+#define WIDTH_SPACE 1
+- (void)setTopPlayerCell:(UITableViewCell *)cell
+             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
+{
+    CGFloat width = [TopPlayerView getHeight];
+    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat space = WIDTH_SPACE;;
+    CGFloat x = 0;
+    CGFloat y = 0;
+    NSInteger i = 0;
+    for (TopPlayer *player in players) {
+        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
+        [playerView setViewInfo:player];
+        if (isFirstRow) {
+            [playerView setRankFlag:i++];
+        }
+        [cell.contentView addSubview:playerView];
+        playerView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
+
 - (NSObject *)saveGetObjectForIndex:(NSInteger)index
 {
     NSArray *list = [self tabDataList];
@@ -440,7 +489,7 @@ typedef enum {
 
 - (void)clearCellSubViews:(UITableViewCell *)cell{
     for (UIView *view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[RankView class]]) {
+        if ([view isKindOfClass:[RankView class]] || [view isKindOfClass:[TopPlayerView class]]) {
             [view removeFromSuperview];
         }
     }
@@ -474,7 +523,13 @@ typedef enum {
             [list addObject:object];
         }
     }
-    [self setNormalRankCell:cell WithFeeds:list];
+   TableTab *tab = [self currentTab];
+    if([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypePainter){
+        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
+    } else {
+        [self setNormalRankCell:cell WithFeeds:list];
+    }
+    
     
     return cell;
     
@@ -511,6 +566,9 @@ typedef enum {
         case FeedListTypeRecommend: {
             littleGeeType = LittleGeeHomeGalleryTypeRecommend;
         } break;
+        case FeedListTypeTopPlayer: {
+            littleGeeType = LittleGeeHomeGalleryTypePainter;
+        } break;
         default:
             break;
     }
@@ -527,7 +585,7 @@ typedef enum {
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
 {
-    return 15;
+    return [ConfigManager getHotOpusCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -537,25 +595,48 @@ typedef enum {
         LittleGeeHomeGalleryTypeWeekly,
         LittleGeeHomeGalleryTypeLatest,
         LittleGeeHomeGalleryTypeRecommend,
-        LittleGeeHomeGalleryTypeFriend};
+        LittleGeeHomeGalleryTypePainter};
     
     return [self tabIDFromType:types[index]];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"),NSLS(@"kLittleGeeRecommend"),NSLS(@"kFriend")};
+    NSString *titles[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"),NSLS(@"kLittleGeeRecommend"),NSLS(@"kPainter")};
     return titles[index];
 }
+
+- (FeedListType)feedListTypeForTabID:(int)tabID
+{
+    int type = [self typeFromTabID:tabID];
+    switch (type) {
+        case LittleGeeHomeGalleryTypeLatest:
+            return FeedListTypeLatest;
+
+        case LittleGeeHomeGalleryTypeAnnual:
+            return FeedListTypeHistoryRank;
+
+        case LittleGeeHomeGalleryTypeWeekly:
+            return FeedListTypeHot;
+
+        case LittleGeeHomeGalleryTypeRecommend:
+            return FeedListTypeRecommend;
+
+        default:
+            return tabID;
+    }
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
-    int type = [self typeFromTabID:tabID];
     if (tab) {
+        int type = [self typeFromTabID:tabID];
+        
         if (type == LittleGeeHomeGalleryTypeLatest) {
             [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];
-        }else if(type == LittleGeeHomeGalleryTypeFriend){
-//            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+        }else if(type == LittleGeeHomeGalleryTypePainter){
+            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeAnnual) {
             [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeWeekly) {
@@ -563,11 +644,10 @@ typedef enum {
         }
         else if (type == LittleGeeHomeGalleryTypeRecommend){
             [[FeedService defaultService] getFeedList:FeedListTypeRecommend offset:tab.offset limit:tab.limit delegate:self];
-//            [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
+        }else {
+//            [[FeedService defaultService] getFeedList:[self feedListTypeForTabID:tabID] offset:tab.offset limit:tab.limit delegate:self];
         }
-        
     }
-    
 }
 
 #pragma mark - feed service delegate
@@ -588,6 +668,18 @@ typedef enum {
     }
     
 
+}
+
+- (void)didGetTopPlayerList:(NSArray *)playerList
+                 resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetTopPlayerList> list count = %d ", [playerList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:[self tabIDFromType:LittleGeeHomeGalleryTypePainter] resultList:playerList];
+    }else{
+        [self failLoadDataForTabID:[self tabIDFromType:LittleGeeHomeGalleryTypePainter]];
+    }
 }
 
 #define ITEM_SIZE (ISIPAD?CGSizeMake(100, 100):CGSizeMake(60,60))
@@ -733,6 +825,13 @@ typedef enum {
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
+}
+
+- (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
+{
+    TopPlayer *player = topPlayerView.topPlayer;
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
 }
 
 #pragma mark - customize refresh header and footer

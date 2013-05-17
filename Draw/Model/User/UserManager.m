@@ -1358,6 +1358,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)isSuperUser
 {
+//#if DEBUG
+//    return YES;
+//#endif
     return [[BBSPermissionManager defaultManager] canCharge] && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList];
 }
 

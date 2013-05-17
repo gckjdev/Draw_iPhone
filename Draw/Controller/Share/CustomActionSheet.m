@@ -228,6 +228,7 @@
                 badge.titleLabel.textAlignment = UITextAlignmentCenter;
                 badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/5];
                 [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [badge setUserInteractionEnabled:NO];
                 [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
                 [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
                 [actionView addSubview:badge];

@@ -12,6 +12,8 @@
 @interface TableTabManager : NSObject
 {
     NSMutableArray *_tabList;
+    NSMutableArray *_bgList;
+    BOOL _hasCleanFrontData;
 }
 
 - (id)initWithTabIDList:(NSArray *)tabIDs
@@ -36,5 +38,10 @@
 - (void)cleanData;
 
 - (void)reset;
+
+
+- (void)cleanFrontData;
+- (void)resetFrontData;
+- (BOOL)needResetFrontData;
 
 @end
