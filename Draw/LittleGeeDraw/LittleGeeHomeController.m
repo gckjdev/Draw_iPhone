@@ -414,8 +414,10 @@ typedef enum {
         [self toRegister];
         return;
     }
-    [self cleanFrontData];
-    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.01];
+    
+//    [self cleanFrontData];
+    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
+
 }
 
 
