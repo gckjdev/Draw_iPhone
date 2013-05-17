@@ -43,6 +43,7 @@
 #import "EGORefreshTableFooterView.h"
 #import "TopPlayer.h"
 #import "TopPlayerView.h"
+#import "ViewUserDetail.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511
@@ -134,7 +135,7 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(50,40))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(60,50))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
@@ -486,7 +487,7 @@ typedef enum {
 
 - (void)clearCellSubViews:(UITableViewCell *)cell{
     for (UIView *view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[RankView class]]) {
+        if ([view isKindOfClass:[RankView class]] || [view isKindOfClass:[TopPlayerView class]]) {
             [view removeFromSuperview];
         }
     }
@@ -522,15 +523,6 @@ typedef enum {
     }
    TableTab *tab = [self currentTab];
     if([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypePainter){
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-        NSMutableArray *list = [NSMutableArray array];
-        //        PPDebug(@"startIndex = %d",startIndex);
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
-            }
-        }
         [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
     } else {
         [self setNormalRankCell:cell WithFeeds:list];
@@ -651,7 +643,7 @@ typedef enum {
         else if (type == LittleGeeHomeGalleryTypeRecommend){
             [[FeedService defaultService] getFeedList:FeedListTypeRecommend offset:tab.offset limit:tab.limit delegate:self];
         }else {
-            [[FeedService defaultService] getFeedList:[self feedListTypeForTabID:tabID] offset:tab.offset limit:tab.limit delegate:self];
+//            [[FeedService defaultService] getFeedList:[self feedListTypeForTabID:tabID] offset:tab.offset limit:tab.limit delegate:self];
         }
     }
 }
@@ -831,6 +823,13 @@ typedef enum {
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
+}
+
+- (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
+{
+    TopPlayer *player = topPlayerView.topPlayer;
+    
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
 }
 
 #pragma mark - customize refresh header and footer
