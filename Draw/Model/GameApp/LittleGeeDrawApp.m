@@ -102,4 +102,16 @@
     return NSLS(@"kLittleGeeSNSSubject");
 }
 
+- (NSString*)sinaWeiboId
+{
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_WEIBO_NICKNAME" defaultValue:@"小吉画画"];
+    //    return @"猜猜画画手机版";
+}
+
+- (NSString*)qqWeiboId
+{
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_WEIBO_ID" defaultValue:@"littleGee"];
+    //    return @"drawlively";
+}
+
 @end
