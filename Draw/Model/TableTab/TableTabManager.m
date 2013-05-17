@@ -136,4 +136,24 @@
     }
 }
 
+- (void)cleanFrontData
+{
+    _bgList = _tabList;
+    _tabList = nil;
+    _hasCleanFrontData = YES;
+}
+- (void)resetFrontData
+{
+    if (_hasCleanFrontData) {
+        _hasCleanFrontData = NO;
+        _tabList = _bgList;
+        _bgList = nil;
+    }
+}
+- (BOOL)needResetFrontData
+{
+    return _hasCleanFrontData;
+}
+
+
 @end

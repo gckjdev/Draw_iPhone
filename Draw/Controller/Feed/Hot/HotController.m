@@ -65,6 +65,38 @@ typedef enum{
     [super dealloc];
 }
 
+- (void)showCachedFeedList:(int)tabID
+{
+    PPDebug(@"<showCachedFeedList> tab id = %d", tabID);
+    FeedListType type = [self feedListTypeForTabID:tabID];
+    if (type != FeedListTypeUnknow) {
+        NSArray *feedList = [[FeedService defaultService] getCachedFeedList:type];
+        if ([feedList count] != 0) {
+            [self finishLoadDataForTabID:tabID resultList:feedList];
+        }        
+    }
+}
+
+- (FeedListType)feedListTypeForTabID:(int)tabID
+{
+    if(tabID == RankTypePlayer){
+        return FeedListTypeUnknow;
+    }else {
+        return tabID;
+    }
+}
+
+- (void)clickTabButton:(id)sender
+{
+    int tabID = [(UIButton *)sender tag];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    if ([tab.dataList count] == 0) {
+        [self showCachedFeedList:tabID];
+    }
+    [super clickTabButton:sender];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad

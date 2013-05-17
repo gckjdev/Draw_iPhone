@@ -20,6 +20,8 @@ FeedManager *_staticFeedManager = nil;
 
 
 #define FEED_DIR @"feedCache"
+#define FEED_LIST_DATA_SUFFIX @".flist"
+#define FEED_LIST_DIR @"feedListCache"
 #define FEED_IMAGE_DIR @"feed_image"
 #define THUMB_IMAGE_SUFFIX @".png"
 #define LARGE_IMAGE_SUFFIX @"_l.png"
@@ -30,7 +32,8 @@ FeedManager *_staticFeedManager = nil;
     if (self) {
         _storeManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:FEED_DIR];
         _feedImageManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:FEED_IMAGE_DIR];
-//        [self removeOldCache];
+        
+        _feedListStoreManager = [[StorageManager alloc] initWithStoreType:StorageTypeCache directoryName:FEED_LIST_DIR];
     }
     return self;
 }
@@ -39,6 +42,7 @@ FeedManager *_staticFeedManager = nil;
 {
     PPRelease(_feedImageManager);
     PPRelease(_storeManager);
+    PPRelease(_feedListStoreManager);
     [super dealloc];
 }
 
@@ -286,4 +290,31 @@ FeedManager *_staticFeedManager = nil;
     [self removeOldFiles];
     [self removeOldImages];
 }
+
+- (void)cacheFeedDataQueryResponse:(DataQueryResponse *)response
+                            forKey:(NSString *)key
+{
+    if ([key length] != 0) {
+        key = [key stringByAppendingString:FEED_LIST_DATA_SUFFIX];
+        [_feedListStoreManager saveData:[response data] forKey:key];
+    }
+}
+
+- (NSArray *)loadFeedListForKey:(NSString *)key
+{
+    if ([key length] != 0) {
+        key = [key stringByAppendingString:FEED_LIST_DATA_SUFFIX];
+        NSData *data = [_feedListStoreManager dataForKey:key];
+        @try {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:data];
+            NSArray *feedList = response.feedList;
+            return [FeedManager parsePbFeedList:feedList];
+        }
+        @catch (NSException *exception) {
+            return nil;
+        }
+    }
+}
+
+
 @end
