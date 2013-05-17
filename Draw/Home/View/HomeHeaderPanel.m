@@ -83,7 +83,7 @@
     
     [[FeedService defaultService] getFeedList:FeedListTypeHot
                                        offset:0
-                                        limit:TOP_DRAW_NUMBER + 3
+                                        limit:[ConfigManager getHotOpusCountOnce]
                                      delegate:self];        
 }
 

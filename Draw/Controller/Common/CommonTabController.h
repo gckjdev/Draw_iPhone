@@ -49,7 +49,9 @@ typedef enum{
 //common xib and action
 @property(nonatomic, retain)IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
-@property (nonatomic, assign)PullRefreshType pullRefreshType;
+@property(nonatomic, assign)PullRefreshType pullRefreshType;
+//@property(nonatomic, assign)BOOL cleanFrontDataWhenViewDisappear;
+
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickTabButton:(id)sender;
@@ -79,6 +81,7 @@ typedef enum{
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
 - (void)failLoadDataForTabID:(NSInteger)tabID;
 - (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
+- (void)cleanFrontData;
 
 //- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end
