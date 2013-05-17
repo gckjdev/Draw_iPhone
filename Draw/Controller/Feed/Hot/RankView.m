@@ -94,6 +94,7 @@
 
 - (void)updateImage:(UIImage *)image
 {
+    /*
     if (MIN(image.size.width, image.size.height) > MAX(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))) {
         
         CGFloat r = MIN(image.size.width / CGRectGetWidth(self.bounds),
@@ -104,6 +105,7 @@
         }
     }
     PPDebug(@"<updateImage> image size = %@", NSStringFromCGSize(image.size));
+     */
     [self.drawImage setImage:image];
 }
 
