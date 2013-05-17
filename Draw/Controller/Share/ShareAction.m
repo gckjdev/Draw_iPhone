@@ -299,7 +299,7 @@
         else{
              
             if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [UIUtils getAppLink:[ConfigManager appId]]];
+                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
             } else {
                 text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
             }
