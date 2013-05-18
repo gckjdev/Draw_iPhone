@@ -254,7 +254,7 @@ typedef enum{
         WXMediaMessage *message = [WXMediaMessage message];
         [message setThumbImage:paint.thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        message.title = NSLS(@"kWXShareImageName");
+        message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
         ext.imageData = [paint.paintImage data] ;
         message.mediaObject = ext;
         
@@ -363,7 +363,7 @@ typedef enum{
     WXMediaMessage *message = [WXMediaMessage message];
     [message setThumbImage:drawImage];
     WXImageObject *ext = [WXImageObject object];
-    message.title = NSLS(@"kWXShareImageName");
+    message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
     ext.imageData = [drawImage data] ;
     message.mediaObject = ext;
     

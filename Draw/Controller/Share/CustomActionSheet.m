@@ -263,6 +263,7 @@
     
     self.popView = [[[CMPopTipView alloc] initWithCustomViewWithoutBubble:[self createShowViewWithContainerSize:size columns:columns showTitles:shouldShowTitles itemSize:itemSize backgroundImage:backgroundImage]] autorelease];
     _popView.hidden = NO;
+    self.popView.delegate = self;
     [_popView presentPointingAtView:onView inView:view animated:YES];
     self.isVisable = YES;
     
@@ -422,6 +423,15 @@
         return number.intValue;
     }
     return 0;
+}
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    self.isVisable = NO;
+}
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    self.isVisable = NO;
 }
 
 /*
