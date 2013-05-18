@@ -56,11 +56,11 @@ typedef enum {
 }DrawOptionIndex;
 
 typedef enum {
-    PopOptionIndexContest = 0,
+    PopOptionIndexSelf = 0,
+    PopOptionIndexContest,
     PopOptionIndexPK,
     PopOptionIndexBbs,
     PopOptionIndexNotice,
-    PopOptionIndexSelf,
     PopOptionIndexShop,
     PopOptionIndexIngot,
     PopOptionIndexMore,
@@ -147,7 +147,7 @@ typedef enum {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
         for (int i = 0; i < PopOptionCount; i ++) {
-            UIImage* image = [self imageForPopOption:(PopOptionIndexContest+i)];
+            UIImage* image = [self imageForPopOption:i];
             [self.optionSheet addButtonWithImage:image];
         }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
@@ -845,5 +845,7 @@ typedef enum {
 {
     return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)];
 }
+
+
 
 @end
