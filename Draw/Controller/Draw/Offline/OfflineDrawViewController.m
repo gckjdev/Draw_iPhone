@@ -596,9 +596,24 @@
     }
 }
 
+- (void)updateShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:YES];
+    }
+}
+
+- (void)updateNotShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:NO];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateShowBgScreenForPhoto];
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -638,6 +653,7 @@
 {
     [self stopBackupTimer];
     [super viewDidDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -645,6 +661,13 @@
     [super viewDidAppear:animated];
     [self startBackupTimer];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
+}
+
 
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
@@ -722,24 +745,31 @@
             return;
         }
         //if come from feed detail controller
-        if (_startController != nil) {
+        if (isLittleGeeAPP()) {
+            _startController = (_startController == nil)?[HomeController defaultInstance]:_startController;
             [self.navigationController popToViewController:_startController animated:NO];
-            SelectHotWordController *sc = nil;
-            if ([_targetUid length] == 0) {
-                sc = [[[SelectHotWordController alloc] init] autorelease];
+            [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:_startController startController:_startController targetUid:_targetUid];
+        } else {
+            if (_startController != nil) {
+                [self.navigationController popToViewController:_startController animated:NO];
+                SelectHotWordController *sc = nil;
+                if ([_targetUid length] == 0) {
+                    sc = [[[SelectHotWordController alloc] init] autorelease];
+                }else{
+                    sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+                }
+                sc.superController = self.startController;
+                [_startController.navigationController pushViewController:sc animated:NO];
             }else{
-                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-            }
-            sc.superController = self.startController;
-            [_startController.navigationController pushViewController:sc animated:NO];
-        }else{
-            //if come from home controller
-            if ([_targetUid length] == 0) {
-                [HomeController startOfflineDrawFrom:self];    
-            }else{
-                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+                //if come from home controller
+                if ([_targetUid length] == 0) {
+                    [HomeController startOfflineDrawFrom:self];
+                }else{
+                    [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+                }
             }
         }
+        
         if (self.draft) {
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
             self.draft = nil;

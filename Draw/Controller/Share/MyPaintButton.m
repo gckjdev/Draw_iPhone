@@ -15,6 +15,7 @@
 #import "DrawUtils.h"
 #import "ShareCell.h"
 #import "ShareImageManager.h"
+#import "TimeUtils.h"
 
 @implementation MyPaintButton
 
@@ -63,16 +64,19 @@
 {
     self.paint = paint;
     [self.drawImage setImage:paint.thumbImage];
-    
+    NSString* word = paint.drawWord;
+    if (paint.drawWord == nil || paint.drawWord.length == 0) {
+        word = dateToString(paint.createDate);
+    }
     if ([paint.isRecovery boolValue]){
-        NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), paint.drawWord];
+        NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), word];
         [self.drawWord setText:name];
         [self.drawImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
         
         
     }
     else{
-        [self.drawWord setText:paint.drawWord];
+        [self.drawWord setText:word];
     }
 
     [self.myPrintTag setHidden:!paint.drawByMe.boolValue];

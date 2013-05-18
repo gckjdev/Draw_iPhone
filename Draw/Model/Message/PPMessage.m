@@ -106,7 +106,7 @@
         if ([[UserManager defaultManager] isMe:pbMessage.from]) {
             self.friendId = pbMessage.to;
             self.sourceType = SourceTypeSend;
-            self.status = MessageStatusSent;
+            //self.status = MessageStatusSent;
         }else{
             self.friendId = pbMessage.from;
             self.sourceType = SourceTypeReceive;
@@ -406,6 +406,10 @@
     if (self) {
         self.imageUrl = pbMessage.imageUrl;
         self.thumbImageUrl = pbMessage.thumbImageUrl;
+        if (pbMessage.status == MessageStatusFail ||
+            pbMessage.status == MessageStatusSending) {
+            self.image = [UIImage imageWithContentsOfFile:self.imageUrl];
+        }
     }
     return self;
 }

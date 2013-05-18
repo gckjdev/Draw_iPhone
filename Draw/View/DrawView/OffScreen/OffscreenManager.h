@@ -29,6 +29,7 @@
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect; //default OffscreenManager
 + (id)showViewOffscreenManagerWithRect:(CGRect)rect; //default OffscreenManager
 
++ (void)setShowBGOffscreen:(BOOL)show;
 
 - (void)setBGOffscreenImage:(UIImage *)image;
 
