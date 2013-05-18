@@ -415,7 +415,7 @@ typedef enum {
         [self toRegister];
         return;
     }
-    
+    [self hideOptionSheet];
 //    [self cleanFrontData];
     [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
 
@@ -829,6 +829,7 @@ typedef enum {
 
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
 {
+    [self hideOptionSheet];
     TopPlayer *player = topPlayerView.topPlayer;
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
