@@ -596,9 +596,24 @@
     }
 }
 
+- (void)updateShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:YES];
+    }
+}
+
+- (void)updateNotShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:NO];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateShowBgScreenForPhoto];
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -638,6 +653,7 @@
 {
     [self stopBackupTimer];
     [super viewDidDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -645,6 +661,13 @@
     [super viewDidAppear:animated];
     [self startBackupTimer];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
+}
+
 
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081

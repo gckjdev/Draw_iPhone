@@ -210,7 +210,14 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 - (void)updateImageMessageView:(ImageMessage *)message
 {
     [self updateContentButtonFrame];
-    NSURL *url = [NSURL URLWithString:message.thumbImageUrl];
+    
+    NSURL *url = nil;
+    if ((message.status == MessageStatusFail || message.status == MessageStatusSending)&& message.imageUrl) {
+        url = [NSURL fileURLWithPath:message.imageUrl];
+    } else {
+        url = [NSURL URLWithString:message.thumbImageUrl];
+    }
+    
     [self.contentButton setImageWithURL:url
                        placeholderImage:nil
                                 success:^(UIImage *image, BOOL cached) {
@@ -331,16 +338,16 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 {
     CGFloat height = [ChatDetailCell contentStartY:showTime];
 
-    PPDebug(@"<getCellHeight> text = %@, type = %d", message.text,message.messageType);
+    //PPDebug(@"<getCellHeight> text = %@, type = %d", message.text,message.messageType);
     
     
-    PPDebug(@"height1 = %f", height);
+    // PPDebug(@"height1 = %f", height);
 
     switch (message.messageType) {
             
         case MessageTypeDraw:
             height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
-            PPDebug(@"height2.1 = %f", height);
+            //PPDebug(@"height2.1 = %f", height);
             break;
         case MessageTypeImage:
             height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
@@ -352,12 +359,12 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         {
             CGSize size = [ChatDetailCell sizeForMessageView:message.text];
             height += size.height;
-            PPDebug(@"height2.2 = %f", height);
+            //PPDebug(@"height2.2 = %f", height);
             break;
         }
     }
     height += SPACE_CONTENT_BOTTOM;
-    PPDebug(@"total height = %f", height);
+//    PPDebug(@"total height = %f", height);
     return height;
 }
 
