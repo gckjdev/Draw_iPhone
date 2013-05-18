@@ -737,12 +737,12 @@
 
 "kChatTitle" = "Send Message";
 
-"kGuessUserDraw_MyDraw" = "my draw";
-"kGuessRightDesc_MyDraw" = "Guessed my drawing: [%@].";
-"kTryGuessDesc_MyDraw" = "Tried to guess my drawing: [%@].";
-"kGuessRightDescNoWord_MyDraw" = "Guessed my drawing.";
-"kTryGuessDescNoWord_MyDraw" = "Tried to guess my drawing.";
-"kFeedDetail_Me" = "My Drawing";
+"kGuessUserDraw_MyDraw" = "my paint";
+"kGuessRightDesc_MyDraw" = "Guessed my paint: [%@].";
+"kTryGuessDesc_MyDraw" = "Tried to guess my paint: [%@].";
+"kGuessRightDescNoWord_MyDraw" = "Guessed my paint.";
+"kTryGuessDescNoWord_MyDraw" = "Tried to guess my paint.";
+"kFeedDetail_Me" = "My Paint";
 "kUserFeedTitle_Me" = "My Timeline";
 
 "kOnlineResultTitle" = "Turn Complete";
@@ -957,6 +957,12 @@
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
+
+"kSummaryOfDraw_Me" = "Comment my opus: [%@].";
+"kSummaryOfDrawNoWord_Me" = "Comment my opus.";
+"kSummaryOfGuess_Me" = "Reply to my guessing.";
+"kSummaryOfSendItem_Me" = "Reply to my expression.";
+"kSummaryOfComment_Me" = "Reply to my comment: %@.";
 
 "kAskLocationTitle" = "Location Request";
 "kReplyLocationTitle" = "Reply Request";

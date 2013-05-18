@@ -988,6 +988,12 @@
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
 
+"kSummaryOfDraw_Me" = "评论我的画: [%@]";
+"kSummaryOfDrawNoWord_Me" = "评论我的画";
+"kSummaryOfGuess_Me" = "回复我的猜画";
+"kSummaryOfSendItem_Me" = "回复我的表态: %@";
+"kSummaryOfComment_Me" = "回复我的评论: %@";
+
 "kAskLocationTitle" = "定位请求";
 "kReplyLocationTitle" = "回复请求";
 "kShowMyLocationTitle" = "我的位置";

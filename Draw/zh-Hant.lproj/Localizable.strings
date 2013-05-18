@@ -974,6 +974,12 @@
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
 
+"kSummaryOfDraw_Me" = "評論我的畫: [%@]";
+"kSummaryOfDrawNoWord_Me" = "評論我的畫";
+"kSummaryOfGuess_Me" = "回复我的猜畫";
+"kSummaryOfSendItem_Me" = "回复我的表態: %@";
+"kSummaryOfComment_Me" = "回复我的評論: %@";
+
 "kCommentMyOpus" = "評論我的畫。";
 "kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
 "kCanotSendItemToContestOpus" = "不能在同一個比賽作品上使用超過%d次同樣的道具";
