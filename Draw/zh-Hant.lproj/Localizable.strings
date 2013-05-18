@@ -681,7 +681,7 @@
 "kMyDrawing" = "我的[%@]";
 "kDrawToHim" = "畫幅畫給TA";
 "kExploreHim" = "TA的作品";
-"kPlayWithHim" = "和TA一起玩猜猜畫畫";
+"kPlayWithHim" = "和TA一起玩";
 "kChatToHim" = "搭個訕";
 
 
@@ -884,10 +884,10 @@
 "kLatestFeed" = "最新";
 
 "kShareToWeiXinTitle" = "分享到微信";
-"kWXShareImageName" = "猜猜畫畫美圖";
+"kWXShareImageName" = "%@美圖";
 
 "kShareToWeiXinTitle" = "分享到微信";
-"kWXShareImageName" = "猜猜畫畫美圖";
+"kWXShareImageName" = "%@美圖";
 
 "kFeedbackTips" = "歡迎加入猜猜畫畫玩家QQ群:228119679, 關注官方微博@猜猜畫畫手機版";
 "kPlayEnd" = "結束播放";
@@ -1079,9 +1079,9 @@
 "kHotWordsNote" = "[消耗一個錦囊]";
 "kSystemWords" = "系統詞庫";
 
-"kDefaultWaterMark" = "@猜猜畫畫";
+"kDefaultWaterMark" = "@猜猜畫畫";//useless
 
-"kWeiboShareMessage" = "我在玩%@，快來猜猜這是什麼？A、[%@]B、[%@]C、[%@]D、[%@] E、[以上皆不是] #猜猜畫畫美圖分享# http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
+"kWeiboShareMessage" = "我在玩%@，快來猜猜這是什麼？A、[%@]B、[%@]C、[%@]D、[%@] E、[以上皆不是] #猜猜畫畫美圖分享# http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";//useless
 
 
 "kRevoking" = "撤銷上一筆中...";
@@ -1094,7 +1094,7 @@
 "kDrawAPicture" = "畫一幅畫";
 
 "kNewDrawVersionTip" = "當前應用版本比較舊，可能不支持部分畫畫效果，建議升級。";
-"kVersionNotSupport" = "您的猜猜畫畫版本可能比較舊，暫時不支持這一功能，建議升級。";
+"kVersionNotSupport" = "當前應用版本可能比較舊，暫時不支持這一功能，建議升級。";
 "kRecovery" = "恢復";
 "kNotBindMailMessage" = "您還沒設置您的郵箱賬戶，請在系統設置裡面設置。";
 "kTypeRoom" = "打字房";
@@ -1667,4 +1667,5 @@
 "kPainter" = "畫家";
 "kLittleGeeFeedbackTips" = "歡迎加入小吉畫畫玩家QQ群:228119679, 關注官方微博@小吉畫畫";
 "kLittleGeeSNSSubject" = "小吉畫畫美圖分享";
+"kLittleGeeAppLink" = "";
 /*********************小吉画画国际化字符串结束 ************************/

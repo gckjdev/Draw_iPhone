@@ -681,7 +681,7 @@
 
 + (NSString*)getShareImageWaterMark
 {
-    return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:NSLS(@"kDefaultWaterMark")];
+    return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:[UIUtils getAppName]];
 }
 
 + (int)getMaxCountForFetchFreeCoinsOneDay

@@ -877,7 +877,7 @@
 "kLatestFeed" = "Newest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
-"kWXShareImageName" = "Drawlively Image";
+"kWXShareImageName" = "%@ Image";
 
 "kFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @猜猜画画手机版";
 
@@ -1052,13 +1052,13 @@
 
 "kDonotSave" = "No";
 
-"kDefaultWaterMark" = "@Draw Lively";
+"kDefaultWaterMark" = "@Draw Lively";//useless
 
 "kAddOpusDesc" = "Add some words...";
 "kTwoSpaceCancel" = "Cancel";
 "kTwoSpaceConfirm" = "Confirm";
 
-"kWeiboShareMessage" = "I'm playing %@, guess what's this？A、[%@]B、[%@]C、[%@]D、[%@] E、None of all above  http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
+"kWeiboShareMessage" = "I'm playing %@, guess what's this？A、[%@]B、[%@]C、[%@]D、[%@] E、None of all above  http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";//useless
 
 "kRevoking" = "Revoking...";
 "kCannotShowYourself" = "Oh, you are trying to view yourself!";
@@ -1664,4 +1664,5 @@
 "kPainter" = "Painter";
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
+"kLittleGeeAppLink" = "";
 /*********************小吉画画国际化字符串结束 ************************/
