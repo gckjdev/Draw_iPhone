@@ -28,6 +28,7 @@ typedef enum{
     RankTypeHistory = FeedListTypeHistoryRank,
     RankTypeHot = FeedListTypeHot,
     RankTypeNew = FeedListTypeLatest,
+    RankTypeRecommend = FeedListTypeRecommend,
     
 }RankType;
 
@@ -276,6 +277,18 @@ typedef enum{
             }
         }
         [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
+    }else if(tab.tabID == RankTypeRecommend){
+        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+        NSMutableArray *list = [NSMutableArray array];
+        //        PPDebug(@"startIndex = %d",startIndex);
+        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+            NSObject *object = [self saveGetObjectForIndex:i];
+            if (object) {
+                [list addObject:object];
+            }
+        }
+        [self setNormalRankCell:cell WithFeeds:list];
+        
     }
     
     return cell;
@@ -319,7 +332,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return 5;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -327,20 +340,20 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {RankTypePlayer,RankTypeHistory,RankTypeHot,RankTypeNew};
+    NSInteger tabId[] = {RankTypePlayer,RankTypeHistory,RankTypeHot,RankTypeNew, RankTypeRecommend};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoRankPlayer"),NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"),NSLS(@"kNoRankNew")};
+    NSString *tabDesc[] = {NSLS(@"kNoRankPlayer"),NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"),NSLS(@"kNoRankNew"), NSLS(@"kNoRecommend")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kRankPlayer"),NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew")};
+    NSString *tabTitle[] = {NSLS(@"kRankPlayer"),NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"), NSLS(@"kLittleGeeRecommend")};
     
     return tabTitle[index];
 
