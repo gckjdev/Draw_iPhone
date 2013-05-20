@@ -187,6 +187,7 @@ typedef enum {
     }
     TableTab *tab = [_tabManager tabForID:tabID];
     tab.status = TableTabStatusUnload;
+    tab.offset = 0;
 }
 
 - (void)clickTabButton:(id)sender
