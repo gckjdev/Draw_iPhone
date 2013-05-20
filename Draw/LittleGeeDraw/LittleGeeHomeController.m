@@ -193,7 +193,7 @@ typedef enum {
     TableTab *tab = [_tabManager tabForID:tabID];
     if ([tab.dataList count] == 0) {
         [self showCachedFeedList:tabID];
-    }
+    }   
     [super clickTabButton:sender];
 }
 
@@ -349,7 +349,7 @@ typedef enum {
                 [BulletinView showBulletinInController:self];
             } break;
             case PopOptionIndexBbs: {
-                [[StatisticManager defaultManager] setBbsActionCount:0];
+//                [[StatisticManager defaultManager] setBbsActionCount:0];
                 BBSBoardController *bbs = [[BBSBoardController alloc] init];
                 [self.navigationController pushViewController:bbs animated:YES];
                 [bbs release];
