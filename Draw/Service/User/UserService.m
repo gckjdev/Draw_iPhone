@@ -1180,7 +1180,11 @@ static UserService* _defaultUserService;
     });
 
 }
-- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate
+
+- (void)getTopPlayerWithType:(int)type
+                      offset:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    delegate:(id<UserServiceDelegate>)delegate
 {
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
@@ -1190,9 +1194,10 @@ static UserService* _defaultUserService;
         CommonNetworkOutput* output = [GameNetworkRequest
                                        getTopPalyerList:SERVER_URL
                                        appId:appId
-                                       gameId:gameId 
-                                       userId:userId 
-                                       offset:offset 
+                                       gameId:gameId
+                                       userId:userId
+                                       type:type
+                                       offset:offset
                                        limit:limit];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -1201,17 +1206,65 @@ static UserService* _defaultUserService;
                 topPlayerList = [NSMutableArray array];
                 for (NSDictionary *dict in output.jsonDataArray) {
                     if ([dict isKindOfClass:[NSDictionary class]]) {
-                        TopPlayer *topPlayer = [[TopPlayer alloc] initWithDict:dict];                        
+                        TopPlayer *topPlayer = [[TopPlayer alloc] initWithDict:dict];
                         [topPlayerList addObject:topPlayer];
                     }
                 }
-            }            
+            }
             if (delegate && [delegate respondsToSelector:@selector(didGetTopPlayerList:resultCode:)]) {
-                [delegate didGetTopPlayerList:topPlayerList 
+                [delegate didGetTopPlayerList:topPlayerList
                                    resultCode:output.resultCode];
             }
         });
     });
+}
+
+
+- (void)getTopPlayerByScore:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate
+{
+    [self getTopPlayerWithType:TOP_PLAYER_BY_SCORE
+                        offset:offset
+                         limit:limit
+                      delegate:delegate];
+}
+
+- (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate
+{
+    [self getTopPlayerWithType:TOP_PLAYER_BY_LEVEL
+                        offset:offset
+                         limit:limit
+                      delegate:delegate];
+    
+//    dispatch_async(workingQueue, ^{
+//        NSString *appId = [ConfigManager appId];
+//        NSString *gameId = [ConfigManager gameId];
+//        NSString *userId = [[UserManager defaultManager] userId];
+//        
+//        CommonNetworkOutput* output = [GameNetworkRequest
+//                                       getTopPalyerList:SERVER_URL
+//                                       appId:appId
+//                                       gameId:gameId 
+//                                       userId:userId 
+//                                       offset:offset 
+//                                       limit:limit];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSMutableArray *topPlayerList = nil;
+//            if (output.resultCode == ERROR_SUCCESS) {
+//                topPlayerList = [NSMutableArray array];
+//                for (NSDictionary *dict in output.jsonDataArray) {
+//                    if ([dict isKindOfClass:[NSDictionary class]]) {
+//                        TopPlayer *topPlayer = [[TopPlayer alloc] initWithDict:dict];                        
+//                        [topPlayerList addObject:topPlayer];
+//                    }
+//                }
+//            }            
+//            if (delegate && [delegate respondsToSelector:@selector(didGetTopPlayerList:resultCode:)]) {
+//                [delegate didGetTopPlayerList:topPlayerList 
+//                                   resultCode:output.resultCode];
+//            }
+//        });
+//    });
 }
 
 - (void)superBlackUser:(NSString *)targetUserId

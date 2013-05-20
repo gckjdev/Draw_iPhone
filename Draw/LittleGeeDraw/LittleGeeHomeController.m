@@ -642,7 +642,7 @@ typedef enum {
         if (type == LittleGeeHomeGalleryTypeLatest) {
             [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];
         }else if(type == LittleGeeHomeGalleryTypePainter){
-            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+            [[UserService defaultService] getTopPlayerByScore:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeAnnual) {
             [[FeedService defaultService] getFeedList:FeedListTypeHistoryRank offset:tab.offset limit:tab.limit delegate:self];
         }else if (type == LittleGeeHomeGalleryTypeWeekly) {

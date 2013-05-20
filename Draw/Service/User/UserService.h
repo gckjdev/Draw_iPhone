@@ -13,6 +13,11 @@ typedef enum {
     BLACK_USER_TYPE_DEVICEID,
 }BlackUserType;
 
+typedef enum{
+    TOP_PLAYER_BY_LEVEL = 1,
+    TOP_PLAYER_BY_SCORE = 2,
+}TopUserType;
+
 typedef enum {
     BLACK_ACTION_TYPE_BLACK = 0,
     BLACK_ACTION_TYPE_UNBLACK,
@@ -118,6 +123,7 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
 
+- (void)getTopPlayerByScore:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
 
 - (void)superBlackUser:(NSString*)targetUserId
                   type:(BlackUserType)type

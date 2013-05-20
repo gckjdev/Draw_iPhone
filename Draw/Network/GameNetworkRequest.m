@@ -2749,6 +2749,7 @@
                                     appId:(NSString*)appId 
                                   gameId:(NSString*)gameId 
                                   userId:(NSString *)userId
+                                    type:(int)type
                                    offset:(NSInteger)offset
                                     limit:(NSInteger)limit
 {
@@ -2763,6 +2764,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         return str;
     };
     
