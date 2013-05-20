@@ -746,10 +746,8 @@
 "kTomatoStatus" = "新番茄(%d)";
 
 
-"kOpusDelete" = "不好意思，这幅作品已经被删除。";
 "kChatTitle" = "发送消息";
-
-"kOpusDelete" = "不好意思，这幅作品已经被删除了。";
+"kOpusDelete" = "不好意思，该作品已经被删除了。";
 
 "kGuessUserDraw_MyDraw" = "正在猜我的画";
 "kGuessRightDesc_MyDraw" = "猜对了我画的 [%@]。";
@@ -1333,7 +1331,7 @@
 "kNoBulletin" = "暂无公告";
 
 "kLookLargeImage" = "查看大图";
-
+"kNoRecommend" = "暂无推荐";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

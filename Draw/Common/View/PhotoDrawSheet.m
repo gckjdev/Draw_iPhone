@@ -111,10 +111,11 @@
 }
 
 #pragma mark -- UIImagePickerControllerDelegate
-#define MAX_LEN_CUSTOM 1024.0
+#define MAX_LEN_CUSTOM 480.0
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
+//    NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
+    NSString *infoKey = UIImagePickerControllerOriginalImage;
     UIImage *image = [info objectForKey:infoKey];
     
     
@@ -125,24 +126,57 @@
     }
     
     if (image != nil){
-        image = [image fixOrientation];
-        
-        PPDebug(@"image width:%f height:%f", image.size.width, image.size.height);
-        
-        CGFloat maxLen = (image.size.width > image.size.height ? image.size.width : image.size.height);
-        if (maxLen > MAX_LEN_CUSTOM) {
-            CGFloat mul = MAX_LEN_CUSTOM / maxLen;
-            CGSize customSize;
-            if (maxLen == image.size.width) {
-                customSize = CGSizeMake(MAX_LEN_CUSTOM, image.size.height * mul);
-            }else {
-                customSize = CGSizeMake(image.size.width * mul, MAX_LEN_CUSTOM);
-            }
-            image = [UIImage createRoundedRectImage:image size:customSize];
-        }
-        
-        [self useSelectedBgImage:image];
+//        image = [image fixOrientation];
+//        
+//        PPDebug(@"image width:%f height:%f", image.size.width, image.size.height);
+//        
+//        CGFloat maxLen = (image.size.width > image.size.height ? image.size.width : image.size.height);
+//        if (maxLen > MAX_LEN_CUSTOM) {
+//            CGFloat mul = MAX_LEN_CUSTOM / maxLen;
+//            CGSize customSize;
+//            if (maxLen == image.size.width) {
+//                customSize = CGSizeMake(MAX_LEN_CUSTOM, image.size.height * mul);
+//            }else {
+//                customSize = CGSizeMake(image.size.width * mul, MAX_LEN_CUSTOM);
+//            }
+//            image = [UIImage createRoundedRectImage:image size:customSize];
+//        }
+//        
+//        [self useSelectedBgImage:image];
+         [NSThread detachNewThreadSelector:@selector(handleImage:) toTarget:self withObject:image];
     }
+}
+
+- (void)handleImage:(UIImage *)image {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    CGFloat maxLen = (image.size.width > image.size.height ? image.size.width : image.size.height);
+    
+    CGSize newSize;
+    if (maxLen > MAX_LEN_CUSTOM) {
+        CGFloat mul = MAX_LEN_CUSTOM / maxLen;
+        if (maxLen == image.size.width) {
+            newSize = CGSizeMake(MAX_LEN_CUSTOM, image.size.height * mul);
+        }else {
+            newSize = CGSizeMake(image.size.width * mul, MAX_LEN_CUSTOM);
+        }
+    } else {
+        newSize = image.size;
+    }
+    
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    [self useSelectedBgImage:newImage];
+    
+    [pool release];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

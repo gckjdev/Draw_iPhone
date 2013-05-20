@@ -224,9 +224,9 @@
             
             int badgeCount = [self badgeCountForIndex:i];
             if (badgeCount > 0) {
-                UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.4, actionViewWidth*0.4)] autorelease];
+                UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
                 badge.titleLabel.textAlignment = UITextAlignmentCenter;
-                badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/5];
+                badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
                 [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [badge setUserInteractionEnabled:NO];
                 [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];

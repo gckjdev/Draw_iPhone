@@ -743,10 +743,9 @@
 "kFlowerStatus" = "新鮮花(%d)";
 "kTomatoStatus" = "新番茄(%d)";
 
-"kOpusDelete" = "不好意思，這幅作品已經被刪除。";
 "kChatTitle" = "發送消息";
 
-"kOpusDelete" = "不好意思，這幅作品已經被刪除了。";
+"kOpusDelete" = "不好意思，该作品已經被刪除了。";
 
 "kGuessUserDraw_MyDraw" = "正在猜我的畫";
 "kGuessRightDesc_MyDraw" = "猜對了我畫的 [%@]。";
@@ -1314,6 +1313,7 @@
 "kNoBulletin" = "暫無公告";
 
 "kLookLargeImage" = "查看大圖";
+"kNoRecommend" = "暫無推薦";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

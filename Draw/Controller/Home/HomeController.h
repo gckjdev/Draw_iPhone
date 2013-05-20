@@ -15,7 +15,7 @@
 #import "NotificationManager.h"
 #import "UserService.h"
 #import "SuperHomeController.h"
-
+#import "ContestService.h"
 #import "WallService.h"
 #import "DrawHomeControllerProtocol.h"
 
@@ -23,7 +23,7 @@
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate, DrawHomeControllerProtocol>
+@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate, DrawHomeControllerProtocol, ContestServiceDelegate>
 {
     BOOL        _isTryJoinGame;  
     UserManager *_userManager;
