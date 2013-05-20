@@ -515,7 +515,7 @@
     ImageMessage *message = [[[ImageMessage alloc] init] autorelease];
     [self constructMessage:message];
     [message setMessageType:MessageTypeImage];
-    [message setText:NSLS(@"photo")];
+    [message setText:NSLS(@"kImageMessage")];
     [message setImage:image];
     [[ChatService defaultService] sendMessage:message delegate:self];
     PPDebug(@"message type:%d", message.messageType);
