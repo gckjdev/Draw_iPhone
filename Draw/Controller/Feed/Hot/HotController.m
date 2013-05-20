@@ -78,6 +78,7 @@ typedef enum{
     }
     TableTab *tab = [_tabManager tabForID:tabID];
     tab.status = TableTabStatusUnload;
+    tab.offset = 0;
 }
 
 - (FeedListType)feedListTypeForTabID:(int)tabID
@@ -97,6 +98,7 @@ typedef enum{
         [self showCachedFeedList:tabID];
     }
     [super clickTabButton:sender];
+    
 }
 
 
@@ -384,9 +386,9 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        for (DrawFeed *feed in feedList) {
+//        for (DrawFeed *feed in feedList) {
 //            PPDebug(@"%d: feedId = %@, word = %@", i++, feed.feedId,feed.wordText);
-        }
+//        }
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{
         [self failLoadDataForTabID:type];
