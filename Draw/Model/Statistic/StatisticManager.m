@@ -21,6 +21,7 @@ static StatisticManager *_globalStatisticManager;
 @synthesize roomCount;
 @synthesize bbsActionCount;
 //@synthesize bulletinCount;
+@synthesize newContestCount;
 
 + (StatisticManager *)defaultManager
 {

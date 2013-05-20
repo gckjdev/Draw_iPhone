@@ -208,7 +208,7 @@
     long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];
-    
+    [self updateBadgeWithType:HomeMenuTypeDrawContest badge:[manager newContestCount]];
     [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     
 }

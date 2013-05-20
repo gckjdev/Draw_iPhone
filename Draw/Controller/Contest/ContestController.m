@@ -17,6 +17,8 @@
 #import "ShareImageManager.h"
 #import "UICustomPageControl.h"
 #import "OfflineDrawViewController.h"
+#import "ContestManager.h"
+#import "StatisticManager.h"
 
 @implementation ContestController
 @synthesize noContestTipLabel = _noContestTipLabel;
@@ -181,6 +183,8 @@
             [_noContestTipLabel setHidden:NO];
             [self.pageControl setNumberOfPages:0];
         }
+        [[ContestManager defaultManager] updateHasReadContestList:contestList];
+        [[StatisticManager defaultManager] setNewContestCount:0];
     }else{
 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];

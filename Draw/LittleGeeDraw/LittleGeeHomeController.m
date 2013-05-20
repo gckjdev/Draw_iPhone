@@ -44,6 +44,7 @@
 #import "TopPlayer.h"
 #import "TopPlayerView.h"
 #import "ViewUserDetail.h"
+#import "ContestManager.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511
@@ -68,7 +69,7 @@ typedef enum {
 }PopOptionIndex;
 
 @interface LittleGeeHomeController () {
-    
+    BOOL _isJoiningContest;
 }
 
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
@@ -135,7 +136,7 @@ typedef enum {
     }
 }
 
-#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(100,80):CGSizeMake(60,50))
+#define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(120,80):CGSizeMake(60,40))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
 {
@@ -217,32 +218,33 @@ typedef enum {
             [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
         }
     }];
+    [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [self registerNetworkDisconnectedNotification];
     // Do any additional setup after loading the view from its nib.
     
 }
 
-#define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
-- (void)initTabButtons
-{
-    [super initTabButtons];
-    NSArray* tabList = [_tabManager tabList];
-    NSInteger index = 0;
-    for(TableTab *tab in tabList){
-        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        
-        //text color
-        [button setTitleColor:OPAQUE_COLOR(37, 161, 126) forState:UIControlStateSelected];
-        
-        //bg image
-        [button setBackgroundImage:nil forState:UIControlStateSelected];
-        [button setBackgroundImage:nil forState:UIControlStateNormal];
-        
-        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:TAB_BTN_FONT_SIZE]];
-        
-        index++;
-    }
-}
+//#define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
+//- (void)initTabButtons
+//{
+//    [super initTabButtons];
+//    NSArray* tabList = [_tabManager tabList];
+//    NSInteger index = 0;
+//    for(TableTab *tab in tabList){
+//        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+//        
+//        //text color
+//        [button setTitleColor:OPAQUE_COLOR(37, 161, 126) forState:UIControlStateSelected];
+//        
+//        //bg image
+//        [button setBackgroundImage:nil forState:UIControlStateSelected];
+//        [button setBackgroundImage:nil forState:UIControlStateNormal];
+//        
+//        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:TAB_BTN_FONT_SIZE]];
+//        
+//        index++;
+//    }
+//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -329,6 +331,7 @@ typedef enum {
             } break;
             case DrawOptionIndexContest: {
                 [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:1 delegate:self];
+                _isJoiningContest = YES;
             } break;
             default:
                 break;
@@ -818,15 +821,25 @@ typedef enum {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
         return;
     }
-    Contest* contest = [contestList objectAtIndex:0];
-    if ([contest joined]) {
-        [OfflineDrawViewController startDrawWithContest:contest fromController:self startController:self animated:YES];
-    } else {
-        StatementController *sc = [[StatementController alloc] initWithContest:contest];
-        sc.superController = self;
-        [self.navigationController pushViewController:sc animated:YES];
-        [sc release];
+    
+    if (code == 0) {
+        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
     }
+    [self updateAllBadge];
+    
+    if (_isJoiningContest) {
+        _isJoiningContest = NO;
+        Contest* contest = [contestList objectAtIndex:0];
+        if ([contest joined]) {
+            [OfflineDrawViewController startDrawWithContest:contest fromController:self startController:self animated:YES];
+        } else {
+            StatementController *sc = [[StatementController alloc] initWithContest:contest];
+            sc.superController = self;
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];
+        }
+    }
+    
 }
 
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView

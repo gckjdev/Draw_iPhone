@@ -93,6 +93,7 @@
 #import "VersionUpdateView.h"
 #import "GameAdWallService.h"
 #import "ChargeController.h"
+#import "ContestManager.h"
 
 @interface HomeController()
 {
@@ -160,7 +161,7 @@
     else{
         self.recommendButton.hidden = YES;
     }
-    
+    [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [super viewDidLoad];
     
     [self initRecommendButton];
@@ -860,6 +861,15 @@
     //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
+}
+
+- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
+{
+    if (code == 0) {
+        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
+    }
+    [self updateAllBadge];
+    
 }
 
 @end
