@@ -125,7 +125,6 @@
 - (void)dealloc
 {
     PPRelease(_offscreenList);
-//    PPRelease(_gridOffscreen);
     PPRelease(_bgOffscreen);
     [super dealloc];
 }

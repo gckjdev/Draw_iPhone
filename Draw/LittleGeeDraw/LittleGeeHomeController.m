@@ -185,6 +185,8 @@ typedef enum {
     if ([feedList count] != 0) {
         [self finishLoadDataForTabID:tabID resultList:feedList];
     }
+    TableTab *tab = [_tabManager tabForID:tabID];
+    tab.status = TableTabStatusUnload;
 }
 
 - (void)clickTabButton:(id)sender
