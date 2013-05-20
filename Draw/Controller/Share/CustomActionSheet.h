@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HGQuadCurveMenu.h"
+#import "CMPopTipView.h"
 @class CustomActionSheet;
 @class CMPopTipView;
 
@@ -19,7 +20,7 @@
 @end
 
 
-@interface CustomActionSheet : UIView <HGQuadCurveMenuDelegate>
+@interface CustomActionSheet : UIView <HGQuadCurveMenuDelegate, CMPopTipViewDelegate>
 
 @property(nonatomic,assign) id<CustomActionSheetDelegate> delegate;    // weak reference
 //@property(nonatomic,copy) NSString *title;

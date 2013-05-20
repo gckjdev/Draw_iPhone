@@ -69,7 +69,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.inviteLabel.hidden =YES;
-    self.inviteLabel.text = NSLS(@"kRegisterToEnter");
+    self.inviteLabel.text = [NSString stringWithFormat:NSLS(@"kRegisterToEnter"), [UIUtils getAppName]];
     self.promptLabel.text = NSLS(@"kRegisterPromptLabel");
     self.titleLabel.text = [UIUtils getAppName];
     self.userIdTextField.placeholder = NSLS(@"kEnterEmail");

@@ -167,7 +167,7 @@
 
 - (NSString*)shareEmailSubject
 {
-    return NSLS(@"kEmail_subject");
+    return [NSString stringWithFormat:NSLS(@"kEmail_subject"), [UIUtils getAppName]];
 }
 
 - (NSString *)upgradeMessage:(int)newLevel

@@ -282,7 +282,6 @@
 
 - (void)didSendMessage:(PPMessage *)message resultCode:(int)resultCode
 {
-    PPDebug(@"type:%d", message.messageType);
     [self.dataTableView reloadData];
     if (resultCode == 0) {
         if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
@@ -656,7 +655,13 @@
     if (_selectedMessage.messageType == MessageTypeImage)
     {
         ImageMessage *imageMessage  = (ImageMessage *)_selectedMessage;
-        return [MWPhoto photoWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
+        NSURL *url = nil;
+        if (imageMessage.status == MessageStatusFail) {
+            url = [NSURL fileURLWithPath:imageMessage.imageUrl];
+        } else {
+            url = [NSURL URLWithString:imageMessage.imageUrl];
+        }
+        return [MWPhoto photoWithURL:url];
     }
     return nil;
 }
@@ -740,13 +745,18 @@
     if (_asIndexDelete == buttonIndex) {
         [[ChatService defaultService] deleteMessage:self
                                       messageList:[NSArray arrayWithObject:_selectedMessage]];
-                
+
+        if (_selectedMessage.messageType == MessageTypeImage){
+            if (_selectedMessage.status == MessageStatusSending || _selectedMessage.status == MessageStatusFail) {
+                [PPMessageManager removeLocalImage:[(ImageMessage *)_selectedMessage thumbImageUrl]];
+            }
+        }
+        
         NSInteger row = [self.messageList indexOfObject:_selectedMessage];
         NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
         NSArray *indexPaths = [NSArray arrayWithObject:path];
         [self.messageList removeObject:_selectedMessage];
         [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        
     }else if(_asIndexCopy == buttonIndex && _selectedMessage.messageType == MessageTypeText)
     {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];

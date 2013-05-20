@@ -14,7 +14,7 @@
 
 /*********************** Notification begin *************************/
 //before 4.5 version
-"kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";
+"kPushMessage" = "%@ 新建了一個好友房間——\"%@\", 邀請你加入。趕緊加入好友房間，和好友猜猜畫畫吧!";//useless
 "kPushTextMessage" = "%@ 發來消息:\"%@...\"";
 "kPushDrawMessage" = "%@ 發來一張塗鴉。";
 "kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
@@ -148,9 +148,9 @@
 "kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
 "kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來哦!";
 
-"kRegisterToEnter" = "馬上註冊\"猜猜畫畫\"進入遊戲吧";
+"kRegisterToEnter" = "馬上註冊\"%@\"進入遊戲吧";
 "kRegisterPromptLabel" = "使用微博賬號玩";
-"kRegisterTitleLabel" = "猜猜畫畫";
+"kRegisterTitleLabel" = "猜猜畫畫";//useless
 "kEnterEmail" = "請輸入Email地址";
 "kStartGame" = "開始遊戲";
 "kLookOverDraw" = "查看作品";
@@ -302,18 +302,18 @@
 
 "kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@ %@";
 
-"kEmail_subject" = "分享［猜猜畫畫］iPhone/iPad版遊戲";
+"kEmail_subject" = "分享［%@］iPhone/iPad版遊戲";
 
 "kCreating_gif" = "正在生成GIF動畫文件中... 文件可能比較大，請耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! %@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai- cai-hua-hua/id513819630?mt=8";
+"kShareOtherTextAuto" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! %@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai- cai-hua-hua/id513819630?mt=8";//useless
 
-"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
+"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
 
-"kShareOtherText" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai- hua-hua/id513819630?mt=8";
+"kShareOtherText" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai- hua-hua/id513819630?mt=8";//useless
 
-"kShareMeText" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
-"kShareMeTextWithComment" = "%@，我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";
+"kShareMeText" = "我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
+"kShareMeTextWithComment" = "%@，我在玩%@，快來圍觀我畫的［%@］ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
 
 //"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #猜猜畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 //
@@ -412,8 +412,8 @@
 "kSMSInvite" = "短信邀請";
 "kWeixinInvite" = "微信邀請";
 "kSelectInvitation" = "請選擇邀請方式";
-"kInvitationInfo" = "我在玩猜猜畫畫，你也一起來玩吧，下載地址是%@";
-"kInvitationInfoInRoom" = "我正在玩猜猜畫畫，房間名是:%@，密碼是:%@，你也一起來玩吧，下載地址是%@";
+"kInvitationInfo" = "我在玩%@，你也一起來玩吧，下載地址是%@";
+"kInvitationInfoInRoom" = "我正在玩%@，房間名是:%@，密碼是:%@，你也一起來玩吧，下載地址是%@";
 "kSearch" = "搜索";
 "kAddAsFriend" = "關注";
 "kAlreadyBeFriend" = "已關注";
@@ -681,7 +681,7 @@
 "kMyDrawing" = "我的[%@]";
 "kDrawToHim" = "畫幅畫給TA";
 "kExploreHim" = "TA的作品";
-"kPlayWithHim" = "和TA一起玩猜猜畫畫";
+"kPlayWithHim" = "和TA一起玩";
 "kChatToHim" = "搭個訕";
 
 
@@ -884,10 +884,10 @@
 "kLatestFeed" = "最新";
 
 "kShareToWeiXinTitle" = "分享到微信";
-"kWXShareImageName" = "猜猜畫畫美圖";
+"kWXShareImageName" = "%@美圖";
 
 "kShareToWeiXinTitle" = "分享到微信";
-"kWXShareImageName" = "猜猜畫畫美圖";
+"kWXShareImageName" = "%@美圖";
 
 "kFeedbackTips" = "歡迎加入猜猜畫畫玩家QQ群:228119679, 關注官方微博@猜猜畫畫手機版";
 "kPlayEnd" = "結束播放";
@@ -973,6 +973,12 @@
 "kMe" = "我";
 "kSendMeFlower" = "给我赠送了一朵鲜花！";
 "kThrowMeTomato" = "给我丢了个番茄！";
+
+"kSummaryOfDraw_Me" = "評論我的畫: [%@]";
+"kSummaryOfDrawNoWord_Me" = "評論我的畫";
+"kSummaryOfGuess_Me" = "回复我的猜畫";
+"kSummaryOfSendItem_Me" = "回复我的表態: %@";
+"kSummaryOfComment_Me" = "回复我的評論: %@";
 
 "kCommentMyOpus" = "評論我的畫。";
 "kCanotSendItemToOpus" = "不能在同一個作品上使用超過%d次同樣的道具";
@@ -1079,9 +1085,9 @@
 "kHotWordsNote" = "[消耗一個錦囊]";
 "kSystemWords" = "系統詞庫";
 
-"kDefaultWaterMark" = "@猜猜畫畫";
+"kDefaultWaterMark" = "@猜猜畫畫";//useless
 
-"kWeiboShareMessage" = "我在玩%@，快來猜猜這是什麼？A、[%@]B、[%@]C、[%@]D、[%@] E、[以上皆不是] #猜猜畫畫美圖分享# http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
+"kWeiboShareMessage" = "我在玩%@，快來猜猜這是什麼？A、[%@]B、[%@]C、[%@]D、[%@] E、[以上皆不是] #猜猜畫畫美圖分享# http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";//useless
 
 
 "kRevoking" = "撤銷上一筆中...";
@@ -1094,7 +1100,7 @@
 "kDrawAPicture" = "畫一幅畫";
 
 "kNewDrawVersionTip" = "當前應用版本比較舊，可能不支持部分畫畫效果，建議升級。";
-"kVersionNotSupport" = "您的猜猜畫畫版本可能比較舊，暫時不支持這一功能，建議升級。";
+"kVersionNotSupport" = "當前應用版本可能比較舊，暫時不支持這一功能，建議升級。";
 "kRecovery" = "恢復";
 "kNotBindMailMessage" = "您還沒設置您的郵箱賬戶，請在系統設置裡面設置。";
 "kTypeRoom" = "打字房";
@@ -1667,4 +1673,5 @@
 "kPainter" = "畫家";
 "kLittleGeeFeedbackTips" = "歡迎加入小吉畫畫玩家QQ群:228119679, 關注官方微博@小吉畫畫";
 "kLittleGeeSNSSubject" = "小吉畫畫美圖分享";
+"kLittleGeeAppLink" = "";
 /*********************小吉画画国际化字符串结束 ************************/

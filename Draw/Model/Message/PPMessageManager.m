@@ -13,6 +13,7 @@
 #import "MessageStat.h"
 //#import "FileUtil.h"
 #import "StorageManager.h"
+#import "StringUtil.h"
 
 @implementation PPMessageManager
 #define MESSAGE_DIR @"message"
@@ -117,10 +118,6 @@
     NSArray *list = [PPMessageManager subArrayWithArray:messageList
                                               maxLength:MESSAGE_MAX_COUNT
                                               isReverse:YES];
-    for (PPMessage *message in list) {
-        PPDebug(@"message type:%d", message.messageType);
-    }
-    
     StorageManager *manager = [PPMessageManager messageStorageManager];
     NSData *data = [PPMessageManager dataFromMessageList:list];
 //    return [manager saveObject:list forKey:MESSAGE_KEY1(friendId)];
@@ -131,10 +128,6 @@
     StorageManager *manager = [PPMessageManager messageStorageManager];
     NSData *data = [manager dataForKey:MESSAGE_KEY1(friendId)];
     NSArray *list = [PPMessageManager messageListFromData:data];
-    for (PPMessage *message in list) {
-        PPDebug(@"message type:%d", message.messageType);
-    }
-    
     return list;
 }
 
@@ -144,7 +137,23 @@
     return [manager removeDataForKey:friendId];
 }
 
++ (BOOL)saveImageToLocal:(UIImage *)image key:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager saveImage:image forKey:key];
+}
 
++ (NSString *)path:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager pathWithKey:key];
+}
+
++ (BOOL)removeLocalImage:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager removeDataForKey:key];
+}
 
 #pragma mark message stat storage
 

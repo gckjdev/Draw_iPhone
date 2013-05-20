@@ -13,6 +13,10 @@
 #import "ChangeBackAction.h"
 #import "ChangeBGImageAction.h"
 
+
+
+BOOL showBGOffscreen = NO;
+
 @interface OffscreenManager()
 {
     NSMutableArray *_offscreenList;
@@ -34,6 +38,11 @@
 
 
 @implementation OffscreenManager
+
++ (void)setShowBGOffscreen:(BOOL)show
+{
+    showBGOffscreen = show;
+}
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define LINE_SPACE [ConfigManager getDrawGridLineSpace]
@@ -98,7 +107,7 @@
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
     
 
-    if ([GameApp hasBGOffscreen]) {
+    if ([GameApp hasBGOffscreen]||showBGOffscreen) {
         [manager addBgOffscreen:rect];
     }
     
@@ -108,7 +117,7 @@
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
     
-    if ([GameApp hasBGOffscreen]) {
+    if ([GameApp hasBGOffscreen] || showBGOffscreen) {
         [manager addBgOffscreen:rect];
     }
     

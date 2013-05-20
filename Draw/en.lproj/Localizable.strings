@@ -11,7 +11,7 @@
 /*********************** Notification begin *************************/
 //Notification
 //before 4.5 version
-"kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";
+"kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";//useless
 "kPushTextMessage" = "%@ says:\"%@...\"";
 "kPushDrawMessage" = "%@ sent you a draw.";
 "kFM" = "Someone has just followed you";
@@ -142,10 +142,10 @@
 "kCheckInMessage" = "Oh, you got %d coins today!";
 "kCheckInAlreadyToday" = "You have checked in today. Please try it tomorrow.";
 
-"kRegisterToEnter" = "Register to enter \"Draw Lively\" game";
+"kRegisterToEnter" = "Register to enter \"%@\" game";
 
 "kRegisterPromptLabel" = "Login By";
-"kRegisterTitleLabel" = "Draw Lively";
+"kRegisterTitleLabel" = "Draw Lively";//useless
 "kEnterEmail" = "Enter Email";
 "kStartGame" = "Start";
 "kLookOverDraw" = "View Drawing";
@@ -294,7 +294,7 @@
 "kSay something..." = "";
 "kShare_via_SMS" = "Share via SMS";
 "kShare_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@ %@";
-"kEmail_subject" = "Share a funny iOS game - Draw Lively";
+"kEmail_subject" = "Share a funny iOS game - %@";
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
 "kFeedbackFail" = "Feedback failed, try later";
@@ -303,12 +303,12 @@
 
 "kCreating_gif" = "Creating GIF Files...";
 
-"kShareOtherTextAuto" = "What An Awesome Drawing - %@ %@ ";
-"kShareMeTextAuto" = "%@ My Awesome Drawing for %@";
+"kShareOtherTextAuto" = "What An Awesome Drawing - %@ %@ ";//useless
+"kShareMeTextAuto" = "%@ My Awesome Drawing for %@";//useless
 
-"kShareOtherText" = "What An Awesome Drawing - %@ ";
-"kShareMeText" = "My Awesome Drawing for %@ %@";
-"kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";
+"kShareOtherText" = "What An Awesome Drawing - %@ ";//useless
+"kShareMeText" = "My Awesome Drawing for %@ %@";//useless
+"kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";//useless
 
 "kShareMyOpusWithDescriptionText" = "%@ ，I just used %@ to draw a paint [%@] #%@# %@";
 "kShareMyOpusWithoutDescriptionText" = "I just used%@ to draw a paint[%@] #%@# %@";
@@ -390,8 +390,8 @@
 "kSMSInvite" = "SMS Invite";
 "kWeixinInvite" = "Weixin Invite";
 "kSelectInvitation" = "Select the invitation";
-"kInvitationInfo" = "I am playing drawlively, you can also play together, download address is %@";
-"kInvitationInfoInRoom" = "I am playying drawlively, room:%@, password:%@, you can also play together, download address is %@";
+"kInvitationInfo" = "I am playing %@, you can also play together, download address is %@";
+"kInvitationInfoInRoom" = "I am playying %@, room:%@, password:%@, you can also play together, download address is %@";
 "kSearch" = "Search";
 "kAddAsFriend" = "Follow";
 "kAlreadyBeFriend" = "Followed";
@@ -737,12 +737,12 @@
 
 "kChatTitle" = "Send Message";
 
-"kGuessUserDraw_MyDraw" = "my draw";
-"kGuessRightDesc_MyDraw" = "Guessed my drawing: [%@].";
-"kTryGuessDesc_MyDraw" = "Tried to guess my drawing: [%@].";
-"kGuessRightDescNoWord_MyDraw" = "Guessed my drawing.";
-"kTryGuessDescNoWord_MyDraw" = "Tried to guess my drawing.";
-"kFeedDetail_Me" = "My Drawing";
+"kGuessUserDraw_MyDraw" = "my paint";
+"kGuessRightDesc_MyDraw" = "Guessed my paint: [%@].";
+"kTryGuessDesc_MyDraw" = "Tried to guess my paint: [%@].";
+"kGuessRightDescNoWord_MyDraw" = "Guessed my paint.";
+"kTryGuessDescNoWord_MyDraw" = "Tried to guess my paint.";
+"kFeedDetail_Me" = "My Paint";
 "kUserFeedTitle_Me" = "My Timeline";
 
 "kOnlineResultTitle" = "Turn Complete";
@@ -877,7 +877,7 @@
 "kLatestFeed" = "Newest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
-"kWXShareImageName" = "Drawlively Image";
+"kWXShareImageName" = "%@ Image";
 
 "kFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @猜猜画画手机版";
 
@@ -957,6 +957,12 @@
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
+
+"kSummaryOfDraw_Me" = "Comment my opus: [%@].";
+"kSummaryOfDrawNoWord_Me" = "Comment my opus.";
+"kSummaryOfGuess_Me" = "Reply to my guessing.";
+"kSummaryOfSendItem_Me" = "Reply to my expression.";
+"kSummaryOfComment_Me" = "Reply to my comment: %@.";
 
 "kAskLocationTitle" = "Location Request";
 "kReplyLocationTitle" = "Reply Request";
@@ -1052,13 +1058,13 @@
 
 "kDonotSave" = "No";
 
-"kDefaultWaterMark" = "@Draw Lively";
+"kDefaultWaterMark" = "@Draw Lively";//useless
 
 "kAddOpusDesc" = "Add some words...";
 "kTwoSpaceCancel" = "Cancel";
 "kTwoSpaceConfirm" = "Confirm";
 
-"kWeiboShareMessage" = "I'm playing %@, guess what's this？A、[%@]B、[%@]C、[%@]D、[%@] E、None of all above  http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
+"kWeiboShareMessage" = "I'm playing %@, guess what's this？A、[%@]B、[%@]C、[%@]D、[%@] E、None of all above  http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";//useless
 
 "kRevoking" = "Revoking...";
 "kCannotShowYourself" = "Oh, you are trying to view yourself!";
@@ -1664,4 +1670,5 @@
 "kPainter" = "Painter";
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
+"kLittleGeeAppLink" = "";
 /*********************小吉画画国际化字符串结束 ************************/
