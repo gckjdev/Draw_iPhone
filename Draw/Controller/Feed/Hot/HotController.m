@@ -76,6 +76,8 @@ typedef enum{
             [self finishLoadDataForTabID:tabID resultList:feedList];
         }        
     }
+    TableTab *tab = [_tabManager tabForID:tabID];
+    tab.status = TableTabStatusUnload;
 }
 
 - (FeedListType)feedListTypeForTabID:(int)tabID
