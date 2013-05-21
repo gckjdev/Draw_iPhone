@@ -267,5 +267,6 @@
 - (UIImage*)navigatorRightBtnImage;
 
 - (UIImage *)splitPhoto;
+- (UIImage *)placeholderPhoto;
 
 @end

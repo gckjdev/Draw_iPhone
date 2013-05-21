@@ -204,6 +204,9 @@ static ChatService *_chatService = nil;
             {
                 ImageMessage *imageMessage = (ImageMessage *)message;
                 data = [imageMessage.image data];
+                if ([text length] == 0){
+                    text = NSLS(@"kImageMessage");
+                }
                 
                 //when fail or sending, url save local path, thumburl save key, 
                 if (imageMessage.imageUrl == nil) {

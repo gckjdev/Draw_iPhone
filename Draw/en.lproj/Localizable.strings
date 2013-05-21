@@ -992,8 +992,8 @@
 "kQQGroup" = "";
 "kCopy" = "Copy";
 
-"kDrawMessage" = "Draw Message";
-"kImageMessage" = "Image Message";
+"kDrawMessage" = "Doodle Message";
+"kImageMessage" = "Photo Message";
 "kVoiceMessage" = "Voice Message";
 "kResend" = "Resend";
 

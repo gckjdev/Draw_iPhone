@@ -1151,5 +1151,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"split_photo@2x.png"];
 }
 
+- (UIImage *)placeholderPhoto
+{
+    return [UIImage imageNamed:@"placeholder_photo@2x.png"];
+}
+
 @end
 
