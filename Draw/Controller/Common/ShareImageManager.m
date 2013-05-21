@@ -1141,6 +1141,15 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"user_setting_cell_one.png"];
 }
+- (UIImage*)navigatorRightBtnImage
+{
+    return [UIImage imageNamed:@"draw_button_normal@2x.png"];
+}
+
+- (UIImage *)splitPhoto
+{
+    return [UIImage imageNamed:@"split_photo@2x.png"];
+}
 
 @end
 

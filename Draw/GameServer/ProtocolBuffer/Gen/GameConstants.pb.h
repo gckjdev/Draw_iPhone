@@ -196,6 +196,17 @@ typedef enum {
 
 BOOL PBWallTypeIsValidValue(PBWallType value);
 
+typedef enum {
+  PBMessageTypeText = 0,
+  PBMessageTypeLocationRequest = 1,
+  PBMessageTypeLocationResponse = 2,
+  PBMessageTypeDraw = 4,
+  PBMessageTypeImage = 5,
+  PBMessageTypeVoice = 6,
+} PBMessageType;
+
+BOOL PBMessageTypeIsValidValue(PBMessageType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }

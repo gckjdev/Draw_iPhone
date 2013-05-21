@@ -246,6 +246,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_SINA]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
             } failure:^{
                 //
             }];
@@ -265,6 +266,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_QQ]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
             } failure:^{
                 //
             }];
@@ -283,6 +285,7 @@
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_FACEBOOK]] style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
             } failure:^{
                 //
             }];
@@ -447,9 +450,14 @@
 }
 - (void)didClickDrawToButton:(PPTableViewController*)viewController
 {
-    SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
-    vc.superController = viewController;
-    [viewController.navigationController pushViewController:vc animated:YES];
+    if (isLittleGeeAPP()) {
+        [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:viewController startController:viewController targetUid:[self getUserId]];
+    } else {
+        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
+        vc.superController = viewController;
+        [viewController.navigationController pushViewController:vc animated:YES];
+    }
+    
     
 }
 

@@ -110,6 +110,9 @@
     }
     ReplayView *view = [topLevelObjects objectAtIndex:0];
     [view updateView];
+    view.adView = [[AdService defaultService] createAdInView:view
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-10-50-20, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 1024-50-20-20-10, 320, 50)];
     return view;
 }
 
@@ -200,6 +203,8 @@
 
 - (void)dealloc {
 
+    [[AdService defaultService] clearAdView:self.adView];
+    PPRelease(self.adView);
     
     PPDebug(@"dealloc %@", [self description]);
     _drawFeed.drawImage = nil;
@@ -461,7 +466,7 @@
 
 - (void)buyAndPlayDraw:(DrawFeed *)feed
 {
-    __block ReplayView *cp = self;
+    ReplayView *cp = self;
     [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
                                               price:self.drawFeed.learnDraw.price
                                            fromView:self
@@ -496,7 +501,7 @@
         [self.playButton setEnabled:YES];
         [self clickPlay:self.playButton];
         [self.playButton setEnabled:NO];
-        __block ReplayView *cp = self;
+        ReplayView *cp = self;
         
         [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
                                        style:CommonDialogStyleDoubleButton

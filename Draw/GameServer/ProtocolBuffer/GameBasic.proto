@@ -156,12 +156,14 @@ message PBDrawAction {
 
 }
 
+
+
 message PBMessage {
   required string messageId = 1;
   required string from = 2;
   required string to = 3;
   optional int32  status = 4;
-  optional int32  type = 5[default=0];      // 消息类型：0：消息；1:请求位置；2:回复位置
+  optional int32  type = 5[default=0];      // 消息类型：refer to PBMessageType
 
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
@@ -174,6 +176,9 @@ message PBMessage {
   optional double latitude = 32;
   optional string reqMessageId = 33;
   optional int32  replyResult = 34;
+  
+  optional string imageURL = 41;                // for message type image, normal image
+  optional string thumbImageURL = 42;           // for message type image, thumb image
 }
 
 message PBMessageStat {

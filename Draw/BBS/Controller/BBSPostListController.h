@@ -27,7 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *rankButton;
 @property (retain, nonatomic) PBBBSBoard *bbsBoard;
 @property (retain, nonatomic) PBBBSUser *bbsUser;
-
+@property (nonatomic, retain) UIView* adView;
 
 - (IBAction)clickCreatePostButton:(id)sender;
 - (IBAction)clickRankButton:(id)sender;

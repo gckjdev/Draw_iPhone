@@ -17,6 +17,7 @@
 #import "LocaleUtils.h"
 #import "PPMessage.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 //#import "DrawUserInfoView.h"
 #import "DiceUserInfoView.h"
 #import "GameApp.h"
@@ -196,7 +197,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
         [self.showDrawView setPressEnable:YES];
         
-        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];        
+        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
         [self addSubview:holder];
     }
     if (!message.thumbImage) {
@@ -205,6 +206,28 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     [self.showDrawView showImage:message.thumbImage];
 }
+
+- (void)updateImageMessageView:(ImageMessage *)message
+{
+    [self updateContentButtonFrame];
+    
+    NSURL *url = nil;
+    if ((message.status == MessageStatusFail || message.status == MessageStatusSending)&& message.imageUrl) {
+        url = [NSURL fileURLWithPath:message.imageUrl];
+    } else {
+        url = [NSURL URLWithString:message.thumbImageUrl];
+    }
+    
+    [self.contentButton setImageWithURL:url
+                       placeholderImage:[[ShareImageManager defaultManager] splitPhoto]
+                                success:^(UIImage *image, BOOL cached) {
+                                    
+                                }
+                                failure:^(NSError *error) {
+                                    
+                                }];
+}
+
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(clickMessage:withDrawActionList:)]) {
@@ -296,6 +319,11 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [cell.timeButton setTitleColor:[UIColor colorWithRed:194/255. green:144/255. blue:105/255. alpha:1] forState:UIControlStateNormal];
     cell.avatarView.userInteractionEnabled = NO;
     
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:cell action:@selector(longPressContentButton:)];
+    longPress.minimumPressDuration = 0.8; //定义按的时间
+    [cell.contentButton addGestureRecognizer:longPress];
+    [longPress release];
+    
     return cell;
 }
 
@@ -310,15 +338,19 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 {
     CGFloat height = [ChatDetailCell contentStartY:showTime];
 
-    PPDebug(@"<getCellHeight> text = %@, type = %d", message.text,message.messageType);
+    //PPDebug(@"<getCellHeight> text = %@, type = %d", message.text,message.messageType);
     
     
-    PPDebug(@"height1 = %f", height);
+    // PPDebug(@"height1 = %f", height);
 
     switch (message.messageType) {
+            
         case MessageTypeDraw:
             height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
-            PPDebug(@"height2.1 = %f", height);
+            //PPDebug(@"height2.1 = %f", height);
+            break;
+        case MessageTypeImage:
+            height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
             break;
         case MessageTypeText:
         case MessageTypeLocationRequest:
@@ -327,12 +359,12 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         {
             CGSize size = [ChatDetailCell sizeForMessageView:message.text];
             height += size.height;
-            PPDebug(@"height2.2 = %f", height);
+            //PPDebug(@"height2.2 = %f", height);
             break;
         }
     }
     height += SPACE_CONTENT_BOTTOM;
-    PPDebug(@"total height = %f", height);
+//    PPDebug(@"total height = %f", height);
     return height;
 }
 
@@ -400,6 +432,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         
     }else if(message.messageType == MessageTypeDraw){
         [self updateDrawMessageView:(DrawMessage *)message];
+    } else if(message.messageType == MessageTypeImage){
+        [self updateImageMessageView:(ImageMessage*)message];
     }
     
     //如果是发送的消息就靠右
@@ -433,6 +467,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 }
 
 - (IBAction)clickContentButton:(id)sender {
+    if ([delegate respondsToSelector:@selector(clickMessage:)]) {
+        [delegate clickMessage:self.message];
+    }
+}
+
+- (void)longPressContentButton:(id)sender
+{
     //show the action sheet to show the options
     if (delegate && [delegate respondsToSelector:@selector(didLongClickMessage:)]) {
         [delegate didLongClickMessage:self.message];

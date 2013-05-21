@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>DreamLockscreen_57.png</string>
+		<string>DreamLockscreen_114.png</string>
+		<string>DreamLockscreen_50.png</string>
+		<string>DreamLockscreen_72.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.orange.dreamlockscreen</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.orange.draw</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>alipaylearndraw.gckj</string>
+				<string>fb352182988165711</string>
+				<string>gckjcchh</string>
+				<string>wx427a2f57bc4456d1</string>
+				<string>sinaweibosso.4285743836</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>CFChannelId</key>
+	<string>App Store</string>
+	<key>CFConfigVersion</key>
+	<string>1.0</string>
+	<key>CFResourceTest</key>
+	<true/>
+	<key>CFServerTest</key>
+	<false/>
+	<key>CFWordBaseVersion</key>
+	<integer>2</integer>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMainNibFile</key>
+	<string>MainWindow</string>
+	<key>UILaunchImageFile</key>
+	<string>DreamLockscreenDefault</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+</dict>
+</plist>

@@ -256,6 +256,36 @@
     [builder setWidth:self.width];
 }
 
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    int count = [self.pointNodeList count];
+    if (count > 0) {
+        
+        pbDrawActionC->pointsx = malloc(sizeof(float)*count);
+        pbDrawActionC->pointsy = malloc(sizeof(float)*count);
+        
+        pbDrawActionC->n_pointsx = count;
+        pbDrawActionC->n_pointsy = count;
+        
+        int i = 0;
+        for (PointNode *point in self.pointNodeList) {
+            pbDrawActionC->pointsx[i] = point.point.x;
+            pbDrawActionC->pointsy[i] = point.point.y;
+            i++;
+        }
+    }    
+    
+    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    pbDrawActionC->has_bettercolor = 1;
+    
+    pbDrawActionC->pentype = self.penType;
+    pbDrawActionC->has_pentype = 1;
+    
+    pbDrawActionC->width = self.width;
+    pbDrawActionC->has_width = 1;
+    
+}
+
 - (void)dealloc
 {
     PPRelease(_color);

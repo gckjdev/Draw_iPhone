@@ -11,13 +11,20 @@
 
 //return yes to dismiss the view, and no to stay the view.
 
+@protocol InputAlertViewDelegate <NSObject>
+@optional
+- (BOOL)isSubjectValid:(NSString*)subjectText;
 
-@interface InputAlertView : UIControl<UITextViewDelegate>
+@end
+
+
+@interface InputAlertView : UIControl<UITextViewDelegate, UITextFieldDelegate>
 {
     
 }
 
 @property (assign, nonatomic) NSInteger maxInputLen;
+@property (assign, nonatomic) id<InputAlertViewDelegate>delegate;
 
 + (id)inputAlertViewWith:(NSString *)title
                  content:(NSString *)content
@@ -31,6 +38,13 @@
            commitSeletor:(SEL)commitSeletor
            cancelSeletor:(SEL)cancelSeletor
                   hasSNS:(BOOL)hasSNS;
++ (id)inputAlertViewWith:(NSString *)title
+                 content:(NSString *)content
+                  target:(id)target
+           commitSeletor:(SEL)commitSeletor
+           cancelSeletor:(SEL)cancelSeletor
+                  hasSNS:(BOOL)hasSNS
+              hasSubject:(BOOL)hasSubject;
 
 - (NSString *)contentText;
 - (NSString *)setContentText:(NSString *)text;
@@ -39,4 +53,9 @@
 - (void)adjustWithKeyBoardRect:(CGRect)rect;
 - (void)setCanClickCommitButton:(BOOL)can;
 - (void)clickConfirm;
+
+- (BOOL)hasSubjectText;
+- (NSString*)subjectText;
+- (NSString*)setSubjectText:(NSString*)text;
+- (BOOL)canEditSubject;
 @end

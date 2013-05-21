@@ -99,6 +99,8 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
                    type:(FeedListType)type
                delegate:(id<FeedServiceDelegate>)delegate;
 
+- (NSArray *)getCachedFeedList:(FeedListType)feedListType;
+
 - (void)getFeedList:(FeedListType)feedListType 
              offset:(NSInteger)offset 
               limit:(NSInteger)limit 
@@ -167,6 +169,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 
 - (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
+- (void)recommendOpus:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
 
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId

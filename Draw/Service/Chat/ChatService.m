@@ -27,6 +27,8 @@
 #import "PPMessageManager.h"
 #import "MessageStat.h"
 #import "DrawUtils.h"
+#import "UIImageExt.h"
+#import "StringUtil.h"
 
 static ChatService *_chatService = nil;
 
@@ -151,7 +153,11 @@ static ChatService *_chatService = nil;
         //location response
         NSInteger replyResult = ACCEPT_ASK_LOCATION;
         NSString *reqMessageId = nil;
-
+        
+        //image 
+        NSString *imageUrl = nil;
+        NSString *thumbImageUrl = nil;
+        
         switch (type) {
             case MessageTypeText:
             {
@@ -194,6 +200,21 @@ static ChatService *_chatService = nil;
                 hasLocation = (replyResult == ACCEPT_ASK_LOCATION);
                 break;
             }
+            case MessageTypeImage:
+            {
+                ImageMessage *imageMessage = (ImageMessage *)message;
+                data = [imageMessage.image data];
+                
+                //when fail or sending, url save local path, thumburl save key, 
+                if (imageMessage.imageUrl == nil) {
+                    thumbImageUrl = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+                    [PPMessageManager saveImageToLocal:imageMessage.image key:thumbImageUrl];
+                    imageUrl = [PPMessageManager path:thumbImageUrl];
+                } else {
+                    thumbImageUrl = [imageMessage thumbImageUrl];
+                    imageUrl = [imageMessage imageUrl];
+                }
+            }
 
             default:
                 break;
@@ -213,10 +234,10 @@ static ChatService *_chatService = nil;
                                                              latitude:latitude
                                                          reqMessageId:reqMessageId
                                                           replyResult:replyResult];
+        
         if (output.resultCode == ERROR_SUCCESS){
             NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
             message.messageId = messageId;
-            message.status = MessageStatusSent;  
             
             NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
             if (timeValue != 0) {
@@ -224,17 +245,32 @@ static ChatService *_chatService = nil;
                 PPDebug(@"return date = %@", message.createDate);
             }
             
+            if (type == MessageTypeImage) {
+                [PPMessageManager removeLocalImage:[(ImageMessage *)message thumbImageUrl]];
+                imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+            }
+            
+            message.status = MessageStatusSent;
             PPDebug(@"<ChatService>sendMessage success");
         }else {
-            PPDebug(@"<ChatService>sendMessage failed");
+            
             message.status = MessageStatusFail;
+            PPDebug(@"<ChatService>sendMessage failed");
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [message release];
+            
             if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
-                [delegate didSendMessage:message resultCode:output.resultCode];
+                if (type == MessageTypeImage) {
+                    ImageMessage *imageMessage = (ImageMessage *)message;
+                    imageMessage.imageUrl = imageUrl;
+                    imageMessage.thumbImageUrl = thumbImageUrl;
+                    [delegate didSendMessage:imageMessage resultCode:output.resultCode];
+                } else {
+                    [delegate didSendMessage:message resultCode:output.resultCode];
+                }
             }
         }); 
     });
@@ -321,7 +357,7 @@ static ChatService *_chatService = nil;
             
             if (delegate && [delegate respondsToSelector:
                              @selector(didDeleteMessages:resultCode:)]){
-                [delegate didDeleteMessages:messageList resultCode:output.resultCode];
+                [delegate didDeleteMessages:nil resultCode:output.resultCode];
             }
             [messageList release];
         }); 

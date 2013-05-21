@@ -20,6 +20,7 @@
 }
 
 @property (nonatomic, retain)PBBBSPost *post;
+@property (nonatomic, retain) UIView* adView;
 
 + (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
                                                 fromController:(UIViewController *)fromController

@@ -9,6 +9,11 @@
 #import "PureDrawFreeApp.h"
 #import "PhotoDrawApp.h"
 #import "PhotoDrawFreeApp.h"
+#import "DreamAvatarApp.h"
+#import "DreamAvatarFreeApp.h"
+#import "DreamLockscreenApp.h"
+#import "DreamLockscreenFreeApp.h"
+#import "LittleGeeDrawApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -59,6 +64,21 @@ NSObject<GameAppProtocol>* getGameApp()
     else if ([bundleId isEqualToString:PHOTODRAWFREE_APP_BUNDLE_ID]){
         currentApp = [[PhotoDrawFreeApp alloc] init];
     }
+    else if ([bundleId isEqualToString:DREAMAVATAR_APP_BUNDLE_ID]){
+        currentApp = [[DreamAvatarApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:DREAMAVATARFREE_APP_BUNDLE_ID]){
+        currentApp = [[DreamAvatarFreeApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:DREAMLOCKSCREEN_APP_BUNDLE_ID]){
+        currentApp = [[DreamLockscreenApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:DREAMLOCKSCREENFREE_APP_BUNDLE_ID]){
+        currentApp = [[DreamLockscreenFreeApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:LITTLE_GEE_APP_BUNDLE_ID]) {
+        currentApp = [[LittleGeeDrawApp alloc] init];
+    }
     
     else{
         PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
@@ -88,7 +108,12 @@ extern BOOL isSimpleDrawApp()
             isPureDrawApp() ||
             isPureDrawFreeApp() ||
             isPhotoDrawApp() ||
-            isPhotoDrawFreeApp());
+            isPhotoDrawFreeApp() ||
+            isDreamAvatarApp() ||
+            isDreamAvatarFreeApp() ||
+            isDreamLockscreenApp() ||
+            isDreamLockscreenApp() ||
+            isDreamLockscreenFreeApp());
 }
 
 extern BOOL isLearnDrawApp()
@@ -114,6 +139,31 @@ extern BOOL isPhotoDrawApp()
 extern BOOL isPhotoDrawFreeApp()
 {
     return ([[GameApp appId] isEqualToString:PHOTO_DRAW_FREE_APP_ID]);
+}
+
+extern BOOL isDreamAvatarApp()
+{
+    return ([[ContentGameApp appId] isEqualToString:DREAM_AVATAR_APP_ID]);
+}
+
+extern BOOL isDreamAvatarFreeApp()
+{
+    return ([[ContentGameApp appId] isEqualToString:DREAM_AVATAR_FREE_APP_ID]);
+}
+
+extern BOOL isDreamLockscreenApp()
+{
+    return ([[ContentGameApp appId] isEqualToString:DREAM_LOCKSCREEN_APP_ID]);
+}
+
+extern BOOL isDreamLockscreenFreeApp()
+{
+    return ([[ContentGameApp appId] isEqualToString:DREAM_LOCKSCREEN_FREE_APP_ID]);
+}
+
+extern BOOL isLittleGeeAPP()
+{
+    return ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]);
 }
 
 GameAppType gameAppType()
@@ -144,6 +194,9 @@ GameAppType gameAppType()
     }
     if ([[GameApp appId] isEqualToString:PHOTO_DRAW_FREE_APP_ID]) {
         return GameAppTypePhotoDrawFree;
+    }
+    if ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]) {
+        return GameAppTypeLittleGee;
     }
     return GameAppTypeUnknow;
 }

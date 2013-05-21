@@ -47,6 +47,9 @@
 
 - (void)comfirm:(id)msg
 {
+    if (isLittleGeeAPP() && [self.inputAlertView hasSubjectText]) {
+        [self changeDrawWord:self.inputAlertView.subjectText];
+    }
     [self changeDesc:self.inputAlertView.contentText];
     [self performSelector:@selector(hidePopTipView) withObject:nil afterDelay:0.1];
 }
@@ -61,7 +64,13 @@
 {
 //    self.showing = YES;
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.control theViewController];
-    self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO];
+    if (isLittleGeeAPP()) {
+        self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO hasSubject:YES];
+        [self.inputAlertView setSubjectText:oc.word.text];
+    } else {
+        self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO];
+    }
+    
     [self.inputAlertView showInView:oc.view animated:YES];
 
 }
@@ -85,8 +94,12 @@
 - (void)changeDesc:(NSString *)desc
 {
     [self.toolHandler changeDesc:desc];
-    [self hidePopTipView];
+//    [self hidePopTipView];
 }
 
+- (void)changeDrawWord:(NSString*)wordText
+{
+    [self.toolHandler changeDrawWord:wordText];
+}
 
 @end

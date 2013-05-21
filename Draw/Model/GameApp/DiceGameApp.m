@@ -372,7 +372,7 @@
 
 - (NSString*)domodWallId
 {
-    return @"";//TODO
+    return @"96ZJ0Phgze+vLwTAqY";
 }
 
 - (NSString*)tapjoyWallId
@@ -478,6 +478,25 @@
     
     NSString* version = @"1.0";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (BOOL)showPaintCategory
+{
+    return NO;
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
+
+- (NSString*)appItuneLink
+{
+    return nil;
+}
+- (NSString*)appLinkUmengKey
+{
+    return nil;
 }
 
 @end

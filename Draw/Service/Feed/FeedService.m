@@ -34,6 +34,16 @@ static FeedService *_staticFeedService = nil;
     return _staticFeedService;
 }
 
+- (NSString *)cachedKeyForFeedListType:(FeedListType)type
+{
+    return [NSString stringWithFormat:@"CACHED_FEED_LIST_%d",type];
+}
+
+- (NSArray *)getCachedFeedList:(FeedListType)feedListType
+{
+    return [[FeedManager defaultManager] loadFeedListForKey:[self cachedKeyForFeedListType:feedListType]];
+}
+
 #define GET_FEEDLIST_QUEUE @"GET_FEEDLIST_QUEUE"
 
 - (void)getFeedList:(FeedListType)feedListType 
@@ -78,6 +88,9 @@ static FeedService *_staticFeedService = nil;
                 resultCode = [response resultCode];
                 NSArray *pbFeedList = [response feedList];
                 list = [FeedManager parsePbFeedList:pbFeedList];
+                if ([list count] != 0 && offset == 0) {
+                    [[FeedManager defaultManager] cacheFeedDataQueryResponse:response forKey:[self cachedKeyForFeedListType:feedListType]];
+                }
             }
             @catch (NSException *exception) {
                 PPDebug(@"<getFeedList> catch exception while parsing data. exception=%@", [exception description]);
@@ -814,6 +827,14 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+- (void)recommendOpus:(NSString *)opusId
+          resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_RECOMMEND_OPUS
+              actionName:@""
+             resultBlock:resultBlock];    
+}
 
 #define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"
 

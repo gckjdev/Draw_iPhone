@@ -19,6 +19,8 @@
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
 #import "UIUtils.h"
+#import "PPMessage.h"
+#import "UserManager.h"
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
@@ -1990,7 +1992,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusId];        
         str = [str stringByAddQueryParameter:PARA_ACTION_NAME value:actionName];
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
-        
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];        
         return str;
     };
     
@@ -2145,12 +2147,30 @@
         return;
     }; 
     
-    return [PPNetworkRequest sendPostRequest:baseURL
-                                        data:data
-                         constructURLHandler:constructURLHandler
-                             responseHandler:responseHandler
-                                outputFormat:FORMAT_JSON
-                                      output:output];
+    if (type == MessageTypeImage){
+
+        NSMutableDictionary *imageDict = nil;
+        if (data) {
+            imageDict = [NSMutableDictionary dictionary];
+            [imageDict setObject:data forKey:PARA_IMAGE];
+        }
+        
+        return [PPNetworkRequest uploadRequest:baseURL
+                                 imageDataDict:imageDict
+                                  postDataDict:nil
+                           constructURLHandler:constructURLHandler
+                               responseHandler:responseHandler
+                                  outputFormat:FORMAT_JSON
+                                        output:output];        
+    }
+    else{
+        return [PPNetworkRequest sendPostRequest:baseURL
+                                            data:data
+                             constructURLHandler:constructURLHandler
+                                 responseHandler:responseHandler
+                                    outputFormat:FORMAT_JSON
+                                          output:output];
+    }
     
 }
 
@@ -2729,6 +2749,7 @@
                                     appId:(NSString*)appId 
                                   gameId:(NSString*)gameId 
                                   userId:(NSString *)userId
+                                    type:(int)type
                                    offset:(NSInteger)offset
                                     limit:(NSInteger)limit
 {
@@ -2743,6 +2764,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         return str;
     };
     

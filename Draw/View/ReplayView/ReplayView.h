@@ -12,7 +12,7 @@
 //#import "CommonItemInfoView.h"
 #import "DrawBgManager.h"
 #import "DrawFeed.h"
-
+#import "AdService.h"
 
 @interface ReplayView : UIView<ShowDrawViewDelegate>
 {
@@ -22,6 +22,7 @@
 
 @property(nonatomic, assign)NSUInteger endIndex;
 @property(nonatomic, retain)DrawFeed *drawFeed;
+@property(nonatomic, retain)UIView *adView;;
 @property(nonatomic, assign)BOOL popControllerWhenClose;
 
 + (id)createReplayView;

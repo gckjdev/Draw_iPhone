@@ -148,6 +148,8 @@
     [super viewDidLoad];
     [self initViews];
     [self clickTab:[self rangeTypeToTabID:_rangeType]];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -156,15 +158,36 @@
 {
     [super viewDidAppear:animated];
     [self.dataTableView reloadData];
+    
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
+                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2-10, self.view.bounds.size.height-100, 320, 50)
+                                                     useLmAd:YES];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+    
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+
     // Dispose of any resources that can be recreated.
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
 }
 
 - (void)dealloc {
+    
+    [[AdService defaultService] clearAdView:self.adView];
+    self.adView = nil;
+    
     [_bbsManager setTempPostList:nil];
     PPRelease(_backButton);
     PPRelease(_createPostButton);

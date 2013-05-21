@@ -31,9 +31,12 @@
 @property (nonatomic, retain) NSString * targetUserId;
 @property (nonatomic, retain) NSString * contestId;
 
-@property (nonatomic, retain) UIImage *thumbImage;
+@property (nonatomic, retain) UIImage *paintImage;
 @property (nonatomic, retain) NSString *imageFilePath; //full path
 @property (nonatomic, retain) NSMutableArray *drawActionList;
+
+@property(nonatomic, retain) UIImage *thumbImage;
+
 
 @property (nonatomic, retain) NSNumber *isRecovery;
 @property (nonatomic, retain) NSData * drawWordData;

@@ -253,4 +253,15 @@ typedef enum{
 + (NSString*)getSNSShareSubject;
 + (NSString*)getDrawAppLink;
 
++ (int)getBuyAnswerPrice;
++ (double)getBGMVolume;
+
++ (BOOL)showRestoreButton;
++ (NSString*)getFeedbackBody;
++ (int)maxDrawTitleLen;
+
++ (float)littleGeeFirstShowOptionsDuration;
++ (float)littleGeeShowOptionsDuration;
+
++ (NSString*)getAppItuneLink;
 @end

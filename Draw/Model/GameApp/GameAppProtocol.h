@@ -148,10 +148,20 @@
 
 - (void)createConfigData;
 
+- (BOOL)showPaintCategory;
+
+- (NSString*)getDefaultSNSSubject;
+
+- (NSString*)appItuneLink;
+- (NSString*)appLinkUmengKey;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>
 
 - (int)sellContentType;
+
+- (NSArray *)homeTabIDList;
+- (NSArray *)homeTabTitleList;
 
 @end

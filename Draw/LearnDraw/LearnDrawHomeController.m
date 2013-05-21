@@ -27,21 +27,23 @@
 #import "LearnDrawPreViewController.h"
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
+#import "FreeIngotController.h"
+#import "ChargeController.h"
 
 @interface LearnDrawHomeController ()
 {
     NSInteger  _tryTimes;
     SortType _sortType;
-
 }
 
-//@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *gmButton;
 @property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+@property (retain, nonatomic) IBOutlet UIButton *sortButton;
+@property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
+
 - (IBAction)clickGMButton:(id)sender;
 - (IBAction)clickSortButton:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *sortButton;
 @end
 
 @implementation LearnDrawHomeController
@@ -66,6 +68,7 @@
     PPRelease(_homeBottomMenuPanel);
     PPRelease(_gmButton);
     [_sortButton release];
+    [_photoDrawSheet release];
     [super dealloc];
 }
 
@@ -105,9 +108,20 @@
     [self initTabButtons];
     self.gmButton.hidden = YES;
     self.unReloadDataWhenViewDidAppear = NO;
-    [self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    //[self.titleLabel setText:NSLS(@"kLearnDrawTitle")];
+    self.titleLabel.text = [UIUtils getAppName];
     [_sortButton setTitle:NSLS(@"kTime") forState:UIControlStateNormal];
+    
+    if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
+        UIButton *sceneryButton = [self tabButtonWithTabID:[self tabIDFromeType:LearnDrawTypeScenery]];
+        sceneryButton.hidden= YES;
+    } else {
+        UIButton *animalButton = [self tabButtonWithTabID:[self tabIDFromeType:LearnDrawTypeAnimal]];
+        animalButton.hidden= YES;
+    }
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -133,24 +147,12 @@
         case HomeMenuTypeLearnDrawDraft:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_DRAFT];
-            ShareController* share = [[ShareController alloc] init];
-            int count = [[StatisticManager defaultManager] recoveryCount];
-            if (count > 0) {
-                [share setDefaultTabIndex:2];
-                [[StatisticManager defaultManager] setRecoveryCount:0];
-            }
-            [self.navigationController pushViewController:share animated:YES];
-            [share release];
-            
+            [self openDrawDraft];
         }
             break;
         case HomeMenuTypeLearnDrawMore:
         {
-            NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
-            if ([list count] == 0) {
-                break;
-            }
-            [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:NSLS(@"kFeedback") body:@"" isHTML:NO delegate:nil];
+            [self clickFeedback];
 
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_LEARN_DRAW_FEEDBACK];
 //
@@ -169,6 +171,68 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        
+        //dream avatar
+        case HomeMenuTypeDreamAvatarDraw:
+        {
+            [self drawAvatar];
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarDraft:
+        {
+            [self openDrawDraft];
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarShop:
+        {
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarFreeIngot:
+        {
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case HomeMenuTypeDreamAvatarMore:
+        {
+            [self clickFeedback];
+        }
+            break;
+          
+            
+        //dream lockscreen
+        case HomeMenuTypeDreamLockscreenDraft:
+        {
+            [self openDrawDraft];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenShop:
+        {
+            ChargeController *controller = [[ChargeController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenFreeIngot:
+        {
+            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case HomeMenuTypeDreamLockscreenMore:
+        {
+            [self clickFeedback];
+        }
+            break;
             
         default:
             break;
@@ -176,10 +240,30 @@
     [menu updateBadge:0];
 }
 
+- (void)clickFeedback
+{
+    NSArray *list = [ConfigManager getLearnDrawFeedbackEmailList];
+    if ([list count] == 0) {
+        return;
+    }
+    NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
+    NSString *body = [ConfigManager getFeedbackBody];
+    [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:body isHTML:NO delegate:nil];
+}
+
+- (void)openDrawDraft
+{
+    ShareController* share = [[ShareController alloc] init];
+    int count = [[StatisticManager defaultManager] recoveryCount];
+    if (count > 0) {
+        [share setDefaultTabIndex:2];
+        [[StatisticManager defaultManager] setRecoveryCount:0];
+    }
+    [self.navigationController pushViewController:share animated:YES];
+    [share release];
+}
 
 //rank view delegate
-
-
 - (void)playFeed:(DrawFeed *)aFeed
 {
     __block LearnDrawHomeController *cp = self;
@@ -219,7 +303,7 @@
 
 - (void)showFeed:(DrawFeed *)feed placeHolder:(UIImage *)placeHolder
 {
-    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId]) {
+    if ([[LearnDrawManager defaultManager] hasBoughtDraw:feed.feedId] && isLearnDrawApp()) {
         [self playFeed:feed];
     }else{
         [LearnDrawPreViewController enterLearnDrawPreviewControllerFrom:self drawFeed:feed placeHolderImage:placeHolder];
@@ -403,21 +487,19 @@
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
+    NSArray *types = [ContentGameApp homeTabIDList];
     
-    int types[] = {
-        LearnDrawTypeAll,
-        LearnDrawTypeCartoon,
-        LearnDrawTypeCharater,
-        LearnDrawTypeScenery,
-        LearnDrawTypeOther};
+    int type = [[types objectAtIndex:index] intValue];
     
-    return [self tabIDFromeType:types[index]];
+    return [self tabIDFromeType:type];
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *titles[] = {NSLS(@"kLearnDrawAll"),NSLS(@"kLearnDrawCartoon"),NSLS(@"kLearnDrawCharater"),NSLS(@"kLearnDrawScenery"),NSLS(@"kLearnDrawOther")};
+    NSArray *titles = [ContentGameApp homeTabTitleList];
+    
     return titles[index];
 }
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     TableTab *tab = [_tabManager tabForID:tabID];
@@ -496,4 +578,23 @@
     [sheet release];
     
 }
+
+
+//dream avatar
+#pragma mark - dream avatar
+- (void)drawAvatar
+{
+    self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
+    self.photoDrawSheet.delegate = self;
+    [_photoDrawSheet showSheet];
+}
+
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
+{
+    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self
+                               targetUid:nil photo:image];
+}
+
+
 @end

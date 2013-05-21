@@ -1197,6 +1197,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasTo_:1;
   BOOL hasText_:1;
   BOOL hasReqMessageId_:1;
+  BOOL hasImageUrl_:1;
+  BOOL hasThumbImageUrl_:1;
   BOOL hasCanvasSize_:1;
   Float64 longitude;
   Float64 latitude;
@@ -1210,6 +1212,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   NSString* to;
   NSString* text;
   NSString* reqMessageId;
+  NSString* imageUrl;
+  NSString* thumbImageUrl;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
 }
@@ -1226,6 +1230,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasLatitude;
 - (BOOL) hasReqMessageId;
 - (BOOL) hasReplyResult;
+- (BOOL) hasImageUrl;
+- (BOOL) hasThumbImageUrl;
 @property (readonly, retain) NSString* messageId;
 @property (readonly, retain) NSString* from;
 @property (readonly, retain) NSString* to;
@@ -1239,6 +1245,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) Float64 latitude;
 @property (readonly, retain) NSString* reqMessageId;
 @property (readonly) int32_t replyResult;
+@property (readonly, retain) NSString* imageUrl;
+@property (readonly, retain) NSString* thumbImageUrl;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
 
@@ -1349,6 +1357,16 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (int32_t) replyResult;
 - (PBMessage_Builder*) setReplyResult:(int32_t) value;
 - (PBMessage_Builder*) clearReplyResult;
+
+- (BOOL) hasImageUrl;
+- (NSString*) imageUrl;
+- (PBMessage_Builder*) setImageUrl:(NSString*) value;
+- (PBMessage_Builder*) clearImageUrl;
+
+- (BOOL) hasThumbImageUrl;
+- (NSString*) thumbImageUrl;
+- (PBMessage_Builder*) setThumbImageUrl:(NSString*) value;
+- (PBMessage_Builder*) clearThumbImageUrl;
 @end
 
 @interface PBMessageStat : PBGeneratedMessage {

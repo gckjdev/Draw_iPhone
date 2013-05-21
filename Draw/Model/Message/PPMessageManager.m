@@ -13,6 +13,7 @@
 #import "MessageStat.h"
 //#import "FileUtil.h"
 #import "StorageManager.h"
+#import "StringUtil.h"
 
 @implementation PPMessageManager
 #define MESSAGE_DIR @"message"
@@ -136,7 +137,23 @@
     return [manager removeDataForKey:friendId];
 }
 
++ (BOOL)saveImageToLocal:(UIImage *)image key:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager saveImage:image forKey:key];
+}
 
++ (NSString *)path:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager pathWithKey:key];
+}
+
++ (BOOL)removeLocalImage:(NSString *)key
+{
+    StorageManager *manager = [PPMessageManager messageStorageManager];
+    return [manager removeDataForKey:key];
+}
 
 #pragma mark message stat storage
 

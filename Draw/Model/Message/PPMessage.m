@@ -56,7 +56,9 @@
 
 + (id)messageWithPBMessage:(PBMessage *)pbMessage
 {
-    return [PPMessage oldMessageWithPBMessage:pbMessage];
+    if ([pbMessage hasType] == NO) {
+        return [PPMessage oldMessageWithPBMessage:pbMessage];
+    }
     
     switch (pbMessage.type) {
         case MessageTypeText:
@@ -104,7 +106,7 @@
         if ([[UserManager defaultManager] isMe:pbMessage.from]) {
             self.friendId = pbMessage.to;
             self.sourceType = SourceTypeSend;
-            self.status = MessageStatusSent;
+            //self.status = MessageStatusSent;
         }else{
             self.friendId = pbMessage.from;
             self.sourceType = SourceTypeReceive;
@@ -402,16 +404,34 @@
 {
     self = [super initWithPBMessage:pbMessage];
     if (self) {
-        //TODO set image url
+        self.imageUrl = pbMessage.imageUrl;
+        self.thumbImageUrl = pbMessage.thumbImageUrl;
+        if (pbMessage.status == MessageStatusFail ||
+            pbMessage.status == MessageStatusSending) {
+            self.image = [UIImage imageWithContentsOfFile:self.imageUrl];
+        }
     }
     return self;
 }
+
+
+- (PBMessage *)toPBMessage
+{
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [super updatePBMessageBuilder:builder];
+    [builder setImageUrl:self.imageUrl];
+    [builder setThumbImageUrl:self.thumbImageUrl];
+    return [builder build];
+}
+
 
 
 - (void)dealloc
 {
     PPRelease(_imageUrl);
     PPRelease(_image);
+    PPRelease(_thumbImage);
+    PPRelease(_thumbImageUrl);
     [super dealloc];
 }
 //- (void)encodeWithCoder:(NSCoder *)aCoder

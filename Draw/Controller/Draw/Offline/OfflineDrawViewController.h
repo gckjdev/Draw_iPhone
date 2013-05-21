@@ -19,6 +19,7 @@
 #import "DrawToolPanel.h"
 #import "MyFriend.h"
 #import "UserService.h"
+#import "InputAlertView.h"
 
 //#import "CommonItemInfoView.h"
 
@@ -36,11 +37,13 @@
      submitActionList:(NSMutableArray*)drawActionList
            canvasSize:(CGSize)size
             drawImage:(UIImage *)drawImage;
+- (void)didController:(OfflineDrawViewController *)controller
+          submitImage:(UIImage *)image;
 
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate> {
     
 }
 
@@ -56,6 +59,8 @@
 @property (retain, nonatomic) Contest *contest;
 @property (assign, nonatomic) UIViewController *startController;
 @property (retain, nonatomic) NSString *opusDesc;
+@property (retain, nonatomic) UIImage *bgImage;
+@property (retain, nonatomic) NSString *bgImageName;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;

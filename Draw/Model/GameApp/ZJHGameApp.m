@@ -362,7 +362,7 @@
 
 - (NSString*)domodWallId
 {
-    return @"";//TODO
+    return @"96ZJ37fAze+vLwTAqb";
 }
 
 - (NSString*)tapjoyWallId
@@ -452,8 +452,7 @@
     PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
-    PBRewardWall* ader = [GameConfigDataManager aderWall];
-    
+    PBRewardWall* ader = [GameConfigDataManager aderWall];    
     
     [builder addAppRewards:drawApp];
     [builder addAppRewards:diceApp];
@@ -468,6 +467,25 @@
     
     NSString* version = @"1.0";
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (BOOL)showPaintCategory
+{
+    return NO;
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
+
+- (NSString*)appItuneLink
+{
+    return nil;
+}
+- (NSString*)appLinkUmengKey
+{
+    return nil;
 }
 
 @end

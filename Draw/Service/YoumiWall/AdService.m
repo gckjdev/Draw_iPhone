@@ -268,6 +268,10 @@ static AdService* _defaultService;
 
 - (BOOL)isShowAd
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
     if ([ConfigManager isProVersion])
         return NO;
     
@@ -480,8 +484,8 @@ static AdService* _defaultService;
         return nil;
     }
     
-//    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
-//    
+    return [self createAdmobAdInView:superView frame:frame iPadFrame:iPadFrame];
+//
 //    if ([self isShowWanpuAd] == YES){
 //        return [self createWanpuAdInView:superView frame:frame iPadFrame:iPadFrame];
 //    }        
@@ -494,10 +498,10 @@ static AdService* _defaultService;
 //        return [self createMangoAdInView:superView frame:frame iPadFrame:iPadFrame];
 //    }
     
-    return [self createLmAdInView:superView
-                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
-                            frame:frame 
-                        iPadFrame:iPadFrame];            
+//    return [self createLmAdInView:superView
+//                            appId:[GameApp lmAdPublisherId] //@"eb4ce4f0a0f1f49b6b29bf4c838a5147" 
+//                            frame:frame 
+//                        iPadFrame:iPadFrame];            
 }
 
 

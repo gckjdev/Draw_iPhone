@@ -28,6 +28,7 @@
 #import "CommonUserInfoView.h"
 #import "ReplayView.h"
 #import "CanvasRect.h"
+#import "StringUtil.h"
 
 @interface ChatDetailController ()
 {
@@ -37,6 +38,7 @@
     
     NSInteger _asIndexDelete;
     NSInteger _asIndexReplay;
+    NSInteger _asIndexLookLarge;
     NSInteger _asIndexCopy;
     NSInteger _asIndexResend;
 //    BOOL _noData;
@@ -46,6 +48,7 @@
 @property (retain, nonatomic) PPMessage *selectedMessage;
 @property (retain, nonatomic) MessageStat *messageStat;
 @property (retain, nonatomic) NSMutableArray *messageList;
+@property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
 - (IBAction)clickBack:(id)sender;
 - (NSInteger)loadNewDataCount;
 - (NSInteger)loadMoreDataCount;
@@ -140,6 +143,7 @@
     PPRelease(_selectedMessage);
     PPRelease(_messageStat);
     PPRelease(_messageList);
+    PPRelease(_photoDrawSheet);
     [super dealloc];
 }
 
@@ -378,6 +382,12 @@
 //    [inputTextView resignFirstResponder];
 }
 
+- (IBAction)clickPhotoButton:(id)sender {
+    self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
+    _photoDrawSheet.delegate = self;
+    [_photoDrawSheet showSheet];
+}
+
 //设定view底部，整个view往上移位
 - (void)updateInputPanel:(UIView *)view withBottomLine:(CGFloat)yLine 
 {
@@ -498,11 +508,28 @@
 }
 
 
+- (void)sendImage:(UIImage *)image
+{
+    [self loadNewMessage:NO];
+    
+    ImageMessage *message = [[[ImageMessage alloc] init] autorelease];
+    [self constructMessage:message];
+    [message setMessageType:MessageTypeImage];
+    [message setText:NSLS(@"kImageMessage")];
+    [message setImage:image];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    PPDebug(@"message type:%d", message.messageType);
+    [self.messageList addObject:message];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
     [controller dismissModalViewControllerAnimated:YES];
 }
+
 - (void)didController:(OfflineDrawViewController *)controller
      submitActionList:(NSMutableArray *)drawActionList
            canvasSize:(CGSize)size
@@ -513,6 +540,12 @@
     [self tableViewScrollToBottom];
 }
 
+- (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
+{
+    [controller dismissModalViewControllerAnimated:YES];
+    [self sendImage:image];
+    [self tableViewScrollToBottom];
+}
 
 - (void)showFriendProfile:(MyFriend *)aFriend
 {
@@ -566,6 +599,7 @@
     _asIndexDelete = -1;
     _asIndexCopy = -1;
     _asIndexReplay = -1;
+    _asIndexLookLarge = -1;
     _asIndexResend = -1;
     NSInteger start = 0;
     _asIndexDelete = start++;
@@ -573,6 +607,8 @@
         _asIndexReplay = start++;
     }else if(message.messageType == MessageTypeText){
         _asIndexCopy = start++;
+    }else if(message.messageType == MessageTypeImage){
+        _asIndexLookLarge = start ++;
     }
     if (message.status == MessageStatusFail) {
         _asIndexResend = start++;
@@ -597,10 +633,58 @@
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
     [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion size:message.canvasSize];
 }
+
+- (void)enterLargeImage:(PPMessage *)message
+{
+    _selectedMessage = message;
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.canSave = YES;
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
+}
+
+#pragma mark - mwPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (_selectedMessage.messageType == MessageTypeImage)
+    {
+        ImageMessage *imageMessage  = (ImageMessage *)_selectedMessage;
+        NSURL *url = nil;
+        if (imageMessage.status == MessageStatusFail) {
+            url = [NSURL fileURLWithPath:imageMessage.imageUrl];
+        } else {
+            url = [NSURL URLWithString:imageMessage.imageUrl];
+        }
+        return [MWPhoto photoWithURL:url];
+    }
+    return nil;
+}
+
+
+#pragma mark - 
 - (void)clickMessage:(PPMessage *)message 
   withDrawActionList:(NSArray *)drawActionList
 {
     [self enterReplayController:(DrawMessage *)message];
+}
+
+
+- (void)clickMessage:(PPMessage *)message
+{
+    switch (message.messageType) {
+        case MessageTypeImage:
+            [self enterLargeImage:message];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark options action.
@@ -622,7 +706,12 @@
             tag = ACTION_SHEET_TAG_TEXT;
             otherOperation = NSLS(@"kCopy");            
             break;
+        case MessageTypeImage:
+            tag = ACTION_SHEET_TAG_IMAGE;
+            otherOperation = NSLS(@"kLookLargeImage");
+            break;
         default:
+            _showingActionSheet = NO;
             return;
     }
     [self resetASIndexesOfMessage:message];
@@ -653,24 +742,30 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
     _showingActionSheet = NO;
     if (_asIndexDelete == buttonIndex) {
         [[ChatService defaultService] deleteMessage:self
                                       messageList:[NSArray arrayWithObject:_selectedMessage]];
-                
+
+        if (_selectedMessage.messageType == MessageTypeImage){
+            if (_selectedMessage.status == MessageStatusSending || _selectedMessage.status == MessageStatusFail) {
+                [PPMessageManager removeLocalImage:[(ImageMessage *)_selectedMessage thumbImageUrl]];
+            }
+        }
+        
         NSInteger row = [self.messageList indexOfObject:_selectedMessage];
         NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
         NSArray *indexPaths = [NSArray arrayWithObject:path];
         [self.messageList removeObject:_selectedMessage];
         [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        
     }else if(_asIndexCopy == buttonIndex && _selectedMessage.messageType == MessageTypeText)
     {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = _selectedMessage.text;         
     }else if(_asIndexReplay == buttonIndex && _selectedMessage.messageType == MessageTypeDraw){
         [self enterReplayController:(DrawMessage *)_selectedMessage];
+    }else if(_asIndexLookLarge == buttonIndex && _selectedMessage.messageType == MessageTypeImage){
+        [self enterLargeImage:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
         [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
         [_selectedMessage setCreateDate:[NSDate date]];
@@ -774,6 +869,17 @@
         return;
     }
     [self loadMoreMessage];
+}
+
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
+{
+    OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypePhoto delegate:self];
+    odc.bgImage = image;
+    odc.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+    [self presentModalViewController:odc animated:YES];
+    //[self.navigationController pushViewController:odc animated:YES];
+    [odc release];
 }
 
 @end

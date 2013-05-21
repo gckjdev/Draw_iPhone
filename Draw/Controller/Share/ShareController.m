@@ -28,6 +28,7 @@
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
 #import "ReplayView.h"
+#import "SaveToContactPickerView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -35,6 +36,8 @@
 #define IMAGE_OPTION            20120407
 #define FROM_WEIXIN_OPTION      20130116
 
+#define DREAM_AVATAR_OPTION     20130506
+#define DREAM_LOCKSCREEN_OPTION 20130509
 
 #define LOAD_PAINT_LIMIT 20
 
@@ -55,6 +58,7 @@ typedef enum{
 
 }
 @property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
+@property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine;
 - (NSArray *)paints;
 - (void)reloadView;
@@ -80,7 +84,7 @@ typedef enum{
     PPRelease(clearButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
-
+    PPRelease(_saveToContactPickerView);
     [super dealloc];
 }
 
@@ -155,12 +159,14 @@ typedef enum{
 {
     TableTab *tab = [_tabManager tabForID:TabTypeMine];
     [_myPaintManager findMyPaintsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
 
 - (void)performLoadAllPaints
 {
     TableTab *tab = [_tabManager tabForID:TabTypeAll];
     [_myPaintManager findAllPaintsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
 
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine
@@ -177,7 +183,10 @@ typedef enum{
 {
     TableTab *tab = [_tabManager tabForID:TabTypeDraft];
     [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
+    [self hideActivity];
 }
+
+// db.bulletin.insert({"date":new Date(), "type":0, "game_id":"Draw","function":"","content":"[公告] 近期发现部分用户反复使用草稿发同一副作品，影响画榜。先明令禁止此种行为，发现一律直接删除，严重违反者直接封号"});
 
 - (void)loadDrafts
 {
@@ -194,6 +203,48 @@ typedef enum{
 //    [self loadDraftsShouldShowLoading:YES];
 //}
 
+#define TITLE_RECOVERY        NSLS(@"kRecovery")
+#define TITLE_EDIT            NSLS(@"kEdit")
+#define TITLE_SAVE_TO_ALBUM   NSLS(@"kDreamAvatarSaveToAlbum")
+#define TITLE_SAVE_TO_CONTACT NSLS(@"kDreamAvatarSaveToContact")
+#define TITLE_DELETE          NSLS(@"kDelete")
+
+#define DREAM_AVATAR_TITLES  TITLE_SAVE_TO_ALBUM, TITLE_SAVE_TO_CONTACT, TITLE_DELETE, nil
+- (void)didSelectPaintInDreamAvatar
+{
+    NSString* editString = ([[self.selectedPaint isRecovery] boolValue]? TITLE_RECOVERY : TITLE_EDIT);
+    
+    UIActionSheet *sheet;
+    if (self.isDraftTab) {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:editString, DREAM_AVATAR_TITLES];
+    } else {
+        sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLS(@"kCancel")
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:DREAM_AVATAR_TITLES];
+    }
+
+    sheet.tag = DREAM_AVATAR_OPTION;
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
+- (void)didSelectPaintInDreamLockscreen
+{    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLS(@"kCancel")
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:TITLE_SAVE_TO_ALBUM, TITLE_DELETE, nil];
+    sheet.tag = DREAM_LOCKSCREEN_OPTION;
+    [sheet showInView:self.view];
+    [sheet release];
+}
 
 #pragma mark - Share Cell Delegate
 - (void)didSelectPaint:(MyPaint *)paint
@@ -203,8 +254,8 @@ typedef enum{
         WXMediaMessage *message = [WXMediaMessage message];
         [message setThumbImage:paint.thumbImage];
         WXImageObject *ext = [WXImageObject object];
-        message.title = NSLS(@"kWXShareImageName");
-        ext.imageData = [paint.thumbImage data] ;
+        message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
+        ext.imageData = [paint.paintImage data] ;
         message.mediaObject = ext;
         
         GetMessageFromWXResp* resp = [[[GetMessageFromWXResp alloc] init] autorelease];
@@ -214,9 +265,21 @@ typedef enum{
         if (flag) {
             [self.navigationController popViewControllerAnimated:NO];
         }
+        paint.paintImage = nil;
         return;
     }
     self.selectedPaint = paint;
+    
+    
+    if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
+        [self didSelectPaintInDreamAvatar];
+        return;
+    } else if (isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        [self didSelectPaintInDreamLockscreen];
+        return;
+    }
+    
+    
     UIActionSheet* tips = nil;
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
@@ -227,11 +290,11 @@ typedef enum{
     if ([LocaleUtils isChina]){
         
         if (self.isDraftTab) {
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }else{        
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
                                                           delegate:self 
@@ -300,7 +363,7 @@ typedef enum{
     WXMediaMessage *message = [WXMediaMessage message];
     [message setThumbImage:drawImage];
     WXImageObject *ext = [WXImageObject object];
-    message.title = NSLS(@"kWXShareImageName");
+    message.title = [NSString stringWithFormat:NSLS(@"kWXShareImageName"), [UIUtils getAppName]];
     ext.imageData = [drawImage data] ;
     message.mediaObject = ext;
     
@@ -412,6 +475,58 @@ typedef enum{
     }
 }
 
+- (void)dreamAvatarActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:TITLE_RECOVERY] ||
+        [buttonTitle isEqualToString:TITLE_EDIT]) {
+        [self showActivityWithText:NSLS(@"kLoading")];
+        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
+        [self showActivityWithText:NSLS(@"kSaving")];
+        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
+        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_CONTACT]) {
+        if (_saveToContactPickerView == nil) {
+            self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
+        }
+        
+        UIImage* image = [[UIImage alloc] initWithContentsOfFile:_selectedPaint.imageFilePath];
+        [_saveToContactPickerView saveToContact:image];
+    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        
+        dialog.tag = DELETE;
+        
+        [dialog showInView:self.view];
+    }
+}
+
+
+- (void)dreamLockscreenActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:TITLE_SAVE_TO_ALBUM]) {
+        [self showActivityWithText:NSLS(@"kSaving")];
+        [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
+        [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
+        
+    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                           message:NSLS(@"kAre_you_sure")
+                                                             style:CommonDialogStyleDoubleButton
+                                                          delegate:self];
+        
+        dialog.tag = DELETE;
+        [dialog showInView:self.view];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -425,8 +540,12 @@ typedef enum{
         [self imageActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
         return;
     }
-   
-    
+    if (actionSheet.tag == DREAM_AVATAR_OPTION) {
+        [self dreamAvatarActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    }
+    if (actionSheet.tag == DREAM_LOCKSCREEN_OPTION) {
+        [self dreamLockscreenActionSheet:actionSheet clickedButtonAtIndex:buttonIndex];
+    }
 }
 
 
@@ -691,7 +810,7 @@ typedef enum{
     [super initTabButtons];
     [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
     
-    if (isSimpleDrawApp() && isLearnDrawApp() == NO){
+    if ([GameApp showPaintCategory] == NO){
         UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
         UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
         UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
@@ -752,15 +871,26 @@ typedef enum{
 }
 
 
+
+
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.isDraftTab) {
-        TableTab *tab = [self currentTab];
-        tab.offset = 0;
-        [tab.dataList removeAllObjects];
-        [self loadDrafts];
-    }
+//    if (self.isDraftTab) {
+//        TableTab *tab = [self currentTab];
+//        tab.offset = 0;
+//        [tab.dataList removeAllObjects];
+//        [self loadDrafts];
+//    }
     [super viewDidAppear:animated];
+    [self clickRefreshButton:nil];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [_tabManager reset];
+    [self.dataTableView reloadData];
 }
 
 #pragma mark common tab controller
@@ -830,5 +960,12 @@ typedef enum{
         }
         
     }
+}
+
++ (void)shareFromWeiXin:(UIViewController *)superController
+{
+    ShareController* share = [[[ShareController alloc] init ] autorelease];
+    [share setFromWeiXin:YES];
+    [superController.navigationController pushViewController:share animated:YES];
 }
 @end

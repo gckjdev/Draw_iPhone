@@ -92,6 +92,8 @@
 
 #import "VersionUpdateView.h"
 #import "GameAdWallService.h"
+#import "ChargeController.h"
+#import "ContestManager.h"
 
 @interface HomeController()
 {
@@ -159,7 +161,7 @@
     else{
         self.recommendButton.hidden = YES;
     }
-    
+    [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [super viewDidLoad];
     
     [self initRecommendButton];
@@ -420,14 +422,14 @@
 }
 
 
-+ (HomeController *)defaultInstance
++ (HomeController*)defaultInstance
 {
     DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.homeController == nil){    
         app.homeController = [[[HomeController alloc] init] autorelease];
     }
     
-    return app.homeController;
+    return (HomeController*)app.homeController;
 }
 
 + (void)returnRoom:(UIViewController*)superController
@@ -583,7 +585,8 @@
             [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
-        case HomeMenuTypeDrawShop:
+        case HomeMenuTypeDrawBigShop:
+//        case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
             
@@ -654,7 +657,10 @@
             [feedBack release];
         }
             break;
-            
+        case HomeMenuTypeDrawCharge: {
+            ChargeController *vc = [[[ChargeController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        } break;
         default:
             break;
     }
@@ -743,7 +749,6 @@
             [[StatisticManager defaultManager] setFeedCount:0];
         }
             break;
-            
         case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
@@ -856,6 +861,15 @@
     //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
+}
+
+- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
+{
+    if (code == 0) {
+        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
+    }
+    [self updateAllBadge];
+    
 }
 
 @end

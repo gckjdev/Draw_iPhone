@@ -552,11 +552,11 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="female1.png">{16, 16}</string>
-			<string key="main_top@2x.png">{640, 285}</string>
+			<string key="main_top@2x.png">{16, 16}</string>
 			<string key="man1.png">{16, 16}</string>
-			<string key="user_pic_bgselected@2x.png">{142, 147}</string>
-			<string key="user_picbg@2x.png">{142, 147}</string>
-			<string key="wood_wall@2x.png">{640, 960}</string>
+			<string key="user_pic_bgselected@2x.png">{16, 16}</string>
+			<string key="user_picbg@2x.png">{16, 16}</string>
+			<string key="wood_wall@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

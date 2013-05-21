@@ -113,10 +113,14 @@ typedef enum{
 
 - (NSInteger)tabCountForType:(TabType)type
 {
-    return 4;
+    if (type == TabTypeCategory) {
+        return 5;
+    } else {
+        return 4;
+    }
 }
 
-- (BOOL)button:(UIButton *)button isType:(TabType)type 
+- (BOOL)button:(UIButton *)button isType:(TabType)type
 {
     for (NSInteger i = 0; i < [self tabCountForType:type]; ++ i) {
         NSInteger tabID = [self tabIdForIndex:i type:type];
@@ -135,6 +139,7 @@ typedef enum{
             LearnDrawTypeCartoon,
             LearnDrawTypeCharater,
             LearnDrawTypeScenery,
+            LearnDrawTypeAnimal,
             LearnDrawTypeOther};
         
         return types[index];
@@ -154,6 +159,7 @@ typedef enum{
             NSLS(@"kLearnDrawCartoon"),
             NSLS(@"kLearnDrawCharater"),
             NSLS(@"kLearnDrawScenery"),
+            NSLS(@"kLearnDrawAnimal"),
             NSLS(@"kLearnDrawOther")};
         return titles[index];
     }

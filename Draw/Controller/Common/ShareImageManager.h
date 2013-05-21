@@ -264,5 +264,8 @@
 - (UIImage*)settingCellMiddleBgImage;
 - (UIImage*)settingCellBottomBgImage;
 - (UIImage*)settingCellOneBgImage;
+- (UIImage*)navigatorRightBtnImage;
+
+- (UIImage *)splitPhoto;
 
 @end

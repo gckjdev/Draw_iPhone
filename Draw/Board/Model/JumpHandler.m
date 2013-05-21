@@ -16,6 +16,7 @@
 #import "GameApp.h"
 #import "CommonMessageCenter.h"
 #import "Bulletin.h"
+#import "GameAdWallService.h"
 
 @implementation JumpHandler
 + (JumpHandler *)createJumpHandlerWithType:(JumpType)type
@@ -39,7 +40,8 @@
             
         case JumpTypeMsg:
             return [[[MessageJumpHandler alloc] init]autorelease];
-*/          
+ */      case JumpTypeOfferWall:
+            return [[[OfferWallJumpHandler alloc] init] autorelease];
         default:
             return nil;
     }
@@ -49,6 +51,13 @@
 - (void)handleJump:(BoardView *)boardView 
         controller:(UIViewController *)controller 
                URL:(NSURL *)URL
+{
+    
+}
+
+- (void)handleOfferWallJump:(UIViewController*)controller
+                     gameId:(NSString*)gameId
+                   wallType:(PBRewardWallType)wallType
 {
     
 }
@@ -71,6 +80,11 @@
 {
     if (bulletin.type == JumpTypeGame) {
         [JumpHandler handleGameJump:controller gameId:bulletin.gameId function:bulletin.function];
+        return;
+    }
+    if (bulletin.type == JumpTypeOfferWall) {
+        PBRewardWallType offerWallType = [bulletin.function intValue];
+        [[JumpHandler createJumpHandlerWithType:bulletin.type] handleOfferWallJump:controller gameId:bulletin.gameId wallType:offerWallType];
         return;
     }
     [[JumpHandler createJumpHandlerWithType:bulletin.type] handleUrlFromController:controller Url:[NSURL URLWithString:bulletin.url]];
@@ -175,6 +189,19 @@
     //http://  tel:// msm:// 
     
 }
+@end
+
+#pragma mark - OfferWallJumpHandler
+@implementation OfferWallJumpHandler
+
+- (void)handleOfferWallJump:(UIViewController*)controller
+                     gameId:(NSString*)gameId
+                   wallType:(PBRewardWallType)wallType
+{
+    [[GameAdWallService defaultService] showInsertWall:controller wallType:wallType];
+}
+
+
 @end
 
 /*

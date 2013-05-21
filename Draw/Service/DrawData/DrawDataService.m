@@ -178,6 +178,8 @@ static DrawDataService* _defaultDrawDataService = nil;
     return draw;
 }
 
+
+
 - (void)createOfflineDraw:(NSMutableArray*)drawActionList
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
@@ -196,14 +198,25 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* appId = [ConfigManager appId];
     NSString* signature = [[UserManager defaultManager] signature];
     
-    PBDraw *draw = [self buildPBDraw:userId
+//    PBDraw *draw = [self buildPBDraw:userId
+//                                nick:nick
+//                              avatar:avatar
+//                      drawActionList:drawActionList
+//                            drawWord:drawWord
+//                            language:language
+//                                size:size
+//                        isCompressed:NO];
+
+    BOOL isCompressed = NO;
+    
+    NSData *drawData = [DrawAction buildPBDrawData:userId
                                 nick:nick
                               avatar:avatar
                       drawActionList:drawActionList
                             drawWord:drawWord
                             language:language
                                 size:size
-                        isCompressed:NO];
+                        isCompressed:isCompressed];
     
     NSData *imageData = nil;
     if (image) {
@@ -224,12 +237,12 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                                level:drawWord.level
                                                                score:drawWord.score
                                                                 lang:language                                      
-                                                                data:[draw data] 
+                                                                data:drawData
                                                            imageData:imageData 
                                                            targetUid:targetUid 
                                                            contestId:contestId
                                                                 desc:desc
-                                                        isCompressed:[draw isCompressed]
+                                                        isCompressed:isCompressed
                                                     progressDelegate:viewController];
 
         dispatch_async(dispatch_get_main_queue(), ^{

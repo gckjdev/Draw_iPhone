@@ -288,6 +288,10 @@
 
 + (BOOL)wallEnabled
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
     if ([ConfigManager isInReviewVersion] == NO && 
         ([LocaleUtils isChina] == YES || 
          [LocaleUtils isOtherChina] == YES)){   
@@ -505,7 +509,8 @@
 }
 
 + (NSString*)getZJHServerListStringWithNormal
-{    
+{
+//    return @"192.168.1.5:8080";
     if (([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
     
@@ -676,7 +681,7 @@
 
 + (NSString*)getShareImageWaterMark
 {
-    return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:NSLS(@"kDefaultWaterMark")];
+    return [MobClickUtils getStringValueByKey:@"SNS_IMAGE_WATER_MARK" defaultValue:[UIUtils getAppName]];
 }
 
 + (int)getMaxCountForFetchFreeCoinsOneDay
@@ -936,12 +941,50 @@
 
 + (NSString*)getSNSShareSubject
 {
-    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:NSLS(@"kSNSSubject")];
+    return [MobClickUtils getStringValueByKey:@"SNS_SUBJECT" defaultValue:[GameApp getDefaultSNSSubject]];
 }
 + (NSString*)getDrawAppLink
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_APP_LINK" defaultValue:NSLS(@"kDrawAppLink")];
 }
 
++ (NSString*)getAppItuneLink
+{
+    return [MobClickUtils getStringValueByKey:[GameApp appLinkUmengKey] defaultValue:[GameApp appItuneLink]];
+}
 
++ (int)getBuyAnswerPrice
+{
+    return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:50];
+}
+
++ (double)getBGMVolume
+{
+    return [MobClickUtils getDoubleValueByKey:@"BGM_VOLUME" defaultValue:0.2];
+}
+
++ (BOOL)showRestoreButton
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_RESTORE_BUTTON" defaultValue:NO];
+}
+
++ (NSString*)getFeedbackBody
+{
+    return [NSString stringWithFormat:@"UserId :　%@", [[UserManager defaultManager] userId]];
+}
+
++ (int)maxDrawTitleLen
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN" defaultValue:7];
+}
+
++ (float)littleGeeFirstShowOptionsDuration
+{
+    return [MobClickUtils getFloatValueByKey:@"LITTLE_GEE_FIRST_SHOW_OPTIONS_DURATION" defaultValue:15.0];
+}
+
++ (float)littleGeeShowOptionsDuration
+{
+    return [MobClickUtils getFloatValueByKey:@"LITTLE_GEE_SHOW_OPTIONS_DURATION" defaultValue:60.0];
+}
 @end

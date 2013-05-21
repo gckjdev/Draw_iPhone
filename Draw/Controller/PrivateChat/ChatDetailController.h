@@ -11,6 +11,8 @@
 #import "OfflineDrawViewController.h"
 #import "ChatDetailCell.h"
 #import "UserLocationController.h"
+#import "PhotoDrawSheet.h"
+#import "MWPhotoBrowser.h"
 
 @class MessageStat;
 @class PPMessage;
@@ -22,7 +24,7 @@
 
 @end
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate>
 {
     
 }

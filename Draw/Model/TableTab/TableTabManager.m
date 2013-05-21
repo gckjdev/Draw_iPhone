@@ -127,4 +127,33 @@
     PPDebug(@"<TableTabManager>: cleanData");
 }
 
+- (void)reset
+{
+    for (TableTab *tab in _tabList) {
+        [tab.dataList removeAllObjects];
+        tab.offset = 0;
+        tab.status = TableTabStatusUnload;
+    }
+}
+
+- (void)cleanFrontData
+{
+    _bgList = _tabList;
+    _tabList = nil;
+    _hasCleanFrontData = YES;
+}
+- (void)resetFrontData
+{
+    if (_hasCleanFrontData) {
+        _hasCleanFrontData = NO;
+        _tabList = _bgList;
+        _bgList = nil;
+    }
+}
+- (BOOL)needResetFrontData
+{
+    return _hasCleanFrontData;
+}
+
+
 @end

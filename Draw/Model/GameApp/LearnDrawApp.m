@@ -12,6 +12,7 @@
 #import "ShareImageManager.h"
 #import "DrawGameJumpHandler.h"
 #import "LearnDrawHomeController.h"
+#import "LearnDrawManager.h"
 
 @implementation LearnDrawApp
 
@@ -68,9 +69,19 @@
     
     PBConfig_Builder* builder = [PBConfig builder];
     
-    PBAppReward* diceApp = [GameConfigDataManager oldDiceAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
-    
+    PBAppReward* diceApp = [GameConfigDataManager oldDiceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
     [builder addAppRewards:diceApp];
+    
+    PBRewardWall* limei = [GameConfigDataManager limeiWall];
+    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
+    PBRewardWall* ader = [GameConfigDataManager aderWall];
+//    PBRewardWall* domod = [GameConfigDataManager domodWall];
+    
+    [builder addRewardWalls:limei];
+    [builder addRewardWalls:ader];
+    [builder addRewardWalls:youmi];
+//    [builder addRewardWalls:domod];
+    
     
     PBConfig* config = [builder build];
     NSData* data = [config data];
@@ -81,9 +92,48 @@
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+- (BOOL)showPaintCategory
+{
+    return YES;
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return nil;
+}
+
+- (NSString*)appItuneLink
+{
+    return nil;
+}
+- (NSString*)appLinkUmengKey
+{
+    return nil;
+}
+
+
+//ContentGameAppProtocol
 - (int)sellContentType
 {
     return SellContentTypeLearnDraw;
+}
+
+- (NSArray *)homeTabIDList
+{
+    return [NSArray arrayWithObjects:[NSNumber numberWithInt:LearnDrawTypeAll],
+            [NSNumber numberWithInt:LearnDrawTypeCartoon],
+            [NSNumber numberWithInt:LearnDrawTypeCharater],
+            [NSNumber numberWithInt:LearnDrawTypeScenery],
+            [NSNumber numberWithInt:LearnDrawTypeOther],nil];
+}
+
+- (NSArray *)homeTabTitleList
+{
+    return [NSArray arrayWithObjects:NSLS(@"kLearnDrawAll"),
+            NSLS(@"kLearnDrawCartoon"),
+            NSLS(@"kLearnDrawCharater"),
+            NSLS(@"kLearnDrawScenery"),
+            NSLS(@"kLearnDrawOther"), nil];
 }
 
 @end

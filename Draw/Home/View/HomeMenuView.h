@@ -25,6 +25,8 @@ typedef enum{
     HomeMenuTypeDrawFreeCoins,
     HomeMenuTypeDrawPlayWithFriend,
     HomeMenuTypeDrawApps,
+    HomeMenuTypeDrawBigShop,
+    HomeMenuTypeDrawCharge,
     
     //draw bottom menu
     HomeMenuTypeDrawHome = 1500,
@@ -68,6 +70,27 @@ typedef enum{
     HomeMenuTypeLearnDrawDraft,
     HomeMenuTypeLearnDrawShop,
     HomeMenuTypeLearnDrawMore,
+    
+    //DreamAvatar Bottom Munu
+    HomeMenuTypeDreamAvatarDraw,
+    HomeMenuTypeDreamAvatarDraft,
+    HomeMenuTypeDreamAvatarShop,
+    HomeMenuTypeDreamAvatarFreeIngot,
+    HomeMenuTypeDreamAvatarMore,
+    
+    //DreamAvatar Bottom Munu
+    HomeMenuTypeDreamLockscreenDraft,
+    HomeMenuTypeDreamLockscreenShop,
+    HomeMenuTypeDreamLockscreenFreeIngot,
+    HomeMenuTypeDreamLockscreenMore,
+    
+    //LittleGee Bottom Menu
+    HomeMenuTypeLittleGeeOptions,
+    HomeMenuTypeLittleGeeFriend,
+    HomeMenuTypeLittleGeeChat,
+    HomeMenuTypeLittleGeeFeed,
+    HomeMenuTypeLittleGeePlaceholder,
+    
     
 }HomeMenuType;
 

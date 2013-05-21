@@ -116,8 +116,7 @@
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
-@property (retain, nonatomic) UIImage *bgImage;
-@property (retain, nonatomic) NSString *bgImageName;
+
 
 //@property (assign, nonatomic) CGRect canvasRect;
 
@@ -317,6 +316,7 @@
     return self;
 }
 
+
 #pragma mark - Update Data
 
 #define STEP 5
@@ -413,6 +413,7 @@
 
 
         [drawView showDraft:self.draft];
+        self.draft.paintImage = nil;
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
         
@@ -428,7 +429,7 @@
 
 - (void)initWordLabel
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.wordLabel.hidden = YES;
     }else {
         self.wordLabel.hidden = NO;
@@ -456,7 +457,7 @@
         return;
     }
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.draftButton.hidden = YES;
     }
     
@@ -499,7 +500,7 @@
 
 - (BOOL)supportRecovery
 {
-    if (targetType == TypeGraffiti){
+    if (targetType == TypeGraffiti || targetType == TypePhoto){
         return NO;
     }
     
@@ -585,7 +586,7 @@
 
 - (void)initBgImage
 {
-    if (isPhotoDrawApp() || isPhotoDrawFreeApp()) {
+    if ([GameApp hasBGOffscreen] || targetType == TypePhoto) {
         if (self.draft == nil && _bgImage) {
             [self setDrawBGImage:_bgImage];
         } else {
@@ -595,9 +596,24 @@
     }
 }
 
+- (void)updateShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:YES];
+    }
+}
+
+- (void)updateNotShowBgScreenForPhoto
+{
+    if (targetType == TypePhoto) {
+        [OffscreenManager setShowBGOffscreen:NO];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateShowBgScreenForPhoto];
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -637,6 +653,7 @@
 {
     [self stopBackupTimer];
     [super viewDidDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -644,6 +661,13 @@
     [super viewDidAppear:animated];
     [self startBackupTimer];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self updateNotShowBgScreenForPhoto];
+}
+
 
 #define ESCAPE_DEDUT_COIN 1
 #define DIALOG_TAG_CLEAN_DRAW 201204081
@@ -721,24 +745,31 @@
             return;
         }
         //if come from feed detail controller
-        if (_startController != nil) {
+        if (isLittleGeeAPP()) {
+            _startController = (_startController == nil)?[HomeController defaultInstance]:_startController;
             [self.navigationController popToViewController:_startController animated:NO];
-            SelectHotWordController *sc = nil;
-            if ([_targetUid length] == 0) {
-                sc = [[[SelectHotWordController alloc] init] autorelease];
+            [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:_startController startController:_startController targetUid:_targetUid];
+        } else {
+            if (_startController != nil) {
+                [self.navigationController popToViewController:_startController animated:NO];
+                SelectHotWordController *sc = nil;
+                if ([_targetUid length] == 0) {
+                    sc = [[[SelectHotWordController alloc] init] autorelease];
+                }else{
+                    sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+                }
+                sc.superController = self.startController;
+                [_startController.navigationController pushViewController:sc animated:NO];
             }else{
-                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-            }
-            sc.superController = self.startController;
-            [_startController.navigationController pushViewController:sc animated:NO];
-        }else{
-            //if come from home controller
-            if ([_targetUid length] == 0) {
-                [HomeController startOfflineDrawFrom:self];    
-            }else{
-                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+                //if come from home controller
+                if ([_targetUid length] == 0) {
+                    [HomeController startOfflineDrawFrom:self];
+                }else{
+                    [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+                }
             }
         }
+        
         if (self.draft) {
             [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
             self.draft = nil;
@@ -902,6 +933,23 @@
     return data;
 }
 
+- (NSData *)newDrawDataSnapshot
+{
+//    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
+//                                                                               size:drawView.bounds.size
+//                                                                           opusDesc:self.opusDesc
+//                                                                         drawToUser:nil
+//                                                                    bgImageFileName:_bgImageName];
+    
+    NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
+                                                                  size:drawView.bounds.size
+                                                              opusDesc:self.opusDesc
+                                                            drawToUser:nil
+                                                       bgImageFileName:_bgImageName];
+    return data;
+}
+
+
 - (void)setTargetUid:(NSString *)targetUid
 {
     if(_targetUid != targetUid){
@@ -919,7 +967,7 @@
 
 - (void)saveDraft:(BOOL)showResult
 {
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         return;
     }
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
@@ -937,21 +985,42 @@
             PPDebug(@"<saveDraft> save draft");
             [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
             [self.draft setOpusDesc:self.opusDesc];
-            result = [pManager updateDraft:self.draft
-                                     image:image
-                      pbNoCompressDrawData:[self drawDataSnapshot]];
+//            result = [pManager updateDraft:self.draft
+//                                     image:image
+//                      pbNoCompressDrawData:[self drawDataSnapshot]];
+            
+            NSData* data = [self newDrawDataSnapshot];
+            if ([data length] == 0){
+                result = NO;
+            }
+            else{
+                result = [pManager updateDraft:self.draft
+                                         image:image
+                                      drawData:data];
+            }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
+//            self.draft = [pManager createDraft:image
+//                          pbNoCompressDrawData:[self drawDataSnapshot]
+//                                     targetUid:_targetUid
+//                                     contestId:self.contest.contestId
+//                                        userId:[userManager userId]
+//                                      nickName:[userManager nickName]
+//                                          word:_word
+//                                      language:languageType
+//                                       bgImage:_bgImage];
+
             self.draft = [pManager createDraft:image
-                          pbNoCompressDrawData:[self drawDataSnapshot]
+                                      drawData:[self newDrawDataSnapshot]
                                      targetUid:_targetUid
                                      contestId:self.contest.contestId
                                         userId:[userManager userId]
                                       nickName:[userManager nickName]
                                           word:_word
                                       language:languageType
-                                       bgImage:_bgImage];
+                                       bgImage:_bgImage
+                                   bgImageName:_bgImageName];
             
             
             if (self.draft) {
@@ -1025,10 +1094,10 @@
     NSString* text = nil;
     
     if ([[self getOpusComment] length] > 0){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
     }
     else{
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getDrawAppLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
     }
     
     if (imagePath != nil) {
@@ -1109,6 +1178,10 @@
 
     NSString *text = self.opusDesc;
     
+    if (isLittleGeeAPP() && [self.inputAlert hasSubjectText]) {
+        [self.word setText:self.inputAlert.subjectText];
+    }
+    
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
     
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
@@ -1133,7 +1206,19 @@
 - (void)showInputAlertView
 {
     if (self.inputAlert == nil) {
-        self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
+        if (isLittleGeeAPP()) {
+            BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
+
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+            self.inputAlert.delegate = self;
+            
+        } else {
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
+        }
+        
+    }
+    if ([self.inputAlert canEditSubject]) {
+        [self.inputAlert setSubjectText:self.word.text];
     }
     self.inputAlert.contentText = self.opusDesc;
     [self.inputAlert showInView:self.view animated:YES];
@@ -1149,7 +1234,7 @@
 
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     
-    if (isBlank) {
+    if (isBlank && targetType != TypePhoto) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];
         [dialog showInView:self.view];
         return;
@@ -1162,6 +1247,11 @@
                    submitActionList:drawView.drawActionList
                          canvasSize:drawView.bounds.size
                           drawImage:image];
+        }
+    }else if (targetType == TypePhoto) {
+        if ([delegate respondsToSelector:@selector(didController:submitImage:)]) {
+            UIImage *image = [drawView createImage];
+            [delegate didController:self submitImage:image];
         }
     }else {
         if(self.contest){
@@ -1206,7 +1296,7 @@
         return;
     }    
     
-    if (targetType == TypeGraffiti) {
+    if (targetType == TypeGraffiti || targetType == TypePhoto) {
         if (delegate && [delegate respondsToSelector:@selector(didControllerClickBack:)]) {
             [delegate didControllerClickBack:self];
         }
@@ -1245,6 +1335,17 @@
     }
 }
 
-
+#pragma mark - input alert view delegate
+- (BOOL)isSubjectValid:(NSString *)subjectText
+{
+    if (isLittleGeeAPP()) {
+        if ([LocaleUtils isChinese]) {
+            return NSStringIsValidChinese(subjectText);
+        } else {
+            return NSStringISValidEnglish(subjectText);
+        }
+    }
+    return YES;
+}
 
 @end

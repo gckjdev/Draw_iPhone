@@ -94,6 +94,11 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"draw_home_shop"];
     return [UIImage imageNamed:imageName];
 }
+- (UIImage*)drawHomeBigShop
+{
+    NSString *imageName = [self fixImageName:@"common_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
 - (UIImage *)diceHomeShop{
     NSString *imageName = [self fixImageName:@"common_home_shop"];
     return [UIImage imageNamed:imageName];
@@ -267,6 +272,74 @@ static DrawImageManager * _staticDrawImageManager;
 - (UIImage *)learnDrawShop
 {
     NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+//dream avatar
+- (UIImage *)dreamAvatarDraw
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draw"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarDraft
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draft"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarShop
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarFreeIngot
+{
+    NSString *imageName = [self fixImageName:@"Learndraw_ingot"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamAvatarMore
+{
+    NSString *imageName = [self fixImageName:@"learndraw_more"];
+    return [UIImage imageNamed:imageName];
+}
+
+
+//dream lockscreen
+- (UIImage *)dreamLockscreenDraft
+{
+    NSString *imageName = [self fixImageName:@"learndraw_draft"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenShop
+{
+    NSString *imageName = [self fixImageName:@"learndraw_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenFreeIngot
+{
+    NSString *imageName = [self fixImageName:@"Learndraw_ingot"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)dreamLockscreenMore
+{
+    NSString *imageName = [self fixImageName:@"learndraw_more"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage*)littleGeeBottomSplit
+{
+    return nil;
+}
+
+- (UIImage*)littleGeeMoreOptionsImage
+{
+    NSString *imageName = [self fixImageName:@"little_gee_home_options"];
     return [UIImage imageNamed:imageName];
 }
 

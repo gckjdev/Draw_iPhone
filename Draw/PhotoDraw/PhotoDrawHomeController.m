@@ -19,6 +19,7 @@
 @interface PhotoDrawHomeController ()
 @property (retain, nonatomic) UIView  *adView;
 @property (retain, nonatomic) UIPopoverController *photoPopoverController;
+@property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
 
 @end
 
@@ -35,6 +36,7 @@
     [_shopButton release];
     [_opusButton release];
     [_feedbackButton release];
+    [_photoDrawSheet release];
     [super dealloc];
 }
 
@@ -72,28 +74,9 @@
 }
 
 - (IBAction)clickDrawButton:(id)sender {
-    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:nil
-                                                                 delegate:nil
-                                                        cancelButtonTitle:NSLS(@"kCancel")
-                                                   destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), NSLS(@"kBlank"), nil];
-    __block typeof (self)bself = self;
-    [sheet setActionBlock:^(NSInteger buttonIndex){
-        switch (buttonIndex) {
-            case 0:
-                [bself selectPhoto];
-                break;
-            case 1:
-                [bself takePhoto];
-                break;
-            case 2:
-                [bself useSelectedBgImage:nil];
-                break;
-            default:
-                break;
-        }
-    }];
-    [sheet showInView:self.view];
-    [sheet release];
+    self.photoDrawSheet =[PhotoDrawSheet createSheetWithSuperController:self];
+    _photoDrawSheet.delegate = self;
+    [_photoDrawSheet showSheet];
 }
 
 - (IBAction)clickShopButton:(id)sender {
@@ -117,79 +100,11 @@
     [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
 }
 
-- (void)selectPhoto
+#pragma mark -PhotoDrawSheetDelegate
+- (void)didSelectImage:(UIImage *)image
 {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] &&
-        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        picker.allowsEditing = YES;
-        picker.delegate = self;
-        
-        if ([DeviceDetection isIPAD]){
-            UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
-            self.photoPopoverController = controller;
-            [controller release];
-            CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
-            [_photoPopoverController presentPopoverFromRect:popoverRect
-                                                inView:self.view
-                              permittedArrowDirections:UIPopoverArrowDirectionUp
-                                              animated:YES];
-        } else {
-            [self presentModalViewController:picker animated:YES];
-        }
-        [picker release];
-    }
-}
-
-- (void)useSelectedBgImage:(UIImage *)image
-{
-    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self targetUid:nil photo:image];
-}
-
-#pragma mark -- UIImagePickerControllerDelegate
-
-#define MAX_LEN_CUSTOM 1024.0
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
-    UIImage *image = [info objectForKey:infoKey];
-    if (image != nil){
-        image = [image fixOrientation];
-        
-        PPDebug(@"image width:%f height:%f", image.size.width, image.size.height);
-        
-        CGFloat maxLen = (image.size.width > image.size.height ? image.size.width : image.size.height);
-        if (maxLen > MAX_LEN_CUSTOM) {
-            CGFloat mul = MAX_LEN_CUSTOM / maxLen;
-            CGSize customSize;
-            if (maxLen == image.size.width) {
-                customSize = CGSizeMake(MAX_LEN_CUSTOM, image.size.height * mul);
-            }else {
-                customSize = CGSizeMake(image.size.width * mul, MAX_LEN_CUSTOM);
-            }
-            image = [UIImage createRoundedRectImage:image size:customSize];
-        }
-        
-        [self useSelectedBgImage:image];
-    }
-    [self dismissModalViewControllerAnimated:YES];
-    
-    if (_photoPopoverController != nil) {
-        [_photoPopoverController dismissPopoverAnimated:YES];
-    }else{
-        [picker dismissModalViewControllerAnimated:YES];
-    }
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    if (_photoPopoverController != nil) {
-        [_photoPopoverController dismissPopoverAnimated:YES];
-    }else{
-        [picker dismissModalViewControllerAnimated:YES];
-    }
+    [OfflineDrawViewController startDraw:[Word wordWithText:NSLS(@"kLearnDrawWord") level:1] fromController:self startController:self
+                               targetUid:nil photo:image];
 }
 
 @end

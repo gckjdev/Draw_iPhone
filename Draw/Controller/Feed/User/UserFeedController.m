@@ -342,6 +342,7 @@ typedef enum{
     ActionSheetIndexDelete = 1,
     ActionSheetIndexUnFavorite = 1,
     ActionSheetIndexAddToCell,
+    ActionSheetIndexAddToRecommend,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
 
@@ -377,6 +378,18 @@ typedef enum{
                 break;                
             }
         }
+        case ActionSheetIndexAddToRecommend: {
+            PPDebug(@"<handleActionSheet> ActionSheetIndexAddToRecommend" );
+            [[FeedService defaultService] recommendOpus:feed.feedId resultBlock:^(int resultCode) {
+                if (resultCode == 0) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功推荐" delayTime:2];
+                } else {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:@"推荐失败， result code = %d", resultCode] delayTime:2];
+                }
+                
+            }];
+            
+        } break;
         
         default:
         {
@@ -548,7 +561,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), nil];
+                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), nil];
                 canSellOpus = YES;
                 [actionSheet showInView:self.view];
                 [actionSheet release];

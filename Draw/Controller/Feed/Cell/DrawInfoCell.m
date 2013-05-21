@@ -145,7 +145,13 @@
     if ([feed.drawImageUrl length] != 0){
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
 
-        UIImage *placeholderImage = nil;
+        
+        __block UIImage *placeholderImage = nil;
+        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
+            placeholderImage = image;
+            
+        } failure:NULL];
+
         if (self.feed.largeImage == nil) {
             placeholderImage = [[ShareImageManager defaultManager] unloadBg];
         }else{
@@ -161,9 +167,7 @@
                 [self loadImageFinish];
             }
 
-        } failure:^(NSError *error) {
-            
-        }];
+        } failure:NULL];
         return;
     }
 }
@@ -222,7 +226,7 @@
     }
 }
 
-- (void)setCellInfo:(DrawFeed *)feed
+- (void)setCellInfo:(DrawFeed *)feed feedScene:(id<ShowFeedSceneProtocol>)scene
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
@@ -232,6 +236,12 @@
     [self updateTime:feed];
     [self updateDesc:feed.opusDesc];
     [self updateDrawToUserInfo:feed];
+    [self updateDrawWithScene:scene];
+}
+
+- (void)updateDrawWithScene:(id<ShowFeedSceneProtocol>)scene
+{
+    [scene initContentImageView:self.drawImage withFeed:self.feed];
 }
 
 

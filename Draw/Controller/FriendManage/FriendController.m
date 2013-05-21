@@ -638,7 +638,7 @@ enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     PPDebug(@"%d",buttonIndex);
-    NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppLink:[ConfigManager appId]]];
+    NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppName], [UIUtils getAppLink:[ConfigManager appId]]];
     if (buttonIndex == INVITE_SMS) {
         [self sendSMS:invitedText];
     }else if (buttonIndex == INVITE_WEIXIN){

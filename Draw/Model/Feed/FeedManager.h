@@ -31,6 +31,8 @@ typedef enum{
     FeedListTypeHistoryRank = 9,
     FeedListTypeTopPlayer = 10,
     
+    FeedListTypeRecommend = 11,
+    
     FeedListTypeUserFavorite = 100,
     
 }FeedListType;
@@ -47,6 +49,7 @@ typedef enum{
 {
     StorageManager *_storeManager;
     StorageManager *_feedImageManager;
+    StorageManager *_feedListStoreManager;
 }
 + (FeedManager *)defaultManager;
 + (Feed *)parsePbFeed:(PBFeed *)pbFeed;
@@ -77,5 +80,10 @@ typedef enum{
 - (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image;
 
 + (NSString*)getFeedCacheDir;
+
+- (void)cacheFeedDataQueryResponse:(DataQueryResponse *)response
+                            forKey:(NSString *)key;
+
+- (NSArray *)loadFeedListForKey:(NSString *)key;
 
 @end

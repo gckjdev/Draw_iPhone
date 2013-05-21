@@ -4754,6 +4754,8 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property Float64 latitude;
 @property (retain) NSString* reqMessageId;
 @property int32_t replyResult;
+@property (retain) NSString* imageUrl;
+@property (retain) NSString* thumbImageUrl;
 @end
 
 @implementation PBMessage
@@ -4850,6 +4852,20 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasReplyResult_ = !!value;
 }
 @synthesize replyResult;
+- (BOOL) hasImageUrl {
+  return !!hasImageUrl_;
+}
+- (void) setHasImageUrl:(BOOL) value {
+  hasImageUrl_ = !!value;
+}
+@synthesize imageUrl;
+- (BOOL) hasThumbImageUrl {
+  return !!hasThumbImageUrl_;
+}
+- (void) setHasThumbImageUrl:(BOOL) value {
+  hasThumbImageUrl_ = !!value;
+}
+@synthesize thumbImageUrl;
 - (void) dealloc {
   self.messageId = nil;
   self.from = nil;
@@ -4858,6 +4874,8 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   self.mutableDrawDataList = nil;
   self.canvasSize = nil;
   self.reqMessageId = nil;
+  self.imageUrl = nil;
+  self.thumbImageUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4875,6 +4893,8 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.latitude = 0;
     self.reqMessageId = @"";
     self.replyResult = 0;
+    self.imageUrl = @"";
+    self.thumbImageUrl = @"";
   }
   return self;
 }
@@ -4957,6 +4977,12 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasReplyResult) {
     [output writeInt32:34 value:self.replyResult];
   }
+  if (self.hasImageUrl) {
+    [output writeString:41 value:self.imageUrl];
+  }
+  if (self.hasThumbImageUrl) {
+    [output writeString:42 value:self.thumbImageUrl];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5007,6 +5033,12 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasReplyResult) {
     size += computeInt32Size(34, self.replyResult);
+  }
+  if (self.hasImageUrl) {
+    size += computeStringSize(41, self.imageUrl);
+  }
+  if (self.hasThumbImageUrl) {
+    size += computeStringSize(42, self.thumbImageUrl);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5128,6 +5160,12 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasReplyResult) {
     [self setReplyResult:other.replyResult];
   }
+  if (other.hasImageUrl) {
+    [self setImageUrl:other.imageUrl];
+  }
+  if (other.hasThumbImageUrl) {
+    [self setThumbImageUrl:other.thumbImageUrl];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5210,6 +5248,14 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 272: {
         [self setReplyResult:[input readInt32]];
+        break;
+      }
+      case 330: {
+        [self setImageUrl:[input readString]];
+        break;
+      }
+      case 338: {
+        [self setThumbImageUrl:[input readString]];
         break;
       }
     }
@@ -5464,6 +5510,38 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearReplyResult {
   result.hasReplyResult = NO;
   result.replyResult = 0;
+  return self;
+}
+- (BOOL) hasImageUrl {
+  return result.hasImageUrl;
+}
+- (NSString*) imageUrl {
+  return result.imageUrl;
+}
+- (PBMessage_Builder*) setImageUrl:(NSString*) value {
+  result.hasImageUrl = YES;
+  result.imageUrl = value;
+  return self;
+}
+- (PBMessage_Builder*) clearImageUrl {
+  result.hasImageUrl = NO;
+  result.imageUrl = @"";
+  return self;
+}
+- (BOOL) hasThumbImageUrl {
+  return result.hasThumbImageUrl;
+}
+- (NSString*) thumbImageUrl {
+  return result.thumbImageUrl;
+}
+- (PBMessage_Builder*) setThumbImageUrl:(NSString*) value {
+  result.hasThumbImageUrl = YES;
+  result.thumbImageUrl = value;
+  return self;
+}
+- (PBMessage_Builder*) clearThumbImageUrl {
+  result.hasThumbImageUrl = NO;
+  result.thumbImageUrl = @"";
   return self;
 }
 @end

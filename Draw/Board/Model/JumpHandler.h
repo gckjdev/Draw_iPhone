@@ -18,6 +18,7 @@ typedef enum{
     JumpTypeIntegral = 2, // Integral
     JumpTypeWeb = 3, //webview
     JumpTypeSafari = 4, //safari
+    JumpTypeOfferWall = 5,
 //    JumpTypeTel = 5, //tel
 //    JumpTypeMsg = 6 //message    
 }JumpType;
@@ -75,6 +76,10 @@ typedef enum{
 
 #pragma mark - SafariJumpHandler
 @interface SafariJumpHandler : JumpHandler
+@end
+
+#pragma mark - OfferWallJumpHandler
+@interface OfferWallJumpHandler : JumpHandler
 @end
 
 /*

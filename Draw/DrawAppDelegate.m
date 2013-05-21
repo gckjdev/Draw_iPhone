@@ -72,6 +72,7 @@
 #import "IAPProductService.h"
 #import "AliPayManager.h"
 #import "SKProductService.h"
+#import "ShareController.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -86,6 +87,7 @@ NSString* GlobalGetServerURL()
 NSString* GlobalGetTrafficServerURL()
 {
 //    return @"http://58.215.184.18:8188/api/i?";
+    
     return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
@@ -224,6 +226,7 @@ NSString* GlobalGetBoardServerURL()
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
     [GameConfigDataManager createTestConfigData];
+//    [GameItemService createDrawTestDataFile];
 #endif
 
     // load config data
@@ -259,8 +262,8 @@ NSString* GlobalGetBoardServerURL()
 
     // Init Home Controller As Root View Controller
     PPViewController* rootController = [GameApp homeController];
-    if (isDrawApp()) {
-        self.homeController = (HomeController *)rootController;
+    if ([rootController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
+        self.homeController = (PPViewController<DrawHomeControllerProtocol>*)rootController;
     }
     
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -534,7 +537,14 @@ NSString* GlobalGetBoardServerURL()
 
 -(void) onReq:(BaseReq*)req
 {
-    [self.homeController enterShareFromWeixin];
+    if (self.homeController && [self.homeController conformsToProtocol:@protocol(DrawHomeControllerProtocol)]) {
+        if ([self.homeController isRegistered]) {
+            [self.homeController toRegister];
+        } else {
+            [ShareController shareFromWeiXin:self.homeController];
+        }
+    }
+    
 }
 
 -(void) onResp:(BaseResp*)resp

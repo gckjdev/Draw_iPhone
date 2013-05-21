@@ -47,4 +47,6 @@ typedef enum {
 @property (assign, nonatomic, getter = isFromWeiXin) BOOL fromWeiXin;
 
 - (IBAction)deleteAll:(id)sender;
+
++ (void)shareFromWeiXin:(UIViewController*)superController;
 @end

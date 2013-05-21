@@ -7,8 +7,9 @@
 //
 
 #import "PPViewController.h"
+#import "PhotoDrawSheet.h"
 
-@interface PhotoDrawHomeController : PPViewController
+@interface PhotoDrawHomeController : PPViewController <PhotoDrawSheetDelegate>
 
 - (IBAction)clickDrawButton:(id)sender;
 - (IBAction)clickShopButton:(id)sender;

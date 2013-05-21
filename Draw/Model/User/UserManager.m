@@ -869,9 +869,7 @@ static UserManager* _defaultManager;
     else
         [builder setAccessToken:[userFound accessToken]];
     
-    PBSNSUser* user = [builder build];
-//    NSData* data = [user data];
-    
+    PBSNSUser* user = [builder build];    
     if (found){
         [newData replaceObjectAtIndex:index withObject:user];
     }
@@ -879,18 +877,14 @@ static UserManager* _defaultManager;
         [newData addObject:user];
     }
     
-    if (self.pbUser == nil)
-        return;
-    
-    // update sns user list
-    PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
-    [userBuilder clearSnsUsersList];
-    [userBuilder addAllSnsUsers:newData];
-    self.pbUser = [userBuilder build];
-    [self storeUserData];
-    
-//    [[NSUserDefaults standardUserDefaults] setObject:newData forKey:KEY_SNS_USER_DATA];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (self.pbUser != nil){
+        // update sns user list
+        PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
+        [userBuilder clearSnsUsersList];
+        [userBuilder addAllSnsUsers:newData];
+        self.pbUser = [userBuilder build];
+        [self storeUserData];
+    }
     
     [builder release];
     [newData release];
@@ -1364,6 +1358,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)isSuperUser
 {
+//#if DEBUG
+//    return YES;
+//#endif
     return [[BBSPermissionManager defaultManager] canCharge] && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList];
 }
 

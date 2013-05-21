@@ -72,6 +72,7 @@
         case HomeMenuTypeDrawBBS:{
             return NSLS(@"kHomeMenuTypeDrawBBS");
         }
+        case HomeMenuTypeDrawBigShop:
         case HomeMenuTypeDrawShop:{
             return NSLS(@"kHomeMenuTypeDrawShop");
         }
@@ -90,9 +91,12 @@
         case HomeMenuTypeDrawPlayWithFriend:{
             return NSLS(@"kPlayWithFriend");
         }
-
+            
         case HomeMenuTypeDrawMore:
             return NSLS(@"kHomeMenuTypeDrawMore");
+        case HomeMenuTypeDrawCharge: {
+            return NSLS(@"kChargeTitle");
+        }
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -120,6 +124,7 @@
         {
             return NSLS(@"kHomeMenuTypeDrawMore");
         }
+        
             
         // Dice
         case HomeMenuTypeDiceStart:
@@ -138,7 +143,6 @@
         case HomeMenuTypeDiceMore:
             return NSLS(@"kHomeMenuTypeDrawMore");
             
-
         default:
         return nil;
     }
@@ -172,6 +176,9 @@
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
         }
+        case HomeMenuTypeDrawBigShop: {
+            return [imageManager drawHomeBigShop];
+        }
         case HomeMenuTypeDrawApps:{
             return [imageManager drawAppsRecommand];
         }
@@ -203,6 +210,9 @@
         }
         case HomeMenuTypeDrawFriend:{
             return [imageManager drawHomeFriend];
+        }
+        case HomeMenuTypeDrawCharge: {
+            return [imageManager zjhHomeCharge];
         }
             
         //ZJH
@@ -267,6 +277,50 @@
             
         case HomeMenuTypeLearnDrawMore:
             return [imageManager learnDrawMore];
+            
+        
+        //dream avatar
+        case HomeMenuTypeDreamAvatarDraw:
+            return [imageManager dreamAvatarDraw];
+            
+        case HomeMenuTypeDreamAvatarDraft:
+            return [imageManager dreamAvatarDraft];
+        
+        case HomeMenuTypeDreamAvatarShop:
+            return [imageManager dreamAvatarShop];
+            
+        case HomeMenuTypeDreamAvatarFreeIngot:
+            return [imageManager dreamAvatarFreeIngot];
+        
+        case HomeMenuTypeDreamAvatarMore:
+            return [imageManager dreamAvatarMore];
+            
+            
+        //dream lockscreen
+        case HomeMenuTypeDreamLockscreenDraft:
+            return [imageManager dreamLockscreenDraft];
+            
+        case HomeMenuTypeDreamLockscreenShop:
+            return [imageManager dreamLockscreenShop];
+            
+        case HomeMenuTypeDreamLockscreenFreeIngot:
+            return [imageManager dreamLockscreenFreeIngot];
+            
+        case HomeMenuTypeDreamLockscreenMore:
+            return [imageManager dreamLockscreenMore];
+            
+
+        //little gee
+        case HomeMenuTypeLittleGeeOptions:
+            return [imageManager littleGeeMoreOptionsImage];
+        case HomeMenuTypeLittleGeeFriend:
+            return [imageManager drawHomeFriend];
+        case HomeMenuTypeLittleGeePlaceholder:
+            return nil;
+        case HomeMenuTypeLittleGeeChat:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeLittleGeeFeed:
+            return [imageManager drawHomeTimeline];
             
         default:
             return nil;
@@ -357,6 +411,8 @@ int *getDrawMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawBigShop,
+//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -372,6 +428,8 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawBigShop,
+//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -506,6 +564,81 @@ int *getLearnDrawBottomMenuTypeList()
     return list;
 }
 
+int *getLittleGeeBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeLittleGeeOptions,
+        HomeMenuTypeLittleGeeFriend,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeePlaceholder,
+        HomeMenuTypeLittleGeeChat,
+        HomeMenuTypeLittleGeeFeed,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+
+
+int *getDreamAvatarBottomMenuTypeListtWithFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamAvatarDraw,
+        HomeMenuTypeDreamAvatarDraft,
+        HomeMenuTypeDreamAvatarShop,
+        HomeMenuTypeDreamAvatarFreeIngot,
+        HomeMenuTypeDreamAvatarMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamAvatarDraw,
+        HomeMenuTypeDreamAvatarDraft,
+        HomeMenuTypeDreamAvatarShop,
+        HomeMenuTypeDreamAvatarMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamAvatarBottomMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
+}
+
+int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenFreeIngot,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots()
+{
+    int static list[] = {
+        HomeMenuTypeDreamLockscreenDraft,
+        HomeMenuTypeDreamLockscreenShop,
+        HomeMenuTypeDreamLockscreenMore,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getDreamLockscreenBottomMenuTypeList()
+{
+    return ([ConfigManager freeCoinsEnabled] ? getDreamLockscreenBottomMenuTypeListtWithFreeIngots() : getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots());
+}
+
 BOOL typeInList(HomeMenuType type, int *list)
 {
     int *l = list;
@@ -534,7 +667,7 @@ BOOL isMainMenuButton(HomeMenuType type)
 
 int *getBottomMenuTypeList()
 {
-    if (isDrawApp()) {
+    if (isDrawApp() && !isLittleGeeAPP()) {
         return getDrawBottomMenuTypeList();
     }else if(isZhajinhuaApp()){
         return getZJHBottomMenuTypeList();
@@ -542,6 +675,12 @@ int *getBottomMenuTypeList()
         return getDiceBottomMenuTypeList();
     }else if(isLearnDrawApp()){
         return getLearnDrawBottomMenuTypeList();
+    }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
+        return getDreamAvatarBottomMenuTypeList();
+    }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+        return getDreamLockscreenBottomMenuTypeList();
+    }else if (isLittleGeeAPP()) {
+        return getLittleGeeBottomMenuTypeList();
     }
     return NULL;
 }

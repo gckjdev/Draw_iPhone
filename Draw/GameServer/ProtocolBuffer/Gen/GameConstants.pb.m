@@ -227,3 +227,16 @@ BOOL PBWallTypeIsValidValue(PBWallType value) {
       return NO;
   }
 }
+BOOL PBMessageTypeIsValidValue(PBMessageType value) {
+  switch (value) {
+    case PBMessageTypeText:
+    case PBMessageTypeLocationRequest:
+    case PBMessageTypeLocationResponse:
+    case PBMessageTypeDraw:
+    case PBMessageTypeImage:
+    case PBMessageTypeVoice:
+      return YES;
+    default:
+      return NO;
+  }
+}

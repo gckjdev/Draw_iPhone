@@ -178,7 +178,7 @@
     Room *room = [self.dataList objectAtIndex:indexPath.row];
     if (room) {
         _currentSelectRoom = room;
-        NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), room.roomName, room.password, [UIUtils getAppLink:[ConfigManager appId]]];
+        NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfoInRoom"), [UIUtils getAppName], room.roomName, room.password, [UIUtils getAppLink:[ConfigManager appId]]];
         
         
         NSMutableSet *fSet = nil;

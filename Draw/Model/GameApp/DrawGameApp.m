@@ -165,7 +165,7 @@
 
 - (NSString*)shareEmailSubject
 {
-    return NSLS(@"kEmail_subject");    
+    return [NSString stringWithFormat:NSLS(@"kEmail_subject"), [UIUtils getAppName]];
 }
 
 - (NSString *)upgradeMessage:(int)newLevel
@@ -361,7 +361,8 @@
 
 - (NSString*)domodWallId
 {
-    return @"56OJz8QIuMyvO2LjPI";
+//    return @"96ZJ06UgzeimTwTAs3"; // official test ID
+    return @"96ZJ3ySQze+vLwTAqZ";
 }
 
 - (NSString*)tapjoyWallId
@@ -473,10 +474,35 @@
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createConfigFile> data file result=%d, file=%@", result, path);
     
-    NSString* version = @"1.1";
+    NSString* version = @"1.2";
     NSError* error = nil;
     result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     PPDebug(@"<createConfigFile> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);
+}
+
+
+- (int)sellContentType
+{
+    return SellContentTypeLearnDraw;
+}
+
+- (BOOL)showPaintCategory
+{
+    return YES;
+}
+
+- (NSString*)getDefaultSNSSubject
+{
+    return NSLS(@"kSNSSubject");
+}
+
+- (NSString*)appItuneLink
+{
+    return NSLS(@"kDrawAppLink");
+}
+- (NSString*)appLinkUmengKey
+{
+    return @"DRAW_APP_LINK";
 }
 
 @end

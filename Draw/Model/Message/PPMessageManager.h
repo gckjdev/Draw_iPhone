@@ -24,4 +24,8 @@
 
 + (BOOL)deleteLocalFriendMessageList:(NSString *)friendId;
 
++ (BOOL)saveImageToLocal:(UIImage *)image key:(NSString *)key;
++ (NSString *)path:(NSString *)key;
++ (BOOL)removeLocalImage:(NSString *)key;
+
 @end

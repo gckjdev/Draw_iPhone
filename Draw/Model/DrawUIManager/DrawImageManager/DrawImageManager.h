@@ -17,6 +17,7 @@
 - (UIImage *)drawHomeGuess;
 - (UIImage *)drawHomeOnlineGuess;
 - (UIImage *)drawHomeShop;
+- (UIImage*)drawHomeBigShop;
 - (UIImage *)drawHomeTimeline;
 - (UIImage *)drawHomeTop;
 - (UIImage *)drawAppsRecommand;
@@ -63,4 +64,21 @@
 - (UIImage *)learnDrawMark;
 - (UIImage *)learnDrawMore;
 - (UIImage *)learnDrawShop;
+
+//dream avatar
+- (UIImage *)dreamAvatarDraw;
+- (UIImage *)dreamAvatarDraft;
+- (UIImage *)dreamAvatarShop;
+- (UIImage *)dreamAvatarFreeIngot;
+- (UIImage *)dreamAvatarMore;
+
+//dream lockscreen
+- (UIImage *)dreamLockscreenDraft;
+- (UIImage *)dreamLockscreenShop;
+- (UIImage *)dreamLockscreenFreeIngot;
+- (UIImage *)dreamLockscreenMore;
+
+//little gee
+- (UIImage*)littleGeeBottomSplit;
+- (UIImage*)littleGeeMoreOptionsImage;
 @end

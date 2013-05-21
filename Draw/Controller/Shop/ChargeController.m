@@ -24,6 +24,7 @@
 #import "IAPProductManager.h"
 #import "PPNetworkConstants.h"
 #import "CommonDialog.h"
+#import "PBIAPProduct+Utils.h"
 
 #define ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT @"ALIPAY_EXTRA_PARAM_KEY_IAP_PRODUCT"
 
@@ -101,7 +102,11 @@
 {
     [super viewDidLoad];
     
-    self.restoreButton.hidden = NO;
+    if ([ConfigManager showRestoreButton]) {
+        self.restoreButton.hidden = NO;
+    } else {
+        self.restoreButton.hidden = YES;
+    }
     [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
     
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
@@ -244,7 +249,7 @@
 #ifdef DEBUG
     order.amount = @"0.01";
 #else
-    order.amount = product.totalPrice;
+    order.amount = [product priceInRMB];
 #endif
     
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
