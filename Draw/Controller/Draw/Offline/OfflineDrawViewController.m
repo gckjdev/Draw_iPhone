@@ -1354,4 +1354,12 @@
     return YES;
 }
 
+- (NSInteger)maxSubjectLen
+{
+    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+        return [ConfigManager maxDrawEnglishTitleLen];
+    }
+    return [ConfigManager maxDrawChineseTitleLen];
+}
+
 @end

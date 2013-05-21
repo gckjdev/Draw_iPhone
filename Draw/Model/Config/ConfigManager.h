@@ -264,4 +264,6 @@ typedef enum{
 + (float)littleGeeShowOptionsDuration;
 
 + (NSString*)getAppItuneLink;
++ (int)maxDrawChineseTitleLen;
++ (int)maxDrawEnglishTitleLen;
 @end
