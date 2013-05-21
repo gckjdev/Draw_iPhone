@@ -413,9 +413,11 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    int maxTitleLen = [ConfigManager maxDrawTitleLen];
-    if (range.location >= maxTitleLen)
-        return NO; // return NO to not change text
+    if (_delegate && [_delegate respondsToSelector:@selector(maxSubjectLen)]) {
+        int maxTitleLen = [_delegate maxSubjectLen];
+        if (range.location >= maxTitleLen)
+            return NO; // return NO to not change text
+    }
     return YES;
 }
 
