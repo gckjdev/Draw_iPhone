@@ -219,7 +219,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     
     [self.contentButton setImageWithURL:url
-                       placeholderImage:nil
+                       placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
                                 success:^(UIImage *image, BOOL cached) {
                                     
                                 }
