@@ -516,6 +516,7 @@
                                    appId:(NSString*)appId 
                                   gameId:(NSString*)gameId 
                                   userId:(NSString *)userId
+                                    type:(int)type
                                   offset:(NSInteger)offset
                                    limit:(NSInteger)limit;
 

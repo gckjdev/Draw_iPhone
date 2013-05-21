@@ -505,4 +505,14 @@
     return @"DRAW_APP_LINK";
 }
 
+- (NSArray *)homeTabIDList
+{
+    return nil;    
+}
+
+- (NSArray *)homeTabTitleList
+{
+    return nil;
+}
+
 @end
