@@ -1674,4 +1674,6 @@
 "kLittleGeeFeedbackTips" = "歡迎加入小吉畫畫玩家QQ群:228119679, 關注官方微博@小吉畫畫";
 "kLittleGeeSNSSubject" = "小吉畫畫美圖分享";
 "kLittleGeeAppLink" = "";
+"kOnlyChineseTitleAllowed" = "作品標題只允許中文字符！";
+"kOnlyEnglishTitleAllowed" = "作品標題只允許英文單詞！";
 /*********************小吉画画国际化字符串结束 ************************/

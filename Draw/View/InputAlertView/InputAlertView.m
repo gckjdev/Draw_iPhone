@@ -281,7 +281,7 @@
         return;
     }
     if (![self isTitlelegal]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
         return;
     }
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {

@@ -219,12 +219,12 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     
     [self.contentButton setImageWithURL:url
-                       placeholderImage:[[ShareImageManager defaultManager] splitPhoto]
+                       placeholderImage:nil
                                 success:^(UIImage *image, BOOL cached) {
                                     
                                 }
                                 failure:^(NSError *error) {
-                                    
+                                    [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
                                 }];
 }
 
@@ -323,6 +323,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     longPress.minimumPressDuration = 0.8; //定义按的时间
     [cell.contentButton addGestureRecognizer:longPress];
     [longPress release];
+    
+    
+    [cell.contentButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
     
     return cell;
 }
