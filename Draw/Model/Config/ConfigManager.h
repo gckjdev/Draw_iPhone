@@ -258,10 +258,11 @@ typedef enum{
 
 + (BOOL)showRestoreButton;
 + (NSString*)getFeedbackBody;
-+ (int)maxDrawTitleLen;
 
 + (float)littleGeeFirstShowOptionsDuration;
 + (float)littleGeeShowOptionsDuration;
 
 + (NSString*)getAppItuneLink;
++ (int)maxDrawChineseTitleLen;
++ (int)maxDrawEnglishTitleLen;
 @end

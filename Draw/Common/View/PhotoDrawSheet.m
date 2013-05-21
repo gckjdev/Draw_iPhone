@@ -174,7 +174,9 @@
     // End the context
     UIGraphicsEndImageContext();
     
-    [self useSelectedBgImage:newImage];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self useSelectedBgImage:newImage];
+    });
     
     [pool release];
 }

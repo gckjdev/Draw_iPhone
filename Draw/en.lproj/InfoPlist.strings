@@ -4,7 +4,7 @@
 
 //"CFBundleDisplayName" = "Awesome Draw";
 
-//"CFBundleDisplayName" = "Draw Lively";
+"CFBundleDisplayName" = "Draw Lively";
 
 //"CFBundleDisplayName" = "Learn Draw";
 
@@ -14,6 +14,6 @@
 
 //"CFBundleDisplayName" = "Dream Avatar";
 
-"CFBundleDisplayName" = "Lock Screen";
+//"CFBundleDisplayName" = "Lock Screen";
 
 //"CFBundleDisplayName" = "Littlegee";
