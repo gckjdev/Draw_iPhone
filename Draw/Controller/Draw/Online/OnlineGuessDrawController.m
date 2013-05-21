@@ -114,7 +114,7 @@
 #pragma mark - init the buttons
 
 #define TARGET_BASE_TAG 11
-#define TARGET_END_TAG 17
+#define TARGET_END_TAG 18
 #define CANDIDATE_BASE_TAG 21
 #define CANDIDATE_END_TAG 39
 
