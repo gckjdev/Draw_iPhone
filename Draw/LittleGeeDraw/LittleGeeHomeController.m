@@ -818,11 +818,6 @@ typedef enum {
 #pragma mark - contest service delegate
 - (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
 {
-    if (contestList == nil || contestList.count == 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
-        return;
-    }
-    
     if (code == 0) {
         [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
     }
@@ -830,6 +825,10 @@ typedef enum {
     
     if (_isJoiningContest) {
         _isJoiningContest = NO;
+        if (contestList == nil || contestList.count == 0) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
+            return;
+        }
         Contest* contest = [contestList objectAtIndex:0];
         if ([contest joined]) {
             [OfflineDrawViewController startDrawWithContest:contest fromController:self startController:self animated:YES];
