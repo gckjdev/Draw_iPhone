@@ -435,8 +435,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     
     if([avatar length] != 0){
         NSURL *url = [NSURL URLWithString:avatar];
-        self.avatarView.alpha = 0;
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
+//        self.avatarView.alpha = 0;
+//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
+        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
     } else{
         [self.avatarView setImage:defaultImage];
     }
