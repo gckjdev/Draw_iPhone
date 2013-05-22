@@ -12,13 +12,20 @@
 #import "BlurPen.h"
 #import "DefaultPen.h"
 
+static DefaultPen* globalDefaultPen;
+
 @implementation DrawPenFactory
 
 + (id<DrawPenProtocol>)createDrawPen:(DrawPenType)type
 {
-    //return default pen
-//    PPDebug(@"<createDrawPen> type = %d", type);
-    return [[[DefaultPen alloc] init] autorelease];
+    static dispatch_once_t onceTokenDrawPen;
+    dispatch_once(&onceTokenDrawPen, ^{
+        globalDefaultPen = [[DefaultPen alloc] init];
+    });
+
+    return globalDefaultPen;
+
+    /*
     switch (type) {
         case DrawPenTypeBlur:
             return [[[BlurPen alloc] init] autorelease];
@@ -32,6 +39,7 @@
         default:
             return [[[DefaultPen alloc] init] autorelease];
     }
+     */
 }
 
 @end

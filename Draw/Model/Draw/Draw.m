@@ -36,12 +36,17 @@
         
         NSMutableArray *list = [NSMutableArray array];
         for (int i=0; i<actionCount; i++){
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
             Game__PBDrawAction* pbDrawActionC = array[i];
             if (pbDrawActionC != NULL){
                 DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
                 [drawAction setCanvasSize:canvasSize];
                 [list addObject:drawAction];
             }
+            
+            [pool drain];
         }
         
         return list;
@@ -62,9 +67,14 @@
     if (array) {
         NSMutableArray *list = [NSMutableArray array];
         for (PBDrawAction *action in array) {
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
             DrawAction *drawAction = [DrawAction drawActionWithPBDrawAction:action];
             [drawAction setCanvasSize:canvasSize];
             [list addObject:drawAction];
+            
+            [pool drain];
         }
         return list;
     }

@@ -503,6 +503,10 @@
 
 - (void)dealloc
 {
+    
+    
+    
+    PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_pbDrawData);
     PPRelease(_drawImage);    
     PPRelease(_drawData);
