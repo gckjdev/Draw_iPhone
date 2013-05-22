@@ -247,6 +247,7 @@
         [view setImage:backgroundImage];
         [showView addSubview:view];
         [showView sendSubviewToBack:view];
+        [view release];
     }
     
     return showView;

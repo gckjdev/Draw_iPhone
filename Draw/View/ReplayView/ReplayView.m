@@ -204,7 +204,7 @@
 - (void)dealloc {
 
     [[AdService defaultService] clearAdView:self.adView];
-    PPRelease(self.adView);
+    PPRelease(_adView);
     
     PPDebug(@"dealloc %@", [self description]);
     _drawFeed.drawImage = nil;
