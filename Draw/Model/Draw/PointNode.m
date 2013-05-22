@@ -67,6 +67,14 @@
     return self;
 }
 
+- (id)initPointWithX:(CGFloat)x Y:(CGFloat)y
+{
+    self = [super init];
+    _point.x = x;
+    _point.y = y;
+    return self;
+}
+
 - (CGFloat)x
 {
     return _point.x;

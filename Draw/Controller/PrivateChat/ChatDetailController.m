@@ -742,6 +742,19 @@
     _selectedMessage = message;
 }
 
+- (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image
+{
+//    [self.dataTableView reloadData];
+    NSUInteger index = [_messageList indexOfObject:message];
+    if (index < [_messageList count]) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0
+                                  ];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     _showingActionSheet = NO;

@@ -29,6 +29,8 @@
 
 - (void)showFriendProfile:(MyFriend *)aFriend;
 
+- (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image;
+
 @end
 
 
