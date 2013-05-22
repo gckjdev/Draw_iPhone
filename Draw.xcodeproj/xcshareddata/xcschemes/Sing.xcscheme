@@ -13,8 +13,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A461A8DE174B18E30088B061"
-               BuildableName = "Draw copy.app"
+               BlueprintIdentifier = "A461B07C174CBAA70088B061"
+               BuildableName = "Sing.app"
                BlueprintName = "Sing"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
@@ -31,8 +31,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A461A8DE174B18E30088B061"
-            BuildableName = "Draw copy.app"
+            BlueprintIdentifier = "A461B07C174CBAA70088B061"
+            BuildableName = "Sing.app"
             BlueprintName = "Sing"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -50,8 +50,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A461A8DE174B18E30088B061"
-            BuildableName = "Draw copy.app"
+            BlueprintIdentifier = "A461B07C174CBAA70088B061"
+            BuildableName = "Sing.app"
             BlueprintName = "Sing"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -68,8 +68,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A461A8DE174B18E30088B061"
-            BuildableName = "Draw copy.app"
+            BlueprintIdentifier = "A461B07C174CBAA70088B061"
+            BuildableName = "Sing.app"
             BlueprintName = "Sing"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>

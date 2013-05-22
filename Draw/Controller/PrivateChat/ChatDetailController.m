@@ -684,13 +684,15 @@
         case MessageTypeImage:
             [self enterLargeImage:message];
             break;
+        case MessageTypeText:
+            [self showActionOptionsForMessage:message];
+            break;
         default:
             break;
     }
 }
 
-#pragma mark options action.
-- (void)didLongClickMessage:(PPMessage *)message
+- (void)showActionOptionsForMessage:(PPMessage *)message
 {
     if (_showingActionSheet) {
         return;
@@ -702,11 +704,11 @@
     switch (message.messageType) {
         case MessageTypeDraw:
             tag = ACTION_SHEET_TAG_DRAW;
-            otherOperation = NSLS(@"kReplay");            
+            otherOperation = NSLS(@"kReplay");
             break;
         case MessageTypeText:
             tag = ACTION_SHEET_TAG_TEXT;
-            otherOperation = NSLS(@"kCopy");            
+            otherOperation = NSLS(@"kCopy");
             break;
         case MessageTypeImage:
             tag = ACTION_SHEET_TAG_IMAGE;
@@ -721,25 +723,33 @@
     if (message.status == MessageStatusFail) {
         actionSheet=  [[UIActionSheet alloc]
                        initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self 
-                       cancelButtonTitle:NSLS(@"kCancel") 
-                       destructiveButtonTitle:NSLS(@"kDelete") 
+                       delegate:self
+                       cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:NSLS(@"kDelete")
                        otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
         [actionSheet setDestructiveButtonIndex:_asIndexResend];
-
+        
     }else
     {
-       actionSheet=  [[UIActionSheet alloc]
-                      initWithTitle:NSLS(@"kOpusOperation")
-                      delegate:self 
-                      cancelButtonTitle:NSLS(@"kCancel") 
-                      destructiveButtonTitle:NSLS(@"kDelete") 
-                      otherButtonTitles:otherOperation, nil];
+        actionSheet=  [[UIActionSheet alloc]
+                       initWithTitle:NSLS(@"kOpusOperation")
+                       delegate:self
+                       cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:NSLS(@"kDelete")
+                       otherButtonTitles:otherOperation, nil];
     }
     [actionSheet showInView:self.view];
     actionSheet.tag = tag;
     [actionSheet release];
     _selectedMessage = message;
+}
+
+#pragma mark options action.
+- (void)didLongClickMessage:(PPMessage *)message
+{
+    if (message.messageType != MessageTypeText) {
+        [self showActionOptionsForMessage:message];
+    }
 }
 
 - (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image
@@ -750,7 +760,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0
                                   ];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

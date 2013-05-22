@@ -86,6 +86,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"PPMessage = %@ dealloc", self);
     PPRelease(_messageId);
     PPRelease(_createDate);
     PPRelease(_friendId);

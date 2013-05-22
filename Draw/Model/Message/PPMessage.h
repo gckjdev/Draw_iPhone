@@ -103,7 +103,7 @@ typedef enum {
 @property (nonatomic, retain) UIImage *thumbImage;
 @property (nonatomic, retain) NSString *thumbImageUrl;
 @property (nonatomic, assign) CGSize thumbImageSize;
-
+@property (nonatomic, assign) BOOL hasCalSize;
 
 @end
 

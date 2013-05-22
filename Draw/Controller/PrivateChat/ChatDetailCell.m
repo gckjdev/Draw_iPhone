@@ -256,11 +256,13 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         [self.contentButton setImageWithURL:url
                            placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
                                     success:^(UIImage *image, BOOL cached) {
-                                        message.thumbImageSize = image.size;
-                                        if (!cached) {
-                                            if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
-                                                [self.delegate didMessage:message loadImage:image];
-                                            }
+                                        
+                                        
+                                        if (!message.hasCalSize && self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
+                                        {
+                                            message.thumbImageSize = image.size;
+                                            message.hasCalSize = YES;
+                                            [self.delegate didMessage:message loadImage:image];
                                         }
                                     }
                                     failure:^(NSError *error) {
