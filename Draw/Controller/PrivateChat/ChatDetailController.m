@@ -200,9 +200,9 @@
 }
 - (void)bgSaveMessageList
 {
-    [self bgRunBlock:^{
-        [PPMessageManager saveFriend:self.fid messageList:self.messageList];
-    }];
+//    [self bgRunBlock:^{
+    [PPMessageManager saveFriend:self.fid messageList:self.messageList];
+//    }];
 }
 
 
@@ -329,6 +329,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    PPDebug(@"<numberOfRowsInSection> = %d", [_messageList count]);
     return [_messageList count];
 }
 
@@ -337,7 +338,9 @@
 {
     PPMessage *message = [self messageOfIndex:indexPath.row];
     BOOL flag = [self messageShowTime:message];
-    return [ChatDetailCell getCellHeight:message showTime:flag];
+    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
+    PPDebug(@"<heightForRowAtIndexPath> = %f, index = %d", height, indexPath.row);
+    return height;
 }
 
 
