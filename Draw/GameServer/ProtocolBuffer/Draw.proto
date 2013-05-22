@@ -54,35 +54,39 @@ message PBLearnDraw{
     optional int32 boughtCount = 4;
 }
 
+
+
+
 message PBFeed {
   required string feedId = 1;
-  required string userId = 2;
-  required int32  actionType = 3;
-  required int32  createDate = 4;
+  required string userId = 2;           // 用户Id
+  required int32  actionType = 3;       // 作品类型，普通，送给好友，参与比赛，送鲜花，猜画，评论。
+
+  required int32  createDate = 4;       // 作品创建日期
   optional int32  deviceType = 5;       // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
   optional string deviceName = 6;       // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
   optional string gameId = 7;           // 来自哪个游戏
 
   // for user info
-  optional string nickName = 21;
-  optional string avatar = 22;
-  optional bool   gender = 23;
+  optional string nickName = 21;        // 用户昵称
+  optional string avatar = 22;          // 用户头像
+  optional bool   gender = 23;          // 用户性别
   optional string signature = 24;       // 用户签名，新增 2013-4-1
 
   // for user draw
-  optional PBDraw drawData = 31;
-  optional string targetUserId = 32;
-  optional string targetUserNickName = 33;
-  optional double historyScore = 34;    // 指示该作品的历史总得分
-  optional string opusDesc = 35;
-  optional string drawDataUrl = 36;     // 新增，用于返回数据文件的URL
+  optional PBDraw drawData = 31;            // 画画数据
+  optional string targetUserId = 32;        // 画给谁
+  optional string targetUserNickName = 33;  // 画给谁
+  optional double historyScore = 34;        // 指示该作品的历史总得分
+  optional string opusDesc = 35;            // 作品描述
+  optional string drawDataUrl = 36;         // 新增，用于返回数据文件的URL
 
   // for user guess
-  optional string opusId = 41;          // 猜作品的ID
-  optional bool   isCorrect = 42;
-  optional int32  score = 43;
-  repeated string guessWords = 44;  
-  optional int32  opusStatus = 45;      // 猜作品的状态：0：正常；1：已删除
+  optional string opusId = 41;          // 猜作品的Id
+  optional bool   isCorrect = 42;       // 是否猜对了？
+  optional int32  score = 43;           // 得分？
+  repeated string guessWords = 44;      // 猜过的词
+  optional int32  opusStatus = 45;      // 作品的状态：0：正常；1：已删除
   
   // for user comment
   optional string comment = 51;              // 旧版本使用comment字段，展示评论内容
@@ -112,7 +116,11 @@ message PBFeed {
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
+  
+  
+//  optional PBSongInfo songInfo = 110;                 // 歌曲信息
 }
+
 
 
 message PBPoint

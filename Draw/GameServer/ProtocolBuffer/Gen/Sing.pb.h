@@ -45,8 +45,10 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBOpus;
 @class PBOpusAction;
 @class PBOpusAction_Builder;
+@class PBOpus_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
@@ -54,6 +56,8 @@
 @class PBSize;
 @class PBSize_Builder;
 @class PBSong;
+@class PBSongInfo;
+@class PBSongInfo_Builder;
 @class PBSong_Builder;
 @class PBSourceAction;
 @class PBSourceAction_Builder;
@@ -67,12 +71,8 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
-@class PBUserOpus;
-@class PBUserOpus_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
-@class PBUserSongInfo;
-@class PBUserSongInfo_Builder;
 
 @interface SingRoot : NSObject {
 }
@@ -222,7 +222,7 @@
 - (PBActionTimes_Builder*) clearValue;
 @end
 
-@interface PBUserSongInfo : PBGeneratedMessage {
+@interface PBSongInfo : PBGeneratedMessage {
 @private
   BOOL hasDuration_:1;
   BOOL hasPitch_:1;
@@ -230,6 +230,8 @@
   BOOL hasThumbImage_:1;
   BOOL hasSongUrl_:1;
   BOOL hasDesc_:1;
+  BOOL hasTargetUserId_:1;
+  BOOL hasContestId_:1;
   BOOL hasSong_:1;
   Float32 duration;
   Float32 pitch;
@@ -237,7 +239,10 @@
   NSString* thumbImage;
   NSString* songUrl;
   NSString* desc;
+  NSString* targetUserId;
+  NSString* contestId;
   PBSong* song;
+  NSMutableArray* mutableTypeList;
 }
 - (BOOL) hasSong;
 - (BOOL) hasImage;
@@ -246,6 +251,8 @@
 - (BOOL) hasDesc;
 - (BOOL) hasDuration;
 - (BOOL) hasPitch;
+- (BOOL) hasTargetUserId;
+- (BOOL) hasContestId;
 @property (readonly, retain) PBSong* song;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
@@ -253,212 +260,196 @@
 @property (readonly, retain) NSString* desc;
 @property (readonly) Float32 duration;
 @property (readonly) Float32 pitch;
+@property (readonly, retain) NSString* targetUserId;
+@property (readonly, retain) NSString* contestId;
+- (NSArray*) typeList;
+- (int32_t) typeAtIndex:(int32_t) index;
 
-+ (PBUserSongInfo*) defaultInstance;
-- (PBUserSongInfo*) defaultInstance;
++ (PBSongInfo*) defaultInstance;
+- (PBSongInfo*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserSongInfo_Builder*) builder;
-+ (PBUserSongInfo_Builder*) builder;
-+ (PBUserSongInfo_Builder*) builderWithPrototype:(PBUserSongInfo*) prototype;
+- (PBSongInfo_Builder*) builder;
++ (PBSongInfo_Builder*) builder;
++ (PBSongInfo_Builder*) builderWithPrototype:(PBSongInfo*) prototype;
 
-+ (PBUserSongInfo*) parseFromData:(NSData*) data;
-+ (PBUserSongInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserSongInfo*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserSongInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongInfo*) parseFromData:(NSData*) data;
++ (PBSongInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBSongInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBUserSongInfo_Builder : PBGeneratedMessage_Builder {
+@interface PBSongInfo_Builder : PBGeneratedMessage_Builder {
 @private
-  PBUserSongInfo* result;
+  PBSongInfo* result;
 }
 
-- (PBUserSongInfo*) defaultInstance;
+- (PBSongInfo*) defaultInstance;
 
-- (PBUserSongInfo_Builder*) clear;
-- (PBUserSongInfo_Builder*) clone;
+- (PBSongInfo_Builder*) clear;
+- (PBSongInfo_Builder*) clone;
 
-- (PBUserSongInfo*) build;
-- (PBUserSongInfo*) buildPartial;
+- (PBSongInfo*) build;
+- (PBSongInfo*) buildPartial;
 
-- (PBUserSongInfo_Builder*) mergeFrom:(PBUserSongInfo*) other;
-- (PBUserSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSongInfo_Builder*) mergeFrom:(PBSongInfo*) other;
+- (PBSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSong;
 - (PBSong*) song;
-- (PBUserSongInfo_Builder*) setSong:(PBSong*) value;
-- (PBUserSongInfo_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue;
-- (PBUserSongInfo_Builder*) mergeSong:(PBSong*) value;
-- (PBUserSongInfo_Builder*) clearSong;
+- (PBSongInfo_Builder*) setSong:(PBSong*) value;
+- (PBSongInfo_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue;
+- (PBSongInfo_Builder*) mergeSong:(PBSong*) value;
+- (PBSongInfo_Builder*) clearSong;
 
 - (BOOL) hasImage;
 - (NSString*) image;
-- (PBUserSongInfo_Builder*) setImage:(NSString*) value;
-- (PBUserSongInfo_Builder*) clearImage;
+- (PBSongInfo_Builder*) setImage:(NSString*) value;
+- (PBSongInfo_Builder*) clearImage;
 
 - (BOOL) hasThumbImage;
 - (NSString*) thumbImage;
-- (PBUserSongInfo_Builder*) setThumbImage:(NSString*) value;
-- (PBUserSongInfo_Builder*) clearThumbImage;
+- (PBSongInfo_Builder*) setThumbImage:(NSString*) value;
+- (PBSongInfo_Builder*) clearThumbImage;
 
 - (BOOL) hasSongUrl;
 - (NSString*) songUrl;
-- (PBUserSongInfo_Builder*) setSongUrl:(NSString*) value;
-- (PBUserSongInfo_Builder*) clearSongUrl;
+- (PBSongInfo_Builder*) setSongUrl:(NSString*) value;
+- (PBSongInfo_Builder*) clearSongUrl;
 
 - (BOOL) hasDesc;
 - (NSString*) desc;
-- (PBUserSongInfo_Builder*) setDesc:(NSString*) value;
-- (PBUserSongInfo_Builder*) clearDesc;
+- (PBSongInfo_Builder*) setDesc:(NSString*) value;
+- (PBSongInfo_Builder*) clearDesc;
 
 - (BOOL) hasDuration;
 - (Float32) duration;
-- (PBUserSongInfo_Builder*) setDuration:(Float32) value;
-- (PBUserSongInfo_Builder*) clearDuration;
+- (PBSongInfo_Builder*) setDuration:(Float32) value;
+- (PBSongInfo_Builder*) clearDuration;
 
 - (BOOL) hasPitch;
 - (Float32) pitch;
-- (PBUserSongInfo_Builder*) setPitch:(Float32) value;
-- (PBUserSongInfo_Builder*) clearPitch;
-@end
+- (PBSongInfo_Builder*) setPitch:(Float32) value;
+- (PBSongInfo_Builder*) clearPitch;
 
-@interface PBUserOpus : PBGeneratedMessage {
-@private
-  BOOL hasCreateDate_:1;
-  BOOL hasStatus_:1;
-  BOOL hasAwardScore_:1;
-  BOOL hasUserOpusId_:1;
-  BOOL hasToUserId_:1;
-  BOOL hasContestId_:1;
-  BOOL hasUserInfo_:1;
-  BOOL hasSongInfo_:1;
-  int32_t createDate;
-  int32_t status;
-  int32_t awardScore;
-  NSString* userOpusId;
-  NSString* toUserId;
-  NSString* contestId;
-  PBUserBasicInfo* userInfo;
-  PBUserSongInfo* songInfo;
-  NSMutableArray* mutableUsageList;
-  NSMutableArray* mutableActionTimesList;
-}
-- (BOOL) hasUserOpusId;
-- (BOOL) hasUserInfo;
-- (BOOL) hasCreateDate;
-- (BOOL) hasStatus;
-- (BOOL) hasToUserId;
-- (BOOL) hasContestId;
-- (BOOL) hasAwardScore;
-- (BOOL) hasSongInfo;
-@property (readonly, retain) NSString* userOpusId;
-@property (readonly, retain) PBUserBasicInfo* userInfo;
-@property (readonly) int32_t createDate;
-@property (readonly) int32_t status;
-@property (readonly, retain) NSString* toUserId;
-@property (readonly, retain) NSString* contestId;
-@property (readonly) int32_t awardScore;
-@property (readonly, retain) PBUserSongInfo* songInfo;
-- (NSArray*) usageList;
-- (int32_t) usageAtIndex:(int32_t) index;
-- (NSArray*) actionTimesList;
-- (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
+- (NSArray*) typeList;
+- (int32_t) typeAtIndex:(int32_t) index;
+- (PBSongInfo_Builder*) replaceTypeAtIndex:(int32_t) index with:(int32_t) value;
+- (PBSongInfo_Builder*) addType:(int32_t) value;
+- (PBSongInfo_Builder*) addAllType:(NSArray*) values;
+- (PBSongInfo_Builder*) clearTypeList;
 
-+ (PBUserOpus*) defaultInstance;
-- (PBUserOpus*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBUserOpus_Builder*) builder;
-+ (PBUserOpus_Builder*) builder;
-+ (PBUserOpus_Builder*) builderWithPrototype:(PBUserOpus*) prototype;
-
-+ (PBUserOpus*) parseFromData:(NSData*) data;
-+ (PBUserOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserOpus*) parseFromInputStream:(NSInputStream*) input;
-+ (PBUserOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBUserOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUserOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBUserOpus_Builder : PBGeneratedMessage_Builder {
-@private
-  PBUserOpus* result;
-}
-
-- (PBUserOpus*) defaultInstance;
-
-- (PBUserOpus_Builder*) clear;
-- (PBUserOpus_Builder*) clone;
-
-- (PBUserOpus*) build;
-- (PBUserOpus*) buildPartial;
-
-- (PBUserOpus_Builder*) mergeFrom:(PBUserOpus*) other;
-- (PBUserOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBUserOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasUserOpusId;
-- (NSString*) userOpusId;
-- (PBUserOpus_Builder*) setUserOpusId:(NSString*) value;
-- (PBUserOpus_Builder*) clearUserOpusId;
-
-- (BOOL) hasUserInfo;
-- (PBUserBasicInfo*) userInfo;
-- (PBUserOpus_Builder*) setUserInfo:(PBUserBasicInfo*) value;
-- (PBUserOpus_Builder*) setUserInfoBuilder:(PBUserBasicInfo_Builder*) builderForValue;
-- (PBUserOpus_Builder*) mergeUserInfo:(PBUserBasicInfo*) value;
-- (PBUserOpus_Builder*) clearUserInfo;
-
-- (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBUserOpus_Builder*) setCreateDate:(int32_t) value;
-- (PBUserOpus_Builder*) clearCreateDate;
-
-- (BOOL) hasStatus;
-- (int32_t) status;
-- (PBUserOpus_Builder*) setStatus:(int32_t) value;
-- (PBUserOpus_Builder*) clearStatus;
-
-- (NSArray*) usageList;
-- (int32_t) usageAtIndex:(int32_t) index;
-- (PBUserOpus_Builder*) replaceUsageAtIndex:(int32_t) index with:(int32_t) value;
-- (PBUserOpus_Builder*) addUsage:(int32_t) value;
-- (PBUserOpus_Builder*) addAllUsage:(NSArray*) values;
-- (PBUserOpus_Builder*) clearUsageList;
-
-- (BOOL) hasToUserId;
-- (NSString*) toUserId;
-- (PBUserOpus_Builder*) setToUserId:(NSString*) value;
-- (PBUserOpus_Builder*) clearToUserId;
+- (BOOL) hasTargetUserId;
+- (NSString*) targetUserId;
+- (PBSongInfo_Builder*) setTargetUserId:(NSString*) value;
+- (PBSongInfo_Builder*) clearTargetUserId;
 
 - (BOOL) hasContestId;
 - (NSString*) contestId;
-- (PBUserOpus_Builder*) setContestId:(NSString*) value;
-- (PBUserOpus_Builder*) clearContestId;
+- (PBSongInfo_Builder*) setContestId:(NSString*) value;
+- (PBSongInfo_Builder*) clearContestId;
+@end
 
-- (BOOL) hasAwardScore;
-- (int32_t) awardScore;
-- (PBUserOpus_Builder*) setAwardScore:(int32_t) value;
-- (PBUserOpus_Builder*) clearAwardScore;
+@interface PBOpus : PBGeneratedMessage {
+@private
+  BOOL hasCreateDate_:1;
+  BOOL hasStatus_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasUser_:1;
+  BOOL hasSongInfo_:1;
+  int32_t createDate;
+  int32_t status;
+  NSString* opusId;
+  PBGameUser* user;
+  PBSongInfo* songInfo;
+  NSMutableArray* mutableActionTimesList;
+}
+- (BOOL) hasOpusId;
+- (BOOL) hasUser;
+- (BOOL) hasCreateDate;
+- (BOOL) hasStatus;
+- (BOOL) hasSongInfo;
+@property (readonly, retain) NSString* opusId;
+@property (readonly, retain) PBGameUser* user;
+@property (readonly) int32_t createDate;
+@property (readonly) int32_t status;
+@property (readonly, retain) PBSongInfo* songInfo;
+- (NSArray*) actionTimesList;
+- (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
+
++ (PBOpus*) defaultInstance;
+- (PBOpus*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBOpus_Builder*) builder;
++ (PBOpus_Builder*) builder;
++ (PBOpus_Builder*) builderWithPrototype:(PBOpus*) prototype;
+
++ (PBOpus*) parseFromData:(NSData*) data;
++ (PBOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpus*) parseFromInputStream:(NSInputStream*) input;
++ (PBOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBOpus_Builder : PBGeneratedMessage_Builder {
+@private
+  PBOpus* result;
+}
+
+- (PBOpus*) defaultInstance;
+
+- (PBOpus_Builder*) clear;
+- (PBOpus_Builder*) clone;
+
+- (PBOpus*) build;
+- (PBOpus*) buildPartial;
+
+- (PBOpus_Builder*) mergeFrom:(PBOpus*) other;
+- (PBOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasOpusId;
+- (NSString*) opusId;
+- (PBOpus_Builder*) setOpusId:(NSString*) value;
+- (PBOpus_Builder*) clearOpusId;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (PBOpus_Builder*) setUser:(PBGameUser*) value;
+- (PBOpus_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeUser:(PBGameUser*) value;
+- (PBOpus_Builder*) clearUser;
+
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBOpus_Builder*) setCreateDate:(int32_t) value;
+- (PBOpus_Builder*) clearCreateDate;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBOpus_Builder*) setStatus:(int32_t) value;
+- (PBOpus_Builder*) clearStatus;
 
 - (NSArray*) actionTimesList;
 - (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
-- (PBUserOpus_Builder*) replaceActionTimesAtIndex:(int32_t) index with:(PBActionTimes*) value;
-- (PBUserOpus_Builder*) addActionTimes:(PBActionTimes*) value;
-- (PBUserOpus_Builder*) addAllActionTimes:(NSArray*) values;
-- (PBUserOpus_Builder*) clearActionTimesList;
+- (PBOpus_Builder*) replaceActionTimesAtIndex:(int32_t) index with:(PBActionTimes*) value;
+- (PBOpus_Builder*) addActionTimes:(PBActionTimes*) value;
+- (PBOpus_Builder*) addAllActionTimes:(NSArray*) values;
+- (PBOpus_Builder*) clearActionTimesList;
 
 - (BOOL) hasSongInfo;
-- (PBUserSongInfo*) songInfo;
-- (PBUserOpus_Builder*) setSongInfo:(PBUserSongInfo*) value;
-- (PBUserOpus_Builder*) setSongInfoBuilder:(PBUserSongInfo_Builder*) builderForValue;
-- (PBUserOpus_Builder*) mergeSongInfo:(PBUserSongInfo*) value;
-- (PBUserOpus_Builder*) clearSongInfo;
+- (PBSongInfo*) songInfo;
+- (PBOpus_Builder*) setSongInfo:(PBSongInfo*) value;
+- (PBOpus_Builder*) setSongInfoBuilder:(PBSongInfo_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeSongInfo:(PBSongInfo*) value;
+- (PBOpus_Builder*) clearSongInfo;
 @end
 
 @interface PBSourceAction : PBGeneratedMessage {
@@ -545,7 +536,7 @@
   BOOL hasActionId_:1;
   BOOL hasOpusId_:1;
   BOOL hasUserInfo_:1;
-  BOOL hasUserOpus_:1;
+  BOOL hasOpus_:1;
   BOOL hasSourceAction_:1;
   BOOL hasCommentAction_:1;
   BOOL hasFlowerAction_:1;
@@ -555,7 +546,7 @@
   NSString* actionId;
   NSString* opusId;
   PBUserBasicInfo* userInfo;
-  PBUserOpus* userOpus;
+  PBOpus* opus;
   PBSourceAction* sourceAction;
   PBActionComment* commentAction;
   PBActionFlower* flowerAction;
@@ -564,7 +555,7 @@
 - (BOOL) hasActionId;
 - (BOOL) hasOpusId;
 - (BOOL) hasUserInfo;
-- (BOOL) hasUserOpus;
+- (BOOL) hasOpus;
 - (BOOL) hasCreateDate;
 - (BOOL) hasSourceAction;
 - (BOOL) hasActionType;
@@ -574,7 +565,7 @@
 @property (readonly, retain) NSString* actionId;
 @property (readonly, retain) NSString* opusId;
 @property (readonly, retain) PBUserBasicInfo* userInfo;
-@property (readonly, retain) PBUserOpus* userOpus;
+@property (readonly, retain) PBOpus* opus;
 @property (readonly) int32_t createDate;
 @property (readonly, retain) PBSourceAction* sourceAction;
 @property (readonly) int32_t actionType;
@@ -633,12 +624,12 @@
 - (PBOpusAction_Builder*) mergeUserInfo:(PBUserBasicInfo*) value;
 - (PBOpusAction_Builder*) clearUserInfo;
 
-- (BOOL) hasUserOpus;
-- (PBUserOpus*) userOpus;
-- (PBOpusAction_Builder*) setUserOpus:(PBUserOpus*) value;
-- (PBOpusAction_Builder*) setUserOpusBuilder:(PBUserOpus_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeUserOpus:(PBUserOpus*) value;
-- (PBOpusAction_Builder*) clearUserOpus;
+- (BOOL) hasOpus;
+- (PBOpus*) opus;
+- (PBOpusAction_Builder*) setOpus:(PBOpus*) value;
+- (PBOpusAction_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
+- (PBOpusAction_Builder*) mergeOpus:(PBOpus*) value;
+- (PBOpusAction_Builder*) clearOpus;
 
 - (BOOL) hasCreateDate;
 - (int32_t) createDate;
@@ -837,12 +828,12 @@
 @private
   BOOL hasOpus_:1;
   BOOL hasAction_:1;
-  PBUserOpus* opus;
+  PBOpus* opus;
   PBOpusAction* action;
 }
 - (BOOL) hasOpus;
 - (BOOL) hasAction;
-@property (readonly, retain) PBUserOpus* opus;
+@property (readonly, retain) PBOpus* opus;
 @property (readonly, retain) PBOpusAction* action;
 
 + (PBTimeline*) defaultInstance;
@@ -880,10 +871,10 @@
 - (PBTimeline_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasOpus;
-- (PBUserOpus*) opus;
-- (PBTimeline_Builder*) setOpus:(PBUserOpus*) value;
-- (PBTimeline_Builder*) setOpusBuilder:(PBUserOpus_Builder*) builderForValue;
-- (PBTimeline_Builder*) mergeOpus:(PBUserOpus*) value;
+- (PBOpus*) opus;
+- (PBTimeline_Builder*) setOpus:(PBOpus*) value;
+- (PBTimeline_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
+- (PBTimeline_Builder*) mergeOpus:(PBOpus*) value;
 - (PBTimeline_Builder*) clearOpus;
 
 - (BOOL) hasAction;

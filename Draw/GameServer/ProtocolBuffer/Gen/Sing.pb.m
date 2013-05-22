@@ -605,7 +605,7 @@ static PBActionTimes* defaultPBActionTimesInstance = nil;
 }
 @end
 
-@interface PBUserSongInfo ()
+@interface PBSongInfo ()
 @property (retain) PBSong* song;
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
@@ -613,9 +613,12 @@ static PBActionTimes* defaultPBActionTimesInstance = nil;
 @property (retain) NSString* desc;
 @property Float32 duration;
 @property Float32 pitch;
+@property (retain) NSMutableArray* mutableTypeList;
+@property (retain) NSString* targetUserId;
+@property (retain) NSString* contestId;
 @end
 
-@implementation PBUserSongInfo
+@implementation PBSongInfo
 
 - (BOOL) hasSong {
   return !!hasSong_;
@@ -666,12 +669,30 @@ static PBActionTimes* defaultPBActionTimesInstance = nil;
   hasPitch_ = !!value;
 }
 @synthesize pitch;
+@synthesize mutableTypeList;
+- (BOOL) hasTargetUserId {
+  return !!hasTargetUserId_;
+}
+- (void) setHasTargetUserId:(BOOL) value {
+  hasTargetUserId_ = !!value;
+}
+@synthesize targetUserId;
+- (BOOL) hasContestId {
+  return !!hasContestId_;
+}
+- (void) setHasContestId:(BOOL) value {
+  hasContestId_ = !!value;
+}
+@synthesize contestId;
 - (void) dealloc {
   self.song = nil;
   self.image = nil;
   self.thumbImage = nil;
   self.songUrl = nil;
   self.desc = nil;
+  self.mutableTypeList = nil;
+  self.targetUserId = nil;
+  self.contestId = nil;
   [super dealloc];
 }
 - (id) init {
@@ -683,20 +704,29 @@ static PBActionTimes* defaultPBActionTimesInstance = nil;
     self.desc = @"";
     self.duration = 1;
     self.pitch = 1;
+    self.targetUserId = @"";
+    self.contestId = @"";
   }
   return self;
 }
-static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
+static PBSongInfo* defaultPBSongInfoInstance = nil;
 + (void) initialize {
-  if (self == [PBUserSongInfo class]) {
-    defaultPBUserSongInfoInstance = [[PBUserSongInfo alloc] init];
+  if (self == [PBSongInfo class]) {
+    defaultPBSongInfoInstance = [[PBSongInfo alloc] init];
   }
 }
-+ (PBUserSongInfo*) defaultInstance {
-  return defaultPBUserSongInfoInstance;
++ (PBSongInfo*) defaultInstance {
+  return defaultPBSongInfoInstance;
 }
-- (PBUserSongInfo*) defaultInstance {
-  return defaultPBUserSongInfoInstance;
+- (PBSongInfo*) defaultInstance {
+  return defaultPBSongInfoInstance;
+}
+- (NSArray*) typeList {
+  return mutableTypeList;
+}
+- (int32_t) typeAtIndex:(int32_t) index {
+  id value = [mutableTypeList objectAtIndex:index];
+  return [value intValue];
 }
 - (BOOL) isInitialized {
   if (self.hasSong) {
@@ -707,6 +737,15 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (NSNumber* value in self.mutableTypeList) {
+    [output writeInt32:12 value:[value intValue]];
+  }
+  if (self.hasTargetUserId) {
+    [output writeString:13 value:self.targetUserId];
+  }
+  if (self.hasContestId) {
+    [output writeString:14 value:self.contestId];
+  }
   if (self.hasSong) {
     [output writeMessage:20 value:self.song];
   }
@@ -737,6 +776,20 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   }
 
   size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableTypeList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableTypeList.count;
+  }
+  if (self.hasTargetUserId) {
+    size += computeStringSize(13, self.targetUserId);
+  }
+  if (self.hasContestId) {
+    size += computeStringSize(14, self.contestId);
+  }
   if (self.hasSong) {
     size += computeMessageSize(20, self.song);
   }
@@ -762,40 +815,40 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBUserSongInfo*) parseFromData:(NSData*) data {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromData:data] build];
++ (PBSongInfo*) parseFromData:(NSData*) data {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromData:data] build];
 }
-+ (PBUserSongInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBSongInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserSongInfo*) parseFromInputStream:(NSInputStream*) input {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromInputStream:input] build];
++ (PBSongInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromInputStream:input] build];
 }
-+ (PBUserSongInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBSongInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromCodedInputStream:input] build];
++ (PBSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBUserSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserSongInfo*)[[[PBUserSongInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBSongInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongInfo*)[[[PBSongInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserSongInfo_Builder*) builder {
-  return [[[PBUserSongInfo_Builder alloc] init] autorelease];
++ (PBSongInfo_Builder*) builder {
+  return [[[PBSongInfo_Builder alloc] init] autorelease];
 }
-+ (PBUserSongInfo_Builder*) builderWithPrototype:(PBUserSongInfo*) prototype {
-  return [[PBUserSongInfo builder] mergeFrom:prototype];
++ (PBSongInfo_Builder*) builderWithPrototype:(PBSongInfo*) prototype {
+  return [[PBSongInfo builder] mergeFrom:prototype];
 }
-- (PBUserSongInfo_Builder*) builder {
-  return [PBUserSongInfo builder];
+- (PBSongInfo_Builder*) builder {
+  return [PBSongInfo builder];
 }
 @end
 
-@interface PBUserSongInfo_Builder()
-@property (retain) PBUserSongInfo* result;
+@interface PBSongInfo_Builder()
+@property (retain) PBSongInfo* result;
 @end
 
-@implementation PBUserSongInfo_Builder
+@implementation PBSongInfo_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -803,34 +856,34 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBUserSongInfo alloc] init] autorelease];
+    self.result = [[[PBSongInfo alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBUserSongInfo_Builder*) clear {
-  self.result = [[[PBUserSongInfo alloc] init] autorelease];
+- (PBSongInfo_Builder*) clear {
+  self.result = [[[PBSongInfo alloc] init] autorelease];
   return self;
 }
-- (PBUserSongInfo_Builder*) clone {
-  return [PBUserSongInfo builderWithPrototype:result];
+- (PBSongInfo_Builder*) clone {
+  return [PBSongInfo builderWithPrototype:result];
 }
-- (PBUserSongInfo*) defaultInstance {
-  return [PBUserSongInfo defaultInstance];
+- (PBSongInfo*) defaultInstance {
+  return [PBSongInfo defaultInstance];
 }
-- (PBUserSongInfo*) build {
+- (PBSongInfo*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBUserSongInfo*) buildPartial {
-  PBUserSongInfo* returnMe = [[result retain] autorelease];
+- (PBSongInfo*) buildPartial {
+  PBSongInfo* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBUserSongInfo_Builder*) mergeFrom:(PBUserSongInfo*) other {
-  if (other == [PBUserSongInfo defaultInstance]) {
+- (PBSongInfo_Builder*) mergeFrom:(PBSongInfo*) other {
+  if (other == [PBSongInfo defaultInstance]) {
     return self;
   }
   if (other.hasSong) {
@@ -854,13 +907,25 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   if (other.hasPitch) {
     [self setPitch:other.pitch];
   }
+  if (other.mutableTypeList.count > 0) {
+    if (result.mutableTypeList == nil) {
+      result.mutableTypeList = [NSMutableArray array];
+    }
+    [result.mutableTypeList addObjectsFromArray:other.mutableTypeList];
+  }
+  if (other.hasTargetUserId) {
+    [self setTargetUserId:other.targetUserId];
+  }
+  if (other.hasContestId) {
+    [self setContestId:other.contestId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBUserSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBUserSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBSongInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -873,6 +938,18 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
           [self setUnknownFields:[unknownFields build]];
           return self;
         }
+        break;
+      }
+      case 96: {
+        [self addType:[input readInt32]];
+        break;
+      }
+      case 106: {
+        [self setTargetUserId:[input readString]];
+        break;
+      }
+      case 114: {
+        [self setContestId:[input readString]];
         break;
       }
       case 162: {
@@ -917,15 +994,15 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (PBSong*) song {
   return result.song;
 }
-- (PBUserSongInfo_Builder*) setSong:(PBSong*) value {
+- (PBSongInfo_Builder*) setSong:(PBSong*) value {
   result.hasSong = YES;
   result.song = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue {
+- (PBSongInfo_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue {
   return [self setSong:[builderForValue build]];
 }
-- (PBUserSongInfo_Builder*) mergeSong:(PBSong*) value {
+- (PBSongInfo_Builder*) mergeSong:(PBSong*) value {
   if (result.hasSong &&
       result.song != [PBSong defaultInstance]) {
     result.song =
@@ -936,7 +1013,7 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   result.hasSong = YES;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearSong {
+- (PBSongInfo_Builder*) clearSong {
   result.hasSong = NO;
   result.song = [PBSong defaultInstance];
   return self;
@@ -947,12 +1024,12 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (NSString*) image {
   return result.image;
 }
-- (PBUserSongInfo_Builder*) setImage:(NSString*) value {
+- (PBSongInfo_Builder*) setImage:(NSString*) value {
   result.hasImage = YES;
   result.image = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearImage {
+- (PBSongInfo_Builder*) clearImage {
   result.hasImage = NO;
   result.image = @"";
   return self;
@@ -963,12 +1040,12 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (NSString*) thumbImage {
   return result.thumbImage;
 }
-- (PBUserSongInfo_Builder*) setThumbImage:(NSString*) value {
+- (PBSongInfo_Builder*) setThumbImage:(NSString*) value {
   result.hasThumbImage = YES;
   result.thumbImage = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearThumbImage {
+- (PBSongInfo_Builder*) clearThumbImage {
   result.hasThumbImage = NO;
   result.thumbImage = @"";
   return self;
@@ -979,12 +1056,12 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (NSString*) songUrl {
   return result.songUrl;
 }
-- (PBUserSongInfo_Builder*) setSongUrl:(NSString*) value {
+- (PBSongInfo_Builder*) setSongUrl:(NSString*) value {
   result.hasSongUrl = YES;
   result.songUrl = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearSongUrl {
+- (PBSongInfo_Builder*) clearSongUrl {
   result.hasSongUrl = NO;
   result.songUrl = @"";
   return self;
@@ -995,12 +1072,12 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (NSString*) desc {
   return result.desc;
 }
-- (PBUserSongInfo_Builder*) setDesc:(NSString*) value {
+- (PBSongInfo_Builder*) setDesc:(NSString*) value {
   result.hasDesc = YES;
   result.desc = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearDesc {
+- (PBSongInfo_Builder*) clearDesc {
   result.hasDesc = NO;
   result.desc = @"";
   return self;
@@ -1011,12 +1088,12 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (Float32) duration {
   return result.duration;
 }
-- (PBUserSongInfo_Builder*) setDuration:(Float32) value {
+- (PBSongInfo_Builder*) setDuration:(Float32) value {
   result.hasDuration = YES;
   result.duration = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearDuration {
+- (PBSongInfo_Builder*) clearDuration {
   result.hasDuration = NO;
   result.duration = 1;
   return self;
@@ -1027,47 +1104,106 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 - (Float32) pitch {
   return result.pitch;
 }
-- (PBUserSongInfo_Builder*) setPitch:(Float32) value {
+- (PBSongInfo_Builder*) setPitch:(Float32) value {
   result.hasPitch = YES;
   result.pitch = value;
   return self;
 }
-- (PBUserSongInfo_Builder*) clearPitch {
+- (PBSongInfo_Builder*) clearPitch {
   result.hasPitch = NO;
   result.pitch = 1;
   return self;
 }
+- (NSArray*) typeList {
+  if (result.mutableTypeList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableTypeList;
+}
+- (int32_t) typeAtIndex:(int32_t) index {
+  return [result typeAtIndex:index];
+}
+- (PBSongInfo_Builder*) replaceTypeAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableTypeList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBSongInfo_Builder*) addType:(int32_t) value {
+  if (result.mutableTypeList == nil) {
+    result.mutableTypeList = [NSMutableArray array];
+  }
+  [result.mutableTypeList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBSongInfo_Builder*) addAllType:(NSArray*) values {
+  if (result.mutableTypeList == nil) {
+    result.mutableTypeList = [NSMutableArray array];
+  }
+  [result.mutableTypeList addObjectsFromArray:values];
+  return self;
+}
+- (PBSongInfo_Builder*) clearTypeList {
+  result.mutableTypeList = nil;
+  return self;
+}
+- (BOOL) hasTargetUserId {
+  return result.hasTargetUserId;
+}
+- (NSString*) targetUserId {
+  return result.targetUserId;
+}
+- (PBSongInfo_Builder*) setTargetUserId:(NSString*) value {
+  result.hasTargetUserId = YES;
+  result.targetUserId = value;
+  return self;
+}
+- (PBSongInfo_Builder*) clearTargetUserId {
+  result.hasTargetUserId = NO;
+  result.targetUserId = @"";
+  return self;
+}
+- (BOOL) hasContestId {
+  return result.hasContestId;
+}
+- (NSString*) contestId {
+  return result.contestId;
+}
+- (PBSongInfo_Builder*) setContestId:(NSString*) value {
+  result.hasContestId = YES;
+  result.contestId = value;
+  return self;
+}
+- (PBSongInfo_Builder*) clearContestId {
+  result.hasContestId = NO;
+  result.contestId = @"";
+  return self;
+}
 @end
 
-@interface PBUserOpus ()
-@property (retain) NSString* userOpusId;
-@property (retain) PBUserBasicInfo* userInfo;
+@interface PBOpus ()
+@property (retain) NSString* opusId;
+@property (retain) PBGameUser* user;
 @property int32_t createDate;
 @property int32_t status;
-@property (retain) NSMutableArray* mutableUsageList;
-@property (retain) NSString* toUserId;
-@property (retain) NSString* contestId;
-@property int32_t awardScore;
 @property (retain) NSMutableArray* mutableActionTimesList;
-@property (retain) PBUserSongInfo* songInfo;
+@property (retain) PBSongInfo* songInfo;
 @end
 
-@implementation PBUserOpus
+@implementation PBOpus
 
-- (BOOL) hasUserOpusId {
-  return !!hasUserOpusId_;
+- (BOOL) hasOpusId {
+  return !!hasOpusId_;
 }
-- (void) setHasUserOpusId:(BOOL) value {
-  hasUserOpusId_ = !!value;
+- (void) setHasOpusId:(BOOL) value {
+  hasOpusId_ = !!value;
 }
-@synthesize userOpusId;
-- (BOOL) hasUserInfo {
-  return !!hasUserInfo_;
+@synthesize opusId;
+- (BOOL) hasUser {
+  return !!hasUser_;
 }
-- (void) setHasUserInfo:(BOOL) value {
-  hasUserInfo_ = !!value;
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
 }
-@synthesize userInfo;
+@synthesize user;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -1082,28 +1218,6 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
-@synthesize mutableUsageList;
-- (BOOL) hasToUserId {
-  return !!hasToUserId_;
-}
-- (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
-}
-@synthesize toUserId;
-- (BOOL) hasContestId {
-  return !!hasContestId_;
-}
-- (void) setHasContestId:(BOOL) value {
-  hasContestId_ = !!value;
-}
-@synthesize contestId;
-- (BOOL) hasAwardScore {
-  return !!hasAwardScore_;
-}
-- (void) setHasAwardScore:(BOOL) value {
-  hasAwardScore_ = !!value;
-}
-@synthesize awardScore;
 @synthesize mutableActionTimesList;
 - (BOOL) hasSongInfo {
   return !!hasSongInfo_;
@@ -1113,46 +1227,33 @@ static PBUserSongInfo* defaultPBUserSongInfoInstance = nil;
 }
 @synthesize songInfo;
 - (void) dealloc {
-  self.userOpusId = nil;
-  self.userInfo = nil;
-  self.mutableUsageList = nil;
-  self.toUserId = nil;
-  self.contestId = nil;
+  self.opusId = nil;
+  self.user = nil;
   self.mutableActionTimesList = nil;
   self.songInfo = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.userOpusId = @"";
-    self.userInfo = [PBUserBasicInfo defaultInstance];
+    self.opusId = @"";
+    self.user = [PBGameUser defaultInstance];
     self.createDate = 0;
     self.status = 0;
-    self.toUserId = @"";
-    self.contestId = @"";
-    self.awardScore = 0;
-    self.songInfo = [PBUserSongInfo defaultInstance];
+    self.songInfo = [PBSongInfo defaultInstance];
   }
   return self;
 }
-static PBUserOpus* defaultPBUserOpusInstance = nil;
+static PBOpus* defaultPBOpusInstance = nil;
 + (void) initialize {
-  if (self == [PBUserOpus class]) {
-    defaultPBUserOpusInstance = [[PBUserOpus alloc] init];
+  if (self == [PBOpus class]) {
+    defaultPBOpusInstance = [[PBOpus alloc] init];
   }
 }
-+ (PBUserOpus*) defaultInstance {
-  return defaultPBUserOpusInstance;
++ (PBOpus*) defaultInstance {
+  return defaultPBOpusInstance;
 }
-- (PBUserOpus*) defaultInstance {
-  return defaultPBUserOpusInstance;
-}
-- (NSArray*) usageList {
-  return mutableUsageList;
-}
-- (int32_t) usageAtIndex:(int32_t) index {
-  id value = [mutableUsageList objectAtIndex:index];
-  return [value intValue];
+- (PBOpus*) defaultInstance {
+  return defaultPBOpusInstance;
 }
 - (NSArray*) actionTimesList {
   return mutableActionTimesList;
@@ -1162,11 +1263,11 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserOpusId) {
+  if (!self.hasOpusId) {
     return NO;
   }
-  if (self.hasUserInfo) {
-    if (!self.userInfo.isInitialized) {
+  if (self.hasUser) {
+    if (!self.user.isInitialized) {
       return NO;
     }
   }
@@ -1183,29 +1284,17 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserOpusId) {
-    [output writeString:1 value:self.userOpusId];
+  if (self.hasOpusId) {
+    [output writeString:1 value:self.opusId];
   }
-  if (self.hasUserInfo) {
-    [output writeMessage:2 value:self.userInfo];
+  if (self.hasUser) {
+    [output writeMessage:2 value:self.user];
   }
   if (self.hasCreateDate) {
     [output writeInt32:6 value:self.createDate];
   }
   if (self.hasStatus) {
     [output writeInt32:10 value:self.status];
-  }
-  for (NSNumber* value in self.mutableUsageList) {
-    [output writeInt32:12 value:[value intValue]];
-  }
-  if (self.hasToUserId) {
-    [output writeString:13 value:self.toUserId];
-  }
-  if (self.hasContestId) {
-    [output writeString:14 value:self.contestId];
-  }
-  if (self.hasAwardScore) {
-    [output writeInt32:20 value:self.awardScore];
   }
   for (PBActionTimes* element in self.actionTimesList) {
     [output writeMessage:25 value:element];
@@ -1222,34 +1311,17 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
   }
 
   size = 0;
-  if (self.hasUserOpusId) {
-    size += computeStringSize(1, self.userOpusId);
+  if (self.hasOpusId) {
+    size += computeStringSize(1, self.opusId);
   }
-  if (self.hasUserInfo) {
-    size += computeMessageSize(2, self.userInfo);
+  if (self.hasUser) {
+    size += computeMessageSize(2, self.user);
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(6, self.createDate);
   }
   if (self.hasStatus) {
     size += computeInt32Size(10, self.status);
-  }
-  {
-    int32_t dataSize = 0;
-    for (NSNumber* value in self.mutableUsageList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
-    }
-    size += dataSize;
-    size += 1 * self.mutableUsageList.count;
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(13, self.toUserId);
-  }
-  if (self.hasContestId) {
-    size += computeStringSize(14, self.contestId);
-  }
-  if (self.hasAwardScore) {
-    size += computeInt32Size(20, self.awardScore);
   }
   for (PBActionTimes* element in self.actionTimesList) {
     size += computeMessageSize(25, element);
@@ -1261,40 +1333,40 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBUserOpus*) parseFromData:(NSData*) data {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromData:data] build];
++ (PBOpus*) parseFromData:(NSData*) data {
+  return (PBOpus*)[[[PBOpus builder] mergeFromData:data] build];
 }
-+ (PBUserOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpus*)[[[PBOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserOpus*) parseFromInputStream:(NSInputStream*) input {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromInputStream:input] build];
++ (PBOpus*) parseFromInputStream:(NSInputStream*) input {
+  return (PBOpus*)[[[PBOpus builder] mergeFromInputStream:input] build];
 }
-+ (PBUserOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpus*)[[[PBOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromCodedInputStream:input] build];
++ (PBOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBOpus*)[[[PBOpus builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBUserOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBUserOpus*)[[[PBUserOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpus*)[[[PBOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBUserOpus_Builder*) builder {
-  return [[[PBUserOpus_Builder alloc] init] autorelease];
++ (PBOpus_Builder*) builder {
+  return [[[PBOpus_Builder alloc] init] autorelease];
 }
-+ (PBUserOpus_Builder*) builderWithPrototype:(PBUserOpus*) prototype {
-  return [[PBUserOpus builder] mergeFrom:prototype];
++ (PBOpus_Builder*) builderWithPrototype:(PBOpus*) prototype {
+  return [[PBOpus builder] mergeFrom:prototype];
 }
-- (PBUserOpus_Builder*) builder {
-  return [PBUserOpus builder];
+- (PBOpus_Builder*) builder {
+  return [PBOpus builder];
 }
 @end
 
-@interface PBUserOpus_Builder()
-@property (retain) PBUserOpus* result;
+@interface PBOpus_Builder()
+@property (retain) PBOpus* result;
 @end
 
-@implementation PBUserOpus_Builder
+@implementation PBOpus_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -1302,62 +1374,47 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBUserOpus alloc] init] autorelease];
+    self.result = [[[PBOpus alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBUserOpus_Builder*) clear {
-  self.result = [[[PBUserOpus alloc] init] autorelease];
+- (PBOpus_Builder*) clear {
+  self.result = [[[PBOpus alloc] init] autorelease];
   return self;
 }
-- (PBUserOpus_Builder*) clone {
-  return [PBUserOpus builderWithPrototype:result];
+- (PBOpus_Builder*) clone {
+  return [PBOpus builderWithPrototype:result];
 }
-- (PBUserOpus*) defaultInstance {
-  return [PBUserOpus defaultInstance];
+- (PBOpus*) defaultInstance {
+  return [PBOpus defaultInstance];
 }
-- (PBUserOpus*) build {
+- (PBOpus*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBUserOpus*) buildPartial {
-  PBUserOpus* returnMe = [[result retain] autorelease];
+- (PBOpus*) buildPartial {
+  PBOpus* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBUserOpus_Builder*) mergeFrom:(PBUserOpus*) other {
-  if (other == [PBUserOpus defaultInstance]) {
+- (PBOpus_Builder*) mergeFrom:(PBOpus*) other {
+  if (other == [PBOpus defaultInstance]) {
     return self;
   }
-  if (other.hasUserOpusId) {
-    [self setUserOpusId:other.userOpusId];
+  if (other.hasOpusId) {
+    [self setOpusId:other.opusId];
   }
-  if (other.hasUserInfo) {
-    [self mergeUserInfo:other.userInfo];
+  if (other.hasUser) {
+    [self mergeUser:other.user];
   }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
   if (other.hasStatus) {
     [self setStatus:other.status];
-  }
-  if (other.mutableUsageList.count > 0) {
-    if (result.mutableUsageList == nil) {
-      result.mutableUsageList = [NSMutableArray array];
-    }
-    [result.mutableUsageList addObjectsFromArray:other.mutableUsageList];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasContestId) {
-    [self setContestId:other.contestId];
-  }
-  if (other.hasAwardScore) {
-    [self setAwardScore:other.awardScore];
   }
   if (other.mutableActionTimesList.count > 0) {
     if (result.mutableActionTimesList == nil) {
@@ -1371,10 +1428,10 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBUserOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBUserOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -1390,16 +1447,16 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
         break;
       }
       case 10: {
-        [self setUserOpusId:[input readString]];
+        [self setOpusId:[input readString]];
         break;
       }
       case 18: {
-        PBUserBasicInfo_Builder* subBuilder = [PBUserBasicInfo builder];
-        if (self.hasUserInfo) {
-          [subBuilder mergeFrom:self.userInfo];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUserInfo:[subBuilder buildPartial]];
+        [self setUser:[subBuilder buildPartial]];
         break;
       }
       case 48: {
@@ -1410,22 +1467,6 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
         [self setStatus:[input readInt32]];
         break;
       }
-      case 96: {
-        [self addUsage:[input readInt32]];
-        break;
-      }
-      case 106: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 114: {
-        [self setContestId:[input readString]];
-        break;
-      }
-      case 160: {
-        [self setAwardScore:[input readInt32]];
-        break;
-      }
       case 202: {
         PBActionTimes_Builder* subBuilder = [PBActionTimes builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
@@ -1433,7 +1474,7 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
         break;
       }
       case 242: {
-        PBUserSongInfo_Builder* subBuilder = [PBUserSongInfo builder];
+        PBSongInfo_Builder* subBuilder = [PBSongInfo builder];
         if (self.hasSongInfo) {
           [subBuilder mergeFrom:self.songInfo];
         }
@@ -1444,50 +1485,50 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
     }
   }
 }
-- (BOOL) hasUserOpusId {
-  return result.hasUserOpusId;
+- (BOOL) hasOpusId {
+  return result.hasOpusId;
 }
-- (NSString*) userOpusId {
-  return result.userOpusId;
+- (NSString*) opusId {
+  return result.opusId;
 }
-- (PBUserOpus_Builder*) setUserOpusId:(NSString*) value {
-  result.hasUserOpusId = YES;
-  result.userOpusId = value;
+- (PBOpus_Builder*) setOpusId:(NSString*) value {
+  result.hasOpusId = YES;
+  result.opusId = value;
   return self;
 }
-- (PBUserOpus_Builder*) clearUserOpusId {
-  result.hasUserOpusId = NO;
-  result.userOpusId = @"";
+- (PBOpus_Builder*) clearOpusId {
+  result.hasOpusId = NO;
+  result.opusId = @"";
   return self;
 }
-- (BOOL) hasUserInfo {
-  return result.hasUserInfo;
+- (BOOL) hasUser {
+  return result.hasUser;
 }
-- (PBUserBasicInfo*) userInfo {
-  return result.userInfo;
+- (PBGameUser*) user {
+  return result.user;
 }
-- (PBUserOpus_Builder*) setUserInfo:(PBUserBasicInfo*) value {
-  result.hasUserInfo = YES;
-  result.userInfo = value;
+- (PBOpus_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
   return self;
 }
-- (PBUserOpus_Builder*) setUserInfoBuilder:(PBUserBasicInfo_Builder*) builderForValue {
-  return [self setUserInfo:[builderForValue build]];
+- (PBOpus_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
 }
-- (PBUserOpus_Builder*) mergeUserInfo:(PBUserBasicInfo*) value {
-  if (result.hasUserInfo &&
-      result.userInfo != [PBUserBasicInfo defaultInstance]) {
-    result.userInfo =
-      [[[PBUserBasicInfo builderWithPrototype:result.userInfo] mergeFrom:value] buildPartial];
+- (PBOpus_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
   } else {
-    result.userInfo = value;
+    result.user = value;
   }
-  result.hasUserInfo = YES;
+  result.hasUser = YES;
   return self;
 }
-- (PBUserOpus_Builder*) clearUserInfo {
-  result.hasUserInfo = NO;
-  result.userInfo = [PBUserBasicInfo defaultInstance];
+- (PBOpus_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
   return self;
 }
 - (BOOL) hasCreateDate {
@@ -1496,12 +1537,12 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
 - (int32_t) createDate {
   return result.createDate;
 }
-- (PBUserOpus_Builder*) setCreateDate:(int32_t) value {
+- (PBOpus_Builder*) setCreateDate:(int32_t) value {
   result.hasCreateDate = YES;
   result.createDate = value;
   return self;
 }
-- (PBUserOpus_Builder*) clearCreateDate {
+- (PBOpus_Builder*) clearCreateDate {
   result.hasCreateDate = NO;
   result.createDate = 0;
   return self;
@@ -1512,93 +1553,14 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
 - (int32_t) status {
   return result.status;
 }
-- (PBUserOpus_Builder*) setStatus:(int32_t) value {
+- (PBOpus_Builder*) setStatus:(int32_t) value {
   result.hasStatus = YES;
   result.status = value;
   return self;
 }
-- (PBUserOpus_Builder*) clearStatus {
+- (PBOpus_Builder*) clearStatus {
   result.hasStatus = NO;
   result.status = 0;
-  return self;
-}
-- (NSArray*) usageList {
-  if (result.mutableUsageList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableUsageList;
-}
-- (int32_t) usageAtIndex:(int32_t) index {
-  return [result usageAtIndex:index];
-}
-- (PBUserOpus_Builder*) replaceUsageAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutableUsageList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
-  return self;
-}
-- (PBUserOpus_Builder*) addUsage:(int32_t) value {
-  if (result.mutableUsageList == nil) {
-    result.mutableUsageList = [NSMutableArray array];
-  }
-  [result.mutableUsageList addObject:[NSNumber numberWithInt:value]];
-  return self;
-}
-- (PBUserOpus_Builder*) addAllUsage:(NSArray*) values {
-  if (result.mutableUsageList == nil) {
-    result.mutableUsageList = [NSMutableArray array];
-  }
-  [result.mutableUsageList addObjectsFromArray:values];
-  return self;
-}
-- (PBUserOpus_Builder*) clearUsageList {
-  result.mutableUsageList = nil;
-  return self;
-}
-- (BOOL) hasToUserId {
-  return result.hasToUserId;
-}
-- (NSString*) toUserId {
-  return result.toUserId;
-}
-- (PBUserOpus_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
-}
-- (PBUserOpus_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
-}
-- (BOOL) hasContestId {
-  return result.hasContestId;
-}
-- (NSString*) contestId {
-  return result.contestId;
-}
-- (PBUserOpus_Builder*) setContestId:(NSString*) value {
-  result.hasContestId = YES;
-  result.contestId = value;
-  return self;
-}
-- (PBUserOpus_Builder*) clearContestId {
-  result.hasContestId = NO;
-  result.contestId = @"";
-  return self;
-}
-- (BOOL) hasAwardScore {
-  return result.hasAwardScore;
-}
-- (int32_t) awardScore {
-  return result.awardScore;
-}
-- (PBUserOpus_Builder*) setAwardScore:(int32_t) value {
-  result.hasAwardScore = YES;
-  result.awardScore = value;
-  return self;
-}
-- (PBUserOpus_Builder*) clearAwardScore {
-  result.hasAwardScore = NO;
-  result.awardScore = 0;
   return self;
 }
 - (NSArray*) actionTimesList {
@@ -1608,22 +1570,22 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
 - (PBActionTimes*) actionTimesAtIndex:(int32_t) index {
   return [result actionTimesAtIndex:index];
 }
-- (PBUserOpus_Builder*) replaceActionTimesAtIndex:(int32_t) index with:(PBActionTimes*) value {
+- (PBOpus_Builder*) replaceActionTimesAtIndex:(int32_t) index with:(PBActionTimes*) value {
   [result.mutableActionTimesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBUserOpus_Builder*) addAllActionTimes:(NSArray*) values {
+- (PBOpus_Builder*) addAllActionTimes:(NSArray*) values {
   if (result.mutableActionTimesList == nil) {
     result.mutableActionTimesList = [NSMutableArray array];
   }
   [result.mutableActionTimesList addObjectsFromArray:values];
   return self;
 }
-- (PBUserOpus_Builder*) clearActionTimesList {
+- (PBOpus_Builder*) clearActionTimesList {
   result.mutableActionTimesList = nil;
   return self;
 }
-- (PBUserOpus_Builder*) addActionTimes:(PBActionTimes*) value {
+- (PBOpus_Builder*) addActionTimes:(PBActionTimes*) value {
   if (result.mutableActionTimesList == nil) {
     result.mutableActionTimesList = [NSMutableArray array];
   }
@@ -1633,31 +1595,31 @@ static PBUserOpus* defaultPBUserOpusInstance = nil;
 - (BOOL) hasSongInfo {
   return result.hasSongInfo;
 }
-- (PBUserSongInfo*) songInfo {
+- (PBSongInfo*) songInfo {
   return result.songInfo;
 }
-- (PBUserOpus_Builder*) setSongInfo:(PBUserSongInfo*) value {
+- (PBOpus_Builder*) setSongInfo:(PBSongInfo*) value {
   result.hasSongInfo = YES;
   result.songInfo = value;
   return self;
 }
-- (PBUserOpus_Builder*) setSongInfoBuilder:(PBUserSongInfo_Builder*) builderForValue {
+- (PBOpus_Builder*) setSongInfoBuilder:(PBSongInfo_Builder*) builderForValue {
   return [self setSongInfo:[builderForValue build]];
 }
-- (PBUserOpus_Builder*) mergeSongInfo:(PBUserSongInfo*) value {
+- (PBOpus_Builder*) mergeSongInfo:(PBSongInfo*) value {
   if (result.hasSongInfo &&
-      result.songInfo != [PBUserSongInfo defaultInstance]) {
+      result.songInfo != [PBSongInfo defaultInstance]) {
     result.songInfo =
-      [[[PBUserSongInfo builderWithPrototype:result.songInfo] mergeFrom:value] buildPartial];
+      [[[PBSongInfo builderWithPrototype:result.songInfo] mergeFrom:value] buildPartial];
   } else {
     result.songInfo = value;
   }
   result.hasSongInfo = YES;
   return self;
 }
-- (PBUserOpus_Builder*) clearSongInfo {
+- (PBOpus_Builder*) clearSongInfo {
   result.hasSongInfo = NO;
-  result.songInfo = [PBUserSongInfo defaultInstance];
+  result.songInfo = [PBSongInfo defaultInstance];
   return self;
 }
 @end
@@ -1991,7 +1953,7 @@ static PBSourceAction* defaultPBSourceActionInstance = nil;
 @property (retain) NSString* actionId;
 @property (retain) NSString* opusId;
 @property (retain) PBUserBasicInfo* userInfo;
-@property (retain) PBUserOpus* userOpus;
+@property (retain) PBOpus* opus;
 @property int32_t createDate;
 @property (retain) PBSourceAction* sourceAction;
 @property int32_t actionType;
@@ -2023,13 +1985,13 @@ static PBSourceAction* defaultPBSourceActionInstance = nil;
   hasUserInfo_ = !!value;
 }
 @synthesize userInfo;
-- (BOOL) hasUserOpus {
-  return !!hasUserOpus_;
+- (BOOL) hasOpus {
+  return !!hasOpus_;
 }
-- (void) setHasUserOpus:(BOOL) value {
-  hasUserOpus_ = !!value;
+- (void) setHasOpus:(BOOL) value {
+  hasOpus_ = !!value;
 }
-@synthesize userOpus;
+@synthesize opus;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -2076,7 +2038,7 @@ static PBSourceAction* defaultPBSourceActionInstance = nil;
   self.actionId = nil;
   self.opusId = nil;
   self.userInfo = nil;
-  self.userOpus = nil;
+  self.opus = nil;
   self.sourceAction = nil;
   self.commentAction = nil;
   self.flowerAction = nil;
@@ -2088,7 +2050,7 @@ static PBSourceAction* defaultPBSourceActionInstance = nil;
     self.actionId = @"";
     self.opusId = @"";
     self.userInfo = [PBUserBasicInfo defaultInstance];
-    self.userOpus = [PBUserOpus defaultInstance];
+    self.opus = [PBOpus defaultInstance];
     self.createDate = 0;
     self.sourceAction = [PBSourceAction defaultInstance];
     self.actionType = 0;
@@ -2119,8 +2081,8 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
       return NO;
     }
   }
-  if (self.hasUserOpus) {
-    if (!self.userOpus.isInitialized) {
+  if (self.hasOpus) {
+    if (!self.opus.isInitialized) {
       return NO;
     }
   }
@@ -2155,8 +2117,8 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (self.hasSourceAction) {
     [output writeMessage:6 value:self.sourceAction];
   }
-  if (self.hasUserOpus) {
-    [output writeMessage:7 value:self.userOpus];
+  if (self.hasOpus) {
+    [output writeMessage:7 value:self.opus];
   }
   if (self.hasCommentAction) {
     [output writeMessage:10 value:self.commentAction];
@@ -2194,8 +2156,8 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (self.hasSourceAction) {
     size += computeMessageSize(6, self.sourceAction);
   }
-  if (self.hasUserOpus) {
-    size += computeMessageSize(7, self.userOpus);
+  if (self.hasOpus) {
+    size += computeMessageSize(7, self.opus);
   }
   if (self.hasCommentAction) {
     size += computeMessageSize(10, self.commentAction);
@@ -2290,8 +2252,8 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (other.hasUserInfo) {
     [self mergeUserInfo:other.userInfo];
   }
-  if (other.hasUserOpus) {
-    [self mergeUserOpus:other.userOpus];
+  if (other.hasOpus) {
+    [self mergeOpus:other.opus];
   }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
@@ -2367,12 +2329,12 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
         break;
       }
       case 58: {
-        PBUserOpus_Builder* subBuilder = [PBUserOpus builder];
-        if (self.hasUserOpus) {
-          [subBuilder mergeFrom:self.userOpus];
+        PBOpus_Builder* subBuilder = [PBOpus builder];
+        if (self.hasOpus) {
+          [subBuilder mergeFrom:self.opus];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setUserOpus:[subBuilder buildPartial]];
+        [self setOpus:[subBuilder buildPartial]];
         break;
       }
       case 82: {
@@ -2467,34 +2429,34 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   result.userInfo = [PBUserBasicInfo defaultInstance];
   return self;
 }
-- (BOOL) hasUserOpus {
-  return result.hasUserOpus;
+- (BOOL) hasOpus {
+  return result.hasOpus;
 }
-- (PBUserOpus*) userOpus {
-  return result.userOpus;
+- (PBOpus*) opus {
+  return result.opus;
 }
-- (PBOpusAction_Builder*) setUserOpus:(PBUserOpus*) value {
-  result.hasUserOpus = YES;
-  result.userOpus = value;
+- (PBOpusAction_Builder*) setOpus:(PBOpus*) value {
+  result.hasOpus = YES;
+  result.opus = value;
   return self;
 }
-- (PBOpusAction_Builder*) setUserOpusBuilder:(PBUserOpus_Builder*) builderForValue {
-  return [self setUserOpus:[builderForValue build]];
+- (PBOpusAction_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
+  return [self setOpus:[builderForValue build]];
 }
-- (PBOpusAction_Builder*) mergeUserOpus:(PBUserOpus*) value {
-  if (result.hasUserOpus &&
-      result.userOpus != [PBUserOpus defaultInstance]) {
-    result.userOpus =
-      [[[PBUserOpus builderWithPrototype:result.userOpus] mergeFrom:value] buildPartial];
+- (PBOpusAction_Builder*) mergeOpus:(PBOpus*) value {
+  if (result.hasOpus &&
+      result.opus != [PBOpus defaultInstance]) {
+    result.opus =
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
   } else {
-    result.userOpus = value;
+    result.opus = value;
   }
-  result.hasUserOpus = YES;
+  result.hasOpus = YES;
   return self;
 }
-- (PBOpusAction_Builder*) clearUserOpus {
-  result.hasUserOpus = NO;
-  result.userOpus = [PBUserOpus defaultInstance];
+- (PBOpusAction_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = [PBOpus defaultInstance];
   return self;
 }
 - (BOOL) hasCreateDate {
@@ -3254,7 +3216,7 @@ static PBActionGuess* defaultPBActionGuessInstance = nil;
 @end
 
 @interface PBTimeline ()
-@property (retain) PBUserOpus* opus;
+@property (retain) PBOpus* opus;
 @property (retain) PBOpusAction* action;
 @end
 
@@ -3281,7 +3243,7 @@ static PBActionGuess* defaultPBActionGuessInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.opus = [PBUserOpus defaultInstance];
+    self.opus = [PBOpus defaultInstance];
     self.action = [PBOpusAction defaultInstance];
   }
   return self;
@@ -3436,7 +3398,7 @@ static PBTimeline* defaultPBTimelineInstance = nil;
         break;
       }
       case 10: {
-        PBUserOpus_Builder* subBuilder = [PBUserOpus builder];
+        PBOpus_Builder* subBuilder = [PBOpus builder];
         if (self.hasOpus) {
           [subBuilder mergeFrom:self.opus];
         }
@@ -3459,22 +3421,22 @@ static PBTimeline* defaultPBTimelineInstance = nil;
 - (BOOL) hasOpus {
   return result.hasOpus;
 }
-- (PBUserOpus*) opus {
+- (PBOpus*) opus {
   return result.opus;
 }
-- (PBTimeline_Builder*) setOpus:(PBUserOpus*) value {
+- (PBTimeline_Builder*) setOpus:(PBOpus*) value {
   result.hasOpus = YES;
   result.opus = value;
   return self;
 }
-- (PBTimeline_Builder*) setOpusBuilder:(PBUserOpus_Builder*) builderForValue {
+- (PBTimeline_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
   return [self setOpus:[builderForValue build]];
 }
-- (PBTimeline_Builder*) mergeOpus:(PBUserOpus*) value {
+- (PBTimeline_Builder*) mergeOpus:(PBOpus*) value {
   if (result.hasOpus &&
-      result.opus != [PBUserOpus defaultInstance]) {
+      result.opus != [PBOpus defaultInstance]) {
     result.opus =
-      [[[PBUserOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
   } else {
     result.opus = value;
   }
@@ -3483,7 +3445,7 @@ static PBTimeline* defaultPBTimelineInstance = nil;
 }
 - (PBTimeline_Builder*) clearOpus {
   result.hasOpus = NO;
-  result.opus = [PBUserOpus defaultInstance];
+  result.opus = [PBOpus defaultInstance];
   return self;
 }
 - (BOOL) hasAction {
