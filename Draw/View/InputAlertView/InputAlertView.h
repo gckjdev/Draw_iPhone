@@ -14,7 +14,7 @@
 @protocol InputAlertViewDelegate <NSObject>
 @optional
 - (BOOL)isSubjectValid:(NSString*)subjectText;
-
+- (NSInteger)maxSubjectLen;
 @end
 
 

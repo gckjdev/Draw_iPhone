@@ -111,7 +111,7 @@
 }
 
 #pragma mark -- UIImagePickerControllerDelegate
-#define MAX_LEN_CUSTOM 480.0
+#define MAX_LEN_CUSTOM 1024.0
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 //    NSString *infoKey = (picker.sourceType == UIImagePickerControllerSourceTypeCamera ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage);
@@ -174,7 +174,9 @@
     // End the context
     UIGraphicsEndImageContext();
     
-    [self useSelectedBgImage:newImage];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self useSelectedBgImage:newImage];
+    });
     
     [pool release];
 }

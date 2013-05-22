@@ -446,7 +446,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:4000
                                         currency:PBGameCurrencyCoin
-                                  promotionPrice:4000
+                                  promotionPrice:2000
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -600,7 +600,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_square_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:2
+                                           price:4
                                         currency:PBGameCurrencyIngot]];
     
     // 横版画布（小）
@@ -630,7 +630,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:2
+                                           price:4
                                         currency:PBGameCurrencyIngot]];
     
     
@@ -661,7 +661,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:2
+                                           price:4
                                         currency:PBGameCurrencyIngot]];
     
     
@@ -680,7 +680,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     
     //write to file
 //    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
-    NSString *filePath = [@"/game/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    NSString *filePath = [@"/gitdata/Draw_iPhone/Draw/Draw/Resource/Data/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
 
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");

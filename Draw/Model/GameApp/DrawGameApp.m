@@ -449,7 +449,7 @@
     
     PBConfig_Builder* builder = [PBConfig builder];
     
-    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
+//    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
     //    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
     
@@ -460,7 +460,7 @@
 //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
     
     [builder addAppRewards:zjhApp];
-    [builder addAppRewards:diceApp];
+//    [builder addAppRewards:diceApp];
     
     [builder addRewardWalls:limei];
     [builder addRewardWalls:youmi];
@@ -503,6 +503,16 @@
 - (NSString*)appLinkUmengKey
 {
     return @"DRAW_APP_LINK";
+}
+
+- (NSArray *)homeTabIDList
+{
+    return nil;    
+}
+
+- (NSArray *)homeTabTitleList
+{
+    return nil;
 }
 
 @end

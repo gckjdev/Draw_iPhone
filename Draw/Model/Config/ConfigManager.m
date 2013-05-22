@@ -973,9 +973,14 @@
     return [NSString stringWithFormat:@"UserId :　%@", [[UserManager defaultManager] userId]];
 }
 
-+ (int)maxDrawTitleLen
++ (int)maxDrawChineseTitleLen
 {
-    return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN" defaultValue:7];
+    return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN_CN" defaultValue:7];
+}
+
++ (int)maxDrawEnglishTitleLen
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_DRAW_TITLE_LEN_EN" defaultValue:8];
 }
 
 + (float)littleGeeFirstShowOptionsDuration

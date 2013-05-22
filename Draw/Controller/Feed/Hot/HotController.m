@@ -197,13 +197,13 @@ typedef enum{
     CGFloat space = WIDTH_SPACE;;
     CGFloat x = 0;
     CGFloat y = 0;
-    NSInteger i = 0;
+//    NSInteger i = 0;
     for (TopPlayer *player in players) {
         TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
         [playerView setViewInfo:player];
-        if (isFirstRow) {
-            [playerView setRankFlag:i++];
-        }
+//        if (isFirstRow) {
+//            [playerView setRankFlag:i++];
+//        }
         [cell.contentView addSubview:playerView];
         playerView.frame = CGRectMake(x, y, width, height);
         x += width + space;
@@ -353,7 +353,7 @@ typedef enum{
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kRankPlayer"),NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"), NSLS(@"kLittleGeeRecommend")};
+    NSString *tabTitle[] = {NSLS(@"kPainter"),NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"), NSLS(@"kLittleGeeRecommend")};
     
     return tabTitle[index];
 
@@ -368,7 +368,7 @@ typedef enum{
         if (tabID == RankTypeNew) {
             [[FeedService defaultService] getFeedList:FeedListTypeLatest offset:tab.offset limit:tab.limit delegate:self];        
         }else if(tabID == RankTypePlayer){
-            [[UserService defaultService] getTopPlayer:tab.offset limit:tab.limit delegate:self];
+            [[UserService defaultService] getTopPlayerByScore:tab.offset limit:tab.limit delegate:self];
         }else {
             [[FeedService defaultService] getFeedList:tabID offset:tab.offset limit:tab.limit delegate:self];        
         }

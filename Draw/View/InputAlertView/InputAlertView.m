@@ -281,7 +281,7 @@
         return;
     }
     if (![self isTitlelegal]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
         return;
     }
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
@@ -413,9 +413,11 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    int maxTitleLen = [ConfigManager maxDrawTitleLen];
-    if (range.location >= maxTitleLen)
-        return NO; // return NO to not change text
+    if (_delegate && [_delegate respondsToSelector:@selector(maxSubjectLen)]) {
+        int maxTitleLen = [_delegate maxSubjectLen];
+        if (range.location >= maxTitleLen)
+            return NO; // return NO to not change text
+    }
     return YES;
 }
 

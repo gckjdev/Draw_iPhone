@@ -15,7 +15,7 @@
 @implementation TopPlayerView
 @synthesize avatar = _avatar;
 @synthesize nickName = _nickName;
-@synthesize levelInfo = _levelInfo;
+//@synthesize levelInfo = _levelInfo;
 @synthesize maskButton = _maskButton;
 @synthesize cupImage = _cupImage;
 @synthesize topPlayer = _topPlayer;
@@ -102,12 +102,14 @@
     }else{
         self.nickName.hidden = YES;
     }
-
-    NSString *level = nil;
-    NSString *genderString = player.gender ? NSLS(@"kMale") :NSLS(@"kFemale");
     
-    level = [NSString stringWithFormat:@" %@  LV.%d",genderString, player.level];
-    [self.levelInfo setText:level];
+    [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:player.gender]];
+
+//    NSString *level = nil;
+//    NSString *genderString = player.gender ? NSLS(@"kMale") :NSLS(@"kFemale");
+    
+//    level = [NSString stringWithFormat:@" %@  LV.%d",genderString, player.level];
+//    [self.levelInfo setText:level];
     
 //    [self.maskButton addTarget:self action:@selector(didClickTopPlayerView:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -153,10 +155,11 @@
 - (void)dealloc {
     PPRelease(_maskButton);
     PPRelease(_nickName);
-    PPRelease(_levelInfo);
+//    PPRelease(_levelInfo);
     PPRelease(_topPlayer);
     PPRelease(_avatar);
     PPRelease(_cupImage);
+    [_genderImageView release];
     [super dealloc];
 }
 

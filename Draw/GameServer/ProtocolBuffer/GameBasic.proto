@@ -81,7 +81,11 @@ message PBGameUser {
 
   optional string bloodGroup = 81;                  // 血型
   optional int32  fanCount = 82;                    // 粉丝数目
-  optional int32  followCount = 83;                   // 关注数目
+  optional int32  followCount = 83;                 // 关注数目
+
+  optional float  longitude = 84;                   // 用户位置经度
+  optional float  latitude = 85;                    // 用户位置纬度
+  optional bool   isJailBroken = 86;                // 是否越狱
 
   optional PBOpenInfoType openInfoType = 91[default=OPEN_TO_FRIEND];        // 信息公开类型
   optional int32  opusCoverflowType = 92;           // 用户作品的cover flow展示设置

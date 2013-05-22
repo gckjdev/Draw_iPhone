@@ -32,22 +32,21 @@ message PBUserSongInfo{
   optional float pitch = 26 [default = 1];
 }
 
-message PBUserOpus{
+message PBOpus {
 
-  required string userOpusId = 1;                   // 用户作品Id
-  optional PBUserBasicInfo userInfo = 2;            // 用户基本信息
-  optional int32 createDate = 6;                      // 作品创建时间
-  optional int32 status = 10 ;           // 作品状态，0表示正常，1表示已删除。
+  required string opusId = 1;                       // 用户作品Id
+  optional PBGameUser user = 2;                     // 用户基本信息
+  optional int32 createDate = 6;                    // 作品创建时间
+  optional int32 status = 10 ;                      // 作品状态，0表示正常，1表示已删除。
 
-  repeated int32 usage = 12;                          // 作品用途：1表示通常，5表示送给好友，9表示参与比赛
-  optional string toUserId = 13;                    // 送给哪个好友
+  repeated int32  type = 12;                        // 作品用途：1表示通常，5表示送给好友，9表示参与比赛
+  optional string targetUserId = 13;                // 送给哪个好友
   optional string contestId = 14;                   // 参与哪个比赛
   
-  optional int32 awardScore = 20;                      // 猜对了的话，作者和猜的那个人都可以奖励这个分数
   
   repeated PBActionTimes actionTimes = 25;           // 用户评论数
 
-  optional PBUserSongInfo songInfo = 30;            // 具体作品
+  optional PBSongInfo songInfo = 30;                 // 具体作品
 }
 
 message PBSourceAction{

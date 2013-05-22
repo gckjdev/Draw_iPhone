@@ -68,6 +68,27 @@ typedef enum {
     PopOptionCount,
 }PopOptionIndex;
 
+static int popOptionListWithFreeCoins[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexContest,
+    PopOptionIndexPK,
+    PopOptionIndexBbs,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexIngot,
+    PopOptionIndexMore,
+};
+
+static int popOptionListWithoutFreeCoins[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexContest,
+    PopOptionIndexPK,
+    PopOptionIndexBbs,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexMore,
+};
+
 @interface LittleGeeHomeController () {
     BOOL _isJoiningContest;
 }
@@ -147,8 +168,10 @@ typedef enum {
     if (!_optionSheet) {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
-        for (int i = 0; i < PopOptionCount; i ++) {
-            UIImage* image = [self imageForPopOption:i];
+        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
+        for (int i = 0; i < count; i ++) {
+            UIImage* image = [self imageForPopOption:list[i]];
             [self.optionSheet addButtonWithImage:image];
         }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
@@ -339,7 +362,12 @@ typedef enum {
         }
     }
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
-        switch (buttonIndex) {
+        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
+        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        if (buttonIndex >= count) {
+            return;
+        }
+        switch (list[buttonIndex]) {
             case PopOptionIndexPK: {
                 UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
                 [self.navigationController pushViewController:rc animated:YES];
@@ -471,13 +499,13 @@ typedef enum {
     CGFloat space = WIDTH_SPACE;;
     CGFloat x = 0;
     CGFloat y = 0;
-    NSInteger i = 0;
+//    NSInteger i = 0;
     for (TopPlayer *player in players) {
         TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
         [playerView setViewInfo:player];
-        if (isFirstRow) {
-            [playerView setRankFlag:i++];
-        }
+//        if (isFirstRow) {
+//            [playerView setRankFlag:i++];
+//        }
         [cell.contentView addSubview:playerView];
         playerView.frame = CGRectMake(x, y, width, height);
         x += width + space;
@@ -818,11 +846,6 @@ typedef enum {
 #pragma mark - contest service delegate
 - (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
 {
-    if (contestList == nil || contestList.count == 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
-        return;
-    }
-    
     if (code == 0) {
         [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
     }
@@ -830,6 +853,10 @@ typedef enum {
     
     if (_isJoiningContest) {
         _isJoiningContest = NO;
+        if (contestList == nil || contestList.count == 0) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNoRunningContest") delayTime:2 isHappy:NO];
+            return;
+        }
         Contest* contest = [contestList objectAtIndex:0];
         if ([contest joined]) {
             [OfflineDrawViewController startDrawWithContest:contest fromController:self startController:self animated:YES];
@@ -859,7 +886,7 @@ typedef enum {
 
 - (EGORefreshTableFooterView*)createRefreshFooterView
 {
-    return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)];
+    return [[[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)] autorelease];
 }
 
 

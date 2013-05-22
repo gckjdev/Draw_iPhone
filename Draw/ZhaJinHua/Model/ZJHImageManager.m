@@ -832,6 +832,11 @@ static ZJHImageManager* shareInstance;
     return [UIImage strectchableImageName:@"zjh_dialog_btn"];
 }
 
+- (UIImage *)commonDialogHeaderImage
+{
+    return nil;
+}
+
 - (UIImage *)inputDialogBgImage
 {
     return [_resService imageByName:@"zjh_dialog_bg" inResourcePackage:RESOURCE_PACKAGE_ZJH];

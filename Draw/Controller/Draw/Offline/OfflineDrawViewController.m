@@ -1159,10 +1159,9 @@
 
 - (void)commitOpus:(NSSet *)share
 {
+    self.opusDesc = self.inputAlert.contentText;
     
-//    [self showActivityWithText:NSLS(@"kSending")];
     UIImage *image = [drawView createImage];
-    
     if(image == nil){
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
         return;
@@ -1172,13 +1171,14 @@
     
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
+
     // create temp file for weibo sharing
     [self writeTempFile:image];
     [self setShareWeiboSet:share];    
 
     NSString *text = self.opusDesc;
     
-    if (isLittleGeeAPP() && [self.inputAlert hasSubjectText]) {
+    if ([self.word.text length] == 0 && [self.inputAlert hasSubjectText]) {
         [self.word setText:self.inputAlert.subjectText];
     }
     
@@ -1339,13 +1339,27 @@
 - (BOOL)isSubjectValid:(NSString *)subjectText
 {
     if (isLittleGeeAPP()) {
-        if ([LocaleUtils isChinese]) {
-            return NSStringIsValidChinese(subjectText);
-        } else {
-            return NSStringISValidEnglish(subjectText);
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            if (!NSStringIsValidChinese(subjectText)) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+                return NO;
+            }
+        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+            if(!NSStringISValidEnglish(subjectText)) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+                return NO;
+            }
         }
     }
     return YES;
+}
+
+- (NSInteger)maxSubjectLen
+{
+    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+        return [ConfigManager maxDrawEnglishTitleLen];
+    }
+    return [ConfigManager maxDrawChineseTitleLen];
 }
 
 @end

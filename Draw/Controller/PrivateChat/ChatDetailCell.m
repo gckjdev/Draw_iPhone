@@ -25,6 +25,7 @@
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
 #import "DrawHolderView.h"
+#import "UIImageExt.h"
 
 CGRect CGRectFrom(CGPoint origin, CGSize size){
     return CGRectMake(origin.x, origin.y, size.width, size.height); 
@@ -85,7 +86,11 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 #define TEXT_FONT_SIZE  (([DeviceDetection isIPAD])?(30):(14))
 
-#define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(150,150):CGSizeMake(67,67))
+//#define DRAW_VIEW_SIZE (([DeviceDetection isIPAD])?CGSizeMake(180,180):CGSizeMake(80,80))
+
+
+#define MESSAGE_MAX_SIZE (([DeviceDetection isIPAD])?CGSizeMake(200,360):CGSizeMake(100,160))
+
 
 #define BUBBLE_TIP_WIDTH   (([DeviceDetection isIPAD])?(20):(12)) //尖尖的部分距离文字的距离
 #define BUBBLE_NOT_TIP_WIDTH    (([DeviceDetection isIPAD])?(20):(11))//不尖部分和文字的距离
@@ -141,6 +146,20 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     return SPACE_TOP_TIME + TIME_HEIGHT + SPACE_TIME_CONTENT;
 }
+
+
++ (CGSize)adjustContentSize:(CGSize)size
+{
+    CGSize maxSize = MESSAGE_MAX_SIZE;
+    if (size.width <= maxSize.width && size.height <= maxSize.height) {
+        return size;
+    }
+    CGFloat r = MAX(size.width / maxSize.width, size.height / maxSize.height);
+    
+    return CGSizeMake(size.width / r, size.height / r);
+    
+}
+
 + (CGSize)sizeForMessageView:(NSString *)text
 {
     UIFont *font = [UIFont systemFontOfSize:TEXT_FONT_SIZE];
@@ -169,20 +188,23 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 }
 
 
-- (void)updateContentButtonFrame
+- (void)updateContentButtonFrame:(CGSize)contentSize
 {
     [self.contentButton setTitle:nil forState:UIControlStateNormal];
-    CGFloat width = DRAW_VIEW_SIZE.width + BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH;
-    CGFloat height = (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
+    
+    CGSize size = [ChatDetailCell adjustContentSize:contentSize];
+    
+    CGFloat width = size.width + BUBBLE_TIP_WIDTH + BUBBLE_NOT_TIP_WIDTH;
+    CGFloat height = (size.height + TEXT_VERTICAL_EDGE * 2);
     [self updateView:self.contentButton size:CGSizeMake(width, height)];    
 }
-- (CGRect)showViewFrame
+- (CGRect)showViewFrame:(CGSize)size
 {
 //    CGPoint contentOrigin = self.contentButton.frame.origin;
     CGPoint origin = CGPointMake(CGRectGetMinX(self.contentButton.frame) + BUBBLE_TIP_WIDTH, CGRectGetMinY(self.contentButton.frame) + TEXT_VERTICAL_EDGE);
     CGRect rect = CGRectZero;
     rect.origin = origin;
-    rect.size = DRAW_VIEW_SIZE;
+    rect.size = [ChatDetailCell adjustContentSize:size];
     return rect;
 //    [self updateView:self.showDrawView origin:origin];
 }
@@ -191,25 +213,36 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 {
     //create the image once...
 //    [self.showDrawView removeFromSuperview];
-    [self updateContentButtonFrame];
+
+    [self updateContentButtonFrame:message.canvasSize];
+    
+    CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
+    
     if (self.showDrawView == nil) {
-        CGRect frame = CGRectFromCGSize(message.canvasSize);
-        self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        if (message.thumbImage) {
+            CGRect frame = CGRectFromCGSize(size);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:nil delegate:self];
+        }else{
+            CGRect frame = CGRectFromCGSize(message.canvasSize);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        }
+        
         [self.showDrawView setPressEnable:YES];
         
-        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame] contentView:self.showDrawView];
+        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame:message.canvasSize] contentView:self.showDrawView];
         [self addSubview:holder];
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
-        message.thumbImage = [self.showDrawView createImage];
+        
+        message.thumbImage = [self.showDrawView createImageWithSize:size];
     }
     [self.showDrawView showImage:message.thumbImage];
 }
 
 - (void)updateImageMessageView:(ImageMessage *)message
 {
-    [self updateContentButtonFrame];
+    [self updateContentButtonFrame:message.thumbImageSize];
     
     NSURL *url = nil;
     if ((message.status == MessageStatusFail || message.status == MessageStatusSending)&& message.imageUrl) {
@@ -219,12 +252,17 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     
     [self.contentButton setImageWithURL:url
-                       placeholderImage:[[ShareImageManager defaultManager] splitPhoto]
+                       placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
                                 success:^(UIImage *image, BOOL cached) {
-                                    
+                                    message.thumbImageSize = image.size;
+                                    if (!cached) {
+                                        if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
+                                            [self.delegate didMessage:message loadImage:image];
+                                        }
+                                    }
                                 }
                                 failure:^(NSError *error) {
-                                    
+                                    [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
                                 }];
 }
 
@@ -238,7 +276,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 - (void)didLongClickShowDrawView:(ShowDrawView *)showDrawView
 {
-    [self clickContentButton:self.contentButton];
+    [self longPressContentButton:self.contentButton];
 }
 - (void)updateTime:(NSDate *)date
 {
@@ -324,6 +362,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     [cell.contentButton addGestureRecognizer:longPress];
     [longPress release];
     
+    
+    [cell.contentButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    
     return cell;
 }
 
@@ -346,12 +387,17 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     switch (message.messageType) {
             
         case MessageTypeDraw:
-            height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
-            //PPDebug(@"height2.1 = %f", height);
+        {
+            CGSize size = [ChatDetailCell adjustContentSize:[(DrawMessage *)message canvasSize]];
+            height += (size.height + TEXT_VERTICAL_EDGE * 2);
             break;
+        }
         case MessageTypeImage:
-            height += (DRAW_VIEW_SIZE.height + TEXT_VERTICAL_EDGE * 2);
+        {
+            CGSize size = [ChatDetailCell adjustContentSize:[(ImageMessage *)message thumbImageSize]];
+            height += (size.height + TEXT_VERTICAL_EDGE * 2);
             break;
+        }
         case MessageTypeText:
         case MessageTypeLocationRequest:
         case MessageTypeLocationResponse:            
@@ -389,20 +435,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     
     if([avatar length] != 0){
         NSURL *url = [NSURL URLWithString:avatar];
-        
         self.avatarView.alpha = 0;
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                [UIView animateWithDuration:1 animations:^{
-                    self.avatarView.alpha = 1.0;
-                }];
-            }else{
-                self.avatarView.alpha = 1.0;
-            }
-        } failure:^(NSError *error) {
-            self.avatarView.alpha = 1;
-            [self.avatarView setImage:defaultImage];
-        }];
+        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
     } else{
         [self.avatarView setImage:defaultImage];
     }

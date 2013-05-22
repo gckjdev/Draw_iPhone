@@ -24,6 +24,7 @@
     NSInteger _playingPointIndex;
     
     BOOL _showPenHidden;
+    BOOL _supportLongPress;
     PenView *pen;
 
 }
@@ -516,47 +517,30 @@
 
 @implementation ShowDrawView (PressAction)
 
-- (void)handlePress:(id)sender
+- (void)gestureRecognizerManager:(GestureRecognizerManager *)manager
+                   didGestureEnd:(UIGestureRecognizer *)gestureRecognizer
 {
-    PPDebug(@"<handlePress>");
-    if(_delegate && [self.delegate respondsToSelector:@selector(didClickShowDrawView:)])
-    {
-        [_delegate didClickShowDrawView:self];
-    }
-}
-
-- (void)handleLongPress:(UILongPressGestureRecognizer *)lp
-{
-    if (lp.state == UIGestureRecognizerStateEnded) {
-        PPDebug(@"<handleLongPress>");
-        if (_delegate && [_delegate respondsToSelector:@selector(didLongClickShowDrawView:)]) {
+    if (_supportLongPress && [gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        if(_delegate && [self.delegate respondsToSelector:@selector(didLongClickShowDrawView:)])
+        {
             [_delegate didLongClickShowDrawView:self];
+        }
+    }else if (_supportLongPress && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        if(_delegate && [self.delegate respondsToSelector:@selector(didClickShowDrawView:)])
+        {
+            [_delegate didClickShowDrawView:self];
         }
     }
 }
 
 - (void)setPressEnable:(BOOL)enable
 {
-    self.userInteractionEnabled = enable;
-    PPDebug(@"gesture recognizer count = %d",[self.gestureRecognizers count]);
-    if (enable == YES ) {
-        [self addTarget:self action:@selector(handlePress:) forControlEvents:UIControlEventTouchUpInside];
-        if ([self.gestureRecognizers count] == 0) {
-            //add long press gesture
-            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-            [self addGestureRecognizer:longPress];
-            [longPress release];
-        }
-
-    }else{
-        [self removeTarget:self action:@selector(handlePress:) forControlEvents:UIControlEventTouchUpInside];
+    if (!_supportLongPress && enable) {
+        [_gestureRecognizerManager addLongPressGestureReconizerToView:self];
+        [_gestureRecognizerManager addTapGestureReconizerToView:self];
     }
-    
+    _supportLongPress = enable;
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    return  gestureRecognizer.view == self;
-}
 
 @end

@@ -992,8 +992,8 @@
 "kQQGroup" = "";
 "kCopy" = "Copy";
 
-"kDrawMessage" = "Draw Message";
-"kImageMessage" = "Image Message";
+"kDrawMessage" = "Doodle Message";
+"kImageMessage" = "Photo Message";
 "kVoiceMessage" = "Voice Message";
 "kResend" = "Resend";
 
@@ -1671,4 +1671,6 @@
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
 "kLittleGeeAppLink" = "";
+"kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
+"kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 /*********************小吉画画国际化字符串结束 ************************/
