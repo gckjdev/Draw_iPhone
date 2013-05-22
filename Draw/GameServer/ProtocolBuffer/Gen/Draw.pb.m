@@ -14,6 +14,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [self registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
     [GameConstantsRoot registerAllExtensions:registry];
+    [SingRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -1696,9 +1697,12 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property (retain) NSString* opusCreatorAvatar;
 @property (retain) NSString* opusWord;
 @property (retain) NSString* opusImage;
+@property (retain) NSString* opusThumbImage;
+@property (retain) NSString* dataUrl;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
 @property (retain) PBLearnDraw* learnDraw;
+@property (retain) PBSing* sing;
 @end
 
 @implementation PBFeed
@@ -1951,6 +1955,20 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasOpusImage_ = !!value;
 }
 @synthesize opusImage;
+- (BOOL) hasOpusThumbImage {
+  return !!hasOpusThumbImage_;
+}
+- (void) setHasOpusThumbImage:(BOOL) value {
+  hasOpusThumbImage_ = !!value;
+}
+@synthesize opusThumbImage;
+- (BOOL) hasDataUrl {
+  return !!hasDataUrl_;
+}
+- (void) setHasDataUrl:(BOOL) value {
+  hasDataUrl_ = !!value;
+}
+@synthesize dataUrl;
 - (BOOL) hasContestId {
   return !!hasContestId_;
 }
@@ -1972,6 +1990,13 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasLearnDraw_ = !!value;
 }
 @synthesize learnDraw;
+- (BOOL) hasSing {
+  return !!hasSing_;
+}
+- (void) setHasSing:(BOOL) value {
+  hasSing_ = !!value;
+}
+@synthesize sing;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -1995,8 +2020,11 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.opusCreatorAvatar = nil;
   self.opusWord = nil;
   self.opusImage = nil;
+  self.opusThumbImage = nil;
+  self.dataUrl = nil;
   self.contestId = nil;
   self.learnDraw = nil;
+  self.sing = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2034,9 +2062,12 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.opusCreatorAvatar = @"";
     self.opusWord = @"";
     self.opusImage = @"";
+    self.opusThumbImage = @"";
+    self.dataUrl = @"";
     self.contestId = @"";
     self.contestScore = 0;
     self.learnDraw = [PBLearnDraw defaultInstance];
+    self.sing = [PBSing defaultInstance];
   }
   return self;
 }
@@ -2096,6 +2127,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     if (!self.learnDraw.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasSing) {
+    if (!self.sing.isInitialized) {
       return NO;
     }
   }
@@ -2207,6 +2243,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasOpusImage) {
     [output writeString:82 value:self.opusImage];
   }
+  if (self.hasOpusThumbImage) {
+    [output writeString:83 value:self.opusThumbImage];
+  }
+  if (self.hasDataUrl) {
+    [output writeString:84 value:self.dataUrl];
+  }
   if (self.hasContestId) {
     [output writeString:91 value:self.contestId];
   }
@@ -2215,6 +2257,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
+  }
+  if (self.hasSing) {
+    [output writeMessage:101 value:self.sing];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2335,6 +2380,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasOpusImage) {
     size += computeStringSize(82, self.opusImage);
   }
+  if (self.hasOpusThumbImage) {
+    size += computeStringSize(83, self.opusThumbImage);
+  }
+  if (self.hasDataUrl) {
+    size += computeStringSize(84, self.dataUrl);
+  }
   if (self.hasContestId) {
     size += computeStringSize(91, self.contestId);
   }
@@ -2343,6 +2394,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
+  }
+  if (self.hasSing) {
+    size += computeMessageSize(101, self.sing);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2530,6 +2584,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasOpusImage) {
     [self setOpusImage:other.opusImage];
   }
+  if (other.hasOpusThumbImage) {
+    [self setOpusThumbImage:other.opusThumbImage];
+  }
+  if (other.hasDataUrl) {
+    [self setDataUrl:other.dataUrl];
+  }
   if (other.hasContestId) {
     [self setContestId:other.contestId];
   }
@@ -2538,6 +2598,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
+  }
+  if (other.hasSing) {
+    [self mergeSing:other.sing];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2712,6 +2775,14 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self setOpusImage:[input readString]];
         break;
       }
+      case 666: {
+        [self setOpusThumbImage:[input readString]];
+        break;
+      }
+      case 674: {
+        [self setDataUrl:[input readString]];
+        break;
+      }
       case 730: {
         [self setContestId:[input readString]];
         break;
@@ -2727,6 +2798,15 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setLearnDraw:[subBuilder buildPartial]];
+        break;
+      }
+      case 810: {
+        PBSing_Builder* subBuilder = [PBSing builder];
+        if (self.hasSing) {
+          [subBuilder mergeFrom:self.sing];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSing:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3348,6 +3428,38 @@ static PBFeed* defaultPBFeedInstance = nil;
   result.opusImage = @"";
   return self;
 }
+- (BOOL) hasOpusThumbImage {
+  return result.hasOpusThumbImage;
+}
+- (NSString*) opusThumbImage {
+  return result.opusThumbImage;
+}
+- (PBFeed_Builder*) setOpusThumbImage:(NSString*) value {
+  result.hasOpusThumbImage = YES;
+  result.opusThumbImage = value;
+  return self;
+}
+- (PBFeed_Builder*) clearOpusThumbImage {
+  result.hasOpusThumbImage = NO;
+  result.opusThumbImage = @"";
+  return self;
+}
+- (BOOL) hasDataUrl {
+  return result.hasDataUrl;
+}
+- (NSString*) dataUrl {
+  return result.dataUrl;
+}
+- (PBFeed_Builder*) setDataUrl:(NSString*) value {
+  result.hasDataUrl = YES;
+  result.dataUrl = value;
+  return self;
+}
+- (PBFeed_Builder*) clearDataUrl {
+  result.hasDataUrl = NO;
+  result.dataUrl = @"";
+  return self;
+}
 - (BOOL) hasContestId {
   return result.hasContestId;
 }
@@ -3408,6 +3520,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearLearnDraw {
   result.hasLearnDraw = NO;
   result.learnDraw = [PBLearnDraw defaultInstance];
+  return self;
+}
+- (BOOL) hasSing {
+  return result.hasSing;
+}
+- (PBSing*) sing {
+  return result.sing;
+}
+- (PBFeed_Builder*) setSing:(PBSing*) value {
+  result.hasSing = YES;
+  result.sing = value;
+  return self;
+}
+- (PBFeed_Builder*) setSingBuilder:(PBSing_Builder*) builderForValue {
+  return [self setSing:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeSing:(PBSing*) value {
+  if (result.hasSing &&
+      result.sing != [PBSing defaultInstance]) {
+    result.sing =
+      [[[PBSing builderWithPrototype:result.sing] mergeFrom:value] buildPartial];
+  } else {
+    result.sing = value;
+  }
+  result.hasSing = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearSing {
+  result.hasSing = NO;
+  result.sing = [PBSing defaultInstance];
   return self;
 }
 @end

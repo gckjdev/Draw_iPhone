@@ -14,6 +14,8 @@
 #import "DreamLockscreenApp.h"
 #import "DreamLockscreenFreeApp.h"
 #import "LittleGeeDrawApp.h"
+#import "CallTrackApp.h"
+#import "SecureSmsApp.h"
 #import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
@@ -79,6 +81,10 @@ NSObject<GameAppProtocol>* getGameApp()
     }
     else if ([bundleId isEqualToString:LITTLE_GEE_APP_BUNDLE_ID]) {
         currentApp = [[LittleGeeDrawApp alloc] init];
+    } else if ([bundleId isEqualToString:CALL_TRACK_APP_BUNDLE_ID]) {
+        currentApp = [[CallTrackApp alloc] init];
+    } else if ([bundleId isEqualToString:SECURE_SMS_APP_BUNDLE_ID]) {
+        currentApp = [[SecureSmsApp alloc] init];
     }
     else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
         currentApp = [[SingApp alloc] init];
@@ -168,6 +174,16 @@ extern BOOL isDreamLockscreenFreeApp()
 extern BOOL isLittleGeeAPP()
 {
     return ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]);
+}
+
+extern BOOL isSecureSmsAPP()
+{
+    return ([[GameApp appId] isEqualToString:SECURE_SMS_APP_ID]);
+}
+
+extern BOOL isCallTrackAPP()
+{
+    return ([[GameApp appId] isEqualToString:CALL_TRACK_APP_ID]);
 }
 
 GameAppType gameAppType()
