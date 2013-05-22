@@ -179,8 +179,12 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSing;
+@class PBSing_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBSong;
+@class PBSong_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserDice;
