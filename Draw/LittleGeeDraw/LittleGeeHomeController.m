@@ -91,9 +91,11 @@ static int popOptionListWithoutFreeCoins[] = {
 
 @interface LittleGeeHomeController () {
     BOOL _isJoiningContest;
+    BOOL _firstLoadBulletin;
+    BOOL _hasLoadStatistic;
 }
 
-@property(nonatomic, retain)HomeBottomMenuPanel *homeBottomMenuPanel;
+@property (nonatomic, retain) HomeBottomMenuPanel *homeBottomMenuPanel;
 @property (nonatomic, retain) CustomActionSheet* optionSheet;
 @property (nonatomic, retain) CustomActionSheet* drawOptionSheet;
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
@@ -176,6 +178,9 @@ static int popOptionListWithoutFreeCoins[] = {
         }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
     }
+    if ([_optionSheet isVisable]) {
+        [self hideOptionSheet];
+    }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
@@ -237,10 +242,12 @@ static int popOptionListWithoutFreeCoins[] = {
     [self.titleLabel setText:NSLS(@"kLittleGee")];
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        _firstLoadBulletin = YES;
         [self updateAllBadge];
-        if ([[UserManager defaultManager] hasUser]) {
-            [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
-        }
+//        if ([[UserManager defaultManager] hasUser]) {
+//            [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
+//        }
+        
     }];
     [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [self registerNetworkDisconnectedNotification];
@@ -308,7 +315,7 @@ static int popOptionListWithoutFreeCoins[] = {
             } else {
                 [self showOptionSheetForTime:[ConfigManager littleGeeShowOptionsDuration]];
             }
-            
+            return;//don't reset badge
         }break;
         case HomeMenuTypeLittleGeeFriend: {
             FriendController* vc = [[[FriendController alloc] init] autorelease];
@@ -379,7 +386,8 @@ static int popOptionListWithoutFreeCoins[] = {
                 [us release];
             } break;
             case PopOptionIndexNotice: {
-                
+                HomeMenuView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
+                [menu updateBadge:[[StatisticManager defaultManager] bbsActionCount]];//badge count = bbscount+bulletincount
                 [BulletinView showBulletinInController:self];
             } break;
             case PopOptionIndexBbs: {
@@ -798,14 +806,20 @@ static int popOptionListWithoutFreeCoins[] = {
     int optionCount = manager.bbsActionCount + manager.bulletinCount;
     [self updateBadgeWithType:HomeMenuTypeLittleGeeOptions badge:optionCount];
 //    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
-    
+    if (_hasLoadStatistic && _firstLoadBulletin && [[UserManager defaultManager] hasUser]) {
+        //first enter game, show side bar
+        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
+        _firstLoadBulletin = NO;
+    }
 }
 
 - (void)didSyncStatisticWithResultCode:(int)resultCode
 {
+    _hasLoadStatistic = YES;
     if (resultCode == 0) {
         [self updateAllBadge];
     }
+    
 }
 
 - (void)handleDisconnectWithError:(NSError *)error

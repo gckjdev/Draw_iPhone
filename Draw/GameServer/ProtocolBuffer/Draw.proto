@@ -1,6 +1,7 @@
 
 import "GameBasic.proto";
 import "GameConstants.proto";
+import "Sing.proto";
 
 package game;
 
@@ -74,54 +75,55 @@ message PBFeed {
   optional string signature = 24;       // 用户签名，新增 2013-4-1
 
   // for user draw
-  optional PBDraw drawData = 31;            // 画画数据
+  optional PBDraw drawData = 31;            // 画画数据，已弃用
+
   optional string targetUserId = 32;        // 画给谁
   optional string targetUserNickName = 33;  // 画给谁
   optional double historyScore = 34;        // 指示该作品的历史总得分
   optional string opusDesc = 35;            // 作品描述
+  
   optional string drawDataUrl = 36;         // 新增，用于返回数据文件的URL
 
   // for user guess
-  optional string opusId = 41;          // 猜作品的Id
-  optional bool   isCorrect = 42;       // 是否猜对了？
-  optional int32  score = 43;           // 得分？
-  repeated string guessWords = 44;      // 猜过的词
-  optional int32  opusStatus = 45;      // 作品的状态：0：正常；1：已删除
+  optional string opusId = 41;              // 猜作品的Id
+  optional bool   isCorrect = 42;           // 是否猜对了？
+  optional int32  score = 43;               // 得分？
+  repeated string guessWords = 44;          // 猜过的词
+  optional int32  opusStatus = 45;          // 作品的状态：0：正常；1：已删除
   
   // for user comment
-  optional string comment = 51;              // 旧版本使用comment字段，展示评论内容
-  optional PBCommentInfo commentInfo = 52;   // 新版本使用commentInfo结构，支持评论内容和被评论的内容
+  optional string comment = 51;             // 旧版本使用comment字段，展示评论内容
+  optional PBCommentInfo commentInfo = 52;  // 新版本使用commentInfo结构，支持评论内容和被评论的内容
     
   // common data
   optional int32  matchTimes = 61;          // 已弃用
-  optional int32  correctTimes = 62;        // 
-  optional int32  guessTimes = 63;
-  optional int32  commentTimes = 64;
+  optional int32  correctTimes = 62;        // 已弃用
+  optional int32  guessTimes = 63;          // 已弃用
+  optional int32  commentTimes = 64;        // 已弃用
 
-  repeated PBFeedTimes feedTimes = 65;   // 记录各种次数类型，如用户番茄数目
-
-  // for creator user & opus info
-  optional string opusCreatorUserId = 71;
-  optional string opusCreatorNickName = 72;
-  optional bool   opusCreatorGender = 73;
-  optional string opusCreatorAvatar = 74;
+  repeated PBFeedTimes feedTimes = 65;      // 记录各种次数类型，如用户番茄数目
 
   // for creator user & opus info
-  optional string opusWord = 81;
-  optional string opusImage = 82;  
+  optional string opusCreatorUserId = 71;       // 作品创建者Id
+  optional string opusCreatorNickName = 72;     // 作品创建者昵称
+  optional bool   opusCreatorGender = 73;       // 作品创建者性别
+  optional string opusCreatorAvatar = 74;       // 作品创建者头像
+
+  // for creator user & opus info
+  optional string opusWord = 81;                // 作品名称
+  optional string opusImage = 82;               // 作品图片
+  optional string opusThumbImage = 83;          // 作品小图
+  
+  optional string dataUrl = 84;                 // 作品数据URL，画画或者唱歌文件的绝对路径
   
   // for contest information
-  optional string contestId = 91;
-  optional double contestScore = 92;
+  optional string contestId = 91;               // 参与的比赛的Id
+  optional double contestScore = 92;            // 参与的比赛的分数
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
-  
-  
-//  optional PBSongInfo songInfo = 110;                 // 歌曲信息
+  optional PBSing sing = 101;                   // 具体作品
 }
-
-
 
 message PBPoint
 {

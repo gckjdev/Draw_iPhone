@@ -4,6 +4,7 @@
 
 #import "GameBasic.pb.h"
 #import "GameConstants.pb.h"
+#import "Sing.pb.h"
 
 @class PBApp;
 @class PBApp_Builder;
@@ -77,8 +78,12 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSing;
+@class PBSing_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBSong;
+@class PBSong_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -501,72 +506,78 @@
   BOOL hasContestScore_:1;
   BOOL hasHistoryScore_:1;
   BOOL hasOpusStatus_:1;
+  BOOL hasActionType_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasDeviceType_:1;
   BOOL hasScore_:1;
   BOOL hasMatchTimes_:1;
   BOOL hasCorrectTimes_:1;
   BOOL hasGuessTimes_:1;
   BOOL hasCommentTimes_:1;
-  BOOL hasDeviceType_:1;
-  BOOL hasCreateDate_:1;
-  BOOL hasActionType_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorAvatar_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
+  BOOL hasOpusThumbImage_:1;
+  BOOL hasDataUrl_:1;
   BOOL hasComment_:1;
-  BOOL hasContestId_:1;
   BOOL hasOpusId_:1;
-  BOOL hasFeedId_:1;
   BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
   BOOL hasTargetUserId_:1;
-  BOOL hasUserId_:1;
-  BOOL hasDeviceName_:1;
   BOOL hasSignature_:1;
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
   BOOL hasGameId_:1;
+  BOOL hasDeviceName_:1;
+  BOOL hasUserId_:1;
+  BOOL hasFeedId_:1;
   BOOL hasLearnDraw_:1;
-  BOOL hasDrawData_:1;
+  BOOL hasSing_:1;
   BOOL hasCommentInfo_:1;
+  BOOL hasDrawData_:1;
   BOOL isCorrect_:1;
   BOOL opusCreatorGender_:1;
   BOOL gender_:1;
   Float64 contestScore;
   Float64 historyScore;
   int32_t opusStatus;
+  int32_t actionType;
+  int32_t createDate;
+  int32_t deviceType;
   int32_t score;
   int32_t matchTimes;
   int32_t correctTimes;
   int32_t guessTimes;
   int32_t commentTimes;
-  int32_t deviceType;
-  int32_t createDate;
-  int32_t actionType;
+  NSString* contestId;
   NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
   NSString* opusCreatorAvatar;
   NSString* opusWord;
   NSString* opusImage;
+  NSString* opusThumbImage;
+  NSString* dataUrl;
   NSString* comment;
-  NSString* contestId;
   NSString* opusId;
-  NSString* feedId;
   NSString* drawDataUrl;
   NSString* opusDesc;
   NSString* targetUserNickName;
   NSString* targetUserId;
-  NSString* userId;
-  NSString* deviceName;
   NSString* signature;
   NSString* avatar;
   NSString* nickName;
   NSString* gameId;
+  NSString* deviceName;
+  NSString* userId;
+  NSString* feedId;
   PBLearnDraw* learnDraw;
-  PBDraw* drawData;
+  PBSing* sing;
   PBCommentInfo* commentInfo;
+  PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
 }
@@ -603,9 +614,12 @@
 - (BOOL) hasOpusCreatorAvatar;
 - (BOOL) hasOpusWord;
 - (BOOL) hasOpusImage;
+- (BOOL) hasOpusThumbImage;
+- (BOOL) hasDataUrl;
 - (BOOL) hasContestId;
 - (BOOL) hasContestScore;
 - (BOOL) hasLearnDraw;
+- (BOOL) hasSing;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -639,9 +653,12 @@
 @property (readonly, retain) NSString* opusCreatorAvatar;
 @property (readonly, retain) NSString* opusWord;
 @property (readonly, retain) NSString* opusImage;
+@property (readonly, retain) NSString* opusThumbImage;
+@property (readonly, retain) NSString* dataUrl;
 @property (readonly, retain) NSString* contestId;
 @property (readonly) Float64 contestScore;
 @property (readonly, retain) PBLearnDraw* learnDraw;
+@property (readonly, retain) PBSing* sing;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
@@ -864,6 +881,16 @@
 - (PBFeed_Builder*) setOpusImage:(NSString*) value;
 - (PBFeed_Builder*) clearOpusImage;
 
+- (BOOL) hasOpusThumbImage;
+- (NSString*) opusThumbImage;
+- (PBFeed_Builder*) setOpusThumbImage:(NSString*) value;
+- (PBFeed_Builder*) clearOpusThumbImage;
+
+- (BOOL) hasDataUrl;
+- (NSString*) dataUrl;
+- (PBFeed_Builder*) setDataUrl:(NSString*) value;
+- (PBFeed_Builder*) clearDataUrl;
+
 - (BOOL) hasContestId;
 - (NSString*) contestId;
 - (PBFeed_Builder*) setContestId:(NSString*) value;
@@ -880,6 +907,13 @@
 - (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
 - (PBFeed_Builder*) clearLearnDraw;
+
+- (BOOL) hasSing;
+- (PBSing*) sing;
+- (PBFeed_Builder*) setSing:(PBSing*) value;
+- (PBFeed_Builder*) setSingBuilder:(PBSing_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeSing:(PBSing*) value;
+- (PBFeed_Builder*) clearSing;
 @end
 
 @interface PBPoint : PBGeneratedMessage {
