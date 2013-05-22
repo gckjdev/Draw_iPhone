@@ -505,14 +505,11 @@ static FeedService *_staticFeedService = nil;
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         BOOL fromCache = NO;
-//        PBDraw *pbDraw = nil;
         NSInteger resultCode = 0;
         NSData* data = nil;
-//        pbDraw = [manager loadPBDrawWithFeedId:feed.feedId];
         data = [manager loadPBDrawDataWithFeedId:feed.feedId];
         if (data) {
             fromCache = YES;
-//            data = [pbDraw data];
         }else{
             if ([[feed drawDataUrl] length] > 0){
                 @try {
@@ -520,12 +517,6 @@ static FeedService *_staticFeedService = nil;
                                     downloadDrawDataFile:[feed drawDataUrl]
                                     fileName:[feed feedId]
                                     downloadProgressDelegate:downloadDelegate];
-//                    if (data != nil){
-//                        pbDraw = [PBDraw parseFromData:data];
-//                    }
-//                    if (pbDraw == nil) {
-//                        resultCode = ERROR_RESPONSE_NULL;
-//                    }
                 }
                 @catch (NSException *exception) {
                     PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
@@ -541,9 +532,7 @@ static FeedService *_staticFeedService = nil;
         });
         
         if (!fromCache) {
-            // TODO save download file directly
             [manager cachePBDrawData:data forFeedId:feed.feedId];
-            //[manager cachePBDraw:pbDraw forFeedId:feed.feedId];
         }
         
         [subPool drain];

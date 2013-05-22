@@ -587,16 +587,12 @@ enum{
 - (void)loadDrawDataWithHanlder:(dispatch_block_t)handler
 {
 
-    if(handler == NULL)return;
+    if (handler == NULL)
+        return;
 
-//    [self showActivityWithText:NSLS(@"kLoading")];
-    
     [self showProgressViewWithMessage:NSLS(@"kLoading")];
-    
     if (self.feed.pbDrawData){
-        
         [self hideProgressView];
-//        [self hideActivity];
         handler();
         return;
     }
@@ -606,7 +602,6 @@ enum{
                                           handler:
      ^(int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache)
     {
-//        [cp hideActivity];
         if(resultCode == 0 && pbDrawData != nil){
             cp.feed.pbDrawData = pbDrawData;
             handler();
@@ -615,7 +610,7 @@ enum{
             [cp popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
         }
 
-        [self hideProgressView];
+        [cp hideProgressView];
     }
      downloadDelegate:self];
 }
@@ -628,7 +623,7 @@ enum{
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
         [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
-        [_commentHeader setSeletType:CommentTypeGuess];
+        [cp.commentHeader setSeletType:CommentTypeGuess];
         [cp hideActivity];        
     }];
 }
@@ -639,7 +634,7 @@ enum{
 
     [self loadDrawDataWithHanlder:^{
         ReplayView *replay = [ReplayView createReplayView];
-        if (self.feed.drawData == nil) {
+        if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
         }
         [replay showInController:cp
