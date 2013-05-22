@@ -1159,10 +1159,9 @@
 
 - (void)commitOpus:(NSSet *)share
 {
+    self.opusDesc = self.inputAlert.contentText;
     
-//    [self showActivityWithText:NSLS(@"kSending")];
     UIImage *image = [drawView createImage];
-    
     if(image == nil){
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kImageNull") delayTime:1.5 isHappy:NO];
         return;
@@ -1172,13 +1171,14 @@
     
     self.submitButton.userInteractionEnabled = NO;
     [self.inputAlert setCanClickCommitButton:NO];
+
     // create temp file for weibo sharing
     [self writeTempFile:image];
     [self setShareWeiboSet:share];    
 
     NSString *text = self.opusDesc;
     
-    if (isLittleGeeAPP() && [self.inputAlert hasSubjectText]) {
+    if ([self.word.text length] == 0 && [self.inputAlert hasSubjectText]) {
         [self.word setText:self.inputAlert.subjectText];
     }
     

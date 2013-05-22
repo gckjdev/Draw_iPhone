@@ -1056,6 +1056,9 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property (retain) NSString* bloodGroup;
 @property int32_t fanCount;
 @property int32_t followCount;
+@property Float32 longitude;
+@property Float32 latitude;
+@property BOOL isJailBroken;
 @property PBOpenInfoType openInfoType;
 @property int32_t opusCoverflowType;
 @property (retain) NSString* signature;
@@ -1298,6 +1301,32 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasFollowCount_ = !!value;
 }
 @synthesize followCount;
+- (BOOL) hasLongitude {
+  return !!hasLongitude_;
+}
+- (void) setHasLongitude:(BOOL) value {
+  hasLongitude_ = !!value;
+}
+@synthesize longitude;
+- (BOOL) hasLatitude {
+  return !!hasLatitude_;
+}
+- (void) setHasLatitude:(BOOL) value {
+  hasLatitude_ = !!value;
+}
+@synthesize latitude;
+- (BOOL) hasIsJailBroken {
+  return !!hasIsJailBroken_;
+}
+- (void) setHasIsJailBroken:(BOOL) value {
+  hasIsJailBroken_ = !!value;
+}
+- (BOOL) isJailBroken {
+  return !!isJailBroken_;
+}
+- (void) setIsJailBroken:(BOOL) value {
+  isJailBroken_ = !!value;
+}
 - (BOOL) hasOpenInfoType {
   return !!hasOpenInfoType_;
 }
@@ -1376,6 +1405,9 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.bloodGroup = @"";
     self.fanCount = 0;
     self.followCount = 0;
+    self.longitude = 0;
+    self.latitude = 0;
+    self.isJailBroken = NO;
     self.openInfoType = PBOpenInfoTypeOpenToFriend;
     self.opusCoverflowType = 0;
     self.signature = @"";
@@ -1542,6 +1574,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFollowCount) {
     [output writeInt32:83 value:self.followCount];
   }
+  if (self.hasLongitude) {
+    [output writeFloat:84 value:self.longitude];
+  }
+  if (self.hasLatitude) {
+    [output writeFloat:85 value:self.latitude];
+  }
+  if (self.hasIsJailBroken) {
+    [output writeBool:86 value:self.isJailBroken];
+  }
   if (self.hasOpenInfoType) {
     [output writeEnum:91 value:self.openInfoType];
   }
@@ -1661,6 +1702,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFollowCount) {
     size += computeInt32Size(83, self.followCount);
+  }
+  if (self.hasLongitude) {
+    size += computeFloatSize(84, self.longitude);
+  }
+  if (self.hasLatitude) {
+    size += computeFloatSize(85, self.latitude);
+  }
+  if (self.hasIsJailBroken) {
+    size += computeBoolSize(86, self.isJailBroken);
   }
   if (self.hasOpenInfoType) {
     size += computeEnumSize(91, self.openInfoType);
@@ -1857,6 +1907,15 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFollowCount) {
     [self setFollowCount:other.followCount];
   }
+  if (other.hasLongitude) {
+    [self setLongitude:other.longitude];
+  }
+  if (other.hasLatitude) {
+    [self setLatitude:other.latitude];
+  }
+  if (other.hasIsJailBroken) {
+    [self setIsJailBroken:other.isJailBroken];
+  }
   if (other.hasOpenInfoType) {
     [self setOpenInfoType:other.openInfoType];
   }
@@ -2027,6 +2086,18 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 664: {
         [self setFollowCount:[input readInt32]];
+        break;
+      }
+      case 677: {
+        [self setLongitude:[input readFloat]];
+        break;
+      }
+      case 685: {
+        [self setLatitude:[input readFloat]];
+        break;
+      }
+      case 688: {
+        [self setIsJailBroken:[input readBool]];
         break;
       }
       case 728: {
@@ -2630,6 +2701,54 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFollowCount {
   result.hasFollowCount = NO;
   result.followCount = 0;
+  return self;
+}
+- (BOOL) hasLongitude {
+  return result.hasLongitude;
+}
+- (Float32) longitude {
+  return result.longitude;
+}
+- (PBGameUser_Builder*) setLongitude:(Float32) value {
+  result.hasLongitude = YES;
+  result.longitude = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearLongitude {
+  result.hasLongitude = NO;
+  result.longitude = 0;
+  return self;
+}
+- (BOOL) hasLatitude {
+  return result.hasLatitude;
+}
+- (Float32) latitude {
+  return result.latitude;
+}
+- (PBGameUser_Builder*) setLatitude:(Float32) value {
+  result.hasLatitude = YES;
+  result.latitude = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearLatitude {
+  result.hasLatitude = NO;
+  result.latitude = 0;
+  return self;
+}
+- (BOOL) hasIsJailBroken {
+  return result.hasIsJailBroken;
+}
+- (BOOL) isJailBroken {
+  return result.isJailBroken;
+}
+- (PBGameUser_Builder*) setIsJailBroken:(BOOL) value {
+  result.hasIsJailBroken = YES;
+  result.isJailBroken = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearIsJailBroken {
+  result.hasIsJailBroken = NO;
+  result.isJailBroken = NO;
   return self;
 }
 - (BOOL) hasOpenInfoType {
