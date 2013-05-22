@@ -21,8 +21,8 @@
 
 - (void)dealloc
 {
-    [_superViewController release];
-    [_photoPopoverController release];
+    PPRelease(_superViewController);
+    PPRelease(_photoPopoverController);
     [super dealloc];
 }
 
@@ -106,6 +106,11 @@
             [self useSelectedBgImage:nil];
             break;
         default:
+        {
+            // clean to avoid memory leak
+            PPRelease(_superViewController);
+            PPRelease(_photoPopoverController);            
+        }
             break;
     }
 }
@@ -143,8 +148,16 @@
 //        }
 //        
 //        [self useSelectedBgImage:image];
-         [NSThread detachNewThreadSelector:@selector(handleImage:) toTarget:self withObject:image];
+        [NSThread detachNewThreadSelector:@selector(handleImage:) toTarget:self withObject:image];
     }
+    else{
+        // clean to avoid memory leak
+        PPRelease(_superViewController);
+        PPRelease(_photoPopoverController);
+    }
+    
+
+    
 }
 
 - (void)handleImage:(UIImage *)image {
@@ -176,9 +189,13 @@
     
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self useSelectedBgImage:newImage];
+        
+        // clean to avoid memory leak
+        PPRelease(_superViewController);
+        PPRelease(_photoPopoverController);
     });
     
-    [pool release];
+    [pool release];        
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -188,6 +205,11 @@
     }else{
         [picker dismissModalViewControllerAnimated:YES];
     }
+    
+    // clean to avoid memory leak    
+    PPRelease(_superViewController);
+    PPRelease(_photoPopoverController);
+    
 }
 
 @end

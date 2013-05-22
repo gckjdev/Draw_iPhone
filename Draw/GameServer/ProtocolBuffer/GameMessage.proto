@@ -6,6 +6,7 @@ import "Dice.proto";
 import "ZhaJinHua.proto";
 import "BBS.proto";
 
+
 package game;
 
 option java_package = "com.orange.network.game.protocol.message";

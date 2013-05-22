@@ -14,6 +14,7 @@
 #import "DreamLockscreenApp.h"
 #import "DreamLockscreenFreeApp.h"
 #import "LittleGeeDrawApp.h"
+#import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -78,6 +79,9 @@ NSObject<GameAppProtocol>* getGameApp()
     }
     else if ([bundleId isEqualToString:LITTLE_GEE_APP_BUNDLE_ID]) {
         currentApp = [[LittleGeeDrawApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
+        currentApp = [[SingApp alloc] init];
     }
     
     else{

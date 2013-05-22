@@ -36,6 +36,7 @@
 - (BOOL)equalsToPoint:(PointNode *)point;
 - (CGFloat)distancWithPoint:(PointNode *)point;
 
+- (id)initPointWithX:(CGFloat)x Y:(CGFloat)y;
 + (id)pointWithCGPoint:(CGPoint)point;
 + (id)pointWithPBPoint:(PBPoint *)point;
 + (PointNode *)illegalPoint;

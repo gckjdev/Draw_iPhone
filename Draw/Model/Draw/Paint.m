@@ -174,7 +174,9 @@
     }
     
     [[self getPen] addPointIntoPath:point];
-    [self.pointNodeList addObject:[PointNode pointWithCGPoint:point]];
+    PointNode* node = [[PointNode alloc] initPointWithX:point.x Y:point.y];
+    [self.pointNodeList addObject:node];
+    [node release];
 }
 
 
