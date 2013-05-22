@@ -17,79 +17,84 @@ message PBSong{
   repeated int32 tag = 20;            // 标签，用于分类
 }
 
-message PBActionTimes{
-    required int32 type  = 1;
-    required int32 value  = 2;
+message PBSing {
+  optional PBSong song = 1;
+
+
+  // 声音变声器参数控制
+  optional int32 voiceType = 2;    
+
+  optional float duration = 3[default = 1];
+  optional float pitch = 4[default = 1];
 }
 
-message PBSongInfo{
-  optional PBSong song = 20;
-  optional string image = 21;
-  optional string thumbImage = 22;
-  optional string songUrl = 23;
-  optional string desc = 24;
-  optional float duration = 25 [default = 1];
-  optional float pitch = 26 [default = 1];
-  
-  repeated int32  type = 12;                        // 作品用途：1表示通常，5表示送给好友，9表示参与比赛
-  optional string targetUserId = 13;                // 送给哪个好友
-  optional string contestId = 14;                   // 参与哪个比赛
-}
+//message PBOpus {
+//
+//  required string opusId = 1;                       // 作品Id
+//  optional string name = 2;                         // 作品名称
+//  optional string desc = 3;                         // 作品描述
+//  optional string image = 4;                        // 作品图片
+//  optional string thumbImage = 5;                   // 作品缩略图
+//  optional string dataUrl = 8;                      // 作品数据远程URL
+//  
+//  optional PBGameUser author = 10;                  // 作者基本信息
+//  optional int32 createDate = 15;                    // 作品创建时间
+//  optional int32 status = 20;                       // 作品状态，0表示正常，1表示已删除。
+//
+//  repeated PBActionTimes actionTimes = 25;          // 用户评论数
+//  optional PBSing sing = 30;                        // 具体作品
+//}
+//
+//message PBSourceAction{
+//
+//    required string actionId = 1;                   // 如果source是作品，传opusId
+//    required PBUserBasicInfo userInfo = 2;          // 用户基本信息
+//    required int32 type = 3;                      
+//    optional string briefComment = 4;
+//}
+//
+//
+//message PBOpusAction{
+//    required string actionId = 1;
+//    optional string opusId = 5;                     // 评论的作品的Id
+//
+//    optional PBUserBasicInfo userInfo = 2;          // 评论人的信息
+//    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
+//
+//    optional int32 createDate = 4;                  // 评论的创建时间
+//
+//    optional PBSourceAction sourceAction = 6;       // 原评论的内容
+//
+//    optional int32 actionType = 3;                    //3 comment, 2, guess, 6 flower
+//
+//    //content
+//    optional PBActionComment commentAction = 10;    // 评论
+//    optional PBActionFlower flowerAction = 11;      // 鲜花
+//    optional PBActionGuess guessAction = 12;        // 猜
+//}
+//
+//message PBActionComment{
+//    optional string content = 1;                    // 评论内容
+//}
+//
+//message PBActionFlower{
+//    required int32 type = 1 ;                       // 1 for current flower
+//}
+//
+//message PBActionGuess{
+//    repeated string words = 1;                      // 猜过的词
+//    optional bool correct = 2;                      // 是否猜中？
+//}
+//
+//
+//message PBActionTimes{
+//    required int32 type  = 1;
+//    required int32 value  = 2;
+//}
+//
+//message PBTimeline
+//{
+//    optional PBOpus opus = 1;                       
+//    optional PBOpusAction action = 2;               //only guess action
+//}
 
-message PBOpus {
-
-  required string opusId = 1;                       // 用户作品Id
-  optional PBGameUser user = 2;                     // 用户基本信息
-  optional int32 createDate = 6;                    // 作品创建时间
-  optional int32 status = 10 ;                      // 作品状态，0表示正常，1表示已删除。
-
-  repeated PBActionTimes actionTimes = 25;          // 用户评论数
-  optional PBSongInfo songInfo = 30;                // 具体作品
-}
-
-message PBSourceAction{
-
-    required string actionId = 1;                   // 如果source是作品，传opusId
-    required PBUserBasicInfo userInfo = 2;          // 用户基本信息
-    required int32 type = 3;                      
-    optional string briefComment = 4;
-}
-
-
-message PBOpusAction{
-    required string actionId = 1;
-    optional string opusId = 5;                     // 评论的作品的Id
-
-    optional PBUserBasicInfo userInfo = 2;          // 评论人的信息
-    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
-
-    optional int32 createDate = 4;                  // 评论的创建时间
-
-    optional PBSourceAction sourceAction = 6;       // 原评论的内容
-
-    optional int32 actionType = 3;                    //3 comment, 2, guess, 6 flower
-
-    //content
-    optional PBActionComment commentAction = 10;    // 评论
-    optional PBActionFlower flowerAction = 11;      // 鲜花
-    optional PBActionGuess guessAction = 12;        // 猜
-}
-
-message PBActionComment{
-    optional string content = 1;                    // 评论内容
-}
-
-message PBActionFlower{
-    required int32 type = 1 ;                       // 1 for current flower
-}
-
-message PBActionGuess{
-    repeated string words = 1;                      // 猜过的词
-    optional bool correct = 2;                      // 是否猜中？
-}
-
-message PBTimeline
-{
-    optional PBOpus opus = 1;                       
-    optional PBOpusAction action = 2;               //only guess action
-}

@@ -27,6 +27,8 @@
 #define DREAMLOCKSCREEN_APP_BUNDLE_ID       @"com.orange.dreamlockscreen"
 #define DREAMLOCKSCREENFREE_APP_BUNDLE_ID   @"com.orange.dreamlockscreenfree"
 #define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegee"
+#define CALL_TRACK_APP_BUNDLE_ID            @"com.orange.calltrack"
+#define SECURE_SMS_APP_BUNDLE_ID            @"com.orange.securesms"
 #define SING_APP_BUNDLE_ID                  @"com.orange.sing"
 
 // App ID
@@ -47,6 +49,8 @@
 #define DREAM_LOCKSCREEN_APP_ID         @"645413042"
 #define DREAM_LOCKSCREEN_FREE_APP_ID    @"648179189" // @"645413811"
 #define LITTLE_GEE_APP_ID               @"645475970"
+#define CALL_TRACK_APP_ID               @"427457714"
+#define SECURE_SMS_APP_ID               @"427737140"
 
 // game ID
 #define DRAW_GAME_ID                    @"Draw"
@@ -63,6 +67,8 @@
 #define DREAM_LOCKSCREEN_GAME_ID        @"DreamLockscreen"
 #define DREAM_LOCKSCREEN_FREE_GAME_ID   @"DreamLockscreenFree"
 #define LITTLE_GEE_GAME_ID              @"Draw"
+#define CALL_TRACK_GAME_ID              @"CallTrack"
+#define SECURE_SMS_GAME_ID              @"SecureSms"
 
 // Umeng ID
 #define DRAW_UMENG_ID                   @"4f83980852701565c500003a"
@@ -161,6 +167,8 @@ extern BOOL isDreamAvatarFreeApp();
 extern BOOL isDreamLockscreenApp();
 extern BOOL isDreamLockscreenFreeApp();
 extern BOOL isLittleGeeAPP();
+extern BOOL isSecureSmsAPP();
+extern BOOL isCallTrackAPP();
 
 extern GameAppType gameAppType();
 
