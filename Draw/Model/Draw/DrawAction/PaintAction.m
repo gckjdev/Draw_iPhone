@@ -227,10 +227,12 @@
 
 - (PBDrawAction *)toPBDrawAction
 {
-    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
+    PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
     [builder setType:DrawActionTypePaint];
     [self.paint updatePBDrawActionBuilder:builder];
-    return [builder build];
+    PBDrawAction* pbDrawAction = [builder build];
+    [builder release];
+    return pbDrawAction;
 }
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
