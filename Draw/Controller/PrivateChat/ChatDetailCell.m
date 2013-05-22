@@ -238,7 +238,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 - (void)didLongClickShowDrawView:(ShowDrawView *)showDrawView
 {
-    [self clickContentButton:self.contentButton];
+    [self longPressContentButton:self.contentButton];
 }
 - (void)updateTime:(NSDate *)date
 {

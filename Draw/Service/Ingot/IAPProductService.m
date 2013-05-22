@@ -34,7 +34,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     if(self = [super init])
     {
         self.blockArray = [[[BlockArray alloc] init] autorelease];
-        self.smartData = [[PPSmartUpdateData alloc] initWithName:[IAPProductManager IAPProductFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[IAPProductManager IAPProductFileBundlePath] initDataVersion:[IAPProductManager IAPProductFileVersion]];
+        self.smartData = [[[PPSmartUpdateData alloc] initWithName:[IAPProductManager IAPProductFileName] type:SMART_UPDATE_DATA_TYPE_PB bundlePath:[IAPProductManager IAPProductFileBundlePath] initDataVersion:[IAPProductManager IAPProductFileVersion]] autorelease];
     }
 
     return self;
