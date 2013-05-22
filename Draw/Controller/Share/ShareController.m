@@ -495,6 +495,7 @@ typedef enum{
         
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:_selectedPaint.imageFilePath];
         [_saveToContactPickerView saveToContact:image];
+        [image release];
     } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                            message:NSLS(@"kAre_you_sure")
