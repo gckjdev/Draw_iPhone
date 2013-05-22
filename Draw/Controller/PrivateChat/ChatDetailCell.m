@@ -213,10 +213,20 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 {
     //create the image once...
 //    [self.showDrawView removeFromSuperview];
+
     [self updateContentButtonFrame:message.canvasSize];
+    
+    CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
+    
     if (self.showDrawView == nil) {
-        CGRect frame = CGRectFromCGSize(message.canvasSize);
-        self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        if (message.thumbImage) {
+            CGRect frame = CGRectFromCGSize(size);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:nil delegate:self];
+        }else{
+            CGRect frame = CGRectFromCGSize(message.canvasSize);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        }
+        
         [self.showDrawView setPressEnable:YES];
         
         DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame:message.canvasSize] contentView:self.showDrawView];
@@ -224,7 +234,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
-        CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
+        
         message.thumbImage = [self.showDrawView createImageWithSize:size];
     }
     [self.showDrawView showImage:message.thumbImage];
