@@ -203,20 +203,14 @@ static ChatService *_chatService = nil;
             case MessageTypeImage:
             {
                 ImageMessage *imageMessage = (ImageMessage *)message;
-                data = [imageMessage.image data];
+                 data = [imageMessage.image data];
+                
                 if ([text length] == 0){
                     text = NSLS(@"kImageMessage");
                 }
                 
-                //when fail or sending, url save local path, thumburl save key, 
-                if (imageMessage.imageUrl == nil) {
-                    thumbImageUrl = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
-                    [PPMessageManager saveImageToLocal:imageMessage.image key:thumbImageUrl];
-                    imageUrl = [PPMessageManager path:thumbImageUrl];
-                } else {
-                    thumbImageUrl = [imageMessage thumbImageUrl];
-                    imageUrl = [imageMessage imageUrl];
-                }
+                thumbImageUrl = [imageMessage thumbImageUrl];
+                imageUrl = [imageMessage imageUrl];
             }
 
             default:
@@ -249,7 +243,6 @@ static ChatService *_chatService = nil;
             }
             
             if (type == MessageTypeImage) {
-                [PPMessageManager removeLocalImage:[(ImageMessage *)message thumbImageUrl]];
                 imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
                 thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
             }
@@ -268,6 +261,9 @@ static ChatService *_chatService = nil;
             if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
                 if (type == MessageTypeImage) {
                     ImageMessage *imageMessage = (ImageMessage *)message;
+                    if (output.resultCode == ERROR_SUCCESS) {
+                        [PPMessageManager removeLocalImage:[imageMessage thumbImageUrl]];
+                    }
                     imageMessage.imageUrl = imageUrl;
                     imageMessage.thumbImageUrl = thumbImageUrl;
                     [delegate didSendMessage:imageMessage resultCode:output.resultCode];

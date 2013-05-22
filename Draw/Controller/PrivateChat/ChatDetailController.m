@@ -522,8 +522,13 @@
     [message setMessageType:MessageTypeImage];
     [message setText:NSLS(@"kImageMessage")];
     [message setImage:image];
+    
+    //when fail or sending, url save local path, thumburl save key
+    [message setThumbImageUrl:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
+    [PPMessageManager saveImageToLocal:message.image key:message.thumbImageUrl];
+    [message setImageUrl:[PPMessageManager path:message.thumbImageUrl]];
+    
     [[ChatService defaultService] sendMessage:message delegate:self];
-    PPDebug(@"message type:%d", message.messageType);
     [self.messageList addObject:message];
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
