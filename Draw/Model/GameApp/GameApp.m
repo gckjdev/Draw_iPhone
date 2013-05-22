@@ -16,6 +16,7 @@
 #import "LittleGeeDrawApp.h"
 #import "CallTrackApp.h"
 #import "SecureSmsApp.h"
+#import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -84,6 +85,9 @@ NSObject<GameAppProtocol>* getGameApp()
         currentApp = [[CallTrackApp alloc] init];
     } else if ([bundleId isEqualToString:SECURE_SMS_APP_BUNDLE_ID]) {
         currentApp = [[SecureSmsApp alloc] init];
+    }
+    else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
+        currentApp = [[SingApp alloc] init];
     }
     
     else{

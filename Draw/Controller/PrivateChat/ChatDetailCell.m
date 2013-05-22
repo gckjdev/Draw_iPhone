@@ -213,10 +213,20 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 {
     //create the image once...
 //    [self.showDrawView removeFromSuperview];
+
     [self updateContentButtonFrame:message.canvasSize];
+    
+    CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
+    
     if (self.showDrawView == nil) {
-        CGRect frame = CGRectFromCGSize(message.canvasSize);
-        self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        if (message.thumbImage) {
+            CGRect frame = CGRectFromCGSize(size);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:nil delegate:self];
+        }else{
+            CGRect frame = CGRectFromCGSize(message.canvasSize);
+            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        }
+        
         [self.showDrawView setPressEnable:YES];
         
         DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame:message.canvasSize] contentView:self.showDrawView];
@@ -224,7 +234,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     }
     if (!message.thumbImage) {
         [self.showDrawView show];
-        CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
+        
         message.thumbImage = [self.showDrawView createImageWithSize:size];
     }
     [self.showDrawView showImage:message.thumbImage];
@@ -240,20 +250,23 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     } else {
         url = [NSURL URLWithString:message.thumbImageUrl];
     }
-    
-    [self.contentButton setImageWithURL:url
-                       placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
-                                success:^(UIImage *image, BOOL cached) {
-                                    message.thumbImageSize = image.size;
-                                    if (!cached) {
-                                        if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
-                                            [self.delegate didMessage:message loadImage:image];
+    if (message.image && message.status != MessageStatusFail) {
+        [self.contentButton setImage:message.image forState:UIControlStateNormal];
+    }else{
+        [self.contentButton setImageWithURL:url
+                           placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
+                                    success:^(UIImage *image, BOOL cached) {
+                                        message.thumbImageSize = image.size;
+                                        if (!cached) {
+                                            if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
+                                                [self.delegate didMessage:message loadImage:image];
+                                            }
                                         }
                                     }
-                                }
-                                failure:^(NSError *error) {
-                                    [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
-                                }];
+                                    failure:^(NSError *error) {
+                                        [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
+                                    }];
+    }
 }
 
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
@@ -425,8 +438,9 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     
     if([avatar length] != 0){
         NSURL *url = [NSURL URLWithString:avatar];
-        self.avatarView.alpha = 0;
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
+//        self.avatarView.alpha = 0;
+//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
+        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
     } else{
         [self.avatarView setImage:defaultImage];
     }

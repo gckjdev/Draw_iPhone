@@ -423,6 +423,25 @@
 }
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+        self.messageType = MessageTypeImage;
+    }
+    return self;
+}
+
+- (void)setImage:(UIImage *)image
+{
+    if (_image != image) {
+        PPRelease(_image);
+        _image = [image retain];
+        self.thumbImageSize = _image.size;
+    }
+}
+
 - (PBMessage *)toPBMessage
 {
     PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];

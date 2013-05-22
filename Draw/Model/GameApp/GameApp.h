@@ -29,6 +29,7 @@
 #define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegee"
 #define CALL_TRACK_APP_BUNDLE_ID            @"com.orange.calltrack"
 #define SECURE_SMS_APP_BUNDLE_ID            @"com.orange.securesms"
+#define SING_APP_BUNDLE_ID                  @"com.orange.sing"
 
 // App ID
 #define DRAW_APP_ID                     @"513819630"
