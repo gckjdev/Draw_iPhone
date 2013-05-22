@@ -56,7 +56,7 @@
 
 + (id)messageWithPBMessage:(PBMessage *)pbMessage
 {
-    if ([pbMessage hasType] == NO) {
+    if ([pbMessage hasType] == NO || [[pbMessage drawDataList] count] != 0) {
         return [PPMessage oldMessageWithPBMessage:pbMessage];
     }
     
@@ -396,6 +396,9 @@
 
 
 #pragma mark =======================ImageMessage=======================
+
+#define DEFAULT_IMAGE_SIZE (ISIPAD ?  CGSizeMake(180, 180) : CGSizeMake(80, 80))
+
 @implementation ImageMessage
 @synthesize image = _image;
 @synthesize imageUrl = _imageUrl;
@@ -406,10 +409,15 @@
     if (self) {
         self.imageUrl = pbMessage.imageUrl;
         self.thumbImageUrl = pbMessage.thumbImageUrl;
+        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
         if (pbMessage.status == MessageStatusFail ||
             pbMessage.status == MessageStatusSending) {
             self.image = [UIImage imageWithContentsOfFile:self.imageUrl];
+            if (self.image) {
+                self.thumbImageSize = _image.size;
+            }
         }
+
     }
     return self;
 }

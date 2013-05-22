@@ -21,7 +21,7 @@
 #import "PaintAction.h"
 #import "ShapeAction.h"
 
-@interface SuperDrawView : UIControl
+@interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate>
 {
     NSMutableArray *_drawActionList;
     
@@ -43,6 +43,7 @@
 #pragma mark - util methods
 - (BOOL)isViewBlank;
 - (UIImage*)createImage;
+- (UIImage *)createImageWithSize:(CGSize)size;
 - (void)showImage:(UIImage *)image;
 - (CGContextRef)createBitmapContext;
 

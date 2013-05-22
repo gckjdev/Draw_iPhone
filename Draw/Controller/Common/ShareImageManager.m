@@ -1156,5 +1156,10 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"placeholder_photo@2x.png"];
 }
 
+- (UIImage *)commonDialogHeaderImage
+{
+    return [UIImage imageNamed:@"common_dialog_head_bg@2x.png"];
+}
+
 @end
 

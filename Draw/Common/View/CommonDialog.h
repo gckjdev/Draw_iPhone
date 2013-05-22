@@ -47,6 +47,7 @@ typedef void (^DialogSelectionBlock)(void);
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 
+@property (retain, nonatomic) IBOutlet UIImageView *dialogHeader;
 @property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickBackBlock;
 

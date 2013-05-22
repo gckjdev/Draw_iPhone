@@ -157,6 +157,9 @@ enum {
         rowsInSectionGuessWord = 0;
         rowOfCustomDice = 3;
         rowsInSectionUser = 4; //add custom dice
+    } else if  (isZhajinhuaApp()) {
+        rowsInSectionGuessWord = 0;
+        rowsInSectionUser = 9;
     }
 
     
@@ -1340,6 +1343,8 @@ enum {
 //    reverseGeocoder.delegate = self;
 //    [reverseGeocoder start];
     [[GeographyService defaultService] findCityWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude delegate:self];
+    [_pbUserBuilder setLatitude:location.coordinate.latitude];
+    [_pbUserBuilder setLongitude:location.coordinate.longitude];
     
 }
 

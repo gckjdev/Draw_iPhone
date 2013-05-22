@@ -68,6 +68,27 @@ typedef enum {
     PopOptionCount,
 }PopOptionIndex;
 
+static int popOptionListWithFreeCoins[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexContest,
+    PopOptionIndexPK,
+    PopOptionIndexBbs,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexIngot,
+    PopOptionIndexMore,
+};
+
+static int popOptionListWithoutFreeCoins[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexContest,
+    PopOptionIndexPK,
+    PopOptionIndexBbs,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexMore,
+};
+
 @interface LittleGeeHomeController () {
     BOOL _isJoiningContest;
 }
@@ -147,8 +168,10 @@ typedef enum {
     if (!_optionSheet) {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
-        for (int i = 0; i < PopOptionCount; i ++) {
-            UIImage* image = [self imageForPopOption:i];
+        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
+        for (int i = 0; i < count; i ++) {
+            UIImage* image = [self imageForPopOption:list[i]];
             [self.optionSheet addButtonWithImage:image];
         }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
@@ -339,7 +362,12 @@ typedef enum {
         }
     }
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
-        switch (buttonIndex) {
+        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
+        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        if (buttonIndex >= count) {
+            return;
+        }
+        switch (list[buttonIndex]) {
             case PopOptionIndexPK: {
                 UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
                 [self.navigationController pushViewController:rc animated:YES];

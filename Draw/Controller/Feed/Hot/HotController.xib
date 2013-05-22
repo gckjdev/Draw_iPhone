@@ -224,10 +224,10 @@
 						<reference key="IBUIFontDescription" ref="474823663"/>
 						<reference key="IBUIFont" ref="661530666"/>
 					</object>
-					<object class="IBUIButton" id="15921870">
+					<object class="IBUIButton" id="687704252">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{250, 43}, {60, 30}}</string>
+						<string key="NSFrame">{{250, 42}, {60, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">11</int>
@@ -453,7 +453,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTabButton:</string>
-						<reference key="source" ref="15921870"/>
+						<reference key="source" ref="687704252"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -481,7 +481,7 @@
 							<reference ref="293613165"/>
 							<reference ref="712500135"/>
 							<reference ref="351911279"/>
-							<reference ref="15921870"/>
+							<reference ref="687704252"/>
 							<reference ref="664520852"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -550,7 +550,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">71</int>
-						<reference key="object" ref="15921870"/>
+						<reference key="object" ref="687704252"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>

@@ -12,6 +12,7 @@
 //#import "DrawUtils.h"
 #import "UIViewUtils.h"
 #import "DrawView.h"
+#import "ShowDrawView.h"
 
 @interface GestureRecognizerManager()
 {
@@ -67,7 +68,11 @@
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(handlePanGesture:)];
     [panGesture setMaximumNumberOfTouches:2];
-    [panGesture setMinimumNumberOfTouches:2];
+    if ([view isKindOfClass:[ShowDrawView class]]) {
+        [panGesture setMinimumNumberOfTouches:1];
+    }else{
+        [panGesture setMinimumNumberOfTouches:2];
+    }
     [panGesture setDelegate:self];
     [view addGestureRecognizer:panGesture];
     [grSet addObject:panGesture];
@@ -99,6 +104,34 @@
     return [doubleTap autorelease];
 
 }
+
+
+- (UILongPressGestureRecognizer *)addLongPressGestureReconizerToView:(UIView *)view
+{
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    view.multipleTouchEnabled = YES;
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(stateCallBack:)];
+
+    [view addGestureRecognizer:longPress];
+    [grSet addObject:longPress];
+    
+    return [longPress autorelease];
+}
+
+- (UITapGestureRecognizer *)addTapGestureReconizerToView:(UIView *)view
+{
+    view.userInteractionEnabled = YES;  // Enable user interaction
+    view.multipleTouchEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateCallBack:)];
+    
+    [view addGestureRecognizer:tap];
+    [grSet addObject:tap];
+
+    return [tap autorelease];
+}
+
 
 - (void)stateCallBack:(UIGestureRecognizer *)gesture
 {
@@ -180,6 +213,9 @@
     }
     
 }
+
+
+
 
 - (void)adjustView:(UIView *)view
 {
