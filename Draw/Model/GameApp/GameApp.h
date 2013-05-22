@@ -27,6 +27,7 @@
 #define DREAMLOCKSCREEN_APP_BUNDLE_ID       @"com.orange.dreamlockscreen"
 #define DREAMLOCKSCREENFREE_APP_BUNDLE_ID   @"com.orange.dreamlockscreenfree"
 #define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegee"
+#define SING_APP_BUNDLE_ID                  @"com.orange.sing"
 
 // App ID
 #define DRAW_APP_ID                     @"513819630"
