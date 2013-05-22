@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DrawView.h"
 #import "UIViewUtils.h"
+#import "UIImageExt.h"
 
 #define DEFALT_MIN_SCALE 1
 #define DEFALT_MAX_SCALE 10
@@ -198,7 +199,14 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
         CGImageRelease(image);
         return img;
     }
+}
 
+- (UIImage *)createImageWithSize:(CGSize)size
+{
+    UIImage *image = [self createImage];
+    UIImage *ret = [image imageByScalingAndCroppingForSize:size];
+    image = nil;
+    return ret;
 }
 
 - (void)showImage:(UIImage *)image
