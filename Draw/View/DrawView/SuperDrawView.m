@@ -60,6 +60,7 @@
         [_gestureRecognizerManager addPanGestureReconizerToView:self];
         [_gestureRecognizerManager addPinchGestureReconizerToView:self];
         [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
+        _gestureRecognizerManager.delegate = self;
 
     }
     return self;

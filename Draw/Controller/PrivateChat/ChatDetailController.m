@@ -213,6 +213,8 @@
     [self initViews];
     [self initListWithLocalData];
     [self loadNewMessage:YES];
+    self.unReloadDataWhenViewDidAppear = YES;
+    
 }
 
 
