@@ -250,20 +250,23 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     } else {
         url = [NSURL URLWithString:message.thumbImageUrl];
     }
-    
-    [self.contentButton setImageWithURL:url
-                       placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
-                                success:^(UIImage *image, BOOL cached) {
-                                    message.thumbImageSize = image.size;
-                                    if (!cached) {
-                                        if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
-                                            [self.delegate didMessage:message loadImage:image];
+    if (message.image && message.status != MessageStatusFail) {
+        [self.contentButton setImage:message.image forState:UIControlStateNormal];
+    }else{
+        [self.contentButton setImageWithURL:url
+                           placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
+                                    success:^(UIImage *image, BOOL cached) {
+                                        message.thumbImageSize = image.size;
+                                        if (!cached) {
+                                            if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
+                                                [self.delegate didMessage:message loadImage:image];
+                                            }
                                         }
                                     }
-                                }
-                                failure:^(NSError *error) {
-                                    [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
-                                }];
+                                    failure:^(NSError *error) {
+                                        [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
+                                    }];
+    }
 }
 
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
