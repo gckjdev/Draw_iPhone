@@ -37,6 +37,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
 - (void)syncBulletins:(BulletinServiceCallbackBlock)block
 {
     if ([[UserManager defaultManager] hasUser] == NO){
+        EXECUTE_BLOCK(block, -1);
         return;
     }
     

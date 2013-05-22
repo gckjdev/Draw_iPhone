@@ -93,7 +93,7 @@
 
 #define BUTTON_DEFAULT_COLOR [UIColor colorWithRed:62/255. green:42/255. blue:23/255. alpha:1]
 #define BUTTON_SELETED_COLOR [UIColor whiteColor]
-#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:30] : [UIFont boldSystemFontOfSize:14])
+#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
 
 
 - (void)initTabButtons

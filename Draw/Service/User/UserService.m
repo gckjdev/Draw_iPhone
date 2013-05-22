@@ -411,6 +411,7 @@ static UserService* _defaultUserService;
                    email:(NSString*)email
           viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
+    //TODO:completeUserInfoController call this
     // save data locally firstly
     [[UserManager defaultManager] setNickName:nickName];
     [[UserManager defaultManager] setGender:gender];
@@ -1398,6 +1399,7 @@ static UserService* _defaultUserService;
     [builder setDeviceModel:[UIDevice currentDevice].model];
     [builder setDeviceType:STRING_DEVICE_TYPE_IOS];
     [builder setDeviceModel:[DeviceDetection deviceOS]];
+    [builder setIsJailBroken:[MobClick isJailbroken]];
     
     PBGameUser* newUser = [builder build];
     NSData* data = [newUser data];
