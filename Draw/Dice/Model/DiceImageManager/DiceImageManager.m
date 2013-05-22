@@ -463,6 +463,11 @@ static DiceImageManager *_defaultManager = nil;
     return [UIImage strectchableImageName:@"dice_red_roy_button"];
 }
 
+- (UIImage *)commonDialogHeaderImage
+{
+    return nil;
+}
+
 - (UIImage *)inputDialogBgImage
 {
     return [UIImage strectchableImageName:@"dice_help_bg"];

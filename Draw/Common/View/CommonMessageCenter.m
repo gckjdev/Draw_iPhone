@@ -50,6 +50,7 @@ CommonMessageViewTheme globalGetTheme() {
 @property (retain, nonatomic) IBOutlet UIImageView *faceImageView;
 @property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UIImageView* messageBackgroundView;
+@property (retain, nonatomic) IBOutlet UIImageView *messageHeader;
 
 - (id) init;
 - (void) setMessageText:(NSString*)str;
@@ -86,6 +87,7 @@ CommonMessageViewTheme globalGetTheme() {
     [_faceImageView release];
     [_messageLabel release];
     [_messageLabel release];
+    [_messageHeader release];
 	[super dealloc];
 }
 
@@ -192,6 +194,7 @@ CommonMessageViewTheme globalGetTheme() {
     self.faceImageView.hidden = NO;
     [self.messageBackgroundView setImage:[UIImage imageNamed:[GameApp popupMessageDialogBackgroundImage]]];
     [self.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
+    [self.messageHeader setImage:[[GameApp getImageManager] commonDialogHeaderImage]];
     [self setMessageText:text];
     
 

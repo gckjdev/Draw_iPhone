@@ -55,4 +55,6 @@
 - (UIImage *)bulletinCloseImage;
 - (UIImage *)bulletinNewImage;
 
+- (UIImage *)commonDialogHeaderImage;
+
 @end
