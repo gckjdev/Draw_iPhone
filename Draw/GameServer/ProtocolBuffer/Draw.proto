@@ -93,8 +93,8 @@ message PBFeed {
   optional PBCommentInfo commentInfo = 52;   // 新版本使用commentInfo结构，支持评论内容和被评论的内容
     
   // common data
-  optional int32  matchTimes = 61;
-  optional int32  correctTimes = 62;
+  optional int32  matchTimes = 61;          // 已弃用
+  optional int32  correctTimes = 62;        // 
   optional int32  guessTimes = 63;
   optional int32  commentTimes = 64;
 
