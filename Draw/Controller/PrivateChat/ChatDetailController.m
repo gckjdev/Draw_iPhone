@@ -200,9 +200,9 @@
 }
 - (void)bgSaveMessageList
 {
-    [self bgRunBlock:^{
-        [PPMessageManager saveFriend:self.fid messageList:self.messageList];
-    }];
+//    [self bgRunBlock:^{
+    [PPMessageManager saveFriend:self.fid messageList:self.messageList];
+//    }];
 }
 
 
@@ -329,6 +329,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    PPDebug(@"<numberOfRowsInSection> = %d", [_messageList count]);
     return [_messageList count];
 }
 
@@ -337,7 +338,9 @@
 {
     PPMessage *message = [self messageOfIndex:indexPath.row];
     BOOL flag = [self messageShowTime:message];
-    return [ChatDetailCell getCellHeight:message showTime:flag];
+    CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
+    PPDebug(@"<heightForRowAtIndexPath> = %f, index = %d", height, indexPath.row);
+    return height;
 }
 
 
@@ -519,8 +522,13 @@
     [message setMessageType:MessageTypeImage];
     [message setText:NSLS(@"kImageMessage")];
     [message setImage:image];
+    
+    //when fail or sending, url save local path, thumburl save key
+    [message setThumbImageUrl:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
+    [PPMessageManager saveImageToLocal:message.image key:message.thumbImageUrl];
+    [message setImageUrl:[PPMessageManager path:message.thumbImageUrl]];
+    
     [[ChatService defaultService] sendMessage:message delegate:self];
-    PPDebug(@"message type:%d", message.messageType);
     [self.messageList addObject:message];
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
@@ -684,13 +692,15 @@
         case MessageTypeImage:
             [self enterLargeImage:message];
             break;
+        case MessageTypeText:
+            [self showActionOptionsForMessage:message];
+            break;
         default:
             break;
     }
 }
 
-#pragma mark options action.
-- (void)didLongClickMessage:(PPMessage *)message
+- (void)showActionOptionsForMessage:(PPMessage *)message
 {
     if (_showingActionSheet) {
         return;
@@ -702,11 +712,11 @@
     switch (message.messageType) {
         case MessageTypeDraw:
             tag = ACTION_SHEET_TAG_DRAW;
-            otherOperation = NSLS(@"kReplay");            
+            otherOperation = NSLS(@"kReplay");
             break;
         case MessageTypeText:
             tag = ACTION_SHEET_TAG_TEXT;
-            otherOperation = NSLS(@"kCopy");            
+            otherOperation = NSLS(@"kCopy");
             break;
         case MessageTypeImage:
             tag = ACTION_SHEET_TAG_IMAGE;
@@ -721,25 +731,33 @@
     if (message.status == MessageStatusFail) {
         actionSheet=  [[UIActionSheet alloc]
                        initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self 
-                       cancelButtonTitle:NSLS(@"kCancel") 
-                       destructiveButtonTitle:NSLS(@"kDelete") 
+                       delegate:self
+                       cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:NSLS(@"kDelete")
                        otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
         [actionSheet setDestructiveButtonIndex:_asIndexResend];
-
+        
     }else
     {
-       actionSheet=  [[UIActionSheet alloc]
-                      initWithTitle:NSLS(@"kOpusOperation")
-                      delegate:self 
-                      cancelButtonTitle:NSLS(@"kCancel") 
-                      destructiveButtonTitle:NSLS(@"kDelete") 
-                      otherButtonTitles:otherOperation, nil];
+        actionSheet=  [[UIActionSheet alloc]
+                       initWithTitle:NSLS(@"kOpusOperation")
+                       delegate:self
+                       cancelButtonTitle:NSLS(@"kCancel")
+                       destructiveButtonTitle:NSLS(@"kDelete")
+                       otherButtonTitles:otherOperation, nil];
     }
     [actionSheet showInView:self.view];
     actionSheet.tag = tag;
     [actionSheet release];
     _selectedMessage = message;
+}
+
+#pragma mark options action.
+- (void)didLongClickMessage:(PPMessage *)message
+{
+    if (message.messageType != MessageTypeText) {
+        [self showActionOptionsForMessage:message];
+    }
 }
 
 - (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image
@@ -750,7 +768,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0
                                   ];
         NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [self.dataTableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 

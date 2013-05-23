@@ -29,7 +29,7 @@
 
 - (BOOL)disableAd
 {
-    return YES;
+    return NO;
 }
 
 
@@ -54,7 +54,7 @@
 - (NSString*)sinaAppRedirectURI
 {
     //    return @"http://www.drawlively.com/draw";
-    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.drawlively.com/draw"];
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.xiaoji.info/weibo/sina/auth"];
 }
 
 - (NSString*)qqAppKey
@@ -71,7 +71,7 @@
 
 - (NSString*)qqAppRedirectURI
 {
-    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_REDIRECT_URI" defaultValue:@"http://caicaihuahua.me"];
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_REDIRECT_URI" defaultValue:@"http://www.xiaoji.info/sunny_orange.html"];
     //    return @"http://caicaihuahua.me";
 }
 

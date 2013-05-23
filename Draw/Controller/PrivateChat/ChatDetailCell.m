@@ -253,19 +253,29 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     if (message.image && message.status != MessageStatusFail) {
         [self.contentButton setImage:message.image forState:UIControlStateNormal];
     }else{
-        [self.contentButton setImageWithURL:url
-                           placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
-                                    success:^(UIImage *image, BOOL cached) {
-                                        message.thumbImageSize = image.size;
-                                        if (!cached) {
-                                            if (self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)]) {
-                                                [self.delegate didMessage:message loadImage:image];
-                                            }
-                                        }
-                                    }
-                                    failure:^(NSError *error) {
-                                        [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
-                                    }];
+        
+        [[SDWebImageManager sharedManager] downloadWithURL:url delegate:self options:SDWebImageRetryFailed success:^(UIImage *image, BOOL cached) {
+            if (!message.hasCalSize && self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
+            {
+                message.thumbImageSize = image.size;
+                message.hasCalSize = YES;
+//                [self.delegate didMessage:message loadImage:image];
+            }
+            [self.contentButton setImage:image forState:UIControlStateNormal];            
+
+        } failure:^(NSError *error) {
+            [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
+
+        }];
+        
+//        [self.contentButton setImageWithURL:url
+//                           placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
+//                                    success:^(UIImage *image, BOOL cached) {
+//                                        
+//                                        
+//                                    }
+//                                    failure:^(NSError *error) {
+//                                    }];
     }
 }
 
@@ -399,6 +409,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         {
             CGSize size = [ChatDetailCell adjustContentSize:[(ImageMessage *)message thumbImageSize]];
             height += (size.height + TEXT_VERTICAL_EDGE * 2);
+            PPDebug(@"image height = %f, message id = %@", height,message.messageId);
             break;
         }
         case MessageTypeText:
@@ -465,6 +476,12 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         [self updateTime:message.createDate];
     }
 
+    if (message.messageType != MessageTypeDraw) {
+        [self.showDrawView removeFromSuperview];
+    }
+    
+    [self.contentButton setImage:nil forState:UIControlStateNormal];
+    
     if (message.messageType == MessageTypeText || message.messageType == MessageTypeLocationRequest || message.messageType == MessageTypeLocationResponse) {
         [self updateTextMessageView:(TextMessage *)message];
         
