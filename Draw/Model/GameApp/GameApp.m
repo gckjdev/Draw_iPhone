@@ -16,7 +16,7 @@
 #import "LittleGeeDrawApp.h"
 #import "CallTrackApp.h"
 #import "SecureSmsApp.h"
-#import "SingApp.h"
+//#import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -87,12 +87,20 @@ NSObject<GameAppProtocol>* getGameApp()
         currentApp = [[SecureSmsApp alloc] init];
     }
     else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
-        currentApp = [[SingApp alloc] init];
+        Class class = NSClassFromString(@"SingApp");
+        currentApp = [[class alloc] init];
     }
     
     else{
         PPDebug(@"<Warning> !!!!!!! GameApp Not Found by Bundle Id(%@) !!!!!!!!!", bundleId);
     }
+    
+    return currentApp;
+}
+
+NSObject<GameAppProtocol>* appWithName(NSString *name){
+    Class class = NSClassFromString(name);
+    currentApp = [[class alloc] init];
     
     return currentApp;
 }

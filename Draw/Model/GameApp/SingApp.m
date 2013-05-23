@@ -7,7 +7,12 @@
 //
 
 #import "SingApp.h"
+#import "SingController.h"
 
 @implementation SingApp
+
+- (PPViewController *)homeController{
+    return [[[SingController alloc] init] autorelease];
+}
 
 @end
