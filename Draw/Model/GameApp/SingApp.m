@@ -96,7 +96,7 @@
 
 - (NSString*)lmwallId
 {
-    return nil;
+    return @"";
 }
 
 - (NSString*)youmiWallId
