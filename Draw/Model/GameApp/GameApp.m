@@ -32,6 +32,14 @@ NSObject<ContentGameAppProtocol>* getContentGameApp()
     }
 }
 
+NSObject<GameAppProtocol>* appWithName(NSString *name){
+    Class class = NSClassFromString(name);
+    currentApp = [[[class class] alloc] init];
+    
+    return currentApp;
+}
+
+
 NSObject<GameAppProtocol>* getGameApp()
 {
     if (currentApp != nil)
@@ -87,8 +95,7 @@ NSObject<GameAppProtocol>* getGameApp()
         currentApp = [[SecureSmsApp alloc] init];
     }
     else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
-        Class class = NSClassFromString(@"SingApp");
-        currentApp = [[class alloc] init];
+        currentApp = appWithName(@"SingApp");
     }
     
     else{
@@ -98,12 +105,6 @@ NSObject<GameAppProtocol>* getGameApp()
     return currentApp;
 }
 
-NSObject<GameAppProtocol>* appWithName(NSString *name){
-    Class class = NSClassFromString(name);
-    currentApp = [[class alloc] init];
-    
-    return currentApp;
-}
 
 BOOL isDrawApp()
 {
