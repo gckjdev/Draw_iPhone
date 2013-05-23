@@ -11,6 +11,7 @@
 #import "FriendService.h"
 #import "FriendCell.h"
 #import "RoomService.h"
+#import "SearchUserController.h"
 
 //call back by the caller of invite friends
 
@@ -30,15 +31,11 @@ typedef enum{
     FriendTabIndexFan = 1
 } FriendTabIndexType;
 
-typedef enum{
-    ControllerTypeShowFriend = 0,
-    ControllerTypeSelectFriend = 1,
-    ControllerTypeInviteFriend = 2,
-}ControllerType;
+
 
 //@class Room;
 @class MyFriend;
-@interface FriendController : CommonTabController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate, UIActionSheetDelegate>
+@interface FriendController : CommonTabController <FriendServiceDelegate,FollowDelegate,RoomServiceDelegate, UIActionSheetDelegate, SearchUserControllerDelegate>
 {
 
 }
