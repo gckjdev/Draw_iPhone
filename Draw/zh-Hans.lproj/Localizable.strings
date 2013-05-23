@@ -1324,6 +1324,9 @@
 "kDreamLockscreenSlider" = "滑动来解锁";
 "kSetContactAvatarSucc" = "已经成功保存为通讯录联系人头像";
 
+//secure sms
+"kRegister" = "注册";
+
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";
 "kGuessResult" = "猜中了！";
