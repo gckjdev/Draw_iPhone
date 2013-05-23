@@ -54,7 +54,7 @@
 - (NSString*)sinaAppRedirectURI
 {
     //    return @"http://www.drawlively.com/draw";
-    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.drawlively.com/draw"];
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.xiaoji.info/weibo/sina/auth"];
 }
 
 - (NSString*)qqAppKey
