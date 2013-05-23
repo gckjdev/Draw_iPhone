@@ -89,6 +89,9 @@ typedef enum {
 
 - (NSUInteger)pointCount;
 - (void)finishAddPoint;
+
+- (CGRect)redrawRectInRect:(CGRect)rect;
+
 @end
 
 

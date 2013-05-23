@@ -131,6 +131,9 @@
 }
 
 - (void)timeout{
+//    PPDebug(@"_recorder.recording = %@", _recorder.recording ? @"YES": @"NO");
+//    PPDebug(@"_recorder.currentTime = %d", _recorder.currentTime);
+    
     if (_recorder.recording && _recorder.currentTime != 0) {
         _recordDuration = _recorder.currentTime;
         NSLog(@"_recordDuration = %f", _recordDuration);
