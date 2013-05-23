@@ -89,6 +89,8 @@
     if (![self isRegistered]) {
         [self toRegister];
         return;
+    } else {
+        
     }
 }
 
