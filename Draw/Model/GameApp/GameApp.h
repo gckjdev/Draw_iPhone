@@ -51,6 +51,7 @@
 #define LITTLE_GEE_APP_ID               @"645475970"
 #define CALL_TRACK_APP_ID               @"427457714"
 #define SECURE_SMS_APP_ID               @"427737140"
+#define SING_APP_ID                     @"xxxxxxxxx"
 
 // game ID
 #define DRAW_GAME_ID                    @"Draw"
@@ -69,6 +70,7 @@
 #define LITTLE_GEE_GAME_ID              @"Draw"
 #define CALL_TRACK_GAME_ID              @"CallTrack"
 #define SECURE_SMS_GAME_ID              @"SecureSms"
+#define SING_GAME_ID                    @"Sing"
 
 // Umeng ID
 #define DRAW_UMENG_ID                   @"4f83980852701565c500003a"

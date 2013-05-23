@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SimpleDrawApp.h"
 
-@interface SmsDrawApp : SimpleDrawApp
+@interface SmsDrawApp : NSObject
 
 @end

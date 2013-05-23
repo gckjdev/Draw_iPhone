@@ -16,7 +16,7 @@
 #import "LittleGeeDrawApp.h"
 #import "CallTrackApp.h"
 #import "SecureSmsApp.h"
-#import "SingApp.h"
+//#import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
 
@@ -32,6 +32,14 @@ NSObject<ContentGameAppProtocol>* getContentGameApp()
     }
 }
 
+NSObject<GameAppProtocol>* appWithName(NSString *name){
+    Class class = NSClassFromString(name);
+    currentApp = [[[class class] alloc] init];
+    
+    return currentApp;
+}
+
+
 NSObject<GameAppProtocol>* getGameApp()
 {
     if (currentApp != nil)
@@ -41,53 +49,53 @@ NSObject<GameAppProtocol>* getGameApp()
     NSString *bundleId = [infoDict objectForKey:@"CFBundleIdentifier"];
     
     if ([bundleId isEqualToString:DRAW_APP_BUNDLE_ID]){
-        currentApp = [[DrawGameApp alloc] init];        
+        currentApp = appWithName(@"DrawGameApp");
     }
     else if ([bundleId isEqualToString:DRAW_APP_PRO_BUNDLE_ID]){
-        currentApp =  [[DrawGameProApp alloc] init];
+        currentApp = appWithName(@"DrawGameProApp");
     }
     else if ([bundleId isEqualToString:DICE_APP_BUNDLE_ID] || [bundleId isEqualToString:OLD_DICE_APP_BUNDLE_ID]){
-        currentApp = [[DiceGameApp alloc] init];
+        currentApp = appWithName(@"DiceGameApp");
     }   
     else if ([bundleId isEqualToString:ZJH_APP_BUNDLE_ID]){
-        currentApp = [[ZJHGameApp alloc] init];
+        currentApp = appWithName(@"ZJHGameApp");
     }
     else if ([bundleId isEqualToString:LEARNDRAW_APP_BUNDLE_ID]){
-        currentApp = [[LearnDrawApp alloc] init];
+        currentApp = appWithName(@"LearnDrawApp");
     }
     else if ([bundleId isEqualToString:PUREDRAW_APP_BUNDLE_ID]){
-        currentApp = [[PureDrawApp alloc] init];
+        currentApp = appWithName(@"PureDrawApp");
     }
     else if ([bundleId isEqualToString:PUREDRAWFREE_APP_BUNDLE_ID]){
-        currentApp = [[PureDrawFreeApp alloc] init];
+        currentApp = appWithName(@"PureDrawFreeApp");
     }
     else if ([bundleId isEqualToString:PHOTODRAW_APP_BUNDLE_ID]){
-        currentApp = [[PhotoDrawApp alloc] init];
+        currentApp = appWithName(@"PhotoDrawApp");
     }
     else if ([bundleId isEqualToString:PHOTODRAWFREE_APP_BUNDLE_ID]){
-        currentApp = [[PhotoDrawFreeApp alloc] init];
+        currentApp = appWithName(@"PhotoDrawFreeApp");
     }
     else if ([bundleId isEqualToString:DREAMAVATAR_APP_BUNDLE_ID]){
-        currentApp = [[DreamAvatarApp alloc] init];
+        currentApp = appWithName(@"DreamAvatarApp");
     }
     else if ([bundleId isEqualToString:DREAMAVATARFREE_APP_BUNDLE_ID]){
-        currentApp = [[DreamAvatarFreeApp alloc] init];
+        currentApp = appWithName(@"DreamAvatarFreeApp");
     }
     else if ([bundleId isEqualToString:DREAMLOCKSCREEN_APP_BUNDLE_ID]){
-        currentApp = [[DreamLockscreenApp alloc] init];
+        currentApp = appWithName(@"DreamLockscreenApp");
     }
     else if ([bundleId isEqualToString:DREAMLOCKSCREENFREE_APP_BUNDLE_ID]){
-        currentApp = [[DreamLockscreenFreeApp alloc] init];
+        currentApp = appWithName(@"DreamLockscreenFreeApp");
     }
     else if ([bundleId isEqualToString:LITTLE_GEE_APP_BUNDLE_ID]) {
-        currentApp = [[LittleGeeDrawApp alloc] init];
+        currentApp = appWithName(@"LittleGeeDrawApp");
     } else if ([bundleId isEqualToString:CALL_TRACK_APP_BUNDLE_ID]) {
-        currentApp = [[CallTrackApp alloc] init];
+        currentApp = appWithName(@"CallTrackApp");
     } else if ([bundleId isEqualToString:SECURE_SMS_APP_BUNDLE_ID]) {
-        currentApp = [[SecureSmsApp alloc] init];
+        currentApp = appWithName(@"SecureSmsApp");
     }
     else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
-        currentApp = [[SingApp alloc] init];
+        currentApp = appWithName(@"SingApp");
     }
     
     else{
@@ -96,6 +104,7 @@ NSObject<GameAppProtocol>* getGameApp()
     
     return currentApp;
 }
+
 
 BOOL isDrawApp()
 {

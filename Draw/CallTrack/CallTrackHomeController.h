@@ -10,4 +10,9 @@
 
 @interface CallTrackHomeController : PPViewController
 
+- (IBAction)clickLocateButton:(id)sender;
+- (IBAction)clickFriendsButton:(id)sender;
+- (IBAction)clickMeButton:(id)sender;
+- (IBAction)clickSupportButton:(id)sender;
+
 @end
