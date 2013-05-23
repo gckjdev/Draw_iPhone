@@ -71,7 +71,7 @@
 
 - (NSString*)qqAppRedirectURI
 {
-    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_REDIRECT_URI" defaultValue:@"http://caicaihuahua.me"];
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_REDIRECT_URI" defaultValue:@"http://www.xiaoji.info/sunny_orange.html"];
     //    return @"http://caicaihuahua.me";
 }
 
