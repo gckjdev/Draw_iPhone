@@ -1325,6 +1325,11 @@
 "kDreamLockscreenSlider" = "slide to unlock";
 "kSetContactAvatarSucc" = "Save as contact avatar successfully";
 
+//secure sms
+"kRegister" = "Register";
+
+
+
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO";
 "kGuessResult" = "Result";
