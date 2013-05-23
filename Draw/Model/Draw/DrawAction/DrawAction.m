@@ -140,6 +140,12 @@
 {
     return CGRectZero;
 }
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    return rect;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super init];

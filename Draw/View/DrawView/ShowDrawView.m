@@ -169,7 +169,9 @@
 
     for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
-        [[osManager bottomScreen] drawAction:action clear:NO];
+//        [[osManager bottomScreen] drawAction:action clear:NO];
+//        [osManager addDrawAction:action];
+        [osManager addDrawAction:action option:AddDrawActionOptionNOCache];
     }
     if (index >= [self.drawActionList count]) {
         self.status = Stop;

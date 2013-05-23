@@ -50,6 +50,15 @@
     return [self.paint drawInContext:context inRect:rect];
 }
 
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    CGRect rect1 = [self.paint redrawRectInRect:rect];
+    
+//    PPDebug(@"<PaintAction> redrawRectInRect = %@, in rect = %@", NSStringFromCGRect(rect1), NSStringFromCGRect(rect));
+    
+    return rect1;
+}
+
 - (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
 {
     self = [super initWithPBDrawActionC:action];
