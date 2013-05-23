@@ -18,9 +18,9 @@
 #import "DiceUserInfoView.h"
 #import "CommonUserInfoView.h"
 
-@interface SearchUserController ()
-
-
+@interface SearchUserController () {
+    ControllerType _type;
+}
 @end
 
 @implementation SearchUserController
@@ -42,6 +42,24 @@
     if (self) {
         // Custom initialization
         _defaultTabIndex = 0;
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _type = ControllerTypeShowFriend;
+    }
+    return self;
+}
+
+- (id)initWithType:(ControllerType)type
+{
+    self = [super init];
+    if (self) {
+        _type = type;
     }
     return self;
 }
@@ -120,8 +138,15 @@
     if (friend == nil) {
         return;
     }
-    [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
-    
+    if (_type == ControllerTypeShowFriend) {
+        [CommonUserInfoView showFriend:friend inController:self needUpdate:YES canChat:YES];
+    }
+    if (_type == ControllerTypeSelectFriend) {
+        if (_delegate && [_delegate respondsToSelector:@selector(searchUserController:didSelectFriend:)]) {
+            [_delegate searchUserController:self didSelectFriend:friend];
+        }
+    }
+
 }
 
 

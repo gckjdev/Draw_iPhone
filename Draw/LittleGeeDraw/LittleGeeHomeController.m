@@ -520,6 +520,32 @@ static int popOptionListWithoutFreeCoins[] = {
     }
 }
 
+- (void)setFirstRankCell:(UITableViewCell *)cell WithFeed:(DrawFeed *)feed
+{
+    RankView *view = [RankView createRankView:self type:RankViewTypeFirst];
+    [view setViewInfo:feed];
+    [cell.contentView addSubview:view];
+}
+
+#define NORMAL_CELL_VIEW_NUMBER 3
+#define WIDTH_SPACE 1
+
+- (void)setSencodRankCell:(UITableViewCell *)cell
+                WithFeed1:(DrawFeed *)feed1
+                    feed2:(DrawFeed *)feed2
+{
+    RankView *view1 = [RankView createRankView:self type:RankViewTypeSecond];
+    [view1 setViewInfo:feed1];
+    RankView *view2 = [RankView createRankView:self type:RankViewTypeSecond];
+    [view2 setViewInfo:feed2];
+    [cell.contentView addSubview:view1];
+    [cell.contentView addSubview:view2];
+    
+    CGFloat x2 = WIDTH_SPACE + [RankView widthForRankViewType:RankViewTypeSecond];
+    view2.frame = CGRectMake(x2, 0, view2.frame.size.width, view2.frame.size.height);
+}
+
+
 - (NSObject *)saveGetObjectForIndex:(NSInteger)index
 {
     NSArray *list = [self tabDataList];
@@ -568,7 +594,31 @@ static int popOptionListWithoutFreeCoins[] = {
    TableTab *tab = [self currentTab];
     if([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypePainter){
         [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
-    } else {
+    } else  if ([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypeWeekly ||
+                [self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypeAnnual) {
+        
+        if (indexPath.row == 0) {
+            DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
+            [self setFirstRankCell:cell WithFeed:feed];
+        }else if(indexPath.row == 1){
+            DrawFeed *feed1 = (DrawFeed *)[self saveGetObjectForIndex:1];
+            DrawFeed *feed2 = (DrawFeed *)[self saveGetObjectForIndex:2];
+            [self setSencodRankCell:cell WithFeed1:feed1 feed2:feed2];
+        }else{
+            NSInteger startIndex = ((indexPath.row - 1) * NORMAL_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            //            PPDebug(@"startIndex = %d,list count = %d",startIndex,[list count]);
+            [self setNormalRankCell:cell WithFeeds:list];
+        }
+        
+    }
+    else {
         [self setNormalRankCell:cell WithFeeds:list];
     }
     
