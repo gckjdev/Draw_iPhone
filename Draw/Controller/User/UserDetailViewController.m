@@ -254,6 +254,11 @@
     [self.dataTableView reloadData];
 }
 
+- (void)didClickBBSPost
+{
+    [self.detail viewBBSPost:self];
+}
+
 - (void)updateFavoriteList
 {
     [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];

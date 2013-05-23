@@ -35,6 +35,7 @@
 - (void)superManageUser:(PPTableViewController*)viewController;
 - (void)clickSNSBtnType:(int)snsType
          viewController:(PPTableViewController*)viewController;
+- (void)viewBBSPost:(PPViewController*)controller;
 
 - (NSString*)blackUserBtnTitle;
 

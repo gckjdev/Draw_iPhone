@@ -565,7 +565,16 @@ static int popOptionListWithoutFreeCoins[] = {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [RankView heightForRankViewType:RankViewTypeNormal] + 1;
+    NSInteger type = self.currentTab.tabID;
+    
+    if ([self typeFromTabID:type] == LittleGeeHomeGalleryTypeAnnual || [self typeFromTabID:type] == LittleGeeHomeGalleryTypeWeekly) {
+        if (indexPath.row == 0) {
+            return [RankView heightForRankViewType:RankViewTypeFirst]+1;
+        }else if(indexPath.row == 1){
+            return [RankView heightForRankViewType:RankViewTypeSecond]+1;
+        }
+    }
+    return [RankView heightForRankViewType:RankViewTypeNormal]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

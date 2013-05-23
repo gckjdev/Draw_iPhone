@@ -32,6 +32,7 @@
 - (void)didClickCustomBackground;
 - (void)didclickBlack;
 - (void)didclickManage;
+- (void)didClickBBSPost;
 
 - (void)didclickSina;
 - (void)didclickQQ;
@@ -81,5 +82,7 @@
 - (void)clearDrawFeedList;
 
 - (void)setIsLoadingFeed:(BOOL)isLoading;
+
+- (IBAction)clickBBSPost:(id)sender;
 
 @end

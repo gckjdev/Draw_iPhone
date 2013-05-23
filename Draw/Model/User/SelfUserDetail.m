@@ -25,6 +25,8 @@
 #import "ChangeAvatar.h"
 #import "ChargeController.h"
 #import "UserService.h"
+#import "BBSPostListController.h"
+#import "BBSService.h"
 
 @interface SelfUserDetail() {
     ChangeAvatar* _changeAvatar;
@@ -373,5 +375,10 @@
     return YES;
 }
 
-
+- (void)viewBBSPost:(PPViewController*)controller
+{
+    PPDebug(@"<viewBBSPost> view my post");
+    [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
+                                               fromController:controller];
+}
 @end
