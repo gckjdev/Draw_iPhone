@@ -139,10 +139,10 @@ typedef enum{
 
 - (void)hideBottomButtons
 {
-    self.inviteButton.hidden = self.searchUserButton.hidden = YES;
-    [self.dataTableView updateHeight:(OFFSET + CGRectGetHeight(self.dataTableView.bounds))];
-
-    [self.paper updateHeight:(OFFSET + CGRectGetHeight(self.paper.bounds))];
+    self.inviteButton.hidden = YES;
+    [self.searchUserButton setCenter:CGPointMake(self.view.bounds.size.width/2, self.searchUserButton.center.y)];
+//    [self.dataTableView updateHeight:(OFFSET + CGRectGetHeight(self.dataTableView.bounds))];
+//    [self.paper updateHeight:(OFFSET + CGRectGetHeight(self.paper.bounds))];
 }
 
 - (void)initTabButton
@@ -488,7 +488,8 @@ typedef enum{
     }else {
         editButton.selected = NO;
         [dataTableView setEditing:editButton.selected animated:NO];
-        SearchUserController *searchUser  = [[SearchUserController alloc] init];
+        SearchUserController *searchUser  = [[SearchUserController alloc] initWithType:_type];
+        searchUser.delegate = self;
         [self.navigationController pushViewController:searchUser animated:YES];
         [searchUser release];
     }
@@ -704,5 +705,14 @@ enum {
 }
 
 
-
+#pragma mark - search user controller delegate
+- (void)searchUserController:(SearchUserController *)controller didSelectFriend:(MyFriend *)aFriend
+{
+    [controller.navigationController popViewControllerAnimated:NO];
+    if (_type == ControllerTypeSelectFriend) {
+        if (_delegate && [_delegate respondsToSelector:@selector(friendController:didSelectFriend:)]) {
+            [_delegate friendController:self didSelectFriend:aFriend];
+        }
+    }
+}
 @end

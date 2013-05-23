@@ -27,4 +27,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickLocateButton:(id)sender {
+    
+}
+
+- (IBAction)clickFriendsButton:(id)sender {
+    
+}
+
+- (IBAction)clickMeButton:(id)sender {
+    
+}
+
+- (IBAction)clickSupportButton:(id)sender {
+    
+}
+
 @end

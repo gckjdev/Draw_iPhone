@@ -27,6 +27,7 @@
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "AnalyticsManager.h"
+#import "GameApp.h"
 
 @implementation RegisterUserController
 @synthesize backgroundImageView;
@@ -94,6 +95,15 @@
         // disable facebook due to facebook status
         facebookButton.hidden = YES;
         self.promptLabel.hidden = YES;
+    }
+    
+    if (isSecureSmsAPP() || isCallTrackAPP()) {
+        sinaButton.hidden = YES;
+        qqButton.hidden = YES;
+        facebookButton.hidden = YES;
+        self.promptLabel.hidden = YES;
+        
+        [self.submitButton setTitle:NSLS(@"kRegister") forState:UIControlStateNormal];
     }
     
 //    [self addRemoteDraw];    
