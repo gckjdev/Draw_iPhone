@@ -1,4 +1,4 @@
-//
+
 //  SingApp.m
 //  Draw
 //
@@ -13,6 +13,124 @@
 
 - (PPViewController *)homeController{
     return [[[SingController alloc] init] autorelease];
+}
+
+- (NSString*)umengId{
+    return @"xxxxxxx";
+}
+
+- (void)createConfigData{
+
+}
+
+- (NSString*)gameId{
+    return SING_GAME_ID;
+}
+
+- (void)HandleWithDidFinishLaunching
+{
+    
+}
+
+- (BOOL)supportWeixin{
+    return YES;
+}
+
+- (BOOL)isAutoRegister
+{
+    return NO;
+}
+
+- (NSString*)appId
+{
+    return SING_APP_ID;
+}
+
+- (NSString*)sinaAppKey{
+    return @"xxxxx";
+}
+
+- (NSString*)sinaAppSecret{
+    return @"xxxxx";
+}
+
+- (NSString*)sinaAppRedirectURI{
+    return @"xxxxx";
+}
+
+- (NSString*)sinaWeiboId
+{
+    return @"xxxxx";
+
+}
+
+- (NSString*)qqAppKey
+{
+    return @"xxxxx";
+}
+
+- (NSString*)qqAppSecret
+{
+    return @"xxxxx";
+}
+
+- (NSString*)qqAppRedirectURI
+{
+    return @"xxxxx";
+}
+
+- (NSString*)qqWeiboId
+{
+    return @"xxxxx";
+}
+
+- (NSString*)facebookAppKey
+{
+    return @"xxxxx";
+}
+
+- (NSString*)facebookAppSecret
+{
+    return @"xxxxx";
+}
+
+- (NSString*)lmwallId
+{
+    return nil;
+}
+
+- (NSString*)youmiWallId
+{
+    return @""; // TODO
+}
+
+- (NSString*)youmiWallSecret
+{
+    return @""; // TODO
+}
+
+- (NSString*)aderWallId
+{
+    return @"";
+}
+
+- (NSString*)domodWallId
+{
+    return @"";
+}
+
+- (NSString*)tapjoyWallId
+{
+    return @"";//TODO
+}
+
+- (NSString*)tapjoyWallSecret
+{
+    return @"";//TODO
+}
+
+- (BOOL)disableAd{
+    return NO;
 }
 
 @end
