@@ -143,13 +143,21 @@
     }
 }
 
+- (void)customBbsBg
+{
+    UIImage* image = [[UserManager defaultManager] bbsBackground];
+    if (image) {
+        [self.bgImageView setImage:image];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
     [self clickTab:[self rangeTypeToTabID:_rangeType]];
     
-    
+    [self customBbsBg];
     // Do any additional setup after loading the view from its nib.
 }
 
