@@ -10,6 +10,11 @@
 #import "UserManager.h"
 #import "RegisterUserController.h"
 #import "ConfigManager.h"
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
+#import "FriendController.h"
+#import "StatisticManager.h"
+#import "ChatListController.h"
 
 @interface SecureSmsHomeController ()
 
@@ -78,11 +83,28 @@
 }
 
 - (IBAction)clickChatButton:(id)sender {
-    
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    } else {
+        ChatListController *controller = [[ChatListController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
+    }
 }
 
 - (IBAction)clickFriendsButton:(id)sender {
-    
+    if (![self isRegistered]) {
+        [self toRegister];
+        return;
+    } else {
+        FriendController *mfc = [[FriendController alloc] init];
+        if ([[StatisticManager defaultManager] fanCount] > 0) {
+            [mfc setDefaultTabIndex:FriendTabIndexFan];
+        }
+        [self.navigationController pushViewController:mfc animated:YES];
+        [mfc release];
+    }
 }
 
 - (IBAction)clickMeButton:(id)sender {
@@ -90,7 +112,9 @@
         [self toRegister];
         return;
     } else {
-        
+        UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+        [self.navigationController pushViewController:us animated:YES];
+        [us release];
     }
 }
 

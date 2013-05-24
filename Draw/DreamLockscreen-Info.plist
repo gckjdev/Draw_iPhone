@@ -34,11 +34,7 @@
 			<string>com.orange.draw</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipaylearndraw.gckj</string>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
-				<string>sinaweibosso.4285743836</string>
+				<string>alipaydreamlockscreen.gckj</string>
 			</array>
 		</dict>
 	</array>

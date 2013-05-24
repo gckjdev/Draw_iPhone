@@ -31,6 +31,11 @@
     return DREAM_AVATAR_UMENG_ID;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaydreamavatar.gckj";
+}
+
 - (BOOL)hasBGOffscreen{
     return YES;
 }

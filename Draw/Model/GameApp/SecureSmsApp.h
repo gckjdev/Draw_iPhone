@@ -11,6 +11,4 @@
 
 @interface SecureSmsApp : SimpleDrawApp
 
-
-
 @end

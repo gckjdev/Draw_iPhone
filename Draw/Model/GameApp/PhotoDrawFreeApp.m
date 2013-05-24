@@ -43,6 +43,11 @@
     return YES;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipayphotodrawfree.gckj";
+}
+
 - (PPViewController *)homeController
 {
     return [[[PhotoDrawHomeController alloc] init] autorelease];

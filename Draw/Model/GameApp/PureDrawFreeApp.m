@@ -43,6 +43,12 @@
     return NO;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaypuredrawfree.gckj";
+}
+
+
 - (PPViewController *)homeController
 {
     return [[[PureDrawHomeController alloc] init] autorelease];

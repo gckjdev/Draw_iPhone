@@ -46,6 +46,11 @@
     return YES;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaylearndraw.gckj";
+}
+
 - (PPViewController *)homeController
 {
     return [[[LearnDrawHomeController alloc] init] autorelease];
@@ -111,6 +116,10 @@
     return nil;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaylearndraw.gckj";
+}
 
 //ContentGameAppProtocol
 - (int)sellContentType
