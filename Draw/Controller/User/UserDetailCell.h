@@ -76,6 +76,7 @@
 @property (retain, nonatomic) IBOutlet LocalizableLabel *noSNSTipsLabel;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *specialTitleLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *specialSepLine;
+@property (retain, nonatomic) IBOutlet UIButton *exploreBbsPostBtn;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;

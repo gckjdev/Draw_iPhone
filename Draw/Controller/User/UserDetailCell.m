@@ -113,8 +113,11 @@
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
-    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
+//    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
+//    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
+    if (self.superBlackBtn.hidden) {
+        [self.exploreBbsPostBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
+    }
     
     [self adaptSNSButton];
 }
@@ -258,6 +261,7 @@
     [_customBackgroundImageView release];
     [_specialTitleLabel release];
     [_specialSepLine release];
+    [_exploreBbsPostBtn release];
     [super dealloc];
 }
 
