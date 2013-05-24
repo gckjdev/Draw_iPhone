@@ -567,7 +567,7 @@ static int popOptionListWithoutFreeCoins[] = {
 {
     NSInteger type = self.currentTab.tabID;
     
-    if ([self typeFromTabID:type] == LittleGeeHomeGalleryTypeAnnual || [self typeFromTabID:type] == LittleGeeHomeGalleryTypeWeekly) {
+    if ([self typeFromTabID:type] == LittleGeeHomeGalleryTypeWeekly) {
         if (indexPath.row == 0) {
             return [RankView heightForRankViewType:RankViewTypeFirst]+1;
         }else if(indexPath.row == 1){
@@ -603,9 +603,7 @@ static int popOptionListWithoutFreeCoins[] = {
    TableTab *tab = [self currentTab];
     if([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypePainter){
         [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
-    } else  if ([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypeWeekly ||
-                [self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypeAnnual) {
-        
+    } else  if ([self typeFromTabID:tab.tabID] == LittleGeeHomeGalleryTypeWeekly) {
         if (indexPath.row == 0) {
             DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
             [self setFirstRankCell:cell WithFeed:feed];
