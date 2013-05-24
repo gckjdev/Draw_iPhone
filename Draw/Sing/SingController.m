@@ -451,4 +451,17 @@
     [self pausePlay];
 }
 
+- (IBAction)clickSubmitButton:(id)sender {
+    NSString *path = _recordURL.path;
+    PPDebug(@"path is %@", path);
+    
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    if (data == nil) {
+        return;
+    }
+    
+    
+}
+
+
 @end
