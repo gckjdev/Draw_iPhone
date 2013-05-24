@@ -3345,4 +3345,85 @@
 }
 
 
++ (CommonNetworkOutput*)submitFeed:(NSString *)baseURL
+                              type:(int)type
+                              word:(NSString *)word
+                              desc:(NSString *)desc
+                            userId:(NSString *)userId
+                         targetUid:(NSString *)targetUid
+                         contestId:(NSString *)contestId
+                            songId:(NSString *)songId
+                          singData:(NSData *)singData
+                         imageData:(NSData *)imageData
+                         voiceType:(int)voiceType
+                          duration:(float)duration
+                             pitch:(float)pitch
+                  progressDelegate:(id)progressDelegate;
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    NSString *method = METHOD_SUBMIT_SING;
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
+        str = [str stringByAddQueryParameter:PARA_WORD value:word];
+        str = [str stringByAddQueryParameter:PARA_DESC value:desc];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
+        
+        str = [str stringByAddQueryParameter:PARA_SONGID value:songId];
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:[DeviceDetection deviceType]];
+        str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[DeviceDetection platform]];
+        
+        if ([targetUid length] != 0) {
+            str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        }
+        if ([contestId length] != 0) {
+            str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
+        }
+        
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    NSMutableDictionary *dataDict = nil;
+    if (singData) {
+        dataDict = [NSMutableDictionary dictionary];
+        [dataDict setObject:singData forKey:PARA_SING_DATA];
+    }
+    
+    NSMutableDictionary *imageDict = nil;
+    if (imageData) {
+        imageDict = [NSMutableDictionary dictionary];
+        [imageDict setObject:imageData forKey:PARA_DRAW_IMAGE];
+    }
+    
+    return [PPNetworkRequest uploadRequest:baseURL
+                             imageDataDict:imageDict
+                              postDataDict:dataDict
+                       constructURLHandler:constructURLHandler
+                           responseHandler:responseHandler
+                                    output:output
+                          progressDelegate:progressDelegate];
+    
+}
+
+
+
+
+
+
+
 @end

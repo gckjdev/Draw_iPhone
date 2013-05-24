@@ -13,6 +13,7 @@
 #import "DiracFxAudioPlayer.h"
 #import "FileUtil.h"
 #import "UIViewUtils.h"
+#import "SingService.h"
 
 @interface SingController (){
     int _recordLimitTime;
@@ -455,12 +456,24 @@
     NSString *path = _recordURL.path;
     PPDebug(@"path is %@", path);
     
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    if (data == nil) {
+    NSData *singData = [NSData dataWithContentsOfFile:path];
+    if (singData == nil) {
         return;
     }
     
-    
+    [[SingService defaultService] submitFeed:1
+                                        word:nil
+                                        desc:nil
+                                    toUserId:nil
+                                  toUserNick:nil
+                                   contestId:nil
+                                        song:nil
+                                    singData:singData
+                                   imageData:nil
+                                   voiceType:1
+                                    duration:1
+                                       pitch:1
+                            progressDelegate:self];
 }
 
 
