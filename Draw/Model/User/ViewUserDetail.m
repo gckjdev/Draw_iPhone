@@ -534,6 +534,7 @@
     PPDebug(@"<viewBBSPost> view user post");
     PBBBSUser_Builder* builder = [PBBBSUser builder];
     [builder setUserId:[[self getUser] userId]];
+    [builder setNickName:[[self getUser] nickName]];
     PBBBSUser* user = [builder build];
     [BBSPostListController enterPostListControllerWithBBSUser:user
                                                fromController:controller];

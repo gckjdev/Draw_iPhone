@@ -1658,7 +1658,7 @@
 "kNoSupportViewFan" = "暫不支持查看其他用戶的關注";
 
 "kContentRepeatedError" = "請不要發重復的帖子。";
-
+"kNoPost" = "還沒有發過帖子";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";
