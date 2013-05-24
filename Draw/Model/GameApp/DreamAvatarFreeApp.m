@@ -34,4 +34,9 @@
     return YES;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaydreamavatarfree.gckj";
+}
+
 @end

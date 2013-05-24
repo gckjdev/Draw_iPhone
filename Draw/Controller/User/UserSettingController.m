@@ -39,6 +39,7 @@
 #import "GeographyService.h"
 #import "UserSettingCell.h"
 
+
 enum{
     SECTION_USER = 0,
 //    SECTION_REMOVE_AD,
@@ -673,6 +674,15 @@ enum {
     return SECTION_COUNT;
 }
 
+- (ChangeAvatar*)backgroundPicker
+{
+    if (imageUploader == nil) {
+        imageUploader = [[ChangeAvatar alloc] init];
+        imageUploader.autoRoundRect = NO;
+        imageUploader.isCompressImage = NO;
+    }
+    return imageUploader;
+}
 
 #define LANGUAGE_TAG 123
 #define LEVEL_TAG 124
@@ -725,18 +735,21 @@ enum {
             [self askSetPrivacy];
         }else if (row == rowOfCustomBg) {
             __block UserSettingController* uc = self;
-            if (imageUploader == nil) {
-                imageUploader = [[ChangeAvatar alloc] init];
-                imageUploader.autoRoundRect = NO;
-                imageUploader.isCompressImage = NO;
-            }
-            [imageUploader showSelectionView:self selectedImageBlock:^(UIImage *image) {
+            [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
                 [uc uploadCustomBg:image];
             } didSetDefaultBlock:^{
                 [uc uploadCustomBg:nil];
             } title:NSLS(@"kCustomBg") hasRemoveOption:YES];
-        }else if (row == rowOfCustomBBSBg) {
-            
+        }else if (row == rowOfCustomBBSBg) {            
+            [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
+                if ([[UserManager defaultManager] setBbsBackground:image]) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomBBSBgSucc") delayTime:2];
+                }
+            } didSetDefaultBlock:^{
+                if ([[UserManager defaultManager] resetBbsBackground]) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomBBSBgSucc") delayTime:2];
+                }
+            } title:NSLS(@"kCustomBBSBg") hasRemoveOption:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {

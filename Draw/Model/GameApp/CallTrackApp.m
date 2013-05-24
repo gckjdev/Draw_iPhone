@@ -7,7 +7,7 @@
 //
 
 #import "CallTrackApp.h"
-#import "CallTrackHomeController.h"
+#import "SecureSmsHomeController.h"
 
 @implementation CallTrackApp
 
@@ -37,7 +37,14 @@
 
 - (PPViewController *)homeController
 {
-    return [[[CallTrackHomeController alloc] init] autorelease];
+    return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeCallTrack] autorelease];
 }
+
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaycalltrack.gckj";
+}
+
+
 
 @end

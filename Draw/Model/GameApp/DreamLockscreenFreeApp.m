@@ -49,4 +49,10 @@
     return nil;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaydreamlockscreenfree.gckj";
+}
+
+
 @end

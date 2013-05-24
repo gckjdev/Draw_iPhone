@@ -27,8 +27,8 @@
 #define DREAMLOCKSCREEN_APP_BUNDLE_ID       @"com.orange.dreamlockscreen"
 #define DREAMLOCKSCREENFREE_APP_BUNDLE_ID   @"com.orange.dreamlockscreenfree"
 #define LITTLE_GEE_APP_BUNDLE_ID            @"com.orange.littlegee"
-#define CALL_TRACK_APP_BUNDLE_ID            @"com.orange.calltrack"
-#define SECURE_SMS_APP_BUNDLE_ID            @"com.orange.securesms"
+#define CALL_TRACK_APP_BUNDLE_ID            @"com.qqnpipi.calltrack"
+#define SECURE_SMS_APP_BUNDLE_ID            @"com.qqnpipi.securesms"
 #define SING_APP_BUNDLE_ID                  @"com.orange.sing"
 
 // App ID
