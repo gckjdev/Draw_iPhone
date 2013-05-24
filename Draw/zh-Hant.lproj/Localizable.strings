@@ -1317,6 +1317,9 @@
 
 "kLookLargeImage" = "查看";
 "kNoRecommend" = "暫無推薦";
+"kCustomBBSBgSucc" = "成功自定義論壇背景！";
+"kResetCustomBBSBgSucc" = "成功重設論壇背景!";
+"kCustomBBSBg" = "自定義論壇背景";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

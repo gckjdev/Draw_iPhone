@@ -203,6 +203,14 @@ typedef enum{
     }
 }
 
+- (void)customBbsBg
+{
+    UIImage* image = [[UserManager defaultManager] bbsBackground];
+    if (image) {
+        [self.bgImageView setImage:image];
+    }
+}
+
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
@@ -217,7 +225,7 @@ typedef enum{
 //                                                       frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
 //                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
 //                                                     useLmAd:YES];
-    
+    [self customBbsBg];
 }
 
 - (void)didReceiveMemoryWarning

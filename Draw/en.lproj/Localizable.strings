@@ -1338,6 +1338,9 @@
 
 "kLookLargeImage" = "Large Image";
 "kNoRecommend" = "No recommend";
+"kCustomBBSBgSucc" = "Customize BBS background successfully!";
+"kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
+"kCustomBBSBg" = "Custom BBS Background";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

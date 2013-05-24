@@ -279,12 +279,21 @@
 
 }
 
+- (void)customBbsBg
+{
+    UIImage* image = [[UserManager defaultManager] bbsBackground];
+    if (image) {
+        [self.bgImageView setImage:image];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
     [self updateToolButtons];
     [self.textView becomeFirstResponder];
+    [self customBbsBg];
 }
 
 - (void)didReceiveMemoryWarning

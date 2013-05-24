@@ -63,11 +63,20 @@
     
 }
 
+- (void)customBbsBg
+{
+    UIImage* image = [[UserManager defaultManager] bbsBackground];
+    if (image) {
+        [self.bgImageView setImage:image];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initViews];
     [self clickTab:TAB_ID];
+    [self customBbsBg];
 }
 
 - (void)didReceiveMemoryWarning

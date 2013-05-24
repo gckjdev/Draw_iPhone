@@ -20,6 +20,9 @@
 #import "SDWebImageManager.h"
 #import "PPSNSConstants.h"
 #import "BBSPermissionManager.h"
+#import "StorageManager.h"
+
+
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
 #define KEY_USERID                      @"USER_KEY_USERID"
@@ -1362,6 +1365,29 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 //    return YES;
 //#endif
     return [[BBSPermissionManager defaultManager] canCharge] && [[BBSPermissionManager defaultManager] canForbidUserIntoBlackUserList];
+}
+
+#define BBS_BG_IMAGE_KEY    @"bbs_bg.png"
+#define BBS_BG_DIR          @"BBS_BG"
+- (BOOL)setBbsBackground:(UIImage*)image
+{
+    if (image) {
+        StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:BBS_BG_DIR] autorelease];
+        return [manager saveImage:image forKey:BBS_BG_IMAGE_KEY];
+    }
+    
+}
+
+- (BOOL)resetBbsBackground
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:BBS_BG_DIR] autorelease];
+    
+    return [manager removeDataForKey:BBS_BG_IMAGE_KEY];
+}
+- (UIImage*)bbsBackground
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:BBS_BG_DIR] autorelease];
+    return [manager imageForKey:BBS_BG_IMAGE_KEY];
 }
 
 @end

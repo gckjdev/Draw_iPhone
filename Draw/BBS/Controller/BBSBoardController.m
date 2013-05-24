@@ -124,12 +124,21 @@
     }
 }
 
+- (void)customBbsBg
+{
+    UIImage* image = [[UserManager defaultManager] bbsBackground];
+    if (image) {
+        [self.bgImageView setImage:image];
+    }
+}
+
 - (void)viewDidLoad
 {
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
     [self initViews];
     [self updateBoardList];
+    [self customBbsBg];
 //    // Do any additional setup after loading the view from its nib.
 }
 
