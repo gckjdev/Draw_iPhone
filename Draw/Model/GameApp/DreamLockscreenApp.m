@@ -49,6 +49,11 @@
     return nil;
 }
 
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaydreamlockscreen.gckj";
+}
+
 //ContentGameAppProtocol
 - (int)sellContentType
 {

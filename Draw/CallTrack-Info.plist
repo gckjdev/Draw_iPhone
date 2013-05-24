@@ -16,7 +16,7 @@
 		<string>PhotoDraw_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.orange.securesms</string>
+	<string>com.qqnpipi.calltrack</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -35,10 +35,6 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>alipaylearndraw.gckj</string>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
-				<string>sinaweibosso.4285743836</string>
 			</array>
 		</dict>
 	</array>

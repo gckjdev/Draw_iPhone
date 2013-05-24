@@ -37,7 +37,12 @@
 
 - (PPViewController *)homeController
 {
-    return [[[SecureSmsHomeController alloc] init] autorelease];
+    return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeSecureSms] autorelease];
+}
+
+- (NSString *)alipayCallBackScheme
+{
+    return @"alipaysecuresms.gckj";
 }
 
 @end

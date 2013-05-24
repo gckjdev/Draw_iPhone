@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SimpleDrawApp.h"
 
-@interface CallTrackApp : NSObject<GameAppProtocol>
-
-
+@interface CallTrackApp : SimpleDrawApp
 
 @end

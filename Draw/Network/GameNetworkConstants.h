@@ -128,6 +128,10 @@
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
 #define METHOD_GET_OUPS_TIMES @"got"
 
+//for Sing
+#define METHOD_SUBMIT_SING @"sbms"
+
+
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
@@ -277,6 +281,8 @@
 #define PARA_APPID @"app"
 #define PARA_GAME_ID @"gid"
 #define PARA_DRAW_DATA @"dd"
+#define PARA_SING_DATA @"sgd"
+
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"
 
@@ -519,6 +525,7 @@
 //for draw contest
 #define METHOD_GET_CONTEST_LIST @"gcl"
 #define PARA_CONTESTID @"cid"
+#define PARA_SONGID @"sid"
 #define PARA_CONTEST_URL @"cu"
 #define PARA_STATEMENT_URL @"su"
 
