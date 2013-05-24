@@ -7,6 +7,7 @@
 //
 
 #import "PPViewController.h"
+#import "InputDialog.h"
 
 typedef enum
 {
@@ -14,7 +15,7 @@ typedef enum
     PureChatTypeCallTrack = 2,
 } PureChatType;
 
-@interface SecureSmsHomeController : PPViewController
+@interface SecureSmsHomeController : PPViewController<InputDialogDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *chatButton;
 @property (retain, nonatomic) IBOutlet UIButton *friendsButton;
 @property (retain, nonatomic) IBOutlet UIButton *meButton;
@@ -26,5 +27,7 @@ typedef enum
 - (IBAction)clickFriendsButton:(id)sender;
 - (IBAction)clickMeButton:(id)sender;
 - (IBAction)clickSupportButton:(id)sender;
+
+- (void)showInputView;
 
 @end

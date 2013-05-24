@@ -66,6 +66,11 @@
     
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";

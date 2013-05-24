@@ -9,7 +9,19 @@
 #import "SecureSmsApp.h"
 #import "SecureSmsHomeController.h"
 
+@interface SecureSmsApp()
+
+@property (retain, nonatomic) SecureSmsHomeController *homeController;
+
+@end
+
 @implementation SecureSmsApp
+
+- (void)dealloc
+{
+    [_homeController release];
+    [super dealloc];
+}
 
 - (NSString*)appId
 {
@@ -37,7 +49,20 @@
 
 - (PPViewController *)homeController
 {
-    return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeSecureSms] autorelease];
+    if (_homeController == nil) {
+        self.homeController = [[[SecureSmsHomeController alloc] initWithType:PureChatTypeSecureSms] autorelease];
+    }
+    return _homeController;
+}
+
+- (void)HandleWithDidFinishLaunching
+{
+    [(SecureSmsHomeController *)[self homeController] showInputView];
+}
+
+- (void)HandleWithDidBecomeActive
+{
+    [(SecureSmsHomeController *)[self homeController] showInputView];
 }
 
 - (NSString *)alipayCallBackScheme

@@ -32,6 +32,11 @@
     
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (BOOL)supportWeixin{
     return YES;
 }

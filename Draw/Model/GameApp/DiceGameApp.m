@@ -451,6 +451,11 @@
     [[CommonHelpManager defaultManager] unzipHelpFiles];
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";

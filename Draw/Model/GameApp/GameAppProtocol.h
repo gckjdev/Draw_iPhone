@@ -146,6 +146,8 @@
 
 - (void)HandleWithDidFinishLaunching;
 
+- (void)HandleWithDidBecomeActive;
+
 - (void)createConfigData;
 
 - (BOOL)showPaintCategory;

@@ -68,6 +68,8 @@
     [self.friendsButton setTitle:NSLS(@"kSecureSmsFirends") forState:UIControlStateNormal];
     [self.meButton setTitle:NSLS(@"kSecureSmsMe") forState:UIControlStateNormal];
     [self.supportButton setTitle:NSLS(@"kSecureSmsSupport") forState:UIControlStateNormal];
+    
+    [self showInputView];
 }
 
 - (BOOL)isRegistered
@@ -125,6 +127,30 @@
     }
     NSString *subject = [NSString stringWithFormat:@"%@ %@", [UIUtils getAppName], NSLS(@"kFeedback")];
     [self sendEmailTo:list ccRecipients:nil bccRecipients:nil subject:subject body:@"" isHTML:NO delegate:nil];
+}
+
+
+- (void)showInputView
+{
+    if (_type == PureChatTypeSecureSms) {
+        
+        NSArray *subViewList = self.view.subviews;
+        for(UIView *subView in subViewList) {
+            if ([subView isKindOfClass:[InputDialog class]]) {
+                return;
+            }
+        }
+        
+        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:self];
+        [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+        [dialog showInView:self.view];
+    }
+}
+
+#pragma mark - InputDialogDelegate methods
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+{
+    
 }
 
 @end

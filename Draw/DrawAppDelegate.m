@@ -424,7 +424,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] start];
     
-    
+    [GameApp HandleWithDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
