@@ -627,4 +627,23 @@
 + (CommonNetworkOutput*)queryGeocodeWithLatitude:(double)latitude
                                        longitude:(double)longitude
                                         language:(NSString *)language;
+
+
+
++ (CommonNetworkOutput*)submitFeed:(NSString *)baseURL
+                              type:(int)type
+                              word:(NSString *)word
+                              desc:(NSString *)desc
+                            userId:(NSString *)userId
+                         targetUid:(NSString *)targetUid
+                         contestId:(NSString *)contestId
+                            songId:(NSString *)songId
+                          singData:(NSData *)singData
+                         imageData:(NSData *)imageData
+                         voiceType:(int)voiceType
+                          duration:(float)duration
+                             pitch:(float)pitch
+                  progressDelegate:(id)progressDelegate;
+
+
 @end
