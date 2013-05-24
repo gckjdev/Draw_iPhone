@@ -40,7 +40,19 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
+    CGContextSaveGState(context);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    
     [self.shape drawInContext:context];
+    
+    CGContextRestoreGState(context);
+    return self.shape.redrawRect;
+}
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    [self.shape rect];
     return self.shape.redrawRect;
 }
 

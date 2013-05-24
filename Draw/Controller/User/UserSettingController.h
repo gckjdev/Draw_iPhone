@@ -30,6 +30,7 @@
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
     NSInteger rowOfCustomBg;
+    NSInteger rowOfCustomBBSBg;
     NSInteger rowOfLanguage;
     NSInteger rowOfSinaWeibo;
     NSInteger rowOfQQWeibo;

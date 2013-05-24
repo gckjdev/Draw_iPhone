@@ -190,6 +190,12 @@
     return [pen penPath];
 }
 
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    CGRect r = [DrawUtils rectForPath:self.path withWidth:self.width bounds:rect];
+    return r;
+}
+
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     if (self.drawPen == nil) {
@@ -203,9 +209,7 @@
     CGContextStrokePath(context);
     
     CGContextRestoreGState(context);
-    CGRect r = [DrawUtils rectForPath:path withWidth:self.width bounds:rect];
-    return r;
-    
+    return [self redrawRectInRect:rect];
 }
 
 - (void)finishAddPoint

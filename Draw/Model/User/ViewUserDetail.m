@@ -29,6 +29,8 @@
 #import "MessageStat.h"
 #import "UserDetailRoundButton.h"
 #import "MWPhoto.h"
+#import "BBSPostListController.h"
+#import "BBSService.h"
 
 @interface ViewUserDetail () {
 
@@ -525,6 +527,16 @@
 - (BOOL)shouldShow
 {
     return ![[UserManager defaultManager] isMe:[self getUserId]];
+}
+
+- (void)viewBBSPost:(PPViewController*)controller
+{
+    PPDebug(@"<viewBBSPost> view user post");
+    PBBBSUser_Builder* builder = [PBBBSUser builder];
+    [builder setUserId:[[self getUser] userId]];
+    PBBBSUser* user = [builder build];
+    [BBSPostListController enterPostListControllerWithBBSUser:user
+                                               fromController:controller];
 }
 
 @end

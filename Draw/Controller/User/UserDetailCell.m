@@ -379,6 +379,13 @@
     }
 }
 
+- (IBAction)clickBBSPost:(id)sender
+{
+    if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickBBSPost)]) {
+        [_detailDelegate didClickBBSPost];
+    }
+}
+
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText
 {
     [self.carousel setDrawFeedList:feedList

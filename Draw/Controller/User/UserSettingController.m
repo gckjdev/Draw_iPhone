@@ -134,7 +134,8 @@ enum {
     rowOfSignature = 7;
     rowOfPrivacy = 8;
     rowOfCustomBg = 9;
-    rowsInSectionUser = 10;
+    rowOfCustomBBSBg = 10,
+    rowsInSectionUser = 11;
     
     //section guessword
     if (isDrawApp()) {
@@ -507,6 +508,8 @@ enum {
             [cell.customDetailLabel setText:[self nameForPrivacyPublicType:_pbUserBuilder.openInfoType]];
         } else if (row == rowOfCustomBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomBg")];
+        } else if (row == rowOfCustomBBSBg) {
+            [cell.customTextLabel setText:NSLS(@"kCustomBBSBg")];
         }
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
@@ -732,6 +735,8 @@ enum {
             } didSetDefaultBlock:^{
                 [uc uploadCustomBg:nil];
             } title:NSLS(@"kCustomBg") hasRemoveOption:YES];
+        }else if (row == rowOfCustomBBSBg) {
+            
         }
     }
     else if (section == SECTION_GUESSWORD) {

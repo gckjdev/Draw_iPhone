@@ -55,6 +55,7 @@
                                                        color:self.drawView.lineColor];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 shape.startPoint = shape.endPoint = point;
+                [self.drawView addDrawAction:action];
                 [self.drawView drawDrawAction:action show:YES];
             }else{
                 shape.startPoint = shape.endPoint = point;
@@ -90,8 +91,14 @@
 - (void)handleFailTouch
 {
     [super handleFailTouch];
+
+    if (action) {
+        [self.osManager cancelLastAction];
+        [self.drawView.drawActionList removeObject:action];
+    }
+    
     [self reset];
-    [self.osManager cancelLastAction];
+    
 //    [[self.osManager enteryScreen] clear];
     [self.drawView setNeedsDisplay];
 }
