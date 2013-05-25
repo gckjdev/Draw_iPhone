@@ -117,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         return YES;
     }
     
-    if (![self countOfItem:itemId] >= 1) {
+    if ([self countOfItem:itemId] <= 0) {
         return NO;
     }
     
@@ -126,15 +126,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
         case PBGameItemConsumeTypeNonConsumable:
         case PBGameItemConsumeTypeAmountConsumable:
             return YES;
-            break;
             
         case PBGameItemConsumeTypeTimeConsumable:
             return ![self isItemExpire:[self userItemWithItemId:itemId]];
-            break;
             
         default:
-            return NO;
-            break;
+            if (item == nil && itemId == ItemTypeRemoveAd){
+                // 如果道具不存在，即使用户拥有该道具，也认为该道具用户不拥有
+                // 目前仅对广告道具有效
+                return NO;
+            }
+            else{
+                return YES;
+            }
     }
 }
 
