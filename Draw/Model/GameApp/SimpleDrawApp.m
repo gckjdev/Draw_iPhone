@@ -440,6 +440,11 @@
 
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     
