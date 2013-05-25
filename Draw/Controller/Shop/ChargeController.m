@@ -234,7 +234,15 @@
 
 - (void)showBuyActionSheetWithIndex:(NSIndexPath *)indexPath
 {
-    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay")
+                                                                 delegate:nil
+                                                        cancelButtonTitle:NSLS(@"kCancel")
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:
+                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
+                                                                NSLS(@"kPayViaZhiFuBao"),
+                                                                NSLS(@"kPayViaAppleAccount"),
+                                                                nil];
     [sheet showInView:self.view];
     
     __block typeof (self)bself = self;
@@ -259,10 +267,15 @@
         switch (buttonIndex) {
             case 0:
                 // pay via zhifubao
-                [bself alipayForOrder:order];
+                [bself alipayWebPaymentForOrder:order];
                 break;
                 
             case 1:
+                // pay via zhifubao
+                [bself alipayForOrder:order];
+                break;
+
+            case 2:
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
@@ -280,6 +293,15 @@
     [AliPayManager payWithOrder:order
                       appScheme:[GameApp alipayCallBackScheme]
                   rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
+}
+
+- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order
+{
+    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
+                     [order.productName encodedURLParameterString], order.amount];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:@"使用支付宝网页充值"];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void)applePayForProduct:(PBIAPProduct *)product

@@ -1232,6 +1232,7 @@
 
 "kSelectPaymentWay" = "Select payment method";
 "kPayViaZhiFuBao" = "Alipay";
+"kPayViaZhiFuBaoWeb" = "Alipay Web";
 "kPayViaAppleAccount" = "Apple iTunes Account";
 
 "kHim" = "him";
