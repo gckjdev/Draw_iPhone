@@ -148,7 +148,9 @@ drawActionList:(NSArray*)drawActionList
         PPDebug(@"<backup> file path=%@", dataPath);
         
         // backup data to file
-        [data writeToFile:dataPath atomically:YES];
+        if ([data length] > 0){
+            [data writeToFile:dataPath atomically:YES];
+        }        
 
         // release temp objects
         [subPool drain];

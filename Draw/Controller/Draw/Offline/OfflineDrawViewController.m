@@ -981,19 +981,15 @@
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
-            result = YES;
             PPDebug(@"<saveDraft> save draft");
-            [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            [self.draft setOpusDesc:self.opusDesc];
-//            result = [pManager updateDraft:self.draft
-//                                     image:image
-//                      pbNoCompressDrawData:[self drawDataSnapshot]];
-            
             NSData* data = [self newDrawDataSnapshot];
             if ([data length] == 0){
                 result = NO;
             }
             else{
+                result = YES;
+                [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
+                [self.draft setOpusDesc:self.opusDesc];
                 result = [pManager updateDraft:self.draft
                                          image:image
                                       drawData:data];
@@ -1001,16 +997,6 @@
         }else{
             PPDebug(@"<saveDraft> create core data draft");
             UserManager *userManager = [UserManager defaultManager];
-//            self.draft = [pManager createDraft:image
-//                          pbNoCompressDrawData:[self drawDataSnapshot]
-//                                     targetUid:_targetUid
-//                                     contestId:self.contest.contestId
-//                                        userId:[userManager userId]
-//                                      nickName:[userManager nickName]
-//                                          word:_word
-//                                      language:languageType
-//                                       bgImage:_bgImage];
-
             self.draft = [pManager createDraft:image
                                       drawData:[self newDrawDataSnapshot]
                                      targetUid:_targetUid
