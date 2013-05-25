@@ -65,4 +65,13 @@
     return @"96ZJ2j3gze+vLwTA1n";
 }
 
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
 @end

@@ -105,4 +105,13 @@
 {
     return @"DRAW_APP_LINK";
 }
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
 @end

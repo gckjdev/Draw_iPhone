@@ -188,4 +188,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
               successBlock:(void (^)(void))successBlock
                  failBlock:(void (^)(void))failBlock;
 
+- (void)unRecommendOpus:(NSString *)opusId
+            resultBlock:(FeedActionResultBlock)resultBlock;
+
 @end

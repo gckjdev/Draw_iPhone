@@ -1170,6 +1170,15 @@
     
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
     
+    if ([GameApp forceChineseOpus]) {
+        languageType = ChineseType;
+        
+        if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+            self.word = [Word wordWithText:@"画" level:0];
+        }
+    }
+    
+    
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
                                                drawWord:self.word
@@ -1192,7 +1201,7 @@
 - (void)showInputAlertView
 {
     if (self.inputAlert == nil) {
-        if (isLittleGeeAPP()) {
+        if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
             BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
 
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
@@ -1324,18 +1333,20 @@
 #pragma mark - input alert view delegate
 - (BOOL)isSubjectValid:(NSString *)subjectText
 {
-    if (isLittleGeeAPP()) {
-        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
-            if (!NSStringIsValidChinese(subjectText)) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-                return NO;
-            }
-        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-            if(!NSStringISValidEnglish(subjectText)) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-                return NO;
-            }
-        }
+    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
+//        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+//            if (!NSStringIsValidChinese(subjectText)) {
+//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+//                return NO;
+//            }
+//        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+//            if(!NSStringISValidEnglish(subjectText)) {
+//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+//                return NO;
+//            }
+//        }
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+        return NO;
     }
     return YES;
 }

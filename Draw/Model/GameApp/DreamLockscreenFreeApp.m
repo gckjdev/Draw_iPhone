@@ -54,5 +54,13 @@
     return @"alipaydreamlockscreenfree.gckj";
 }
 
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
 
 @end

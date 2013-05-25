@@ -123,4 +123,13 @@
     //    return @"drawlively";
 }
 
+- (BOOL)forceChineseOpus
+{
+    return YES;
+}
+- (BOOL)disableEnglishGuess
+{
+    return YES;
+}
+
 @end

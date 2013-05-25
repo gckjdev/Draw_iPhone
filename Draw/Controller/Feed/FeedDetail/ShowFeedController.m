@@ -156,7 +156,7 @@ enum{
 
 - (void)updateActionButtons
 {
-    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed];
+    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed] || ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType);
     self.replayButton.hidden = !self.guessButton.hidden;
 
     for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {

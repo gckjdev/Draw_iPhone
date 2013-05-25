@@ -157,6 +157,9 @@
 - (NSString*)appItuneLink;
 - (NSString*)appLinkUmengKey;
 
+- (BOOL)forceChineseOpus;
+- (BOOL)disableEnglishGuess;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>
