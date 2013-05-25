@@ -27,7 +27,17 @@
             CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
         }
         CGContextClosePath(context);
-        CGContextFillPath(context);
+        
+        if (self.stroke) {
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokePath(context);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillPath(context);
+        }
+
+        
+
         
         CGContextRestoreGState(context);
     }

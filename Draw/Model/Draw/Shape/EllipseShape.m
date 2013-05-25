@@ -14,9 +14,13 @@
     if (context != NULL) {
         CGContextSaveGState(context);
         
-        CGContextSetFillColorWithColor(context, self.color.CGColor);
-        CGContextFillEllipseInRect(context, self.rect);
-                
+        if (self.stroke) {
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokeEllipseInRect(context, self.rect);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillEllipseInRect(context, self.rect);
+        }
         CGContextRestoreGState(context);
     }
 }

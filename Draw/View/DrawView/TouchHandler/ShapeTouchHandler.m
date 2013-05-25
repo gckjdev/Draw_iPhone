@@ -80,7 +80,7 @@
     }
 
     if (state == TouchStateCancel || state == TouchStateEnd) {
-        [self.drawView addDrawAction:action];
+//        [self.drawView addDrawAction:action];
         if (action) {
             [self.drawView clearRedoStack];
         }

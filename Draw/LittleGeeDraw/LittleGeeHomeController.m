@@ -477,6 +477,11 @@ static int popOptionListWithoutFreeCoins[] = {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    
+    if (count > NORMAL_CELL_VIEW_NUMBER) {
+        count = count - (count % NORMAL_CELL_VIEW_NUMBER);
+    }
+    
     return  count / NORMAL_CELL_VIEW_NUMBER + (count % NORMAL_CELL_VIEW_NUMBER != 0);
 }
 

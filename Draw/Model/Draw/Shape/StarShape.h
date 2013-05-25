@@ -8,6 +8,7 @@
 
 #import "ShapeInfo.h"
 
-@interface StarShape : ShapeInfo
+@interface StarShape : BasicShapeInfo
 
 @end
+

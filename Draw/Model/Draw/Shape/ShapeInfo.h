@@ -50,3 +50,18 @@ typedef enum{
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 @end
+
+
+
+
+@interface BasicShapeInfo : ShapeInfo
+
+@property(nonatomic, assign) BOOL stroke; //YES for stroke, NO for fill
+
+@end
+
+
+@interface ImageShapeInfo : ShapeInfo
+
+@end
+

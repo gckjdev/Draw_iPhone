@@ -14,8 +14,14 @@
     if (context != NULL) {
         CGContextSaveGState(context);
         
-        CGContextSetFillColorWithColor(context, self.color.CGColor);
-        CGContextFillRect(context, self.rect);
+        if (self.stroke) {
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokeRect(context, self.rect);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillRect(context, self.rect);
+        }
+
         
         CGContextRestoreGState(context);
     }

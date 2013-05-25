@@ -8,6 +8,6 @@
 
 #import "ShapeInfo.h"
 
-@interface EllipseShape : ShapeInfo
+@interface EllipseShape : BasicShapeInfo
 
 @end
