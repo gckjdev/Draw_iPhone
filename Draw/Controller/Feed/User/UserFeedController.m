@@ -349,6 +349,7 @@ typedef enum{
     SuperActionSheetIndexDelete = 1,
     SuperActionSheetIndexAddToCell,
     SuperActionSheetIndexAddToRecommend,
+    SuperActionSheetIndexRemoveFromRecommend,
     SuperActionSheetIndexCancel,
 }SuperActionSheetIndex;
 
@@ -429,6 +430,17 @@ typedef enum{
                 
             }];
             
+        } break;
+        case SuperActionSheetIndexRemoveFromRecommend: {
+            PPDebug(@"<handleActionSheet> ActionSheetIndexAddToRecommend" );
+            [[FeedService defaultService] unRecommendOpus:feed.feedId resultBlock:^(int resultCode) {
+                if (resultCode == 0) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功取消推荐" delayTime:2];
+                } else {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:@"取消推荐失败， result code = %d", resultCode] delayTime:2];
+                }
+                
+            }];
         } break;
             
         default:
@@ -602,7 +614,7 @@ typedef enum{
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
-                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), nil];
+                                              otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), @"取消推荐", nil];
                 
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){
