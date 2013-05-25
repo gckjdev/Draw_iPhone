@@ -57,51 +57,51 @@ typedef enum {
 }DrawOptionIndex;
 
 typedef enum {
-    PopOptionIndexSelf = 0,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexIngot,
-    PopOptionIndexMore,
+    PopOptionSelf = 0,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
     PopOptionCount,
-}PopOptionIndex;
+}PopOption;
 
 static int popOptionListWithFreeCoins[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexIngot,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
 };
 
 static int popOptionListWithoutFreeCoins[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionMore,
 };
 
 static int popOptionListWithFreeCoinsEn[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexIngot,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
 };
 
 static int popOptionListWithoutFreeCoinsEn[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionMore,
 };
 
 @interface LittleGeeHomeController () {
@@ -132,32 +132,32 @@ static int popOptionListWithoutFreeCoinsEn[] = {
     [super dealloc];
 }
 
-- (UIImage*)imageForPopOption:(PopOptionIndex)index
+- (UIImage*)imageForPopOption:(PopOption)option
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
-    switch (index) {
-        case PopOptionIndexPK: {
+    switch (option) {
+        case PopOptionPK: {
             return imgManager.popOptionsGameImage;
         } break;
-        case PopOptionIndexSelf: {
+        case PopOptionSelf: {
             return imgManager.popOptionsSelfImage;
         } break;
-        case PopOptionIndexNotice: {
+        case PopOptionNotice: {
             return imgManager.popOptionsNoticeImage;
         } break;
-        case PopOptionIndexBbs: {
+        case PopOptionBbs: {
             return imgManager.popOptionsBbsImage;
         } break;
-        case PopOptionIndexIngot: {
+        case PopOptionIngot: {
             return imgManager.popOptionsIngotImage;
         } break;
-        case PopOptionIndexContest: {
+        case PopOptionContest: {
             return imgManager.popOptionsContestImage;
         } break;
-        case PopOptionIndexShop: {
+        case PopOptionShop: {
             return imgManager.popOptionsShopImage;
         } break;
-        case PopOptionIndexMore: {
+        case PopOptionMore: {
             return imgManager.popOptionsMoreImage;
         } break;
             
@@ -210,6 +210,18 @@ int getPopOptionCount()
     }
 }
 
+- (int)indexForPopOption:(PopOption)option
+{
+    int count = getPopOptionCount();
+    int* list = getPopOptionList();
+    for (int i = 0; i < count; i ++) {
+        if (option == list[i]) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 #define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(120,80):CGSizeMake(60,40))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
@@ -234,8 +246,11 @@ int getPopOptionCount()
         [self hideOptionSheet];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:[self indexForPopOption:PopOptionNotice]];
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:[self indexForPopOption:PopOptionBbs]];
+    }
+    
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideOptionSheet) object:nil];
@@ -432,41 +447,41 @@ int getPopOptionCount()
             return;
         }
         switch (list[buttonIndex]) {
-            case PopOptionIndexPK: {
+            case PopOptionPK: {
                 UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
                 [self.navigationController pushViewController:rc animated:YES];
             } break;
-            case PopOptionIndexSelf: {
+            case PopOptionSelf: {
                 UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
                 //    UserSettingController *us = [[UserSettingController alloc] init];
                 [self.navigationController pushViewController:us animated:YES];
                 [us release];
             } break;
-            case PopOptionIndexNotice: {
+            case PopOptionNotice: {
                 HomeMenuView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
                 [menu updateBadge:[[StatisticManager defaultManager] bbsActionCount]];//badge count = bbscount+bulletincount
                 [BulletinView showBulletinInController:self];
             } break;
-            case PopOptionIndexBbs: {
+            case PopOptionBbs: {
 //                [[StatisticManager defaultManager] setBbsActionCount:0];
                 BBSBoardController *bbs = [[BBSBoardController alloc] init];
                 [self.navigationController pushViewController:bbs animated:YES];
                 [bbs release];
             } break;
-            case PopOptionIndexIngot: {
+            case PopOptionIngot: {
                 FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
                 [self.navigationController pushViewController:fc animated:YES];
             } break;
-            case PopOptionIndexContest: {
+            case PopOptionContest: {
                 ContestController *cc = [[ContestController alloc] init];
                 [self.navigationController pushViewController:cc animated:YES];
                 [cc release];
             } break;
-            case PopOptionIndexShop: {
+            case PopOptionShop: {
                 StoreController *vc = [[[StoreController alloc] init] autorelease];
                 [self.navigationController pushViewController:vc animated:YES];
             } break;
-            case PopOptionIndexMore: {
+            case PopOptionMore: {
                 FeedbackController* feedBack = [[FeedbackController alloc] init];
                 [self.navigationController pushViewController:feedBack animated:YES];
                 [feedBack release];
@@ -923,7 +938,13 @@ int getPopOptionCount()
     
     [self updateBadgeWithType:HomeMenuTypeLittleGeeFeed badge:timelineCount];
     
-    int optionCount = manager.bbsActionCount + manager.bulletinCount;
+    int optionCount;
+    if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+        optionCount = manager.bulletinCount;
+    } else {
+        optionCount = manager.bbsActionCount + manager.bulletinCount;
+    }
+    
     [self updateBadgeWithType:HomeMenuTypeLittleGeeOptions badge:optionCount];
 //    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     if (_hasLoadStatistic && _firstLoadBulletin && [[UserManager defaultManager] hasUser]) {

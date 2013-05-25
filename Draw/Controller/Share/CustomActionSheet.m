@@ -415,7 +415,7 @@
              forIndex:(int)index
 {
     NSString* title = [self buttonTitleAtIndex:index];
-    if (title == nil) {
+    if (title == nil || count < 0) {
         return;
     }
     if (_badgeCountDict == nil) {
