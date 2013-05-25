@@ -1175,6 +1175,7 @@
         
         if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
             self.word = [Word wordWithText:@"画" level:0];
+            PPDebug(@"You are playing little gee in english, so auto create title");
         }
     }
     
@@ -1206,6 +1207,7 @@
 
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
             self.inputAlert.delegate = self;
+            PPDebug(@"you are playing little in chinese , so show subject");
             
         } else {
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
@@ -1345,8 +1347,10 @@
 //                return NO;
 //            }
 //        }
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-        return NO;
+        if (!NSStringIsValidChinese(subjectText)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+            return NO;
+        }
     }
     return YES;
 }
