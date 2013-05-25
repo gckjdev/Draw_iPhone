@@ -61,6 +61,11 @@ static FeedService *_staticFeedService = nil;
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     
+    //little gee force chinese opus --kira
+    if ([GameApp forceChineseOpus]) {
+        lang = ChineseType;
+    }
+    
     dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
     if (getFeedListQueue == NULL) {
         getFeedListQueue = workingQueue;

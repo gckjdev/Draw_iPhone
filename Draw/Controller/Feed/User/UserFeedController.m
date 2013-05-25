@@ -341,18 +341,28 @@ typedef enum{
     ActionSheetIndexDetail = 0,
     ActionSheetIndexDelete = 1,
     ActionSheetIndexUnFavorite = 1,
-    ActionSheetIndexAddToCell,
-    ActionSheetIndexAddToRecommend,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
 
+typedef enum{
+    SuperActionSheetIndexDetail = 0,
+    SuperActionSheetIndexDelete = 1,
+    SuperActionSheetIndexAddToCell,
+    SuperActionSheetIndexAddToRecommend,
+    SuperActionSheetIndexCancel,
+}SuperActionSheetIndex;
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self handleActionSheetForOpus:buttonIndex];
+    [self handleActionSheetforOpus:actionSheet atIndex:buttonIndex];
 }
 
-- (void)handleActionSheetForOpus:(NSInteger)buttonIndex
+- (void)handleActionSheetforOpus:(UIActionSheet*)actionSheet
+                         atIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
     _selectedFeed = nil;
     DrawFeed* feed = _selectedRankView.feed;
     
@@ -367,18 +377,48 @@ typedef enum{
         {
             PPDebug(@"Detail");
             [self enterDetailFeed:feed];
+        } break;
+        default:
+        {
+            
         }
             break;
-        case ActionSheetIndexAddToCell:
+    }
+
+}
+
+- (void)handleSuperActionSheetforOpus:(UIActionSheet*)actionSheet
+                              atIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    _selectedFeed = nil;
+    DrawFeed* feed = _selectedRankView.feed;
+    
+    switch (buttonIndex) {
+        case SuperActionSheetIndexDelete:
+        {
+            _selectedFeed = feed;
+            [self alertDeleteConfirm];
+        }
+            break;
+        case SuperActionSheetIndexDetail:
+        {
+            PPDebug(@"Detail");
+            [self enterDetailFeed:feed];
+        }
+            break;
+        case SuperActionSheetIndexAddToCell:
         {
             if (canSellOpus) {
                 PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
                 AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
                 [ldView showInView:self.view];
-                break;                
+                break;
             }
         }
-        case ActionSheetIndexAddToRecommend: {
+        case SuperActionSheetIndexAddToRecommend: {
             PPDebug(@"<handleActionSheet> ActionSheetIndexAddToRecommend" );
             [[FeedService defaultService] recommendOpus:feed.feedId resultBlock:^(int resultCode) {
                 if (resultCode == 0) {
@@ -390,14 +430,14 @@ typedef enum{
             }];
             
         } break;
-        
+            
         default:
         {
             
         }
             break;
     }
-
+    
 }
 
 
@@ -549,22 +589,30 @@ typedef enum{
     if(tab.tabID == UserTypeOpus ){
         if ([[UserManager defaultManager] isMe:self.userId]) {
             sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kDelete"), nil] autorelease];
+            sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;
             [sheet setActionBlock:^(NSInteger buttonIndex){
                 canSellOpus = NO;
-                [bself handleActionSheetForOpus:buttonIndex];
+                [bself handleActionSheetforOpus:sheet atIndex:buttonIndex];
             }];
         }else if([[UserManager defaultManager] isSuperUser]) {
-                UIActionSheet* actionSheet = [[UIActionSheet alloc]
+                sheet = [[MKBlockActionSheet alloc]
                                               initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
                                               delegate:self
                                               cancelButtonTitle:NSLS(@"kCancel")
                                               destructiveButtonTitle:NSLS(@"kOpusDetail")
                                               otherButtonTitles:NSLS(@"kDelete"), NSLS(@"kAddLearnDraw"), NSLS(@"kRecommend"), nil];
+                
+            __block typeof (self) bself  = self;
+            [sheet setActionBlock:^(NSInteger buttonIndex){
                 canSellOpus = YES;
-                [actionSheet showInView:self.view];
-                [actionSheet release];
+                [bself handleSuperActionSheetforOpus:sheet atIndex:buttonIndex];
+            }];
+            sheet.cancelButtonIndex = SuperActionSheetIndexCancel;
+                
+                [sheet showInView:self.view];
+                [sheet release];
         }else{
             [self enterDetailFeed:_selectedRankView.feed];
         }

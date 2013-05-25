@@ -150,4 +150,13 @@
             NSLS(@"kLearnDrawOther"), nil];
 }
 
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
 @end
