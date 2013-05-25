@@ -8,6 +8,6 @@
 
 #import "ShapeInfo.h"
 
-@interface BeelineShape : ShapeInfo
+@interface BeelineShape : BasicShapeInfo
 
 @end

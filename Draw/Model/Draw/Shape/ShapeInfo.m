@@ -219,3 +219,24 @@
 }
 
 @end
+
+
+
+@implementation BasicShapeInfo
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.stroke = NO;
+    }
+    return self;
+}
+
+@end
+
+
+@implementation ImageShapeInfo
+
+
+@end

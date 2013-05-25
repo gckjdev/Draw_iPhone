@@ -8,6 +8,6 @@
 
 #import "ShapeInfo.h"
 
-@interface RectangleShape : ShapeInfo
+@interface RectangleShape : BasicShapeInfo
 
 @end

@@ -312,6 +312,7 @@ typedef enum{
             }else if(count <= 3){
                 return 2;
             }else{
+                count = count - (count %3);
                 if (count %3 == 0) {
                     return count/3 + 1;
                 }else{
@@ -319,6 +320,9 @@ typedef enum{
                 }
             }
         default:
+            if (count > 3) {
+                count = count - (count %3);
+            }
             if (count %3 == 0) {
                 return count/3;
             }else{
