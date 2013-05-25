@@ -85,6 +85,13 @@
     return self.buttonTitles.count;
 }
 
+- (void)removeAllActions
+{
+    [self.buttonTitles removeAllObjects];
+    [self.buttonImagesDict removeAllObjects];
+    [self.badgeCountDict removeAllObjects];
+}
+
 - (void)setImage:(UIImage*)image forTitle:(NSString*)title
 {
     if (image != nil && title != nil) {
@@ -278,19 +285,20 @@
             itemSize:(CGSize)size
           
 {
-    if (_menu == nil) {
-        NSMutableArray* itemArray = [[[NSMutableArray alloc] init] autorelease];
-        for (NSString* title in self.buttonTitles) {
-            UIImage* image = (UIImage*)[self.buttonImagesDict objectForKey:title];
-            HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) image:image highlightedImage:image contentImage:nil highlightedContentImage:nil title:title titleFont:[UIFont boldSystemFontOfSize:(ISIPAD?24:12)]] autorelease];
-            [itemArray addObject:item];
-        }
-        self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height+size.height) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
-        _menu.delegate = self;
-        [view addSubview:_menu];
+    if (_menu != nil) {
+        [_menu removeFromSuperview];
     }
+    NSMutableArray* itemArray = [[[NSMutableArray alloc] init] autorelease];
+    for (NSString* title in self.buttonTitles) {
+        UIImage* image = (UIImage*)[self.buttonImagesDict objectForKey:title];
+        HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) image:image highlightedImage:image contentImage:nil highlightedContentImage:nil title:title titleFont:[UIFont boldSystemFontOfSize:(ISIPAD?24:12)]] autorelease];
+        [itemArray addObject:item];
+    }
+    self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height*0.8) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
+    _menu.delegate = self;
+//    [view addSubview:_menu];
     
-    [view insertSubview:_menu aboveSubview:onView];
+    [view insertSubview:_menu belowSubview:onView];
     [self.menu expandItems];
     self.isVisable = YES;
     

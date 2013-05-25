@@ -66,6 +66,8 @@
 
 - (void)setBadgeCount:(int)count
              forIndex:(int)index;
+
+- (void)removeAllActions;
 @end
 
 

@@ -89,6 +89,21 @@ static int popOptionListWithoutFreeCoins[] = {
     PopOptionIndexMore,
 };
 
+static int popOptionListWithFreeCoinsEn[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexIngot,
+    PopOptionIndexMore,
+};
+
+static int popOptionListWithoutFreeCoinsEn[] = {
+    PopOptionIndexSelf,
+    PopOptionIndexNotice,
+    PopOptionIndexShop,
+    PopOptionIndexMore,
+};
+
 @interface LittleGeeHomeController () {
     BOOL _isJoiningContest;
     BOOL _firstLoadBulletin;
@@ -159,6 +174,42 @@ static int popOptionListWithoutFreeCoins[] = {
     }
 }
 
+static int* getPopOptionList()
+{
+    if ([ConfigManager wallEnabled]) {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return popOptionListWithFreeCoins;
+        } else {
+            return popOptionListWithFreeCoinsEn;
+        }
+        
+    } else {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return popOptionListWithoutFreeCoins;
+        } else {
+            return popOptionListWithoutFreeCoinsEn;
+        }
+    }
+}
+
+int getPopOptionCount()
+{
+    if ([ConfigManager wallEnabled]) {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return (PopOptionCount);
+        } else {
+            return (PopOptionCount-3);
+        }
+        
+    } else {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return (PopOptionCount-1);
+        } else {
+            return (PopOptionCount-4);
+        }
+    }
+}
+
 #define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(120,80):CGSizeMake(60,40))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
@@ -170,13 +221,14 @@ static int popOptionListWithoutFreeCoins[] = {
     if (!_optionSheet) {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
-        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
-        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
-        for (int i = 0; i < count; i ++) {
-            UIImage* image = [self imageForPopOption:list[i]];
-            [self.optionSheet addButtonWithImage:image];
-        }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
+    }
+    [_optionSheet removeAllActions];
+    int count = getPopOptionCount();
+    int* list = getPopOptionList();
+    for (int i = 0; i < count; i ++) {
+        UIImage* image = [self imageForPopOption:list[i]];
+        [self.optionSheet addButtonWithImage:image];
     }
     if ([_optionSheet isVisable]) {
         [self hideOptionSheet];
@@ -234,7 +286,6 @@ static int popOptionListWithoutFreeCoins[] = {
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
-    [self initDrawOptions];
     [self.view bringSubviewToFront:self.drawOptionBtn];
     [self.view bringSubviewToFront:self.bigPen];
     [self.drawOptionBtn addTarget:self action:@selector(clickDrawOptionBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -286,12 +337,18 @@ static int popOptionListWithoutFreeCoins[] = {
 - (void)initDrawOptions
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
-    self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
-    self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
+    if (!_drawOptionSheet) {
+        self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
+        self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
+    }
+    [_drawOptionSheet removeAllActions];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeDrawTo") image:[imgManager drawToBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -369,8 +426,8 @@ static int popOptionListWithoutFreeCoins[] = {
         }
     }
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
-        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
-        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        int* list = getPopOptionList();
+        int count = getPopOptionCount();
         if (buttonIndex >= count) {
             return;
         }
@@ -795,8 +852,9 @@ static int popOptionListWithoutFreeCoins[] = {
         [self.drawOptionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        float radius = sqrtf((btn.frame.size.height*btn.frame.size.height) + (0.5*btn.frame.size.width*0.5*btn.frame.size.width)) + MAX(ITEM_SIZE.width, ITEM_SIZE.height);
-        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.2) toAngle:(M_PI*0.2) radius:radius itemSize:ITEM_SIZE];
+        float radius = sqrtf((btn.frame.size.height*btn.frame.size.height) + (0.5*btn.frame.size.width*0.5*btn.frame.size.width));
+        [self initDrawOptions];
+        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.3) toAngle:(M_PI*0.3) radius:radius itemSize:ITEM_SIZE];
     }
 }
 
