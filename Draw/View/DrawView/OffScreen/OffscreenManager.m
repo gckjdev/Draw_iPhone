@@ -337,14 +337,14 @@ BOOL showBGOffscreen = NO;
     //new implementation
     NSInteger start = 0;
     NSInteger count = [drawActionList count];
-    NSInteger end = count - DEFAULT_UNDO_STEP;
+    NSInteger end = count - DEFAULT_UNDO_STEP/2;
     if (end > 0) {
         [self updateOS:[self bottomScreen] WithDrawActionList:drawActionList start:start end:end];
-    }else{
         [_cachedActionList removeAllObjects];
         NSArray *subArray = [drawActionList subarrayWithRange:NSMakeRange(end, count - end)];
-        
         [_cachedActionList addObjectsFromArray:subArray];
+    }else{
+        [_cachedActionList addObjectsFromArray:drawActionList];
     }
     
     

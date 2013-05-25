@@ -1065,17 +1065,13 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LanguageType type = [userDefaults integerForKey:KEY_LANGUAGE];
     if (type == 0) {
-        /* rem by Benson
         if ([LocaleUtils isChina] || [LocaleUtils isOtherChina] ||
             [LocaleUtils isChinese] || [LocaleUtils isTraditionalChinese]){
             type = ChineseType;
         }else{
             type = EnglishType;
         }
-        */
-        
-        // it's Chinese by default due to English Draw & Guess has no many users, so we just focus on Chinese
-        type = ChineseType;
+//        type = ChineseType;
         [self setLanguageType:type];
     }
     return type;
