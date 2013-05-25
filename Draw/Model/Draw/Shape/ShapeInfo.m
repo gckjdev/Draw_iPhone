@@ -130,6 +130,11 @@
             rect = CGRectWithPoints(self.startPoint, self.endPoint);
         }
     }
+//    rect.origin.x -= self.width;
+//    rect.origin.y -= self.width;
+//    rect.size.width += self.width * 2;
+//    rect.size.height += self.width * 2;
+    
     if(CGRectEqualToRect(CGRectZero, _redrawRect)){
         _redrawRect = rect;
     }else{

@@ -15,6 +15,7 @@
         CGContextSaveGState(context);
         
         if (self.stroke) {
+            CGContextSetLineWidth(context, self.width);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
             CGContextStrokeRect(context, self.rect);
         }else{

@@ -29,6 +29,7 @@
         CGContextClosePath(context);
         
         if (self.stroke) {
+            CGContextSetLineWidth(context, self.width);            
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
             CGContextStrokePath(context);
         }else{
