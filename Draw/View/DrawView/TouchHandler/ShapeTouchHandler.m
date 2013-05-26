@@ -50,9 +50,9 @@
             ShapeInfo *shape = nil;
             if (!action) {
                 shape = [ShapeInfo shapeWithType:self.drawView.shapeType
-                                                    penType:self.drawView.penType
-                                                      width:self.drawView.lineWidth
-                                                       color:self.drawView.lineColor];
+                                         penType:self.drawView.penType
+                                           width:self.drawView.lineWidth
+                                           color:self.drawView.lineColor];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 shape.startPoint = shape.endPoint = point;
                 [self.drawView drawDrawAction:action show:YES];
@@ -77,7 +77,7 @@
         default:
             break;
     }
-
+    
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
         if (action) {
@@ -92,7 +92,7 @@
     [super handleFailTouch];
     [self reset];
     [self.osManager cancelLastAction];
-//    [[self.osManager enteryScreen] clear];
+    //    [[self.osManager enteryScreen] clear];
     [self.drawView setNeedsDisplay];
 }
 

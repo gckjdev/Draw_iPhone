@@ -62,6 +62,17 @@
 }
 
 
+- (void)finishAddPoints
+{
+    currentState = TouchStateEnd;
+    [action finishAddPoint];
+    [self addAction:action];
+    if (action) {
+        [self.drawView clearRedoStack];
+    }
+    [self reset];
+}
+
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {
     [super handlePoint:point forTouchState:state];
@@ -80,21 +91,22 @@
         case TouchStateEnd:
         case TouchStateCancel:
         {
-//            [self addPoint:point];
-            [action finishAddPoint];
-            [self addAction:action];
-            if (action) {
-                [self.drawView clearRedoStack];
-            }
-            [self reset];
+            [self finishAddPoints];
             break;
         }
         default:
             break;
     }
 }
+
+#define FORCE_END_POINT_COUNT_WHEN_CANCEL 15
+
 - (void)handleFailTouch
 {
+    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
+        [self finishAddPoints];
+        return;
+    }
     [super handleFailTouch];
     [self reset];
     [self.osManager cancelLastAction];
