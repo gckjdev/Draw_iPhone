@@ -1211,7 +1211,8 @@
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kSelectPaymentWay" = "選擇購買方式";
-"kPayViaZhiFuBao" = "使用支付寶購買";
+"kPayViaZhiFuBao" = "使用支付寶客戶端購買";
+"kPayViaZhiFuBaoWeb" = "使用支付寶網頁購買";
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
 "kEditOpusDesc" = "編輯作品描述";

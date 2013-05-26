@@ -57,36 +57,51 @@ typedef enum {
 }DrawOptionIndex;
 
 typedef enum {
-    PopOptionIndexSelf = 0,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexIngot,
-    PopOptionIndexMore,
+    PopOptionSelf = 0,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
     PopOptionCount,
-}PopOptionIndex;
+}PopOption;
 
 static int popOptionListWithFreeCoins[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexIngot,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
 };
 
 static int popOptionListWithoutFreeCoins[] = {
-    PopOptionIndexSelf,
-    PopOptionIndexContest,
-    PopOptionIndexPK,
-    PopOptionIndexBbs,
-    PopOptionIndexNotice,
-    PopOptionIndexShop,
-    PopOptionIndexMore,
+    PopOptionSelf,
+    PopOptionContest,
+    PopOptionPK,
+    PopOptionBbs,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionMore,
+};
+
+static int popOptionListWithFreeCoinsEn[] = {
+    PopOptionSelf,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionIngot,
+    PopOptionMore,
+};
+
+static int popOptionListWithoutFreeCoinsEn[] = {
+    PopOptionSelf,
+    PopOptionNotice,
+    PopOptionShop,
+    PopOptionMore,
 };
 
 @interface LittleGeeHomeController () {
@@ -117,32 +132,32 @@ static int popOptionListWithoutFreeCoins[] = {
     [super dealloc];
 }
 
-- (UIImage*)imageForPopOption:(PopOptionIndex)index
+- (UIImage*)imageForPopOption:(PopOption)option
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
-    switch (index) {
-        case PopOptionIndexPK: {
+    switch (option) {
+        case PopOptionPK: {
             return imgManager.popOptionsGameImage;
         } break;
-        case PopOptionIndexSelf: {
+        case PopOptionSelf: {
             return imgManager.popOptionsSelfImage;
         } break;
-        case PopOptionIndexNotice: {
+        case PopOptionNotice: {
             return imgManager.popOptionsNoticeImage;
         } break;
-        case PopOptionIndexBbs: {
+        case PopOptionBbs: {
             return imgManager.popOptionsBbsImage;
         } break;
-        case PopOptionIndexIngot: {
+        case PopOptionIngot: {
             return imgManager.popOptionsIngotImage;
         } break;
-        case PopOptionIndexContest: {
+        case PopOptionContest: {
             return imgManager.popOptionsContestImage;
         } break;
-        case PopOptionIndexShop: {
+        case PopOptionShop: {
             return imgManager.popOptionsShopImage;
         } break;
-        case PopOptionIndexMore: {
+        case PopOptionMore: {
             return imgManager.popOptionsMoreImage;
         } break;
             
@@ -159,6 +174,54 @@ static int popOptionListWithoutFreeCoins[] = {
     }
 }
 
+static int* getPopOptionList()
+{
+    if ([ConfigManager wallEnabled]) {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return popOptionListWithFreeCoins;
+        } else {
+            return popOptionListWithFreeCoinsEn;
+        }
+        
+    } else {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return popOptionListWithoutFreeCoins;
+        } else {
+            return popOptionListWithoutFreeCoinsEn;
+        }
+    }
+}
+
+int getPopOptionCount()
+{
+    if ([ConfigManager wallEnabled]) {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return (PopOptionCount);
+        } else {
+            return (PopOptionCount-3);
+        }
+        
+    } else {
+        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+            return (PopOptionCount-1);
+        } else {
+            return (PopOptionCount-4);
+        }
+    }
+}
+
+- (int)indexForPopOption:(PopOption)option
+{
+    int count = getPopOptionCount();
+    int* list = getPopOptionList();
+    for (int i = 0; i < count; i ++) {
+        if (option == list[i]) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 #define OPTION_ITEM_SIZE (ISIPAD?CGSizeMake(120,80):CGSizeMake(60,40))
 #define OPTION_CONTAINER_SIZE (ISIPAD?CGSizeMake(700,1000):CGSizeMake(300,480))
 - (void)showOptionSheetForTime:(CFTimeInterval)timeInterval
@@ -170,20 +233,24 @@ static int popOptionListWithoutFreeCoins[] = {
     if (!_optionSheet) {
         self.optionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self imageArray:nil] autorelease];
         self.optionSheet.tag = POP_OPTION_SHEET_TAG;
-        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
-        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
-        for (int i = 0; i < count; i ++) {
-            UIImage* image = [self imageForPopOption:list[i]];
-            [self.optionSheet addButtonWithImage:image];
-        }
         //                [self.actionSheet.popView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_pattern.png"]]];
+    }
+    [_optionSheet removeAllActions];
+    int count = getPopOptionCount();
+    int* list = getPopOptionList();
+    for (int i = 0; i < count; i ++) {
+        UIImage* image = [self imageForPopOption:list[i]];
+        [self.optionSheet addButtonWithImage:image];
     }
     if ([_optionSheet isVisable]) {
         [self hideOptionSheet];
     }
     UIView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:PopOptionIndexNotice];
-    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:PopOptionIndexBbs];
+    [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:[self indexForPopOption:PopOptionNotice]];
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:[self indexForPopOption:PopOptionBbs]];
+    }
+    
     [_optionSheet showInView:self.view onView:menu
  WithContainerSize:OPTION_CONTAINER_SIZE columns:1 showTitles:NO itemSize:OPTION_ITEM_SIZE backgroundImage:[imgManager popOptionsBackgroundImage]];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideOptionSheet) object:nil];
@@ -234,7 +301,6 @@ static int popOptionListWithoutFreeCoins[] = {
     [super viewDidLoad];
     [self addBottomMenuView];
     [self initTabButtons];
-    [self initDrawOptions];
     [self.view bringSubviewToFront:self.drawOptionBtn];
     [self.view bringSubviewToFront:self.bigPen];
     [self.drawOptionBtn addTarget:self action:@selector(clickDrawOptionBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -286,12 +352,18 @@ static int popOptionListWithoutFreeCoins[] = {
 - (void)initDrawOptions
 {
     LittleGeeImageManager* imgManager = [LittleGeeImageManager defaultManager];
-    self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
-    self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
+    if (!_drawOptionSheet) {
+        self.drawOptionSheet = [[[CustomActionSheet alloc] initWithTitle:nil delegate:self buttonTitles:nil] autorelease];
+        self.drawOptionSheet.tag = DRAW_OPTION_SHEET_TAG;
+    }
+    [_drawOptionSheet removeAllActions];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeDrawTo") image:[imgManager drawToBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
+    if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -369,47 +441,47 @@ static int popOptionListWithoutFreeCoins[] = {
         }
     }
     if (actionSheet.tag == POP_OPTION_SHEET_TAG) {
-        int* list = [ConfigManager wallEnabled]?popOptionListWithFreeCoins:popOptionListWithoutFreeCoins;
-        int count = [ConfigManager wallEnabled]?PopOptionCount:(PopOptionCount-1);
+        int* list = getPopOptionList();
+        int count = getPopOptionCount();
         if (buttonIndex >= count) {
             return;
         }
         switch (list[buttonIndex]) {
-            case PopOptionIndexPK: {
+            case PopOptionPK: {
                 UIViewController* rc = [[[DrawRoomListController alloc] init] autorelease];
                 [self.navigationController pushViewController:rc animated:YES];
             } break;
-            case PopOptionIndexSelf: {
+            case PopOptionSelf: {
                 UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
                 //    UserSettingController *us = [[UserSettingController alloc] init];
                 [self.navigationController pushViewController:us animated:YES];
                 [us release];
             } break;
-            case PopOptionIndexNotice: {
+            case PopOptionNotice: {
                 HomeMenuView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
                 [menu updateBadge:[[StatisticManager defaultManager] bbsActionCount]];//badge count = bbscount+bulletincount
                 [BulletinView showBulletinInController:self];
             } break;
-            case PopOptionIndexBbs: {
+            case PopOptionBbs: {
 //                [[StatisticManager defaultManager] setBbsActionCount:0];
                 BBSBoardController *bbs = [[BBSBoardController alloc] init];
                 [self.navigationController pushViewController:bbs animated:YES];
                 [bbs release];
             } break;
-            case PopOptionIndexIngot: {
+            case PopOptionIngot: {
                 FreeIngotController* fc = [[[FreeIngotController alloc] init] autorelease];
                 [self.navigationController pushViewController:fc animated:YES];
             } break;
-            case PopOptionIndexContest: {
+            case PopOptionContest: {
                 ContestController *cc = [[ContestController alloc] init];
                 [self.navigationController pushViewController:cc animated:YES];
                 [cc release];
             } break;
-            case PopOptionIndexShop: {
+            case PopOptionShop: {
                 StoreController *vc = [[[StoreController alloc] init] autorelease];
                 [self.navigationController pushViewController:vc animated:YES];
             } break;
-            case PopOptionIndexMore: {
+            case PopOptionMore: {
                 FeedbackController* feedBack = [[FeedbackController alloc] init];
                 [self.navigationController pushViewController:feedBack animated:YES];
                 [feedBack release];
@@ -795,8 +867,9 @@ static int popOptionListWithoutFreeCoins[] = {
         [self.drawOptionSheet hideActionSheet];
     } else {
         UIButton* btn = (UIButton*)sender;
-        float radius = sqrtf((btn.frame.size.height*btn.frame.size.height) + (0.5*btn.frame.size.width*0.5*btn.frame.size.width)) + MAX(ITEM_SIZE.width, ITEM_SIZE.height);
-        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.2) toAngle:(M_PI*0.2) radius:radius itemSize:ITEM_SIZE];
+        float radius = sqrtf((btn.frame.size.height*btn.frame.size.height) + (0.5*btn.frame.size.width*0.5*btn.frame.size.width));
+        [self initDrawOptions];
+        [self.drawOptionSheet expandInView:self.view onView:btn fromAngle:(-M_PI*0.3) toAngle:(M_PI*0.3) radius:radius itemSize:ITEM_SIZE];
     }
 }
 
@@ -865,7 +938,13 @@ static int popOptionListWithoutFreeCoins[] = {
     
     [self updateBadgeWithType:HomeMenuTypeLittleGeeFeed badge:timelineCount];
     
-    int optionCount = manager.bbsActionCount + manager.bulletinCount;
+    int optionCount;
+    if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+        optionCount = manager.bulletinCount;
+    } else {
+        optionCount = manager.bbsActionCount + manager.bulletinCount;
+    }
+    
     [self updateBadgeWithType:HomeMenuTypeLittleGeeOptions badge:optionCount];
 //    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     if (_hasLoadStatistic && _firstLoadBulletin && [[UserManager defaultManager] hasUser]) {

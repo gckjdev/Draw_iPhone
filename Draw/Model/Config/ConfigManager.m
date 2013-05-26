@@ -910,6 +910,11 @@
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_SELLER" defaultValue:ALIPAY_SELLER];
 }
 
++ (NSString *)getAlipayWebUrl
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://192.168.1.198:9879/webpay?name=%@&amount=%@"];
+}
+
 + (NSString *)getAlipayRSAPrivateKey
 {
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_RSA_PRIVATE_KEY" defaultValue:ALIPAY_RSA_PRIVATE_KEY];
