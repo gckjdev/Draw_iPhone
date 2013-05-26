@@ -43,7 +43,6 @@
         
         action = [[PaintAction paintActionWithPaint:currentPaint] retain];
         [action addPoint:point inRect:self.drawView.bounds];
-        [self addAction:action];
         [self.drawView drawDrawAction:action show:YES];
     }else{
         [action addPoint:point inRect:self.drawView.bounds];
@@ -63,17 +62,6 @@
 }
 
 
-- (void)finishAddPoints
-{
-    currentState = TouchStateEnd;
-    [action finishAddPoint];
-//    [self addAction:action];
-    if (action) {
-        [self.drawView clearRedoStack];
-    }
-    [self reset];
-}
-
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {
     [super handlePoint:point forTouchState:state];
@@ -92,32 +80,25 @@
         case TouchStateEnd:
         case TouchStateCancel:
         {
-            [self finishAddPoints];
+//            [self addPoint:point];
+            [action finishAddPoint];
+            [self addAction:action];
+            if (action) {
+                [self.drawView clearRedoStack];
+            }
+            [self reset];
             break;
         }
         default:
             break;
     }
 }
-
-#define FORCE_END_POINT_COUNT_WHEN_CANCEL 15
-
 - (void)handleFailTouch
 {
-    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
-        [self finishAddPoints];
-        return;
-    }
     [super handleFailTouch];
-
-//    [self.osManager cancelLastAction];
-    if (action) {
-        [self.osManager cancelLastAction];
-        [self.drawView.drawActionList removeObject:action];
-    }
-
-    [self.drawView setNeedsDisplay];
     [self reset];
+    [self.osManager cancelLastAction];
+    [self.drawView setNeedsDisplay];
 }
 
 

@@ -55,7 +55,6 @@
                                                        color:self.drawView.lineColor];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 shape.startPoint = shape.endPoint = point;
-                [self.drawView addDrawAction:action];
                 [self.drawView drawDrawAction:action show:YES];
             }else{
                 shape.startPoint = shape.endPoint = point;
@@ -80,7 +79,7 @@
     }
 
     if (state == TouchStateCancel || state == TouchStateEnd) {
-//        [self.drawView addDrawAction:action];
+        [self.drawView addDrawAction:action];
         if (action) {
             [self.drawView clearRedoStack];
         }
@@ -91,14 +90,8 @@
 - (void)handleFailTouch
 {
     [super handleFailTouch];
-
-    if (action) {
-        [self.osManager cancelLastAction];
-        [self.drawView.drawActionList removeObject:action];
-    }
-    
     [self reset];
-    
+    [self.osManager cancelLastAction];
 //    [[self.osManager enteryScreen] clear];
     [self.drawView setNeedsDisplay];
 }

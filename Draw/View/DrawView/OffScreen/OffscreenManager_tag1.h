@@ -11,6 +11,11 @@
 #import "Offscreen.h"
 
 
+typedef enum{
+    AddDrawActionOptionNormal = 0,
+    AddDrawActionOptionNOCache = 1, //clear the cache list, and write data into CGLayer
+}AddDrawActionOption;
+
 
 @interface OffscreenManager : NSObject
 
@@ -35,6 +40,12 @@
 
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action;
+
+- (CGRect)addDrawAction:(DrawAction *)action option:(AddDrawActionOption)option;
+
+//add draw action to  specified offscreen
+- (CGRect)addDrawAction:(DrawAction *)action
+            toOffscreen:(Offscreen *)os;
 
 - (void)cancelLastAction;
 
@@ -74,6 +85,7 @@
 
 
 - (BOOL)canUndo;
+- (void)undo;
 
 - (void)printOSInfo;
 
