@@ -15,6 +15,7 @@
 #import "FriendController.h"
 #import "StatisticManager.h"
 #import "ChatListController.h"
+#import "SecureSmsUserSettingController.h"
 
 @interface SecureSmsHomeController ()
 
@@ -114,9 +115,11 @@
         [self toRegister];
         return;
     } else {
-        UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-        [self.navigationController pushViewController:us animated:YES];
-        [us release];
+//        UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+//        [self.navigationController pushViewController:us animated:YES];
+//        [us release];
+        
+        [self.navigationController pushViewController:[[[SecureSmsUserSettingController alloc] init] autorelease] animated:YES];
     }
 }
 
@@ -133,17 +136,16 @@
 - (void)showInputView
 {
     if (_type == PureChatTypeSecureSms) {
-        
-        NSArray *subViewList = self.view.subviews;
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+        NSArray *subViewList = keyWindow.subviews;
         for(UIView *subView in subViewList) {
             if ([subView isKindOfClass:[InputDialog class]]) {
                 return;
             }
         }
-        
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:self];
         [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
-        [dialog showInView:self.view];
+        [dialog showInView:keyWindow];
     }
 }
 
