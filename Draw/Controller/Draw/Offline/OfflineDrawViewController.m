@@ -1337,7 +1337,6 @@
         PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
         [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
         [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
-        
     }
 }
 

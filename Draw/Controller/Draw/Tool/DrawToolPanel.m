@@ -52,6 +52,7 @@
     NSInteger _retainTime;
     DrawColorManager *drawColorManager;
     ToolCommandManager *toolCmdManager;
+    NSUInteger _commandVersion;
 }
 
 #pragma mark - click actions
@@ -259,10 +260,14 @@
 
 }
 
+
 - (void)registerToolCommands
 {
     toolCmdManager = [ToolCommandManager defaultManager];
-    [toolCmdManager removeAllCommand];
+    _commandVersion = [toolCmdManager createVersion];
+    [toolCmdManager setVersion:_commandVersion];
+    [toolCmdManager removeAllCommand:_commandVersion];
+    
     ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
@@ -328,8 +333,9 @@
     [toolCmdManager updatePanel:self];
     
     [self.toolHandler enterDrawMode];
-
 }
+
+
 
 - (void)updateViewsForSimpleDraw
 {
@@ -342,6 +348,7 @@
         }
         self.drawToUser.hidden = self.opusDesc.hidden = YES;
     }
+
 }
 
 - (void)updateView
@@ -427,7 +434,7 @@
 - (void)dealloc {
     
     PPDebug(@"%@ dealloc",self);
-//    [toolCmdManager removeAllCommand];
+    [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
     PPRelease(_toolHandler);
     PPRelease(_drawBgId);
