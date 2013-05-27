@@ -8,6 +8,7 @@
 
 #import "PureDrawApp.h"
 #import "PureDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PureDrawApp
 
@@ -89,6 +90,11 @@
 - (NSString*)domodWallId
 {
     return @"96ZJ2rhAze+vLwTA1k";
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPureDrawIngotTestDataFile];
 }
 
 @end

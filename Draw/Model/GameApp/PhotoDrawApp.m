@@ -8,6 +8,7 @@
 
 #import "PhotoDrawApp.h"
 #import "PhotoDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PhotoDrawApp
 
@@ -93,5 +94,9 @@
     return @"96ZJ2rhAze+vLwTA1k";
 }
 
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPhotoDrawIngotTestDataFile];
+}
 
 @end

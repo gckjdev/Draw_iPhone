@@ -8,6 +8,7 @@
 
 #import "PureDrawFreeApp.h"
 #import "PureDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PureDrawFreeApp
 
@@ -74,5 +75,9 @@
     return @"96ZJ2rhAze+vLwTA1k";
 }
 
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPureDrawFreeIngotTestDataFile];
+}
 
 @end

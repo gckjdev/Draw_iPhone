@@ -8,6 +8,7 @@
 
 #import "LittleGeeDrawApp.h"
 #import "LittleGeeHomeController.h"
+#import "IAPProductService.h"
 
 @implementation LittleGeeDrawApp
 
@@ -119,7 +120,7 @@
 
 - (NSString*)qqWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_WEIBO_ID" defaultValue:@"littleGee"];
+    return [MobClickUtils getStringValueByKey:@"LITTLE_GEE_QQ_WEIBO_ID" defaultValue:@"xiaojihuahua"];
     //    return @"drawlively";
 }
 
@@ -130,6 +131,11 @@
 - (BOOL)disableEnglishGuess
 {
     return YES;
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createLittlegeeIngotTestDataFile];
 }
 
 @end
