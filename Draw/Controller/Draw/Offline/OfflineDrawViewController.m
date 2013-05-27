@@ -739,7 +739,7 @@
         // Save Image Locally
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
-                                                     delegate:self];
+                                                     delegate:nil];
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
