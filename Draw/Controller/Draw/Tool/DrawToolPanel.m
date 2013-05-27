@@ -427,7 +427,7 @@
 - (void)dealloc {
     
     PPDebug(@"%@ dealloc",self);
-    [toolCmdManager removeAllCommand];
+//    [toolCmdManager removeAllCommand];
     [drawColorManager syncRecentList];
     PPRelease(_toolHandler);
     PPRelease(_drawBgId);

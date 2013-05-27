@@ -65,6 +65,7 @@
 #import "ToolCommand.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
+#import "LittleGeeHomeController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -745,28 +746,22 @@
             return;
         }
         //if come from feed detail controller
-        if (isLittleGeeAPP()) {
-            _startController = (_startController == nil)?[HomeController defaultInstance]:_startController;
+        if (_startController != nil) {
             [self.navigationController popToViewController:_startController animated:NO];
-            [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:_startController startController:_startController targetUid:_targetUid];
-        } else {
-            if (_startController != nil) {
-                [self.navigationController popToViewController:_startController animated:NO];
-                SelectHotWordController *sc = nil;
-                if ([_targetUid length] == 0) {
-                    sc = [[[SelectHotWordController alloc] init] autorelease];
-                }else{
-                    sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-                }
-                sc.superController = self.startController;
-                [_startController.navigationController pushViewController:sc animated:NO];
+            SelectHotWordController *sc = nil;
+            if ([_targetUid length] == 0) {
+                sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                //if come from home controller
-                if ([_targetUid length] == 0) {
-                    [HomeController startOfflineDrawFrom:self];
-                }else{
-                    [HomeController startOfflineDrawFrom:self uid:self.targetUid];
-                }
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+            }
+            sc.superController = self.startController;
+            [_startController.navigationController pushViewController:sc animated:NO];
+        }else{
+            //if come from home controller
+            if ([_targetUid length] == 0) {
+                [HomeController startOfflineDrawFrom:self];
+            }else{
+                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
             }
         }
         
@@ -1188,7 +1183,7 @@
         languageType = ChineseType;
         
         if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
-            self.word = [Word wordWithText:@"画" level:0];
+            self.word = [Word cusWordWithText:@"画"];
             PPDebug(@"You are playing little gee in english, so auto create title");
         }
     }
