@@ -14,6 +14,7 @@
 #import "ZJHGameJumpHandler.h"
 #import "ZJHHomeViewController.H"
 #import "CommonHelpManager.h"
+#import "IAPProductService.h"
 
 @implementation ZJHGameApp
 
@@ -502,4 +503,13 @@
     return NO;
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createZJHCoinTestDataFile];
+}
 @end

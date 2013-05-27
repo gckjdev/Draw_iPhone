@@ -66,31 +66,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
 + (void)createTestDataFile
 {
-    if (isDrawApp()) {
-        [self createDrawIngotTestDataFile];
-    }else if (isZhajinhuaApp()){
-        [self createZJHCoinTestDataFile];
-    }else if(isDiceApp()){
-        [self createDiceCoinTestDataFile];
-    }else if (isLearnDrawApp()){
-        [self createLearnDrawIngotTestDataFile];
-    }else if(isPureDrawApp()){
-        [self createPureDrawIngotTestDataFile];
-    }else if(isPureDrawFreeApp()){
-        [self createPureDrawFreeIngotTestDataFile];
-    }else if(isPhotoDrawApp()){
-        [self createPhotoDrawIngotTestDataFile];
-    }else if(isPhotoDrawFreeApp()){
-        [self createPhotoDrawFreeIngotTestDataFile];
-    }else if(isDreamAvatarApp()) {
-        [self createDreamAvatarIngotTestDataFile];
-    }else if(isDreamAvatarFreeApp()) {
-        [self createDreamAvatarFreeIngotTestDataFile];
-    }else if(isDreamLockscreenApp()) {
-        [self createDreamLockscreenIngotTestDataFile];
-    }else if(isDreamLockscreenFreeApp()) {
-        [self createDreamLockscreenFreeIngotTestDataFile];
-    }
+    [GameApp createIAPTestDataFile];
+    
+//    if (isLittleGeeAPP()){
+//        [self createLittlegeeIngotTestDataFile];
+//    }
+//    else if (isDrawApp()) {
+//        [self createDrawIngotTestDataFile];
+//    }else if (isZhajinhuaApp()){
+//        [self createZJHCoinTestDataFile];
+//    }else if(isDiceApp()){
+//        [self createDiceCoinTestDataFile];
+//    }else if (isLearnDrawApp()){
+//        [self createLearnDrawIngotTestDataFile];
+//    }else if(isPureDrawApp()){
+//        [self createPureDrawIngotTestDataFile];
+//    }else if(isPureDrawFreeApp()){
+//        [self createPureDrawFreeIngotTestDataFile];
+//    }else if(isPhotoDrawApp()){
+//        [self createPhotoDrawIngotTestDataFile];
+//    }else if(isPhotoDrawFreeApp()){
+//        [self createPhotoDrawFreeIngotTestDataFile];
+//    }else if(isDreamAvatarApp()) {
+//        [self createDreamAvatarIngotTestDataFile];
+//    }else if(isDreamAvatarFreeApp()) {
+//        [self createDreamAvatarFreeIngotTestDataFile];
+//    }else if(isDreamLockscreenApp()) {
+//        [self createDreamLockscreenIngotTestDataFile];
+//    }else if(isDreamLockscreenFreeApp()) {
+//        [self createDreamLockscreenFreeIngotTestDataFile];
+//    }
 }
 
 #define DRAW_INGOT_18_TAOBAO_URL @"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"
@@ -197,6 +202,89 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     
     [listBuilder release];
 }
+
++ (void)createLittlegeeIngotTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    PBIAPProductPrice *priceCN;
+    PBIAPProductPrice *priceUS;
+    NSArray *priceList;
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:nil];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.littlegee.ingot_18"
+                                  alipayProductId:@"draw_ingot_18"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
+                                            count:18
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_INGOT_18_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    priceCN = [self cnPriceWithPrice:@"30" saving:@"6%"];
+    priceUS = [self usPriceWithPrice:@"4.99" saving:@"6%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.littlegee.ingot_32"
+                                  alipayProductId:@"draw_ingot_30"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
+                                            count:32
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_INGOT_32_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"24%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"24%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.littlegee.ingot_90"
+                                  alipayProductId:@"draw_ingot_68"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
+                                            count:90
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_INGOT_90_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"35%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"35%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapingot
+                                   appleProductId:@"com.orange.littlegee.ingot_250"
+                                  alipayProductId:@"draw_ingot_163"
+                                             name:@"kIngot"
+                                             desc:@"kIngot"
+                                            count:250
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_INGOT_250_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    PBIAPProductList_Builder *listBuilder = [[PBIAPProductList_Builder alloc] init];
+    [listBuilder addAllProducts:mutableArray];
+    PBIAPProductList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/gitdata/Draw_iPhone/Draw/LittleGeeDraw/Resource/Config/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
 
 + (void)createLearnDrawIngotTestDataFile
 {

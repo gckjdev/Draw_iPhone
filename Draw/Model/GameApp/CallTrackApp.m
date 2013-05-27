@@ -9,6 +9,7 @@
 #import "CallTrackApp.h"
 #import "SecureSmsHomeController.h"
 
+
 @implementation CallTrackApp
 
 - (NSString*)appId
@@ -45,6 +46,9 @@
     return @"alipaycalltrack.gckj";
 }
 
-
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
 
 @end

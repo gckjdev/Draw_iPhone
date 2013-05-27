@@ -65,6 +65,7 @@
 #import "ToolCommand.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
+#import "LittleGeeHomeController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -745,28 +746,27 @@
             return;
         }
         //if come from feed detail controller
-        if (isLittleGeeAPP()) {
-            _startController = (_startController == nil)?[HomeController defaultInstance]:_startController;
-            [self.navigationController popToViewController:_startController animated:NO];
-            [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:_startController startController:_startController targetUid:_targetUid];
-        } else {
-            if (_startController != nil) {
-                [self.navigationController popToViewController:_startController animated:NO];
-                SelectHotWordController *sc = nil;
-                if ([_targetUid length] == 0) {
-                    sc = [[[SelectHotWordController alloc] init] autorelease];
-                }else{
-                    sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-                }
-                sc.superController = self.startController;
-                [_startController.navigationController pushViewController:sc animated:NO];
+        if (_startController != nil || isLittleGeeAPP()) {
+            if (_startController == nil) {
+                _startController = [LittleGeeHomeController defaultInstance];
+            }
+
+            SelectHotWordController *sc = nil;
+            if ([_targetUid length] == 0) {
+                sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                //if come from home controller
-                if ([_targetUid length] == 0) {
-                    [HomeController startOfflineDrawFrom:self];
-                }else{
-                    [HomeController startOfflineDrawFrom:self uid:self.targetUid];
-                }
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+            }
+            sc.superController = self.startController;
+            
+            [self.navigationController popToViewController:_startController animated:NO];
+            [_startController.navigationController pushViewController:sc animated:NO];
+        }else{
+            //if come from home controller
+            if ([_targetUid length] == 0) {
+                [HomeController startOfflineDrawFrom:self];
+            }else{
+                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
             }
         }
         
@@ -970,6 +970,14 @@
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
         return;
     }
+    
+    BOOL isBlank = ([drawView.drawActionList count] == 0);
+    if (isBlank && targetType != TypePhoto) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        [dialog showInView:self.view];
+        return;
+    }
+    
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _isNewDraft = YES;
 
@@ -1180,7 +1188,7 @@
         languageType = ChineseType;
         
         if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
-            self.word = [Word wordWithText:@"画" level:0];
+            self.word = [Word cusWordWithText:@"画"];
             PPDebug(@"You are playing little gee in english, so auto create title");
         }
     }
@@ -1334,7 +1342,6 @@
         PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
         [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
         [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
-        
     }
 }
 

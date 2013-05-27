@@ -505,4 +505,14 @@
     return NO;
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
 @end

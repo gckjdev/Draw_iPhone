@@ -288,9 +288,9 @@
 
 + (BOOL)wallEnabled
 {
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     
     if ([ConfigManager isInReviewVersion] == NO && 
         ([LocaleUtils isChina] == YES || 

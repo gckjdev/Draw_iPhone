@@ -113,7 +113,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 
 + (void)createTestDataFile
 {
-    if (isDrawApp()) {
+    if (isLittleGeeAPP()){
+        [self createLittlegeeTestDataFile];
+    }
+    else if (isDrawApp()) {
         [self createDrawTestDataFile];
     }else if(isDiceApp()){
         [self createDiceTestDataFile];
@@ -691,6 +694,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     [listBuilder release];
 }
 
++ (void)createLittlegeeTestDataFile
+{
+    // currently the file is the same
+    [self createDrawTestDataFile];
+}
 
 + (void)createLearnDrawTestDataFile
 {

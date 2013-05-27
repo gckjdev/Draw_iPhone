@@ -7,6 +7,7 @@
 //
 
 #import "DreamLockscreenApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamLockscreenApp
 
@@ -72,6 +73,16 @@
 - (BOOL)disableEnglishGuess
 {
     return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamLockscreenIngotTestDataFile];
 }
 
 @end

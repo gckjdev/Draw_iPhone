@@ -106,7 +106,7 @@
 }
 
 
-#define MIN_DISTANCE 8
+#define MIN_DISTANCE (8)
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
     BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
@@ -128,18 +128,22 @@
             rect = CGRectWithPointsAndWidth(self.startPoint, self.endPoint, self.width);
         }else{
             rect = CGRectWithPoints(self.startPoint, self.endPoint);
+            
         }
     }
-//    rect.origin.x -= self.width;
-//    rect.origin.y -= self.width;
-//    rect.size.width += self.width * 2;
-//    rect.size.height += self.width * 2;
     
     if(CGRectEqualToRect(CGRectZero, _redrawRect)){
         _redrawRect = rect;
     }else{
         _redrawRect = CGRectUnion(_redrawRect, rect);
     }
+    
+    _redrawRect.origin.x -= self.width;
+    _redrawRect.origin.y -= self.width;
+    _redrawRect.size.width += self.width*2;
+    _redrawRect.size.height += self.width*2;
+
+    
     return rect;
 }
 
@@ -236,6 +240,38 @@
         self.stroke = NO;
     }
     return self;
+}
+
+#define MIN_DISTANCE1 MAX(8,self.width+2)
+- (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
+{
+    if (self.stroke) {
+        BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE1) && (ABS(p1.y - p2.y) <= MIN_DISTANCE1);
+        return flag;
+    }
+    return [super point1:p1 equalToPoint:p2];
+}
+
+
+- (CGRect)rect
+{
+    CGRect r;
+    if (self.stroke) {
+        CGRect rect = [super rect];
+        if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
+            rect.origin.x += self.width/2;
+            rect.origin.y += self.width/2;
+            rect.size.width -= self.width;
+            rect.size.height -= self.width;            
+        }
+        r = rect;
+    }else{
+        r = [super rect];
+    }
+    r.size.width = MAX(4, r.size.width);
+    r.size.height = MAX(4, r.size.height);
+    return r;
+    
 }
 
 @end

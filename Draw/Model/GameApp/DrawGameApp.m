@@ -14,6 +14,7 @@
 #import "HomeController.h"
 #import "WordManager.h"
 #import "DrawBgManager.h"
+#import "IAPProductService.h"
 
 @implementation DrawGameApp
 
@@ -527,6 +528,16 @@
 - (BOOL)disableEnglishGuess
 {
     return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self appId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDrawIngotTestDataFile];
 }
 
 @end

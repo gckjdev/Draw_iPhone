@@ -16,6 +16,7 @@
 #import "DiceGameJumpHandler.h"
 #import "DiceHomeController.h"
 #import "CommonHelpManager.h"
+#import "IAPProductService.h"
 
 @implementation DiceGameApp
 
@@ -511,6 +512,16 @@
 - (BOOL)disableEnglishGuess
 {
     return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDiceCoinTestDataFile];
 }
 
 @end
